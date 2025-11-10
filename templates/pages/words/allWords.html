@@ -1,0 +1,269 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}Tüm Kelimeler{% endblock %}
+
+{% block messages %}{% endblock %}
+
+
+{% block content %}
+
+<div class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+        {% include 'base/messages.html' with margin_class="" %}
+
+        <div class="bg-blue-50 border-l-4 border-blue-400 text-blue-800 p-6 rounded-r-lg mb-8 shadow-sm">
+            <div class="flex">
+                <div class="py-1">
+                    <svg class="h-6 w-6 text-blue-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-xl font-semibold mb-2">Nasıl Çalışır?</h2>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>Bu sayfada kendi kelimelerinizi, arkadaşlarınızın ve diğer kullanıcıların herkese açık kelimelerini görebilirsiniz.</li>
+                        <li>Aşağıdaki filtreleri kullanarak kelimeler arasında detaylı arama yapabilirsiniz.</li>
+                        <li>Filtre seçip arama kutusunu boş bırakarak "Ara" butonuna basarsanız tüm kelimeler listelenir.</li>
+                        <li>NOT: Kur kelimelerinin anlamları ve bazı örnek cümleleri Google Gemini Pro tarafından eklenmiştir.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="results-container" class="bg-white rounded-xl shadow-md" style="scroll-margin-top: 6rem;">
+            
+            <div class="sticky top-20 z-10 p-4 sm:p-6 bg-gray-50 border-b border-gray-200 ">
+                <form method="get" action="{% url 'all_words' %}#results-container" class="flex flex-col md:flex-row items-center gap-4">
+                    
+                    <div class="w-full lg:w-auto flex flex-col sm:flex-row gap-4">
+                        
+                        <div class="relative group w-full sm:w-1/2 lg:w-48">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <select name="filter_by" class="w-full pl-10 pr-8 py-2 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 appearance-none transition">
+                                <option value="all" {% if request.GET.filter_by == 'all' %}selected{% endif %}>Tüm Alanlar</option>
+                                <option value="author" {% if request.GET.filter_by == 'author' %}selected{% endif %}>Yazara Göre</option>
+                                <option value="english" {% if request.GET.filter_by == 'english' %}selected{% endif %}>Kelimeye Göre</option>
+                                <option value="meaning" {% if request.GET.filter_by == 'meaning' %}selected{% endif %}>Anlamına Göre</option>
+                                <option value="explanation" {% if request.GET.filter_by == 'explanation' %}selected{% endif %}>Açıklamaya Göre</option>
+                                <option value="only_METU" {% if request.GET.filter_by == 'only_METU' %}selected{% endif %}>Sadece ODTÜ Kelimeleri</option>
+                                <option value="only_User" {% if request.GET.filter_by == 'only_User' %}selected{% endif %}>Sadece Kullanıcı Kelimeleri</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="relative group w-full sm:w-1/2 lg:w-48">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M5.5 16a3.5 3.5 0 01-3.5-3.5V6a2 2 0 012-2h6.5a2 2 0 012 2v6.5a3.5 3.5 0 01-3.5 3.5h-1.879a1 1 0 00-.707.293l-1.121 1.121a1 1 0 01-1.414 0l-1.121-1.121A1 1 0 005.5 16zM9 11a1 1 0 100-2 1 1 0 000 2z" />
+                                </svg>
+                            </div>
+                            <select name="level" class="w-full pl-10 pr-8 py-2 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 appearance-none transition">
+                                <option value="all" {% if request.GET.level == 'all' %}selected{% endif %}>Tüm Seviyeler</option>
+                                <option value="101" {% if request.GET.level == '101' %}selected{% endif %}>101</option>
+                                <option value="201" {% if request.GET.level == '201' %}selected{% endif %}>201</option>
+                                <option value="301" {% if request.GET.level == '301' %}selected{% endif %}>301</option>
+                                <option value="401" {% if request.GET.level == '401' %}selected{% endif %}>401</option>
+                                <option value="501" {% if request.GET.level == '501' %}selected{% endif %}>501</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative w-full lg:flex-1 group">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="h-5 w-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <input 
+                            type="text" 
+                            name="q" 
+                            placeholder="Aramak için yazın..." 
+                            value="{{ request.GET.q|default:'' }}" 
+                            class="w-full pl-10 pr-4 py-2 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition"
+                        >
+                    </div>
+                    
+                    <button type="submit" class="w-full lg:w-auto flex-shrink-0 inline-flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                        Ara
+                    </button>
+                </form>
+            </div>
+
+            {% if user.is_authenticated %}
+            <div class="p-4 sm:p-6 border-b border-gray-200">
+                <form method="POST" action="{% url 'add_all_words' %}"> 
+                    {% csrf_token %}
+                    <div class="flex flex-col sm:flex-row items-center gap-4">
+                        
+                        <div class="relative group w-full sm:flex-1">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                </svg>
+                            </div>
+                            <select name="bulk_word_list_name" class="w-full pl-10 pr-8 py-2 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 appearance-none transition">
+                                <option value="" disabled selected>Toplu Eklenecek Listeyi Seçin...</option>
+                                <option value="101:all" >Tüm 101 Kelimeleri</option>
+                                <option value="201:all" >Tüm 201 Kelimeleri</option>
+                                <option value="301:all" >Tüm 301 Kelimeleri</option>
+                                <option value="401:all" >Tüm 401 Kelimeleri</option>
+                                <option value="501:all" >Tüm 501 Kelimeleri</option>
+                                <option value="101:0" >101 Kelimeleri Spekout List</option>
+                                <option value="101:1" >101 Kelimeleri Week 1</option>
+                                <option value="101:2" >101 Kelimeleri Week 2</option>
+                                <option value="101:3" >101 Kelimeleri Week 3</option>
+                                <option value="101:4" >101 Kelimeleri Week 4</option>
+                                <option value="101:5" >101 Kelimeleri Week 5</option>
+                                <option value="101:6" >101 Kelimeleri Week 6</option>
+                                <option value="101:7" >101 Kelimeleri Week 7</option>
+                                <option value="101:8" >101 Kelimeleri Week 8</option>
+                                <option value="201:1" >201 Kelimeleri Week 1</option>
+                                <option value="201:2" >201 Kelimeleri Week 2</option>
+                                <option value="201:3" >201 Kelimeleri Week 3</option>
+                                <option value="201:4" >201 Kelimeleri Week 4</option>
+                                <option value="201:5" >201 Kelimeleri Week 5</option>
+                                <option value="201:6" >201 Kelimeleri Week 6</option>
+                                <option value="201:7" >201 Kelimeleri Week 7</option>
+                                <option value="201:8" >201 Kelimeleri Week 8</option>
+                                <option value="301:0" >301 Kelimeleri Handout Kelimeleri</option>
+                                <option value="301:1" >301 Kelimeleri Week 1</option>
+                                <option value="301:2" >301 Kelimeleri Week 2</option>
+                                <option value="301:3" >301 Kelimeleri Week 3</option>
+                                <option value="301:4" >301 Kelimeleri Week 4</option>
+                                <option value="301:5" >301 Kelimeleri Week 5</option>
+                                <option value="301:6" >301 Kelimeleri Week 6</option>
+                                <option value="301:7" >301 Kelimeleri Week 7</option>
+                                <option value="401:1" >401 Kelimeleri Week 1</option>
+                                <option value="401:2" >401 Kelimeleri Week 2</option>
+                                <option value="401:3" >401 Kelimeleri Week 3</option>
+                                <option value="401:4" >401 Kelimeleri Week 4</option>
+                                <option value="401:5" >401 Kelimeleri Week 5</option>
+                                <option value="401:6" >401 Kelimeleri Week 6</option>
+                                <option value="401:7" >401 Kelimeleri Week 7</option>
+                            
+                                </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
+                            <svg class="-ml-0.5 mr-1.5 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                            </svg>
+                            Bu Kelimelerin Hepsini Listeme Ekle
+                        </button>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+
+
+            {% if words %}
+            <div class="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 text-sm rounded-lg p-4 mb-6 ml-4 mr-4 mt-4" role="alert">
+                <svg class="h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="sr-only">Bilgi</span>
+                <div>
+                    Arama sonucunda <strong class="font-semibold text-green-900">{{ words|length }}</strong> kelime bulundu.
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="p-4 sm:p-6">
+                {% if user.is_authenticated %}
+                <div class="hidden md:grid grid-cols-11 gap-4 px-4 py-2 text-sm font-semibold text-gray-500 uppercase border-b">
+                {% else %}
+                <div class="hidden md:grid grid-cols-9 gap-4 px-4 py-2 text-sm font-semibold text-gray-500 uppercase border-b">
+                {% endif %}
+                    <div class="col-span-2">Yazar</div>
+                    <div class="col-span-3">Kelime</div>
+                    <div class="col-span-3">Anlam</div>
+                    {% if user.is_authenticated %}
+                    <div class="col-span-2">Listeme Ekle</div>
+                    {% endif %}
+                    <div class="col-span-1 text-right">Kur Seviyesi</div>
+                </div>
+
+                <div class="mt-4 space-y-3">
+                    {% for word in words %}
+                    <div id="word-{{ word.id }}" class="scroll-mt-30 block rounded-lg odd:bg-white even:bg-gray-50/70 hover:bg-indigo-50 shadow-sm hover:shadow-md border border-transparent hover:border-gray-200 p-4 transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+                        
+                        {% if user.is_authenticated %}
+                        <div class="grid grid-cols-1 md:grid-cols-11 gap-x-4 gap-y-2 items-center">
+                        {% else %}
+                        <div class="grid grid-cols-1 md:grid-cols-9 gap-x-4 gap-y-2 items-center">
+                        {% endif %}
+                            <div class="md:col-span-2">
+                                <a href="{% url 'word_detail' word.id %}" class="block hover:text-indigo-800 transition-colors">
+                                    <span class="md:hidden text-xs font-bold uppercase text-gray-500">Yazar: </span>
+                                    <span class="font-semibold text-indigo-700">
+                                        {% if word.owner != None%}
+                                            {{ word.owner.username }}
+                                        {% else %}
+                                            ODTÜ
+                                        {% endif %}
+                                    </span>
+                                </a>
+                            </div>
+                            
+                            <div class="md:col-span-3 text-lg font-medium text-gray-900">
+                                <a href="{% url 'word_detail' word.id %}" class="hover:text-indigo-600 transition-colors">
+                                    {{ word.englishWord }}
+                                </a>
+                            </div>
+                            
+                            <div class="md:col-span-3 text-gray-600">
+                                <a href="{% url 'word_detail' word.id %}" class="block hover:text-gray-900 transition-colors">
+                                    {{ word.meaningTr }}
+                                </a>
+                            </div>  
+                            
+                            {% if user.is_authenticated %}
+                            <div class="md:col-span-2 text-gray-600">
+                                <a href="{% url 'add_to_my_list' word.id %}" 
+                                class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    <svg class="-ml-0.5 mr-1.5 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                                    </svg>
+                                    Listeme Ekle
+                                </a>
+                            </div>
+                            {% endif %}
+                            
+                            <div class="md:col-span-1 text-left md:text-right">
+                                <a href="{% url 'word_detail' word.id %}" class="block">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                        {{ word.wordLevel }}
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="text-center py-12">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                          <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        </svg>
+                        <h3 class="mt-2 text-lg font-medium text-gray-900">Sonuç Bulunamadı</h3>
+                        <p class="mt-1 text-sm text-gray-500">Aradığınız kriterlere uygun kelime bulunamadı.</p>
+                      </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

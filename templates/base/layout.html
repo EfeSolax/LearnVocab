@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LearnVocab{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/favicon.jpg' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 text-gray-900 min-h-screen">
+
+    {% include 'base/navbar.html' %}
+
+    <main class="min-h-screen pt-16">
+
+        {% block messages %}
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6"> 
+            {% include 'base/messages.html' with margin_class="" %} 
+        </div>
+        {% endblock messages %}
+        
+        {% block content %}
+        {% endblock %}
+    
+    </main>
+
+</body>
+</html>
+
+{% block comment %}
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

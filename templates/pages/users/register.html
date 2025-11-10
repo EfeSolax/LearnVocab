@@ -1,0 +1,123 @@
+<!-- Burada zaten varolan layout.html'i extend ediyoruz. -->
+{% extends 'base/layout.html' %}  
+
+{% block title %}Kayıt Ol{% endblock %}
+
+{% block messages %}{% endblock %}
+
+
+{% block content %}
+
+<br>
+<br>
+<div class="flex min-h-full flex-col justify-center px-6 py-1 lg:px-8 mb-16">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Hesabınızı Oluşturun!</h2>
+  </div>
+
+  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm bg-white p-8 rounded-lg shadow-md">
+    
+    {% include 'base/messages.html' with margin_class="" %}
+    <form action="{% url 'register' %}" method="POST" class="space-y-6">
+      {% csrf_token %}
+
+      <!-- İsim isteme -->
+      <div>
+        <label class="block text-sm/6 font-medium text-gray-900">İsim</label>
+        <div class="mt-2">
+          <input id="first_name" type="text" name="first_name" autocomplete="off" placeholder="İsim"
+          class="block w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-base text-gray-900 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
+        </div>
+      </div>
+    
+      <!-- Soyisim isteme -->
+      <div>
+        <label class="block text-sm/6 font-medium text-gray-900">Soyisim</label>
+        <div class="mt-2">
+          <input id="last_name" type="text" name="last_name" autocomplete="off" placeholder="Soyisim"
+          class="block w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-base text-gray-900 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
+        </div>
+      </div>
+
+      <!-- Kullanıcı adı isteme -->
+      <div>
+        <label class="block text-sm/6 font-medium text-gray-900">Kullanıcı Adı</label>
+        <div class="mt-2">
+          <input id="username" type="text" name="username" autocomplete="off" placeholder="Kullanıcı Adı"
+          class="block w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-base text-gray-900 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
+        </div>
+      </div>
+    
+      <!-- Email isteme -->
+      <div>
+        <label for="email" class="block text-sm/6 font-medium text-gray-900">Email Adresi</label>
+        <div class="mt-2">
+          <input id="email" type="email" name="email" required autocomplete="email" placeholder="Email"
+          class="block w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-base text-gray-900 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
+        </div>
+      </div>
+
+      <!-- Seviye isteme -->
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm/6 font-medium text-gray-900">Seviye (Kur)</label>
+        </div>
+        
+        <div class="relative">
+        <select id="level" name="level"
+            class="block w-full appearance-none rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 text-sm 
+            shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500">
+            <option value="" disabled selected>Seviyenizi seçin</option>
+            <option value="1">1. Seviye</option>
+            <option value="2">2. Seviye</option>
+            <option value="3">3. Seviye</option>
+            <option value="4">4. Seviye</option>
+            <option value="5">5. Seviye</option>
+        </select>
+
+        <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
+            ▼
+        </div>
+        </div>
+      </div>
+
+      <!-- Şifre isteme -->
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm/6 font-medium text-gray-900">Şifre</label>
+        </div>
+        
+        <div class="mt-2">
+          <input id="password1" type="password" name="password1" autocomplete="new-password" placeholder="Şifre"
+          class="block w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-base text-gray-900 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
+        </div>
+      </div>
+
+      <!-- Şifre (Tekrar) isteme -->
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm/6 font-medium text-gray-900">Şifre (Tekrar)</label>
+        </div>
+        
+        <div class="mt-2">
+          <input id="password2" type="password" name="password2" autocomplete="new-password" placeholder="Şifre (Tekrar)"
+          class="block w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-base text-gray-900 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6"/>
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Kayıt Ol</button>
+      </div>
+    </form>
+
+    <p class="mt-6 text-center text-sm/8 text-gray-500">
+      Zaten bir hesabınız var mı?
+      
+    </p>
+
+    <p class="text-center text-sm/8 text-gray-500">
+      <a href="{% url 'login' %}" class="font-semibold text-indigo-600 hover:text-indigo-500">Hesabınıza giriş yapın!</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

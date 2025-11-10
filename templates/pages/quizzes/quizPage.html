@@ -1,0 +1,515 @@
+{% extends 'base/layout.html' %}
+{% load static %} 
+
+{% block title %}Quiz Sayfası {% endblock %}
+
+{% block content %}
+
+<audio id="correct-sound" src="{% static 'sounds/correct.mp3' %}" preload="auto" muted></audio>
+<audio id="wrong-sound" src="{% static 'sounds/wrong.mp3' %}" preload="auto" muted></audio>
+<audio id="tictac-sound" src="{% static 'sounds/tictac.mp3' %}" preload="auto" muted></audio>
+
+
+<div id="quiz-container" class="mt-8 mb-6 max-w-3xl mx-auto relative bg-indigo-50 shadow-xl rounded-lg p-1.5">
+
+    <div class="absolute inset-0 w-full h-full overflow-hidden rounded-lg pointer-events-none">
+        <svg id="timer-svg" preserveAspectRatio="none" 
+             viewBox="0 0 100 100" 
+             vector-effect="non-scaling-stroke"
+             class="w-full h-full text-indigo-600"> 
+            
+            <path id="timer-path" d="M50 1.5 L98.5 1.5 L98.5 98.5 L1.5 98.5 L1.5 1.5 L50 1.5" 
+                  stroke="currentColor" stroke-width="3" fill="none" />
+        </svg>
+    </div>
+
+    <div class="relative bg-white shadow-lg rounded-lg p-4 md:p-8">
+
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-indigo-700">Soru {{ question_index }} / {{ total_questions }}</span>
+                <span id="answer-feedback" class="text-sm font-semibold"></span>
+            </div>
+            <div class="w-full bg-indigo-100 rounded-full h-2.5">
+                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: {% widthratio question_index total_questions 100 %}%"></div>
+            </div>
+        </div>
+
+        <div class="bg-white border-2 border-indigo-200 rounded-lg p-6 mb-6">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-900" style="white-space: pre-wrap;">{{ question.question_text }}</h2>
+            {% if question_type == "WritingQuestion" %}
+                <p class="mt-2 mb-4 text-gray-400" style="white-space: pre-wrap;">Bu kelime, kelime listenize ekledikleriniz arasından seçilmiştir. Bu anlamı ve açıklamayı karşılayan birden çok kelime olabilir, bunun için özür dileriz.</p>
+            {% endif %}
+        </div>
+
+        <form id="quizForm" method="POST" action="{% url 'quiz_page' attempt_id=attempt.id question_index=question_index %}">
+            {% csrf_token %}
+            <div id="answer-container">
+                {% if question_type == "MultipleChoiceQuestion" %}
+                    <div class="space-y-4">
+                        {% for label, text in question.options_as_list %}
+                        <div class="mc-option-box bg-white p-4 border-2 border-indigo-300 rounded-lg cursor-pointer hover:bg-indigo-50 hover:border-indigo-500 transition-all duration-150">
+                            <label class="flex items-center w-full cursor-pointer">
+                                <input type="radio" name="answer" value="{{ label }}" class="answer-input h-5 w-5 text-indigo-600 border-gray-400 focus:ring-indigo-500">
+                                <span class="ml-4 text-lg text-indigo-700 font-medium">{{ label }}.</span>
+                                <span class="ml-2 text-lg text-gray-900">{{ text }}</span>
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                
+                {% elif question_type == "WritingQuestion" %}
+                    <div>
+                        <input type="text" name="answer" id="writing-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                               class="answer-input w-full px-4 py-3 text-lg border-2 border-indigo-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-150"
+                               placeholder="Cevabınızı buraya yazın...">
+                    </div>
+                
+                {% elif question_type == "MatchingQuestion" %}
+                    <div class="grid grid-cols-2 gap-4 md:gap-8">
+                        <div id="left-column" class="space-y-3">
+                            {% for item in question.left_column_items %}
+                            <div class="left-item p-4 bg-white border-2 border-indigo-300 rounded-lg text-lg text-gray-900 cursor-pointer hover:bg-indigo-50 hover:border-indigo-500 transition-all duration-150" data-id="{{ item.id }}">
+                                {{ item.text }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div id="right-column" class="space-y-3">
+                            {% for item in question.right_column_items %}
+                            <div class="right-item p-4 bg-white border-2 border-indigo-300 rounded-lg text-lg text-gray-900 cursor-pointer hover:bg-indigo-50 hover:border-indigo-500 transition-all duration-150" data-id="{{ item.id }}">
+                                {{ item.text }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <input type="hidden" name="answer" id="matching-answer" class="answer-input">
+                
+                {% endif %}
+            </div>
+            
+            <div class="mt-8 text-right">
+                <button type="submit" id="submitButton"
+                        class="px-10 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors">
+                    Kontrol Et
+                </button>
+                
+                {% if is_last_question %}
+                    <a href="{% url 'quiz_complete' attempt_id=attempt.id %}" id="nextButton"
+                       class="hidden inline-block px-8 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition-colors">
+                        Quiz'i Bitir
+                    </a>
+                {% else %}
+                    <a href="{% url 'quiz_page' attempt_id=attempt.id question_index=next_question_index %}" id="nextButton"
+                       class="hidden inline-block px-8 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors">
+                        Sonraki Soru
+                    </a>
+                {% endif %}
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{{ audio|json_script:"audio-setting" }}
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<style>
+    .emoji-burst {
+        position: fixed; 
+        bottom: 0;
+        left: 50%;
+        font-size: 2rem; 
+        z-index: 1000;
+        pointer-events: none;
+        animation: fly-out 2s ease-out forwards;
+    }
+    @keyframes fly-out {
+        0% {
+            transform: translate(-50%, 0) scale(0.5);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(calc(-50% + var(--tx)), -100vh) scale(1.5) rotate(var(--r));
+            opacity: 0;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- Gerekli Tüm Elementleri Seç ---
+    const form = document.getElementById('quizForm');
+    const submitButton = document.getElementById('submitButton');
+    const nextButton = document.getElementById('nextButton');
+    const answerContainer = document.getElementById('answer-container');
+    const feedbackSpan = document.getElementById('answer-feedback');
+    const audioSettingElement = document.getElementById('audio-setting');
+    const userAudioAllowed = audioSettingElement ? JSON.parse(audioSettingElement.textContent) : true;
+    
+    // --- Sesler ---
+    const correctSound = document.getElementById('correct-sound');
+    const wrongSound = document.getElementById('wrong-sound');
+    const tictacSound = document.getElementById('tictac-sound');
+
+    // --- YENİ EKLENDİ (SES AYARI) ---
+    if (tictacSound) {
+        tictacSound.volume = 0.3; 
+    }
+    
+    // --- YENİ EKLENDİ: Soruya başlama zamanını kaydet ---
+    const questionStartTime = Date.now();
+    
+    // --- SES DÜZELTMESİ: Kullanıcı etkileşimini dinle ---
+    let userHasInteracted = false;
+    function unlockAudio() {
+        if (userHasInteracted) return;
+        userHasInteracted = true;
+        
+        console.log("Kullanıcı etkileşimi algılandı, ses kilidi açılıyor...");
+        
+        // 1. Tüm seslerin SADECE 'muted' özelliğini kaldır.
+        //    Artık 'play' veya 'pause' komutu yok, 
+        //    bu yüzden "yanlış zamanda" çalmayacaklar.
+        correctSound.muted = false;
+        wrongSound.muted = false;
+        tictacSound.muted = false; 
+
+        // 2. Tictac sesi zamanlayıcı tarafından zaten çalınmaya çalışılıyordu.
+        //    Şimdi kilidi açtığımıza göre, eğer ayar izin veriyorsa,
+        //    kaldığı yerden devam etmesini (veya baştan başlamasını) sağlayalım.
+        if (animationFrameId && userAudioAllowed) { 
+            tictacSound.currentTime = 0; // Başa sar
+            tictacSound.play().catch((e) => console.error("Tictac çalınamadı (unlock):", e));
+        }
+    }
+    document.body.addEventListener('click', unlockAudio, { once: true });
+    document.body.addEventListener('touchstart', unlockAudio, { once: true });
+    // --- SES DÜZELTMESİ SONU ---
+
+    const timerPath = document.getElementById('timer-path');
+    const DURATION = 60000; 
+    let animationFrameId = null; 
+    let timerExpired = false; 
+
+    const questionType = document.getElementById('left-column') ? 'MatchingQuestion' :
+                         document.querySelector('input[type="radio"]') ? 'MultipleChoiceQuestion' : 
+                         'WritingQuestion';
+
+    let selectedLeftItem = null;
+
+    if (questionType === 'MatchingQuestion') {
+        alignMatchingHeights(); // Yükseklikleri eşitle
+        const leftColumn = document.getElementById('left-column');
+        const rightColumn = document.getElementById('right-column');
+        
+        // ... (Eşleştirme Tıklama Olayları)
+        leftColumn.addEventListener('click', function(e) {
+            const target = e.target.closest('.left-item');
+            if (!target || timerExpired) return; 
+            if (selectedLeftItem) {
+                selectedLeftItem.classList.remove('border-indigo-500', 'ring-2', 'ring-indigo-300');
+            }
+            if (selectedLeftItem === target) {
+                selectedLeftItem = null;
+            } else {
+                target.classList.add('border-indigo-500', 'ring-2', 'ring-indigo-300');
+                selectedLeftItem = target;
+            }
+        });
+        rightColumn.addEventListener('click', function(e) {
+            const clickedRightItem = e.target.closest('.right-item');
+            if (!clickedRightItem || !selectedLeftItem || timerExpired) return;
+            const allLeftItems = Array.from(leftColumn.children);
+            const leftIndex = allLeftItems.indexOf(selectedLeftItem);
+            const allRightItems = Array.from(rightColumn.children);
+            const alignedRightItem = allRightItems[leftIndex]; 
+            if (clickedRightItem !== alignedRightItem) {
+                swapItems(clickedRightItem, alignedRightItem);
+            }
+            if(selectedLeftItem) {
+                selectedLeftItem.classList.remove('border-indigo-500', 'ring-2', 'ring-indigo-300');
+                selectedLeftItem = null;
+            }
+        });
+    }
+
+    // --- "Kontrol Et" işlemini bir fonksiyona taşıdık ---
+    function checkAnswer() {
+        if (timerExpired) return; 
+        
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+        timerExpired = true; 
+        
+        if (tictacSound) {
+            tictacSound.pause();
+            tictacSound.currentTime = 0;
+        }
+
+        if (questionType === 'MatchingQuestion') {
+            const leftItems = document.querySelectorAll('#left-column div[data-id]');
+            const rightItems = document.querySelectorAll('#right-column div[data-id]');
+            let answerPairs = [];
+            for (let i = 0; i < leftItems.length; i++) {
+                const leftId = leftItems[i].getAttribute('data-id');
+                const rightId = rightItems[i].getAttribute('data-id'); 
+                answerPairs.push(`${leftId}:${rightId}`);
+            }
+            document.getElementById('matching-answer').value = answerPairs.join(';');
+        }
+        
+        if (questionType === 'WritingQuestion') {
+             if (!document.getElementById('writing-input').value) {
+                document.getElementById('writing-input').value = " "; 
+             }
+        }
+        if (questionType === 'MultipleChoiceQuestion') {
+            const selectedRadio = document.querySelector('input[name="answer"]:checked');
+            if (!selectedRadio) {
+                const tempInput = document.createElement('input');
+                tempInput.type = 'hidden';
+                tempInput.name = 'answer';
+                tempInput.value = ' '; 
+                form.appendChild(tempInput);
+            }
+        }
+        
+        // --- YENİ EKLENDİ: Süreyi hesapla ve form datasına ekle ---
+        const timeTakenInMs = Date.now() - questionStartTime;
+        const timeTakenInSeconds = timeTakenInMs / 1000.0;
+        
+        const formData = new FormData(form);
+        formData.append('time_taken', timeTakenInSeconds); // Veriyi POST'a ekle
+        // --- YENİ KISIM SONU ---
+
+        
+        // 3. Formu sessizce (AJAX) gönder
+        fetch(form.action, {
+            method: 'POST',
+            body: formData, // 'time_taken' verisini içeren güncel form
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(response => response.json()) 
+        .then(data => {
+            
+            submitButton.classList.add('hidden'); 
+            nextButton.classList.remove('hidden'); 
+            
+            answerContainer.querySelectorAll('.answer-input, .left-item, .right-item, .mc-option-box').forEach(el => {
+                el.disabled = true;
+                el.style.pointerEvents = 'none'; 
+                el.classList.remove('hover:bg-indigo-50', 'cursor-pointer', 'hover:border-indigo-500'); 
+            });
+
+            // Renklendirme fonksiyonlarını çağır
+            if (questionType === 'MatchingQuestion') {
+                handleMatchingCheck(); 
+            } else if (questionType === 'MultipleChoiceQuestion') {
+                handleMultipleChoiceCheck(data, formData); 
+            } else if (questionType === 'WritingQuestion') {
+                handleWritingCheck(data); 
+            }
+
+            // --- Ses Çalma ---
+            if (data.is_correct) {
+                triggerEmojiBurst(); 
+                if (correctSound && userHasInteracted && userAudioAllowed) {
+                    correctSound.currentTime = 0; 
+                    correctSound.play().catch(e => console.error("Doğru ses çalınamadı:", e));
+                }
+            } else {
+                if (wrongSound && userHasInteracted && userAudioAllowed) {
+                    wrongSound.currentTime = 0;
+                    wrongSound.play().catch(e => console.error("Yanlış ses çalınamadı:", e));
+                }
+            }
+        })
+        .catch(error => {
+            console.error("Cevap kontrol edilirken hata oluştu:", error);
+            feedbackSpan.innerText = 'Bir hata oluştu!';
+            feedbackSpan.className = 'text-sm font-semibold text-red-600';
+        });
+    }
+
+    // --- "KONTROL ET" BUTONUNA TIKLANDIĞINDA ---
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        checkAnswer();      
+    });
+    
+    // --- ZAMANLAYICI FONKSİYONU ---
+    function startTimer(pathElement) {
+        const length = pathElement.getTotalLength();
+        pathElement.style.strokeDasharray = length;
+        pathElement.style.strokeDashoffset = length;
+        let startTime = Date.now();
+        
+        if (tictacSound && userAudioAllowed) {
+            tictacSound.currentTime = 0;
+            tictacSound.play().catch(err => {
+                console.log("Ses çalma, kullanıcı etkileşimi bekleniyor.");
+            });
+        }
+
+        function animateTimer(currentTime) {
+            let elapsed = Date.now() - startTime;
+            let progress = elapsed / DURATION;
+            if (progress >= 1) {
+                pathElement.style.strokeDashoffset = 0; 
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+                checkAnswer(); 
+                return;
+            }
+            const offset = length * (1 - progress);
+            pathElement.style.strokeDashoffset = offset;
+            animationFrameId = requestAnimationFrame(animateTimer);
+        }
+        animationFrameId = requestAnimationFrame(animateTimer);
+    }
+
+    // --- YARDIMCI FONKSİYONLAR ---
+
+    function triggerEmojiBurst() {
+        const EMOJIS = ['🎉', '✨', '👍', '✅', '🎯', '💯', '🥳', '🚀'];
+        const burstCount = 15; 
+        for (let i = 0; i < burstCount; i++) {
+            setTimeout(() => {
+                const emoji = document.createElement('span');
+                emoji.classList.add('emoji-burst');
+                emoji.innerText = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+                const randomX = (Math.random() - 0.5) * 600;
+                const randomR = (Math.random() - 0.5) * 720; 
+                emoji.style.setProperty('--tx', `${randomX}px`);
+                emoji.style.setProperty('--r', `${randomR}deg`);
+                document.body.appendChild(emoji);
+                emoji.addEventListener('animationend', () => {
+                    emoji.remove();
+                });
+            }, i * 50);
+        }
+    }
+
+    // YÜKSEKLİK EŞİTLEME (DÜZELTİLDİ)
+    function alignMatchingHeights() {
+        const allItems = document.querySelectorAll('#left-column .left-item, #right-column .right-item');
+        if (allItems.length === 0) return;
+        allItems.forEach(item => { item.style.minHeight = 'auto'; });
+        setTimeout(() => {
+            const heights = Array.from(allItems).map(item => item.offsetHeight);
+            const maxHeight = Math.max(...heights);
+            allItems.forEach(item => {
+                item.style.minHeight = `${maxHeight}px`;
+                // 'flex' ve 'items-center'ı JS ile ekliyoruz
+                item.classList.add('flex', 'items-center'); 
+            });
+        }, 0);
+    }
+    
+    function handleMatchingCheck() { 
+        const leftItems = document.querySelectorAll('#left-column .left-item');
+        const rightColumn = document.getElementById('right-column');
+        let itemsToMove = []; 
+        for (let i = 0; i < leftItems.length; i++) {
+            const leftItem = leftItems[i];
+            const rightItem = rightColumn.children[i]; 
+            const leftId = leftItem.getAttribute('data-id');
+            const rightId = rightItem.getAttribute('data-id');
+            if (leftId === rightId) {
+                leftItem.classList.add('bg-green-100', 'border-green-400');
+                rightItem.classList.add('bg-green-100', 'border-green-400');
+            } else {
+                leftItem.classList.add('bg-red-100', 'border-red-400');
+                rightItem.classList.add('bg-red-100', 'border-red-400');
+                itemsToMove.push(leftId); 
+            }
+        }
+        setTimeout(() => {
+            itemsToMove.forEach((leftIdToFix, index) => {
+                const leftItem = leftColumn.querySelector(`.left-item[data-id="${leftIdToFix}"]`);
+                const correctRightItem = rightColumn.querySelector(`.right-item[data-id="${leftIdToFix}"]`);
+                const leftIndex = Array.from(leftColumn.children).indexOf(leftItem);
+                const currentWrongRightItem = rightColumn.children[leftIndex];
+                if (correctRightItem === currentWrongRightItem) {
+                    return;
+                }
+                setTimeout(() => {
+                    swapItems(currentWrongRightItem, correctRightItem);
+                }, index * 300); 
+            });
+        }, 1500); 
+    }
+    
+    function handleMultipleChoiceCheck(data, formData) {
+        const userAnswer = formData.get('answer'); 
+        const correctAnswer = data.correct_answer;  
+        const allOptionBoxes = document.querySelectorAll('.mc-option-box');
+        allOptionBoxes.forEach(box => {
+            const input = box.querySelector('input[type="radio"]');
+            const optionValue = input.value; 
+            if (data.is_correct) {
+                if (optionValue === correctAnswer) {
+                    box.classList.add('bg-green-100', 'border-green-400');
+                }
+            } else {
+                if (optionValue === userAnswer) {
+                    box.classList.add('bg-red-100', 'border-red-400');
+                } else if (optionValue === correctAnswer) {
+                    box.classList.add('bg-green-100', 'border-green-400');
+                }
+            }
+        });
+    }
+    
+    function handleWritingCheck(data) {
+        const inputField = document.getElementById('writing-input');
+        if (data.is_correct) {
+            inputField.classList.add('bg-green-100', 'border-green-400');
+        } else {
+            inputField.classList.add('bg-red-100', 'border-red-400');
+        }
+        inputField.value = data.correct_answer; 
+    }
+    
+    function swapItems(itemA, itemB) {
+        const parent = itemA.parentNode;
+        itemA.style.transition = 'transform 0.2s ease-in-out';
+        itemB.style.transition = 'transform 0.2s ease-in-out';
+        const rectA = itemA.getBoundingClientRect();
+        const rectB = itemB.getBoundingClientRect();
+        itemA.style.transform = `translateY(${rectB.top - rectA.top}px)`;
+        itemB.style.transform = `translateY(${rectA.top - rectB.top}px)`;
+        setTimeout(() => {
+            itemA.style.transition = '';
+            itemB.style.transition = '';
+            itemA.style.transform = '';
+            itemB.style.transform = '';
+            const tempA = document.createElement('div');
+            const tempB = document.createElement('div');
+            parent.insertBefore(tempA, itemA);
+            parent.insertBefore(tempB, itemB);
+            parent.insertBefore(itemA, tempB);
+            parent.insertBefore(itemB, tempA);
+            parent.removeChild(tempA);
+            parent.removeChild(tempB);
+        }, 200); 
+    }
+    
+    // --- ZAMANLAYICIYI BAŞLAT ---
+    if (nextButton.classList.contains('hidden')) {
+        startTimer(timerPath);
+    } else {
+        const length = timerPath.getTotalLength();
+        timerPath.style.strokeDasharray = length;
+        timerPath.style.strokeDashoffset = 0;
+    }
+});
+</script>
+{% endblock %}

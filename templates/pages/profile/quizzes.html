@@ -1,0 +1,160 @@
+{% extends 'base/sidebar.html' %}
+
+{% block title%}Quizlerim {% endblock %}
+
+{% comment %} 1. Chart.js Kütüphanesini <head> içine ekler {% endcomment %}
+{% block extra_head %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block users %}
+        {% include 'pages/profile/showAllUsers.html' with allUsers=allUsers %}
+{% endblock%}
+
+
+{% block page %}
+<div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-bold mb-6">Quiz Merkezi</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <a href="{% url 'attempt_quiz' %}" 
+           class="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-2">Yeni Quiz'e Başla</h2>
+            <p class="text-gray-700">
+                Öğrenilmemiş kelimelerinden senin için özel olarak seçilmiş bir quize başla.
+            </p>
+        </a>
+
+        <a href="{% url 'quiz_review' %}" 
+           class="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h2 class="text-2xl font-semibold text-gray-600 mb-2">Quiz Review'ım</h2>
+            <p class="text-gray-700">
+                Daha önce çözdüğün quiz'leri ve başarı oranlarını incele.
+            </p>
+        </a>
+        
+    </div>
+
+    <div class="mt-8 p-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Genel İstatistikler</h2>
+
+        <div class="flex justify-center space-x-4 mb-4">
+            <div class="flex items-center">
+                <span class="h-4 w-4 rounded-full mr-2" style="background-color: #7b68ee;"></span>
+                <span>Eşleştirme</span>
+            </div>
+            <div class="flex items-center">
+                <span class="h-4 w-4 rounded-full mr-2" style="background-color: #ffa500;"></span>
+                <span>Çoktan Seçmeli</span>
+            </div>
+            <div class="flex items-center">
+                <span class="h-4 w-4 rounded-full mr-2" style="background-color: #ee6aa7;"></span>
+                <span>Yazma</span>
+            </div>
+        </div>
+
+        <div class="w-full h-80"> <canvas id="statsChart"></canvas>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+
+{% comment %} 
+  2. JavaScript Kodunu sayfanın en altına ekler.
+  Bu kod, view'dan gelen verileri kullanarak grafiği çizer.
+{% endcomment %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Django View'dan gelen verileri al
+        // Not: Bu verilerin (mq_correct vb.) view tarafından context'e eklendiğini varsayarız.
+        const mqData = [{{ mq_correct|default:0 }}, {{ mq_wrong|default:0 }}];
+        const mcData = [{{ mc_correct|default:0 }}, {{ mc_wrong|default:0 }}];
+        const wqData = [{{ wq_correct|default:0 }}, {{ wq_wrong|default:0 }}];
+        
+        // 2. Chart.js verisini hazırla (Gruplanmış Sütun)
+        const data = {
+            labels: ['Doğru Sayıları', 'Yanlış Sayıları'], // X-Ekseni Grupları
+            datasets: [
+                {
+                    label: 'Eşleştirme',
+                    data: mqData,
+                    backgroundColor: '#7b68ee', // Renk 1
+                },
+                {
+                    label: 'Çoktan Seçmeli',
+                    data: mcData,
+                    backgroundColor: '#ffa500', // Renk 2
+                },
+                {
+                    label: 'Yazma',
+                    data: wqData,
+                    backgroundColor: '#ee6aa7', // Renk 3
+                }
+            ]
+        };
+
+        // 3. Chart.js yapılandırması
+        const config = {
+            type: 'bar', // Dikey Sütun Grafiği
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                
+                // Lejantı gizle (çünkü özel HTML lejantı yaptık)
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        // İpucunda "0" değerlerinin görünmesini sağlar
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                // Veri 0 olsa bile "0" olarak göster
+                                label += context.parsed.y; 
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    // Y-Ekseni (Artık dikey ve logaritmik)
+                    y: {
+                        type: 'logarithmic', // Logaritmik Ölçek
+                        
+                        // Not: Logaritmik ölçek 0'ı gösteremez.
+                        // Chart.js 0 değerlerini otomatik olarak görmezden gelir (çizmez).
+                        // Veri 1'den başlıyorsa daha iyi görünür.
+                        // min: 1 ekleyerek 1'den başlatabiliriz
+                        // min: 1, 
+                        
+                        title: {
+                            display: true,
+                            text: 'Soru Sayısı (Logaritmik Ölçek)'
+                        }
+                    },
+                    // X-Ekseni (Artık kategori ekseni)
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Sonuç Tipi'
+                        }
+                    }
+                }
+            }
+        };
+
+        // 4. Grafiği Çiz
+        const ctx = document.getElementById('statsChart').getContext('2d');
+        new Chart(ctx, config);
+    });
+</script>
+{% endblock %}

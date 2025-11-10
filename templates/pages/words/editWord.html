@@ -1,0 +1,254 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}Kelime Ekle{% endblock %}
+
+{% block messages %}{% endblock %}
+
+
+{% block content %}
+
+<div x-data="{ isVerb: {{ word.isVerb|yesno:'true,false,false' }} }" class="bg-gray-50 py-12">    
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {% include 'base/messages.html' with margin_class="" %}
+
+        <form method="post" class="bg-white shadow-lg rounded-lg overflow-hidden">
+            {% csrf_token %}
+
+            <div class="border-b border-indigo-200 bg-indigo-50 px-4 py-5 sm:px-6">
+                <h2 class="text-xl font-semibold leading-6 text-gray-900">
+                    Kelimeyi Düzenle
+                </h2>
+                <p class="mt-1 text-sm text-gray-500">
+                    Kelimelerinizi düzenleyin.
+                </p>
+                <p class="mt-1 text-sm text-red-500">
+                    Yanında kırmızı yıldız (<span class="text-red-500">*</span>) bulunan alanlar zorunludur.
+                </p>
+            </div>
+
+            <div class="px-4 py-6 sm:p-8">
+
+                <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2">
+
+                    <div class="space-y-10">
+
+                        <fieldset>
+                            <legend class="text-base font-semibold leading-7 text-indigo-700">Temel Bilgiler</legend>
+                            <div class="mt-6 space-y-6">
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                                    <label for="word_text" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                        İngilizce Kelime <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2">
+                                        <input type="text" name="word_text" id="word_text" required placeholder="Örn: 'Acquire'"
+                                               class="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                               value = "{{ word.englishWord }}">
+                                    </div>
+                                </div>
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                                    <label for="translation_tr" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                        Kelimenin Türkçesi <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2">
+                                        <input type="text" name="translation_tr" id="translation_tr" required placeholder="Örn: 'Edinmek, kazanmak'"
+                                               class="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                               value = "{{ word.meaningTr }}">
+                                    </div>
+                                </div>
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                                    <label for="description" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                        Kelimenin Açıklaması <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2">
+                                        <textarea name="description" id="description" rows="4" required placeholder="Kelimenin İngilizce tanımı veya akılda kalıcı bir açıklaması."
+                                                  class="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                  >{{ word.explanation }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend class="text-base font-semibold leading-7 text-indigo-700">Dil Bilgisi</legend>
+                            <div class="mt-6 space-y-6">
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center">
+                                    <label for="prefix" class="block text-sm font-medium leading-6 text-gray-900">
+                                        Olumsuzluk Eki
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2 sm:max-w-xs">
+                                        <div class="relative">
+                                            <select id="prefix" name="prefix" class="block w-full appearance-none rounded-md border-0 py-2 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                                <option value="" {% if not word.prefix %}selected{% endif %}>- Yok -</option>
+                                                <option value="dis" {% if word.prefix == "dis" %}selected{% endif %}>dis-</option>
+                                                <option value="un" {% if word.prefix == "un" %}selected{% endif %}>un-</option>
+                                                <option value="im" {% if word.prefix == "im" %}selected{% endif %}>im-</option>
+                                                <option value="in" {% if word.prefix == "in" %}selected{% endif %}>in-</option>
+                                                <option value="il" {% if word.prefix == "il" %}selected{% endif %}>il-</option>
+                                                <option value="ir" {% if word.prefix == "ir" %}selected{% endif %}>ir-</option>
+                                            </select>
+                                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                  <path fill-rule="evenodd" d="M10 3a.75.75 0 01.53.22l3.5 3.5a.75.75 0 01-1.06 1.06L10 4.81 6.53 8.28a.75.75 0 01-1.06-1.06l3.5-3.5A.75.75 0 0110 3zm-3.5 9.5a.75.75 0 011.06 0L10 15.19l3.47-3.47a.75.75 0 011.06 1.06l-3.5 3.5a.75.75 0 01-1.06 0l-3.5-3.5a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center">
+                                    <label for="is_verb_toggle" class="block text-sm font-medium leading-6 text-gray-900">
+                                        Kelime Fiil mi?
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2">
+                                        <button type="button" @click="isVerb = !isVerb" :class="isVerb ? 'bg-indigo-600' : 'bg-gray-200'" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" role="switch" :aria-checked="isVerb">
+                                            <span aria-hidden="true" :class="isVerb ? 'translate-x-5' : 'translate-x-0'" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                                        </button>
+                                        <span class="ml-3 text-sm font-medium text-gray-900" x-text="isVerb ? 'Fiil (Verb)' : 'Diğer (İsim, Sıfat vb.)'"></span>
+                                        <input type="checkbox" name="is_verb" id="is_verb_toggle" x-model="isVerb" class="hidden">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div x-show="isVerb" 
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-200"
+                             x-transition:leave-start="opacity-100 translate-y-0"
+                             x-transition:leave-end="opacity-0 -translate-y-2"
+                             class="space-y-6">
+                            
+                            <h3 class="text-base font-semibold leading-7 text-indigo-700">Fiil Halleri</h3>
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                                <label for="v2_form" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                    Fiilin 2. Hali (V2)
+                                </label>
+                                <div class="mt-2 sm:mt-0 sm:col-span-2">
+                                    <input type="text" name="v2_form" id="v2_form" :required="isVerb" placeholder="Örn: 'Acquired'"
+                                           class="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                           value = "{{ word.v2Form }}">
+                                </div>
+                            </div>
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                                <label for="v3_form" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                    Fiilin 3. Hali (V3)
+                                </label>
+                                <div class="mt-2 sm:mt-0 sm:col-span-2">
+                                    <input type="text" name="v3_form" id="v3_form" :required="isVerb" placeholder="Örn: 'Acquired'"
+                                           class="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                           value = "{{ word.v3Form }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="space-y-10">
+
+                        <fieldset>
+                            <legend class="text-base font-semibold leading-7 text-indigo-700">Kullanım ve Notlar</legend>
+                            <div class="mt-6 space-y-6">
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                                    <label for="sentence_1" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                        Örnek Cümle 1 <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2">
+                                        <textarea name="sentence_1" id="sentence_1" rows="3" required placeholder="Kelimenin geçtiği bir örnek cümle."
+                                                  class="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ word.exampleSentence1 }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                                    <label for="sentence_2" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                        Örnek Cümle 2
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2">
+                                        <textarea name="sentence_2" id="sentence_2" rows="3" placeholder="İkinci bir örnek cümle (isteğe bağlı)."
+                                                  class="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ word.exampleSentence2 }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                                    <label for="sentence_3" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                        Örnek Cümle 3
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2">
+                                        <textarea name="sentence_3" id="sentence_3" rows="3" placeholder="Üçüncü bir örnek cümle (isteğe bağlı)."
+                                                  class="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ word.exampleSentence3 }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                                    <label for="notes" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">
+                                        Kişisel Not
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2">
+                                        <textarea name="notes" id="notes" rows="4" placeholder="Bu kelimeyle ilgili kişisel notlarınız veya anımsatıcılar."
+                                                  class="block w-full rounded-md border-0 py-2 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ word.exampleSentence1 }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend class="text-base font-semibold leading-7 text-indigo-700">Paylaşım Ayarları</legend>
+                            <div class="mt-6 space-y-6">
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center">
+                                    <label for="visibility" class="block text-sm font-medium leading-6 text-gray-900">
+                                        Görünebilirlik
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2 sm:max-w-xs">
+                                        <div class="relative">
+                                            <select id="visibility" name="visibility" class="block w-full appearance-none rounded-md border-0 py-2 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                                <option value="private" {% if word.visibility == "private" %}selected{% endif %}>Gizli (Sadece Ben)</option>
+                                                <option value="friends" {% if word.visibility == "friends" %}selected{% endif %}>Sadece Arkadaşlarım</option>
+                                                <!--<option value="public" {% if word.visibility == "public" %}selected{% endif %}>Herkese Açık</option>-->
+                                            </select>
+                                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                  <path fill-rule="evenodd" d="M10 3a.75.75 0 01.53.22l3.5 3.5a.75.75 0 01-1.06 1.06L10 4.81 6.53 8.28a.75.75 0 01-1.06-1.06l3.5-3.5A.75.75 0 0110 3zm-3.5 9.5a.75.75 0 011.06 0L10 15.19l3.47-3.47a.75.75 0 011.06 1.06l-3.5 3.5a.75.75 0 01-1.06 0l-3.5-3.5a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center">
+                                    <label for="level" class="block text-sm font-medium leading-6 text-gray-900">
+                                        Kelimenin Seviyesi
+                                    </label>
+                                    <div class="mt-2 sm:mt-0 sm:col-span-2 sm:max-w-xs">
+                                        <div class="relative">
+                                            <select id="level" name="level" class="block w-full appearance-none rounded-md border-0 py-2 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                                <option value="unknown" {% if word.wordLevel == "Belirtilmemiş" %}selected{% endif %}>Belirtilmemiş</option>
+                                                <option value="101" {% if word.wordLevel == "101" %}selected{% endif %}>101</option>
+                                                <option value="201" {% if word.wordLevel == "201" %}selected{% endif %}>201</option>
+                                                <option value="301" {% if word.wordLevel == "301" %}selected{% endif %}>301</option>
+                                                <option value="401" {% if word.wordLevel == "401" %}selected{% endif %}>401</option>
+                                                <option value="501" {% if word.wordLevel == "501" %}selected{% endif %}>501</option>
+                                            </select>
+                                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                  <path fill-rule="evenodd" d="M10 3a.75.75 0 01.53.22l3.5 3.5a.75.75 0 01-1.06 1.06L10 4.81 6.53 8.28a.75.75 0 01-1.06-1.06l3.5-3.5A.75.75 0 0110 3zm-3.5 9.5a.75.75 0 011.06 0L10 15.19l3.47-3.47a.75.75 0 011.06 1.06l-3.5 3.5a.75.75 0 01-1.06 0l-3.5-3.5a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </div> 
+                </div> 
+            </div> 
+            
+            <div class="flex items-center justify-end gap-x-6 border-t border-gray-200 bg-gray-50 px-4 py-4 sm:px-8">
+                <a href="{% url 'profile_words' %}" type="button" class="text-sm font-semibold leading-6 text-gray-900">
+                    İptal
+                </a>
+                <button type="submit" 
+                        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    Kelimeyi Kaydet
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

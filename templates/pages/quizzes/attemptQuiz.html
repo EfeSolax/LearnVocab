@@ -1,0 +1,114 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}Quiz Oluştur {% endblock %}
+
+{% block content %}
+
+<!-- 
+  Bu form, 'quizzes/views.py' dosyasındaki 'attemptQuiz' view'ine POST isteği gönderecek.
+  Bu URL'in 'quizzes/urls.py' dosyasında 'name="attempt_quiz"' olarak tanımlandığını varsayıyoruz.
+-->
+<form method="POST" action="#">
+    {% csrf_token %}
+
+    <div class="max-w-2xl mx-auto p-4 md:p-8">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            
+            <!-- Başlık Alanı -->
+            <div class="px-6 py-5 border-b border-gray-200">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Yeni Quiz Ayarları</h1>
+                <p class="text-gray-600 mt-1">Quiz tipini ve soru sayısını seçerek hemen başla.</p>
+            </div>
+
+            <!-- İçerik Alanı -->
+            <div class="p-6 md:p-8 space-y-8">
+
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-4">Quiz Tipi</h2>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        
+                        <!-- Seçenek: Eşleştirme -->
+                        <label class="flex p-4 bg-gray-50 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 transition-colors">
+                            <input type="radio" name="quizType" value="matching" class="h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500">
+                            <span class="ml-3 text-gray-700 font-medium">Eşleştirme</span>
+                        </label>
+
+                        <!-- Seçenek: Çoktan Seçmeli -->
+                        <label class="flex p-4 bg-gray-50 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 transition-colors">
+                            <input type="radio" name="quizType" value="multiple_choice" class="h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500">
+                            <span class="ml-3 text-gray-700 font-medium">Çoktan Seçmeli</span>
+                        </label>
+
+                        <!-- Seçenek: Yazma -->
+                        <label class="flex p-4 bg-gray-50 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 transition-colors">
+                            <input type="radio" name="quizType" value="writing" class="h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500">
+                            <span class="ml-3 text-gray-700 font-medium">Yazma</span>
+                        </label>
+
+                        <!-- Seçenek: Karma -->
+                        <label class="flex p-4 bg-gray-50 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 transition-colors">
+                            <input type="radio" name="quizType" value="mixed" class="h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500" checked> <!-- Varsayılan olarak bu seçili -->
+                            <span class="ml-3 text-gray-700 font-medium">Karma</span>
+                        </label>
+
+                        <!-- Seçenek: Rastgele Seç (İsteğin üzerine eklendi) -->
+                        <label class="flex p-4 bg-gray-50 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 transition-colors">
+                            <input type="radio" name="quizType" value="random" class="h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500">
+                            <span class="ml-3 text-gray-700 font-medium">Rastgele Seç</span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- 2. Bölüm: Soru Sayısı Seçimi -->
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-4">Soru Sayısı</h2>
+                    <div class="grid grid-cols-3 gap-4">
+                        
+                        <!-- Seçenek: 5 Soru -->
+                        <label class="flex flex-col items-center justify-center p-4 bg-gray-50 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 transition-colors">
+                            <input type="radio" name="totalQuestion" value="5" class="h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500">
+                            <span class="mt-2 text-gray-700 font-medium">5 Soru</span>
+                        </label>
+                        
+                        <!-- Seçenek: 10 Soru -->
+                        <label class="flex flex-col items-center justify-center p-4 bg-gray-50 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 transition-colors">
+                            <input type="radio" name="totalQuestion" value="10" class="h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500" checked> <!-- Varsayılan olarak bu seçili -->
+                            <span class="mt-2 text-gray-700 font-medium">10 Soru</span>
+                        </label>
+
+                        <!-- Seçenek: 15 Soru -->
+                        <label class="flex flex-col items-center justify-center p-4 bg-gray-50 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-100 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 transition-colors">
+                            <input type="radio" name="totalQuestion" value="15" class="h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500">
+                            <span class="mt-2 text-gray-700 font-medium">15 Soru</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 3. Bölüm: Butonlar -->
+            <div class="px-6 py-5 bg-gray-50 border-t border-gray-200">
+                <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-4">
+                    <!-- Geri Dön Butonu (Link) -->
+                    <!-- NOT: 'profile_quizzes' URL'inin 'userprofile/urls.py' 
+                         içinde tanımlandığını varsayıyorum. Gerekirse değiştir. -->
+                    <a href="{% url 'profile_quizzes' %}" 
+                       class="w-full sm:w-auto mt-3 sm:mt-0 px-6 py-3 text-center bg-white border border-gray-300 rounded-lg text-gray-700 font-semibold hover:bg-gray-100 transition-colors">
+                        Geri Dön
+                    </a>
+
+                    <!-- Quiz'e Başla Butonu (Submit) -->
+                    <button type="submit" 
+                            class="w-full sm:w-auto px-6 py-3 bg-blue-600 rounded-lg text-white font-semibold hover:bg-blue-700 transition-colors">
+                        Quiz'e Başla
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+{% endblock %}

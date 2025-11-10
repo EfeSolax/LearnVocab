@@ -1,0 +1,491 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}Arkadaşlar {% endblock %}
+
+{% block content %}
+
+
+<div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        .tab-widget { width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .tab-nav { display: flex; gap: 30px; margin-bottom: 25px; list-style: none; padding: 0; }
+        .tab-button { background: none; border: none; padding: 10px 4px; cursor: pointer; font-size: 17px; font-weight: 600; color: #6b7280; position: relative; transition: color 0.3s ease; border-bottom: 3px solid transparent; }
+        .tab-button:hover { color: #a855f7; }
+        .tab-button.active { color: #8b5cf6; border-bottom-color: #8b5cf6; }
+        .tab-content-wrapper { width: 100%; background-color: #ffffff; border-radius: 16px; padding: 30px 40px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .tab-pane { display: none; animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .tab-pane.active { display: block; }
+        .tab-pane h2 { font-size: 24px; font-weight: 700; margin-top: 0; margin-bottom: 15px; background: linear-gradient(to right, #c084fc, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .tab-pane p { line-height: 1.7; color: #4b5563; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+
+    <div class="tab-widget mt-8 mb-8">
+        <ul class="tab-nav">
+            <li><button class="tab-button active" data-target="#allUsers">Tüm Kullanıcılar</button></li>
+            {% if user.is_authenticated %}
+            <li><button class="tab-button" data-target="#myfriends">Arkadaşlarım</button></li>
+            <li><button class="tab-button" data-target="#istekler">Arkadaşlık İstekleri</button></li>
+            {% endif %}
+        </ul>
+
+        <div class="tab-content-wrapper">
+
+            <div class="tab-pane active" id="allUsers">
+                <h2 class="dark:text-white">Tüm Kullanıcılar</h2>
+
+                <div class="sticky top-20 z-10 p-4 sm:p-6 bg-gray-50 border-b border-gray-200 ">
+                    <form method="get" action = "{% url 'friends' %}" class="flex flex-col md:flex-row items-center gap-4">
+                        <div class="relative w-full lg:flex-1 group">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <input 
+                                type="text" 
+                                name="queryForAll" 
+                                placeholder="Aramak için yazın..." 
+                                value="{{ request.GET.q|default:'' }}" 
+                                class="w-full pl-10 pr-4 py-2 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition"
+                            >
+                        </div>
+                        
+                        <button type="submit" class="w-full lg:w-auto flex-shrink-0 inline-flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                            Ara
+                        </button>
+                    </form>
+                </div>
+
+                {% if users %}
+                <div class="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 text-sm rounded-lg p-4 mb-6" role="alert">
+                    <svg class="h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="sr-only">Bilgi</span>
+                    <div>
+                        Arama sonucunda <strong class="font-semibold text-green-900">{{ users|length }}</strong> kullanıcı bulundu.
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if not user.is_authenticated %}
+                    <ul role="list" class="divide-y divide-gray-200 dark:divide-white/5">
+                        {% if userAll %}
+                            {% for userAnother in userAll %}
+                            <li class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-x-6 p-5 rounded-lg transition-all duration-300 ease-in-out dark:hover:bg-white/5 hover:shadow-md transform hover:-translate-y-1">
+                                <a href="{% url 'show_user_profile' userAnother.id %}" class="flex min-w-0 gap-x-4">
+                                    {% if userAnother.profile_pic %}
+                                        <img class="h-16 w-16 rounded-full object-cover" src="{{ userAnother.profile_pic.url }}" alt="Profil fotoğrafı">
+                                    {% else %}
+                                        <span class="inline-block h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+                                            <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                            </svg>
+                                        </span>
+                                    {% endif %}
+                                    <div class="min-w-0 flex-auto">
+                                        <p class="text-sm/6 font-semibold text-gray-900 dark:text-white">{{ userAnother.username }}</p>
+                                        <p class="mt-1 truncate text-xs/5 text-gray-500 dark:text-gray-400">{{ userAnother.first_name }} {{ userAnother.last_name }}</p>
+                                    </div>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                {% else %}
+
+                <ul role="list" class="divide-y divide-gray-200 dark:divide-white/5">
+                    <li class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-x-6 p-5 rounded-lg transition-all duration-300 ease-in-out dark:hover:bg-white/5 hover:shadow-md transform hover:-translate-y-1">
+                        <a href="{% url 'user_profile' %}" class="flex min-w-0 gap-x-4">
+                            {% if user.profile_pic %}
+                                <img class="h-16 w-16 rounded-full object-cover" src="{{ user.profile_pic.url }}" alt="Profil fotoğrafı">
+                            {% else %}
+                                <span class="inline-block h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+                                    <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    </svg>
+                                </span>
+                            {% endif %}
+                            <div class="min-w-0 flex-auto">
+                                <p class="text-sm/6 font-semibold text-gray-900 dark:text-white">{{ user.username }}</p>
+                                <p class="mt-1 truncate text-xs/5 text-gray-500 dark:text-gray-400">{{ user.first_name }} {{ user.last_name }}</p>
+                            </div>
+                        </a>
+                        <div class="shrink-0 flex flex-col items-start sm:items-end mt-4 sm:mt-0">
+                            <p class="text-sm/6 text-gray-900 dark:text-white">
+                                Siz
+                            </p>
+                        </div>
+                    </li>
+
+                    {% if friends_list_all_tab %}
+                        {% for user_friend in friends_list_all_tab %}
+
+                        <li class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-x-6 p-5 rounded-lg transition-all duration-300 ease-in-out dark:hover:bg-white/5 hover:shadow-md transform hover:-translate-y-1">
+                            <a href="{% url 'show_user_profile' user_friend.id %}" class="flex min-w-0 gap-x-4">
+                                {% if user_friend.profile_pic %}
+                                    <img class="h-16 w-16 rounded-full object-cover" src="{{ user_friend.profile_pic.url }}" alt="Profil fotoğrafı">
+                                {% else %}
+                                    <span class="inline-block h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+                                        <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                                <div class="min-w-0 flex-auto">
+                                    <p class="text-sm/6 font-semibold text-gray-900 dark:text-white">{{ user_friend.username }}</p>
+                                    <p class="mt-1 truncate text-xs/5 text-gray-500 dark:text-gray-400">{{ user_friend.first_name }} {{ user_friend.last_name }}</p>
+                                </div>
+                            </a>
+
+                            <div class="shrink-0 flex flex-col items-start sm:items-end mt-4 sm:mt-0">
+                                <p class="text-sm/6 text-gray-900 dark:text-white">
+                                    Arkadaşınız
+                                </p>
+                                <div class="mt-2 flex gap-x-2">
+                                    <a href="{% url 'remove_friend' user_friend.id %}" class="text-xs font-semibold text-red-600 hover:text-red-500 border rounded-lg bg-red-200 pl-2 pr-2">
+                                        Arkadaşlarımdan Kaldır
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if sent_to_me_list %}
+                        {% for sent_to_me_user in sent_to_me_list %}
+
+                        <li class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-x-6 p-5 rounded-lg transition-all duration-300 ease-in-out dark:hover:bg-white/5 hover:shadow-md transform hover:-translate-y-1">
+                            <a href="{% url 'show_user_profile' sent_to_me_user.id %}" class="flex min-w-0 gap-x-4">
+                                {% if sent_to_me_user.profile_pic %}
+                                    <img class="h-16 w-16 rounded-full object-cover" src="{{ sent_to_me_user.profile_pic.url }}" alt="Profil fotoğrafı">
+                                {% else %}
+                                    <span class="inline-block h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+                                        <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                                <div class="min-w-0 flex-auto">
+                                    <p class="text-sm/6 font-semibold text-gray-900 dark:text-white">{{ sent_to_me_user.username }}</p>
+                                    <p class="mt-1 truncate text-xs/5 text-gray-500 dark:text-gray-400">{{ sent_to_me_user.first_name }} {{ sent_to_me_user.last_name }}</p>
+                                </div>
+                            </a>
+
+                            <div class="shrink-0 flex flex-col items-start sm:items-end mt-4 sm:mt-0">
+                                <p class="text-sm/6 text-gray-900 dark:text-white">
+                                    Bu kullanıcı arkadaşlık isteği göndermiş.
+                                </p>
+                                <div class="mt-2 flex gap-x-2">
+                                    <a href="{% url 'accept_request' sent_to_me_user.id %}" class="text-xs font-semibold text-green-600 hover:text-green-500 border rounded-lg bg-green-300 pl-2 pr-2 ">
+                                        İsteği Kabul Et
+                                    </a>
+                                    <a href="{% url 'decline_request' sent_to_me_user.id %}" class="text-xs font-semibold text-red-600 hover:text-red-500 border rounded-lg bg-red-200 pl-2 pr-2">
+                                        İsteği Reddet
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if sent_by_me_list %}
+                        {% for sent_by_me_user in sent_by_me_list %}
+
+                        <li class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-x-6 p-5 rounded-lg transition-all duration-300 ease-in-out dark:hover:bg-white/5 hover:shadow-md transform hover:-translate-y-1">
+                            <a href="{% url 'show_user_profile' sent_by_me_user.id %}" class="flex min-w-0 gap-x-4">
+                                {% if sent_by_me_user.profile_pic %}
+                                    <img class="h-16 w-16 rounded-full object-cover" src="{{ sent_by_me_user.profile_pic.url }}" alt="Profil fotoğrafı">
+                                {% else %}
+                                    <span class="inline-block h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+                                        <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                                <div class="min-w-0 flex-auto">
+                                    <p class="text-sm/6 font-semibold text-gray-900 dark:text-white">{{ sent_by_me_user.username }}</p>
+                                    <p class="mt-1 truncate text-xs/5 text-gray-500 dark:text-gray-400">{{ sent_by_me_user.first_name }} {{ sent_by_me_user.last_name }}</p>
+                                </div>
+                            </a>
+                            
+                            <div class="shrink-0 flex flex-col items-start sm:items-end mt-4 sm:mt-0">
+                                <p class="text-sm/6 text-gray-900 dark:text-white">
+                                    Zaten istek gönderdiniz.
+                                </p>
+                                <div class="mt-2 flex gap-x-2">
+                                    <a href="{% url 'cancel_request' sent_by_me_user.id %}" class="text-xs font-semibold text-red-600 hover:text-red-500 border rounded-lg bg-red-200 pl-2 pr-2">
+                                        İsteğimi geri çek.
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if no_relation_list %}
+                        {% for no_relation_user in no_relation_list %}
+
+                        <li class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-x-6 p-5 rounded-lg transition-all duration-300 ease-in-out dark:hover:bg-white/5 hover:shadow-md transform hover:-translate-y-1">
+                            <a href="{% url 'show_user_profile' no_relation_user.id %}" class="flex min-w-0 gap-x-4">
+                                {% if no_relation_user.profile_pic %}
+                                    <img class="h-16 w-16 rounded-full object-cover" src="{{ no_relation_user.profile_pic.url }}" alt="Profil fotoğrafı">
+                                {% else %}
+                                    <span class="inline-block h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+                                        <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                                <div class="min-w-0 flex-auto">
+                                    <p class="text-sm/6 font-semibold text-gray-900 dark:text-white">{{ no_relation_user.username }}</p>
+                                    <p class="mt-1 truncate text-xs/5 text-gray-500 dark:text-gray-400">{{ no_relation_user.first_name }} {{ no_relation_user.last_name }}</p>
+                                </div>
+                            </a>
+                            
+                            <div class="shrink-0 flex flex-col items-start sm:items-end mt-4 sm:mt-0">
+                                <p class="text-sm/6 text-gray-900 dark:text-white">
+                                    Arkadaşınız değil.
+                                </p>
+                                <div class="mt-2 flex gap-x-2">
+                                    <a href="{% url 'send_request' no_relation_user.id %}" class="text-xs font-semibold text-white border rounded-lg bg-indigo-600 pl-2 pr-2 pt-1 pb-1">
+                                        Arkadaşlık isteği gönder.
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+            
+            {% if user.is_authenticated %}
+            <div class="tab-pane" id="istekler">
+                <h2 class="dark:text-white">Arkadaşlık İstekleri</h2>
+                <p class="dark:text-gray-400">Burada size gelen arkadaşlık istekleri listelenecek.</p>
+
+                <div class="sticky top-20 z-10 p-4 sm:p-6 bg-gray-50 border-b border-gray-200 ">
+                    <form method="get" action = "{% url 'friends' %}" class="flex flex-col md:flex-row items-center gap-4">
+                        <div class="relative w-full lg:flex-1 group">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <input 
+                                type="text" 
+                                name="queryForRequests" 
+                                placeholder="Aramak için yazın..." 
+                                class="w-full pl-10 pr-4 py-2 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition"
+                            >
+                        </div>
+                        
+                        <button type="submit" class="w-full lg:w-auto flex-shrink-0 inline-flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                            Ara
+                        </button>
+                    </form>
+                </div>
+
+                {% if requests %}
+                <div class="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 text-sm rounded-lg p-4 mb-6" role="alert">
+                    <svg class="h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="sr-only">Bilgi</span>
+                    <div>
+                        Arama sonucunda <strong class="font-semibold text-green-900">{{ requests|length }}</strong> istek bulundu.
+                    </div>
+                </div>
+                {% endif %}
+
+                <ul role="list" class="divide-y divide-gray-200 dark:divide-white/5">
+                    {% if requests %}
+                        {% for rq in requests %}
+
+                        <li class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-x-6 py-5">
+                            <a href="{% url 'show_user_profile' rq.id %}" class="flex min-w-0 gap-x-4">
+                                {% if rq.profile_pic %}
+                                    <img class="h-16 w-16 rounded-full object-cover" src="{{ rq.profile_pic.url }}" alt="Profil fotoğrafı">
+                                {% else %}
+                                    <span class="inline-block h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+                                        <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                                <div class="min-w-0 flex-auto">
+                                    <p class="text-sm/6 font-semibold text-gray-900 dark:text-white">{{ rq.username }}</p>
+                                    <p class="mt-1 truncate text-xs/5 text-gray-500 dark:text-gray-400">{{ rq.first_name }} {{ rq.last_name }}</p>
+                                </div>
+                            </a>
+                            
+                            <div class="shrink-0 flex flex-col items-start sm:items-end mt-4 sm:mt-0">
+                                <p class="text-sm/6 text-gray-900 dark:text-white">
+                                    {% if rq.is_superuser %}Yönetici{% else %}Öğrenci{% endif %}
+                                </p>
+                                <div class="mt-2 flex gap-x-2">
+                                    <a href="{% url 'accept_request' rq.id %}" class="text-xs font-semibold text-green-600 hover:text-green-500 border rounded-lg bg-green-300 pl-2 pr-2 ">
+                                        Onayla
+                                    </a>
+                                    <a href="{% url 'decline_request' rq.id %}" class="text-xs font-semibold text-red-600 hover:text-red-500 border rounded-lg bg-red-200 pl-2 pr-2">
+                                        Reddet
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="py-5 text-center text-gray-500">İstek Bulunamadı</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="myfriends">
+                <h2 class="dark:text-white">Arkadaşlarım</h2>
+
+                <div class="sticky top-20 z-10 p-4 sm:p-6 bg-gray-50 border-b border-gray-200 ">
+                    <form method="get" action = "{% url 'friends' %}" class="flex flex-col md:flex-row items-center gap-4">
+                        <div class="relative w-full lg:flex-1 group">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <input 
+                                type="text" 
+                                name="queryForFriends" 
+                                placeholder="Aramak için yazın..." 
+                                value="{{ request.GET.q|default:'' }}" 
+                                class="w-full pl-10 pr-4 py-2 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition"
+                            >
+                        </div>
+                        
+                        <button type="submit" class="w-full lg:w-auto flex-shrink-0 inline-flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                            Ara
+                        </button>
+                    </form>
+                </div>
+
+                {% if friends %}
+                <div class="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 text-sm rounded-lg p-4 mb-6" role="alert">
+                    <svg class="h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="sr-only">Bilgi</span>
+                    <div>
+                        Arama sonucunda <strong class="font-semibold text-green-900">{{ friends|length }}</strong> kullanıcı bulundu.
+                    </div>
+                </div>
+                {% endif %}
+
+                <ul role="list" class="divide-y divide-gray-200 dark:divide-white/5">
+                    {% if friends %}
+                        {% for friend in friends %}
+
+                        <li class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-x-6 py-5">
+                            <a href="{% url 'show_user_profile' friend.id %}" class="flex min-w-0 gap-x-4">
+                                {% if friend.profile_pic %}
+                                    <img class="h-16 w-16 rounded-full object-cover" src="{{ friend.profile_pic.url }}" alt="Profil fotoğrafı">
+                                {% else %}
+                                    <span class="inline-block h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+                                        <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                                <div class="min-w-0 flex-auto">
+                                    <p class="text-sm/6 font-semibold text-gray-900 dark:text-white">{{ friend.username }}</p>
+                                    <p class="mt-1 truncate text-xs/5 text-gray-500 dark:text-gray-400">{{ friend.first_name }} {{ friend.last_name }}</p>
+                                </div>
+                            </a>
+                            <div class="shrink-0 flex flex-col items-start sm:items-end mt-4 sm:mt-0">
+                                <div class="mt-2 flex gap-x-2">
+                                    <a href="{% url 'remove_friend' friend.id %}" class="text-xs font-semibold text-red-600 hover:text-red-500 border rounded-lg bg-red-200 pl-2 pr-2">
+                                        Arkadaşlarımdan Kaldır
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="py-5 text-center text-gray-500">Şu anda eklediğiniz hiç arkadaşınız yok.</li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const widget = document.querySelector('.tab-widget');
+    if (!widget) return;
+
+    const tabButtons = widget.querySelectorAll('.tab-button');
+    const tabPanes = widget.querySelectorAll('.tab-pane');
+    
+    // YENİ BÖLÜM: SAYFA YÜKLENDİĞİNDE HAFIZAYI KONTROL ET
+    // ----------------------------------------------------
+    const savedTabId = localStorage.getItem('activeFriendsTab'); // Hafızadan kaydı oku
+
+    if (savedTabId) {
+        // 1. Varsayılan 'active' sınıflarını HTML'den temizle
+        const defaultActiveButton = widget.querySelector('.tab-button.active');
+        const defaultActivePane = widget.querySelector('.tab-pane.active');
+        if (defaultActiveButton) defaultActiveButton.classList.remove('active');
+        if (defaultActivePane) defaultActivePane.classList.remove('active');
+        
+        // 2. Hafızadaki sekmeyi ve paneli bul
+        const savedButton = widget.querySelector(`.tab-button[data-target="${savedTabId}"]`);
+        const savedPane = widget.querySelector(savedTabId);
+        
+        // 3. Hafızadakileri 'active' yap
+        if (savedButton && savedPane) {
+            savedButton.classList.add('active');
+            savedPane.classList.add('active');
+        } else {
+            // Hafızadaki sekme artık mevcut değilse (örn. çıkış yapıldıysa)
+            // Varsayılanı (ilk sekmeyi) tekrar 'active' yap
+            if (tabButtons.length > 0) tabButtons[0].classList.add('active');
+            if (tabPanes.length > 0) tabPanes[0].classList.add('active');
+        }
+    } else {
+        // Hafızada bir şey yoksa, varsayılanın (HTML'deki) 'active' olduğundan emin ol
+        // (Bu zaten HTML'de 'active' olduğu için genelde gereksizdir, ama bir güvenlik önlemidir)
+        if (!widget.querySelector('.tab-button.active') && tabButtons.length > 0) {
+            tabButtons[0].classList.add('active');
+        }
+        if (!widget.querySelector('.tab-pane.active') && tabPanes.length > 0) {
+            tabPanes[0].classList.add('active');
+        }
+    }
+    // ----------------------------------------------------
+    // YENİ BÖLÜM BİTTİ
+
+    // ESKİ BÖLÜM: SEKME TIKLAMA OLAYLARI (İçine 1 satır eklendi)
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.dataset.target; // Tıklanan sekmenin ID'si (örn: "#myfriends")
+            
+            // YENİ EKLENEN SATIR: Tıklanan sekmenin ID'sini hafızaya kaydet
+            localStorage.setItem('activeFriendsTab', targetId);
+            
+            // Kodun geri kalanı aynı
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+            const activePane = widget.querySelector(targetId);
+            if (activePane) { activePane.classList.add('active'); }
+        });
+    });
+});
+</script>
+
+{% endblock %}
