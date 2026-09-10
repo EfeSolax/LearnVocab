@@ -1,5 +1,5 @@
 # Django importları
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
@@ -112,61 +112,99 @@ def listFriends(request):
 
         return render(request, "pages/friends.html", context)
 
-# Arkadaşı kaldı fonksiyonu (login gerekiyor)
+# Arkadaşı kaldır fonksiyonu (login gerekiyor)
 @login_required
-def removeFriend(request, user_id): 
-    # ID'si gelen arkadaşı al, giriş yapan kullanıcının arkadaşlar sayfasından kaldır
-    friend = User.objects.filter(id = user_id).first()
+def removeFriend(request, user_id):
+    if user_id == request.user.id:
+        messages.error(request, "Kendinizi arkadaş olarak kaldıramazsınız.")
+        return redirect("friends")
+
+    friend = get_object_or_404(User, id=user_id)
+
+    if not request.user.friends.filter(id=friend.id).exists():
+        messages.error(request, "Bu kullanıcı zaten arkadaş listenizde değil.")
+        return redirect("friends")
+
+    # friends symmetrical=True olduğu için tek tarafta remove yeterli
     request.user.friends.remove(friend)
 
-    # Başarı mesajı yayınla, arkadaşlar sayfasına geri dön
     messages.success(request, f"{friend.username} başarılı bir şekilde arkadaş listenizden kaldırıldı.")
     return redirect("friends")
 
-# İstek kabul etme fonksiyon (login gerekiyor)
+
+# İstek kabul etme fonksiyonu (login gerekiyor)
 @login_required
 def acceptRequest(request, user_id):
-    # ID'si verilen kullanıcıyı al, gelen isteklerden kullanıcıy kaldır
-    user = User.objects.filter(id = user_id).first()
-    request.user.incomingRequests.remove(user)
+    if user_id == request.user.id:
+        messages.error(request, "Geçersiz istek.")
+        return redirect("friends")
 
-    # Kullanıcının arkadaşlarına istek atan kullanıcıyı ve o kullanıcının arkadaşlarına bu kullanıcıyı al
-    user.friends.add(request.user)
+    user = get_object_or_404(User, id=user_id)
+
+    if not request.user.incomingRequests.filter(id=user.id).exists():
+        messages.error(request, "Bu kullanıcının size gönderilmiş bir arkadaşlık isteği yok.")
+        return redirect("friends")
+
+    request.user.incomingRequests.remove(user)
+    # friends symmetrical=True olduğu için tek tarafta add yeterli
     request.user.friends.add(user)
 
-    # Başarı mesajı yayınla ve arkadaşlar sayfasına geri dön
-    messages.success(request, f"{user.username} artık sizin arkadaşınız!!")
+    messages.success(request, f"{user.username} artık sizin arkadaşınız!")
     return redirect("friends")
+
 
 # İstek reddetme fonksiyonu (login gerekiyor)
 @login_required
 def declineRequest(request, user_id):
-    # ID'si verilen kullanıcıyı al gelen istekler field'ından kaldır
-    user = User.objects.filter(id = user_id).first()
-    request.user.incomingRequests.remove(user)
+    user = get_object_or_404(User, id=user_id)
 
-    # Başarı mesajı yayınla ve arkadaşlar sayfasına geri dön
+    if not request.user.incomingRequests.filter(id=user.id).exists():
+        messages.error(request, "Bu kullanıcıdan bir arkadaşlık isteğiniz yok.")
+        return redirect("friends")
+
+    request.user.incomingRequests.remove(user)
     messages.success(request, f"{user.username} kullanıcısının arkadaşlık isteğini reddettiniz.")
     return redirect("friends")
+
 
 # İsteği geri çekme fonksiyonu (login gerekiyor)
 @login_required
 def cancelRequest(request, user_id):
-    # ID'si verilen kullanıcıyı al, bu kullanıcının gelen istekler sayfasından giriş yapan kullanıcıy kaldır
-    user = User.objects.filter(id = user_id).first()
-    user.incomingRequests.remove(request.user)
+    user = get_object_or_404(User, id=user_id)
 
-    # Başarı mesajı yayınla ve arkadaşlar sayfasına geri dön
+    if not user.incomingRequests.filter(id=request.user.id).exists():
+        messages.error(request, "Bu kullanıcıya gönderilmiş bekleyen bir isteğiniz yok.")
+        return redirect("friends")
+
+    user.incomingRequests.remove(request.user)
     messages.success(request, f"{user.username} kullanıcısına göndermiş olduğunuz arkadaşlık isteğini geri çektiniz.")
     return redirect("friends")
+
 
 # İstek gönderme fonksiyonu (login gerekiyor)
 @login_required
 def sendRequest(request, user_id):
-    # ID'si verilen kullanıcıyı al ve o kullanıcının gelen istekler field'ına bu kullanıcıyı ekle
-    user = User.objects.filter(id = user_id).first()
-    user.incomingRequests.add(request.user)
+    if user_id == request.user.id:
+        messages.error(request, "Kendinize arkadaşlık isteği gönderemezsiniz.")
+        return redirect("friends")
 
-    # Başarı mesajı yayınla ve arkadaşlar sayfasına geri dön
+    user = get_object_or_404(User, id=user_id)
+
+    if request.user.friends.filter(id=user.id).exists():
+        messages.error(request, "Bu kullanıcı zaten arkadaş listenizde.")
+        return redirect("friends")
+
+    if user.incomingRequests.filter(id=request.user.id).exists():
+        messages.info(request, "Bu kullanıcıya zaten bir istek göndermişsiniz.")
+        return redirect("friends")
+
+    # Karşı taraf bize istek atmışsa otomatik kabul olarak ele al
+    if request.user.incomingRequests.filter(id=user.id).exists():
+        request.user.incomingRequests.remove(user)
+        request.user.friends.add(user)
+        messages.success(request, f"{user.username} kullanıcısı zaten size istek atmıştı, artık arkadaşsınız!")
+        return redirect("friends")
+
+    user.incomingRequests.add(request.user)
     messages.success(request, f"{user.username} kullanıcısına bir arkadaşlık isteği gönderdiniz.")
-    return redirect('friends')
+    return redirect("friends")

@@ -8,48 +8,48 @@
 {% endblock %}
 
 {% block users %}
-        {% include 'pages/profile/showAllUsers.html' with allUsers=allUsers %}
+    {% include 'pages/profile/showAllUsers.html' with allUsers=allUsers %}
 {% endblock%}
 
 
 {% block page %}
-<div class="container mx-auto mt-8">
-    <h1 class="text-3xl font-bold mb-6">Quiz Merkezi</h1>
+<div class="container mx-auto mt-4 md:mt-8 ml-2 mr-2"> 
+    
+    <h1 class="text-3xl font-bold mb-4 md:mb-6 ml-4 mr-4">Quiz Merkezi</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-4 mr-4">
         
         <a href="{% url 'attempt_quiz' %}" 
-           class="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <h2 class="text-2xl font-semibold text-blue-600 mb-2">Yeni Quiz'e Başla</h2>
-            <p class="text-gray-700">
+           class="block p-4 md:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-blue-500">
+            <h2 class="text-xl font-semibold text-blue-600 mb-1">Yeni Quiz'e Başla</h2> 
+            <p class="text-sm text-gray-700">
                 Öğrenilmemiş kelimelerinden senin için özel olarak seçilmiş bir quize başla.
             </p>
         </a>
 
         <a href="{% url 'quiz_review' %}" 
-           class="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <h2 class="text-2xl font-semibold text-gray-600 mb-2">Quiz Review'ım</h2>
-            <p class="text-gray-700">
+           class="block p-4 md:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-gray-400">
+            <h2 class="text-xl font-semibold text-gray-600 mb-1">Quiz Review'ım</h2>
+            <p class="text-sm text-gray-700">
                 Daha önce çözdüğün quiz'leri ve başarı oranlarını incele.
             </p>
         </a>
-        
     </div>
 
-    <div class="mt-8 p-6 bg-white rounded-lg shadow-lg">
+    <div class="mt-6 p-4 md:p-6 bg-white rounded-lg shadow-lg"> 
         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Genel İstatistikler</h2>
 
-        <div class="flex justify-center space-x-4 mb-4">
+        <div class="flex justify-center space-x-3 text-sm mb-4">
             <div class="flex items-center">
-                <span class="h-4 w-4 rounded-full mr-2" style="background-color: #7b68ee;"></span>
+                <span class="h-3 w-3 rounded-full mr-1.5" style="background-color: #7b68ee;"></span>
                 <span>Eşleştirme</span>
             </div>
             <div class="flex items-center">
-                <span class="h-4 w-4 rounded-full mr-2" style="background-color: #ffa500;"></span>
+                <span class="h-3 w-3 rounded-full mr-1.5" style="background-color: #ffa500;"></span>
                 <span>Çoktan Seçmeli</span>
             </div>
             <div class="flex items-center">
-                <span class="h-4 w-4 rounded-full mr-2" style="background-color: #ee6aa7;"></span>
+                <span class="h-3 w-3 rounded-full mr-1.5" style="background-color: #ee6aa7;"></span>
                 <span>Yazma</span>
             </div>
         </div>
@@ -57,15 +57,11 @@
         <div class="w-full h-80"> <canvas id="statsChart"></canvas>
         </div>
     </div>
-    </div>
+</div>
 {% endblock %}
 
 
-{% comment %} 
-  2. JavaScript Kodunu sayfanın en altına ekler.
-  Bu kod, view'dan gelen verileri kullanarak grafiği çizer.
-{% endcomment %}
-
+{% comment %} JavaScript Kodları (Aynı kalacak) {% endcomment %}
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -129,13 +125,6 @@
                     // Y-Ekseni (Artık dikey ve logaritmik)
                     y: {
                         type: 'logarithmic', // Logaritmik Ölçek
-                        
-                        // Not: Logaritmik ölçek 0'ı gösteremez.
-                        // Chart.js 0 değerlerini otomatik olarak görmezden gelir (çizmez).
-                        // Veri 1'den başlıyorsa daha iyi görünür.
-                        // min: 1 ekleyerek 1'den başlatabiliriz
-                        // min: 1, 
-                        
                         title: {
                             display: true,
                             text: 'Soru Sayısı (Logaritmik Ölçek)'

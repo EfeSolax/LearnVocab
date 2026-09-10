@@ -42,7 +42,12 @@ class Word(models.Model):
     exampleSentence2 = models.CharField(max_length=400, blank = True, null = True)
     exampleSentence3 = models.CharField(max_length=400, blank = True, null = True)
     visibility = models.CharField(max_length=10, choices = VISIBILITY_CHOICES, default = "private")###########
+
+    # Eş anlamlı ve zıt anlamlı kelimeler (virgülle ayrılmış, isteğe bağlı)
+    synonyms = models.CharField(max_length=500, blank=True, null=True)
+    antonyms = models.CharField(max_length=500, blank=True, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)
+    span = models.IntegerField(null=True, blank=True)
 
     wordLevel = models.CharField(
         max_length=15,
@@ -101,5 +106,45 @@ class UserWordLink(models.Model):
         if total == 0:
             return 0 # Henüz sorulmamış, 0 kabul edelim
         return (self.wrongCount / total) * 100 # Yüzdelik
-    
-    
+
+
+class WordList(models.Model):
+    """
+    Kullanıcının kelime listesi (klasör). Her kullanıcı kendi WordList'lerini
+    oluşturabilir ve bir Word birden fazla listede yer alabilir.
+    Listede yer alan kelimelerin kullanıcının ana kelime listesinde
+    (UserWordLink) da olması mantıklıdır; view tarafında bu garanti edilir.
+    """
+    COLOR_CHOICES = [
+        ("indigo", "Indigo"),
+        ("blue", "Mavi"),
+        ("emerald", "Yeşil"),
+        ("amber", "Sarı"),
+        ("rose", "Kırmızı"),
+        ("purple", "Mor"),
+        ("teal", "Turkuaz"),
+        ("slate", "Gri"),
+    ]
+
+    owner = models.ForeignKey(
+        User,
+        related_name="word_lists",
+        on_delete=models.CASCADE,
+    )
+    name = models.CharField(max_length=80)
+    color = models.CharField(max_length=20, choices=COLOR_CHOICES, default="indigo")
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+
+    words = models.ManyToManyField(
+        Word,
+        related_name="in_user_lists",
+        blank=True,
+    )
+
+    class Meta:
+        unique_together = ("owner", "name")
+        ordering = ["createdAt"]
+
+    def __str__(self):
+        return f"{self.owner.username}/{self.name}"

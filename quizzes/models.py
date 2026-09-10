@@ -19,6 +19,7 @@ class QuizType(models.TextChoices):
     WRITING = 'writing', 'Yazma'
     MIXED = 'mixed', 'Karma'
     RANDOM = "random", "Rastgele"
+    SYNONYM_ANTONYM = 'synonym_antonym', 'Eş/Zıt Anlamlı'
 
 # QuizAttempt (isteği) oluşturulan class 
 class QuizAttempt(models.Model):
@@ -53,19 +54,25 @@ class QuizAttempt(models.Model):
         mq_correct_sum_agg = self.matchingquestion_questions.aggregate(Sum('correct_matches'))
         mq_correct_sum = mq_correct_sum_agg['correct_matches__sum'] or 0
         
-        # Toplam doğru sayısını bunların toplamına eşitle
-        self.totalCorrect = mc_correct + wq_correct + mq_correct_sum
+        # Eş/Zıt anlamlı sorularındaki doğruları say
+        sa_correct = self.synonymantonymquestion_questions.filter(is_correct=True).count()
 
-        # Çoktan seçmeli ve yazma sorularında yanlış yapılanları say        
+        # Toplam doğru sayısını bunların toplamına eşitle
+        self.totalCorrect = mc_correct + wq_correct + mq_correct_sum + sa_correct
+
+        # Çoktan seçmeli ve yazma sorularında yanlış yapılanları say
         mc_wrong = self.multiplechoicequestion_questions.filter(is_correct=False).count()
         wq_wrong = self.writingquestion_questions.filter(is_correct=False).count()
-        
+
         # Eşleştirme sorularında yanlış eşleştirilen soruları say
         mq_wrong_sum_agg = self.matchingquestion_questions.aggregate(Sum('wrong_matches'))
         mq_wrong_sum = mq_wrong_sum_agg['wrong_matches__sum'] or 0
-        
-        # Toplam yanlış sayısını bunların toplaımına eşitle 
-        self.totalWrong = mc_wrong + wq_wrong + mq_wrong_sum
+
+        # Eş/Zıt anlamlı sorularındaki yanlışları say
+        sa_wrong = self.synonymantonymquestion_questions.filter(is_correct=False).count()
+
+        # Toplam yanlış sayısını bunların toplaımına eşitle
+        self.totalWrong = mc_wrong + wq_wrong + mq_wrong_sum + sa_wrong
         
         # Quiz bitirildi mi'yi True yap ve quiz attempt'i kaydet.
         self.isCompleted = True
@@ -78,7 +85,8 @@ class QuizAttempt(models.Model):
         mc_time = self.multiplechoicequestion_questions.all().aggregate(Sum('time_taken'))['time_taken__sum'] or 0
         wq_time = self.writingquestion_questions.all().aggregate(Sum('time_taken'))['time_taken__sum'] or 0
         mq_time = self.matchingquestion_questions.all().aggregate(Sum('time_taken'))['time_taken__sum'] or 0
-        return mc_time + wq_time + mq_time
+        sa_time = self.synonymantonymquestion_questions.all().aggregate(Sum('time_taken'))['time_taken__sum'] or 0
+        return mc_time + wq_time + mq_time + sa_time
 
     # Geçen toplam süreyi gösteren fonskiyon
     @property
@@ -165,7 +173,7 @@ class MultipleChoiceQuestion(QuizQuestion):
         
     # Cevabı kontrol eden fonksiyon (kullanıcı cevabını al)
     def check_answer(self, user_input, time_taken = None):
-        # Cevabı düzenle ve eğer ki doğru cevapla kullanıcınınki aynı ise doğru de
+        #Cevabı düzenle ve eğer ki doğru cevapla kullanıcınınki aynı ise doğru de
         self.user_answer = user_input.strip()
         self.is_correct = (self.user_answer == self.correct_option)
 
@@ -180,7 +188,7 @@ class MultipleChoiceQuestion(QuizQuestion):
 
 # Yazma sorularınun modeli (Question abstract class'ını extend ediyor)
 class WritingQuestion(QuizQuestion):
-    # Soru metni ve doğru cevaplar
+    #Soru metni ve doğru cevaplar
     question_text = models.CharField(max_length=300)
     correct_answer = models.CharField(max_length=100)
 
@@ -224,7 +232,7 @@ class WritingQuestion(QuizQuestion):
                 else:
                     self.is_correct = False
 
-        # Geçen zaman none değilse geçen zamanı ata
+        #Geçen zaman none değilse geçen zamanı ata
         if time_taken is not None:
             self.time_taken = time_taken
         
@@ -232,7 +240,7 @@ class WritingQuestion(QuizQuestion):
         self.save()
         self.update_word_stats()
     
-# Eşleştirme sorularının modeli (Question abstract class'ını extend ediyor)
+#Eşleştirme sorularının modeli (Question abstract class'ını extend ediyor)
 class MatchingQuestion(QuizQuestion):    
     # Sorunun text'i (default var), soruda eşleştirilecek alanların kullanımı (default var)
     question_text = models.CharField(max_length=100, default="Kelimeleri eşleştiriniz.")
@@ -268,7 +276,7 @@ class MatchingQuestion(QuizQuestion):
         # RawSQL kullanarak 'id'nin hangi tabloya ait olduğunu netleştiriyoruz.
         # Çift tırnak, SQLite'ın tablo/sütun adlarını tanıması için.
         # Params için boş liste [] gönderiyoruz.
-        words = self.words.all().order_by(RawSQL(f'"{table_name}"."id"', []))
+        words = self.words.all().order_by(RawSQL(f'{table_name}.id', []))
         return self._get_items_for_column(words, self.left_col_field)
 
     # Sağ sütundaki kelimeleri karışık bir şekilde döner
@@ -282,7 +290,7 @@ class MatchingQuestion(QuizQuestion):
         table_name = self.words.model._meta.db_table 
         
         for i, pk in enumerate(ids):
-            clauses.append(f'WHEN "{table_name}"."id"=%s THEN %s')
+            clauses.append(f'WHEN {table_name}.id=%s THEN %s')
             params.append(pk)
             params.append(i)
             
@@ -295,7 +303,7 @@ class MatchingQuestion(QuizQuestion):
     @property
     def correct_column_items(self):
         table_name = self.words.model._meta.db_table
-        words = self.words.all().order_by(RawSQL(f'"{table_name}"."id"', []))
+        words = self.words.all().order_by(RawSQL(f'{table_name}.id', []))
         return self._get_items_for_column(words, self.right_col_field)
     
     # Kullanıcının girdiği cevapları al
@@ -337,7 +345,7 @@ class MatchingQuestion(QuizQuestion):
         
         return ordered_right_items
 
-    # Cevapları kontrol et metodu
+    #Cevapları kontrol et metodu
     def check_answer(self, user_input, time_taken = None):
         self.user_answer = user_input.strip()
         if time_taken is not None:
@@ -417,5 +425,38 @@ class MatchingQuestion(QuizQuestion):
         self.save()
         # ÖNEMLİ: Eşleştirmede, update_word_stats tüm 5 kelimeyi de
         # doğru veya yanlış olarak işaretleyecektir.
+        self.update_word_stats()
+
+
+# Eş/Zıt anlamlı test sorularının modeli (QuizQuestion abstract class'ını extend ediyor)
+class SynonymAntonymQuestion(QuizQuestion):
+    """
+    Bir kelimenin eş veya zıt anlamlısını soran çoktan seçmeli soru.
+    Soru tipi (eş/zıt) question_text içinde belirtilir.
+    Şık formatı MultipleChoiceQuestion ile aynıdır: "A:obtain_#_B:lose_#_C:run_#_D:eat"
+    """
+
+    question_text = models.CharField(max_length=400)
+    options_data = models.TextField(max_length=500)
+    correct_option = models.CharField(max_length=1)
+
+    # "A:obtain_#_B:lose" → [('A', 'obtain'), ('B', 'lose')]
+    @property
+    def options_as_list(self):
+        safe_delimiter = "_#_"
+        try:
+            return [tuple(pair.split(':', 1)) for pair in self.options_data.split(safe_delimiter)]
+        except Exception as e:
+            print(f"SynonymAntonymQuestion options_as_list HATA: {e}, Data: {self.options_data}")
+            return []
+
+    def check_answer(self, user_input, time_taken=None):
+        self.user_answer = user_input.strip()
+        self.is_correct = (self.user_answer == self.correct_option)
+
+        if time_taken is not None:
+            self.time_taken = time_taken
+
+        self.save()
         self.update_word_stats()
 

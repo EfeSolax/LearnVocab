@@ -55,35 +55,59 @@ def saveSettings(request):
         messages.success(request, "Ayarlarınız kaydedildi.")
         return redirect("profile_settings")
 
+def _confirm_with_password(request):
+    """
+    Tehlikeli (geri dönüşsüz) işlemlerden önce kullanıcının parolasıyla
+    onay almamızı sağlayan yardımcı. Sadece POST'larda çalışır ve
+    formdan 'confirm_password' bekler. Onay başarısızsa False döner.
+    """
+    if request.method != "POST":
+        messages.error(request, "Bu işlem yalnızca form üzerinden yapılabilir.")
+        return False
+
+    password = request.POST.get("confirm_password") or ""
+    if not password:
+        messages.error(request, "Lütfen onaylamak için parolanızı giriniz.")
+        return False
+
+    if not request.user.check_password(password):
+        messages.error(request, "Parola hatalı. İşlem iptal edildi.")
+        return False
+
+    return True
+
+
 @login_required
 def removeAllWords(request):
+    if not _confirm_with_password(request):
+        return redirect("profile_settings")
+
     user = request.user
-
-    links = UserWordLink.objects.filter(user = user)
-    links.delete()
-
-    words = Word.objects.filter(owner = user)
-    words.delete()
+    UserWordLink.objects.filter(user=user).delete()
+    Word.objects.filter(owner=user).delete()
 
     messages.success(request, "Tüm kelimeleriniz listenizden başarıyla silindi.")
     return redirect("profile_settings")
 
+
 @login_required
 def removeAllComments(request):
-    user = request.user
+    if not _confirm_with_password(request):
+        return redirect("profile_settings")
 
-    comments = Comment.objects.filter(owner = user)
-    comments.delete()
+    Comment.objects.filter(owner=request.user).delete()
 
     messages.success(request, "Tüm yorumlarınız silindi.")
     return redirect("profile_settings")
 
+
 @login_required
 def deleteMyAccount(request):
-    user = request.user
+    if not _confirm_with_password(request):
+        return redirect("profile_settings")
 
-    current_one = User.objects.filter(username = user.username).first()
-    current_one.delete()
+    # Doğru objeyi sil — request.user zaten doğru User objesidir
+    request.user.delete()
 
     messages.success(request, "Hesabınız başarılı bir şekilde silindi.")
     return redirect("index")

@@ -2,21 +2,22 @@
 {% block title %}Profilim{% endblock %}
 
 {% block users %}
-        {% include 'pages/profile/showAllUsers.html' with allUsers=allUsers %}
+    {% include 'pages/profile/showAllUsers.html' with allUsers=allUsers %}
 {% endblock%}
 
 {% block page %}
 
-<div class="mt-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="mt-4 mx-auto max-w-7xl">
     
-    <div class="rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
-        <div class="p-8 md:flex md:items-center md:gap-x-8">
+    <div class="rounded-none md:rounded-xl border border-gray-200 bg-white shadow-lg md:shadow-2xl overflow-hidden mb-6">
+        
+        <div class="p-6 flex flex-col md:flex-row items-center md:items-start gap-x-8">
             
-            <div class="flex-shrink-0 flex justify-center">
+            <div class="flex-shrink-0 relative">
                 {% if request.user.profile_pic %}
-                    <img class="h-48 w-48 rounded-full object-cover" src="{{ request.user.profile_pic.url }}" alt="Profil fotoğrafı">
+                    <img class="h-24 w-24 rounded-full object-cover shadow-lg border-2 border-indigo-400" src="{{ request.user.profile_pic.url }}" alt="Profil fotoğrafı">
                 {% else %}
-                    <span class="inline-block h-48 w-48 overflow-hidden rounded-full bg-gray-100">
+                    <span class="inline-block h-24 w-24 overflow-hidden rounded-full bg-gray-100 border-2 border-indigo-400">
                         <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
@@ -24,89 +25,83 @@
                 {% endif %}
             </div>
 
-            <div class="mt-6 md:mt-0 flex-1 text-center md:text-left">
-                
-                <h2 class="text-4xl font-bold tracking-tight text-gray-900">
+            <div class="mt-4 md:mt-0 flex-1 text-center md:text-left">
+                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
                     {{ user.username }}
                 </h2>
-                
-                <p class="mt-2 text-2xl text-gray-600">
+                <p class="mt-0.5 text-lg text-gray-600">
                     {{ user.first_name }} {{ user.last_name }}
                 </p>
 
                 {% if user.is_superuser %}
-                <p class="mt-2 text-lg text-gray-400">
-                    Admin yetkisi: <span class="text-green-400">var</span>
+                <p class="mt-1 text-sm font-medium text-gray-500">
+                    Admin yetkisi: <span class="text-green-500 font-semibold">var</span>
                 </p>
                 {% endif %}
-
-                <div class="mt-8 pt-6 border-t border-gray-200 flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-4">
-                    
-                    <div class="flex items-center gap-x-2">
-                        <svg class="h-6 w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.205 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.795 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.795 5 16.5 5c1.705 0 3.332.477 4.5 1.253v13C19.832 18.477 18.205 18 16.5 18s-3.332.477-4.5 1.253" />
-                        </svg>
-                        <span class="text-lg text-gray-800">Eklenen Kelime: <strong class="text-indigo-600">{{ wordsAddedFromUser|length }}</strong></span>
-                    </div>
-
-                    <div class="flex items-center gap-x-2">
-                        <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                        </svg>
-                        <span class="text-lg text-gray-800">Listeye Dahil Edilen Kelime: <strong class="text-green-600">{{ wordsAddedByUser|length }}</strong></span>
-                    </div>
-
-                    <div class="flex items-center gap-x-2">
-                        <svg class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.146-1.285-.423-1.848M13 16H7m6 0v-2c0-.653-.146-1.285-.423-1.848M7 20-2c-.653 0-1.285-.146-1.848-.423M7 20c-1.272 0-2.482-.56-3.27-1.5L2 15M17 20h5m-5 0v-2c0-.653-.146-1.285-.423-1.848M13 16h3m-3 0v-2c0-.653-.146-1.285-.423-1.848M7 20l-2-2m-2-2l-3-3" />
-                        </svg>
-                        <span class="text-lg text-gray-800">Arkadaş Sayısı: <strong class="text-purple-600"></strong>{{ friends|length }}</span>
-                    </div>
-                </div>
-
             </div>
         </div>
 
-        <hr>
+        <div class="bg-gray-50 p-6 border-t border-gray-200">
+             <h3 class="text-xl font-bold mb-4 text-gray-800">Genel İstatistikler</h3>
 
-        <!-- Bio kısmı -->
-        <div class="p-8 md:flex md:items-center md:gap-x-8">
-            
-            
-
-            <div class="mt-6 md:mt-0 flex-1 text-center md:text-left">
+             <div class="grid grid-cols-3 gap-3 text-center"> 
                 
-                <form method = "POST" action = "{% url 'save_mybio' %}">
-                {% csrf_token %}
-
-                <h2 class="text-4xl font-bold tracking-tight text-gray-900">
-                    Biyografiniz
-                </h2>
-
-                <p class="mb-4 text-sm/6 text-gray-600">
-                    Biyografinizi herkes görebilir.
-                </p>
-                
-                <textarea 
-                        id="bio"
-                        name="bio"  rows="5"   placeholder="Biyografiniz... (Maks. 500 karakter)"
-                        class="block w-full rounded-lg border-gray-300 shadow-sm 
-                               focus:border-blue-500 focus:ring-2 focus:ring-blue-500 
-                               text-gray-700 placeholder:text-gray-400 
-                               transition duration-150 ease-in-out sm:text-sm p-2 border "
-                    >{% if user.bio != None %}{{ user.bio }}{% else %}{% endif %}</textarea>
-                
-
-                
-                <div class="mt-8 pt-6 border-t border-gray-200 flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-4">
-                    <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                        Biyogrifimi Kaydet
-                    </button>
+                <div class="flex flex-col items-center justify-center p-3 rounded-lg bg-white shadow-sm border border-indigo-100">
+                    <svg class="h-6 w-6 text-indigo-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.205 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.795 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.795 5 16.5 5c1.705 0 3.332.477 4.5 1.253v13C19.832 18.477 18.205 18 16.5 18s-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span class="text-2xl font-bold text-indigo-700">{{ wordsAddedFromUser|length }}</span>
+                    <span class="text-xs text-gray-500 mt-1">Eklenen</span>
                 </div>
-                </form>
 
+                <div class="flex flex-col items-center justify-center p-3 rounded-lg bg-white shadow-sm border border-green-100">
+                    <svg class="h-6 w-6 text-green-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                    <span class="text-2xl font-bold text-green-700">{{ wordsAddedByUser|length }}</span>
+                    <span class="text-xs text-gray-500 mt-1">Listeye Dahil</span>
+                </div>
+
+                <div class="flex flex-col items-center justify-center p-3 rounded-lg bg-white shadow-sm border border-purple-100">
+                    <svg class="h-6 w-6 text-purple-600 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.146-1.285-.423-1.848M13 16H7m6 0v-2c0-.653-.146-1.285-.423-1.848M7 20-2c-.653 0-1.285-.146-1.848-.423M7 20c-1.272 0-2.482-.56-3.27-1.5L2 15M17 20h5m-5 0v-2c0-.653-.146-1.285-.423-1.848M13 16h3m-3 0v-2c0-.653-.146-1.285-.423-1.848M7 20l-2-2m-2-2l-3-3" />
+                    </svg>
+                    <span class="text-2xl font-bold text-purple-700">{{ friends|length }}</span>
+                    <span class="text-xs text-gray-500 mt-1">Arkadaş</span>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="rounded-none md:rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+        <form method="POST" action="{% url 'save_mybio' %}" class="p-6 md:p-8">
+            {% csrf_token %}
+            
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-1">
+                Biyografiniz
+            </h2>
+
+            <p class="mb-4 text-sm/6 text-gray-600">
+                Biyografinizi herkes görebilir.
+            </p>
+            
+            <textarea
+                id="bio"
+                name="bio"
+                rows="5"
+                placeholder="Biyografiniz... (Maks. 500 karakter, Emoji girmeyiniz!!!)"
+                class="block w-full rounded-lg border-gray-300 shadow-sm
+                    focus:border-blue-500 focus:ring-2 focus:ring-blue-500
+                    text-gray-700 placeholder:text-gray-400
+                    transition duration-150 ease-in-out sm:text-sm p-3 border">{% if user.bio != None %}{{ user.bio }}{% else %}{% endif %}</textarea>
+            
+
+            <div class="mt-6 pt-4 border-t border-gray-200 flex justify-end">
+                <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Biyografimi Kaydet
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 

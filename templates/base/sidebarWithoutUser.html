@@ -5,13 +5,14 @@
 {% block messages %}{% endblock %}
 
 {% comment %} 
+  EKSİK OLAN BLOK BURAYA EKLENDİ.
+  Bu, quizzes.html'den gelen extra_head'i yakalayıp base/layout.html'e iletecek.
 {% endcomment %}
-
 {% block extra_head %}{% endblock %}
 
 {% block content %}
 
-<div class="relative flex h-screen bg-gray-100 mt-4">   
+<div class="relative flex">   
     <!-- Mobil uyumluluk kodu -->
     <div id="sidebar-overlay" class="fixed inset-0 z-50 hidden bg-black/50 md:hidden"></div>
 
@@ -19,15 +20,19 @@
     <aside id="mobile-sidebar" class="fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 py-8
     transform -translate-x-full transition-transform duration-300 ease-in-out
     md:relative md:translate-x-0"> 
+
+        
         
         <!-- Her bir menü bir a etiketi -->
-        <div class="flex flex-1 flex-col justify-between">
+        <div class="mt-6 flex flex-1 flex-col justify-between">
             <nav class="-mx-3 space-y-1">
                     <!-- Tüm Kullanıcılar...-->
-                    <div class="mt-6 pt-4 border-t border-gray-200">
+                    <div class="mt-6 pt-4 border-t border-gray-200 mb-12">
                         <span class="px-3 text-xs font-semibold uppercase text-gray-500">Tüm Kullanıcılar</span>
+                        
                         {% block users %}
                         {% endblock %}
+                        
                     </div>
             </nav>
         </div>
@@ -39,16 +44,20 @@
     <!-- Ana sayfa kısmı -->
     <main class="flex-1 overflow-y-auto bg-gray-50">
         <header class="flex items-center justify-between border-b border-gray-200 bg-white p-4">
+        <div class="flex items-center"> 
             <button id="mobile-menu-button" type="button" class="p-2 text-gray-500 rounded-md md:hidden">
                 <span class="sr-only">Menüyü aç</span>
                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </button>
+            
+            <h1 class="ml-2 text-lg font-semibold text-gray-900 md:hidden">Profilim</h1>
+        </div>
         </header>
 
-        <div class = "p-8">
-            
+        <div class = "">
+
             {% include 'base/messages.html' with margin_class="" %}
 
             {% block page %}

@@ -52,13 +52,15 @@
             
             {% if question.template_name == "MatchingQuestion" %}
                 {% include 'pages/quizzes/partials/_review_matching.html' with question=question forloop=forloop %}
-            
-            
+
             {% elif question.template_name == "MultipleChoiceQuestion" %}
                 {% include 'pages/quizzes/partials/_review_mc.html' with question=question forloop=forloop %}
 
             {% elif question.template_name == "WritingQuestion" %}
                 {% include 'pages/quizzes/partials/_review_writing.html' with question=question forloop=forloop %}
+
+            {% elif question.template_name == "SynonymAntonymQuestion" %}
+                {% include 'pages/quizzes/partials/_review_synonym_antonym.html' with question=question forloop=forloop %}
 
             {% endif %}
             

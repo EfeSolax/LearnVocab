@@ -30,7 +30,11 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['learnvocab.com.tr', 'www.learnvocab.com.tr']
+
+# Lokal geliştirme için DEBUG açıkken localhost'ları otomatik ekle
+if DEBUG:
+    ALLOWED_HOSTS += ['127.0.0.1', 'localhost', '0.0.0.0']
 
 
 # Application definition
@@ -138,6 +142,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles_root' # Ya da 'staticfiles'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
@@ -171,3 +177,18 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')       # <--- Bu artık çal�
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD') # <--- Bu artık çalışacak
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 GEMINI_API_TOKEN = os.environ.get('GEMINI_API_TOKEN')
+
+# Production güvenlik ayarları
+# Lokal geliştirmede (DEBUG=True) HTTPS zorlaması anlamsız olduğu için kapalı.
+if not DEBUG:
+    # HTTPS'e zorla
+    SECURE_SSL_REDIRECT = True
+    # HSTS: tarayıcılar sitenle sadece HTTPS üzerinden konuşsun
+    SECURE_HSTS_SECONDS = 31536000  # 1 yıl
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    # Cookie'ler sadece HTTPS üzerinden taşınsın
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    # Django'ya güvenli (secure) proxy (Passenger/Apache) arkasında olduğunu söyle
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

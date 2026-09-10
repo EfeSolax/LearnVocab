@@ -7,13 +7,13 @@
         <div class="flex lg:flex-1">
         <a href="{% url 'index' %}">
           <span class="sr-only">Your Company</span>
-          <!-- Bunun yerine-->
           <img src="{% static 'images/logo.png' %}" alt="" class="h-12 w-auto" />
         </a>
       </div>
       <div class="flex lg:hidden">
         <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
           <span class="sr-only">Open main menu</span>
+          <span class="text-xl font-semibold mr-2">Menüler</span> 
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
             <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
@@ -23,7 +23,7 @@
         <a href="{% url 'index' %}" class="text-sm/6 font-semibold text-gray-900">Ana Sayfa</a>
         <a href="{% url 'about' %}" class="text-sm/6 font-semibold text-gray-900">Hakkında</a>
         <a href="{% url 'friends' %}" class="text-sm/6 font-semibold text-gray-900">Arkadaşlar</a>
-        <a href="{% url 'all_words' %}" class="text-sm/6 font-semibold text-gray-900">Kelimeler</a>
+        <a href="{% url 'all_words' %}" class="text-sm/6 font-semibold text-gray-900">Tüm Kelimeler</a>
         <a href="{% url 'show_comments_page' %}" class="text-sm/6 font-semibold text-gray-900">Yorumlar</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end gap-x-8">
@@ -59,7 +59,7 @@
                   <a href="{% url 'index' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Ana Sayfa</a>
                   <a href="{% url 'about' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Hakkında</a>
                   <a href="{% url 'friends' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Arkadaşlar</a>
-                  <a href="{% url 'all_words' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Kelimeler</a>
+                  <a href="{% url 'all_words' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Tüm Kelimeler</a>
                   <a href="{% url 'show_comments_page' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Yorumlar</a>
                 </div>
                 <div class="py-6">

@@ -12,16 +12,31 @@
 
     {% include 'base/messages.html' with margin_class="" %}
     
-    <div class="mb-8 text-left">
-      {% if user.is_authenticated %}
-      <a href="{% url 'profile_words' %}" class="inline-flex items-center text-lg font-semibold text-indigo-700 hover:text-indigo-900 transition-all duration-200 ease-in-out px-4 py-2 rounded-lg bg-white border border-indigo-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-        </svg>
-        Kelimelerime Dön
-      </a>
-      {% endif %}
-    </div>
+    <div class="flex justify-between items-center mb-8">
+ 
+         <div class="">
+         {% if user.is_authenticated %}
+         <a href="{% url 'profile_words' %}" class="inline-flex items-center text-lg font-semibold text-indigo-700 hover:text-indigo-900 transition-all duration-200 ease-in-out px-4 py-2 rounded-lg bg-white border border-indigo-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 20 20" fill="currentColor">
+         <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg>
+ Kelimelerime Dön
+ </a>
+ {% endif %}
+ </div>
+
+ <div class="">
+ {% if user.is_authenticated %}
+<a href="{% url 'all_words' %}" class="inline-flex items-center text-lg font-semibold text-indigo-700 hover:text-indigo-900 transition-all duration-200 ease-in-out px-4 py-2 rounded-lg bg-white border border-indigo-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+ <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 20 20" fill="currentColor">
+ <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+ </svg>
+ Tüm Kelimelere Dön
+ </a>
+ {% endif %}
+ </div>
+
+</div>
 
     <div class="bg-white rounded-2xl shadow-2xl overflow-hidden p-8 md:p-10 text-center relative z-10 transform hover:scale-102 transition-all duration-300 ease-in-out">
       <h1 class="text-6xl sm:text-8xl font-extrabold tracking-tight bg-gradient-to-r from-purple-600 to-indigo-700 bg-clip-text text-transparent mb-4 leading-tight">
@@ -130,6 +145,45 @@
           {% endif %}
         {% endfor %}
       </ul>
+    </div>
+    {% endif %}
+
+    {% if word.synonyms or word.antonyms %}
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden mt-10 p-8">
+      <h3 class="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-purple-200 pb-3">Eş ve Zıt Anlamlılar</h3>
+
+      {% if word.synonyms %}
+      <div class="{% if word.antonyms %}mb-6{% endif %}">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-green-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+          <dt class="text-sm font-semibold text-green-700 uppercase tracking-wide">Eş Anlamlı (Synonyms)</dt>
+        </div>
+        <dd class="bg-green-50 border border-green-200 rounded-lg px-5 py-3 text-green-800 text-base leading-relaxed">
+          {{ word.synonyms }}
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if word.antonyms %}
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-rose-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+            </svg>
+          </span>
+          <dt class="text-sm font-semibold text-rose-600 uppercase tracking-wide">Zıt Anlamlı (Antonyms)</dt>
+        </div>
+        <dd class="bg-rose-50 border border-rose-200 rounded-lg px-5 py-3 text-rose-800 text-base leading-relaxed">
+          {{ word.antonyms }}
+        </dd>
+      </div>
+      {% endif %}
+
     </div>
     {% endif %}
 

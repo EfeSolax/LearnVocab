@@ -10,7 +10,7 @@
 <audio id="tictac-sound" src="{% static 'sounds/tictac.mp3' %}" preload="auto" muted></audio>
 
 
-<div id="quiz-container" class="mt-8 mb-6 max-w-3xl mx-auto relative bg-indigo-50 shadow-xl rounded-lg p-1.5">
+<div id="quiz-container" class="mt-8 mb-12 max-w-3xl mx-auto relative bg-indigo-50 shadow-xl rounded-lg p-1.5">
 
     <div class="absolute inset-0 w-full h-full overflow-hidden rounded-lg pointer-events-none">
         <svg id="timer-svg" preserveAspectRatio="none" 
@@ -40,12 +40,15 @@
             {% if question_type == "WritingQuestion" %}
                 <p class="mt-2 mb-4 text-gray-400" style="white-space: pre-wrap;">Bu kelime, kelime listenize ekledikleriniz arasından seçilmiştir. Bu anlamı ve açıklamayı karşılayan birden çok kelime olabilir, bunun için özür dileriz.</p>
             {% endif %}
+            {% if question_type == "SynonymAntonymQuestion" %}
+                <p class="mt-2 mb-4 text-gray-400" style="white-space: pre-wrap;">Kelimelerin eş ve zıt anlamlıları Claude Ai tarafından belirlenmiştir. Bu yüzden oluşabilecek hatalar için özür dileriz.</p>
+            {% endif %}
         </div>
 
         <form id="quizForm" method="POST" action="{% url 'quiz_page' attempt_id=attempt.id question_index=question_index %}">
             {% csrf_token %}
             <div id="answer-container">
-                {% if question_type == "MultipleChoiceQuestion" %}
+                {% if question_type == "MultipleChoiceQuestion" or question_type == "SynonymAntonymQuestion" %}
                     <div class="space-y-4">
                         {% for label, text in question.options_as_list %}
                         <div class="mc-option-box bg-white p-4 border-2 border-indigo-300 rounded-lg cursor-pointer hover:bg-indigo-50 hover:border-indigo-500 transition-all duration-150">
@@ -95,12 +98,12 @@
                 
                 {% if is_last_question %}
                     <a href="{% url 'quiz_complete' attempt_id=attempt.id %}" id="nextButton"
-                       class="hidden inline-block px-8 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition-colors">
+                       class="hidden inline-block px-8 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition-colors mb-4">
                         Quiz'i Bitir
                     </a>
                 {% else %}
                     <a href="{% url 'quiz_page' attempt_id=attempt.id question_index=next_question_index %}" id="nextButton"
-                       class="hidden inline-block px-8 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors">
+                       class="hidden inline-block px-8 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors mb-4">
                         Sonraki Soru
                     </a>
                 {% endif %}

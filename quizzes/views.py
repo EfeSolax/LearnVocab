@@ -4,16 +4,15 @@ from django.http import JsonResponse
 from django.contrib import messages
 from random import choice, shuffle, sample
 
-from words.models import UserWordLink, Word
-# Düzeltilmiş Model Importları: Sadece ihtiyacımız olanlar
-from .models import QuizType, QuizAttempt, MultipleChoiceQuestion, WritingQuestion, MatchingQuestion
+from words.models import UserWordLink, Word, WordList
+from .models import QuizType, QuizAttempt, MultipleChoiceQuestion, WritingQuestion, MatchingQuestion, SynonymAntonymQuestion
 from usersettings.models import UserSettings
 
-# Düzeltilmiş Fonksiyon Importları: Sadece ihtiyacımız olanlar
 from .question_generator import (
-    generate_mc_question, 
-    generate_writing_question, 
-    generate_matching_question
+    generate_mc_question,
+    generate_writing_question,
+    generate_matching_question,
+    generate_synonym_antonym_question,
 )
 
 
@@ -21,62 +20,96 @@ from .question_generator import (
 
 @login_required
 def attemptQuiz(request):
-    
-    # ... (Bu fonksiyonunuzda hiçbir hata yoktu, aynı kalabilir) ...
+
     if request.method == "POST":
         quizType = request.POST.get("quizType")
         totalQuestion = request.POST.get("totalQuestion")
 
-        if not (quizType == "mixed" or quizType == "matching" or quizType == "multiple_choice" or quizType == "writing" or quizType == "random"):
-            messages.error(request, "Hatalı bir quiz tipi seçildi.") 
+        if quizType not in ("mixed", "matching", "multiple_choice", "writing", "random", "synonym_antonym"):
+            messages.error(request, "Hatalı bir quiz tipi seçildi.")
             return redirect("attempt_quiz")
-        
-        if not (totalQuestion == "5" or totalQuestion == "10" or totalQuestion == "15"):
+
+        if totalQuestion not in ("5", "10", "15", "25", "40"):
             messages.error(request, "Hatalı bir soru sayısı seçildi.")
             return redirect("attempt_quiz")
-        
-        totalQuestion = int(totalQuestion)
-        
-        choices = ["mixed","matching","multiple_choice","writing"]
 
+        totalQuestion = int(totalQuestion)
+
+        choices = ["mixed", "matching", "multiple_choice", "writing"]
         if quizType == "random":
             quizType = choice(choices)
 
-        links = UserWordLink.objects.filter(user=request.user)
+        # Opsiyonel: kullanıcı belirli kelimeler seçtiyse sadece onlardan quiz hazırla
+        selected_raw = request.POST.getlist("selected_word_ids")
+        selected_ids = []
+        for v in selected_raw:
+            try:
+                selected_ids.append(int(v))
+            except (TypeError, ValueError):
+                continue
 
-        if totalQuestion > len(links):
-            messages.error(request, "Listenizde bu istediğiniz soru sayısında kelime yok.")
-            return redirect("profile_quizzes")
-        
+        links = UserWordLink.objects.filter(user=request.user)
+        if selected_ids:
+            links = links.filter(word_id__in=selected_ids)
+
+        # Eşleştirme tipi quiz 5'er gruplar halinde çalışır; uygun değilse uyar
+        if quizType == "matching" and totalQuestion % 5 != 0:
+            messages.error(request, "Eşleştirme quiz'i 5'in katları olan soru sayılarıyla çalışır (5, 10, 15, 25, 40).")
+            return redirect("attempt_quiz")
+
+        # Eş/Zıt anlamlı quiz: sadece synonyms veya antonyms dolu kelimelere kısıtla
+        if quizType == "synonym_antonym":
+            eligible_links = [
+                lnk for lnk in links.select_related('word')
+                if (lnk.word.synonyms and lnk.word.synonyms.strip())
+                or (lnk.word.antonyms and lnk.word.antonyms.strip())
+            ]
+            if totalQuestion > len(eligible_links):
+                messages.error(
+                    request,
+                    f"Eş/Zıt Anlamlı quiz için yeterli kelime yok. "
+                    f"Listenizde eş veya zıt anlamlısı girilmiş {len(eligible_links)} kelime var, "
+                    f"ancak {totalQuestion} soruluk bir quiz istendi. "
+                    "Kelimelerinize eş/zıt anlamlı ekleyin ya da soru sayısını azaltın."
+                )
+                return redirect("attempt_quiz")
+            # links'i eligible ile değiştir; normal kelime sayısı kontrolünü atla
+            links = eligible_links
+
+        elif totalQuestion > len(links):
+            if selected_ids:
+                messages.error(
+                    request,
+                    f"Seçtiğiniz {len(links)} kelime ile {totalQuestion} soruluk bir quiz oluşturulamaz. "
+                    "Daha fazla kelime seçin ya da soru sayısını azaltın."
+                )
+            else:
+                messages.error(request, "Listenizde bu istediğiniz soru sayısında kelime yok.")
+            return redirect("attempt_quiz")
+
         priority1 = list()
         priority2 = list()
         priority3 = list()
 
         for link in links:
-            if link.totalAttempts <= 4:
+            if link.totalAttempts <= 2:
                 priority1.append(link)
 
-            elif link.totalAttempts <= 10:
-                if link.wrongRatio >= 0.65:
+            elif link.totalAttempts <= 6:
+                if link.wrongRatio >= 0.50:
                     priority1.append(link)
                 else:
                     priority2.append(link)
 
             else:
-                if link.wrongRatio >= 0.65:
+                if link.wrongRatio >= 0.50:
                     priority1.append(link)
-                elif link.wrongRatio >= 0.3:
+                elif link.wrongRatio >= 0.2:
                     priority2.append(link)
                 else:
                     priority3.append(link)
 
-        priority1.sort(
-            # 'key' bir tuple döndürüyor: (Gruplama Kriteri, Sıralama Kriteri)
-            key=lambda link: (
-                link.totalAttempts > 0,  # 1. Kriter (Gruplama)
-                -link.wrongRatio         # 2. Kriter (Sıralama)
-            )
-        )
+        priority1.sort(key=lambda link: (link.totalAttempts, -link.wrongRatio))
 
         priority2.sort(
             key=lambda link: link.wrongRatio if link.totalAttempts > 0 else 0,
@@ -105,17 +138,30 @@ def attemptQuiz(request):
         
         if quizType == "mixed":
             if totalQuestion == 5: # Örn: 3 ÇS, 2 Yazma
+                num_matching_words = 0
                 mc_links = links_to_ask[:3]
                 wq_links = links_to_ask[3:]
                 mq_links_list = []
             elif totalQuestion == 10: # Örn: 1 Eşleştirme (5), 3 ÇS, 2 Yazma
+                num_matching_words = 5
                 mq_links_list = [links_to_ask[:5]] 
                 mc_links = links_to_ask[5:8]
                 wq_links = links_to_ask[8:]
-            else: # 15 Soru: 1 Eşleştirme (5), 6 ÇS, 4 Yazma
+            elif totalQuestion == 15: # 15 Soru: 1 Eşleştirme (5), 6 ÇS, 4 Yazma
+                num_matching_words = 5
                 mq_links_list = [links_to_ask[:5]]
                 mc_links = links_to_ask[5:11]
                 wq_links = links_to_ask[11:]
+            elif totalQuestion == 25: # 25 Soru: 1 Eşleştirme (5), 6 ÇS, 4 Yazma
+                num_matching_words = 10
+                mq_links_list = [links_to_ask[0:5], links_to_ask[5:10]]
+                mc_links = links_to_ask[10:18]
+                wq_links = links_to_ask[18:]
+            else:
+                num_matching_words = 15
+                mq_links_list = [links_to_ask[0:5], links_to_ask[5:10], links_to_ask[10:15]]
+                mc_links = links_to_ask[15:28]
+                wq_links = links_to_ask[28:]
 
             for link in mc_links:
                 generate_mc_question(link, newQuiz, all_user_words)
@@ -138,10 +184,78 @@ def attemptQuiz(request):
                 link_group = links_to_ask[i : i + group_size]
                 if len(link_group) == group_size:
                     generate_matching_question(link_group, newQuiz)
-        
+
+        elif quizType == "synonym_antonym":
+            for link in links_to_ask:
+                generate_synonym_antonym_question(link, newQuiz, all_user_words)
+
         return redirect('quiz_page', attempt_id=newQuiz.id, question_index=1)
 
-    return render(request, "pages/quizzes/attemptQuiz.html")
+    # GET: Kullanıcının kelime listesini kaynak rozetleriyle hazırla
+    user = request.user
+    user_links = (
+        UserWordLink.objects
+        .filter(user=user)
+        .select_related("word", "word__owner")
+        .prefetch_related("word__in_user_lists")
+        .order_by("word__englishWord")
+    )
+    friend_ids = set(user.friends.values_list("id", flat=True))
+
+    # Kullanıcının özel kelime listeleri (klasörleri)
+    user_lists = list(WordList.objects.filter(owner=user).order_by("name"))
+    list_count_map = {wl.id: 0 for wl in user_lists}
+
+    word_items = []
+    counts = {"base": 0, "own": 0, "friend": 0, "saved": 0}
+    for link in user_links:
+        w = link.word
+        if w.isBaseWord:
+            source, source_label = "base", "ODTÜ"
+        elif w.owner_id == user.id:
+            source, source_label = "own", "Kendi"
+        elif w.owner_id in friend_ids:
+            source, source_label = "friend", "Arkadaş"
+        else:
+            source, source_label = "saved", "Eklenen"
+        counts[source] += 1
+
+        # Bu kelimenin hangi kullanıcı listelerinde olduğunu çıkar
+        word_list_ids = [wl.id for wl in w.in_user_lists.all() if wl.owner_id == user.id]
+        for lid in word_list_ids:
+            if lid in list_count_map:
+                list_count_map[lid] += 1
+
+        word_items.append({
+            "id": w.id,
+            "english": w.englishWord,
+            "meaning": w.meaningTr,
+            "level": w.wordLevel or "—",
+            "source": source,
+            "source_label": source_label,
+            # Veri olarak listele (template data-lists attribute olarak join'leyecek)
+            "list_ids": word_list_ids,
+            "lists_attr": ",".join(str(i) for i in word_list_ids),
+        })
+
+    # Template'in render edebileceği zenginleştirilmiş liste meta verisi
+    user_lists_meta = [
+        {
+            "id": wl.id,
+            "name": wl.name,
+            "color": wl.color,
+            "count": list_count_map.get(wl.id, 0),
+        }
+        for wl in user_lists
+    ]
+
+    context = {
+        "word_items": word_items,
+        "total_word_count": len(word_items),
+        "counts": counts,
+        "user_lists": user_lists_meta,
+    }
+    return render(request, "pages/quizzes/attemptQuiz.html", context)
 
 def get_words_for_quiz(priority1, priority2, priority3, total_question):
     # ... (Bu fonksiyonunuzda da hiçbir hata yoktu, aynı kalabilir) ...
@@ -151,8 +265,12 @@ def get_words_for_quiz(priority1, priority2, priority3, total_question):
         (k1, k2, k3) = (3, 1, 1)
     elif total_question == 10:
         (k1, k2, k3) = (7, 2, 1)
-    else: # 15
+    elif total_question == 15:
         (k1, k2, k3) = (10, 3, 2)
+    elif total_question == 25:
+        (k1, k2, k3) = (17, 5, 3)
+    else: # 40
+        (k1, k2, k3) = (28, 8, 4)
 
     actual_count_p1 = min(k1, len(priority1))
     actual_links_p1 = priority1[:actual_count_p1]
@@ -204,9 +322,10 @@ def quizPage(request, attempt_id, question_index):
     mc_q = list(attempt.multiplechoicequestion_questions.all())
     wq_q = list(attempt.writingquestion_questions.all())
     mq_q = list(attempt.matchingquestion_questions.all())
-    
-    all_questions = sorted(mc_q + wq_q + mq_q, key=lambda q: q.id)
-    
+    sa_q = list(attempt.synonymantonymquestion_questions.all())
+
+    all_questions = sorted(mc_q + wq_q + mq_q + sa_q, key=lambda q: q.id)
+
     try:
         current_question = all_questions[question_index - 1]
     except IndexError:
@@ -237,10 +356,10 @@ def quizPage(request, attempt_id, question_index):
         if is_ajax:
             correct_answer_value = ""
             
-            if question_type == "MultipleChoiceQuestion":
-                correct_answer_value = current_question.correct_option 
+            if question_type in ("MultipleChoiceQuestion", "SynonymAntonymQuestion"):
+                correct_answer_value = current_question.correct_option
             elif question_type == "WritingQuestion":
-                correct_answer_value = current_question.correct_answer 
+                correct_answer_value = current_question.correct_answer
             
             return JsonResponse({
                 'is_correct': current_question.is_correct,
@@ -298,27 +417,31 @@ def quizComplete(request, attempt_id):
     mc_q = list(attempt.multiplechoicequestion_questions.all())
     wq_q = list(attempt.writingquestion_questions.all())
     mq_q = list(attempt.matchingquestion_questions.all())
-    
+    sa_q = list(attempt.synonymantonymquestion_questions.all())
+
     all_questions = []
-    
+
     for q in mc_q:
         q.template_name = 'MultipleChoiceQuestion'
         all_questions.append(q)
-        
+
     for q in wq_q:
         q.template_name = 'WritingQuestion'
         all_questions.append(q)
-        
+
     for q in mq_q:
         q.template_name = 'MatchingQuestion'
-
         q.combined_items = list(zip(
-            q.left_column_items, 
+            q.left_column_items,
             q.right_column_items_user_ordered,
             q.correct_column_items
         ))
         all_questions.append(q)
-    
+
+    for q in sa_q:
+        q.template_name = 'SynonymAntonymQuestion'
+        all_questions.append(q)
+
     # Hepsini ID'ye göre sırala (oluşturulma sırası)
     all_questions.sort(key=lambda q: q.id)
     

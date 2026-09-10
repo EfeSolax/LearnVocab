@@ -158,40 +158,61 @@
             
             <form method="POST" action="{% url 'remove_all_words' %}" onsubmit="return confirm('Listenizdeki TÜM kelimeleri silmek üzeresiniz. İlerlemeniz kaybolacak. Emin misiniz?');">
                 {% csrf_token %}
-                <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-900 dark:text-white">Listemdeki Tüm Kelimeleri Kaldır</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Öğrenme listenizdeki tüm kelimeler (öğrendikleriniz dahil) silinir.</p>
+                <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900 dark:text-white">Listemdeki Tüm Kelimeleri Kaldır</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Öğrenme listenizdeki tüm kelimeler (öğrendikleriniz dahil) silinir.</p>
+                        </div>
+                        <button type="submit" class="ml-4 px-3 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700">
+                            Kelimeleri Kaldır
+                        </button>
                     </div>
-                    <button type="submit" class="ml-4 px-3 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700">
-                        Kelimeleri Kaldır
-                    </button>
+                    <div class="mt-3">
+                        <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Onaylamak için parolanız:</label>
+                        <input type="password" name="confirm_password" required autocomplete="current-password"
+                               class="w-full md:w-72 rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white text-sm shadow-sm focus:border-red-500 focus:ring-red-500">
+                    </div>
                 </div>
             </form>
 
             <form method="POST" action="{% url 'remove_all_comments' %}" onsubmit="return confirm('Siteye yaptığınız tüm yorumları kalıcı olarak silmek istediğinizden emin misiniz?');">
                 {% csrf_token %}
-                <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-900 dark:text-white">Tüm Yorumlarımı Kaldır</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Siteye yaptığınız tüm yorumlar kalıcı olarak silinir.</p>
+                <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900 dark:text-white">Tüm Yorumlarımı Kaldır</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Siteye yaptığınız tüm yorumlar kalıcı olarak silinir.</p>
+                        </div>
+                        <button type="submit" class="ml-4 px-3 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700">
+                            Yorumları Kaldır
+                        </button>
                     </div>
-                    <button type="submit" class="ml-4 px-3 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700">
-                        Yorumları Kaldır
-                    </button>
+                    <div class="mt-3">
+                        <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Onaylamak için parolanız:</label>
+                        <input type="password" name="confirm_password" required autocomplete="current-password"
+                               class="w-full md:w-72 rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white text-sm shadow-sm focus:border-red-500 focus:ring-red-500">
+                    </div>
                 </div>
             </form>
 
             <form method="POST" action="{% url 'delete_myaccount' %}" onsubmit="return confirm('HESABINIZI SİLMEK ÜZERESİNİZ!\nTüm verileriniz, kelimeleriniz ve ilerlemeniz kalıcı olarak yok olacak.\n\nBu işlemi yapmak istediğinize emin misiniz?');">
                 {% csrf_token %}
-                <div class="flex items-center justify-between p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-600">
-                    <div>
-                        <h3 class="text-sm font-medium text-red-800 dark:text-red-300">Hesabımı Kalıcı Olarak Sil</h3>
-                        <p class="text-sm text-red-700 dark:text-red-400">Tüm verileriniz geri alınamaz bir şekilde silinecektir.</p>
+                <div class="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-600">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-sm font-medium text-red-800 dark:text-red-300">Hesabımı Kalıcı Olarak Sil</h3>
+                            <p class="text-sm text-red-700 dark:text-red-400">Tüm verileriniz geri alınamaz bir şekilde silinecektir.</p>
+                        </div>
+                        <button type="submit" class="ml-4 px-3 py-2 bg-red-700 text-white text-sm font-medium rounded-md hover:bg-red-800">
+                            Hesabımı Sil
+                        </button>
                     </div>
-                    <button type="submit" class="ml-4 px-3 py-2 bg-red-700 text-white text-sm font-medium rounded-md hover:bg-red-800">
-                        Hesabımı Sil
-                    </button>
+                    <div class="mt-3">
+                        <label class="block text-xs font-medium text-red-700 dark:text-red-300 mb-1">Onaylamak için parolanız:</label>
+                        <input type="password" name="confirm_password" required autocomplete="current-password"
+                               class="w-full md:w-72 rounded-md border-red-300 dark:border-red-600 dark:bg-gray-800 dark:text-white text-sm shadow-sm focus:border-red-500 focus:ring-red-500">
+                    </div>
                 </div>
             </form>
 

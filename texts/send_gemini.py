@@ -6,7 +6,7 @@ def send_message_to_gemini(text: str, words : list) -> str:
     api_key = settings.GEMINI_API_TOKEN
 
     if not api_key:
-        print("HATA: GOOGLE_API_KEY bulunamadı.")
+        #print("HATA: GOOGLE_API_KEY bulunamadı.")
         print("Lütfen .env dosyasını oluşturup anahtarınızı oraya eklediğinizden emin olun.")
         return ""
 
@@ -21,9 +21,9 @@ def send_message_to_gemini(text: str, words : list) -> str:
     #    Bir önceki adımda öğrendiğimiz, senin hesabına tanımlı olan modeli kullanıyoruz.
     try:
         model = GenerativeModel('models/gemini-pro-latest') 
-        print("Gemini modeli ('models/gemini-pro-latest') başarıyla yüklendi.")
+        #print("Gemini modeli ('models/gemini-pro-latest') başarıyla yüklendi.")
     except Exception as e:
-        print(f"HATA: Model yüklenirken bir sorun oluştu: {e}")
+        #print(f"HATA: Model yüklenirken bir sorun oluştu: {e}")
         return ""
     
     words_text = ""
@@ -229,13 +229,13 @@ puanları listeye koy.)
 
     # 6. Prompt'u Gönder ve Cevabı Al
     try:
-        print("Cevap alınıyor... Lütfen bekleyin...")
+        #print("Cevap alınıyor... Lütfen bekleyin...")
         response = model.generate_content(prompt)
         
         return response.text
 
     except Exception as e:
-        print(f"HATA: API'den cevap alınırken bir sorun oluştu: {e}")
+        #print(f"HATA: API'den cevap alınırken bir sorun oluştu: {e}")
         if "429" in e:
             return "ERROR:429"
         else:

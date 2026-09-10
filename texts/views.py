@@ -1,172 +1,196 @@
-from django.shortcuts import render, redirect
-from texts.models import Text
-from users.models import User
-from words.models import Word, UserWordLink
-from django.contrib.auth.decorators import login_required
-from .send_gemini import *
+import re
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta
-from django.contrib import messages
-# Create your views here.
+
+from texts.models import Text
+from words.models import UserWordLink
+from .send_gemini import send_message_to_gemini
+
+
+# ---------------------------------------------------------------------------
+# Yardımcılar
+# ---------------------------------------------------------------------------
+
+# Gemini cevabının son satırı [p1, p2, ..., p10] formatında olmalı
+# Bu kadar puan ve aşağıdaki dağılımı bekliyoruz.
+EXPECTED_SCORE_COUNT = 10
+DAILY_TEXT_INTERVAL = timedelta(days=1)
+RECENT_LINKS_WINDOW = timedelta(days=7)
+
+# Son satırdaki puanları yakalayan regex (boşluklu/boşluksuz çalışır)
+SCORE_LINE_RE = re.compile(r"\[\s*(\d+(?:\s*,\s*\d+)*)\s*\]\s*$")
+
+
+def _parse_gemini_scores(response_text):
+    """
+    Gemini cevabının son satırından puanları çıkarır.
+    Başarılıysa (puan_listesi, ana_metin) döner; başarısızsa (None, response).
+    """
+    if not response_text:
+        return None, response_text
+
+    lines = response_text.splitlines()
+    if not lines:
+        return None, response_text
+
+    last_line = lines[-1].strip()
+    m = SCORE_LINE_RE.search(last_line)
+    if not m:
+        return None, response_text
+
+    try:
+        points = [int(x.strip()) for x in m.group(1).split(",")]
+    except ValueError:
+        return None, response_text
+
+    if len(points) != EXPECTED_SCORE_COUNT:
+        return None, response_text
+
+    main_text = "\n".join(lines[:-1]).rstrip() + "\n"
+    return points, main_text
+
+
+def _recent_links_for(user):
+    """Son 7 gün içinde listeye eklenen kelime bağlantıları."""
+    start_date = timezone.now() - RECENT_LINKS_WINDOW
+    return (
+        UserWordLink.objects
+        .filter(user=user, dateAdded__gte=start_date)
+        .select_related("word")
+    )
+
+
+def _can_write_new_text(user):
+    """Bir kullanıcı son 24 saat içinde yeni metin yazmış mı?"""
+    last = Text.objects.filter(owner=user).order_by("-createdAt").first()
+    if last is None:
+        return True
+    return (timezone.now() - last.createdAt) >= DAILY_TEXT_INTERVAL
+
+
+# ---------------------------------------------------------------------------
+# View'lar
+# ---------------------------------------------------------------------------
 
 @login_required
 def newTextPage(request):
-    
-    texts = Text.objects.filter(owner = request.user).order_by("-createdAt")
-    can_write_new_text = True
-
-    if texts.exists():
-        newestText = texts.first()
-
-        now = timezone.now()
-        time_passed = now - newestText.createdAt
-
-        if time_passed < timedelta(days=1):
-            can_write_new_text = False
-
-    if not can_write_new_text:
+    if not _can_write_new_text(request.user):
         return redirect("profile_texts")
 
-    start_date = timezone.now() - timedelta(days=7)
-    
-    links = UserWordLink.objects.filter(user = request.user)
+    links = _recent_links_for(request.user)
+    return render(request, "pages/texts/newText.html", {"links": links})
 
-    links = links.filter(dateAdded__gte=start_date)
-    
-    return render(request, "pages/texts/newText.html", {"links":links})   
 
 @login_required
 def createText(request):
-    
-    if request.method == "POST":
-        user_text = request.POST.get("user_text")
-        user_text = user_text.strip()
+    if request.method != "POST":
+        return redirect("profile_texts")
 
-        start_date = timezone.now() - timedelta(days=7)
+    # Günde bir kez sınırını burada da uygulayalım (yarış koşullarına karşı)
+    if not _can_write_new_text(request.user):
+        messages.error(request, "Yeni bir metin yazmak için son metninizden bu yana 1 gün geçmesi gerekiyor.")
+        return redirect("profile_texts")
 
-        links = UserWordLink.objects.filter(user = request.user)
-        links = links.filter(dateAdded__gte=start_date)
-        wordsList = list()
+    user_text = (request.POST.get("user_text") or "").strip()
+    if not user_text:
+        messages.error(request, "Lütfen değerlendirilebilecek İngilizce bir metin yazınız.")
+        return redirect("profile_texts")
 
-        words = list()
-        for link in links:
-            words.append(link.word)
-        
-        for link in links:
-            wordsList.append(link.word.englishWord)
+    links = list(_recent_links_for(request.user))
+    words = [link.word for link in links]
+    word_strings = [w.englishWord for w in words]
 
-        response = send_message_to_gemini(user_text, wordsList)
+    # Gemini'ye gönder
+    try:
+        response = send_message_to_gemini(user_text, word_strings)
+    except Exception as e:
+        # send_gemini.py içinde yakalayamadığı bir hata olursa sayfa 500 vermesin
+        print(f"[texts.createText] Gemini exception: {e}")
+        messages.error(request, "Şu anda metin değerlendirme servisi cevap vermiyor. Lütfen biraz sonra tekrar deneyin.")
+        return redirect("profile_texts")
 
-        if response == "Bu metin değerlendirilmedi.":
-            messages.error(request, "Lütfen değerlendirilebilecek İngilizce bir metin yazınız.")
-            return redirect("profile_texts")
+    if not response or response == "Bu metin değerlendirilmedi.":
+        messages.error(request, "Lütfen değerlendirilebilecek İngilizce bir metin yazınız.")
+        return redirect("profile_texts")
 
-
-        if not (("[" in response.split("\n")[-1]) and ("]" in response.split("\n")[-1])):
-            print("RESPONSE BAŞARILI BİR ŞEKİLDE ALINAMADI.")
-            messages.error(request, "Gemini şu anda başarılı bir şekilde metninizi değerlendiremedi. Lütfen birkaç dakika sonra tekrar deneyiniz.")
-            return redirect("profile_texts")
-
-        points = response.split("\n")[-1]
-        points = points[1:len(points)-1]
-        points = points.split(",")
-        
-        lines = response.splitlines(True) 
-        lines = lines[:-1]
-        response = "".join(lines)
-
-        points = [int(point) for point in points]
-        totalScore = sum(points)
-
-        text = Text.objects.create(
-            owner = request.user,
-            content = user_text,
-            score = totalScore,
-            scores = str(points),
-            response = response
+    points, cleaned_response = _parse_gemini_scores(response)
+    if points is None:
+        print("[texts.createText] Gemini cevabı beklenen formatta değil:")
+        print(response)
+        messages.error(
+            request,
+            "Gemini şu anda başarılı bir şekilde metninizi değerlendiremedi. "
+            "Lütfen birkaç dakika sonra tekrar deneyiniz."
         )
+        return redirect("profile_texts")
 
-        for word in words:
-            text.words.add(word)
+    text = Text.objects.create(
+        owner=request.user,
+        content=user_text,
+        score=sum(points),
+        scores=str(points),
+        response=cleaned_response,
+    )
+    if words:
+        text.words.add(*words)
 
-        return redirect("review_text", text_id = text.id)
+    return redirect("review_text", text_id=text.id)
 
-    
-    return redirect("profile_texts")
 
 @login_required
 def reviewText(request, text_id):
-    
-    text = Text.objects.filter(id = text_id).first()
+    # Kullanıcı sadece kendi metnini görüntüleyebilsin
+    text = get_object_or_404(Text, id=text_id, owner=request.user)
 
-    start_date = timezone.now() - timedelta(days=7)
+    links = _recent_links_for(request.user)
 
-    links = UserWordLink.objects.filter(user = request.user)
-    links = links.filter(dateAdded__gte=start_date)
+    # scores alanı "[5, 21, 8, ...]" stringi olarak kaydedilmiş.
+    raw_scores = (text.scores or "").strip()
+    cleaned = raw_scores.replace("[", "").replace("]", "").replace(" ", "")
+    parts = [p for p in cleaned.split(",") if p]
 
-    scores = text.scores
-    
-    scores = scores.replace(" ","")
-    scores = scores.replace("[","")
-    scores = scores.replace("]","")
-    scores = scores.split(",")
-    scores = [int(point) for point in scores]
+    try:
+        scores = [int(p) for p in parts]
+    except ValueError:
+        scores = []
 
-    point1 = scores[0]
-    point2 = scores[1]
-    point3 = scores[2]
-    point4 = scores[3]
-    point5 = scores[4]
-    point6 = scores[5]
-    point7 = scores[6]
-    point8 = scores[7]
-    point9 = scores[8]
-    point10 = scores[9]
+    # Beklenen 10 puanı doldur (eksikse 0, fazlaysa kırp)
+    if len(scores) < EXPECTED_SCORE_COUNT:
+        scores += [0] * (EXPECTED_SCORE_COUNT - len(scores))
+    elif len(scores) > EXPECTED_SCORE_COUNT:
+        scores = scores[:EXPECTED_SCORE_COUNT]
 
-    # 5, 21, 8, 5, 4, 12, 3, 3, 5, 3
-    
+    # Template hala point1..point10 bekliyor; geriye dönük uyum için doldur
+    point_context = {f"point{i+1}": scores[i] for i in range(EXPECTED_SCORE_COUNT)}
+
     context = {
-        "text":text,
-        "point1":point1,
-        "point2":point2,
-        "point3":point3,
-        "point4":point4,
-        "point5":point5,
-        "point6":point6,
-        "point7":point7,
-        "point8":point8,
-        "point9":point9,
-        "point10":point10,
-        "context_point":point1+point2+point3+point4+point5,
-        "language_point":point6+point7+point8+point9+point10,
-        "links":links,
+        "text": text,
+        **point_context,
+        "context_point": sum(scores[0:5]),
+        "language_point": sum(scores[5:10]),
+        "links": links,
     }
-
     return render(request, "pages/texts/textReview.html", context)
+
 
 @login_required
 def removeText(request, text_id):
-    text = Text.objects.filter(id=text_id).first()
+    # Sadece kendi metnini silebilsin
+    text = get_object_or_404(Text, id=text_id, owner=request.user)
 
-    # 2. Gerekli zaman kontrollerini yap
-    now = timezone.now()
-    time_passed = now - text.createdAt
-    
-    # 3. Kuralı uygula: 1 günden daha mı yeni?
-    if time_passed < timedelta(days=1):
-        # Durum 1: Metin 1 günden YENİ. SİLME.
-        
-        # Kullanıcıya neden silinmediğini bildirmek için bir mesaj ekle
-        messages.error(request, 'Oluşturulduktan sonra 1 gün geçmemiş metinler silinemez.')
-    
-    else:
-        text.delete()
-        messages.success(request, "Metniniz başarılı bir şekilde silindi.")
-    
+    if (timezone.now() - text.createdAt) < DAILY_TEXT_INTERVAL:
+        messages.error(request, "Oluşturulduktan sonra 1 gün geçmemiş metinler silinemez.")
+        return redirect("profile_texts")
+
+    text.delete()
+    messages.success(request, "Metniniz başarılı bir şekilde silindi.")
     return redirect("profile_texts")
+
 
 @login_required
 def aboutGradingPage(request):
-    
     return render(request, "pages/texts/aboutGrading.html")

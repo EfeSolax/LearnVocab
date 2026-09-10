@@ -26,71 +26,74 @@ PUT, DELETE, PATCH => Daha çok API ve güncelleme işlemlerinde kullanılan req
 
 # Kayıt olma işlemi için register fonksiyonu çalıştırılacak.
 def register(request):
-    
-    # Kullanıcı form göndermiş ise
-    if request.method == "POST":
-        # Request ile gelen formu al.
+    """Kullanıcı kayıt görünümü."""
 
-        name = request.POST.get("first_name").strip()
-        surname = request.POST.get("last_name").strip()
-        username = request.POST.get("username").strip()
-        email = request.POST.get("email").strip().lower()
-        level = request.POST.get("level")
-        password1 = request.POST.get("password1")
-        password2 = request.POST.get("password2")        
+    # POST değilse formu göster
+    if request.method != "POST":
+        return render(request, "pages/users/register.html")
 
+    # POST verilerini güvenli al (None gelirse "" varsayalım)
+    name      = (request.POST.get("first_name") or "").strip()
+    surname   = (request.POST.get("last_name") or "").strip()
+    username  = (request.POST.get("username") or "").strip()
+    email     = (request.POST.get("email") or "").strip().lower()
+    level     = request.POST.get("level")
+    password1 = request.POST.get("password1") or ""
+    password2 = request.POST.get("password2") or ""
 
-        # Şifre eşleşmesi ve şifrenin en az 8 karakterde olması ve kullanıcı adının daha önce bulunmuyor
-        # olmasının kontrollerini form.is_valid()'den önce yapıyoruz çünkü eğer bunu yapmazsak django
-        # form.is_valid()'i false döndürüyor ve kullanıcıya form başarılı bir şekilde alınamadı hatası
-        # veriliyor bunun önüne geçmek için if form.is_valid()'den önce bizim bu kontrolleri manuel olarak 
-        # yapmamız gerekiyor.
+    # --- Validasyon ---
+    if not username:
+        messages.error(request, "Kullanıcı adı boş olamaz.")
+        return redirect("register")
 
-        if (password1 != password2):
-            messages.error(request, "Şifreler uyuşmuyor!")
-            return redirect("register")
-        
-        if (len(password1) < 8):
-            messages.error(request, "Şifreniz en az 8 karakter içermelidir!")
-            return redirect("register")
-        
-        if User.objects.filter(username = username).exists():
-            messages.error(request, "Bu kullanıcı adı alınmış.")
-            return redirect("register")
-        
-        if (level == None):
-            messages.error(request, "Lütfen seviye (kur) seçiniz.")
-            return redirect("register")
-                
-        if (checkThePassword(password1) != "correct"):
-            messages.error(request, checkThePassword(password1))
-            return redirect("register")
-        
+    if not email:
+        messages.error(request, "E-posta boş olamaz.")
+        return redirect("register")
 
-        # Eğer form doğru ise kaydet başarı mesajı göster ve kullanıcıyı login sayfasına yönlendir.
-          
-        user = User.objects.create_user(
-            username=username,
-            email=email,
-            password=password1,
-            first_name=name,
-            last_name=surname
-        )
-        if hasattr(user, "level"):
-            user.level = level
-            user.save()
-        
-        usersettings = UserSettings.objects.create(
-            user = user
-        )
-        usersettings.save()
+    if password1 != password2:
+        messages.error(request, "Şifreler uyuşmuyor!")
+        return redirect("register")
 
-        messages.success(request, "Başarılı bir şekilde kaydınız yapıldı. Artık giriş yapabilirsiniz!")
-        #return redirect("login")
-        return redirect("login")
+    pwd_check = checkThePassword(password1)
+    if pwd_check != "correct":
+        messages.error(request, pwd_check)
+        return redirect("register")
 
-    return render(request, "pages/users/register.html")
+    if User.objects.filter(username__iexact=username).exists():
+        messages.error(request, "Bu kullanıcı adı alınmış.")
+        return redirect("register")
 
+    if User.objects.filter(email__iexact=email).exists():
+        messages.error(request, "Bu e-posta adresi ile daha önce kayıt yapılmış.")
+        return redirect("register")
+
+    if not level:
+        messages.error(request, "Lütfen seviye (kur) seçiniz.")
+        return redirect("register")
+
+    try:
+        level_int = int(level)
+        if level_int not in (1, 101, 201, 301, 401, 501):
+            raise ValueError
+    except (TypeError, ValueError):
+        messages.error(request, "Geçersiz seviye seçimi.")
+        return redirect("register")
+
+    # --- Kayıt ---
+    user = User.objects.create_user(
+        username=username,
+        email=email,
+        password=password1,
+        first_name=name,
+        last_name=surname,
+    )
+    user.level = level_int
+    user.save()
+
+    UserSettings.objects.create(user=user)
+
+    messages.success(request, "Başarılı bir şekilde kaydınız yapıldı. Artık giriş yapabilirsiniz!")
+    return redirect("login")
 def checkThePassword(s):
     if (len(s) < 8):
         return "Şifre en az 8 karakterli olmalıdır."

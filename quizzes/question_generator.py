@@ -1,6 +1,6 @@
 # quizzes/question_generator.py
 import random
-from .models import MultipleChoiceQuestion, WritingQuestion, MatchingQuestion
+from .models import MultipleChoiceQuestion, WritingQuestion, MatchingQuestion, SynonymAntonymQuestion
 from words.models import Word
 
 def _get_distractors(correct_word_obj, all_words, field_name, count=3):
@@ -190,4 +190,85 @@ def generate_matching_question(link_group, attempt):
         right_col_order_ids=right_col_ids_str
     )
     q.words.set(words_list) # 5 kelimeyi de M2M ilişkiye ekle
-    
+
+
+def generate_synonym_antonym_question(word_link, attempt, all_words):
+    """
+    Verilen word_link için bir SynonymAntonymQuestion oluşturur.
+    Kelimenin eş anlamlısı veya zıt anlamlısı rastgele seçilip sorulur.
+    Doğru cevap: kaydedilmiş eş/zıt anlamlılardan biri.
+    Çeldiriciler: kullanıcının listesindeki diğer kelimelerin İngilizce halleri.
+    """
+    word_obj = word_link.word
+
+    # Hangi soru tipinin sorulabileceğini belirle
+    has_synonyms = bool(word_obj.synonyms and word_obj.synonyms.strip())
+    has_antonyms = bool(word_obj.antonyms and word_obj.antonyms.strip())
+
+    question_types = []
+    if has_synonyms:
+        question_types.append('synonym')
+    if has_antonyms:
+        question_types.append('antonym')
+
+    if not question_types:
+        return  # Bu kelimede ne eş ne de zıt anlamlı yok; soru atlanır
+
+    chosen_type = random.choice(question_types)
+
+    if chosen_type == 'synonym':
+        synonyms_list = [s.strip() for s in word_obj.synonyms.split(',') if s.strip()]
+        correct_answer = random.choice(synonyms_list)
+        question_text = (
+            f"Aşağıdakilerden hangisi '{word_obj.englishWord}' kelimesinin "
+            f"eş anlamlısıdır (synonym)?"
+        )
+    else:  # antonym
+        antonyms_list = [a.strip() for a in word_obj.antonyms.split(',') if a.strip()]
+        correct_answer = random.choice(antonyms_list)
+        question_text = (
+            f"Aşağıdakilerden hangisi '{word_obj.englishWord}' kelimesinin "
+            f"zıt anlamlısıdır (antonym)?"
+        )
+
+    # Çeldiricileri kullanıcının listesindeki İngilizce kelimelerden üret
+    distractor_pool = []
+    for word in all_words:
+        if word.id == word_obj.id:
+            continue
+        eng = word.englishWord
+        if eng and eng.lower() != correct_answer.lower():
+            distractor_pool.append(eng)
+
+    distractor_pool = list(set(distractor_pool))
+
+    if len(distractor_pool) >= 3:
+        distractors = random.sample(distractor_pool, 3)
+    else:
+        distractors = distractor_pool[:]
+        needed = 3 - len(distractors)
+        distractors.extend([f"—{i+1}—" for i in range(needed)])
+
+    # Seçenekleri birleştir, karıştır, etiketle
+    options_list = distractors + [correct_answer]
+    random.shuffle(options_list)
+
+    option_labels = ["A", "B", "C", "D"]
+    safe_delimiter = "_#_"
+    options_data = safe_delimiter.join(
+        [f"{label}:{option}" for label, option in zip(option_labels, options_list)]
+    )
+
+    correct_label = ""
+    for label, option in zip(option_labels, options_list):
+        if option == correct_answer:
+            correct_label = label
+            break
+
+    q = SynonymAntonymQuestion.objects.create(
+        attempt=attempt,
+        question_text=question_text,
+        options_data=options_data,
+        correct_option=correct_label,
+    )
+    q.words.set([word_obj])
