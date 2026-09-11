@@ -4,6 +4,10 @@ from users.models import User
 # Create your models here.
 
 class Word(models.Model):
+    # Kaç adet örnek cümle alanı olduğu. Alan sayısı değişirse SADECE burayı
+    # güncellemek yeterli; property'ler ve formlar bu sabiti kullanıyor.
+    EXAMPLE_SENTENCE_COUNT = 10
+
     # Kelimeyi ekleyen kullanıcı
     owner = models.ForeignKey(User,
         blank=True,
@@ -38,14 +42,29 @@ class Word(models.Model):
     meaningTr = models.CharField(max_length=200) 
     v2Form = models.CharField(max_length=100, blank = True, null = True)
     v3Form = models.CharField(max_length=100, blank = True, null = True)
+    # Örnek cümleler. Bir kelime tek bir cümleden öğrenilmez; aynı kelimeyi
+    # farklı bağlamlarda görmek gerekiyor. Bu yüzden 10 cümleye kadar yer var.
+    # Sadece ilki zorunlu, kalan 9'u isteğe bağlı.
     exampleSentence1 = models.CharField(max_length=400)
     exampleSentence2 = models.CharField(max_length=400, blank = True, null = True)
     exampleSentence3 = models.CharField(max_length=400, blank = True, null = True)
+    exampleSentence4 = models.CharField(max_length=400, blank = True, null = True)
+    exampleSentence5 = models.CharField(max_length=400, blank = True, null = True)
+    exampleSentence6 = models.CharField(max_length=400, blank = True, null = True)
+    exampleSentence7 = models.CharField(max_length=400, blank = True, null = True)
+    exampleSentence8 = models.CharField(max_length=400, blank = True, null = True)
+    exampleSentence9 = models.CharField(max_length=400, blank = True, null = True)
+    exampleSentence10 = models.CharField(max_length=400, blank = True, null = True)
     visibility = models.CharField(max_length=10, choices = VISIBILITY_CHOICES, default = "private")###########
 
     # Eş anlamlı ve zıt anlamlı kelimeler (virgülle ayrılmış, isteğe bağlı)
     synonyms = models.CharField(max_length=500, blank=True, null=True)
     antonyms = models.CharField(max_length=500, blank=True, null=True)
+
+    # Kelimenin doğal kullanım kalıpları (virgülle ayrılmış, isteğe bağlı)
+    # Örn: "retain information, retain control, retain its shape"
+    # Kelimeyi tek başına değil, birlikte kullanıldığı yapılarla öğrenmek için.
+    collocations = models.CharField(max_length=500, blank=True, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     span = models.IntegerField(null=True, blank=True)
 
@@ -72,6 +91,38 @@ class Word(models.Model):
         blank=True,
         through='UserWordLink',
     )
+
+    @classmethod
+    def example_sentence_field_names(cls):
+        """Örnek cümle alanlarının adları: ['exampleSentence1', ...]."""
+        return [f"exampleSentence{i}" for i in range(1, cls.EXAMPLE_SENTENCE_COUNT + 1)]
+
+    @property
+    def example_sentences(self):
+        """
+        Boş olmayan örnek cümleler, girildikleri sırayla.
+
+        Alanlar zaten Word satırıyla birlikte yüklendiği için bu property
+        ek sorgu yapmaz; sadece dolu olanları süzer.
+        """
+        sentences = []
+        for field_name in self.example_sentence_field_names():
+            sentence = getattr(self, field_name, None)
+            if sentence and sentence.strip():
+                sentences.append(sentence.strip())
+        return sentences
+
+    @property
+    def has_extra_example_sentences(self):
+        """1. cümlenin dışında dolu örnek cümle var mı? (Formda paneli açık başlatmak için)"""
+        return len(self.example_sentences) > 1
+
+    @property
+    def collocations_list(self):
+        """Virgülle ayrılmış collocation'ları temizlenmiş liste olarak döner."""
+        if not self.collocations:
+            return []
+        return [c.strip() for c in self.collocations.split(',') if c.strip()]
 
     # Bir kelime objesi str'e nasıl dönüşecek:
     def __str__(self):

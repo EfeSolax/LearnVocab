@@ -41,19 +41,21 @@ def saveSettings(request):
         if improvementsMail != None: settings.improvementsMail = True
         else: settings.improvementsMail = False
 
-        if dailyGoal == "5":
-            settings.dailyGoal = 5
-        elif dailyGoal == "10":
-            settings.dailyGoal = 10
-        elif dailyGoal == "15":
-            settings.dailyGoal = 15
-        elif dailyGoal == "20":
-            settings.dailyGoal = 20
-            
+        # Geçerli seçenekler tek yerde (userprofile.views.DAILY_GOAL_OPTIONS);
+        # burada yalnızca gelen değerin o kümede olup olmadığına bakılıyor.
+        # NOT: Eskiden zincirde 0 için bir dal yoktu, yani kullanıcı "Yok"
+        # seçtiğinde hedefi değişmiyor, eski değeri sessizce kalıyordu.
+        from userprofile.views import DAILY_GOAL_OPTIONS
+
+        gecerli_hedefler = {str(deger) for deger, _ in DAILY_GOAL_OPTIONS}
+        if dailyGoal in gecerli_hedefler:
+            settings.dailyGoal = int(dailyGoal)
+
+        
         settings.save()
 
         messages.success(request, "Ayarlarınız kaydedildi.")
-        return redirect("profile_settings")
+        return redirect("user_profile")
 
 def _confirm_with_password(request):
     """
@@ -80,31 +82,31 @@ def _confirm_with_password(request):
 @login_required
 def removeAllWords(request):
     if not _confirm_with_password(request):
-        return redirect("profile_settings")
+        return redirect("user_profile")
 
     user = request.user
     UserWordLink.objects.filter(user=user).delete()
     Word.objects.filter(owner=user).delete()
 
     messages.success(request, "Tüm kelimeleriniz listenizden başarıyla silindi.")
-    return redirect("profile_settings")
+    return redirect("user_profile")
 
 
 @login_required
 def removeAllComments(request):
     if not _confirm_with_password(request):
-        return redirect("profile_settings")
+        return redirect("user_profile")
 
     Comment.objects.filter(owner=request.user).delete()
 
     messages.success(request, "Tüm yorumlarınız silindi.")
-    return redirect("profile_settings")
+    return redirect("user_profile")
 
 
 @login_required
 def deleteMyAccount(request):
     if not _confirm_with_password(request):
-        return redirect("profile_settings")
+        return redirect("user_profile")
 
     # Doğru objeyi sil — request.user zaten doğru User objesidir
     request.user.delete()
@@ -151,6 +153,11 @@ def exportMyWords(request):
             response.write(f"Anlamı: {word.meaningTr}\n")
             response.write(f"Açıklama: {word.explanation}\n")
             response.write(f"Not: {word.note}\n")
+            response.write(f"Eş Anlamlılar: {word.synonyms or '-'}\n")
+            response.write(f"Zıt Anlamlılar: {word.antonyms or '-'}\n")
+            response.write(f"Kullanım Kalıpları: {word.collocations or '-'}\n")
+            for index, sentence in enumerate(word.example_sentences, start=1):
+                response.write(f"Örnek Cümle {index}: {sentence}\n")
             response.write(f"Seviye: {word.wordLevel}\n")
             response.write("--------------------\n")
     else:

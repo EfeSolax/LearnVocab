@@ -6,3 +6,22 @@ db.sqlite3
 .DS_Store
 *.log
 data.json
+
+# IDE / OS
+.idea/
+.vscode/
+
+# Django tarafindan uretilen / gecici dizinler
+staticfiles_root/
+tmp/
+
+# Kok dizinden tasinan eski dosyalar (bkz. _arsiv/README.md)
+_arsiv/
+
+# Sanal ortamlar
+.venv/
+venv/
+__pycache__/
+
+# Django dosya tabanli onbellek
+tmp/django-cache/

@@ -10,33 +10,33 @@
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Giriş Yapın!</h2>
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-slate-100">Giriş Yapın!</h2>
   </div>
 
-  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm bg-white p-8 rounded-lg shadow-md">
+  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm bg-white dark:bg-slate-800 p-8 rounded-lg shadow-md">
 
     {% include 'base/messages.html' with margin_class="" %}
 
     <form action="#" method="POST" class="space-y-6">
       {% csrf_token %}
       <div>
-        <label for="username" class="block text-sm/6 font-medium text-gray-900">Kullanıcı Adı</label>
+        <label for="username" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Kullanıcı Adı</label>
         <div class="mt-2">
           <input id="username" type="text" name="username" required autocomplete="off" placeholder="Kullanıcı Adı"
-          class="block w-full rounded-md bg-white border border-gray-300 px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
+          class="block w-full rounded-md bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 outline-1 -outline-offset-1 outline-gray-300 dark:outline-slate-600 placeholder:text-gray-400 dark:placeholder:text-slate-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
         </div>
       </div>
 
       <div>
         <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm/6 font-medium text-gray-900">Şifre</label>
+          <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Şifre</label>
           <div class="text-sm">
-            <a href="{% url 'forgot_password' %}" class="font-semibold text-indigo-600 hover:text-indigo-500">Şifrenizi mi unuttunuz?</a>
+            <a href="{% url 'forgot_password' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-400">Şifrenizi mi unuttunuz?</a>
           </div>
         </div>
         <div class="mt-2">
           <input id="password" type="password" name="password" autocomplete="current-password" placeholder="Şifre"
-          class="block w-full rounded-md bg-white border border-gray-300 px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
+          class="block w-full rounded-md bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 outline-1 -outline-offset-1 outline-gray-300 dark:outline-slate-600 placeholder:text-gray-400 dark:placeholder:text-slate-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
         </div>
       </div>
 
@@ -45,11 +45,11 @@
       </div>
     </form>
 
-    <p class="mt-6 text-center text-sm/6 text-gray-500">
+    <p class="mt-6 text-center text-sm/6 text-gray-500 dark:text-slate-400">
       Hesap Oluşturmadınız mı?
     </p>
-    <p class="text-center text-sm/6 text-gray-500">
-      <a href="{% url 'register' %}" class="font-semibold text-indigo-600 hover:text-indigo-500">Hemen hesap oluşturun!</a>
+    <p class="text-center text-sm/6 text-gray-500 dark:text-slate-400">
+      <a href="{% url 'register' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-400">Hemen hesap oluşturun!</a>
     </p>
   </div>
 </div>

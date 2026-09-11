@@ -21,6 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # BURAYA DİKKAT:
 # E-posta adresiniz (hesabınız):
+# DİKKAT: load_dotenv varsayılan olarak MEVCUT ortam değişkenlerini ezmez
+# (override=False). runserver'ın otomatik yeniden yüklemesi yeni bir süreci
+# ebeveynin ortamıyla başlattığı için, .env'de yaptığın bir değişiklik
+# otomatik reload ile DEVREYE GİRMEZ. .env'i düzenledikten sonra sunucuyu
+# tamamen durdurup (Ctrl+C) yeniden başlatman gerekir.
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
@@ -54,6 +59,8 @@ INSTALLED_APPS = [
     "texts",
     "friends",
     "usersettings",
+    "learnpass",
+    "readings",
 
     # Kullanılmayan dosyaları (profile_pic) otomatik olarak temizleyecek bir eklenti
     'django_cleanup',
@@ -81,6 +88,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Ana menü (navbar + mobil alt sekme çubuğu) tek kaynaktan
+                # geliyor; bkz. LearnVocab/navigation.py
+                'LearnVocab.navigation.navigation',
             ],
         },
     },
@@ -177,6 +187,119 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')       # <--- Bu artık çal�
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD') # <--- Bu artık çalışacak
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 GEMINI_API_TOKEN = os.environ.get('GEMINI_API_TOKEN')
+
+# Kullanılacak Gemini modeli. Google model adlarını zaman zaman kapatıyor,
+# bu yüzden koda gömmek yerine .env'den okunuyor; model değiştirmek için
+# kod değişikliği gerekmiyor.
+# Anahtarınızın hangi modellere eriştiğini görmek için:
+#   python manage.py list_gemini_models
+GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-3.6-flash')
+
+# Asıl model geçici olarak cevap veremediğinde (503 "high demand" gibi) sırayla
+# denenecek yedek modeller. Virgülle ayrılır, boş bırakılabilir.
+# En yeni modeller en çok talep göreni olduğu için 503 almaya en yatkın olanlar
+# da onlar; bir kuşak eski bir modele düşmek çoğu zaman sorunu anında çözer.
+GEMINI_FALLBACK_MODELS = [
+    model.strip()
+    for model in os.environ.get('GEMINI_FALLBACK_MODELS', '').split(',')
+    if model.strip()
+]
+
+# Tek bir isteğin en fazla ne kadar süreceği. Değerlendirme senkron çalıştığı
+# (kullanıcı sayfa yüklenirken beklediği) için asılı kalan bir çağrı web
+# sunucusunun zaman aşımına takılmasına yol açar.
+GEMINI_TIMEOUT_SECONDS = float(os.environ.get('GEMINI_TIMEOUT_SECONDS', '30'))
+
+# Geçici hatalarda asıl modelin kaç kez daha deneneceği ve denemeler arası bekleme
+GEMINI_MAX_RETRIES = int(os.environ.get('GEMINI_MAX_RETRIES', '1'))
+GEMINI_RETRY_BACKOFF_SECONDS = float(os.environ.get('GEMINI_RETRY_BACKOFF_SECONDS', '2'))
+
+# İki Gemini isteği arasındaki asgari boşluk (saniye).
+# Ücretsiz katmanda model başına DAKİKADA 5 istek sınırı var; art arda istek
+# atan özellikler (kelime zenginleştirme) bu sınıra çarpmasın diye istekler
+# kendiliğinden aralanıyor. 60/5 = 12 sn, güvenlik payıyla 13.
+# Ücretli plana geçersen 0 yapıp sınırlayıcıyı tamamen kapatabilirsin.
+GEMINI_MIN_SECONDS_BETWEEN_REQUESTS = float(
+    os.environ.get('GEMINI_MIN_SECONDS_BETWEEN_REQUESTS', '13')
+)
+
+# Yapay zeka ile kelime ekleme
+# Tek seferde en fazla kaç kelime gönderilebileceği ve bunların kaçarlı
+# gruplar hâlinde Gemini'ye gideceği. Gruplar paralel gönderilir; grup küçük
+# olduğunda cevap daha güvenilir ve daha hızlı geliyor.
+AI_WORD_IMPORT_MAX_WORDS = int(os.environ.get('AI_WORD_IMPORT_MAX_WORDS', '20'))
+AI_WORD_IMPORT_CHUNK_SIZE = int(os.environ.get('AI_WORD_IMPORT_CHUNK_SIZE', '10'))
+
+# Bir kelime partisinin toplam süre bütçesi (saniye). Yedek modeller ve istek
+# aralığı sınırlayıcısı üst üste bindiğinde bekleme uzayabiliyor; bu sınır
+# aşıldığında kalan gruplar işlenmez ve eldeki kelimeler kaydedilir.
+AI_WORD_IMPORT_TIME_BUDGET_SECONDS = float(
+    os.environ.get('AI_WORD_IMPORT_TIME_BUDGET_SECONDS', '150')
+)
+
+# Kelime zenginleştirme isteklerinin zaman aşımı. Bir grup için 10 kelime x
+# 10 cümle üretildiği için metin değerlendirmeden çok daha uzun sürüyor;
+# genel GEMINI_TIMEOUT_SECONDS değeri burada yetmiyor ve 504 alınıyordu.
+AI_WORD_IMPORT_TIMEOUT_SECONDS = float(
+    os.environ.get('AI_WORD_IMPORT_TIMEOUT_SECONDS', '60')
+)
+
+
+# Kullanıcının ne sıklıkla yeni metin yazabileceği (dakika cinsinden).
+# TEK KAYNAK: hem yazma kısıtı, hem silme kısıtı, hem kullanıcıya gösterilen
+# mesajlar bu değerden türetilir (bkz. texts/limits.py).
+#   1440 -> günde bir (varsayılan)
+#      5 -> beş dakikada bir
+#      0 -> kısıt kapalı
+TEXT_SUBMISSION_INTERVAL_MINUTES = int(
+    os.environ.get('TEXT_SUBMISSION_INTERVAL_MINUTES', '1440')
+)
+
+
+# Önbellek
+# Dosya tabanlı: canlı sunucuda birden çok süreç çalıştığı için, ilerleme
+# kayıtlarının ve kota sayaçlarının süreçler arasında paylaşılması gerekiyor.
+# Varsayılan (yerel bellek) önbellek her sürecin kendi kopyasını tutar ve
+# ilerlemeyi soran istek başka bir sürece düştüğünde iş kaybolmuş görünür.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.environ.get(
+            'CACHE_DIR', str(BASE_DIR / 'tmp' / 'django-cache')
+        ),
+        'TIMEOUT': 1800,
+        'OPTIONS': {'MAX_ENTRIES': 2000},
+    }
+}
+
+
+# Loglama
+# Django'nun varsayılan yapılandırması önce uygulanır, aşağıdakiler onun
+# üzerine eklenir (disable_existing_loggers=False), yani runserver'ın istek
+# satırları kaybolmaz.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {'format': '[{levelname}] {name}: {message}', 'style': '{'},
+    },
+    'handlers': {
+        'console': {'class': 'logging.StreamHandler', 'formatter': 'simple'},
+    },
+    'loggers': {
+        # Proje log'ları
+        'LearnVocab': {'handlers': ['console'], 'level': 'INFO', 'propagate': False},
+        'texts': {'handlers': ['console'], 'level': 'INFO', 'propagate': False},
+        'words': {'handlers': ['console'], 'level': 'INFO', 'propagate': False},
+        'quizzes': {'handlers': ['console'], 'level': 'INFO', 'propagate': False},
+        # google-genai her generate_content çağrısında "automatic function
+        # calling" tavsiyesi basıyor; bizim kullanımımızla ilgisi yok, sadece
+        # log'u kirletiyor. Gerçek hataları görmeye devam ediyoruz.
+        'google_genai': {'level': 'ERROR'},
+        'google_genai.models': {'level': 'ERROR'},
+    },
+}
+
 
 # Production güvenlik ayarları
 # Lokal geliştirmede (DEBUG=True) HTTPS zorlaması anlamsız olduğu için kapalı.

@@ -1,0 +1,42 @@
+{% extends 'base/layout.html' %}
+
+{% comment %}
+Giriş yapmış kullanıcının iç sayfaları için tam genişlik yerleşimi.
+
+Eskiden bu yerleşimin solunda bir menü (sidebar) vardı; menüdeki bağlantılar
+üstteki navbar'a taşındığı için sol menü kaldırıldı ve sayfalar tüm genişliği
+kullanır hâle geldi. Eski dosyalar _arsiv/eski-profil-sablonlari/ altında.
+
+Alt şablonların sözleşmesi değişmedi:
+  {% block page %}          -> sayfa içeriği
+  {% block page_heading %}  -> sayfa başlığı (varsayılan: active_page)
+                               Kendi başlığı olan sayfalar bunu boş bırakır.
+  {% block users %}         -> sayfanın altında gösterilen kullanıcı listesi
+{% endcomment %}
+
+{% block title %}{% if active_page %}{{ active_page }}{% else %}LearnVocab{% endif %}{% endblock %}
+
+{% block messages %}{% endblock %}
+
+{% block content %}
+
+<div class="min-h-[calc(100vh-4rem)] bg-gray-50 dark:bg-slate-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+
+        {% block page_heading %}
+            {% if active_page %}
+            <h1 class="mb-6 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">
+                {{ active_page }}
+            </h1>
+            {% endif %}
+        {% endblock %}
+
+        {% include 'base/messages.html' with margin_class="" %}
+
+        {% block page %}{% endblock %}
+
+        {% block users %}{% endblock %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,168 @@
+{% comment %}
+İlerleme çubuğunu yöneten script.
+
+startProgressJob({
+  form:        <form elementi>,
+  button:      <gönder butonu>,
+  progressUrl: "/.../progress/__JOB__/",
+  finishUrl:   "/.../finish/__JOB__/",
+})
+{% endcomment %}
+
+<script>
+(function () {
+  const PLACEHOLDER = "__JOB__";
+  const POLL_INTERVAL_MS = 900;
+
+  function csrfToken(form) {
+    const field = form.querySelector('[name="csrfmiddlewaretoken"]');
+    return field ? field.value : "";
+  }
+
+  window.startProgressJob = function (options) {
+    const form = options.form;
+    const button = options.button;
+    const panel = document.getElementById("progressPanel");
+    const bar = document.getElementById("progressBar");
+    const track = document.getElementById("progressTrack");
+    const label = document.getElementById("progressMessage");
+    const percentLabel = document.getElementById("progressPercent");
+    const errorLabel = document.getElementById("progressError");
+    const hint = document.getElementById("progressHint");
+
+    // Sunucudan gelen son gerçek yüzde. Aradaki küçük ilerleme yalnızca
+    // "donmuş mu?" hissini önlemek için; gerçek değerin 4 puan üstüne çıkmaz.
+    let realPercent = 0;
+    let shownPercent = 0;
+    let finished = false;
+
+    function paint(percent, message) {
+      shownPercent = Math.max(shownPercent, Math.min(100, percent));
+      bar.style.width = shownPercent + "%";
+      percentLabel.textContent = "%" + Math.round(shownPercent);
+      track.setAttribute("aria-valuenow", Math.round(shownPercent));
+      if (message) { label.textContent = message; }
+    }
+
+    function showError(message) {
+      finished = true;
+      errorLabel.textContent = message;
+      errorLabel.hidden = false;
+      hint.hidden = true;
+      bar.classList.remove("bg-emerald-500");
+      bar.classList.add("bg-red-500");
+      if (button) {
+        button.disabled = false;
+        button.classList.remove("opacity-60", "cursor-not-allowed");
+      }
+    }
+
+    // Gerçek olaylar arasında çok yavaş ilerleyen bir "nefes"
+    const drift = setInterval(function () {
+      if (finished) { return; }
+      if (shownPercent < realPercent + 4 && shownPercent < 97) {
+        paint(shownPercent + 0.3);
+      }
+    }, 700);
+
+    function poll(jobId) {
+      const url = options.progressUrl.replace(PLACEHOLDER, jobId);
+
+      fetch(url, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+        .then(function (response) {
+          if (response.status === 404) { throw new Error("job-missing"); }
+          return response.json();
+        })
+        .then(function (data) {
+          realPercent = data.percent || 0;
+          paint(realPercent, data.message);
+
+          if (data.state === "running") {
+            setTimeout(function () { poll(jobId); }, POLL_INTERVAL_MS);
+            return;
+          }
+
+          finished = true;
+          clearInterval(drift);
+          paint(100, data.message);
+          finish(jobId, data.state);
+        })
+        .catch(function (error) {
+          clearInterval(drift);
+          showError(
+            error && error.message === "job-missing"
+              ? "İşlem kaydı bulunamadı. Lütfen tekrar deneyin."
+              : "Bağlantı koptu. Lütfen tekrar deneyin."
+          );
+        });
+    }
+
+    function finish(jobId, state) {
+      const url = options.finishUrl.replace(PLACEHOLDER, jobId);
+
+      if (state === "failed") {
+        bar.classList.remove("bg-emerald-500");
+        bar.classList.add("bg-amber-500");
+      }
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRFToken": csrfToken(form),
+        },
+      })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          if (data.redirect) {
+            window.location.href = data.redirect;
+          } else {
+            showError(data.error || "Sonuç alınamadı.");
+          }
+        })
+        .catch(function () { showError("Sonuç alınamadı. Lütfen tekrar deneyin."); });
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      if (button) {
+        button.disabled = true;
+        button.classList.add("opacity-60", "cursor-not-allowed");
+      }
+      panel.hidden = false;
+      errorLabel.hidden = true;
+      hint.hidden = false;
+      bar.classList.remove("bg-red-500", "bg-amber-500");
+      bar.classList.add("bg-emerald-500");
+      paint(2, "Hazırlanıyor...");
+
+      fetch(form.action, {
+        method: "POST",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        body: new FormData(form),
+      })
+        .then(function (response) { return response.json().then(function (d) { return [response, d]; }); })
+        .then(function (pair) {
+          const response = pair[0];
+          const data = pair[1];
+
+          if (!response.ok || !data.job_id) {
+            clearInterval(drift);
+            showError(data.error || "İşlem başlatılamadı.");
+            return;
+          }
+
+          if (data.warning) {
+            hint.textContent = data.warning;
+          }
+          poll(data.job_id);
+        })
+        .catch(function () {
+          clearInterval(drift);
+          showError("İşlem başlatılamadı. Bağlantınızı kontrol edin.");
+        });
+    });
+  };
+})();
+</script>

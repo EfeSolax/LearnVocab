@@ -1,36 +1,70 @@
-annotated-types==0.7.0
-asgiref==3.10.0
-cachetools==6.2.1
-certifi==2025.10.5
-charset-normalizer==3.4.4
-Django==5.2.8
+# LearnVocab bağımlılıkları
+#
+# ÖNEMLİ - Python ve Django sürümü:
+#   Canlı sunucu Python 3.10 kullanıyor. Django 6.0 ve üstü Python 3.12+
+#   istediği için bu projede Django 5.2 LTS'te kalınmalı. Lokalde daha yeni
+#   bir Django ile çalışmak, canlıda olmayan davranışlara güvenmeye yol açar;
+#   lokalde de bu dosyadaki sürümleri kullanın (bkz. aşağıdaki kurulum notu).
+#
+#   Django 5.2, Python 3.10'dan 3.14'e kadar destekliyor (3.14 desteği 5.2.8
+#   ile geldi). Yani lokalde Python 3.14, canlıda 3.10 olması sorun değil;
+#   sorun olan, iki tarafta FARKLI Django sürümü çalıştırmaktı.
+#
+# Kurulum:
+#   python3 -m venv .venv
+#   source .venv/bin/activate
+#   pip install -r requirements.txt
+#
+# NOT: Gemini entegrasyonu artık kullanımdan kaldırılan `google-generativeai`
+# yerine yeni resmî SDK olan `google-genai` ile çalışıyor. Bu geçiş grpcio,
+# protobuf, proto-plus ve google-api-core bağımlılıklarını da kaldırdı.
+
+# --- Çekirdek ---
+Django==5.2.17
 django-cleanup==9.0.0
-google-ai-generativelanguage==0.6.15
-google-api-core==2.28.1
-google-api-python-client==2.187.0
-google-auth==2.43.0
-google-auth-httplib2==0.2.1
-google-generativeai==0.8.5
-googleapis-common-protos==1.72.0
-grpcio==1.76.0
-grpcio-status==1.71.2
-httplib2==0.31.0
-idna==3.11
-pillow==12.0.0
-proto-plus==1.26.1
-protobuf==5.29.5
-pyasn1==0.6.1
+
+# --- Görsel işleme (profil fotoğrafı) ---
+pillow==12.3.0
+
+# --- Ortam değişkenleri ---
+python-dotenv==1.2.3
+
+# --- Gemini (metin değerlendirme) ---
+google-genai==2.22.0
+
+# --- Veritabanı (yalnızca canlı sunucu; lokalde SQLite kullanılıyor) ---
+# Sondaki koşul (environment marker) sayesinde bu paket YALNIZCA Linux'ta
+# kurulur. macOS'ta kaynak koddan derlenmesi gerekiyor ve bunun için MySQL
+# başlık dosyaları + pkg-config şart; lokalde zaten SQLite kullanıldığı için
+# gereksiz yere kurulum bozuluyordu.
+# Yine de macOS'ta MySQL'e bağlanmak istersen:  brew install mysql-client pkg-config
+mysqlclient==2.2.4; platform_system == "Linux"
+
+# --- Dolaylı bağımlılıklar (yukarıdakiler tarafından çekilir) ---
+annotated-types==0.8.0
+anyio==4.15.1
+asgiref==3.12.1
+certifi==2026.7.22
+cffi==2.1.1
+charset-normalizer==3.5.1
+cryptography==50.0.1
+distro==1.9.0
+exceptiongroup==1.3.1
+google-auth==2.58.0
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
+idna==3.19
+pyasn1==0.6.4
 pyasn1_modules==0.4.2
-pydantic==2.12.4
-pydantic_core==2.41.5
-pyparsing==3.2.5
-python-dotenv==1.2.1
-requests==2.32.5
-rsa==4.9.1
-sqlparse==0.5.3
-tqdm==4.67.1
-typing-inspection==0.4.2
-typing_extensions==4.15.0
-uritemplate==4.2.0
-urllib3==2.5.0
-mysqlclient==2.2.4
+pycparser==3.0
+pydantic==2.13.5
+pydantic_core==2.46.5
+requests==2.34.2
+sniffio==1.3.1
+sqlparse==0.6.0
+tenacity==9.1.4
+typing-inspection==0.4.4
+typing_extensions==4.16.0
+urllib3==2.7.0
+websockets==16.1.1

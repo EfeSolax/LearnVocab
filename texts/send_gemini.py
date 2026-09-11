@@ -1,40 +1,46 @@
-from google.generativeai import configure, GenerativeModel
-from django.conf import settings
+"""
+Gemini ile kullanıcı metinlerini değerlendirme.
 
-def send_message_to_gemini(text: str, words : list) -> str:
+İstemci kurulumu, tekrar deneme ve yedek modele geçme mantığı burada değil,
+`LearnVocab/gemini.py` içinde: aynı altyapıyı kelime zenginleştirme özelliği de
+kullanıyor. Bu modül yalnızca kendi prompt'undan ve cevabın temizlenmesinden
+sorumlu.
 
-    api_key = settings.GEMINI_API_TOKEN
+Fonksiyonun dönüş değeri view tarafında ayrıştırılabilsin diye özel işaretler
+kullanılıyor (kota / geçici hata / yapılandırma hatası). Her biri kullanıcıya
+farklı bir mesajla gösteriliyor.
+"""
 
-    if not api_key:
-        #print("HATA: GOOGLE_API_KEY bulunamadı.")
-        print("Lütfen .env dosyasını oluşturup anahtarınızı oraya eklediğinizden emin olun.")
-        return ""
+import logging
+import re
 
-    # 3. API'yi Yapılandır
-    try:
-        configure(api_key=api_key)
-    except ValueError:
-        print("HATA: API Anahtarı geçersiz görünüyor.")
-        return ""
+from LearnVocab import gemini
 
-    # 4. Modeli Başlat
-    #    Bir önceki adımda öğrendiğimiz, senin hesabına tanımlı olan modeli kullanıyoruz.
-    try:
-        model = GenerativeModel('models/gemini-pro-latest') 
-        #print("Gemini modeli ('models/gemini-pro-latest') başarıyla yüklendi.")
-    except Exception as e:
-        #print(f"HATA: Model yüklenirken bir sorun oluştu: {e}")
-        return ""
-    
-    words_text = ""
+logger = logging.getLogger(__name__)
 
-    for word in words:
-        words_text += word + ", "
+# Kota/oran sınırı aşıldığında dönen özel değer.
+RATE_LIMIT_RESPONSE = "ERROR:429"
 
-    words_text.lower()
-    words_text = words_text[:len(words_text)-1]
+# Servis geçici olarak cevap veremediğinde dönen özel değer.
+UNAVAILABLE_RESPONSE = "ERROR:503"
 
-    # 5. Prompt'u Hazırla
+# Geriye dönük uyumluluk / kolay erişim
+get_client = gemini.get_client
+_classify_error = gemini.classify_error
+
+
+def _words_to_text(words):
+    """
+    Kelime listesini prompt'a gömülecek düz metne çevirir.
+
+    Boş/whitespace girdiler atılır, hepsi küçük harfe indirilir.
+    """
+    cleaned = [str(word).strip().lower() for word in (words or []) if str(word).strip()]
+    return ", ".join(cleaned)
+
+
+def _build_prompt(text: str, words_text: str) -> str:
+    """Değerlendirme prompt'unu hazırlar."""
     prompt = f"""
 Birazdan sana bir ingilizce metin gönderilecek. Bu metni ingilizce öğrenmeye çalışan
 biri yazdı. Bu metnin yazılma amacı kullanıcının yazma yeteneklerini geliştirmesi ve
@@ -210,6 +216,30 @@ Eğer sana bir kelime listesi gönderilmemişse veya 1-2 kelimelik çok az kelim
 kelime listesi gönderilmişse kelimeler kısmını dikkate alma ve kelimelerden kullanıcıya 
 tam puan ver.
 
+ÇOK ÖNEMLİ - CEVABIN BİÇİMİ:
+Cevabın kullanıcıya OLDUĞU GİBİ, düz metin olarak gösteriliyor. Hiçbir
+biçimlendirme işlenmiyor. Bu yüzden cevabını DÜMDÜZ, BİÇİMLENDİRİLMEMİŞ METİN
+(plain text) olarak ver. Markdown veya LaTeX işaretleri ekranda ham hâliyle
+görünür ve okunmayı bozar.
+
+Cevabında ŞUNLARI KESİNLİKLE KULLANMA:
+- Yıldız (*) veya alt çizgi (_) ile kalın/italik yazma. **kalın**, *italik*,
+  _italik_, ***her ikisi*** hepsi YASAK.
+- Başlık işaretleri: #, ##, ###
+- Ters tırnak (`) ve üç ters tırnaklı kod blokları
+- LaTeX veya matematik gösterimi: $...$ arası hiçbir şey, \rightarrow, \to,
+  \times gibi hiçbir komut
+- Markdown tablo, bağlantı ([metin](adres)) veya alıntı (>) biçimi
+
+Bunların yerine:
+- Ok göstermen gerekiyorsa sadece  ->  yaz.
+- Madde işaretlemen gerekiyorsa satır başına sadece bir tire ve boşluk koy: "- "
+- Bir kelimeyi vurgulaman gerekiyorsa tırnak içine al: "introvert"
+- Bir düzeltmeyi göstermek istersen şöyle yaz: "introvert" -> "introverted"
+
+Buna çok dikkat et. Tek bir * veya $ karakteri bile ekranda hatalı görünür.
+Başlık atmak istiyorsan sadece düz yaz ve altına iki nokta üst üste koy.
+
 Senden verdiğin cevabın EN SON SATIRINDA (son satırda istiyorum çünkü cevabı \\n'e göre split ettiğimde
 son elemanda cevabı açık bir şekilde görebilmek istiyorum.) cevabı bana tam olarak şu şekilde ver:
 
@@ -227,16 +257,109 @@ puanları listeye koy.)
 
 """
 
-    # 6. Prompt'u Gönder ve Cevabı Al
-    try:
-        #print("Cevap alınıyor... Lütfen bekleyin...")
-        response = model.generate_content(prompt)
-        
-        return response.text
+    return prompt
 
-    except Exception as e:
-        #print(f"HATA: API'den cevap alınırken bir sorun oluştu: {e}")
-        if "429" in e:
-            return "ERROR:429"
-        else:
-            return ""
+
+# ---------------------------------------------------------------------------
+# Cevabı düz metne indirgeme
+# ---------------------------------------------------------------------------
+#
+# Prompt modelden düz metin istiyor ama modeller biçimlendirme alışkanlığından
+# tam olarak vazgeçmiyor. Cevap kullanıcıya `linebreaksbr` ile olduğu gibi
+# gösterildiği için kaçan tek bir "**" ya da "$\rightarrow$" ekranda ham
+# hâliyle görünüyor. Bu yüzden prompt'a ek olarak burada da temizliyoruz:
+# talimat ilk savunma, bu fonksiyon ikinci savunma.
+
+_LATEX_REPLACEMENTS = {
+    "\\rightarrow": "->",
+    "\\longrightarrow": "->",
+    "\\Rightarrow": "=>",
+    "\\leftarrow": "<-",
+    "\\to": "->",
+    "\\times": "x",
+    "\\ldots": "...",
+    "\\dots": "...",
+    "\\%": "%",
+    "\\&": "&",
+}
+
+_MARKDOWN_PATTERNS = (
+    # ``` ile açılan/kapanan kod blokları
+    (re.compile(r"```[a-zA-Z0-9]*\n?"), ""),
+    # Satır başındaki # başlıkları
+    (re.compile(r"^[ \t]{0,3}#{1,6}[ \t]*", re.MULTILINE), ""),
+    # Satır başındaki > alıntı işareti
+    (re.compile(r"^[ \t]{0,3}>[ \t]?", re.MULTILINE), ""),
+    # [metin](adres) -> metin
+    (re.compile(r"\[([^\]\n]+)\]\([^)\n]*\)"), r"\1"),
+    # `kod` -> kod
+    (re.compile(r"`([^`\n]*)`"), r"\1"),
+    # ***x*** / **x** / *x*
+    (re.compile(r"\*\*\*([^*\n]+)\*\*\*"), r"\1"),
+    (re.compile(r"\*\*([^*\n]+)\*\*"), r"\1"),
+    (re.compile(r"\*([^*\n]+)\*"), r"\1"),
+    # __x__ / _x_  (kelime ortasındaki alt çizgiye dokunma)
+    (re.compile(r"__([^_\n]+)__"), r"\1"),
+    (re.compile(r"(?<![A-Za-z0-9_])_([^_\n]+)_(?![A-Za-z0-9_])"), r"\1"),
+)
+
+
+def _strip_formatting(text: str) -> str:
+    """
+    Modelin cevabını düz metne indirger.
+
+    Puan satırı ([8,22,...]) bu işlemden etkilenmez; hatta model onu
+    "**[8,22,...]**" diye yazsa bile temizlik sonrası parser'a uygun hâle gelir.
+    """
+    if not text:
+        return ""
+
+    # Madde işaretlerini tek bir biçime indir ("* madde" -> "- madde")
+    text = re.sub(r"^[ \t]{0,3}[*+•][ \t]+", "- ", text, flags=re.MULTILINE)
+
+    # $$...$$ blok matematik gösterimini aç
+    text = re.sub(r"\$\$\s*([^$]*?)\s*\$\$", r"\1", text)
+
+    # $...$ satır içi gösterimi YALNIZCA içinde bir LaTeX komutu (ters bölü)
+    # varsa aç. Aksi hâlde "Fiyat $100 ve $200 arasında" gibi cümlelerde iki
+    # dolar işareti eşleşip aradaki metni yutuyordu.
+    text = re.sub(r"\$\s*([^$\n]*?\\[^$\n]*?)\s*\$", r"\1", text)
+
+    for command, replacement in _LATEX_REPLACEMENTS.items():
+        text = text.replace(command, replacement)
+
+    for pattern, replacement in _MARKDOWN_PATTERNS:
+        text = pattern.sub(replacement, text)
+
+    # Kaçış karakterleri ve fazla boşluklar
+    text = text.replace("\\*", "*").replace("\\_", "_")
+    text = re.sub(r"[ \t]+\n", "\n", text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+
+    return text.strip()
+
+
+
+def send_message_to_gemini(text: str, words: list, on_event=None) -> str:
+    """
+    Kullanıcının metnini Gemini'ye değerlendirtir ve cevabı düz metin döner.
+
+    Dönüş değerleri:
+      - Değerlendirme metni (başarı)
+      - RATE_LIMIT_RESPONSE (kota aşımı)
+      - UNAVAILABLE_RESPONSE (servis geçici olarak cevap veremiyor)
+      - "" (anahtar/paket/model yapılandırması hatalı)
+    """
+    prompt = _build_prompt(text, _words_to_text(words))
+
+    try:
+        response = gemini.generate(prompt, on_event=on_event)
+    except gemini.GeminiRateLimit:
+        return RATE_LIMIT_RESPONSE
+    except gemini.GeminiUnavailable:
+        return UNAVAILABLE_RESPONSE
+    except gemini.GeminiError:
+        return ""
+
+    # Model yine de Markdown/LaTeX sızdırmış olabilir; düz metne indir
+    return _strip_formatting(response.text or "")

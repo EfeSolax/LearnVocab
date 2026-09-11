@@ -1,43 +1,100 @@
 from django.shortcuts import render,redirect, get_object_or_404
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from LearnVocab.authgate import login_gate
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 
 from words.models import Word, UserWordLink, WordList
 from users.models import User
 from texts.models import Text
+from texts import limits as text_limits
 from django.contrib import messages
 from usersettings.models import UserSettings
 
 from django.utils import timezone
 from datetime import timedelta
-from django.db.models import Sum, Count, Q
-from quizzes.models import MultipleChoiceQuestion, WritingQuestion, MatchingQuestion
+from LearnVocab import pagination
+from django.db.models import Sum, Count, Q, Max
+from django.db.models.functions import Coalesce
+from quizzes.models import (
+    MultipleChoiceQuestion, WritingQuestion, MatchingQuestion,
+    SynonymAntonymQuestion, FillInTheBlankQuestion,
+)
 from words.addWeeks.addWeeks import wordsAddDelete, allWordsAddDelete
 
 # Create your views here.
 
+# "Profilim" sayfasındaki günlük hedef seçenekleri.
+# Değerler int: şablon `settings.dailyGoal == deger` karşılaştırmasını
+# bunun üzerinden yapıyor.
+DAILY_GOAL_OPTIONS = (
+    (0, "Yok"),
+    (5, "5"),
+    (10, "10"),
+    (15, "15"),
+    (20, "20"),
+)
+
+
 #Ana profil sayfasının görünümü 
-@login_required
+@login_gate("Profilim")
 def showProfile(request):
-    
-    wordsAddedFromUser = Word.objects.filter(owner = request.user)
-    wordsAddedByUser = Word.objects.filter(saved_by = request.user)
-    friends = request.user.friends.all()
-    allUsers = User.objects.all()
+    """
+    "Profilim" sayfası.
+
+    Eskiden üç ayrı sayfa vardı: profil özeti, "Hesap Bilgilerim" ve "Ayarlar".
+    Üçü de aynı şeyin parçasıydı, kullanıcıyı sekmeler arasında gezdiriyordu;
+    tek sayfada birleştirildi. Hesap bilgisi formu da buraya POST ediyor.
+    """
+    if request.method == "POST":
+        user = request.user
+        user.email = request.POST.get("email") or user.email
+        user.first_name = request.POST.get("first_name") or ""
+        user.last_name = request.POST.get("last_name") or ""
+
+        # Resim seçilmeden kaydedilirse eski resim silinmesin
+        profile_pic_file = request.FILES.get("profile_pic")
+        if profile_pic_file:
+            user.profile_pic = profile_pic_file
+
+        user.save()
+        messages.success(request, "Hesap bilgileriniz başarıyla güncellendi.")
+        return redirect("user_profile")
 
     context = {
-        "active_page":"Hesap Bilgilerim",
-        "wordsAddedFromUser":wordsAddedFromUser,
-        "wordsAddedByUser":wordsAddedByUser,
-        "friends":friends,
-        "allUsers":allUsers,
+        "active_page": "Profilim",
+        "settings": UserSettings.objects.filter(user=request.user).first(),
+        "daily_goal_options": DAILY_GOAL_OPTIONS,
+        "export_links": [
+            {"url": reverse("export_all"), "label": "Tüm verilerim"},
+            {"url": reverse("export_mywords"), "label": "Kelimelerim"},
+            {"url": reverse("export_myquizzes"), "label": "Egzersizlerim"},
+            {"url": reverse("export_mytexts"), "label": "Metinlerim"},
+        ],
     }
 
-    return render(request, "pages/profile.html",context)
+    return render(request, "pages/profile/myprofile.html", context)
+
+# Kelimelerim sayfasının sıralama seçenekleri.
+# Anahtar -> (etikette görünen ad, order_by alanları)
+# Sıralama alanlarının sonunda her zaman "id" var: aynı değere sahip kayıtlar
+# sayfadan sayfaya yer değiştirmesin, yani sayfalama kararlı olsun.
+WORD_SORT_OPTIONS = {
+    "new": ("Önce en yeni", ("-added_at", "-id")),
+    "old": ("Önce en eski", ("added_at", "id")),
+    "az": ("A - Z", ("englishWord", "id")),
+    "za": ("Z - A", ("-englishWord", "-id")),
+}
+DEFAULT_WORD_SORT = "new"
+
+# Kelimelerim sayfasında sayfa başına adet seçenekleri
+MY_WORDS_PER_PAGE_OPTIONS = (15, 30, 60, 120)
+MY_WORDS_DEFAULT_PER_PAGE = 30
+
 
 #Profilde "Kelimelerim" görünümü
-@login_required
+@login_gate("Kelimelerim", "Kendi kelime listelerini oluşturmak ve kelime eklemek için bir hesaba ihtiyacın var.")
 def showWordsView(request):
     """
     Kullanıcının "Kelimelerim" sayfası. Aşağıdaki ?list_id= sorgu parametresi
@@ -74,24 +131,34 @@ def showWordsView(request):
             Q(meaningTr__icontains=search_query)
         )
 
-    # Sıralama (deterministik) — pagination'ın doğru çalışması için zorunlu
-    words = words.order_by("englishWord", "id")
+    # ---- Sıralama ----
+    # "Eklenme tarihi" kelimenin oluşturulma tarihi değil, KULLANICININ onu
+    # listesine eklediği tarih (UserWordLink.dateAdded). Aynı kelime birden
+    # çok kullanıcıda olabildiği için bu bilgi Word üzerinde durmuyor.
+    # Kullanıcının kendi eklediği ama bağlantısı olmayan bir kelime kalırsa
+    # kelimenin oluşturulma tarihine düşülüyor.
+    words = words.annotate(
+        added_at=Coalesce(
+            Max("userLinks__dateAdded", filter=Q(userLinks__user=user)),
+            "createdAt",
+        )
+    )
+
+    sort_key = request.GET.get("sort", "").strip()
+    if sort_key not in WORD_SORT_OPTIONS:
+        sort_key = DEFAULT_WORD_SORT
+
+    words = words.order_by(*WORD_SORT_OPTIONS[sort_key][1])
 
     # ---- Sayfalama ----
-    # Sayfa başına gösterilecek kelime sayısı (?per_page= query ile değiştirilebilir)
-    try:
-        per_page = int(request.GET.get("per_page", 30))
-        if per_page not in (15, 30, 60, 120):
-            per_page = 30
-    except (TypeError, ValueError):
-        per_page = 30
-
+    per_page = pagination.resolve_per_page(
+        request, MY_WORDS_PER_PAGE_OPTIONS, MY_WORDS_DEFAULT_PER_PAGE
+    )
     paginator = Paginator(words, per_page)
     page_number = request.GET.get("page") or 1
     page_obj = paginator.get_page(page_number)
 
-    # 3-4 önceki/sonraki sayfa linklerini hesapla (ellipsis için)
-    page_window = _build_page_window(page_obj.number, paginator.num_pages, side=3)
+
 
     # Listelerin sayım bilgisi (her liste için kaç kelime var)
     lists_with_counts = []
@@ -106,71 +173,35 @@ def showWordsView(request):
     # Hangi listeye eklenebilir? (Aktif liste haricindekiler)
     movable_targets = [l for l in lists_with_counts if l["id"] != (selected_list.id if selected_list else None)]
 
-    # Pagination linklerinde korunacak query parametreleri
-    extra_params = []
-    if search_query:
-        extra_params.append(f"q={search_query}")
-    if selected_list:
-        extra_params.append(f"list_id={selected_list.id}")
-    if per_page != 30:
-        extra_params.append(f"per_page={per_page}")
-    base_qs = "&".join(extra_params)
-
     context = {
         "active_page": "Kelimelerim",
         "words": page_obj.object_list,           # Geriye dönük uyumluluk
-        "page_obj": page_obj,
-        "paginator": paginator,
-        "is_paginated": page_obj.has_other_pages(),
-        "page_window": page_window,
-        "per_page": per_page,
-        "base_qs": base_qs,
         "search_query": search_query,
         "user_lists": lists_with_counts,
         "selected_list": selected_list,
         "selected_list_id": selected_list_id or "__all__",
         "total_word_count": base_words.count(),
         "movable_targets": movable_targets,
+        "sort_key": sort_key,
+        "sort_options": [
+            {"key": key, "label": label} for key, (label, _fields) in WORD_SORT_OPTIONS.items()
+        ],
     }
 
+    # Sayfalama arayüzü "Tüm Kelimeler" sayfasıyla ortak (base/_pagination.html)
+    context.update(pagination.pagination_context(
+        page_obj, paginator,
+        params=[
+            ("q", search_query),
+            ("list_id", selected_list.id if selected_list else ""),
+            ("sort", sort_key if sort_key != DEFAULT_WORD_SORT else ""),
+        ],
+        per_page=per_page,
+        per_page_options=MY_WORDS_PER_PAGE_OPTIONS,
+        default_per_page=MY_WORDS_DEFAULT_PER_PAGE,
+    ))
+
     return render(request, "pages/profile/words.html", context)
-
-
-def _build_page_window(current, total, side=3):
-    """
-    Sayfa numarası listesi üretir; ellipsis (None) ile boşluk bırakır.
-    Örn: current=10, total=20, side=3 → [1, None, 7,8,9,10,11,12,13, None, 20]
-    """
-    if total <= 1:
-        return [1] if total == 1 else []
-
-    start = max(2, current - side)
-    end = min(total - 1, current + side)
-
-    pages = [1]
-    if start > 2:
-        pages.append(None)  # ...
-    for p in range(start, end + 1):
-        pages.append(p)
-    if end < total - 1:
-        pages.append(None)  # ...
-    if total > 1:
-        pages.append(total)
-
-    # Tekilleştir (1 veya total komşulukta tekrar etmesin)
-    seen = set()
-    cleaned = []
-    for p in pages:
-        if p is None:
-            if cleaned and cleaned[-1] is None:
-                continue
-            cleaned.append(None)
-        else:
-            if p in seen:
-                continue
-            seen.add(p)
-            cleaned.append(p)
-    return cleaned
 
 
 # =============================================================================
@@ -375,137 +406,108 @@ def moveWordsBetweenLists(request):
 
 @login_required
 def showMyAccountView(request):
-    
-    
-    # 1. Form gönderilmişse (POST İsteği)
-    if request.method == 'POST':
-        # 2. Formdaki metin verilerini al
-        email = request.POST.get('email')
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        
-        # 3. Formdaki DOSYA verisini al (Modeldeki ad: 'profile_pic')
-        #    HTML'deki input'un name'i 'profile_pic' olmalı
-        profile_pic_file = request.FILES.get('profile_pic')
-        
-        # 4. Giriş yapmış kullanıcıyı al ve güncelle
-        user = request.user
-        user.email = email
-        user.first_name = first_name
-        user.last_name = last_name
-        
-        # 5. EĞER yeni bir resim yüklendiyse, onu modele ata
-        #    Bu kontrol, kullanıcının resim seçmeden kaydete basması 
-        #    durumunda eski resminin silinmesini engeller.
-        if profile_pic_file:
-            user.profile_pic = profile_pic_file
-            
-        user.save()
-        
-        # 6. Başarı mesajı (Opsiyonel ama güzeldir)
-        messages.success(request, 'Hesap bilgileriniz başarıyla güncellendi.')
-        
-        # 7. Sayfayı yenilemek yerine, aynı sayfaya yönlendir (PRG Deseni)
-        return redirect('profile_myaccount') 
-        
-    # 8. Sayfa normal yüklendiyse (GET İsteği)
-    #    Sidebar'ınız için gereken context verilerini burada hesaplayın
-    #    (Bu kod sizin views.py dosyanızdan alınmıştır)
-    wordsAddedFromUser = Word.objects.filter(owner = request.user)
-    wordsAddedByUser = Word.objects.filter(saved_by = request.user)
-    friends = User.objects.filter(friends = request.user)
-    
-    allUsers = User.objects.all()
+    """
+    Eski "Hesap Bilgilerim" adresi. İçeriği artık Profilim sayfasında.
 
-    context = {
-        "active_page":"Hesap Bilgilerim",
-        "wordsAddedFromUser":wordsAddedFromUser,
-        "wordsAddedByUser":wordsAddedByUser,
-        "friends":friends,
-        "allUsers":allUsers,
+    GET yönlendiriyor; POST'u ise Profilim'in kendi işleyicisine devrediyor.
+    Yönlendirme POST gövdesini taşımadığı için, bu adrese gönderilen bir
+    hesap formu aksi hâlde hiçbir şey kaydetmeden "başarılı" görünürdü.
+    """
+    if request.method == "POST":
+        return showProfile(request)
+    return redirect("user_profile")
+
+
+# Grafikteki soru tipleri ve renkleri — TEK kaynak.
+# Şablon hem birleşik grafiği hem mobildeki tip başına grafikleri hem de
+# alttaki oran listesini bu listeden üretiyor; yeni bir soru tipi eklenince
+# üç yeri birden elle güncellemek gerekmiyor.
+#
+# Renkler beş ayrı ton: mor, turuncu, pembe, camgöbeği, yeşil. Hepsi hem açık
+# hem karanlık zeminde okunuyor.
+QUIZ_TYPE_CHART = (
+    ("mq", "Eşleştirme", "#7c3aed"),
+    ("mc", "Çoktan Seçmeli", "#f59e0b"),
+    ("wq", "Yazma", "#ec4899"),
+    ("sa", "Eş / Zıt Anlam", "#06b6d4"),
+    ("fb", "Boşluk Doldurma", "#10b981"),
+)
+
+
+def _question_stats(model, user):
+    """Tek tek soru kayıtlarından doğru/yanlış sayısı."""
+    sonuc = model.objects.filter(
+        attempt__owner=user, attempt__isCompleted=True
+    ).aggregate(
+        correct=Count("id", filter=Q(is_correct=True)),
+        wrong=Count("id", filter=Q(is_correct=False)),
+    )
+    return sonuc.get("correct") or 0, sonuc.get("wrong") or 0
+
+
+def quiz_type_chart_data(user):
+    """
+    Beş soru tipinin doğru/yanlış sayıları ve doğruluk oranları.
+
+    Eşleştirme diğerlerinden farklı: tek soru içinde birden çok eşleşme var,
+    bu yüzden sayılar kayıt sayısından değil correct_matches/wrong_matches
+    toplamından geliyor.
+    """
+    matching = MatchingQuestion.objects.filter(
+        attempt__owner=user, attempt__isCompleted=True
+    ).aggregate(correct=Sum("correct_matches"), wrong=Sum("wrong_matches"))
+
+    ham = {
+        "mq": (matching.get("correct") or 0, matching.get("wrong") or 0),
+        "mc": _question_stats(MultipleChoiceQuestion, user),
+        "wq": _question_stats(WritingQuestion, user),
+        "sa": _question_stats(SynonymAntonymQuestion, user),
+        "fb": _question_stats(FillInTheBlankQuestion, user),
     }
-    
-    return render(request, "pages/profile/myaccount.html", context)
 
-@login_required
+    satirlar = []
+    for anahtar, etiket, renk in QUIZ_TYPE_CHART:
+        dogru, yanlis = ham[anahtar]
+        toplam = dogru + yanlis
+        satirlar.append({
+            "key": anahtar,
+            "label": etiket,
+            "color": renk,
+            "correct": dogru,
+            "wrong": yanlis,
+            "total": toplam,
+            # Oran deneme sayısıyla birlikte anlamlı: ikisi de şablona gidiyor
+            "correct_pct": round(dogru * 100 / toplam) if toplam else 0,
+            "wrong_pct": round(yanlis * 100 / toplam) if toplam else 0,
+        })
+    return satirlar
+
+
+@login_gate("Egzersizler", "Egzersizler kendi kelimelerinden üretildiği için giriş yapman gerekiyor.")
 def showQuizzesView(request):
-    
-
-    mc_stats = MultipleChoiceQuestion.objects.filter(
-        attempt__owner=request.user, 
-        attempt__isCompleted=True
-    ).aggregate(
-        correct=Count('id', filter=Q(is_correct=True)),
-        wrong=Count('id', filter=Q(is_correct=False))
-    )
-
-    # 2. Yazma (WQ) İstatistikleri
-    wq_stats = WritingQuestion.objects.filter(
-        attempt__owner=request.user, 
-        attempt__isCompleted=True
-    ).aggregate(
-        correct=Count('id', filter=Q(is_correct=True)),
-        wrong=Count('id', filter=Q(is_correct=False))
-    )
-
-    # 3. Eşleştirme (MQ) İstatistikleri
-    mq_stats = MatchingQuestion.objects.filter(
-        attempt__owner=request.user, 
-        attempt__isCompleted=True
-    ).aggregate(
-        correct=Sum('correct_matches'),
-        wrong=Sum('wrong_matches')
-    )
-
-    allUsers = User.objects.all()
+    tipler = quiz_type_chart_data(request.user)
 
     context = {
-        "active_page":"Quizlerim",
-        'mq_correct': mq_stats.get('correct') or 0,
-        'mq_wrong': mq_stats.get('wrong') or 0,
-        
-        # Çoktan Seçmeli (Renk 2)
-        'mc_correct': mc_stats.get('correct') or 0,
-        'mc_wrong': mc_stats.get('wrong') or 0,
-        
-        # Yazma (Renk 3)
-        'wq_correct': wq_stats.get('correct') or 0,
-        'wq_wrong': wq_stats.get('wrong') or 0,
-
-        "allUsers":allUsers,
+        "active_page": "Egzersizler",
+        "quiz_types": tipler,
+        "has_quiz_data": any(tip["total"] for tip in tipler),
+        "allUsers": User.objects.all(),
     }
 
-    #Hangi sayfanın aktif olduğunu gönderiyoruz.
     return render(request, "pages/profile/quizzes.html", context)
 
-@login_required
+
+@login_gate("Metinler", "Yazdığın metinler hesabına kaydedildiği için giriş yapman gerekiyor.")
 def showTextsView(request):
     
     texts = Text.objects.filter(owner = request.user).order_by("-createdAt")
 
-    can_write_new_text = True
-    remaining_time = None
-
-    if texts.exists():
-        newestText = texts.first()
-
-        now = timezone.now()
-        time_passed = now - newestText.createdAt
-
-        if time_passed < timedelta(days=1):
-            can_write_new_text = False
-            remaining_time = timedelta(days=1) - time_passed
-
-    
-    if remaining_time != None:
-        remaining_time = str(remaining_time).split(".")[0]
-
-        remaining_time = remaining_time.split(":")
-        hour = remaining_time[0]
-        minute = remaining_time[1]
-        second = remaining_time[2]
-
-        remaining_time = f"{hour} saat {minute} dakika {second} saniye"
+    # Kısıt ve kalan süre tek kaynaktan geliyor (bkz. texts/limits.py).
+    # Eskiden burada timedelta(days=1) tekrar yazılıydı ve kalan süre
+    # "saat:dakika:saniye" varsayımıyla elle biçimlendiriliyordu; süre bir günü
+    # aştığında ("1 day, 3:00:00") bu biçimlendirme bozuluyordu.
+    can_write_new_text = text_limits.can_write_new_text(request.user)
+    remaining_time = text_limits.remaining_label(request.user) or None
 
     allUsers = User.objects.all()
 
@@ -514,25 +516,17 @@ def showTextsView(request):
         "isWriteable":can_write_new_text,
         "remaining_time":remaining_time,
         "allUsers":allUsers,
+        # Bilgilendirme kutusundaki süre metni de ayardan gelsin
+        "text_interval_label": text_limits.interval_label(),
     }
 
     return render(request, "pages/profile/texts.html", context)
 
 @login_required
 def showSettingsView(request):
-    
-    allUsers = User.objects.all()
+    """Eski "Ayarlar" adresi. İçeriği artık Profilim sayfasında."""
+    return redirect("user_profile")
 
-    settings = UserSettings.objects.filter(user = request.user).first()
-
-    context = {
-        "active_page":"Ayarlar",
-        "allUsers":allUsers,
-        "settings":settings,
-    }
-
-    #Hangi sayfanın aktif olduğunu gönderiyoruz.
-    return render(request, "pages/profile/settings.html", context)
 
 @login_required
 def deleteWord(request, id):
@@ -579,9 +573,11 @@ def addWord(request):
         v2_form = request.POST.get('v2_form')
         v3_form = request.POST.get('v3_form')
         
-        sentence_1 = request.POST.get('sentence_1')
-        sentence_2 = request.POST.get('sentence_2')
-        sentence_3 = request.POST.get('sentence_3')
+        # 10 örnek cümle alanı; boş gelenler None olarak kaydedilir.
+        sentences = {}
+        for i in range(1, Word.EXAMPLE_SENTENCE_COUNT + 1):
+            value = (request.POST.get(f'sentence_{i}') or '').strip()
+            sentences[f'exampleSentence{i}'] = value or None
 
         visibility = request.POST.get('visibility')
         level = request.POST.get('level')
@@ -589,8 +585,10 @@ def addWord(request):
         # Eş anlamlı ve zıt anlamlı kelimeler (birden fazla input, virgülle birleştirilir)
         synonyms_list = [s.strip() for s in request.POST.getlist('synonym') if s.strip()]
         antonyms_list = [a.strip() for a in request.POST.getlist('antonym') if a.strip()]
+        collocations_list = [c.strip() for c in request.POST.getlist('collocation') if c.strip()]
         synonyms = ', '.join(synonyms_list) if synonyms_list else None
         antonyms = ', '.join(antonyms_list) if antonyms_list else None
+        collocations = ', '.join(collocations_list) if collocations_list else None
 
         new_word = Word(
             owner = request.user, # Kelimeyi o anki kullanıcıyla ilişkilendir
@@ -604,13 +602,12 @@ def addWord(request):
             isVerb = is_verb,                # Model: isVerb, Form-name: is_verb
             v2Form = v2_form,                # Model: v2Form, Form-name: v2_form
             v3Form = v3_form,                # Model: v3Form, Form-name: v3_form
-            exampleSentence1 = sentence_1,   # Model: exampleSentence1, Form-name: sentence_1
-            exampleSentence2 = sentence_2,   # Model: exampleSentence2, Form-name: sentence_2
-            exampleSentence3 = sentence_3,   # Model: exampleSentence3, Form-name: sentence_3
+            **sentences,                     # exampleSentence1..10 (Form-name: sentence_1..10)
             visibility = visibility,         # Model: visibility, Form-name: visibility
             wordLevel = level,               # Modelinizde 'level' alanı olmalı
             synonyms = synonyms,             # Eş anlamlılar (virgülle ayrılmış)
             antonyms = antonyms,             # Zıt anlamlılar (virgülle ayrılmış)
+            collocations = collocations,     # Kullanım kalıpları (virgülle ayrılmış)
         )
         
         # 4. Veritabanına kaydet
@@ -652,17 +649,19 @@ def editWord(request, id):
             word.v2Form = None # veya modelinize göre ""
             word.v3Form = None # veya modelinize göre ""
 
-        word.exampleSentence1 = request.POST.get('sentence_1')
-        word.exampleSentence2 = request.POST.get('sentence_2')
-        word.exampleSentence3 = request.POST.get('sentence_3')
+        for i in range(1, Word.EXAMPLE_SENTENCE_COUNT + 1):
+            value = (request.POST.get(f'sentence_{i}') or '').strip()
+            setattr(word, f'exampleSentence{i}', value or None)
         word.visibility = request.POST.get('visibility')
         word.wordLevel = request.POST.get('level')
 
         # Eş anlamlı ve zıt anlamlı kelimeler
         synonyms_list = [s.strip() for s in request.POST.getlist('synonym') if s.strip()]
         antonyms_list = [a.strip() for a in request.POST.getlist('antonym') if a.strip()]
+        collocations_list = [c.strip() for c in request.POST.getlist('collocation') if c.strip()]
         word.synonyms = ', '.join(synonyms_list) if synonyms_list else None
         word.antonyms = ', '.join(antonyms_list) if antonyms_list else None
+        word.collocations = ', '.join(collocations_list) if collocations_list else None
 
         # 4. Değişiklikleri veritabanına kaydet.
         word.save()

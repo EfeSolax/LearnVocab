@@ -58,16 +58,36 @@ def showAbout(request):
     return render(request, "pages/about.html")
 
 
+def showReadings(request):
+    """
+    Okumalar — henüz içerik yok, yer tutucu.
+    Mobil alt sekme çubuğundaki beş bölümden biri olduğu için adresi
+    şimdiden tanımlı; gerçek sayfa geldiğinde burası değişecek.
+    """
+    return render(request, "pages/readings.html", {"active_page": "Okumalar"})
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", showIndex, name="index"),
     path("about/", showAbout, name="about"),
+    path("readings/", showReadings, name="readings"),
     path("users/", include("users.urls")),
     path("words/", include("words.urls")),
-    path("friends/", include("friends.urls")),
+    # Arkadaşlık özelliği şu an KAPALI.
+    # Uygulamanın kendisi (friends/views.py, friends/urls.py, templates/pages/friends.html)
+    # ve kullanıcı modelindeki friends / incomingRequests alanları duruyor;
+    # yalnızca dışarıya açılan yol kapatıldı. Geri açmak için bu satırı yorumdan
+    # çıkarmak ve navbar'daki bağlantıyı geri koymak yeterli.
+    # path("friends/", include("friends.urls")),
     path("profile/", include("userprofile.urls")),
     path("quizzes/", include("quizzes.urls")),
-    path("comments/", include("comments.urls")),
+    path("exercises/", include("learnpass.urls")),
+    # Yorumlar özelliği şu an KAPALI (arkadaşlık gibi).
+    # comments uygulaması, view'ları, şablonu ve Comment modeli duruyor;
+    # veriler yalnızca admin panelinden görülebiliyor. Geri açmak için bu
+    # satırı yorumdan çıkarmak ve navbar'a bağlantıyı geri koymak yeterli.
+    # path("comments/", include("comments.urls")),
     path("texts/", include("texts.urls")),
     path("settings/", include("usersettings.urls")),
 ]

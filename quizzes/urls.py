@@ -13,5 +13,8 @@ urlpatterns = [
     path('quiz/<int:attempt_id>/complete/', views.quizComplete, name='quiz_complete'),
 
     path("quizzes/quiz-review/", views.quizReviewList, name = "quiz_review"),
-    path("quizzes/remove-quiz/<int:quiz_id>", views.removeQuiz, name = "remove_quiz")
+    path("quizzes/remove-quiz/<int:quiz_id>", views.removeQuiz, name = "remove_quiz"),
+
+    # Bilgi analizi: hangi kelimeyi iyi biliyor, hangisinde takılıyor
+    path("analysis/", views.wordAnalysis, name="word_analysis"),
 ]

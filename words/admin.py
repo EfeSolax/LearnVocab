@@ -19,14 +19,14 @@ class WordAdmin(admin.ModelAdmin):
         'v2Form',
         'v3Form',
         'exampleSentence1',
-        'exampleSentence2',
-        'exampleSentence3',
         'createdAt',
         'isBaseWord',
         'saved_users',
     )
     list_filter = ('isVerb', 'visibility', 'createdAt', 'owner','wordLevel','isBaseWord',)
-    search_fields = ('englishWord', 'meaningTr', 'exampleSentence1', 'exampleSentence2', 'exampleSentence3')
+    search_fields = ('englishWord', 'meaningTr') + tuple(
+        f'exampleSentence{i}' for i in range(1, 11)
+    )
     ordering = ('-createdAt',)
     readonly_fields = ('createdAt',)
     
@@ -38,7 +38,10 @@ class WordAdmin(admin.ModelAdmin):
             'fields': ('v2Form', 'v3Form')
         }),
         ('Example Sentences', {
-            'fields': ('exampleSentence1', 'exampleSentence2', 'exampleSentence3')
+            'fields': ('exampleSentence1', 'exampleSentence2', 'exampleSentence3', 'exampleSentence4', 'exampleSentence5', 'exampleSentence6', 'exampleSentence7', 'exampleSentence8', 'exampleSentence9', 'exampleSentence10')
+        }),
+        ('Synonyms / Antonyms / Collocations', {
+            'fields': ('synonyms', 'antonyms', 'collocations')
         }),
         ('Meta', {
             'fields': ('owner', 'visibility', 'createdAt','saved_users')

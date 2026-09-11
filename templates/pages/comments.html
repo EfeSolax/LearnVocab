@@ -6,14 +6,14 @@
 {% endblock messages %}
 
 {% block content %}
-<div class="min-h-screen bg-gray-50 pt-8 pb-16">
+<div class="min-h-screen bg-gray-50 dark:bg-slate-900 pt-8 pb-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <header class="text-center mb-10">
-            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-slate-100 sm:text-5xl">
                 Kullanıcı Yorumları
             </h1>
-            <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500">
+            <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-slate-400">
                 Sitemiz hakkındaki düşüncelerinizi paylaşın.
             </p>
         </header>
@@ -21,8 +21,8 @@
         {% include 'base/messages.html' with margin_class="" %}
 
         {% if user.is_authenticated %}
-        <div class="bg-white shadow-xl rounded-xl p-6 mb-8 border border-gray-200">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Yeni Bir Yorum Ekle</h2>
+        <div class="bg-white dark:bg-slate-800 shadow-xl rounded-xl p-6 mb-8 border border-gray-200 dark:border-slate-700">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-4">Yeni Bir Yorum Ekle</h2>
             
             <form action="." method="POST">
                 {% csrf_token %}
@@ -32,7 +32,7 @@
                         name="comment_content"
                         id="comment_content"
                         rows="4"
-                        class="w-full p-4 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300 ease-in-out resize-none"
+                        class="w-full p-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-slate-100 placeholder-gray-500 focus:ring-indigo-500 dark:focus:ring-indigo-600 focus:border-indigo-500 dark:focus:border-indigo-600 transition duration-300 ease-in-out resize-none"
                         placeholder="Düşüncelerinizi paylaşın... (Maks. 500 karakter)"
                     ></textarea>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="flex justify-end mt-4">
                     <button
                         type="submit"
-                        class="py-2 px-6 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300 transform hover:scale-[1.02] active:scale-100"
+                        class="py-2 px-6 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 dark:focus:ring-indigo-600 focus:ring-opacity-50 transition duration-300 transform hover:scale-[1.02] active:scale-100"
                     >
                         Yorumu Gönder
                     </button>
@@ -48,13 +48,13 @@
             </form>
         </div>
         {% else %}
-        <div class="bg-indigo-50 border-l-4 border-indigo-500 rounded-lg p-5 mb-8 shadow-md">
-            <h2 class="text-xl font-semibold text-indigo-700">Yorum Eklemek İster misiniz?</h2>
-            <p class="text-indigo-600 mt-1">Lütfen siteye giriş yapın veya kaydolun.</p>
+        <div class="bg-indigo-50 dark:bg-indigo-950 border-l-4 border-indigo-500 dark:border-indigo-600 rounded-lg p-5 mb-8 shadow-md">
+            <h2 class="text-xl font-semibold text-indigo-700 dark:text-indigo-300">Yorum Eklemek İster misiniz?</h2>
+            <p class="text-indigo-600 dark:text-indigo-400 mt-1">Lütfen siteye giriş yapın veya kaydolun.</p>
         </div>
         {% endif%}
 
-        <div class="bg-white shadow-xl rounded-xl p-5 mb-8 border border-gray-200">
+        <div class="bg-white dark:bg-slate-800 shadow-xl rounded-xl p-5 mb-8 border border-gray-200 dark:border-slate-700">
             <form method = "GET" action = "" class="space-y-4 md:space-y-0">
                 <div class="flex flex-col md:flex-row md:items-center md:space-x-4">
                     <div class="flex-shrink-0 w-full md:w-48">
@@ -63,7 +63,7 @@
                         <select
                             name="search_by"
                             id="search_by"
-                            class="h-10 w-full pl-3 pr-10 border border-gray-300 rounded-lg shadow-sm bg-white text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out appearance-none cursor-pointer"
+                            class="h-10 w-full pl-3 pr-10 border border-gray-300 dark:border-slate-600 rounded-lg shadow-sm bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:ring-indigo-500 dark:focus:ring-indigo-600 focus:border-indigo-500 dark:focus:border-indigo-600 transition duration-150 ease-in-out appearance-none cursor-pointer"
                         >
                             <option value="content" {% if request.GET.search_by == "content" %}selected{% endif %}>İçeriğe Göre Ara</option>
                             <option value="author" {% if request.GET.search_by == "author" %}selected{% endif %}>Yorum Sahibine Göre Ara</option>
@@ -77,12 +77,12 @@
                             name="search_query"
                             id="search_query"
                             value="{{ request.GET.search_query|default:'' }}"
-                            class="flex-grow w-full px-4 py-2 border border-gray-300 rounded-l-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                            class="flex-grow w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-l-lg bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 focus:border-indigo-500 dark:focus:border-indigo-600"
                             placeholder="Aramak istediğiniz kelime veya kullanıcı adını yazın..."
                         />
                         <button
                             type="submit"
-                            class="flex-shrink-0 px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-300"
+                            class="flex-shrink-0 px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 dark:focus:ring-indigo-600 focus:ring-opacity-50 transition duration-300"
                         >
                             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
@@ -93,15 +93,15 @@
             </form>
         </div>
 
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Tüm Yorumlar</h2>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-slate-100 mb-6">Tüm Yorumlar</h2>
 
         {% if comments %}
-            <div class="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 text-sm rounded-lg p-4 mb-6" role="alert">
+            <div class="flex items-center gap-3 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 text-sm rounded-lg p-4 mb-6" role="alert">
                 <svg class="h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
                 <div>
-                    Arama sonucunda <strong class="font-bold text-green-900">{{ comments|length }}</strong> yorum bulundu.
+                    Arama sonucunda <strong class="font-bold text-green-900 dark:text-green-200">{{ comments|length }}</strong> yorum bulundu.
                 </div>
             </div>
         {% endif %}
@@ -109,50 +109,44 @@
         <div class="space-y-6">
             {% if comments %}
                 {% for comment in comments %}
-                <article class="bg-white shadow-lg rounded-xl p-6 border border-gray-200 transition duration-300 hover:shadow-2xl">
+                <article class="bg-white dark:bg-slate-800 shadow-lg rounded-xl p-6 border border-gray-200 dark:border-slate-700 transition duration-300 hover:shadow-2xl">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex items-center space-x-4">
                             {% if comment.owner.profile_pic %}
-                                <img class="h-12 w-12 rounded-full object-cover ring-2 ring-indigo-500" src="{{ comment.owner.profile_pic.url }}" alt="{{ comment.owner.username }}'ın Profil fotoğrafı">
+                                <img class="h-12 w-12 rounded-full object-cover ring-2 ring-indigo-500 dark:ring-indigo-600" src="{{ comment.owner.profile_pic.url }}" alt="{{ comment.owner.username }}'ın Profil fotoğrafı">
                             {% else %}
-                                <span class="inline-flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 ring-2 ring-indigo-500">
-                                    <svg class="h-8 w-8 text-indigo-500" fill="currentColor" viewBox="0 0 24 24">
+                                <span class="inline-flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 dark:bg-indigo-900 ring-2 ring-indigo-500 dark:ring-indigo-600">
+                                    <svg class="h-8 w-8 text-indigo-500 dark:text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
                                 </span>
                             {% endif %}
                             <div>
-                                <span class="text-lg font-bold text-gray-900">{{ comment.owner.username }}</span>
-                                <p class="text-xs text-gray-500">
+                                <span class="text-lg font-bold text-gray-900 dark:text-slate-100">{{ comment.owner.username }}</span>
+                                <p class="text-xs text-gray-500 dark:text-slate-400">
                                     {{ comment.createdAt }}
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <p class="text-gray-700 leading-relaxed mb-6 border-l-4 border-indigo-400 pl-4 py-1">
+                    <p class="text-gray-700 dark:text-slate-300 leading-relaxed mb-6 border-l-4 border-indigo-400 dark:border-indigo-700 pl-4 py-1">
                         {{ comment.content }}
                     </p>
 
-                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100 dark:border-slate-700">
                         <div class="flex items-center space-x-5">
             
-                            <a href="{% url 'like_comment' comment.id %}" class="flex items-center space-x-1.5 text-gray-500 hover:text-indigo-600 transition duration-150 group">
-                                <svg class="w-6 h-6 group-hover:scale-110 transition-transform
-                                    {% if comment.is_liked_by_user %}
-                                        text-indigo-600 fill-current {% else %}
-                                        group-hover:text-indigo-600 {% endif %}"
+                            <a href="{% url 'like_comment' comment.id %}" class="flex items-center space-x-1.5 text-gray-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition duration-150 group">
+                                <svg class="w-6 h-6 group-hover:scale-110 transition-transform {% if comment.is_liked_by_user %} text-indigo-600 dark:text-indigo-400 fill-current {% else %} group-hover:text-indigo-600 dark:group-hover:text-indigo-400 {% endif %}"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.25a.75.75 0 01-.75-.75V10.5c0-.414.336-.75.75-.75h1.383z" />
                                 </svg>
                                 <span class="text-md font-medium">{{ comment.liked_by.count|default:"0" }}</span>
                             </a>
 
-                            <a href="{% url 'dislike_comment' comment.id %}" class="flex items-center space-x-1.5 text-gray-500 hover:text-red-600 transition duration-150 group">
-                                <svg class="w-6 h-6 group-hover:scale-110 transition-transform
-                                    {% if comment.is_disliked_by_user %}
-                                        text-red-600 fill-current {% else %}
-                                        group-hover:text-red-600 {% endif %}"
+                            <a href="{% url 'dislike_comment' comment.id %}" class="flex items-center space-x-1.5 text-gray-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition duration-150 group">
+                                <svg class="w-6 h-6 group-hover:scale-110 transition-transform {% if comment.is_disliked_by_user %} text-red-600 dark:text-red-400 fill-current {% else %} group-hover:text-red-600 dark:group-hover:text-red-400 {% endif %}"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M7.498 15.25H4.372c-1.026 0-1.945-.694-2.054-1.715a12.137 12.137 0 0 1-.068-1.285c0-2.848.992-5.464 2.649-7.521C5.287 4.247 5.886 4 6.504 4h4.016a4.5 4.5 0 0 1 1.423.23l3.114 1.04a4.5 4.5 0 0 0 1.423.23h1.294M7.498 15.25c.618 0 .991.724.725 1.282A7.471 7.471 0 0 0 7.5 19.75 2.25 2.25 0 0 0 9.75 22a.75.75 0 0 0 .75-.75v-.633c0-.573.11-1.14.322-1.672.304-.76.93-1.33 1.653-1.715a9.04 9.04 0 0 0 2.86-2.4c.498-.634 1.226-1.08 2.032-1.08h.384m-10.253 1.5H9.7m8.075-9.75c.01.05.027.1.05.148.593 1.2.925 2.55.925 3.977 0 1.487-.36 2.89-.999 4.125m.023-8.25c-.076-.365.183-.75.575-.75h.908c.889 0 1.713.518 1.972 1.368.339 1.11.521 2.287.521 3.507 0 1.553-.295 3.036-.831 4.398-.306.774-1.086 1.227-1.918 1.227h-1.053c-.472 0-.745-.556-.5-.96a8.95 8.95 0 0 0 .303-.54" />
                                 </svg>
@@ -163,28 +157,28 @@
                         
                         <div class="flex space-x-3">
                             {% if user.is_authenticated and user.username == comment.owner.username %}
-                            <a href="{% url 'remove_comment' comment.id %}" class="inline-flex items-center text-sm font-medium text-red-600 hover:text-red-800 transition duration-150">
+                            <a href="{% url 'remove_comment' comment.id %}" class="inline-flex items-center text-sm font-medium text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-200 transition duration-150">
                                 <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.22 9m9.9 0a2.25 2.25 0 00-2.25-2.25H9.25a2.25 2.25 0 00-2.25 2.25m-1.5 10.5h15" />
                                 </svg>
                                 Sil
                             </a>
                             {% else %}
-                                <span class="text-sm text-gray-300">Bu yorumu düzenleyemezsiniz.</span>
+                                <span class="text-sm text-gray-300 dark:text-slate-600">Bu yorumu düzenleyemezsiniz.</span>
                             {% endif %}
                         </div>
                     </div>
                 </article>
                 {% endfor %}
             {% else %}
-                <div class="bg-white shadow-xl rounded-xl p-10 text-center border-t-4 border-gray-400">
-                    <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <div class="bg-white dark:bg-slate-800 shadow-xl rounded-xl p-10 text-center border-t-4 border-gray-400 dark:border-slate-500">
+                    <svg class="w-16 h-16 text-gray-400 dark:text-slate-500 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-3.86 8.25-8.625 8.25S3.75 16.556 3.75 12 7.61 3.75 12.375 3.75 21 7.444 21 12z" />
                     </svg>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-slate-200 mb-2">
                         Henüz Yorum Bulunamadı
                     </h3>
-                    <p class="text-gray-500">
+                    <p class="text-gray-500 dark:text-slate-400">
                         İlk yorumu sen ekleyerek sohbete katıl!
                     </p>
                 </div>

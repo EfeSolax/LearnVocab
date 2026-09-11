@@ -1,149 +1,281 @@
-{% extends 'base/sidebar.html' %}
+{% extends 'base/appLayout.html' %}
 
-{% block title%}Quizlerim {% endblock %}
+{% block title %}Egzersizler{% endblock %}
 
-{% comment %} 1. Chart.js Kütüphanesini <head> içine ekler {% endcomment %}
 {% block extra_head %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
 
 {% block users %}
     {% include 'pages/profile/showAllUsers.html' with allUsers=allUsers %}
-{% endblock%}
+{% endblock %}
 
+{# Sayfanın kendi başlığı var, yerleşimin varsayılan başlığını kapatıyoruz #}
+{% block page_heading %}{% endblock %}
 
 {% block page %}
-<div class="container mx-auto mt-4 md:mt-8 ml-2 mr-2"> 
-    
-    <h1 class="text-3xl font-bold mb-4 md:mb-6 ml-4 mr-4">Quiz Merkezi</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-4 mr-4">
-        
-        <a href="{% url 'attempt_quiz' %}" 
-           class="block p-4 md:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-blue-500">
-            <h2 class="text-xl font-semibold text-blue-600 mb-1">Yeni Quiz'e Başla</h2> 
-            <p class="text-sm text-gray-700">
+{# "Egzersizler" bölümünün sayfaları arasındaki geçiş şeridi #}
+{% include 'base/_exerciseTabs.html' with exercise_tab="quizzes" %}
+
+<div class="mx-auto max-w-5xl">
+
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100 mb-5">Egzersiz Merkezi</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <a href="{% url 'attempt_quiz' %}"
+           class="block p-4 md:p-6 bg-white dark:bg-slate-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-blue-500 dark:border-blue-600">
+            <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-1">Yeni Quiz'e Başla</h2>
+            <p class="text-sm text-gray-700 dark:text-slate-300">
                 Öğrenilmemiş kelimelerinden senin için özel olarak seçilmiş bir quize başla.
             </p>
         </a>
 
-        <a href="{% url 'quiz_review' %}" 
-           class="block p-4 md:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-gray-400">
-            <h2 class="text-xl font-semibold text-gray-600 mb-1">Quiz Review'ım</h2>
-            <p class="text-sm text-gray-700">
+        <a href="{% url 'quiz_review' %}"
+           class="block p-4 md:p-6 bg-white dark:bg-slate-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-gray-400 dark:border-slate-500">
+            <h2 class="text-xl font-semibold text-gray-600 dark:text-slate-400 mb-1">Quiz Review'ım</h2>
+            <p class="text-sm text-gray-700 dark:text-slate-300">
                 Daha önce çözdüğün quiz'leri ve başarı oranlarını incele.
             </p>
         </a>
     </div>
 
-    <div class="mt-6 p-4 md:p-6 bg-white rounded-lg shadow-lg"> 
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Genel İstatistikler</h2>
+    <div class="mt-6 p-4 md:p-6 bg-white dark:bg-slate-800 rounded-lg shadow-lg">
+        <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-slate-200 mb-4">Genel İstatistikler</h2>
 
-        <div class="flex justify-center space-x-3 text-sm mb-4">
-            <div class="flex items-center">
-                <span class="h-3 w-3 rounded-full mr-1.5" style="background-color: #7b68ee;"></span>
-                <span>Eşleştirme</span>
-            </div>
-            <div class="flex items-center">
-                <span class="h-3 w-3 rounded-full mr-1.5" style="background-color: #ffa500;"></span>
-                <span>Çoktan Seçmeli</span>
-            </div>
-            <div class="flex items-center">
-                <span class="h-3 w-3 rounded-full mr-1.5" style="background-color: #ee6aa7;"></span>
-                <span>Yazma</span>
-            </div>
+        {% if has_quiz_data %}
+
+        {% comment %}
+        Renk açıklaması yalnızca birleşik grafikte anlamlı; mobilde her tipin
+        kendi grafiği başlıklı olduğu için orada gizleniyor.
+        {% endcomment %}
+        <div id="chart-legend" class="mb-4 flex flex-wrap justify-center gap-x-4 gap-y-1.5 text-sm">
+            {% for tip in quiz_types %}
+            <span class="flex items-center">
+                <span class="h-3 w-3 rounded-full mr-1.5" style="background-color: {{ tip.color }};"></span>
+                <span class="text-gray-700 dark:text-slate-300">{{ tip.label }}</span>
+            </span>
+            {% endfor %}
         </div>
 
-        <div class="w-full h-80"> <canvas id="statsChart"></canvas>
+        {# Masaüstü: beş tipin tek grafikte karşılaştırması #}
+        <div id="combined-wrap" class="hidden w-full h-80">
+            <canvas id="statsChart"></canvas>
         </div>
+
+        {# Mobil: tek grafiğe sığmadığı için tip başına ayrı grafik #}
+        <div id="per-type-wrap" class="hidden space-y-5">
+            {% for tip in quiz_types %}
+            <div>
+                <div class="mb-1.5 flex items-center justify-between">
+                    <span class="flex items-center text-sm font-semibold text-gray-800 dark:text-slate-200">
+                        <span class="h-3 w-3 rounded-full mr-1.5" style="background-color: {{ tip.color }};"></span>
+                        {{ tip.label }}
+                    </span>
+                    <span class="text-xs text-gray-500 dark:text-slate-400">{{ tip.total }} soru</span>
+                </div>
+                <div class="h-36">
+                    <canvas id="chart-{{ tip.key }}"></canvas>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% comment %}
+        Doğruluk oranları. Yüzde tek başına yanıltıcı olduğu için toplam soru
+        sayısı hep yanında duruyor (3 soruda %100 ile 300 soruda %100 aynı
+        şey değil).
+        {% endcomment %}
+        <div class="mt-6 border-t border-gray-200 dark:border-slate-700 pt-4">
+            <h3 class="mb-3 text-sm font-bold uppercase tracking-wide text-gray-400 dark:text-slate-500">Doğruluk Oranları</h3>
+
+            <ul class="space-y-2.5">
+                {% for tip in quiz_types %}
+                <li>
+                    {% comment %}
+                    Tip adı ile soru sayısı bir satırda, oranlar altında:
+                    dar ekranda kendiliğinden taşıp dağılmasın diye.
+                    {% endcomment %}
+                    <div class="flex items-baseline justify-between gap-2 text-sm">
+                        <span class="flex items-center font-semibold text-gray-800 dark:text-slate-200">
+                            <span class="h-2.5 w-2.5 shrink-0 rounded-full mr-1.5" style="background-color: {{ tip.color }};"></span>
+                            {{ tip.label }}
+                        </span>
+                        {% if tip.total %}
+                            <span class="shrink-0 text-xs text-gray-500 dark:text-slate-400 tabular-nums">{{ tip.correct }}/{{ tip.total }} soru</span>
+                        {% else %}
+                            <span class="shrink-0 text-xs text-gray-400 dark:text-slate-500">henüz çözülmedi</span>
+                        {% endif %}
+                    </div>
+
+                    {% if tip.total %}
+                    <div class="mt-0.5 flex items-baseline gap-2 text-sm">
+                        <span class="text-emerald-600 dark:text-emerald-400 font-semibold tabular-nums">%{{ tip.correct_pct }} doğru</span>
+                        <span class="text-gray-300 dark:text-slate-600">·</span>
+                        <span class="text-rose-600 dark:text-rose-400 font-semibold tabular-nums">%{{ tip.wrong_pct }} yanlış</span>
+                    </div>
+                    {% endif %}
+                    {% if tip.total %}
+                    <div class="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-rose-200 dark:bg-rose-950">
+                        <div class="h-full rounded-full bg-emerald-500" style="width: {{ tip.correct_pct }}%"></div>
+                    </div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% else %}
+
+        <p class="py-8 text-center text-sm text-gray-500 dark:text-slate-400">
+            Henüz tamamlanmış bir quiz yok. İlk quizini çözdüğünde istatistiklerin burada birikmeye başlar.
+        </p>
+
+        {% endif %}
     </div>
 </div>
+
+{{ quiz_types|json_script:"quiz-type-data" }}
 {% endblock %}
 
 
-{% comment %} JavaScript Kodları (Aynı kalacak) {% endcomment %}
 {% block extra_js %}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 1. Django View'dan gelen verileri al
-        // Not: Bu verilerin (mq_correct vb.) view tarafından context'e eklendiğini varsayarız.
-        const mqData = [{{ mq_correct|default:0 }}, {{ mq_wrong|default:0 }}];
-        const mcData = [{{ mc_correct|default:0 }}, {{ mc_wrong|default:0 }}];
-        const wqData = [{{ wq_correct|default:0 }}, {{ wq_wrong|default:0 }}];
-        
-        // 2. Chart.js verisini hazırla (Gruplanmış Sütun)
-        const data = {
-            labels: ['Doğru Sayıları', 'Yanlış Sayıları'], // X-Ekseni Grupları
-            datasets: [
-                {
-                    label: 'Eşleştirme',
-                    data: mqData,
-                    backgroundColor: '#7b68ee', // Renk 1
-                },
-                {
-                    label: 'Çoktan Seçmeli',
-                    data: mcData,
-                    backgroundColor: '#ffa500', // Renk 2
-                },
-                {
-                    label: 'Yazma',
-                    data: wqData,
-                    backgroundColor: '#ee6aa7', // Renk 3
-                }
-            ]
-        };
+document.addEventListener('DOMContentLoaded', function () {
+    const veriDugumu = document.getElementById('quiz-type-data');
+    if (!veriDugumu || typeof Chart === 'undefined') { return; }
 
-        // 3. Chart.js yapılandırması
-        const config = {
-            type: 'bar', // Dikey Sütun Grafiği
-            data: data,
+    const tipler = JSON.parse(veriDugumu.textContent);
+    const birlesikKap = document.getElementById('combined-wrap');
+    const tipBasinaKap = document.getElementById('per-type-wrap');
+    if (!birlesikKap || !tipBasinaKap) { return; }
+
+    // Mobilde beş tip tek grafiğe sığmıyor; orada tip başına küçük grafik var.
+    const genisEkran = window.matchMedia('(min-width: 768px)');
+    let cizilenler = [];
+
+    function temaRenkleri() {
+        const karanlik = document.documentElement.classList.contains('dark');
+        return {
+            yazi: karanlik ? '#cbd5e1' : '#334155',
+            izgara: karanlik ? 'rgba(148,163,184,0.18)' : 'rgba(100,116,139,0.15)',
+        };
+    }
+
+    function saydam(renk, yuzde) {
+        return renk + yuzde;   // #rrggbb + alfa (örn. "40" = ~%25)
+    }
+
+
+    function birlesikGrafik() {
+        const t = temaRenkleri();
+        return new Chart(document.getElementById('statsChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Doğru Sayıları', 'Yanlış Sayıları'],
+                datasets: tipler.map(function (tip) {
+                    return {
+                        label: tip.label,
+                        data: [tip.correct, tip.wrong],
+                        backgroundColor: tip.color,
+                        borderRadius: 4,
+                    };
+                }),
+            },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                
-                // Lejantı gizle (çünkü özel HTML lejantı yaptık)
                 plugins: {
-                    legend: {
-                        display: false
-                    },
+                    legend: { display: false },
                     tooltip: {
-                        // İpucunda "0" değerlerinin görünmesini sağlar
                         callbacks: {
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                // Veri 0 olsa bile "0" olarak göster
-                                label += context.parsed.y; 
-                                return label;
-                            }
-                        }
-                    }
+                            // Değer 0 olsa bile görünsün
+                            label: function (ctx) { return (ctx.dataset.label || '') + ': ' + ctx.parsed.y; },
+                        },
+                    },
                 },
                 scales: {
-                    // Y-Ekseni (Artık dikey ve logaritmik)
+                    // Doğrusal ölçek. Eskiden logaritmikti ve 9 ile 42 neredeyse
+                    // aynı yükseklikte görünüyordu — yani grafik karşılaştırma
+                    // işini yapmıyordu. Logaritmikte iki kat uzun bir sütun on
+                    // kat değer demek; bu, bakan kişiyi yanıltıyor.
                     y: {
-                        type: 'logarithmic', // Logaritmik Ölçek
-                        title: {
-                            display: true,
-                            text: 'Soru Sayısı (Logaritmik Ölçek)'
-                        }
+                        beginAtZero: true,
+                        title: { display: true, text: 'Soru Sayısı', color: t.yazi },
+                        ticks: { color: t.yazi, precision: 0 },
+                        grid: { color: t.izgara },
                     },
-                    // X-Ekseni (Artık kategori ekseni)
                     x: {
-                        title: {
-                            display: true,
-                            text: 'Sonuç Tipi'
-                        }
-                    }
-                }
-            }
-        };
+                        ticks: { color: t.yazi },
+                        grid: { color: t.izgara },
+                    },
+                },
+            },
+        });
+    }
 
-        // 4. Grafiği Çiz
-        const ctx = document.getElementById('statsChart').getContext('2d');
-        new Chart(ctx, config);
+    function tipGrafigi(tip) {
+        const t = temaRenkleri();
+        return new Chart(document.getElementById('chart-' + tip.key).getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Doğru', 'Yanlış'],
+                datasets: [{
+                    data: [tip.correct, tip.wrong],
+                    // Doğru tipin kendi rengi, yanlış aynı rengin soluk hâli:
+                    // hem tip kimliği korunuyor hem iki sütun ayırt ediliyor.
+                    backgroundColor: [tip.color, saydam(tip.color, '40')],
+                    borderRadius: 4,
+                }],
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { beginAtZero: true, ticks: { color: t.yazi, precision: 0 }, grid: { color: t.izgara } },
+                    y: { ticks: { color: t.yazi }, grid: { display: false } },
+                },
+            },
+        });
+    }
+
+    let cizimJetonu = 0;
+
+    function ciz() {
+        // Gizli bir kabın içinde çizilen grafik 0 boyutunda kalıyor; bu yüzden
+        // ikisini CSS ile gizleyip ikisini birden çizmek yerine yalnızca
+        // görünecek olanı kurup diğerini yok ediyoruz.
+        cizilenler.forEach(function (grafik) { grafik.destroy(); });
+        cizilenler = [];
+
+        const genis = genisEkran.matches;
+        tipBasinaKap.classList.toggle('hidden', genis);
+        birlesikKap.classList.toggle('hidden', !genis);
+
+        // Grafik, kabın görünürlüğünü değiştirdiğimiz karede değil bir sonraki
+        // karede kuruluyor: Chart.js kurulurken kabın son ölçüsünü okuyabilsin.
+        const jeton = ++cizimJetonu;
+        requestAnimationFrame(function () {
+            if (jeton !== cizimJetonu) { return; }   // arada yeni bir çizim istendi
+            if (genis) {
+                cizilenler.push(birlesikGrafik());
+            } else {
+                tipler.forEach(function (tip) { cizilenler.push(tipGrafigi(tip)); });
+            }
+        });
+    }
+
+    genisEkran.addEventListener('change', ciz);
+
+    // Tema değişince eksen ve etiket renkleri de değişsin
+    new MutationObserver(ciz).observe(document.documentElement, {
+        attributes: true, attributeFilter: ['class'],
     });
+
+    ciz();
+});
 </script>
 {% endblock %}

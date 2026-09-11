@@ -8,16 +8,55 @@
     <title>{% block title %}LearnVocab{% endblock %}</title>
     <link rel="icon" href="{% static 'images/favicon.jpg' %}">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Karanlık tema "class" stratejisiyle çalışıyor: <html class="dark">
+        //
+        // hoverOnlyWhenSupported: dokunmatik cihazlarda hover: stilleri ilk
+        // dokunuşla tetiklenip o dokunuşu yutuyordu ("ilkte algılamıyor,
+        // ikinciye basmak gerekiyor"). Bu bayrak hover: sınıflarını yalnızca
+        // gerçekten hover destekleyen cihazlarda uygular.
+        tailwind.config = {
+            darkMode: 'class',
+            future: { hoverOnlyWhenSupported: true },
+        };
+    </script>
+
+    <script>
+        // Temayı SAYFA BOYANMADAN ÖNCE uygula.
+        // Bu script body'den önce çalışmazsa karanlık temada bile sayfa bir an
+        // beyaz parlar ("flash of unstyled content"). Kayıtlı tercih yoksa
+        // işletim sisteminin tercihi kullanılır.
+        (function () {
+            try {
+                var saved = localStorage.getItem('theme');
+                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (saved === 'dark' || (!saved && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                }
+            } catch (e) { /* gizli sekme vb.: sessizce açık temada kal */ }
+        })();
+    </script>
+
+    <style>
+        /* Tarayıcının kendi bileşenleri (kaydırma çubuğu, select açılır listesi,
+           tarih seçici) de temaya uysun. */
+        html.dark { color-scheme: dark; }
+    </style>
+
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     {% block extra_head %}{% endblock %}
 </head>
 
-<body class="bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 text-gray-900 min-h-screen">
+<body class="bg-gradient-to-br from-indigo-100 dark:from-indigo-900 via-purple-100 dark:via-purple-900 to-pink-100 dark:to-pink-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 text-gray-900 dark:text-slate-100 min-h-screen">
 
     {% include 'base/navbar.html' %}
 
-    <main class="min-h-screen pt-16">
+    {% comment %}
+    Mobilde bölümler ekranın altındaki sabit çubuktan geziliyor; pb-20 ile
+    sayfanın son satırı o çubuğun altında kalmıyor.
+    {% endcomment %}
+    <main class="min-h-screen pt-16 pb-20 lg:pb-0">
 
         {% block messages %}
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6"> 
@@ -29,6 +68,31 @@
         {% endblock %}
     
     </main>
+
+    {% include 'base/_mobileTabBar.html' %}
+
+    <script>
+        // Tema düğmesi. Olay delegasyonu kullanıyoruz: düğmenin masaüstü ve
+        // mobil menüde iki kopyası var, mobil menü de sonradan açılıyor.
+        document.addEventListener('click', function (event) {
+            var button = event.target.closest('[data-theme-toggle]');
+            if (!button) { return; }
+
+            var isDark = document.documentElement.classList.toggle('dark');
+            try {
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            } catch (e) { /* gizli sekmede kaydedemeyiz, sorun değil */ }
+        });
+
+        // Kullanıcı kendi tercihini yapmadıysa işletim sistemi temasını takip et
+        try {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+                if (!localStorage.getItem('theme')) {
+                    document.documentElement.classList.toggle('dark', e.matches);
+                }
+            });
+        } catch (e) {}
+    </script>
 
 </body>
 </html>

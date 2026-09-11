@@ -14,7 +14,7 @@
     </div>
 
     <div class="mx-auto max-w-5xl px-6 pt-12 pb-16 sm:pt-20 sm:pb-24 lg:px-8 text-center">
-        <span class="inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur px-3 py-1 text-xs sm:text-sm font-medium text-indigo-700 ring-1 ring-indigo-200">
+        <span class="inline-flex items-center gap-2 rounded-full bg-white/70 dark:bg-slate-800/70 backdrop-blur px-3 py-1 text-xs sm:text-sm font-medium text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-200 dark:ring-indigo-800">
             <span class="relative flex h-2 w-2">
                 <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75"></span>
                 <span class="relative inline-flex h-2 w-2 rounded-full bg-indigo-500"></span>
@@ -22,17 +22,17 @@
             Yeni: AI destekli metin değerlendirme
         </span>
 
-        <h1 class="mt-6 text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900">
+        <h1 class="mt-6 text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-slate-100">
             <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 LearnVocab
             </span>
             <br class="hidden sm:block">
-            <span class="text-gray-900">İngilizce öğrenmede senin tarzın</span>
+            <span class="text-gray-900 dark:text-slate-100">İngilizce öğrenmede senin tarzın</span>
         </h1>
 
-        <p class="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-gray-600 leading-relaxed">
+        <p class="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-gray-600 dark:text-slate-400 leading-relaxed">
             Hazır kelime havuzları, kendine özel quiz'ler ve yapay zekayla puanlanan haftalık metinler.
-            Defter karalamayı bırak, kelimeleri <span class="font-semibold text-gray-900">öğren</span>.
+            Defter karalamayı bırak, kelimeleri <span class="font-semibold text-gray-900 dark:text-slate-100">öğren</span>.
         </p>
 
         <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -53,11 +53,11 @@
                     </svg>
                 </a>
                 <a href="{% url 'login' %}"
-                   class="inline-flex items-center gap-2 rounded-lg bg-white/80 backdrop-blur px-5 py-3 text-sm sm:text-base font-semibold text-gray-900 ring-1 ring-gray-300 hover:bg-white transition-all">
+                   class="inline-flex items-center gap-2 rounded-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur px-5 py-3 text-sm sm:text-base font-semibold text-gray-900 dark:text-slate-100 ring-1 ring-gray-300 dark:ring-slate-600 hover:bg-white dark:hover:bg-slate-800 transition-all">
                     Giriş Yap
                 </a>
             {% endif %}
-            <a href="{% url 'all_words' %}" class="text-sm sm:text-base font-semibold text-gray-700 hover:text-indigo-700">
+            <a href="{% url 'all_words' %}" class="text-sm sm:text-base font-semibold text-gray-700 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-indigo-300">
                 Kelimeleri keşfet <span aria-hidden="true">→</span>
             </a>
         </div>
@@ -72,11 +72,11 @@
 <section class="mx-auto max-w-7xl px-6 lg:px-8 -mt-4 sm:-mt-8 mb-16 sm:mb-24">
     <div class="flex items-end justify-between mb-6">
         <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600">Günün Kelimeleri</p>
-            <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-gray-900">Bugün şunları öğren</h2>
-            <p class="text-sm text-gray-500 mt-1">401–501 ileri seviyeden seçildi · her gün yenileniyor</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Günün Kelimeleri</p>
+            <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">Bugün şunları öğren</h2>
+            <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">401–501 ileri seviyeden seçildi · her gün yenileniyor</p>
         </div>
-        <a href="{% url 'all_words' %}" class="hidden sm:inline-flex text-sm font-semibold text-indigo-600 hover:text-indigo-800">
+        <a href="{% url 'all_words' %}" class="hidden sm:inline-flex text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200">
             Tüm kelimeler →
         </a>
     </div>
@@ -84,32 +84,32 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         {% for word in daily_words %}
         <a href="{% url 'word_detail' word.id %}"
-           class="group relative flex flex-col rounded-2xl bg-white p-6 ring-1 ring-gray-200 shadow-sm hover:shadow-xl hover:ring-indigo-200 hover:-translate-y-1 transition-all duration-200">
+           class="group relative flex flex-col rounded-2xl bg-white dark:bg-slate-800 p-6 ring-1 ring-gray-200 dark:ring-slate-700 shadow-sm hover:shadow-xl hover:ring-indigo-200 dark:hover:ring-indigo-800 hover:-translate-y-1 transition-all duration-200">
             <div class="flex items-center justify-between mb-4">
-                <span class="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 ring-1 ring-inset ring-indigo-200">
+                <span class="inline-flex items-center rounded-full bg-indigo-50 dark:bg-indigo-950 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-800">
                     Kur {{ word.wordLevel }}
                 </span>
-                <span class="text-xs text-gray-400 font-mono">#{{ forloop.counter }}</span>
+                <span class="text-xs text-gray-400 dark:text-slate-500 font-mono">#{{ forloop.counter }}</span>
             </div>
 
-            <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 group-hover:text-indigo-700 transition-colors">
+            <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors">
                 {{ word.englishWord }}
             </h3>
-            <p class="mt-2 text-base text-gray-600">
-                <span class="font-medium text-gray-800">{{ word.meaningTr }}</span>
+            <p class="mt-2 text-base text-gray-600 dark:text-slate-400">
+                <span class="font-medium text-gray-800 dark:text-slate-200">{{ word.meaningTr }}</span>
             </p>
 
             {% if word.explanation %}
-            <p class="mt-4 text-sm text-gray-500 italic line-clamp-3">
+            <p class="mt-4 text-sm text-gray-500 dark:text-slate-400 italic line-clamp-3">
                 "{{ word.explanation }}"
             </p>
             {% elif word.exampleSentence1 %}
-            <p class="mt-4 text-sm text-gray-500 italic line-clamp-3">
+            <p class="mt-4 text-sm text-gray-500 dark:text-slate-400 italic line-clamp-3">
                 {{ word.exampleSentence1 }}
             </p>
             {% endif %}
 
-            <div class="mt-auto pt-5 flex items-center text-sm font-medium text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div class="mt-auto pt-5 flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity">
                 Detayı gör
                 <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
@@ -120,7 +120,7 @@
     </div>
 
     <div class="mt-6 text-center sm:hidden">
-        <a href="{% url 'all_words' %}" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800">
+        <a href="{% url 'all_words' %}" class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200">
             Tüm kelimelere göz at →
         </a>
     </div>
@@ -133,9 +133,9 @@
 {# ==================================================================== #}
 <section class="mx-auto max-w-7xl px-6 lg:px-8 mb-20 sm:mb-28">
     <div class="text-center max-w-2xl mx-auto mb-12">
-        <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600">Nasıl Çalışır</p>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-gray-900">Kelime öğrenmeyi kalıcı kıl</h2>
-        <p class="mt-4 text-base sm:text-lg text-gray-600">
+        <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Nasıl Çalışır</p>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-gray-900 dark:text-slate-100">Kelime öğrenmeyi kalıcı kıl</h2>
+        <p class="mt-4 text-base sm:text-lg text-gray-600 dark:text-slate-400">
             Üç basit adım, bir hayatlık İngilizce.
         </p>
     </div>
@@ -143,42 +143,42 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
 
         {# Kart 1 #}
-        <div class="relative rounded-2xl bg-white p-7 ring-1 ring-gray-200 shadow-sm hover:shadow-lg transition">
-            <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-100 text-indigo-600 mb-5">
+        <div class="relative rounded-2xl bg-white dark:bg-slate-800 p-7 ring-1 ring-gray-200 dark:ring-slate-700 shadow-sm hover:shadow-lg transition">
+            <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 mb-5">
                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
                 </svg>
             </div>
-            <h3 class="text-lg font-bold text-gray-900">Kelime listesi</h3>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">Kelime listesi</h3>
+            <p class="mt-2 text-sm text-gray-600 dark:text-slate-400 leading-relaxed">
                 ODTÜ kur kelimelerinden seç ya da kendi kelimelerini ekle. Anlam, V2/V3, örnek cümle, açıklama
                 — hepsi tek yerde. Listenin görünürlüğünü <span class="font-semibold">sen</span> belirle.
             </p>
         </div>
 
         {# Kart 2 #}
-        <div class="relative rounded-2xl bg-white p-7 ring-1 ring-gray-200 shadow-sm hover:shadow-lg transition">
-            <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100 text-purple-600 mb-5">
+        <div class="relative rounded-2xl bg-white dark:bg-slate-800 p-7 ring-1 ring-gray-200 dark:ring-slate-700 shadow-sm hover:shadow-lg transition">
+            <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 mb-5">
                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
             </div>
-            <h3 class="text-lg font-bold text-gray-900">Kişiye özel quiz</h3>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">Kişiye özel quiz</h3>
+            <p class="mt-2 text-sm text-gray-600 dark:text-slate-400 leading-relaxed">
                 Eşleştirme, çoktan seçmeli, yazma ya da karma. Algoritma <span class="font-semibold">zayıf
                 olduğun</span> kelimeleri öne çıkarır; bildiklerini boşa sormaz.
             </p>
         </div>
 
         {# Kart 3 #}
-        <div class="relative rounded-2xl bg-white p-7 ring-1 ring-gray-200 shadow-sm hover:shadow-lg transition">
-            <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-pink-100 text-pink-600 mb-5">
+        <div class="relative rounded-2xl bg-white dark:bg-slate-800 p-7 ring-1 ring-gray-200 dark:ring-slate-700 shadow-sm hover:shadow-lg transition">
+            <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-400 mb-5">
                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/>
                 </svg>
             </div>
-            <h3 class="text-lg font-bold text-gray-900">AI metin koçu</h3>
-            <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">AI metin koçu</h3>
+            <p class="mt-2 text-sm text-gray-600 dark:text-slate-400 leading-relaxed">
                 Haftanın kelimeleriyle bir metin yaz; Gemini puanlasın, düzeltsin, geliştirsin.
                 Yazma becerin de kelimelerle birlikte büyür.
             </p>
@@ -193,37 +193,36 @@
 <section class="mx-auto max-w-7xl px-6 lg:px-8 mb-20 sm:mb-28">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600">Topluluk</p>
-            <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-gray-900">
+            <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Topluluk</p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-gray-900 dark:text-slate-100">
                 Yalnız değilsin
             </h2>
-            <p class="mt-4 text-base text-gray-600 leading-relaxed">
-                Arkadaşlarınla bağ kur, onların kelime listesinden öğren, kendininkini paylaş.
-                Kelimelerini kimlerin göreceğini sen seç:
-                <span class="font-semibold">arkadaşlara açık</span> ya da
+            <p class="mt-4 text-base text-gray-600 dark:text-slate-400 leading-relaxed">
+                Kendi kelime listeni oluştur, kimlerin göreceğini sen seç:
+                <span class="font-semibold">herkese açık</span> ya da
                 <span class="font-semibold">tamamen gizli</span>. Tercih senin.
             </p>
-            <ul class="mt-6 space-y-3 text-sm text-gray-700">
+            <ul class="mt-6 space-y-3 text-sm text-gray-700 dark:text-slate-300">
                 <li class="flex items-start gap-3">
-                    <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                    <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600 dark:text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                     </svg>
                     Detaylı kelime sayfası, sözlük araması ve dinleme.
                 </li>
                 <li class="flex items-start gap-3">
-                    <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                    <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600 dark:text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                     </svg>
                     Quiz geçmişi, doğru/yanlış oranı ve grafikler.
                 </li>
                 <li class="flex items-start gap-3">
-                    <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                    <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600 dark:text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                     </svg>
-                    Yorumlar ve geri bildirimle gelişen platform.
+                    Kendi kelimelerinle, kendi örneklerinle gelişen bir sistem.
                 </li>
                 <li class="flex items-start gap-3">
-                    <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                    <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600 dark:text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                     </svg>
                     Listeni tek tıkla dışa aktar; verin sende kalır.
@@ -233,40 +232,40 @@
 
         <div class="relative">
             <div class="rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-1 shadow-2xl">
-                <div class="rounded-3xl bg-white p-6 sm:p-8">
+                <div class="rounded-3xl bg-white dark:bg-slate-800 p-6 sm:p-8">
                     <div class="flex items-center gap-3 mb-5">
                         <div class="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold">A</div>
                         <div>
-                            <p class="text-sm font-semibold text-gray-900">aysenur</p>
-                            <p class="text-xs text-gray-500">Bugün 12 kelime ekledi</p>
+                            <p class="text-sm font-semibold text-gray-900 dark:text-slate-100">aysenur</p>
+                            <p class="text-xs text-gray-500 dark:text-slate-400">Bugün 12 kelime ekledi</p>
                         </div>
                     </div>
                     <div class="space-y-3">
-                        <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50">
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-slate-900">
                             <div class="min-w-0">
-                                <p class="font-semibold text-gray-900">resilient</p>
-                                <p class="text-xs text-gray-500 truncate">dayanıklı, esnek</p>
+                                <p class="font-semibold text-gray-900 dark:text-slate-100">resilient</p>
+                                <p class="text-xs text-gray-500 dark:text-slate-400 truncate">dayanıklı, esnek</p>
                             </div>
-                            <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">501</span>
+                            <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300">501</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50">
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-slate-900">
                             <div class="min-w-0">
-                                <p class="font-semibold text-gray-900">contradict</p>
-                                <p class="text-xs text-gray-500 truncate">çelişmek, ters düşmek</p>
+                                <p class="font-semibold text-gray-900 dark:text-slate-100">contradict</p>
+                                <p class="text-xs text-gray-500 dark:text-slate-400 truncate">çelişmek, ters düşmek</p>
                             </div>
-                            <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">401</span>
+                            <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300">401</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50">
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-slate-900">
                             <div class="min-w-0">
-                                <p class="font-semibold text-gray-900">advocate</p>
-                                <p class="text-xs text-gray-500 truncate">savunmak; savunucu</p>
+                                <p class="font-semibold text-gray-900 dark:text-slate-100">advocate</p>
+                                <p class="text-xs text-gray-500 dark:text-slate-400 truncate">savunmak; savunucu</p>
                             </div>
-                            <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">501</span>
+                            <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300">501</span>
                         </div>
                     </div>
-                    <div class="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                        <span>Quiz doğruluğu: <span class="font-semibold text-green-600">86%</span></span>
-                        <span class="text-indigo-600 font-semibold">+listeme ekle</span>
+                    <div class="mt-5 pt-4 border-t border-gray-100 dark:border-slate-700 flex items-center justify-between text-xs text-gray-500 dark:text-slate-400">
+                        <span>Quiz doğruluğu: <span class="font-semibold text-green-600 dark:text-green-400">86%</span></span>
+                        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">+listeme ekle</span>
                     </div>
                 </div>
             </div>
@@ -288,13 +287,13 @@
 
     <div class="mx-auto max-w-3xl px-6 lg:px-8 text-center">
         <h2 class="text-3xl sm:text-4xl font-bold text-white">İlk kelime bugünden.</h2>
-        <p class="mt-4 text-base sm:text-lg text-gray-300">
+        <p class="mt-4 text-base sm:text-lg text-gray-300 dark:text-slate-600">
             Hesap aç, listene 5 kelime ekle, ilk quiz'ini çöz. Toplamda 5 dakika.
         </p>
         <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
             {% if user.is_authenticated %}
                 <a href="{% url 'all_words' %}"
-                   class="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm sm:text-base font-semibold text-gray-900 hover:bg-gray-100 transition">
+                   class="inline-flex items-center gap-2 rounded-lg bg-white dark:bg-slate-800 px-5 py-3 text-sm sm:text-base font-semibold text-gray-900 dark:text-slate-100 hover:bg-gray-100 dark:hover:bg-slate-700 transition">
                     Kelime ekle
                 </a>
                 <a href="{% url 'attempt_quiz' %}"
@@ -303,7 +302,7 @@
                 </a>
             {% else %}
                 <a href="{% url 'register' %}"
-                   class="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm sm:text-base font-semibold text-gray-900 hover:bg-gray-100 transition">
+                   class="inline-flex items-center gap-2 rounded-lg bg-white dark:bg-slate-800 px-5 py-3 text-sm sm:text-base font-semibold text-gray-900 dark:text-slate-100 hover:bg-gray-100 dark:hover:bg-slate-700 transition">
                     Hesap Oluştur
                 </a>
                 <a href="{% url 'login' %}"
@@ -311,7 +310,7 @@
                     Giriş Yap
                 </a>
             {% endif %}
-            <a href="{% url 'about' %}" class="text-sm sm:text-base font-semibold text-gray-300 hover:text-white">
+            <a href="{% url 'about' %}" class="text-sm sm:text-base font-semibold text-gray-300 dark:text-slate-600 hover:text-white">
                 Daha fazla bilgi <span aria-hidden="true">→</span>
             </a>
         </div>

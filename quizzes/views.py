@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import ExpressionWrapper, F, FloatField, Sum
+from django.db.models.functions import Cast, NullIf
 from django.http import JsonResponse
 from django.contrib import messages
 from random import choice, shuffle, sample
+
+from LearnVocab import pagination
+from LearnVocab.authgate import login_gate
 
 from words.models import UserWordLink, Word, WordList
 from .models import QuizType, QuizAttempt, MultipleChoiceQuestion, WritingQuestion, MatchingQuestion, SynonymAntonymQuestion
@@ -13,10 +19,97 @@ from .question_generator import (
     generate_writing_question,
     generate_matching_question,
     generate_synonym_antonym_question,
+    generate_fill_blank_question,
+    can_generate_blank,
 )
 
 
 # Create your views here.
+
+# wrongRatio bir YÜZDE döndürür (0-100). Eşikler de yüzde cinsindendir.
+WRONG_RATIO_HIGH = 50   # %50 ve üzeri yanlış -> en yüksek öncelik
+WRONG_RATIO_MID = 20    # %20 ve üzeri yanlış -> orta öncelik
+
+
+def encounter_signals(user):
+    """
+    Öğren-Geç'ten gelen iki sinyali kelime id'lerine göre döner.
+
+    misjudged: kullanıcının "biliyorum" deyip anlamı görünce yanıldığını
+               kabul ettiği kelimeler. Bunlar kendi başına ASLA çalışmayacağı
+               kelimelerdir (bildiğini sanıyor), o yüzden quizde öne alınıyor.
+    learned:   Öğren-Geç'te doğrulayarak bildiği kelimeler. Listeden
+               silinmiyor, sadece en sona düşüyor.
+    """
+    from learnpass.models import WordEncounter
+
+    kayitlar = WordEncounter.objects.filter(user=user).values_list(
+        "word_id", "misjudged_count", "is_learned"
+    )
+    misjudged, learned = set(), set()
+    for word_id, misjudged_count, is_learned in kayitlar:
+        if misjudged_count:
+            misjudged.add(word_id)
+        elif is_learned:
+            learned.add(word_id)
+    return misjudged, learned
+
+
+def classify_links_by_priority(links, misjudged_ids=None, learned_ids=None):
+    """
+    Kullanıcının kelime bağlantılarını (UserWordLink) üç öncelik grubuna ayırır
+    ve her grubu kendi içinde sıralar.
+
+    - priority1: yeni kelimeler (<=2 deneme), yanlış oranı yüksek olanlar ve
+                 Öğren-Geç'te "bildiğini sanıyordum" çıkanlar
+    - priority2: orta düzeyde zorlananlar
+    - priority3: iyi bilinen kelimeler ve Öğren-Geç'te "öğrenildi" işaretliler
+
+    misjudged_ids / learned_ids verilmezse fonksiyon yalnızca quiz
+    istatistiklerine bakar (eski davranış).
+
+    NOT: Bu fonksiyon eskiden attemptQuiz içinde satır arasındaydı ve
+    yüzdelik wrongRatio değeri 0.50 / 0.2 gibi ondalık eşiklerle
+    karşılaştırıldığı için neredeyse her kelime priority1'e düşüyordu.
+    """
+    priority1, priority2, priority3 = [], [], []
+    misjudged_ids = misjudged_ids or set()
+    learned_ids = learned_ids or set()
+
+    for link in links:
+        # Öğren-Geç sinyalleri quiz istatistiklerinin önüne geçiyor:
+        # "bildiğini sanıyordu" bilgisi, birkaç doğru cevaptan daha değerli.
+        if link.word_id in misjudged_ids:
+            priority1.append(link)
+
+        elif link.word_id in learned_ids:
+            priority3.append(link)
+
+        elif link.totalAttempts <= 2:
+            priority1.append(link)
+
+        elif link.totalAttempts <= 6:
+            if link.wrongRatio >= WRONG_RATIO_HIGH:
+                priority1.append(link)
+            else:
+                priority2.append(link)
+
+        else:
+            if link.wrongRatio >= WRONG_RATIO_HIGH:
+                priority1.append(link)
+            elif link.wrongRatio >= WRONG_RATIO_MID:
+                priority2.append(link)
+            else:
+                priority3.append(link)
+
+    # En az denenmiş ve en çok yanlış yapılan kelimeler önce sorulsun
+    priority1.sort(key=lambda link: (link.totalAttempts, -link.wrongRatio))
+    priority2.sort(key=lambda link: link.wrongRatio, reverse=True)
+    priority3.sort(key=lambda link: link.wrongRatio, reverse=True)
+
+    return priority1, priority2, priority3
+
+
 
 @login_required
 def attemptQuiz(request):
@@ -25,7 +118,7 @@ def attemptQuiz(request):
         quizType = request.POST.get("quizType")
         totalQuestion = request.POST.get("totalQuestion")
 
-        if quizType not in ("mixed", "matching", "multiple_choice", "writing", "random", "synonym_antonym"):
+        if quizType not in ("mixed", "matching", "multiple_choice", "writing", "random", "synonym_antonym", "fill_blank"):
             messages.error(request, "Hatalı bir quiz tipi seçildi.")
             return redirect("attempt_quiz")
 
@@ -35,7 +128,7 @@ def attemptQuiz(request):
 
         totalQuestion = int(totalQuestion)
 
-        choices = ["mixed", "matching", "multiple_choice", "writing"]
+        choices = ["mixed", "matching", "multiple_choice", "writing", "fill_blank"]
         if quizType == "random":
             quizType = choice(choices)
 
@@ -76,6 +169,24 @@ def attemptQuiz(request):
             # links'i eligible ile değiştir; normal kelime sayısı kontrolünü atla
             links = eligible_links
 
+        elif quizType == "fill_blank":
+            # Boşluk doldurma: sadece örnek cümlesinde (ya da collocation'ında)
+            # kelimenin bir biçimi bulunabilen kelimeler sorulabilir.
+            eligible_links = [
+                lnk for lnk in links.select_related('word')
+                if can_generate_blank(lnk.word)
+            ]
+            if totalQuestion > len(eligible_links):
+                messages.error(
+                    request,
+                    f"Boşluk doldurma quiz'i için yeterli kelime yok. "
+                    f"Listenizde örnek cümlesinden boşluk üretilebilen {len(eligible_links)} kelime var, "
+                    f"ancak {totalQuestion} soruluk bir quiz istendi. "
+                    "Kelimelerinize örnek cümle ekleyin ya da soru sayısını azaltın."
+                )
+                return redirect("attempt_quiz")
+            links = eligible_links
+
         elif totalQuestion > len(links):
             if selected_ids:
                 messages.error(
@@ -87,38 +198,9 @@ def attemptQuiz(request):
                 messages.error(request, "Listenizde bu istediğiniz soru sayısında kelime yok.")
             return redirect("attempt_quiz")
 
-        priority1 = list()
-        priority2 = list()
-        priority3 = list()
-
-        for link in links:
-            if link.totalAttempts <= 2:
-                priority1.append(link)
-
-            elif link.totalAttempts <= 6:
-                if link.wrongRatio >= 0.50:
-                    priority1.append(link)
-                else:
-                    priority2.append(link)
-
-            else:
-                if link.wrongRatio >= 0.50:
-                    priority1.append(link)
-                elif link.wrongRatio >= 0.2:
-                    priority2.append(link)
-                else:
-                    priority3.append(link)
-
-        priority1.sort(key=lambda link: (link.totalAttempts, -link.wrongRatio))
-
-        priority2.sort(
-            key=lambda link: link.wrongRatio if link.totalAttempts > 0 else 0,
-            reverse=True
-        )
-
-        priority3.sort(
-            key=lambda link: link.wrongRatio if link.totalAttempts > 0 else 0,
-            reverse=True
+        misjudged_ids, learned_ids = encounter_signals(request.user)
+        priority1, priority2, priority3 = classify_links_by_priority(
+            links, misjudged_ids=misjudged_ids, learned_ids=learned_ids
         )
 
         links_to_ask = get_words_for_quiz(priority1, priority2, priority3, totalQuestion)
@@ -163,10 +245,22 @@ def attemptQuiz(request):
                 mc_links = links_to_ask[15:28]
                 wq_links = links_to_ask[28:]
 
+            # Üretim gerektiren soruların yarısını boşluk doldurmaya ayır.
+            # (Yazma ve boşluk doldurma aynı beceriyi farklı biçimde yokluyor:
+            # biri tanımdan kelime, diğeri bağlamdan kelime.)
+            split_at = len(wq_links) // 2
+            fb_links = wq_links[:split_at]
+            wq_links = wq_links[split_at:]
+
             for link in mc_links:
                 generate_mc_question(link, newQuiz, all_user_words)
             for link in wq_links:
                 generate_writing_question(link, newQuiz)
+            for link in fb_links:
+                # Boşluk üretilemeyen kelime için çoktan seçmeliye düş;
+                # böylece toplam soru sayısı bozulmaz.
+                if not generate_fill_blank_question(link, newQuiz):
+                    generate_mc_question(link, newQuiz, all_user_words)
             for group in mq_links_list:
                 generate_matching_question(group, newQuiz)
 
@@ -188,6 +282,22 @@ def attemptQuiz(request):
         elif quizType == "synonym_antonym":
             for link in links_to_ask:
                 generate_synonym_antonym_question(link, newQuiz, all_user_words)
+
+        elif quizType == "fill_blank":
+            created = 0
+            for link in links_to_ask:
+                if generate_fill_blank_question(link, newQuiz):
+                    created += 1
+
+            # Ön filtreye rağmen bir soru üretilemediyse toplamı gerçeğe çek
+            if created != newQuiz.totalQuestion:
+                newQuiz.totalQuestion = created
+                newQuiz.save(update_fields=["totalQuestion"])
+
+            if created == 0:
+                messages.error(request, "Boşluk doldurma sorusu üretilemedi.")
+                newQuiz.delete()
+                return redirect("attempt_quiz")
 
         return redirect('quiz_page', attempt_id=newQuiz.id, question_index=1)
 
@@ -316,15 +426,9 @@ def quizPage(request, attempt_id, question_index):
     if userset.exists():
         audio = userset.first().audio
 
-    # 1. Bu attempt'e ait tüm soruları (tiplerinden bağımsız) alıp sıralamamız gerek
-    # NOT: Bu sorguların çalışması için Modellerin import edilmesi gerekmez,
-    # çünkü 'related_name'leri (örn: "multiplechoicequestion_questions") kullanıyoruz.
-    mc_q = list(attempt.multiplechoicequestion_questions.all())
-    wq_q = list(attempt.writingquestion_questions.all())
-    mq_q = list(attempt.matchingquestion_questions.all())
-    sa_q = list(attempt.synonymantonymquestion_questions.all())
-
-    all_questions = sorted(mc_q + wq_q + mq_q + sa_q, key=lambda q: q.id)
+    # 1. Bu attempt'e ait tüm soruları (tiplerinden bağımsız) sıralı olarak al.
+    # Soru tiplerinin listesi QUESTION_RELATED_NAMES'te tek yerde duruyor.
+    all_questions = attempt.all_questions()
 
     try:
         current_question = all_questions[question_index - 1]
@@ -358,7 +462,7 @@ def quizPage(request, attempt_id, question_index):
             
             if question_type in ("MultipleChoiceQuestion", "SynonymAntonymQuestion"):
                 correct_answer_value = current_question.correct_option
-            elif question_type == "WritingQuestion":
+            elif question_type in ("WritingQuestion", "FillInTheBlankQuestion"):
                 correct_answer_value = current_question.correct_answer
             
             return JsonResponse({
@@ -413,38 +517,9 @@ def quizComplete(request, attempt_id):
         # çağırdığınızı varsayar (Puanlama hatası için)
         attempt.calculateScore() 
         
-    # --- Soru listesini 'quizPage'deki gibi tekrar oluştur ---
-    mc_q = list(attempt.multiplechoicequestion_questions.all())
-    wq_q = list(attempt.writingquestion_questions.all())
-    mq_q = list(attempt.matchingquestion_questions.all())
-    sa_q = list(attempt.synonymantonymquestion_questions.all())
+    # --- Soru listesi (template_name ve combined_items artık model property'si) ---
+    all_questions = attempt.all_questions()
 
-    all_questions = []
-
-    for q in mc_q:
-        q.template_name = 'MultipleChoiceQuestion'
-        all_questions.append(q)
-
-    for q in wq_q:
-        q.template_name = 'WritingQuestion'
-        all_questions.append(q)
-
-    for q in mq_q:
-        q.template_name = 'MatchingQuestion'
-        q.combined_items = list(zip(
-            q.left_column_items,
-            q.right_column_items_user_ordered,
-            q.correct_column_items
-        ))
-        all_questions.append(q)
-
-    for q in sa_q:
-        q.template_name = 'SynonymAntonymQuestion'
-        all_questions.append(q)
-
-    # Hepsini ID'ye göre sırala (oluşturulma sırası)
-    all_questions.sort(key=lambda q: q.id)
-    
     context = {
         "attempt": attempt,
         "all_questions": all_questions
@@ -490,3 +565,102 @@ def removeQuiz(request, quiz_id):
     # Eğer birisi bu URL'e GET isteği ile (adres çubuğundan) gelirse,
     # hiçbir şey yapma ve listeye geri yönlendir.
     return redirect('quiz_revi')
+
+
+# ======================================================================
+# Bilgi Analizi
+# ======================================================================
+
+ANALYSIS_PER_PAGE_OPTIONS = (25, 50, 100, 200)
+ANALYSIS_DEFAULT_PER_PAGE = 50
+
+# Doğruluk oranını renge çeviren aralık: 0 = kırmızı, ortası sarı, 130 = yeşil.
+# Şablon bu sayıyı hsl() içinde kullanıyor, böylece renk basamaklı değil
+# sürekli oluyor (%61 ile %62 birbirinden bir tık farklı).
+HUE_MAX = 130
+
+
+def analysis_rows(page_object_list):
+    """
+    Sayfadaki bağlantıları satıra çevirir.
+
+    Satırda bilinçli olarak yalnızca üç şey var: kelimenin kendisi, kaç kez
+    çalışıldığı ve doğruluk oranı. Deneme sayısı olmadan oran yanıltıcı olurdu
+    (2 denemede %50 ile 40 denemede %50 aynı şey değil).
+    """
+    rows = []
+    for link in page_object_list:
+        accuracy = link.accuracy or 0.0
+        rows.append({
+            "word": link.word,
+            "attempts": link.attempts,
+            "accuracy": round(accuracy),
+            "hue": round(accuracy * HUE_MAX / 100),
+        })
+    return rows
+
+
+@login_gate("Analiz", "Analiz senin kendi çalışma geçmişini gösterdiği için giriş yapman gerekiyor.")
+def wordAnalysis(request):
+    """
+    Hangi kelimeyi iyi bildiğini, hangisinde takıldığını gösteren liste.
+
+    Sıralama en çok yanlış yapılandan en çok doğru yapılana doğru. Aynı orana
+    sahip kelimelerde çok denenmiş olan öne alınıyor: 20 denemede %50, 2
+    denemede %50'den daha güvenilir bir "bunu bilmiyorsun" sinyali.
+
+    Havuz yalnızca kullanıcının KENDİ listesindeki kelimeler. Hiç çalışılmamış
+    kelimeler listeye girmiyor — doğruluk ekseninde yerleri yok — ama sayıları
+    en altta tek satır olarak belirtiliyor.
+    """
+    user = request.user
+
+    links = (
+        UserWordLink.objects.filter(user=user)
+        .select_related("word")
+        .annotate(attempts=F("correctCount") + F("wrongCount"))
+        .filter(attempts__gt=0)
+        .annotate(
+            accuracy=ExpressionWrapper(
+                Cast(F("correctCount"), FloatField()) * 100.0
+                / NullIf(F("correctCount") + F("wrongCount"), 0),
+                output_field=FloatField(),
+            )
+        )
+        .order_by("accuracy", "-attempts", "word__englishWord")
+    )
+
+    per_page = pagination.resolve_per_page(
+        request, ANALYSIS_PER_PAGE_OPTIONS, ANALYSIS_DEFAULT_PER_PAGE
+    )
+    paginator = Paginator(links, per_page)
+    page_obj = paginator.get_page(request.GET.get("page") or 1)
+
+    # Özet: oranın tek başına anlatmadığını anlatan üç sayı
+    toplamlar = UserWordLink.objects.filter(user=user).aggregate(
+        dogru=Sum("correctCount"), yanlis=Sum("wrongCount")
+    )
+    dogru = toplamlar["dogru"] or 0
+    yanlis = toplamlar["yanlis"] or 0
+    toplam_deneme = dogru + yanlis
+
+    context = {
+        "active_page": "Analiz",
+        "exercise_tab": "analysis",
+        "rows": analysis_rows(page_obj.object_list),
+        "studied_count": paginator.count,
+        "untouched_count": UserWordLink.objects.filter(
+            user=user, correctCount=0, wrongCount=0
+        ).count(),
+        "total_attempts": toplam_deneme,
+        "overall_accuracy": round(dogru * 100 / toplam_deneme) if toplam_deneme else 0,
+    }
+    context.update(pagination.pagination_context(
+        page_obj, paginator,
+        params=[],
+        per_page=per_page,
+        per_page_options=ANALYSIS_PER_PAGE_OPTIONS,
+        default_per_page=ANALYSIS_DEFAULT_PER_PAGE,
+    ))
+
+    return render(request, "pages/quizzes/wordAnalysis.html", context)

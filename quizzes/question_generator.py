@@ -1,7 +1,212 @@
 # quizzes/question_generator.py
 import random
-from .models import MultipleChoiceQuestion, WritingQuestion, MatchingQuestion, SynonymAntonymQuestion
+import re
+
+from .models import (
+    MultipleChoiceQuestion,
+    WritingQuestion,
+    MatchingQuestion,
+    SynonymAntonymQuestion,
+    FillInTheBlankQuestion,
+)
 from words.models import Word
+
+# Boşluk doldurma sorularında kullanılan boşluk işareti
+BLANK = FillInTheBlankQuestion.BLANK
+
+
+# ---------------------------------------------------------------------------
+# Cümlede kelimeyi maskeleme (boşluk doldurma soruları için)
+# ---------------------------------------------------------------------------
+
+def _inflected_forms(base):
+    """
+    Bir kelimenin cümlede geçebileceği yaygın çekimli hâllerini üretir.
+
+    Örnek cümlelerde kelimenin kök hâli değil çekimli hâli geçiyor olabilir
+    ("retain" -> "The company retained..."), bu yüzden sadece kök hâli aramak
+    soruların çoğunun üretilememesine yol açardı.
+
+    Türetimsel ekler (-ment, -tion, -ness) bilinçli olarak üretilmiyor; onlar
+    çoğu zaman farklı bir kelime demek.
+    """
+    base = (base or "").strip()
+    if not base or " " in base:
+        # Çok kelimeli girdilerde (phrasal verb vb.) çekim tahmini yapma;
+        # bu durumda v2Form/v3Form alanlarına güveniyoruz.
+        return []
+
+    forms = set()
+    vowels = "aeiou"
+
+    forms.add(base + "s")
+    forms.add(base + "es")
+    forms.add(base + "ing")
+    forms.add(base + "ed")
+    forms.add(base + "er")
+    forms.add(base + "est")
+    forms.add(base + "ly")
+
+    if base.endswith("e") and len(base) > 2:
+        stem = base[:-1]
+        forms.add(stem + "ing")
+        forms.add(base + "d")
+
+    if base.endswith("y") and len(base) > 2 and base[-2] not in vowels:
+        stem = base[:-1]
+        forms.add(stem + "ies")
+        forms.add(stem + "ied")
+        forms.add(stem + "ier")
+        forms.add(stem + "iest")
+        forms.add(stem + "ily")
+
+    # Son sessizin ikizlenmesi: stop -> stopped / stopping
+    if (
+        len(base) >= 3
+        and base[-1] not in vowels
+        and base[-1] not in "wxy"
+        and base[-2] in vowels
+        and base[-3] not in vowels
+    ):
+        doubled = base + base[-1]
+        forms.add(doubled + "ed")
+        forms.add(doubled + "ing")
+        forms.add(doubled + "er")
+
+    forms.discard(base)
+    return sorted(forms)
+
+
+def _surface_forms(word_obj, include_inflections=True):
+    """
+    Kelimenin cümlede aranacak yüzey biçimleri; uzundan kısaya sıralı.
+
+    Sıralama önemli: önce "retained" denenmezse "retain" eşleşir ve cümlede
+    ortada "ed" kalıntısı kalır.
+    """
+    base = (word_obj.englishWord or "").strip()
+    forms = {base} if base else set()
+
+    for extra in (word_obj.v2Form, word_obj.v3Form):
+        if extra and extra.strip():
+            forms.add(extra.strip())
+
+    if include_inflections:
+        forms.update(_inflected_forms(base))
+
+    return sorted((f for f in forms if f), key=len, reverse=True)
+
+
+def _mask_forms_in_sentence(sentence, forms):
+    """
+    Cümlede verilen biçimlerden ilk eşleşeni boşluğa çevirir.
+
+    Başarılıysa (boşluklu_cümle, maskelenen_yüzey_biçim) döner; hiçbiri
+    bulunamazsa None döner. Bulunamayan kelime için soru ÜRETİLMEZ — bozuk
+    soru göstermektense hiç göstermemek daha iyi.
+    """
+    sentence = (sentence or "").strip()
+    if not sentence:
+        return None
+
+    for form in forms:
+        pattern = re.compile(r"\b" + re.escape(form) + r"\b", re.IGNORECASE)
+        match = pattern.search(sentence)
+        if match:
+            masked = sentence[: match.start()] + BLANK + sentence[match.end():]
+            return masked, match.group(0)
+
+    return None
+
+
+def build_blank_for_word(word_obj, include_inflections=True, randomize=True):
+    """
+    Kelime için boşluklu bir cümle üretir.
+
+    Kelimenin DOLU olan örnek cümleleri arasından rastgele seçer. Aynı kelime
+    her sorulduğunda aynı cümleyi görmek, kelimeyi tek bir bağlama bağlar;
+    oysa amaç kelimeyi farklı kullanımlarda tanımak. Boş cümle alanları
+    `Word.example_sentences` tarafından zaten süzülüyor.
+
+    Örnek cümlelerin hiçbirinde kelime bulunamazsa collocation'lara düşer.
+
+    Dönen değer: (boşluklu_metin, maskelenen_biçim) veya None.
+    `randomize=False` deterministik sonuç verir (uygunluk kontrolü ve testler).
+    """
+    forms = _surface_forms(word_obj, include_inflections=include_inflections)
+    if not forms:
+        return None
+
+    sentences = list(word_obj.example_sentences)
+    if randomize:
+        random.shuffle(sentences)
+
+    for sentence in sentences:
+        result = _mask_forms_in_sentence(sentence, forms)
+        if result:
+            return result
+
+    # Örnek cümlelerde bulunamadıysa collocation'lardan boşluk üret
+    if word_obj.collocations:
+        collocations = [c.strip() for c in word_obj.collocations.split(",") if c.strip()]
+        if randomize:
+            random.shuffle(collocations)
+        for collocation in collocations:
+            result = _mask_forms_in_sentence(collocation, forms)
+            if result:
+                return result
+
+    return None
+
+
+def can_generate_blank(word_obj, include_inflections=True):
+    """
+    Bu kelimeden boşluk doldurma sorusu üretilebilir mi?
+
+    Uygunluk kontrolü olduğu için karıştırmaya gerek yok: ilk eşleşmede
+    döner, böylece kelime listesi üzerinde gezerken gereksiz iş yapılmaz.
+    """
+    return build_blank_for_word(
+        word_obj, include_inflections=include_inflections, randomize=False
+    ) is not None
+
+
+def _fill_from_base_words(field_name, exclude_values, needed, exclude_ids=()):
+    """
+    (Yardımcı Fonksiyon)
+    Kullanıcının kendi listesi yeterli çeldirici üretemediğinde, site genelindeki
+    'base' (kur seviyesi) kelimelerden eksik çeldiricileri tamamlar.
+    Böylece kullanıcıya "Yanlış Seçenek 1" gibi sahte şıklar gösterilmez.
+    """
+    if needed <= 0:
+        return []
+
+    taken = {str(v).strip().lower() for v in exclude_values if v}
+
+    qs = (
+        Word.objects
+        .filter(isBaseWord=True)
+        .exclude(id__in=list(exclude_ids))
+        .exclude(**{f"{field_name}__isnull": True})
+        .exclude(**{f"{field_name}": ""})
+        .order_by("?")
+        .values_list(field_name, flat=True)[: max(needed * 10, 30)]
+    )
+
+    extra = []
+    for value in qs:
+        if not value:
+            continue
+        key = str(value).strip().lower()
+        if key in taken:
+            continue
+        taken.add(key)
+        extra.append(value)
+        if len(extra) >= needed:
+            break
+
+    return extra
+
 
 def _get_distractors(correct_word_obj, all_words, field_name, count=3):
     """
@@ -32,12 +237,20 @@ def _get_distractors(correct_word_obj, all_words, field_name, count=3):
     if len(distractors) >= count:
         return random.sample(distractors, count)
     
-    # Yeterli yoksa, olanları al ve sahte/basit çeldiricilerle tamamla
+    # Yeterli yoksa eksiği site genelindeki 'base' kelimelerden tamamla.
+    # (Eskiden "Yanlış Seçenek 1" gibi sahte şıklar üretiliyordu.)
     needed = count - len(distractors)
     if needed > 0:
-        # Bu kısmı daha sonra geliştirebilirsiniz
-        distractors.extend([f"Yanlış Seçenek {i+1}" for i in range(needed)])
-        
+        distractors.extend(
+            _fill_from_base_words(
+                field_name,
+                distractors + [correct_value],
+                needed,
+                exclude_ids=[correct_word_obj.id],
+            )
+        )
+
+    # Hâlâ eksikse sahte şık uydurmak yerine daha az şıklı soru üretilir.
     return distractors[:count]
 
 
@@ -60,7 +273,14 @@ def generate_mc_question(word_link, attempt, all_words):
         question_types.append('word_to_explanation') # bu kelimenin en iyi açıklaması?
         question_types.append('explanation_to_word') # açıklamaya uyan kelime?
 
-    # 3. Olası tiplerden birini rastgele seç
+    # 3. Örnek cümlede kelimenin KÖK hâli geçiyorsa boşluk doldurma da sorulabilir.
+    # Çekimli hâller bilerek kullanılmıyor: şıklar kök hâl olduğu için boşluğa
+    # dilbilgisel olarak oturmaları gerekiyor ("managed to ___ its customers").
+    blank = build_blank_for_word(word_obj, include_inflections=False)
+    if blank:
+        question_types.append('cloze')
+
+    # 4. Olası tiplerden birini rastgele seç
     chosen_type = random.choice(question_types)
 
     # 4. Seçilen tipe göre soruyu ve çeldiricileri hazırla
@@ -89,11 +309,19 @@ def generate_mc_question(word_link, attempt, all_words):
         correct_answer = word_obj.englishWord
         distractors = _get_distractors(word_obj, all_words, 'englishWord', 3)
 
+    elif chosen_type == 'cloze':
+        # "boşluğa uygun kelime?" — kelimeyi bağlam içinde sorar
+        masked_sentence, _matched_form = blank
+        question_text = f"Boşluğa uygun kelimeyi seçiniz:\n'{masked_sentence}'"
+        correct_answer = word_obj.englishWord
+        distractors = _get_distractors(word_obj, all_words, 'englishWord', 3)
+
     # 5. Seçenekleri birleştir ve karıştır
     options_list = distractors + [correct_answer]
     random.shuffle(options_list)
     
-    option_labels = ["A", "B", "C", "D"]
+    # Çeldirici sayısı azsa daha az şıklı (ör. 3 şıklı) soru üretilir
+    option_labels = ["A", "B", "C", "D"][:len(options_list)]
     
     # "A:koşmak;B:yemek;C:içmek;D:uyumak" formatını oluşturalım
     safe_delimiter = "_#_" # Güvenli bir ayraç
@@ -187,7 +415,8 @@ def generate_matching_question(link_group, attempt):
         question_text=question_text,
         left_col_field=left_col_field_name, # Dinamik
         right_col_field=right_col_field_name, # Dinamik
-        right_col_order_ids=right_col_ids_str
+        right_col_order_ids=right_col_ids_str,
+        word_count=len(words_list),
     )
     q.words.set(words_list) # 5 kelimeyi de M2M ilişkiye ekle
 
@@ -245,15 +474,23 @@ def generate_synonym_antonym_question(word_link, attempt, all_words):
     if len(distractor_pool) >= 3:
         distractors = random.sample(distractor_pool, 3)
     else:
+        # Eksik çeldiricileri site genelindeki base kelimelerden tamamla
         distractors = distractor_pool[:]
         needed = 3 - len(distractors)
-        distractors.extend([f"—{i+1}—" for i in range(needed)])
+        distractors.extend(
+            _fill_from_base_words(
+                'englishWord',
+                distractors + [correct_answer, word_obj.englishWord],
+                needed,
+                exclude_ids=[word_obj.id],
+            )
+        )
 
     # Seçenekleri birleştir, karıştır, etiketle
     options_list = distractors + [correct_answer]
     random.shuffle(options_list)
 
-    option_labels = ["A", "B", "C", "D"]
+    option_labels = ["A", "B", "C", "D"][:len(options_list)]
     safe_delimiter = "_#_"
     options_data = safe_delimiter.join(
         [f"{label}:{option}" for label, option in zip(option_labels, options_list)]
@@ -272,3 +509,38 @@ def generate_synonym_antonym_question(word_link, attempt, all_words):
         correct_option=correct_label,
     )
     q.words.set([word_obj])
+
+
+def generate_fill_blank_question(word_link, attempt):
+    """
+    Verilen word_link için bir FillInTheBlankQuestion oluşturur.
+
+    Kelime için boşluk üretilemiyorsa (örnek cümlelerde ve collocation'larda
+    kelimenin hiçbir biçimi bulunamadıysa) hiçbir şey oluşturmaz ve False döner.
+    Çağıran taraf bu durumu ele almalıdır.
+    """
+    word_obj = word_link.word
+
+    blank = build_blank_for_word(word_obj)
+    if not blank:
+        return False
+
+    masked_sentence, matched_form = blank
+
+    # Kök hâl ve cümlede geçen çekimli hâl; ikisi de kabul edilir.
+    # (Amaç kelimeyi bilip bilmediğini ölçmek, çekimi doğru yazıp yazmadığını değil.)
+    accepted = []
+    for candidate in (word_obj.englishWord, matched_form):
+        cleaned = (candidate or "").strip()
+        if cleaned and cleaned.lower() not in {a.lower() for a in accepted}:
+            accepted.append(cleaned)
+
+    q = FillInTheBlankQuestion.objects.create(
+        attempt=attempt,
+        sentence_with_blank=masked_sentence,
+        correct_answer=matched_form,
+        accepted_answers=",".join(accepted),
+        hint=word_obj.meaningTr,
+    )
+    q.words.set([word_obj])
+    return True

@@ -1,0 +1,19 @@
+# Statik dosyaları doğrudan sun
+Alias /static /home/learnvoc/LearnVocab/static
+<Directory /home/learnvoc/LearnVocab/static>
+    Require all granted
+    Options -Indexes +FollowSymLinks
+</Directory>
+
+Alias /media /home/learnvoc/LearnVocab/media
+<Directory /home/learnvoc/LearnVocab/media>
+    Require all granted
+    Options -Indexes +FollowSymLinks
+</Directory>
+
+# Passenger ayarları
+<IfModule mod_passenger.c>
+  PassengerAppRoot /home/learnvoc/LearnVocab
+  PassengerBaseURI /
+  PassengerPython /home/learnvoc/virtualenv/LearnVocab/3.10/bin/python
+</IfModule>

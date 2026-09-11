@@ -20,6 +20,24 @@ class QuizType(models.TextChoices):
     MIXED = 'mixed', 'Karma'
     RANDOM = "random", "Rastgele"
     SYNONYM_ANTONYM = 'synonym_antonym', 'Eş/Zıt Anlamlı'
+    FILL_BLANK = 'fill_blank', 'Boşluk Doldurma'
+
+# ---------------------------------------------------------------------------
+# Bir QuizAttempt'e bağlı TÜM soru tiplerinin related_name'leri.
+#
+# Puanlama, süre toplama ve soru listeleme artık bu tek listeyi dolaşır.
+# Yeni bir soru tipi eklerken SADECE buraya bir satır eklemek yeterli;
+# eskiden aynı dört satır dört ayrı yerde elle tekrarlandığı için bir tipi
+# güncellemeyi unutmak puanlamayı sessizce bozuyordu.
+# ---------------------------------------------------------------------------
+QUESTION_RELATED_NAMES = (
+    "multiplechoicequestion_questions",
+    "writingquestion_questions",
+    "matchingquestion_questions",
+    "synonymantonymquestion_questions",
+    "fillintheblankquestion_questions",
+)
+
 
 # QuizAttempt (isteği) oluşturulan class 
 class QuizAttempt(models.Model):
@@ -46,47 +64,50 @@ class QuizAttempt(models.Model):
     def totalEmpty(self):
         return self.totalQuestion - (self.totalCorrect + self.totalWrong)
 
-    # Doğru sayısı hesaplama fonksiyonu
+    # Bu attempt'e ait tüm soruları oluşturulma sırasına göre döndürür
+    def all_questions(self):
+        """
+        Quiz'deki bütün soruları (tipi ne olursa olsun) id sırasıyla döner.
+        quizPage ve quizComplete bu metodu kullanır.
+        """
+        questions = []
+        for related_name in QUESTION_RELATED_NAMES:
+            questions.extend(getattr(self, related_name).all())
+        questions.sort(key=lambda q: q.id)
+        return questions
+
+    # Doğru/yanlış sayısını hesaplayan fonksiyon
     def calculateScore(self):
-        # Çoktan seçmeli ve yazma sorularındaki doğruları say ve eşleştirmede doğru eşleştirmeleri say
-        mc_correct = self.multiplechoicequestion_questions.filter(is_correct=True).count()
-        wq_correct = self.writingquestion_questions.filter(is_correct=True).count()
-        mq_correct_sum_agg = self.matchingquestion_questions.aggregate(Sum('correct_matches'))
-        mq_correct_sum = mq_correct_sum_agg['correct_matches__sum'] or 0
-        
-        # Eş/Zıt anlamlı sorularındaki doğruları say
-        sa_correct = self.synonymantonymquestion_questions.filter(is_correct=True).count()
+        """
+        Quiz'in toplam doğru ve yanlış sayısını hesaplar.
 
-        # Toplam doğru sayısını bunların toplamına eşitle
-        self.totalCorrect = mc_correct + wq_correct + mq_correct_sum + sa_correct
+        Her soru kendi katkısını `correct_score` / `wrong_score` ile bildirir.
+        Böylece eşleştirme gibi kısmi puanlanan tipler de aynı döngüde çalışır.
+        """
+        total_correct = 0
+        total_wrong = 0
 
-        # Çoktan seçmeli ve yazma sorularında yanlış yapılanları say
-        mc_wrong = self.multiplechoicequestion_questions.filter(is_correct=False).count()
-        wq_wrong = self.writingquestion_questions.filter(is_correct=False).count()
+        for related_name in QUESTION_RELATED_NAMES:
+            for question in getattr(self, related_name).all():
+                total_correct += question.correct_score
+                total_wrong += question.wrong_score
 
-        # Eşleştirme sorularında yanlış eşleştirilen soruları say
-        mq_wrong_sum_agg = self.matchingquestion_questions.aggregate(Sum('wrong_matches'))
-        mq_wrong_sum = mq_wrong_sum_agg['wrong_matches__sum'] or 0
+        self.totalCorrect = total_correct
+        self.totalWrong = total_wrong
 
-        # Eş/Zıt anlamlı sorularındaki yanlışları say
-        sa_wrong = self.synonymantonymquestion_questions.filter(is_correct=False).count()
-
-        # Toplam yanlış sayısını bunların toplaımına eşitle
-        self.totalWrong = mc_wrong + wq_wrong + mq_wrong_sum + sa_wrong
-        
-        # Quiz bitirildi mi'yi True yap ve quiz attempt'i kaydet.
+        # Quiz bitirildi olarak işaretle ve kaydet
         self.isCompleted = True
         self.save()
 
     # Toplam geçen süreyi alan fonksiyon
     @property
     def total_time_taken(self):
-        # Tüm soru tiplerinde geçen süreyi al e bunları topla ve dön
-        mc_time = self.multiplechoicequestion_questions.all().aggregate(Sum('time_taken'))['time_taken__sum'] or 0
-        wq_time = self.writingquestion_questions.all().aggregate(Sum('time_taken'))['time_taken__sum'] or 0
-        mq_time = self.matchingquestion_questions.all().aggregate(Sum('time_taken'))['time_taken__sum'] or 0
-        sa_time = self.synonymantonymquestion_questions.all().aggregate(Sum('time_taken'))['time_taken__sum'] or 0
-        return mc_time + wq_time + mq_time + sa_time
+        """Tüm soru tiplerinde harcanan sürenin toplamı (saniye)."""
+        total = 0
+        for related_name in QUESTION_RELATED_NAMES:
+            agg = getattr(self, related_name).all().aggregate(Sum('time_taken'))
+            total += agg['time_taken__sum'] or 0
+        return total
 
     # Geçen toplam süreyi gösteren fonskiyon
     @property
@@ -131,6 +152,22 @@ class QuizQuestion(models.Model):
     class Meta:
         abstract = True # Bu model için veritabanında tablo OLUŞTURULMAYACAK.
         ordering = ['id'] # Soruların sıralı gelmesi için
+
+    # Template'lerin hangi partial'ı include edeceğini bilmesi için.
+    # Eskiden bu değer view içinde elle atanıyordu.
+    @property
+    def template_name(self):
+        return self.__class__.__name__
+
+    # Bu sorunun quiz toplamına kattığı doğru/yanlış sayısı.
+    # Çoğu soru tipi için 1 veya 0; MatchingQuestion bunları override eder.
+    @property
+    def correct_score(self):
+        return 1 if self.is_correct else 0
+
+    @property
+    def wrong_score(self):
+        return 0 if self.is_correct else 1
 
     # Tüm alt sınıflar için ortak istatistik güncelleme metodu
     def update_word_stats(self):
@@ -256,6 +293,29 @@ class MatchingQuestion(QuizQuestion):
 
     # Sağ sütundaki veriler (kelime id'leri)
     right_col_order_ids = models.CharField(max_length=100)
+
+    # Eşleştirme kısmi puanlanır: 5 çiftin 3'ü doğruysa 3 doğru + 2 yanlış sayılır
+    @property
+    def correct_score(self):
+        return self.correct_matches
+
+    @property
+    def wrong_score(self):
+        return self.wrong_matches
+
+    # quizComplete'teki inceleme tablosu için sol/kullanıcı/doğru üçlüsü.
+    # Eskiden view içinde zip'leniyordu.
+    @property
+    def combined_items(self):
+        left = self.left_column_items
+        user_ordered = self.right_column_items_user_ordered
+        correct = self.correct_column_items
+
+        # Hiç cevaplanmamışsa (süre doldu vb.) inceleme boş kalmasın
+        if not user_ordered:
+            user_ordered = [{'id': None, 'text': '—'} for _ in left]
+
+        return list(zip(left, user_ordered, correct))
 
     # Verilen kelimelerin istenilen field alanlarını alır ve liste olarak döner
     # [{'id': 123, 'text': 'run'}, {'id': 124, 'text': 'eat'}]
@@ -402,31 +462,6 @@ class MatchingQuestion(QuizQuestion):
                 word_id__in=wrong_word_ids
             ).update(wrongCount=F('wrongCount') + 1)
 
-        self.user_answer = user_input.strip()
-        
-        # 1. Doğru cevabı belirle (çok basit, M2M'deki her kelime kendisidir)
-        correct_pairs_set = {f"{w.id}:{w.id}" for w in self.words.all()}
-        
-        # 2. Kullanıcının cevabını parse et
-        try:
-            user_pairs_set = set(self.user_answer.split(';'))
-        except Exception:
-            user_pairs_set = set() # Hatalı format
-
-        # 3. İki seti karşılaştır
-        if correct_pairs_set == user_pairs_set:
-            self.is_correct = True
-        else:
-            self.is_correct = False
-
-        if time_taken is not None:
-            self.time_taken = time_taken # YENİ SATIR
-            
-        self.save()
-        # ÖNEMLİ: Eşleştirmede, update_word_stats tüm 5 kelimeyi de
-        # doğru veya yanlış olarak işaretleyecektir.
-        self.update_word_stats()
-
 
 # Eş/Zıt anlamlı test sorularının modeli (QuizQuestion abstract class'ını extend ediyor)
 class SynonymAntonymQuestion(QuizQuestion):
@@ -460,3 +495,79 @@ class SynonymAntonymQuestion(QuizQuestion):
         self.save()
         self.update_word_stats()
 
+
+# Boşluk doldurma sorularının modeli (QuizQuestion abstract class'ını extend ediyor)
+class FillInTheBlankQuestion(QuizQuestion):
+    """
+    Kelimenin geçtiği bir örnek cümlede o kelime boşluğa çevrilir ve kullanıcıdan
+    boşluğu doldurması istenir.
+
+    Çoktan seçmeliden farkı: kullanıcı kelimeyi TANIMIYOR, ÜRETİYOR. Pasif
+    kelime bilgisini aktif kullanıma taşıyan asıl soru tipi budur.
+
+    Cümlede kelimenin çekimli hâli geçebildiği için (örn. "retain" ->
+    "retained"), `correct_answer` maskelenen yüzey biçimi tutar;
+    `accepted_answers` ise kabul edilecek diğer yazımları (kök hâl gibi)
+    virgülle ayrılmış olarak tutar.
+    """
+
+    BLANK = "____"
+
+    # Boşluğu içeren cümle: "The company managed to ____ most of its customers."
+    sentence_with_blank = models.CharField(max_length=400)
+
+    # Cümlede maskelenen yüzey biçim: "retain" ya da "retained"
+    correct_answer = models.CharField(max_length=100)
+
+    # Ek olarak kabul edilecek yazımlar (kök hâl, v2/v3 vb.), virgülle ayrılmış
+    accepted_answers = models.CharField(max_length=300, blank=True, null=True)
+
+    # Kullanıcıya ipucu olarak gösterilecek Türkçe anlam (opsiyonel)
+    hint = models.CharField(max_length=200, blank=True, null=True)
+
+    # Diğer soru tiplerinde question_text bir veritabanı alanı; burada sabit
+    # olduğu için property olarak veriliyor. Böylece template'ler her soru
+    # tipinde aynı şekilde {{ question.question_text }} kullanabiliyor.
+    @property
+    def question_text(self):
+        return "Boşluğa uygun kelimeyi yazınız:"
+
+    @property
+    def accepted_answers_list(self):
+        """Kabul edilen tüm cevapların küçük harfli, tekilleştirilmiş listesi."""
+        candidates = [self.correct_answer]
+        if self.accepted_answers:
+            candidates += self.accepted_answers.split(',')
+
+        seen = set()
+        result = []
+        for candidate in candidates:
+            cleaned = (candidate or "").strip().lower()
+            if cleaned and cleaned not in seen:
+                seen.add(cleaned)
+                result.append(cleaned)
+        return result
+
+    def check_answer(self, user_input, time_taken=None):
+        """
+        Cevabı kontrol eder.
+
+        NOT: Burada WritingQuestion'daki gibi benzerlik toleransı UYGULANMAZ.
+        Boşluğa tek bir kelime yazılıyor ve "retain" ile "retail" arasındaki
+        benzerlik oranı, gerçek bir yazım hatasınınkiyle aynı seviyede çıkıyor.
+        Yani tolerans, yazım hatasını affetmekten çok yanlış kelimeyi doğru
+        saymaya yarardı. Bunun yerine kabul edilen biçimlerin listesi geniş
+        tutuluyor (kök hâl + çekimli hâl).
+        """
+        self.user_answer = (user_input or "").strip()
+
+        # Baştaki/sondaki noktalama işaretlerini yok say
+        cleaned = self.user_answer.lower().strip(" .,!?;:'\"")
+
+        self.is_correct = cleaned in self.accepted_answers_list if cleaned else False
+
+        if time_taken is not None:
+            self.time_taken = time_taken
+
+        self.save()
+        self.update_word_stats()
