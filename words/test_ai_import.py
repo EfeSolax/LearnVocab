@@ -89,37 +89,43 @@ class ParseInputWordsTests(TestCase):
 
 
 class BuildWordKwargsTests(TestCase):
-    def test_maps_every_field(self):
-        kwargs = ai_import.build_word_kwargs(enriched())
+    """
+    Gemini çıktısının modele dönüşümü.
 
-        self.assertEqual(kwargs["englishWord"], "retain")
-        self.assertEqual(kwargs["meaningTr"], "elde tutmak")
-        self.assertEqual(kwargs["explanation"], "to keep something")
-        self.assertTrue(kwargs["isVerb"])
+    Anlam, örnek cümle ve bağlar artık ayrı tablolara gittiği için
+    `_extras` altında toplanıp kaydetme adımında yazılıyorlar.
+    """
+
+    def test_core_fields_are_mapped(self):
+        kwargs = ai_import.build_word_kwargs(enriched())
+        self.assertEqual(kwargs["text"], "retain")
+        self.assertEqual(kwargs["pos"], "verb")
         self.assertEqual(kwargs["v2Form"], "retained")
-        self.assertEqual(kwargs["synonyms"], "keep, hold")
-        self.assertEqual(kwargs["collocations"], "retain control, retain information")
+
+    def test_meaning_and_sentences_go_to_extras(self):
+        extras = ai_import.build_word_kwargs(enriched())["_extras"]
+        self.assertEqual(extras["meaning"], "elde tutmak")
+        self.assertEqual(extras["definition"], "to keep something")
+        self.assertEqual(extras["sentences"][0], "They retain number 1.")
 
     def test_word_is_private_and_levelless(self):
         kwargs = ai_import.build_word_kwargs(enriched())
         self.assertEqual(kwargs["visibility"], "private")
-        self.assertEqual(kwargs["wordLevel"], "Belirtilmemiş")
+        self.assertEqual(kwargs["cefr"], "Belirtilmemiş")
         self.assertFalse(kwargs["isBaseWord"])
 
-    def test_sentences_fill_the_ten_fields_in_order(self):
-        kwargs = ai_import.build_word_kwargs(enriched())
-        self.assertEqual(kwargs["exampleSentence1"], "They retain number 1.")
-        self.assertEqual(kwargs["exampleSentence10"], "They retain number 10.")
+    def test_sentences_keep_their_order(self):
+        """Sıra zorluk sırasıdır: A2 -> C1."""
+        extras = ai_import.build_word_kwargs(enriched())["_extras"]
+        self.assertEqual(extras["sentences"][0], "They retain number 1.")
+        self.assertEqual(extras["sentences"][-1],
+                         f"They retain number {ai_import.SENTENCE_COUNT}.")
 
-    def test_fewer_sentences_leave_the_rest_empty(self):
-        kwargs = ai_import.build_word_kwargs(enriched(example_sentences=sentences(3)))
-        self.assertEqual(kwargs["exampleSentence3"], "They retain number 3.")
-        self.assertIsNone(kwargs["exampleSentence4"])
-
-    def test_verb_forms_are_dropped_for_non_verbs(self):
+    def test_non_verbs_are_nouns_without_verb_forms(self):
         kwargs = ai_import.build_word_kwargs(
             enriched(is_verb=False, v2_form="nonsense", v3_form="nonsense")
         )
+        self.assertEqual(kwargs["pos"], "noun")
         self.assertIsNone(kwargs["v2Form"])
         self.assertIsNone(kwargs["v3Form"])
 
@@ -127,7 +133,6 @@ class BuildWordKwargsTests(TestCase):
         self.assertIsNone(ai_import.build_word_kwargs(enriched(found=False)))
 
     def test_word_without_sentences_is_skipped(self):
-        """exampleSentence1 zorunlu alan; cümlesiz kelime kaydedilemez."""
         self.assertIsNone(ai_import.build_word_kwargs(enriched(example_sentences=[])))
 
     def test_word_without_meaning_is_skipped(self):
@@ -135,20 +140,69 @@ class BuildWordKwargsTests(TestCase):
 
     def test_values_are_truncated_to_field_limits(self):
         """İki anlamlı kelimelerde model sınırı aşabiliyor; MySQL bunu reddeder."""
-        kwargs = ai_import.build_word_kwargs(
-            enriched(meaning_tr="a" * 400, explanation="b" * 500)
-        )
-        self.assertLessEqual(len(kwargs["meaningTr"]), 200)
-        self.assertLessEqual(len(kwargs["explanation"]), 300)
+        extras = ai_import.build_word_kwargs(
+            enriched(meaning_tr="a" * 400, explanation="b" * 800)
+        )["_extras"]
+        self.assertLessEqual(len(extras["meaning"]), 300)
+        self.assertLessEqual(len(extras["definition"]), 600)
 
-    def test_duplicate_list_entries_are_removed(self):
-        kwargs = ai_import.build_word_kwargs(enriched(synonyms=["keep", "Keep", "hold"]))
-        self.assertEqual(kwargs["synonyms"], "keep, hold")
+    def test_relation_names_are_carried_for_later_linking(self):
+        extras = ai_import.build_word_kwargs(enriched(synonyms=["keep", "hold"]))["_extras"]
+        self.assertEqual(extras["synonyms"], ["keep", "hold"])
 
-    def test_empty_lists_become_none(self):
-        kwargs = ai_import.build_word_kwargs(enriched(antonyms=[], collocations=[]))
-        self.assertIsNone(kwargs["antonyms"])
-        self.assertIsNone(kwargs["collocations"])
+
+class SaveEnrichedWordsTests(TestCase):
+    """Kaydetme: aile, anlam, cümleler, çekim biçimleri ve bağlar."""
+
+    def setUp(self):
+        self.user = User.objects.create_user(username="ai", password="Sifre1234")
+
+    def _kaydet(self, *kelimeler):
+        sonuc = ai_import.ImportOutcome(words=list(kelimeler), error=None, detail=None)
+        return ai_import.save_enriched_words(self.user, sonuc)
+
+    def test_word_gets_a_family_a_meaning_and_sentences(self):
+        from words.models import Meaning, Word
+
+        self._kaydet(enriched())
+        kelime = Word.objects.get(text="retain")
+        self.assertIsNotNone(kelime.family)
+        self.assertEqual(kelime.meaningTr, "elde tutmak")
+        self.assertEqual(len(kelime.example_sentences), Meaning.EXAMPLE_SENTENCE_COUNT)
+
+    def test_inflected_forms_are_generated(self):
+        from words.models import Word
+
+        self._kaydet(enriched())
+        yuzeyler = set(Word.objects.get(text="retain").forms.values_list("surface", flat=True))
+        self.assertIn("retained", yuzeyler)
+
+    def test_word_is_linked_to_the_user(self):
+        from words.models import UserWordLink
+
+        self._kaydet(enriched())
+        self.assertEqual(UserWordLink.objects.filter(user=self.user).count(), 1)
+
+    def test_relations_are_created_only_for_words_that_exist(self):
+        from words.models import Word
+        from words.testing import make_word
+
+        make_word("keep", pos="verb", meaning="tutmak")
+        self._kaydet(enriched(synonyms=["keep", "boylebirkelimeyok"]))
+
+        kelime = Word.objects.get(text="retain")
+        self.assertEqual([b.to_word.text for b in kelime.synonyms], ["keep"])
+
+    def test_an_existing_word_is_linked_not_duplicated(self):
+        from words.models import Word
+        from words.testing import make_word
+
+        make_word("retain", pos="verb", meaning="baska bir anlam")
+        ozet = self._kaydet(enriched())
+
+        self.assertEqual(Word.objects.filter(text="retain", pos="verb").count(), 1)
+        self.assertIn("retain", ozet["duplicates"])
+
 
 
 class PromptTests(TestCase):
@@ -156,6 +210,15 @@ class PromptTests(TestCase):
         prompt = ai_import.build_prompt(["retain", "obtain"])
         self.assertIn("- retain", prompt)
         self.assertIn("- obtain", prompt)
+
+    def test_sentence_plan_matches_the_model(self):
+        """
+        Plan modeldeki cümle sayısından fazlaysa üretilen cümlelerin bir
+        kısmı kaydedilirken sessizce atılırdı.
+        """
+        from words.models import Meaning
+
+        self.assertEqual(ai_import.SENTENCE_COUNT, Meaning.EXAMPLE_SENTENCE_COUNT)
 
     def test_prompt_states_the_rules(self):
         prompt = ai_import.build_prompt(["retain"])
@@ -252,10 +315,10 @@ class AiAddWordsViewTests(TestCase):
         with patch("LearnVocab.gemini.generate", return_value=fake_response([enriched()])):
             self._post()
 
-        word = Word.objects.get(englishWord="retain")
+        word = Word.objects.get(text="retain")
         self.assertEqual(word.owner, self.user)
         self.assertEqual(word.visibility, "private")
-        self.assertEqual(word.wordLevel, "Belirtilmemiş")
+        self.assertEqual(word.cefr, "Belirtilmemiş")
         self.assertEqual(len(word.example_sentences), ai_import.SENTENCE_COUNT)
         self.assertTrue(UserWordLink.objects.filter(user=self.user, word=word).exists())
 
@@ -272,20 +335,21 @@ class AiAddWordsViewTests(TestCase):
         with patch("LearnVocab.gemini.generate", return_value=fake_response(response_words)):
             response = self._post("recieve")
 
-        self.assertTrue(Word.objects.filter(englishWord="receive").exists())
+        self.assertTrue(Word.objects.filter(text="receive").exists())
         self.assertIn("recieve -> receive", self._messages(response))
 
     def test_words_already_in_the_list_are_skipped(self):
-        existing = Word.objects.create(
-            owner=self.user, englishWord="retain", meaningTr="elde tutmak",
-            exampleSentence1="They retain control.",
-        )
+        from words.testing import make_word
+
+        existing = make_word("retain", pos="verb", owner=self.user, is_base=False,
+                             meaning="elde tutmak",
+                             sentences=["They retain control."])
         UserWordLink.objects.create(user=self.user, word=existing)
 
         with patch("LearnVocab.gemini.generate", return_value=fake_response([enriched()])):
             response = self._post()
 
-        self.assertEqual(Word.objects.filter(englishWord="retain").count(), 1)
+        self.assertEqual(Word.objects.filter(text="retain").count(), 1)
         self.assertIn("Zaten listenizde", self._messages(response))
 
     def test_empty_input_is_rejected(self):
@@ -602,7 +666,7 @@ class AiImportJobBodyTests(TestCase):
         self.assertEqual(job["state"], progress.STATE_DONE)
         self.assertEqual(job["percent"], 100)
         self.assertEqual(job["result"]["added"], ["retain"])
-        self.assertTrue(Word.objects.filter(englishWord="retain").exists())
+        self.assertTrue(Word.objects.filter(text="retain").exists())
 
     def test_failed_run_marks_the_job_failed(self):
         with patch("LearnVocab.gemini.generate", side_effect=gemini.GeminiRateLimit("429")):

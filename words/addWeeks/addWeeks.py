@@ -1,31 +1,23 @@
+"""
+Seviye bazlı toplu ekleme/silme.
+
+Eskiden bu dosya ODTÜ kuruna (101–501) ve kur içi haftaya ("span") göre
+filtreliyordu. Seviye artık CEFR; kur üyeliği ise kelimenin bir özelliği
+değil, kelimeye takılacak bir liste etiketi — o katman gelince buraya
+dönecek.
+"""
+
 from ..models import Word, UserWordLink
 
-# bu metot 1,2,3,4,5 şeklinde kur seviyesi alır. Ve 1,2,3,4 şeklinde span 
-# alır ve bu duruma uyan kelimeleri verilen kullanıcının listesine ekler veya
-# kullanıcının listesinden siler.
 
-def wordsAddDelete(user, delete, level, span):
-    span = int(span)
-    wordLevel = level + "01"
-    words = Word.objects.filter(wordLevel=wordLevel, span=span, isBaseWord=True)
+def allWordsAddDelete(user, delete, level):
+    """CEFR seviyesindeki (A1..C2) bütün temel kelimeleri ekler ya da çıkarır."""
+    words = Word.objects.filter(cefr=str(level), isBaseWord=True).order_by("id")
 
     for word in words:
         if delete:
             UserWordLink.objects.filter(user=user, word=word).delete()
         else:
-            if not UserWordLink.objects.filter(user=user, word=word).exists():
-                UserWordLink.objects.create(user=user, word=word)
+            UserWordLink.objects.get_or_create(user=user, word=word)
 
-def allWordsAddDelete(user, delete, level):
-    
-    wordLevel = level + "01"
-    
-    words = Word.objects.filter(wordLevel = wordLevel, isBaseWord = True).order_by('id')
-
-    for word in words:
-        if delete:
-            UserWordLink.objects.filter(user = user, word = word).delete()
-        else:
-            if not UserWordLink.objects.filter(user = user, word = word).exists():
-                UserWordLink.objects.create(user = user, word = word)
-
+    return words.count()

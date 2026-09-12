@@ -1,174 +1,331 @@
 """
-Kelime görünürlüğü (visibility) testleri.
+Kelime çekirdeği testleri.
 
-Bir kullanıcının başkasının gizli kelimesini URL'yi tahmin ederek
-göremediğini garanti eder.
+Kapsam: görünürlük, aile, tür, anlam, ton/üslup/alan, collocation,
+kullanım kalıbı, örnek cümle, çekim biçimi, yanlış dost, deyim, kelime
+bağları, kişisel anlam ve kişisel not — yani modelin her katmanı.
 """
 
 import re
 
+from django.contrib.auth.models import AnonymousUser
+from django.core.management import call_command
+from django.db.utils import IntegrityError
 from django.test import TestCase
 from django.urls import reverse, NoReverseMatch
 
 from users.models import User
-from words.models import Word, UserWordLink
+from words import inflect
+from words.models import (
+    CEFR_CHOICES, CEFR_LEVELS, Category, Collocation, ExampleSentence, Expression, FalseFriend, Meaning,
+    Register, Sentiment, UsagePattern, UserMeaning, UserWordLink, UserWordNote,
+    Word, WordFamily, WordRelation,
+)
+from words.testing import make_word
 from words.views import can_view_word, visible_words_qs
 
 
 class VisibilityTests(TestCase):
+    """
+    Görünürlük: kur kelimeleri ve "herkese açık" olanlar herkese; gizli
+    kelimeler yalnızca sahibine ve listesine ekleyene.
+    """
+
     def setUp(self):
         self.owner = User.objects.create_user(username="sahip", password="Sifre1234")
-        self.friend = User.objects.create_user(username="arkadas", password="Sifre1234")
         self.stranger = User.objects.create_user(username="yabanci", password="Sifre1234")
-        self.owner.friends.add(self.friend)
 
-        def make(visibility, name, **extra):
-            return Word.objects.create(
-                owner=self.owner,
-                englishWord=name,
-                meaningTr=f"{name}-tr",
-                exampleSentence1=f"Example {name}.",
-                visibility=visibility,
-                **extra,
-            )
-
-        self.public_word = make("public", "public_word")
-        self.friends_word = make("friends", "friends_word")
-        self.private_word = make("private", "private_word")
-        self.base_word = Word.objects.create(
-            englishWord="base_word",
-            meaningTr="temel",
-            exampleSentence1="Example base.",
-            isBaseWord=True,
-            wordLevel="101",
-        )
+        self.public_word = make_word("publicword", owner=self.owner,
+                                     is_base=False, visibility="public")
+        self.private_word = make_word("privateword", owner=self.owner,
+                                      is_base=False, visibility="private")
+        self.base_word = make_word("baseword", is_base=True, level="101")
 
     def test_owner_sees_everything_of_their_own(self):
-        for word in (self.public_word, self.friends_word, self.private_word):
+        for word in (self.public_word, self.private_word):
             self.assertTrue(can_view_word(word, self.owner))
 
-    def test_friend_sees_friends_visibility(self):
-        self.assertTrue(can_view_word(self.friends_word, self.friend))
-
-    def test_stranger_cannot_see_friends_or_private(self):
-        self.assertFalse(can_view_word(self.friends_word, self.stranger))
+    def test_stranger_cannot_see_a_private_word(self):
         self.assertFalse(can_view_word(self.private_word, self.stranger))
 
-    def test_everyone_sees_public_and_base(self):
+    def test_everyone_sees_public_and_base_words(self):
         for word in (self.public_word, self.base_word):
             self.assertTrue(can_view_word(word, self.stranger))
 
-    def test_saved_word_stays_visible_to_the_saver(self):
+    def test_anonymous_sees_only_public_and_base(self):
+        anonim = AnonymousUser()
+        self.assertTrue(can_view_word(self.public_word, anonim))
+        self.assertTrue(can_view_word(self.base_word, anonim))
+        self.assertFalse(can_view_word(self.private_word, anonim))
+
+    def test_saving_a_word_grants_access(self):
         UserWordLink.objects.create(user=self.stranger, word=self.private_word)
         self.assertTrue(can_view_word(self.private_word, self.stranger))
 
     def test_visible_words_qs_matches_can_view_word(self):
-        visible = set(visible_words_qs(self.stranger).values_list("id", flat=True))
-        self.assertIn(self.public_word.id, visible)
-        self.assertIn(self.base_word.id, visible)
-        self.assertNotIn(self.private_word.id, visible)
-        self.assertNotIn(self.friends_word.id, visible)
+        """Liste sorgusu ile tekil kontrol aynı sonucu vermeli."""
+        for kullanici in (self.owner, self.stranger, AnonymousUser()):
+            with self.subTest(kullanici=str(kullanici)):
+                sorgudan = set(visible_words_qs(kullanici).values_list("id", flat=True))
+                tekil = {w.id for w in Word.objects.all() if can_view_word(w, kullanici)}
+                self.assertEqual(sorgudan, tekil)
 
     def test_word_detail_redirects_for_unauthorized_user(self):
         self.client.login(username="yabanci", password="Sifre1234")
-        response = self.client.get(reverse("word_detail", args=[self.private_word.id]))
-        self.assertRedirects(response, reverse("all_words"))
+        cevap = self.client.get(reverse("word_detail", args=[self.private_word.id]))
+        self.assertEqual(cevap.status_code, 302)
 
     def test_word_detail_works_for_owner(self):
         self.client.login(username="sahip", password="Sifre1234")
-        response = self.client.get(reverse("word_detail", args=[self.private_word.id]))
-        self.assertEqual(response.status_code, 200)
+        cevap = self.client.get(reverse("word_detail", args=[self.private_word.id]))
+        self.assertEqual(cevap.status_code, 200)
 
 
-class CollocationTests(TestCase):
-    """Kullanım kalıpları alanı — synonyms/antonyms ile aynı virgüllü format."""
+class WordFamilyTests(TestCase):
+    """Aile: öğrenmenin birimi tek kelime değil, türev ailesi."""
 
     def setUp(self):
-        self.word = Word.objects.create(
-            englishWord="retain",
-            meaningTr="elde tutmak",
-            exampleSentence1="They retain full control.",
+        self.aile = WordFamily.objects.create(root="courage")
+        self.courage = make_word("courage", family=self.aile, meaning="cesaret")
+        self.encourage = make_word("encourage", pos="verb", family=self.aile,
+                                   meaning="cesaretlendirmek")
+        self.discourage = make_word("discourage", pos="verb", family=self.aile,
+                                    meaning="cesaretini kırmak")
+
+    def test_members_share_one_family(self):
+        self.assertEqual(self.aile.words.count(), 3)
+        self.assertEqual(self.encourage.family, self.courage.family)
+
+    def test_root_comes_first_among_members(self):
+        self.assertEqual(self.aile.members[0].text, "courage")
+
+    def test_a_lonely_word_still_gets_a_family(self):
+        yalniz = make_word("immaculate")
+        self.assertIsNotNone(yalniz.family)
+        self.assertEqual(yalniz.family.root, "immaculate")
+
+    def test_detail_page_lists_the_other_members(self):
+        html = self.client.get(reverse("word_detail", args=[self.encourage.id])).content.decode()
+        self.assertIn("courage ailesi", html)
+        self.assertIn("discourage", html)
+
+    def test_deleting_the_family_removes_its_words(self):
+        self.aile.delete()
+        self.assertEqual(Word.objects.filter(text="encourage").count(), 0)
+
+
+class PartOfSpeechTests(TestCase):
+    """Aynı yazılış, farklı tür = ayrı kayıt."""
+
+    def test_same_spelling_two_parts_of_speech(self):
+        aile = WordFamily.objects.create(root="progress")
+        isim = make_word("progress", pos="noun", family=aile, meaning="ilerleme")
+        fiil = make_word("progress", pos="verb", family=aile, meaning="ilerlemek")
+
+        self.assertNotEqual(isim.id, fiil.id)
+        self.assertEqual(Word.objects.filter(text="progress").count(), 2)
+        self.assertNotEqual(isim.meaningTr, fiil.meaningTr)
+
+    def test_same_spelling_same_pos_is_not_allowed(self):
+        from django.db import IntegrityError
+
+        make_word("retain", pos="verb")
+        with self.assertRaises(IntegrityError):
+            Word.objects.create(family=WordFamily.objects.create(root="x"),
+                                text="retain", pos="verb")
+
+
+class MeaningTests(TestCase):
+    """Kelime ≠ anlam: bank tek kelime, iki anlam."""
+
+    def setUp(self):
+        self.bank = make_word(
+            "bank", meaning="banka",
+            definition="an organization that keeps money",
+            extra_meanings=[("nehir kıyısı", "the land along a river")],
         )
 
-    def test_empty_collocations_returns_empty_list(self):
-        self.assertEqual(self.word.collocations_list, [])
+    def test_a_word_can_carry_several_meanings(self):
+        self.assertEqual(self.bank.meanings.count(), 2)
+        self.assertTrue(self.bank.has_multiple_meanings)
 
-    def test_collocations_are_split_and_trimmed(self):
-        self.word.collocations = "retain information,  retain control , retain its shape"
-        self.word.save()
-        self.assertEqual(
-            self.word.collocations_list,
-            ["retain information", "retain control", "retain its shape"],
-        )
+    def test_primary_meaning_is_the_first_one(self):
+        self.assertEqual(self.bank.meaningTr, "banka")
+        self.assertEqual(self.bank.explanation, "an organization that keeps money")
 
-    def test_blank_entries_are_dropped(self):
-        self.word.collocations = "retain information, , ,retain control,"
-        self.word.save()
-        self.assertEqual(
-            self.word.collocations_list, ["retain information", "retain control"]
-        )
+    def test_both_meanings_appear_on_the_detail_page(self):
+        html = self.client.get(reverse("word_detail", args=[self.bank.id])).content.decode()
+        self.assertIn("banka", html)
+        self.assertIn("nehir kıyısı", html)
+
+    def test_a_word_without_meanings_does_not_crash(self):
+        bos = Word.objects.create(family=WordFamily.objects.create(root="bos"),
+                                  text="bos", pos="noun")
+        self.assertEqual(bos.meaningTr, "")
+        self.assertEqual(bos.explanation, "")
 
 
 class ExampleSentenceTests(TestCase):
     """
-    10 örnek cümle alanı ve boşları süzen `example_sentences` property'si.
+    Örnek cümleler artık kolon değil satır; ANLAM başına 5 tane.
 
-    Bir kelime tek bir cümleden öğrenilmediği için alan sayısı 3'ten 10'a
-    çıkarıldı; quiz üretimi de bu listeden besleniyor.
+    Bir kelime tek cümleden öğrenilmez — aynı kelimeyi farklı bağlamlarda
+    görmek gerekiyor. Cümlenin kelimeye değil anlama bağlı olması da şart:
+    `bank`ın "banka" cümleleriyle "nehir kıyısı" cümleleri aynı şey değil.
     """
 
-    def _word(self, **sentences):
-        defaults = {"exampleSentence1": "They retain full control."}
-        defaults.update(sentences)
-        return Word.objects.create(
-            englishWord="retain", meaningTr="elde tutmak", **defaults
-        )
+    def test_model_allows_five_sentences(self):
+        self.assertEqual(Meaning.EXAMPLE_SENTENCE_COUNT, 5)
 
-    def test_model_has_ten_sentence_fields(self):
-        self.assertEqual(Word.EXAMPLE_SENTENCE_COUNT, 10)
-        field_names = {f.name for f in Word._meta.get_fields()}
-        for i in range(1, 11):
-            self.assertIn(f"exampleSentence{i}", field_names)
-
-    def test_only_first_sentence_is_required(self):
-        word = self._word()
-        word.full_clean(exclude=["owner"])  # hata fırlatmamalı
-
-    def test_empty_and_blank_sentences_are_filtered(self):
-        word = self._word(
-            exampleSentence2=None,
-            exampleSentence3="",
-            exampleSentence4="   ",
-            exampleSentence5="They retained it.",
-        )
-        self.assertEqual(
-            word.example_sentences,
-            ["They retain full control.", "They retained it."],
-        )
+    def test_sentences_hang_on_the_meaning_not_the_word(self):
+        """Cümle satırının kelimeye giden bir alanı kalmadı."""
+        alanlar = {f.name for f in ExampleSentence._meta.get_fields()}
+        self.assertIn("meaning", alanlar)
+        self.assertNotIn("word", alanlar)
 
     def test_sentences_keep_their_order(self):
-        word = self._word(
-            exampleSentence7="Seventh sentence about retain.",
-            exampleSentence3="Third sentence about retain.",
-        )
-        self.assertEqual(
-            word.example_sentences,
-            [
-                "They retain full control.",
-                "Third sentence about retain.",
-                "Seventh sentence about retain.",
-            ],
-        )
+        kelime = make_word("retain", sentences=["Birinci.", "İkinci.", "Üçüncü."])
+        self.assertEqual(kelime.example_sentences, ["Birinci.", "İkinci.", "Üçüncü."])
 
-    def test_sentences_are_stripped(self):
-        word = self._word(exampleSentence2="   padded sentence   ")
-        self.assertIn("padded sentence", word.example_sentences)
-        self.assertNotIn("   padded sentence   ", word.example_sentences)
+    def test_extra_sentences_beyond_the_limit_are_dropped(self):
+        kelime = make_word("retain", sentences=[f"Cümle {i}." for i in range(1, 9)])
+        self.assertEqual(len(kelime.example_sentences), 5)
 
-    def test_has_extra_example_sentences(self):
-        self.assertFalse(self._word().has_extra_example_sentences)
-        self.assertFalse(self._word(exampleSentence6="  ").has_extra_example_sentences)
-        self.assertTrue(self._word(exampleSentence6="Another one.").has_extra_example_sentences)
+    def test_a_word_can_have_no_sentences(self):
+        kelime = make_word("retain", sentences=[])
+        self.assertEqual(kelime.example_sentences, [])
+
+    def test_sentences_are_rows_not_columns(self):
+        """Eski modelde exampleSentence1..10 kolonları vardı; artık yoklar."""
+        alanlar = {f.name for f in Word._meta.get_fields()}
+        for i in range(1, 11):
+            self.assertNotIn(f"exampleSentence{i}", alanlar)
+
+
+class WordFormTests(TestCase):
+    """
+    Çekim biçimleri: metindeki yazımdan sözlük maddesine köprü.
+
+    Çekim yeni bir kelime DEĞİLDİR — kendi anlamı, açıklaması, cümlesi olmaz.
+    """
+
+    def test_regular_verb_forms_are_generated(self):
+        kelime = make_word("decide", pos="verb")
+        yuzeyler = set(kelime.forms.values_list("surface", flat=True))
+        self.assertEqual(yuzeyler, {"decide", "decides", "deciding", "decided"})
+
+    def test_irregular_verb_forms_come_from_the_data(self):
+        """went / gone kuralla üretilemez; v2/v3 alanlarından gelir."""
+        kelime = make_word("go", pos="verb", v2="went", v3="gone")
+        yuzeyler = set(kelime.forms.values_list("surface", flat=True))
+        self.assertIn("went", yuzeyler)
+        self.assertIn("gone", yuzeyler)
+
+    def test_irregular_plural_comes_from_the_table(self):
+        kelime = make_word("child", pos="noun")
+        self.assertIn("children", kelime.forms.values_list("surface", flat=True))
+
+    def test_adjective_degrees_are_generated(self):
+        kelime = make_word("slow", pos="adjective")
+        yuzeyler = set(kelime.forms.values_list("surface", flat=True))
+        self.assertIn("slower", yuzeyler)
+        self.assertIn("slowest", yuzeyler)
+
+    def test_long_adjectives_get_no_single_word_degrees(self):
+        """'more important' iki kelimedir, metinde tek token olarak aranmaz."""
+        kelime = make_word("important", pos="adjective")
+        self.assertEqual(set(kelime.forms.values_list("surface", flat=True)), {"important"})
+
+    def test_form_kind_is_recorded(self):
+        kelime = make_word("slow", pos="adjective")
+        tur = kelime.forms.get(surface="slower").kind
+        self.assertEqual(tur, "comparative")
+
+    def test_the_word_itself_is_also_a_form(self):
+        kelime = make_word("retain", pos="verb")
+        self.assertIn("retain", kelime.forms.values_list("surface", flat=True))
+
+    def test_forms_are_rebuilt_not_duplicated(self):
+        kelime = make_word("decide", pos="verb")
+        once = kelime.forms.count()
+        inflect.rebuild_forms(kelime)
+        self.assertEqual(kelime.forms.count(), once)
+
+
+class WordRelationTests(TestCase):
+    """Eş / zıt anlamlı ve "daha basit karşılığı" bağları."""
+
+    def setUp(self):
+        self.possess = make_word("possess", pos="verb", meaning="sahip olmak")
+        self.have = make_word("have", pos="verb", meaning="sahip olmak")
+        self.harmful = make_word("harmful", pos="adjective", meaning="zararlı")
+        self.harmless = make_word("harmless", pos="adjective", meaning="zararsız")
+
+    def test_simpler_relation_carries_a_nuance_note(self):
+        WordRelation.objects.create(from_word=self.possess, to_word=self.have,
+                                    type="simpler", note="daha resmî")
+        bag = self.possess.simpler_words.first()
+        self.assertEqual(bag.to_word, self.have)
+        self.assertEqual(bag.note, "daha resmî")
+
+    def test_relation_types_do_not_leak_into_each_other(self):
+        WordRelation.objects.create(from_word=self.harmful, to_word=self.harmless,
+                                    type="antonym")
+        self.assertEqual(self.harmful.antonyms.count(), 1)
+        self.assertEqual(self.harmful.synonyms.count(), 0)
+        self.assertEqual(self.harmful.simpler_words.count(), 0)
+
+    def test_the_same_relation_cannot_be_stored_twice(self):
+        from django.db import IntegrityError
+
+        WordRelation.objects.create(from_word=self.harmful, to_word=self.harmless, type="antonym")
+        with self.assertRaises(IntegrityError):
+            WordRelation.objects.create(from_word=self.harmful, to_word=self.harmless, type="antonym")
+
+    def test_simpler_word_is_shown_on_the_detail_page(self):
+        WordRelation.objects.create(from_word=self.possess, to_word=self.have,
+                                    type="simpler", note="daha resmî")
+        html = self.client.get(reverse("word_detail", args=[self.possess.id])).content.decode()
+        self.assertIn("Daha basit karşılığı", html)
+        self.assertIn("daha resmî", html)
+
+
+class UserWordNoteTests(TestCase):
+    """
+    Kişisel not kullanıcıya ait, kelimeye değil.
+
+    Eski modelde `note` paylaşılan Word satırının üstündeydi — iki kullanıcı
+    aynı kelimeyi kaydettiğinde aynı notu paylaşıyorlardı.
+    """
+
+    def setUp(self):
+        self.efe = User.objects.create_user(username="efe", password="Sifre1234")
+        self.ayse = User.objects.create_user(username="ayse", password="Sifre1234")
+        self.word = make_word("immaculate")
+
+    def test_each_user_has_their_own_note(self):
+        UserWordNote.objects.create(user=self.efe, word=self.word, note="benim notum")
+        UserWordNote.objects.create(user=self.ayse, word=self.word, note="onun notu")
+
+        self.assertEqual(self.word.note_of(self.efe).note, "benim notum")
+        self.assertEqual(self.word.note_of(self.ayse).note, "onun notu")
+
+    def test_missing_note_is_none(self):
+        self.assertIsNone(self.word.note_of(self.efe))
+
+    def test_note_is_saved_from_the_detail_page(self):
+        self.client.login(username="efe", password="Sifre1234")
+        self.client.post(reverse("word_detail", args=[self.word.id]), {"note": "unutma"})
+        self.assertEqual(self.word.note_of(self.efe).note, "unutma")
+
+    def test_clearing_the_note_deletes_it(self):
+        UserWordNote.objects.create(user=self.efe, word=self.word, note="eski")
+        self.client.login(username="efe", password="Sifre1234")
+        self.client.post(reverse("word_detail", args=[self.word.id]), {"note": "  "})
+        self.assertIsNone(self.word.note_of(self.efe))
+
+    def test_the_core_word_has_no_note_field(self):
+        self.assertNotIn("note", {f.name for f in Word._meta.get_fields()})
 
 
 class AllWordsPaginationTests(TestCase):
@@ -180,11 +337,7 @@ class AllWordsPaginationTests(TestCase):
 
     def setUp(self):
         for i in range(120):
-            Word.objects.create(
-                englishWord=f"word{i:03}", meaningTr=f"anlam{i}",
-                exampleSentence1=f"A sentence with word{i:03}.",
-                isBaseWord=True, wordLevel="101",
-            )
+            make_word(f"word{i:03}", meaning=f"anlam{i}", level="101", forms=False)
 
     def _get(self, **params):
         response = self.client.get(reverse("all_words"), params)
@@ -354,16 +507,14 @@ class FriendsFeatureDisabledTests(TestCase):
         self.assertEqual(len(friends.urls.urlpatterns), 6)
         self.assertIsNotNone(get_template("pages/friends.html"))
 
-    def test_friends_visibility_still_works_for_existing_words(self):
-        """Eski 'arkadaşlara açık' kelimeler kaybolmamalı."""
-        from words.views import can_view_word
+    def test_friends_visibility_option_is_gone(self):
+        """
+        Arkadaşlık kapalı olduğu için "arkadaşlara açık" görünürlüğü de
+        kaldırıldı; geriye yalnızca gizli / herkese açık kaldı.
+        """
+        from words.models import VISIBILITY_CHOICES
 
-        self.user.friends.add(self.other)
-        word = Word.objects.create(
-            owner=self.user, englishWord="shared", meaningTr="paylaşılan",
-            exampleSentence1="A shared sentence.", visibility="friends",
-        )
-        self.assertTrue(can_view_word(word, self.other))
+        self.assertEqual({d for d, _ in VISIBILITY_CHOICES}, {"private", "public"})
 
 
 class CommentsFeatureDisabledTests(TestCase):
@@ -771,3 +922,547 @@ class TemplateCommentSyntaxTests(TestCase):
                                                eslesme.group(0)[:50].replace("\n", " "))
                             )
         self.assertEqual(hatalar, [], "Çok satırlı {# #} yorumu sayfaya basılır:\n" + "\n".join(hatalar))
+
+class CefrLevelTests(TestCase):
+    """
+    Seviye artık ODTÜ kuru (101–501) değil, CEFR (A1–C2).
+
+    Kur, kelimenin bir özelliği değil; kelimeye takılan bir liste etiketi
+    olacak. Bu testler eski alanın geri dönmediğini sabitliyor.
+    """
+
+    def test_word_level_field_is_gone(self):
+        alanlar = {f.name for f in Word._meta.get_fields()}
+        self.assertIn("cefr", alanlar)
+        self.assertNotIn("wordLevel", alanlar)
+
+    def test_cefr_choices_are_the_six_levels(self):
+        kodlar = [kod for kod, _ in CEFR_CHOICES if kod != "Belirtilmemiş"]
+        self.assertEqual(kodlar, ["A1", "A2", "B1", "B2", "C1", "C2"])
+
+    def test_old_course_codes_are_not_valid_levels(self):
+        for eski in ("101", "201", "301", "401", "501"):
+            with self.subTest(eski=eski):
+                self.assertNotIn(eski, CEFR_LEVELS)
+
+    def test_level_is_unspecified_by_default(self):
+        kelime = Word.objects.create(
+            family=WordFamily.objects.create(root="seviyesiz"),
+            text="seviyesiz", pos="noun",
+        )
+        self.assertEqual(kelime.cefr, "Belirtilmemiş")
+
+
+class SentimentAndRegisterTests(TestCase):
+    """
+    Ton ve üslup.
+
+    Bu iki alan var çünkü TÜRKÇE KARŞILIK bu bilgiyi siliyor: `notorious`
+    ile `famous` sözlükte ikisi de "ünlü"; `possess` ile `have` ikisi de
+    "sahip olmak". Fark ancak burada duruyor.
+    """
+
+    def test_defaults_are_neutral(self):
+        anlam = make_word("word").primary_meaning
+        self.assertEqual(anlam.sentiment, Sentiment.NEUTRAL)
+        self.assertEqual(anlam.register, Register.NEUTRAL)
+
+    def test_two_words_with_the_same_turkish_meaning_differ_in_tone(self):
+        unlu = make_word("famous", meaning="ünlü", sentiment=Sentiment.POSITIVE)
+        kotu_unlu = make_word("notorious", meaning="ünlü", sentiment=Sentiment.NEGATIVE)
+        self.assertEqual(unlu.meaningTr, kotu_unlu.meaningTr)
+        self.assertNotEqual(unlu.primary_meaning.sentiment,
+                            kotu_unlu.primary_meaning.sentiment)
+
+    def test_register_is_recorded_on_the_meaning(self):
+        kelime = make_word("possess", pos="verb", meaning="sahip olmak",
+                           register=Register.FORMAL)
+        self.assertEqual(kelime.primary_meaning.register, Register.FORMAL)
+
+    def test_is_marked_only_when_something_is_not_neutral(self):
+        duz = make_word("plain").primary_meaning
+        isaretli = make_word("detrimental", sentiment=Sentiment.NEGATIVE).primary_meaning
+        self.assertFalse(duz.is_marked)
+        self.assertTrue(isaretli.is_marked)
+
+    def test_tone_badge_shows_up_on_the_family_page(self):
+        kelime = make_word("detrimental", pos="adjective", meaning="zararlı",
+                           sentiment=Sentiment.NEGATIVE, register=Register.ACADEMIC)
+        html = self.client.get(reverse("word_detail", args=[kelime.id])).content.decode()
+        self.assertIn("olumsuz", html)
+        self.assertIn("akademik", html)
+
+
+class CategoryTests(TestCase):
+    """Alan (konu) etiketi anlama takılıyor; okuma metinleriyle bağlanacak yer burası."""
+
+    def test_categories_attach_to_the_meaning(self):
+        kelime = make_word("inflation", meaning="enflasyon", categories=["Ekonomi"])
+        self.assertEqual([k.name for k in kelime.primary_meaning.categories.all()],
+                         ["Ekonomi"])
+
+    def test_word_level_shortcut_collects_categories_without_repeats(self):
+        kelime = make_word("bank", meaning="banka", categories=["Ekonomi"])
+        ikinci = Meaning.objects.create(word=kelime, meaning_tr="nehir kıyısı", sort_order=1)
+        ikinci.categories.add(Category.objects.get(slug="ekonomi"))
+        self.assertEqual([k.name for k in kelime.categories], ["Ekonomi"])
+
+    def test_a_category_is_reused_not_duplicated(self):
+        make_word("inflation", meaning="enflasyon", categories=["Ekonomi"])
+        make_word("recession", meaning="durgunluk", categories=["Ekonomi"])
+        self.assertEqual(Category.objects.filter(name="Ekonomi").count(), 1)
+
+
+class MeaningLevelDataTests(TestCase):
+    """
+    Collocation, kalıp ve cümleler ANLAMA bağlı, kelimeye değil.
+
+    `bank` bunun kanıtı: "open a bank account" yalnızca "banka" anlamına
+    aittir. Kelime seviyesinde tutulsalardı iki anlamın verisi karışırdı.
+    """
+
+    def setUp(self):
+        self.bank = make_word("bank", meaning="banka", sentences=["I went to the bank."],
+                              categories=["Ekonomi"],
+                              collocations=[("open a bank account", "verb_noun")])
+        self.kiyi = Meaning.objects.create(word=self.bank, meaning_tr="nehir kıyısı",
+                                           sort_order=1)
+        ExampleSentence.objects.create(meaning=self.kiyi, text="We sat on the bank.")
+        Collocation.objects.create(meaning=self.kiyi, pattern="the river bank",
+                                   kind="noun_noun")
+
+    def test_each_meaning_keeps_its_own_collocations(self):
+        self.assertEqual([c.pattern for c in self.bank.primary_meaning.collocations.all()],
+                         ["open a bank account"])
+        self.assertEqual([c.pattern for c in self.kiyi.collocations.all()],
+                         ["the river bank"])
+
+    def test_each_meaning_keeps_its_own_sentences(self):
+        self.assertEqual([c.text for c in self.kiyi.examples.all()],
+                         ["We sat on the bank."])
+
+    def test_word_shortcut_flattens_in_meaning_order(self):
+        self.assertEqual(self.bank.example_sentences,
+                         ["I went to the bank.", "We sat on the bank."])
+        self.assertEqual([c.pattern for c in self.bank.collocations],
+                         ["open a bank account", "the river bank"])
+
+    def test_the_same_collocation_cannot_be_added_twice_to_one_meaning(self):
+        with self.assertRaises(IntegrityError):
+            Collocation.objects.create(meaning=self.kiyi, pattern="the river bank")
+
+    def test_deleting_a_meaning_takes_its_rows_with_it(self):
+        self.kiyi.delete()
+        self.assertEqual(ExampleSentence.objects.filter(text="We sat on the bank.").count(), 0)
+        self.assertEqual(Collocation.objects.filter(pattern="the river bank").count(), 0)
+
+    def test_collocations_appear_on_the_family_page(self):
+        html = self.client.get(reverse("word_detail", args=[self.bank.id])).content.decode()
+        self.assertIn("open a bank account", html)
+        self.assertIn("the river bank", html)
+
+
+class UsagePatternTests(TestCase):
+    """
+    Kalıp collocation değil, gramer: `decide to do` ama `suggest doing`.
+
+    Ayrı tutulmalarının sebebi quizlerinin de ayrı olması: collocation'da
+    eksik kelime, kalıpta eksik edat ya da fiil biçimi sorulur.
+    """
+
+    def test_patterns_hang_on_the_meaning(self):
+        kelime = make_word("decide", pos="verb", meaning="karar vermek",
+                           patterns=[("decide to do sth", "verb_form")])
+        self.assertEqual([k.pattern for k in kelime.primary_meaning.patterns.all()],
+                         ["decide to do sth"])
+
+    def test_a_pattern_carries_its_kind(self):
+        kelime = make_word("depend", pos="verb", meaning="bağlı olmak",
+                           patterns=[("depend on sth", "preposition")])
+        self.assertEqual(kelime.patterns.first().kind, "preposition")
+
+    def test_pattern_note_survives_to_the_page(self):
+        kelime = make_word("discourage", pos="verb", meaning="caydırmak")
+        UsagePattern.objects.create(
+            meaning=kelime.primary_meaning, pattern="discourage sb from doing sth",
+            kind="preposition", note="from + -ing; from to DEĞİL",
+        )
+        html = self.client.get(reverse("word_detail", args=[kelime.id])).content.decode()
+        self.assertIn("discourage sb from doing sth", html)
+        self.assertIn("from + -ing", html)
+
+
+class FalseFriendTests(TestCase):
+    """
+    Yanlış dost: Türkçeye benzediği için yanlış anlaşılan kelime.
+
+    `sympathetic` "sempatik" değildir. Bu hata Türkçe konuşanda sistematik
+    olduğu için veri olarak tutulabilir.
+    """
+
+    def setUp(self):
+        self.kelime = make_word("sympathetic", pos="adjective", meaning="anlayışlı")
+        FalseFriend.objects.create(
+            word=self.kelime, turkish_lookalike="sempatik",
+            assumed_meaning="cana yakın, hoş", correct_english="likeable, friendly",
+        )
+
+    def test_the_false_friend_is_attached_to_the_word(self):
+        self.assertEqual(self.kelime.false_friends.count(), 1)
+
+    def test_the_same_lookalike_cannot_be_repeated(self):
+        with self.assertRaises(IntegrityError):
+            FalseFriend.objects.create(word=self.kelime, turkish_lookalike="sempatik")
+
+    def test_the_warning_reaches_the_family_page(self):
+        html = self.client.get(reverse("word_detail", args=[self.kelime.id])).content.decode()
+        self.assertIn("sempatik", html)
+        self.assertIn("likeable, friendly", html)
+
+
+class ConfusedWithTests(TestCase):
+    """affect/effect, sensible/sensitive: eş anlamlı değil, karıştırılan."""
+
+    def test_confusable_is_its_own_relation_type(self):
+        a = make_word("sensible", pos="adjective", meaning="mantıklı")
+        b = make_word("sensitive", pos="adjective", meaning="duyarlı")
+        WordRelation.objects.create(from_word=a, to_word=b, type="confused_with",
+                                    note="Aynı kökten, zıt yönlere.")
+        self.assertEqual(a.confusables.count(), 1)
+        self.assertEqual(a.synonyms.count(), 0)
+
+    def test_it_shows_on_the_page_as_a_warning_not_as_a_synonym(self):
+        a = make_word("sensible", pos="adjective", meaning="mantıklı")
+        b = make_word("sensitive", pos="adjective", meaning="duyarlı")
+        WordRelation.objects.create(from_word=a, to_word=b, type="confused_with")
+        html = self.client.get(reverse("word_detail", args=[a.id])).content.decode()
+        self.assertIn("Sık karıştırılır", html)
+
+
+class ExpressionTests(TestCase):
+    """
+    Deyim ve kalıp ifadeler kelime değil ama öğrenilen birimler.
+
+    "in the long run" anlamı parçalarından çıkmaz; Word + WordForm bunu
+    çözemez, kendi satırı olmak zorunda.
+    """
+
+    def test_an_expression_can_stand_alone(self):
+        ifade = Expression.objects.create(text="by and large", meaning_tr="genel olarak")
+        self.assertEqual(ifade.words.count(), 0)
+
+    def test_an_expression_can_hang_on_more_than_one_word(self):
+        karar = make_word("decision", meaning="karar")
+        vermek = make_word("decide", pos="verb", meaning="karar vermek")
+        ifade = Expression.objects.create(text="come to a decision", meaning_tr="karara varmak")
+        ifade.words.set([karar, vermek])
+        self.assertEqual(karar.expressions.count(), 1)
+        self.assertEqual(vermek.expressions.count(), 1)
+
+    def test_it_appears_on_the_pages_of_the_words_it_hangs_on(self):
+        karar = make_word("decision", meaning="karar")
+        ifade = Expression.objects.create(text="come to a decision",
+                                          meaning_tr="bir karara varmak")
+        ifade.words.add(karar)
+        html = self.client.get(reverse("word_detail", args=[karar.id])).content.decode()
+        self.assertIn("come to a decision", html)
+        self.assertIn("bir karara varmak", html)
+
+    def test_expression_text_is_unique(self):
+        Expression.objects.create(text="in the long run", meaning_tr="uzun vadede")
+        with self.assertRaises(IntegrityError):
+            Expression.objects.create(text="in the long run", meaning_tr="başka")
+
+
+class UserMeaningTests(TestCase):
+    """
+    Kullanıcının kendi eklediği anlam.
+
+    Çekirdek sözlük hiçbir zaman tamamlanmaz; öğrenci kelimeyi listedeki
+    anlamlarına uymayan bir yerde görür. Eklediği anlam yalnızca ona
+    görünür ve çekirdeğe dokunmaz.
+    """
+
+    def setUp(self):
+        self.user = User.objects.create_user(username="anlamci", password="Sifre1234")
+        self.baskasi = User.objects.create_user(username="digeri", password="Sifre1234")
+        self.kelime = make_word("bank", meaning="banka")
+        self.client.login(username="anlamci", password="Sifre1234")
+
+    def _ekle(self, anlam="sıra, kuyruk", aciklama=""):
+        return self.client.post(reverse("word_detail", args=[self.kelime.id]), {
+            "form": "meaning", "meaning_tr": anlam, "definition": aciklama,
+        }, follow=True)
+
+    def test_user_can_add_a_meaning(self):
+        self._ekle()
+        self.assertEqual(UserMeaning.objects.filter(user=self.user).count(), 1)
+
+    def test_the_core_word_is_untouched(self):
+        self._ekle()
+        self.assertEqual(self.kelime.meanings.count(), 1)
+        self.assertEqual(self.kelime.meaningTr, "banka")
+
+    def test_an_empty_meaning_is_refused(self):
+        self._ekle(anlam="   ")
+        self.assertEqual(UserMeaning.objects.count(), 0)
+
+    def test_more_than_one_personal_meaning_is_allowed(self):
+        self._ekle(anlam="sıra")
+        self._ekle(anlam="küme")
+        self.assertEqual(self.kelime.meanings_of(self.user).count(), 2)
+
+    def test_only_its_owner_sees_it(self):
+        self._ekle()
+        self.assertEqual(self.kelime.meanings_of(self.baskasi).count(), 0)
+
+    def test_it_shows_on_the_page_for_its_owner(self):
+        self._ekle(anlam="sıra, kuyruk")
+        html = self.client.get(reverse("word_detail", args=[self.kelime.id])).content.decode()
+        self.assertIn("sıra, kuyruk", html)
+
+    def test_another_user_does_not_see_it_on_the_page(self):
+        self._ekle(anlam="sıra, kuyruk")
+        self.client.login(username="digeri", password="Sifre1234")
+        html = self.client.get(reverse("word_detail", args=[self.kelime.id])).content.decode()
+        self.assertNotIn("sıra, kuyruk", html)
+
+    def test_user_can_delete_their_own_meaning(self):
+        self._ekle()
+        anlam = UserMeaning.objects.get()
+        self.client.post(reverse("word_detail", args=[self.kelime.id]),
+                         {"form": "meaning_delete", "meaning_id": anlam.id})
+        self.assertEqual(UserMeaning.objects.count(), 0)
+
+    def test_a_user_cannot_delete_someone_elses_meaning(self):
+        self._ekle()
+        anlam = UserMeaning.objects.get()
+        self.client.login(username="digeri", password="Sifre1234")
+        self.client.post(reverse("word_detail", args=[self.kelime.id]),
+                         {"form": "meaning_delete", "meaning_id": anlam.id})
+        self.assertEqual(UserMeaning.objects.count(), 1)
+
+    def test_the_note_form_still_works_beside_it(self):
+        """İki form da aynı adrese POST ediyor; ayırt edilmezlerse biri diğerini siler."""
+        self.client.post(reverse("word_detail", args=[self.kelime.id]),
+                         {"form": "note", "note": "metinde gördüm"})
+        self.assertEqual(self.kelime.note_of(self.user).note, "metinde gördüm")
+        self.assertEqual(UserMeaning.objects.count(), 0)
+
+
+class SeedDataTests(TestCase):
+    """
+    Tohum veri yalnızca örnek değil; modelin her kararının ekranda
+    görünebildiğinin kanıtı. Bozulursa hiçbir ekran gerçekten denenemez.
+    """
+
+    @classmethod
+    def setUpTestData(cls):
+        call_command("seed_words", verbosity=0)
+
+    def test_every_word_has_a_level_and_a_meaning(self):
+        for kelime in Word.objects.all():
+            with self.subTest(kelime=kelime.text):
+                self.assertIn(kelime.cefr, CEFR_LEVELS)
+                self.assertTrue(kelime.meanings.exists())
+
+    def test_every_meaning_has_sentences(self):
+        for anlam in Meaning.objects.all():
+            with self.subTest(anlam=str(anlam)):
+                self.assertTrue(anlam.examples.exists())
+                self.assertLessEqual(anlam.examples.count(),
+                                     Meaning.EXAMPLE_SENTENCE_COUNT)
+
+    def test_bank_has_two_meanings_with_separate_sentences(self):
+        bank = Word.objects.get(text="bank", pos="noun")
+        anlamlar = list(bank.meanings.all())
+        self.assertEqual(len(anlamlar), 2)
+        self.assertNotEqual([c.text for c in anlamlar[0].examples.all()],
+                            [c.text for c in anlamlar[1].examples.all()])
+
+    def test_the_seed_shows_every_new_feature(self):
+        self.assertTrue(Collocation.objects.exists())
+        self.assertTrue(UsagePattern.objects.exists())
+        self.assertTrue(FalseFriend.objects.exists())
+        self.assertTrue(Expression.objects.exists())
+        self.assertTrue(Category.objects.exists())
+        self.assertTrue(WordRelation.objects.filter(type="confused_with").exists())
+        self.assertTrue(Meaning.objects.exclude(sentiment="neutral").exists())
+        self.assertTrue(Meaning.objects.exclude(register="neutral").exists())
+
+    def test_running_it_twice_does_not_duplicate(self):
+        onceki = Word.objects.count()
+        call_command("seed_words", verbosity=0)
+        self.assertEqual(Word.objects.count(), onceki)
+
+class CoreEditPermissionTests(TestCase):
+    """
+    Çekirdek alanları kim değiştirebilir?
+
+    Kural POZİTİF: yalnızca kelimeyi kendi ekleyen kişi. Eskiden kural
+    olumsuzdu ("sahibi varsa ve o değilse engelle"), bu yüzden sahibi BOŞ
+    olan kelimeleri listesine ekleyen herkes ortak sözlüğü değiştirebiliyordu.
+    """
+
+    def setUp(self):
+        self.sahip = User.objects.create_user(username="sahibi", password="Sifre1234")
+        self.baskasi = User.objects.create_user(username="baskasi", password="Sifre1234")
+
+        self.benim = make_word("retain", pos="verb", meaning="elde tutmak",
+                               owner=self.sahip, is_base=False)
+        self.sahipsiz = make_word("obtain", pos="verb", meaning="elde etmek",
+                                  owner=None, is_base=False)
+        self.kur = make_word("inherent", pos="adjective", meaning="doğasında olan",
+                             owner=None, is_base=True)
+
+    # --- model kuralı ---
+
+    def test_owner_can_edit_their_own_word(self):
+        self.assertTrue(self.benim.is_editable_by(self.sahip))
+
+    def test_someone_else_cannot(self):
+        self.assertFalse(self.benim.is_editable_by(self.baskasi))
+
+    def test_an_ownerless_word_is_editable_by_nobody(self):
+        """Eski kuraldaki delik: sahibi boş olan kelime herkese açıktı."""
+        self.assertFalse(self.sahipsiz.is_editable_by(self.sahip))
+        self.assertFalse(self.sahipsiz.is_editable_by(self.baskasi))
+
+    def test_a_base_word_is_locked_even_for_its_owner(self):
+        kur = make_word("ubiquitous", owner=self.sahip, is_base=True)
+        self.assertFalse(kur.is_editable_by(self.sahip))
+
+    def test_an_anonymous_visitor_cannot_edit(self):
+        self.assertFalse(self.benim.is_editable_by(AnonymousUser()))
+
+    def test_a_superuser_does_not_bypass_the_form(self):
+        """Ortak sözlüğün bakımı Django admin'den yapılır, kullanıcı formundan değil."""
+        yonetici = User.objects.create_superuser(username="yonetici", password="Sifre1234")
+        self.assertFalse(self.kur.is_editable_by(yonetici))
+
+    # --- uç davranışı ---
+
+    def test_adding_a_word_to_your_list_does_not_let_you_edit_it(self):
+        UserWordLink.objects.create(user=self.baskasi, word=self.sahipsiz)
+        self.client.login(username="baskasi", password="Sifre1234")
+        cevap = self.client.get(reverse("edit_word", args=[self.sahipsiz.id]))
+        self.assertEqual(cevap.status_code, 302)
+        self.assertIn("#kisisel", cevap.url)
+
+    def test_a_post_from_a_non_owner_changes_nothing(self):
+        UserWordLink.objects.create(user=self.baskasi, word=self.sahipsiz)
+        self.client.login(username="baskasi", password="Sifre1234")
+        self.client.post(reverse("edit_word", args=[self.sahipsiz.id]), {
+            "text": "ELE GECIRILDI", "pos": "noun", "meaning_1": "çalındı",
+            "visibility": "private", "level": "A1",
+        })
+        self.sahipsiz.refresh_from_db()
+        self.assertEqual(self.sahipsiz.text, "obtain")
+        self.assertEqual(self.sahipsiz.pos, "verb")
+        self.assertEqual(self.sahipsiz.meaningTr, "elde etmek")
+
+    def test_the_owner_can_still_edit(self):
+        self.client.login(username="sahibi", password="Sifre1234")
+        cevap = self.client.get(reverse("edit_word", args=[self.benim.id]))
+        self.assertEqual(cevap.status_code, 200)
+        self.assertContains(cevap, 'name="meaning_1"')
+
+    def test_the_redirect_explains_what_the_user_can_do_instead(self):
+        self.client.login(username="baskasi", password="Sifre1234")
+        cevap = self.client.get(reverse("edit_word", args=[self.sahipsiz.id]), follow=True)
+        self.assertContains(cevap, "Kendi anlamını")
+
+    # --- listedeki simge ---
+
+    def test_the_pencil_is_hidden_for_words_you_do_not_own(self):
+        """Düzenleyemediğin kelimede kalem göstermek tuzak olurdu."""
+        UserWordLink.objects.create(user=self.baskasi, word=self.sahipsiz)
+        self.client.login(username="baskasi", password="Sifre1234")
+        html = self.client.get(reverse("profile_words")).content.decode()
+        self.assertNotIn(reverse("edit_word", args=[self.sahipsiz.id]), html)
+        self.assertIn(f'{reverse("word_detail", args=[self.sahipsiz.id])}#kisisel', html)
+
+    def test_the_pencil_is_there_for_your_own_word(self):
+        UserWordLink.objects.create(user=self.sahip, word=self.benim)
+        self.client.login(username="sahibi", password="Sifre1234")
+        html = self.client.get(reverse("profile_words")).content.decode()
+        self.assertIn(reverse("edit_word", args=[self.benim.id]), html)
+
+    def test_the_detail_page_shows_edit_only_to_the_owner(self):
+        self.client.login(username="sahibi", password="Sifre1234")
+        html = self.client.get(reverse("word_detail", args=[self.benim.id])).content.decode()
+        self.assertIn(reverse("edit_word", args=[self.benim.id]), html)
+
+        self.client.login(username="baskasi", password="Sifre1234")
+        html = self.client.get(reverse("word_detail", args=[self.benim.id])).content.decode()
+        self.assertNotIn(reverse("edit_word", args=[self.benim.id]), html)
+
+
+class SharedWordWarningTests(TestCase):
+    """Kelimeyi başkaları da listesine almışsa sahibi bunu bilerek kaydetsin."""
+
+    def setUp(self):
+        self.sahip = User.objects.create_user(username="sahibi2", password="Sifre1234")
+        self.kelime = make_word("retain", pos="verb", meaning="elde tutmak",
+                                owner=self.sahip, is_base=False, visibility="public")
+        self.client.login(username="sahibi2", password="Sifre1234")
+
+    def test_no_warning_when_nobody_else_has_it(self):
+        UserWordLink.objects.create(user=self.sahip, word=self.kelime)
+        html = self.client.get(reverse("edit_word", args=[self.kelime.id])).content.decode()
+        self.assertNotIn("listesine eklemiş", html)
+
+    def test_the_warning_counts_only_other_people(self):
+        UserWordLink.objects.create(user=self.sahip, word=self.kelime)
+        for ad in ("a", "b"):
+            UserWordLink.objects.create(
+                user=User.objects.create_user(username=ad, password="Sifre1234"),
+                word=self.kelime,
+            )
+        html = self.client.get(reverse("edit_word", args=[self.kelime.id])).content.decode()
+        self.assertIn("2 kişi daha listesine eklemiş", html)
+
+
+class PersonalMeaningVisibilityTests(TestCase):
+    """
+    Kullanıcının eklediği anlam ORTAK sözlüğe yazılmaz ve dipnot da değildir:
+    çekirdek anlamların yanında, "sadece sen görürsün" rozetiyle durur.
+    """
+
+    def setUp(self):
+        self.user = User.objects.create_user(username="okur", password="Sifre1234")
+        self.baskasi = User.objects.create_user(username="okur2", password="Sifre1234")
+        self.kelime = make_word("bank", meaning="banka", owner=None, is_base=True)
+        self.client.login(username="okur", password="Sifre1234")
+        self.client.post(reverse("word_detail", args=[self.kelime.id]), {
+            "form": "meaning", "meaning_tr": "sıra, kuyruk",
+            "definition": "a bank of seats",
+        })
+
+    def test_it_is_not_written_into_the_shared_dictionary(self):
+        self.assertEqual(self.kelime.meanings.count(), 1)
+        self.assertEqual(UserMeaning.objects.count(), 1)
+
+    def test_the_owner_sees_it_marked_as_private(self):
+        html = self.client.get(reverse("word_detail", args=[self.kelime.id])).content.decode()
+        self.assertIn("sıra, kuyruk", html)
+        self.assertIn("sadece sen görürsün", html)
+
+    def test_nobody_else_sees_it(self):
+        self.client.login(username="okur2", password="Sifre1234")
+        html = self.client.get(reverse("word_detail", args=[self.kelime.id])).content.decode()
+        self.assertNotIn("sıra, kuyruk", html)
+
+    def test_an_anonymous_visitor_does_not_see_it(self):
+        self.client.logout()
+        html = self.client.get(reverse("word_detail", args=[self.kelime.id])).content.decode()
+        self.assertNotIn("sıra, kuyruk", html)
+
+    def test_the_personal_section_is_linkable(self):
+        """Düzenle bağlantısı buraya yönlendiriyor; çapa kaybolursa sayfa başına düşer."""
+        html = self.client.get(reverse("word_detail", args=[self.kelime.id])).content.decode()
+        self.assertIn('id="kisisel"', html)
+
+    def test_a_locked_word_explains_why_the_fields_cannot_change(self):
+        html = self.client.get(reverse("word_detail", args=[self.kelime.id])).content.decode()
+        self.assertIn("ortak sözlüğe ait", html)

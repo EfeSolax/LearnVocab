@@ -38,12 +38,14 @@ from LearnVocab import gemini
 logger = logging.getLogger(__name__)
 
 # Örnek cümlelerin seviye dağılımı: artan zorlukta, ağırlık üst seviyelerde.
+# Toplam sayı modeldeki cümle sayısıyla aynı olmalı (Word.EXAMPLE_SENTENCE_COUNT);
+# fazlası kaydedilirken atılırdı.
 SENTENCE_PLAN = [
     ("A2", 1),
     ("B1", 1),
-    ("B2", 3),
-    ("B2+", 3),
-    ("C1", 2),
+    ("B2", 1),
+    ("B2+", 1),
+    ("C1", 1),
 ]
 SENTENCE_COUNT = sum(count for _level, count in SENTENCE_PLAN)
 
@@ -427,18 +429,20 @@ def build_word_kwargs(enriched):
     """
     Gemini'den gelen bir kelimeyi Word(**kwargs) hâline getirir.
 
-    Kaydedilemeyecek durumda ise None döner:
+    Anlam, örnek cümle, eş/zıt anlamlı gibi alanlar artık ayrı tablolarda;
+    bunlar `_extras` altında birlikte döner ve `save_enriched_words`
+    tarafından yazılır.
+
+    Kaydedilemeyecek durumda None döner:
       - found=false (İngilizce'de yok)
       - kelimenin kendisi ya da Türkçe anlamı boş
-      - hiç örnek cümle yok (exampleSentence1 zorunlu alan)
+      - hiç örnek cümle yok
     """
-    from words.models import Word
-
     if not enriched.found:
         return None
 
-    english = _fit(enriched.english_word, 100).lower() or _fit(enriched.requested, 100).lower()
-    meaning = _fit(enriched.meaning_tr, 200)
+    english = _fit(enriched.english_word, 120).lower() or _fit(enriched.requested, 120).lower()
+    meaning = _fit(enriched.meaning_tr, 300)
     if not english or not meaning:
         return None
 
@@ -451,30 +455,26 @@ def build_word_kwargs(enriched):
         return None
 
     is_verb = bool(enriched.is_verb)
+    pos = "verb" if is_verb else "noun"
 
-    kwargs = {
-        "englishWord": english,
-        "meaningTr": meaning,
-        "explanation": _fit(enriched.explanation, 300) or None,
-        "isVerb": is_verb,
-        # Fiil değilse v2/v3 hiç yazılmasın
-        "v2Form": (_fit(enriched.v2_form, 100) or None) if is_verb else None,
-        "v3Form": (_fit(enriched.v3_form, 100) or None) if is_verb else None,
-        "synonyms": _join(enriched.synonyms) or None,
-        "antonyms": _join(enriched.antonyms) or None,
-        "collocations": _join(enriched.collocations) or None,
+    return {
+        "text": english,
+        "pos": pos,
+        "v2Form": (_fit(enriched.v2_form, 80) or None) if is_verb else None,
+        "v3Form": (_fit(enriched.v3_form, 80) or None) if is_verb else None,
         # İstenen sabitler: seviye belirtilmemiş, kelime kullanıcıya özel
-        "wordLevel": "Belirtilmemiş",
+        "cefr": "Belirtilmemiş",
         "visibility": "private",
         "isBaseWord": False,
+        "_extras": {
+            "meaning": meaning,
+            "definition": _fit(enriched.explanation, 600) or None,
+            # Cümleler geldiği sırada; sıra zorluk sırasıdır (A2 -> C1)
+            "sentences": sentences,
+            "synonyms": [w for w in (enriched.synonyms or []) if w],
+            "antonyms": [w for w in (enriched.antonyms or []) if w],
+        },
     }
-
-    # Cümleler geldiği sırada yazılır; sıra zorluk sırasıdır (A2 -> C1)
-    for index in range(1, Word.EXAMPLE_SENTENCE_COUNT + 1):
-        value = sentences[index - 1] if index <= len(sentences) else None
-        kwargs[f"exampleSentence{index}"] = value
-
-    return kwargs
 
 
 # ---------------------------------------------------------------------------
@@ -488,14 +488,21 @@ def save_enriched_words(user, outcome):
     Görünüm katmanından ayrı tutuluyor: aynı iş hem normal istekte hem de
     arka plan iş parçacığında (ilerleme çubuğu akışı) çalışıyor.
 
+    Yeni modelde bir kelime tek satır değil: aile + kelime + anlam +
+    anlama bağlı örnek cümleler + çekim biçimleri. Eş/zıt anlamlı bağları yalnızca
+    hedef kelime sözlükte varsa kurulur.
+
     Dönüş: özet sözlüğü. Mesajları görünüm katmanı üretiyor.
     """
-    from words.models import Word, UserWordLink
+    from words import inflect
+    from words.models import (
+        ExampleSentence, Meaning, UserWordLink, Word, WordFamily, WordRelation,
+    )
 
     existing = {
         value.lower()
         for value in Word.objects.filter(userLinks__user=user)
-        .values_list("englishWord", flat=True)
+        .values_list("text", flat=True)
     }
 
     summary = {
@@ -512,12 +519,46 @@ def save_enriched_words(user, outcome):
             (summary["unusable"] if item.found else summary["not_found"]).append(requested)
             continue
 
-        english = kwargs["englishWord"]
+        extras = kwargs.pop("_extras")
+        english = kwargs["text"]
+
         if english in existing:
             summary["duplicates"].append(english)
             continue
 
-        word = Word.objects.create(owner=user, **kwargs)
+        # Aynı yazım + tür zaten varsa yeni satır açmak yerine listeye bağla
+        mevcut = Word.objects.filter(text=english, pos=kwargs["pos"]).first()
+        if mevcut is not None:
+            UserWordLink.objects.get_or_create(user=user, word=mevcut)
+            existing.add(english)
+            summary["duplicates"].append(english)
+            continue
+
+        # Tek kişilik aile; ileride aynı kökten türev gelirse yanına eklenir
+        aile, _ = WordFamily.objects.get_or_create(root=english)
+        word = Word.objects.create(owner=user, family=aile, **kwargs)
+
+        anlam = Meaning.objects.create(word=word, meaning_tr=extras["meaning"],
+                                       definition=extras["definition"], sort_order=0)
+
+        # Cümleler kelimeye değil ANLAMA bağlı; AI tek anlam ürettiği için
+        # hepsi ana anlama gidiyor.
+        ExampleSentence.objects.bulk_create([
+            ExampleSentence(meaning=anlam, text=cumle, source="AI", sort_order=i)
+            for i, cumle in enumerate(extras["sentences"][:Meaning.EXAMPLE_SENTENCE_COUNT])
+        ])
+
+        inflect.rebuild_forms(word)
+
+        # Bağlar iki KAYIT arasındadır; sözlükte olmayan kelimeye bağ kurulmaz.
+        for tur, adlar in (("synonym", extras["synonyms"]), ("antonym", extras["antonyms"])):
+            for ad in adlar:
+                hedef = Word.objects.filter(text__iexact=(ad or "").strip()).exclude(id=word.id).first()
+                if hedef is not None:
+                    WordRelation.objects.get_or_create(
+                        from_word=word, to_word=hedef, type=tur,
+                    )
+
         UserWordLink.objects.create(user=user, word=word)
         existing.add(english)
         summary["added"].append(english)
