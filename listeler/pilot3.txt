@@ -1,0 +1,75 @@
+# Pilot 3 — 50 kelime. Önceki iki listede HİÇ dokunulmayan yapılar.
+
+# --- Düzensiz çoğul: inflect.py'daki Latince/Yunanca tablo (5) ---
+analysis
+hypothesis
+phenomenon
+criterion
+medium:noun
+
+# --- Sayılamayan isimler: çoğul üretilmemeli (4) ---
+evidence
+research
+knowledge
+advice
+
+# --- Kısa sıfat: -er/-est çekimi üretilmeli (6) ---
+scarce
+vague
+blunt
+harsh
+bleak
+stark
+
+# --- Zarf: bu tür hiç test edilmedi (3) ---
+nonetheless:adverb
+thereby:adverb
+presumably:adverb
+
+# --- Edat ve bağlaç: bu iki tür hiç test edilmedi (4) ---
+despite:preposition
+whereas:conjunction
+albeit:conjunction
+notwithstanding:preposition
+
+# --- Aynı yazım, isim + fiil (6) ---
+conduct:noun
+conduct:verb
+impact:noun
+impact:verb
+survey:noun
+survey:verb
+
+# --- Karıştırılan çiftler: confused_with bağı hiç üretilmedi (8) ---
+principle
+principal
+complement
+compliment
+economic
+economical
+continuous
+continual
+
+# --- Önekli türev: ailede KALMALI (4) ---
+inconsistent
+irreversible
+misinterpret
+invaluable
+
+# --- Akademik bildirim fiilleri (4) ---
+assert
+refute
+corroborate
+substantiate
+
+# --- Üslup farkı: formal/academic gelmeli (4) ---
+purchase
+commence
+ascertain
+utilize
+
+# --- KASITLI TUZAK: found=false yolu hiç çalışmadı (2) ---
+# flurgent uydurma bir kelime, recieve ise receive'in yanlış yazımı.
+# Model bunlara madde üretirse ciddi sorun var demektir.
+flurgent
+recieve

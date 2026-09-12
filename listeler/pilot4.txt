@@ -1,0 +1,69 @@
+# Pilot 4 — 50 kelime. Yine hiç dokunulmayan yapılar.
+
+# --- Üç ve daha fazla gerçek anlam: şişirme mi, gerçek mi? (7) ---
+charge:noun
+charge:verb
+draw:verb
+term:noun
+account:noun
+state:noun
+subject:noun
+
+# --- Bileşik isimler: aile kökü ne olacak? (7) ---
+breakthrough
+outcome
+framework
+drawback
+insight
+outlook
+setback
+
+# --- -ing / -ed biçimli sıfatlar: tür karışması riski yüksek (6) ---
+outstanding
+misleading
+overwhelming
+sophisticated
+biased
+demanding
+
+# --- -tion soyut isimleri: aile bağı kritik (6) ---
+implementation
+consideration
+interpretation
+assumption
+implication
+acquisition
+
+# --- Olumsuz ton beklenen (5) ---
+flagrant
+blatant
+dire
+grim
+appalling
+
+# --- Olumlu ton beklenen (5) ---
+remarkable
+profound
+meticulous
+resilient
+versatile
+
+# --- Nicelik bildiren (5) ---
+numerous
+myriad
+scant
+ample
+surplus
+
+# --- Nadir ama GERÇEK C2: found=false yanlışlıkla tetiklenmemeli (4) ---
+perspicacious
+recalcitrant
+obfuscate
+ubiquity
+
+# --- İngiliz yazımı ve tireli kelimeler (5) ---
+analyse
+behaviour
+long-term
+cost-effective
+well-being

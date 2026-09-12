@@ -1,0 +1,65 @@
+# Pilot 5 — 50 kelime. Bu sefer asıl test AİLE BÜYÜMESİ: veritabanında
+# zaten bir aile var, yeni gelen kelime ona katılmalı — yeni aile kurmamalı.
+
+# --- Ailesi DB'de kayıtlı tabanlar: türevi zaten var, taban katılmalı (10) ---
+acquire:verb
+assume:verb
+imply:verb
+consider:verb
+implement:verb
+behave:verb
+bias:noun
+demand:verb
+mislead:verb
+overwhelm:verb
+
+# --- AİLE PARÇALANMASI testi: türev kendi köküne düşmüştü,
+#     şimdi tabanı geliyor. Ayrı aile mi kuracak, birleşecek mi? (6) ---
+interpret:verb
+frame:noun
+remark:verb
+appall:verb
+resilience:noun
+ubiquitous:adjective
+
+# --- Aynı aileye üçüncü ve dördüncü üye (8) ---
+analysis
+analyst
+analytical
+considerate
+considerable
+unbiased
+overwhelmingly
+acquisitive
+
+# --- Karıştırılan çiftlerin İKİ tarafı birden: confused_with kurulmalı (12) ---
+principle
+principal
+complement
+compliment
+continuous
+continual
+infer
+ensure
+assure
+stationary
+stationery
+conscience
+
+# --- Deyim ve bağlayıcı ifadeler: Expression modeli hiç kullanılmadı (6) ---
+in the long run
+on the other hand
+by and large
+in terms of
+as a result of
+to some extent
+
+# --- Akademik çekirdek, dolgu (8) ---
+notion
+premise
+paradigm
+rationale
+caveat
+nuance
+threshold
+trajectory

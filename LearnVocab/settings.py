@@ -251,6 +251,69 @@ AI_WORD_IMPORT_TIMEOUT_SECONDS = float(
 #   1440 -> günde bir (varsayılan)
 #      5 -> beş dakikada bir
 #      0 -> kısıt kapalı
+# ---------------------------------------------------------------------------
+# Toplu kelime zenginleştirme (OpenAI uyumlu ucuz model)
+# ---------------------------------------------------------------------------
+# Gemini ayarlarından AYRI tutuluyor: Gemini kullanıcının tarayıcıda
+# başlattığı işlere bakıyor, buradaki model ise binlerce kelimelik toplu
+# içerik üretimini yapıyor. İkisinin fiyat, hız ve güvenilirlik ihtiyacı
+# farklı; tek ayara bağlarsak birini iyileştirmek diğerini bozar.
+#
+# Sağlayıcı değiştirmek için tek yapılacak şey LLM_BASE_URL + LLM_MODEL:
+#   OpenRouter -> https://openrouter.ai/api/v1
+#   DeepInfra  -> https://api.deepinfra.com/v1/openai
+#   Ollama     -> http://localhost:11434/v1   (anahtar gerekmez)
+LLM_BASE_URL = os.environ.get('LLM_BASE_URL', 'https://openrouter.ai/api/v1')
+LLM_API_KEY = os.environ.get('LLM_API_KEY', '')
+LLM_MODEL = os.environ.get('LLM_MODEL', 'openai/gpt-oss-120b')
+
+LLM_TIMEOUT_SECONDS = float(os.environ.get('LLM_TIMEOUT_SECONDS', '180'))
+LLM_MAX_RETRIES = int(os.environ.get('LLM_MAX_RETRIES', '3'))
+
+# Cevap üst sınırı. Düşünen modellerde düşünme tokenları da bu sınırdan yer
+# kapıyor: dar tutulursa model düşünürken bitiriyor ve geriye boş cevap
+# kalıyor (finish_reason=length).
+LLM_MAX_TOKENS = int(os.environ.get('LLM_MAX_TOKENS', '8000'))
+
+# Sözlük verisi üretiyoruz: yaratıcılık istemiyoruz, tutarlılık istiyoruz.
+LLM_TEMPERATURE = float(os.environ.get('LLM_TEMPERATURE', '0.2'))
+
+# Katı JSON şeması, modelin şema dışına çıkmasını API seviyesinde engeller.
+# Desteklemeyen bir sağlayıcı 400 dönerse False yapılır (kalite düşer,
+# doğrulama katmanı devreye girer).
+LLM_STRICT_SCHEMA = os.environ.get('LLM_STRICT_SCHEMA', 'True') == 'True'
+
+# Düşünen modellerde düşünme derinliği. Düşünme tokenları ÇIKTI olarak
+# faturalanır ve süreyi uzatır; şema zaten yapıyı dayattığı için sözlük
+# doldurmada "low" yetiyor. Boş bırakılırsa hiç gönderilmez.
+LLM_REASONING_EFFORT = os.environ.get('LLM_REASONING_EFFORT', 'low')
+
+# OpenRouter'da aynı model birçok sağlayıcıdan sunuluyor, aralarında kat kat
+# hız farkı var. 'throughput' hızlıyı seçer, 'price' ucuzu, boş bırakılırsa
+# OpenRouter'ın varsayılan dengesi kullanılır.
+LLM_PROVIDER_SORT = os.environ.get('LLM_PROVIDER_SORT', 'throughput')
+
+# Sorun çıkaran sağlayıcıları devre dışı bırak (virgülle): 'Groq,Together'
+# Katı şema gönderildiğinde zaten yalnızca şemayı destekleyen sağlayıcılara
+# gidiliyor; bu ayar tekrar tekrar hata veren birini elemek için.
+LLM_PROVIDER_IGNORE = os.environ.get('LLM_PROVIDER_IGNORE', '')
+
+# Kaç isteğin aynı anda gönderileceği (enrich_words --workers bunu ezer).
+# Ağ beklemesi baskın olduğu için paralellik süreyi neredeyse doğrusal
+# kısaltıyor; sağlayıcının dakikalık istek sınırına çarparsan düşür.
+LLM_WORKERS = int(os.environ.get('LLM_WORKERS', '6'))
+
+# Maliyet raporu için 1M token fiyatları (dolar). Yalnızca bilgi amaçlı.
+LLM_PRICE_INPUT = float(os.environ.get('LLM_PRICE_INPUT', '0.03'))
+LLM_PRICE_OUTPUT = float(os.environ.get('LLM_PRICE_OUTPUT', '0.17'))
+
+
+# Quizler geçici olarak kapalı.
+# Kelime modeli (aile / anlam / çekim) yeniden kurulurken soru üreteçleri
+# eski alan adlarına göre yazılmış durumda. Kod silinmedi; üreteçler yeni
+# yapıya taşınınca bu bayrak True yapılacak.
+QUIZZES_ENABLED = False
+
 TEXT_SUBMISSION_INTERVAL_MINUTES = int(
     os.environ.get('TEXT_SUBMISSION_INTERVAL_MINUTES', '1440')
 )
