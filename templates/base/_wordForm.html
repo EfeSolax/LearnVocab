@@ -1,0 +1,165 @@
+{% comment %}
+Kelime ekleme/düzenleme formunun gövdesi. İki ekran da aynı alanları
+kullanıyor, bu yüzden tek yerde duruyor.
+
+Formun omurgası da modelin omurgası gibi ANLAM: her anlam yuvası kendi
+tonunu, üslubunu, alanını, collocation'larını, kalıplarını ve 5 cümlesini
+taşıyor. Kelimenin bütününe ait olanlar (tür, aile, fiil hâlleri, seviye,
+yanlış dostlar, bağlar) yuvaların dışında.
+
+Beklediği bağlam: word (düzenlemede), slots, pos_choices, level_choices,
+sentiment_choices, register_choices, sentence_range, false_friends, my_note
+{% endcomment %}
+
+{% csrf_token %}
+
+<div class="space-y-5">
+
+    {# ---- Kelime, tür, aile ---- #}
+    <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+            <label for="text" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">Kelime <span class="text-rose-500">*</span></label>
+            <input type="text" name="text" id="text" required autocomplete="off"
+                   value="{{ word.text|default:'' }}" placeholder="encourage"
+                   class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+        </div>
+        <div>
+            <label for="pos" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">Tür <span class="text-rose-500">*</span></label>
+            <select name="pos" id="pos" required
+                    class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+                {% for deger, etiket in pos_choices %}
+                <option value="{{ deger }}" {% if word.pos == deger %}selected{% endif %}>{{ etiket }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div>
+        <label for="family_root" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">Aile kökü</label>
+        <input type="text" name="family_root" id="family_root" autocomplete="off"
+               value="{{ word.family.root|default:'' }}" placeholder="courage"
+               class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+        <p class="mt-1.5 text-xs text-gray-500 dark:text-slate-400">
+            Aynı kökten gelen kelimeler tek ailede toplanır: courage · courageous · encourage · discourage.
+            Boş bırakırsan kelimenin kendisi kök olur.
+        </p>
+    </div>
+
+    {# ---- 1. anlam ---- #}
+    <div class="rounded-xl border border-gray-200 dark:border-slate-700 p-4">
+        <h3 class="mb-3 text-sm font-bold text-gray-900 dark:text-slate-100">1. anlam</h3>
+        {% include 'base/_meaningFields.html' with slot=slots.0 zorunlu=1 %}
+    </div>
+
+    {# ---- 2. anlam (isteğe bağlı) ---- #}
+    <details class="rounded-xl border border-gray-200 dark:border-slate-700 p-4" {% if slots.1.meaning %}open{% endif %}>
+        <summary class="cursor-pointer list-none text-sm font-bold text-indigo-600 dark:text-indigo-400">
+            + İkinci anlam
+            <span class="font-normal text-gray-400 dark:text-slate-500">(bank → banka / nehir kıyısı)</span>
+        </summary>
+        <div class="mt-4">
+            {% include 'base/_meaningFields.html' with slot=slots.1 zorunlu=0 %}
+        </div>
+    </details>
+
+    {# ---- Fiil hâlleri ---- #}
+    <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+            <label for="v2" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">2. hâl</label>
+            <input type="text" name="v2" id="v2" value="{{ word.v2Form|default:'' }}" placeholder="went"
+                   class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+        </div>
+        <div>
+            <label for="v3" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">3. hâl</label>
+            <input type="text" name="v3" id="v3" value="{{ word.v3Form|default:'' }}" placeholder="gone"
+                   class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+        </div>
+    </div>
+    <p class="-mt-3 text-xs text-gray-500 dark:text-slate-400">
+        Yalnızca düzensiz fiiller için. Düzenli fiillerde boş bırak — çekimler
+        (decides / deciding / decided) kendiliğinden üretilir.
+    </p>
+
+    {# ---- Yanlış dostlar ---- #}
+    <div class="rounded-xl border border-orange-200 dark:border-orange-900 p-4">
+        <h3 class="text-sm font-bold text-gray-900 dark:text-slate-100">Yanlış dostlar</h3>
+        <p class="mb-2 mt-1 text-xs text-gray-500 dark:text-slate-400">
+            Türkçeye benzediği için yanlış anlaşılan kelimeler.
+            Her satıra bir tane, aralarında <strong>boşluklu eğik çizgi</strong>:
+            <code>benzeyen Türkçe / sanılan anlam / o anlamın doğru karşılığı</code>
+        </p>
+        <textarea name="false_friends" rows="2"
+                  placeholder="sempatik / cana yakın, hoş / likeable, friendly"
+                  class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/30">{{ false_friends|default:'' }}</textarea>
+    </div>
+
+    {# ---- Bağlar ---- #}
+    <div class="rounded-xl border border-gray-200 dark:border-slate-700 p-4 space-y-3">
+        <h3 class="text-sm font-bold text-gray-900 dark:text-slate-100">Bağlantılar</h3>
+        <p class="text-xs text-gray-500 dark:text-slate-400">
+            Virgülle ayır. Yalnızca sözlükte kayıtlı kelimelere bağ kurulabilir;
+            bulunamayanlar kaydettikten sonra bildirilir.
+        </p>
+
+        <div>
+            <label for="simpler" class="mb-1 block text-xs font-semibold text-gray-600 dark:text-slate-400">Daha basit karşılığı</label>
+            <input type="text" name="simpler" id="simpler" placeholder="have"
+                   value="{% for b in word.simpler_words %}{{ b.to_word.text }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+                   class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+            <p class="mt-1 text-xs text-gray-400 dark:text-slate-500">possess ≈ have. Zor kelimeyi bildiğin kelimeyle tanımla.</p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+            <div>
+                <label for="synonyms" class="mb-1 block text-xs font-semibold text-gray-600 dark:text-slate-400">Eş anlamlılar</label>
+                <input type="text" name="synonyms" id="synonyms"
+                       value="{% for b in word.synonyms %}{{ b.to_word.text }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+                       class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+            </div>
+            <div>
+                <label for="antonyms" class="mb-1 block text-xs font-semibold text-gray-600 dark:text-slate-400">Zıt anlamlılar</label>
+                <input type="text" name="antonyms" id="antonyms"
+                       value="{% for b in word.antonyms %}{{ b.to_word.text }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+                       class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+            </div>
+        </div>
+
+        <div>
+            <label for="confused_with" class="mb-1 block text-xs font-semibold text-gray-600 dark:text-slate-400">Karıştırılan kelimeler</label>
+            <input type="text" name="confused_with" id="confused_with" placeholder="sensitive"
+                   value="{% for b in word.confusables %}{{ b.to_word.text }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+                   class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+            <p class="mt-1 text-xs text-gray-400 dark:text-slate-500">
+                affect/effect, sensible/sensitive gibi. Eş anlamlı değil — benzedikleri için karıştırılıyorlar.
+            </p>
+        </div>
+    </div>
+
+    {# ---- Kişisel not ---- #}
+    <div>
+        <label for="note" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">Kişisel notun</label>
+        <textarea name="note" id="note" rows="2" placeholder="Sadece sen görürsün."
+                  class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">{% if my_note %}{{ my_note.note }}{% endif %}</textarea>
+    </div>
+
+    {# ---- Seviye ve görünürlük ---- #}
+    <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+            <label for="level" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">Seviye</label>
+            <select name="level" id="level"
+                    class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+                {% for deger, etiket in level_choices %}
+                <option value="{{ deger }}" {% if word.cefr == deger %}selected{% endif %}>{{ etiket }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="visibility" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">Görünürlük</label>
+            <select name="visibility" id="visibility"
+                    class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+                <option value="private" {% if word.visibility == "private" %}selected{% endif %}>Gizli</option>
+                <option value="public" {% if word.visibility == "public" %}selected{% endif %}>Herkese açık</option>
+            </select>
+        </div>
+    </div>
+</div>

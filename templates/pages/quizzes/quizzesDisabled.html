@@ -1,0 +1,45 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}
+Quizler geçici olarak kapalı.
+
+Kelime modeli (aile / anlam / çekim biçimi) yeniden kurulurken soru
+üreteçleri eski alan adlarına göre yazılmış durumda. Kod silinmedi,
+yalnızca erişim kapatıldı: settings.QUIZZES_ENABLED = True yapılınca
+geri açılır.
+{% endcomment %}
+
+{% block title %}Quizler{% endblock %}
+{% block page_heading %}{% endblock %}
+
+{% block page %}
+
+{% include 'base/_exerciseTabs.html' with exercise_tab="quizzes" %}
+
+<div class="mx-auto max-w-xl text-center py-10 sm:py-16">
+    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-950">
+        <svg class="h-8 w-8 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75 3.75 2.25 7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437" />
+        </svg>
+    </div>
+
+    <h1 class="mt-6 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">
+        Quizler geçici olarak kapalı
+    </h1>
+
+    <p class="mt-3 text-base text-gray-600 dark:text-slate-400">
+        Kelime yapısı yenileniyor: kelimeler artık aileler hâlinde, her birinin
+        kendi türü, anlamı ve örnek cümleleri var. Soru üreteçleri bu yeni yapıya
+        göre yeniden yazılacak.
+    </p>
+
+    <p class="mt-2 text-sm text-gray-500 dark:text-slate-400">
+        Çözdüğün quizler ve istatistiklerin duruyor, hiçbir şey silinmedi.
+    </p>
+
+    <div class="mt-8 flex flex-col sm:flex-row justify-center gap-3">
+        <a href="{% url 'all_words' %}" class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 transition">Kelimelere göz at</a>
+        <a href="{% url 'learn_pass_page' %}" class="rounded-lg bg-white dark:bg-slate-800 px-5 py-2.5 text-sm font-semibold text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-300 dark:ring-indigo-700 hover:bg-indigo-50 dark:hover:bg-indigo-950 transition">Öğren-Geç</a>
+    </div>
+</div>
+{% endblock %}

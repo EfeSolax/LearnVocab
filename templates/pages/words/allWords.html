@@ -4,309 +4,103 @@
 {% comment %}
 Tüm Kelimeler — "Kelimeler" bölümünün iki sayfasından biri.
 
-Eskiden base/layout.html'i kendi kabıyla genişletiyordu ve genişliği
-Kelimelerim sayfasından farklıydı; ikisi tek bölüm altında birleşince
-aynı yerleşime (appLayout) taşındı, böylece üstteki geçiş şeridi iki
-sayfada da tam olarak aynı genişlikte duruyor.
+Yeni modele göre baştan yazıldı: her satır bir kelime DEĞİL, belirli
+TÜRDEKİ bir kelime. progress (isim) ve progress (fiil) ayrı satırlardır.
+Satırdaki aile rozeti kelimeyi tek başına değil, türev ailesiyle birlikte
+görmeye götürür.
 {% endcomment %}
 
 {% block title %}Tüm Kelimeler{% endblock %}
-
-{# Sayfanın kendi başlıkları var; yerleşimin varsayılan başlığı kapalı #}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
 
 {% include 'base/_wordsTabs.html' with words_tab="all" %}
 
-        <div class="bg-blue-50 dark:bg-blue-950 border-l-4 border-blue-400 dark:border-blue-700 text-blue-800 dark:text-blue-200 p-4 md:p-6 rounded-lg shadow-md mb-8">
-            <div class="flex items-start">
-                <svg class="h-6 w-6 text-blue-500 dark:text-blue-400 mr-4 mt-1 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-                </svg>
-                <div>
-                    <h2 class="text-xl font-bold mb-1">Kelimeler Nasıl Çalışır?</h2>
-                    <ul class="list-disc list-inside space-y-0.5 text-gray-700 dark:text-slate-300 text-sm">
-                        <li>Bu sayfada herkese açık kelimeleri (ODTÜ, kullanıcı ve arkadaşlarınızın) görebilirsiniz.</li>
-                        <li>Filtreleri kullanarak kelimeler arasında detaylı arama yapabilirsiniz.</li>
-                        <li>Filtre seçip arama kutusunu boş bırakarak "Ara" butonuna basarsanız tüm kelimeler listelenir.</li>
-                    </ul>
-                </div>
-            </div>
+<div class="mx-auto max-w-4xl space-y-5">
+
+    {# ---------------- Arama ve filtreler ---------------- #}
+    <form method="get" action="{% url 'all_words' %}#sonuclar"
+          class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+
+        <div class="relative">
+            <svg class="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+            </svg>
+            <input type="text" name="q" value="{{ current_query }}" placeholder="Kelime veya anlam ara…"
+                   class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 py-2.5 pl-11 pr-3.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
         </div>
 
-        <div id="results-container" class="bg-white dark:bg-slate-800 rounded-xl shadow-lg mb-8 p-4 md:p-6" style="scroll-margin-top: 6rem;">
-            
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-4 pb-2 border-b border-gray-100 dark:border-slate-700">Kelime Arama ve Filtreleme</h2>
-            
-            <form method="get" action="{% url 'all_words' %}#results-container" class="space-y-4 lg:flex lg:space-y-0 lg:gap-4 lg:items-end">
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:w-2/5">
-                    <div class="relative group">
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="h-5 w-5 text-gray-400 dark:text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" /></svg>
-                        </div>
-                        <select name="filter_by" class="w-full pl-10 pr-8 py-2 rounded-lg border-gray-300 dark:border-slate-600 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 appearance-none transition">
-                            <option value="all" {% if request.GET.filter_by == 'all' %}selected{% endif %}>Tüm Alanlar</option>
-                            <option value="author" {% if request.GET.filter_by == 'author' %}selected{% endif %}>Yazara Göre</option>
-                            <option value="english" {% if request.GET.filter_by == 'english' %}selected{% endif %}>Kelimeye Göre</option>
-                            <option value="meaning" {% if request.GET.filter_by == 'meaning' %}selected{% endif %}>Anlamına Göre</option>
-                            <option value="explanation" {% if request.GET.filter_by == 'explanation' %}selected{% endif %}>Açıklamaya Göre</option>
-                            <option value="only_METU" {% if request.GET.filter_by == 'only_METU' %}selected{% endif %}>Sadece ODTÜ Kelimeleri</option>
-                            <option value="only_User" {% if request.GET.filter_by == 'only_User' %}selected{% endif %}>Sadece Kullanıcı Kelimeleri</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-slate-300">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                        </div>
-                    </div>
+        <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <select name="filter_by" class="rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-gray-900 dark:text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+                <option value="all" {% if current_filter == 'all' or not current_filter %}selected{% endif %}>Tüm alanlar</option>
+                <option value="english" {% if current_filter == 'english' %}selected{% endif %}>Kelimeye göre</option>
+                <option value="meaning" {% if current_filter == 'meaning' %}selected{% endif %}>Anlamına göre</option>
+                <option value="explanation" {% if current_filter == 'explanation' %}selected{% endif %}>Açıklamaya göre</option>
+                <option value="author" {% if current_filter == 'author' %}selected{% endif %}>Yazara göre</option>
+                <option value="only_METU" {% if current_filter == 'only_METU' %}selected{% endif %}>Sadece kur kelimeleri</option>
+                <option value="only_User" {% if current_filter == 'only_User' %}selected{% endif %}>Sadece kullanıcı kelimeleri</option>
+            </select>
 
-                    <div class="relative group">
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="h-5 w-5 text-gray-400 dark:text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 16a3.5 3.5 0 01-3.5-3.5V6a2 2 0 012-2h6.5a2 2 0 012 2v6.5a3.5 3.5 0 01-3.5 3.5h-1.879a1 1 0 00-.707.293l-1.121 1.121a1 1 0 01-1.414 0l-1.121-1.121A1 1 0 005.5 16zM9 11a1 1 0 100-2 1 1 0 000 2z" /></svg>
-                        </div>
-                        <select name="level" class="w-full pl-10 pr-8 py-2 rounded-lg border-gray-300 dark:border-slate-600 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 appearance-none transition">
-                            <option value="all" {% if request.GET.level == 'all' %}selected{% endif %}>Tüm Seviyeler</option>
-                            <option value="101" {% if request.GET.level == '101' %}selected{% endif %}>101</option>
-                            <option value="201" {% if request.GET.level == '201' %}selected{% endif %}>201</option>
-                            <option value="301" {% if request.GET.level == '301' %}selected{% endif %}>301</option>
-                            <option value="401" {% if request.GET.level == '401' %}selected{% endif %}>401</option>
-                            <option value="501" {% if request.GET.level == '501' %}selected{% endif %}>501</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-slate-300">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                        </div>
-                    </div>
-                </div>
+            {# Yeni: tür filtresi. Her kelime artık bir türe ait. #}
+            <select name="pos" class="rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-gray-900 dark:text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+                <option value="all" {% if current_pos == 'all' %}selected{% endif %}>Tüm türler</option>
+                {% for deger, etiket in pos_choices %}
+                <option value="{{ deger }}" {% if current_pos == deger %}selected{% endif %}>{{ etiket }}</option>
+                {% endfor %}
+            </select>
 
-                <div class="flex flex-col sm:flex-row gap-3 lg:w-3/5">
-                    
-                    <div class="relative w-full group">
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="h-5 w-5 text-gray-400 dark:text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                        <input
-                            type="text"
-                            name="q"
-                            placeholder="Kelime veya anlam arayın..."
-                            value="{{ request.GET.q|default:'' }}"
-                            class="w-full pl-10 pr-4 py-2 rounded-lg border-gray-300 dark:border-slate-600 shadow-sm focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 transition"
-                        >
-                    </div>
+            <select name="level" class="rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-gray-900 dark:text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+                <option value="all" {% if current_level == 'all' %}selected{% endif %}>Tüm seviyeler</option>
+                {% for kod in cefr_levels %}
+                <option value="{{ kod }}" {% if current_level == kod %}selected{% endif %}>{{ kod }}</option>
+                {% endfor %}
+            </select>
 
-                    <button type="submit" class="w-full sm:w-auto flex-shrink-0 inline-flex items-center justify-center px-6 py-2 border border-transparent text-base font-semibold rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 transition-colors">
-                        <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 6 0110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
-                        Ara ve Filtrele
-                    </button>
-                </div>
-
-            </form>
+            <button type="submit" class="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors">
+                Ara
+            </button>
         </div>
+    </form>
 
-        <div class="hidden md:block bg-gray-50 dark:bg-slate-900 rounded-t-lg p-4 mb-2 shadow-sm">
-            <h3 class="text-lg font-bold text-gray-700 dark:text-slate-300">Arama Sonuçları</h3>
-        </div>
+    {# ---------------- Sonuçlar ---------------- #}
+    <div id="sonuclar" style="scroll-margin-top: 6rem;">
+        {% if words %}
 
-        <div id="word-list-container" class="bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden">
-            {% if words %}
-            <div class="flex items-center gap-3 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 text-sm rounded-lg p-4 mb-2 ml-4 mr-4 mt-4" role="alert">
-                <svg class="h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="sr-only">Bilgi</span>
-                <div>
-                    Bu sayfada <strong class="font-semibold text-green-900 dark:text-green-200">{{ words|length }}</strong> kelime listeleniyor.
-                    {% if is_paginated %}(Toplam {{ paginator.count }} sonuç){% endif %}
-                </div>
-            </div>
+        <div class="mb-2.5 flex items-baseline justify-between gap-3 px-1">
+            <p class="text-sm text-gray-600 dark:text-slate-400">
+                <strong class="text-gray-900 dark:text-slate-100">{{ paginator.count }}</strong> kelime
+            </p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'add_word' %}" class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">+ Yeni kelime</a>
             {% endif %}
+        </div>
 
-            {% if user.is_authenticated and words %}
-            <form id="bulk-add-form" method="POST" action="{% url 'add_selected_to_my_list' %}">
-                {% csrf_token %}
-                {# Sayfa/filtre durumunu post sonrası geri dönerken koruyalım #}
-                {% if current_query %}<input type="hidden" name="q" value="{{ current_query }}">{% endif %}
-                {% if current_filter %}<input type="hidden" name="filter_by" value="{{ current_filter }}">{% endif %}
-                {% if current_level and current_level != 'all' %}<input type="hidden" name="level" value="{{ current_level }}">{% endif %}
-                {% if page_obj %}<input type="hidden" name="page" value="{{ page_obj.number }}">{% endif %}
+        <div class="overflow-hidden rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+            <ul class="divide-y divide-gray-100 dark:divide-slate-700">
+                {% for word in words %}
+                <li>{% include 'base/_wordCard.html' with word=word saved_ids=saved_ids %}</li>
+                {% endfor %}
+            </ul>
+        </div>
 
-                {# Toplu seçim aksiyon barı #}
-                <div class="sticky top-0 z-10 mx-4 mt-2 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-lg bg-indigo-50 dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 p-3 shadow-sm">
-                    <label class="inline-flex items-center gap-3 text-base font-medium text-indigo-900 dark:text-indigo-200 cursor-pointer select-none px-2 py-1 rounded hover:bg-indigo-100 dark:hover:bg-indigo-900">
-                        <input type="checkbox" id="select-all-toggle"
-                               class="h-6 w-6 rounded border-indigo-400 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 cursor-pointer">
-                        <span>Sayfadaki tümünü seç</span>
-                        <span class="text-sm text-indigo-700 dark:text-indigo-300">(<span id="selected-count">0</span> seçili)</span>
-                    </label>
+        {% include 'base/_pagination.html' %}
 
-                    <button type="submit" id="bulk-add-button" disabled
-                            class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-                        <svg class="-ml-0.5 mr-1.5 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                        </svg>
-                        Seçilenleri Listeme Ekle
-                    </button>
-                </div>
-            {% endif %}
+        {% else %}
 
-            <div class="p-4 sm:p-6 pt-0">
-                {% if user.is_authenticated %}
-                <div class="hidden md:grid grid-cols-12 gap-4 px-4 py-2 text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase border-b">
-                    <div class="col-span-1 text-center">Seç</div>
-                    <div class="col-span-2">Yazar</div>
-                    <div class="col-span-3">Kelime</div>
-                    <div class="col-span-3">Anlam</div>
-                    <div class="col-span-2">Listeme Ekle</div>
-                    <div class="col-span-1 text-right">Kur</div>
-                </div>
+        <div class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-10 text-center">
+            <h2 class="text-lg font-bold text-gray-900 dark:text-slate-100">Sonuç yok</h2>
+            <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">
+                {% if current_query %}
+                    “{{ current_query }}” için bir şey bulunamadı. Filtreleri gevşetmeyi dene.
                 {% else %}
-                <div class="hidden md:grid grid-cols-9 gap-4 px-4 py-2 text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase border-b">
-                    <div class="col-span-2">Yazar</div>
-                    <div class="col-span-3">Kelime</div>
-                    <div class="col-span-3">Anlam</div>
-                    <div class="col-span-1 text-right">Kur Seviyesi</div>
-                </div>
+                    Bu filtrelerle gösterilecek kelime yok.
                 {% endif %}
-
-                <div class="mt-4 space-y-3">
-                    {% for word in words %}
-                    {% with already_saved=word.id|stringformat:"i" %}
-                    <div id="word-{{ word.id }}" class="scroll-mt-30 block rounded-lg odd:bg-white dark:odd:bg-slate-800 even:bg-gray-50/70 dark:even:bg-slate-800/70 hover:bg-indigo-50 dark:hover:bg-indigo-950 shadow-sm hover:shadow-md border border-transparent hover:border-gray-200 dark:hover:border-slate-700 p-4 transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-
-                        {% if user.is_authenticated %}
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-4 gap-y-2 items-center">
-                            <div class="md:col-span-1 flex items-center justify-start md:justify-center">
-                                {% if word.id in saved_ids %}
-                                    <span title="Bu kelime zaten listenizde" class="inline-flex items-center justify-center h-7 w-7 rounded-full bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300">
-                                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                                    </span>
-                                {% else %}
-                                    {# Tıklama alanını büyütmek için checkbox'ı padding'li bir label içine alıyoruz #}
-                                    <label class="inline-flex items-center justify-center p-2 -m-2 rounded-md cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900 transition-colors"
-                                           title="Bu kelimeyi seçilenlere ekle">
-                                        <input type="checkbox" name="word_ids" value="{{ word.id }}" form="bulk-add-form"
-                                               class="bulk-word-checkbox h-6 w-6 rounded border-gray-400 dark:border-slate-500 text-indigo-600 dark:text-indigo-400 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 cursor-pointer">
-                                        <span class="md:hidden ml-2 text-sm font-medium text-gray-700 dark:text-slate-300">Seç</span>
-                                    </label>
-                                {% endif %}
-                            </div>
-                        {% else %}
-                        <div class="grid grid-cols-1 md:grid-cols-9 gap-x-4 gap-y-2 items-center">
-                        {% endif %}
-                            <div class="md:col-span-2">
-                                <a href="{% url 'word_detail' word.id %}" class="block hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors">
-                                    <span class="md:hidden text-xs font-bold uppercase text-gray-500 dark:text-slate-400">Yazar: </span>
-                                    <span class="font-semibold text-indigo-700 dark:text-indigo-300">
-                                        {% if word.owner != None %}
-                                            {{ word.owner.username }}
-                                        {% else %}
-                                            ODTÜ
-                                        {% endif %}
-                                    </span>
-                                </a>
-                            </div>
-
-                            <div class="md:col-span-3 text-lg font-medium text-gray-900 dark:text-slate-100">
-                                <a href="{% url 'word_detail' word.id %}" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                                    {{ word.englishWord }}
-                                </a>
-                            </div>
-
-                            <div class="md:col-span-3 text-gray-600 dark:text-slate-400">
-                                <a href="{% url 'word_detail' word.id %}" class="block hover:text-gray-900 dark:hover:text-slate-100 transition-colors">
-                                    {{ word.meaningTr }}
-                                </a>
-                            </div>
-
-                            {% if user.is_authenticated %}
-                            <div class="md:col-span-2 text-gray-600 dark:text-slate-400">
-                                {% if word.id in saved_ids %}
-                                <span class="inline-flex items-center rounded-md bg-green-100 dark:bg-green-900 px-3 py-2 text-sm font-semibold text-green-800 dark:text-green-200">
-                                    <svg class="-ml-0.5 mr-1.5 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                                    Listemde
-                                </span>
-                                {% else %}
-                                <a href="{% url 'add_to_my_list' word.id %}"
-                                   class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                    <svg class="-ml-0.5 mr-1.5 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                    </svg>
-                                    Listeme Ekle
-                                </a>
-                                {% endif %}
-                            </div>
-                            {% endif %}
-
-                            <div class="md:col-span-1 text-left md:text-right">
-                                <a href="{% url 'word_detail' word.id %}" class="block">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-200">
-                                        {{ word.wordLevel }}
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endwith %}
-                    {% empty %}
-                    <div class="text-center py-12">
-                        <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                          <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                        </svg>
-                        <h3 class="mt-2 text-lg font-medium text-gray-900 dark:text-slate-100">Sonuç Bulunamadı</h3>
-                        <p class="mt-1 text-sm text-gray-500 dark:text-slate-400">Aradığınız kriterlere uygun kelime bulunamadı.</p>
-                      </div>
-                    {% endfor %}
-                </div>
-
-                {# --- Sayfalama (Kelimelerim sayfasıyla ortak) --- #}
-                {% include 'base/_pagination.html' %}
-            </div>
-
-            {% if user.is_authenticated and words %}
-            </form>
-            {% endif %}
+            </p>
+            <a href="{% url 'all_words' %}" class="mt-6 inline-block rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 transition">Filtreleri temizle</a>
         </div>
 
-{% if user.is_authenticated %}
-<script>
-(function () {
-    const form = document.getElementById("bulk-add-form");
-    if (!form) return;
-
-    const checkboxes = Array.from(document.querySelectorAll(".bulk-word-checkbox"));
-    const toggle = document.getElementById("select-all-toggle");
-    const countLabel = document.getElementById("selected-count");
-    const submitBtn = document.getElementById("bulk-add-button");
-
-    function refresh() {
-        const selected = checkboxes.filter(cb => cb.checked).length;
-        countLabel.textContent = selected;
-        submitBtn.disabled = selected === 0;
-
-        // Sayfadaki tüm seçilebilir kutular işaretliyse "Tümünü seç" işaretli görünsün
-        const total = checkboxes.length;
-        toggle.checked = total > 0 && selected === total;
-        toggle.indeterminate = selected > 0 && selected < total;
-    }
-
-    toggle.addEventListener("change", () => {
-        checkboxes.forEach(cb => { cb.checked = toggle.checked; });
-        refresh();
-    });
-
-    checkboxes.forEach(cb => cb.addEventListener("change", refresh));
-
-    // Boş seçimle yanlışlıkla submit edilmesin
-    form.addEventListener("submit", (e) => {
-        if (checkboxes.filter(cb => cb.checked).length === 0) {
-            e.preventDefault();
-        }
-    });
-
-    refresh();
-})();
-</script>
-{% endif %}
-
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

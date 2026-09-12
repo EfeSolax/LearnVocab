@@ -71,7 +71,7 @@ hem açık hem karanlık temada okunaklı hâle geliyor.
             <li>
                 <a href="{% url 'word_detail' row.word.id %}"
                    class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
-                    <span class="flex-1 truncate font-medium text-gray-900 dark:text-slate-100">{{ row.word.englishWord }}</span>
+                    <span class="flex-1 truncate font-medium text-gray-900 dark:text-slate-100">{{ row.word.text }}</span>
                     <span class="w-16 text-right text-sm tabular-nums text-gray-500 dark:text-slate-400">{{ row.attempts }}</span>
                     <span class="oran-rozet w-16 shrink-0 rounded-md px-2 py-0.5 text-right text-sm font-bold tabular-nums"
                           style="--h: {{ row.hue }}">%{{ row.accuracy }}</span>

@@ -242,10 +242,10 @@ class CreateTextViewTests(TestCase):
         self.user = User.objects.create_user(username="textuser", password="Sifre1234")
         self.client.login(username="textuser", password="Sifre1234")
 
-        word = Word.objects.create(
-            englishWord="retain", meaningTr="elde tutmak",
-            exampleSentence1="They retain control.",
-        )
+        from words.testing import make_word
+
+        word = make_word("retain", pos="verb", meaning="elde tutmak",
+                         sentences=["They retain control."])
         UserWordLink.objects.create(user=self.user, word=word)
 
     def _post(self, text="This is my English paragraph about work."):

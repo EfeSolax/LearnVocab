@@ -149,7 +149,7 @@ def exportMyWords(request):
     if words_in_list.exists():
         response.write("Kelime Listeniz:\n\n")
         for word in total_words:
-            response.write(f"Kelime: {word.englishWord}\n")
+            response.write(f"Kelime: {word.text}\n")
             response.write(f"Anlamı: {word.meaningTr}\n")
             response.write(f"Açıklama: {word.explanation}\n")
             response.write(f"Not: {word.note}\n")
@@ -158,7 +158,7 @@ def exportMyWords(request):
             response.write(f"Kullanım Kalıpları: {word.collocations or '-'}\n")
             for index, sentence in enumerate(word.example_sentences, start=1):
                 response.write(f"Örnek Cümle {index}: {sentence}\n")
-            response.write(f"Seviye: {word.wordLevel}\n")
+            response.write(f"Seviye: {word.cefr}\n")
             response.write("--------------------\n")
     else:
         response.write("Dışa aktarılacak kelime bulunamadı.\n")
@@ -386,11 +386,11 @@ def exportAll(request):
     if total_words.exists():
         write_line(f"Toplam {total_words.count()} kelime bulundu:\n")
         for word in total_words:
-            write_line(f"Kelime: {word.englishWord}")
+            write_line(f"Kelime: {word.text}")
             write_line(f"Anlamı: {word.meaningTr}")
             write_line(f"Açıklama: {word.explanation or ''}") # None ise hata vermesin
             write_line(f"Not: {word.note or ''}")           # None ise hata vermesin
-            write_line(f"Seviye: {word.wordLevel}")
+            write_line(f"Seviye: {word.cefr}")
             write_line("--------------------")
     else:
         write_line("Dışa aktarılacak kelime bulunamadı.")

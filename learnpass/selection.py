@@ -4,10 +4,11 @@
 İki mod var ve ikisi tamamen farklı havuzlardan besleniyor:
 
   mine -> kullanıcının kendi listesi. Amaç hızlı gözden geçirme.
-  new  -> kullanıcının listesinde OLMAYAN kur kelimeleri. Amaç keşif.
+  new  -> kullanıcının listesinde OLMAYAN temel kelimeler. Amaç keşif.
 
-"new" modunda kurlar eşit değil: hazırlık öğrencisinin asıl ihtiyacı orta-üst
-seviyede olduğu için ağırlık 401'de. Dağılım LEVEL_WEIGHTS'te, tek yerde.
+"new" modunda seviyeler eşit değil: hazırlık öğrencisinin asıl ihtiyacı
+orta-üst seviyede olduğu için ağırlık B2'de. Dağılım LEVEL_WEIGHTS'te,
+tek yerde.
 """
 
 import random
@@ -19,23 +20,23 @@ from words.models import Word
 from .models import WordEncounter
 
 
-# Kur seçilme ağırlıkları. Toplamı 100 olmak zorunda değil; oranlar önemli.
+# Seviye seçilme ağırlıkları. Toplamı 100 olmak zorunda değil; oranlar önemli.
 LEVEL_WEIGHTS = (
-    ("401", 40),
-    ("301", 25),
-    ("501", 25),
-    ("101", 5),
-    ("201", 5),
+    ("B2", 40),
+    ("B1", 25),
+    ("C1", 25),
+    ("A1", 5),
+    ("A2", 5),
 )
 
 
 def _weighted_levels(rng=None):
     """
-    Kurları ağırlıklarına göre rastgele sıraya dizer.
+    Seviyeleri ağırlıklarına göre rastgele sıraya dizer.
 
-    Tek bir kur seçip "boşsa vazgeç" demek yerine bütün kurları sıralıyoruz:
-    seçilen kurda gösterilecek kelime kalmadıysa sıradakine düşülüyor, yani
-    havuz tükenene kadar kart gelmeye devam ediyor.
+    Tek bir seviye seçip "boşsa vazgeç" demek yerine bütün seviyeleri
+    sıralıyoruz: seçilen seviyede gösterilecek kelime kalmadıysa sıradakine
+    düşülüyor, yani havuz tükenene kadar kart gelmeye devam ediyor.
     """
     rng = rng or random
     kalan = list(LEVEL_WEIGHTS)
@@ -44,10 +45,10 @@ def _weighted_levels(rng=None):
         toplam = sum(agirlik for _, agirlik in kalan)
         nokta = rng.uniform(0, toplam)
         birikim = 0
-        for i, (kur, agirlik) in enumerate(kalan):
+        for i, (seviye, agirlik) in enumerate(kalan):
             birikim += agirlik
             if nokta <= birikim:
-                sira.append(kur)
+                sira.append(seviye)
                 kalan.pop(i)
                 break
         else:  # kayan nokta artığı: sonuncuyu al
@@ -76,8 +77,8 @@ def own_words_qs(user):
 def new_words_qs(user, level=None):
     """
     Kullanıcının listesinde olmayan ve daha önce Öğren-Geç'te görmediği
-    kur kelimeleri. Kişisel/gizli kelimeler buraya hiç girmiyor: havuz
-    yalnızca herkese açık kur kelimelerinden oluşuyor.
+    temel kelimeler. Kişisel/gizli kelimeler buraya hiç girmiyor: havuz
+    yalnızca herkese açık temel kelimelerden oluşuyor.
     """
     qs = (
         Word.objects.filter(isBaseWord=True)
@@ -86,7 +87,7 @@ def new_words_qs(user, level=None):
         .exclude(id__in=_seen_word_ids(user))
     )
     if level:
-        qs = qs.filter(wordLevel=level)
+        qs = qs.filter(cefr=level)
     return qs.distinct()
 
 

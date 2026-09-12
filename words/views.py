@@ -14,10 +14,12 @@ from django.views.decorators.http import require_POST
 from LearnVocab import pagination, progress
 
 from . import ai_import
-from .models import Word, UserWordLink
+from .models import (
+    CEFR_LEVELS, PartOfSpeech, UserMeaning, UserWordLink, UserWordNote, Word,
+)
 
 logger = logging.getLogger(__name__)
-from .addWeeks.addWeeks import wordsAddDelete, allWordsAddDelete
+from .addWeeks.addWeeks import allWordsAddDelete
 
 
 # ---------------------------------------------------------------------------
@@ -28,8 +30,10 @@ def visible_words_qs(user):
     """
     Bir kullanıcının görüntülemeye yetkili olduğu kelimelerin queryset'ini döner.
     - Anonim kullanıcı: sadece base (kur) kelimeleri ve public kelimeler.
-    - Giriş yapmış kullanıcı: yukarıdakilere ek olarak kendi kelimeleri,
-      kendi listesine eklediği kelimeler ve arkadaşlarının "friends" görünür kelimeleri.
+    - Giriş yapmış kullanıcı: yukarıdakilere ek olarak kendi kelimeleri ve
+      kendi listesine eklediği kelimeler.
+
+    NOT: "friends" görünürlüğü kaldırıldı — arkadaşlık özelliği kapalı.
     """
     base_qs = Word.objects.select_related("owner")
 
@@ -41,7 +45,6 @@ def visible_words_qs(user):
         | Q(owner=user)
         | Q(saved_by=user)
         | Q(visibility="public")
-        | Q(visibility="friends", owner__friends=user)
     )
 
 
@@ -54,8 +57,6 @@ def can_view_word(word, user):
     if word.owner_id == user.id:
         return True
     if word.saved_by.filter(id=user.id).exists():
-        return True
-    if word.visibility == "friends" and word.owner and word.owner.friends.filter(id=user.id).exists():
         return True
     return False
 
@@ -182,25 +183,25 @@ def _back_to_all_words_url(request):
 # Hangi alanın hangi filtreye karşılık geldiğinin haritası.
 # Karmaşık if/elif yığınını ortadan kaldırır.
 _FIELD_FILTERS = {
-    "english": ["englishWord__icontains"],
-    "meaning": ["meaningTr__icontains"],
-    "explanation": ["explanation__icontains"],
+    "english": ["text__icontains"],
+    "meaning": ["meanings__meaning_tr__icontains"],
+    "explanation": ["meanings__definition__icontains"],
     "author": ["owner__username__icontains"],
     "all": [
-        "englishWord__icontains",
-        "meaningTr__icontains",
-        "explanation__icontains",
+        "text__icontains",
+        "meanings__meaning_tr__icontains",
+        "meanings__definition__icontains",
         "owner__username__icontains",
-        "wordLevel__icontains",
+        "cefr__icontains",
         "v2Form__icontains",
         "v3Form__icontains",
     ],
 }
 
 _DEFAULT_QUERY_FIELDS = [
-    "englishWord__icontains",
-    "meaningTr__icontains",
-    "explanation__icontains",
+    "text__icontains",
+    "meanings__meaning_tr__icontains",
+    "meanings__definition__icontains",
     "owner__username__icontains",
 ]
 
@@ -245,10 +246,21 @@ def allWords(request):
         words = words.filter(_q_from_fields(query, fields))
 
     if level and level != "all":
-        words = words.filter(wordLevel=level)
+        words = words.filter(cefr=level)
 
-    # 3) Sıralama + tekilleştirme + N+1 önleme
-    words = words.distinct().order_by("id")
+    pos = request.GET.get("pos")
+    if pos and pos != "all":
+        words = words.filter(pos=pos)
+
+    # 3) Sıralama + tekilleştirme + N+1 önleme.
+    # Aile, anlam ve örnek cümleler tek seferde çekiliyor: liste ekranı
+    # her satır için ayrı sorgu atmasın.
+    words = (
+        words.distinct()
+        .select_related("family", "owner")
+        .prefetch_related("meanings__examples", "meanings__categories")
+        .order_by("text", "pos")
+    )
 
     # 4) Sayfalama
     per_page = pagination.resolve_per_page(request, ALL_WORDS_PER_PAGE_OPTIONS,
@@ -273,6 +285,11 @@ def allWords(request):
         "current_query": query,
         "current_filter": filter_by or "",
         "current_level": level or "all",
+        # Seviye süzgecinin seçenekleri modelden geliyor; şablona
+        # elle yazılan 101–501 listesi bu yüzden kaldırıldı.
+        "cefr_levels": CEFR_LEVELS,
+        "current_pos": pos or "all",
+        "pos_choices": PartOfSpeech.choices,
         "saved_ids": saved_ids,
     }
 
@@ -280,7 +297,7 @@ def allWords(request):
     # ilk/son, sayfa numaraları, sayfa başına adet ve doğrudan sayfaya atlama.
     context.update(pagination.pagination_context(
         page_obj, paginator,
-        params=[("q", query), ("filter_by", filter_by), ("level", level)],
+        params=[("q", query), ("filter_by", filter_by), ("level", level), ("pos", pos)],
         per_page=per_page,
         per_page_options=ALL_WORDS_PER_PAGE_OPTIONS,
         default_per_page=ALL_WORDS_DEFAULT_PER_PAGE,
@@ -293,23 +310,105 @@ def allWords(request):
 # Kelime detay
 # ---------------------------------------------------------------------------
 
+def _kisisel_kayit(request, word):
+    """
+    Aile sayfasındaki kullanıcı formlarını işler.
+
+    `form` alanı hangi formun gönderildiğini söylüyor; hepsi aynı adrese
+    POST ettiği için ayırt etmenin başka yolu yok.
+    """
+    hangi = request.POST.get("form") or "note"
+
+    if hangi == "meaning":
+        # Kullanıcı aradığı anlamı bulamadıysa kendi anlamını ekliyor.
+        # Bu anlam yalnızca ona görünür; çekirdek sözlük değişmez.
+        anlam = (request.POST.get("meaning_tr") or "").strip()
+        if anlam:
+            UserMeaning.objects.create(
+                user=request.user, word=word, meaning_tr=anlam[:300],
+                definition=(request.POST.get("definition") or "").strip()[:600] or None,
+            )
+            messages.success(request, "Kendi anlamın eklendi.")
+        else:
+            messages.error(request, "Anlam boş olamaz.")
+
+    elif hangi == "meaning_delete":
+        silinen, _ = UserMeaning.objects.filter(
+            user=request.user, word=word, id=request.POST.get("meaning_id") or 0,
+        ).delete()
+        if silinen:
+            messages.info(request, "Anlamın silindi.")
+
+    else:
+        metin = (request.POST.get("note") or "").strip()
+        if metin:
+            UserWordNote.objects.update_or_create(
+                user=request.user, word=word, defaults={"note": metin},
+            )
+            messages.success(request, "Notun kaydedildi.")
+        else:
+            UserWordNote.objects.filter(user=request.user, word=word).delete()
+            messages.info(request, "Notun silindi.")
+
+    return redirect("word_detail", id=word.id)
+
+
 def word_detail(request, id):
-    word = get_object_or_404(Word.objects.select_related("owner"), id=id)
+    """
+    Kelime sayfası. Tek kelimeyi değil, AİLESİNİ gösterir: seçili kelime
+    açık, ailedeki diğer türevler altında listelenir.
+    """
+    word = get_object_or_404(
+        Word.objects.select_related("owner", "family")
+        .prefetch_related(
+            "meanings__examples", "meanings__collocations", "meanings__patterns",
+            "meanings__categories", "forms", "false_friends", "expressions",
+        ),
+        id=id,
+    )
 
     if not can_view_word(word, request.user):
         messages.error(request, "Bu kelimeyi görüntüleyemezsiniz.")
         return redirect("all_words")
 
+    # Sayfada iki form var: kişisel not ve kişisel anlam. İkisi de kullanıcı
+    # katmanına yazar, çekirdeğe dokunmaz.
+    if request.method == "POST" and request.user.is_authenticated:
+        return _kisisel_kayit(request, word)
+
+    aile_uyeleri = (
+        word.family.words.exclude(id=word.id)
+        .prefetch_related("meanings")
+        .order_by("text", "pos")
+    )
+
     context = {
         "word": word,
-        # Boş olanları modelin kendisi süzüyor (10 cümle alanı var)
-        "exampleSentences": word.example_sentences,
+        "family": word.family,
+        "family_members": aile_uyeleri,
+        # Anlamlar artık kendi cümlelerini, collocation'larını, kalıplarını,
+        # tonunu ve alanını taşıyor; şablon her anlamı kendi bloğu olarak basıyor.
+        "meanings": word.meanings.all(),
+        "synonyms": word.synonyms,
+        "antonyms": word.antonyms,
+        "simpler_words": word.simpler_words,
+        "confusables": word.confusables,
+        "false_friends": word.false_friends.all(),
+        "expressions": word.expressions.all(),
+        "forms": word.forms.exclude(surface=word.text),
+        "my_note": word.note_of(request.user),
+        "my_meanings": word.meanings_of(request.user),
+        "can_edit": word.is_editable_by(request.user),
+        "in_my_list": (
+            request.user.is_authenticated
+            and UserWordLink.objects.filter(user=request.user, word=word).exists()
+        ),
     }
     return render(request, "pages/words/wordDetail.html", context)
 
 
 # ---------------------------------------------------------------------------
-# Toplu kelime ekleme (kur seviyelerine göre)
+# Toplu kelime ekleme (CEFR seviyesine göre)
 # ---------------------------------------------------------------------------
 
 @login_required
@@ -318,22 +417,13 @@ def addAllWords(request):
         messages.error(request, "Geçersiz istek.")
         return redirect("profile_words")
 
-    value = request.POST.get("bulk_word_list_name")
-    if not value or ":" not in value:
-        messages.error(request, "Lütfen bir liste seçin.")
+    level = (request.POST.get("bulk_level") or "").strip()
+    if level not in CEFR_LEVELS:
+        messages.error(request, "Lütfen bir seviye seçin.")
         return redirect("profile_words")
 
     try:
-        level, span = value.split(":", 1)
-    except ValueError:
-        messages.error(request, "Liste formatı hatalı.")
-        return redirect("profile_words")
-
-    try:
-        if span == "all":
-            allWordsAddDelete(request.user, False, level)
-        else:
-            wordsAddDelete(request.user, False, level, span)
+        allWordsAddDelete(request.user, False, level)
     except Exception as e:
         # Loader'lardan beklenmeyen bir hata gelirse kullanıcıya makul bir mesaj göster.
         messages.error(request, f"Kelimeler eklenirken bir hata oluştu: {e}")

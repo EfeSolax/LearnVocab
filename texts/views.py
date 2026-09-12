@@ -158,7 +158,7 @@ def _evaluate_text(user, user_text, reporter=None):
     """
     links = list(_recent_links_for(user))
     words = [link.word for link in links]
-    word_strings = [w.englishWord for w in words]
+    word_strings = [w.text for w in words]
 
     try:
         response = send_message_to_gemini(

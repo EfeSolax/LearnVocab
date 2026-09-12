@@ -1,220 +1,394 @@
-{% extends 'base/layout.html' %}
+{% extends 'base/appLayout.html' %}
 
-{% block title %}Kelime: {{ word.englishWord }}{% endblock %}
+{% comment %}
+Kelime sayfası — aslında AİLE sayfası.
 
-{% block messages %}{% endblock %}
+Sayfanın omurgası ANLAM. Her anlam kendi bloğu: Türkçesi, İngilizce
+açıklaması, tonu, üslubu, alanı, birlikte kullanılan yapıları (collocation),
+gramer kalıpları ve 5 örnek cümlesi. `bank`ın "banka" anlamıyla "nehir
+kıyısı" anlamı bu yüzden birbirine karışmıyor.
 
+Altında kelimenin bütününe ait olanlar: çekim biçimleri, eş/zıt anlamlılar,
+karıştırılan kelimeler, yanlış dostlar, ifadeler ve ailenin diğer üyeleri.
+En altta kullanıcı katmanı — kendi anlamı ve kendi notu; ikisi de çekirdeğe
+dokunmaz, yalnızca ona görünür.
+{% endcomment %}
 
-{% block content %}
+{% block title %}{{ word.text }}{% endblock %}
+{% block page_heading %}{% endblock %}
 
-<div class="bg-gradient-to-br from-indigo-50 dark:from-indigo-950 to-purple-100 dark:to-purple-900 min-h-screen py-8 sm:py-12">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+{% block page %}
 
-    {% include 'base/messages.html' with margin_class="" %}
-    
-    <div class="flex justify-between items-center mb-8">
- 
-         <div class="">
-         {% if user.is_authenticated %}
-         <a href="{% url 'profile_words' %}" class="inline-flex items-center text-lg font-semibold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-indigo-200 transition-all duration-200 ease-in-out px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border border-indigo-200 dark:border-indigo-800 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
-         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 20 20" fill="currentColor">
-         <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-         </svg>
- Kelimelerime Dön
- </a>
- {% endif %}
- </div>
+<div class="mx-auto max-w-3xl space-y-5">
 
- <div class="">
- {% if user.is_authenticated %}
-<a href="{% url 'all_words' %}" class="inline-flex items-center text-lg font-semibold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-indigo-200 transition-all duration-200 ease-in-out px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border border-indigo-200 dark:border-indigo-800 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 20 20" fill="currentColor">
- <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
- </svg>
- Tüm Kelimelere Dön
- </a>
- {% endif %}
- </div>
+    <a href="{% url 'all_words' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200">
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+        Kelimeler
+    </a>
 
-</div>
+    {# ================= SEÇİLİ KELİME ================= #}
+    <section class="overflow-hidden rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
 
-    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden p-8 md:p-10 text-center relative z-10 transform hover:scale-102 transition-all duration-300 ease-in-out">
-      <h1 class="text-6xl sm:text-8xl font-extrabold tracking-tight bg-gradient-to-r from-purple-600 to-indigo-700 bg-clip-text text-transparent mb-4 leading-tight">
-        {{ word.englishWord }}
-      </h1>
-      <h2 class="text-3xl sm:text-4xl font-semibold text-gray-700 dark:text-slate-300 leading-snug">
-        {{ word.meaningTr }}
-      </h2>
-      <div class="mt-6 flex items-center justify-center space-x-6 text-base text-gray-500 dark:text-slate-400">
-        <span class="inline-flex items-center">
-          <svg class="h-5 w-5 mr-1.5 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-          Oluşturulma: {{ word.createdAt|date:"d M Y" }}
-        </span>
-        <span class="text-gray-300 dark:text-slate-600">|</span>
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 shadow-sm">
-          Seviye: {{ word.wordLevel }}
-        </span>
-      </div>
-    </div>
+        <div class="border-b border-gray-200 dark:border-slate-700 px-5 py-5 sm:px-6">
+            <div class="flex flex-wrap items-start justify-between gap-3">
+                <div class="min-w-0">
+                    <div class="flex flex-wrap items-baseline gap-2">
+                        <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-slate-100">{{ word.text }}</h1>
+                        <span class="rounded-md bg-slate-100 dark:bg-slate-700 px-2 py-0.5 text-xs font-semibold text-slate-600 dark:text-slate-300">{{ word.get_pos_display }}</span>
+                        {% if word.cefr != "Belirtilmemiş" %}
+                        <span class="rounded-md bg-indigo-50 dark:bg-indigo-950 px-2 py-0.5 text-xs font-semibold text-indigo-600 dark:text-indigo-300">{{ word.cefr }}</span>
+                        {% endif %}
+                    </div>
 
-    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden mt-10 p-8">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-6 border-b-2 border-purple-200 dark:border-purple-800 pb-3">Kelime Detayları</h3>
-      
-      <dl class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
-        
-        <div class="flex flex-col p-4 bg-indigo-50 dark:bg-indigo-950 rounded-lg border border-indigo-200 dark:border-indigo-800 hover:shadow-md transform hover:-translate-y-1 transition-all duration-200 ease-in-out">
-          <dt class="text-sm font-medium text-gray-600 dark:text-slate-400 uppercase flex items-center mb-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-            Kaynak
-          </dt>
-          <dd class="text-lg text-gray-800 dark:text-slate-200 font-medium">
-            {% if word.isBaseWord %}
-              ODTÜ Kur Kelimesi
-            {% else %}
-              Kullanıcı Tarafından Eklendi
-            {% endif %}
-          </dd>
+                    {% if word.verb_forms %}
+                    <p class="mt-1.5 text-sm text-gray-500 dark:text-slate-400">
+                        <span class="font-medium text-gray-700 dark:text-slate-300">{{ word.verb_forms|join:" · " }}</span>
+                        <span class="text-xs">(2. / 3. hâl)</span>
+                    </p>
+                    {% endif %}
+                </div>
+
+                {% if user.is_authenticated %}
+                <div class="flex shrink-0 items-center gap-2">
+                    {% if can_edit %}
+                    <a href="{% url 'edit_word' word.id %}" title="Kelimeyi düzenle"
+                       class="inline-flex h-10 w-10 items-center justify-center rounded-xl text-gray-500 dark:text-slate-400 ring-1 ring-inset ring-gray-300 dark:ring-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/></svg>
+                    </a>
+                    {% endif %}
+                    {% if in_my_list %}
+                    <a href="{% url 'remove_from_my_list' word.id %}"
+                       class="inline-flex items-center gap-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950 px-4 py-2 text-sm font-semibold text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-200 dark:ring-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900 transition-colors">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                        Listemde
+                    </a>
+                    {% else %}
+                    <a href="{% url 'add_to_my_list' word.id %}"
+                       class="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                        Listeme ekle
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
         </div>
 
-        <div class="flex flex-col p-4 bg-indigo-50 dark:bg-indigo-950 rounded-lg border border-indigo-200 dark:border-indigo-800 hover:shadow-md transform hover:-translate-y-1 transition-all duration-200 ease-in-out">
-          <dt class="text-sm font-medium text-gray-600 dark:text-slate-400 uppercase flex items-center mb-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-            Görünürlük
-          </dt>
-          <dd class="text-lg text-gray-800 dark:text-slate-200 font-medium">
-            {% if word.visibility == 'public' %} Herkese Açık
-            {% elif word.visibility == 'friends' %} Sadece Arkadaşlara
-            {% elif word.visibility == 'private' %} Gizli (Sadece Ben)
-            {% endif %}
-          </dd>
+        {# ---- Anlamlar: her biri kendi dünyası ---- #}
+        <div class="divide-y divide-gray-100 dark:divide-slate-700">
+            {% for meaning in meanings %}
+            <div class="px-5 py-4 sm:px-6">
+
+                <div class="flex items-baseline gap-2">
+                    {% if meanings|length > 1 %}
+                    <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-950 text-[11px] font-bold text-indigo-700 dark:text-indigo-300">{{ forloop.counter }}</span>
+                    {% endif %}
+                    <p class="text-lg font-bold text-gray-900 dark:text-slate-100">{{ meaning.meaning_tr }}</p>
+                </div>
+
+                <div class="{% if meanings|length > 1 %}ml-7{% endif %}">
+                    {% include 'base/_meaningBadges.html' with meaning=meaning %}
+
+                    {% if meaning.definition %}
+                    <p class="mt-1.5 text-sm text-gray-600 dark:text-slate-400">{{ meaning.definition }}</p>
+                    {% endif %}
+
+                    {% comment %}
+                    Collocation: kelimeyi bilmekle kullanabilmek arasındaki fark.
+                    Türkçe "karar vermek" dediği için öğrenci "do a decision"
+                    yazıyor; doğrusunu ancak burada görüyor.
+                    {% endcomment %}
+                    {% if meaning.collocations.all %}
+                    <div class="mt-3 rounded-xl bg-indigo-50/60 dark:bg-indigo-950/40 px-3.5 py-3">
+                        <h3 class="mb-1.5 text-[11px] font-bold uppercase tracking-wide text-indigo-500 dark:text-indigo-400">
+                            Birlikte kullanılır
+                        </h3>
+                        <ul class="space-y-1">
+                            {% for yapi in meaning.collocations.all %}
+                            <li class="text-sm">
+                                <span class="font-semibold text-indigo-900 dark:text-indigo-200">{{ yapi.pattern }}</span>
+                                {% if yapi.meaning_tr %}<span class="text-indigo-700/70 dark:text-indigo-300/70"> — {{ yapi.meaning_tr }}</span>{% endif %}
+                                <span class="ml-1 text-[10px] text-indigo-400 dark:text-indigo-500">{{ yapi.get_kind_display }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    {% comment %}
+                    Kalıp collocation değil, GRAMER: decide TO do, discourage sb
+                    FROM doing. Hazırlık öğrencisinin en çok kaybettiği yer.
+                    {% endcomment %}
+                    {% if meaning.patterns.all %}
+                    <div class="mt-2 rounded-xl bg-teal-50/60 dark:bg-teal-950/40 px-3.5 py-3">
+                        <h3 class="mb-1.5 text-[11px] font-bold uppercase tracking-wide text-teal-600 dark:text-teal-400">
+                            Kullanım kalıbı
+                        </h3>
+                        <ul class="space-y-1">
+                            {% for kalip in meaning.patterns.all %}
+                            <li class="text-sm">
+                                <span class="font-semibold text-teal-900 dark:text-teal-200">{{ kalip.pattern }}</span>
+                                <span class="ml-1 text-[10px] text-teal-500 dark:text-teal-500">{{ kalip.get_kind_display }}</span>
+                                {% if kalip.note %}<span class="block text-xs text-teal-700/80 dark:text-teal-300/70">{{ kalip.note }}</span>{% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    {% if meaning.examples.all %}
+                    <ul class="mt-3 space-y-2">
+                        {% for cumle in meaning.examples.all %}
+                        <li class="border-l-2 border-gray-200 dark:border-slate-600 pl-3 text-sm sm:text-base leading-relaxed text-gray-700 dark:text-slate-300">
+                            {{ cumle.text }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="px-5 py-4 sm:px-6 text-sm text-gray-400 dark:text-slate-500">Anlamı henüz girilmemiş.</div>
+            {% endfor %}
+
+            {% comment %}
+            Kullanıcının kendi anlamı burada, çekirdek anlamların hemen
+            ardında duruyor — dipnot değil, kelimenin bir anlamı. Ama kesikli
+            çerçevesi ve rozeti onu ortak sözlükten ayırıyor: bu satırı
+            başkası görmüyor.
+            {% endcomment %}
+            {% for anlam in my_meanings %}
+            <div class="px-5 py-4 sm:px-6 bg-amber-50/40 dark:bg-amber-950/20">
+                <div class="border-l-2 border-dashed border-amber-400 dark:border-amber-700 pl-3">
+                    <div class="flex flex-wrap items-baseline gap-2">
+                        <p class="text-lg font-bold text-gray-900 dark:text-slate-100">{{ anlam.meaning_tr }}</p>
+                        <span class="inline-flex items-center gap-1 rounded-md bg-amber-100 dark:bg-amber-950 px-2 py-0.5 text-[11px] font-semibold text-amber-800 dark:text-amber-300">
+                            <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd"/></svg>
+                            sadece sen görürsün
+                        </span>
+                    </div>
+                    {% if anlam.definition %}
+                    <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">{{ anlam.definition }}</p>
+                    {% endif %}
+                    <form method="POST" class="mt-1.5">
+                        {% csrf_token %}
+                        <input type="hidden" name="form" value="meaning_delete">
+                        <input type="hidden" name="meaning_id" value="{{ anlam.id }}">
+                        <button type="submit" class="text-xs font-semibold text-gray-400 dark:text-slate-500 hover:text-rose-600 dark:hover:text-rose-400">
+                            Bu anlamı sil
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
         </div>
 
-        {% if word.prefix %}
-          <div class="flex flex-col p-4 bg-indigo-50 dark:bg-indigo-950 rounded-lg border border-indigo-200 dark:border-indigo-800 hover:shadow-md transform hover:-translate-y-1 transition-all duration-200 ease-in-out">
-            <dt class="text-sm font-medium text-gray-600 dark:text-slate-400 uppercase flex items-center mb-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-              Olumsuzluk Ön Eki
-            </dt>
-            <dd class="mt-1 text-lg text-gray-800 dark:text-slate-200 font-medium">{{ word.prefix }}</dd>
-          </div>
+        {# ---- Yanlış dost: Türkçeye benzediği için yanlış anlaşılan ---- #}
+        {% if false_friends %}
+        <div class="border-t border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6 space-y-2">
+            {% for yanlis in false_friends %}
+            <div class="rounded-xl border border-orange-300 dark:border-orange-900 bg-orange-50 dark:bg-orange-950/50 px-4 py-3">
+                <p class="flex items-center gap-1.5 text-sm font-bold text-orange-900 dark:text-orange-200">
+                    <svg class="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+                    “{{ yanlis.turkish_lookalike }}” demek değil
+                </p>
+                {% if yanlis.assumed_meaning %}
+                <p class="mt-1 text-sm text-orange-800 dark:text-orange-300">
+                    Sanılan: {{ yanlis.assumed_meaning }}
+                </p>
+                {% endif %}
+                {% if yanlis.correct_english %}
+                <p class="mt-0.5 text-sm text-orange-800 dark:text-orange-300">
+                    O anlam için doğru kelime: <span class="font-semibold">{{ yanlis.correct_english }}</span>
+                </p>
+                {% endif %}
+                {% if yanlis.note %}<p class="mt-0.5 text-xs text-orange-700 dark:text-orange-400">{{ yanlis.note }}</p>{% endif %}
+            </div>
+            {% endfor %}
+        </div>
         {% endif %}
 
-        {% if word.isVerb %}
-          <div class="flex flex-col p-4 bg-indigo-50 dark:bg-indigo-950 rounded-lg border border-indigo-200 dark:border-indigo-800 hover:shadow-md transform hover:-translate-y-1 transition-all duration-200 ease-in-out">
-            <dt class="text-sm font-medium text-gray-600 dark:text-slate-400 uppercase mb-1">Fiilin 2. Hali (V2)</dt>
-            <dd class="mt-1 text-lg text-gray-800 dark:text-slate-200 font-medium">{{ word.v2Form }}</dd>
-          </div>
-          <div class="flex flex-col p-4 bg-indigo-50 dark:bg-indigo-950 rounded-lg border border-indigo-200 dark:border-indigo-800 hover:shadow-md transform hover:-translate-y-1 transition-all duration-200 ease-in-out">
-            <dt class="text-sm font-medium text-gray-600 dark:text-slate-400 uppercase mb-1">Fiilin 3. Hali (V3)</dt>
-            <dd class="mt-1 text-lg text-gray-800 dark:text-slate-200 font-medium">{{ word.v3Form }}</dd>
-          </div>
+        {# ---- Eş / zıt / daha basit karşılığı / karıştırılan ---- #}
+        {% if simpler_words or synonyms or antonyms or confusables %}
+        <div class="border-t border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6 space-y-3">
+
+            {% for bag in simpler_words %}
+            <div class="rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/50 px-4 py-3">
+                <p class="text-sm text-amber-900 dark:text-amber-200">
+                    Daha basit karşılığı:
+                    <a href="{% url 'word_detail' bag.to_word.id %}" class="font-bold underline decoration-amber-400 underline-offset-2">{{ bag.to_word.text }}</a>
+                </p>
+                {% if bag.note %}<p class="mt-0.5 text-xs text-amber-700 dark:text-amber-400">{{ bag.note }}</p>{% endif %}
+            </div>
+            {% endfor %}
+
+            {% for bag in confusables %}
+            <div class="rounded-xl border border-fuchsia-200 dark:border-fuchsia-900 bg-fuchsia-50 dark:bg-fuchsia-950/50 px-4 py-3">
+                <p class="text-sm text-fuchsia-900 dark:text-fuchsia-200">
+                    Sık karıştırılır:
+                    <a href="{% url 'word_detail' bag.to_word.id %}" class="font-bold underline decoration-fuchsia-400 underline-offset-2">{{ bag.to_word.text }}</a>
+                </p>
+                {% if bag.note %}<p class="mt-0.5 text-xs text-fuchsia-700 dark:text-fuchsia-400">{{ bag.note }}</p>{% endif %}
+            </div>
+            {% endfor %}
+
+            {% if synonyms %}
+            <div class="flex flex-wrap items-baseline gap-2">
+                <span class="text-xs font-bold uppercase tracking-wide text-gray-400 dark:text-slate-500">Eş anlamlı</span>
+                {% for bag in synonyms %}
+                <a href="{% url 'word_detail' bag.to_word.id %}" title="{{ bag.note|default:'' }}"
+                   class="rounded-md bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 text-sm font-medium text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900">{{ bag.to_word.text }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if antonyms %}
+            <div class="flex flex-wrap items-baseline gap-2">
+                <span class="text-xs font-bold uppercase tracking-wide text-gray-400 dark:text-slate-500">Zıt anlamlı</span>
+                {% for bag in antonyms %}
+                <a href="{% url 'word_detail' bag.to_word.id %}" title="{{ bag.note|default:'' }}"
+                   class="rounded-md bg-rose-50 dark:bg-rose-950 px-2 py-0.5 text-sm font-medium text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900">{{ bag.to_word.text }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
         {% endif %}
-      </dl>
 
-      {% if word.explanation %}
-        <div class="mt-10 pt-8 border-t-2 border-purple-200 dark:border-purple-800">
-          <dt class="text-sm font-medium text-gray-600 dark:text-slate-400 uppercase flex items-center mb-3">
-             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-500 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            Açıklama
-          </dt>
-          <dd class="text-lg text-gray-800 dark:text-slate-200 leading-relaxed bg-gray-50 dark:bg-slate-900 p-4 rounded-lg border border-gray-200 dark:border-slate-700 shadow-inner">{{ word.explanation }}</dd>
+        {# ---- İfadeler: kelime değil ama bu kelimeyle öğrenilen birimler ---- #}
+        {% if expressions %}
+        <div class="border-t border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6">
+            <h2 class="mb-2.5 text-xs font-bold uppercase tracking-wide text-gray-400 dark:text-slate-500">
+                İçinde geçtiği ifadeler
+            </h2>
+            <ul class="space-y-2">
+                {% for ifade in expressions %}
+                <li class="rounded-xl bg-gray-50 dark:bg-slate-900/60 px-3.5 py-2.5">
+                    <p class="flex flex-wrap items-baseline gap-2">
+                        <span class="font-semibold text-gray-900 dark:text-slate-100">{{ ifade.text }}</span>
+                        <span class="rounded bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 text-[10px] font-semibold text-slate-600 dark:text-slate-300">{{ ifade.get_kind_display }}</span>
+                        {% if ifade.cefr != "Belirtilmemiş" %}<span class="text-[10px] font-semibold text-indigo-500 dark:text-indigo-400">{{ ifade.cefr }}</span>{% endif %}
+                    </p>
+                    <p class="mt-0.5 text-sm text-gray-700 dark:text-slate-300">{{ ifade.meaning_tr }}</p>
+                    {% for ornek in ifade.examples.all|slice:":1" %}
+                    <p class="mt-1 border-l-2 border-gray-200 dark:border-slate-600 pl-3 text-sm text-gray-600 dark:text-slate-400">{{ ornek.text }}</p>
+                    {% endfor %}
+                </li>
+                {% endfor %}
+            </ul>
         </div>
-      {% endif %}
-      
-      {% if word.note %}
-        <div class="mt-10 pt-8 border-t-2 border-purple-200 dark:border-purple-800">
-          <dt class="text-sm font-medium text-gray-600 dark:text-slate-400 uppercase flex items-center mb-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-500 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
-            Not
-          </dt>
-          <dd class="text-lg text-gray-800 dark:text-slate-200 leading-relaxed bg-gray-50 dark:bg-slate-900 p-4 rounded-lg border border-gray-200 dark:border-slate-700 shadow-inner">{{ word.note }}</dd>
+        {% endif %}
+
+        {# ---- Çekim biçimleri ---- #}
+        {% if forms %}
+        <div class="border-t border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6">
+            <h2 class="mb-2 text-xs font-bold uppercase tracking-wide text-gray-400 dark:text-slate-500">
+                Çekim biçimleri
+            </h2>
+            {% comment %}
+            Bunlar ayrı kelime değil, aynı kelimenin hâlleri. Sözlük maddesi
+            olmazlar; metinde bu yazımlara dokunulduğunda buraya gelinir.
+            {% endcomment %}
+            <div class="flex flex-wrap gap-1.5">
+                {% for bicim in forms %}
+                <span class="rounded-md bg-slate-100 dark:bg-slate-700 px-2 py-0.5 text-sm text-slate-700 dark:text-slate-300">
+                    {{ bicim.surface }}<span class="ml-1 text-[10px] text-slate-400 dark:text-slate-500">{{ bicim.get_kind_display }}</span>
+                </span>
+                {% endfor %}
+            </div>
         </div>
-      {% endif %}
+        {% endif %}
+    </section>
 
-    </div>
+    {# ================= AİLE ================= #}
+    {% if family_members %}
+    <section class="overflow-hidden rounded-2xl border border-violet-200 dark:border-violet-900 bg-white dark:bg-slate-800">
+        <header class="border-b border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/50 px-5 py-4 sm:px-6">
+            <h2 class="text-base font-bold text-violet-900 dark:text-violet-200">
+                {{ family.root }} ailesi
+            </h2>
+            {% if family.note %}
+            <p class="mt-0.5 text-sm text-violet-700 dark:text-violet-300">{{ family.note }}</p>
+            {% endif %}
+        </header>
 
-    {% if exampleSentences %}
-    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden mt-10 p-8">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-6 border-b-2 border-purple-200 dark:border-purple-800 pb-3">Örnek Cümleler</h3>
-      <ul class="space-y-6">
-        {% for sentence in exampleSentences %}
-          {% if sentence %}
-            <li class="border-l-4 border-indigo-500 dark:border-indigo-600 bg-indigo-50/75 dark:bg-indigo-950/75 p-5 rounded-r-lg shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 ease-in-out">
-              <p class="text-lg text-gray-800 dark:text-slate-200 italic leading-relaxed">"{{ sentence }}"</p>
+        <ul class="divide-y divide-gray-100 dark:divide-slate-700">
+            {% for uye in family_members %}
+            <li>
+                <a href="{% url 'word_detail' uye.id %}" class="flex items-start gap-3 px-5 py-3 sm:px-6 transition-colors hover:bg-gray-50 dark:hover:bg-slate-700/40">
+                    <span class="min-w-0 flex-1">
+                        <span class="flex flex-wrap items-baseline gap-2">
+                            <span class="font-bold text-gray-900 dark:text-slate-100">{{ uye.text }}</span>
+                            <span class="rounded bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 text-[11px] font-semibold text-slate-600 dark:text-slate-300">{{ uye.get_pos_display }}</span>
+                            {% if uye.cefr != "Belirtilmemiş" %}
+                            <span class="text-[11px] font-semibold text-indigo-500 dark:text-indigo-400">{{ uye.cefr }}</span>
+                            {% endif %}
+                        </span>
+                        <span class="mt-0.5 block text-sm text-gray-600 dark:text-slate-400">{{ uye.meaningTr }}</span>
+                    </span>
+                    <svg class="mt-1 h-4 w-4 shrink-0 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                </a>
             </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
+            {% endfor %}
+        </ul>
+    </section>
     {% endif %}
 
-    {% if word.collocations %}
-    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden mt-10 p-8">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-6 border-b-2 border-emerald-200 dark:border-emerald-800 pb-3">Kullanım Kalıpları</h3>
-      <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Bu kelimenin doğal olarak birlikte kullanıldığı yapılar.</p>
-      <div class="flex flex-wrap gap-2">
-        {% for collocation in word.collocations_list %}
-          <span class="inline-block bg-emerald-50 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 rounded-lg px-4 py-2 text-emerald-800 dark:text-emerald-200 text-base">{{ collocation }}</span>
-        {% endfor %}
-      </div>
-    </div>
+    {# ================= KULLANICI KATMANI ================= #}
+    {% if user.is_authenticated %}
+
+    {# ---- Kendi anlamın ---- #}
+    <section id="kisisel" class="overflow-hidden rounded-2xl border border-amber-200 dark:border-amber-900 bg-white dark:bg-slate-800 scroll-mt-20">
+        <header class="border-b border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/30 px-5 py-4 sm:px-6">
+            <h2 class="text-base font-bold text-gray-900 dark:text-slate-100">Kendi anlamını ekle</h2>
+            <p class="mt-0.5 text-sm text-gray-600 dark:text-slate-400">
+                {% if can_edit %}
+                    Aradığın anlamı yukarıda bulamadıysan buraya ekle. Sadece sen görürsün.
+                {% else %}
+                    Bu kelime ortak sözlüğe ait; alanları herkes için aynı, bu yüzden
+                    değiştirilemiyor. Buraya eklediğin anlamı ise yalnızca sen görürsün.
+                {% endif %}
+            </p>
+        </header>
+
+        <form method="POST" class="px-5 py-4 sm:px-6 space-y-2">
+            {% csrf_token %}
+            <input type="hidden" name="form" value="meaning">
+            <input type="text" name="meaning_tr" maxlength="300" required placeholder="Senin bulduğun anlam"
+                   class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+            <input type="text" name="definition" maxlength="600" placeholder="İstersen İngilizce açıklaması ya da nerede gördüğün"
+                   class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+            <div class="flex justify-end">
+                <button type="submit" class="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors">
+                    Anlam ekle
+                </button>
+            </div>
+        </form>
+    </section>
+
+    {# ---- Kişisel not ---- #}
+    <section class="overflow-hidden rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+        <header class="border-b border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6">
+            <h2 class="text-base font-bold text-gray-900 dark:text-slate-100">Kişisel notun</h2>
+            <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">
+                Sadece sen görürsün. Kelimenin kendi kaydına dokunmaz.
+            </p>
+        </header>
+
+        <form method="POST" class="px-5 py-4 sm:px-6">
+            {% csrf_token %}
+            <input type="hidden" name="form" value="note">
+            <textarea name="note" rows="3" placeholder="Bu kelimeyi nasıl hatırlıyorsun? Nerede gördün?"
+                      class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">{% if my_note %}{{ my_note.note }}{% endif %}</textarea>
+            <div class="mt-3 flex items-center justify-between gap-3">
+                <span class="text-xs text-gray-400 dark:text-slate-500">
+                    {% if my_note %}Son güncelleme: {{ my_note.updatedAt|date:"d.m.Y H:i" }}{% endif %}
+                </span>
+                <button type="submit" class="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors">
+                    Notu Kaydet
+                </button>
+            </div>
+        </form>
+    </section>
     {% endif %}
-
-    {% if word.synonyms or word.antonyms %}
-    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden mt-10 p-8">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-6 border-b-2 border-purple-200 dark:border-purple-800 pb-3">Eş ve Zıt Anlamlılar</h3>
-
-      {% if word.synonyms %}
-      <div class="{% if word.antonyms %}mb-6{% endif %}">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="text-green-600 dark:text-green-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-          </span>
-          <dt class="text-sm font-semibold text-green-700 dark:text-green-300 uppercase tracking-wide">Eş Anlamlı (Synonyms)</dt>
-        </div>
-        <dd class="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-lg px-5 py-3 text-green-800 dark:text-green-200 text-base leading-relaxed">
-          {{ word.synonyms }}
-        </dd>
-      </div>
-      {% endif %}
-
-      {% if word.antonyms %}
-      <div>
-        <div class="flex items-center gap-2 mb-3">
-          <span class="text-rose-500 dark:text-rose-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
-            </svg>
-          </span>
-          <dt class="text-sm font-semibold text-rose-600 dark:text-rose-400 uppercase tracking-wide">Zıt Anlamlı (Antonyms)</dt>
-        </div>
-        <dd class="bg-rose-50 dark:bg-rose-950 border border-rose-200 dark:border-rose-800 rounded-lg px-5 py-3 text-rose-800 dark:text-rose-200 text-base leading-relaxed">
-          {{ word.antonyms }}
-        </dd>
-      </div>
-      {% endif %}
-
-    </div>
-    {% endif %}
-
-    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden mt-10 p-8">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-6 border-b-2 border-purple-200 dark:border-purple-800 pb-3">Sözlüklerde Ara</h3>
-      <div class="flex flex-wrap gap-4 justify-center sm:justify-start">
-        <a href="https://tureng.com/tr/turkce-ingilizce/{{ word.englishWord|urlencode }}" target="_blank" class="inline-flex items-center px-6 py-3 border border-gray-300 dark:border-slate-600 shadow-md text-base font-medium rounded-xl text-gray-800 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 transition-all duration-200 ease-in-out transform hover:scale-105 hover:shadow-lg">
-          <img src="https://www.google.com/s2/favicons?domain=tureng.com" alt="Tureng" class="w-5 h-5 mr-3"> Tureng
-        </a>
-        <a href="https://dictionary.cambridge.org/tr/sözlük/ingilizce-türkçe/{{ word.englishWord|urlencode }}" target="_blank" class="inline-flex items-center px-6 py-3 border border-gray-300 dark:border-slate-600 shadow-md text-base font-medium rounded-xl text-gray-800 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 transition-all duration-200 ease-in-out transform hover:scale-105 hover:shadow-lg">
-          <img src="https://www.google.com/s2/favicons?domain=dictionary.cambridge.org" alt="Cambridge" class="w-5 h-5 mr-3"> Cambridge
-        </a>
-        <a href="https://www.oxfordlearnersdictionaries.com/definition/english/{{ word.englishWord|slugify }}" target="_blank" class="inline-flex items-center px-6 py-3 border border-gray-300 dark:border-slate-600 shadow-md text-base font-medium rounded-xl text-gray-800 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 transition-all duration-200 ease-in-out transform hover:scale-105 hover:shadow-lg">
-            <img src="https://www.google.com/s2/favicons?domain=oxfordlearnersdictionaries.com" alt="Oxford" class="w-5 h-5 mr-3"> Oxford
-        </a>
-      </div>
-    </div>
-
-  </div>
 </div>
-
 {% endblock %}

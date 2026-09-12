@@ -19,18 +19,13 @@ from learnpass import selection
 from learnpass.models import WordEncounter
 
 
-def kelime_yap(**kwargs):
-    veriler = {
-        "englishWord": "immaculate",
-        "meaningTr": "tertemiz",
-        "explanation": "perfectly clean",
-        "exampleSentence1": "Her kitchen was immaculate.",
-        "wordLevel": "401",
-        "isBaseWord": True,
-        "visibility": "public",
-    }
-    veriler.update(kwargs)
-    return Word.objects.create(**veriler)
+def kelime_yap(englishWord="immaculate", **kwargs):
+    """Yeni modelde kelime kurar (bkz. words/testing.py)."""
+    from words.testing import make_word
+
+    kwargs.setdefault("meaning", "tertemiz")
+    kwargs.setdefault("sentences", [f"Her kitchen was {englishWord}."])
+    return make_word(englishWord, **kwargs)
 
 
 class WordEncounterModelTests(TestCase):
@@ -69,28 +64,28 @@ class SelectionTests(TestCase):
         self.user = User.objects.create_user(username="secim", password="Sifre1234")
 
     def test_new_mode_skips_words_already_in_the_list(self):
-        listemde = kelime_yap(englishWord="alreadyhere")
+        listemde = kelime_yap("alreadyhere")
         UserWordLink.objects.create(user=self.user, word=listemde)
-        disarida = kelime_yap(englishWord="fresh")
+        disarida = kelime_yap("fresh")
 
         havuz = list(selection.new_words_qs(self.user))
         self.assertIn(disarida, havuz)
         self.assertNotIn(listemde, havuz)
 
     def test_new_mode_skips_words_already_seen(self):
-        kelime = kelime_yap(englishWord="seenbefore")
+        kelime = kelime_yap("seenbefore")
         WordEncounter.record(self.user, kelime, WordEncounter.KNOWN, "new")
         self.assertNotIn(kelime, selection.new_words_qs(self.user))
 
     def test_new_mode_ignores_private_words_of_other_users(self):
         baskasi = User.objects.create_user(username="baska", password="Sifre1234")
-        gizli = kelime_yap(englishWord="secret", isBaseWord=False,
+        gizli = kelime_yap("secret", is_base=False,
                            visibility="private", owner=baskasi)
         self.assertNotIn(gizli, selection.new_words_qs(self.user))
 
     def test_own_mode_skips_learned_words(self):
-        ogrenildi = kelime_yap(englishWord="mastered")
-        kalan = kelime_yap(englishWord="stillhard")
+        ogrenildi = kelime_yap("mastered")
+        kalan = kelime_yap("stillhard")
         UserWordLink.objects.create(user=self.user, word=ogrenildi)
         UserWordLink.objects.create(user=self.user, word=kalan)
         WordEncounter.record(self.user, ogrenildi, WordEncounter.KNOWN, "mine")
@@ -101,8 +96,8 @@ class SelectionTests(TestCase):
 
     def test_own_mode_always_prefers_words_never_seen(self):
         """Görülmemiş bir kelime varken görülmüş olan asla gelmemeli."""
-        eski = kelime_yap(englishWord="seenalready")
-        yeni = kelime_yap(englishWord="neverseen")
+        eski = kelime_yap("seenalready")
+        yeni = kelime_yap("neverseen")
         UserWordLink.objects.create(user=self.user, word=eski)
         UserWordLink.objects.create(user=self.user, word=yeni)
         WordEncounter.record(self.user, eski, WordEncounter.UNKNOWN, "mine")
@@ -122,7 +117,7 @@ class SelectionTests(TestCase):
         pencere = selection.OWN_CANDIDATE_WINDOW
         kelimeler = []
         for i in range(pencere + 10):
-            kelime = kelime_yap(englishWord=f"seen{i:02d}")
+            kelime = kelime_yap(f"seen{i:02d}")
             UserWordLink.objects.create(user=self.user, word=kelime)
             WordEncounter.record(self.user, kelime, WordEncounter.UNKNOWN, "mine")
             kelimeler.append(kelime)
@@ -143,33 +138,34 @@ class LevelWeightTests(TestCase):
 
     def setUp(self):
         self.user = User.objects.create_user(username="dagilim", password="Sifre1234")
-        for kur in ("101", "201", "301", "401", "501"):
+        for seviye in ("A1", "A2", "B1", "B2", "C1"):
             for i in range(40):
-                kelime_yap(englishWord=f"w{kur}_{i}", wordLevel=kur)
+                kelime_yap(f"w{seviye}_{i}", level=seviye)
 
     def test_weights_sum_to_one_hundred(self):
         self.assertEqual(sum(agirlik for _, agirlik in selection.LEVEL_WEIGHTS), 100)
 
     def test_distribution_roughly_matches_the_weights(self):
         rng = random.Random(20260911)
-        sayac = {kur: 0 for kur, _ in selection.LEVEL_WEIGHTS}
+        sayac = {seviye: 0 for seviye, _ in selection.LEVEL_WEIGHTS}
         tur = 600
         for _ in range(tur):
             kelime = selection.pick_new_word(self.user, rng=rng)
-            sayac[kelime.wordLevel] += 1
+            sayac[kelime.cefr] += 1
 
-        for kur, agirlik in selection.LEVEL_WEIGHTS:
-            oran = sayac[kur] / tur * 100
+        for seviye, agirlik in selection.LEVEL_WEIGHTS:
+            oran = sayac[seviye] / tur * 100
             # Rastgelelik payı: 600 çekimde ±8 puan makul
-            self.assertAlmostEqual(oran, agirlik, delta=8,
-                                   msg=f"{kur} kuru %{oran:.1f} çıktı, beklenen %{agirlik}")
+            self.assertAlmostEqual(
+                oran, agirlik, delta=8,
+                msg=f"{seviye} seviyesi %{oran:.1f} çıktı, beklenen %{agirlik}")
 
     def test_falls_back_to_another_level_when_one_is_empty(self):
-        """Seçilen kurda kelime kalmadıysa kart gelmeye devam etmeli."""
-        Word.objects.exclude(wordLevel="101").delete()
+        """Seçilen seviyede kelime kalmadıysa kart gelmeye devam etmeli."""
+        Word.objects.exclude(cefr="A1").delete()
         kelime = selection.pick_new_word(self.user)
         self.assertIsNotNone(kelime)
-        self.assertEqual(kelime.wordLevel, "101")
+        self.assertEqual(kelime.cefr, "A1")
 
 
 class LearnPassFlowTests(TestCase):
@@ -178,8 +174,8 @@ class LearnPassFlowTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="akis", password="Sifre1234")
         self.client.login(username="akis", password="Sifre1234")
-        self.word = kelime_yap(englishWord="candidate")
-        self.other = kelime_yap(englishWord="another")
+        self.word = kelime_yap("candidate")
+        self.other = kelime_yap("another")
 
     def _verdict(self, word, verdict, mode="new"):
         return self.client.post(
@@ -316,7 +312,7 @@ class QuizPriorityIntegrationTests(TestCase):
     def test_misjudged_word_jumps_to_the_first_priority(self):
         from quizzes.views import classify_links_by_priority, encounter_signals
 
-        kelime = kelime_yap(englishWord="thoughtiknew")
+        kelime = kelime_yap("thoughtiknew")
         # Quiz istatistiklerine göre bu kelime "iyi biliniyor" sayılırdı
         link = self._link(kelime, correct=20, wrong=0)
         WordEncounter.record(self.user, kelime, WordEncounter.MISJUDGED, "mine")
@@ -328,7 +324,7 @@ class QuizPriorityIntegrationTests(TestCase):
     def test_learned_word_drops_to_the_last_priority(self):
         from quizzes.views import classify_links_by_priority, encounter_signals
 
-        kelime = kelime_yap(englishWord="reallyknown")
+        kelime = kelime_yap("reallyknown")
         # Hiç denenmemiş: normalde priority1 olurdu
         link = self._link(kelime, correct=0, wrong=0)
         WordEncounter.record(self.user, kelime, WordEncounter.KNOWN, "mine")
@@ -340,6 +336,6 @@ class QuizPriorityIntegrationTests(TestCase):
     def test_without_signals_the_old_behaviour_is_kept(self):
         from quizzes.views import classify_links_by_priority
 
-        link = self._link(kelime_yap(englishWord="plain"), correct=0, wrong=0)
+        link = self._link(kelime_yap("plain"), correct=0, wrong=0)
         p1, _, _ = classify_links_by_priority([link])
         self.assertIn(link, p1)

@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import render,redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -5,7 +7,10 @@ from LearnVocab.authgate import login_gate
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 
-from words.models import Word, UserWordLink, WordList
+from words.models import (
+    CEFR_CHOICES, CEFR_LEVELS, Meaning, PartOfSpeech, Register, Sentiment, UserWordLink,
+    Word, WordList,
+)
 from users.models import User
 from texts.models import Text
 from texts import limits as text_limits
@@ -21,7 +26,7 @@ from quizzes.models import (
     MultipleChoiceQuestion, WritingQuestion, MatchingQuestion,
     SynonymAntonymQuestion, FillInTheBlankQuestion,
 )
-from words.addWeeks.addWeeks import wordsAddDelete, allWordsAddDelete
+from words.addWeeks.addWeeks import allWordsAddDelete
 
 # Create your views here.
 
@@ -83,8 +88,8 @@ def showProfile(request):
 WORD_SORT_OPTIONS = {
     "new": ("Önce en yeni", ("-added_at", "-id")),
     "old": ("Önce en eski", ("added_at", "id")),
-    "az": ("A - Z", ("englishWord", "id")),
-    "za": ("Z - A", ("-englishWord", "-id")),
+    "az": ("A - Z", ("text", "id")),
+    "za": ("Z - A", ("-text", "-id")),
 }
 DEFAULT_WORD_SORT = "new"
 
@@ -127,8 +132,8 @@ def showWordsView(request):
     search_query = request.GET.get('q', '').strip()
     if search_query:
         words = words.filter(
-            Q(englishWord__icontains=search_query) |
-            Q(meaningTr__icontains=search_query)
+            Q(text__icontains=search_query) |
+            Q(meanings__meaning_tr__icontains=search_query)
         )
 
     # ---- Sıralama ----
@@ -151,6 +156,10 @@ def showWordsView(request):
     words = words.order_by(*WORD_SORT_OPTIONS[sort_key][1])
 
     # ---- Sayfalama ----
+    # Aile, anlam ve örnek cümleler tek seferde: liste her satır için
+    # ayrı sorgu atmasın.
+    words = words.select_related("family").prefetch_related("meanings")
+
     per_page = pagination.resolve_per_page(
         request, MY_WORDS_PER_PAGE_OPTIONS, MY_WORDS_DEFAULT_PER_PAGE
     )
@@ -181,6 +190,12 @@ def showWordsView(request):
         "selected_list": selected_list,
         "selected_list_id": selected_list_id or "__all__",
         "total_word_count": base_words.count(),
+        # Kelime kartındaki ekle/çıkar düğmesi bu kümeye bakıyor. Burada
+        # verilmezse kullanıcının kendi listesindeki kelimeler "listende yok"
+        # gibi görünüyordu.
+        "saved_ids": set(
+            UserWordLink.objects.filter(user=user).values_list("word_id", flat=True)
+        ),
         "movable_targets": movable_targets,
         "sort_key": sort_key,
         "sort_options": [
@@ -485,6 +500,12 @@ def quiz_type_chart_data(user):
 
 @login_gate("Egzersizler", "Egzersizler kendi kelimelerinden üretildiği için giriş yapman gerekiyor.")
 def showQuizzesView(request):
+    from django.conf import settings as django_settings
+
+    if not getattr(django_settings, "QUIZZES_ENABLED", True):
+        return render(request, "pages/quizzes/quizzesDisabled.html",
+                      {"active_page": "Quizler", "exercise_tab": "quizzes"})
+
     tipler = quiz_type_chart_data(request.user)
 
     context = {
@@ -533,18 +554,18 @@ def deleteWord(request, id):
     word = Word.objects.filter(id = id).first()
 
     if word.owner == request.user:
-        wordEn = word.englishWord
+        wordEn = word.text
         word.delete()
         messages.success(request, f"{wordEn} kelimesi siteden başarıyla silindi.")
     
     elif word.owner != request.user and word.isBaseWord == False:
-        wordEn = word.englishWord
+        wordEn = word.text
         UserWordLink.objects.filter(user=request.user, word=word).delete()
 
         messages.success(request, f"{wordEn} kelimesi listenizden başarıyla silindi.")
 
     elif word.isBaseWord == True:
-        wordEn = word.englishWord
+        wordEn = word.text
         UserWordLink.objects.filter(user=request.user, word=word).delete()
 
         messages.success(request, f"{wordEn} kelimesi listenizden başarıyla silindi.")
@@ -557,130 +578,353 @@ def deleteWord(request, id):
 
 @login_required
 def addWord(request):
-    
+    """
+    Elle kelime ekleme.
 
-    if request.method == 'POST':
-        word_text = request.POST.get('word_text')
-        translation_tr = request.POST.get('translation_tr')
-        description = request.POST.get('description')
-        notes = request.POST.get('notes')
-        prefix = request.POST.get('prefix')
-        
-        # !! ÖNEMLİ: Checkbox'lar (is_verb) özeldir.
-        # İşaretliyse 'on' değeri gelir, değilse HİÇ gelmez (None).
-        is_verb = request.POST.get('is_verb') == 'on' # Bu, True/False döndürür
+    Yeni modelde bir kelime tek başına yaşamaz: mutlaka bir aileye girer.
+    Kullanıcı aile kökü yazmazsa kelimenin kendisi kök olur (tek kişilik
+    aile) — ileride aynı kökten başka bir türev geldiğinde yanına eklenir.
+    """
+    if request.method != "POST":
+        return render(request, "pages/words/addWord.html", {
+            "active_page": "Yeni Kelime",
+            "pos_choices": PartOfSpeech.choices,
+            "level_choices": CEFR_CHOICES,
+            "sentiment_choices": Sentiment.choices,
+            "register_choices": Register.choices,
+            "sentence_range": range(1, Meaning.EXAMPLE_SENTENCE_COUNT + 1),
+            "slots": _bos_yuvalar(),
+        })
 
-        v2_form = request.POST.get('v2_form')
-        v3_form = request.POST.get('v3_form')
-        
-        # 10 örnek cümle alanı; boş gelenler None olarak kaydedilir.
-        sentences = {}
-        for i in range(1, Word.EXAMPLE_SENTENCE_COUNT + 1):
-            value = (request.POST.get(f'sentence_{i}') or '').strip()
-            sentences[f'exampleSentence{i}'] = value or None
+    sonuc = _kelime_kaydet(request, kelime=None)
+    if sonuc is None:
+        return render(request, "pages/words/addWord.html", {
+            "active_page": "Yeni Kelime",
+            "pos_choices": PartOfSpeech.choices,
+            "level_choices": CEFR_CHOICES,
+            "sentiment_choices": Sentiment.choices,
+            "register_choices": Register.choices,
+            "sentence_range": range(1, Meaning.EXAMPLE_SENTENCE_COUNT + 1),
+            "slots": _bos_yuvalar(),
+            "form": request.POST,
+        })
+    return redirect("word_detail", id=sonuc.id)
 
-        visibility = request.POST.get('visibility')
-        level = request.POST.get('level')
-
-        # Eş anlamlı ve zıt anlamlı kelimeler (birden fazla input, virgülle birleştirilir)
-        synonyms_list = [s.strip() for s in request.POST.getlist('synonym') if s.strip()]
-        antonyms_list = [a.strip() for a in request.POST.getlist('antonym') if a.strip()]
-        collocations_list = [c.strip() for c in request.POST.getlist('collocation') if c.strip()]
-        synonyms = ', '.join(synonyms_list) if synonyms_list else None
-        antonyms = ', '.join(antonyms_list) if antonyms_list else None
-        collocations = ', '.join(collocations_list) if collocations_list else None
-
-        new_word = Word(
-            owner = request.user, # Kelimeyi o anki kullanıcıyla ilişkilendir
-
-            # Formdan gelen alanlar (Modelinizdeki isimler = Formdaki 'name'ler)
-            englishWord = word_text,         # Model: englishWord, Form-name: word_text
-            meaningTr = translation_tr,      # Model: meaningTr, Form-name: translation_tr
-            explanation = description,       # Model: explanation, Form-name: description
-            note = notes,                    # Model: note, Form-name: notes
-            prefix = prefix,                 # Model: prefix, Form-name: prefix
-            isVerb = is_verb,                # Model: isVerb, Form-name: is_verb
-            v2Form = v2_form,                # Model: v2Form, Form-name: v2_form
-            v3Form = v3_form,                # Model: v3Form, Form-name: v3_form
-            **sentences,                     # exampleSentence1..10 (Form-name: sentence_1..10)
-            visibility = visibility,         # Model: visibility, Form-name: visibility
-            wordLevel = level,               # Modelinizde 'level' alanı olmalı
-            synonyms = synonyms,             # Eş anlamlılar (virgülle ayrılmış)
-            antonyms = antonyms,             # Zıt anlamlılar (virgülle ayrılmış)
-            collocations = collocations,     # Kullanım kalıpları (virgülle ayrılmış)
-        )
-        
-        # 4. Veritabanına kaydet
-        new_word.save()
-
-        UserWordLink.objects.create(user=request.user, word=new_word)
-
-        return redirect("profile_words")
-
-    return render(request, "pages/words/addWord.html")
 
 @login_required
 def editWord(request, id):
-    word = get_object_or_404(Word, id = id)
+    """
+    Kelime düzenleme — yalnızca KENDİ eklediğin kelimeler için.
 
-    if word.isBaseWord:
-        messages.error(request, "Bu kelime ODTÜ'nün kur kelimelerindendir ve sadece admin panelinden değiştirilebilir.")
-        return redirect("profile_words")
+    Ortak sözlükteki bir kelimeyi listesine ekleyen kişi onu düzenleyemez:
+    çekirdek herkesindir, bir kişinin değiştirmesi herkesin sayfasını
+    değiştirir. O kullanıcının yapabileceği şey kendi katmanına yazmak —
+    kendi anlamı, kendi notu. Kelime sayfasına o bölüme yönlendiriliyor.
+    """
+    word = get_object_or_404(
+        Word.objects.select_related("family").prefetch_related("meanings__examples"),
+        id=id,
+    )
 
-    if request.method == 'POST':
-        
-        # 3. HTML formundaki 'name' özniteliklerine göre tüm verileri çek.
-        word.englishWord = request.POST.get('word_text')
-        word.meaningTr = request.POST.get('translation_tr')
-        word.explanation = request.POST.get('description') # Model: explanation, Form: description
-        word.note = request.POST.get('notes')
-        word.prefix = request.POST.get('prefix')
-        
-        # Checkbox ('is_verb') kontrolü:
-        # İşaretliyse 'on' değeri gelir, değilse HİÇ gelmez (None).
-        is_verb_checked = request.POST.get('is_verb') == 'on'
-        word.isVerb = is_verb_checked
+    if not word.is_editable_by(request.user):
+        messages.info(
+            request,
+            "Bu kelime ortak sözlüğe ait, alanları değiştirilemez. "
+            "Kendi anlamını ve notunu aşağıdan ekleyebilirsin — sadece sen görürsün.",
+        )
+        return redirect(reverse("word_detail", kwargs={"id": word.id}) + "#kisisel")
 
-        # Eğer "Fiil" olarak İŞARETLENMEMİŞSE, V2/V3 alanlarını temizle.
-        if is_verb_checked:
-            word.v2Form = request.POST.get('v2_form')
-            word.v3Form = request.POST.get('v3_form')
-        else:
-            word.v2Form = None # veya modelinize göre ""
-            word.v3Form = None # veya modelinize göre ""
+    if request.method == "POST":
+        sonuc = _kelime_kaydet(request, kelime=word)
+        if sonuc is not None:
+            return redirect("word_detail", id=sonuc.id)
 
-        for i in range(1, Word.EXAMPLE_SENTENCE_COUNT + 1):
-            value = (request.POST.get(f'sentence_{i}') or '').strip()
-            setattr(word, f'exampleSentence{i}', value or None)
-        word.visibility = request.POST.get('visibility')
-        word.wordLevel = request.POST.get('level')
+    anlamlar = list(
+        word.meanings.prefetch_related("examples", "collocations", "patterns", "categories")
+    )
+    return render(request, "pages/words/editWord.html", {
+        "active_page": "Kelimeyi Düzenle",
+        "word": word,
+        "meanings": anlamlar,
+        "slots": _dolu_yuvalar(anlamlar),
+        "false_friends": "\n".join(
+            " / ".join(p for p in (y.turkish_lookalike, y.assumed_meaning, y.correct_english) if p)
+            for y in word.false_friends.all()
+        ),
+        "pos_choices": PartOfSpeech.choices,
+        "level_choices": CEFR_CHOICES,
+        "sentiment_choices": Sentiment.choices,
+        "register_choices": Register.choices,
+        "sentence_range": range(1, Meaning.EXAMPLE_SENTENCE_COUNT + 1),
+        "my_note": word.note_of(request.user),
+        # Kelimeyi başkaları da listesine almışsa değişiklik onlarda da görünür;
+        # kullanıcı bunu bilerek kaydetsin.
+        "shared_with": word.saved_by_others_count(request.user),
+    })
 
-        # Eş anlamlı ve zıt anlamlı kelimeler
-        synonyms_list = [s.strip() for s in request.POST.getlist('synonym') if s.strip()]
-        antonyms_list = [a.strip() for a in request.POST.getlist('antonym') if a.strip()]
-        collocations_list = [c.strip() for c in request.POST.getlist('collocation') if c.strip()]
-        word.synonyms = ', '.join(synonyms_list) if synonyms_list else None
-        word.antonyms = ', '.join(antonyms_list) if antonyms_list else None
-        word.collocations = ', '.join(collocations_list) if collocations_list else None
 
-        # 4. Değişiklikleri veritabanına kaydet.
-        word.save()
-        
-        # 5. Kullanıcıyı kelime listesine geri yönlendir.
-        return redirect('profile_words') # Kelime listenizin URL name'i
+# Form iki anlam yuvası gösteriyor. Üçüncüsü gerekirse tek yer burası.
+MEANING_SLOTS = (1, 2)
 
-    # 3. Sayfa İLK YÜKLENDİ mi (GET isteği)?
-    # Kullanıcı "Düzenle" butonuna tıkladı ve sayfa açılıyor.
+
+def _bos_yuvalar():
+    """Yeni kelime formu için boş anlam yuvaları."""
+    return [{"index": i, "meaning": None, "sentences": [],
+             "collocations": "", "patterns": "", "categories": ""}
+            for i in MEANING_SLOTS]
+
+
+def _dolu_yuvalar(anlamlar):
+    """
+    Düzenleme formu için yuvaları mevcut anlamlarla doldurur.
+
+    Çok satırlı alanlar "yapı / açıklama" biçiminde düzleştiriliyor: form
+    tarafında her collocation için ayrı input açmak yerine tek bir metin
+    kutusu var, ayrıştırmayı `_satirlari_coz` yapıyor.
+    """
+    yuvalar = []
+    for i in MEANING_SLOTS:
+        anlam = anlamlar[i - 1] if len(anlamlar) >= i else None
+        if anlam is None:
+            yuvalar.append({"index": i, "meaning": None, "sentences": [],
+                            "collocations": "", "patterns": "", "categories": ""})
+            continue
+        yuvalar.append({
+            "index": i,
+            "meaning": anlam,
+            "sentences": [c.text for c in anlam.examples.all()],
+            "collocations": "\n".join(
+                " / ".join(p for p in (c.pattern, c.meaning_tr) if p)
+                for c in anlam.collocations.all()
+            ),
+            "patterns": "\n".join(
+                " / ".join(p for p in (k.pattern, k.note) if p)
+                for k in anlam.patterns.all()
+            ),
+            "categories": ", ".join(k.name for k in anlam.categories.all()),
+        })
+    return yuvalar
+
+
+def _secim(deger, secenekler, varsayilan):
+    """Formdan gelen değer geçerli bir seçenek değilse varsayılana düşer."""
+    deger = (deger or "").strip()
+    return deger if deger in secenekler.values else varsayilan
+
+
+def _kategori_coz(ham_metin):
+    """Virgülle ayrılmış alan adlarını Category kayıtlarına çevirir."""
+    from django.utils.text import slugify
+    from words.models import Category
+
+    kategoriler = []
+    for ad in [p.strip() for p in (ham_metin or "").split(",") if p.strip()]:
+        slug = (slugify(ad) or ad.lower())[:80]
+        kategori, _ = Category.objects.get_or_create(slug=slug,
+                                                     defaults={"name": ad[:80]})
+        kategoriler.append(kategori)
+    return kategoriler
+
+
+# Alan ayırıcısı: iki yanı da BOŞLUKLU slash.
+#
+# Düz "/" olamaz, çünkü yapının kendisinde slash geçebiliyor:
+# "sympathetic to/towards sb", "harmful to sb/sth". Bitişik slash yapının
+# parçası, boşluklu slash ayırıcı — bu ayrım olmasa o kalıplar ikiye bölünürdü.
+# "|" de tercih edilmedi: telefon klavyesinde kolay bulunmuyor.
+ALAN_AYIRICI = re.compile(r"\s+/\s+")
+
+
+def _satirlari_coz(ham_metin, alan_sayisi, tekil_alan=0):
+    """
+    Çok satırlı alanı " / " ile bölünmüş demetlere çevirir.
+
+        make a decision / karar vermek  ->  ["make a decision", "karar vermek"]
+        harmful to sb/sth               ->  ["harmful to sb/sth", ""]
+
+    Boş satırlar atılır; `tekil_alan` sütununda tekrar eden satırlar da atılır
+    (ilgili tablolarda o sütun üzerinde tekillik kısıtı var, aksi hâlde kayıt
+    bütün formu düşürürdü).
+    """
+    satirlar, gorulen = [], set()
+    for satir in (ham_metin or "").splitlines():
+        satir = satir.strip()
+        if not satir:
+            continue
+        parcalar = [p.strip() for p in ALAN_AYIRICI.split(satir)]
+        parcalar += [""] * (alan_sayisi - len(parcalar))
+        parcalar = parcalar[:alan_sayisi]
+        if not parcalar[tekil_alan]:
+            continue
+        anahtar = parcalar[tekil_alan].lower()
+        if anahtar in gorulen:
+            continue
+        gorulen.add(anahtar)
+        satirlar.append(parcalar)
+    return satirlar
+
+
+def _bag_kur(kelime, ham_metin, tur):
+    """
+    Virgülle ayrılmış kelime adlarını gerçek bağlara çevirir.
+
+    Bağ iki KAYIT arasındadır; sözlükte olmayan bir kelimeye bağ kurulamaz.
+    Bulunamayanlar sessizce atılmaz, çağırana döndürülür.
+    """
+    from words.models import WordRelation
+
+    WordRelation.objects.filter(from_word=kelime, type=tur).delete()
+    bulunamayan = []
+
+    for ad in [p.strip() for p in (ham_metin or "").split(",") if p.strip()]:
+        hedef = Word.objects.filter(text__iexact=ad).exclude(id=kelime.id).first()
+        if hedef is None:
+            bulunamayan.append(ad)
+            continue
+        WordRelation.objects.get_or_create(
+            from_word=kelime, to_word=hedef, type=tur, defaults={"note": None},
+        )
+    return bulunamayan
+
+
+def _anlam_yaz(kelime, request, index, sira):
+    """
+    Bir anlam yuvasını yazar: anlam + açıklama + ton + üslup + alanlar +
+    cümleler + collocation'lar + kalıplar.
+
+    Bunların hepsi anlama bağlı, kelimeye değil: `bank`ın "banka" anlamıyla
+    "nehir kıyısı" anlamı aynı collocation'ı paylaşmaz.
+    """
+    from words.models import Collocation, ExampleSentence, UsagePattern
+
+    metin = (request.POST.get(f"meaning_{index}") or "").strip()
+    if not metin:
+        return None
+
+    anlam = Meaning.objects.create(
+        word=kelime,
+        meaning_tr=metin,
+        definition=(request.POST.get(f"definition_{index}") or "").strip() or None,
+        sentiment=_secim(request.POST.get(f"sentiment_{index}"), Sentiment, Sentiment.NEUTRAL),
+        register=_secim(request.POST.get(f"register_{index}"), Register, Register.NEUTRAL),
+        sort_order=sira,
+    )
+
+    anlam.categories.set(_kategori_coz(request.POST.get(f"categories_{index}")))
+
+    cumleler = []
+    for k in range(1, Meaning.EXAMPLE_SENTENCE_COUNT + 1):
+        cumle = (request.POST.get(f"sentence_{index}_{k}") or "").strip()
+        if cumle:
+            cumleler.append(ExampleSentence(meaning=anlam, text=cumle,
+                                            source="manual", sort_order=len(cumleler)))
+    ExampleSentence.objects.bulk_create(cumleler)
+
+    Collocation.objects.bulk_create([
+        Collocation(meaning=anlam, pattern=yapi, meaning_tr=tr or None, sort_order=k)
+        for k, (yapi, tr) in enumerate(
+            _satirlari_coz(request.POST.get(f"collocations_{index}"), 2))
+    ])
+
+    UsagePattern.objects.bulk_create([
+        UsagePattern(meaning=anlam, pattern=kalip, note=notu or None, sort_order=k)
+        for k, (kalip, notu) in enumerate(
+            _satirlari_coz(request.POST.get(f"patterns_{index}"), 2))
+    ])
+
+    return anlam
+
+
+def _kelime_kaydet(request, kelime=None):
+    """
+    Formdan gelen veriyi yeni modele yazar. Hata varsa mesaj bırakıp None döner.
+    Ekleme ve düzenleme aynı kodu kullanıyor: alanlar birebir aynı.
+    """
+    from words.models import FalseFriend, UserWordNote, WordFamily
+    from words import inflect
+
+    metin = (request.POST.get("text") or "").strip()
+    tur = (request.POST.get("pos") or "").strip()
+    anlam1 = (request.POST.get("meaning_1") or "").strip()
+
+    if not metin or not anlam1:
+        messages.error(request, "Kelime ve en az bir anlam zorunlu.")
+        return None
+    if tur not in PartOfSpeech.values:
+        messages.error(request, "Geçerli bir tür seçmelisin.")
+        return None
+
+    cakisan = Word.objects.filter(text__iexact=metin, pos=tur)
+    if kelime is not None:
+        cakisan = cakisan.exclude(id=kelime.id)
+    if cakisan.exists():
+        messages.error(request, f"“{metin}” zaten bu türde kayıtlı.")
+        return None
+
+    # --- Aile ---
+    kok = (request.POST.get("family_root") or "").strip() or metin
+    aile, _ = WordFamily.objects.get_or_create(root=kok.lower())
+
+    alanlar = {
+        "family": aile,
+        "text": metin,
+        "pos": tur,
+        "cefr": request.POST.get("level") or "Belirtilmemiş",
+        "visibility": request.POST.get("visibility") or "private",
+        "v2Form": (request.POST.get("v2") or "").strip() or None,
+        "v3Form": (request.POST.get("v3") or "").strip() or None,
+    }
+
+    if kelime is None:
+        kelime = Word.objects.create(owner=request.user, isBaseWord=False, **alanlar)
     else:
-        # İŞTE SİZİN İSTEDİĞİNİZ KISIM BURASI:
-        # Template'e 'word' adında bir context değişkeni yolluyoruz.
-        # Template'iniz bu 'word' nesnesini kullanarak 
-        # value="{{ word.englishWord }}" gibi alanları dolduracak.
-        context = {
-            'word': word
-        }
+        for ad, deger in alanlar.items():
+            setattr(kelime, ad, deger)
+        kelime.save()
 
-    return render(request, "pages/words/editWord.html",{"word":word})
+    # --- Anlamlar (cümleler, collocation'lar ve kalıplar onlara bağlı) ---
+    kelime.meanings.all().delete()
+    sira = 0
+    for index in MEANING_SLOTS:
+        if _anlam_yaz(kelime, request, index, sira) is not None:
+            sira += 1
+
+    # --- Yanlış dostlar (kelimenin bütününe ait) ---
+    kelime.false_friends.all().delete()
+    FalseFriend.objects.bulk_create([
+        FalseFriend(word=kelime, turkish_lookalike=benzer,
+                    assumed_meaning=sanilan or None, correct_english=dogru or None)
+        for benzer, sanilan, dogru in _satirlari_coz(request.POST.get("false_friends"), 3)
+    ])
+
+    # --- Çekim biçimleri ---
+    inflect.rebuild_forms(kelime)
+
+    # --- Bağlar ---
+    bulunamayan = []
+    bulunamayan += _bag_kur(kelime, request.POST.get("synonyms"), "synonym")
+    bulunamayan += _bag_kur(kelime, request.POST.get("antonyms"), "antonym")
+    bulunamayan += _bag_kur(kelime, request.POST.get("simpler"), "simpler")
+    bulunamayan += _bag_kur(kelime, request.POST.get("confused_with"), "confused_with")
+
+    # --- Kişisel not (çekirdeğe değil, kullanıcı katmanına) ---
+    not_metni = (request.POST.get("note") or "").strip()
+    if not_metni:
+        UserWordNote.objects.update_or_create(
+            user=request.user, word=kelime, defaults={"note": not_metni},
+        )
+    else:
+        UserWordNote.objects.filter(user=request.user, word=kelime).delete()
+
+    # Kendi eklediği kelime listesine de girsin
+    UserWordLink.objects.get_or_create(user=request.user, word=kelime)
+
+    messages.success(request, f"“{kelime.text}” kaydedildi.")
+    if bulunamayan:
+        messages.warning(request, "Sözlükte bulunmadığı için bağlanmayan kelimeler: "
+                                  + ", ".join(bulunamayan))
+    return kelime
+
 
 @login_required
 def saveMyBio(request):
@@ -722,21 +966,14 @@ def showUserProfile(request, user_id):
 @login_required
 def deleteAllWords(request):
     if request.method == "POST":
-        value = request.POST.get("bulk_word_list_name")
+        level = (request.POST.get("bulk_level") or "").strip()
 
-        if not value:
-            messages.error(request, "Lütfen bir liste seçin.")
+        if level not in CEFR_LEVELS:
+            messages.error(request, "Lütfen bir seviye seçin.")
             return redirect("profile_words")
-        
-        values = value.split(":")
-        level = values[0]
-        span = values[1]
 
-        if span == "all":
-            allWordsAddDelete(request.user, True, level)
-        else:
-            wordsAddDelete(request.user, True, level, span)
-                
+        allWordsAddDelete(request.user, True, level)
+
         messages.success(request, "Seçtiğiniz bütün kelimeler listenizden silindi.")
         return redirect("profile_words")
         

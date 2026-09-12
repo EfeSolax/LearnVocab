@@ -7,8 +7,27 @@ from django.http import JsonResponse
 from django.contrib import messages
 from random import choice, shuffle, sample
 
+from django.conf import settings as django_settings
+
 from LearnVocab import pagination
 from LearnVocab.authgate import login_gate
+
+
+def quizzes_enabled(view):
+    """
+    Quizler kapalıyken üreteçlere hiç girmeden bilgilendirme sayfası döner.
+    Açmak için: settings.QUIZZES_ENABLED = True
+    """
+    from functools import wraps
+
+    @wraps(view)
+    def sarmalayici(request, *args, **kwargs):
+        if not getattr(django_settings, "QUIZZES_ENABLED", True):
+            return render(request, "pages/quizzes/quizzesDisabled.html",
+                          {"active_page": "Quizler", "exercise_tab": "quizzes"})
+        return view(request, *args, **kwargs)
+
+    return sarmalayici
 
 from words.models import UserWordLink, Word, WordList
 from .models import QuizType, QuizAttempt, MultipleChoiceQuestion, WritingQuestion, MatchingQuestion, SynonymAntonymQuestion
@@ -112,6 +131,7 @@ def classify_links_by_priority(links, misjudged_ids=None, learned_ids=None):
 
 
 @login_required
+@quizzes_enabled
 def attemptQuiz(request):
 
     if request.method == "POST":
@@ -308,7 +328,7 @@ def attemptQuiz(request):
         .filter(user=user)
         .select_related("word", "word__owner")
         .prefetch_related("word__in_user_lists")
-        .order_by("word__englishWord")
+        .order_by("word__text")
     )
     friend_ids = set(user.friends.values_list("id", flat=True))
 
@@ -338,9 +358,9 @@ def attemptQuiz(request):
 
         word_items.append({
             "id": w.id,
-            "english": w.englishWord,
+            "english": w.text,
             "meaning": w.meaningTr,
-            "level": w.wordLevel or "—",
+            "level": w.cefr or "—",
             "source": source,
             "source_label": source_label,
             # Veri olarak listele (template data-lists attribute olarak join'leyecek)
@@ -414,6 +434,7 @@ def get_words_for_quiz(priority1, priority2, priority3, total_question):
     return links_to_ask
 
 @login_required
+@quizzes_enabled
 def quizPage(request, attempt_id, question_index):
     
     """
@@ -503,6 +524,7 @@ def quizPage(request, attempt_id, question_index):
     return render(request, "pages/quizzes/quizPage.html", context)
 
 @login_required
+@quizzes_enabled
 def quizComplete(request, attempt_id):
     
     """
@@ -528,6 +550,7 @@ def quizComplete(request, attempt_id):
     return render(request, "pages/quizzes/quizComplete.html", context)
     
 @login_required
+@quizzes_enabled
 def quizReviewList(request):
     
     """
@@ -627,7 +650,7 @@ def wordAnalysis(request):
                 output_field=FloatField(),
             )
         )
-        .order_by("accuracy", "-attempts", "word__englishWord")
+        .order_by("accuracy", "-attempts", "word__text")
     )
 
     per_page = pagination.resolve_per_page(

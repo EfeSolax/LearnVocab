@@ -57,14 +57,14 @@ def card_payload(word, user):
 
     return {
         "id": word.id,
-        "word": word.englishWord,
-        "level": word.wordLevel or "",
+        "word": word.text,
+        "level": word.cefr or "",
         "prompt_sentence": prompt_sentence,
         "meaning": word.meaningTr,
         "explanation": word.explanation or "",
-        "collocations": word.collocations_list,
+        "pos": word.get_pos_display(),
         "extra_sentences": extra,
-        "is_verb": word.isVerb,
+        "is_verb": word.is_verb,
         "v2": word.v2Form or "",
         "v3": word.v3Form or "",
         "in_my_list": UserWordLink.objects.filter(user=user, word=word).exists(),

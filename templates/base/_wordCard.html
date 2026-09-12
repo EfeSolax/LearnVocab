@@ -1,0 +1,76 @@
+{% comment %}
+Liste ekranlarında tek bir kelime satırı.
+
+Yeni modelin görünen yüzü: kelimenin yanında TÜRÜ ve seviyesi, altında
+anlamları, her anlamın yanında nötr değilse tonu, sağında ailesi. Aile
+rozetine tıklamak kelimeyi değil, ailenin tamamını açar — öğrenmenin
+birimi tek kelime değil, aile.
+
+Beklediği bağlam:  word, saved_ids (opsiyonel)
+{% endcomment %}
+
+<div class="flex items-start gap-3 px-4 py-3 sm:px-5 transition-colors hover:bg-gray-50 dark:hover:bg-slate-700/40">
+
+    <div class="min-w-0 flex-1">
+        <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <a href="{% url 'word_detail' word.id %}"
+               class="text-base sm:text-lg font-bold text-gray-900 dark:text-slate-100 hover:text-indigo-600 dark:hover:text-indigo-400">
+                {{ word.text }}
+            </a>
+
+            {# Tür rozeti: progress (isim) ile progress (fiil) ayrı kayıtlar #}
+            <span class="rounded-md bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 text-[11px] font-semibold text-slate-600 dark:text-slate-300">
+                {{ word.get_pos_display }}
+            </span>
+
+            {% if word.verb_forms %}
+            <span class="text-xs text-gray-400 dark:text-slate-500">{{ word.verb_forms|join:" · " }}</span>
+            {% endif %}
+
+            {% if word.cefr != "Belirtilmemiş" %}
+            <span class="rounded-md bg-indigo-50 dark:bg-indigo-950 px-1.5 py-0.5 text-[11px] font-semibold text-indigo-600 dark:text-indigo-300">
+                {{ word.cefr }}
+            </span>
+            {% endif %}
+        </div>
+
+        {% comment %}
+        Anlamlar tek tek basılıyor: rozetler anlama ait, kelimeye değil.
+        `bank`ın "banka" anlamı ekonomi alanına girer, "nehir kıyısı" girmez.
+        {% endcomment %}
+        {% for meaning in word.meanings.all %}
+        <div class="{% if not forloop.first %}mt-1.5{% else %}mt-0.5{% endif %}">
+            <p class="text-sm text-gray-700 dark:text-slate-300">
+                {% if word.has_multiple_meanings %}<span class="text-gray-400 dark:text-slate-500">{{ forloop.counter }}.</span> {% endif %}{{ meaning.meaning_tr }}
+            </p>
+            {% include 'base/_meaningBadges.html' with meaning=meaning %}
+        </div>
+        {% empty %}
+        <p class="mt-0.5 text-sm text-gray-400 dark:text-slate-500">anlamı girilmemiş</p>
+        {% endfor %}
+
+        {% if word.family and word.family.words.count > 1 %}
+        <a href="{% url 'word_detail' word.id %}"
+           class="mt-1.5 inline-flex items-center gap-1 rounded-md bg-violet-50 dark:bg-violet-950 px-2 py-0.5 text-[11px] font-semibold text-violet-700 dark:text-violet-300 hover:bg-violet-100 dark:hover:bg-violet-900">
+            <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122" /></svg>
+            {{ word.family.root }} ailesi · {{ word.family.words.count }} kelime
+        </a>
+        {% endif %}
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="shrink-0 pt-0.5">
+        {% if word.id in saved_ids %}
+            <a href="{% url 'remove_from_my_list' word.id %}" title="Listemden çıkar"
+               class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900 transition-colors">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            </a>
+        {% else %}
+            <a href="{% url 'add_to_my_list' word.id %}" title="Listeme ekle"
+               class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white dark:bg-slate-800 text-gray-500 dark:text-slate-400 ring-1 ring-inset ring-gray-300 dark:ring-slate-600 hover:bg-indigo-50 hover:text-indigo-600 dark:hover:bg-indigo-950 dark:hover:text-indigo-400 transition-colors">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+            </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>

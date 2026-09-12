@@ -63,7 +63,7 @@ class WordEncounter(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.user.username} · {self.word.englishWord} · {self.get_last_verdict_display()}"
+        return f"{self.user.username} · {self.word.text} · {self.get_last_verdict_display()}"
 
     @property
     def was_misjudged(self):

@@ -26,9 +26,8 @@ def showIndex(request):
     # 401 veya 501 seviyesinde, base kelime olan ve sahibi olmayanlar
     pool = Word.objects.filter(
         isBaseWord=True,
-        wordLevel__in=("401", "501"),
-    ).only("id", "englishWord", "meaningTr", "explanation",
-           "exampleSentence1", "wordLevel")
+        cefr__in=("B2", "C1"),
+    ).select_related("family").prefetch_related("meanings", "examples")
 
     daily_words = []
     pool_count = pool.count()
