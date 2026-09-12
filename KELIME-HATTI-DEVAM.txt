@@ -1,0 +1,464 @@
+================================================================================
+LEARNVOCAB — KELİME ZENGİNLEŞTİRME HATTI
+Devir teslim notu · 11 Eylül 2026
+================================================================================
+
+Bu dosya, "kelime-modeli" branch'inde kurulan toplu kelime üretim hattının
+tam durumunu anlatır. Sonraki oturumda bu dosyayı okuyan kişi/asistan,
+konuşma geçmişine ihtiyaç duymadan devam edebilmeli.
+
+Yazan: Claude (Opus 5) · Efe ile birlikte, tek oturumda kuruldu.
+
+
+================================================================================
+1. AMAÇ — BU HAT NEDEN VAR
+================================================================================
+
+LearnVocab, Türk hazırlık öğrencileri için akademik İngilizce öğrenme
+platformu. Hedeflenen kullanıcı akışı:
+
+  Öğrenci okuma metninde bilmediği bir kelimeye dokunur -> anlamı anında
+  görür -> o an kendi listesine kaydeder.
+
+Bunun ön koşulu: metinde geçen kelimenin veritabanında HAZIR olması.
+Hedef veri tabanı büyüklüğü 10.000, uzun vadede 20-30 bin kelime.
+
+Çözüm: Efe metinleri eklemeden önce içindeki "alınmaya değer" kelimeleri
+çıkarır (ilk 2000 kelime ve aşırı teknik terimler hariç), bu liste ucuz bir
+yapay zekâ modeliyle zenginleştirilip veritabanına yazılır.
+
+BÜTÇE KISITI: Efe öğrenci, projeden geliri yok. Aylık 12-14 doları geçmemeyi
+umuyor; tercihi tek seferde ~20 dolar verip büyük doldurma işini bir ayda
+bitirmek. Bu yüzden model seçimi ve token verimliliği kritik.
+
+
+================================================================================
+2. TEMEL MİMARİ KARARI — MODELİN VERİTABANINA ERİŞİMİ YOK
+================================================================================
+
+Efe'nin ilk fikri modele DB erişimi verip ekleme kodunu ona yazdırmaktı.
+Bu REDDEDİLDİ. Gerekçe:
+
+  - Her kelime için 4-5 tur konuşma = token maliyeti 5 katı
+  - Model bir lookup'ı uydurduğunda kimse fark etmez
+  - Hiçbir çalıştırma tekrarlanabilir olmaz
+
+Bunun yerine katı bir iş bölümü kuruldu:
+
+  KOD SORAR, MODEL YAZAR, KOD DENETLER, KOD YAZAR.
+
+  1. Python deterministik olarak DB'ye bakar: bu kelime var mı, ailesi
+     kurulu mu, hangi anlamlar ekli? Cevabı hazır METİN olarak prompt'a koyar.
+  2. Model yalnızca katı bir JSON şemasını doldurur. DB'ye hiç dokunmaz.
+  3. Deterministik denetim katmanı çıktıyı ölçer ve ONARIR.
+  4. Yalnızca denetimden geçen veri yazılır.
+
+Bu ilke hattın her yerinde tekrarlanıyor. "Kod arar, model yargılar" biçimi
+de var: yazımı benzeyen aile adaylarını kod bulur, hangisinin gerçek aile
+olduğuna model karar verir.
+
+
+================================================================================
+3. MODEL SEÇİMİ
+================================================================================
+
+Kullanılan: openai/gpt-oss-120b (OpenRouter üzerinden)
+
+Neden:
+  - TurkBench (arXiv 2601.07020) Türkçe sıralamasında BİRİNCİ: %78.6
+    (GLM-4.6 %76.9, DeepSeek-V3.1 %75.2, Qwen3-30B-A3B %73.4)
+  - Aynı zamanda en ucuzu: ~$0.03 giriş / $0.17 çıkış (1M token)
+  - Apache 2.0 açık ağırlıklı — fiyat artarsa başka sağlayıcıya ya da kendi
+    makineye taşınabilir, kilitlenme yok
+  - Native structured output + function calling
+
+ÖNEMLİ UYARI — KÜÇÜK MODEL KULLANMA: TurkBench'te 7-8B modellerde Türkçe
+çöküyor (Qwen2.5-7B %54.9, Llama-3.1-8B %45.7). "Local ve ücretsiz" diye
+küçük model seçilirse anlam/ton/üslup alanları çöp dolar. Alt sınır ~30B.
+
+Efe'nin MacBook Pro'su 24-36 GB RAM. Local kullanım için öneri: Qwen3-30B-A3B
+(Ollama) ama ÜRETİM için değil, PROMPT GELİŞTİRME için — yüzlerce deneme
+bedava ve rate-limit'siz yapılır, prompt oturunca gerçek liste API'de döner.
+
+Yedek model: DeepSeek-Flash (prompt caching çok iyi, off-peak yarı fiyat).
+Sağlayıcı değiştirmek için .env'de LLM_BASE_URL + LLM_MODEL değiştirmek yeter.
+
+
+================================================================================
+4. GERÇEK ÖLÇÜLEN MALİYET VE HIZ (5 tur, 250 farklı kelime)
+================================================================================
+
+  Kelime başına : ~5.000-5.900 token · ~$0.00029 · 0.2-0.3 saniye
+  10.000 kelime : ~0.8 saat · ~$2.90
+  Bugüne kadar harcanan toplam: ~10 sent
+
+Yani 10 bin kelimelik veri tabanını baştan sona doldurmak 3 dolar. Bütçe
+sorun değil; asıl maliyet prompt'u doğru ayarlamak için harcanan zaman.
+
+Hız ayarları (settings.py):
+  LLM_REASONING_EFFORT=low   -> düşünme tokenları ÇIKTI olarak faturalanır,
+                                bu tek ayar süreyi yarıdan fazla kısalttı
+  LLM_PROVIDER_SORT=throughput -> OpenRouter en hızlı sağlayıcıya yönlendirir
+  LLM_WORKERS=6              -> paralel istek sayısı (--workers ile ezilir)
+
+
+================================================================================
+5. DOSYA HARİTASI
+================================================================================
+
+LearnVocab/llm.py                (~330 satır)
+    OpenAI uyumlu ortak istemci. gemini.py'den AYRI ve bilerek öyle:
+    Gemini kullanıcının tarayıcıda başlattığı işler için, bu toplu üretim
+    için. Hata sınıfları, tekrar deneme, katı JSON şeması üretimi
+    (strict_schema), token/maliyet sayacı, sağlayıcı yönlendirme.
+
+words/enrich/__init__.py         Hattın akış açıklaması
+words/enrich/context.py          DB'ye bakar, modele verilecek özeti kurar.
+                                 ÜÇ YÖNLÜ aile araması + aday aileler.
+words/enrich/schema.py           Pydantic şeması. Alan adları Django
+                                 modeliyle birebir aynı (writer çevirmesin).
+words/enrich/prompt.py           Sistem talimatı + kullanıcı mesajı kurucusu.
+words/enrich/checks.py           (~500 satır) Deterministik denetim ve onarım.
+words/enrich/writer.py           DB'ye yazan TEK yer. Kelime başına
+                                 transaction, her zaman toplayıcı (additive).
+words/enrich/false_friends.py    78 kelimelik küratörlü YANLIŞ DOST tablosu
+words/enrich/confusables.py      71 çiftlik küratörlü KARIŞTIRILAN tablosu
+                                 (iki yöne otomatik açılır = 140 kelime)
+
+words/management/commands/
+    enrich_words.py              Ana komut
+    seed_false_friends.py        Küratörlü yanlış dostları DB'ye uygular
+    seed_confusables.py          Küratörlü çiftleri DB'ye bağlar
+    dedupe_meanings.py           Örtüşen anlamları bulur/siler
+    merge_families.py            İki aileyi elle birleştirir + aday listesi
+    seed_words.py                (önceden vardı) Örnek tohum veri
+
+words/inflect.py                 (önceden vardı, ÜÇ BUG DÜZELTİLDİ - bkz. §8)
+listeler/pilot.txt ... pilot5.txt  Test listeleri (25 + 4x50 kelime)
+
+DEĞİŞTİRİLEN: LearnVocab/settings.py (LLM_* ayarları), .env.example
+
+
+================================================================================
+6. DENETİM KATMANI — KONTROL LİSTESİ
+================================================================================
+
+Felsefe: "Model hatasını fark edecek kadar zeki mi" sorusuna GÜVENİLMEZ.
+Hata kodla yakalanır. Her prompt kuralının karşılığında bir kontrol var.
+
+İki seviye: HATA (kayıt reddedilir) / UYARI (yazılır ama işaretlenir).
+Katman ONARIR: bozuk bir collocation yüzünden 5 iyi cümle çöpe atılmaz.
+
+Uyarı kodları ve ne yaptıkları:
+  bos_kelime            text boş -> anlamlar varsa istenen kelime yazılır
+  farkli_yazim          dönen kelime istenenden farklı
+  gereksiz_fiil_hali    fiil olmayanda v2/v3 -> temizlenir
+  eksik_fiil_hali       fiil/phrasal verb'de v2/v3 yok
+  v3_ing                v3 "-ing" ile bitiyor -> temizlenir
+  gecersiz_kok          aile kökü reddedildi (bkz. §7)
+  kok_ilgisiz           kök sözlükte var ama kelimeyle yazım bağı zayıf
+  bilinmeyen_alan       listede olmayan kategori (İng->Tür eşleme denenir)
+  numarali_anlam        "1. ..." temizlenir
+  mastar_degil          fiil anlamı -mak/-mek ile bitmiyor
+  baska_tur             "(fiil)" notlu anlam başka türe ait -> atılır
+  cumle_sayisi          5'ten farklı cümle sayısı
+  yinelenen_cumle       aynı cümle iki kez
+  kelimesiz_cumle       cümlede kelimenin hiçbir biçimi yok -> cümle atılır
+  turkce_cumle          İngilizce cümlede ğ/ı/ş/İ var
+  cumle_uzunlugu        6-28 kelime dışında
+  collocation_kalipti   yer tutuculu collocation -> patterns'a TAŞINIR
+  collocation_ornegi    kalıp örnekte geçmiyor -> örnek silinir
+  collocation_yok       hiç collocation yok (işlev kelimelerinde uyarmaz)
+  kalip_collocation_ayni aynı ifade iki listede -> kalıp atılır
+  zaten_var             anlam DB'de birebir var -> atlanır
+  zaten_var_yakin       anlam DB'dekiyle ÖRTÜŞÜYOR -> atlanır  (§8'e bak)
+  yakin_anlam           cevabın içindeki iki anlam örtüşüyor (uyarı)
+  sahte_yanlis_dost     yanlış dost kelimenin kendisi
+  kendine_bag           kelime kendine bağlanmış
+  ifade                 çok kelimeli, phrasal verb değil -> REDDEDİLİR
+  ikinci_deneme         ilk cevapta hiç anlam yoktu, istek tekrarlandı
+  yanlis_dost_eklendi   küratörlü tablodan eklendi
+  karistirilan_eklendi  küratörlü tablodan eklendi (modelinki elendi)
+
+
+================================================================================
+7. AİLE KURALLARI (WordFamily) — EFE'NİN VERDİĞİ KARARLAR
+================================================================================
+
+KARAR 1 — Önekler:
+  Anlamı KORUYAN önekler taban kelimenin ailesinde KALIR:
+    un-, dis-, in-, im-, ir-, il-, non-, mis-, re-, en-, em-, pre- ...
+    örn. encourage->courage, disagree->agree, unhappy->happy
+  Anlamı KOPARAN önekler AYRILIR (KOPARAN_ONEKLER, checks.py):
+    under-, over-, with-, fore-, out-, up-, off-, be-, a-
+    örn. undertake != take, overcome != come, withstand != stand,
+         arise != rise, outstanding != stand
+  İstisna: kökün kendisi öneki içeriyorsa dokunulmaz
+    (overwhelming -> overwhelm DOĞRU)
+
+KARAR 2 — Bileşik kelimeler kendi ailelerini kurar:
+  breakthrough != break, framework != frame, long-term != long,
+  cost-effective != cost, drawback != draw
+  Denetim: iki parça da sistem sözlüğünde ve her biri >=4 harf.
+  Türetme ekleri (-able, -less, -ment ...) bileşen SAYILMAZ, yoksa
+  considerable/careless/statement gibi kelimeler ailelerinden kopardı.
+
+KARAR 3 — Deyimler ve bağlayıcı ifadeler kelime hattına GİRMEZ:
+  "in the long run", "on the other hand", "by and large", "in terms of"
+  Bunlar Word değil Expression kaydıdır. Şu an istek GÖNDERİLMEDEN eleniyor
+  (checks.ifade_mi). Phrasal verb'ler ("carry out") geçer.
+  -> Expression için AYRI bir hat yazılacak (bkz. §11)
+
+AİLE ARAMASI ÜÇ YÖNLÜDÜR (context.aile_bul) — bu çok önemli:
+  AŞAĞI  kelimenin kökü bir aile mi?        encouragement -> courage
+  YANA   kelimenin kendisi bir üye mi?
+  YUKARI kelimenin TÜREVİ zaten aile kurmuş mu?  interpret -> interpretation
+  Üçüncüsü olmadan sessiz bozulma oluyordu: metinlerden kelime toplandığı
+  için TÜREVİN TABANDAN ÖNCE GELMESİ KURAL. interpretation bugün gelir,
+  interpret üç ay sonra; üçüncü yön olmadan iki ayrı aile doğar ve bir daha
+  birleşmez.
+
+KÖK TAŞIMA: Aile kökü ailenin en yalın üyesi olmalı. Türev önce geldiyse
+aile "interpretation" adıyla kurulur; "interpret" gelince kök ona taşınır.
+KOŞUL: mevcut kök yeni kökle BAŞLAMALI. (Sadece "daha kısa" bakmak
+"analysis" ailesinin kökünü "analyst"e kaydırıyordu — düzeltildi.)
+
+KURALLA ÇÖZÜLEMEYEN DURUM: analyse/analysis gibi çiftler yalnızca "analy"
+ön ekini paylaşır, ve aynı ön eki paylaşan conscience/conscious AYRI
+ailelerdir. Kural yazmak ikisinden birini mutlaka yanlış yapar.
+Çözüm: manage.py merge_families ile ELLE birleştirme. --list adayları verir
+ama bu bir KARAR LİSTESİDİR, otomatik yapılacaklar listesi değil.
+
+
+================================================================================
+8. BULUNAN VE DÜZELTİLEN BUG'LAR — BUNLARI GERİ GETİRME
+================================================================================
+
+Bulunanların ÇOĞU modelde değil, kontrol katmanında ve inflect.py'daydı.
+Hiçbiri tek bir listeyle görünmedi; 5 farklı liste ve iki kez çalıştırma
+fikri ortaya çıkardı.
+
+inflect.py (Efe'nin mevcut kodu, üç bug):
+  1. Ünsüz ikileme yalnızca CVC kalıbına bakıyordu, hece saymıyordu:
+     misinterpret -> "misinterpretting". Metindeki "misinterpreting"
+     hiçbir kelimeye bağlanamıyordu. Artık tek heceliler her zaman ikiler,
+     çok hecelilerde yalnızca IKILEYEN listesi ikiler.
+  2. Phrasal verb'de bütün ifadeye ek getiriyordu: "carry outs".
+     Artık yalnızca fiil çekimlenir: carries out / carried out / carrying out.
+  3. (yukarıdakinin sonucu) WordForm satırları yanlış üretiliyordu.
+
+checks.py:
+  4. Collocation eşleştirme BİREBİR arıyordu. Model doğru üretmişti ama
+     cümlede fiil çekimli ve araya kelime giriyordu ("He SUSTAINED serious
+     INJURIES"). Sağlam veri eleniyordu. Artık çekime, araya giren 1-2
+     kelimeye, düzensiz fiillere (make->made), kesme işaretine
+     ("physician's office") ve yüzde işaretine ("30% of the budget") izin var.
+     Ama gerçek uyuşmazlık hâlâ yakalanıyor.
+  5. "İngilizce cümlede Türkçe harf" kontrolü ç/ö/ü'yü de sayıyordu ve
+     "façade" gibi alıntı kelimeli iyi cümleleri eliyordu. Artık yalnızca
+     ğ/ı/ş/İ.
+  6. Bileşik kuralı "consider"+"able"ı bileşik sanıyordu (able sözlükte bir
+     kelime). Türetme ekleri ayrıldı.
+  7. TEKİLLEŞTİRME BİREBİRDİ. "ders, konu" ile "konu, ders" iki ayrı anlam
+     sayılıyordu. Aynı listeyi ikinci kez çalıştırmak sözlüğe çift anlam
+     yazıyordu — SESSİZCE BİRİKEN bir bozulma, tek çalıştırmayla asla
+     görünmezdi. Artık yakın-eşleşme (ortak kelime oranı >= %50).
+
+llm.py:
+  8. HTTP 200 gövdesinin İÇİNDE hata gelebiliyor (OpenRouter üst
+     sağlayıcının hatasını oraya koyuyor: finish_reason="error"). Kod bunu
+     "başarılı" sayıyordu. Ayrıca try/except'ten sonra akış aşağı düşüp
+     durum kodu 200 olduğu için "kalıcı hata" sayılıyor ve TÜM ÇALIŞMA
+     duruyordu. Yani tekrar denenebilir bir hata ölümcül hataya çevriliyordu.
+  9. max_tokens gönderilmiyordu; düşünen model bütçeyi düşünürken bitirip
+     boş cevap bırakıyordu. Artık LLM_MAX_TOKENS=8000 ve boş cevap
+     tekrar deneme döngüsünün İÇİNDE.
+ 10. Katı şemayı desteklemeyen sağlayıcıya düşülüyordu (Groq hatası:
+     "Generated JSON does not match the expected schema"). Artık
+     provider.require_parameters=true ile yalnızca destekleyenlere gidiyor.
+
+writer.py:
+ 11. Kod doğru aileyi buluyordu ama YAZICI ONU KULLANMIYORDU; modelin
+     önerdiği kökle get_or_create yapıp yeni aile açıyordu. Kuru
+     çalıştırmada görünmez, ancak yazarken ortaya çıkar. Artık bulunan aile
+     parametre olarak geçiyor; modelin önerisi yalnızca hiç aile
+     bulunamadığında kullanılıyor.
+
+enrich_words.py:
+ 12. Tek bir kalıcı hata tüm çalışmayı durduruyordu. Artık üst üste 5 hata
+     gerekiyor (yanlış anahtarla 10.000 istek göndermemek için).
+
+
+================================================================================
+9. KÜRATÖRLÜ TABLOLAR — NEDEN MODELDEN İSTEMİYORUZ
+================================================================================
+
+YANLIŞ DOSTLAR (words/enrich/false_friends.py, 78 kelime)
+  Kanıt: 50 kelimelik iki turda model TEK BİR yanlış dost üretmedi —
+  fabric, magazine, chef, college, physician gibi en bariz olanlarda bile.
+  Dahası `chef`in Türkçesini "aşçı, şef" yazarak tuzağa KENDİSİ düştü.
+  Bu küme sayılıdır (birkaç yüz kelime), bir kez yazılır, sonsuza kadar
+  doğru kalır. Hiçbir genel sözlükte yok.
+
+KARIŞTIRILAN ÇİFTLER (words/enrich/confusables.py, 71 çift)
+  Kanıt: model confused_with bağını üretiyor ama YANLIŞ üretiyor.
+  principle ve principal yan yana sorulduğu hâlde ikisini birbirine
+  bağlamadı; "principle -> confused_with -> law" ve
+  "principal -> confused_with -> main" dedi. İkisi de EŞ ANLAMLI.
+  Küratörlü kayıt varsa modelinki ELENİYOR — yarısı yanlış bir alan, boş
+  alandan kötüdür.
+
+Tabloları genişletme kuralı: GERÇEKTEN yanılttığından emin ol.
+restaurant/restoran gibi anlamı aynı olanlar girmez, yoksa alan değersizleşir.
+Yeni kayıt eklendiğinde seed_false_friends / seed_confusables çalıştırılır;
+kelimeleri baştan üretmeye gerek yok.
+
+
+================================================================================
+10. VERİTABANININ ŞU ANKİ DURUMU (yerel db.sqlite3)
+================================================================================
+
+  Aile 82 · Kelime 133 · Anlam 198 · Örnek cümle 983 · Collocation 484
+  Kalıp 137 · Çekim biçimi 281 · Bağ 34 (16'sı confused_with) · Yanlış dost 6
+
+Hattın kurduğu derin aileler (seed verisinden DEĞİL, üretilmiş):
+  consider(4): consider, considerable, considerate, consideration
+  acquire(3) · bias(3) · overwhelm(3) · analysis grubu(3)
+  interpret, remark, appall, resilient, imply, assume, implement,
+  behave, demand, mislead, ubiquitous ... (hepsi 2 üyeli)
+
+YEDEKLER: db.sqlite3.yedek, db.sqlite3.yedek2 (proje kökünde)
+
+BEKLEYEN ELLE İŞ (merge_families --list çıktısına göre):
+  BİRLEŞTİR:  analyse + analyst(analysis,analytical)
+              continue(continual) + continuous
+  BİRLEŞTİRME: principal/principle, complete(complement)/compliment,
+               station(stationary)/stationery, frame/framework
+               (bunlar farklı kelimeler ya da bilerek ayrı)
+
+
+================================================================================
+11. SONRAKİ ADIMLAR — ÖNCELİK SIRASIYLA
+================================================================================
+
+[1] ACİL — COMMIT AT. Branch'te HİÇ COMMIT YOK.
+    Kelime modelinin tamamı (models.py yeniden yazımı, 2 migration,
+    ~2.700 satır test), bu hattın ~1.500 satırı ve iki küratörlü tablo
+    YALNIZCA DİSKTE duruyor. Bir `git reset` ya da yanlış `checkout`
+    her şeyi siler. Efe'ye üç kez hatırlatıldı, henüz yapılmadı.
+    Öneri: mantıklı parçalara bölünmüş 3-4 commit
+      (a) kelime modeli + migration'lar, (b) inflect düzeltmeleri,
+      (c) zenginleştirme hattı, (d) küratörlü tablolar + komutlar
+
+[2] Bekleyen iki aile birleştirmesini yap (§10)
+
+[3] Gerçek kelime listelerine geç. Efe'nin elinde ODTÜ (~6-8 bin),
+    Bilkent (~6-7 bin), İTÜ listeleri ve More to Read II'nin 27 sayfalık
+    word-family listesi var. ÖNERİ: 200-500'lük partiler hâlinde,
+    --skip-existing ile, her partiden sonra raporu gözden geçirerek.
+
+[4] EXPRESSION HATTI. Deyimler şu an reddediliyor. Efe'nin notlarına göre
+    Expression ayrı bir entity: linker/connector/prepositional phrase/idiom
+    tek çatı altında, ~max 300 ifade, her birine en az 20 örnek cümle ve
+    reading referansları. Bu AYRI bir şema, prompt ve yazıcı demek.
+    enrich_expressions komutu olarak yazılmalı.
+
+[5] QUIZ SİSTEMİ. settings.QUIZZES_ENABLED=False. quizzes/question_generator.py
+    hâlâ TAMAMEN eski alan adlarıyla yazılı (englishWord, wordLevel).
+    Efe "quiz sistemini baştan tasarlayalım" dedi — yeni modelin sunduğu
+    yeni soru tipleri var: collocation boşluğu, kalıptaki edat, yanlış dost
+    ayrımı, karıştırılan çift seçimi, ton/üslup eşleştirme.
+
+[6] OKUMA EKRANI. Sıfırdan tasarlanacak. WordForm tablosu hazır ve doğru
+    (metindeki yazımdan sözlük maddesine köprü) — asıl iş bunun üstüne
+    dokunmatik kelime arayüzü ve "listeme ekle" akışını kurmak.
+
+[7] KÜÇÜK: templates/pages/index.html ve templates/pages/texts/newText.html
+    hâlâ eski alan adlarını kullanıyor (word.englishWord, exampleSentence1).
+    Django hata vermez, sessizce BOŞ basar. Ana sayfadaki kelime kartları
+    şu anda boş görünüyor.
+
+[8] CANLIYA ALMA. MySQL'e geçerken: `manage.py dumpdata --natural-foreign`
+    + `loaddata` kullan, SQL dump kopyalama. MySQL tarafını utf8mb4 /
+    utf8mb4_unicode_ci kur, yoksa Türkçe karakterler bozulur.
+
+
+================================================================================
+12. BİLİNEN SINIRLAR (kabul edilmiş, bug değil)
+================================================================================
+
+- Model bazen tek tük bozuk Türkçe üretiyor ("whereas -> -oğlarken").
+  Kodla yakalanamaz; rapora düşer, gözle görülür.
+- Edat/bağlaç/bağlayıcı zarflar (~100 kelime) sayılı bir küme; yanlış dostlar
+  gibi ELLE yazılmaları daha doğru olabilir. Henüz yapılmadı.
+- "yakin_anlam" tekilleştirmesi bazen fazla temkinli: "dikkat çekmek" ile
+  "çekmek, yönlendirmek" ortak kelime yüzünden örtüşük sayılıyor. Rapora
+  düşüyor, gözden geçirilebilir.
+- pos seçimi çalıştırmalar arası değişebiliyor (advocate bir turda noun,
+  başka turda verb geldi). Çözüm: listede türü açıkça yaz -> "advocate:noun"
+- Aile kökü denetimi SİSTEM SÖZLÜĞÜNE bağlı (/usr/share/dict/words).
+  macOS'ta var (234.456 kelime). Linux sunucuda yoksa kök denetimi sessizce
+  zayıflar — komut başlangıçta bunu YAZAR, çıktıya bak.
+
+
+================================================================================
+13. ÇALIŞTIRMA REHBERİ
+================================================================================
+
+ORTAM: Mac'te, proje kökünde
+  source .venv/bin/activate
+  (.venv macOS'ta python3.14'e bağlı; Linux'tan çalışmaz)
+
+.env'de olması gerekenler:
+  LLM_BASE_URL=https://openrouter.ai/api/v1
+  LLM_API_KEY=sk-or-v1-...
+  LLM_MODEL=openai/gpt-oss-120b
+  (diğer LLM_* ayarlarının varsayılanı settings.py'de hazır)
+
+TEMEL KULLANIM:
+  # Önce her zaman kuru çalıştır
+  python manage.py enrich_words --file listeler/X.txt --dry-run \
+      --workers 10 --report rapor.json
+
+  # Sonra gerçekten yaz (ÖNCE YEDEK AL)
+  cp db.sqlite3 db.sqlite3.yedek
+  python manage.py enrich_words --file listeler/X.txt --skip-existing \
+      --workers 10 --report rapor.json
+
+  # Küratörlü tabloları uygula
+  python manage.py seed_false_friends
+  python manage.py seed_confusables
+
+  # Bakım
+  python manage.py dedupe_meanings [--apply]
+  python manage.py merge_families --list
+  python manage.py merge_families <kalan> <giden>
+
+LİSTE BİÇİMİ: her satırda bir kelime. Tür belirtmek için "kelime:pos".
+Boş satırlar ve # ile başlayanlar atlanır. Çift türlü kelimeleri iki satır
+yaz: "advocate:noun" ve "advocate:verb".
+
+TESTLER: python manage.py test words userprofile   -> 291 test, hepsi geçer
+
+
+================================================================================
+14. ASİSTAN İÇİN NOTLAR
+================================================================================
+
+- Efe Türkçe konuşuyor, kod ve yorumlar Türkçe yazılıyor. Bu projenin
+  yerleşik stili: Türkçe docstring'ler, bazen Türkçe değişken adları
+  (sayac, kuru, secenekler). Aynı stili sürdür.
+- Efe kendi kendini yetiştirmiş bir programcı; Java'sı güçlü, Python/Django
+  ile pre-version'ı kendi yazmış. Açıklamaları teknik tutabilirsin ama
+  yapay zekâ araçları konusunda deneyimi az (bu oturumdan önce yalnızca
+  Gemini/Claude/GPT kullanmış).
+- Efe test etmekte ısrarcı ve bu DOĞRU bir içgüdü: "hazır olmayan bir
+  prompt'u 10.000 kelimeye uygulamak telafisi zor." Bug'ların çoğu tam da
+  bu ısrar sayesinde bulundu.
+- OpenRouter ve DeepInfra, Claude'un çalıştığı ortamlardan AĞ POLİTİKASI
+  gereği ERİŞİLEMEZ. Model çağrısı yapan komutları Efe kendi terminalinde
+  çalıştırmalı; asistan raporu diskten okuyabilir.
+- Uzun vadeli plan: bu Django sürümü bir "pre-version". Asıl LearnLang
+  Java Spring ile yazılacak. Ama kelime modeli ve bu veri burada olgunlaşıyor.
+
+================================================================================
