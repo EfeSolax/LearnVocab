@@ -25,3 +25,14 @@ __pycache__/
 
 # Django dosya tabanli onbellek
 tmp/django-cache/
+
+# Veritabani yedekleri
+db.sqlite3*
+
+# Zenginlestirme hatti raporlari (uretilen ciktilar)
+pilot*.json
+yazma*.json
+rapor*.json
+
+# Oturum ekran goruntuleri
+/Claude outputs/

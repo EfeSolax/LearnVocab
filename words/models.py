@@ -1,135 +1,731 @@
+"""
+Kelime çekirdeği.
+
+Eski model her şeyi tek bir `Word` satırına tıkıştırıyordu: anlam, açıklama,
+10 örnek cümle kolonu, virgülle ayrılmış eş/zıt anlamlılar, collocation'lar.
+Bu yüzden `relate` ile `relation` birbirini tanımayan iki yabancıydı.
+
+Yapı beş katmanlı:
+
+    WordFamily   courage
+      └ Word     courage (isim) · courageous (sıfat) · encourage (fiil) …
+          ├ Meaning         anlam + açıklama + ton + üslup + alan
+          │   ├ ExampleSentence  anlam başına 5 örnek cümle
+          │   ├ Collocation      make a decision, heavily dependent
+          │   └ UsagePattern     depend on sth, suggest doing sth
+          ├ WordForm        çekimler: encouraged, encouraging, slower, went …
+          └ FalseFriend     sympathetic ≠ sempatik
+
+Üç ayrım bu dosyanın taşıdığı asıl bilgi:
+
+  - TÜRETME (derivation) ayrı bir kelimedir: courage -> encouragement.
+    Kendi türü, kendi anlamı, kendi cümleleri vardır -> ayrı `Word`.
+  - ÇEKİM (inflection) yeni bir kelime değildir: encourage -> encouraged.
+    Anlamı aynıdır, sözlük maddesi olmaz -> `WordForm`.
+  - KELİME ≠ ANLAM. Öğrenmenin birimi anlamdır. `bank` tek bir isimdir ama
+    "banka" ile "nehir kıyısı" aynı şeyi öğretmez: `open a bank account`
+    sadece birine aittir, tonu, üslubu, alanı da öyle. Bu yüzden collocation,
+    ton, üslup, alan ve örnek cümleler `Word`'e değil `Meaning`'e bağlıdır.
+
+Kullanıcının kendi yazdıkları çekirdeğe hiç dokunmaz; `UserWordNote`,
+`UserExampleSentence` ve `UserMeaning` üstüne biner.
+"""
+
 from django.db import models
+
 from users.models import User
 
-# Create your models here.
+
+# ----------------------------------------------------------------------
+# Sabitler
+# ----------------------------------------------------------------------
+
+class PartOfSpeech(models.TextChoices):
+    NOUN = "noun", "isim"
+    VERB = "verb", "fiil"
+    ADJECTIVE = "adjective", "sıfat"
+    ADVERB = "adverb", "zarf"
+    PHRASAL_VERB = "phrasal_verb", "phrasal verb"
+    PREPOSITION = "preposition", "edat"
+    CONJUNCTION = "conjunction", "bağlaç"
+
+
+class FormKind(models.TextChoices):
+    """
+    Çekim türü. Sadece "bu yazım şu kelimeye götürür" demekle yetinmiyoruz:
+    `slower` bir sözlük maddesi değil ama sınavda sorulabilir bir şey
+    (sıfatın derecelendirilmesi). Etiketi olmazsa quiz üretemeyiz.
+    """
+    PLURAL = "plural", "çoğul"
+    THIRD_PERSON = "third_person", "3. tekil (-s)"
+    PAST = "past", "2. hâl"
+    PAST_PARTICIPLE = "past_participle", "3. hâl"
+    PRESENT_PARTICIPLE = "present_participle", "-ing hâli"
+    COMPARATIVE = "comparative", "karşılaştırma (-er)"
+    SUPERLATIVE = "superlative", "en üstünlük (-est)"
+    OTHER = "other", "diğer"
+
+
+class RelationType(models.TextChoices):
+    SYNONYM = "synonym", "eş anlamlı"
+    ANTONYM = "antonym", "zıt anlamlı"
+    # "Bilmediğini bildiğine benzetme": possess ≈ have (ama daha resmî).
+    # Zor kelimeyi Türkçe karşılığıyla değil, öğrencinin zaten bildiği
+    # İngilizce kelimeyle tanımlamak.
+    SIMPLER = "simpler", "daha basit karşılığı"
+    # affect/effect, sensible/sensitive, economic/economical.
+    # Eş anlamlı DEĞİL — tam tersine, benzedikleri için karıştırılıyorlar.
+    CONFUSED_WITH = "confused_with", "karıştırılan"
+
+
+class Sentiment(models.TextChoices):
+    """
+    Anlamın tonu.
+
+    Bu alan var çünkü TÜRKÇE KARŞILIK BU BİLGİYİ SİLİYOR. `notorious` ve
+    `famous` sözlükte ikisi de "ünlü"; `skinny`, `slim`, `thin` üçü de
+    "zayıf". Öğrenci Türkçesinden bunu asla öğrenemez.
+    """
+    NEUTRAL = "neutral", "nötr"
+    POSITIVE = "positive", "olumlu"
+    NEGATIVE = "negative", "olumsuz"
+
+
+class Register(models.TextChoices):
+    """
+    Üslup / resmiyet düzeyi.
+
+    `possess` ile `have` aynı anlama gelir ama aynı cümleye girmez. Essay
+    yazan öğrencinin ihtiyacı olan bilgi tam olarak budur.
+    """
+    NEUTRAL = "neutral", "nötr"
+    FORMAL = "formal", "resmî"
+    ACADEMIC = "academic", "akademik"
+    INFORMAL = "informal", "gündelik"
+    SLANG = "slang", "argo"
+    LITERARY = "literary", "edebî"
+
+
+class CollocationKind(models.TextChoices):
+    """
+    Birlikte kullanım kalıbının dilbilgisel şekli.
+
+    Tek bir metin alanı yetmiyor: `make a decision` (fiil+isim) ile
+    `heavily dependent` (zarf+sıfat) farklı soru tipleri üretir.
+    """
+    VERB_NOUN = "verb_noun", "fiil + isim"
+    ADJ_NOUN = "adj_noun", "sıfat + isim"
+    NOUN_NOUN = "noun_noun", "isim + isim"
+    ADV_ADJ = "adv_adj", "zarf + sıfat"
+    ADV_VERB = "adv_verb", "zarf + fiil"
+    OTHER = "other", "diğer"
+
+
+class PatternKind(models.TextChoices):
+    """
+    Kullanım kalıbı türü. Collocation'dan farkı: bu kelime seçimi değil,
+    GRAMER. `depend on`, `suggest doing` ama `decide to do`. Hazırlık
+    öğrencisinin en çok puan kaybettiği yer burası.
+    """
+    PREPOSITION = "preposition", "bağımlı edat"
+    VERB_FORM = "verb_form", "fiil kalıbı"
+    CLAUSE = "clause", "yan cümle kalıbı"
+    STRUCTURE = "structure", "yapı"
+    OTHER = "other", "diğer"
+
+
+class ExpressionKind(models.TextChoices):
+    IDIOM = "idiom", "deyim"
+    FIXED = "fixed", "kalıp ifade"
+    PROVERB = "proverb", "atasözü"
+    LINKER = "linker", "bağlayıcı ifade"
+    OTHER = "other", "diğer"
+
+
+VISIBILITY_CHOICES = [
+    ("public", "Herkese Açık"),
+    ("private", "Gizli"),
+]
+
+# Seviye artık ODTÜ kuru (101–501) değil, CEFR. Kur bilgisi kelimenin bir
+# özelliği değil, kelimeye takılan bir liste etiketi — oraya taşınacak.
+CEFR_CHOICES = [
+    ("Belirtilmemiş", "Belirtilmemiş"),
+    ("A1", "A1 — Başlangıç"),
+    ("A2", "A2 — Temel"),
+    ("B1", "B1 — Orta öncesi"),
+    ("B2", "B2 — Orta"),
+    ("C1", "C1 — Orta üstü"),
+    ("C2", "C2 — İleri"),
+]
+
+CEFR_LEVELS = [kod for kod, _ in CEFR_CHOICES if kod != "Belirtilmemiş"]
+
+
+# ----------------------------------------------------------------------
+# Alan (konu) etiketi
+# ----------------------------------------------------------------------
+
+class Category(models.Model):
+    """
+    Anlamın ait olduğu konu alanı: psikoloji, ekonomi, hukuk, tıp, gündelik…
+
+    Okuma metinleriyle doğrudan çalışır: sisteme psikoloji metni girdiğinde
+    içindeki kelimelerin hangi alana ait olduğu buradan bilinir.
+    """
+
+    name = models.CharField(max_length=80, unique=True)
+    slug = models.SlugField(max_length=80, unique=True)
+
+    class Meta:
+        ordering = ("name",)
+        verbose_name_plural = "categories"
+
+    def __str__(self):
+        return self.name
+
+
+# ----------------------------------------------------------------------
+# Çekirdek
+# ----------------------------------------------------------------------
+
+class WordFamily(models.Model):
+    """
+    Türetme ailesi. Öğrenmenin birimi tek kelime değil, aile.
+
+    Aile zamanla büyür: bugün bir metin `relate`'i getirir, aile kurulur;
+    üç ay sonra başka bir metin `relation`'ı getirir ve yanına eklenir.
+    Eşi olmayan kelime de bir aileye girer — tek kişilik aile.
+    """
+
+    root = models.CharField(max_length=100, unique=True)
+    note = models.CharField(max_length=500, blank=True, null=True)
+
+    createdAt = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ("root",)
+        verbose_name_plural = "word families"
+
+    def __str__(self):
+        return self.root
+
+    @property
+    def members(self):
+        """Ailedeki kelimeler, kök önce gelecek şekilde."""
+        return sorted(self.words.all(), key=lambda w: (w.text != self.root, w.text))
+
 
 class Word(models.Model):
-    # Kaç adet örnek cümle alanı olduğu. Alan sayısı değişirse SADECE burayı
-    # güncellemek yeterli; property'ler ve formlar bu sabiti kullanıyor.
-    EXAMPLE_SENTENCE_COUNT = 10
+    """
+    Bir sözlük maddesi: belirli bir türdeki belirli bir kelime.
 
-    # Kelimeyi ekleyen kullanıcı
-    owner = models.ForeignKey(User,
-        blank=True,
-        null = True,
-        on_delete=models.CASCADE,
-        related_name = "words",
+    `progress (isim)` ve `progress (fiil)` AYRI kayıtlardır; anlamları,
+    örnek cümleleri ve kullanım kalıpları farklı olduğu için.
+
+    Bu satırda duran şeyler kelimenin BÜTÜNÜNE ait olanlar: yazımı, türü,
+    fiil hâlleri, zorluğu, yaygınlığı. Anlama göre değişen her şey (ton,
+    üslup, alan, collocation, örnek cümle) `Meaning` üzerinde durur.
+    """
+
+    family = models.ForeignKey(
+        WordFamily, on_delete=models.CASCADE, related_name="words",
     )
 
-    # Final bir görünürlük listesi (seçenekler)
-    VISIBILITY_CHOICES = [
-        ('public', 'Herkese Açık'),
-        ('friends', 'Arkadaşlara Açık'),
-        ('private', 'Gizli'),
-    ]
-
-    # Ön Ekler (seçenekler)
-    PREFIX_CHOICES = [
-        ("dis","dis-"),
-        ("un","un-"),
-        ("im","im-"),
-        ("in","in-"),
-        ("ir","ir-"),
-        ("il","il-")
-    ]
-
-    # Kelimenin ingilizcesi
-    englishWord = models.CharField(max_length=100)
-    explanation = models.CharField(max_length = 300, blank=True, null=True)
-    note = models.CharField(max_length = 500, blank = True, null = True)
-    prefix = models.CharField(max_length = 10, choices = PREFIX_CHOICES, blank = True, null = True)
-    isVerb = models.BooleanField(default = False)
-    meaningTr = models.CharField(max_length=200) 
-    v2Form = models.CharField(max_length=100, blank = True, null = True)
-    v3Form = models.CharField(max_length=100, blank = True, null = True)
-    # Örnek cümleler. Bir kelime tek bir cümleden öğrenilmez; aynı kelimeyi
-    # farklı bağlamlarda görmek gerekiyor. Bu yüzden 10 cümleye kadar yer var.
-    # Sadece ilki zorunlu, kalan 9'u isteğe bağlı.
-    exampleSentence1 = models.CharField(max_length=400)
-    exampleSentence2 = models.CharField(max_length=400, blank = True, null = True)
-    exampleSentence3 = models.CharField(max_length=400, blank = True, null = True)
-    exampleSentence4 = models.CharField(max_length=400, blank = True, null = True)
-    exampleSentence5 = models.CharField(max_length=400, blank = True, null = True)
-    exampleSentence6 = models.CharField(max_length=400, blank = True, null = True)
-    exampleSentence7 = models.CharField(max_length=400, blank = True, null = True)
-    exampleSentence8 = models.CharField(max_length=400, blank = True, null = True)
-    exampleSentence9 = models.CharField(max_length=400, blank = True, null = True)
-    exampleSentence10 = models.CharField(max_length=400, blank = True, null = True)
-    visibility = models.CharField(max_length=10, choices = VISIBILITY_CHOICES, default = "private")###########
-
-    # Eş anlamlı ve zıt anlamlı kelimeler (virgülle ayrılmış, isteğe bağlı)
-    synonyms = models.CharField(max_length=500, blank=True, null=True)
-    antonyms = models.CharField(max_length=500, blank=True, null=True)
-
-    # Kelimenin doğal kullanım kalıpları (virgülle ayrılmış, isteğe bağlı)
-    # Örn: "retain information, retain control, retain its shape"
-    # Kelimeyi tek başına değil, birlikte kullanıldığı yapılarla öğrenmek için.
-    collocations = models.CharField(max_length=500, blank=True, null=True)
-    createdAt = models.DateTimeField(auto_now_add=True)
-    span = models.IntegerField(null=True, blank=True)
-
-    wordLevel = models.CharField(
-        max_length=15,
-        choices=[
-            ('Belirtilmemiş','Belirtilmemiş'),
-            ('101', '101'),
-            ('201', '201'),
-            ('301', '301'),
-            ('401', '401'),
-            ('501', '501'),
-        ],
-        default='Belirtilmemiş'
+    text = models.CharField(max_length=120)
+    pos = models.CharField(
+        max_length=20, choices=PartOfSpeech.choices, default=PartOfSpeech.NOUN,
+        verbose_name="tür",
     )
 
-    # Bu kelime herkesin görebileceği bir kur seviyesi kelimesi mi yoksa biri mi eklemiş.
-    isBaseWord = models.BooleanField(default = False)
+    # Fiil hâlleri. Düzensizler kuralla üretilemediği için burada duruyor;
+    # WordForm satırları da bunlardan besleniyor.
+    v2Form = models.CharField(max_length=80, blank=True, null=True)
+    v3Form = models.CharField(max_length=80, blank=True, null=True)
 
-    # Kimler bu kelimeyi listesine eklemiş.
+    # Phrasal verb ise bağlı olduğu ana fiil: "run into" -> "run"
+    base_verb = models.ForeignKey(
+        "self", on_delete=models.SET_NULL, blank=True, null=True,
+        related_name="phrasal_verbs",
+    )
+
+    cefr = models.CharField(max_length=15, choices=CEFR_CHOICES,
+                            default="Belirtilmemiş", verbose_name="seviye")
+
+    # Yaygınlık sırası: 1 = en sık geçen. Boş = ölçülmemiş.
+    # İçerik hattının hangi kelimeyi önce üreteceğine bu karar veriyor;
+    # okuma metinlerinde ölçülen dağılım burada yaşıyor.
+    frequency_rank = models.PositiveIntegerField(blank=True, null=True,
+                                                 verbose_name="yaygınlık sırası")
+
+    isBaseWord = models.BooleanField(default=False)
+
+    owner = models.ForeignKey(
+        User, blank=True, null=True, on_delete=models.CASCADE, related_name="words",
+    )
+    visibility = models.CharField(max_length=10, choices=VISIBILITY_CHOICES,
+                                  default="private")
+
     saved_by = models.ManyToManyField(
-        User, 
-        related_name="saved_words", 
-        blank=True,
-        through='UserWordLink',
+        User, related_name="saved_words", blank=True, through="UserWordLink",
     )
 
-    @classmethod
-    def example_sentence_field_names(cls):
-        """Örnek cümle alanlarının adları: ['exampleSentence1', ...]."""
-        return [f"exampleSentence{i}" for i in range(1, cls.EXAMPLE_SENTENCE_COUNT + 1)]
+    createdAt = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ("text", "pos")
+        # Aynı yazım + aynı tür iki kez olamaz; ama progress(n)/progress(v) olur.
+        unique_together = ("text", "pos")
+        indexes = [
+            models.Index(fields=["text"]),
+            models.Index(fields=["family", "text"]),
+        ]
+
+    def __str__(self):
+        return f"{self.text} ({self.get_pos_display()})"
+
+    # --- kısayollar -----------------------------------------------------
+
+    @property
+    def primary_meaning(self):
+        """İlk (ana) anlam. Kelimenin en az bir anlamı olması beklenir."""
+        return self.meanings.first()
+
+    @property
+    def meaningTr(self):
+        """Ana anlamın Türkçesi. Şablonlar için kısayol."""
+        anlam = self.primary_meaning
+        return anlam.meaning_tr if anlam else ""
+
+    @property
+    def explanation(self):
+        """Ana anlamın İngilizce açıklaması."""
+        anlam = self.primary_meaning
+        return anlam.definition if anlam else ""
+
+    @property
+    def has_multiple_meanings(self):
+        return self.meanings.count() > 1
 
     @property
     def example_sentences(self):
         """
-        Boş olmayan örnek cümleler, girildikleri sırayla.
+        Kelimenin bütün cümleleri, anlam sırasına göre düzleştirilmiş.
 
-        Alanlar zaten Word satırıyla birlikte yüklendiği için bu property
-        ek sorgu yapmaz; sadece dolu olanları süzer.
+        Cümleler artık anlama bağlı; tek anlamlı kelimelerde fark yok, ama
+        `bank` için hangi cümlenin hangi anlama ait olduğu artık belli.
         """
-        sentences = []
-        for field_name in self.example_sentence_field_names():
-            sentence = getattr(self, field_name, None)
-            if sentence and sentence.strip():
-                sentences.append(sentence.strip())
-        return sentences
+        return [c.text for c in ExampleSentence.objects
+                .filter(meaning__word=self)
+                .order_by("meaning__sort_order", "sort_order", "id")]
 
     @property
-    def has_extra_example_sentences(self):
-        """1. cümlenin dışında dolu örnek cümle var mı? (Formda paneli açık başlatmak için)"""
-        return len(self.example_sentences) > 1
+    def collocations(self):
+        return (Collocation.objects.filter(meaning__word=self)
+                .order_by("meaning__sort_order", "sort_order", "id"))
 
     @property
-    def collocations_list(self):
-        """Virgülle ayrılmış collocation'ları temizlenmiş liste olarak döner."""
-        if not self.collocations:
-            return []
-        return [c.strip() for c in self.collocations.split(',') if c.strip()]
+    def patterns(self):
+        return (UsagePattern.objects.filter(meaning__word=self)
+                .order_by("meaning__sort_order", "sort_order", "id"))
 
-    # Bir kelime objesi str'e nasıl dönüşecek:
+    @property
+    def categories(self):
+        """Kelimenin bütün anlamlarında geçen alanlar, tekrarsız."""
+        return Category.objects.filter(meanings__word=self).distinct()
+
+    @property
+    def is_verb(self):
+        return self.pos in (PartOfSpeech.VERB, PartOfSpeech.PHRASAL_VERB)
+
+    @property
+    def verb_forms(self):
+        """Fiilse "went · gone" gibi gösterilecek metin."""
+        return [f for f in (self.v2Form, self.v3Form) if f]
+
+    def relations(self, kind):
+        """Bu kelimeden çıkan belirli türdeki bağlar."""
+        return self.relations_from.filter(type=kind).select_related("to_word")
+
+    @property
+    def synonyms(self):
+        return self.relations(RelationType.SYNONYM)
+
+    @property
+    def antonyms(self):
+        return self.relations(RelationType.ANTONYM)
+
+    @property
+    def simpler_words(self):
+        """possess -> have gibi "daha basit karşılığı" bağları."""
+        return self.relations(RelationType.SIMPLER)
+
+    @property
+    def confusables(self):
+        """affect -> effect gibi "karıştırılan" bağları."""
+        return self.relations(RelationType.CONFUSED_WITH)
+
+    def is_editable_by(self, user):
+        """
+        Bu kullanıcı kelimenin ÇEKİRDEĞİNİ değiştirebilir mi?
+
+        Kural pozitif: yalnızca kelimeyi kendi ekleyen kişi. Eskiden kural
+        olumsuzdu ("sahibi varsa ve o değilse engelle") ve sahibi boş olan
+        kelimeler herkese açık kalıyordu — listesine ekleyen herkes ortak
+        sözlüğü değiştirebiliyordu.
+
+        Yönetici de buradan değiştiremez: ortak sözlüğün bakımı Django
+        admin üzerinden yapılır, kullanıcı formundan değil.
+        """
+        if not user or not user.is_authenticated:
+            return False
+        return not self.isBaseWord and self.owner_id == user.id
+
+    def saved_by_others_count(self, user=None):
+        """Bu kelimeyi kaç BAŞKA kullanıcı listesine almış?"""
+        baglar = self.userLinks.all()
+        if self.owner_id:
+            baglar = baglar.exclude(user_id=self.owner_id)
+        if user is not None and user.is_authenticated:
+            baglar = baglar.exclude(user_id=user.id)
+        return baglar.count()
+
+    def note_of(self, user):
+        """Kullanıcının bu kelimeye yazdığı kişisel not (yoksa None)."""
+        if not user or not user.is_authenticated:
+            return None
+        return self.user_notes.filter(user=user).first()
+
+    def meanings_of(self, user):
+        """Kullanıcının bu kelimeye kendi eklediği anlamlar."""
+        if not user or not user.is_authenticated:
+            return UserMeaning.objects.none()
+        return self.user_meanings.filter(user=user)
+
+
+class Meaning(models.Model):
+    """
+    Kelime ≠ anlam. Öğrenmenin gerçek birimi bu satır.
+
+    `bank` tek bir isim ama iki anlamı var: banka ve nehir kıyısı. Eski
+    modelde bu, AI'ın ürettiği "1. … / 2. …" biçiminde tek bir metin
+    alanına sıkıştırılıyordu; artık gerçek satırlar — ve her biri kendi
+    tonunu, üslubunu, alanını, collocation'larını ve cümlelerini taşıyor.
+    """
+
+    EXAMPLE_SENTENCE_COUNT = 5
+
+    word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="meanings")
+
+    meaning_tr = models.CharField(max_length=300, verbose_name="anlamı")
+    definition = models.CharField(max_length=600, blank=True, null=True,
+                                  verbose_name="açıklaması")
+
+    sentiment = models.CharField(max_length=12, choices=Sentiment.choices,
+                                 default=Sentiment.NEUTRAL, verbose_name="ton")
+    register = models.CharField(max_length=12, choices=Register.choices,
+                                default=Register.NEUTRAL, verbose_name="üslup")
+    categories = models.ManyToManyField(Category, related_name="meanings", blank=True,
+                                        verbose_name="alanlar")
+
+    sort_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ("sort_order", "id")
+
     def __str__(self):
-        return f"{self.englishWord}"
+        return f"{self.word.text}: {self.meaning_tr}"
+
+    @property
+    def is_marked(self):
+        """Nötr olmayan bir tonu ya da üslubu var mı? (rozet gösterilsin mi)"""
+        return (self.sentiment != Sentiment.NEUTRAL
+                or self.register != Register.NEUTRAL)
+
+
+class ExampleSentence(models.Model):
+    """
+    Çekirdek örnek cümle. Anlam başına 5 tane.
+
+    Kullanıcının kendi yazdıkları buraya değil, UserExampleSentence'a gider.
+    """
+
+    meaning = models.ForeignKey(Meaning, on_delete=models.CASCADE,
+                                related_name="examples")
+    text = models.CharField(max_length=400)
+    # Nereden geldiği: "core", "AI", "Okuma 12" gibi.
+    source = models.CharField(max_length=120, blank=True, null=True)
+    sort_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ("sort_order", "id")
+
+    def __str__(self):
+        return self.text[:60]
+
+
+class Collocation(models.Model):
+    """
+    Birlikte kullanılan yapı: `make a decision`, `heavily dependent`.
+
+    Kelimeyi bilmekle kullanabilmek arasındaki farkın çoğu burada. Türkçe
+    "karar vermek" dediği için öğrenci `do a decision` yazıyor; bunu ancak
+    doğrusunu veri olarak görerek öğreniyor.
+    """
+
+    meaning = models.ForeignKey(Meaning, on_delete=models.CASCADE,
+                                related_name="collocations")
+    pattern = models.CharField(max_length=200, verbose_name="yapı")
+    kind = models.CharField(max_length=16, choices=CollocationKind.choices,
+                            default=CollocationKind.OTHER, verbose_name="türü")
+    meaning_tr = models.CharField(max_length=200, blank=True, null=True,
+                                  verbose_name="Türkçesi")
+    example = models.CharField(max_length=400, blank=True, null=True,
+                               verbose_name="örnek cümle")
+    sort_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ("sort_order", "id")
+        unique_together = ("meaning", "pattern")
+
+    def __str__(self):
+        return self.pattern
+
+
+class UsagePattern(models.Model):
+    """
+    Kullanım kalıbı: `depend on sth`, `suggest doing sth`, `decide to do sth`.
+
+    Collocation kelime seçimidir, bu gramerdir. Ayrı durmalarının sebebi
+    quizlerinin de ayrı olması: collocation'da eksik kelime sorulur,
+    kalıpta eksik edat ya da fiil biçimi.
+    """
+
+    meaning = models.ForeignKey(Meaning, on_delete=models.CASCADE,
+                                related_name="patterns")
+    pattern = models.CharField(max_length=200, verbose_name="kalıp")
+    kind = models.CharField(max_length=16, choices=PatternKind.choices,
+                            default=PatternKind.OTHER, verbose_name="türü")
+    example = models.CharField(max_length=400, blank=True, null=True,
+                               verbose_name="örnek cümle")
+    note = models.CharField(max_length=300, blank=True, null=True,
+                            verbose_name="not")
+    sort_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ("sort_order", "id")
+        unique_together = ("meaning", "pattern")
+
+    def __str__(self):
+        return self.pattern
+
+
+class WordForm(models.Model):
+    """
+    Çekim biçimi: metinde karşılaşılan yazımdan sözlük maddesine köprü.
+
+    Metinde "encouraged", "families", "ran", "slower" geçer; sözlükte
+    "encourage", "family", "run", "slow" vardır. Bu tablo olmadan okuma
+    sayfasında kelimeye dokunmak çalışmaz.
+
+    Aynı yazım birden fazla kelimeye bağlanabilir — "decided" hem
+    decide'ın 2. hâli hem de bağımsız bir sıfattır.
+    """
+
+    word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="forms")
+    surface = models.CharField(max_length=120, db_index=True)
+    kind = models.CharField(max_length=24, choices=FormKind.choices,
+                            default=FormKind.OTHER)
+
+    class Meta:
+        unique_together = ("word", "surface")
+        ordering = ("surface",)
+
+    def __str__(self):
+        return f"{self.surface} → {self.word.text}"
+
+
+class WordRelation(models.Model):
+    """
+    Kelimeler arası anlam bağı: eş anlamlı, zıt anlamlı, daha basit
+    karşılığı, karıştırılan.
+
+    `note` nüansı taşır: "possess ≈ have, ama daha resmî". Zor kelimeyi
+    öğrencinin bildiği kelimeyle tanımlamak, Türkçe karşılığını ezberletmekten
+    daha iyi sonuç veriyor.
+    """
+
+    from_word = models.ForeignKey(Word, on_delete=models.CASCADE,
+                                  related_name="relations_from")
+    to_word = models.ForeignKey(Word, on_delete=models.CASCADE,
+                                related_name="relations_to")
+    type = models.CharField(max_length=16, choices=RelationType.choices)
+    note = models.CharField(max_length=200, blank=True, null=True)
+
+    class Meta:
+        unique_together = ("from_word", "to_word", "type")
+
+    def __str__(self):
+        return f"{self.from_word.text} –{self.get_type_display()}→ {self.to_word.text}"
+
+
+class FalseFriend(models.Model):
+    """
+    Yanlış dost: Türkçeye benzediği için yanlış anlaşılan kelime.
+
+    `sympathetic` "sempatik" değil, "anlayışlı"dır. `actual` "aktüel"
+    değil, "gerçek"tir. `sensible` "hassas" değil, "mantıklı"dır.
+    Bu hatalar Türkçe konuşanda sistematik ve tahmin edilebilir — yani
+    veri olarak tutulabilir. Hiçbir genel sözlükte bu bilgi yok.
+    """
+
+    word = models.ForeignKey(Word, on_delete=models.CASCADE,
+                             related_name="false_friends")
+    turkish_lookalike = models.CharField(max_length=100,
+                                         verbose_name="benzediği Türkçe kelime")
+    assumed_meaning = models.CharField(max_length=200, blank=True, null=True,
+                                       verbose_name="sanılan anlam")
+    correct_english = models.CharField(max_length=200, blank=True, null=True,
+                                       verbose_name="o anlam için doğru kelime")
+    note = models.CharField(max_length=400, blank=True, null=True)
+
+    class Meta:
+        unique_together = ("word", "turkish_lookalike")
+        ordering = ("turkish_lookalike",)
+
+    def __str__(self):
+        return f"{self.word.text} ≠ {self.turkish_lookalike}"
+
+
+class Expression(models.Model):
+    """
+    Kelime olmayan ama öğrenilen birim: deyim, kalıp ifade, bağlayıcı.
+
+    "in the long run", "on the other hand", "by and large". Anlamı
+    parçalarından çıkmaz, yani `Word` + `WordForm` bunu çözemez; kendi
+    satırı olmak zorunda. Bir ya da birkaç kelimeye bağlanabilir —
+    "in the long run" hem `long` hem `run` sayfasında görünmeli.
+    """
+
+    text = models.CharField(max_length=200, unique=True)
+    meaning_tr = models.CharField(max_length=300, verbose_name="anlamı")
+    definition = models.CharField(max_length=600, blank=True, null=True,
+                                  verbose_name="açıklaması")
+
+    kind = models.CharField(max_length=12, choices=ExpressionKind.choices,
+                            default=ExpressionKind.FIXED, verbose_name="türü")
+    cefr = models.CharField(max_length=15, choices=CEFR_CHOICES,
+                            default="Belirtilmemiş", verbose_name="seviye")
+    sentiment = models.CharField(max_length=12, choices=Sentiment.choices,
+                                 default=Sentiment.NEUTRAL, verbose_name="ton")
+    register = models.CharField(max_length=12, choices=Register.choices,
+                                default=Register.NEUTRAL, verbose_name="üslup")
+
+    categories = models.ManyToManyField(Category, related_name="expressions", blank=True)
+    words = models.ManyToManyField(Word, related_name="expressions", blank=True)
+
+    owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE,
+                              related_name="expressions")
+    visibility = models.CharField(max_length=10, choices=VISIBILITY_CHOICES,
+                                  default="private")
+    saved_by = models.ManyToManyField(User, related_name="saved_expressions", blank=True)
+
+    createdAt = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ("text",)
+
+    def __str__(self):
+        return self.text
+
+
+class ExpressionExample(models.Model):
+    expression = models.ForeignKey(Expression, on_delete=models.CASCADE,
+                                   related_name="examples")
+    text = models.CharField(max_length=400)
+    sort_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ("sort_order", "id")
+
+    def __str__(self):
+        return self.text[:60]
+
+
+# ----------------------------------------------------------------------
+# Kullanıcı katmanı — çekirdeğe dokunmaz, üstüne biner
+# ----------------------------------------------------------------------
+
+class UserMeaning(models.Model):
+    """
+    Kullanıcının bir kelimeye kendi eklediği anlam. Yalnızca kendisi görür.
+
+    Çekirdek sözlük hiçbir zaman tamamlanmaz: öğrenci metinde kelimeyi
+    listedeki anlamlarına uymayan bir yerde görür. Eskiden yapabileceği tek
+    şey nota yazmaktı. Artık anlamı anlam olarak ekliyor — ve kendi anlamı
+    çekirdeğe dokunmuyor, başkasının sayfasında görünmüyor.
+    """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name="word_meanings")
+    word = models.ForeignKey(Word, on_delete=models.CASCADE,
+                             related_name="user_meanings")
+
+    meaning_tr = models.CharField(max_length=300, verbose_name="anlamı")
+    definition = models.CharField(max_length=600, blank=True, null=True,
+                                  verbose_name="açıklaması")
+
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ("createdAt", "id")
+
+    def __str__(self):
+        return f"{self.user.username} · {self.word.text}: {self.meaning_tr}"
+
+
+class UserWordNote(models.Model):
+    """
+    Kullanıcının bir kelimeye yazdığı kişisel not.
+
+    Eski modelde `note` paylaşılan Word satırının üzerinde bir alandı; yani
+    "Kişisel Not" aslında kişisel değildi. Artık gerçekten kişisel.
+    """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="word_notes")
+    word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="user_notes")
+    note = models.TextField(max_length=800)
+
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ("user", "word")
+
+    def __str__(self):
+        return f"{self.user.username} · {self.word.text}"
+
+
+class UserExampleSentence(models.Model):
+    """Kullanıcının kendi yazdığı örnek cümle. Yalnızca kendisi görür."""
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="word_examples")
+    word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="user_examples")
+    sentence = models.CharField(max_length=400)
+
+    createdAt = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ("createdAt",)
+
+    def __str__(self):
+        return f"{self.user.username} · {self.sentence[:40]}"
 
 
 class UserWordLink(models.Model):
+    """Kullanıcının listesindeki kelime + çalışma istatistikleri."""
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="wordLinks")
     word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="userLinks")
 
@@ -139,63 +735,44 @@ class UserWordLink(models.Model):
     wrongCount = models.IntegerField(default=0)
 
     class Meta:
-        # Bir kullanıcı bir kelimeyi listesine sadece bir kez ekleyebilmeli
-        unique_together = ('user', 'word')
+        unique_together = ("user", "word")
 
     def __str__(self):
-        return f"{self.user.username} <-> {self.word.englishWord} (D:{self.correctCount} / Y:{self.wrongCount})"
-    
+        return f"{self.user.username} <-> {self.word.text} (D:{self.correctCount} / Y:{self.wrongCount})"
+
     @property
     def totalAttempts(self):
         return self.correctCount + self.wrongCount
-    
-    # Belki yanlış oranını almak için bir 'property'
-    # Not: totalAttempts = 0 ise hata vermemesi için kontrol
+
     @property
     def wrongRatio(self):
-        total = self.totalAttempts
-        if total == 0:
-            return 0 # Henüz sorulmamış, 0 kabul edelim
-        return (self.wrongCount / total) * 100 # Yüzdelik
+        toplam = self.totalAttempts
+        if toplam == 0:
+            return 0
+        return (self.wrongCount / toplam) * 100
 
 
 class WordList(models.Model):
-    """
-    Kullanıcının kelime listesi (klasör). Her kullanıcı kendi WordList'lerini
-    oluşturabilir ve bir Word birden fazla listede yer alabilir.
-    Listede yer alan kelimelerin kullanıcının ana kelime listesinde
-    (UserWordLink) da olması mantıklıdır; view tarafında bu garanti edilir.
-    """
+    """Kullanıcının kendi kelime klasörü."""
+
     COLOR_CHOICES = [
-        ("indigo", "Indigo"),
-        ("blue", "Mavi"),
-        ("emerald", "Yeşil"),
-        ("amber", "Sarı"),
-        ("rose", "Kırmızı"),
-        ("purple", "Mor"),
-        ("teal", "Turkuaz"),
-        ("slate", "Gri"),
+        ("indigo", "Indigo"), ("blue", "Mavi"), ("emerald", "Yeşil"),
+        ("amber", "Sarı"), ("rose", "Kırmızı"), ("purple", "Mor"),
+        ("teal", "Turkuaz"), ("slate", "Gri"),
     ]
 
-    owner = models.ForeignKey(
-        User,
-        related_name="word_lists",
-        on_delete=models.CASCADE,
-    )
+    owner = models.ForeignKey(User, related_name="word_lists", on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
     color = models.CharField(max_length=20, choices=COLOR_CHOICES, default="indigo")
+
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
-    words = models.ManyToManyField(
-        Word,
-        related_name="in_user_lists",
-        blank=True,
-    )
+    words = models.ManyToManyField(Word, related_name="in_user_lists", blank=True)
 
     class Meta:
+        ordering = ("name",)
         unique_together = ("owner", "name")
-        ordering = ["createdAt"]
 
     def __str__(self):
-        return f"{self.owner.username}/{self.name}"
+        return f"{self.owner.username} · {self.name}"
