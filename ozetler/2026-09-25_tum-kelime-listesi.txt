@@ -1,0 +1,91 @@
+TÜM KELİME LİSTESİ — 25 Eylül 2026
+
+EFE'NİN FİKRİ: Önce bütün kelimeleri çıkarıp tek txt'ye yazalım; bölünme olursa oradan takip ederiz.
+UYGULANAN:
+1) listeler/tum-tohumlar.txt — 7.641 tohum, öncelik sırasıyla:
+   - 300   PDF partisi 1 (zaten veritabanında)
+   - 5.572 PDF tohumları (en az 10 kez + en az 2 kitap), sıklığa göre
+   - 1.769 temel kelime (en sık 2000 + işlev kelimeleri; zamir/bağlaç ve to/of/in gibi en temel edatlar hariç)
+2) ara-depo-tam — parti 1'in deposunun kopyası; bütün büyük çalıştırma buraya yazar.
+3) YENİ KOMUT: python manage.py kelime_listesi --depo ara-depo-tam
+   -> listeler/tum-kelimeler.txt : her ailenin her kelimesi, durumuyla
+      ✓ yazıldı · bekliyor ✗ reddedildi ? incelenecek
+   Para harcamaz; her an çalıştırılabilir = "nerede kaldık" dosyası.
+
+AŞAMALAR (Efe Mac'te çalıştırır)
+A) aile_uret  (ucuz, ~$2, ~30-60 dk)  -> bütün aileler ve kelimeler çıkar
+B) aile_birlestir (para yok)
+C) kelime_listesi -> tum-kelimeler.txt (tahmini ~25 bin kelime)
+D) aile_doldur --limit N ile parça parça (asıl maliyet ~$1.6 / 1000 kelime)
+
+KALDIĞI YERDEN DEVAM: aile_uret ve aile_doldur ikisi de depoda cevabı olanı tekrar sormaz.
+Kesilirse aynı komut tekrar çalıştırılır.
+
+BÜTÇE: limit $15, harcanan ~$4.5 -> ~$10.5. A aşaması ~$2 -> ~$8.5 kalır = ~5 bin kelime.
+Hepsi için ~$35-40 daha gerekir.
+
+--- SONUÇ (A, B, C aşamaları bitti) ---
+A) aile_uret (Efe, Mac): 7.406 tamam · 25 kusurlu · 190 bulunamadı · gerçek fatura $2.10 · 51 dk.
+B) aile_birlestir (Claude): 4.964 aile · 17.292 kelime. 4.540 temiz, 424 incelenecek (1.776 kelime).
+   3.181 çok nadir türev ve 1.682 uydurma/olmayan kelime kod tarafından atıldı.
+C) listeler/tum-kelimeler.txt: ✓ 1.028 yazıldı · 14.448 bekliyor · 40 reddedildi · 1.776 incelenecek.
+
+YENİ: aile_doldur --sira listeler/tum-tohumlar.txt  -> aileler tohum önceliğine göre (en sık önce).
+      --limit artık tamamı veritabanında olan aileleri saymaz.
+      300 aile ≈ 1.000 kelime · 1.000 aile ≈ 3.850 kelime · 1.500 aile ≈ 5.700 kelime.
+Bütçe: ~$8.4 kaldı. Öneri: önce 300 aile (maliyeti ölç), sonra bütçeye göre devam.
+Claude'un sıradaki işi (para yok): 424 incelenecek aileye karar (kararlar.json), parti 1 hataları.
+770 test geçiyor.
+
+--- PARTİ 2 (300 aile) YAZILDI + DÜZELTMELER ---
+Yazım: 976 kelime · maliyet ~$1.74 (kuru deneme $1.43 + yazımda yeniden sorulanlar $0.31).
+Claude incelemesi (1.081 yeni kelime okundu): ~11 hata (~%1) -> hepsi düzeltildi:
+  unrelated, curse, possessed, inflammatory, dishonorable, peer, smell(+koku), lay, sinful, kind, blade;
+  silindi: stripper'ın hassas anlamı, horny (hassas), children, symptoms, implications (çoğul).
+  Kayıt: words/duzeltmeler/d_2026_09_25.py (uygula, uygula_2). Yedek: db.sqlite3.yedek-parti-2-duzeltme-oncesi
+Kod kusurları düzeltildi (775 test geçiyor):
+  1) -ed duygu sıfatları (confused, satisfied, terrified…) artık reddedilmiyor (KALICI_SIFATLAR).
+  2) leapt/dreamt/burnt gibi ikinci geçmiş biçimler tanınıyor.
+  3) Bitişik birleşik Türkçe kelimeler (köpekbalığı) kabul.
+  4) Düzensiz çoğullar (children, women) ve "-ler/-lar"dan ibaret çoğul isimler ayrı kelime olmuyor.
+  5) Hassas anlam süzgeci genişletildi (cinsel istek, striptiz…).
+  6) aile_doldur --reddedilenler: reddedilmiş kelimeler güncel kurallarla yeniden denetlenir (üretici tekrar sorulmaz).
+     --limit artık yalnızca bekleyen kelimesi olan aileleri sayar.
+Durum: 2.105 kelime veritabanında · 13.284 bekliyor · 4.036 aile bekliyor.
+
+--- PARTİ 3 (700 aile) + reddedilenler ---
+--reddedilenler: 15 kelime kurtarıldı (confused, satisfied, terrified, relieved, leap, shark…).
+Parti 3: 2.650 kelime yazıldı · maliyet ~$4.5 (kuru deneme) + ~$0.12 (yazım).
+Claude 2.650 kelimenin hepsini okudu: ~14 hata (~%0.5) -> düzeltildi (d_2026_09_25.uygula_3):
+  anlamı eklenen/düzeltilen: blow (darbe; üflemek), dish (tabak), drink (içecek), constructor, pat, swollen (şişmiş), twisted;
+  silinen: intimate'in cinsel anlamı, swinger, polish'in "Lehçe" anlamı, footsteps, inhabitants (çoğul);
+  "sadeli̇k" gibi birleşen nokta (U+0307) temizlendi + kod düzeltmesi.
+Durum: 4.767 kelime veritabanında. Yedek: db.sqlite3.yedek-parti-3-duzeltme-oncesi. 775 test geçiyor.
+
+--- PARTİ 4 (1.500 aile) ---
+Yazım: 4.644 kelime · maliyet ~$7.5 (kuru $7.24 + yazım $0.28) -> ~$1.6 / 1.000 kelime. Anahtar: $20.20/$25.
+Claude 4.644 kelimenin hepsini okudu: ~30 sorun (~%0.6) -> düzeltildi (d_2026_09_25.uygula_4):
+  silinen kelimeler: 8 çoğul (participants, guidelines, restrictions, lice, oars…), busty, negro, slapper, streaker;
+  silinen anlamlar (hassas/argo): goose, grope, lid (esrar), prick, snort, streak, tease;
+  eklenen ana anlamlar: benefit (fayda), gut (bağırsak), fraction (kesir);
+  düzeltilen: appreciation (takdir), diary (günlük), barb, accord, looker, butt, Arap/Arapça büyük harf.
+Kod: kontrolcünün "çoğul, ayrı kelime değil" reddi artık yok sayılmıyor (_tekilin_cogulu + istisna listesi);
+  -leri/-ları çoğulları da yakalanıyor. 776 test geçiyor.
+Durum: 9.399 kelime veritabanında. Yedek: db.sqlite3.yedek-parti-4-duzeltme-oncesi.
+
+--- PARTİ 5 ---
+Yazım: 2.089 kelime. Hesap bakiyesi: $1.62.
+Claude 2.089 kelimenin hepsini okudu: ~12 sorun (~%0.6) -> düzeltildi (d_2026_09_25.uygula_5):
+  silinen: fireworks, troops, strata (çoğul), stoned (uyuşturucu argosu);
+  silinen anlamlar: bottom "kıç", cleavage "dekolte"; bastard (isim) -> "gayri meşru çocuk";
+  gay -> "neşeli, şen (eski kullanım)" — modern anlam (eşcinsel) yazılmadı, Efe'ye soruldu; lick, developer düzeltildi.
+Durum: 11.484 kelime. Kalan: ~3.250 bekleyen + 1.776 incelenecek ≈ 5.000 kelime ≈ $8.5.
+
+--- PARTİ 6 + İNCELENECEK AİLELER ---
+Parti 6: 3.056 kelime yazıldı (bekleyen temiz aile kalmadı). Claude hepsini okudu: ~20 sorun (~%0.6) -> düzeltildi (uygula_6):
+  silinen: shit, horsemen, neck (fiil), bitch (fiil), bitchy; silinen anlamlar: ass "kıç", bitch "kaltak", march "mart ayı",
+  ten "çekici", tripper, turkey "türkiye", upper "uyarıcı ilaç"; wasted, leer düzeltildi;
+  eklenen: charge (ücret almak; suçlamak), croak (vraklamak); juggler "hokkabaz"; Çin/Çince/Nuh büyük harf.
+İncelenecek 426 aile: kararlar.json › onayla (hepsi) + düzensiz fiil biçimleri çıkarıldı (awoke, lit, smote).
+  Artık 4.964 ailenin hepsi temiz. Kalan: ~1.770 kelime (able, act, arm, back, attract… temel kelimeler) ≈ $3.
+Durum: 14.535 kelime. Yedek: db.sqlite3.yedek-parti-6-duzeltme-oncesi. 776 test geçiyor.

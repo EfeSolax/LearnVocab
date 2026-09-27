@@ -1,0 +1,42 @@
+İFADELER (EXPRESSIONS) BÖLÜMÜ — 25 Eylül 2026
+==============================================
+
+NE EKLENDİ
+- 293 ifade (veritabanında toplam 295 — 2 eski ifade "Diğer ifadeler"de), 21 işlev ("yönü") grubu.
+  İfadeleri ben yazdım (yapay zekâ üretimi değil): akademik + günlük.
+  Kaynak dosya: words/ifadeler/veri.py  (yeni ifade eklemek/düzeltmek için burası)
+  Noktalama kuralları: words/ifadeler/kurallar.py (yapıya göre doğru/YANLIŞ örnekleri otomatik üretir)
+  Yükleme komutu: python manage.py ifadeleri_yukle   (tekrar çalıştırmak güvenli, çoğaltmaz)
+- Gruplar: Karşıtlık, Ödün, Ekleme, Benzerlik, Örnek verme, Açıklama, Neden, Sonuç, Amaç, Koşul,
+  Zaman, Sıralama, Vurgu, Özetleme, Genelleme, Görüş, İhtimal/temkin, Seçenek, İstisna,
+  Konuya değinme, Günlük kalıplar.
+- Aynı işi yapanlar birbirini görür: but → however, nevertheless, nonetheless, yet, still, even so…
+  "while" ve "since" iki grupta birden (ek işlev).
+
+TÜM KELİMELER SAYFASI
+- Filtre paneline "Göster: Kelimeler / İfadeler" eklendi; ikisi de varsayılan seçili.
+  İkisi birden kapatılamaz.
+- Arama yokken: en üstte "İfadeler" kutusu, konu başlıklarıyla ("Anlamı tersine çevirenler", "Örnek sunmak
+  için olanlar", "Zaman ile ilgili olanlar"…). Kelimeler de seçiliyse kutu kapalı gelir; yalnızca İfadeler
+  seçiliyse açık gelir. Yalnızca ilk sayfada gösterilir.
+- Aramada: "İfadeler (n)" bölümü kelimelerin üstünde, tam eşleşme önce.
+- Satırda yalnızca ifade + anlamı + kendi "listeme ekle" düğmesi (sayfa yenilenmez).
+
+İFADE DETAY SAYFASI (/words/expression/<id>/)
+- Anlamı, yönü (işlev), seviye, üslup, yapı, kalıp, İngilizce açıklama
+- Noktalama: kural + yeşil ✓ doğru ve kırmızı ✗ YANLIŞ örnekler (neden yanlış olduğuyla)
+- Akademik kullanım, örnek cümleler, "Aynı işi yapan ifadeler" (tıklanınca ona geçer)
+
+İFADE LİSTESİ
+- Kullanıcının ayrı bir ifade listesi var (UserExpressionLink); kelime listesinden bağımsız.
+  Çalışma sistemi henüz buna göre uyarlanmadı (sonraki iş).
+
+VERİTABANI / TEST
+- Göç: 0018_ifade_islevleri, 0019_ifade_ek_islevler. Gerçek db.sqlite3'e uygulandı ve ifadeler yüklendi.
+  Yedek: db.sqlite3.yedek-20260924-2147-ifadeler-oncesi. Bütünlük kontrolü: ok. 1028 kelime korundu.
+- Testler: 770/770 geçti (13 yeni ifade testi).
+
+SONRAKİ ADIMLAR
+- Efe: sayfayı gözle kontrol etsin (Tüm Kelimeler → Filtre → yalnızca İfadeler; bir ifadeye tıkla).
+- Çalışma (quiz/tekrar) sistemini ifade listesine uyarlamak.
+- Büyük PDF turu (~20 bin kelime, ~35$) — anahtar limitinin ~45$'a çıkarılması gerekiyor.

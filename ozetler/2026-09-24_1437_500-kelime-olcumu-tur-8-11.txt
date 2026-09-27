@@ -1,0 +1,124 @@
+LEARNVOCAB — 500 KELİME ÖLÇÜMÜ (Tur 8-11) · SONUÇ ÖZETİ
+Yazan: Claude · kendi yürüttüğü ölçümler (Efe'nin Mac'indeki Linux ortamı)
+Önceki: 2026-09-24_1353_otomatik-olcum-6-7.txt
+
+==============================================================================
+1. SONUÇ: HEDEF TUTTU
+==============================================================================
+Efe'nin hedefi: 500 kelimede hata < %0.8-1.
+Ölçülen: 4 yeni liste (SURUM_8..11), 564 kelime yazılmaya hazır, ~700 anlam.
+
+  Liste | kelime | öğrenciye YANLIŞ öğreten kelime
+  ------+--------+---------------------------------------------------------
+    8   |  128   | dominant (isim) "egemen" (sıfat karşılığı); pajama "gecelik"
+    9   |  127   | breathless "nefes kesen" (yön ters); breather "havalık"
+   10   |  161   | —
+   11   |  148   | dispose "kurtulmak" (anlam 'dispose of' kalıbının) — kısmi
+  ------+--------+---------------------------------------------------------
+  TOPLAM|  564   | kesin 3 (%0.53) · kısmiler dahil 5 (%0.89)
+
+11. liste, 8-10'dan sonraki düzeltmelerle çalıştı: kesin yanlış 0.
+Not: Hakem Claude. Yanlış değil ama ÜSLUP sorunu olanlar (sayılmadı):
+  "tanım gibi" karşılıklar (decontaminate, eliminator — ikincisi düzeltildi),
+  sıralama (land'de "kapmak" 1. anlam, site'de "internet sitesi" 1. anlam),
+  flare fiilinde bozuk Türkçe, profit'te "kâr, kar" tekrarı.
+Dikkat: vibrator (isim) 2. anlam "cinsel oyuncak" — doğru ama öğrenci
+  uygulamasında istenir mi? KARAR EFE'NİN (istenmiyorsa küçük bir filtre).
+
+==============================================================================
+2. MALİYET: B SEÇENEĞİ GEREKSİZ OLDU, ÇÜNKÜ ASIL SORUN BAŞKAYDI
+==============================================================================
+Bulgu: Gemini'nin OpenRouter'da 3 kademesi var (flex / normal / priority).
+Kontrolcü "throughput" sıralamasıyla pahalı kademelere gidebiliyor ve
+önbellek tutarsız çalışıyordu.
+Düzeltme: LLM_KONTROL_PROVIDER_SORT=price (settings varsayılanı) +
+sistem prompt'una cache_control. Önbellek oranı 4 turda %91-94.
+
+GERÇEK fatura (OpenRouter usage.cost), 10.000 kelime:
+  kontrolcü   ~$7.2 - 8.7
+  üretici     ~$5.2 - 5.4
+  aile aşaması~$1.8
+  TOPLAM      ~$15 - 16      (başta ~$60-70'e gidiyordu; bütçe $20)
+Önbellek girdiyi %10 fiyata indirdiği için prompt'u kısaltmak 10.000 kelimede
+~$1 kazandırırdı; kalite riski alınmadı, prompt kısaltılmadı.
+Bu turlarda harcanan: $2.40 / $5 (limitli anahtar, toplam).
+
+==============================================================================
+3. BU TURLARDAKİ KOD DEĞİŞİKLİKLERİ (488 test geçiyor)
+==============================================================================
+- llm.py: chat_json(siralama=...) — kontrolcüye ayrı sağlayıcı sıralaması;
+  Usage.saglayici.
+- settings.py: LLM_KONTROL_PROVIDER_SORT (varsayılan "price").
+- aile_doldur: özet satırında kontrol önbellek oranı.
+- anlam.tanimsiz: "ve/veya/ya da/gibi" içeren karşılık PARÇASINI atar
+  (temiz parça varsa); kontrolcünün düzeltmesine de uygulanıyor.
+- kontrol prompt'u NOT-2: breathless ve "isim ise karşılık da isim" örneği.
+- deneme.py: SURUM_8, 9, 10, 11.
+
+==============================================================================
+4. SIRADAKİ ADIM (Efe'nin onayıyla)
+==============================================================================
+1) Gerçek yazım: aynı komutlar --dry-run OLMADAN. Önce küçük bir parça
+   (ör. --limit 20) ile veritabanına yazım ve arayüz kontrol edilsin.
+2) 10.000 kelimelik liste parça parça (ör. 500'er) işlenir; her parçadan
+   sonra rastgele 50 kelime Claude'a kontrol ettirilebilir (kalite takibi).
+3) Limitli anahtar $5; 10.000 kelime için ~$16 gerekir -> limit yükseltilmeli.
+4) Aile aşamasında kalan küçük sorunlar (anlamı etkilemiyor):
+   over-/un- önekli kelimeler köke bağlanıyor (overturn -> turn),
+   ruthless -> "ruth" kökü, sewer (kanalizasyon) sew ailesine girdi.
+
+==============================================================================
+5. EK — Hassas anlam filtresi (Efe'nin kararı: yazılmayacak)
+==============================================================================
+- anlam.hassas_mi: müstehcen anlam (cinsel oyuncak/organ, erotik, porno,
+  küfür...) ATILIR, kelimenin diğer anlamları kalır. "cinsel taciz" gibi
+  akademik kullanımlar filtrelenmez.
+- word_filling NOT-13: üreticiye aynı kural.
+- 11 ölçüm deposunun tamamında (~2.000 kelime) filtre yalnızca vibrator
+  "cinsel oyuncak"ı yakaladı; yanlış pozitif yok. 490 test geçiyor.
+- PLAN (Efe önerisi): veritabanı dolduktan sonra Claude bütün kelimeleri
+  partiler hâlinde denetleyip düzeltmeleri bir düzeltme dosyasıyla uygular.
+
+==============================================================================
+6. EK — Veritabanı temizlendi, PDF desteği eklendi (24 Eylül öğleden sonra)
+==============================================================================
+- Yazım testi: 18 kelime (depo 11, önbellekten, $0) yazıldı ve doğrulandı.
+  Not: Claude'un Linux ortamı bağlı klasörde dosya SİLEMEDİĞİ için SQLite'ı
+  doğrudan yazamıyor; kopya üzerinde yazıp geri kopyalıyor.
+- Efe'nin kararıyla BÜTÜN kelime kayıtları silindi (Word, WordFamily,
+  WordRelation + bağlı anlam/cümle/eş dizim/çekim). Kategoriler (69),
+  deyimler (6), kelime listesi yapısı korundu.
+  Yedek: db.sqlite3.yedek-20260924-1602-silmeden-once
+- words/extract/pdf.py (PyMuPDF): extract_words artık .pdf okuyor. Temizlik:
+  satır sonu tiresi birleştirme (gerçek tireli kelimeleri korur), tekrar eden
+  başlık/alt bilgi, sayfa numarası, kaynakça kesme. Taranmış PDF -> rapora
+  hata (OCR yok). requirements.txt'e pymupdf eklendi. 493 test geçiyor.
+- Kullanım: PDF'leri pdfler/ klasörüne koy, sonra
+    python manage.py extract_words --dir pdfler --out listeler/pdf-kelimeler.txt --skip-existing
+- Özel isim ayıklama yeniden yazıldı (pipeline.ozel_isimleri_bul): metinde
+  hiç küçük harfle geçmeyen VE İngilizce sözlükte (lemminflect) olmayan
+  kelime, cümle başında olsa da özel isim sayılır. Sözlükte olanlar (Brown,
+  Smith, University) kelime olarak kalır. İyelik eki ('s) ve "Dr./et al."
+  kısaltmaları doğru işleniyor; PDF'te paragraf içi satır sonları
+  birleştiriliyor. Deneme metnindeki 12 ismin 12'si ayıklandı. 496 test geçiyor.
+
+==============================================================================
+7. EK — 17 PDF'ten ilk gerçek çıkarım (24 Eylül akşam)
+==============================================================================
+- 17 kitap (roman, felsefe, ders kitabı, okuma kitabı), ~2.1 milyon kelime.
+  Hepsinin metin katmanı var (taranmış yok).
+- İlk çalıştırmada görülen sorunlar ve düzeltmeler (499 test geçiyor):
+  * fi/fl ligatürü kaybı ("rst"=first, "shery"=fishery): pdf._ligatur_onar;
+    5 kitapta onarım (Moby Dick 844, Plato 802, 1984 509, Brave New World 288).
+    Tamamı büyük harf kısaltmalara dokunmaz; belge başına en az 60 onarım.
+  * kıvrık kesme işareti ("didn’t" -> didn + t): pipeline.duz_tirnak.
+  * arkaik kelimeler (thou, thee, unto, hath...): function_words.ARKAIK.
+  * özel isim kararı artık TÜM kitapların toplamıyla (ozel_isim_karari):
+    sözlükte yoksa küçük harf payı <= %10 -> isim; sözlükte varsa ancak
+    cümle ortasında >= 10 kez büyük ve küçük payı <= %2 ise isim (Harry).
+- Sonuç: 19.255 kelime; 8.637 özel isim ayıklandı. Dağılım:
+    en az 5 kez: 9.327 | en az 10 kez ve 2+ kitapta: 5.873
+    en az 20 kez ve 2+ kitapta: 3.537
+- KARAR BEKLİYOR: kaç tohum? Her tohum aile aşamasında ailesiyle genişliyor
+  (ölçüm listelerinde 45 tohum -> ~130-180 kelime). Önce 300 tohumluk bir
+  partiyle genişleme katsayısını ölçmek öneriliyor (~$1).

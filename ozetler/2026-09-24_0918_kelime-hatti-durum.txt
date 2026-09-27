@@ -1,0 +1,186 @@
+LEARNVOCAB — KELİME VERİSİ HATTI · DURUM ÖZETİ
+Tarih: 24 Eylül 2026, 09:18
+Yazan: Claude (Opus 5) · Efe ile ortak çalışma
+Bu dosya: "şu an neredeyiz, sırada ne var" özeti. AYRINTI için AILE-HATTI.txt
+(§1-§17) okunmalı. ESKİ hat belgeleri (KELIME-HATTI-DEVAM.txt, KELIME-CIKARIMI.txt)
+artık geçerli DEĞİL, sadece tarihçe.
+
+==============================================================================
+1. AMAÇ
+==============================================================================
+Türkiye'deki hazırlık öğrencileri için İngilizce kelime veritabanını YAPAY ZEKÂ
+ile doldurmak. Hedef: 10.000 kelime, %99+ doğruluk, İNSAN DENETİMİ OLMADAN.
+Doğruluğu insan değil, ikinci bir KONTROLCÜ MODEL ölçüyor.
+Bütçe kısıtı: Claude/GPT-5 sınıfı pahalı modeller üretici olarak KULLANILMIYOR.
+
+==============================================================================
+2. HAT — ÜÇ AŞAMA (words/aile/ paketi)
+==============================================================================
+AŞAMA 1 — AİLE ÜRETİMİ (aile_uret)
+  Model SADECE kelime + türünü yazar (root_word + words[]).
+  Çekim, comparative, superlative, Amerikan yazım: HEPSİ KOD ile üretilir
+  (words/inflect.py — lemminflect + 157 düzensiz fiil tablosu).
+  denetim.py: wordfreq ile var mı/nadir mi, sahte tür, çoğul, katılım sıfatı,
+  koparan önek (with/fore/out/off/up/be), uydurma kök ayıklaması.
+  ÖLÇÜM: 3. sürüm listesinde 54 kökten 53 doğru. ~$1.83 / 10.000 kelime.
+
+AŞAMA 2 — BİRLEŞTİRME (aile_birlestir)
+  Union-find + kapsama katsayısı (eşik 0.6) + kök oylaması.
+  Örtüşme az ise rapora düşer, kararlar.json ile elle müdahale edilebilir
+  (kok_esle / ayri_tut / cikar / uye_ata / onayla).
+
+AŞAMA 3 — ANLAM DOLDURMA (aile_doldur)
+  Üretici model her kelimenin anlamlarını, cümlelerini, eş dizimlerini yazar.
+  Üstüne ÜÇ katman denetim:
+   a) KOD denetimi (anlam.py + enrich/checks.py): cümlede kelime var mı,
+      eş dizim örnekte geçiyor mu, karşılık tanım gibi mi, fiile mastar,
+      yakın anlam tekrarı...
+   b) TÜRKÇE YAZIM (turkce.py): hunspell tr_TR (spylls). Sözlük
+      words/aile/sozluk/ içinde, git'e girmiyor (turkce_sozluk_kur ile iner).
+      YASAKLI listesi: hunspell'in yanlışlıkla tanıdığı kelimeler
+      (kirlendirmek -> DOĞRUSU kirletmek).
+   c) KONTROLCÜ MODEL (kontrol.py): her anlam için dogru / karsilik_yanlis /
+      anlam_yanlis kararı + doğru karşılık + seviye + hatalı cümleler.
+      Kararlar KOD'da doğrulanarak uygulanır; kontrolcünün önerisi de
+      yazım ve mastar denetiminden geçmezse anlam silinir.
+      Bütün anlamları silinen kelime, gerekçelerle YENİDEN üretilir.
+
+ARA DEPO: ara-depo-*/ klasörleri (taslaklar.jsonl, kararlar.json, aileler.json,
+anlamlar.jsonl). Üretici ve kontrolcü cevapları önbelleğe alınır; aynı iş
+ikinci kez PARA HARCAMADAN çalışır. Önbellek anahtarı: model + düşünme derinliği.
+
+==============================================================================
+3. MODELLER (OpenRouter)
+==============================================================================
+ÜRETİCİ : openai/gpt-oss-120b ($0.03 / $0.17 per 1M) — ~$3.10 / 10.000 kelime.
+KONTROLCÜ: SEÇİLDİ -> google/gemini-3.8-flash, düşünme LOW
+           ($0.75 / $3.75 per 1M) — ~$17.60 / 10.000 kelime.
+TOPLAM   : ~$21 / 10.000 kelime.
+
+Neden Gemini? 23 Eylül'de yapılan kıyasta (168 kelime, 179 anlam):
+  gemini-3.8-flash|low : "yanlış" dediği %7.8 · $17.53 / 10k
+  gpt-5.6-luna|low     : "yanlış" dediği %5.0 · $6.20 / 10k
+  gemini-3.8-flash|med : "yanlış" dediği %8.4 · $36.39 / 10k
+  İki model %95 anlaşıyor. 10 anlaşmazlığın hakemliğini Claude yaptı:
+  Gemini 7 doğru, Luna 2 doğru, 1 berabere.
+  Luna ÜÇ KAT UCUZ ama ÖNEMLİ hataları kaçırıyor (produce isim, simplistic,
+  unconvincing, simple isim, humor fiil). %99 hedefi için yetersiz.
+  Gemini low ile medium arasında kalite farkı YOK, maliyet YARISI -> low.
+
+.env'e girilecek (henüz GİRİLMEDİ, şimdilik komut satırından veriliyor):
+  LLM_KONTROL_MODEL=google/gemini-3.8-flash
+  LLM_KONTROL_REASONING_EFFORT=low
+  LLM_KONTROL_PRICE_INPUT=0.75
+  LLM_KONTROL_PRICE_OUTPUT=3.75
+
+==============================================================================
+4. EN SON NE YAPTIK (22-24 Eylül)
+==============================================================================
+- GPT 5.6 Luna 404 hatası çözüldü: kontrolcüye artık temperature GÖNDERİLMİYOR
+  (llm.chat_json(..., sicaklik_gonder=False)). GPT-5 düşünen modelleri bu
+  parametreyi kabul etmiyor, require_parameters açıkken OpenRouter 404 atıyordu.
+- Kontrolcü düşünme derinliği varsayılanı LOW yapıldı.
+- Önbellek anahtarına düşünme derinliği eklendi ("model|low").
+- SEVİYE (CEFR) kuralı: kontrolcünün seviyesi YALNIZCA iki ve üstü basamak
+  farkta kabul edilir (B1->C1 evet, B1->B2 hayır). Kontrolcü seviye konusunda
+  aşırı sertti; 66 öneriden sadece 11'i uygulandı.
+- turkce.YASAKLI listesi eklendi (kirlendirmek).
+- İki model 168 kelimede karşılaştırıldı, kontrol_kiyasla raporu alındı,
+  anlaşmazlıklar hakem kararıyla çözüldü -> Gemini low seçildi.
+- TESTLER: words+quizzes 473, diğer uygulamalar 209 = 682 test, HEPSİ GEÇİYOR.
+
+==============================================================================
+5. ŞU ANKİ KALİTE
+==============================================================================
+Aşama 1 (aile): 54 kökte 53 doğru. SORUN YOK.
+Aşama 3 (anlam): Gemini-low kontrolünden sonra 180 anlamda 4-5 hata ~ %2-3.
+  Hedef %1'in altı. HENÜZ ULAŞILMADI.
+
+HER İKİ MODELİN DE KAÇIRDIĞI, ELDE KALAN HATALAR:
+  - favoritism "ayırıcı tutum"  -> DOĞRUSU: kayırmacılık
+  - care (isim) "ilgi, endişe"  -> zayıf karşılık
+  - precede "önceden gelmek"    -> DOĞRUSU: önce gelmek
+  - collectible (isim)          -> Gemini YANLIŞLIKLA siliyor (kelime geçerli)
+  - production 2. anlam seviyesi A2 -> saçma ama tek basamak kuralına takılıyor
+  - adoptive "evlat edinmiş"    -> DOĞRUSU: evlat edinen
+
+==============================================================================
+6. NASIL DEVAM EDİLMELİ (SIRADAKİ İŞ)
+==============================================================================
+1) Gemini-low ayarlarını .env'e sabitle.
+2) KONTROL PROMPT'UNA (words/enrich/prompt.py -> kontrol_filling) yukarıdaki
+   kaçan hata TÜRLERİNE göre 2-3 kural ekle:
+   - "Karşılık Türkçede DOĞAL ve YAYGIN mı? Kelime kelime çeviri YASAK."
+   - "Sıfatın öznesi kim? ÖRNEK: adoptive = evlat EDİNEN, evlat edinilen DEĞİL."
+   - "Anlam doğru ama YAKIN BİR BAŞKA kelimeyle mi karıştırılmış?"
+   - Kontrolcünün geçerli kelimeyi silmesini zorlaştır (collectible örneği).
+   PROMPT'LAR EFE'NİN TARZINDA YAZILIR: Türkçe, BÜYÜK HARF vurgu, "NOT-x",
+   ÖRNEK/DOĞRU/YANLIŞ üçlüsü, ANLAŞILIR. Prompt örnekleri ÖLÇÜM LİSTELERİYLE
+   KESİŞMEMELİ (test bunu kontrol ediyor).
+3) TAMAMEN YENİ 45 kelimelik bir liste ile (deneme.py'ye 4. sürüm) yeniden ölç.
+   Hata %1'in altına inene kadar 2. adıma dön.
+4) %1 altına inince: veritabanına GERÇEK yazım (--dry-run OLMADAN) ve
+   10.000 kelimelik listeyi parça parça işleme.
+
+==============================================================================
+7. ÇALIŞMA DÜZENİ (yeni Claude oturumu için)
+==============================================================================
+- Proje Efe'nin Mac'inde: "LearnVocab Latest wClaude" klasörü. Django 5.2.17.
+- TEST: PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$HOME \
+        $HOME/lvenv/bin/python manage.py test words quizzes --settings=testayar
+- Efe HIZLI değerlendirme ister; komutları HER ZAMAN ona vermek gerekir,
+  çalıştırmayı kendisi yapar ve çıktıyı yapıştırır.
+- Ara depo silme: python manage.py aile_sil --depo <ad> --evet
+- Kıyas: python manage.py kontrol_kiyasla --depolar A,B --fiyatlar "0.75,3.75;..."
+
+MEVCUT ARA DEPOLAR:
+  ara-depo-kontrol-gemini-low  (Gemini low sonuçları + üretici önbelleği)
+  ara-depo-kontrol-luna        (Luna low sonuçları + üretici önbelleği)
+
+==============================================================================
+8. EK — 24 Eylül öğleden önce yapılanlar
+==============================================================================
+- .env'e Gemini-low kontrolcü ayarları EKLENDİ (6. bölüm, 1. adım tamam).
+- kontrol_filling'e NOT-1..NOT-4 + seviye notu eklendi: doğal karşılık,
+  sıfat/isim YÖNÜ, yakın kelimeyle karışma, gerçek kelimeyi silmeme.
+  Örnekler ölçüm listeleriyle kesişmiyor.
+- deneme.py'ye SURUM_4 (45 yeni kelime, yön tuzaklarıyla dolu) eklendi,
+  SON_SURUM = "4". Ölçüm deposu: ara-depo-deneme-4.
+
+==============================================================================
+9. EK — 4. ölçüm sonucu ve yapılanlar (24 Eylül öğleden sonra)
+==============================================================================
+4. ÖLÇÜM (ara-depo-deneme-4, 185 anlam): ~3 kesin + 2 kısmi hata, ~%2-3.
+  Kaçanlar: fearful "korkulu", flavoring "tatlandırıcı", overlook "tepeden
+  bakmak", dishonorable "aşağılayıcı". Eksik temel anlam: lead (isim),
+  forgive "affetmek". Seviye: overpay/unaware A2.
+YAPILANLAR:
+- word_filling: NOT-5'e YÖN TESTİ, yeni NOT-11 (Türkçede başka anlamı olan
+  karşılık), NOT-12 (temel anlamı atlama), CEFR'e A1-A2 uyarısı.
+- kontrol_filling: NOT-1..4 YENİDEN eklendi (ilk ekleme dosyadan kaybolmuştu,
+  muhtemelen açık editör üzerine kaydetti) + missing_meaning alanı.
+- kontrol.py: missing_meaning doluysa kelime BİR KEZ eksik anlamla yeniden
+  üretilir (aile_doldur). Seviye: üretici A1-A2 ise kontrolcünün yukarı tek
+  basamak düzeltmesi de kabul.
+- deneme.py: SURUM_5 (45 yeni kelime), SON_SURUM = "5".
+- Aile aşaması açık sorun: overlook -> look, mislead -> lead (düşük öncelik).
+
+==============================================================================
+10. EK — 5. ölçüm sonrası kod düzeltmeleri (24 Eylül)
+==============================================================================
+5. ÖLÇÜM (ara-depo-deneme-5): kontrolcü üretici anlamlarının %23'ünü düzeltti;
+  son hâlde ~%2-3 hata. GERÇEK MALİYET TAHMİNİN ~2 KATI (Efe: yükleme sonrası
+  toplam ~$1.5 düştü; kodun tahmini ~$0.7).
+DÜZELTMELER:
+- anlam.parantezsiz: "oynamak (spor)" -> "oynamak"; baş harf küçültme.
+  Kontrolcünün correct_tr'si de temizleniyor.
+- Cümleleri kötü diye silinen anlam artık yeniden üretimi tetikliyor
+  (eksik_anlam_notu, cumlesiz).
+- Sözlük (lemminflect) türü tanıyorsa kontrolcünün "bu türde yok" kararı
+  yok sayılıyor; tüm anlamlar silinirse "kontrol_ret_tartismali".
+- llm.Usage.real_cost: OpenRouter usage.cost okunuyor, özet GERÇEK faturayı
+  basıyor.
+- 486 test geçiyor.
+OTOMASYON: Claude, Efe'nin Mac'indeki Linux ortamında ($HOME/lvenv,
+$HOME/testayar.py) testleri çalıştırabiliyor. openrouter.ai bu ortamın ağ
+izin listesinde YOK; eklenirse ölçümleri Claude kendisi yürütebilir.

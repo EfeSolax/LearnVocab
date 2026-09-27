@@ -1,0 +1,28 @@
+LEARNVOCAB — TÜM KELİMELER ARAMA EKRANI (25 Eylül)
+
+Efe'nin tarifi uygulandı (words/views.py allWords, arama_parametreleri,
+oneriler; templates/pages/words/allWords.html, _sonuclar.html,
+_kelimeSatiri.html, _listeDugmesi.html, _kokDugmesi.html):
+- Arama çubuğu: sağda arama ikonu (düğme), Enter da arar. "Ara" düğmesi yok.
+- Canlı arama: yazmayı bırakınca 600 ms sonra yalnızca sonuç bölümü
+  (?partial=1) yenilenir; adres çubuğu güncellenir (yenile/paylaş aynı gelir).
+- Filtre düğmesi (etkin filtre sayısı rozetli) -> panel, hepsi onay kutusu:
+    Nerede aransın: Kelime, Türkçe anlam, İngilizce açıklama, Ekleyen kullanıcı
+                    (varsayılan: Kelime + Türkçe anlam)
+    Kaynak: Sözlük kelimeleri, Kullanıcı kelimeleri
+    Tür: Hepsi + isim/fiil/sıfat/zarf/phrasal verb/edat/bağlaç
+    Seviye: Hepsi + A1..C2
+  Değişiklik anında uygulanır; "Filtreleri temizle", "Tamam".
+  URL: ?q=…&alan=…&kaynak=…&pos=…&pos=…&level=…  (eski filter_by bağlantıları çalışır)
+- Arama/filtre varken kelimeler ailesinden BAĞIMSIZ: tam eşleşme > ile başlayan
+  > içeren. Yokken aile listesi.
+- "Listeme ekle" / "Listemden çıkar" / kök düğmesi / "Tüm aileyi listeme ekle"
+  fetch ile: sayfa yenilenmez, düğme yerinde değişir, arama-filtre-kaydırma
+  aynen kalır. JS yoksa eski yönlendirme (#word-/#family- çapası).
+  Kök düğmesi kökün bütün türlerini (alarm isim+fiil) birlikte ekler/çıkarır.
+- Sonuç yoksa: "Bu aradığınız sanırım bizde yok, acaba şunları arıyor olabilir
+  misiniz?" + öneriler (difflib benzer yazım, içeren, içinde geçen, Türkçe
+  anlamı benzeyen). Sonuç filtreler yüzünden çıkmıyorsa ayrıca söylenir.
+  Gerçek veride: percieve->perceive, happyness->happiness, wisdon->wisdom,
+  beleive->believe, algılamk->perceive. Hepsi < 0.1 sn.
+- 757 test geçiyor (13 yeni). Görsel kontrol Efe'de (Claude tarayıcıda göremedi).

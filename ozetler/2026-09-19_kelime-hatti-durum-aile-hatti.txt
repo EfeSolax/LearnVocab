@@ -1,0 +1,533 @@
+================================================================================
+LEARNVOCAB — AİLE HATTI (1. ve 2. aşama)
+Devir teslim notu · 19 Eylül 2026
+================================================================================
+
+Veri üretimi üç aşamaya ayrıldı. Bu not ilk ikisini anlatıyor; 3. aşama
+(anlam doldurma) henüz yazılmadı. Sonraki oturumda bu dosyayı okuyan
+kişi/asistan konuşma geçmişine ihtiyaç duymadan devam edebilmeli.
+
+Yazan: Claude (Opus 5) · Efe'nin talimatıyla. COMMIT ATILMADI.
+
+
+================================================================================
+0. ÖZET
+================================================================================
+
+  1. ÜRETİM       manage.py aile_uret       her kelime için model ailenin
+                                            TAMAMINI çıkarır (kelime + tür)
+  2. BİRLEŞTİRME  manage.py aile_birlestir  farklı kelimelerden gelen
+                                            taslaklar tek aileye iner;
+                                            örtüşmeyenler RAPORLANIR
+  3. ANLAM        (yazılmadı)               birleşmiş ailelerin kelimelerine
+                                            anlam doldurulur, DB'ye yazılır
+
+İlk iki aşama VERİTABANINA YAZMAZ. Çıktılar ara-depo/ klasöründe durur.
+Veritabanına yalnızca 3. aşama yazacak: anlamı olmayan yarım kelime sitede
+görünmesin diye.
+
+Model YALNIZCA kelimeyi ve türünü yazıyor. Çekimler (v2/v3/-ing/-s, çoğul,
+comparative/superlative) KODLA üretiliyor; olmayan kelimeler, çekimi
+kelime diye yazılmış üyeler ve yanlış kökler KODLA ayıklanıyor.
+
+
+================================================================================
+1. PROMPT DEĞİŞİKLİKLERİ (words/enrich/prompt.py · family_filling)
+================================================================================
+
+Efe'nin yazdığı metin korundu, üslubu da. Değişenler:
+
+  - Olmayan kelimeler örneklerden silindi: independend, independing,
+    uneducate, uneducating, uneducative, nonconform, nonconformed.
+    Yazım hataları düzeltildi (destory, gerunt).
+  - Örneklerden salt -ed/-ing çekimleri çıkarıldı (expecting, estimated,
+    destroyed, deepening…). Örneklere türler eklendi: "expect (verb)".
+  - consent ailesinden consensus çıkarıldı: türetme değil (Latince ayrı
+    kelime), anlamı da ayrı (izin ≠ fikir birliği). Efe isterse geri
+    konabilir. conform ailesinden conformation (anlamı "yapı, biçim")
+    ve conformable (zipf 1.90) çıkarıldı.
+  - YENİ NOT: -ed/-ing hali ayrı kelime DEĞİLDİR. Tek istisna: bağımsız
+    sıfat/isim olmuşsa (interested, interesting, advanced, building,
+    meaning). "Emin değilsen ekleme."
+  - NOT-3 (ön ek) düzeltildi: ön eki bütün hallere körü körüne ekleme;
+    her ön ekli hali tek tek düşün. depend'in "in" almış fiili yok.
+  - YENİ NOT-5: anlamı koruyan önekler — olumsuzluk (un, in, im, il, ir,
+    non, dis), aşırılık/azlık (over, under), tekrar/yanlış (re, mis). Bu
+    öneklerle başlayan kelime ana ailede kalır ve kök bu öneklerle
+    BAŞLAYAMAZ. İstisna: önek atılınca geriye aynı anlamı taşıyan gerçek
+    bir kelime kalmıyorsa (understand, undertake, overcome, interpret,
+    discover).
+  - "root_word MUTLAKA words listesinin İÇİNDE de olmalı" netleştirildi
+    (eski cümle "her üyede kök harfiyen geçmeli" diye de okunabiliyordu).
+  - v2Form/v3Form/ingForm/sVersion/comparative/superlative istekleri
+    SİLİNDİ. "Senin tek işin kelimeyi ve türünü yazmak."
+  - Tür listesi veritabanıyla eşitlendi: noun, verb, adjective, adverb,
+    phrasal_verb, preposition, conjunction. (pronoun ve determiner
+    PartOfSpeech'te yok; "phrasal verb" boşluklu yazılınca katı şemaya
+    uymuyordu.)
+  - Eski hattan kalan "veritabanında kayıtlı aile bildirildiyse" satırları
+    silindi: 1. aşama veritabanını bilmiyor (bilerek, bkz. §3).
+
+word_filling DOKUNULMADI (3. aşamanın prompt'u).
+
+Test: words/test_aile.py · AilePromptTests — prompt örneklerindeki her
+kelimenin wordfreq'te var olduğunu ve salt çekim içermediğini denetliyor.
+Örnek eklerken yazım hatası yapılırsa test kırılır.
+
+
+================================================================================
+2. ÇEKİM ÜRETİMİ (words/inflect.py · cekimler)
+================================================================================
+
+Mevcut inflect.py kullanıldı ve genişletildi (dosyanın sonuna eklendi).
+
+  cekimler("undertake", "verb")
+    -> v2Form undertook · v3Form undertaken · ingForm undertaking
+       sVersion undertakes · kaynak "sozluk"
+
+İki kaynak (wordfreq ile aynı yapı, biri zorunlu değil):
+  1. lemminflect paketi (varsa) — yalnızca SÖZLÜĞÜ kullanılıyor; tahmin
+     kipi "importanter" ürettiği için ona hiç sorulmuyor.
+  2. Kurallar + 157 fiillik elle yazılmış düzensiz fiil tablosu
+     (önekli birleşikleri çözer: misunderstand = mis + under + stand;
+     behave / relay gibi tuzaklar ayrı listede).
+
+Tablo lemminflect sözlüğüyle karşılaştırıldı: 157 fiilde 5 bilinen ayrışma
+(broadcast, forecast, leap, lie, prove), hepsi kabul edilen ikinci yazım.
+Testi var.
+
+Sıfatlar: -er alıyorsa happier; almıyorsa "more important" (Efe'nin kuralı:
+more/most ile kuruluyorsa BİLE yazılır). Sayılamayan isimde sVersion boş.
+
+DİKKAT: verb_forms() DEĞİŞTİRİLMEDİ. quizzes/build._duzensiz_mi onun
+KURAL çıktısına (go -> "goed") bakarak düzensizliği anlıyor; oraya tablo
+eklenseydi çekim kartları hiç açılmazdı. Testi var.
+
+
+================================================================================
+3. 1. AŞAMA — manage.py aile_uret
+================================================================================
+
+  python manage.py aile_uret --file listeler/X.txt [--limit 200]
+  python manage.py aile_uret --words decisively,analysis --dry-run
+
+Kullanıcı mesajı yalnızca `word: "decisively"` (tür ipucu varsa ekli).
+Veritabanı özeti GÖNDERİLMİYOR, bilerek: aynı kelime her zaman aynı
+mesajla gidiyor, cevaplar birbiriyle karşılaştırılabiliyor. Veritabanıyla
+uzlaşma modelin değil kodun işi.
+
+KALDIĞI YERDEN DEVAM EDER: depoda cevabı olan kelime tekrar sorulmaz
+(hata alanlar tekrar sorulur). Prompt değişince baştan: --yeniden.
+
+Aynı aileden birden çok kelime listede varsa HEPSİ ayrı sorulur: bu
+birleştirmede tutarlılık ölçüsü oluyor. Maliyeti kısmak için --uyeyse-atla.
+
+DENETİM (words/aile/denetim.py) — kodlar:
+  olmayan_kelime         wordfreq sıklığı 0 -> atılır (independing: 0.00)
+  cok_nadir              zipf < 1.5 -> atılır (influentially 1.37)
+  nadir                  zipf < 2.0 -> uyarı, tutulur (contrarily 1.99)
+  cekim_uyesi            "destroyed (verb)" -> ailedeki fiilin çekimi, atılır
+  katilim_sifati         "interested (adjective)" -> tutulur, uyarı
+  onekli_kok_duzeltildi  kök "unhappy", ailede "happy" var -> happy
+  turemis_kok_duzeltildi kök "dependent", ailede "depend" var -> depend
+  zarf_kok_duzeltildi    kök "inevitably" -> inevitable
+  uydurma_kok            kök zipf < 1.5 ("herit" 1.03) -> taslak KUSURLU
+  kok_listede_yok        kök üye listesinde değil -> uyarı
+  tohum_ailede_yok       sorulan kelime kendi ailesinde yok -> uyarı
+  cok_kelimeli           "in the long run" -> atılır (Expression hattı işi)
+  tur_duzeltildi         "carry out (verb)" -> phrasal_verb
+  bulunamadi             model boş aile döndürdü
+
+Sorulan kelime (tohum) nadir olsa da atılmaz: metinde geçti.
+
+wordfreq kurulu değilse varlık denetimi yalnızca sistem sözlüğüyle yapılır
+ve HİÇBİR ŞEY ATILMAZ, yalnızca uyarılır. Komut başlarken bunu yazar.
+
+
+================================================================================
+4. ARA DEPO (words/aile/depo.py) — ara-depo/
+================================================================================
+
+  taslaklar.jsonl         1. aşama. Her satır bir cevap (denetlenmiş hâli +
+                          ham cevap + token). SADECE EKLENİR; aynı kelime
+                          tekrar sorulursa sonuncusu geçerli, eskisi geçmişte
+                          kalır ("prompt'u değiştirdim, ne değişti?").
+  kararlar.json           Efe'nin kararları. İlk çalıştırmada şablonla oluşur.
+  aileler.json            2. aşamanın çıktısı. 3. aşama BUNU okuyacak.
+  birlestirme-raporu.txt  Okunacak rapor; incelenecekler başta.
+
+.gitignore'a eklendi (/ara-depo*/).
+
+
+================================================================================
+5. 2. AŞAMA — manage.py aile_birlestir
+================================================================================
+
+  python manage.py aile_birlestir [--esik 0.5] [--goster analyse]
+
+Taslaklar köklerine göre gruplanır; ortak kelimesi olan gruplar kümelenir.
+
+  tek kök                      -> tek aile; taslakların örtüşmesi ölçülür
+  birden çok kök, içerik       -> KÖK OYLAMASI: açık çoğunluğun kökü alınır
+    örtüşüyor (>= eşik)           (analysis->analyse, analyst->analysis)
+  birden çok kök, içerik       -> KÖK ÇATIŞMASI: otomatik BİRLEŞTİRİLMEZ,
+    örtüşmüyor                    her kök ayrı aile, hepsi "incelenecek",
+                                  köprü kelimeler raporda
+
+ÖRTÜŞME = iki taslağın kelime kümelerinin Jaccard benzerliği (ortak /
+toplam). Aynı köke çıkan taslakların ortalaması eşiğin altındaysa aile
+"incelenecek" (dusuk_ortusme) ve raporda her taslağın hangi kelimeleri
+TEK BAŞINA eklediği gösteriliyor.
+
+Diğer bulgular: zayif_uye (3+ taslakta yarıdan azında geçen kelime),
+kok_listede_yok, sahip_belirsiz / baska_aileye_verildi (bir kelime iki
+ailede kaldıysa sahibi: kararlar › uye_ata, sonra kelimenin kendisi
+sorulduğunda çıkan aile, sonra oy), db_farkli_aile (üye veritabanında
+başka aileye kayıtlı — yalnızca bilgi; DB'ye dokunulmaz).
+
+KARARLAR (ara-depo/kararlar.json):
+  kok_esle  {"analysis": "analyse"}           iki kökü aynı aile say
+  ayri_tut  [["conscience", "conscious"]]      ortak kelime olsa da ayır
+  cikar     {"consent": ["consensus"]}         aileden kelime çıkar
+  uye_ata   {"consensus": "consensus"}         paylaşılan kelimenin sahibi
+  onayla    ["analyse"]                        incelenecek aileyi kabul et
+
+Her çalıştırma sıfırdan hesaplar; karar ekleyip tekrar çalıştırmak güvenli.
+
+
+================================================================================
+6. MODEL KALİTESİ — manage.py aile_olc
+================================================================================
+
+40 kelimelik beklentili liste (words/aile/deneme.py, 6 grup):
+  A tutarlılık (aynı aileye farklı kapılardan) · B önek (understand vs
+  overestimate) · C tek başına (arduous) · D ayrım (conscience/conscious)
+  · E çekim (interested var, built yok) · F uydurma (independing yok)
+
+  python manage.py aile_uret --file listeler/aile-deneme.txt --depo ara-depo-deneme
+  python manage.py aile_birlestir --depo ara-depo-deneme
+  python manage.py aile_olc --depo ara-depo-deneme
+
+İki ölçü basıyor: DOĞRULUK (beklentiye göre geçti/kaldı, grup grup) ve
+DAVRANIŞ (uydurma oranı, çekim ihlali, kök düzeltme oranı, örtüşme,
+maliyet). Davranış sayıları beklenti gerektirmediği için büyük listede de
+izlenebilir.
+
+!! GERÇEK MODELLE HENÜZ ÇALIŞTIRILMADI !!
+OpenRouter, Claude'un çalıştığı ortamlardan ağ politikası gereği
+erişilemiyor. Komutlar sahte cevaplarla uçtan uca denendi.
+
+
+================================================================================
+7. YAPILMAYANLAR / SONRAKİ ADIMLAR
+================================================================================
+
+[1] 3. AŞAMA — ANLAM DOLDURMA. aileler.json'daki "temiz" aileleri okuyup
+    her kelimeye word_filling ile anlam üretecek, denetleyecek ve aileyi
+    kelimeleri ve çekimleriyle (WordForm) birlikte DB'ye yazacak.
+    word_filling ile mevcut model arasında şu uyuşmazlıklar var, şema
+    yazılmadan önce karar gerekiyor:
+      - register değerleri: prompt general/academic/formal/slang;
+        model neutral/formal/academic/informal/slang/literary
+      - cefr: prompt anlam başına; modelde Word üzerinde (Meaning'de yok)
+      - relations: prompt anlam başına; WordRelation kelime düzeyinde
+      - categories: prompt 108 İngilizce kategori; DB'deki Category
+        adları Türkçe (context.VARSAYILAN_ALANLAR)
+      - collocation: prompt "collocation" alanı; model "pattern" + "kind"
+        (kind prompt'ta hiç istenmiyor)
+    enrich_words, build_vocab ve test_batch 19 Eylül'de SİLİNDİ (bkz. §10).
+    Metinden liste çıkarmak için extract_words yeterli.
+
+[2] Eski denetim (words/enrich/checks.py · KOPARAN_ONEKLER) over- ve
+    under-'ı anlam koparan önek sayıyor. Yeni kural (NOT-5) aşırılık/azlık
+    anlamında onları ailede tutuyor. Eski hat kapandığı için şu an çelişki
+    yok; 3. aşama checks.py'ı kullanırsa bu uyumlanmalı.
+
+[3] Phrasal verb'lerde varlık denetimi zayıf: wordfreq iki kelimenin
+    sıklığını birleştiriyor, yani "destroy out" da sıfırdan büyük çıkar.
+
+
+================================================================================
+8. EFE İÇİN — SIRAYLA
+================================================================================
+
+  source .venv/bin/activate
+  pip install wordfreq lemminflect
+  python manage.py test words.test_aile          # 49 test
+
+  python manage.py aile_uret --file listeler/aile-deneme.txt --depo ara-depo-deneme
+  python manage.py aile_birlestir --depo ara-depo-deneme
+  python manage.py aile_olc --depo ara-depo-deneme
+
+Çıktıyı ve ara-depo-deneme/birlestirme-raporu.txt'yi birlikte okuyalım.
+
+
+================================================================================
+9. DOSYALAR
+================================================================================
+
+YENİ
+  words/aile/__init__.py, schema.py, denetim.py, depo.py, birlestir.py,
+  deneme.py
+  words/management/commands/aile_uret.py, aile_birlestir.py, aile_olc.py
+  words/test_aile.py                        49 test
+  listeler/aile-deneme.txt                  aile_olc --write ile üretildi
+  AILE-HATTI.txt                            bu not
+
+DEĞİŞEN
+  words/enrich/prompt.py        family_filling + AILE_SISTEM,
+                                KELIME_SISTEM, aile_kullanici_metni
+  words/inflect.py              sona eklendi: cekimler() ve tabloları
+  words/test_enrich_checks.py   liste ayrıştırma testleri depo.liste_oku'ya taşındı
+  requirements.txt              lemminflect (isteğe bağlı)
+  .gitignore                    /ara-depo*/
+
+TESTLER (Django 5.2.17, Python 3.10, ayrı sanal ortam):
+  words.test_aile 49/49 (enrich_words testi komutla birlikte gitti). Bütün proje regresyonsuz; yalnızca dosya tabanlı
+  önbelleği silemeyen ortam hataları görüldü (bağlı klasörde silme izni
+  yok), önbellek bellek içine alınınca onlar da geçti.
+================================================================================
+10. TEMİZLİK — 19 Eylül (Efe'nin kararıyla)
+================================================================================
+
+VERİTABANI: eski hattın ürettiği bütün kelime verisi silindi.
+  82 aile · 133 kelime · 198 anlam · 983 örnek cümle · 484 collocation ·
+  137 kalıp · 281 çekim · 34 bağ · 6 yanlış dost; bunlara bağlı 19 liste
+  bağı, 54 çalışma kartı, 13 cevap kaydı, 4 oturum, 39 Öğren-Geç kaydı,
+  52 Öğren-Geç günlüğü, 1 kişisel anlam, 2 kişisel not.
+  KALANLAR: kullanıcı, 1 metin, 1 boş kelime listesi, 6 alan (Category),
+  6 ifade (Expression). Bütünlük denetimi temiz; ana sayfa, tüm kelimeler,
+  Öğren-Geç, çalışma ve ilerleme sayfaları boş veriyle 200 dönüyor.
+  3. aşama yazılana kadar sitede kelime YOK.
+
+SİLİNMEK ÜZERE _to_delete/ KLASÖRÜNE TAŞINANLAR (Claude'un silme izni
+yoktu; klasörü Efe elle silecek, .gitignore'da):
+  db.sqlite3.yedek, .yedek2, .oncesi-20260913-0044
+  db.sqlite3.silme-oncesi-20260919   <- yukarıdaki silmeden HEMEN önceki
+                                        kopya; geri dönüş yolu yalnızca bu
+  pilot-rapor.json, pilot2-5.json, yazma1-3.json, rapor-*.json
+  listeler/pilot*.txt, listeler/test-40.txt
+  VocabLoaders/                      (eski modelle yazılmış, çalışmıyordu)
+  words/management/commands/enrich_words.py, test_batch.py, build_vocab.py
+  words/enrich/deneme_listesi.py
+
+VocabLoaders'TAN KURTARILAN VERİ (silmeden önce):
+  listeler/odtu-kurlar.txt    ODTÜ 101–501, 2.259 kelime, kur ve hafta
+                              başlıklarıyla; aile_uret'e doğrudan girer
+  listeler/efe-kelimeleri.txt Efe'nin kendi 239 kelimesi (mywords.py)
+  listeler/odtu-kurlar.json   2.887 kaydın ham hâli: Türkçe anlam, tanım,
+                              örnek cümle, eş/zıt anlamlılar. 3. aşamada
+                              modelin cevabıyla karşılaştırmak için.
+
+KALAN ESKİ KOD (3. aşama kullanacak): words/enrich/checks.py, writer.py,
+context.py, schema.py, false_friends.py, confusables.py ve seed_*,
+dedupe_meanings, merge_families komutları.
+================================================================================
+
+================================================================================
+11. İLK GERÇEK ÇALIŞTIRMADAN SONRA — 19 Eylül
+================================================================================
+
+Sonuç: 45/49, uydurma %2.8 (hepsi kodla atıldı), çekim ihlali 0,
+10.000 kelime ≈ $1.75. Düzeltilenler:
+
+  - AMERİKAN YAZIMI (Efe'nin kararı). prompt NOT-6; inflect.amerikan()
+    sıklık karşılaştırmasıyla + küçük bir tabloyla çeviriyor (analyse,
+    behaviour, centre, defence, theatre…); denetim.normalize her kelimeyi
+    ondan geçiriyor; çekim varyantlarında Amerikan yazımı esas (traveled).
+  - Kök: ön ek + son ek birlikte (unhappiness -> happy) prompt'a örnek;
+    kodda y->i (happy -> happi-) ve de->s (decide -> decis-) gövdeleri.
+  - İsim çoğulu üye olarak atılıyor; -s hâli tekilinden SIK ise kalıyor
+    (ethics > ethic). Prompt'a NOT-2.
+  - Ayıklama eşiği 1.5 -> 2.0, nadir uyarısı 2.0 -> 2.5. Kök eşiği ayrı
+    (KOK_ESIGI 1.5). Prompt'tan contrarily (1.99) çıkarıldı; prompt
+    örneklerinin eşiği geçtiğini test denetliyor.
+  - katilim_sifati artık "bilgi" seviyesinde: ekrana ve rapora basılmıyor.
+  - KÖK SORGUSU: aile_uret listeyi bitirince, kendisi sorulmamış aile
+    köklerini de soruyor (kapatmak: --kok-sorma). Her aile en az iki
+    cevapla birleştirmeye giriyor.
+  - aile_olc: tek aileye düşme kontrolü artık ailenin kökünü de denetliyor.
+  - Deneme listesi 2. sürüm: 43 kelime, HİÇBİRİ prompt'ta geçmiyor (test
+    var). Yeni grup G: İngiliz yazımıyla sorulup Amerikan yazımı beklenen.
+
+İlk çalıştırmanın ham cevapları yeni denetimden geçirildiğinde 4 hatanın
+4'ü de kodla düzeldi (indecisive, unhappiness, interests, unethically);
+kalan tek "incelenecek" depend ailesi (kök sorgusunun hedefi).
+Testler: words.test_aile 59, bütün proje 669, hepsi geçiyor.
+================================================================================
+
+================================================================================
+12. İKİNCİ GERÇEK ÇALIŞTIRMADAN SONRA — 19 Eylül (liste 2: prompt'ta olmayan)
+================================================================================
+
+Sonuç: 46/51 (%90), uydurma %2.7, çekim ihlali 0, ≈ $1.83 / 10.000 kelime.
+Düzeltilenler:
+
+  - Kök beraberliği (rely 2 - reliable 2): birlestir._turetme_koku — bir
+    kök ötekilerin türediği kelimeyse o kazanır.
+  - Anlamı KOPARAN önekler (with, fore, out, off, up, be): tohum = önek +
+    kök ise taslak kusurlu ve aile_uret bir kez UYARIYLA tekrar soruyor;
+    üyeler arasındaki "önek + başka üye" kelimeler atılıyor. Prompt'a
+    örnekler (withstand, forecast, outnumber, uphold).
+  - Katılım sıfatı testi prompt'a: "fiilden FARKLI kendi anlamı var mı?"
+    (interested EKLE, painted EKLEME).
+  - Örtüşme ölçüsü Jaccard -> KAPSAMA katsayısı (ortak / küçük taslak),
+    eşik 0.6. Eksik ama doğru taslak artık anlaşmazlık sayılmıyor.
+  - Sıfatı ailede olan -ly zarfları için eşik 2.5 (nadir_zarf).
+  - Deneme listeleri sürümlü: listeler/aile-deneme-2.txt, -3.txt;
+    aile_olc --surum. 3. sürüm ne prompt'ta ne 2. sürümde geçiyor (test).
+
+2. listenin ham cevapları yeni denetimden geçirildiğinde (model
+çağrılmadan): incelenecek 3 -> 0, tutarlılık 7/8 -> 8/8, withdraw kusurlu
+(canlı çalıştırmada uyarıyla tekrar sorulacak), painted prompt'a bağlı.
+Testler: words.test_aile 67; bütün proje geçiyor.
+================================================================================
+
+================================================================================
+13. ÜÇÜNCÜ DENEME + 3. AŞAMA (anlam doldurma) — 19 Eylül
+================================================================================
+
+3. deneme (prompt'ta ve önceki listede olmayan 45 kelime): birleşik aileler
+34/34 temiz, tutarlılık 9/9. Düzeltilenler:
+
+  - aile_olc artık BİRLEŞİK AİLE üzerinden ölçüyor (veritabanına giren o);
+    tek cevapların kök doğruluğu ayrı satırda. 3. denemenin ham cevapları
+    yeniden denetlendiğinde: 52/54 (kalanlar: collected — beklenti yanlıştı,
+    düzeltildi; favorite — tartışmalı, bırakıldı).
+  - ŞÜPHELİ TÜR (inflect.tur_sozlukte, lemminflect sözlüğü): become
+    (adjective), weak (noun), existent (noun) atılıyor. -ed/-ing hâlleri
+    atılmıyor, "supheli_katilim" işaretleniyor; kararı 3. aşama veriyor
+    (caring, written gerçek sıfat ama sözlük onları da yalnızca fiil sanıyor).
+  - aile_uret --yeniden-denetle: depodaki ham cevapları modeli çağırmadan
+    güncel denetimden geçirir.
+
+3. AŞAMA — manage.py aile_doldur (words/aile/anlam.py)
+  - aileler.json'daki TEMİZ ailelerin her kelimesi için word_filling ile
+    bir istek. Kullanıcı mesajında ailenin kendisi de var (tutarlı Türkçe).
+    Şüpheli katılımlarda modele açık not: fiilden ayrı anlamı yoksa
+    found=false -> kelime yazılmaz.
+  - Denetim eski checks._anlami_denetle'yi kullanıyor (Türkçe, mastar,
+    cümle, eş dizim, kalıp); üstüne yinelenen/yakın/ortak-eş-dizimli anlam
+    ayıklama. Anlam üst sınırı 3. Kategoriler prompt'taki 109'luk listeden
+    (prompt.KATEGORILER, prompt'tan okunuyor).
+  - Yazma aile başına tek transaction. register general -> neutral.
+    Meaning.cefr YENİ ALAN (migration words/0017_anlam_seviyesi); Word.cefr =
+    en kolay anlamın seviyesi. Eş dizim ve kalıp türü kodla çıkarılıyor
+    (çalışma sisteminin soru üreticileri bu türlere bakıyor). WordForm:
+    kural çekimleri + 1. aşamanın çekimleri + ikinci yazımlar (travelled).
+  - Bağlar (eş/zıt anlamlı, daha basit): hedef veritabanında varsa
+    kuruluyor; yoksa cevap depoda bekliyor ve her çalıştırmanın sonunda
+    yeniden deneniyor. Sonda seed_false_friends + seed_confusables.
+  - Cevaplar ara-depo/anlamlar.jsonl'da. --dry-run cevapları da oraya
+    yazılıyor; gerçek çalıştırma onları TEKRAR SORMUYOR.
+  - Anlamı zaten olan kelime sorulmuyor: aynı komutu tekrar çalıştırmak
+    güvenli.
+
+Testler: words.test_aile 78; bütün proje 688, hepsi geçiyor.
+3. aşama GERÇEK MODELLE HENÜZ ÇALIŞMADI (sahte cevaplarla uçtan uca).
+================================================================================
+
+================================================================================
+14. İLK GERÇEK DOLDURMADAN SONRA — 19 Eylül
+================================================================================
+
+İlk doldurma: 174 kelime, 185 anlam, 10.000 kelime ≈ $2.78 (3. aşama).
+Sorun: anlamı bozan uyarılar yazmayı DURDURMUYORDU (fortunately = "ne yazık
+ki", produce fiiline "sebze, meyve gibi gıdalar"). Düzeltilenler:
+
+  - Kategoriler şemada KAPALI LİSTE (enum); 78 uydurma alan geliyordu.
+    Listeye Psychology, Sociology, Anthropology, Statistics, Linguistics
+    eklendi (okuma metinlerinin konuları listede yoktu).
+  - Fiil anlamında hiç mastar yoksa anlam ATILIYOR (önce uyarıydı).
+    Aynı karşılık içindeki tekrarlar temizleniyor ("üretmek, üretmek").
+  - Katılım sıfatı kararı kodda: ana Türkçe karşılık "-mış" ise anlam
+    fiilin kendisi, kelime düşer (polluted = kirletilmiş). Model found=false
+    demeyi beceremedi (12'de 0). Yalnızca sözlükte fiil çekimi olarak da
+    geçenlere uygulanıyor: unannounced (habersiz) ve unwritten kalıyor.
+  - Türkçe/anlam sorunu olan kelime (tanım gibi, uzun, mastarsız, anlamsız
+    kalan) sorunların metniyle BİR KEZ daha soruluyor; iki cevaptan iyisi
+    yazılıyor.
+  - manage.py aile_sil --depo X [--evet]: depodaki ailelerin veritabanı
+    kayıtlarını siler (--evet'siz yalnızca sayar). Depodaki cevaplar kalır.
+  - "register" pydantic uyarısı susturuldu.
+
+Kayıtlı cevaplar yeni denetimden geçirildiğinde (model çağrılmadan):
+8 katılım düştü (polluted, weakened, simplified, adopted, adapted,
+convinced…), 6 kelime ikinci denemeye girecek. Kategori enum'u yüzünden
+eski cevaplar şemaya uymuyor: yeniden doldururken --yeniden-sor gerekli.
+Testler: words.test_aile 82; bütün proje 692, hepsi geçiyor.
+================================================================================
+
+================================================================================
+15. TÜRKÇE YAZIM DENETİMİ + KONTROL MODELİ — 19 Eylül
+================================================================================
+
+2. doldurma: 180 anlamın ~10'u yanlış (%5). Hedef %1'in altı. İki katman:
+
+TÜRKÇE YAZIM (words/aile/turkce.py)
+  - Hunspell tr_TR (LibreOffice sözlüğü) + spylls (saf Python). Eklemeli
+    biçimleri tanıyor (kirletilmiş, öngörülemezlik); wordfreq'in Türkçesi
+    "kirletmek"i bile tanımadığı için kullanılamadı.
+  - Kurulum: pip install spylls · manage.py turkce_sozluk_kur (sözlük
+    words/aile/sozluk/'a iner, gitignore'da). Claude bu oturumda indirdi.
+  - Olmayan kelime içeren karşılık atılıyor, kelime "turkce_yazim" koduyla
+    ikinci denemeye giriyor. Gerçek veride yakaladıkları: kirlık, teşeksiz,
+    varolmama (var olmama), mizahcı (mizahçı). Şapkalı yazım (hâkim) kabul.
+
+KONTROL MODELİ (words/aile/kontrol.py, prompt.kontrol_filling)
+  - Efe'nin üslubunda kontrolcü prompt'u. Her anlam için karar:
+    dogru / karsilik_yanlis (+ doğru karşılık) / anlam_yanlis; seviye;
+    hatalı cümle ve collocation numaraları; kelime bu türde kullanılıyor mu.
+  - Uygulama: düzeltilen karşılık da kod denetiminden geçmek zorunda
+    (Türkçe yazım, fiilde mastar); geçmezse anlam silinir. Bütün anlamlar
+    silinirse gerekçelerle BİR KEZ yeniden üretilip yeniden kontrol edilir.
+  - Kontrol edilemeyen (hata alan) kelime YAZILMAZ; sonraki çalıştırmada
+    tekrar denenir. Kontrol sonucu depoda saklanır, aynı cevap tekrar
+    kontrol ettirilmez (--yeniden-kontrol ile edilir).
+  - ÖLÇÜ: aile_doldur sonunda "ÜRETİCİ HATA ORANI (kontrolcüye göre)".
+    Hedef bu oranın %1'in altına inmesi.
+  - Ayar (.env): LLM_KONTROL_MODEL (boşsa katman kapalı), LLM_KONTROL_BASE_URL,
+    LLM_KONTROL_API_KEY (boşsa üreticininki), LLM_KONTROL_REASONING_EFFORT
+    (varsayılan medium), LLM_KONTROL_PRICE_INPUT/OUTPUT.
+  - Prompt örnekleri ölçüm listeleriyle kesişmiyor (test var). Üretici
+    prompt'undaki kendi eklediğim örnekler de (polluted, become) ölçüm
+    listesiyle kesişiyordu; cooked / happy (verb) ile değiştirildi.
+
+llm.chat_json artık base_url / api_key / reasoning alabiliyor.
+Testler: words.test_aile 98; bütün proje 708, hepsi geçiyor.
+================================================================================
+
+================================================================================
+16. KONTROL MODELİ KIYASI — 19 Eylül
+================================================================================
+
+Adaylar (Efe'nin kararı, Claude bütçe dışı): Gemini 3.8 Flash ($0.75/$3.75)
+ve GPT-5.6 Luna ($0.20/$1.20).
+
+  - aile_doldur --kontrol-model / --kontrol-fiyat / --kontrol-dusunme:
+    .env'yi değiştirmeden kontrolcü seçimi (ayarlar yalnızca o çalıştırma
+    için değişir).
+  - aile_doldur --hepsi (yalnızca --dry-run ile): veritabanında anlamı olan
+    kelimeleri de işler; ölçüm için veritabanını silmek gerekmiyor.
+  - Kontrol önbelleği artık MODELE bağlı: bir modelin kararı ötekinin
+    yerine geçmiyor. İlk kontrol ayrıca saklanıyor (ilk_kontrol_*): kıyas
+    iki modelin BİREBİR aynı girdiyi gördüğü ilk kararlara bakıyor.
+  - Kontrolcü üst üste 5 kez ya da kalıcı hatayla (402 bakiye, yanlış
+    model adı) düşerse komut duruyor; kaldığı yerden devam eder.
+  - manage.py kontrol_kiyasla --depolar A,B [--fiyatlar "g,ç;g,ç"]:
+    model başına özet, anlaşma oranı, her anlaşmazlık iki gerekçeyle.
+    Rapor A/kontrol-kiyas.txt (+ .json). Hakem: Claude, raporu okuyarak.
+================================================================================
+
+17. KONTROLCÜ AYARLARI (GPT 5.6 Luna 404 düzeltmesi)
+----------------------------------------------------
+- llm.chat_json(..., sicaklik_gonder=False): temperature HİÇ gönderilmez.
+  GPT-5 düşünen modelleri temperature kabul etmiyor; require_parameters açıkken
+  OpenRouter "No endpoints found" (404) döndürüyordu. Kontrolcü artık hep böyle.
+- Kontrolcünün düşünme derinliği varsayılanı artık LOW (LLM_KONTROL_REASONING_EFFORT).
+- Önbellek anahtarı model + derinlik: "google/gemini-3.8-flash|low". Derinlik
+  değişirse eski kontrol kararları yeniden kullanılmaz. Kıyas raporu da bu adı yazar.
+- Seviye (CEFR): kontrolcünün seviyesi YALNIZCA iki ve üstü basamak farkta kabul
+  edilir (B1 -> C1 evet, B1 -> B2 hayır).
+- turkce.YASAKLI: hunspell'in yanlışlıkla tanıdığı hatalı yazımlar
+  (kirlendirmek -> DOĞRUSU kirletmek). Liste büyüdükçe buraya eklenir.

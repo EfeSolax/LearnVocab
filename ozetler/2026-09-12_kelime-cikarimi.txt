@@ -1,0 +1,563 @@
+NOT (19 Eylül 2026): Bu not ESKİ hattı anlatıyor. enrich_words, build_vocab
+ve test_batch silindi, veritabanındaki eski veri temizlendi. Güncel hat:
+AILE-HATTI.txt
+
+================================================================================
+LEARNVOCAB — KELİME ÇIKARIMI (extract_words)
+Not · 12 Eylül 2026
+================================================================================
+
+Zenginleştirme hattının ÖN UCU. Hat artık baştan sona şöyle:
+
+    metinler → extract_words → listeler/X.txt → enrich_words → veritabanı
+                  (bu komut)                      (zaten vardı)
+
+KELIME-HATTI-DEVAM.txt §1'de "Efe metinleri eklemeden önce içindeki
+'alınmaya değer' kelimeleri çıkarır" diye tarif edilen adım buydu; elle
+yapılıyordu, artık komut yapıyor.
+
+
+================================================================================
+1. KULLANIM
+================================================================================
+
+    source .venv/bin/activate
+    pip install wordfreq          # isteğe bağlı ama şiddetle önerilir
+
+    # Bir klasördeki bütün metinler
+    python manage.py extract_words --dir reading-texts \
+        --out listeler/okuma.txt --skip-existing
+
+    # Rapor ve phrasal verb adaylarıyla birlikte
+    python manage.py extract_words --dir metinler \
+        --out listeler/yeni.txt \
+        --phrasal-out listeler/phrasal-adaylari.txt \
+        --report rapor-cikarim.json \
+        --skip-existing
+
+    # Önce her zaman kuru çalıştır
+    python manage.py extract_words --dir metinler --dry-run
+
+AYARLAR
+    --top-skip N     En sık N kelime atlanır (varsayılan 2000)
+    --min-zipf X     Bu sıklığın altı "aşırı teknik" sayılır (varsayılan 1.8)
+    --min-count N    Kelime metinde en az N kez geçmeli (varsayılan 1)
+    --limit N        En fazla N kelime yazılır
+    --skip-existing  Veritabanında olanları atla
+    --no-pos         Tür tahmini yazma
+    --no-phrasal     Phrasal verb arama
+
+ÇIKTI, enrich_words'ün beklediği biçimde: her satırda bir kelime,
+türü tahmin edilebiliyorsa `kelime:tur`. Phrasal verb'ler aynı dosyada,
+ayrı bir başlık altında.
+
+
+================================================================================
+2. NE ELENİYOR, NEDEN
+================================================================================
+
+Üç şey birden dışarıda bırakılıyor:
+
+  1. ZATEN BİLİNENLER — en sık 2000 kelime. Hazırlık öğrencisi `people`,
+     `important`, `different` bilmiyorsa sorun kelime listesinde değil.
+
+  2. İŞLEV KELİMELERİ — edat, bağlaç, zamir, belirteç, yardımcı fiil
+     (~330 kelime, words/extract/function_words.py'da ELLE yazılı).
+
+     Neden elle: `whereas`, `albeit`, `notwithstanding`, `thereby`
+     sıklık listesinde çok geride (zipf 3'ün altında) ve eşiğe
+     bırakılsalar "öğrenilmeye değer kelime" sayılıp geçerlerdi. Oysa
+     bunlar kelime değil YAPI ve kelime modeline (aile/anlam/eş dizim/
+     ton) hiç uymuyorlar. Küme sayılı, bir kez yazılır, doğru kalır —
+     küratörlü yanlış dost tablosuyla aynı gerekçe.
+
+     Bunlar silinmiyor, AYRILIYOR: Expression hattının hammaddesi tam
+     olarak bu küme (KELIME-HATTI-DEVAM.txt §11-[4]).
+
+  3. AŞIRI TEKNİKLER — zipf < 1.8. `heteroscedasticity` gibi metinde bir
+     kez geçip bir daha görülmeyecek terimler.
+
+  + ÖZEL İSİMLER — metinde hiç küçük harfle geçmeyip cümle ORTASINDA
+    büyük harfle geçen kelimeler: `Freud`, `Vienna`, `Maslow`. Cümle
+    başındaki büyük harf sayılmıyor, orada her kelime büyük başlar.
+
+PHRASAL VERB'LER ELENMİYOR. `out` tek başına elenir ama `carry out`
+kalır: anlamı parçalarından çıkmayan bir sözlük maddesidir ve kelime
+modelinde kendi türü var (PHRASAL_VERB).
+
+HER ELEME RAPORA YAZILIYOR. "Bu kelime neden yok" sorusu cevaplanabilmeli;
+süzgeç sessizce yanlış çalışırsa kimse fark etmez, veritabanı eksik kalır.
+
+
+================================================================================
+3. KÖK BULMA — EN ZOR KISIM
+================================================================================
+
+Metinde `analyses`, `analysed`, `analysing` geçiyor; veritabanına girmesi
+gereken tek madde var: `analyse`. Kök bulunmazsa aynı kelime dört satır
+olur, hat dördünü de üretir, dört ayrı aile kurulur — §7'deki sessiz
+bozulmanın girişte tekrarı.
+
+spaCy/NLTK kullanılmadı (spaCy modeli tek başına 40 MB'ın üstünde ve
+GitHub'dan iniyor). Kural tabanlı, "üret ve en sıkı seç" biçiminde:
+
+  1. Düzensizler tablodan (went→go, children→child, analyses→analysis)
+  2. Bütün sonek kuralları uygulanıp ADAYLAR üretilir
+  3. Adaylardan en sık kullanılanı seçilir
+  4. Hiçbiri eşiği geçemezse kelime olduğu gibi kalır
+
+GELİŞTİRİRKEN BULUNAN ÜÇ TUZAK (üçü de sessizdi):
+
+  a) "İlk GEÇERLİ adayı al" YANLIŞTI. Sıklık verisi web metninden
+     geliyor ve `analys` (1.36), `runn` (1.47), `mak` (3.13), `bigg`
+     (2.73) gibi PARÇALARIN da sıfırdan büyük değeri var. Yani "gerçek
+     kelime mi" sorusunun cevabı evet çıkıyor ve `making → mak`,
+     `running → runn` oluyordu. Çözüm: karşılaştır, en sıkı seç
+     (make 6.08 > mak 3.13).
+
+  b) Adayı kelimenin KENDİ sıklığıyla yarıştırmak da yanlıştı. Çekimli
+     biçim kökten sık olabiliyor (`analysed` 3.55 > `analyse` 3.47) ve
+     bu kelimeler hiç köke inmiyordu.
+
+  c) (b)'yi düzeltince `bias → bia` oldu (bia 2.79, mutlak eşiği
+     geçiyor). Çözüm: GÖRELİ eşik — aday, kelimenin kendisinden en
+     fazla 0.5 zipf daha seyrek olabilir. Gerçek kök çekimli biçimden
+     pek seyrek olmaz (fark 0.08), parça çok seyrek olur (fark 1.63).
+
+ÇEKİM GERİ ALINIR, TÜRETME ALINMAZ. `encouragement` kök olarak kalır,
+`encourage`a indirilmez: türetme ayrı bir kelimedir, kendi anlamı ve
+kendi cümleleri vardır (words/models.py açılış yorumu). Aileyi kurmak
+zenginleştirme hattının işi.
+
+
+================================================================================
+4. TÜR TAHMİNİ
+================================================================================
+
+İki kaynak: metinde görülen çekimler ve sonekler.
+
+Fiil iddiası için metinde EN AZ İKİ çekim görülmesi gerekiyor. Tek bir
+`-ing` yetmiyor çünkü `fingerprinting`, `tutoring`, `volunteering`
+isimden türemiş olabilir — ilk denemede `fingerprint:verb` çıkmıştı.
+
+İsim soneki taşıyan kelimeler (`-tion`, `-ment`, `-ity` …) çekim görülse
+bile fiil sayılmıyor: `mediation` isimdir, `-ing` alması onu fiil yapmaz.
+
+`-ist` soneki isim yapar (art→artist) ama `persist`, `resist`, `insist`,
+`consist`, `exist` de öyle biter — sayılı bir küme, elle yazıldı.
+
+EMİN DEĞİLSE BOŞ BIRAKIYOR ve bu bir karar: tür yazılmazsa hattaki model
+kendisi seçiyor. YANLIŞ TÜR YAZMAK, TÜR YAZMAMAKTAN KÖTÜDÜR — model
+yanlış türe göre anlam, cümle ve eş dizim üretir, hepsi çöpe gider.
+
+Gerçekten iki türlü olan kelimeler (`advocate`) için listeye iki satır
+yazmak gerekiyor; komut bunu otomatik yapmıyor, çünkü `-s` eki hem çoğul
+hem 3. tekil olabildiği için metindeki kanıt buna karar veremiyor.
+
+
+================================================================================
+5. PHRASAL VERB'LER — İKİ YOLLU
+================================================================================
+
+1. KÜRATÖRLÜ LİSTE (words/extract/phrasal.py, ~150 ifade). Metinde
+   geçenler doğrudan çıktıya girer.
+
+2. ADAY YAKALAMA. Listede olmayan fiil+edat ikilileri sayılıp AYRI
+   dosyaya yazılır (--phrasal-out). Otomatik kabul EDİLMEZLER: kural her
+   zaman yanılır, `go to`, `try to`, `seem to` phrasal verb değildir.
+   Bu bir KARAR LİSTESİDİR — merge_families --list gibi göz gezdirilip
+   seçilecek, seçilenler KURATORLU kümesine eklenecek.
+
+Ölçüt: anlamı parçalarından çıkıyor mu? `walk into` gibi apaçık olanlar
+listeye girmemeli, yoksa liste değersizleşir.
+
+
+================================================================================
+6. SIKLIK VERİSİ
+================================================================================
+
+İki kaynak, biri zorunlu değil:
+
+  wordfreq paketi (varsa)   800 binden fazla kelime, sürekli sıklık
+  top_english.txt (hep var) en sık 5000 kelime, wordfreq'ten bir kez
+                            üretilip dosyaya sabitlendi
+
+İkincisi neden var: komutun çalışması bir paketin kurulu olmasına bağlı
+olmamalı. wordfreq yoksa komut çalışır ama kök bulma ve teknik terim
+eleme belirgin biçimde zayıflar — bunu başlangıçta ekrana yazar.
+
+ZIPF ÖLÇEĞİ (logaritmik):
+  the 7.73 · make 6.08 · analysis 4.91 · ubiquitous 3.42 · mitochondrion 1.92
+Hazırlık öğrencisi için hedef bant kabaca 2.5 – 4.5.
+
+
+================================================================================
+7. İLK GERÇEK ÇALIŞTIRMA — SONUÇ
+================================================================================
+
+reading-texts/ altındaki 5 dosya (hukuk, psikoloji, sosyoloji,
+antropoloji, eğitim) üzerinde, --skip-existing ile:
+
+  3403 farklı kök bulundu
+   280 özel isim ayıklandı
+  1149 elendi — en sık 2000 kelime içinde
+   210 elendi — işlev kelimesi (edat/bağlaç/zamir/belirteç/yardımcı fiil)
+    36 elendi — aşırı teknik
+  ----
+  1828 kelime KALDI          -> listeler/okuma-metinleri.txt
+    47 phrasal verb bulundu  -> aynı dosyada
+   213 phrasal verb ADAYI    -> listeler/phrasal-adaylari.txt
+                                rapor: rapor-cikarim.json
+
+Zenginleştirme maliyeti: 1828 × ~$0.0003 ≈ 0.55 dolar, ~10 dakika.
+
+
+================================================================================
+8. DOSYALAR
+================================================================================
+
+words/extract/__init__.py
+words/extract/frequency.py       (156) sıklık verisi, wordfreq sarmalayıcı
+words/extract/function_words.py  (186) küratörlü işlev kelimeleri tablosu
+words/extract/lemmatize.py       (250) kök bulma
+words/extract/phrasal.py         (131) phrasal verb yakalama
+words/extract/pipeline.py        (270) süzme hattı
+words/extract/top_english.txt          en sık 5000 kelime (sabit)
+words/management/commands/extract_words.py  (230) komut
+words/test_extract.py            (290) 32 test
+
+requirements.txt                 wordfreq eklendi (isteğe bağlı olarak not düşüldü)
+
+
+================================================================================
+9. SONRAKİ ADIMLAR
+================================================================================
+
+[1] Çıkan listeyi GÖZDEN GEÇİR. 1828 kelimenin hepsi gerekli değil;
+    --limit ile partilere bölmek ve her partiyi çalıştırmadan önce
+    listeye bakmak KELIME-HATTI-DEVAM.txt §11-[3]'teki öneriyle uyumlu.
+
+[2] Phrasal adaylarını süz. 213 adayın çoğu gürültü ama içinde gerçek
+    olanlar var; seçilenler KURATORLU kümesine eklenince bir daha
+    aday listesine düşmezler.
+
+[3] Kendi metinlerini ver. Komut herhangi bir .txt klasörüyle çalışıyor;
+    ODTÜ/Bilkent/İTÜ listeleri düz metin hâline getirilebilirse onlar da
+    aynı hattan geçebilir.
+
+[4] İşlev kelimeleri tablosunu Expression hattına bağla. Şu an eleniyor
+    ve rapora düşüyorlar; Expression hattı yazıldığında bu küme onun
+    doğrudan girdisi olur.
+
+[5] MİGRATION GEREKMİYOR — bu komut veritabanına yazmıyor, yalnızca
+    okuyor (--skip-existing için).
+
+================================================================================
+10. TEK KOMUT — build_vocab
+================================================================================
+
+Süzme ve zenginleştirme ayrı komutlardı; `build_vocab` ikisini sırayla
+çalıştırıyor, arada YEDEK alıyor ve sonunda küratörlü tabloları
+uyguluyor. Yeni bir şey yapmıyor — sırayı ve güvenlik adımlarını
+hatırlamayı bırakıyor.
+
+    metin.txt → [1] extract_words → liste.txt → [2] enrich_words → DB
+                                                 + yedek + seed komutları
+
+TEMEL KULLANIM
+
+    # Önce her zaman: ne olacağını gör (model çağrılır, DB'ye yazılmaz)
+    python manage.py build_vocab --input metinlerim.txt --dry-run
+
+    # Gerçekten yaz
+    python manage.py build_vocab --input metinlerim.txt --limit 200
+
+    # Yalnızca süz, listeyi elden geçireceğim
+    python manage.py build_vocab --input metinlerim.txt --extract-only
+
+    # Elden geçmiş listeyi yaz
+    python manage.py build_vocab --enrich-only --list listeler/elden-gecmis.txt
+
+    # Klasördeki bütün metinler
+    python manage.py build_vocab --dir metinlerim/
+
+AYARLAR
+    --top-skip N    En sık N kelime atlanır (varsayılan 2000; 1000 dersen
+                    daha çok kelime geçer)
+    --min-zipf X    Teknik terim eşiği (varsayılan 1.8)
+    --limit N       Bu partide en fazla N kelime
+    --workers N     Paralel model isteği
+    --no-backup     Yedek alma (önerilmez)
+
+Her çalıştırma şunları bırakıyor:
+    listeler/auto-TARIH.txt              süzülmüş kelimeler
+    listeler/auto-TARIH-phrasal-aday.txt phrasal adaylar
+    rapor-TARIH.json                     ayrıntılı rapor
+    db.sqlite3.oncesi-TARIH              yazmadan önceki yedek
+
+PARTİ HÂLİNDE İLERLE. Bin kelimeyi tek seferde yazmak, prompt'ta bir
+sorun varsa bin bozuk kaydı aynı anda üretmek demek. 200'lük partiler
+ve her partiden sonra rapora bakmak.
+
+
+================================================================================
+11. MODEL KALİTESİ — 12 EYLÜL DEĞİŞİKLİKLERİ
+================================================================================
+
+Efe'nin gerçek çıktıda gördüğü iki sorun düzeltildi.
+
+SORUN 1 — MODEL FAZLA ANLAM ÜRETİYOR
+------------------------------------
+Ürettiği ikinci anlam çoğu zaman birincinin başka sözcüklerle yazılmış
+hâli ("titiz, özenli" / "ayrıntıya önem veren"). Sözlüğe neredeyse aynı
+iki satır giriyor, öğrenci ikisini ayrı ayrı öğrenmeye çalışıyor.
+
+Yapılanlar:
+
+  a) EN_COK_ANLAM 3 → 2.
+
+  b) Örtüşen ikinci anlam artık ATILIYOR (önce yalnızca uyarıydı).
+     Rapor kodu: `yakin_anlam`.
+
+  c) YENİ KURAL — AYNI EŞ DİZİMİ PAYLAŞAN İKİ ANLAM TEK ANLAMDIR.
+     Rapor kodu: `ayni_baglam`.
+     Prompt'un kendi ölçütü buydu ("iki ayrı anlam ancak FARKLI
+     collocation'larla kullanılıyorsa vardır") ama ölçülmüyordu.
+     `bank`ın iki anlamı hiçbir eş dizimi paylaşmaz (open a bank account /
+     the river bank); aynı anlamın iki yazılışı ise hepsini paylaşır.
+
+  d) Prompt yeniden yazıldı: "VARSAYILAN TEK ANLAMDIR. İkinci anlam bir
+     ödül değil, bir istisnadır." İki test verildi (yerine koyma testi +
+     eş dizim ayrımı) ve modele bu testlerin KODLA DA uygulandığı
+     söylendi — geçemeyen ikinci anlam atılıyor, üretmek zaman kaybı.
+
+SORUN 2 — TÜRKÇE KARŞILIKLAR ANLAŞILMIYOR
+-----------------------------------------
+Gerçek örnek: perspicacious → "sezgi güçlü, anlayışlı". Doğrusu
+"sezgisi güçlü". Türkçede isim+sıfat birleşiğinde ilk öğe iyelik eki
+alır; ek düşünce ortaya Türkçe olmayan bir dizi çıkıyor.
+
+Efe'nin koyduğu ölçüt prompt'a başlık olarak girdi:
+
+    ÖRNEK CÜMLEYİ OKUMAYAN BİRİ ANLAYABİLMELİ.
+
+Yapılanlar:
+
+  a) Prompt'a Türkçe kalitesi bölümü: iyelik eki kuralı ve örnekleri
+     ("sezgisi güçlü", "hafızası zayıf", "eli açık", "aklı başında"),
+     tür testi (sıfat bir ismin önüne konabilmeli, isim özne olabilmeli,
+     fiil mastar olmalı, zarf fiili niteleyebilmeli), "tek iyi karşılık
+     üç yarım karşılıktan iyidir".
+
+  b) Yeni denetimler (hepsi UYARI, hata değil):
+     `turkce_tamlama`     iyelik eki düşmüş birleşik sıfat
+     `karsilik_tanim`     "ve / veya / ya da / gibi / için" geçiyor
+     `karsilik_uzun`      5 kelimeden uzun
+     `karsilik_ingilizce` karşılık, İngilizce kelimenin kendisi
+
+NEDEN HATA DEĞİL UYARI: Türkçe biçimbilimi kuralla kesin çözülemiyor.
+"sezgi" (ek yok) ile "eli" (el+i) yazım olarak ayırt edilemez — ikisi de
+ünlüyle biter. Yanlışlıkla sağlam veri silmektense rapora düşürüp göze
+bırakmak doğru. Asıl düzeltme prompt tarafında; denetim ikinci savunma.
+`BIRLESIK_SIFAT_SONLARI` listesine yalnızca iyeliksiz kullanımı
+neredeyse hiç olmayan sıfatlar alındı ki yanlış alarm az olsun.
+
+DENETİM KATMANININ ARTIK BİRİM TESTİ VAR
+----------------------------------------
+words/test_enrich_checks.py — 14 test. Önce hiç yoktu; katman gerçek
+listeler çalıştırılıp raporlara bakılarak geliştirilmişti. O yöntem işe
+yaradı ama her denemede model çağrısı gerektiriyor ve bir kuralın
+sessizce gevşediğini göstermiyor.
+
+!! BU DEĞİŞİKLİKLER GERÇEK MODELLE DENENMEDİ !!
+OpenRouter, Claude'un çalıştığı ortamlardan ağ politikası gereği
+erişilemiyor (KELIME-HATTI-DEVAM.txt §14). Denetim katmanı uydurma
+cevaplarla test edildi ve çalışıyor; prompt değişikliklerinin
+gpt-oss-120b üzerindeki etkisini SEN ölçmelisin. Aşağıdaki bölüm bunun
+için.
+
+
+================================================================================
+12. PRATİK DÖNGÜSÜ — BEN YOKKEN NASIL İLERLERSİN
+================================================================================
+
+ADIM 1 — KENDİ YARGILAYABİLECEĞİN 30 KELİME SEÇ
+
+Zor ve senin bildiğin kelimeler olsun; karşılığın doğru olup olmadığına
+karar verebilmelisin. `perspicacious` gibi. Bir dosyaya yaz:
+
+    listeler/deneme.txt
+
+ADIM 2 — KURU ÇALIŞTIR
+
+    python manage.py build_vocab --enrich-only \
+        --list listeler/deneme.txt --dry-run
+
+Veritabanına hiçbir şey yazılmaz, rapor çıkar.
+
+ADIM 3 — RAPORU SAY, OKUMA
+
+Önce hangi uyarıdan kaç tane olduğuna bak:
+
+    python - <<'EOF'
+    import json, collections
+    r = json.load(open("rapor-EN-SON.json", encoding="utf-8"))
+    sayac = collections.Counter()
+    for kayit in r.get("kelimeler", r if isinstance(r, list) else []):
+        for sorun in kayit.get("sorunlar", []):
+            sayac[sorun["kod"]] += 1
+    for kod, adet in sayac.most_common():
+        print(f"{adet:>4}  {kod}")
+    EOF
+
+Bakman gerekenler, önem sırasıyla:
+
+    turkce_tamlama      Türkçe bozuk. 30 kelimede 3'ten fazlaysa prompt
+                        hâlâ yetersiz.
+    karsilik_tanim      Madde başı yerine tanım yazmış.
+    karsilik_uzun       Aynı şeyin başka işareti.
+    yakin_anlam         İkinci anlam atıldı — sayı yüksekse model hâlâ
+                        anlam şişiriyor ama KOD YAKALIYOR, sorun değil.
+    ayni_baglam         Aynısı, eş dizim üzerinden.
+    anlam_yok           Ciddi: hiç geçerli anlam üretilememiş.
+    gecersiz_kok        Aile kökü reddedildi.
+
+ADIM 4 — GÖZLE BAK
+
+Sayılar iyi görünse bile 10 kelimenin karşılığını kendin oku. Ölçüt tek:
+cümleye bakmadan anlıyor musun? Anlamıyorsan kural eksik demektir.
+
+ADIM 5 — AYNI LİSTEYİ İKİNCİ KEZ ÇALIŞTIR
+
+    python manage.py build_vocab --enrich-only \
+        --list listeler/deneme.txt --dry-run
+
+Çıkan anlamlar birinciyle büyük ölçüde aynı olmalı. Değilse model
+kararsız demektir ve prompt daha çok kısıt istiyor. (§8-[7]'deki bug tam
+olarak "aynı listeyi iki kez çalıştır" fikriyle bulunmuştu.)
+
+ADIM 6 — PROMPT'U AYARLA
+
+Düzeltmeler words/enrich/prompt.py içinde, `meaning_tr` ve `meanings`
+başlıkları altında. Kural yazarken tek ölçüt: ÖLÇÜLEBİLİR Mİ?
+"iyi Türkçe yaz" denetlenemez; "isim+sıfat birleşiğinde ilk öğe iyelik
+eki alır" denetlenebilir ve örnek verilebilir.
+
+Yerel deneme için Ollama + Qwen3-30B-A3B önerisi hâlâ geçerli
+(KELIME-HATTI-DEVAM.txt §3): yüzlerce deneme bedava ve rate-limit'siz,
+prompt oturunca gerçek liste API'de döner.
+
+ADIM 7 — GERÇEKTEN YAZ
+
+    python manage.py build_vocab --enrich-only \
+        --list listeler/deneme.txt
+
+Sonra 200'lük partilerle asıl listeye geç:
+
+    python manage.py build_vocab --input metinlerim.txt --limit 200
+
+Her partiden sonra ADIM 3'ü tekrarla. Rapor bozulmaya başlarsa dur —
+yedek `db.sqlite3.oncesi-TARIH` olarak duruyor.
+
+
+================================================================================
+13. PROMPT ÖLÇÜMÜ — test_batch ve 40 KELİMELİK LİSTE
+================================================================================
+
+Prompt'u değiştirip "daha iyi oldu mu" diye bakmak, rastgele bir liste
+çalıştırıp çıktıyı okumakla ölçülemez: hangi kelimenin ne vermesi
+gerektiğini bilmiyorsan, aldığın cevabın doğru olup olmadığını da
+bilemezsin.
+
+Bu yüzden 40 kelimelik liste BEKLENTİLERİYLE BİRLİKTE yazıldı
+(words/enrich/deneme_listesi.py). Her kelimenin hangi aileye girmesi ve
+kaç anlam üretmesi gerektiği önceden belli.
+
+    python manage.py test_batch --write      # listeyi üret
+    python manage.py build_vocab --enrich-only \
+        --list listeler/test-40.txt --dry-run    # önce kuru
+    python manage.py build_vocab --enrich-only \
+        --list listeler/test-40.txt              # sonra gerçek
+    python manage.py test_batch              # puanla
+    python manage.py test_batch --only-fail  # yalnızca sorunlular
+    python manage.py test_batch --clean      # baştan denemek için sil
+
+BEŞ AMAÇ, 40 SATIR
+
+  A (10) MEVCUT AİLEYE BAĞLANMALI
+         decisively, misinterpret, unrelated, sensitivity, possessive,
+         unharmed, inconsiderate, misbehave, reframe, progressive
+         Hepsi veritabanında zaten olan bir aileye katılmalı. "Anlamı
+         koruyan önek ailede kalır" kuralı (§7-KARAR 1) burada ölçülüyor:
+         mis-, un-, in- ailede kalmalı. `reframe` ayrıca `framework`ün
+         AYRI kalıp kalmadığını sınıyor.
+
+  B  (8) KENDİ BAŞINA KALMALI
+         lucid, arduous, candid, cogent, prudent, salient, tacit, austere
+         Hiçbiri mevcut bir aileye bağlanmamalı. Modelin var olmayan kök
+         uydurma eğilimi burada görünür: arduous -> "ardu",
+         salient -> "sal" olursa kural tutmuyor demektir.
+
+  C (12) KENDİ ARALARINDA AİLE KURMALI — dört grup
+         advocate(n) + advocate(v) + advocacy
+         cohere + coherent + coherence
+         substance + substantial + substantiate
+         inevitable + inevitably + inevitability
+         Listedeki sıra BİLEREK karışık: aile kurma, kelimelerin arka
+         arkaya gelmesine bağlı olmamalı. `advocate` iki satır — çift
+         türlü kelime yolu da ölçülüyor.
+
+  D  (5) GERÇEKTEN İKİ ANLAMLI — İKİ anlam beklenir
+         capital (sermaye / başkent), draft (taslak / hava akımı),
+         plot (olay örgüsü / arsa), stake (pay / kazık),
+         sanction (yaptırım / onay — iki anlamı neredeyse zıt)
+
+  E  (5) TEK ANLAMLI, TUZAK — TEK anlam beklenir
+         diligent, plausible, inherent, scrutiny, obsolete
+         Model bunlarda ikinci anlam üretmeye meyilli ama ürettiği hep
+         birincinin başka sözcüklerle yazılmış hâli. İkinci anlam
+         çıkıyorsa §11'deki yeni kurallar tutmamış demektir.
+         inherent ve scrutiny ayrıca kök uydurma tuzağı
+         ("herit", "scrutin" OLMAZ).
+
+KOMUT ÜÇ ŞEY ÖLÇÜYOR
+
+  AİLE    Doğru aileye girdi mi? C grubunda ayrıca "aynı aileye düşmesi
+          beklenenler tek ailede mi" diye ayrı bir bölüm var.
+  ANLAM   Beklenen sayıda anlam üretildi mi? Özet, anlam ŞİŞİRME
+          (E grubunda 2 anlam) ile anlam KAÇIRMA (D grubunda 1 anlam)
+          durumlarını ayrı ayrı sayıyor.
+  TÜRKÇE  Veritabanına yazılmış her karşılık, Türkçe denetiminden
+          yeniden geçiriliyor. Yazma anında bunlar uyarı olduğu için
+          kayıt yine de giriyor; burada ne girdiğine bakılıyor.
+
+BEKLENEN KÖK NEDEN KÜME: Bazı kelimede birden çok makul kök var
+(`scrutiny` için hem "scrutiny" hem "scrutinise"). Tek doğru dayatmak
+modeli haksız yere başarısız gösterirdi.
+
+TOPLAM PUAN BİR NOT DEĞİL. Prompt'u değiştirip tekrar çalıştıracaksın;
+bakılacak şey sayının hangi yöne gittiği. Aradaki farkı görebilmek için
+her denemeden önce `--clean`.
+
+
+================================================================================
+14. BU OTURUMDA DÜZELTİLEN İKİ SESSİZ HATA
+================================================================================
+
+[1] LİSTEDE SATIR SONU YORUMU TÜRE YAPIŞIYORDU
+    enrich_words tam satır yorumunu (`# ...`) atlıyordu ama satır
+    SONUNDAKİNİ atlamıyordu:
+        "decisively:adverb   # DB: decide"
+        -> pos = "adverb   # db: decide"
+    Bu tür modele ipucu olarak gidiyor, şemadaki Literal'a uymuyor ve
+    kayıt çöpe gidiyordu — hata vermeden, kelime "üretilemedi" gibi
+    görünerek. Listeyi elle gözden geçirirken satır sonuna not düşmek en
+    doğal şey; biçim buna dayanıklı olmalı. Düzeltildi, testi var.
+
+[2] RAPORDAKİ TÜRKÇE ÖNERİSİ YANLIŞTI
+    `turkce_tamlama` uyarısı düzeltme önerirken "sezgisı güçlü"
+    diyordu — ünlü uyumu yok. Kendi söylediği şeyi yapamayan bir rapor
+    okunmayı bırakır. Üç kural eklendi: ünlü uyumu, ünsüz yumuşaması
+    (odak -> odağı), ünlü düşmesi (akıl -> aklı, sayılı bir tablo).
+    Testi var.
+

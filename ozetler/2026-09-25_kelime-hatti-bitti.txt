@@ -1,0 +1,27 @@
+KELİME HATTI TAMAMLANDI — 25 Eylül 2026
+
+VERİTABANI (db.sqlite3)
+- 16.189 kelime · 4.924 aile · 19.828 anlam · 91.480 örnek cümle (+ eş dizimler, kalıplar, çekimler, bağlar)
+- 295 ifade (21 işlev grubu) — ayrı bölüm.
+- Kaynak: 17 PDF'ten 5.572 tohum + 1.769 temel kelime + ilk parti; aile genişletmesiyle 17.257 aday,
+  1.067'si hat tarafından reddedildi (çekim, olmayan anlam, kontrol reddi).
+
+KALİTE
+- Her partide Claude yeni kelimelerin TAMAMINI okudu (toplam ~16.000). Bulunan sorun oranı parti başına ~%0.5–1.
+- Hepsi düzeltildi: words/duzeltmeler/d_2026_09_25.py (uygula … uygula_7). Tekrar çalıştırmak güvenli.
+- Düzeltme türleri: eksik ana anlam eklendi (benefit, blow, charge, bind, depressed…), hassas/argo/küfür anlamlar
+  silindi (Efe'nin kuralı), tekilin çoğulu olan kayıtlar silindi, özel isim büyük harfleri (Arap, Çin, Nuh).
+- Efe kararı: "gay" tamamen silindi.
+- Kod düzeltmeleri: duygu sıfatları (confused…), leapt/dreamt biçimleri, bitişik Türkçe birleşik kelimeler,
+  düzensiz çoğullar, kontrolcünün çoğul reddi, hassas anlam süzgeci. 776 test geçiyor.
+
+MALİYET
+- Toplam ~$30 civarı (aile üretimi ~$2.1 + anlam/kontrol ~$1.6 / 1.000 kelime).
+
+YEDEKLER
+- db.sqlite3.yedek-parti-N-oncesi ve -duzeltme-oncesi (N=2…7). İhtiyaç kalmayınca silinebilir.
+
+SONRAKİ İŞLER (öneri)
+- Uygulamayı gözle gezmek (Tüm Kelimeler, aile görünümü, arama).
+- Çalışma (quiz/tekrar) sistemini ifade listesine uyarlamak.
+- Canlıya almadan önce yedek dosyaları temizlemek.

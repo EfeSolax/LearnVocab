@@ -1,0 +1,49 @@
+LEARNVOCAB — PDF PARTİSİ 1 (300 tohum) · SONUÇ
+Yazan: Claude · 24 Eylül
+
+1. NE YAPILDI
+- listeler/pdf-parti-1.txt: 17 PDF'ten, en az 10 kez + en az 2 kitapta geçen
+  kelimelerin EN SIK 300'ü ("para" çıkarıldı: "Para. 3" atıfları).
+- ara-depo-pdf-1: 300 tohum -> 285 aile -> 1.124 kelime (katsayı ~3.75).
+  8 aile "incelenecek" (yazılmadı).
+- Anlam + kontrol: 1.028 kelime yazıldı, 43 reddedildi.
+- VERİTABANI (db.sqlite3): 275 aile · 1.028 kelime · 1.284 anlam ·
+  5.872 cümle · 2.260 eş dizim · 633 bağ.
+
+2. KALİTE (Claude hakem, 1.028 kelimenin tamamı okundu)
+- Kesin yanlış 3 (~%0.3): dishonorable "aşağılayıcı", smell (isim) yalnızca
+  "koku alma duyusu" (temel "koku" yok), peer "eş" (doğrusu akran).
+- Kısmi 5: deck (fiil) iki anlam birleşik, delight (fiil) yön, spiteful
+  "hasetli", overthrow "devrim", blank (fiil) "karartmak".
+- Yapısal: "children" ayrı kelime girdi (düzensiz çoğul yakalanmadı).
+- Kayıp (yanlış değil): deserted "ıssız", frightened "korkmuş" -mış kuralıyla
+  elendi; amygdala, antimatter anlamsız kaldı.
+
+3. MALİYET
+- Bu parti ~$1.90 (bir kısmı yarıda kesilen çalıştırmalarda boşa gitti,
+  düzeltildi). Temiz hesap ~$16-17 / 10.000 kelime. Anahtar: $4.31/$5.
+
+4. KOD DEĞİŞİKLİKLERİ (499 test geçiyor)
+- aile_doldur: cevaplar geldiği anda depoya yazılıyor (kesilme kayıpsız);
+  --dry-run'da aileler paralel ve öbeksiz işleniyor (hız ~6 kat).
+- depo.anlam_ekle: iş parçacığı kilidi.
+
+5. EFE'NİN KARARI GEREKEN KONULAR
+- Temel kelimeler: aile genişlemesi happy, child, desk, bread, knee gibi
+  A1-A2 kelimeleri de getiriyor. Kalsın mı, aile aşamasında en sık ~1000
+  kelime elensin mi?
+- Ölçek: 5.873 tohumun hepsi ~20.000+ kelime (~$35). 10.000 kelime için
+  ~2.700 tohum yeter (~$17). Limit yükseltilmeli.
+
+6. EK — Efe'nin kararları ve arayüz değişikliği
+- KARAR: Temel kelimeler dahil HER kelime alınacak; 20-30 bin kelime kabul;
+  bütçe gerekirse $40-50. Öncelik kalite (bu işe bir daha para verilmeyecek).
+- Tüm Kelimeler sayfası AİLE listesine çevrildi (words/views.allWords,
+  templates/pages/words/allWords.html): satır = aile; kapalıyken kök kelime +
+  anlamı; açılınca (details/summary) ailenin diğer kelimeleri aynı biçimde.
+  Her kelimede "Listeme ekle"; açık panelin üstünde "Tüm aileyi listeme
+  ekle" (yeni uç: add_family_to_my_list, kapsam=hepsi|kok). Ekledikten sonra
+  aynı aile açık gelir (#family-/#word- + küçük betik). Aramada eşleşen
+  aileler açık gelir. Aynı yazılışın iki türü varsa (burning sıfat/isim)
+  yalnızca o durumda tür küçük harfle gösterilir.
+- 746 test geçiyor (6 yeni).

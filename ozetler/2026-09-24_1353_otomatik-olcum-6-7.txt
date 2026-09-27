@@ -1,0 +1,58 @@
+LEARNVOCAB — OTOMATİK ÖLÇÜM ÖZETİ (Tur 6-7)
+Yazan: Claude · Efe'nin Mac'indeki Linux ortamında kendisi çalıştırdı
+Önceki özet: 2026-09-24_0918_kelime-hatti-durum.txt (§1-§10)
+
+==============================================================================
+1. KISA DURUM
+==============================================================================
+- Hedef (%1'in altı) İKİ AYRI YENİ LİSTEDE yakalandı ya da sınıra geldi:
+    Tur 6 (SURUM_6, ~190 anlam): kesin yanlış yok; 2-3 kısmi sorun
+      (wasteful "harcama eğilimli", tempted "aklı kaymış", competitive'de
+      temel anlam 2. sırada). ~%1.
+    Tur 7 (SURUM_7, ~220 anlam): 1 şüpheli anlam (assure 2. anlam); gerisi
+      sıralama/tekrar (immigration'da "pasaport kontrolü" 1. sırada,
+      washboard aynı anlam iki kez — kodda düzeltildi). ~%0.5.
+- UYARI: Hakem Claude. Her liste ~200 anlam; "200'de 1 hata" ölçümünün
+  güven aralığı geniş (%0-3). Kesin söz için 2-3 liste daha iyi olur.
+- Harcanan: $1.33 / $5 (limitli anahtar).
+
+==============================================================================
+2. MALİYET — ÖNEMLİ BULGULAR
+==============================================================================
+- ÜRETİCİ gerçekte tahminin 9 KATIYDI: LLM_PROVIDER_SORT=throughput onu
+  Cerebras'a ($0.35/$0.75) gönderiyordu. Düzeltme (.env):
+    LLM_PROVIDER_SORT=throughput
+    LLM_PROVIDER_MAX_PRICE=0.05,0.30   (yalnızca üretici modele uygulanır)
+  Sonuç: gerçek fatura = tahmin. Üretici ~$5.4 / 10.000 kelime.
+- KONTROLCÜ: sistem prompt'u önbelleğe (cache_control) alındı. Bir denemede
+  fatura yarıya indi (~$15.5/10k), 7. turda Gemini hız sınırına takıldı ve
+  indirim görünmedi (~$32/10k). Kararsız.
+- TOPLAM tahmini 10.000 kelime: ~$23 (önbellek tutarsa) – ~$40 (tutmazsa).
+  Efe'nin ilk bütçesi ~$20 idi. -> KARAR EFE'NİN (bkz. §4).
+
+==============================================================================
+3. BU TURLARDA YAPILAN KOD DEĞİŞİKLİKLERİ (487 test geçiyor)
+==============================================================================
+- llm.py: gerçek fatura (usage.cost), önbellek tokenı, cache_control,
+  LLM_PROVIDER_MAX_PRICE.
+- anlam.py: parantez temizliği ("oynamak (spor)" -> "oynamak").
+- kontrol.py: missing_meaning, cümlesi kötü anlamın yeniden üretimi,
+  sözlük korumalı silme (kontrol_ret_tartismali), düzeltme sonrası tekrar
+  anlam atma, A1-A2'de tek basamak yukarı seviye.
+- inflect.py: moustache/pyjamas/cosy/sulphur/cheque Amerikan tablosu.
+- deneme.py: SURUM_6, SURUM_7.
+
+==============================================================================
+4. EFE'DEN BEKLENEN KARAR
+==============================================================================
+10.000 kelime maliyeti ~$23-40. Seçenekler:
+  a) Kabul et, gerçek yazıma geç (önbelleği bir tur daha doğrulayarak).
+  b) Kontrol prompt'unu kısalt (tahmini %30-40 tasarruf, kalite riski düşük).
+  c) Kontrolcüyü yalnızca şüpheli kelimelere uygula (daha ucuz, daha riskli).
+
+==============================================================================
+5. KALAN KÜÇÜK SORUNLAR (anlamı değil aileyi etkiliyor)
+==============================================================================
+- overhear -> hear, overthrow -> throw ailesine giriyor ("over-" önekli).
+- tactical/tactics "tact" ailesine girdi (yazım benzerliği).
+- illicit'in kökü "licit" (nadir) seçildi.
