@@ -375,10 +375,11 @@ class AllWordsPaginationTests(TestCase):
         self.assertEqual(response.context["page_obj"].number, 3)
 
     def test_filters_survive_pagination(self):
-        response = self._get(q="word01", level="101", per_page=25)
+        response = self._get(q="word01", level=["B1", "B2"], per_page=25)
         base_qs = response.context["base_qs"]
         self.assertIn("q=word01", base_qs)
-        self.assertIn("level=101", base_qs)
+        self.assertIn("level=B1", base_qs)   # çoklu seçim korunur (25 Eylül)
+        self.assertIn("level=B2", base_qs)
         self.assertIn("per_page=25", base_qs)
         # "page" parametresi bağlantıya şablon tarafından ekleniyor;
         # base_qs'de kendi başına bulunmamalı ("per_page" ile karışmasın)
@@ -1466,3 +1467,250 @@ class PersonalMeaningVisibilityTests(TestCase):
     def test_a_locked_word_explains_why_the_fields_cannot_change(self):
         html = self.client.get(reverse("word_detail", args=[self.kelime.id])).content.decode()
         self.assertIn("ortak sözlüğe ait", html)
+
+
+class AileListesiTests(TestCase):
+    """
+    Tüm Kelimeler aile listesi (24 Eylül): satır = aile; kapalıyken kök ve
+    anlamı, açılınca diğer kelimeler; her kelimenin ve ailenin ekle düğmesi.
+    """
+
+    def setUp(self):
+        make_word("perceive", pos="verb", meaning="algılamak", family="perceive")
+        make_word("perception", meaning="algı", family="perceive")
+        make_word("perceptive", pos="adjective", meaning="sezgili", family="perceive")
+        make_word("vast", pos="adjective", meaning="engin", family="vast")
+        self.user = User.objects.create_user(username="aileci", password="Sifre1234")
+
+    def _html(self, **params):
+        r = self.client.get(reverse("all_words"), params)
+        self.assertEqual(r.status_code, 200)
+        return r, r.content.decode()
+
+    def test_satir_aile_basina_kok_ve_anlami(self):
+        r, html = self._html()
+        self.assertEqual(r.context["paginator"].count, 2)          # 2 aile
+        self.assertEqual(r.context["kelime_sayisi"], 4)
+        perceive = next(s for s in r.context["aileler"] if s["aile"].root == "perceive")
+        self.assertEqual(perceive["kok_anlam"], "algılamak")
+        self.assertEqual([u["w"].text for u in perceive["uyeler"]], ["perception", "perceptive"])
+        self.assertIn("<details", html)
+
+    def test_tek_kelimelik_ailede_acilir_menu_yok(self):
+        r, _ = self._html()
+        vast = next(s for s in r.context["aileler"] if s["aile"].root == "vast")
+        self.assertEqual(vast["uyeler"], [])
+
+    def test_tum_aileyi_listeme_ekle(self):
+        self.client.force_login(self.user)
+        aile = WordFamily.objects.get(root="perceive")
+        r = self.client.post(reverse("add_family_to_my_list", args=[aile.id]),
+                             {"kapsam": "hepsi", "geri": "q=per"})
+        self.assertRedirects(r, reverse("all_words") + f"?q=per#family-{aile.id}",
+                             fetch_redirect_response=False)
+        self.assertEqual(UserWordLink.objects.filter(user=self.user).count(), 3)
+
+    def test_kok_dugmesi_yalnizca_koku_ekler(self):
+        self.client.force_login(self.user)
+        aile = WordFamily.objects.get(root="perceive")
+        self.client.post(reverse("add_family_to_my_list", args=[aile.id]), {"kapsam": "kok"})
+        self.assertEqual(list(UserWordLink.objects.filter(user=self.user)
+                              .values_list("word__text", flat=True)), ["perceive"])
+
+    def test_aile_ekleme_giris_ister(self):
+        aile = WordFamily.objects.get(root="perceive")
+        self.client.post(reverse("add_family_to_my_list", args=[aile.id]), {"kapsam": "hepsi"})
+        self.assertEqual(UserWordLink.objects.count(), 0)
+
+
+class AramaTests(TestCase):
+    """25 Eylül: canlı arama, filtre paneli, bağımsız sonuçlar, öneriler."""
+
+    def setUp(self):
+        make_word("perceive", pos="verb", meaning="algılamak", family="perceive", level="B1")
+        make_word("perception", meaning="algı", family="perceive", level="B2")
+        make_word("perceptive", pos="adjective", meaning="sezgili", family="perceive", level="C1")
+        make_word("vast", pos="adjective", meaning="engin", family="vast", level="B2")
+        self.user = User.objects.create_user(username="arayan", password="Sifre1234")
+
+    def _get(self, **params):
+        r = self.client.get(reverse("all_words"), params)
+        self.assertEqual(r.status_code, 200)
+        return r
+
+    def test_aramada_kelimeler_ailesinden_bagimsiz(self):
+        r = self._get(q="percep")
+        self.assertTrue(r.context["duz"])
+        self.assertEqual([x["w"].text for x in r.context["satirlar"]], ["perception", "perceptive"])
+
+    def test_tam_eslesme_en_ustte(self):
+        make_word("perceiver", meaning="algılayan", family="perceive")
+        r = self._get(q="perceive")
+        self.assertEqual(r.context["satirlar"][0]["w"].text, "perceive")
+
+    def test_filtre_varken_de_bagimsiz_liste(self):
+        r = self._get(level=["B2"])
+        self.assertTrue(r.context["duz"])
+        self.assertEqual(sorted(x["w"].text for x in r.context["satirlar"]), ["perception", "vast"])
+
+    def test_coklu_tur_ve_seviye(self):
+        r = self._get(pos=["verb", "adjective"], level=["B1", "C1"])
+        self.assertEqual(sorted(x["w"].text for x in r.context["satirlar"]),
+                         ["perceive", "perceptive"])
+
+    def test_nerede_aransin_alani(self):
+        self.assertEqual(self._get(q="algı", alan=["kelime"]).context["kelime_sayisi"], 0)
+        self.assertEqual(self._get(q="algı", alan=["anlam"]).context["kelime_sayisi"], 2)
+
+    def test_eski_filter_by_baglantisi_calisir(self):
+        r = self._get(q="engin", filter_by="meaning")
+        self.assertEqual([x["w"].text for x in r.context["satirlar"]], ["vast"])
+
+    def test_partial_yalnizca_sonuc_bolumu(self):
+        r = self._get(q="vast", partial=1)
+        html = r.content.decode()
+        self.assertNotIn("arama-formu", html)
+        self.assertIn("vast", html)
+
+    def test_bulunamayinca_oneri(self):
+        r = self._get(q="percepton")          # yazım hatası
+        self.assertEqual(r.context["kelime_sayisi"], 0)
+        self.assertIn("perception", [x["w"].text for x in r.context["oneriler"]])
+        self.assertContains(r, "Bu aradığınız sanırım bizde yok")
+
+    def test_oneri_turkce_anlamdan(self):
+        r = self._get(q="engim")               # "engin" yanlış yazılmış
+        self.assertIn("vast", [x["w"].text for x in r.context["oneriler"]])
+
+    def test_filtre_yuzunden_bos_ise_soylenir(self):
+        r = self._get(q="vast", level=["A1"])
+        self.assertEqual(r.context["filtresiz_sayi"], 1)
+
+    def test_listeme_ekle_ajax_sayfa_yenilemez(self):
+        self.client.force_login(self.user)
+        w = Word.objects.get(text="vast")
+        r = self.client.get(reverse("add_to_my_list", args=[w.id]), HTTP_X_REQUESTED_WITH="fetch")
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue(r.json()["kayitli"])
+        self.assertIn("remove-from-my-list", r.json()["html"])
+        r = self.client.get(reverse("remove_from_my_list", args=[w.id]), HTTP_X_REQUESTED_WITH="fetch")
+        self.assertFalse(r.json()["kayitli"])
+
+    def test_kok_dugmesi_ekle_ve_cikar_ajax(self):
+        self.client.force_login(self.user)
+        aile = WordFamily.objects.get(root="perceive")
+        url = reverse("add_family_to_my_list", args=[aile.id])
+        d = self.client.post(url, {"kapsam": "kok"}, HTTP_X_REQUESTED_WITH="fetch").json()
+        self.assertIn('value="cikar"', d["kok_html"])
+        self.client.post(url, {"kapsam": "kok", "islem": "cikar"}, HTTP_X_REQUESTED_WITH="fetch")
+        self.assertEqual(UserWordLink.objects.filter(user=self.user).count(), 0)
+
+
+class IfadeTests(TestCase):
+    """25 Eylül: ifadeler — işlev grupları, benzerler, İçerik filtresi, ifade listesi, detay."""
+
+    @classmethod
+    def setUpTestData(cls):
+        from io import StringIO
+        call_command("ifadeleri_yukle", stdout=StringIO())
+        make_word("perceive", pos="verb", meaning="algılamak", family="perceive", level="B1")
+        cls.user = User.objects.create_user(username="ifadeci", password="Sifre1234")
+
+    def _ifade(self, metin):
+        from words.models import Expression
+        return Expression.objects.get(text=metin)
+
+    def test_yukleme_gruplar_ve_ifadeler(self):
+        from words.models import Expression, ExpressionGroup
+        self.assertEqual(ExpressionGroup.objects.count(), 21)
+        self.assertGreaterEqual(Expression.objects.filter(visibility="public").count(), 280)
+        self.assertEqual(self._ifade("however").group.slug, "karsitlik")
+        # "while" iki işlevde: tek kayıt, ek işlevle
+        self.assertTrue(self._ifade("while").extra_groups.exists())
+
+    def test_yukleme_tekrar_calisinca_cogaltmaz(self):
+        from io import StringIO
+        from words.models import Expression
+        once = Expression.objects.count()
+        call_command("ifadeleri_yukle", stdout=StringIO())
+        self.assertEqual(Expression.objects.count(), once)
+
+    def test_ayni_isi_yapanlar_birbirini_gorur(self):
+        benzer = set(self._ifade("but").similar.values_list("text", flat=True))
+        self.assertTrue({"however", "nevertheless", "nonetheless"} <= benzer)
+        self.assertNotIn("but", benzer)
+        self.assertIn("but", set(self._ifade("however").similar.values_list("text", flat=True)))
+
+    def test_her_ifadenin_ornegi_ve_noktalamasi_var(self):
+        from words.models import Expression, ExampleKind
+        for e in Expression.objects.filter(group__isnull=False):
+            self.assertTrue(e.examples.filter(kind=ExampleKind.EXAMPLE).exists(), e.text)
+            self.assertTrue(e.punctuation_note, e.text)
+
+    def test_aramasiz_konu_konu_listelenir(self):
+        r = self.client.get(reverse("all_words"))
+        bloklar = r.context["ifade_bloklari"]
+        self.assertEqual(bloklar[0]["grup"].slug, "karsitlik")
+        self.assertIn("Anlamı tersine çevirenler", r.content.decode())
+        self.assertFalse(r.context["ifade_acik"])          # kelimeler de açıkken kapalı gelir
+        self.assertTrue(r.context["aileler"])
+
+    def test_yalnizca_ifadeler(self):
+        r = self.client.get(reverse("all_words"), {"icerik": "ifade"})
+        self.assertTrue(r.context["ifade_acik"])
+        self.assertFalse(r.context["aileler"])
+        self.assertNotIn("Henüz kelime yok", r.content.decode())
+
+    def test_yalnizca_kelimeler(self):
+        r = self.client.get(reverse("all_words"), {"icerik": "kelime"})
+        self.assertNotIn("ifade_bloklari", r.context)
+        r = self.client.get(reverse("all_words"), {"icerik": "kelime", "q": "however"})
+        self.assertNotIn("ifade_satirlari", r.context)
+
+    def test_aramada_ifade_bulunur_tam_eslesme_once(self):
+        r = self.client.get(reverse("all_words"), {"q": "however"})
+        self.assertEqual(r.context["ifade_satirlari"][0]["e"].text, "however")
+        self.assertIsNone(r.context.get("oneriler"))
+        self.assertIn("ifade bulundu", r.content.decode())
+        self.assertNotIn("Sonuç yok", r.content.decode())
+
+    def test_anlamda_arama_ifade_bulur(self):
+        r = self.client.get(reverse("all_words"), {"q": "örneğin", "alan": ["anlam"]})
+        self.assertIn("for example", [x["e"].text for x in r.context["ifade_satirlari"]])
+
+    def test_detay_sayfasi(self):
+        e = self._ifade("however")
+        r = self.client.get(reverse("expression_detail", args=[e.id]))
+        self.assertEqual(r.status_code, 200)
+        html = r.content.decode()
+        for parca in ("Noktalama", "Örnek cümleler", "Aynı işi yapan ifadeler", "nevertheless", "Yönü: Karşıtlık"):
+            self.assertIn(parca, html)
+        self.assertTrue(r.context["dogrular"])
+        self.assertTrue(r.context["yanlislar"])
+
+    def test_ifade_listesi_ajax(self):
+        from words.models import UserExpressionLink
+        e = self._ifade("however")
+        self.client.login(username="ifadeci", password="Sifre1234")
+        d = self.client.get(reverse("add_expression_to_my_list", args=[e.id]),
+                            {"boyut": "k"}, HTTP_X_REQUESTED_WITH="fetch").json()
+        self.assertTrue(d["kayitli"])
+        self.assertIn("remove-expression-from-my-list", d["html"])
+        self.assertEqual(UserExpressionLink.objects.filter(user=self.user).count(), 1)
+        self.assertEqual(UserWordLink.objects.filter(user=self.user).count(), 0)   # kelime listesi ayrı
+        self.client.get(reverse("remove_expression_from_my_list", args=[e.id]), HTTP_X_REQUESTED_WITH="fetch")
+        self.assertFalse(UserExpressionLink.objects.filter(user=self.user).exists())
+
+    def test_ifade_listesi_jssiz_geri_doner(self):
+        e = self._ifade("however")
+        self.client.login(username="ifadeci", password="Sifre1234")
+        r = self.client.get(reverse("add_expression_to_my_list", args=[e.id]), {"q": "how"})
+        self.assertRedirects(r, reverse("all_words") + f"?q=how#expr-{e.id}", fetch_redirect_response=False)
+        r = self.client.get(reverse("add_expression_to_my_list", args=[e.id]), {"next": "detay"})
+        self.assertRedirects(r, reverse("expression_detail", args=[e.id]), fetch_redirect_response=False)
+
+    def test_giris_yapmadan_eklenemez(self):
+        e = self._ifade("however")
+        r = self.client.get(reverse("add_expression_to_my_list", args=[e.id]))
+        self.assertEqual(r.status_code, 302)
+        self.assertIn("login", r.url)

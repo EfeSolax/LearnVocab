@@ -36,3 +36,18 @@ rapor*.json
 
 # Oturum ekran goruntuleri
 /Claude outputs/
+
+# Aile hattının ara deposu (manage.py aile_uret / aile_birlestir çıktıları)
+/ara-depo*/
+
+# Silinmek üzere bekletilen dosyalar (Efe elle boşaltacak)
+/_to_delete/
+
+# Türkçe hunspell sözlüğü (manage.py turkce_sozluk_kur indirir, ~38 MB)
+/words/aile/sozluk/
+
+# Kelime çıkarımı için kullanılan kaynak PDF'ler (telifli, ~110 MB)
+/pdfler/
+
+# extract_words'ün ürettiği büyük ham rapor
+/listeler/pdf-kelimeler-rapor.json

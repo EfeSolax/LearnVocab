@@ -68,3 +68,27 @@ typing-inspection==0.4.4
 typing_extensions==4.16.0
 urllib3==2.7.0
 websockets==16.1.1
+
+# --- kelime çıkarma (words/extract, manage.py extract_words) ---
+# İSTEĞE BAĞLI. Kurulu değilse komut words/extract/top_english.txt
+# içindeki 5000 kelimelik sabit listeye düşer ve çalışmaya devam eder,
+# ama kök bulma ile teknik terim eleme belirgin biçimde zayıflar.
+wordfreq
+
+# --- otomatik çekim (words/inflect.py · cekimler, manage.py aile_uret) ---
+# İSTEĞE BAĞLI ama şiddetle önerilir. Kurulu değilse çekimler kurallar +
+# elle yazılmış düzensiz fiil tablosuyla üretilir; çok heceli fiillerde
+# ünsüz ikileme (permit -> permitted, offer -> offered) ve sıfatın -er
+# alıp almadığı kuralla kesin çözülemediği için yanılabilir.
+# wordfreq de aile hattında "bu kelime var mı" denetimi için kullanılıyor;
+# kurulu değilse modelin uydurduğu kelimeler ATILMAZ, yalnızca uyarılır.
+lemminflect
+
+# --- Türkçe yazım denetimi (words/aile/turkce.py, manage.py turkce_sozluk_kur) ---
+# Saf Python hunspell. Kurulu değilse Türkçe yazım denetimi yapılamaz ve
+# aile_doldur bunu başlarken yazar.
+spylls
+
+# --- PDF'ten kelime çıkarma (words/extract/pdf.py, manage.py extract_words) ---
+# PDF metnini okur. Kurulu değilse .pdf dosyaları rapora hata olarak düşer.
+pymupdf

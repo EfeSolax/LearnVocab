@@ -1,0 +1,59 @@
+# LearnVocab — aile hattı ölçüm listesi, 4. sürüm (prompt'ta ve önceki sürümlerde geçmeyen kelimeler)
+# words/aile/deneme.py içinden üretildi; elle düzenleme.
+#
+# python manage.py aile_uret --file listeler/aile-deneme-4.txt --depo ara-depo-deneme-4
+# python manage.py aile_birlestir --depo ara-depo-deneme-4
+# python manage.py aile_olc --surum 4 --depo ara-depo-deneme-4
+
+# A — Tutarlılık
+admiration
+admirable
+employer
+employee
+unemployment
+strengthen
+strength
+respectful
+respectable
+forgiveness
+forgivable
+offensive
+offender
+imaginary
+imaginative
+exhausting
+exhaustion
+# B — Önek
+overlook
+outweigh
+mislead
+unaware
+impatient
+dishonest
+# C — Tek başına
+obsolete
+tedious
+vivid
+shrewd
+reluctant
+# D — Ayrım
+eminent
+imminent
+loose
+lose
+desert
+dessert
+# E — Çekim
+gathering
+warning
+arrangement
+payment
+# F — Uydurma
+useful
+powerful
+doubtful
+fearful
+# G — Amerikan yazımı
+rumour
+honour
+flavour

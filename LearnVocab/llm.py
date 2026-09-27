@@ -99,11 +99,19 @@ class Usage:
     prompt_tokens: int = 0
     completion_tokens: int = 0
     requests: int = 0
+    # OpenRouter'ın FATURALADIĞI tutar (usage.cost). Token x liste fiyatı
+    # hesabı düşünme tokenlarını ve sağlayıcı farklarını kaçırıyor: 5. ölçümde
+    # tahmin ~$0.7, gerçek ~$1.5 idi. 0 ise sağlayıcı bildirmedi.
+    real_cost: float = 0.0
+    cached_tokens: int = 0
+    saglayici: str = ""   # tek istekte cevabı veren sağlayıcı (toplamda anlamsız)
 
     def __iadd__(self, other):
         self.prompt_tokens += other.prompt_tokens
         self.completion_tokens += other.completion_tokens
         self.requests += other.requests
+        self.real_cost += getattr(other, "real_cost", 0.0) or 0.0
+        self.cached_tokens += getattr(other, "cached_tokens", 0) or 0
         return self
 
     @property
@@ -119,7 +127,9 @@ class Usage:
 
     def __str__(self):
         return (f"{self.requests} istek · {self.prompt_tokens:,} girdi + "
-                f"{self.completion_tokens:,} çıktı token · ${self.cost_usd:.4f}")
+                f"{self.completion_tokens:,} çıktı token · ${self.cost_usd:.4f}"
+                + (f" (GERÇEK fatura: ${self.real_cost:.4f})" if self.real_cost else "")
+                + (f" · önbellekten {self.cached_tokens:,} girdi" if self.cached_tokens else ""))
 
 
 @dataclass
@@ -194,7 +204,8 @@ def _hata_sinifi(durum, govde):
 
 
 def chat_json(system, user, schema, *, model=None, temperature=None,
-              max_retries=None, timeout=None):
+              max_retries=None, timeout=None, base_url=None, api_key=None,
+              reasoning=None, sicaklik_gonder=True, onbellek=False, siralama=None):
     """
     Modele bir istek atar ve cevabı `schema` (pydantic modeli) ile doğrular.
 
@@ -203,9 +214,17 @@ def chat_json(system, user, schema, *, model=None, temperature=None,
     kelimeyi "incelenecek" kuyruğuna atabilir. Sessizce yarım veri YAZILMAZ.
 
     Geçici hatalarda (5xx, zaman aşımı, 429) artan bekleme ile tekrar denenir.
+
+    base_url / api_key / reasoning verilirse ayardakilerin yerine geçer: kontrol
+    modeli (LLM_KONTROL_*) başka bir sağlayıcıda ve farklı düşünme
+    derinliğinde çalışabilsin diye.
+
+    sicaklik_gonder=False: temperature HİÇ gönderilmez. GPT-5 gibi düşünen
+    modeller temperature kabul etmiyor; require_parameters açıkken OpenRouter
+    bu yüzden 404 ("No endpoints found") döndürüyor.
     """
-    base_url = (_ayar("LLM_BASE_URL", "") or "").rstrip("/")
-    api_key = _ayar("LLM_API_KEY", "") or ""
+    base_url = (base_url or _ayar("LLM_BASE_URL", "") or "").rstrip("/")
+    api_key = api_key or _ayar("LLM_API_KEY", "") or ""
     model = model or _ayar("LLM_MODEL", "")
 
     if not base_url or not model:
@@ -222,13 +241,24 @@ def chat_json(system, user, schema, *, model=None, temperature=None,
 
     govde = {
         "model": model,
-        "temperature": temperature,
         "max_tokens": int(_ayar("LLM_MAX_TOKENS", 8000)),
         "messages": [
             {"role": "system", "content": system},
             {"role": "user", "content": user},
         ],
     }
+    # onbellek=True: sistem mesajı her istekte AYNI ve uzun (kontrol prompt'u
+    # ~3.000 token). Gemini/Anthropic için açık önbellek işareti; okunan
+    # önbellek tokenı liste fiyatının küçük bir kesriyle faturalanıyor.
+    if onbellek:
+        govde["messages"][0]["content"] = [
+            {"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}]
+
+    if sicaklik_gonder:
+        govde["temperature"] = temperature
+
+    # OpenRouter gerçek faturayı usage.cost olarak döndürsün.
+    govde["usage"] = {"include": True}
 
     if _ayar("LLM_STRICT_SCHEMA", True):
         govde["response_format"] = {
@@ -247,14 +277,14 @@ def chat_json(system, user, schema, *, model=None, temperature=None,
     # faturalanıyor ve süreyi de onlar uzatıyor. Sözlük doldurmak muhakeme
     # gerektiren bir iş değil — şema zaten yapıyı dayatıyor — bu yüzden
     # varsayılan "low". Kalite düşerse "medium" denenebilir.
-    caba = _ayar("LLM_REASONING_EFFORT", "low")
+    caba = reasoning if reasoning is not None else _ayar("LLM_REASONING_EFFORT", "low")
     if caba:
         govde["reasoning"] = {"effort": caba}
 
     # OpenRouter aynı modeli birçok sağlayıcıdan sunuyor ve aralarında 5 kat
     # hız farkı var. Varsayılan yönlendirme ucuzu seçip yavaş olabiliyor.
     saglayici = {}
-    sirala = _ayar("LLM_PROVIDER_SORT", "")
+    sirala = siralama if siralama is not None else _ayar("LLM_PROVIDER_SORT", "")
     if sirala:
         saglayici["sort"] = sirala
 
@@ -263,6 +293,18 @@ def chat_json(system, user, schema, *, model=None, temperature=None,
         # Desteklemeyen bir sağlayıcıya düşünce üst taraftan "Generated JSON
         # does not match the expected schema" hatası geliyor.
         saglayici["require_parameters"] = True
+
+    # Fiyat tavanı (1M token, "girdi,çıktı"): YALNIZCA ana (üretici) model için.
+    # "throughput" tek başına üreticiyi 10 kat pahalı Cerebras'a gönderiyordu;
+    # "price" tek başına en yavaşa. Tavan + throughput = ucuzların en hızlısı.
+    # Kontrol modeli (Gemini, $0.75) tavana takılmasın diye ona uygulanmaz.
+    tavan = _ayar("LLM_PROVIDER_MAX_PRICE", "") or ""
+    if tavan and model == _ayar("LLM_MODEL", ""):
+        try:
+            girdi, cikti = (float(x) for x in tavan.split(","))
+            saglayici["max_price"] = {"prompt": girdi, "completion": cikti}
+        except ValueError:
+            logger.warning("LLM_PROVIDER_MAX_PRICE okunamadı: %r", tavan)
 
     yasakli = [a for a in (_ayar("LLM_PROVIDER_IGNORE", "") or "").split(",") if a.strip()]
     if yasakli:
@@ -385,5 +427,9 @@ def _cozumle(govde, schema):
             prompt_tokens=int(tuketim.get("prompt_tokens", 0) or 0),
             completion_tokens=int(tuketim.get("completion_tokens", 0) or 0),
             requests=1,
+            real_cost=float(tuketim.get("cost", 0) or 0),
+            saglayici=str(govde.get("provider") or ""),
+            cached_tokens=int((tuketim.get("prompt_tokens_details") or {})
+                              .get("cached_tokens", 0) or 0),
         ),
     )

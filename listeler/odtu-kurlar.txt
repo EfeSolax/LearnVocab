@@ -1,0 +1,2328 @@
+# ODTÜ hazırlık kur listeleri (101–501), eski VocabLoaders/ loader'larından çıkarıldı.
+# Tür, eski kayıttaki 'note' alanından; çıkarılamayanlarda tür yok (model seçer).
+# Ham veri (Türkçe anlam, örnek cümle, eş/zıt anlamlılar): listeler/odtu-kurlar.json
+#
+# python manage.py aile_uret --file listeler/odtu-kurlar.txt --limit 200
+
+# 101 · hafta 1
+famous:adjective
+occupation:noun
+scientist:noun
+engineer:noun
+architect:noun
+writer:noun
+director:noun
+business card
+dentist:noun
+neighbor:noun
+favorite:adjective
+novelist:noun
+musician:noun
+businessperson:noun
+
+# 101 · hafta 2
+transportation:noun
+take the tube:phrasal_verb
+walk:verb
+information:noun
+floor:noun
+lawyer:noun
+tall:adjective
+short:adjective
+slim:adjective
+fat:adjective
+good-looking:adjective
+be married:phrasal_verb
+company:noun
+both
+cute:adjective
+grandparents:noun
+entertainment:noun
+station:noun
+play:noun
+movie:noun
+adult:noun
+performance:noun
+perform:verb
+look at:phrasal_verb
+like:verb
+need:verb
+pair of shoes
+still:adverb
+live alone:phrasal_verb
+get a job:phrasal_verb
+hope:verb
+like doing:phrasal_verb
+
+# 101 · hafta 3
+chef:noun
+housewife:noun
+work at the same hospital:phrasal_verb
+next to each other
+go to work together:phrasal_verb
+drive to work:phrasal_verb
+near:preposition
+member:noun
+animal:noun
+pet:noun
+only:adverb
+after:preposition
+before:preposition
+unusual:adjective
+usual:adjective
+speak:verb
+practice:verb
+play chess:phrasal_verb
+palace:noun
+meet:verb
+talk about:phrasal_verb
+invite:verb
+prepare:verb
+bring:verb
+building:noun
+visit:verb
+follow rules:phrasal_verb
+nice:adjective
+view:noun
+far from
+large:adjective
+upstairs:adverb
+downstairs:adverb
+
+# 101 · hafta 4
+attend:verb
+cost:verb
+communicate:verb
+advantage:noun
+disadvantage:noun
+concentrate:verb
+cause:verb
+traffic jam
+passenger:noun
+take care of:phrasal_verb
+education:noun
+go on a vacation:phrasal_verb
+by car
+by the beach
+trip:noun
+island:noun
+do shopping:phrasal_verb
+climb:verb
+exciting:adjective
+fantastic:adjective
+relax:verb
+have fun:phrasal_verb
+fly:verb
+terrible:adjective
+during:preposition
+have a meal:phrasal_verb
+buy souvenirs:phrasal_verb
+tiring:adjective
+curly hair
+like (similar to)
+care about:phrasal_verb
+accident:noun
+hurt:verb
+windy:adjective
+rainy:adjective
+hit:verb
+rest:verb
+feel awful:phrasal_verb
+run away:phrasal_verb
+find:verb
+describe:verb
+blonde hair
+straight hair
+steal:verb
+stop:verb
+bring back:phrasal_verb
+open:adjective
+melt:verb
+temperature:noun
+approximately:adverb
+warm:adjective
+pleasant:adjective
+serve:verb
+guest:noun
+experience:noun
+
+# 101 · hafta 5
+tribe:noun
+hunt:verb
+collect:verb
+various:adjective
+tradition:noun
+immediately:adverb
+record:verb
+dangerous:adjective
+suffer from:phrasal_verb
+die:verb
+divorce:verb
+success:noun
+best-selling:adjective
+do well at:phrasal_verb
+be interested in
+move to:phrasal_verb
+marriage:noun
+try:verb
+save:verb
+rent:verb
+flag:noun
+currency:noun
+culture:noun
+attraction:noun
+visitor:noun
+landmark:noun
+region:noun
+impressive:adjective
+
+# 101 · hafta 6
+village:noun
+wonderful:adjective
+ill:adjective
+primary school
+crowded:adjective
+healthy:adjective
+unhealthy:adjective
+balanced diet
+eating habits
+rich in
+take part in:phrasal_verb
+win:verb
+lose:verb
+decide:verb
+arrive in:phrasal_verb
+cheap:adjective
+expensive:adjective
+go for a walk:phrasal_verb
+return to:phrasal_verb
+allow:verb
+enjoy:verb
+deaf:adjective
+explain:verb
+experience:verb
+take seriously:phrasal_verb
+busy:adjective
+major:adjective
+minor:adjective
+overseas:adverb
+primarily:adverb
+make a choice:phrasal_verb
+prevent:verb
+crime:noun
+protect:verb
+well-known:adjective
+public transportation
+get around:phrasal_verb
+take a break:phrasal_verb
+go sightseeing:phrasal_verb
+monument:noun
+within walking distance
+cemetery:noun
+grave:noun
+complete:verb
+formal:adjective
+informal:adjective
+ordinary:adjective
+be located:phrasal_verb
+
+# 101 · hafta 7
+stage:noun
+common:adjective
+continue:verb
+knowledge:noun
+accept:verb
+change positively:phrasal_verb
+change negatively:phrasal_verb
+dead:adjective
+alive:adjective
+search (noun)
+search (verb):phrasal_verb
+available:adjective
+make a mistake:phrasal_verb
+trust:verb
+upset:adjective
+educational:adjective
+attract:verb
+agree:verb
+raise money:phrasal_verb
+with:preposition
+without:preposition
+by (method)
+advanced:adjective
+safety:noun
+deliver:verb
+restriction:noun
+employment:noun
+harmful:adjective
+at least
+government:noun
+
+# 101 · hafta 8
+mixture:noun
+parade:noun
+annual:adjective
+wildlife park
+huge:adjective
+east:noun
+west:noun
+narrow:adjective
+wide:adjective
+applicant:noun
+apply for:phrasal_verb
+outgoing:adjective
+passionate:adjective
+flexible:adjective
+current:adjective
+experienced:adjective
+be amazed
+variety:noun
+mainly:adverb
+immediate:adjective
+maintain:verb
+excellent:adjective
+creative:adjective
+concept:noun
+supply:verb
+earn money:phrasal_verb
+mean:verb
+celebrate:verb
+believe:verb
+bring luck:phrasal_verb
+show respect:phrasal_verb
+throw away:phrasal_verb
+relative:noun
+reduce:verb
+end:verb
+go on:phrasal_verb
+desert:noun
+live for:phrasal_verb
+grow:verb
+kill:verb
+root:noun
+bus:noun
+coffee:noun
+park:noun
+photo:noun
+pizza:noun
+restaurant:noun
+bank:noun
+camera:noun
+computer:noun
+menu:noun
+hotel:noun
+passport:noun
+phone:noun
+supermarket:noun
+taxi:noun
+university:noun
+repeat:verb
+answer:verb
+ask:verb
+check:verb
+listen to:phrasal_verb
+match:verb
+read:verb
+write:verb
+say:verb
+country:noun
+nationality:noun
+job:noun
+waiter:noun
+waitress:noun
+taxi driver
+singer:noun
+nurse:noun
+police officer
+shop assistant
+artist:noun
+actor:noun
+happy:adjective
+great:adjective
+difficult:adjective
+name:noun
+spell:verb
+address:noun
+key:noun
+laptop:noun
+notebook:noun
+wallet:noun
+thing:noun
+have:verb
+pocket:noun
+know:verb
+beautiful:adjective
+sad:adjective
+small:adjective
+big:adjective
+easy:adjective
+hot:adjective
+cold:adjective
+new:adjective
+old:adjective
+tired:adjective
+young:adjective
+friendly:adjective
+good:adjective
+bad:adjective
+cycling:noun
+different:adjective
+same:adjective
+family:noun
+person:noun
+child:noun
+friend:noun
+competition:noun
+judge:noun
+presenter:noun
+manager:noun
+winner:noun
+bed:noun
+ring:noun
+watch:noun
+perfect:adjective
+important:adjective
+cup:noun
+headphones:noun
+plant:noun
+pen:noun
+pencil:noun
+clothes:noun
+size:noun
+try on:phrasal_verb
+shop:noun
+buy:verb
+like (verb):phrasal_verb
+hate:verb
+love:verb
+weather:noun
+think:verb
+food:noun
+drink:verb
+fruit:noun
+cheese:noun
+chicken:noun
+milk:noun
+fish:noun
+bread:noun
+eat:verb
+finish:verb
+get home:phrasal_verb
+go to bed:phrasal_verb
+go to work:phrasal_verb
+leave home:phrasal_verb
+make dinner:phrasal_verb
+start:verb
+watch tv:phrasal_verb
+check emails:phrasal_verb
+go on social media:phrasal_verb
+make videos:phrasal_verb
+plate:noun
+life:noun
+fire:noun
+ready:adjective
+firefighter:noun
+lake:noun
+river:noun
+wear:verb
+special:adjective
+indoors:adverb
+outdoors:adverb
+travel:verb
+call:verb
+help:verb
+forget:verb
+send:verb
+colleague:noun
+strange:adjective
+read a map:phrasal_verb
+play the piano:phrasal_verb
+remember:verb
+sleep:verb
+dance:verb
+use:verb
+catch:verb
+throw:verb
+swim:verb
+drive:verb
+run:verb
+paint:verb
+sing:verb
+type:verb
+draw:verb
+make a video call:phrasal_verb
+right:adjective
+wrong:adjective
+closed:adjective
+early:adjective
+late:adjective
+have a party:phrasal_verb
+go out:phrasal_verb
+give:verb
+present:noun
+kitchen:noun
+bedroom:noun
+living room
+sofa:noun
+table:noun
+fridge:noun
+cooker:noun
+look for:phrasal_verb
+put:verb
+cinema:noun
+hospital:noun
+library:noun
+museum:noun
+post office
+opposite:preposition
+in front of
+far:adjective
+near:adjective
+buy a ticket:phrasal_verb
+lovely:adjective
+clean:verb
+cook:verb
+do exercise:phrasal_verb
+do nothing:phrasal_verb
+feed:verb
+spend:verb
+wash:verb
+fast:adjective
+slow:adjective
+positive:adjective
+strong:adjective
+weak:adjective
+rich:adjective
+poor:adjective
+retired:adjective
+go away:phrasal_verb
+book:verb
+plan:verb
+change:verb
+stay:verb
+tent:noun
+break:noun
+local people
+play a game:phrasal_verb
+stay in:phrasal_verb
+go online:phrasal_verb
+typical:adjective
+
+# 201 · hafta 1
+work for a company:phrasal_verb
+take the train:phrasal_verb
+grow flowers:phrasal_verb
+fresh vegetables
+have a simple life:phrasal_verb
+generally:adverb
+modern style of life
+have a company:phrasal_verb
+be married to:phrasal_verb
+work as:phrasal_verb
+novel:noun
+
+# 201 · hafta 2
+teach:verb
+carry:verb
+choose:verb
+put on weight:phrasal_verb
+take a shower:phrasal_verb
+take a nap:phrasal_verb
+take one's dog for a walk:phrasal_verb
+wake up:phrasal_verb
+get back home:phrasal_verb
+leisure:noun
+spend time:phrasal_verb
+invent:verb
+compete:verb
+grow up:phrasal_verb
+different from
+similar to
+twin:noun
+popular:adjective
+have a balanced diet:phrasal_verb
+
+# 201 · hafta 3
+communicate with:phrasal_verb
+concentrate on:phrasal_verb
+cause stress:phrasal_verb
+run a company:phrasal_verb
+get married:phrasal_verb
+get divorced:phrasal_verb
+nomad:noun
+forest:noun
+jungle:noun
+look like:phrasal_verb
+especially:adverb
+come from a family:phrasal_verb
+win an award:phrasal_verb
+quick meal
+serve food:phrasal_verb
+get a take-away meal:phrasal_verb
+come together:phrasal_verb
+order:verb
+
+# 201 · hafta 4
+make a film:phrasal_verb
+heavy traffic
+famous for
+visit a museum:phrasal_verb
+eat at a restaurant:phrasal_verb
+own:verb
+share:verb
+
+# 201 · hafta 5
+freedom:noun
+liberty:noun
+build:verb
+gift:noun
+take the elevator:phrasal_verb
+learn about:phrasal_verb
+inherit:verb
+make money:phrasal_verb
+count:verb
+tax:noun
+spend money:phrasal_verb
+complain:verb
+ask for:phrasal_verb
+national:adjective
+traditional:adjective
+become popular:phrasal_verb
+learn to do:phrasal_verb
+oral tradition
+written language
+
+# 201 · hafta 6
+take off:phrasal_verb
+extremely:adverb
+polite:adjective
+plan a trip:phrasal_verb
+mild:adjective
+sound like:phrasal_verb
+smell like:phrasal_verb
+taste like:phrasal_verb
+feel like:phrasal_verb
+
+# 201 · hafta 7
+increase:verb
+have an argument:phrasal_verb
+condition:noun
+produce:verb
+employ:verb
+at the back (of)
+include:verb
+completely:adverb
+try to do:phrasal_verb
+sail:verb
+inform:verb
+be angry about
+remain:verb
+interestingly:adverb
+come in:phrasal_verb
+move forward:phrasal_verb
+move backward:phrasal_verb
+scroll down:phrasal_verb
+scroll up:phrasal_verb
+turn around:phrasal_verb
+turn over:phrasal_verb
+push forward:phrasal_verb
+
+# 201 · hafta 8
+go through:phrasal_verb
+sleep lightly:phrasal_verb
+wake up quickly:phrasal_verb
+breathe:verb
+worry about:phrasal_verb
+use sleeping pills:phrasal_verb
+get (a good night's) sleep:phrasal_verb
+have a sleeping problem:phrasal_verb
+get ill:phrasal_verb
+go on a diet:phrasal_verb
+lose weight:phrasal_verb
+seem:verb
+have a busy life:phrasal_verb
+importance:noun
+affect:verb
+produce food:phrasal_verb
+urban:adjective
+rural:adjective
+agriculture:noun
+farming:noun
+succeed in:phrasal_verb
+memory:noun
+talent:noun
+
+# 301
+nutrition:noun
+work:verb
+stress:noun
+worry:verb
+honest:adjective
+dishonest:adjective
+avoid:verb
+make eye contact:phrasal_verb
+be aware of
+express:verb
+receive:verb
+confuse:verb
+respect:verb
+depend on:phrasal_verb
+reflect:verb
+dominant:adjective
+edible:adjective
+majority:noun
+depth:noun
+shallow:adjective
+except:preposition
+present:adjective
+main:adjective
+marine:adjective
+calm:adjective
+contain:verb
+raw:adjective
+angle:noun
+connect:verb
+device:noun
+difference:noun
+effect:noun
+enemy:noun
+face:verb
+get away:phrasal_verb
+native:noun
+return:verb
+wild:adjective
+content:noun
+reliable:adjective
+unreliable:adjective
+violence:noun
+addiction:noun
+inspire:verb
+fail:verb
+reach:verb
+encourage:verb
+discourage:verb
+pollution:noun
+add:verb
+guide:verb
+greet:verb
+unique:adjective
+pass:verb
+shape:noun
+vary:verb
+decrease:verb
+disappear:verb
+visible:adjective
+invisible:adjective
+exist:verb
+crash:verb
+subject:noun
+solar:adjective
+formation:noun
+dense:adjective
+explode:verb
+create:verb
+expand:verb
+make up:phrasal_verb
+collapse:verb
+suffer:verb
+illness:noun
+victim:noun
+level:noun
+rapidly:adverb
+consume:verb
+multiply:verb
+destroy:verb
+consequence:noun
+nutrient:noun
+absorb:verb
+function:noun
+source:noun
+effectively:adverb
+properly:adverb
+totally:adverb
+actually:adverb
+transport:verb
+require:verb
+plentiful:adjective
+repair:verb
+essential:adjective
+process:noun
+regulate:verb
+replace:verb
+resistance:noun
+either...or:conjunction
+unequal:adjective
+equal:adjective
+spread:verb
+abandon:verb
+commonly:adverb
+increasingly:adverb
+remote:adjective
+tend to:phrasal_verb
+threaten:verb
+invention:noun
+loss:noun
+gap:noun
+deal with:phrasal_verb
+confident:adjective
+damage:verb
+fall behind:phrasal_verb
+violent:adjective
+similar:adjective
+impolite:adjective
+habit:noun
+wise:adjective
+universal:adjective
+standard:adjective
+symbol:noun
+design:verb
+scenery:noun
+harbour:noun
+fortune:noun
+be named:phrasal_verb
+wealthy:adjective
+intelligent:adjective
+mean:adjective
+population:noun
+futuristic:adjective
+affordable:adjective
+unaffordable:adjective
+agricultural:adjective
+religious:adjective
+hold:verb
+be worth
+local:adjective
+regarding:preposition
+advise:verb
+store:verb
+belief:noun
+community:noun
+separate:verb
+worship:verb
+eventually:adverb
+admit:verb
+wonder:verb
+develop:verb
+prove:verb
+possible:adjective
+impossible:adjective
+orbit:verb
+impact:verb
+naturally:adverb
+low:adjective
+digestive:adjective
+nervous:adjective
+lead to:phrasal_verb
+improvement:noun
+lack:noun
+reduction:noun
+alert:adjective
+disrupt:verb
+attention:noun
+efficiency:noun
+inefficiency:noun
+substance:noun
+discharge:verb
+generate:verb
+renewable:adjective
+effort:noun
+set aside:phrasal_verb
+survive:verb
+cultivate:verb
+immature:adjective
+mature:adjective
+range:noun
+discover:verb
+border:noun
+crucial:adjective
+out of date
+view:verb
+occur:verb
+forbid:verb
+up-to-date:adjective
+visualize:verb
+innovation:noun
+utility:noun
+simplify:verb
+convenient:adjective
+introduce:verb
+foundation:noun
+evidence:noun
+indicate:verb
+intake:noun
+be keen on
+fear:verb
+unavailable:adjective
+force:verb
+permission:noun
+ancient:adjective
+link:noun
+founder:noun
+stand for:phrasal_verb
+serve as:phrasal_verb
+breakthrough:noun
+immigrant:noun
+immigrate:verb
+citizen:noun
+unpredictable:adjective
+predictable:adjective
+alarming:adjective
+benefit:verb
+precaution:noun
+satisfactory:adjective
+strict:adjective
+cuisine:noun
+distinct:adjective
+recommend:verb
+protection:noun
+provide:verb
+each other
+look:verb
+sound:verb
+feel:verb
+taste:verb
+
+# 401 · hafta 1
+alter:verb
+approach:verb
+captivity:noun
+attach:verb
+make up (a proportion):phrasal_verb
+determine:verb
+distribution:noun
+extinction:noun
+extinct:adjective
+current:noun
+threat:noun
+solution:noun
+surface:noun
+contribution:noun
+enable:verb
+contribute:verb
+contact:noun
+approve of:phrasal_verb
+alien:adjective
+detect:verb
+carry on:phrasal_verb
+assume:verb
+response:noun
+participate:verb
+competitive:adjective
+assumption:noun
+alike:adjective
+dissatisfaction:noun
+comprise:verb
+rigidity:noun
+compromise:verb
+disillusionment:noun
+eliminate:verb
+bullying:noun
+obsolete:adjective
+found:verb
+take on:phrasal_verb
+predict:verb
+bring up:phrasal_verb
+concentration:noun
+improve:verb
+
+# 401 · hafta 2
+estimate:verb
+labour:noun
+remarkable:adjective
+isolation:noun
+pressure:noun
+intention:noun
+explore:verb
+target:noun
+surround:verb
+entrepreneur:noun
+connection:noun
+take advantage of
+efficient:adjective
+discrimination:noun
+feature:noun
+shortage:noun
+overcrowded:adjective
+make use of
+consider:verb
+emphasis:noun
+emphasize:verb
+destructive:adjective
+boast:verb
+heritage:noun
+
+# 401 · hafta 3
+profound:adjective
+diverse:adjective
+dynasty:noun
+era:noun
+stability:noun
+exquisite:adjective
+significant:adjective
+constitution:noun
+launch:verb
+involved:adjective
+fascinate:verb
+fluent:adjective
+head to:phrasal_verb
+inspiring:adjective
+confusion:noun
+utilize:verb
+promotion:noun
+grant:noun
+expenses:noun
+host:verb
+asset:noun
+motivation:noun
+beyond doubt
+independent:adjective
+regardless of
+consist of:phrasal_verb
+expect:verb
+offer:verb
+consumption:noun
+ingredient:noun
+numerous:adjective
+occasion:noun
+influence:verb
+proper:adjective
+devote:verb
+inventor:noun
+inexperienced:adjective
+entire:adjective
+observation:noun
+observe:verb
+accomplishment:noun
+accomplish:verb
+disagree:verb
+constant:adjective
+previous:adjective
+attempt:noun
+accompany:verb
+individual:noun
+postpone:verb
+courage:noun
+demonstrate:verb
+meticulously:adverb
+frustration:noun
+determined:adjective
+
+# 401 · hafta 4
+exploit:verb
+insult:noun
+personal space
+adopt:verb
+attitude:noun
+appropriately:adverb
+significance:noun
+sensitivity:noun
+common sense
+cause offense
+invade:verb
+keep (adjective):phrasal_verb
+abuse:noun
+initial:adjective
+addictive:adjective
+stimulate:verb
+release:noun
+withdrawal symptom
+addicted:adjective
+deliberately:adverb
+undermine:verb
+purchase:verb
+particularly:adverb
+dramatically:adverb
+contrary:adjective
+effective:adjective
+simultaneously:adverb
+impact:noun
+significantly:adverb
+distinction:noun
+demand:noun
+awareness:noun
+display:verb
+sponsorship:noun
+sponsor:verb
+chance:noun
+endorse:verb
+subtle:adjective
+publicity:noun
+equipment:noun
+profit:noun
+aim:verb
+fund:verb
+
+# 401 · hafta 5
+disorder:noun
+susceptible:adjective
+starve:verb
+obsession:noun
+consistent:adjective
+deny:verb
+evaluate:verb
+get rid of:phrasal_verb
+lack (verb):phrasal_verb
+seek help:phrasal_verb
+diagnose:verb
+blame:verb
+revolutionize:verb
+convenience:noun
+emit:verb
+excessive:adjective
+transmit:verb
+exposure:noun
+trace:noun
+rapid:adjective
+conduct:verb
+interfere with:phrasal_verb
+
+# 401 · hafta 6
+insufficient:adjective
+treatment:noun
+advisable:adjective
+remove:verb
+considerable:adjective
+appropriate:adjective
+considerably:adverb
+leading:adjective
+advance:noun
+improved:adjective
+setting:noun
+interior:adjective
+nonverbal:adjective
+discomfort:noun
+shape:verb
+take place:phrasal_verb
+subject (in an experiment)
+experiment:noun
+additive:noun
+convert:verb
+dependence:noun
+well-being:noun
+judge:verb
+turnover:noun
+run a business:phrasal_verb
+goal:noun
+occupy:verb
+
+# 401 · hafta 7
+prevention:noun
+enforcement:noun
+tendency:noun
+enforce:verb
+tend:verb
+cut down on:phrasal_verb
+unoccupied:adjective
+substantially:adverb
+violation:noun
+substantial:adjective
+violate:verb
+subside:verb
+petty:adjective
+decline:noun
+concerned:adjective
+concern:noun
+sustainable:adjective
+encouragement:noun
+initiative:noun
+process (verb):phrasal_verb
+implement:verb
+implementation:noun
+incredible:adjective
+sort:verb
+transform:verb
+diligence:noun
+value (verb):phrasal_verb
+diligent:adjective
+valuable:adjective
+virtual:adjective
+virtually:adverb
+foundational:adjective
+manage:verb
+interactive:adjective
+interact:verb
+consensus:noun
+interaction:noun
+valid:adjective
+interactively:adverb
+core:adjective
+literacy:noun
+equip:verb
+shift:noun
+aid:verb
+boost:verb
+prize:verb
+contradictory:adjective
+raise:verb
+virtue:noun
+emerge:verb
+rate:verb
+manners:noun
+responsibility:noun
+sense:noun
+rank:verb
+primary:adjective
+countless:adjective
+construct:verb
+fasten:verb
+distort:verb
+distortion:noun
+take for granted
+priority:noun
+exception:noun
+confront:verb
+industrious:adjective
+conscientiousness:noun
+conscientious:adjective
+concerning:preposition
+obedience:noun
+obey:verb
+paramount:adjective
+capable:adjective
+progress:noun
+realize:verb
+intense:adjective
+proportion:noun
+gather:verb
+sufficient:adjective
+training:noun
+turn out:phrasal_verb
+multilingual:adjective
+unrealized:adjective
+complicated:adjective
+complicate:verb
+memorize:verb
+acquire:verb
+deliberate:adjective
+convey:verb
+carry out:phrasal_verb
+resemble:verb
+uniquely:adverb
+peak:noun
+urge:verb
+facilitate:verb
+translate:verb
+ability:noun
+innate:adjective
+capacity:noun
+opportunity:noun
+pattern:noun
+apparently:adverb
+among:preposition
+apart from
+as:preposition
+beforehand:adverb
+hear of/about:phrasal_verb
+even:adverb
+
+# 401
+acquisition:noun
+address:verb
+attribute:noun
+barrier:noun
+expectation:noun
+invest:verb
+investment:noun
+label:verb
+persuade:verb
+precisely:adverb
+redundant:adjective
+reluctant:adjective
+reluctance:noun
+remedy:noun
+substitute:noun
+supply:noun
+in short supply
+voluntary:adjective
+bias:noun
+attribute to:phrasal_verb
+deprive:verb
+encounter:verb
+interfere:verb
+promote:verb
+tackle:verb
+underrepresented:adjective
+advocate:verb
+anonymous:adjective
+ban:verb
+determination:noun
+injury:noun
+innovate:verb
+nomination:noun
+nominate:verb
+oppose:verb
+passion:noun
+recover:verb
+right:noun
+figure out:phrasal_verb
+extensive:adjective
+conclude:verb
+anticipate:verb
+component:noun
+take seriously
+citizenship:noun
+descendant:noun
+frontier:noun
+impose:verb
+persistent:adjective
+alien:noun
+misconduct:noun
+influx:noun
+partially:adverb
+
+# 401 · hafta 2
+access:noun
+goods:noun
+curtail:verb
+instead of
+startling:adjective
+obstacle:noun
+infectious:adjective
+subsidy:noun
+infrastructure:noun
+misunderstand:verb
+ignore:verb
+on purpose
+repeatedly:adverb
+negotiate:verb
+apologize:verb
+intend:verb
+omit:verb
+dreadful:adjective
+presence:noun
+disturb:verb
+prejudiced:adjective
+artificial:adjective
+urgent:adjective
+obtain:verb
+differentiate:verb
+
+# 401 · hafta 3
+engage:verb
+engage in:phrasal_verb
+date back:phrasal_verb
+profoundly:adverb
+internal:adjective
+internally:adverb
+external:adjective
+externally:adverb
+dull:adjective
+fulfill:verb
+fulfilling:adjective
+fulfillment:noun
+underline:verb
+underlying:adjective
+propensity:noun
+productive:adjective
+productivity:noun
+productively:adverb
+arrest:verb
+charge:verb
+accuse:verb
+accusation:noun
+fake:verb
+trace:verb
+genuine:adjective
+delight:noun
+so-called:adjective
+discreetly:adverb
+discreet:adjective
+specialize:verb
+arouse:verb
+ashamed:adjective
+greed:noun
+greedy:adjective
+exploitation:noun
+cheat:verb
+trial:noun
+appear:verb
+excessively:adverb
+manufacture:verb
+manufacturer:noun
+point out:phrasal_verb
+nutritional:adjective
+keen on
+result in:phrasal_verb
+
+# 401 · hafta 4
+nurture:verb
+validity:noun
+amass:verb
+compelling:adjective
+attempt:verb
+mold:verb
+cement:verb
+setback:noun
+burdened:adjective
+burden:verb
+shift:verb
+desire:verb
+abstract:adjective
+curious:adjective
+loop:noun
+instant:adjective
+anticipation:noun
+sensitive:adjective
+enhance:verb
+stimulating:adjective
+stimulus:noun
+exhausting:adjective
+exhausted:adjective
+exhaustion:noun
+adjust:verb
+adjustment:noun
+participation:noun
+alliance:noun
+allies:noun
+prospective:adjective
+view as:phrasal_verb
+inconvenient:adjective
+inconvenience:noun
+reveal:verb
+expansion:noun
+dedicated:adjective
+dedication:noun
+prepare the ground
+extent:noun
+pace:noun
+rely on:phrasal_verb
+compatible:adjective
+recognition:noun
+demanding:adjective
+advancement:noun
+inevitably:adverb
+inevitable:adjective
+aware:adjective
+suspicion:noun
+suspicious:adjective
+distrust:noun
+justifiable:adjective
+justify:verb
+justification:noun
+conscious:adjective
+consciousness:noun
+treat:verb
+intolerance:noun
+tolerance:noun
+tolerant:adjective
+intolerant:adjective
+tolerate:verb
+put up with:phrasal_verb
+prohibit:verb
+prohibition:noun
+react:verb
+reaction:noun
+
+# 401 · hafta 5
+salvage:verb
+sophisticated:adjective
+resourcefulness:noun
+assure:verb
+essence:noun
+naive:adjective
+subject to
+oppression:noun
+controversy:noun
+controversial:adjective
+decency:noun
+decent:adjective
+contract:verb
+constitute:verb
+wage:noun
+legitimate:adjective
+illegitimate:adjective
+signal:verb
+ensure:verb
+necessity:noun
+devastating:adjective
+applicable:adjective
+apply:verb
+struggle:verb
+rule:verb
+gravity:noun
+pull:verb
+extraordinary:adjective
+mystery:noun
+incredibly:adverb
+exert:verb
+use up:phrasal_verb
+confine:verb
+barely:adverb
+progress:verb
+give up:phrasal_verb
+lead:verb
+soar:verb
+exhibit:verb
+admission:noun
+abolish:verb
+worth:adjective
+appeal to:phrasal_verb
+appealing:adjective
+devoted to
+fee:noun
+income:noun
+seek:verb
+commercial:adjective
+
+# 401 · hafta 6
+preserve:verb
+preservation:noun
+well-preserved:adjective
+restore:verb
+restoration:noun
+declare:verb
+sufficiently:adverb
+insufficiently:adverb
+overcome:verb
+transplant:verb
+transplantation:noun
+complications:noun
+fragile:adjective
+crucially:adverb
+retain:verb
+waste disposal
+dispose of:phrasal_verb
+waste:noun
+trash:noun
+garbage:noun
+either ... or
+residential:adjective
+leak:verb
+leakage:noun
+decompose:verb
+reclaim:verb
+be determined by:phrasal_verb
+separate from:phrasal_verb
+motive:noun
+result from:phrasal_verb
+result:noun
+unfulfilled:adjective
+insane:adjective
+insanity:noun
+traits:noun
+ill-treat:verb
+ill-treatment:noun
+torture:verb
+fascinated:adjective
+disguise:verb
+law enforcement
+stereotype:noun
+destruction:noun
+blame for:phrasal_verb
+put the blame on
+deserve:verb
+impulse:noun
+solely:adverb
+sole:adjective
+flourish:verb
+commercially:adverb
+release:verb
+advent:noun
+fierce:adjective
+decline:verb
+consistently:adverb
+inconsistent:adjective
+contemporary:adjective
+prolific:adjective
+striking:adjective
+lasting:adjective
+long-lasting:adjective
+alongside:preposition
+beyond:preposition
+around:preposition
+throughout:preposition
+via:preposition
+within:preposition
+rather:adverb
+
+# 401
+conceive:verb
+conception:noun
+encompass:verb
+conservation:noun
+conserve:verb
+overexploitation:noun
+undergo:verb
+accelerate:verb
+potent:adjective
+induce:verb
+susceptibility:noun
+disruption:noun
+utilization:noun
+transmission:noun
+jeopardize:verb
+jeopardy:noun
+attain:verb
+attainable:adjective
+attainment:noun
+existence:noun
+aspect:noun
+steady:adjective
+contribute to:phrasal_verb
+continuity:noun
+longevity:noun
+inclination:noun
+inclined:adjective
+consistency:noun
+idly:adverb
+stable:adjective
+mutual:adjective
+affectionate:adjective
+affectionately:adverb
+affection:noun
+tensions:noun
+rooted:adjective
+heredity:noun
+curiously:adverb
+curiosity:noun
+independently:adverb
+hereditary:adjective
+instinctive:adjective
+instinctively:adverb
+instinct:noun
+identical:adjective
+substitute:verb
+substitution:noun
+artificially:adverb
+innovative:adjective
+permit:verb
+satisfy:verb
+satisfaction:noun
+relieve:verb
+relief:noun
+strictly:adverb
+censor:verb
+censorship:noun
+detain:verb
+dilemma:noun
+harass:verb
+harassment:noun
+harsh:adjective
+harshly:adverb
+rebellious:adjective
+rebel:verb
+rebellion:noun
+regulations:noun
+sentence:verb
+suppress:verb
+wary:adjective
+appoint:verb
+hardly:adverb
+ruins:noun
+set off:phrasal_verb
+astonished:adjective
+magnificent:adjective
+eruption:noun
+prosperity:noun
+prosperous:adjective
+envision:verb
+revolution:noun
+revolutionary:adjective
+propose:verb
+proposal:noun
+enact:verb
+enactment:noun
+legislation:noun
+embark on:phrasal_verb
+outspoken:adjective
+denounce:verb
+appeal:verb
+derive:verb
+dignity:noun
+disposed:verb
+ethical:adjective
+ethically:adverb
+moral:adjective
+morality:noun
+perplex:verb
+perplexing:adjective
+prolong:verb
+prolonged:adjective
+pursue:verb
+pursuit:noun
+reflection:noun
+resolve:verb
+resolution:noun
+strive:verb
+donor:noun
+donate:verb
+donation:noun
+insight:noun
+manipulate:verb
+manipulation:noun
+modify:verb
+outweigh:verb
+resist:verb
+thorough:adjective
+thoroughly:adverb
+proficient:adjective
+proficiency:noun
+accordingly:adverb
+judgment:noun
+predetermined:adjective
+pioneer:noun
+progression:noun
+descend:verb
+reckless:adjective
+recklessly:adverb
+recklessness:noun
+accurate:adjective
+courageous:adjective
+probability:noun
+rewarding:adjective
+extended:adjective
+catastrophic:adjective
+starvation:noun
+impair:verb
+impaired:adjective
+supplies:noun
+ease:verb
+hazard:noun
+hazardous:adjective
+recur:verb
+massive:adjective
+constraints:noun
+impoverished:adjective
+deterioration:noun
+deteriorate:verb
+bankruptcy:noun
+bankrupt:adjective
+degradation:noun
+diminish:verb
+arid:adjective
+menace:noun
+foremost:adjective
+equivalent:adjective
+measures:noun
+association:noun
+associated:adjective
+absence:noun
+progressive:adjective
+vital:adjective
+mildly:adverb
+persist:verb
+persistence:noun
+purely:adverb
+cure:verb
+integral:adjective
+feature:adjective
+onset:noun
+assist:verb
+inborn:adjective
+literary:adjective
+contemporaries:noun
+fellow:adjective
+entrepreneurial:adjective
+eminence:noun
+brilliance:noun
+adolescence:noun
+contented:adjective
+contentedly:adverb
+graduate-dominated:adjective
+refreshing:adjective
+self-conscious:adjective
+grant:verb
+awe:noun
+broaden the mind:phrasal_verb
+delightful:adjective
+imposition:noun
+implication:noun
+notion:noun
+feasible:adjective
+distressed:adjective
+wisdom:noun
+for the sake of
+antidote:noun
+reliant:adjective
+integrity:noun
+restricted:adjective
+mysterious:adjective
+disappearance:noun
+enviable:adjective
+envious:adjective
+enviably:adverb
+vanish:verb
+apparent:adjective
+hint:verb
+resemblance:noun
+verge
+urge:noun
+except for
+turn down:phrasal_verb
+disposal:noun
+submit:verb
+submission:noun
+prospects:noun
+as regards
+undertaking:noun
+undertake:verb
+minority:noun
+fortunately:adverb
+customary:adjective
+respondent:noun
+conform to:phrasal_verb
+conformity:noun
+conformist:noun
+explicit:adjective
+implicit:adjective
+abide by:phrasal_verb
+prevalent:adjective
+withdraw:verb
+mainstream:adjective
+bizarre:adjective
+phenomenon:noun
+immersion:noun
+cooperation:noun
+intimate:adjective
+confide:verb
+compulsion:noun
+compulsive:adjective
+originate:verb
+neglect:verb
+secretive:adjective
+abuse:verb
+exaggerate:verb
+exaggeration:noun
+obstructive:adjective
+obstruct:verb
+obstruction:noun
+abstain:verb
+intervene:verb
+intervention:noun
+malnutrition:noun
+evolve:verb
+evolution:noun
+circa:preposition
+fluctuations:noun
+fluctuate:verb
+prescription:noun
+prescribe:verb
+appliances:noun
+offense:noun
+offender:noun
+foresee:verb
+penalize:verb
+relentlessly:adverb
+subject to:phrasal_verb
+arbitrary:adjective
+unjustified:adjective
+infliction:noun
+humiliation:noun
+humiliate:verb
+volunteer:verb
+surrender:verb
+intrusion:noun
+conforming:adjective
+conform:verb
+guarantee:verb
+realm:noun
+
+# 501
+absent-minded:adjective
+absorbed by sth
+assertive:adjective
+assertiveness:noun
+be in line with sth
+be into sth:phrasal_verb
+be nuts about sth
+by nature
+click with sb:phrasal_verb
+come across as:phrasal_verb
+commitment:noun
+committed:adjective
+compassionate:adjective
+conceited:adjective
+cutting-edge:adjective
+defensive:adjective
+discretion:noun
+eye-catching:adjective
+forward-looking:adjective
+frank:adjective
+frankness:noun
+get a kick out of sth
+highly strung
+high-spirited:adjective
+humble:adjective
+humility:noun
+inclusive:adjective
+kind-hearted:adjective
+laid-back:adjective
+lifelong:adjective
+like-minded:adjective
+memorabilia:noun
+merciful:adjective
+mercy:noun
+narrow-minded:adjective
+over-the-top:adjective
+overcooked:adjective
+paramedic:noun
+passionate about sth
+resilient:adjective
+say a lot about sb
+self-aware:adjective
+self-centred:adjective
+self-obsessed:adjective
+sincere:adjective
+sincerity:noun
+spontaneity:noun
+spontaneous:adjective
+streetwise:adjective
+strong-willed:adjective
+tactful:adjective
+tactfulness:noun
+thin-skinned:adjective
+tight-fisted:adjective
+tongue-tied:adjective
+tough:adjective
+trustworthy:adjective
+underconfident:adjective
+anxiety-provoking:adjective
+if i'm hearing you correctly
+let me get this straight
+simply put
+so you're saying (that)
+so, what it boils down to is that
+to put it another way
+hand sth down:phrasal_verb
+mechanical drawing
+moulded:adjective
+warrior gene
+cognitive scientist
+conclusively:adverb
+frustratingly:adverb
+grammatical feature
+linguistic relativity
+of vital importance
+research into sth
+subtle distinction
+take on a new identity
+the theory goes that
+there is plenty of evidence that
+clear-out:noun
+come as a shock
+don't have a clue
+evoke precious memories
+fail to realise
+fondest childhood memories
+go missing
+have no choice but to
+hold many memories
+keep an eye on sb/sth
+might as well
+much to my delight
+no matter
+profound influence on
+shabby:adjective
+drive oneself:phrasal_verb
+driving force behind sth
+flash up:phrasal_verb
+midair:noun
+scramble for sth:phrasal_verb
+speed bump
+take sb for a ride
+whatever floats your boat
+bead:noun
+blinded:adjective
+bound for
+bulge:noun
+claim for damage to sth
+disembodied:adjective
+eastbound:adjective
+eastwards:adverb
+fan:verb
+fears over sth
+ineffectual:adjective
+stillness:noun
+thrusting:adjective
+upright rail
+fighting spirit
+fresh-faced:adjective
+hush:verb
+line up:phrasal_verb
+rally:noun
+severe injuries
+what the future holds
+afield:adverb
+build-up:noun
+castaway:noun
+cutback:noun
+debris:noun
+defunct:adjective
+getaway:noun
+knock-on effect
+leave your mark
+loss of gravity
+outbreak:noun
+outcome:noun
+outcry:noun
+outlay:noun
+outlook:noun
+outset:noun
+overcome hurdles
+regretful:adjective
+rodent:noun
+set sth back:phrasal_verb
+shuttle:noun
+space junk
+vastness:noun
+weightlessness:noun
+(there are) no two ways about it
+be in two minds
+be split between
+check sth out:phrasal_verb
+go for sth:phrasal_verb
+have a lot going for
+make a pledge
+on fire
+pin sb down:phrasal_verb
+something to be said for sth
+blindingly obvious
+by the skin of one's teeth
+cut sth fine
+fundamentally flawed
+fundamentally inaccurate
+gravely flawed
+gravely mistaken
+in the strongest terms
+infinitely preferable
+monetary compensation
+suffer inconvenience:phrasal_verb
+to one's disbelief
+unmatchable:adjective
+vastly overrated
+vehemently opposed
+wholly unjustified
+wildly inaccurate
+wildly overrated
+bespoke:adjective
+break out:phrasal_verb
+bricks and mortar (store)
+build up:phrasal_verb
+customer loyalty
+customer service
+e-commerce:noun
+crafty:adjective
+credulous:adjective
+cunning:adjective
+effortlessly:adverb
+eyesore:noun
+fundraiser:noun
+ivy:noun
+launch a business
+livestock:noun
+on the spot
+one of a kind
+pass up:phrasal_verb
+paste sth onto sth:phrasal_verb
+physical store
+price tag
+pride oneself on sth:phrasal_verb
+prized:adjective
+profit margin
+profit-making:adjective
+provide a quote
+sales gimmick
+speechwriter:noun
+spring up:phrasal_verb
+start-up:noun
+tag:noun
+upfront investment
+win over:phrasal_verb
+word-of-mouth:noun
+be taken aback:phrasal_verb
+bewildered:adjective
+coax:verb
+coerce:verb
+connotation:noun
+diner:noun
+distant:adjective
+drive sb insane
+effortless:adjective
+entertained:adjective
+enticing:adjective
+inference:noun
+livid:adjective
+miss out (on):phrasal_verb
+pressure (sb into):phrasal_verb
+prevail upon:phrasal_verb
+reciprocation:noun
+simplistic:adjective
+staggering difference
+trusting:adjective
+unsurprised:adjective
+unsuspecting:adjective
+at the end of the day
+come down (on):phrasal_verb
+meet halfway
+reasonably priced
+the bottom line is
+canvas:noun
+clove of garlic
+cocktail stick
+con:verb
+craft:noun
+crouton:noun
+crumble:verb
+drop of oil
+facelift:noun
+finish sth off:phrasal_verb
+fit of anger
+fluffy:adjective
+food stylist
+glisten with sth:phrasal_verb
+gooey:adjective
+greasy:adjective
+mouldy:adjective
+ooze with sth:phrasal_verb
+pinch of salt
+scalding:adjective
+scoop of ice cream
+slice of lemon
+soggy:adjective
+spoonful of tomato sauce
+tender:adjective
+tired-looking:adjective
+trade secret
+try your hand at sth
+wood varnish
+appetite trigger
+be (all) down to sb/sth
+be about to do sth
+be bombarded with information
+binge:verb
+catastrophic event
+comfort eating
+contradictory evidence
+disastrous incident
+dumpling:noun
+filling meal
+fryer:noun
+give in to sth:phrasal_verb
+head for (a place):phrasal_verb
+hunger pangs
+indulge yourself
+just as well
+kick in:phrasal_verb
+lost cause
+make one's mouth water
+mindless:adjective
+more likely than not
+on full alert
+prompt sb to do sth:phrasal_verb
+rustle up sth:phrasal_verb
+saltiness:noun
+self-control over sth
+set in:phrasal_verb
+sizzle:verb
+snack between meals:phrasal_verb
+sneak into a place:phrasal_verb
+succumb to temptation
+animal husbandry
+assuming that
+be forced into doing sth
+bear fruit
+but for
+command (high prices):phrasal_verb
+common outcome
+dependency on sth
+dietary preferences
+feed on sth:phrasal_verb
+gorge yourself on sth:phrasal_verb
+hive:noun
+in any case
+lend a helping hand
+more often than not
+on condition that
+play (it) safe
+provided that
+scald:verb
+strangle:verb
+wax:noun
+you scratch my back, i'll scratch yours
+budgetary advice
+bulk-size packaging
+confront a problem:phrasal_verb
+feasible option
+food bank
+food poverty
+food waste
+get to the root of the problem
+given the difficulty / urgency of the problem
+i see where you're going with that
+last but not least
+logic underpinning an approach
+reasoning/reason behind sth
+second helping
+you're spot on
+become a thing of the past
+bring sth home to sb
+cutlery:noun
+finger food
+go by the board
+haul sb over the coals
+mind your manners
+rigid rules
+sinking feeling
+slurp your drink:phrasal_verb
+table manners
+when all is said and done
+calorie content
+centrepiece:noun
+décor:noun
+eatery:noun
+food outlet
+fusion:noun
+give sth a wide berth
+i'll give it that
+letdown:noun
+make out (that):phrasal_verb
+value for money
+apply yourself to sth:phrasal_verb
+associate sth with:phrasal_verb
+aversion:noun
+backfire on sb:phrasal_verb
+background music
+be on a steep learning curve
+blankly:adverb
+crossover:noun
+detour:noun
+disaster movie
+epic fantasy
+fairy-tale element
+fantastical:adjective
+gangster movie
+genre:noun
+illuminating:adjective
+kick off:phrasal_verb
+lay out:phrasal_verb
+mundane:adjective
+on a par with
+overall opinion
+period drama
+post-apocalyptic:adjective
+psychological horror
+rom com
+smug:adjective
+superficially:adverb
+traditional animation
+auction house
+disingenuous:adjective
+in point of fact
+numeracy:noun
+on the contrary
+onlooker:noun
+outright:adjective
+oversimplistic:adjective
+patron:noun
+patronage:noun
+pose:verb
+put forward:phrasal_verb
+reiterate:verb
+self-destruct:verb
+shredder:noun
+somewhat:adverb
+subsidise:verb
+take issue with:phrasal_verb
+well-rounded:adjective
+neon:adjective
+oversized:adjective
+pair the same items together:phrasal_verb
+pastel:adjective
+platforms:noun
+polo neck
+puffer jacket
+roll up the sleeves:phrasal_verb
+satin:noun
+scarlet:adjective
+shortish:adjective
+slave to fashion
+somewhere in the region of
+sort of
+sparkly:adjective
+stretchy:adjective
+stuff:noun
+stuff like that
+teeny:adjective
+texture:noun
+timeless:adjective
+untuck the shirt:phrasal_verb
+up and coming
+v-neck:noun
+wide-leg:adjective
+anything but
+bleak:adjective
+customs inspector/officer
+dreamlike:adjective
+fertile imagination
+first-hand experience
+gypsy:noun
+in debt
+in evidence
+lush:adjective
+metalworker:noun
+predominantly:adverb
+self-taught:adjective
+shades of blue
+snarl:verb
+turning point
+vow:noun
+wintry:adjective
+alliteration:noun
+be as busy as a bee
+docile:adjective
+ethereal beauty
+explicitly:adverb
+flutter:verb
+gold-enamelled:adjective
+grumpy:adjective
+herd:noun
+honeyed:adjective
+inanimate object
+kerfuffle:noun
+melodious:adjective
+midsummer:noun
+moth:noun
+one-trick pony
+onomatopoeia:noun
+pearly:adjective
+personification:noun
+playful:adjective
+poetic device
+pulp:noun
+purr:verb
+sensuous:adjective
+serendipity:noun
+simile:noun
+slurp:verb
+take the lion's share:phrasal_verb
+the worm has turned
+treasure:verb
+veil:noun
+vivacious:adjective
+weasel out of sth:phrasal_verb
+creepy:adjective
+deface:verb
+dire:adjective
+easy on the eye
+emerging superpower
+fade away:phrasal_verb
+gimmicky:adjective
+grisly:adjective
+impenetrable:adjective
+jaw-dropping:adjective
+make a point:phrasal_verb
+marble:noun
+mediocre:adjective
+overrated:adjective
+recycled junk
+repurpose:verb
+stick thin
+tongue-in-cheek:adjective
+trashy:adjective
+widespread poverty
+cgi animation
+banquet:noun
+biopic:noun
+burial ground
+captivate:verb
+cater for sb/sth:phrasal_verb

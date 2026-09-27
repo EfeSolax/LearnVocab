@@ -425,6 +425,12 @@ class Meaning(models.Model):
                                  default=Sentiment.NEUTRAL, verbose_name="ton")
     register = models.CharField(max_length=12, choices=Register.choices,
                                 default=Register.NEUTRAL, verbose_name="üslup")
+    # Anlamın kendi seviyesi. Aynı kelimenin anlamları farklı seviyede
+    # olabilir (meet: "tanışmak" A1, "karşılamak (ihtiyacı)" B2). Word.cefr
+    # kelimenin EN KOLAY anlamının seviyesi olarak tutuluyor; seçim ve
+    # çeldirici sorguları onu kullanıyor.
+    cefr = models.CharField(max_length=15, choices=CEFR_CHOICES,
+                            default="Belirtilmemiş", verbose_name="seviye")
     categories = models.ManyToManyField(Category, related_name="meanings", blank=True,
                                         verbose_name="alanlar")
 
@@ -597,6 +603,42 @@ class FalseFriend(models.Model):
         return f"{self.word.text} ≠ {self.turkish_lookalike}"
 
 
+class ExpressionStructure(models.TextChoices):
+    """
+    İfadenin cümledeki dilbilgisel görevi. Noktalama kuralı buna bağlı:
+    "but" (bağlaç) ile "however" (bağlayıcı zarf) aynı anlama gelir ama
+    virgülü farklı kullanılır; "although" (yan cümle) ile "despite" (edat)
+    da öyle — birinden sonra cümle, ötekinden sonra isim gelir.
+    """
+    COORDINATING = "baglac", "bağlaç (iki cümleyi bağlar)"
+    SUBORDINATING = "yan_cumle", "yan cümle bağlacı"
+    LINKING_ADVERB = "cumle_zarfi", "bağlayıcı zarf"
+    PREPOSITION = "edat", "edat (+ isim / -ing)"
+    CORRELATIVE = "cift", "çift bağlaç"
+    PHRASE = "ifade", "kalıp ifade"
+
+
+class ExpressionGroup(models.Model):
+    """
+    İfadenin İŞLEVİ ("yönü"): karşıtlık, ekleme, örnek verme, sonuç…
+    Aynı gruptaki ifadeler birbirinin benzeridir: "but" sayfasında
+    however, nevertheless, nonetheless görünür; öğrenci birinden ötekine
+    atlayarak öğrenir. Tüm Kelimeler'de ifadeler bu başlıklarla sıralanır.
+    """
+
+    slug = models.SlugField(max_length=40, unique=True)
+    name = models.CharField(max_length=60, verbose_name="işlev")          # "Karşıtlık"
+    heading = models.CharField(max_length=120, verbose_name="başlık")     # "Anlamı tersine çevirenler"
+    description = models.CharField(max_length=400, blank=True)
+    sort_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ("sort_order", "name")
+
+    def __str__(self):
+        return self.name
+
+
 class Expression(models.Model):
     """
     Kelime olmayan ama öğrenilen birim: deyim, kalıp ifade, bağlayıcı.
@@ -621,6 +663,20 @@ class Expression(models.Model):
     register = models.CharField(max_length=12, choices=Register.choices,
                                 default=Register.NEUTRAL, verbose_name="üslup")
 
+    # 25 Eylül: bağlayıcı ifadeler (but, however, for example…) için
+    group = models.ForeignKey(ExpressionGroup, on_delete=models.SET_NULL, null=True,
+                              blank=True, related_name="expressions", verbose_name="işlev")
+    # İki işlevi olan ifadeler: "while" hem Zaman (-iken) hem Karşıtlık (oysa)
+    extra_groups = models.ManyToManyField(ExpressionGroup, blank=True,
+                                          related_name="extra_expressions",
+                                          verbose_name="ek işlevler")
+    structure = models.CharField(max_length=12, choices=ExpressionStructure.choices,
+                                 default=ExpressionStructure.PHRASE, verbose_name="yapı")
+    pattern = models.CharField(max_length=120, blank=True, verbose_name="kalıp")  # "although + cümle"
+    punctuation_note = models.TextField(blank=True, verbose_name="noktalama")
+    academic_note = models.CharField(max_length=300, blank=True, verbose_name="akademik kullanım")
+    sort_order = models.PositiveIntegerField(default=0)
+
     categories = models.ManyToManyField(Category, related_name="expressions", blank=True)
     words = models.ManyToManyField(Word, related_name="expressions", blank=True)
 
@@ -638,11 +694,32 @@ class Expression(models.Model):
     def __str__(self):
         return self.text
 
+    @property
+    def similar(self):
+        """Aynı işi yapan ifadeler (aynı işlev grubu), kendisi hariç."""
+        gruplar = [self.group_id] + list(self.extra_groups.values_list("id", flat=True))
+        gruplar = [g for g in gruplar if g]
+        if not gruplar:
+            return Expression.objects.none()
+        return (Expression.objects
+                .filter(models.Q(group_id__in=gruplar) | models.Q(extra_groups__in=gruplar),
+                        visibility="public")
+                .exclude(id=self.id).distinct().order_by("sort_order", "text"))
+
+
+class ExampleKind(models.TextChoices):
+    EXAMPLE = "ornek", "örnek cümle"
+    CORRECT = "dogru", "doğru noktalama"
+    WRONG = "yanlis", "yanlış noktalama"
+
 
 class ExpressionExample(models.Model):
     expression = models.ForeignKey(Expression, on_delete=models.CASCADE,
                                    related_name="examples")
     text = models.CharField(max_length=400)
+    kind = models.CharField(max_length=8, choices=ExampleKind.choices,
+                            default=ExampleKind.EXAMPLE)
+    note = models.CharField(max_length=300, blank=True)   # yanlış ise neden yanlış
     sort_order = models.PositiveIntegerField(default=0)
 
     class Meta:
@@ -721,6 +798,27 @@ class UserExampleSentence(models.Model):
 
     def __str__(self):
         return f"{self.user.username} · {self.sentence[:40]}"
+
+
+class UserExpressionLink(models.Model):
+    """
+    Kullanıcının ifade listesi (kelime listesinden ayrı): ifade bir Word
+    değil, UserWordLink'e giremez. Çalışma istatistikleri kelimedekiyle aynı
+    biçimde; çalışma ekranları sonra buna göre düzenlenecek.
+    """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="expressionLinks")
+    expression = models.ForeignKey(Expression, on_delete=models.CASCADE,
+                                   related_name="userLinks")
+    dateAdded = models.DateTimeField(auto_now_add=True)
+    correctCount = models.IntegerField(default=0)
+    wrongCount = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = ("user", "expression")
+
+    def __str__(self):
+        return f"{self.user.username} <-> {self.expression.text}"
 
 
 class UserWordLink(models.Model):

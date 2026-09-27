@@ -297,8 +297,10 @@ LLM_PROVIDER_SORT = os.environ.get('LLM_PROVIDER_SORT', 'throughput')
 # Katı şema gönderildiğinde zaten yalnızca şemayı destekleyen sağlayıcılara
 # gidiliyor; bu ayar tekrar tekrar hata veren birini elemek için.
 LLM_PROVIDER_IGNORE = os.environ.get('LLM_PROVIDER_IGNORE', '')
+# Üretici için fiyat tavanı, 1M token 'girdi,çıktı' (ör. 0.05,0.30). Boşsa tavan yok.
+LLM_PROVIDER_MAX_PRICE = os.environ.get('LLM_PROVIDER_MAX_PRICE', '')
 
-# Kaç isteğin aynı anda gönderileceği (enrich_words --workers bunu ezer).
+# Kaç isteğin aynı anda gönderileceği (aile_uret --workers bunu ezer).
 # Ağ beklemesi baskın olduğu için paralellik süreyi neredeyse doğrusal
 # kısaltıyor; sağlayıcının dakikalık istek sınırına çarparsan düşür.
 LLM_WORKERS = int(os.environ.get('LLM_WORKERS', '6'))
@@ -307,12 +309,33 @@ LLM_WORKERS = int(os.environ.get('LLM_WORKERS', '6'))
 LLM_PRICE_INPUT = float(os.environ.get('LLM_PRICE_INPUT', '0.03'))
 LLM_PRICE_OUTPUT = float(os.environ.get('LLM_PRICE_OUTPUT', '0.17'))
 
+# Kontrol modeli (aile hattı 3. aşama · words/aile/kontrol.py). Üretici modelin
+# yazdığı anlamları DAHA GÜÇLÜ bir model denetliyor. LLM_KONTROL_MODEL boşsa
+# kontrol aşaması atlanır (komut bunu ekrana yazar). Adres ve anahtar boşsa
+# üretici modelinkiler kullanılır.
+LLM_KONTROL_MODEL = os.environ.get('LLM_KONTROL_MODEL', '')
+LLM_KONTROL_BASE_URL = os.environ.get('LLM_KONTROL_BASE_URL', '') or LLM_BASE_URL
+LLM_KONTROL_API_KEY = os.environ.get('LLM_KONTROL_API_KEY', '') or LLM_API_KEY
+# Kontrol muhakeme gerektiriyor: varsayılan düşünme derinliği "medium".
+LLM_KONTROL_REASONING_EFFORT = os.environ.get('LLM_KONTROL_REASONING_EFFORT', 'low')
+LLM_KONTROL_PRICE_INPUT = float(os.environ.get('LLM_KONTROL_PRICE_INPUT', '0'))
+LLM_KONTROL_PRICE_OUTPUT = float(os.environ.get('LLM_KONTROL_PRICE_OUTPUT', '0'))
+# Gemini'nin 3 kademesi var: flex ($0.375), normal ($0.75), priority ($1.35).
+# "price" -> flex. "throughput" priority'ye gidebiliyordu (24 Eylül).
+LLM_KONTROL_PROVIDER_SORT = os.environ.get('LLM_KONTROL_PROVIDER_SORT', 'price')
+
 
 # Quizler geçici olarak kapalı.
 # Kelime modeli (aile / anlam / çekim) yeniden kurulurken soru üreteçleri
 # eski alan adlarına göre yazılmış durumda. Kod silinmedi; üreteçler yeni
 # yapıya taşınınca bu bayrak True yapılacak.
-QUIZZES_ENABLED = False
+# Çalışma bölümü açık.
+#
+# Bu bayrak, kelime modeli yeniden yazılırken eski soru üreteçleri
+# kırıldığı için kapatılmıştı. Yeni çalışma sistemi (aralıklı tekrar)
+# doğrudan yeni model üzerine kurulu olduğu için bayrak kaldırılabilir;
+# acil durumda bölümü kapatabilmek için şimdilik duruyor.
+QUIZZES_ENABLED = True
 
 TEXT_SUBMISSION_INTERVAL_MINUTES = int(
     os.environ.get('TEXT_SUBMISSION_INTERVAL_MINUTES', '1440')

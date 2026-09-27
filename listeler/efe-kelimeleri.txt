@@ -1,0 +1,243 @@
+# Efe'nin kendi kelime listesi (eski VocabLoaders/mywords.py).
+# Ham veri: listeler/odtu-kurlar.json (seviye: kendi)
+
+# kendi
+abruptly:adverb
+absorption:noun
+abstain:verb
+account for:phrasal_verb
+accumulate:verb
+accumulation:noun
+acknowledge:verb
+acknowledgement:noun
+address:verb
+adept at
+adjacent:adjective
+adjoin:verb
+admonish:verb
+adverse:adjective
+affection:noun
+affluent:adjective
+alleviate:verb
+amaze:verb
+appoint:verb
+appreciate:verb
+approve of:phrasal_verb
+aptitude:noun
+arise:verb
+arrangement:noun
+assess:verb
+assessment:noun
+assist in:phrasal_verb
+astonish:verb
+astonishing:adjective
+astound:verb
+attain:verb
+attribute:noun
+authorize:verb
+award:noun
+board:verb
+burden:noun
+call off:phrasal_verb
+cease:verb
+chief:adjective
+chiefly:adverb
+cognitive:adjective
+coincidence:noun
+come across:phrasal_verb
+commerce:noun
+commodity:noun
+commonness:noun
+compel:verb
+compensate:verb
+compensate for:phrasal_verb
+competence:noun
+competent:adjective
+completion:noun
+conceptual:adjective
+conduct:verb
+confine:verb
+consecutive:adjective
+consent:verb
+conserve:verb
+consistency:noun
+constitute:verb
+constraint:noun
+contract:verb
+cope with:phrasal_verb
+cover up:phrasal_verb
+crave:verb
+criterion:noun
+cumulative:adjective
+curb:verb
+cut down:phrasal_verb
+decaying:adjective
+decline:verb
+delightful:adjective
+depth:noun
+derive from:phrasal_verb
+desirability:noun
+deteriorate:verb
+determination:noun
+detrimental:adjective
+dilemma:noun
+diminish:verb
+dispense with:phrasal_verb
+disputable:adjective
+disregard:verb
+diversely:adverb
+diversity:noun
+drowsy:adjective
+dwindle:verb
+dwindling:adjective
+elderly:adjective
+elevation:noun
+emergence:noun
+endorse:verb
+endure:verb
+entail:verb
+enthusiasm:noun
+enthusiastic about
+eradicate:verb
+escort:verb
+exaggerate:verb
+fade:verb
+fading:adjective
+fallibility:noun
+fatally:adverb
+flagrantly:adverb
+flourish:verb
+fluctuation:noun
+fond of
+foretell:verb
+foster:verb
+fragile:adjective
+framework:noun
+gifted:adjective
+govern:verb
+gradually:adverb
+gratification:noun
+grimly:adverb
+halt:verb
+handicapped:adjective
+hazard:noun
+hinder:verb
+hold back:phrasal_verb
+idle:adjective
+imitation:noun
+impede:verb
+impulse:noun
+impurity:noun
+incentive:noun
+indispensable:adjective
+indispensable to
+induce:verb
+indulge in:phrasal_verb
+infer:verb
+inhibition:noun
+interval:noun
+intricate:adjective
+invade:verb
+keep on:phrasal_verb
+leading:adjective
+legitimacy:noun
+light:noun
+likelihood:noun
+marginal:adjective
+measure:verb
+mechanism:noun
+merit:noun
+metallic:adjective
+modest:adjective
+naive:adjective
+obligatory:adjective
+obstinate:adjective
+occasionally:adverb
+opponent:noun
+oppression:noun
+originate:verb
+outcome:noun
+outlook:noun
+overrule:verb
+peculiarity:noun
+peel:verb
+perceive:verb
+perception:noun
+petty:adjective
+plentiful:adjective
+praise:verb
+precede:verb
+preliminary:adjective
+principal:adjective
+prior:adjective
+progressive:adjective
+prolong:verb
+propensity:noun
+prospect:noun
+prosper:verb
+punctuality:noun
+pursue:verb
+pursuit:noun
+range:noun
+reconcile:verb
+reformer:noun
+refrain from:phrasal_verb
+regard:verb
+regression:noun
+regulatory:adjective
+reject:verb
+relative:adjective
+relatively:adverb
+reproach:verb
+resemble:verb
+resolve:verb
+resourcefulness:noun
+restrain:verb
+retain:verb
+retard:verb
+revoke:verb
+reward:noun
+roughly:adverb
+rumor:noun
+sack:verb
+scarce:adjective
+scarcely:adverb
+schooling:noun
+severely:adverb
+severity:noun
+shrink:verb
+skillful in
+slim:adjective
+spacious:adjective
+stability:noun
+steady:adjective
+steeply:adverb
+stretch:verb
+subsequent:adjective
+subside:verb
+substantial:adjective
+successive:adjective
+superior to
+supplement:verb
+surpass:verb
+surroundings:noun
+take part in:phrasal_verb
+take place:phrasal_verb
+tear up:phrasal_verb
+thrifty:adjective
+trait:noun
+trajectory:noun
+transition:noun
+trivial:adjective
+ultimately:adverb
+unanimous:adjective
+undeniability:noun
+undesirable:adjective
+uneasiness:noun
+unfavorable:adjective
+unmistakable:adjective
+unskillful:adjective
+upbringing:noun
+vague:adjective
+vital:adjective
+voice:verb

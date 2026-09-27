@@ -1,0 +1,59 @@
+# LearnVocab — aile hattı ölçüm listesi, 6. sürüm (prompt'ta ve önceki sürümlerde geçmeyen kelimeler)
+# words/aile/deneme.py içinden üretildi; elle düzenleme.
+#
+# python manage.py aile_uret --file listeler/aile-deneme-6.txt --depo ara-depo-deneme-6
+# python manage.py aile_birlestir --depo ara-depo-deneme-6
+# python manage.py aile_olc --surum 6 --depo ara-depo-deneme-6
+
+# A — Tutarlılık
+exciting
+excitement
+hostility
+hostile
+curiosity
+curious
+persistence
+persistent
+competitive
+competitor
+tempting
+temptation
+inspiring
+inspiration
+frustrating
+frustration
+# B — Önek
+overwhelming
+overhear
+outlive
+disobey
+immature
+inaccessible
+# C — Tek başına
+reckless
+feasible
+brittle
+dubious
+vulnerable
+outspoken
+# D — Ayrım
+discreet
+discrete
+elicit
+illicit
+ensure
+insure
+# E — Çekim
+crossing
+beginning
+swimming
+suffering
+# F — Uydurma
+cheerful
+faithful
+stressful
+wasteful
+# G — Amerikan yazımı
+programme
+grey
+moustache

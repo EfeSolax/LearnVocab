@@ -46,9 +46,33 @@ YER_TUTUCULAR = ("sth", "sb", "something", "somebody", "someone", "one's",
                  "oneself", "+ noun", "+ verb", "+ adj", "doing sth", "to do sth",
                  "...", "[", "]", "(", ")")
 
+# Türkçe karşılıkta en fazla kaç kelime olabilir. Sözlük maddesi başı
+# yazıyoruz, tanım değil.
+KARSILIK_EN_COK_KELIME = 5
+
+# "İsim + sıfat" biçiminde birleşik sıfatların son öğeleri.
+#
+# Türkçede bu yapıda İLK öğe iyelik eki alır: "sezgisi güçlü", "sezgi
+# güçlü" DEĞİL. Model bu eki sık atlıyor ve ortaya, örnek cümleyi
+# okumayan birinin anlayamayacağı bir karşılık çıkıyor.
+#
+# Kuralla kesin ayrım YAPILAMIYOR: "sezgi" ile "eli" (el+i) yazım olarak
+# ayırt edilemez, ikisi de ünlüyle biter. Bu yüzden bu bir HATA değil
+# UYARI — rapora düşüyor, gözle bakılıyor. Listeye yalnızca iyeliksiz
+# kullanımı neredeyse hiç olmayan sıfatlar alındı ki yanlış alarm az olsun.
+BIRLESIK_SIFAT_SONLARI = {
+    "güçlü", "zayıf", "yüksek", "düşük", "geniş", "dar", "sağlam",
+    "keskin", "derin", "kuvvetli", "yerinde", "bozuk", "düzgün",
+    "hızlı", "yavaş", "ağır", "hafif", "zengin", "kısır",
+}
+
+# Karşılıkta geçmemesi gereken bağlaçlar: bunlar tanım işaretidir.
+# "içkin, doğasında olan" doğru; "özünde var olan ve kalıcı olan" tanımdır.
+TANIM_ISARETLERI = (" ve ", " veya ", " ya da ", " ki ", " için ", " gibi ")
+
 CUMLE_EN_AZ_KELIME = 6
 CUMLE_EN_COK_KELIME = 28
-EN_COK_ANLAM = 3
+EN_COK_ANLAM = 2   # 3'tü; bkz. _anlami_denetle üstündeki not
 BEKLENEN_CUMLE = 5
 
 # Kök olamayacak şeyler: bunlar önek, kelime değil. "undermine" ailesinin
@@ -270,7 +294,9 @@ def duzelt_tipografi(metin):
         return metin
     for eski, yeni in TIPOGRAFI.items():
         metin = metin.replace(eski, yeni)
-    return metin
+    # "İ".lower() -> "i̇" (i + birleşen nokta U+0307): "sadeli̇k" gibi görünüp
+    # aramada eşleşmiyor (25 Eylül).
+    return metin.replace("i\u0307", "i").replace("\u0307", "")
 
 
 def _normalize(metin):
@@ -347,6 +373,29 @@ FIIL_ONEKLERI = ("a", "be", "over", "under", "with", "out", "up", "fore",
                  "re", "mis", "off", "in", "up")
 
 
+# İki geçmiş biçimi de yaygın olan fiiller (25 Eylül): "leapt" leap'in biçimi
+# sayılmadığı için leap (fiil) örnek cümleleri "kelime yok" diye elendi.
+_IKI_BICIMLI = {
+    "leap": "leapt|leaped", "dream": "dreamt|dreamed", "burn": "burnt|burned",
+    "learn": "learnt|learned", "spell": "spelt|spelled", "spill": "spilt|spilled",
+    "spoil": "spoilt|spoiled", "smell": "smelt|smelled", "kneel": "knelt|kneeled",
+    "lean": "leant|leaned", "dwell": "dwelt|dwelled", "light": "lit|lighted",
+    "dive": "dove|dived", "speed": "sped|speeded", "shine": "shone|shined",
+    "strive": "strove|striven|strived", "weave": "wove|woven", "wake": "woke|woken",
+    "awake": "awoke|awoken", "hang": "hung|hanged", "prove": "proved|proven",
+    "sew": "sewed|sewn", "mow": "mowed|mown", "swell": "swelled|swollen",
+    "shave": "shaved|shaven", "thrive": "thrived|throve", "bid": "bade|bidden",
+    "tread": "trod|trodden", "slay": "slew|slain", "smite": "smote|smitten",
+    "stride": "strode|stridden", "forsake": "forsook|forsaken", "seek": "sought",
+    "beseech": "besought|beseeched", "sling": "slung", "cling": "clung",
+    "fling": "flung", "sting": "stung", "stink": "stank|stunk", "slink": "slunk",
+    "spit": "spat", "bless": "blest|blessed", "knit": "knitted", "wed": "wedded",
+}
+for _kok, _ek in _IKI_BICIMLI.items():
+    _var = DUZENSIZ_FIILLER.get(_kok, "")
+    _hepsi = [f for f in (_var.split("|") if _var else []) + _ek.split("|") if f]
+    DUZENSIZ_FIILLER[_kok] = "|".join(dict.fromkeys(_hepsi))
+
 def duzensiz_formlar(token):
     """Bir fiilin düzensiz biçimleri; önekli birleşikleri de çözer."""
     token = (token or "").lower()
@@ -397,6 +446,145 @@ def _icerir_mi_esnek(cumle, ifade):
         _token_deseni(p) for p in parcalar
     )
     return re.search(desen, cumle.lower()) is not None
+
+
+# Türkçe ünlü uyumu: iyelik ekinin ünlüsü, gövdenin SON ünlüsüne uyar.
+_IYELIK_UNLUSU = {"a": "ı", "ı": "ı", "o": "u", "u": "u",
+                  "e": "i", "i": "i", "ö": "ü", "ü": "ü"}
+
+
+# Ünsüz yumuşaması: ek alınca sertleşen ünsüzler yumuşar (odak -> odağı).
+# Tek heceli kelimelerde çoğunlukla olmaz (at -> atı, top -> topu).
+_YUMUSAMA = {"k": "ğ", "p": "b", "ç": "c", "t": "d"}
+
+# Ünlü düşmesi: iki heceli bazı kelimeler ek alınca orta ünlüsünü düşürür.
+# Kuralla üretilemiyor (akıl -> aklı ama akım -> akımı), sayılı bir küme.
+_UNLU_DUSENLER = {
+    "akıl": "akl", "fikir": "fikr", "şehir": "şehr", "burun": "burn",
+    "oğul": "oğl", "beyin": "beyn", "göğüs": "göğs", "ağız": "ağz",
+    "karın": "karn", "boyun": "boyn", "omuz": "omz", "gönül": "gönl",
+    "sabır": "sabr", "hüküm": "hükm", "isim": "ism", "resim": "resm",
+    "nesil": "nesl", "asıl": "asl", "vakit": "vakt", "kayıp": "kayb",
+}
+
+
+def _iyelikli_oneri(govde):
+    """
+    Gövdenin 3. tekil iyelikli hâlini üretir — rapordaki öneri için.
+
+    Öneri Türkçe olarak DOĞRU olmalı; "sezgisı" öneren bir rapor kendi
+    söylediği şeyi yapamıyor demektir ve okunmayı bırakır. Üç kural
+    birlikte uygulanıyor: ünlü uyumu, ünlü düşmesi, ünsüz yumuşaması.
+
+    Tam bir biçimbilim değil, YAKLAŞIK: amaç bir öneri metni üretmek,
+    Türkçe çekim motoru yazmak değil. Düşen ünlüler kuralla
+    bulunamadığı için (akıl -> aklı ama akım -> akımı) sayılı bir tablo.
+    """
+    govde = (govde or "").strip()
+    if not govde:
+        return govde
+
+    kucuk = govde.lower()
+    if kucuk in _UNLU_DUSENLER:
+        govde = _UNLU_DUSENLER[kucuk]
+
+    son_unlu = next((h for h in reversed(govde.lower())
+                     if h in _IYELIK_UNLUSU), "e")
+    ek_unlusu = _IYELIK_UNLUSU[son_unlu]
+
+    if govde[-1].lower() in _IYELIK_UNLUSU:
+        return govde + "s" + ek_unlusu
+
+    # Çok heceli kelimelerde son ünsüz yumuşar.
+    hece = sum(1 for h in govde.lower() if h in _IYELIK_UNLUSU)
+    son = govde[-1].lower()
+    if hece > 1 and son in _YUMUSAMA:
+        govde = govde[:-1] + _YUMUSAMA[son]
+
+    return govde + ek_unlusu
+
+
+def _paylasilan_esdizim(anlam, onceki_anlamlar):
+    """
+    Bu anlam, önceki anlamlardan biriyle aynı eş dizimi paylaşıyor mu?
+
+    Paylaşıyorsa ikisi aynı anlamdır: eş dizim, anlamın kullanıldığı
+    bağlamın ta kendisi. Paylaşılan ilk kalıbı döner, yoksa boş.
+    """
+    benim = {_normalize(e.pattern) for e in (anlam.collocations or [])}
+    if not benim:
+        return ""
+    for onceki in onceki_anlamlar:
+        onceki_kume = {_normalize(e.pattern) for e in (onceki.collocations or [])}
+        ortak = benim & onceki_kume
+        if ortak:
+            return sorted(ortak)[0]
+    return ""
+
+
+def _turkce_karsilik_denetle(metin, etiket, kelime_metni, rapor):
+    """
+    Türkçe karşılığın TEK BAŞINA anlaşılır olup olmadığını denetler.
+
+    Ölçüt Efe'nin koyduğu ölçüt: "örneği okumayan biri bunu anlayamaz".
+    Öğrenci kelime listesine baktığında yanında cümle olmuyor; karşılık
+    kendi başına ayakta durmalı.
+
+    Gerçek örnek: `perspicacious` için model "sezgi güçlü, anlayışlı"
+    üretti. Doğrusu "sezgisi güçlü" — Türkçede isim+sıfat birleşiğinde
+    ilk öğe iyelik eki alır. Eksik ek, karşılığı anlaşılmaz yapıyor.
+
+    Buradaki kontrollerin hepsi UYARI, hata değil: Türkçe biçimbilimi
+    kuralla kesin çözülemiyor ("sezgi" ile "eli" yazım olarak ayırt
+    edilemez) ve yanlışlıkla sağlam veri silmektense rapora düşürüp göze
+    bırakmak doğru. Asıl düzeltme prompt tarafında.
+    """
+    ham = (metin or "").strip()
+    if not ham:
+        return
+
+    kucuk = ham.lower()
+
+    # 1. İngilizce kelimenin kendisi karşılık olarak yazılmış
+    if kucuk == (kelime_metni or "").strip().lower():
+        rapor.ekle("uyari", "karsilik_ingilizce",
+                   f"{etiket}: Türkçe karşılık kelimenin kendisi ('{ham}').")
+        return
+
+    # 2. Tanım işaretleri — sözlük maddesi başı yazıyoruz, tanım değil
+    for isaret in TANIM_ISARETLERI:
+        if isaret in f" {kucuk} ":
+            rapor.ekle("uyari", "karsilik_tanim",
+                       f"{etiket}: '{ham}' tanım gibi görünüyor "
+                       f"('{isaret.strip()}' geçiyor); kısa karşılık olmalı.")
+            break
+
+    # 3. Fazla uzun
+    if len(ham.split()) > KARSILIK_EN_COK_KELIME:
+        rapor.ekle("uyari", "karsilik_uzun",
+                   f"{etiket}: '{ham}' {len(ham.split())} kelime; "
+                   f"en fazla {KARSILIK_EN_COK_KELIME} olmalı.")
+
+    # 4. İyelik eki düşmüş birleşik sıfat
+    #
+    # Virgülle ayrılmış her seçenek ayrı ayrı bakılıyor: "sezgi güçlü,
+    # anlayışlı" içinde yalnızca birincisi bozuk.
+    for secenek in [p.strip() for p in ham.split(",") if p.strip()]:
+        parcalar = secenek.split()
+        if len(parcalar) != 2:
+            continue
+        onek, sonek = parcalar[0].lower(), parcalar[1].lower()
+        if sonek not in BIRLESIK_SIFAT_SONLARI:
+            continue
+        # İyelik eki -sı/-si/-su/-sü ile bitiyorsa sorun yok.
+        if onek.endswith(("sı", "si", "su", "sü")):
+            continue
+        # Ünsüzle bitiyorsa da iyelik eki almamış demektir ama bu kez
+        # "-ı/-i" eklenmesi gerekirdi; yine uyarı.
+        rapor.ekle("uyari", "turkce_tamlama",
+                   f"{etiket}: '{secenek}' — iyelik eki eksik olabilir "
+                   f"('{_iyelikli_oneri(onek)} {sonek}' gibi). "
+                   f"Örneği okumayan biri bunu anlayamaz.")
 
 
 def _yakin_anlam(anahtar, gorulenler):
@@ -604,13 +792,34 @@ def denetle(kelime, istenen_metin, ozet, alanlar):
             continue
 
         # Birebir aynı değil ama pratikte aynı olan anlamlar: "sıkıcı" ve
-        # "uzun ve sıkıcı" iki satır olmamalı. Silmiyoruz — hangisinin doğru
-        # olduğuna kod karar veremez — ama gözden geçirmen için işaretliyoruz.
+        # "uzun ve sıkıcı" tek satır olmalı.
+        #
+        # ÖNCE YALNIZCA UYARIYDI, ARTIK ATILIYOR. Sebebi gerçek çıktıda
+        # görüldü: model ikinci anlamı üretmeye çok meyilli ve ürettiği
+        # ikinci anlam çoğu zaman birincinin başka sözcüklerle yazılmış
+        # hâli. Uyarı olarak bırakmak, sözlüğe neredeyse aynı iki satır
+        # yazmak demekti — öğrenci ikisini ayrı ayrı öğrenmeye çalışıyor
+        # ve ikisi de aynı şey.
         yakin = _yakin_anlam(anahtar, gorulen_anlam)
         if yakin:
             rapor.ekle("uyari", "yakin_anlam",
-                       f"{etiket}: '{anlam.meaning_tr}' önceki anlamla büyük "
-                       f"ölçüde örtüşüyor ('{yakin}'); tek anlam olabilir.")
+                       f"{etiket}: '{anlam.meaning_tr}' önceki anlamla "
+                       f"örtüşüyor ('{yakin}'); atlandı.")
+            continue
+
+        # Aynı eş dizimi paylaşan iki anlam, tek anlamdır.
+        #
+        # Prompt'un kendi ölçütü bu: "iki ayrı anlam ancak farklı
+        # bağlamlarda, FARKLI COLLOCATION'LARLA kullanılıyorsa vardır."
+        # Ölçüt yazılıydı ama ölçülmüyordu; artık ölçülüyor. `bank`ın iki
+        # anlamı hiçbir eş dizimi paylaşmaz (open a bank account /
+        # river bank); aynı anlamın iki yazılışı ise hepsini paylaşır.
+        paylasilan = _paylasilan_esdizim(anlam, saglam_anlamlar)
+        if paylasilan:
+            rapor.ekle("uyari", "ayni_baglam",
+                       f"{etiket}: '{anlam.meaning_tr}' önceki anlamla aynı "
+                       f"eş dizimi paylaşıyor ('{paylasilan}'); atlandı.")
+            continue
 
         gorulen_anlam.add(anahtar)
         saglam_anlamlar.append(anlam)
@@ -686,6 +895,9 @@ def _anlami_denetle(anlam, etiket, bicimler, alanlar, rapor, kelime_pos, kelime_
     if re.match(r"^\s*\d+\s*[.)]", anlam.meaning_tr):
         anlam.meaning_tr = re.sub(r"^\s*\d+\s*[.)]\s*", "", anlam.meaning_tr)
         rapor.ekle("uyari", "numarali_anlam", f"{etiket}: baştaki numara temizlendi.")
+
+    # Türkçenin kendisi denetleniyor: karşılık tek başına anlaşılır mı?
+    _turkce_karsilik_denetle(anlam.meaning_tr, etiket, kelime_metni, rapor)
 
     # --- Alanlar ---------------------------------------------------------
     izinli = {a.lower(): a for a in alanlar}

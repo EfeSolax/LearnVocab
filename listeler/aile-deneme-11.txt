@@ -1,0 +1,59 @@
+# LearnVocab — aile hattı ölçüm listesi, 11. sürüm (prompt'ta ve önceki sürümlerde geçmeyen kelimeler)
+# words/aile/deneme.py içinden üretildi; elle düzenleme.
+#
+# python manage.py aile_uret --file listeler/aile-deneme-11.txt --depo ara-depo-deneme-11
+# python manage.py aile_birlestir --depo ara-depo-deneme-11
+# python manage.py aile_olc --surum 11 --depo ara-depo-deneme-11
+
+# A — Tutarlılık
+abolition
+abolitionist
+assertive
+assertion
+assessor
+assessment
+captivating
+cooperative
+cooperation
+deprivation
+deprived
+empathetic
+empathize
+forgery
+forger
+hazardous
+informant
+informative
+liberation
+liberator
+articulation
+disposal
+# B — Önek
+unravel
+impartial
+nonprofit
+irreversible
+implausible
+# C — Tek başına
+pragmatic
+affluent
+fragrant
+# D — Ayrım
+complacent
+complaisant
+flair
+flare
+cite
+site
+# E — Çekim
+bathing
+knitting
+weaving
+# F — Uydurma
+graceful
+mournful
+zealous
+# G — Amerikan yazımı
+gaol
+aeroplane
+kerb

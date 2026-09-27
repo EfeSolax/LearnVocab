@@ -1,0 +1,59 @@
+# LearnVocab — aile hattı ölçüm listesi, 8. sürüm (prompt'ta ve önceki sürümlerde geçmeyen kelimeler)
+# words/aile/deneme.py içinden üretildi; elle düzenleme.
+#
+# python manage.py aile_uret --file listeler/aile-deneme-8.txt --depo ara-depo-deneme-8
+# python manage.py aile_birlestir --depo ara-depo-deneme-8
+# python manage.py aile_olc --surum 8 --depo ara-depo-deneme-8
+
+# A — Tutarlılık
+absorption
+absorbent
+accusation
+accused
+betrayal
+betray
+coincidence
+coincidental
+dominance
+dominant
+endurance
+endurable
+imitation
+imitator
+obsession
+obsessive
+prevention
+preventive
+# B — Önek
+overturn
+unfold
+discontinue
+impractical
+illiterate
+# C — Tek başına
+serene
+blatant
+ruthless
+frivolous
+obscure
+# D — Ayrım
+censor
+censure
+illusion
+allusion
+loath
+loathe
+# E — Çekim
+gardening
+sailing
+planning
+recording
+# F — Uydurma
+fruitful
+joyful
+fateful
+spiteful
+# G — Amerikan yazımı
+sulphur
+cosy
+pyjamas
