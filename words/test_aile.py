@@ -215,10 +215,11 @@ class CekimTests(SimpleTestCase):
                 farkli.append(fiil)
         self.assertEqual(farkli, [])
 
-    def test_quiz_duzensizlik_kontrolu_bozulmadi(self):
+    def test_verb_forms_kural_ciktisi_bozulmadi(self):
         """
-        quizzes/build._duzensiz_mi, verb_forms'un KURAL çıktısına dayanıyor
-        (go -> "goed"). Otomatik çekim eklenirken verb_forms'a dokunulmadı.
+        verb_forms tablo bilmeden KURALLA çeker (go -> "goed"); düzensizliği
+        "kural çıktısı sözlükteki hâlden farklı mı?" diye anlamak buna
+        dayanıyor. Otomatik çekim eklenirken verb_forms'a dokunulmadı.
         """
         kural = dict((t, y) for y, t in inflect.verb_forms("go"))
         self.assertEqual(kural["past"], "goed")

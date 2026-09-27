@@ -13,10 +13,12 @@ ifadeler (birinden ötekine atlayarak öğrenmek için).
 {% block page %}
 <div class="mx-auto max-w-3xl space-y-5">
 
-    <a href="{% url 'all_words' %}?icerik=ifade" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200">
+    {% if user.is_authenticated %}
+    <a href="{% url 'profile_words' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200">
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
-        İfadeler
+        Kelimelerim
     </a>
+    {% endif %}
 
     {# ================= İFADE ================= #}
     <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 sm:p-6">
@@ -34,8 +36,8 @@ ifadeler (birinden ötekine atlayarak öğrenmek için).
 
         <div class="mt-4 flex flex-wrap items-center gap-2 text-xs font-semibold">
             {% for g in gruplar %}
-            <a href="{% url 'all_words' %}?icerik=ifade#grup-{{ g.slug }}" title="{{ g.heading }}"
-               class="rounded-full bg-indigo-50 dark:bg-indigo-950 px-2.5 py-1 text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-800 hover:bg-indigo-100 dark:hover:bg-indigo-900">Yönü: {{ g.name }}</a>
+            <span title="{{ g.heading }}"
+               class="rounded-full bg-indigo-50 dark:bg-indigo-950 px-2.5 py-1 text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-800">Yönü: {{ g.name }}</span>
             {% endfor %}
             {% if ifade.cefr and ifade.cefr != "Belirtilmemiş" %}<span class="rounded-full bg-gray-100 dark:bg-slate-700 px-2.5 py-1 text-gray-700 dark:text-slate-300">{{ ifade.cefr }}</span>{% endif %}
             <span class="rounded-full bg-gray-100 dark:bg-slate-700 px-2.5 py-1 text-gray-700 dark:text-slate-300">{{ ifade.get_register_display }}</span>

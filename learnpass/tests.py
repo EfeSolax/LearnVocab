@@ -320,13 +320,12 @@ class LearnPassPageTests(TestCase):
 
     def test_exercise_tabs_appear_on_both_pages(self):
         self.client.login(username="sayfa", password="Sifre1234")
-        for url in (reverse("learn_pass_page"), reverse("profile_quizzes")):
+        for url in (reverse("learn_pass_page"), reverse("exercises_page")):
             with self.subTest(url=url):
                 html = self.client.get(url, follow=True).content.decode()
                 self.assertIn("Öğren-Geç", html)
-                # Sekmenin adı "Quizler" değil "Çalışma": bölüm artık quiz
-                # üretmiyor, aralıklı tekrar yürütüyor.
-                self.assertIn("Çalışma", html)
+                self.assertIn("Egzersizler", html)
+                self.assertIn(reverse("exercises_page"), html)
 
     def test_exercises_menu_opens_learn_pass_first(self):
         self.client.login(username="sayfa", password="Sifre1234")
@@ -334,48 +333,6 @@ class LearnPassPageTests(TestCase):
         basla = html.index('<header id="navbar"')
         navbar = html[basla:html.index("</header>", basla)]
         self.assertIn(reverse("learn_pass_page"), navbar)
-
-
-class QuizPriorityIntegrationTests(TestCase):
-    """Öğren-Geç sinyalleri quiz sırasını değiştiriyor mu?"""
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="oncelik", password="Sifre1234")
-
-    def _link(self, word, correct, wrong):
-        return UserWordLink.objects.create(user=self.user, word=word,
-                                           correctCount=correct, wrongCount=wrong)
-
-    def test_misjudged_word_jumps_to_the_first_priority(self):
-        from quizzes.views import classify_links_by_priority, encounter_signals
-
-        kelime = kelime_yap("thoughtiknew")
-        # Quiz istatistiklerine göre bu kelime "iyi biliniyor" sayılırdı
-        link = self._link(kelime, correct=20, wrong=0)
-        WordEncounter.record(self.user, kelime, WordEncounter.MISJUDGED, "mine")
-
-        misjudged, learned = encounter_signals(self.user)
-        p1, p2, p3 = classify_links_by_priority([link], misjudged, learned)
-        self.assertIn(link, p1)
-
-    def test_learned_word_drops_to_the_last_priority(self):
-        from quizzes.views import classify_links_by_priority, encounter_signals
-
-        kelime = kelime_yap("reallyknown")
-        # Hiç denenmemiş: normalde priority1 olurdu
-        link = self._link(kelime, correct=0, wrong=0)
-        WordEncounter.record(self.user, kelime, WordEncounter.KNOWN, "mine")
-
-        misjudged, learned = encounter_signals(self.user)
-        p1, p2, p3 = classify_links_by_priority([link], misjudged, learned)
-        self.assertIn(link, p3)
-
-    def test_without_signals_the_old_behaviour_is_kept(self):
-        from quizzes.views import classify_links_by_priority
-
-        link = self._link(kelime_yap("plain"), correct=0, wrong=0)
-        p1, _, _ = classify_links_by_priority([link])
-        self.assertIn(link, p1)
 
 
 class DeclarationTests(TestCase):

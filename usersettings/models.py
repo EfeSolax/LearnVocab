@@ -58,7 +58,6 @@ class UserSettings(models.Model):
     # Diğer eklenecek seçenekler
     # Tüm verilerimi dışa aktar
     # Tüm kelimelerimi dışa aktar
-    # Tüm quizlerimi dışa aktar
     # Tüm metinlerimi dışa aktar
     # Tüm yorumlarımı dışa aktar
 
@@ -66,7 +65,6 @@ class UserSettings(models.Model):
     # Tüm dislike'larımı kaldır
     # Tüm yorumlarımı kaldır
     # Tüm metinlerimi kaldı (bug'a dikkat)
-    # Tüm quizlerimi kaldır
     # Siteye eklediğim tüm kelimeleri kaldır
     # Listeme dahil ettiğim tüm kelimeleri kaldır
     # Listemdeki TÜM kelimeleri kaldır

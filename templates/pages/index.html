@@ -31,7 +31,7 @@
         </h1>
 
         <p class="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-gray-600 dark:text-slate-400 leading-relaxed">
-            Hazır kelime havuzları, kendine özel quiz'ler ve yapay zekayla puanlanan haftalık metinler.
+            Hazır kelime havuzları, hızlı tekrar için Öğren-Geç ve yapay zekayla puanlanan metinler.
             Defter karalamayı bırak, kelimeleri <span class="font-semibold text-gray-900 dark:text-slate-100">öğren</span>.
         </p>
 
@@ -57,9 +57,6 @@
                     Giriş Yap
                 </a>
             {% endif %}
-            <a href="{% url 'all_words' %}" class="text-sm sm:text-base font-semibold text-gray-700 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-indigo-300">
-                Kelimeleri keşfet <span aria-hidden="true">→</span>
-            </a>
         </div>
     </div>
 </section>
@@ -76,9 +73,6 @@
             <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">Bugün şunları öğren</h2>
             <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">401–501 ileri seviyeden seçildi · her gün yenileniyor</p>
         </div>
-        <a href="{% url 'all_words' %}" class="hidden sm:inline-flex text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200">
-            Tüm kelimeler →
-        </a>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
@@ -117,12 +111,6 @@
             </div>
         </a>
         {% endfor %}
-    </div>
-
-    <div class="mt-6 text-center sm:hidden">
-        <a href="{% url 'all_words' %}" class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200">
-            Tüm kelimelere göz at →
-        </a>
     </div>
 </section>
 {% endif %}
@@ -163,10 +151,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">Kişiye özel quiz</h3>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">Öğren-Geç</h3>
             <p class="mt-2 text-sm text-gray-600 dark:text-slate-400 leading-relaxed">
-                Eşleştirme, çoktan seçmeli, yazma ya da karma. Algoritma <span class="font-semibold">zayıf
-                olduğun</span> kelimeleri öne çıkarır; bildiklerini boşa sormaz.
+                Kelimeyi gör, bildiğini düşünüyor musun karar ver. <span class="font-semibold">Zorlandığın</span>
+                kelimeler öne çıkar; istediğin an bırakabilirsin.
             </p>
         </div>
 
@@ -213,7 +201,7 @@
                     <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600 dark:text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                     </svg>
-                    Quiz geçmişi, doğru/yanlış oranı ve grafikler.
+                    Öğren-Geç ile hızlı, her an bırakılabilir tekrar.
                 </li>
                 <li class="flex items-start gap-3">
                     <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600 dark:text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
@@ -264,7 +252,7 @@
                         </div>
                     </div>
                     <div class="mt-5 pt-4 border-t border-gray-100 dark:border-slate-700 flex items-center justify-between text-xs text-gray-500 dark:text-slate-400">
-                        <span>Quiz doğruluğu: <span class="font-semibold text-green-600 dark:text-green-400">86%</span></span>
+                        <span>Listemde: <span class="font-semibold text-green-600 dark:text-green-400">42 kelime</span></span>
                         <span class="text-indigo-600 dark:text-indigo-400 font-semibold">+listeme ekle</span>
                     </div>
                 </div>
@@ -288,17 +276,17 @@
     <div class="mx-auto max-w-3xl px-6 lg:px-8 text-center">
         <h2 class="text-3xl sm:text-4xl font-bold text-white">İlk kelime bugünden.</h2>
         <p class="mt-4 text-base sm:text-lg text-gray-300 dark:text-slate-600">
-            Hesap aç, listene 5 kelime ekle, ilk quiz'ini çöz. Toplamda 5 dakika.
+            Hesap aç, listene 5 kelime ekle, Öğren-Geç ile ilk turunu at. Toplamda 5 dakika.
         </p>
         <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
             {% if user.is_authenticated %}
-                <a href="{% url 'all_words' %}"
+                <a href="{% url 'profile_words' %}"
                    class="inline-flex items-center gap-2 rounded-lg bg-white dark:bg-slate-800 px-5 py-3 text-sm sm:text-base font-semibold text-gray-900 dark:text-slate-100 hover:bg-gray-100 dark:hover:bg-slate-700 transition">
-                    Kelime ekle
+                    Kelimelerime git
                 </a>
-                <a href="{% url 'study_home' %}"
+                <a href="{% url 'learn_pass_page' %}"
                    class="inline-flex items-center gap-2 rounded-lg bg-indigo-500 px-5 py-3 text-sm sm:text-base font-semibold text-white hover:bg-indigo-400 transition">
-                    Hemen quiz çöz
+                    Öğren-Geç'e başla
                 </a>
             {% else %}
                 <a href="{% url 'register' %}"

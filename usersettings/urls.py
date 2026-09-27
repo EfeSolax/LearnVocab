@@ -16,6 +16,5 @@ urlpatterns = [
     path("settings/export-mywords/", views.exportMyWords, name = "export_mywords"),
     path("settings/export-mycomments/", views.exportMyComments, name = "export_mycomments"),
     path("settings/export-mytexts/", views.exportMyTexts, name = "export_mytexts"),
-    path("settings/export-myquizzes/", views.exportMyQuizzes, name = "export_myquizzes"),
     path("settings/export-all/", views.exportAll, name = "export_all")
 ]

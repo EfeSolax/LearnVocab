@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.urls import reverse
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_POST
 
 from LearnVocab import pagination, progress
@@ -67,11 +68,20 @@ def can_view_word(word, user):
 # ---------------------------------------------------------------------------
 
 def _redirect_with_anchor(word_id, request):
-    """allWords sayfasına geri dön, kullanıcının kaldığı yere kaydır."""
-    base_url = reverse("all_words")
-    query_parameters = request.GET.urlencode()
-    suffix = f"?{query_parameters}" if query_parameters else ""
-    return redirect(f"{base_url}{suffix}#word-{word_id}")
+    """
+    Düğmeye basılan sayfaya geri dön (kelime detayı, Kelimelerim...).
+
+    Eskiden her zaman Tüm Kelimeler'e dönüyordu; o sayfa arayüzden
+    kaldırıldı (ürün raporu, Bölüm 17). Tüm Kelimeler düğmeleri fetch ile
+    çalıştığı için buraya zaten düşmüyor. Geldiği adres bilinmiyorsa ya da
+    başka bir siteyse Kelimelerim'e dönülür.
+    """
+    geldigi = request.META.get("HTTP_REFERER")
+    if geldigi and url_has_allowed_host_and_scheme(
+            geldigi, allowed_hosts={request.get_host()},
+            require_https=request.is_secure()):
+        return redirect(geldigi)
+    return redirect("profile_words")
 
 
 @login_required
@@ -81,7 +91,7 @@ def add_to_my_list(request, word_id):
     # Yetkisi olmadığı bir kelimeyi listesine eklemesini engelle
     if not can_view_word(word, request.user):
         messages.error(request, "Bu kelimeyi listenize ekleme yetkiniz yok.")
-        return redirect("all_words")
+        return redirect("profile_words")
 
     UserWordLink.objects.get_or_create(user=request.user, word=word)
     if _ajax_mi(request):   # Tüm Kelimeler: sayfa yenilenmeden düğme değişir
@@ -748,7 +758,7 @@ def word_detail(request, id):
 
     if not can_view_word(word, request.user):
         messages.error(request, "Bu kelimeyi görüntüleyemezsiniz.")
-        return redirect("all_words")
+        return redirect("index")
 
     # Sayfada iki form var: kişisel not ve kişisel anlam. İkisi de kullanıcı
     # katmanına yazar, çekirdeğe dokunmaz.

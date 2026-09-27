@@ -7,7 +7,6 @@ urlpatterns = [
     path("profile/", views.showProfile, name="user_profile"),
     path("profile/words/", views.showWordsView, name="profile_words"),
     path("profile/myaccount/", views.showMyAccountView, name="profile_myaccount"),
-    path("profile/quizzes/", views.showQuizzesView, name="profile_quizzes"),
     path("profile/texts/", views.showTextsView, name="profile_texts"),
     path("profile/settings/", views.showSettingsView, name="profile_settings"),
 

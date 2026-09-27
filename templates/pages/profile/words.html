@@ -14,8 +14,6 @@ belirir. Kur ekle/sil ve liste yönetimi en altta, "Araçlar" içinde katlı.
 
 {% block page %}
 
-{% include 'base/_wordsTabs.html' with words_tab="mine" %}
-
 <div class="mx-auto max-w-4xl space-y-5" id="kelimelerim" data-secim="0">
 
     {# ---------------- Başlık + ekleme ---------------- #}
@@ -142,11 +140,11 @@ belirir. Kur ekle/sil ve liste yönetimi en altta, "Araçlar" içinde katlı.
             {% if search_query %}
                 “{{ search_query }}” için bir şey bulunamadı.
             {% else %}
-                Tüm Kelimeler'den kelime ekleyebilir ya da kendin yeni bir kelime yazabilirsin.
+                Öğren-Geç'te yeni kelimeler keşfedebilir ya da kendin yeni bir kelime yazabilirsin.
             {% endif %}
         </p>
         <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3">
-            <a href="{% url 'all_words' %}" class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 transition">Tüm Kelimeler</a>
+            <a href="{% url 'learn_pass_run' mode='new' %}" class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 transition">Yeni kelimeler keşfet</a>
             <a href="{% url 'add_word' %}" class="rounded-lg bg-white dark:bg-slate-800 px-5 py-2.5 text-sm font-semibold text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-300 dark:ring-indigo-700 hover:bg-indigo-50 dark:hover:bg-indigo-950 transition">Yeni kelime ekle</a>
         </div>
     </div>

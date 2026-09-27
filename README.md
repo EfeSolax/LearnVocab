@@ -6,14 +6,16 @@ Canlı sürüm: [learnvocab.com.tr](https://learnvocab.com.tr)
 
 ## Özellikler
 
-- Kullanıcılar kendi kelimelerini ekleyebilir (İngilizce, Türkçe, V2/V3 fiil halleri, açıklama, örnek cümleler).
-- Eklenen kelimeler için görünürlük seçenekleri: **Herkese Açık**, **Arkadaşlara Açık**, **Gizli**.
-- 101–501 arası hazır kur seviyesi kelime listeleri.
-- Quiz sistemi: çoktan seçmeli, eşleştirme, yazma ve karma. Algoritma, kullanıcının zayıf olduğu kelimeleri öncelikli sorar.
-- Yapay zeka destekli (Gemini) metin değerlendirme: kullanıcı haftanın kelimeleriyle bir metin yazar, AI puanlar.
-- Arkadaşlık sistemi (istek gönderme/kabul etme), arkadaşların kelime listesine erişim.
-- Kullanıcı yorumları, like/dislike sistemi.
-- Kullanıcı profili, ayarlar (günlük hedef, mail bildirimleri), veri dışa aktarma.
+Site dört bölümden oluşur (ayrıntı: `ozetler/2026-09-27_urun-raporu.md`):
+
+- **Sözlük:** Kelime arama, anlamları, örnek cümleleri, eş dizimleri ve kelime ailesiyle birlikte kelime kartları. Kullanıcı beğendiği kelimeleri kendi listesine ekler (Listem).
+- **Çalışmalar:**
+  - **Learn & Pass (Öğren-Geç):** Kelimeyi gör, bildiğini düşünüyor musun karar ver, anlamını kontrol et. Hızlıdır ve her an bırakılabilir. Bilinmeyen kelimeler listeye eklenebilir.
+  - **Egzersizler:** Kullanıcının listesinden Hızlı Egzersiz ve daha fazla soru tipi sunan Tempolu Egzersiz (yapım aşamasında).
+- **Okumalar:** Seviyeye uygun okuma metinleri; okurken kelimeye dokunup anlamını görme (yapım aşamasında).
+- **Yazma:** Yapay zekâ (Gemini) destekli metin değerlendirme: kullanıcı bir metin yazar, geri bildirim ve puan alır.
+
+Ayrıca: kullanıcı profili, ayarlar ve veri dışa aktarma.
 
 ## Teknoloji
 
@@ -28,8 +30,8 @@ Canlı sürüm: [learnvocab.com.tr](https://learnvocab.com.tr)
 1. Sanal ortam oluştur ve aktive et:
 
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # Windows'ta: venv\Scripts\activate
+   python -m venv .venv
+   source .venv/bin/activate  # Windows'ta: .venv\Scripts\activate
    ```
 
 2. Bağımlılıkları yükle:
@@ -67,13 +69,13 @@ Canlı sürüm: [learnvocab.com.tr](https://learnvocab.com.tr)
 | App           | Görev                                                     |
 | ------------- | --------------------------------------------------------- |
 | `users`       | Kullanıcı modeli (AbstractUser), kayıt/giriş/şifre işlemleri |
-| `words`       | Kelime modeli, kelime listesi yönetimi                    |
-| `quizzes`     | Quiz oluşturma, soru üretici, attempt takibi              |
-| `texts`       | Kullanıcı metinleri ve Gemini ile değerlendirme           |
-| `friends`     | Arkadaşlık istekleri ve listesi                           |
-| `comments`    | Site yorumları, like/dislike                              |
-| `userprofile` | Profil sayfası ve sekmeleri                               |
+| `words`       | Kelime, anlam, kelime ailesi ve ifade modelleri; kullanıcı listesi |
+| `learnpass`   | Learn & Pass (Öğren-Geç) ve Egzersizler sekmesi           |
+| `readings`    | Okumalar                                                  |
+| `texts`       | Yazma: kullanıcı metinleri ve Gemini ile değerlendirme    |
+| `userprofile` | Profil sayfası ve Kelimelerim                             |
 | `usersettings`| Kullanıcı ayarları, hesap silme/dışa aktarma              |
+| `friends`, `comments` | Arayüzden kaldırıldı; kodları şimdilik duruyor    |
 
 ## Güvenlik notları
 

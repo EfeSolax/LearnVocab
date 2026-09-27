@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "users",
     "words",
-    "quizzes",
     "userprofile",
     "comments",
     "texts",
@@ -325,18 +324,6 @@ LLM_KONTROL_PRICE_OUTPUT = float(os.environ.get('LLM_KONTROL_PRICE_OUTPUT', '0')
 LLM_KONTROL_PROVIDER_SORT = os.environ.get('LLM_KONTROL_PROVIDER_SORT', 'price')
 
 
-# Quizler geçici olarak kapalı.
-# Kelime modeli (aile / anlam / çekim) yeniden kurulurken soru üreteçleri
-# eski alan adlarına göre yazılmış durumda. Kod silinmedi; üreteçler yeni
-# yapıya taşınınca bu bayrak True yapılacak.
-# Çalışma bölümü açık.
-#
-# Bu bayrak, kelime modeli yeniden yazılırken eski soru üreteçleri
-# kırıldığı için kapatılmıştı. Yeni çalışma sistemi (aralıklı tekrar)
-# doğrudan yeni model üzerine kurulu olduğu için bayrak kaldırılabilir;
-# acil durumda bölümü kapatabilmek için şimdilik duruyor.
-QUIZZES_ENABLED = True
-
 TEXT_SUBMISSION_INTERVAL_MINUTES = int(
     os.environ.get('TEXT_SUBMISSION_INTERVAL_MINUTES', '1440')
 )
@@ -377,7 +364,6 @@ LOGGING = {
         'LearnVocab': {'handlers': ['console'], 'level': 'INFO', 'propagate': False},
         'texts': {'handlers': ['console'], 'level': 'INFO', 'propagate': False},
         'words': {'handlers': ['console'], 'level': 'INFO', 'propagate': False},
-        'quizzes': {'handlers': ['console'], 'level': 'INFO', 'propagate': False},
         # google-genai her generate_content çağrısında "automatic function
         # calling" tavsiyesi basıyor; bizim kullanımımızla ilgisi yok, sadece
         # log'u kirletiyor. Gerçek hataları görmeye devam ediyoruz.

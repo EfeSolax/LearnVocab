@@ -21,10 +21,12 @@ dokunmaz, yalnızca ona görünür.
 
 <div class="mx-auto max-w-3xl space-y-5">
 
-    <a href="{% url 'all_words' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200">
+    {% if user.is_authenticated %}
+    <a href="{% url 'profile_words' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200">
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
-        Kelimeler
+        Kelimelerim
     </a>
+    {% endif %}
 
     {# ================= SEÇİLİ KELİME ================= #}
     <section class="overflow-hidden rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">

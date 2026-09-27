@@ -440,7 +440,7 @@ class DarkThemeTests(TestCase):
 
     def test_logged_in_pages_carry_dark_variants(self):
         self.client.login(username="temauser", password="Sifre1234")
-        for url_name in ("profile_words", "add_word", "ai_add_words_page", "attempt_quiz"):
+        for url_name in ("profile_words", "add_word", "ai_add_words_page", "exercises_page"):
             with self.subTest(page=url_name):
                 html = self._html(url_name)
                 self.assertGreater(html.count("dark:"), 20)
@@ -601,10 +601,13 @@ class NavbarMenuTests(TestCase):
         navbar = self._navbar(logged_in=True)
         self.assertIn(reverse("profile_words"), navbar)
 
-    def test_words_section_points_to_all_words_when_logged_out(self):
-        """Girişsiz kullanıcı Kelimeler'e basınca boş bir kapı değil, içerik görsün."""
-        navbar = self._navbar(logged_in=False)
-        self.assertIn(reverse("all_words"), navbar)
+    def test_words_section_does_not_point_to_all_words(self):
+        """Tüm Kelimeler arayüzden kaldırıldı; girişsiz kullanıcı da oraya gitmez."""
+        for giris in (False, True):
+            with self.subTest(logged_in=giris):
+                navbar = self._navbar(logged_in=giris)
+                self.assertNotIn(reverse("all_words"), navbar)
+                self.assertIn(reverse("profile_words"), navbar)
 
     def test_account_is_an_avatar_when_logged_in(self):
         navbar = self._navbar(logged_in=True)
@@ -690,43 +693,30 @@ class NavigationSectionTests(TestCase):
         self.assertIsNone(self._section_of(reverse("index")))
 
 
-class WordsSectionTabsTests(TestCase):
-    """Kelimeler bölümünün iki sayfası tek şerit üzerinden geziliyor."""
+class OldPagesRemovedFromUITests(TestCase):
+    """
+    Tüm Kelimeler sayfası ve filtre paneli arayüzden kaldırıldı (ürün
+    raporu, Bölüm 17). Kodları duruyor ama hiçbir sayfa oraya bağlanmıyor.
+    """
 
     def setUp(self):
         self.user = User.objects.create_user(username="tabuser", password="Sifre1234")
+
+    def test_no_page_links_to_all_words(self):
+        adresler = ("index", "readings", "about", "profile_words", "learn_pass_page",
+                    "exercises_page", "profile_texts")
+        for giris in (False, True):
+            if giris:
+                self.client.login(username="tabuser", password="Sifre1234")
+            for ad in adresler:
+                with self.subTest(page=ad, logged_in=giris):
+                    html = self.client.get(reverse(ad), follow=True).content.decode()
+                    self.assertNotIn(reverse("all_words"), html)
+
+    def test_my_words_has_no_all_words_switcher(self):
         self.client.login(username="tabuser", password="Sifre1234")
-
-    def _tabs(self, url):
-        html = self.client.get(url, follow=True).content.decode()
-        start = html.index("Kelimelerim\n        </a>") - 1200
-        return html[start:start + 2000]
-
-    def test_both_pages_show_the_switcher(self):
-        for url in (reverse("profile_words"), reverse("all_words")):
-            with self.subTest(url=url):
-                html = self.client.get(url).content.decode()
-                self.assertIn(reverse("profile_words"), html)
-                self.assertIn(reverse("all_words"), html)
-
-    def test_only_one_tab_is_current_on_each_page(self):
-        for url in (reverse("profile_words"), reverse("all_words")):
-            with self.subTest(url=url):
-                html = self.client.get(url).content.decode()
-                tabs_start = html.index("Kelimelerim")
-                # Şerit sayfanın en üstünde; ilk aria-current oradaki sekme
-                self.assertIn('aria-current="page"', html[:tabs_start + 3000])
-
-    def test_switcher_is_full_width_on_mobile_only(self):
-        html = self.client.get(reverse("all_words")).content.decode()
-        self.assertIn("-mx-4 sm:mx-0", html)
-
-    def test_both_pages_use_the_same_layout_width(self):
-        """Şerit iki sayfada aynı genişlikte dursun diye yerleşim de aynı."""
-        for url in (reverse("profile_words"), reverse("all_words")):
-            with self.subTest(url=url):
-                html = self.client.get(url).content.decode()
-                self.assertIn("mx-auto max-w-7xl px-4 sm:px-6 lg:px-8", html)
+        html = self.client.get(reverse("profile_words")).content.decode()
+        self.assertNotIn("Tüm Kelimeler", html)
 
 
 class LoginGateTests(TestCase):
@@ -734,7 +724,7 @@ class LoginGateTests(TestCase):
 
     GATED = {
         "profile_words": "Kelimelerim",
-        "profile_quizzes": "Egzersizler",
+        "exercises_page": "Egzersizler",
         "profile_texts": "Metinler",
         "user_profile": "Profilim",
     }
@@ -750,7 +740,7 @@ class LoginGateTests(TestCase):
                 self.assertIn(reverse("login"), html)
 
     def test_gate_keeps_the_menu_visible(self):
-        html = self.client.get(reverse("profile_quizzes")).content.decode()
+        html = self.client.get(reverse("exercises_page")).content.decode()
         self.assertIn('aria-label="Alt menü"', html)
 
     def test_all_words_stays_public(self):
@@ -809,7 +799,7 @@ class MergedProfilePageTests(TestCase):
 
     def test_export_links_are_all_present(self):
         html = self._page()
-        for ad in ("export_all", "export_mywords", "export_myquizzes", "export_mytexts"):
+        for ad in ("export_all", "export_mywords", "export_mytexts"):
             with self.subTest(baglanti=ad):
                 self.assertIn(reverse(ad), html)
 

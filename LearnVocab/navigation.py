@@ -12,9 +12,9 @@ Her bölüm:
   public_url   -> giriş yapmamış kullanıcı için hedef (yoksa url_name kullanılır)
   matches      -> bu bölüm "aktif" sayılırken eşleşecek url adları
 
-"Kelimeler" bölümü iki sayfayı (Kelimelerim / Tüm Kelimeler) kapsıyor:
-giriş yapmış kullanıcı Kelimelerim'e, yapmamış olan Tüm Kelimeler'e düşüyor;
-iki sayfanın tepesindeki seçici ile aralarında geçiliyor (bkz. _wordsTabs.html).
+"Tüm Kelimeler" sayfası ve filtre paneli arayüzden kaldırıldı (ürün raporu,
+Bölüm 17); "Kelimeler" artık yalnızca Kelimelerim'e gidiyor. Giriş yapmamış
+kullanıcı orada "önce giriş yap" ekranını görüyor (bkz. authgate.py).
 """
 
 from django.urls import reverse
@@ -25,7 +25,7 @@ NAV_SECTIONS = (
         "key": "words",
         "label": "Kelimeler",
         "url_name": "profile_words",
-        "public_url": "all_words",
+        "public_url": "profile_words",
         "matches": (
             "profile_words", "all_words", "word_detail",
             "add_word", "edit_word", "ai_add_words_page",
@@ -46,16 +46,14 @@ NAV_SECTIONS = (
         "matches": ("about",),
     },
     {
-        "key": "quizzes",
+        "key": "exercises",
         "label": "Egzersizler",
-        # Bölümün varsayılan sayfası Öğren-Geç; Quizler'e oradaki şeritten
-        # geçiliyor (Kelimeler bölümündeki Kelimelerim/Tüm Kelimeler gibi).
+        # Bölümün varsayılan sayfası Öğren-Geç; Egzersizler sekmesine
+        # oradaki şeritten geçiliyor (bkz. _exerciseTabs.html).
         "url_name": "learn_pass_page",
         "public_url": "learn_pass_page",
         "matches": (
-            "learn_pass_page", "learn_pass_run",
-            "profile_quizzes", "attempt_quiz", "quiz_page",
-            "quiz_complete", "quiz_review", "word_analysis",
+            "learn_pass_page", "learn_pass_run", "exercises_page",
         ),
     },
     {

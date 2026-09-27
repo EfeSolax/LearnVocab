@@ -4,9 +4,9 @@
 BU BÖLÜMÜN İŞİ NEDİR
 --------------------
 Öğren-Geç bir alıştırma değil, bir ÖLÇÜM. Kullanıcıya soru sormuyor,
-puan vermiyor, kartları zamanlamıyor — onu Çalışma bölümü yapıyor
-(quizzes/). Öğren-Geç'in topladığı şey başka türden ve başka hiçbir
-yerden elde edilemeyen bir veri:
+puan vermiyor, kartları zamanlamıyor — o iş Egzersizler'in (eski
+quizzes uygulaması kaldırıldı, bölüm yeniden yazılacak). Öğren-Geç'in
+topladığı şey başka türden ve başka hiçbir yerden elde edilemeyen bir veri:
 
     Kullanıcı bu kelimeyi BİLDİĞİNİ DÜŞÜNÜYOR MU?
 
@@ -21,8 +21,7 @@ anlamına gelir — çünkü öğrenci onu eksik saymıyor.
 WordEncounter  kullanıcı+kelime başına TEK satır, güncel durum.
 EncounterLog   her dokunuşun ayrı kaydı, hiç silinmez.
 
-İkincisi Çalışma'daki ReviewLog ile aynı gerekçeyle var: geçmiş geriye
-dönük üretilemez. Bugün yalnızca sayaç tutup yarın "kullanıcı bu kelimeyi
+İkincisinin gerekçesi: geçmiş geriye dönük üretilemez. Bugün yalnızca sayaç tutup yarın "kullanıcı bu kelimeyi
 kaçıncı karşılaşmada öğrendi" diye sorulduğunda cevap veremeyiz.
 Satırlar küçük, yalnızca ileri doğru büyüyor.
 
@@ -43,8 +42,8 @@ başka türlü bir müdahale gerektirir: o kelime daha sık sorulmakla
 
 BEYANLAR ZAMANLAMAYI DEĞİŞTİRMEZ
 --------------------------------
-Bilerek: aralıklı tekrarın aralıkları CEVAPLARDAN hesaplanıyor
-(quizzes/scheduler.py) ve kullanıcının kendi hakkındaki yargısı o
+Bilerek: aralıklı tekrarın aralıkları CEVAPLARDAN hesaplanmalı ve
+kullanıcının kendi hakkındaki yargısı o
 hesabın girdisi değil — olsaydı, sistemin kendisini yanıltmasına izin
 vermiş olurduk. Beyan yalnızca SIRALAMAYI etkiliyor: aynı gün sırası
 gelmiş kartlar arasında "hâlâ öğrenemedim" denenler öne alınıyor.

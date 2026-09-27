@@ -1,7 +1,7 @@
 """
 LearnVocab - Ana URL yapılandırması.
 
-Her uygulama (users, words, quizzes, ...) kendi urls.py dosyasında URL'lerini
+Her uygulama (users, words, learnpass, ...) kendi urls.py dosyasında URL'lerini
 tanımlar; bu dosya yalnızca onları include eder.
 """
 
@@ -80,7 +80,6 @@ urlpatterns = [
     # çıkarmak ve navbar'daki bağlantıyı geri koymak yeterli.
     # path("friends/", include("friends.urls")),
     path("profile/", include("userprofile.urls")),
-    path("quizzes/", include("quizzes.urls")),
     path("exercises/", include("learnpass.urls")),
     # Yorumlar özelliği şu an KAPALI (arkadaşlık gibi).
     # comments uygulaması, view'ları, şablonu ve Comment modeli duruyor;

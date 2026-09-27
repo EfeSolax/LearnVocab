@@ -19,16 +19,17 @@ değeri düşük — cevabı zaten biliyoruz. Değerli olan, zorlandığı
 kelimelerde sormak: orada cevap tahmin edilemez ve çoğu zaman
 şaşırtıcıdır ("biliyorum" deyip yanılmak).
 
-ZORLANMA PUANI ÜÇ KAYNAKTAN GELİYOR
------------------------------------
-Tek bir kaynak yetmiyor çünkü üçü farklı şeyleri ölçüyor:
+ZORLANMA PUANI İKİ KAYNAKTAN GELİYOR
+------------------------------------
+Tek bir kaynak yetmiyor çünkü ikisi farklı şeyleri ölçüyor:
 
   Öğren-Geç       kullanıcı kendini nasıl değerlendiriyor (miss_ratio)
-  Çalışma         gerçekte kaç kez unuttu (ReviewItem.lapses)
-  Eski sayaçlar   quizlerde yanlış oranı (UserWordLink.wrongRatio)
+  Eski sayaçlar   eski egzersizlerdeki yanlış oranı (UserWordLink.wrongRatio)
 
-En ağır olan birincisi değil ikincisi de değil — kullanıcının kendi
-BEYANI. "Bu kadar gördüm ve hâlâ öğrenemedim" diyen bir kelime her
+(Eski "Çalışma" bölümünün unutma sayaçları da bir kaynaktı; o bölüm
+quizzes uygulamasıyla birlikte kaldırıldı.)
+
+En ağır olan ikisi de değil — kullanıcının kendi BEYANI. "Bu kadar gördüm ve hâlâ öğrenemedim" diyen bir kelime her
 şeyin önüne geçiyor, çünkü bu bilgi başka hiçbir yerden gelmiyor.
 
 HİÇ VERİSİ OLMAYAN KELİMELER
@@ -61,15 +62,10 @@ LEVEL_WEIGHTS = (
 # Zorlanma puanının bileşen ağırlıkları.
 AGIRLIK_BEYAN = 10.0        # "hâlâ öğrenemedim" — her şeyin önünde
 AGIRLIK_OGREN_GEC = 3.0     # kullanıcının kendi değerlendirmesi
-AGIRLIK_UNUTMA = 1.5        # Çalışma'da kaç kez unuttu
-AGIRLIK_ESKI_ORAN = 1.0     # quiz sayaçlarındaki yanlış oranı
+AGIRLIK_ESKI_ORAN = 1.0     # eski egzersiz sayaçlarındaki yanlış oranı
 
 # Hiç verisi olmayan kelimenin puanı.
 NOTR_PUAN = 0.5
-
-# Unutma sayısının doyduğu nokta: 3 kez unutmakla 9 kez unutmak arasında
-# sıralama açısından anlamlı fark yok, ikisi de "bu kelime sorunlu".
-UNUTMA_DOYUM = 3
 
 
 def _weighted_levels(rng=None):
@@ -134,7 +130,7 @@ def struggle_scores(user, word_ids=None):
     """
     {word_id: puan} — puan büyükse kullanıcı o kelimede daha çok zorlanıyor.
 
-    Üç kaynak tek geçişte toplanıyor; kelime başına sorgu açılmıyor
+    İki kaynak tek geçişte toplanıyor; kelime başına sorgu açılmıyor
     (havuz binlerce kelime olabilir).
     """
     puanlar = {}
@@ -152,25 +148,7 @@ def struggle_scores(user, word_ids=None):
         if kayit.declaration == Declaration.STUCK:
             ekle(kayit.word_id, AGIRLIK_BEYAN)
 
-    # 2. Çalışma'daki unutmalar
-    try:
-        from quizzes.models import ReviewItem
-
-        kartlar = ReviewItem.objects.filter(user=user, lapses__gt=0)
-        if word_ids is not None:
-            kartlar = kartlar.filter(word_id__in=word_ids)
-        # Aynı kelimenin birden çok kartı olabilir; en çok unutulan boyut
-        # kelimenin puanını belirliyor (toplamak, çok kartlı kelimeleri
-        # yapay olarak öne çıkarırdı).
-        en_cok = {}
-        for word_id, lapses in kartlar.values_list("word_id", "lapses"):
-            en_cok[word_id] = max(en_cok.get(word_id, 0), lapses)
-        for word_id, lapses in en_cok.items():
-            ekle(word_id, AGIRLIK_UNUTMA * min(lapses / UNUTMA_DOYUM, 1.0))
-    except Exception:  # pragma: no cover — quizzes yoksa Öğren-Geç yine çalışsın
-        pass
-
-    # 3. Eski quiz sayaçları
+    # 2. Eski egzersiz sayaçları
     baglar = UserWordLink.objects.filter(user=user)
     if word_ids is not None:
         baglar = baglar.filter(word_id__in=word_ids)
@@ -253,8 +231,7 @@ def stuck_word_ids(user):
     """
     Kullanıcının "hâlâ öğrenemedim" dediği kelimeler.
 
-    Çalışma bölümü bunu sıralamada kullanıyor (quizzes/session.py):
-    aynı gün sırası gelmiş kartlar arasında bunlar öne alınıyor.
+    Egzersizler (yeniden yazılacak) sıralamada kullanabilsin diye duruyor.
     """
     return set(
         WordEncounter.objects

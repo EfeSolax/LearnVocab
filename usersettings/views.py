@@ -8,7 +8,6 @@ from usersettings.models import UserSettings
 from words.models import Word, UserWordLink
 from comments.models import Comment
 from texts.models import Text
-from quizzes.models import ReviewItem, ReviewLog, StudySession
 
 from django.db.models import Q
 
@@ -244,72 +243,6 @@ def exportMyTexts(request):
 
 
 
-# ----------------------------------------------------------------------
-# Çalışma geçmişi dökümü
-# ----------------------------------------------------------------------
-
-def _write_study_history(write_line, user):
-    """
-    Kullanıcının çalışma geçmişini metin olarak yazar.
-
-    Eski döküm SORU METİNLERİNİ yazıyordu (şıklar, verilen cevap, doğru
-    şık). Yeni sistemde sorular kalıcı değil — her tekrarda yeniden
-    üretiliyorlar — ve zaten kullanıcıya ait olan şey soru değil,
-    ÖĞRENME GEÇMİŞİ: hangi kelimenin hangi boyutunu ne zaman bildi,
-    bir sonraki tekrar ne zaman. Döküm bunu veriyor.
-    """
-    from quizzes.models import ReviewItem, ReviewLog, StudySession
-
-    oturumlar = StudySession.objects.filter(user=user).order_by("-started_at")
-    write_line(f"Toplam {oturumlar.count()} çalışma oturumu.\n")
-
-    for i, oturum in enumerate(oturumlar[:200], 1):
-        write_line(f"OTURUM #{i}  —  {oturum.started_at.strftime('%d-%m-%Y %H:%M')}")
-        write_line(f"  Kapsam: {oturum.get_mode_display()}")
-        write_line(f"  Süre: {oturum.formatted_duration}")
-        write_line(f"  {oturum.answered_count} soru, {oturum.correct_count} doğru")
-
-        kayitlar = oturum.logs.all().order_by("answered_at")
-        for kayit in kayitlar:
-            sonuc = "DOĞRU" if kayit.is_correct else "YANLIŞ"
-            write_line(f"    {kayit.word_text:<20} {kayit.get_aspect_display():<20} "
-                       f"{sonuc:<7} → {kayit.scheduled_days:.0f} gün sonra")
-        write_line("")
-
-    write_line("\n--- KART DURUMLARI ---\n")
-    kartlar = (ReviewItem.objects.filter(user=user)
-               .select_related("word").order_by("word__text", "aspect"))
-    for kart in kartlar:
-        kararlilik = "—" if kart.stability is None else f"{kart.stability:.1f} gün"
-        sira = kart.due_at.strftime("%d-%m-%Y") if kart.due_at else "—"
-        write_line(f"  {kart.word.text:<20} {kart.get_aspect_display():<20} "
-                   f"kararlılık: {kararlilik:<10} sıradaki tekrar: {sira}")
-
-    toplam_kayit = ReviewLog.objects.filter(user=user).count()
-    write_line(f"\nToplam {toplam_kayit} cevap kaydı.")
-
-
-@login_required
-def exportMyQuizzes(request):
-    """Çalışma geçmişi dökümü (eski adıyla 'quizlerim')."""
-    user = request.user
-
-    response = HttpResponse(content_type='application/octet-stream')
-    filename = f"learnvocab_calismalarim_{user.username}.txt"
-    response['Content-Disposition'] = f'attachment; filename="{filename}"; filename*=UTF-8\'\'{filename}'
-
-    def write_line(text):
-        response.write(text.encode('utf-8') + b"\n")
-
-    write_line("LearnVocab Çalışma Dökümü")
-    write_line(f"Kullanıcı: {user.username}")
-    write_line(f"Tarih: {datetime.date.today().strftime('%d-%m-%Y')}")
-    write_line("="*40 + "\n")
-
-    _write_study_history(write_line, user)
-    return response
-
-
 @login_required
 def exportAll(request):
     user = request.user
@@ -409,15 +342,6 @@ def exportAll(request):
             write_line("--------------------")
     else:
         write_line("Dışa aktarılacak metin bulunamadı.")
-
-    # ==========================================================
-    # BÖLÜM 5: QUIZLER (exportMyQuizzes'ten)
-    # ==========================================================
-    write_line("\n" + "="*50)
-    write_line(" BOLUM 5: CALISMA GECMISIM")
-    write_line("="*50 + "\n")
-
-    _write_study_history(write_line, user)
 
     return response
 

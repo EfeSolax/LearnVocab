@@ -22,7 +22,6 @@ from datetime import timedelta
 from LearnVocab import pagination
 from django.db.models import Sum, Count, Q, Max
 from django.db.models.functions import Coalesce
-from quizzes.models import ReviewLog
 from words.addWeeks.addWeeks import allWordsAddDelete
 
 # Create your views here.
@@ -71,7 +70,6 @@ def showProfile(request):
         "export_links": [
             {"url": reverse("export_all"), "label": "Tüm verilerim"},
             {"url": reverse("export_mywords"), "label": "Kelimelerim"},
-            {"url": reverse("export_myquizzes"), "label": "Egzersizlerim"},
             {"url": reverse("export_mytexts"), "label": "Metinlerim"},
         ],
     }
@@ -430,91 +428,6 @@ def showMyAccountView(request):
     return redirect("user_profile")
 
 
-# Grafikteki soru tipleri ve renkleri — TEK kaynak.
-# Şablon hem birleşik grafiği hem mobildeki tip başına grafikleri hem de
-# alttaki oran listesini bu listeden üretiyor; yeni bir soru tipi eklenince
-# üç yeri birden elle güncellemek gerekmiyor.
-#
-# Renkler beş ayrı ton: mor, turuncu, pembe, camgöbeği, yeşil. Hepsi hem açık
-# hem karanlık zeminde okunuyor.
-# Boyut grafiğinin renkleri. Eskiden beş SORU TİPİ vardı (eşleştirme,
-# çoktan seçmeli, yazma, eş/zıt, boşluk); artık ölçülen şey soru tipi
-# değil ÖĞRENME BOYUTU — "hangi biçimde soruldu" değil "neyi biliyor".
-# Bir öğrencinin çoktan seçmelide iyi, yazmada kötü olması bir bilgi
-# değil; tanımada iyi, üretimde kötü olması bilgidir.
-ASPECT_CHART_COLORS = {
-    "recognize": "#7c3aed",
-    "produce": "#f59e0b",
-    "context": "#ec4899",
-    "collocation": "#06b6d4",
-    "pattern": "#10b981",
-    "false_friend": "#ef4444",
-    "confusable": "#8b5cf6",
-    "nuance": "#14b8a6",
-    "family": "#f97316",
-    "form": "#64748b",
-}
-
-
-def aspect_chart_data(user):
-    """
-    Boyut boyut doğru/yanlış sayıları.
-
-    Kaynak ReviewLog: her cevap orada duruyor, kart silinse bile.
-    """
-    from quizzes.aspects import Aspect
-
-    ham = (ReviewLog.objects.filter(user=user)
-           .values("aspect")
-           .annotate(correct=Count("id", filter=Q(is_correct=True)),
-                     wrong=Count("id", filter=Q(is_correct=False))))
-    sozluk = {satir["aspect"]: satir for satir in ham}
-
-    satirlar = []
-    for kod in Aspect.values:
-        veri = sozluk.get(kod, {})
-        dogru = veri.get("correct") or 0
-        yanlis = veri.get("wrong") or 0
-        toplam = dogru + yanlis
-        if not toplam:
-            continue
-        satirlar.append({
-            "key": kod,
-            "label": Aspect(kod).label,
-            "color": ASPECT_CHART_COLORS.get(kod, "#64748b"),
-            "correct": dogru,
-            "wrong": yanlis,
-            "total": toplam,
-            "correct_pct": round(dogru * 100 / toplam) if toplam else 0,
-            "wrong_pct": round(yanlis * 100 / toplam) if toplam else 0,
-        })
-    return satirlar
-
-
-# Eski ad — şablonlar ve testler kırılmasın diye duruyor.
-quiz_type_chart_data = aspect_chart_data
-
-
-@login_gate("Egzersizler", "Egzersizler kendi kelimelerinden üretildiği için giriş yapman gerekiyor.")
-def showQuizzesView(request):
-    from django.conf import settings as django_settings
-
-    if not getattr(django_settings, "QUIZZES_ENABLED", True):
-        return render(request, "pages/quizzes/quizzesDisabled.html",
-                      {"active_page": "Çalışma", "exercise_tab": "quizzes"})
-
-    tipler = aspect_chart_data(request.user)
-
-    context = {
-        "active_page": "Egzersizler",
-        "quiz_types": tipler,
-        "has_quiz_data": any(tip["total"] for tip in tipler),
-        "allUsers": User.objects.all(),
-    }
-
-    return render(request, "pages/profile/quizzes.html", context)
-
-
 @login_gate("Metinler", "Yazdığın metinler hesabına kaydedildiği için giriş yapman gerekiyor.")
 def showTextsView(request):
     
@@ -527,13 +440,10 @@ def showTextsView(request):
     can_write_new_text = text_limits.can_write_new_text(request.user)
     remaining_time = text_limits.remaining_label(request.user) or None
 
-    allUsers = User.objects.all()
-
     context = {
         "mytexts":texts,
         "isWriteable":can_write_new_text,
         "remaining_time":remaining_time,
-        "allUsers":allUsers,
         # Bilgilendirme kutusundaki süre metni de ayardan gelsin
         "text_interval_label": text_limits.interval_label(),
     }
