@@ -12,6 +12,10 @@ Alt şablonların sözleşmesi değişmedi:
   {% block page_heading %}  -> sayfa başlığı (varsayılan: active_page)
                                Kendi başlığı olan sayfalar bunu boş bırakır.
   {% block users %}         -> sayfanın altında gösterilen kullanıcı listesi
+  {% block sayfa_genisligi %} -> içerik genişliği. Varsayılan max-w-3xl: masaüstünde
+                               de mobildeki düzen, ortada makul genişlikte (rapor
+                               2.2). Henüz yenilenmemiş eski geniş sayfalar
+                               max-w-7xl ile eski genişliklerini koruyor.
 {% endcomment %}
 
 {% block title %}{% if active_page %}{{ active_page }}{% else %}LearnVocab{% endif %}{% endblock %}
@@ -21,7 +25,7 @@ Alt şablonların sözleşmesi değişmedi:
 {% block content %}
 
 <div class="min-h-[calc(100vh-4rem)] bg-gray-50 dark:bg-slate-900">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+    <div class="mx-auto {% block sayfa_genisligi %}max-w-3xl{% endblock %} px-4 sm:px-6 lg:px-8 py-6">
 
         {% block page_heading %}
             {% if active_page %}

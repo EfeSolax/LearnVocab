@@ -1,6 +1,8 @@
+import json
 import logging
 import re
 import threading
+from datetime import datetime
 
 from django.conf import settings
 from django.http import JsonResponse
@@ -10,6 +12,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_POST
 
@@ -93,19 +96,54 @@ def add_to_my_list(request, word_id):
         messages.error(request, "Bu kelimeyi listenize ekleme yetkiniz yok.")
         return redirect("profile_words")
 
-    UserWordLink.objects.get_or_create(user=request.user, word=word)
-    if _ajax_mi(request):   # Tüm Kelimeler: sayfa yenilenmeden düğme değişir
+    bag, olusturuldu = UserWordLink.objects.get_or_create(user=request.user, word=word)
+    if olusturuldu and request.method == "POST":
+        _geri_yukle(bag, request.POST.get("geri"))
+    if _ajax_mi(request):   # kelime kartı / Tüm Kelimeler: sayfa yenilenmeden düğme değişir
         return JsonResponse({"ok": True, "kayitli": True,
                              "html": _dugme_html(request, word.id, True, request.GET.get("boyut", "k"))})
     return _redirect_with_anchor(word.id, request)
 
 
+def _geri_verisi(bag):
+    """Listeden çıkarılan bağın "Geri al" ile geri konacak hâli."""
+    return {"dateAdded": bag.dateAdded.isoformat(),
+            "correctCount": bag.correctCount, "wrongCount": bag.wrongCount}
+
+
+def _geri_yukle(bag, ham):
+    """
+    "Geri al" (rapor 12.7): kelime listeye eklenme tarihi ve çalışma
+    sayaçlarıyla geri konur; yoksa "en son eklenen" sırası ve Zorlandıklarım
+    bilgisi bozulurdu. Kullanıcı yalnızca kendi bağını değiştirebiliyor.
+    """
+    if not ham:
+        return
+    try:
+        veri = json.loads(ham)
+        alanlar = {
+            "dateAdded": datetime.fromisoformat(veri["dateAdded"]),
+            "correctCount": max(0, int(veri.get("correctCount", 0))),
+            "wrongCount": max(0, int(veri.get("wrongCount", 0))),
+        }
+    except (ValueError, TypeError, KeyError):
+        return
+    if timezone.is_naive(alanlar["dateAdded"]):
+        return
+    if alanlar["dateAdded"] > bag.dateAdded:   # gelecekten tarih kabul edilmez
+        alanlar["dateAdded"] = bag.dateAdded
+    UserWordLink.objects.filter(pk=bag.pk).update(**alanlar)
+
+
 @login_required
 def remove_from_my_list(request, word_id):
     word = get_object_or_404(Word, id=word_id)
-    UserWordLink.objects.filter(user=request.user, word=word).delete()
+    bag = UserWordLink.objects.filter(user=request.user, word=word).first()
+    geri = _geri_verisi(bag) if bag else None
+    if bag:
+        bag.delete()
     if _ajax_mi(request):
-        return JsonResponse({"ok": True, "kayitli": False,
+        return JsonResponse({"ok": True, "kayitli": False, "geri": geri,
                              "html": _dugme_html(request, word.id, False, request.GET.get("boyut", "k"))})
     return _redirect_with_anchor(word.id, request)
 
@@ -1037,3 +1075,44 @@ def aiAddWordsFinish(request, job_id):
 
     target = "profile_words" if summary.get("added") else "ai_add_words_page"
     return JsonResponse({"redirect": reverse(target)})
+
+
+# ---------------------------------------------------------------------------
+# Sözlük (ürün raporu 4) — İSKELET
+# ---------------------------------------------------------------------------
+
+def sozluk(request):
+    """
+    Sözlük: üstte Keşfet | Listem sekmeleri (Listem yalnızca girişliye).
+
+    Şimdilik iskelet (uygulama planı adım 3). Keşfet'te arama kutusu ve
+    İngilizce TAM eşleşme: kelimenin her türü için ayrı kart, ilki açık,
+    diğerleri kapalı (rapor 4.2). Anlık öneri, Türkçe sorgu, diğer
+    sonuçlar ve bulunamayan akışı 4. adımda; Listem 5. adımda gelecek.
+    Paylaşılabilir adres: /sozluk/?q=aim
+    """
+    from .kart import kart_verisi
+
+    sekme = request.GET.get("sekme")
+    if sekme != "listem" or not request.user.is_authenticated:
+        sekme = "kesfet"
+
+    sorgu = (request.GET.get("q") or "").strip()[:120]
+    kartlar = []
+    if sekme == "kesfet" and sorgu:
+        kelimeler = (visible_words_qs(request.user)
+                     .filter(text__iexact=sorgu)
+                     .order_by("pos", "id").distinct())
+        kartlar = kart_verisi(kelimeler, request.user)
+
+    liste_sayisi = 0
+    if sekme == "listem":
+        liste_sayisi = UserWordLink.objects.filter(user=request.user).count()
+
+    return render(request, "pages/sozluk.html", {
+        "active_page": "Sözlük",
+        "sekme": sekme,
+        "sorgu": sorgu,
+        "kartlar": kartlar,
+        "liste_sayisi": liste_sayisi,
+    })

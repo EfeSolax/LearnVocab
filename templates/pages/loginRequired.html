@@ -31,7 +31,7 @@ Giriş formuna fırlatmak yerine nerede olduğunu anlatıp bağlantı veriyoruz.
     {% endif %}
 
     <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="{% url 'login' %}"
+        <a href="{{ gate_login_url }}"
            class="w-full sm:w-auto inline-flex justify-center items-center rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors">
             Giriş Yap
         </a>
@@ -42,8 +42,8 @@ Giriş formuna fırlatmak yerine nerede olduğunu anlatıp bağlantı veriyoruz.
     </div>
 
     <p class="mt-8 text-sm text-gray-500 dark:text-slate-400">
-        Giriş yapmadan da <a href="{% url 'readings' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Okumalar</a>
-        ve <a href="{% url 'about' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Hakkında</a> sayfalarını gezebilirsiniz.
+        Giriş yapmadan da <a href="{% url 'sozluk' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Sözlük</a>
+        ve <a href="{% url 'readings' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Okumalar</a> bölümlerini gezebilirsin.
     </p>
 </div>
 {% endblock %}

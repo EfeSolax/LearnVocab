@@ -1,0 +1,94 @@
+{% comment %}
+"Geri al" bildirimi (ürün raporu 12.7): onay penceresi yerine birkaç
+saniyelik alt bildirim — "aim listenden çıkarıldı · Geri al".
+
+Mobilde alt menünün üstünde, masaüstünde ekranın altında durur. Aynı anda
+tek bildirim görünür; yenisi gelince eskisi kapanır.
+
+JS API (layout.html'de her sayfaya bir kez eklenir):
+
+    window.geriAl.goster(mesaj, geriAlFonksiyonu, secenekler)
+        mesaj             -> düz metin (HTML değil)
+        geriAlFonksiyonu  -> "Geri al"a basılınca çağrılır. null ise düğme çıkmaz.
+        secenekler.sure   -> ms, varsayılan 5000
+        secenekler.bitince-> bildirim geri alınmadan kapanınca (süre dolunca ya
+                             da yerine yenisi gelince) çağrılır. "Önce arayüzden
+                             kaldır, süre dolunca sunucuya yaz" düzeni için.
+        döner: { kapat() }
+
+    window.geriAl.bildir(mesaj)   -> Geri al düğmesi olmayan kısa bildirim.
+
+Örnek:
+    geriAl.goster('aim listenden çıkarıldı', function () { ekle(id); });
+{% endcomment %}
+
+<div id="geri-al-kutusu" aria-live="polite"
+     class="pointer-events-none fixed inset-x-0 z-[60] flex justify-center px-4 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] lg:bottom-6"></div>
+
+<script>
+(function () {
+    var kutu = document.getElementById('geri-al-kutusu');
+    var etkin = null;   // { eleman, zamanlayici, bitince }
+
+    function kaldir(eleman) {
+        eleman.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(function () { eleman.remove(); }, 200);
+    }
+
+    // Etkin bildirimi kapatır. geriAlindi değilse "bitince" çağrılır.
+    function kapat(kayit, geriAlindi) {
+        if (!kayit || kayit.kapandi) { return; }
+        kayit.kapandi = true;
+        clearTimeout(kayit.zamanlayici);
+        kaldir(kayit.eleman);
+        if (etkin === kayit) { etkin = null; }
+        if (!geriAlindi && typeof kayit.bitince === 'function') {
+            try { kayit.bitince(); } catch (e) { console.error(e); }
+        }
+    }
+
+    function goster(mesaj, geriAlFonksiyonu, secenekler) {
+        secenekler = secenekler || {};
+        if (etkin) { kapat(etkin, false); }
+
+        var eleman = document.createElement('div');
+        eleman.setAttribute('role', 'status');
+        eleman.setAttribute('data-geri-al-bildirimi', '');
+        eleman.className = 'pointer-events-auto flex w-full max-w-md items-center gap-3 rounded-xl ' +
+            'bg-gray-900 dark:bg-slate-100 px-4 py-3 text-sm text-white dark:text-slate-900 shadow-lg ' +
+            'transition duration-200 opacity-0 translate-y-2';
+
+        var yazi = document.createElement('span');
+        yazi.className = 'flex-1 min-w-0';
+        yazi.textContent = mesaj;
+        eleman.appendChild(yazi);
+
+        var kayit = { eleman: eleman, bitince: secenekler.bitince, kapandi: false };
+
+        if (typeof geriAlFonksiyonu === 'function') {
+            var dugme = document.createElement('button');
+            dugme.type = 'button';
+            dugme.className = 'shrink-0 rounded-md px-2 py-1 font-bold text-indigo-300 dark:text-indigo-700 ' +
+                'hover:bg-white/10 dark:hover:bg-slate-900/10';
+            dugme.textContent = 'Geri al';
+            dugme.addEventListener('click', function () {
+                kapat(kayit, true);
+                geriAlFonksiyonu();
+            });
+            eleman.appendChild(dugme);
+        }
+
+        kutu.appendChild(eleman);
+        requestAnimationFrame(function () { eleman.classList.remove('opacity-0', 'translate-y-2'); });
+
+        kayit.zamanlayici = setTimeout(function () { kapat(kayit, false); }, secenekler.sure || 5000);
+        etkin = kayit;
+        return { kapat: function () { kapat(kayit, false); } };
+    }
+
+    window.geriAl = {
+        goster: goster,
+        bildir: function (mesaj, secenekler) { return goster(mesaj, null, secenekler); },
+    };
+})();
+</script>

@@ -166,6 +166,46 @@ def verb_forms(kok, v2=None, v3=None):
     return bicimler
 
 
+def _duzenli_gecmisler(kok):
+    """
+    Düzenli fiilin 2./3. hâli için kabul edilen yazımlar.
+
+    Kural (verb_forms) ikilemeyi vurguya bağlı bilemiyor: embed -> embedded,
+    format -> formatted, panic -> panicked. Bunlar yazım farkı, düzensizlik
+    değil; hepsi -ed ailesinden sayılıyor.
+    """
+    kural = dict((tur, yuzey) for yuzey, tur in verb_forms(kok))
+    kabul = {kural["past"], kok + "ed", kok + kok[-1] + "ed"}
+    if kok.endswith("e"):
+        kabul.add(kok + "d")
+    if kok.endswith("y"):
+        kabul.add(kok[:-1] + "ied")
+    if kok.endswith("c"):
+        kabul.add(kok + "ked")
+    return kabul
+
+
+def duzensiz_fiil_mi(text, v2=None, v3=None):
+    """
+    Fiil düzensiz mi? Veritabanında düzenli fiillerin de v2Form/v3Form alanı
+    dolu (aimed/aimed); kelime kartı V2 · V3'ü yalnızca düzensizlerde
+    gösteriyor (rapor 4.3). Kuralın ürettiğiyle karşılaştırılıyor:
+    go/went/gone, cut/cut/cut, flee/fled/fled düzensiz; decide/decided,
+    embed/embedded, panic/panicked düzenli.
+
+    Phrasal verb'de ilk kelimeye bakılır: give up / gave up / given up.
+    """
+    kok = (text or "").strip().lower().split(" ")[0]
+    if not kok:
+        return False
+    kabul = _duzenli_gecmisler(kok)
+    for bicim in (v2, v3):
+        bicim = (bicim or "").strip().lower().split(" ")[0]
+        if bicim and bicim not in kabul:
+            return True
+    return False
+
+
 def adjective_forms(kok):
     """
     Sıfatın karşılaştırma ve en üstünlük hâlleri.

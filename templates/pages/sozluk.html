@@ -1,0 +1,80 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}
+Sözlük (ürün raporu 4) — iskelet (uygulama planı adım 3).
+
+Üstte iki sekme: Keşfet | Listem. Listem yalnızca giriş yapmış kullanıcıya
+görünür (rapor 2.3). Keşfet'in boş hâli (günün kelimesi/ifadesi, hazır
+listeler), arama ayrıntıları ve Listem sonraki adımlarda dolacak.
+Kartlar: base/_kelimeKarti.html (ilk kart açık, diğerleri kapalı).
+{% endcomment %}
+
+{% block title %}{% if sorgu %}{{ sorgu }} — Sözlük{% else %}Sözlük{% endif %}{% endblock %}
+{% block page_heading %}{% endblock %}
+
+{% block page %}
+
+{# ---------- Sekmeler ---------- #}
+<div class="-mx-4 sm:mx-0 mb-5">
+    <div class="flex border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 sm:rounded-t-xl" role="tablist">
+        <a href="{% url 'sozluk' %}" role="tab" {% if sekme == "kesfet" %}aria-current="page" aria-selected="true"{% endif %}
+           class="flex-1 px-4 py-3 text-center text-sm sm:text-base font-semibold border-b-2 transition-colors
+                  {% if sekme == 'kesfet' %}border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400{% else %}border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200{% endif %}">
+            Keşfet
+        </a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'sozluk' %}?sekme=listem" role="tab" {% if sekme == "listem" %}aria-current="page" aria-selected="true"{% endif %}
+           class="flex-1 px-4 py-3 text-center text-sm sm:text-base font-semibold border-b-2 transition-colors
+                  {% if sekme == 'listem' %}border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400{% else %}border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200{% endif %}">
+            Listem
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+{% if sekme == "kesfet" %}
+
+{# ---------- Keşfet: arama ---------- #}
+<form method="get" action="{% url 'sozluk' %}" role="search" class="relative">
+    <label for="sozluk-ara" class="sr-only">İngilizce veya Türkçe ara</label>
+    <input id="sozluk-ara" type="search" name="q" value="{{ sorgu }}" autocomplete="off" autocapitalize="off" spellcheck="false"
+           placeholder="İngilizce veya Türkçe ara"
+           class="block w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 py-3 pl-4 pr-12 text-base text-gray-900 dark:text-slate-100 placeholder:text-gray-400 dark:placeholder:text-slate-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+    <button type="submit" aria-label="Ara"
+            class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-400 hover:text-indigo-600 dark:text-slate-500 dark:hover:text-indigo-400">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+    </button>
+</form>
+
+{% if sorgu %}
+<div class="mt-5 space-y-3" data-sonuclar>
+    {% for kart in kartlar %}
+        {% include 'base/_kelimeKarti.html' with kart=kart kapali=forloop.counter0 %}
+    {% empty %}
+        <p class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-6 text-center text-gray-600 dark:text-slate-400">
+            “{{ sorgu }}” için henüz bir kart bulamadık.
+        </p>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% else %}
+
+{# ---------- Listem (5. adımda dolacak) ---------- #}
+<div class="relative">
+    <label for="listem-ara" class="sr-only">Listende ara</label>
+    <input id="listem-ara" type="search" disabled placeholder="Listende ara"
+           class="block w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 py-3 pl-4 pr-12 text-base text-gray-900 dark:text-slate-100 placeholder:text-gray-400 dark:placeholder:text-slate-500 shadow-sm disabled:opacity-70">
+</div>
+
+{% if liste_sayisi %}
+<p class="mt-5 text-sm text-gray-600 dark:text-slate-400">Listende {{ liste_sayisi }} kelime var.</p>
+{% else %}
+<p class="mt-5 rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-6 text-center text-gray-600 dark:text-slate-400">
+    Listen boş. Sözlük'te + ile ya da Learn &amp; Pass'te kelime ekleyebilirsin.
+</p>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

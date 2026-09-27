@@ -1,0 +1,92 @@
+{% comment %}
+Kelime kartının "Listeme ekle / Listemde" davranışı (base/_kartListeDugmesi.html).
+
+  - Ekle: mevcut add_to_my_list ucuna fetch ile POST; sayfa yenilenmez.
+  - Çıkar: remove_from_my_list; onay penceresi YOK, "… listenden çıkarıldı ·
+    Geri al" bildirimi çıkar (rapor 12.7). Geri al, kelimeyi eklenme tarihi ve
+    çalışma sayaçlarıyla birlikte geri koyar (sunucu çıkarırken bunları döner).
+  - Aynı kelimenin sayfadaki bütün düğmeleri (kapalı ve açık kart) birlikte değişir.
+  - Her değişiklikte document'e "kelime-listesi" olayı gönderilir
+    ({ detail: { id, listede } }) — Listem gibi sayfalar dinleyebilir.
+
+Girişsiz ziyaretçide düğmede data-giris-gerekli var; tıklama buraya hiç
+ulaşmaz (base/_girisGerekli.html yakalar).
+{% endcomment %}
+
+<script>
+(function () {
+    function csrf() {
+        var meta = document.querySelector('meta[name="csrf-token"]');
+        return meta ? meta.content : '';
+    }
+
+    function gonder(adres, veri) {
+        var govde = new URLSearchParams(veri || {});
+        return fetch(adres, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { 'X-CSRFToken': csrf(), 'X-Requested-With': 'fetch' },
+            body: govde,
+        }).then(function (cevap) {
+            if (!cevap.ok) { throw new Error('HTTP ' + cevap.status); }
+            return cevap.json();
+        });
+    }
+
+    function durumuYay(id, listede) {
+        document.querySelectorAll('[data-kelime-liste][data-kelime-id="' + id + '"]').forEach(function (d) {
+            d.dataset.listede = listede ? '1' : '0';
+            d.setAttribute('aria-pressed', listede ? 'true' : 'false');
+            d.title = listede ? 'Listemde — çıkarmak için dokun' : 'Listeme ekle';
+            var ekle = d.querySelector('[data-ekle-yazi]');
+            var var_ = d.querySelector('[data-listede-yazi]');
+            if (ekle) { ekle.hidden = listede; }
+            if (var_) { var_.hidden = !listede; }
+        });
+        document.dispatchEvent(new CustomEvent('kelime-listesi', { detail: { id: Number(id), listede: listede } }));
+    }
+
+    function mesgul(id, deger) {
+        document.querySelectorAll('[data-kelime-liste][data-kelime-id="' + id + '"]').forEach(function (d) {
+            d.disabled = deger;
+        });
+    }
+
+    function hata() {
+        window.geriAl.bildir('Bir sorun oldu, tekrar dener misin?');
+    }
+
+    function ekle(dugme, geriVerisi) {
+        var id = dugme.dataset.kelimeId;
+        mesgul(id, true);
+        return gonder(dugme.dataset.ekleUrl, geriVerisi ? { geri: JSON.stringify(geriVerisi) } : null)
+            .then(function () { durumuYay(id, true); })
+            .catch(hata)
+            .finally(function () { mesgul(id, false); });
+    }
+
+    function cikar(dugme) {
+        var id = dugme.dataset.kelimeId;
+        var yazi = dugme.dataset.kelimeYazi;
+        mesgul(id, true);
+        return gonder(dugme.dataset.cikarUrl)
+            .then(function (cevap) {
+                durumuYay(id, false);
+                window.geriAl.goster('“' + yazi + '” listenden çıkarıldı', function () {
+                    ekle(dugme, cevap.geri);
+                });
+            })
+            .catch(hata)
+            .finally(function () { mesgul(id, false); });
+    }
+
+    document.addEventListener('click', function (olay) {
+        var dugme = olay.target.closest('[data-kelime-liste]');
+        if (!dugme || dugme.disabled) { return; }
+        olay.preventDefault();
+        if (dugme.dataset.listede === '1') { cikar(dugme); } else { ekle(dugme); }
+    });
+
+    window.kelimeKarti = { durumuYay: durumuYay };
+})();
+</script>

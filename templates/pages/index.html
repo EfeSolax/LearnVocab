@@ -31,7 +31,7 @@
         </h1>
 
         <p class="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-gray-600 dark:text-slate-400 leading-relaxed">
-            Hazır kelime havuzları, hızlı tekrar için Öğren-Geç ve yapay zekayla puanlanan metinler.
+            Hazır kelime havuzları, hızlı tekrar için Learn &amp; Pass ve yapay zekayla puanlanan metinler.
             Defter karalamayı bırak, kelimeleri <span class="font-semibold text-gray-900 dark:text-slate-100">öğren</span>.
         </p>
 
@@ -151,7 +151,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">Öğren-Geç</h3>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">Learn &amp; Pass</h3>
             <p class="mt-2 text-sm text-gray-600 dark:text-slate-400 leading-relaxed">
                 Kelimeyi gör, bildiğini düşünüyor musun karar ver. <span class="font-semibold">Zorlandığın</span>
                 kelimeler öne çıkar; istediğin an bırakabilirsin.
@@ -201,7 +201,7 @@
                     <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600 dark:text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                     </svg>
-                    Öğren-Geç ile hızlı, her an bırakılabilir tekrar.
+                    Learn &amp; Pass ile hızlı, her an bırakılabilir tekrar.
                 </li>
                 <li class="flex items-start gap-3">
                     <svg class="mt-0.5 h-5 w-5 flex-none text-indigo-600 dark:text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
@@ -276,7 +276,7 @@
     <div class="mx-auto max-w-3xl px-6 lg:px-8 text-center">
         <h2 class="text-3xl sm:text-4xl font-bold text-white">İlk kelime bugünden.</h2>
         <p class="mt-4 text-base sm:text-lg text-gray-300 dark:text-slate-600">
-            Hesap aç, listene 5 kelime ekle, Öğren-Geç ile ilk turunu at. Toplamda 5 dakika.
+            Hesap aç, listene 5 kelime ekle, Learn &amp; Pass ile ilk turunu at. Toplamda 5 dakika.
         </p>
         <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
             {% if user.is_authenticated %}
@@ -286,7 +286,7 @@
                 </a>
                 <a href="{% url 'learn_pass_page' %}"
                    class="inline-flex items-center gap-2 rounded-lg bg-indigo-500 px-5 py-3 text-sm sm:text-base font-semibold text-white hover:bg-indigo-400 transition">
-                    Öğren-Geç'e başla
+                    Learn &amp; Pass'e başla
                 </a>
             {% else %}
                 <a href="{% url 'register' %}"

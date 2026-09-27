@@ -29,8 +29,8 @@ from . import selection
 from .models import Declaration, EncounterLog, WordEncounter
 
 
-GATE_LABEL = "Egzersizler"
-GATE_NOTE = "Öğren-Geç kendi kelimelerinle çalıştığı için giriş yapman gerekiyor."
+GATE_LABEL = "Çalışmalar"
+GATE_NOTE = "Learn & Pass'te yaptıklarının kaydedilmesi için giriş yapman gerekiyor."
 
 MODES = {
     WordEncounter.MODE_MINE: "Kendi Kelimelerim",
@@ -131,14 +131,22 @@ def reset_run(session, mode):
 # Sayfalar
 # ----------------------------------------------------------------------
 
-@login_gate(GATE_LABEL, GATE_NOTE)
 def learnPassPage(request):
-    """Mod seçimi. Hangi havuzdan çalışacağına burada karar veriliyor."""
+    """
+    Mod seçimi. Hangi havuzdan çalışacağına burada karar veriliyor.
+
+    Çalışmalar bölümünün açılış sayfası; menüden herkes gelebilsin diye
+    girişsiz de açılıyor (rapor 2.3). Girişsiz ziyaretçinin yalnızca
+    kaydırdığı, hiçbir şeyin kaydedilmediği akış 6. adımda (L&P) yazılacak;
+    o zamana kadar mod düğmeleri girişsizken giriş sayfasına yönlendiriyor
+    (data-giris-gerekli), sayaçlar gösterilmiyor.
+    """
+    girisli = request.user.is_authenticated
     context = {
-        "active_page": "Öğren-Geç",
+        "active_page": "Learn & Pass",
         "exercise_tab": "learn",
-        "own_count": selection.own_words_qs(request.user).count(),
-        "new_count": selection.new_words_qs(request.user).count(),
+        "own_count": selection.own_words_qs(request.user).count() if girisli else None,
+        "new_count": selection.new_words_qs(request.user).count() if girisli else None,
     }
     return render(request, "pages/learnpass/modePicker.html", context)
 
@@ -152,7 +160,7 @@ def learnPassRun(request, mode):
     reset_run(request.session, mode)
 
     context = {
-        "active_page": "Öğren-Geç",
+        "active_page": "Learn & Pass",
         "exercise_tab": "learn",
         "mode": mode,
         "mode_label": MODES[mode],
@@ -165,7 +173,7 @@ def learnPassRun(request, mode):
 EXERCISES_GATE_NOTE = "Egzersizler kendi listenle çalıştığı için giriş yapman gerekiyor."
 
 
-@login_gate(GATE_LABEL, EXERCISES_GATE_NOTE)
+@login_gate("Egzersizler", EXERCISES_GATE_NOTE)
 def exercisesPage(request):
     """
     Egzersizler sekmesi — şimdilik yer tutucu.

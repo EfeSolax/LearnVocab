@@ -8,6 +8,8 @@ from users.models import User
 
 # Kullanıcıya çıktı vermek için mesajlar import edelim.
 from django.contrib import messages
+
+from LearnVocab.authgate import GIRIS_NEDENLERI, giris_adresi, giris_notu, guvenli_sonraki
 import random
 
 # Burada hazırladığımız user modelini import ediyoruz.
@@ -158,17 +160,25 @@ def login_user(request):
         # (user enumeration) izin veriyordu. Artık tek ve genel bir mesaj veriyoruz.
         user = authenticate(request, username=username, password=password)
 
+        # Giriş gerektiren bir düğmeden gelindiyse (?next=) oraya dönülür.
+        # Yalnızca bu sitenin adresleri kabul ediliyor (bkz. authgate).
+        sonraki = guvenli_sonraki(request)
+
         if user is not None:
             login(request, user)
             messages.success(request, f"Hoş geldin, {username}!")
-            return redirect("index")
+            return redirect(sonraki or "index")
         else:
             messages.error(request, "Kullanıcı adı veya şifre hatalı!")
-            return redirect("login")
-        
-    
+            # Hatalı denemede ?next= ve açıklama kaybolmasın.
+            return redirect(giris_adresi(sonraki, request.POST.get("neden")))
 
-    return render(request, "pages/users/login.html")
+    return render(request, "pages/users/login.html", {
+        "sonraki": guvenli_sonraki(request) or "",
+        # Yalnızca bilinen açıklama anahtarları taşınır (bkz. authgate.GIRIS_NEDENLERI).
+        "neden": request.GET.get("neden") if request.GET.get("neden") in GIRIS_NEDENLERI else "",
+        "giris_notu": giris_notu(request),
+    })
 
 def logout_user(request):
     

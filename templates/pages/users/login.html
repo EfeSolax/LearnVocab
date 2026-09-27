@@ -17,8 +17,18 @@
 
     {% include 'base/messages.html' with margin_class="" %}
 
-    <form action="#" method="POST" class="space-y-6">
+    {# Giriş gerektiren bir düğmeden gelindiyse kısa açıklama (bkz. LearnVocab/authgate.py) #}
+    {% if giris_notu %}
+    <div class="mb-6 rounded-lg border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950 p-4 text-sm" data-giris-notu>
+      <p class="font-semibold text-indigo-900 dark:text-indigo-200">{{ giris_notu.baslik }}</p>
+      {% if giris_notu.ayrinti %}<p class="mt-1 text-indigo-800 dark:text-indigo-300">{{ giris_notu.ayrinti }}</p>{% endif %}
+    </div>
+    {% endif %}
+
+    <form method="POST" class="space-y-6">
       {% csrf_token %}
+      {% if sonraki %}<input type="hidden" name="next" value="{{ sonraki }}">{% endif %}
+      {% if neden %}<input type="hidden" name="neden" value="{{ neden }}">{% endif %}
       <div>
         <label for="username" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Kullanıcı Adı</label>
         <div class="mt-2">

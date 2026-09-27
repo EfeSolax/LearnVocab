@@ -1,4 +1,6 @@
 {% extends 'base/appLayout.html' %}
+{# Eski geniş sayfa: yenilenene kadar eski genişliğini koruyor (bkz. base/appLayout.html). #}
+{% block sayfa_genisligi %}max-w-7xl{% endblock %}
 
 {% comment %}
 Kelimelerim — yeni kelime modeline göre baştan yazıldı.
@@ -140,7 +142,7 @@ belirir. Kur ekle/sil ve liste yönetimi en altta, "Araçlar" içinde katlı.
             {% if search_query %}
                 “{{ search_query }}” için bir şey bulunamadı.
             {% else %}
-                Öğren-Geç'te yeni kelimeler keşfedebilir ya da kendin yeni bir kelime yazabilirsin.
+                Learn &amp; Pass'te yeni kelimeler keşfedebilir ya da kendin yeni bir kelime yazabilirsin.
             {% endif %}
         </p>
         <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3">

@@ -428,7 +428,7 @@ def showMyAccountView(request):
     return redirect("user_profile")
 
 
-@login_gate("Metinler", "Yazdığın metinler hesabına kaydedildiği için giriş yapman gerekiyor.")
+@login_gate("Yazma", "Yazdığın metinler hesabına kaydedildiği için giriş yapman gerekiyor.")
 def showTextsView(request):
     
     texts = Text.objects.filter(owner = request.user).order_by("-createdAt")

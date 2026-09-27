@@ -1,7 +1,7 @@
 {% extends 'base/appLayout.html' %}
 
 {% comment %}
-Öğren-Geç kart ekranı.
+Learn & Pass kart ekranı.
 
 Kartın üç hâli var:
   ask     -> sadece kelime + içinde geçtiği cümle. Anlam YOK.
@@ -14,7 +14,7 @@ Kartın üç hâli var:
 Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
 {% endcomment %}
 
-{% block title %}Öğren-Geç — {{ mode_label }}{% endblock %}
+{% block title %}Learn &amp; Pass — {{ mode_label }}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
@@ -134,7 +134,7 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
             {% comment %}
             Beyan şeridi. Yalnızca kelime yeterince görüldüyse çıkıyor.
 
-            Öğren-Geç'in asıl ürünü bu iki düğme. Karar (biliyorum /
+            Learn & Pass'in asıl ürünü bu iki düğme. Karar (biliyorum /
             bilmiyorum) tek bir ana ait; beyan kullanıcının o kelimeyle
             kurduğu İLİŞKİ hakkında ve tekrar sayısını hesaba katıyor.
             "Bu kadar çok çıkmasına rağmen hâlâ öğrenemedim" bilgisi
@@ -433,7 +433,7 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
             if (!cevap.ok) { return; }
             const veri = await cevap.json();
             el.declareDone.textContent = beyan === "mastered"
-                ? "Kaydedildi — bu kelime Öğren-Geç'te bir daha çıkmayacak."
+                ? "Kaydedildi — bu kelime Learn & Pass'te bir daha çıkmayacak."
                 : "Kaydedildi — bu kelime çalışmalarında öne alınacak.";
             gizle(el.stepDeclare.querySelector(".grid"));
             goster(el.declareDone);
@@ -467,7 +467,7 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
             const veri = await kararGonder("known");
             // Gerçekten biliyorsa bekletmeye gerek yok — AMA kelime
             // yeterince görüldüyse "artık öğrendim mi" sorusunu sormanın
-            // tam yeri burası. Öğren-Geç'in topladığı asıl veri bu.
+            // tam yeri burası. Learn & Pass'in topladığı asıl veri bu.
             if (veri && veri.answered && veri.answered.can_declare
                 && veri.answered.declaration === "none") {
                 goster(el.stepNext);

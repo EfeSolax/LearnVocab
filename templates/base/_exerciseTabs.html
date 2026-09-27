@@ -1,9 +1,11 @@
 {% comment %}
-"Egzersizler" bölümünün iki sekmesi arasındaki geçiş şeridi.
+"Çalışmalar" bölümünün iki sekmesi arasındaki geçiş şeridi:
+Learn & Pass (varsayılan) | Egzersizler (rapor 6). Egzersizler girişsiz
+ziyaretçiyi giriş sayfasına yönlendirir (data-giris-gerekli, rapor 2.3).
 Mobilde tam genişlik, masaüstünde içerik genişliği.
 
 Kullanımı:  {% include 'base/_exerciseTabs.html' with exercise_tab="learn" %}
-            exercise_tab: "learn" (Öğren-Geç) | "exercises" (Egzersizler)
+            exercise_tab: "learn" (Learn & Pass) | "exercises" (Egzersizler)
 {% endcomment %}
 
 <div class="-mx-4 sm:mx-0 mb-6">
@@ -12,9 +14,10 @@ Kullanımı:  {% include 'base/_exerciseTabs.html' with exercise_tab="learn" %}
            {% if exercise_tab == "learn" %}aria-current="page"{% endif %}
            class="flex-1 whitespace-nowrap px-4 py-3 text-center text-sm sm:text-base font-semibold border-b-2 transition-colors
                   {% if exercise_tab == 'learn' %}border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400{% else %}border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200 hover:border-gray-300 dark:hover:border-slate-600{% endif %}">
-            Öğren-Geç
+            Learn &amp; Pass
         </a>
         <a href="{% url 'exercises_page' %}"
+           {% if not user.is_authenticated %}data-giris-gerekli="egzersiz"{% endif %}
            {% if exercise_tab == "exercises" %}aria-current="page"{% endif %}
            class="flex-1 whitespace-nowrap px-4 py-3 text-center text-sm sm:text-base font-semibold border-b-2 transition-colors
                   {% if exercise_tab == 'exercises' %}border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400{% else %}border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200 hover:border-gray-300 dark:hover:border-slate-600{% endif %}">

@@ -14,6 +14,8 @@ from django.conf.urls.static import static
 from django.shortcuts import render
 from django.urls import include, path
 
+from words import views as word_views
+
 
 def showIndex(request):
     """
@@ -71,6 +73,8 @@ urlpatterns = [
     path("", showIndex, name="index"),
     path("about/", showAbout, name="about"),
     path("readings/", showReadings, name="readings"),
+    # Sözlük (rapor 4). Adres paylaşılabilir: /sozluk/?q=aim
+    path("sozluk/", word_views.sozluk, name="sozluk"),
     path("users/", include("users.urls")),
     path("words/", include("words.urls")),
     # Arkadaşlık özelliği şu an KAPALI.

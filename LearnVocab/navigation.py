@@ -1,20 +1,26 @@
 """
 Uygulamanın ana menüsü — TEK kaynak.
 
-Hem üstteki navbar hem de mobildeki alt sekme çubuğu bu listeden besleniyor.
-Bir bölümün adını, adresini veya ikonunu değiştirmek için yalnızca burayı
-düzenlemek yeterli; iki ayrı şablonu elle eşit tutmaya çalışmak gerekmiyor.
+Hem üstteki çubuk (masaüstü) hem de mobildeki alt sekme çubuğu bu listeden
+besleniyor. Bir bölümün adını, adresini veya ikonunu değiştirmek için
+yalnızca burayı düzenlemek yeterli.
+
+Menü (ürün raporu 2.1): Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma
+Ana Sayfa ortada. "Hakkında" menüde yok (yardım bağlantısı Ana Sayfa'da),
+Ayarlar sağ üstteki dişli simgesinde.
 
 Her bölüm:
-  key          -> şablonların ikon seçmek için kullandığı anahtar
-  label        -> menüde görünen ad
-  url_name     -> giriş yapmış kullanıcı için hedef
-  public_url   -> giriş yapmamış kullanıcı için hedef (yoksa url_name kullanılır)
-  matches      -> bu bölüm "aktif" sayılırken eşleşecek url adları
+  key           -> şablonların ikon seçmek için kullandığı anahtar
+  label         -> menüde görünen ad
+  url_name      -> hedef sayfa
+  matches       -> bu bölüm "aktif" sayılırken eşleşecek url adları
+  giris_gerekli -> girişsiz ziyaretçi dokununca giriş sayfasına yönlendirilir
+                   (değer: authgate.GIRIS_NEDENLERI anahtarı). Bölüm yine de
+                   menüde görünür (rapor 2.3: giriş gerektiren düğmeler
+                   gizlenmez).
 
-"Tüm Kelimeler" sayfası ve filtre paneli arayüzden kaldırıldı (ürün raporu,
-Bölüm 17); "Kelimeler" artık yalnızca Kelimelerim'e gidiyor. Giriş yapmamış
-kullanıcı orada "önce giriş yap" ekranını görüyor (bkz. authgate.py).
+Eski kelime sayfaları (Kelimelerim, Tüm Kelimeler, kelime detayı…) menüden
+ulaşılmıyor ama adresleri duruyor; açılırlarsa Sözlük bölümü aktif görünür.
 """
 
 from django.urls import reverse
@@ -22,48 +28,43 @@ from django.urls import reverse
 
 NAV_SECTIONS = (
     {
-        "key": "words",
-        "label": "Kelimeler",
-        "url_name": "profile_words",
-        "public_url": "profile_words",
+        "key": "sozluk",
+        "label": "Sözlük",
+        "url_name": "sozluk",
         "matches": (
-            "profile_words", "all_words", "word_detail",
+            "sozluk",
+            # Eski kelime sayfaları: menüde yoklar ama Sözlük'e aitler.
+            "profile_words", "all_words", "word_detail", "expression_detail",
             "add_word", "edit_word", "ai_add_words_page",
         ),
+    },
+    {
+        "key": "calismalar",
+        "label": "Çalışmalar",
+        # Bölüm Learn & Pass ile açılıyor; Egzersizler sekmesine oradaki
+        # şeritten geçiliyor (bkz. base/_exerciseTabs.html).
+        "url_name": "learn_pass_page",
+        "matches": ("learn_pass_page", "learn_pass_run", "exercises_page"),
+    },
+    {
+        "key": "home",
+        "label": "Ana Sayfa",
+        "url_name": "index",
+        "matches": ("index",),
     },
     {
         "key": "readings",
         "label": "Okumalar",
         "url_name": "readings",
-        "public_url": "readings",
         "matches": ("readings",),
     },
     {
-        "key": "about",
-        "label": "Hakkında",
-        "url_name": "about",
-        "public_url": "about",
-        "matches": ("about",),
-    },
-    {
-        "key": "exercises",
-        "label": "Egzersizler",
-        # Bölümün varsayılan sayfası Öğren-Geç; Egzersizler sekmesine
-        # oradaki şeritten geçiliyor (bkz. _exerciseTabs.html).
-        "url_name": "learn_pass_page",
-        "public_url": "learn_pass_page",
-        "matches": (
-            "learn_pass_page", "learn_pass_run", "exercises_page",
-        ),
-    },
-    {
-        "key": "texts",
-        "label": "Metinler",
+        # Eski "Metinler" bölümünün yeni adı (rapor 2.1).
+        "key": "yazma",
+        "label": "Yazma",
         "url_name": "profile_texts",
-        "public_url": "profile_texts",
-        "matches": (
-            "profile_texts", "new_text_page", "review_text", "about_grading_page",
-        ),
+        "matches": ("profile_texts", "new_text_page", "review_text", "about_grading_page"),
+        "giris_gerekli": "yazma",
     },
 )
 
@@ -85,16 +86,15 @@ def build_sections(request):
     authenticated = bool(getattr(request, "user", None) and request.user.is_authenticated)
     active = current_section_key(request)
 
-    sections = []
-    for section in NAV_SECTIONS:
-        name = section["url_name"] if authenticated else section.get("public_url") or section["url_name"]
-        sections.append({
-            "key": section["key"],
-            "label": section["label"],
-            "url": reverse(name),
-            "is_active": section["key"] == active,
-        })
-    return sections
+    return [{
+        "key": section["key"],
+        "label": section["label"],
+        "url": reverse(section["url_name"]),
+        "is_active": section["key"] == active,
+        # Yalnızca girişsizken dolu: şablon data-giris-gerekli özniteliğini
+        # buna göre basıyor.
+        "giris_gerekli": "" if authenticated else section.get("giris_gerekli", ""),
+    } for section in NAV_SECTIONS]
 
 
 def navigation(request):

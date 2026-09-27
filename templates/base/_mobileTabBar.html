@@ -1,12 +1,12 @@
 {% comment %}
-Mobil alt sekme çubuğu (Instagram / Duolingo tarzı).
+Mobil alt sekme çubuğu (ürün raporu 2.2).
 
-Beş bölüm de her zaman görünüyor — giriş yapılmamışsa bile. Korumalı bir
-bölüme dokunulduğunda kullanıcı giriş formuna fırlatılmıyor, "önce giriş
-yapın" ekranı açılıyor (bkz. LearnVocab/authgate.py). Böylece menü hiç yer
-değiştirmiyor ve kullanıcı nerede olduğunu kaybetmiyor.
+Beş bölüm her zaman görünüyor — giriş yapılmamışsa bile (rapor 2.3:
+giriş gerektiren yerler gizlenmez). Girişsiz ziyaretçi giriş gerektiren
+bölüme (Yazma) dokununca giriş sayfasına yönlendiriliyor
+(data-giris-gerekli, bkz. base/_girisGerekli.html).
 
-Bölümler navbar ile aynı listeden geliyor: LearnVocab/navigation.py
+Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
 {% endcomment %}
 
 <nav aria-label="Alt menü"
@@ -15,6 +15,7 @@ Bölümler navbar ile aynı listeden geliyor: LearnVocab/navigation.py
         {% for section in nav_sections %}
         <li>
             <a href="{{ section.url }}"
+               {% if section.giris_gerekli %}data-giris-gerekli="{{ section.giris_gerekli }}"{% endif %}
                {% if section.is_active %}aria-current="page"{% endif %}
                class="flex flex-col items-center justify-center gap-0.5 px-1 py-2 transition-colors {% if section.is_active %}text-indigo-600 dark:text-indigo-400{% else %}text-gray-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400{% endif %}">
                 {% include 'base/_navIcon.html' with key=section.key size="h-6 w-6" %}

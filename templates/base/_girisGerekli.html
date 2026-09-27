@@ -1,0 +1,47 @@
+{% comment %}
+Giriş gerektiren düğmeler (ürün raporu 2.3 ve 12.6): gizlenmez; girişsiz
+ziyaretçi basınca kısa açıklamayla giriş sayfasına yönlendirilir, girişten
+sonra geldiği sayfaya döner.
+
+Kullanımı — özniteliği YALNIZCA girişsiz ziyaretçiye bas:
+
+    <button {% if not user.is_authenticated %}data-giris-gerekli="liste"{% endif %}>…</button>
+
+  Değer, giriş sayfasındaki açıklamanın anahtarı: liste, egzersiz, yazma,
+  pdf, calisma (LearnVocab/authgate.py -> GIRIS_NEDENLERI).
+  data-giris-sonraki="/adres/" verilirse girişten sonra oraya dönülür;
+  verilmezse bulunulan sayfaya.
+
+Tıklama yakalama (capture) aşamasında durduruluyor: öğenin kendi
+tıklama işleyicileri (Alpine @click, fetch vb.) hiç çalışmaz, bağlantıysa
+kendi adresine gidilmez.
+
+JS'den de çağrılabilir:  window.girisGerekli.yonlendir('liste')
+{% endcomment %}
+
+<script>
+(function () {
+    var GIRIS_ADRESI = "{% url 'login' %}";
+
+    function adres(neden, sonraki) {
+        var p = new URLSearchParams();
+        p.set('next', sonraki || (location.pathname + location.search));
+        if (neden) { p.set('neden', neden); }
+        return GIRIS_ADRESI + '?' + p.toString();
+    }
+
+    function yonlendir(neden, sonraki) {
+        window.location.href = adres(neden, sonraki);
+    }
+
+    document.addEventListener('click', function (olay) {
+        var oge = olay.target.closest('[data-giris-gerekli]');
+        if (!oge) { return; }
+        olay.preventDefault();
+        olay.stopPropagation();
+        yonlendir(oge.getAttribute('data-giris-gerekli'), oge.getAttribute('data-giris-sonraki'));
+    }, true);
+
+    window.girisGerekli = { adres: adres, yonlendir: yonlendir };
+})();
+</script>

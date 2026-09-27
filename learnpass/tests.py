@@ -291,10 +291,29 @@ class LearnPassPageTests(TestCase):
         self.user = User.objects.create_user(username="sayfa", password="Sifre1234")
         self.word = kelime_yap()
 
-    def test_mode_picker_requires_login_but_does_not_redirect(self):
+    def test_mode_picker_is_open_to_guests_but_modes_require_login(self):
+        """
+        Çalışmalar girişsiz açılıyor (rapor 2.3). Kaydetmeyen misafir akışı
+        6. adımda gelecek; o zamana kadar mod düğmeleri görünür ama girişe
+        yönlendirir, Egzersizler sekmesi de öyle.
+        """
         cevap = self.client.get(reverse("learn_pass_page"))
         self.assertEqual(cevap.status_code, 200)
+        html = cevap.content.decode()
+        self.assertNotIn("önce giriş yapın", html)
+        self.assertEqual(html.count('data-giris-gerekli="calisma"'), 2)
+        self.assertIn('data-giris-gerekli="egzersiz"', html)
+        self.assertNotIn("kelime hazır", html)
+
+    def test_run_still_requires_login(self):
+        cevap = self.client.get(reverse("learn_pass_run", kwargs={"mode": "new"}))
         self.assertIn("önce giriş yapın", cevap.content.decode())
+
+    def test_logged_in_picker_has_no_login_redirects(self):
+        self.client.login(username="sayfa", password="Sifre1234")
+        html = self.client.get(reverse("learn_pass_page")).content.decode()
+        self.assertNotIn('data-giris-gerekli="', html)
+        self.assertIn("kelime hazır", html)
 
     def test_mode_picker_lists_both_modes(self):
         self.client.login(username="sayfa", password="Sifre1234")
@@ -323,7 +342,8 @@ class LearnPassPageTests(TestCase):
         for url in (reverse("learn_pass_page"), reverse("exercises_page")):
             with self.subTest(url=url):
                 html = self.client.get(url, follow=True).content.decode()
-                self.assertIn("Öğren-Geç", html)
+                self.assertIn("Learn &amp; Pass", html)
+                self.assertNotIn("Öğren-Geç", html)
                 self.assertIn("Egzersizler", html)
                 self.assertIn(reverse("exercises_page"), html)
 

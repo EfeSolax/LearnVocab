@@ -563,9 +563,12 @@ def squash(html):
 
 
 class NavbarMenuTests(TestCase):
-    """Üst çubuk: beş bölüm, logo ana sayfaya, sağ üstte hesap."""
+    """
+    Üst çubuk (rapor 2.1–2.2): beş bölüm bu sırayla, Ana Sayfa ortada;
+    logo ana sayfaya; sağ üstte Ayarlar dişlisi ya da Giriş Yap.
+    """
 
-    SECTIONS = (">Kelimeler<", ">Okumalar<", ">Hakkında<", ">Egzersizler<", ">Metinler<")
+    SECTIONS = (">Sözlük<", ">Çalışmalar<", ">Ana Sayfa<", ">Okumalar<", ">Yazma<")
 
     def setUp(self):
         self.user = User.objects.create_user(username="menuuser", password="Sifre1234")
@@ -577,53 +580,55 @@ class NavbarMenuTests(TestCase):
         start = html.index('<header id="navbar"')
         return squash(html[start:html.index("</header>", start)])
 
-    def test_home_link_is_removed_logo_is_the_way_home(self):
+    def test_logo_goes_home(self):
         navbar = self._navbar(logged_in=False)
-        self.assertNotIn(">Ana Sayfa<", navbar)
         self.assertIn(reverse("index"), navbar)
         self.assertIn("Learn&nbsp;Vocab", navbar)  # logonun yanındaki isim
 
-    def test_five_sections_are_shown_to_everyone(self):
-        """Bölümler girişsiz de görünüyor; korumalı olanlar giriş ekranına düşüyor."""
+    def test_five_sections_in_order_for_everyone(self):
+        """Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma — girişsiz de."""
         for logged_in in (False, True):
             navbar = self._navbar(logged_in=logged_in)
-            for etiket in self.SECTIONS:
-                with self.subTest(logged_in=logged_in, etiket=etiket):
-                    self.assertIn(etiket, navbar)
+            with self.subTest(logged_in=logged_in):
+                yerler = [navbar.index(etiket) for etiket in self.SECTIONS]
+                self.assertEqual(yerler, sorted(yerler))
 
-    def test_word_pages_are_one_section(self):
-        """Tüm Kelimeler / Kelimelerim ayrı menü başlığı değil."""
+    def test_about_and_old_names_are_not_in_the_menu(self):
         navbar = self._navbar(logged_in=True)
-        self.assertNotIn(">Tüm Kelimeler<", navbar)
-        self.assertNotIn(">Kelimelerim<", navbar)
+        for eski in (">Hakkında<", ">Kelimeler<", ">Metinler<", ">Egzersizler<",
+                     ">Tüm Kelimeler<", ">Kelimelerim<"):
+            with self.subTest(eski=eski):
+                self.assertNotIn(eski, navbar)
+        self.assertNotIn(reverse("about"), navbar)
 
-    def test_words_section_points_to_my_words_when_logged_in(self):
+    def test_section_targets(self):
         navbar = self._navbar(logged_in=True)
-        self.assertIn(reverse("profile_words"), navbar)
+        for ad in ("sozluk", "learn_pass_page", "index", "readings", "profile_texts"):
+            with self.subTest(hedef=ad):
+                self.assertIn(f'href="{reverse(ad)}"', navbar)
 
-    def test_words_section_does_not_point_to_all_words(self):
-        """Tüm Kelimeler arayüzden kaldırıldı; girişsiz kullanıcı da oraya gitmez."""
+    def test_menu_does_not_point_to_old_word_pages(self):
         for giris in (False, True):
             with self.subTest(logged_in=giris):
                 navbar = self._navbar(logged_in=giris)
                 self.assertNotIn(reverse("all_words"), navbar)
-                self.assertIn(reverse("profile_words"), navbar)
+                self.assertNotIn(reverse("profile_words"), navbar)
 
-    def test_account_is_an_avatar_when_logged_in(self):
+    def test_settings_gear_when_logged_in(self):
         navbar = self._navbar(logged_in=True)
-        self.assertIn('title="Profilim"', navbar)
+        self.assertIn('title="Ayarlar"', navbar)
         self.assertIn(reverse("user_profile"), navbar)
-        self.assertNotIn(">Profilim<", navbar)
-        self.assertNotIn(">Hesabım<", navbar)
+        self.assertNotIn("Giriş Yap", navbar)
         self.assertNotIn("Hoş geldin", navbar)
 
-    def test_account_is_a_login_button_when_logged_out(self):
+    def test_login_button_when_logged_out_returns_here(self):
         navbar = self._navbar(logged_in=False)
         self.assertIn("Giriş Yap", navbar)
-        self.assertNotIn('title="Profilim"', navbar)
+        self.assertIn(f"{reverse('login')}?next=", navbar)
+        self.assertNotIn('title="Ayarlar"', navbar)
 
-    def test_logout_moved_to_the_profile_page(self):
-        """Üst çubukta çıkış yok; profil sayfasında var."""
+    def test_logout_is_on_the_profile_page(self):
+        """Üst çubukta çıkış yok; dişlinin açtığı profil/ayarlar sayfasında var."""
         navbar = self._navbar(logged_in=True)
         self.assertNotIn(">Çıkış Yap<", navbar)
         page = self.client.get(reverse("user_profile"), follow=True).content.decode()
@@ -633,64 +638,96 @@ class NavbarMenuTests(TestCase):
         navbar = self._navbar(logged_in=True)
         self.assertNotIn('id="mobile-menu"', navbar)
 
+    def test_desktop_menu_is_hidden_on_mobile(self):
+        self.assertIn("hidden lg:flex", self._navbar(logged_in=False))
+
 
 class MobileTabBarTests(TestCase):
-    """Mobil alt sekme çubuğu — beş bölüm, ikonlu."""
+    """Mobil alt sekme çubuğu — aynı beş bölüm, aynı sıra, ikonlu."""
 
     def setUp(self):
         self.user = User.objects.create_user(username="mobileuser", password="Sifre1234")
 
-    def _bar(self, logged_in=False):
+    def _bar(self, url=None, logged_in=False):
         if logged_in:
             self.client.login(username="mobileuser", password="Sifre1234")
-        html = self.client.get(reverse("index"), follow=True).content.decode()
+        html = self.client.get(url or reverse("index"), follow=True).content.decode()
         start = html.index('aria-label="Alt menü"')
         return squash(html[start:html.index("</nav>", start)])
 
-    def test_bar_has_five_sections_for_anonymous_users(self):
+    def test_bar_has_five_sections_in_order_for_anonymous_users(self):
         bar = self._bar()
-        for etiket in NavbarMenuTests.SECTIONS:
-            with self.subTest(etiket=etiket):
-                self.assertIn(etiket, bar)
+        yerler = [bar.index(etiket) for etiket in NavbarMenuTests.SECTIONS]
+        self.assertEqual(yerler, sorted(yerler))
+
+    def test_home_is_in_the_middle(self):
+        bar = self._bar()
+        etiketler = re.findall(r'<span class="text-\[11px\][^"]*">([^<]+)</span>', bar)
+        self.assertEqual(etiketler, ["Sözlük", "Çalışmalar", "Ana Sayfa", "Okumalar", "Yazma"])
+        self.assertEqual(etiketler[2], "Ana Sayfa")
 
     def test_every_section_has_an_icon(self):
-        bar = self._bar()
-        self.assertEqual(bar.count("<svg"), 5)
+        self.assertEqual(self._bar().count("<svg"), 5)
 
     def test_bar_is_hidden_on_desktop(self):
         self.assertIn("lg:hidden", self._bar())
 
     def test_active_section_is_marked(self):
-        html = self.client.get(reverse("about")).content.decode()
-        start = html.index('aria-label="Alt menü"')
-        bar = squash(html[start:html.index("</nav>", start)])
-        self.assertEqual(bar.count('aria-current="page"'), 1)
+        for ad, etiket in (("sozluk", "Sözlük"), ("readings", "Okumalar"), ("index", "Ana Sayfa")):
+            with self.subTest(sayfa=ad):
+                bar = self._bar(reverse(ad))
+                self.assertEqual(bar.count('aria-current="page"'), 1)
+                aktif = bar[bar.index('aria-current="page"'):]
+                self.assertIn(f">{etiket}<", aktif[:aktif.index("</a>")])
 
     def test_content_is_not_covered_by_the_bar(self):
         html = self.client.get(reverse("index")).content.decode()
         self.assertIn("pb-20 lg:pb-0", html)
 
+    def test_writing_section_requires_login_only_for_guests(self):
+        """Yazma gizlenmez; girişsizken dokununca giriş sayfasına yönlendirir."""
+        self.assertIn('data-giris-gerekli="yazma"', self._bar())
+        self.assertNotIn("data-giris-gerekli", self._bar(logged_in=True))
+
 
 class NavigationSectionTests(TestCase):
     """Hangi sayfa hangi bölümü aktif yapıyor (LearnVocab/navigation.py)."""
+
+    def setUp(self):
+        self.user = User.objects.create_user(username="bolumuser", password="Sifre1234")
 
     def _section_of(self, url):
         response = self.client.get(url, follow=True)
         return response.context["nav_section"]
 
-    def test_word_pages_map_to_the_words_section(self):
-        self.assertEqual(self._section_of(reverse("all_words")), "words")
+    def test_old_word_pages_map_to_the_dictionary_section(self):
+        kelime = make_word("tidy")
+        self.client.login(username="bolumuser", password="Sifre1234")
+        for url in (reverse("sozluk"), reverse("all_words"), reverse("profile_words"),
+                    reverse("word_detail", args=[kelime.id])):
+            with self.subTest(url=url):
+                self.assertEqual(self._section_of(url), "sozluk")
 
-    def test_about_maps_to_its_own_section(self):
-        self.assertEqual(self._section_of(reverse("about")), "about")
+    def test_study_pages_map_to_calismalar(self):
+        self.client.login(username="bolumuser", password="Sifre1234")
+        for ad in ("learn_pass_page", "exercises_page"):
+            with self.subTest(sayfa=ad):
+                self.assertEqual(self._section_of(reverse(ad)), "calismalar")
+
+    def test_texts_map_to_yazma(self):
+        self.client.login(username="bolumuser", password="Sifre1234")
+        self.assertEqual(self._section_of(reverse("profile_texts")), "yazma")
 
     def test_readings_placeholder_exists(self):
         response = self.client.get(reverse("readings"))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["nav_section"], "readings")
 
-    def test_home_page_belongs_to_no_section(self):
-        self.assertIsNone(self._section_of(reverse("index")))
+    def test_home_page_is_its_own_section(self):
+        self.assertEqual(self._section_of(reverse("index")), "home")
+
+    def test_about_belongs_to_no_section(self):
+        self.assertIsNone(self._section_of(reverse("about")))
 
 
 class OldPagesRemovedFromUITests(TestCase):
@@ -703,7 +740,7 @@ class OldPagesRemovedFromUITests(TestCase):
         self.user = User.objects.create_user(username="tabuser", password="Sifre1234")
 
     def test_no_page_links_to_all_words(self):
-        adresler = ("index", "readings", "about", "profile_words", "learn_pass_page",
+        adresler = ("index", "readings", "about", "sozluk", "profile_words", "learn_pass_page",
                     "exercises_page", "profile_texts")
         for giris in (False, True):
             if giris:
@@ -720,12 +757,16 @@ class OldPagesRemovedFromUITests(TestCase):
 
 
 class LoginGateTests(TestCase):
-    """Girişsiz kullanıcı korumalı bölüme gelince giriş formuna fırlatılmıyor."""
+    """
+    Girişsiz kullanıcı korumalı bir SAYFANIN adresini doğrudan açarsa giriş
+    formuna fırlatılmıyor: açıklama ekranı ve menü yerinde kalıyor; oradaki
+    "Giriş Yap" geri dönüş adresini (?next=) taşıyor.
+    """
 
     GATED = {
         "profile_words": "Kelimelerim",
         "exercises_page": "Egzersizler",
-        "profile_texts": "Metinler",
+        "profile_texts": "Yazma",
         "user_profile": "Profilim",
     }
 
@@ -737,16 +778,19 @@ class LoginGateTests(TestCase):
                 html = response.content.decode()
                 self.assertIn("önce giriş yapın", html)
                 self.assertIn(etiket, html)
-                self.assertIn(reverse("login"), html)
+                self.assertIn(f"{reverse('login')}?next={reverse(name).replace('/', '%2F')}", html)
 
     def test_gate_keeps_the_menu_visible(self):
         html = self.client.get(reverse("exercises_page")).content.decode()
         self.assertIn('aria-label="Alt menü"', html)
 
-    def test_all_words_stays_public(self):
-        response = self.client.get(reverse("all_words"))
-        self.assertEqual(response.status_code, 200)
-        self.assertNotIn("önce giriş yapın", response.content.decode())
+    def test_open_sections_stay_public(self):
+        """Sözlük (Keşfet), Learn & Pass ve Okumalar girişsiz açık (rapor 2.3)."""
+        for ad in ("sozluk", "learn_pass_page", "readings", "all_words"):
+            with self.subTest(sayfa=ad):
+                response = self.client.get(reverse(ad))
+                self.assertEqual(response.status_code, 200)
+                self.assertNotIn("önce giriş yapın", response.content.decode())
 
     def test_logged_in_users_are_not_gated(self):
         User.objects.create_user(username="gateuser", password="Sifre1234")

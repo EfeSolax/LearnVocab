@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {# fetch ile yapılan POST'lar (ör. kelime kartındaki "Listeme ekle") CSRF anahtarını buradan okur. #}
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>{% block title %}LearnVocab{% endblock %}</title>
     <link rel="icon" href="{% static 'images/favicon.jpg' %}">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -41,6 +43,8 @@
         /* Tarayıcının kendi bileşenleri (kaydırma çubuğu, select açılır listesi,
            tarih seçici) de temaya uysun. */
         html.dark { color-scheme: dark; }
+        /* Alpine yüklenene kadar gizli kalması gerekenler (ör. kapalı kelime kartı). */
+        [x-cloak] { display: none !important; }
     </style>
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -70,6 +74,11 @@
     </main>
 
     {% include 'base/_mobileTabBar.html' %}
+
+    {# Site geneli bileşenler: "Geri al" bildirimi, giriş gerektiren düğmeler, kelime kartı davranışı #}
+    {% include 'base/_geriAl.html' %}
+    {% include 'base/_girisGerekli.html' %}
+    {% include 'base/_kelimeKartiJs.html' %}
 
     <script>
         // Tema düğmesi. Olay delegasyonu kullanıyoruz: düğmenin masaüstü ve
