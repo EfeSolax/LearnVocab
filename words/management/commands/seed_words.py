@@ -171,9 +171,11 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.WARNING(
                     f"Bağ atlandı (kelime yok): {kaynak} -> {hedef}"))
                 continue
-            WordRelation.objects.update_or_create(
-                from_word=a, to_word=b, type=tur, defaults={"note": not_},
-            )
+            # update_or_create değil: D1'den sonra aynı bağ birden çok anlamda
+            # (birden çok satırda) durabiliyor; hepsinin notu güncellenir.
+            if not WordRelation.objects.filter(
+                    from_word=a, to_word=b, type=tur).update(note=not_):
+                WordRelation.objects.create(from_word=a, to_word=b, type=tur, note=not_)
             sayi += 1
         return sayi, atlanan
 

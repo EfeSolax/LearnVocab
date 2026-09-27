@@ -493,13 +493,13 @@ Açılışta **iki büyük seçenek** vardır:
 - **`Meaning`:** meaning_tr, definition, cefr, sort_order
   - `examples` → `ExampleSentence`
   - `collocations` → `Collocation` (pattern, kind, meaning_tr, example)
-- **`WordRelation`:** from_word, to_word, type (synonym / antonym / simpler / confused_with), note. **Şu an kelimeye bağlı; D1 ile anlama bağlanacak.**
+- **`WordRelation`:** from_word, to_word, type (synonym / antonym / simpler / confused_with), note, **meaning** (D1, 28 Eylül). Eş/zıt/basit anlama bağlı: her (anlam, hedef, tür) bir satır. `confused_with` kelime düzeyinde kalır (meaning boş): karışıklık biçimden gelir, anlamdan değil. Kart için `Meaning.iliski_satirlari()` (Benzer / Daha basit / Zıt, satır başına en çok 4).
 - **Diğer:** `WordForm` (çekimli biçim → kök), `Expression` / `ExpressionGroup`, `UserWordLink` / `UserExpressionLink` (kullanıcı listesi), `FalseFriend`.
 
 ### 13.3 Yapılacak veri işleri
 | Kod | İş | Not / maliyet |
 |---|---|---|
-| **D1** | `WordRelation`'a boş bırakılabilir `meaning` FK ekle, önbellekten geri doldur | Ham önbellekte (`ara-depo-tam/anlamlar.jsonl`) ilişkiler **zaten anlam başına** üretilmiş: 4.371 çok anlamlı kaydın 4.366'sında anlamlara göre farklı. Yükleyici bunları kelime düzeyinde birleştirmiş. Tek anlamlı kelimelerde atama otomatik. Elle eklenen anlamlarda (`words/duzeltmeler/d_2026_09_25.py`) ilişki boş kalabilir, kontrol edilecek. **0 $.** |
+| **D1** | `WordRelation`'a boş bırakılabilir `meaning` FK ekle, önbellekten geri doldur | **Yapıldı (28 Eylül), bkz. Değişiklik kaydı.** Ham önbellekte (`ara-depo-tam/anlamlar.jsonl`) ilişkiler **zaten anlam başına** üretilmiş: 4.371 çok anlamlı kaydın 4.366'sında anlamlara göre farklı. Yükleyici bunları kelime düzeyinde birleştirmiş. Tek anlamlı kelimelerde atama otomatik. Elle eklenen anlamlarda (`words/duzeltmeler/d_2026_09_25.py`) ilişki boş kalabilir, kontrol edilecek. **0 $.** |
 | **D2** | Bağlaç/ifade cümle havuzu (seviyelere göre) | Şıklardan yalnızca biri doğru olmalı. Üretilip denetlenecek. |
 | **D3** | Hafif fiilli eş dizimler için çeldirici doğrulama | ~650 eş dizim. Her çeldirici yapay zekâyla "gerçekten yanlış mı" diye kontrol edilecek. |
 | **D4** | Seviye testi okuma havuzu (~100 metin + soru) | 3 zorluk düzeyi, özet cümlesi ve çeldiriciler. |
@@ -646,3 +646,4 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 
 ## Değişiklik kaydı
 - **2026-09-27:** İlk sürüm. Kaynak: `ozetler/2026-09-26_urun-kararlari.md` (26–27 Eylül konuşmaları).
+- **2026-09-28:** D1 yapıldı (migration `words/0020_iliski_anlam`, komut `iliskileri_anlama_bagla`). 56.187 bağ anlama atandı, 512'si birden çok anlamda geçtiği için çoğaltıldı. Silinmiş anlamlardan gelen 44 bağ boş kaldı (kartta görünmez). `confused_with` kelime düzeyinde kaldı. `aile_doldur` artık bağları doğrudan anlama yazıyor; silinmiş anlamın bağını geri kurmuyor.

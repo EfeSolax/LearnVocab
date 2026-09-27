@@ -344,8 +344,20 @@ class Word(models.Model):
         return [f for f in (self.v2Form, self.v3Form) if f]
 
     def relations(self, kind):
-        """Bu kelimeden çıkan belirli türdeki bağlar."""
-        return self.relations_from.filter(type=kind).select_related("to_word")
+        """
+        Bu kelimeden çıkan belirli türdeki bağlar, HEDEF BAŞINA BİR satır.
+
+        Bağlar anlama bağlı (D1): bank -> shore yalnızca "nehir kıyısı"
+        anlamında. Aynı hedef birden çok anlamda geçiyorsa (aim -> goal hem
+        "amaç" hem "hedef" anlamında) veritabanında birden çok satır var;
+        kelime düzeyindeki görünümler (eski detay sayfası, düzenleme formu)
+        hedefi iki kez göstermesin diye her hedefin ilk satırı dönüyor.
+        Anlam başına bağlar: Meaning.iliskiler / Meaning.iliski_satirlari.
+        """
+        ilkler = (self.relations_from.filter(type=kind)
+                  .values("to_word").annotate(ilk=models.Min("id")).values("ilk"))
+        return (WordRelation.objects.filter(pk__in=ilkler)
+                .select_related("to_word").order_by("id"))
 
     @property
     def synonyms(self):
@@ -447,6 +459,50 @@ class Meaning(models.Model):
         """Nötr olmayan bir tonu ya da üslubu var mı? (rozet gösterilsin mi)"""
         return (self.sentiment != Sentiment.NEUTRAL
                 or self.register != Register.NEUTRAL)
+
+    # --- Anlama özel bağlar (D1) ---------------------------------------
+    # Kelime kartı her anlamın altında "Benzer / Daha basit / Zıt" çip
+    # satırlarını gösterecek (rapor 4.3). Karıştırılan (confused_with)
+    # burada yok: o kelime düzeyinde kalıyor, bkz. WordRelation.
+
+    # Kartta satırların sırası ve etiketleri.
+    ILISKI_SATIRLARI = (
+        (RelationType.SYNONYM, "Benzer"),
+        (RelationType.SIMPLER, "Daha basit"),
+        (RelationType.ANTONYM, "Zıt"),
+    )
+
+    def iliskiler(self, tur):
+        """Bu anlama bağlı, belirli türdeki bağlar (eklenme sırasıyla)."""
+        return self.relations.filter(type=tur).select_related("to_word").order_by("id")
+
+    @property
+    def synonyms(self):
+        return self.iliskiler(RelationType.SYNONYM)
+
+    @property
+    def antonyms(self):
+        return self.iliskiler(RelationType.ANTONYM)
+
+    @property
+    def simpler_words(self):
+        return self.iliskiler(RelationType.SIMPLER)
+
+    def iliski_satirlari(self, en_cok=4):
+        """
+        Kart için çip satırları: [("Benzer", [Word, …]), ("Daha basit", […]), …]
+
+        Boş satır dönmez; her satırda en çok `en_cok` kelime. `self.relations`
+        üzerinden Python'da grupluyor: çağıran
+        `prefetch_related("relations__to_word")` yaparsa kart başına ek sorgu
+        olmaz.
+        """
+        gruplar = {tur: [] for tur, _ in self.ILISKI_SATIRLARI}
+        for bag in sorted(self.relations.all(), key=lambda b: b.pk):
+            liste = gruplar.get(bag.type)
+            if liste is not None and len(liste) < en_cok and bag.to_word not in liste:
+                liste.append(bag.to_word)
+        return [(etiket, gruplar[tur]) for tur, etiket in self.ILISKI_SATIRLARI if gruplar[tur]]
 
 
 class ExampleSentence(models.Model):
@@ -567,9 +623,30 @@ class WordRelation(models.Model):
                                 related_name="relations_to")
     type = models.CharField(max_length=16, choices=RelationType.choices)
     note = models.CharField(max_length=200, blank=True, null=True)
+    # Bağın ait olduğu anlam (D1). Eş, zıt ve basit anlamlılar anlama
+    # özeldir: bank -> shore yalnızca "nehir kıyısı" anlamında. Aynı hedef
+    # birden çok anlamda geçiyorsa her (anlam, hedef, tür) ayrı satır.
+    # Boş kalanlar:
+    #   - confused_with: karışıklık biçimden (yazılış/ses: affect/effect)
+    #     gelir, bir anlamdan değil; küratörlü tablodan (seed_confusables)
+    #     kelime çifti olarak yazılır ve kartta kelime düzeyinde uyarı olur.
+    #   - kaynağı anlam başına olmayan eski/elle bağlar (kullanıcı formu,
+    #     seed_words, silinmiş ya da elle eklenmiş anlamlar).
+    meaning = models.ForeignKey(Meaning, on_delete=models.CASCADE, null=True, blank=True,
+                                related_name="relations", verbose_name="anlam")
 
     class Meta:
-        unique_together = ("from_word", "to_word", "type")
+        constraints = [
+            models.UniqueConstraint(fields=("from_word", "to_word", "type", "meaning"),
+                                    name="iliski_anlam_tekil"),
+            # NULL != NULL: anlamsız (kelime düzeyi) bağın tekrarını ilk
+            # kural yakalamaz. MySQL koşullu kısıtı desteklemiyor (yalnızca
+            # uyarı verir, W036); orada bu tekillik kodda (get_or_create)
+            # korunuyor.
+            models.UniqueConstraint(fields=("from_word", "to_word", "type"),
+                                    condition=models.Q(meaning__isnull=True),
+                                    name="iliski_kelime_tekil"),
+        ]
 
     def __str__(self):
         return f"{self.from_word.text} –{self.get_type_display()}→ {self.to_word.text}"

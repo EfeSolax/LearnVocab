@@ -50,6 +50,7 @@ class RelationInline(admin.TabularInline):
     fk_name = "from_word"
     extra = 0
     autocomplete_fields = ("to_word",)
+    raw_id_fields = ("meaning",)   # 20 bin anlamlık açılır liste olmasın
 
 
 class WordInline(admin.TabularInline):
@@ -85,9 +86,11 @@ class WordAdmin(admin.ModelAdmin):
 
 @admin.register(WordRelation)
 class WordRelationAdmin(admin.ModelAdmin):
-    list_display = ("from_word", "type", "to_word", "note")
+    list_display = ("from_word", "type", "to_word", "meaning", "note")
     list_filter = ("type",)
     search_fields = ("from_word__text", "to_word__text")
+    raw_id_fields = ("from_word", "to_word", "meaning")
+    list_select_related = ("from_word", "to_word", "meaning__word")
 
 
 @admin.register(WordForm)

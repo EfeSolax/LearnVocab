@@ -173,10 +173,13 @@ def yaz(kelime, kaynak="AI", aile=None):
         if hedef is None or hedef.pk == kayit.pk:
             sayac["atlanan_bag"] += 1
             continue
-        _, olustu = WordRelation.objects.get_or_create(
-            from_word=kayit, to_word=hedef, type=bag.type,
-            defaults={"note": (bag.note or "")[:200] or None},
-        )
+        # get_or_create değil: D1'den sonra aynı bağ birden çok anlamda
+        # (birden çok satırda) durabiliyor.
+        olustu = not WordRelation.objects.filter(
+            from_word=kayit, to_word=hedef, type=bag.type).exists()
+        if olustu:
+            WordRelation.objects.create(from_word=kayit, to_word=hedef, type=bag.type,
+                                        note=(bag.note or "")[:200] or None)
         sayac["bag"] += int(olustu)
 
     # --- Çekim biçimleri ----------------------------------------------------

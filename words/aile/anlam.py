@@ -18,8 +18,11 @@ YENİ HATTA AİT KARARLAR
     çevriliyor (general -> neutral).
   - cefr anlam başına (Meaning.cefr, migration 0017). Word.cefr = kelimenin
     EN KOLAY anlamının seviyesi (seçim ve çeldirici sorguları onu kullanıyor).
-  - relations prompt'ta anlam başına; veritabanında WordRelation kelime
-    düzeyinde. Hedef kelime henüz veritabanında yoksa bağ kurulmuyor ama
+  - relations prompt'ta anlam başına; veritabanında da anlam başına
+    (WordRelation.meaning, D1 — önceden kelime düzeyindeydi; eski satırlar
+    iliskileri_anlama_bagla komutuyla bağlandı). Depodaki anlam cevabı
+    veritabanındaki Meaning'e anlam_eslemesi ile eşleniyor (meaning_tr,
+    sonra açıklama). Hedef kelime henüz veritabanında yoksa bağ kurulmuyor ama
     cevap depoda kalıyor; her çalıştırmanın sonunda depodaki BÜTÜN bağlar
     yeniden deneniyor (bag_tamamla). Liste büyüdükçe bağlar kendiliğinden
     tamamlanıyor.
@@ -32,6 +35,7 @@ YENİ HATTA AİT KARARLAR
 """
 
 import re
+import unicodedata
 import warnings
 from typing import List, Literal
 
@@ -575,18 +579,93 @@ def aileyi_yaz(kok, kelimeler, kaynak):
     return sayac
 
 
+def _anlam_anahtari(metin):
+    """Karşılaştırma anahtarı: büyük/küçük harf ve Türkçe İ'nin artık noktası
+    (d_2026_09_25.uygula_3 bunları temizledi) eşleşmeyi bozmasın."""
+    metin = unicodedata.normalize("NFD", metin or "").casefold().replace("\u0307", "")
+    return " ".join(metin.split())
+
+
+def anlam_eslemesi(db_anlamlari, cevap_anlamlari):
+    """
+    Depodaki cevabın anlamlarını veritabanındaki Meaning satırlarına eşler.
+
+    aileyi_yaz her cevap anlamı için meaning_tr[:300] ile bir Meaning açıyor;
+    sonradan elle düzeltmeler (d_2026_09_25) bazı karşılıkları değiştirdi,
+    bazı anlamları sildi ya da yeni anlam ekledi. Bu yüzden sıra numarasına
+    değil METNE bakılıyor, üç geçişte: birebir meaning_tr, normalleştirilmiş
+    meaning_tr, açıklama (definition — karşılık düzeltilince açıklama
+    genelde aynı kalıyor). Bir Meaning en çok bir cevap anlamına verilir.
+
+    db_anlamlari: Meaning listesi. cevap_anlamlari: dict ya da Anlam listesi.
+    Döner: cevap_anlamlari ile aynı uzunlukta [Meaning | None].
+    """
+    def alan(a, ad):
+        return (a.get(ad) if isinstance(a, dict) else getattr(a, ad, None)) or ""
+
+    sonuc = [None] * len(cevap_anlamlari)
+    kalan = list(db_anlamlari)
+    gecisler = (
+        (lambda a: alan(a, "meaning_tr")[:300], lambda m: m.meaning_tr),
+        (lambda a: _anlam_anahtari(alan(a, "meaning_tr")[:300]),
+         lambda m: _anlam_anahtari(m.meaning_tr)),
+        (lambda a: _anlam_anahtari(alan(a, "definition")[:600]),
+         lambda m: _anlam_anahtari(m.definition)),
+    )
+    for cevap_anahtari, db_anahtari in gecisler:
+        for i, a in enumerate(cevap_anlamlari):
+            if sonuc[i] is not None:
+                continue
+            aranan = cevap_anahtari(a)
+            if not aranan:
+                continue
+            for m in kalan:
+                if db_anahtari(m) == aranan:
+                    sonuc[i] = m
+                    kalan.remove(m)
+                    break
+    return sonuc
+
+
+def bagla(kaynak, hedef, tur, anlam, not_=None):
+    """
+    (anlam, hedef, tür) bağını kurar; varsa dokunmaz. Döner: "var" /
+    "atandi" (anlamı boş eski satır bu anlama verildi) / "kuruldu".
+
+    Anlamı boş (kelime düzeyi, D1 öncesi) bir satır varsa yeni satır
+    açılmaz, o satır bu anlama bağlanır — aynı bağ hem boş hem dolu iki
+    satırda durmasın.
+    """
+    from words.models import WordRelation
+
+    satirlar = WordRelation.objects.filter(from_word=kaynak, to_word=hedef, type=tur)
+    if satirlar.filter(meaning=anlam).exists():
+        return "var"
+    if anlam is not None:
+        bos = satirlar.filter(meaning__isnull=True).first()
+        if bos is not None:
+            bos.meaning = anlam
+            bos.save(update_fields=["meaning"])
+            return "atandi"
+    WordRelation.objects.create(from_word=kaynak, to_word=hedef, type=tur,
+                                meaning=anlam, note=not_)
+    return "kuruldu"
+
+
 def bag_tamamla(kayitlar):
     """
     Depodaki bütün anlam cevaplarının bağlarını (relations) kurmayı dener.
 
     kayitlar: depodaki anlam kayıtları ({"word", "type", "cevap": dict}).
+    Bağ, cevaptaki anlamın veritabanındaki karşılığına (Meaning) bağlanır.
     Hedef kelime veritabanında yoksa bağ kurulmaz — uydurma hedef kaydı
-    açmak, gerçek kelime gelince çift kayda yol açardı. Döner:
-    {"kurulan": n, "bekleyen": n}
+    açmak, gerçek kelime gelince çift kayda yol açardı. Cevaptaki anlam
+    veritabanında yoksa (elle silinmiş) bağı da kurulmaz: silinen anlamın
+    bağları geri gelmesin. Döner: {"kurulan": n, "bekleyen": n, "anlamsiz": n}
     """
-    from words.models import Word, WordRelation
+    from words.models import Word
 
-    kurulan = bekleyen = 0
+    kurulan = bekleyen = anlamsiz = 0
     for kayit in kayitlar:
         cevap = kayit.get("cevap") or {}
         if not cevap.get("found") or kayit.get("durum") != "yazildi":
@@ -594,14 +673,17 @@ def bag_tamamla(kayitlar):
         kaynak = Word.objects.filter(text=kayit["word"], pos=kayit["type"]).first()
         if kaynak is None:
             continue
-        for anlam in cevap.get("meanings", []):
+        cevap_anlamlari = cevap.get("meanings", [])
+        eslesme = anlam_eslemesi(list(kaynak.meanings.all()), cevap_anlamlari)
+        for anlam, meaning in zip(cevap_anlamlari, eslesme):
             for bag in anlam.get("relations", []):
                 hedef = (Word.objects.filter(text=bag["to_word"], pos=kaynak.pos).first()
                          or Word.objects.filter(text=bag["to_word"]).first())
                 if hedef is None or hedef.pk == kaynak.pk:
                     bekleyen += 1
                     continue
-                _, olustu = WordRelation.objects.get_or_create(
-                    from_word=kaynak, to_word=hedef, type=bag["type"])
-                kurulan += int(olustu)
-    return {"kurulan": kurulan, "bekleyen": bekleyen}
+                if meaning is None:
+                    anlamsiz += 1
+                    continue
+                kurulan += int(bagla(kaynak, hedef, bag["type"], meaning) != "var")
+    return {"kurulan": kurulan, "bekleyen": bekleyen, "anlamsiz": anlamsiz}
