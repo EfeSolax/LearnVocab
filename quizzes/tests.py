@@ -1,978 +1,806 @@
 """
-Quiz sistemi için temel regresyon testleri.
+Çalışma sisteminin testleri.
 
-Buradaki testlerin çoğu, daha önce sessizce yanlış çalışan iki davranışı korumak
-için yazıldı:
+Testlerin çoğu "şu kural gerçekten uygulanıyor mu" sorusunu soruyor,
+"kod çalışıyor mu" sorusunu değil. Sebebi bu sistemde hataların
+SESSİZ olması: yanlış zamanlanmış bir kart hata vermez, yalnızca
+öğrenci o kelimeyi unutur ve kimse fark etmez.
 
-1. `UserWordLink.wrongRatio` bir YÜZDE (0-100) döndürür; öncelik eşikleri de
-   yüzde cinsinden olmalıdır.
-2. `MatchingQuestion.check_answer` istatistikleri SADECE BİR KEZ saymalıdır.
+Kelime hattında (KELIME-HATTI-DEVAM.txt §8) bulunan bugların çoğu tam
+olarak bu türdendi; buradaki testler aynı sınıftan hataları yakalamak
+için yazıldı.
 """
 
-import re
+from datetime import timedelta
 
-from django.conf import settings
 from django.test import TestCase
-from unittest import skipUnless
 from django.urls import reverse
+from django.utils import timezone
 
 from users.models import User
-from words.models import Word, UserWordLink
-from quizzes.models import (
-    QuizAttempt,
-    QuizType,
-    MatchingQuestion,
-    MultipleChoiceQuestion,
-    WritingQuestion,
-    SynonymAntonymQuestion,
-    FillInTheBlankQuestion,
-)
-from quizzes.views import classify_links_by_priority
-from quizzes.question_generator import (
-    generate_mc_question,
-    generate_synonym_antonym_question,
+from usersettings.models import UserSettings
+from words.models import (
+    Category, Collocation, CollocationKind, ExampleSentence, FalseFriend,
+    Meaning, PartOfSpeech, RelationType, Sentiment, UsagePattern,
+    UserWordLink, Word, WordFamily, WordForm, WordRelation,
 )
 
-
-def make_word(english, meaning, **extra):
-    """Testler için eksiksiz bir Word üretir (bkz. words/testing.py)."""
-    from words.testing import make_word as _yeni
-
-    extra.setdefault("sentences", [f"This is an example with {english}."])
-    extra.setdefault("is_base", False)
-    return _yeni(english, meaning=meaning, **extra)
-
-
-class WrongRatioTests(TestCase):
-    """wrongRatio'nun yüzde döndürdüğünü sabitler."""
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="ratio_user", password="Sifre1234")
-        self.word = make_word("obtain", "elde etmek")
-        self.link = UserWordLink.objects.create(user=self.user, word=self.word)
-
-    def test_wrong_ratio_is_percentage(self):
-        self.link.correctCount = 1
-        self.link.wrongCount = 1
-        self.assertEqual(self.link.totalAttempts, 2)
-        self.assertEqual(self.link.wrongRatio, 50.0)
-
-    def test_wrong_ratio_without_attempts_is_zero(self):
-        self.assertEqual(self.link.wrongRatio, 0)
-
-
-class ClassifyLinksByPriorityTests(TestCase):
-    """
-    Öncelik gruplaması testi.
-
-    Eski kodda `wrongRatio >= 0.50` yazdığı için tek bir yanlışı olan kelime bile
-    priority1'e düşüyordu. Bu testler o hatanın geri gelmesini engeller.
-    """
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="prio_user", password="Sifre1234")
-
-    def _link(self, name, correct, wrong):
-        word = make_word(name, f"{name}-tr")
-        return UserWordLink.objects.create(
-            user=self.user, word=word, correctCount=correct, wrongCount=wrong
-        )
-
-    def test_new_word_goes_to_priority1(self):
-        link = self._link("fresh", 1, 0)  # 1 deneme
-        p1, p2, p3 = classify_links_by_priority([link])
-        self.assertIn(link, p1)
-
-    def test_mostly_correct_word_is_not_priority1(self):
-        # 4 deneme, 1 yanlış -> %25. Eski hatalı kodda priority1'e düşüyordu.
-        link = self._link("known", 3, 1)
-        p1, p2, p3 = classify_links_by_priority([link])
-        self.assertNotIn(link, p1)
-        self.assertIn(link, p2)
-
-    def test_well_known_word_goes_to_priority3(self):
-        # 8 deneme, 1 yanlış -> %12.5
-        link = self._link("mastered", 7, 1)
-        p1, p2, p3 = classify_links_by_priority([link])
-        self.assertIn(link, p3)
-
-    def test_weak_word_goes_to_priority1(self):
-        # 8 deneme, 5 yanlış -> %62.5
-        link = self._link("weak", 3, 5)
-        p1, p2, p3 = classify_links_by_priority([link])
-        self.assertIn(link, p1)
-
-    def test_priority1_is_sorted_by_fewest_attempts_first(self):
-        few = self._link("few", 1, 0)      # 1 deneme
-        none_yet = self._link("none", 0, 0)  # 0 deneme
-        p1, _, _ = classify_links_by_priority([few, none_yet])
-        self.assertEqual(p1[0], none_yet)
-
-
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class MatchingQuestionStatsTests(TestCase):
-    """
-    Eşleştirme sorusu istatistikleri tam olarak bir kez sayılmalı.
-
-    Eski kodda check_answer'ın ikinci yarısı (kopyalanmış eski blok) tekrar
-    update_word_stats() çağırdığı için sayaçlar iki kez artıyordu.
-    """
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="match_user", password="Sifre1234")
-        self.words = [make_word(f"word{i}", f"kelime{i}") for i in range(5)]
-        self.links = [
-            UserWordLink.objects.create(user=self.user, word=w) for w in self.words
-        ]
-        self.attempt = QuizAttempt.objects.create(
-            owner=self.user, totalQuestion=5, quizType=QuizType.MATCHING
-        )
-        self.question = MatchingQuestion.objects.create(
-            attempt=self.attempt,
-            right_col_order_ids=";".join(str(w.id) for w in self.words),
-            word_count=len(self.words),
-        )
-        self.question.words.set(self.words)
-
-    def _refresh(self):
-        return {
-            link.word_id: UserWordLink.objects.get(pk=link.pk) for link in self.links
-        }
-
-    def test_fully_correct_answer_counts_each_word_once(self):
-        answer = ";".join(f"{w.id}:{w.id}" for w in self.words)
-        self.question.check_answer(answer)
-
-        self.question.refresh_from_db()
-        self.assertTrue(self.question.is_correct)
-        self.assertEqual(self.question.correct_matches, 5)
-        self.assertEqual(self.question.wrong_matches, 0)
-
-        for link in self._refresh().values():
-            self.assertEqual(link.correctCount, 1)
-            self.assertEqual(link.wrongCount, 0)
-
-    def test_partially_correct_answer_is_scored_per_word(self):
-        # İlk 3 kelime doğru, son 2 kelime birbirine karışmış olsun
-        pairs = [f"{w.id}:{w.id}" for w in self.words[:3]]
-        pairs.append(f"{self.words[3].id}:{self.words[4].id}")
-        pairs.append(f"{self.words[4].id}:{self.words[3].id}")
-        self.question.check_answer(";".join(pairs))
-
-        self.question.refresh_from_db()
-        self.assertFalse(self.question.is_correct)
-        self.assertEqual(self.question.correct_matches, 3)
-        self.assertEqual(self.question.wrong_matches, 2)
-
-        links = self._refresh()
-        for word in self.words[:3]:
-            self.assertEqual(links[word.id].correctCount, 1)
-            self.assertEqual(links[word.id].wrongCount, 0, "doğru kelime yanlış sayılmamalı")
-        for word in self.words[3:]:
-            self.assertEqual(links[word.id].wrongCount, 1)
-            self.assertEqual(links[word.id].correctCount, 0)
-
-    def test_empty_answer_marks_all_words_wrong_once(self):
-        self.question.check_answer("")
-        links = self._refresh()
-        for link in links.values():
-            self.assertEqual(link.wrongCount, 1)
-            self.assertEqual(link.correctCount, 0)
-
-
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class WritingQuestionTests(TestCase):
-    def setUp(self):
-        self.user = User.objects.create_user(username="write_user", password="Sifre1234")
-        self.word = make_word("obtain", "elde etmek")
-        UserWordLink.objects.create(user=self.user, word=self.word)
-        self.attempt = QuizAttempt.objects.create(
-            owner=self.user, totalQuestion=1, quizType=QuizType.WRITING
-        )
-        self.question = WritingQuestion.objects.create(
-            attempt=self.attempt,
-            question_text="Soru",
-            correct_answer="obtain",
-        )
-        self.question.words.set([self.word])
-
-    def test_case_and_whitespace_insensitive(self):
-        self.question.check_answer("  Obtain ")
-        self.assertTrue(self.question.is_correct)
-
-    def test_clearly_wrong_answer_is_rejected(self):
-        self.question.check_answer("banana")
-        self.assertFalse(self.question.is_correct)
-
-    def test_abbreviations_are_ignored(self):
-        self.question.correct_answer = "give sth up"
-        self.question.save()
-        self.question.check_answer("give up")
-        self.assertTrue(self.question.is_correct)
-
-
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class DistractorTests(TestCase):
-    """Kullanıcıya asla 'Yanlış Seçenek 1' gibi sahte şık gösterilmemeli."""
-
-    FAKE_MARKERS = ("Yanlış Seçenek", "—1—", "—2—", "—3—")
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="dist_user", password="Sifre1234")
-        # Kullanıcının listesinde SADECE 1 kelime var -> çeldirici havuzu boş
-        self.word = make_word("obtain", "elde etmek", explanation="to get something")
-        self.link = UserWordLink.objects.create(user=self.user, word=self.word)
-        # Site genelinde base kelimeler var
-        for i in range(10):
-            make_word(f"base{i}", f"temel{i}", explanation=f"base explanation {i}",
-                      isBaseWord=True, wordLevel="101")
-        self.attempt = QuizAttempt.objects.create(
-            owner=self.user, totalQuestion=1, quizType=QuizType.MULTIPLE_CHOICE
-        )
-
-    def _assert_no_fake_options(self, options):
-        for _label, text in options:
-            for marker in self.FAKE_MARKERS:
-                self.assertNotIn(marker, text, f"sahte şık üretildi: {text}")
-
-    def test_multiple_choice_has_no_fake_options(self):
-        generate_mc_question(self.link, self.attempt, [self.word])
-        question = MultipleChoiceQuestion.objects.get(attempt=self.attempt)
-        options = question.options_as_list
-        self.assertEqual(len(options), 4)
-        self._assert_no_fake_options(options)
-        # Şıklar birbirinden farklı olmalı
-        self.assertEqual(len({text for _, text in options}), 4)
-
-    def test_synonym_question_has_no_fake_options(self):
-        self.word.synonyms = "acquire, gain"
-        self.word.save()
-        generate_synonym_antonym_question(self.link, self.attempt, [self.word])
-        question = SynonymAntonymQuestion.objects.get(attempt=self.attempt)
-        options = question.options_as_list
-        self.assertEqual(len(options), 4)
-        self._assert_no_fake_options(options)
-        correct_text = dict(options)[question.correct_option]
-        self.assertIn(correct_text, ("acquire", "gain"))
-
-    def test_synonym_question_skipped_when_no_data(self):
-        generate_synonym_antonym_question(self.link, self.attempt, [self.word])
-        self.assertEqual(SynonymAntonymQuestion.objects.count(), 0)
-
-
-# ---------------------------------------------------------------------------
-# Boşluk doldurma (cloze) soruları
-# ---------------------------------------------------------------------------
-
-from quizzes.models import FillInTheBlankQuestion
-from quizzes.question_generator import (
-    build_blank_for_word,
-    can_generate_blank,
-    generate_fill_blank_question,
-    _surface_forms,
+from . import aspects, build, distractors, masking, questions, scheduler
+from . import session as oturum
+from .aspects import Aspect, Format
+from .models import (
+    ItemState, ReviewItem, ReviewLog, SessionMode, StudySession,
+    knowledge_score, study_streak,
 )
 
-BLANK = FillInTheBlankQuestion.BLANK
+
+# ----------------------------------------------------------------------
+# Yardımcılar
+# ----------------------------------------------------------------------
+
+def kelime_kur(text, pos=PartOfSpeech.NOUN, aile=None, anlam="anlam",
+               cumleler=(), cefr="B2", v2=None, v3=None,
+               sentiment=Sentiment.NEUTRAL):
+    aile = aile or WordFamily.objects.create(root=text)
+    kelime = Word.objects.create(
+        family=aile, text=text, pos=pos, cefr=cefr, v2Form=v2, v3Form=v3,
+    )
+    WordForm.objects.create(word=kelime, surface=text, kind="other")
+    if v2:
+        WordForm.objects.create(word=kelime, surface=v2, kind="past")
+    m = Meaning.objects.create(word=kelime, meaning_tr=anlam,
+                               definition=f"{text} tanımı",
+                               sentiment=sentiment)
+    for i, c in enumerate(cumleler):
+        ExampleSentence.objects.create(meaning=m, text=c, sort_order=i)
+    return kelime, m
 
 
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class MaskWordTests(TestCase):
-    """
-    Cümlede kelimeyi bulup boşluğa çevirme.
-
-    Asıl zorluk: örnek cümlede kelimenin kök hâli değil çekimli hâli geçiyor
-    olabilir. Kök hâli körü körüne aramak soruların çoğunu üretilemez yapardı.
-    """
-
-    def test_masks_base_form(self):
-        word = make_word("retain", "elde tutmak",
-                         exampleSentence1="They retain full control of the company.")
-        masked, matched = build_blank_for_word(word)
-        self.assertEqual(matched, "retain")
-        self.assertIn(BLANK, masked)
-        self.assertNotIn("retain", masked)
-
-    def test_masks_past_tense(self):
-        word = make_word("retain", "elde tutmak",
-                         exampleSentence1="The company retained most of its customers.")
-        masked, matched = build_blank_for_word(word)
-        self.assertEqual(matched, "retained")
-        self.assertEqual(masked, f"The company {BLANK} most of its customers.")
-
-    def test_masks_doubled_consonant_form(self):
-        word = make_word("stop", "durmak",
-                         exampleSentence1="The bus stopped at the corner.")
-        masked, matched = build_blank_for_word(word)
-        self.assertEqual(matched, "stopped")
-
-    def test_masks_y_to_ied_form(self):
-        word = make_word("apply", "başvurmak",
-                         exampleSentence1="She applied for the position last week.")
-        masked, matched = build_blank_for_word(word)
-        self.assertEqual(matched, "applied")
-
-    def test_uses_v2_form_field(self):
-        word = make_word("take", "almak", isVerb=True, v2Form="took", v3Form="taken",
-                         exampleSentence1="He took the wrong bus this morning.")
-        masked, matched = build_blank_for_word(word)
-        self.assertEqual(matched, "took")
-
-    def test_longer_form_wins_so_no_leftover_suffix(self):
-        """'retain' önce eşleşirse cümlede ortada 'ed' kalıntısı kalırdı."""
-        word = make_word("retain", "elde tutmak",
-                         exampleSentence1="They retained it.")
-        masked, _ = build_blank_for_word(word)
-        self.assertNotIn("ed", masked.replace(BLANK, ""))
-
-    def test_falls_back_to_second_sentence(self):
-        word = make_word("obtain", "elde etmek",
-                         exampleSentence1="No relevant word here at all.",
-                         exampleSentence2="You can obtain a copy online.")
-        masked, matched = build_blank_for_word(word)
-        self.assertEqual(matched, "obtain")
-        self.assertIn("copy online", masked)
-
-    def test_falls_back_to_collocations(self):
-        word = make_word("retain", "elde tutmak",
-                         exampleSentence1="Nothing relevant in this sentence.",
-                         collocations="retain information, retain control")
-        masked, matched = build_blank_for_word(word)
-        self.assertEqual(matched, "retain")
-        # Collocation'lar da rastgele seçiliyor; ikisinden biri gelmeli
-        self.assertIn(masked, (f"{BLANK} information", f"{BLANK} control"))
-
-    def test_collocation_fallback_is_deterministic_when_not_randomized(self):
-        word = make_word("retain", "elde tutmak",
-                         exampleSentence1="Nothing relevant in this sentence.",
-                         collocations="retain information, retain control")
-        masked, _ = build_blank_for_word(word, randomize=False)
-        self.assertEqual(masked, f"{BLANK} information")
-
-    def test_returns_none_when_word_is_absent(self):
-        word = make_word("obtain", "elde etmek",
-                         exampleSentence1="Nothing relevant in this sentence.")
-        self.assertIsNone(build_blank_for_word(word))
-        self.assertFalse(can_generate_blank(word))
-
-    def test_does_not_match_word_inside_another_word(self):
-        """'ret' kelimesi 'return' içinde eşleşmemeli (word boundary)."""
-        word = make_word("ret", "çürütmek",
-                         exampleSentence1="They will return tomorrow.")
-        self.assertIsNone(build_blank_for_word(word))
-
-    def test_inflections_can_be_disabled(self):
-        """Çoktan seçmeli cloze yalnızca kök hâli maskeler; şık boşluğa oturmalı."""
-        word = make_word("retain", "elde tutmak",
-                         exampleSentence1="The company retained its customers.")
-        self.assertIsNone(build_blank_for_word(word, include_inflections=False))
-        self.assertIsNotNone(build_blank_for_word(word, include_inflections=True))
-
-    def test_surface_forms_are_sorted_longest_first(self):
-        word = make_word("retain", "elde tutmak")
-        forms = _surface_forms(word)
-        self.assertEqual(forms, sorted(forms, key=len, reverse=True))
-
-
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class FillInTheBlankQuestionTests(TestCase):
+class TemelKurulum(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="fb_user", password="Sifre1234")
-        self.word = make_word("retain", "elde tutmak",
-                              exampleSentence1="The company retained most of its customers.")
-        self.link = UserWordLink.objects.create(user=self.user, word=self.word)
-        self.attempt = QuizAttempt.objects.create(
-            owner=self.user, totalQuestion=1, quizType=QuizType.FILL_BLANK
+        self.user = User.objects.create_user(username="efe", password="x")
+        UserSettings.objects.create(user=self.user, dailyGoal=10)
+
+    def listeye_ekle(self, kelime):
+        UserWordLink.objects.get_or_create(user=self.user, word=kelime)
+        return kelime
+
+
+# ----------------------------------------------------------------------
+# Zamanlayıcı
+# ----------------------------------------------------------------------
+
+class ZamanlayiciTests(TestCase):
+
+    def test_kararlilik_tanimi_dogru(self):
+        """R(S,S) tam olarak 0.9 olmalı — kararlılığın tanımı budur."""
+        for s in (1.0, 5.0, 30.0, 200.0):
+            self.assertAlmostEqual(scheduler.hatirlanabilirlik(s, s), 0.9, places=6)
+
+    def test_hedef_090_iken_aralik_kararliliga_esit(self):
+        self.assertAlmostEqual(scheduler.aralik(12.0, 0.9), 12.0, places=6)
+
+    def test_daha_yuksek_hedef_daha_kisa_aralik(self):
+        """%95 hatırlama istenirse kart daha SIK sorulmalı."""
+        self.assertLess(scheduler.aralik(20.0, 0.95), scheduler.aralik(20.0, 0.90))
+
+    def test_aralik_basarili_tekrarlarda_buyur(self):
+        hafiza, gecen, araliklar = None, 0, []
+        for _ in range(5):
+            hafiza = scheduler.guncelle(hafiza, scheduler.IYI, gecen)
+            gecen = scheduler.sonraki_aralik(hafiza)
+            araliklar.append(gecen)
+        self.assertEqual(araliklar, sorted(araliklar))
+        self.assertGreater(araliklar[-1], araliklar[0] * 5)
+
+    def test_unutma_kararliligi_dusurur_zorlugu_artirir(self):
+        hafiza = scheduler.Hafiza(kararlilik=50.0, zorluk=5.0)
+        yeni = scheduler.guncelle(hafiza, scheduler.YENIDEN, 50.0)
+        self.assertLess(yeni.kararlilik, hafiza.kararlilik)
+        self.assertGreater(yeni.zorluk, hafiza.zorluk)
+
+    def test_unutma_kararliligi_sifirlamaz(self):
+        """Bir kez öğrenilmiş kelime, hiç görülmemişten ileride kalır."""
+        yeni = scheduler.guncelle(
+            scheduler.Hafiza(kararlilik=50.0, zorluk=5.0),
+            scheduler.YENIDEN, 50.0,
+        )
+        self.assertGreater(yeni.kararlilik, scheduler.EN_DUSUK_KARARLILIK)
+
+    def test_dusuk_hatirlanabilirlikte_hatirlamak_daha_cok_kazandirir(self):
+        """İstenen zorluk: zar zor hatırlanan kart daha çok iz bırakır."""
+        hafiza = scheduler.Hafiza(kararlilik=10.0, zorluk=5.0)
+        erken = scheduler.guncelle(hafiza, scheduler.IYI, 1.0)     # R yüksek
+        gec = scheduler.guncelle(hafiza, scheduler.IYI, 20.0)      # R düşük
+        self.assertGreater(gec.kararlilik, erken.kararlilik)
+
+    def test_aralik_ust_sinira_takilir(self):
+        hafiza = scheduler.Hafiza(kararlilik=10000.0, zorluk=5.0)
+        self.assertLessEqual(scheduler.sonraki_aralik(hafiza),
+                             scheduler.EN_UZUN_ARALIK)
+
+    def test_not_uretimi(self):
+        self.assertEqual(scheduler.not_uret(False, 2, 10), scheduler.YENIDEN)
+        self.assertEqual(scheduler.not_uret(True, 30, 10), scheduler.ZOR)
+        self.assertEqual(scheduler.not_uret(True, 8, 10), scheduler.IYI)
+        self.assertEqual(scheduler.not_uret(True, 2, 10, uretim_mi=True),
+                         scheduler.KOLAY)
+
+    def test_ipucu_kullanan_en_fazla_zor_alir(self):
+        self.assertEqual(
+            scheduler.not_uret(True, 1, 10, ipucu_kullanildi=True, uretim_mi=True),
+            scheduler.ZOR,
         )
 
-    def _make_question(self):
-        created = generate_fill_blank_question(self.link, self.attempt)
-        self.assertTrue(created)
-        return FillInTheBlankQuestion.objects.get(attempt=self.attempt)
+    def test_sik_isaretlemede_kolay_notu_verilmez(self):
+        """Dört şıktan birini hızlı seçmek akıcılık değil; eleme de hızlıdır."""
+        self.assertEqual(scheduler.not_uret(True, 1, 10, uretim_mi=False),
+                         scheduler.IYI)
 
-    def test_question_is_created_with_both_forms_accepted(self):
-        question = self._make_question()
-        self.assertIn(BLANK, question.sentence_with_blank)
-        self.assertEqual(question.correct_answer, "retained")
-        self.assertIn("retain", question.accepted_answers_list)
-        self.assertIn("retained", question.accepted_answers_list)
-        self.assertEqual(question.hint, "elde tutmak")
-        self.assertEqual(list(question.words.all()), [self.word])
+    def test_yuksek_guvenli_hata_ayrimi(self):
+        self.assertTrue(scheduler.yuksek_guvenli_hata(False, 2, 10))
+        self.assertFalse(scheduler.yuksek_guvenli_hata(False, 30, 10))
+        self.assertFalse(scheduler.yuksek_guvenli_hata(True, 2, 10))
 
-    def test_base_form_is_accepted(self):
-        question = self._make_question()
-        question.check_answer("retain")
-        self.assertTrue(question.is_correct)
-
-    def test_inflected_form_is_accepted(self):
-        question = self._make_question()
-        question.check_answer("  Retained  ")
-        self.assertTrue(question.is_correct)
-
-    def test_trailing_punctuation_is_ignored(self):
-        question = self._make_question()
-        question.check_answer("retain.")
-        self.assertTrue(question.is_correct)
-
-    def test_similar_but_different_word_is_rejected(self):
-        """'retail' ile 'retain' arasındaki benzerlik gerçek bir yazım hatasınınkiyle
-        aynı seviyede; bu yüzden burada tolerans uygulanmıyor."""
-        question = self._make_question()
-        question.check_answer("retail")
-        self.assertFalse(question.is_correct)
-
-    def test_empty_answer_is_wrong(self):
-        question = self._make_question()
-        question.check_answer("")
-        self.assertFalse(question.is_correct)
-
-    def test_answer_updates_word_stats_once(self):
-        question = self._make_question()
-        question.check_answer("retain")
-        link = UserWordLink.objects.get(pk=self.link.pk)
-        self.assertEqual(link.correctCount, 1)
-        self.assertEqual(link.wrongCount, 0)
-
-    def test_generation_is_skipped_when_no_blank_possible(self):
-        word = make_word("obtain", "elde etmek",
-                         exampleSentence1="Nothing relevant in this sentence.")
-        link = UserWordLink.objects.create(user=self.user, word=word)
-        self.assertFalse(generate_fill_blank_question(link, self.attempt))
-        self.assertEqual(FillInTheBlankQuestion.objects.count(), 0)
-
-    def test_template_name_comes_from_the_class(self):
-        question = self._make_question()
-        self.assertEqual(question.template_name, "FillInTheBlankQuestion")
+    def test_sure_bilinmiyorsa_dogru_cevap_iyi_sayilir(self):
+        self.assertEqual(scheduler.not_uret(True, None, 10), scheduler.IYI)
 
 
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class ScoringAcrossQuestionTypesTests(TestCase):
-    """
-    calculateScore artık QUESTION_RELATED_NAMES listesini dolaşıyor.
-    Bu test, listeye eklenen bir tipin puanlamaya gerçekten dahil olduğunu
-    ve eşleştirmenin kısmi puanının korunduğunu doğrular.
-    """
+# ----------------------------------------------------------------------
+# Maskeleme
+# ----------------------------------------------------------------------
+
+class MaskelemeTests(TestCase):
+
+    def test_cekimli_bicim_maskelenir(self):
+        maskeli, bulunan = masking.blank_word(
+            "The company retained most of its customers.",
+            ["retained", "retaining", "retain"],
+        )
+        self.assertIn(masking.BLANK, maskeli)
+        self.assertEqual(bulunan, "retained")
+
+    def test_phrasal_verb_araya_kelime_girse_de_bulunur(self):
+        maskeli, bulunan = masking.blank_word(
+            "He carried it out carefully.", ["carried out"],
+        )
+        self.assertIsNotNone(maskeli)
+        self.assertEqual(bulunan, "carried it out")
+
+    def test_bulunamayan_kelime_none_doner(self):
+        """Yanlış maskelenmiş soru sormaktansa soru sormamak iyidir."""
+        maskeli, _ = masking.blank_word("Nothing to see here.", ["retain"])
+        self.assertIsNone(maskeli)
+
+    def test_yazim_toleransi_yok(self):
+        """retain / retail benzerliği %80'in üstünde — tolerans olsaydı geçerdi."""
+        self.assertFalse(masking.answer_matches("retail", ["retain"]))
+
+    def test_kabul_listesindeki_cekim_gecerli(self):
+        self.assertTrue(masking.answer_matches("retain", ["retained", "retain"]))
+
+    def test_yer_tutucular_yok_sayilir(self):
+        self.assertTrue(masking.answer_matches("depend on", ["depend on sth"]))
+
+    def test_noktalama_kirpilir(self):
+        self.assertTrue(masking.answer_matches("  Retain. ", ["retain"]))
+
+    def test_bos_cevap_yanlis(self):
+        self.assertFalse(masking.answer_matches("", ["retain"]))
+
+    def test_isaretleme_mark_ekler(self):
+        sonuc = masking.highlight("They retain data.", ["retain"])
+        self.assertIn("<mark>retain</mark>", sonuc)
+
+
+# ----------------------------------------------------------------------
+# Kart üretimi ve merdiven
+# ----------------------------------------------------------------------
+
+class KartUretimiTests(TemelKurulum):
 
     def setUp(self):
-        self.user = User.objects.create_user(username="score_user", password="Sifre1234")
-        self.words = [
-            make_word(f"scoreword{i}", f"anlam{i}",
-                      exampleSentence1=f"We use scoreword{i} here.")
-            for i in range(5)
-        ]
-        for word in self.words:
-            UserWordLink.objects.create(user=self.user, word=word)
-        self.attempt = QuizAttempt.objects.create(
-            owner=self.user, totalQuestion=8, quizType=QuizType.MIXED
+        super().setUp()
+        self.kelime, self.anlam = kelime_kur(
+            "retain", PartOfSpeech.VERB, anlam="elde tutmak",
+            cumleler=["The company retained most of its customers."],
+            v2="retained", v3="retained",
+        )
+        self.listeye_ekle(self.kelime)
+
+    def test_giris_kartlari_acilir(self):
+        build.ensure_entry_items(self.user, self.kelime)
+        self.assertTrue(ReviewItem.objects.filter(
+            user=self.user, aspect=Aspect.RECOGNIZE).exists())
+
+    def test_giris_kartlari_iki_kez_acilmaz(self):
+        build.ensure_entry_items(self.user, self.kelime)
+        ilk = ReviewItem.objects.filter(user=self.user).count()
+        build.ensure_entry_items(self.user, self.kelime)
+        self.assertEqual(ReviewItem.objects.filter(user=self.user).count(), ilk)
+
+    def test_uretim_karti_baslangicta_yok(self):
+        """Tanımadığı kelimeyi üretmesi istenmemeli."""
+        build.ensure_entry_items(self.user, self.kelime)
+        self.assertFalse(ReviewItem.objects.filter(
+            user=self.user, aspect=Aspect.PRODUCE).exists())
+
+    def test_uretim_karti_esik_asilinca_acilir(self):
+        build.ensure_entry_items(self.user, self.kelime)
+        kart = ReviewItem.objects.get(user=self.user, aspect=Aspect.RECOGNIZE)
+
+        kart.stability = aspects.UNLOCK_PRODUCTION_STABILITY - 0.5
+        kart.save()
+        build.unlock_after_review(kart)
+        self.assertFalse(ReviewItem.objects.filter(
+            user=self.user, aspect=Aspect.PRODUCE).exists())
+
+        kart.stability = aspects.UNLOCK_PRODUCTION_STABILITY + 0.5
+        kart.save()
+        build.unlock_after_review(kart)
+        self.assertTrue(ReviewItem.objects.filter(
+            user=self.user, aspect=Aspect.PRODUCE).exists())
+
+    def test_kullanim_kartlari_uretimden_sonra_acilir(self):
+        build.ensure_entry_items(self.user, self.kelime)
+        tanima = ReviewItem.objects.get(user=self.user, aspect=Aspect.RECOGNIZE)
+        tanima.stability = 10.0
+        tanima.save()
+        build.unlock_after_review(tanima)
+
+        uretim = ReviewItem.objects.get(user=self.user, aspect=Aspect.PRODUCE)
+        uretim.stability = aspects.UNLOCK_USE_STABILITY + 1
+        uretim.save()
+        build.unlock_after_review(uretim)
+
+        self.assertTrue(ReviewItem.objects.filter(
+            user=self.user, aspect=Aspect.CONTEXT).exists())
+
+    def test_duzenli_fiile_cekim_karti_acilmaz(self):
+        """walk -> walked kuraldan çıkıyor; ezberlenecek bir şey yok."""
+        kelime, _ = kelime_kur("walk", PartOfSpeech.VERB, anlam="yürümek",
+                               v2="walked", v3="walked")
+        self.listeye_ekle(kelime)
+        build.ensure_entry_items(self.user, kelime)
+        kart = ReviewItem.objects.get(user=self.user, word=kelime,
+                                      aspect=Aspect.RECOGNIZE)
+        kart.stability = 10.0
+        kart.save()
+        build.unlock_after_review(kart)
+        self.assertFalse(ReviewItem.objects.filter(
+            user=self.user, word=kelime, aspect=Aspect.FORM).exists())
+
+    def test_duzensiz_fiile_cekim_karti_acilir(self):
+        kelime, _ = kelime_kur("go", PartOfSpeech.VERB, anlam="gitmek",
+                               v2="went", v3="gone")
+        self.listeye_ekle(kelime)
+        build.ensure_entry_items(self.user, kelime)
+        kart = ReviewItem.objects.get(user=self.user, word=kelime,
+                                      aspect=Aspect.RECOGNIZE)
+        kart.stability = 10.0
+        kart.save()
+        build.unlock_after_review(kart)
+        self.assertTrue(ReviewItem.objects.filter(
+            user=self.user, word=kelime, aspect=Aspect.FORM).exists())
+
+    def test_aile_karti_aile_basina_bir_tane(self):
+        aile = WordFamily.objects.create(root="analyse")
+        for metin, tur in (("analyse", PartOfSpeech.VERB),
+                           ("analysis", PartOfSpeech.NOUN),
+                           ("analytical", PartOfSpeech.ADJECTIVE)):
+            k, _ = kelime_kur(metin, tur, aile=aile, anlam=f"{metin} anlamı",
+                              cumleler=[f"This is {metin} in a sentence."])
+            self.listeye_ekle(k)
+
+        for kelime in aile.words.all():
+            build.ensure_entry_items(self.user, kelime)
+            tanima = ReviewItem.objects.filter(
+                user=self.user, word=kelime, aspect=Aspect.RECOGNIZE).first()
+            tanima.stability = 10.0
+            tanima.save()
+            build.unlock_after_review(tanima)
+            uretim = ReviewItem.objects.filter(
+                user=self.user, word=kelime, aspect=Aspect.PRODUCE).first()
+            uretim.stability = 20.0
+            uretim.save()
+            build.unlock_after_review(uretim)
+
+        self.assertEqual(
+            ReviewItem.objects.filter(user=self.user, aspect=Aspect.FAMILY).count(),
+            1,
         )
 
-    def test_score_includes_every_question_type(self):
-        # 1 doğru çoktan seçmeli
-        mc = MultipleChoiceQuestion.objects.create(
-            attempt=self.attempt, question_text="s", options_data="A:x_#_B:y",
-            correct_option="A", is_correct=True)
-        mc.words.set([self.words[0]])
+    def test_notr_tonlu_anlama_ton_karti_acilmaz(self):
+        build.ensure_entry_items(self.user, self.kelime)
+        self.assertFalse(ReviewItem.objects.filter(
+            user=self.user, aspect=Aspect.NUANCE).exists())
 
-        # 1 yanlış yazma
-        wq = WritingQuestion.objects.create(
-            attempt=self.attempt, question_text="s", correct_answer="x", is_correct=False)
-        wq.words.set([self.words[1]])
+    def test_tonlu_anlama_ton_karti_acilir(self):
+        kelime, _ = kelime_kur("notorious", PartOfSpeech.ADJECTIVE,
+                               anlam="kötü ünlü",
+                               sentiment=Sentiment.NEGATIVE)
+        self.listeye_ekle(kelime)
+        build.ensure_entry_items(self.user, kelime)
+        self.assertTrue(ReviewItem.objects.filter(
+            user=self.user, word=kelime, aspect=Aspect.NUANCE).exists())
 
-        # 1 doğru boşluk doldurma
-        fb = FillInTheBlankQuestion.objects.create(
-            attempt=self.attempt, sentence_with_blank=f"We use {BLANK} here.",
-            correct_answer="scoreword2", is_correct=True)
-        fb.words.set([self.words[2]])
-
-        # 5'li eşleştirme: 3 doğru 2 yanlış
-        mq = MatchingQuestion.objects.create(
-            attempt=self.attempt, right_col_order_ids="1;2;3;4;5",
-            word_count=5, correct_matches=3, wrong_matches=2)
-        mq.words.set(self.words)
-
-        self.attempt.calculateScore()
-
-        self.assertEqual(self.attempt.totalCorrect, 1 + 0 + 1 + 3)
-        self.assertEqual(self.attempt.totalWrong, 0 + 1 + 0 + 2)
-        self.assertTrue(self.attempt.isCompleted)
-
-    def test_all_questions_is_sorted_by_id(self):
-        for i in range(3):
-            q = WritingQuestion.objects.create(
-                attempt=self.attempt, question_text=f"q{i}", correct_answer="x")
-            q.words.set([self.words[i]])
-
-        questions = self.attempt.all_questions()
-        self.assertEqual([q.id for q in questions], sorted(q.id for q in questions))
-        self.assertEqual(len(questions), 3)
+    def test_yanlis_dost_karti_acilir(self):
+        FalseFriend.objects.create(
+            word=self.kelime, turkish_lookalike="retina",
+            assumed_meaning="göz retinası", correct_english="retina",
+        )
+        build.ensure_entry_items(self.user, self.kelime)
+        self.assertTrue(ReviewItem.objects.filter(
+            user=self.user, aspect=Aspect.FALSE_FRIEND).exists())
 
 
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class ClozeMultipleChoiceTests(TestCase):
-    """Katman 1: çoktan seçmeli içindeki boşluk doldurma biçimi."""
+# ----------------------------------------------------------------------
+# Çeldiriciler
+# ----------------------------------------------------------------------
+
+class CeldiriciTests(TestCase):
+
+    def test_ortusen_anlamlar_yakalanir(self):
+        self.assertTrue(distractors.ortusuyor_mu("ders, konu", "konu, ders"))
+        self.assertFalse(distractors.ortusuyor_mu("hesap", "koşmak"))
+
+    def test_ortusen_celdirici_secilmez(self):
+        """İki şıkkın da doğru olduğu soru, soru değildir."""
+        _, dogru = kelime_kur("subject", anlam="ders, konu")
+        kelime2, _ = kelime_kur("topic", anlam="konu, ders")
+        kelime3, _ = kelime_kur("bridge", anlam="köprü")
+        kelime4, _ = kelime_kur("stone", anlam="taş")
+        kelime5, _ = kelime_kur("river", anlam="nehir")
+
+        celdiriciler = distractors.meaning_distractors(dogru, count=3)
+        metinler = [distractors.distractor_text(c) for c in celdiriciler]
+        self.assertNotIn("konu, ders", metinler)
+
+    def test_karistirilan_cift_celdirici_olarak_one_gecer(self):
+        k1, m1 = kelime_kur("principle", anlam="ilke")
+        k2, _ = kelime_kur("principal", anlam="müdür")
+        WordRelation.objects.create(from_word=k1, to_word=k2,
+                                    type=RelationType.CONFUSED_WITH)
+        celdiriciler = distractors.meaning_distractors(m1, count=3)
+        metinler = [distractors.distractor_text(c) for c in celdiriciler]
+        self.assertIn("müdür", metinler)
+
+
+# ----------------------------------------------------------------------
+# Soru üretimi
+# ----------------------------------------------------------------------
+
+class SoruUretimiTests(TemelKurulum):
 
     def setUp(self):
-        self.user = User.objects.create_user(username="cloze_user", password="Sifre1234")
-        self.word = make_word("retain", "elde tutmak",
-                              exampleSentence1="They retain full control of the company.")
-        self.link = UserWordLink.objects.create(user=self.user, word=self.word)
-        for i in range(10):
-            make_word(f"base{i}", f"temel{i}", isBaseWord=True, wordLevel="101")
-        self.attempt = QuizAttempt.objects.create(
-            owner=self.user, totalQuestion=1, quizType=QuizType.MULTIPLE_CHOICE
+        super().setUp()
+        self.kelime, self.anlam = kelime_kur(
+            "retain", PartOfSpeech.VERB, anlam="elde tutmak",
+            cumleler=["The company retained most of its customers.",
+                      "Plants retain water in their leaves."],
+            v2="retained", v3="retained",
         )
+        self.listeye_ekle(self.kelime)
+        for metin, anlam in (("keep", "tutmak"), ("lose", "kaybetmek"),
+                             ("hold", "tutmak, kavramak"), ("drop", "düşürmek")):
+            kelime_kur(metin, PartOfSpeech.VERB, anlam=anlam)
+        build.ensure_entry_items(self.user, self.kelime)
 
-    def test_cloze_variant_can_be_generated(self):
-        """20 denemede en az bir kez cloze biçimi seçilmeli."""
-        seen_cloze = False
-        for _ in range(20):
-            attempt = QuizAttempt.objects.create(
-                owner=self.user, totalQuestion=1, quizType=QuizType.MULTIPLE_CHOICE)
-            generate_mc_question(self.link, attempt, [self.word])
-            question = MultipleChoiceQuestion.objects.get(attempt=attempt)
-            if BLANK in question.question_text:
-                seen_cloze = True
-                # Doğru şık kelimenin KÖK hâli olmalı ki boşluğa dilbilgisel otursun
-                correct_text = dict(question.options_as_list)[question.correct_option]
-                self.assertEqual(correct_text, "retain")
+    def _kart(self, aspect):
+        return ReviewItem.objects.filter(user=self.user, aspect=aspect).first()
+
+    def test_tanima_sorusu_uretilir(self):
+        soru = questions.build(self._kart(Aspect.RECOGNIZE))
+        self.assertIsNotNone(soru)
+        self.assertTrue(soru.options)
+        self.assertTrue(soru.correct_key)
+
+    def test_dogru_sik_gercekten_dogru(self):
+        kart = self._kart(Aspect.RECOGNIZE)
+        soru = questions.build(kart)
+        dogru_metin = next(o["text"] for o in soru.options
+                           if o["key"] == soru.correct_key)
+        self.assertEqual(dogru_metin, self.anlam.meaning_tr)
+
+    def test_soru_uretimi_tekrarlanabilir(self):
+        """
+        Aynı kart, aynı tekrarda AYNI soruyu vermeli.
+
+        Soru iki kez üretiliyor: bir kez ekrana basarken, bir kez cevabı
+        değerlendirirken. Rastgele tohumla şıklar yeniden karışır ve
+        doğru cevap veren öğrenci yanlış yapmış sayılır.
+        """
+        kart = self._kart(Aspect.RECOGNIZE)
+        ilk = questions.build(kart)
+        ikinci = questions.build(kart)
+        self.assertEqual(ilk.correct_key, ikinci.correct_key)
+        self.assertEqual([o["text"] for o in ilk.options],
+                         [o["text"] for o in ikinci.options])
+
+    def test_tekrar_sayisi_degisince_soru_degisir(self):
+        kart = self._kart(Aspect.RECOGNIZE)
+        ilk = questions.build(kart)
+        kart.reps = 1
+        ilk_bicim = ilk.format
+        ikinci = questions.build(kart)
+        self.assertNotEqual(ilk_bicim, ikinci.format)
+
+    def test_veri_yoksa_soru_uretilmez(self):
+        kelime, _ = kelime_kur("bare", anlam="çıplak")   # cümlesi yok
+        self.listeye_ekle(kelime)
+        kart = ReviewItem.objects.create(
+            user=self.user, word=kelime,
+            meaning=kelime.primary_meaning, aspect=Aspect.CONTEXT,
+        )
+        self.assertIsNone(questions.build(kart))
+
+    def test_baglam_sorusu_cumlede_kelimeyi_maskeler(self):
+        kart = ReviewItem.objects.create(
+            user=self.user, word=self.kelime, meaning=self.anlam,
+            aspect=Aspect.CONTEXT,
+        )
+        soru = questions.build(kart)
+        self.assertIsNotNone(soru)
+        self.assertIn(masking.BLANK, soru.sentence)
+        self.assertNotIn("retained", soru.sentence)
+
+    def test_esdizim_sorusu_kelimeyi_degil_esini_maskeler(self):
+        esdizim = Collocation.objects.create(
+            meaning=self.anlam, pattern="retain customers",
+            kind=CollocationKind.VERB_NOUN,
+            example="The company retained customers last year.",
+        )
+        kart = ReviewItem.objects.create(
+            user=self.user, word=self.kelime, meaning=self.anlam,
+            aspect=Aspect.COLLOCATION, target_id=esdizim.id,
+        )
+        soru = questions.build(kart)
+        self.assertIsNotNone(soru)
+        # Maskelenen "customers" olmalı, "retained" değil.
+        self.assertIn("retained", soru.sentence)
+        self.assertNotIn("customers", soru.sentence)
+
+    def test_yanlis_dost_dogru_yanlis_sorusu(self):
+        yd = FalseFriend.objects.create(
+            word=self.kelime, turkish_lookalike="retina",
+            assumed_meaning="göz retinası",
+        )
+        kart = ReviewItem.objects.create(
+            user=self.user, word=self.kelime,
+            aspect=Aspect.FALSE_FRIEND, target_id=yd.id,
+        )
+        soru = questions.build(kart)
+        self.assertIsNotNone(soru)
+        self.assertEqual(soru.format, Format.TRUE_FALSE)
+        # Doğru cevap her zaman "Yanlış": yanlış dost eşitliği kurulmaz.
+        dogru_metin = next(o["text"] for o in soru.options
+                           if o["key"] == soru.correct_key)
+        self.assertEqual(dogru_metin, "Yanlış")
+
+    def test_karistirilan_cift_iki_sikli(self):
+        oteki, _ = kelime_kur("detain", PartOfSpeech.VERB, anlam="alıkoymak",
+                              cumleler=["Police detained the suspect."])
+        bag = WordRelation.objects.create(
+            from_word=self.kelime, to_word=oteki,
+            type=RelationType.CONFUSED_WITH,
+        )
+        kart = ReviewItem.objects.create(
+            user=self.user, word=self.kelime,
+            aspect=Aspect.CONFUSABLE, target_id=bag.id,
+        )
+        soru = questions.build(kart)
+        self.assertIsNotNone(soru)
+        self.assertEqual(len(soru.options), 2)
+
+    def test_yazarak_cevap_kontrolu(self):
+        kart = ReviewItem.objects.create(
+            user=self.user, word=self.kelime, meaning=self.anlam,
+            aspect=Aspect.PRODUCE,
+        )
+        kart.reps = 0          # ilk biçim: yazarak
+        soru = questions.build(kart)
+        self.assertTrue(soru.is_typed)
+        self.assertTrue(soru.check("retain"))
+        self.assertFalse(soru.check("retail"))
+
+
+# ----------------------------------------------------------------------
+# Oturum motoru
+# ----------------------------------------------------------------------
+
+class OturumTests(TemelKurulum):
+
+    def setUp(self):
+        super().setUp()
+        self.kelimeler = []
+        for i in range(12):
+            kelime, _ = kelime_kur(
+                f"word{i}", anlam=f"anlam{i}",
+                cumleler=[f"This is word{i} in a sentence here."],
+            )
+            self.listeye_ekle(kelime)
+            self.kelimeler.append(kelime)
+
+    def test_oturum_kuyrugu_kurulur(self):
+        s = oturum.start(self.user)
+        self.assertTrue(s.queue)
+        self.assertEqual(s.planned_count, len(s.queue))
+
+    def test_yeni_kart_gunluk_hedefle_sinirli(self):
+        self.user.mysettings.dailyGoal = 3
+        self.user.mysettings.save()
+        s = oturum.start(self.user)
+        self.assertLessEqual(len(s.queue), 3)
+
+    def test_gunluk_hedef_sifirsa_yeni_kart_acilmaz(self):
+        self.user.mysettings.dailyGoal = 0
+        self.user.mysettings.save()
+        s = oturum.start(self.user)
+        self.assertEqual(len(s.queue), 0)
+
+    def test_yeni_kartlar_merdiven_sirasiyla_gelir(self):
+        """
+        İlk oturumda yalnızca tanıma kartı olmalı.
+
+        İlk sürümde bu sıralama `order_by("aspect")` idi ve alfabetik
+        sıra yüzünden yeni kullanıcıya hiç tanımadığı kelimelerin
+        EŞ DİZİMLERİ soruluyordu (collocation < recognize).
+        """
+        build.ensure_all_entry_items(self.user)
+        for kart in ReviewItem.objects.filter(user=self.user,
+                                              aspect=Aspect.RECOGNIZE):
+            kart.stability = 30.0
+            kart.difficulty = 5.0
+            kart.save()
+            build.unlock_after_review(kart)
+        ReviewItem.objects.filter(user=self.user).update(
+            state=ItemState.NEW, stability=None, difficulty=None, due_at=None)
+
+        s = oturum.start(self.user)
+        boyutlar = set(ReviewItem.objects.filter(id__in=s.queue)
+                       .values_list("aspect", flat=True))
+        self.assertEqual(boyutlar, {Aspect.RECOGNIZE})
+
+    def test_ayni_kelime_arka_arkaya_gelmez(self):
+        self.user.mysettings.dailyGoal = 30
+        self.user.mysettings.save()
+        s = oturum.start(self.user)
+        kelime_idleri = list(
+            ReviewItem.objects.filter(id__in=s.queue)
+            .in_bulk(s.queue).get(k).word_id for k in s.queue
+        )
+        ardisik = sum(1 for a, b in zip(kelime_idleri, kelime_idleri[1:]) if a == b)
+        self.assertEqual(ardisik, 0)
+
+    def test_dogru_cevap_karti_ilerletir(self):
+        s = oturum.start(self.user)
+        item, soru = oturum.next_question(s)
+        sonuc = oturum.answer(s, item, soru.correct_key, seconds=5)
+        item.refresh_from_db()
+        self.assertTrue(sonuc["correct"])
+        self.assertEqual(item.state, ItemState.REVIEW)
+        self.assertIsNotNone(item.due_at)
+        self.assertGreater(item.stability, 0)
+
+    def test_yanlis_cevap_karti_oturum_ici_kuyruga_geri_koyar(self):
+        s = oturum.start(self.user)
+        item, soru = oturum.next_question(s)
+        yanlis = next(o["key"] for o in soru.options if o["key"] != soru.correct_key)
+        oturum.answer(s, item, yanlis, seconds=15)
+        s.refresh_from_db()
+        self.assertIn(item.id, s.queue)
+        self.assertIn(item.id, s.missed)
+
+    def test_yuksek_guvenli_hata_bir_hafta_icinde_tekrar_ister(self):
+        s = oturum.start(self.user)
+        item, soru = oturum.next_question(s)
+        yanlis = next(o["key"] for o in soru.options if o["key"] != soru.correct_key)
+        oturum.answer(s, item, yanlis, seconds=1.0)   # hızlı ve yanlış
+        item.refresh_from_db()
+        self.assertIsNotNone(item.recheck_by)
+        self.assertLessEqual(item.due_at, item.recheck_by)
+
+    def test_zorunlu_tekrar_isareti_sonraki_tekrarda_kalkar(self):
+        """
+        İşaret kalkmazsa kart geçmiş bir tarihe kilitleniyor ve sonsuza
+        kadar "sırası gelmiş" görünüyor. Kod hata vermiyor; kullanıcı
+        yalnızca aynı kartı durmadan görüyor.
+        """
+        s = oturum.start(self.user)
+        item, soru = oturum.next_question(s)
+        yanlis = next(o["key"] for o in soru.options if o["key"] != soru.correct_key)
+        oturum.answer(s, item, yanlis, seconds=1.0)      # hızlı + yanlış
+        item.refresh_from_db()
+        self.assertIsNotNone(item.recheck_by)
+
+        # Aynı kart oturum içinde geri geldi; bu kez doğru cevaplanıyor.
+        item, soru = oturum.next_question(s)
+        while item.recheck_by is None:
+            oturum.answer(s, item, soru.correct_key, seconds=5)
+            item, soru = oturum.next_question(s)
+            if soru is None:
+                self.fail("işaretli kart kuyruğa geri dönmedi")
+        oturum.answer(s, item, soru.correct_key, seconds=5)
+        item.refresh_from_db()
+        self.assertIsNone(item.recheck_by)
+        self.assertGreater(item.due_at, timezone.now())
+
+    def test_tereddutlu_hata_isaretlenmez(self):
+        s = oturum.start(self.user)
+        item, soru = oturum.next_question(s)
+        yanlis = next(o["key"] for o in soru.options if o["key"] != soru.correct_key)
+        oturum.answer(s, item, yanlis, seconds=60)    # yavaş ve yanlış
+        item.refresh_from_db()
+        self.assertIsNone(item.recheck_by)
+
+    def test_her_cevap_kayit_birakir(self):
+        s = oturum.start(self.user)
+        item, soru = oturum.next_question(s)
+        oturum.answer(s, item, soru.correct_key, seconds=5)
+        kayit = ReviewLog.objects.get(user=self.user)
+        self.assertEqual(kayit.word_text, item.word.text)
+        self.assertTrue(kayit.is_correct)
+        self.assertGreater(kayit.scheduled_days, 0)
+        self.assertIsNotNone(kayit.stability_after)
+
+    def test_kelime_sayaclari_da_guncellenir(self):
+        """Analiz sayfası ve Öğren-Geç bu sayaçlara bakmaya devam ediyor."""
+        from quizzes.views import _kelime_sayaclarini_guncelle
+
+        s = oturum.start(self.user)
+        item, soru = oturum.next_question(s)
+        oturum.answer(s, item, soru.correct_key, seconds=5)
+        _kelime_sayaclarini_guncelle(self.user, item, True)
+        bag = UserWordLink.objects.get(user=self.user, word=item.word)
+        self.assertEqual(bag.correctCount, 1)
+
+    def test_birikmis_tekrar_yeni_kart_acmayi_durdurur(self):
+        """Borç varken yeni borç açılmaz — bırakmanın bir numaralı sebebi."""
+        from .models import DailyGoalDefaults
+
+        gecmis = timezone.now() - timedelta(days=3)
+        build.ensure_all_entry_items(self.user)
+        kartlar = list(ReviewItem.objects.filter(user=self.user))
+        for kart in kartlar:
+            kart.state = ItemState.REVIEW
+            kart.due_at = gecmis
+            kart.stability = 2.0
+            kart.difficulty = 5.0
+            kart.save()
+        # Eşiği aşacak kadar gecikmiş kart üret
+        self.assertGreater(len(kartlar), 0)
+        eski_esik = DailyGoalDefaults.BACKLOG_BLOCK_THRESHOLD
+        DailyGoalDefaults.BACKLOG_BLOCK_THRESHOLD = 1
+        try:
+            self.assertEqual(oturum._yeni_kart_butcesi(self.user), 0)
+        finally:
+            DailyGoalDefaults.BACKLOG_BLOCK_THRESHOLD = eski_esik
+
+    def test_oturum_ust_siniri_asilmaz(self):
+        for i in range(100):
+            kelime, _ = kelime_kur(f"extra{i}", anlam=f"ek{i}")
+            self.listeye_ekle(kelime)
+        self.user.mysettings.dailyGoal = 500
+        self.user.mysettings.save()
+        s = oturum.start(self.user)
+        self.assertLessEqual(len(s.queue), oturum.OTURUM_UST_SINIRI)
+
+    def test_kuyruk_bitince_soru_kalmaz(self):
+        self.user.mysettings.dailyGoal = 2
+        self.user.mysettings.save()
+        s = oturum.start(self.user)
+        for _ in range(30):
+            item, soru = oturum.next_question(s)
+            if soru is None:
                 break
-        self.assertTrue(seen_cloze, "cloze biçimi hiç üretilmedi")
+            oturum.answer(s, item, soru.correct_key, seconds=5)
+        self.assertEqual(len(s.queue), 0)
 
 
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class FillBlankQuizFlowTests(TestCase):
-    """
-    Uçtan uca akış: quiz oluşturma -> soru sayfası -> cevap -> sonuç sayfası.
+# ----------------------------------------------------------------------
+# Ölçüler
+# ----------------------------------------------------------------------
 
-    Bu test asıl olarak TEMPLATE'leri koruyor. Yeni bir soru tipi eklenirken
-    quizPage.html veya quizComplete.html'de dal açmayı unutmak, birim
-    testlerinden geçen ama tarayıcıda boş/patlak görünen bir sayfa üretir.
-    """
+class OlcuTests(TemelKurulum):
+
+    def test_kalici_bilgi_zamanla_duser(self):
+        """Sürekli artan bir sayaç öğrenciye yanlış güven verir."""
+        kelime, _ = kelime_kur("decay", anlam="çürümek")
+        self.listeye_ekle(kelime)
+        kart = ReviewItem.objects.create(
+            user=self.user, word=kelime, meaning=kelime.primary_meaning,
+            aspect=Aspect.RECOGNIZE, stability=10.0, difficulty=5.0,
+            state=ItemState.REVIEW, last_reviewed_at=timezone.now(),
+        )
+        taze = knowledge_score(self.user)
+
+        kart.last_reviewed_at = timezone.now() - timedelta(days=60)
+        kart.save()
+        eskimis = knowledge_score(self.user)
+
+        self.assertGreater(taze, eskimis)
+
+    def test_seri_bugun_calisilmadiysa_hemen_sifirlanmaz(self):
+        kelime, _ = kelime_kur("streak", anlam="seri")
+        dun = timezone.now() - timedelta(days=1)
+        kayit = ReviewLog.objects.create(
+            user=self.user, word_text="streak", aspect=Aspect.RECOGNIZE,
+            format=Format.CHOICE, is_correct=True, grade=3,
+        )
+        ReviewLog.objects.filter(id=kayit.id).update(answered_at=dun)
+        self.assertEqual(study_streak(self.user), 1)
+
+    def test_hic_calismamis_kullanicinin_serisi_sifir(self):
+        self.assertEqual(study_streak(self.user), 0)
+
+
+# ----------------------------------------------------------------------
+# Sayfalar
+# ----------------------------------------------------------------------
+
+class SayfaTests(TemelKurulum):
 
     def setUp(self):
-        self.user = User.objects.create_user(username="flow_user", password="Sifre1234")
-        self.client.login(username="flow_user", password="Sifre1234")
-
-        self.words = []
+        super().setUp()
         for i in range(5):
-            word = make_word(
-                f"flowword{i}", f"anlam{i}",
-                exampleSentence1=f"The team flowword{i} the results carefully.",
-                collocations=f"flowword{i} data, flowword{i} results",
-            )
-            UserWordLink.objects.create(user=self.user, word=word)
-            self.words.append(word)
+            kelime, _ = kelime_kur(f"page{i}", anlam=f"sayfa{i}",
+                                   cumleler=[f"A page{i} sentence goes here."])
+            self.listeye_ekle(kelime)
+        self.client.login(username="efe", password="x")
 
-    def test_attempt_quiz_page_lists_the_new_type(self):
-        response = self.client.get(reverse("attempt_quiz"))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'value="fill_blank"')
+    def test_calisma_ana_sayfasi_acilir(self):
+        cevap = self.client.get(reverse("study_home"))
+        self.assertEqual(cevap.status_code, 200)
 
-    def test_full_fill_blank_quiz_flow(self):
-        response = self.client.post(
-            reverse("attempt_quiz"),
-            {"quizType": "fill_blank", "totalQuestion": "5"},
+    def test_oturum_baslatilip_soru_gelir(self):
+        cevap = self.client.post(reverse("study_start"), {"mode": "due"})
+        self.assertEqual(cevap.status_code, 302)
+        cevap = self.client.get(cevap.url)
+        self.assertEqual(cevap.status_code, 200)
+        self.assertIn("question", cevap.context)
+
+    def test_cevap_gonderilince_geri_bildirim_gosterilir(self):
+        self.client.post(reverse("study_start"), {"mode": "due"})
+        s = StudySession.objects.filter(user=self.user).first()
+        item, soru = oturum.next_question(s)
+        cevap = self.client.post(
+            reverse("study_run", kwargs={"session_id": s.id}),
+            {"item_id": item.id, "answer": soru.correct_key, "seconds": "4.0"},
         )
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(cevap.status_code, 200)
+        self.assertTrue(cevap.context["feedback"]["correct"])
 
-        attempt = QuizAttempt.objects.get(owner=self.user)
-        self.assertEqual(attempt.quizType, QuizType.FILL_BLANK)
-        self.assertEqual(FillInTheBlankQuestion.objects.filter(attempt=attempt).count(), 5)
-
-        questions = attempt.all_questions()
-
-        for index, question in enumerate(questions, start=1):
-            page = self.client.get(
-                reverse("quiz_page", args=[attempt.id, index])
-            )
-            self.assertEqual(page.status_code, 200)
-            self.assertContains(page, BLANK)
-            self.assertContains(page, 'name="answer"')
-
-            self.client.post(
-                reverse("quiz_page", args=[attempt.id, index]),
-                {"answer": question.correct_answer, "time_taken": "4.2"},
-            )
-
-        complete = self.client.get(reverse("quiz_complete", args=[attempt.id]))
-        self.assertEqual(complete.status_code, 200)
-
-        attempt.refresh_from_db()
-        self.assertTrue(attempt.isCompleted)
-        self.assertEqual(attempt.totalCorrect, 5)
-        self.assertEqual(attempt.totalWrong, 0)
-        self.assertContains(complete, "Boşluk Doldurma Sorusu")
-
-    def test_quiz_is_refused_when_no_word_can_produce_a_blank(self):
-        UserWordLink.objects.filter(user=self.user).delete()
-        for i in range(5):
-            word = make_word(f"absent{i}", f"anlam{i}",
-                             exampleSentence1="Nothing relevant in this sentence.")
-            UserWordLink.objects.create(user=self.user, word=word)
-
-        response = self.client.post(
-            reverse("attempt_quiz"),
-            {"quizType": "fill_blank", "totalQuestion": "5"},
-            follow=True,
-        )
-        self.assertEqual(QuizAttempt.objects.count(), 0)
-        text = " ".join(str(m) for m in response.context["messages"])
-        self.assertIn("yeterli kelime yok", text)
-
-    def test_mixed_quiz_includes_fill_blank_questions(self):
-        """Karma quiz'de üretim gerektiren soruların bir kısmı boşluk doldurma olmalı."""
-        self.client.post(
-            reverse("attempt_quiz"),
-            {"quizType": "mixed", "totalQuestion": "5"},
-        )
-        attempt = QuizAttempt.objects.get(owner=self.user)
-
-        self.assertGreaterEqual(
-            FillInTheBlankQuestion.objects.filter(attempt=attempt).count(), 1
-        )
-        # Toplam soru sayısı bozulmamalı: boşluk doldurma, yazma sorularının
-        # yerine geçiyor; üstüne eklenmiyor.
-        self.assertEqual(len(attempt.all_questions()), 5)
-
-
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class BlankSentenceSelectionTests(TestCase):
-    """Boşluk doldurma, kelimenin DOLU cümleleri arasından rastgele seçmeli."""
-
-    def test_empty_sentence_slots_are_skipped(self):
-        word = make_word(
-            "retain", "elde tutmak",
-            exampleSentence1="Nothing relevant in this first one.",
-            exampleSentence2=None,
-            exampleSentence3="   ",
-            exampleSentence7="The board will retain the original plan.",
-        )
-        masked, matched = build_blank_for_word(word, randomize=False)
-        self.assertEqual(matched, "retain")
-        self.assertIn("original plan", masked)
-
-    def test_selection_varies_across_generations(self):
+    def test_yanlis_cevap_sik_metniyle_gosterilir(self):
         """
-        Aynı kelime her sorulduğunda aynı cümle gelirse kelime tek bağlama
-        bağlanır. Farklı cümlelerin seçilebildiğini doğruluyoruz.
+        "Senin cevabın: A" hiçbir şey anlatmaz — öğrenci bir soru önce
+        neyi işaretlediğini şıkkın harfiyle değil metniyle hatırlar.
         """
-        word = make_word(
-            "retain", "elde tutmak",
-            exampleSentence1="Alpha will retain the title.",
-            exampleSentence2="Beta managed to retain its lead.",
-            exampleSentence3="Gamma could not retain the crowd.",
+        self.client.post(reverse("study_start"), {"mode": "due"})
+        s = StudySession.objects.filter(user=self.user).first()
+        item, soru = oturum.next_question(s)
+        yanlis = next(o for o in soru.options if o["key"] != soru.correct_key)
+        cevap = self.client.post(
+            reverse("study_run", kwargs={"session_id": s.id}),
+            {"item_id": item.id, "answer": yanlis["key"], "seconds": "9.0"},
         )
+        self.assertEqual(cevap.context["user_answer"], yanlis["text"])
 
-        seen = set()
-        for _ in range(40):
-            masked, _matched = build_blank_for_word(word)
-            seen.add(masked.split()[0])
+    def test_baskasinin_oturumuna_erisilemez(self):
+        baskasi = User.objects.create_user(username="baska", password="x")
+        s = StudySession.objects.create(user=baskasi, queue=[])
+        cevap = self.client.get(reverse("study_run", kwargs={"session_id": s.id}))
+        self.assertEqual(cevap.status_code, 404)
 
-        self.assertGreater(len(seen), 1, "her seferinde aynı cümle seçiliyor")
-        self.assertLessEqual(seen, {"Alpha", "Beta", "Gamma"})
+    def test_ilerleme_sayfasi_acilir(self):
+        cevap = self.client.get(reverse("study_progress"))
+        self.assertEqual(cevap.status_code, 200)
 
-    def test_randomize_false_is_deterministic(self):
-        word = make_word(
-            "retain", "elde tutmak",
-            exampleSentence1="Alpha will retain the title.",
-            exampleSentence2="Beta managed to retain its lead.",
-        )
-        results = {build_blank_for_word(word, randomize=False)[0] for _ in range(10)}
-        self.assertEqual(len(results), 1)
-
-    def test_eligibility_check_uses_all_ten_slots(self):
-        word = make_word(
-            "obtain", "elde etmek",
-            exampleSentence1="Nothing relevant here.",
-            exampleSentence10="You can obtain a copy online.",
-        )
-        self.assertTrue(can_generate_blank(word))
-
-    def test_word_absent_from_every_sentence_is_ineligible(self):
-        word = make_word(
-            "obtain", "elde etmek",
-            exampleSentence1="Nothing relevant here.",
-            exampleSentence5="Still nothing relevant.",
-        )
-        self.assertFalse(can_generate_blank(word))
-
-
-class WordAnalysisTests(TestCase):
-    """
-    Bilgi Analizi: en çok yanlış yapılandan en iyi bilinene sıralı liste.
-    """
-
-    def setUp(self):
-        from users.models import User
-
-        self.user = User.objects.create_user(username="analiz", password="Sifre1234")
-        self.client.login(username="analiz", password="Sifre1234")
-
-    def _link(self, kelime_adi, correct, wrong, user=None):
-        from words.models import UserWordLink, Word
-
-        kelime = make_word(kelime_adi, "anlam", level="401",
-                           is_base=True, visibility="public")
-        return UserWordLink.objects.create(
-            user=user or self.user, word=kelime,
-            correctCount=correct, wrongCount=wrong,
-        )
-
-    def _rows(self):
+    def test_analiz_sayfasi_acilir(self):
         cevap = self.client.get(reverse("word_analysis"))
         self.assertEqual(cevap.status_code, 200)
-        return cevap.context["rows"]
 
-    def test_worst_words_come_first(self):
-        self._link("iyi", correct=9, wrong=1)       # %90
-        self._link("orta", correct=5, wrong=5)      # %50
-        self._link("kotu", correct=1, wrong=9)      # %10
-
-        siralama = [satir["word"].text for satir in self._rows()]
-        self.assertEqual(siralama, ["kotu", "orta", "iyi"])
-
-    def test_accuracy_is_a_percentage(self):
-        self._link("yarim", correct=1, wrong=3)     # %25
-        satir = self._rows()[0]
-        self.assertEqual(satir["accuracy"], 25)
-        self.assertEqual(satir["attempts"], 4)
-
-    def test_equal_accuracy_puts_the_more_attempted_word_first(self):
-        """20 denemede %50, 2 denemede %50'den daha güvenilir bir sinyal."""
-        self._link("azdenenen", correct=1, wrong=1)
-        self._link("cokdenenen", correct=10, wrong=10)
-
-        siralama = [satir["word"].text for satir in self._rows()]
-        self.assertEqual(siralama[0], "cokdenenen")
-
-    def test_never_attempted_words_are_excluded_but_counted(self):
-        self._link("calisilan", correct=2, wrong=1)
-        self._link("hicbakilmayan", correct=0, wrong=0)
-
-        cevap = self.client.get(reverse("word_analysis"))
-        adlar = [satir["word"].text for satir in cevap.context["rows"]]
-        self.assertEqual(adlar, ["calisilan"])
-        self.assertEqual(cevap.context["untouched_count"], 1)
-
-    def test_only_the_users_own_list_is_analysed(self):
-        from users.models import User
-
-        baskasi = User.objects.create_user(username="baska", password="Sifre1234")
-        self._link("benimki", correct=1, wrong=1)
-        self._link("onunki", correct=1, wrong=1, user=baskasi)
-
-        adlar = [satir["word"].text for satir in self._rows()]
-        self.assertEqual(adlar, ["benimki"])
-
-    def test_colour_runs_from_red_to_green(self):
-        self._link("sifir", correct=0, wrong=4)     # %0
-        self._link("tam", correct=4, wrong=0)       # %100
-
-        satirlar = {s["word"].text: s["hue"] for s in self._rows()}
-        self.assertEqual(satirlar["sifir"], 0)                      # kırmızı
-        self.assertEqual(satirlar["tam"], 130)                      # yeşil
-        self.assertLess(satirlar["sifir"], satirlar["tam"])
-
-    def test_summary_shows_total_attempts(self):
-        """Oran tek başına yanıltıcı; toplam deneme sayısı da görünmeli."""
-        self._link("bir", correct=3, wrong=1)
-        self._link("iki", correct=1, wrong=1)
-
-        cevap = self.client.get(reverse("word_analysis"))
-        self.assertEqual(cevap.context["total_attempts"], 6)
-        self.assertEqual(cevap.context["overall_accuracy"], 67)
-        self.assertEqual(cevap.context["studied_count"], 2)
-
-    def test_row_links_to_the_word(self):
-        link = self._link("tiklanabilir", correct=1, wrong=1)
-        html = self.client.get(reverse("word_analysis")).content.decode()
-        self.assertIn(reverse("word_detail", args=[link.word.id]), html)
-
-    def test_page_is_paginated(self):
-        from quizzes.views import ANALYSIS_DEFAULT_PER_PAGE
-
-        for i in range(ANALYSIS_DEFAULT_PER_PAGE + 5):
-            self._link(f"kelime{i:03d}", correct=i % 4, wrong=1)
-
-        cevap = self.client.get(reverse("word_analysis"))
-        self.assertTrue(cevap.context["is_paginated"])
-        self.assertEqual(len(cevap.context["rows"]), ANALYSIS_DEFAULT_PER_PAGE)
-
-    def test_empty_state_when_nothing_studied(self):
-        html = self.client.get(reverse("word_analysis")).content.decode()
-        self.assertIn("Henüz analiz edilecek bir şey yok", html)
-
-    def test_anonymous_user_sees_the_login_screen(self):
+    def test_giris_yapmamis_kullaniciya_kapi_gosterilir(self):
         self.client.logout()
-        cevap = self.client.get(reverse("word_analysis"))
+        cevap = self.client.get(reverse("study_home"))
         self.assertEqual(cevap.status_code, 200)
-        self.assertIn("önce giriş yapın", cevap.content.decode())
-
-    def test_analysis_is_the_third_exercise_tab(self):
-        for url in (reverse("learn_pass_page"), reverse("profile_quizzes"), reverse("word_analysis")):
-            with self.subTest(url=url):
-                html = self.client.get(url, follow=True).content.decode()
-                self.assertIn(reverse("word_analysis"), html)
-                self.assertIn(">Analiz<", re.sub(r">\s+", ">", re.sub(r"\s+<", "<", html)))
-
-
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class QuizStatsChartTests(TestCase):
-    """İstatistik grafiği: beş soru tipi, renkleri ve doğruluk oranları."""
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="grafik", password="Sifre1234")
-        self.client.login(username="grafik", password="Sifre1234")
-
-    def _attempt(self):
-        return QuizAttempt.objects.create(owner=self.user, totalQuestion=4, isCompleted=True)
-
-    def _word(self, ad="kelime"):
-        return make_word(ad, "anlam", level="401", is_base=True, visibility="public")
-
-    def _types(self):
-        cevap = self.client.get(reverse("profile_quizzes"))
-        self.assertEqual(cevap.status_code, 200)
-        return {tip["key"]: tip for tip in cevap.context["quiz_types"]}
-
-    def test_all_five_question_types_are_present(self):
-        self.assertEqual(set(self._types()), {"mq", "mc", "wq", "sa", "fb"})
-
-    def test_every_type_has_its_own_colour(self):
-        renkler = [tip["color"] for tip in self._types().values()]
-        self.assertEqual(len(renkler), len(set(renkler)), "Renkler birbirinden farklı olmalı")
-
-    def test_synonym_antonym_counts_are_reported(self):
-        deneme = self._attempt()
-        SynonymAntonymQuestion.objects.create(
-            attempt=deneme, question_text="?", options_data="A:x_#_B:y",
-            correct_option="A", is_correct=True,
-        )
-        SynonymAntonymQuestion.objects.create(
-            attempt=deneme, question_text="?", options_data="A:x_#_B:y",
-            correct_option="A", is_correct=False,
-        )
-        sa = self._types()["sa"]
-        self.assertEqual((sa["correct"], sa["wrong"]), (1, 1))
-
-    def test_fill_in_the_blank_counts_are_reported(self):
-        deneme = self._attempt()
-        FillInTheBlankQuestion.objects.create(
-            attempt=deneme, sentence_with_blank="A ____ sentence.",
-            correct_answer="fb1", is_correct=True,
-        )
-        fb = self._types()["fb"]
-        self.assertEqual((fb["correct"], fb["wrong"]), (1, 0))
-
-    def test_accuracy_percentages_are_calculated(self):
-        deneme = self._attempt()
-        for dogru in (True, True, True, False):
-            MultipleChoiceQuestion.objects.create(
-                attempt=deneme, question_text="?", options_data="A:x_#_B:y",
-                correct_option="A", is_correct=dogru,
-            )
-        mc = self._types()["mc"]
-        self.assertEqual(mc["total"], 4)
-        self.assertEqual(mc["correct_pct"], 75)
-        self.assertEqual(mc["wrong_pct"], 25)
-
-    def test_untouched_type_does_not_divide_by_zero(self):
-        tip = self._types()["fb"]
-        self.assertEqual((tip["total"], tip["correct_pct"], tip["wrong_pct"]), (0, 0, 0))
-
-    def test_page_renders_a_chart_for_every_type_on_mobile(self):
-        deneme = self._attempt()
-        MultipleChoiceQuestion.objects.create(
-            attempt=deneme, question_text="?", options_data="A:x_#_B:y",
-            correct_option="A", is_correct=True,
-        )
-        html = self.client.get(reverse("profile_quizzes")).content.decode()
-        for anahtar in ("mq", "mc", "wq", "sa", "fb"):
-            with self.subTest(key=anahtar):
-                self.assertIn(f'id="chart-{anahtar}"', html)
-        self.assertIn('id="statsChart"', html)
-
-    def test_empty_state_when_no_quiz_completed(self):
-        cevap = self.client.get(reverse("profile_quizzes"))
-        self.assertFalse(cevap.context["has_quiz_data"])
-        self.assertIn("Henüz tamamlanmış bir quiz yok", cevap.content.decode())
-
-
-@skipUnless(settings.QUIZZES_ENABLED,
-            "Quizler yeni kelime modeline taşınana kadar kapalı "
-            "(settings.QUIZZES_ENABLED). Soru üreteçleri eski alan adlarını kullanıyor.")
-class QuizPageUsabilityTests(TestCase):
-    """
-    Quiz sayfası: tıklama alanı ve Enter kısayolu.
-
-    Bunlar şablonda yaşayan davranışlar; testler o işaretlemenin yanlışlıkla
-    geri alınmasını yakalıyor.
-    """
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="quizkullanim", password="Sifre1234")
-        self.client.login(username="quizkullanim", password="Sifre1234")
-
-        self.word = make_word("immaculate", "tertemiz", level="401", is_base=True,
-                              visibility="public")
-        self.attempt = QuizAttempt.objects.create(owner=self.user, totalQuestion=1)
-        soru = MultipleChoiceQuestion.objects.create(
-            attempt=self.attempt, question_text="immaculate ne demek?",
-            options_data="A:tertemiz_#_B:kirli_#_C:eski_#_D:yeni",
-            correct_option="A",
-        )
-        soru.words.set([self.word])
-
-    def _page(self):
-        cevap = self.client.get(reverse("quiz_page", kwargs={
-            "attempt_id": self.attempt.id, "question_index": 1,
-        }))
-        self.assertEqual(cevap.status_code, 200)
-        return cevap.content.decode()
-
-    def test_the_whole_bordered_box_is_the_click_target(self):
-        """
-        Kenarlık ve dolgu label'ın üzerinde olmalı. Eskiden kenarlık dıştaki
-        div'de olduğu için kutunun iç boşluğuna yapılan tıklamalar boşa
-        gidiyordu.
-        """
-        html = self._page()
-        self.assertIn("<label class=\"mc-option-box", html)
-        self.assertNotIn("<div class=\"mc-option-box", html)
-
-    def test_option_box_carries_its_own_border_and_padding(self):
-        html = self._page()
-        kutu_baslangic = html.index('<label class="mc-option-box')
-        kutu = html[kutu_baslangic:kutu_baslangic + 700]
-        self.assertIn("border-2", kutu)
-        self.assertIn("p-3", kutu)
-        self.assertIn("touch-action: manipulation", kutu)
-
-    def test_enter_shortcut_exists(self):
-        html = self._page()
-        self.assertIn("e.key !== 'Enter'", html)
-        self.assertIn("function hasAnswer()", html)
-
-    def test_hover_styles_do_not_eat_the_first_tap(self):
-        """Dokunmatikte hover: sınıfları ilk dokunuşu yutuyordu."""
-        html = self._page()
-        self.assertIn("hoverOnlyWhenSupported: true", html)
+        self.assertContains(cevap, "giriş", status_code=200)

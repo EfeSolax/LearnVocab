@@ -22,10 +22,7 @@ from datetime import timedelta
 from LearnVocab import pagination
 from django.db.models import Sum, Count, Q, Max
 from django.db.models.functions import Coalesce
-from quizzes.models import (
-    MultipleChoiceQuestion, WritingQuestion, MatchingQuestion,
-    SynonymAntonymQuestion, FillInTheBlankQuestion,
-)
+from quizzes.models import ReviewLog
 from words.addWeeks.addWeeks import allWordsAddDelete
 
 # Create your views here.
@@ -440,62 +437,62 @@ def showMyAccountView(request):
 #
 # Renkler beş ayrı ton: mor, turuncu, pembe, camgöbeği, yeşil. Hepsi hem açık
 # hem karanlık zeminde okunuyor.
-QUIZ_TYPE_CHART = (
-    ("mq", "Eşleştirme", "#7c3aed"),
-    ("mc", "Çoktan Seçmeli", "#f59e0b"),
-    ("wq", "Yazma", "#ec4899"),
-    ("sa", "Eş / Zıt Anlam", "#06b6d4"),
-    ("fb", "Boşluk Doldurma", "#10b981"),
-)
+# Boyut grafiğinin renkleri. Eskiden beş SORU TİPİ vardı (eşleştirme,
+# çoktan seçmeli, yazma, eş/zıt, boşluk); artık ölçülen şey soru tipi
+# değil ÖĞRENME BOYUTU — "hangi biçimde soruldu" değil "neyi biliyor".
+# Bir öğrencinin çoktan seçmelide iyi, yazmada kötü olması bir bilgi
+# değil; tanımada iyi, üretimde kötü olması bilgidir.
+ASPECT_CHART_COLORS = {
+    "recognize": "#7c3aed",
+    "produce": "#f59e0b",
+    "context": "#ec4899",
+    "collocation": "#06b6d4",
+    "pattern": "#10b981",
+    "false_friend": "#ef4444",
+    "confusable": "#8b5cf6",
+    "nuance": "#14b8a6",
+    "family": "#f97316",
+    "form": "#64748b",
+}
 
 
-def _question_stats(model, user):
-    """Tek tek soru kayıtlarından doğru/yanlış sayısı."""
-    sonuc = model.objects.filter(
-        attempt__owner=user, attempt__isCompleted=True
-    ).aggregate(
-        correct=Count("id", filter=Q(is_correct=True)),
-        wrong=Count("id", filter=Q(is_correct=False)),
-    )
-    return sonuc.get("correct") or 0, sonuc.get("wrong") or 0
-
-
-def quiz_type_chart_data(user):
+def aspect_chart_data(user):
     """
-    Beş soru tipinin doğru/yanlış sayıları ve doğruluk oranları.
+    Boyut boyut doğru/yanlış sayıları.
 
-    Eşleştirme diğerlerinden farklı: tek soru içinde birden çok eşleşme var,
-    bu yüzden sayılar kayıt sayısından değil correct_matches/wrong_matches
-    toplamından geliyor.
+    Kaynak ReviewLog: her cevap orada duruyor, kart silinse bile.
     """
-    matching = MatchingQuestion.objects.filter(
-        attempt__owner=user, attempt__isCompleted=True
-    ).aggregate(correct=Sum("correct_matches"), wrong=Sum("wrong_matches"))
+    from quizzes.aspects import Aspect
 
-    ham = {
-        "mq": (matching.get("correct") or 0, matching.get("wrong") or 0),
-        "mc": _question_stats(MultipleChoiceQuestion, user),
-        "wq": _question_stats(WritingQuestion, user),
-        "sa": _question_stats(SynonymAntonymQuestion, user),
-        "fb": _question_stats(FillInTheBlankQuestion, user),
-    }
+    ham = (ReviewLog.objects.filter(user=user)
+           .values("aspect")
+           .annotate(correct=Count("id", filter=Q(is_correct=True)),
+                     wrong=Count("id", filter=Q(is_correct=False))))
+    sozluk = {satir["aspect"]: satir for satir in ham}
 
     satirlar = []
-    for anahtar, etiket, renk in QUIZ_TYPE_CHART:
-        dogru, yanlis = ham[anahtar]
+    for kod in Aspect.values:
+        veri = sozluk.get(kod, {})
+        dogru = veri.get("correct") or 0
+        yanlis = veri.get("wrong") or 0
         toplam = dogru + yanlis
+        if not toplam:
+            continue
         satirlar.append({
-            "key": anahtar,
-            "label": etiket,
-            "color": renk,
+            "key": kod,
+            "label": Aspect(kod).label,
+            "color": ASPECT_CHART_COLORS.get(kod, "#64748b"),
             "correct": dogru,
             "wrong": yanlis,
             "total": toplam,
-            # Oran deneme sayısıyla birlikte anlamlı: ikisi de şablona gidiyor
             "correct_pct": round(dogru * 100 / toplam) if toplam else 0,
             "wrong_pct": round(yanlis * 100 / toplam) if toplam else 0,
         })
     return satirlar
+
+
+# Eski ad — şablonlar ve testler kırılmasın diye duruyor.
+quiz_type_chart_data = aspect_chart_data
 
 
 @login_gate("Egzersizler", "Egzersizler kendi kelimelerinden üretildiği için giriş yapman gerekiyor.")
@@ -504,9 +501,9 @@ def showQuizzesView(request):
 
     if not getattr(django_settings, "QUIZZES_ENABLED", True):
         return render(request, "pages/quizzes/quizzesDisabled.html",
-                      {"active_page": "Quizler", "exercise_tab": "quizzes"})
+                      {"active_page": "Çalışma", "exercise_tab": "quizzes"})
 
-    tipler = quiz_type_chart_data(request.user)
+    tipler = aspect_chart_data(request.user)
 
     context = {
         "active_page": "Egzersizler",

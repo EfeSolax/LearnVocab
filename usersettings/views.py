@@ -8,7 +8,7 @@ from usersettings.models import UserSettings
 from words.models import Word, UserWordLink
 from comments.models import Comment
 from texts.models import Text
-from quizzes.models import *
+from quizzes.models import ReviewItem, ReviewLog, StudySession
 
 from django.db.models import Q
 
@@ -243,96 +243,70 @@ def exportMyTexts(request):
     return response
 
 
+
+# ----------------------------------------------------------------------
+# Çalışma geçmişi dökümü
+# ----------------------------------------------------------------------
+
+def _write_study_history(write_line, user):
+    """
+    Kullanıcının çalışma geçmişini metin olarak yazar.
+
+    Eski döküm SORU METİNLERİNİ yazıyordu (şıklar, verilen cevap, doğru
+    şık). Yeni sistemde sorular kalıcı değil — her tekrarda yeniden
+    üretiliyorlar — ve zaten kullanıcıya ait olan şey soru değil,
+    ÖĞRENME GEÇMİŞİ: hangi kelimenin hangi boyutunu ne zaman bildi,
+    bir sonraki tekrar ne zaman. Döküm bunu veriyor.
+    """
+    from quizzes.models import ReviewItem, ReviewLog, StudySession
+
+    oturumlar = StudySession.objects.filter(user=user).order_by("-started_at")
+    write_line(f"Toplam {oturumlar.count()} çalışma oturumu.\n")
+
+    for i, oturum in enumerate(oturumlar[:200], 1):
+        write_line(f"OTURUM #{i}  —  {oturum.started_at.strftime('%d-%m-%Y %H:%M')}")
+        write_line(f"  Kapsam: {oturum.get_mode_display()}")
+        write_line(f"  Süre: {oturum.formatted_duration}")
+        write_line(f"  {oturum.answered_count} soru, {oturum.correct_count} doğru")
+
+        kayitlar = oturum.logs.all().order_by("answered_at")
+        for kayit in kayitlar:
+            sonuc = "DOĞRU" if kayit.is_correct else "YANLIŞ"
+            write_line(f"    {kayit.word_text:<20} {kayit.get_aspect_display():<20} "
+                       f"{sonuc:<7} → {kayit.scheduled_days:.0f} gün sonra")
+        write_line("")
+
+    write_line("\n--- KART DURUMLARI ---\n")
+    kartlar = (ReviewItem.objects.filter(user=user)
+               .select_related("word").order_by("word__text", "aspect"))
+    for kart in kartlar:
+        kararlilik = "—" if kart.stability is None else f"{kart.stability:.1f} gün"
+        sira = kart.due_at.strftime("%d-%m-%Y") if kart.due_at else "—"
+        write_line(f"  {kart.word.text:<20} {kart.get_aspect_display():<20} "
+                   f"kararlılık: {kararlilik:<10} sıradaki tekrar: {sira}")
+
+    toplam_kayit = ReviewLog.objects.filter(user=user).count()
+    write_line(f"\nToplam {toplam_kayit} cevap kaydı.")
+
+
 @login_required
 def exportMyQuizzes(request):
+    """Çalışma geçmişi dökümü (eski adıyla 'quizlerim')."""
     user = request.user
-    
-    # 1. Yanıtı ve dosya ayarlarını hazırla
+
     response = HttpResponse(content_type='application/octet-stream')
-    filename = f"learnvocab_quizlerim_{user.username}.txt"
+    filename = f"learnvocab_calismalarim_{user.username}.txt"
     response['Content-Disposition'] = f'attachment; filename="{filename}"; filename*=UTF-8\'\'{filename}'
 
-    # 2. String'leri byte'a çevirerek yazan yardımcı fonksiyon
     def write_line(text):
         response.write(text.encode('utf-8') + b"\n")
 
-    # 3. Dosya Başlığını Yaz
-    write_line(f"LearnVocab Quiz Dökümü")
+    write_line("LearnVocab Çalışma Dökümü")
     write_line(f"Kullanıcı: {user.username}")
     write_line(f"Tarih: {datetime.date.today().strftime('%d-%m-%Y')}")
     write_line("="*40 + "\n")
 
-    # 4. Kullanıcının tüm quiz denemelerini al (en yeniden en eskiye)
-    attempts = QuizAttempt.objects.filter(owner=user).order_by('-createdAt')
-
-    if not attempts.exists():
-        write_line("Dışa aktarılacak tamamlanmış quiz bulunamadı.")
-        return response
-
-    write_line(f"Toplam {attempts.count()} quiz denemesi bulundu:\n")
-    write_line("="*40 + "\n")
-
-    # 5. Her bir quiz denemesini (Attempt) döngüye al
-    for i, attempt in enumerate(attempts, 1):
-        write_line(f"QUIZ #{i}")
-        write_line(f"Tarih: {attempt.createdAt.strftime('%d-%m-%Y %H:%M')}")
-        write_line(f"Türü: {attempt.get_quizType_display()}")
-        write_line(f"Durum: {'Tamamlandı' if attempt.isCompleted else 'Tamamlanmadı'}")
-        write_line(f"Toplam Süre: {attempt.formatted_total_time}")
-        write_line(f"SKOR: {attempt.totalCorrect} DOĞRU / {attempt.totalWrong} YANLIŞ / {attempt.totalEmpty()} BOŞ")
-        write_line("\n  --- Sorular ---")
-
-        # 6. BU KISIM ÖNEMLİ: 3 FARKLI TİPTEKİ TÜM SORULARI TOPLA
-        all_questions = []
-        
-        # Eşleştirme sorularının 'words' alanını veritabanından önceden çekiyoruz
-        # Bu, 'left_column_items' gibi özelliklerin düzgün çalışmasını sağlar
-        mc_qs = attempt.multiplechoicequestion_questions.all()
-        wq_qs = attempt.writingquestion_questions.all()
-        mq_qs = attempt.matchingquestion_questions.all().prefetch_related('words') 
-
-        all_questions.extend(mc_qs)
-        all_questions.extend(wq_qs)
-        all_questions.extend(mq_qs)
-        
-        # Soruları, quiz'deki orijinal sıralarına (ID'ye) göre sırala
-        all_questions.sort(key=lambda q: q.id)
-
-        if not all_questions:
-            write_line("  Bu quiz'e ait soru bulunamadı.\n")
-            continue
-
-        # 7. Her bir soruyu tipiyle birlikte yazdır
-        for q_num, q in enumerate(all_questions, 1):
-            write_line(f"\n  Soru {q_num}:")
-            
-            # Python'un 'isinstance' fonksiyonu ile sorunun tipini kontrol et
-            if isinstance(q, MultipleChoiceQuestion):
-                write_line(f"    Tipi: Çoktan Seçmeli")
-                write_line(f"    Soru: {q.question_text}")
-                options_str = ", ".join([f"{opt[0]}: {opt[1]}" for opt in q.options_as_list])
-                write_line(f"    Seçenekler: {options_str}")
-                write_line(f"    Verilen Cevap: {q.user_answer or 'Boş'}")
-                write_line(f"    Doğru Cevap: {q.correct_option}")
-                write_line(f"    Durum: {'Doğru' if q.is_correct else 'Yanlış'}")
-
-            elif isinstance(q, WritingQuestion):
-                write_line(f"    Tipi: Yazma")
-                write_line(f"    Soru: {q.question_text}")
-                write_line(f"    Verilen Cevap: {q.user_answer or 'Boş'}")
-                write_line(f"    Doğru Cevap: {q.correct_answer}")
-                write_line(f"    Durum: {'Doğru' if q.is_correct else 'Yanlış'}")
-
-            elif isinstance(q, MatchingQuestion):
-                write_line(f"    Tipi: Eşleştirme")
-                write_line(f"    Soru: {q.question_text}")
-                write_line(f"    Sonuç: {q.correct_matches} doğru, {q.wrong_matches} yanlış eşleşme.")
-
-            # Ortak alanlar
-            write_line(f"    Süre: {q.time_taken or 0:.1f} sn")
-
-        write_line("\n" + "-"*40 + "\n") # Bir sonraki quiz'e geçmeden önce ayraç
-
+    _write_study_history(write_line, user)
     return response
 
 
@@ -440,67 +414,10 @@ def exportAll(request):
     # BÖLÜM 5: QUIZLER (exportMyQuizzes'ten)
     # ==========================================================
     write_line("\n" + "="*50)
-    write_line(" BOLUM 5: QUIZLERIM")
+    write_line(" BOLUM 5: CALISMA GECMISIM")
     write_line("="*50 + "\n")
 
-    attempts = QuizAttempt.objects.filter(owner=user).order_by('-createdAt')
-
-    if not attempts.exists():
-        write_line("Dışa aktarılacak tamamlanmış quiz bulunamadı.")
-    else:
-        write_line(f"Toplam {attempts.count()} quiz denemesi bulundu:\n")
-        
-        # Her bir quiz denemesini (Attempt) döngüye al
-        for i, attempt in enumerate(attempts, 1):
-            write_line(f"QUIZ #{i}")
-            write_line(f"Tarih: {attempt.createdAt.strftime('%d-%m-%Y %H:%M')}")
-            write_line(f"Türü: {attempt.get_quizType_display()}")
-            write_line(f"Durum: {'Tamamlandı' if attempt.isCompleted else 'Tamamlanmadı'}")
-            write_line(f"Toplam Süre: {attempt.formatted_total_time}")
-            write_line(f"SKOR: {attempt.totalCorrect} DOĞRU / {attempt.totalWrong} YANLIŞ / {attempt.totalEmpty()} BOŞ")
-            write_line("\n  --- Sorular ---")
-
-            all_questions = []
-            mc_qs = attempt.multiplechoicequestion_questions.all()
-            wq_qs = attempt.writingquestion_questions.all()
-            mq_qs = attempt.matchingquestion_questions.all().prefetch_related('words') 
-
-            all_questions.extend(mc_qs)
-            all_questions.extend(wq_qs)
-            all_questions.extend(mq_qs)
-            all_questions.sort(key=lambda q: q.id)
-
-            if not all_questions:
-                write_line("  Bu quiz'e ait soru bulunamadı.\n")
-                continue
-
-            for q_num, q in enumerate(all_questions, 1):
-                write_line(f"\n  Soru {q_num}:")
-                
-                if isinstance(q, MultipleChoiceQuestion):
-                    write_line(f"    Tipi: Çoktan Seçmeli")
-                    write_line(f"    Soru: {q.question_text}")
-                    options_str = ", ".join([f"{opt[0]}: {opt[1]}" for opt in q.options_as_list])
-                    write_line(f"    Seçenekler: {options_str}")
-                    write_line(f"    Verilen Cevap: {q.user_answer or 'Boş'}")
-                    write_line(f"    Doğru Cevap: {q.correct_option}")
-                    write_line(f"    Durum: {'Doğru' if q.is_correct else 'Yanlış'}")
-
-                elif isinstance(q, WritingQuestion):
-                    write_line(f"    Tipi: Yazma")
-                    write_line(f"    Soru: {q.question_text}")
-                    write_line(f"    Verilen Cevap: {q.user_answer or 'Boş'}")
-                    write_line(f"    Doğru Cevap: {q.correct_answer}")
-                    write_line(f"    Durum: {'Doğru' if q.is_correct else 'Yanlış'}")
-
-                elif isinstance(q, MatchingQuestion):
-                    write_line(f"    Tipi: Eşleştirme")
-                    write_line(f"    Soru: {q.question_text}")
-                    write_line(f"    Sonuç: {q.correct_matches} doğru, {q.wrong_matches} yanlış eşleşme.")
-
-                write_line(f"    Süre: {q.time_taken or 0:.1f} sn")
-
-            write_line("\n" + "-"*40 + "\n")
+    _write_study_history(write_line, user)
 
     return response
 

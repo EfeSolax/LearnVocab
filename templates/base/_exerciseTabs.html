@@ -14,11 +14,11 @@ Kullanımı:  {% include 'base/_exerciseTabs.html' with exercise_tab="learn" %}
                   {% if exercise_tab == 'learn' %}border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400{% else %}border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200 hover:border-gray-300 dark:hover:border-slate-600{% endif %}">
             Öğren-Geç
         </a>
-        <a href="{% url 'profile_quizzes' %}"
+        <a href="{% url 'study_home' %}"
            {% if exercise_tab == "quizzes" %}aria-current="page"{% endif %}
            class="flex-1 whitespace-nowrap px-4 py-3 text-center text-sm sm:text-base font-semibold border-b-2 transition-colors
                   {% if exercise_tab == 'quizzes' %}border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400{% else %}border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200 hover:border-gray-300 dark:hover:border-slate-600{% endif %}">
-            Quizler
+            Çalışma
         </a>
         <a href="{% url 'word_analysis' %}"
            {% if exercise_tab == "analysis" %}aria-current="page"{% endif %}

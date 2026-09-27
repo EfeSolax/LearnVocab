@@ -4,10 +4,18 @@
 {% comment %}
 Tüm Kelimeler — "Kelimeler" bölümünün iki sayfasından biri.
 
-Yeni modele göre baştan yazıldı: her satır bir kelime DEĞİL, belirli
-TÜRDEKİ bir kelime. progress (isim) ve progress (fiil) ayrı satırlardır.
-Satırdaki aile rozeti kelimeyi tek başına değil, türev ailesiyle birlikte
-görmeye götürür.
+25 Eylül (Efe'nin tarifi):
+  * Arama çubuğu: sağında arama ikonu; Enter da arar. Yazmayı bırakınca
+    kısa bir süre sonra sonuçlar kendiliğinden gelir (canlı arama: yalnızca
+    sonuç bölümü ?partial=1 ile yenilenir, adres çubuğu güncellenir).
+  * Filtre düğmesi -> panel: "Nerede aransın", Kaynak, Tür, Seviye; hepsi
+    onay kutusu, Tür ve Seviye'de "Hepsi". Değişiklik anında uygulanır.
+  * Arama/filtre varken kelimeler ailesinden BAĞIMSIZ, tek tek listelenir;
+    yoksa aile listesi (kök + anlamı, açılınca diğer kelimeler).
+  * "Listeme ekle" sayfayı yenilemez: düğme yerinde değişir; arama,
+    filtreler ve kaydırma konumu olduğu gibi kalır.
+  * Sonuç yoksa: "Bu aradığınız sanırım bizde yok…" + öneriler.
+JavaScript kapalıysa her şey normal form/bağlantı olarak çalışır.
 {% endcomment %}
 
 {% block title %}Tüm Kelimeler{% endblock %}
@@ -17,90 +25,289 @@ görmeye götürür.
 
 {% include 'base/_wordsTabs.html' with words_tab="all" %}
 
-<div class="mx-auto max-w-4xl space-y-5">
+<div class="mx-auto max-w-4xl space-y-4">
 
-    {# ---------------- Arama ve filtreler ---------------- #}
-    <form method="get" action="{% url 'all_words' %}#sonuclar"
-          class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
-
-        <div class="relative">
-            <svg class="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
-            </svg>
-            <input type="text" name="q" value="{{ current_query }}" placeholder="Kelime veya anlam ara…"
-                   class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 py-2.5 pl-11 pr-3.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+    <form id="arama-formu" method="get" action="{% url 'all_words' %}" role="search" autocomplete="off">
+        <div class="flex items-stretch gap-2">
+            <div class="relative flex-1">
+                <label for="arama-kutusu" class="sr-only">Kelime veya anlam ara</label>
+                <input id="arama-kutusu" type="search" name="q" value="{{ current_query }}" placeholder="Kelime veya anlam ara…" enterkeyhint="search"
+                       class="w-full rounded-full border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 py-2.5 pl-4 pr-12 text-sm sm:text-base text-gray-900 dark:text-slate-100 shadow-sm transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 [&::-webkit-search-cancel-button]:hidden">
+                <button type="submit" title="Ara" aria-label="Ara"
+                        class="absolute right-1.5 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-100 hover:text-indigo-600 dark:hover:bg-slate-700 dark:hover:text-indigo-400 transition-colors">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+                </button>
+            </div>
+            <button type="button" id="filtre-dugmesi" aria-expanded="false" aria-controls="filtre-paneli"
+                    class="relative inline-flex items-center gap-1.5 rounded-full border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3.5 text-sm font-semibold text-gray-700 dark:text-slate-200 shadow-sm hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
+                <span class="hidden sm:inline">Filtre</span>
+                <span id="filtre-rozeti" class="hidden min-w-[1.25rem] rounded-full bg-indigo-600 px-1.5 text-center text-[11px] font-bold leading-5 text-white"></span>
+            </button>
         </div>
 
-        <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-            <select name="filter_by" class="rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-gray-900 dark:text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
-                <option value="all" {% if current_filter == 'all' or not current_filter %}selected{% endif %}>Tüm alanlar</option>
-                <option value="english" {% if current_filter == 'english' %}selected{% endif %}>Kelimeye göre</option>
-                <option value="meaning" {% if current_filter == 'meaning' %}selected{% endif %}>Anlamına göre</option>
-                <option value="explanation" {% if current_filter == 'explanation' %}selected{% endif %}>Açıklamaya göre</option>
-                <option value="author" {% if current_filter == 'author' %}selected{% endif %}>Yazara göre</option>
-                <option value="only_METU" {% if current_filter == 'only_METU' %}selected{% endif %}>Sadece kur kelimeleri</option>
-                <option value="only_User" {% if current_filter == 'only_User' %}selected{% endif %}>Sadece kullanıcı kelimeleri</option>
-            </select>
+        {# ---------------- Filtre paneli ---------------- #}
+        <div id="filtre-paneli" hidden
+             class="mt-2 rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5 shadow-sm">
+            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+                <fieldset>
+                    <legend class="mb-2 text-xs font-bold uppercase tracking-wide text-gray-500 dark:text-slate-400">Göster</legend>
+                    {% for deger, etiket in icerikler %}
+                    <label class="flex items-center gap-2 py-1 text-sm text-gray-800 dark:text-slate-200 cursor-pointer">
+                        <input type="checkbox" name="icerik" value="{{ deger }}" {% if deger in p.icerik %}checked{% endif %} data-varsayilan="1"
+                               class="h-4 w-4 rounded border-gray-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                        {{ etiket }}
+                    </label>
+                    {% endfor %}
+                </fieldset>
 
-            {# Yeni: tür filtresi. Her kelime artık bir türe ait. #}
-            <select name="pos" class="rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-gray-900 dark:text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
-                <option value="all" {% if current_pos == 'all' %}selected{% endif %}>Tüm türler</option>
-                {% for deger, etiket in pos_choices %}
-                <option value="{{ deger }}" {% if current_pos == deger %}selected{% endif %}>{{ etiket }}</option>
-                {% endfor %}
-            </select>
+                <fieldset>
+                    <legend class="mb-2 text-xs font-bold uppercase tracking-wide text-gray-500 dark:text-slate-400">Nerede aransın</legend>
+                    {% for deger, etiket in arama_alanlari %}
+                    <label class="flex items-center gap-2 py-1 text-sm text-gray-800 dark:text-slate-200 cursor-pointer">
+                        <input type="checkbox" name="alan" value="{{ deger }}" {% if deger in p.alanlar %}checked{% endif %} data-varsayilan="{% if deger == 'kelime' or deger == 'anlam' %}1{% endif %}"
+                               class="h-4 w-4 rounded border-gray-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                        {{ etiket }}
+                    </label>
+                    {% endfor %}
+                </fieldset>
 
-            <select name="level" class="rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-gray-900 dark:text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
-                <option value="all" {% if current_level == 'all' %}selected{% endif %}>Tüm seviyeler</option>
-                {% for kod in cefr_levels %}
-                <option value="{{ kod }}" {% if current_level == kod %}selected{% endif %}>{{ kod }}</option>
-                {% endfor %}
-            </select>
+                <fieldset>
+                    <legend class="mb-2 text-xs font-bold uppercase tracking-wide text-gray-500 dark:text-slate-400">Kaynak</legend>
+                    {% for deger, etiket in kaynaklar %}
+                    <label class="flex items-center gap-2 py-1 text-sm text-gray-800 dark:text-slate-200 cursor-pointer">
+                        <input type="checkbox" name="kaynak" value="{{ deger }}" {% if not p.kaynaklar or deger in p.kaynaklar %}checked{% endif %} data-varsayilan="1"
+                               class="h-4 w-4 rounded border-gray-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                        {{ etiket }}
+                    </label>
+                    {% endfor %}
+                </fieldset>
 
-            <button type="submit" class="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors">
-                Ara
-            </button>
+                <fieldset data-grup="pos">
+                    <legend class="mb-2 text-xs font-bold uppercase tracking-wide text-gray-500 dark:text-slate-400">Tür</legend>
+                    <label class="flex items-center gap-2 py-1 text-sm font-semibold text-gray-800 dark:text-slate-200 cursor-pointer">
+                        <input type="checkbox" data-hepsi {% if not p.turler %}checked{% endif %}
+                               class="h-4 w-4 rounded border-gray-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                        Hepsi
+                    </label>
+                    {% for deger, etiket in pos_choices %}
+                    <label class="flex items-center gap-2 py-1 text-sm text-gray-800 dark:text-slate-200 cursor-pointer">
+                        <input type="checkbox" name="pos" value="{{ deger }}" {% if deger in p.turler %}checked{% endif %}
+                               class="h-4 w-4 rounded border-gray-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                        {{ etiket }}
+                    </label>
+                    {% endfor %}
+                </fieldset>
+
+                <fieldset data-grup="level">
+                    <legend class="mb-2 text-xs font-bold uppercase tracking-wide text-gray-500 dark:text-slate-400">Seviye</legend>
+                    <label class="flex items-center gap-2 py-1 text-sm font-semibold text-gray-800 dark:text-slate-200 cursor-pointer">
+                        <input type="checkbox" data-hepsi {% if not p.seviyeler %}checked{% endif %}
+                               class="h-4 w-4 rounded border-gray-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                        Hepsi
+                    </label>
+                    {% for kod in cefr_levels %}
+                    <label class="flex items-center gap-2 py-1 text-sm text-gray-800 dark:text-slate-200 cursor-pointer">
+                        <input type="checkbox" name="level" value="{{ kod }}" {% if kod in p.seviyeler %}checked{% endif %}
+                               class="h-4 w-4 rounded border-gray-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                        {{ kod }}
+                    </label>
+                    {% endfor %}
+                </fieldset>
+            </div>
+
+            <div class="mt-4 flex items-center justify-between gap-3 border-t border-gray-100 dark:border-slate-700 pt-3">
+                <button type="button" id="filtre-temizle" class="text-sm font-semibold text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200">Filtreleri temizle</button>
+                <button type="submit" id="filtre-tamam" class="rounded-lg bg-indigo-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors">Tamam</button>
+            </div>
         </div>
     </form>
 
-    {# ---------------- Sonuçlar ---------------- #}
-    <div id="sonuclar" style="scroll-margin-top: 6rem;">
-        {% if words %}
+    <div id="bildirim" role="status" aria-live="polite"
+         class="pointer-events-none fixed inset-x-0 bottom-6 z-50 mx-auto hidden w-fit max-w-[90vw] rounded-xl bg-gray-900 dark:bg-slate-100 px-4 py-2.5 text-sm font-medium text-white dark:text-slate-900 shadow-lg"></div>
 
-        <div class="mb-2.5 flex items-baseline justify-between gap-3 px-1">
-            <p class="text-sm text-gray-600 dark:text-slate-400">
-                <strong class="text-gray-900 dark:text-slate-100">{{ paginator.count }}</strong> kelime
-            </p>
-            {% if user.is_authenticated %}
-            <a href="{% url 'add_word' %}" class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">+ Yeni kelime</a>
-            {% endif %}
-        </div>
-
-        <div class="overflow-hidden rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
-            <ul class="divide-y divide-gray-100 dark:divide-slate-700">
-                {% for word in words %}
-                <li>{% include 'base/_wordCard.html' with word=word saved_ids=saved_ids %}</li>
-                {% endfor %}
-            </ul>
-        </div>
-
-        {% include 'base/_pagination.html' %}
-
-        {% else %}
-
-        <div class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-10 text-center">
-            <h2 class="text-lg font-bold text-gray-900 dark:text-slate-100">Sonuç yok</h2>
-            <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">
-                {% if current_query %}
-                    “{{ current_query }}” için bir şey bulunamadı. Filtreleri gevşetmeyi dene.
-                {% else %}
-                    Bu filtrelerle gösterilecek kelime yok.
-                {% endif %}
-            </p>
-            <a href="{% url 'all_words' %}" class="mt-6 inline-block rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 transition">Filtreleri temizle</a>
-        </div>
-
-        {% endif %}
+    <div id="sonuclar" class="transition-opacity" style="scroll-margin-top: 6rem;">
+        {% include 'pages/words/_sonuclar.html' %}
     </div>
 </div>
+
+<script>
+(function () {
+    var form = document.getElementById('arama-formu');
+    var kutu = document.getElementById('arama-kutusu');
+    var sonuc = document.getElementById('sonuclar');
+    var panel = document.getElementById('filtre-paneli');
+    var filtreDugmesi = document.getElementById('filtre-dugmesi');
+    var rozet = document.getElementById('filtre-rozeti');
+    var bildirim = document.getElementById('bildirim');
+    var BEKLEME = 600;   // yazmayı bıraktıktan sonra aramaya kadar (ms)
+    var zamanlayici, istek;
+
+    // ---- Filtre paneli ------------------------------------------------
+    filtreDugmesi.addEventListener('click', function () {
+        panel.hidden = !panel.hidden;
+        filtreDugmesi.setAttribute('aria-expanded', String(!panel.hidden));
+    });
+    document.getElementById('filtre-tamam').addEventListener('click', function () {
+        panel.hidden = true; filtreDugmesi.setAttribute('aria-expanded', 'false');
+    });
+    document.getElementById('filtre-temizle').addEventListener('click', function () {
+        form.querySelectorAll('#filtre-paneli input[type=checkbox]').forEach(function (k) {
+            k.checked = k.hasAttribute('data-hepsi') || k.dataset.varsayilan === '1';
+        });
+        ara();
+    });
+
+    // "Hepsi": işaretlenince diğerleri kalkar; hiçbiri kalmazsa "Hepsi" döner
+    function hepsiMantigi(kutucuk) {
+        var grup = kutucuk.closest('[data-grup]');
+        if (!grup) return;
+        var hepsi = grup.querySelector('[data-hepsi]');
+        var digerleri = grup.querySelectorAll('input[name]');
+        if (kutucuk === hepsi) {
+            if (hepsi.checked) digerleri.forEach(function (k) { k.checked = false; });
+            else if (![].some.call(digerleri, function (k) { return k.checked; })) hepsi.checked = true;
+        } else {
+            hepsi.checked = ![].some.call(digerleri, function (k) { return k.checked; });
+        }
+    }
+
+    function rozetGuncelle() {
+        var n = form.querySelectorAll('[data-grup] input[name]:checked').length;
+        var alanlar = form.querySelectorAll('input[name=alan]');
+        if ([].some.call(alanlar, function (k) { return k.checked !== (k.dataset.varsayilan === '1'); })) n++;
+        if ([].some.call(form.querySelectorAll('input[name=kaynak]'), function (k) { return !k.checked; })) n++;
+        if ([].some.call(form.querySelectorAll('input[name=icerik]'), function (k) { return !k.checked; })) n++;
+        rozet.textContent = n; rozet.classList.toggle('hidden', !n);
+    }
+
+    // ---- Canlı arama ---------------------------------------------------
+    function adres() {
+        var p = new URLSearchParams();
+        new FormData(form).forEach(function (v, k) { if (v !== '') p.append(k, v); });
+        var kaynak = form.querySelectorAll('input[name=kaynak]');
+        if ([].every.call(kaynak, function (k) { return k.checked; })) p.delete('kaynak');
+        var icerik = form.querySelectorAll('input[name=icerik]');
+        if ([].every.call(icerik, function (k) { return k.checked; })) p.delete('icerik');
+        var alan = form.querySelectorAll('input[name=alan]');
+        if ([].every.call(alan, function (k) { return k.checked === (k.dataset.varsayilan === '1'); })) p.delete('alan');
+        var s = p.toString();
+        return form.action.split('?')[0] + (s ? '?' + s : '');
+    }
+
+    function yukle(url, secenek) {
+        secenek = secenek || {};
+        if (istek) istek.abort();
+        istek = new AbortController();
+        sonuc.classList.add('opacity-60');
+        var parca = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'partial=1';
+        return fetch(parca, {signal: istek.signal, headers: {'X-Requested-With': 'fetch'}})
+            .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+            .then(function (html) {
+                sonuc.innerHTML = html;
+                history[secenek.yeniKayit ? 'pushState' : 'replaceState']({}, '', url);
+                if (secenek.kaydir) sonuc.scrollIntoView({block: 'start'});
+            })
+            .catch(function (e) { if (e.name !== 'AbortError') location.href = url; })
+            .finally(function () { sonuc.classList.remove('opacity-60'); });
+    }
+
+    function ara() { clearTimeout(zamanlayici); rozetGuncelle(); yukle(adres()); }
+
+    kutu.addEventListener('input', function () {
+        clearTimeout(zamanlayici);
+        zamanlayici = setTimeout(ara, BEKLEME);
+    });
+    form.addEventListener('submit', function (e) {   // Enter ve arama ikonu
+        e.preventDefault();
+        ara();
+    });
+    form.addEventListener('change', function (e) {
+        if (e.target.type !== 'checkbox') return;
+        // Kelimeler / İfadeler: ikisi birden kapatılamaz
+        if (e.target.name === 'icerik' && !form.querySelector('input[name=icerik]:checked')) e.target.checked = true;
+        hepsiMantigi(e.target);
+        ara();
+    });
+    window.addEventListener('popstate', function () { location.reload(); });
+
+    // ---- Sonuç bölümündeki bağlantılar ve düğmeler --------------------
+    function goster(metin) {
+        if (!metin) return;
+        bildirim.textContent = metin; bildirim.classList.remove('hidden');
+        clearTimeout(goster.z); goster.z = setTimeout(function () { bildirim.classList.add('hidden'); }, 2600);
+    }
+    function degistir(eski, html) {
+        var tmp = document.createElement('div'); tmp.innerHTML = html.trim();
+        eski.replaceWith(tmp.firstElementChild);
+    }
+
+    sonuc.addEventListener('click', function (e) {
+        var a = e.target.closest('a');
+        if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+        if (a.hasAttribute('data-liste') || a.hasAttribute('data-ifade')) {   // Listeme ekle / çıkar (kelime ya da ifade)
+            e.preventDefault();
+            var url = a.href + (a.href.indexOf('?') >= 0 ? '&' : '?') + 'boyut=' + (a.dataset.boyut || 'k');
+            fetch(url, {headers: {'X-Requested-With': 'fetch'}})
+                .then(function (r) { if (r.redirected || !r.ok) throw 0; return r.json(); })
+                .then(function (d) { degistir(a, d.html); })
+                .catch(function () { location.href = a.href; });
+            return;
+        }
+        if (a.hasAttribute('data-temizle')) {                   // "Aramayı ve filtreleri temizle"
+            e.preventDefault(); kutu.value = '';
+            document.getElementById('filtre-temizle').click();
+            return;
+        }
+        var hedef = a.getAttribute('href') || '';
+        if (hedef.charAt(0) === '?') {                          // sayfalama, "filtreleri kaldır"
+            e.preventDefault();
+            var tam = form.action.split('?')[0] + hedef;
+            if (a.hasAttribute('data-sayfa')) { location.href = tam; return; }
+            yukle(tam, {yeniKayit: true, kaydir: true});
+        }
+    });
+
+    sonuc.addEventListener('submit', function (e) {
+        var f = e.target;
+        if (f.hasAttribute('data-aile-form') || f.hasAttribute('data-kok-form')) {
+            e.preventDefault();
+            fetch(f.action, {method: 'POST', body: new FormData(f), headers: {'X-Requested-With': 'fetch'}})
+                .then(function (r) { if (r.redirected || !r.ok) throw 0; return r.json(); })
+                .then(function (d) {
+                    Object.keys(d.dugmeler).forEach(function (id) {
+                        var eski = sonuc.querySelector('a[data-liste][data-kelime-id="' + id + '"]');
+                        if (eski) degistir(eski, d.dugmeler[id]);
+                    });
+                    var li = f.closest('li[id^="family-"]');
+                    var kok = li && li.querySelector('[data-kok-kutusu]');
+                    if (f.hasAttribute('data-kok-form')) {
+                        degistir(f, d.kok_html);
+                    } else {
+                        if (kok) { kok.innerHTML = d.kok_html; }
+                        var satir = f.closest('[data-aile-dugmesi]'); if (satir) satir.remove();
+                    }
+                    goster(d.mesaj);
+                })
+                .catch(function () { f.submit(); });
+        } else if (f.method.toLowerCase() === 'get') {           // sayfa başına adet / sayfaya git
+            e.preventDefault();
+            var p = new URLSearchParams(new FormData(f));
+            yukle(form.action.split('?')[0] + '?' + p.toString(), {yeniKayit: true, kaydir: true});
+        }
+    });
+
+    // JavaScript yokken yönlendirmeyle gelindiyse: o kelimenin ailesini aç, ortala
+    var hedef = location.hash && document.getElementById(location.hash.slice(1));
+    if (hedef) {
+        var ifadeKutusu = hedef.closest('#ifadeler');
+        if (ifadeKutusu) { ifadeKutusu.open = true; hedef.scrollIntoView({block: hedef.tagName === 'SECTION' ? 'start' : 'center'}); }
+        var aile = hedef.closest('li[id^="family-"]');
+        var details = aile && aile.querySelector('details');
+        if (details && (hedef.tagName !== 'SPAN' || location.hash.indexOf('#family-') === 0)) details.open = true;
+        if (!ifadeKutusu) (hedef.tagName === 'SPAN' ? aile : hedef).scrollIntoView({block: 'center'});
+    }
+    rozetGuncelle();
+})();
+</script>
 {% endblock %}

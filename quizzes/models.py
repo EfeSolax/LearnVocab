@@ -1,573 +1,445 @@
-# Django importları
+"""
+Çalışma kayıtları.
+
+Bu uygulama artık "quiz" üretmiyor; ÇALIŞMA yürütüyor. Fark tasarımın
+tamamını belirlediği için baştan söylemek gerekiyor:
+
+  Eski model:  kullanıcı tip seçer -> 10 soru üretilir -> puan çıkar.
+  Yeni model:  sistem neyin ne zaman sorulacağını bilir -> öğrenci
+               oturuma girer -> sırası gelenler sorulur.
+
+Eskisi bir SINAVDI. Sınav bilgiyi ölçer, oluşturmaz. Kelimeyi kalıcı
+yapan şey ölçüm değil, doğru zamanda yapılan hatırlama denemesidir —
+ve "doğru zaman"a karar vermek bir programın işidir, kullanıcının değil.
+
+ÜÇ TABLO
+--------
+ReviewItem   Zamanlamanın birimi. (kullanıcı × kelime × boyut) başına bir
+             satır; kendi kararlılığı, zorluğu ve tekrar günü var.
+ReviewLog    Her cevabın kalıcı kaydı. Silinmiyor.
+StudySession Bir çalışma oturumu ve o oturumun kuyruğu.
+
+REVIEWLOG NEDEN VAR — İLERİYE DÖNÜK TEK YATIRIM
+-----------------------------------------------
+ReviewItem yalnızca ŞU ANKİ durumu tutar; geçmişi tutmaz. Zamanlayıcının
+parametreleri (scheduler.PARAMS) şu an genel varsayılanlar. Bir gün
+kişiye özel hâle getirilecekse — ki FSRS'in asıl kazancı oradadır —
+bunun tek yolu geçmiş cevapların kaydıdır: hangi kart, ne kadar aralıktan
+sonra, hangi kararlılıkla soruldu ve hatırlandı mı. Bu kayıt tutulmazsa
+o kapı sonsuza kadar kapanır, çünkü geçmiş geriye dönük üretilemez.
+Satırlar küçük ve yalnızca ileri doğru büyüyor; maliyeti önemsiz.
+"""
+
+from datetime import timedelta
+
 from django.db import models
-from django.db.models import F
-from django.db.models.expressions import RawSQL
-from django.db.models import Sum
+from django.utils import timezone
 
-# Karşılaştırma için gerekli importlar
-from difflib import SequenceMatcher
-import re
-
-# Gerekli model importları
 from users.models import User
-from words.models import Word, UserWordLink
-
-# Quiz tipini belirten class (extends TextChoices)
-class QuizType(models.TextChoices):
-    MATCHING = 'matching', 'Eşleştirme'
-    MULTIPLE_CHOICE = 'multiple_choice', 'Çoktan Seçmeli'
-    WRITING = 'writing', 'Yazma'
-    MIXED = 'mixed', 'Karma'
-    RANDOM = "random", "Rastgele"
-    SYNONYM_ANTONYM = 'synonym_antonym', 'Eş/Zıt Anlamlı'
-    FILL_BLANK = 'fill_blank', 'Boşluk Doldurma'
-
-# ---------------------------------------------------------------------------
-# Bir QuizAttempt'e bağlı TÜM soru tiplerinin related_name'leri.
-#
-# Puanlama, süre toplama ve soru listeleme artık bu tek listeyi dolaşır.
-# Yeni bir soru tipi eklerken SADECE buraya bir satır eklemek yeterli;
-# eskiden aynı dört satır dört ayrı yerde elle tekrarlandığı için bir tipi
-# güncellemeyi unutmak puanlamayı sessizce bozuyordu.
-# ---------------------------------------------------------------------------
-QUESTION_RELATED_NAMES = (
-    "multiplechoicequestion_questions",
-    "writingquestion_questions",
-    "matchingquestion_questions",
-    "synonymantonymquestion_questions",
-    "fillintheblankquestion_questions",
+from words.models import (
+    Collocation, FalseFriend, Meaning, UsagePattern, Word, WordRelation,
 )
 
+from .aspects import Aspect, Format
 
-# QuizAttempt (isteği) oluşturulan class 
-class QuizAttempt(models.Model):
-    # Quiz'in sahibi User, ondelete=CASCADE (otomatik silinme)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="quizAttempts")
 
-    # Oluşturulduğu zaman auto_now_add, quiz tamamlandı mı (otomatik false)
-    createdAt = models.DateTimeField(auto_now_add=True)
-    isCompleted = models.BooleanField(default = False)
+class ItemState(models.TextChoices):
+    """
+    Kartın yaşam evresi.
 
-    # Quiz'de kaç soru var, kaçı doğru kaçı yanlış bilindi
-    totalQuestion = models.IntegerField()
-    totalCorrect = models.IntegerField(default=0)
-    totalWrong = models.IntegerField(default=0)
+    NEW ve LEARNING ayrımı önemli: NEW hiç sorulmamış karttır ve günlük
+    yeni kart kotasına tabidir; LEARNING sorulmuş ama henüz ilk aralığını
+    tamamlamamış karttır ve kotaya tabi DEĞİLDİR. Aksi hâlde kotayı
+    dolduran kullanıcı, o gün başladığı kartları bitiremeden kapıda kalırdı.
+    """
 
-    # QuizType yukarıdaki class'tan seçilecek
-    quizType = models.CharField(max_length=20, choices= QuizType.choices, default=QuizType.MIXED)
+    NEW = "new", "yeni"
+    LEARNING = "learning", "öğreniliyor"
+    REVIEW = "review", "tekrar"
+    RELEARNING = "relearning", "yeniden öğreniliyor"
 
-    # QuizAttempt'in nasıl görüneceği (kullanıcı adı, quiz tipini göster, oluşturulduğu tarih)
-    def __str__(self):
-        return f"{self.owner.username} - {self.get_quizType_display()} ({self.createdAt.strftime('%d-%m-%Y')})"
-    
-    # Toplam boş sayısını döndür (toplam - doğru - yanlış)
-    def totalEmpty(self):
-        return self.totalQuestion - (self.totalCorrect + self.totalWrong)
 
-    # Bu attempt'e ait tüm soruları oluşturulma sırasına göre döndürür
-    def all_questions(self):
-        """
-        Quiz'deki bütün soruları (tipi ne olursa olsun) id sırasıyla döner.
-        quizPage ve quizComplete bu metodu kullanır.
-        """
-        questions = []
-        for related_name in QUESTION_RELATED_NAMES:
-            questions.extend(getattr(self, related_name).all())
-        questions.sort(key=lambda q: q.id)
-        return questions
+class ReviewItem(models.Model):
+    """
+    Zamanlanan tek birim: bir kullanıcının bir kelimenin bir boyutu.
 
-    # Doğru/yanlış sayısını hesaplayan fonksiyon
-    def calculateScore(self):
-        """
-        Quiz'in toplam doğru ve yanlış sayısını hesaplar.
+    HEDEFİN GENEL ANAHTARLA (generic FK) TUTULMAMASI BİLİNÇLİ
+    ---------------------------------------------------------
+    Boyuta göre hedef değişiyor: tanıma bir Meaning'e, eş dizim bir
+    Collocation'a, karıştırılan çift bir WordRelation'a bakıyor. Doğal
+    çözüm Django'nun GenericForeignKey'i olurdu; kullanılmadı. Sebep:
+    bu tablodaki EN SIK sorgu "bu kullanıcının bugün sırası gelen
+    kartları" ve o sorgunun hızlı olması gerekiyor. GenericForeignKey
+    her erişimde content_type üzerinden ikinci bir sorgu açar ve
+    select_related edilemez.
 
-        Her soru kendi katkısını `correct_score` / `wrong_score` ile bildirir.
-        Böylece eşleştirme gibi kısmi puanlanan tipler de aynı döngüde çalışır.
-        """
-        total_correct = 0
-        total_wrong = 0
+    Onun yerine: `word` her zaman dolu (filtrelemenin ve birleştirmenin
+    tuttuğu yer), `meaning` anlama bağlı boyutlarda dolu, `target_id`
+    ise ilgili satırın birincil anahtarı — çözümlemesi `target`
+    özelliğinde, yalnızca soru üretilirken yapılıyor.
+    """
 
-        for related_name in QUESTION_RELATED_NAMES:
-            for question in getattr(self, related_name).all():
-                total_correct += question.correct_score
-                total_wrong += question.wrong_score
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name="review_items")
 
-        self.totalCorrect = total_correct
-        self.totalWrong = total_wrong
+    # Her zaman dolu: kartın ait olduğu kelime.
+    word = models.ForeignKey(Word, on_delete=models.CASCADE,
+                             related_name="review_items")
+    # Anlama bağlı boyutlarda dolu (tanıma, üretim, bağlam, eş dizim,
+    # kalıp, ton). Kelime düzeyindeki boyutlarda (çekim, yanlış dost,
+    # karıştırılan çift, aile) boş.
+    meaning = models.ForeignKey(Meaning, on_delete=models.CASCADE,
+                                blank=True, null=True,
+                                related_name="review_items")
 
-        # Quiz bitirildi olarak işaretle ve kaydet
-        self.isCompleted = True
-        self.save()
+    aspect = models.CharField(max_length=20, choices=Aspect.choices,
+                              verbose_name="boyut")
+    # İlgili satırın pk'sı; 0 = hedef yok (boyut zaten meaning/word ile belli).
+    target_id = models.PositiveIntegerField(default=0)
 
-    # Toplam geçen süreyi alan fonksiyon
-    @property
-    def total_time_taken(self):
-        """Tüm soru tiplerinde harcanan sürenin toplamı (saniye)."""
-        total = 0
-        for related_name in QUESTION_RELATED_NAMES:
-            agg = getattr(self, related_name).all().aggregate(Sum('time_taken'))
-            total += agg['time_taken__sum'] or 0
-        return total
+    # --- hafıza durumu (bkz. scheduler.py) ---------------------------------
+    state = models.CharField(max_length=12, choices=ItemState.choices,
+                             default=ItemState.NEW)
+    stability = models.FloatField(blank=True, null=True, verbose_name="kararlılık")
+    difficulty = models.FloatField(blank=True, null=True, verbose_name="zorluk")
 
-    # Geçen toplam süreyi gösteren fonskiyon
-    @property
-    def formatted_total_time(self) -> str:
-        # Toplam geçen süreyi al ve bu süre 0 ise 0 dön
-        total_seconds = int(self.total_time_taken)
+    due_at = models.DateTimeField(blank=True, null=True, db_index=True,
+                                  verbose_name="sırası geldiği an")
+    last_reviewed_at = models.DateTimeField(blank=True, null=True)
+    last_interval_days = models.FloatField(default=0)
 
-        if total_seconds == 0:
-            return "0 sn"
-        
-        # Toplam dakikayı ve kalan saniyeyi bul ve dakika 0'dan farklıysa bunu dön, yoksa 
-        # geçen süreyi saniye olarak dön
-        minutes = total_seconds // 60
-        seconds = total_seconds % 60
+    reps = models.PositiveIntegerField(default=0, verbose_name="tekrar sayısı")
+    lapses = models.PositiveIntegerField(default=0, verbose_name="unutma sayısı")
 
-        if minutes > 0:
-            return f"{minutes} dk {seconds} sn"
-        return f"{seconds} sn"
-        
-# Tüm QuizQuestionların extend ettiği abstract question modeli
-class QuizQuestion(models.Model):
-    # Bu soruyu içeren quizattempt objesi
-    attempt = models.ForeignKey(
-        QuizAttempt,
-        on_delete=models.CASCADE,
-        related_name="%(class)s_questions" 
-    )
-    # attempt.questions.all() HATA VERİR, çünkü bu abstract bir class. Bunun yerine 
-    # attempt.multiplechoicequestion_set.all() gibi sorgular yapmak gerekir 
-    # Bu yüzden related_name ile soruları (class)'ın adını yazdıktan sonra alabiliriz
-    
-    # Quiz'de kullanılan kelimeleri al
-    words = models.ManyToManyField(Word, related_name="%(class)s_quiz_questions")
+    # Yüksek güvenli hatanın zorunlu tekrar tarihi.
+    # Hızlı verilen yanlış cevap, düzeltildikten sonra bir hafta içinde
+    # geri gelme eğilimindedir (bkz. scheduler.yuksek_guvenli_hata).
+    # Zamanlayıcı daha uzak bir gün hesaplasa bile kart bu tarihe kadar
+    # mutlaka bir kez daha sorulur.
+    recheck_by = models.DateTimeField(blank=True, null=True,
+                                      verbose_name="en geç tekrar")
 
-    # Kullanıcının cevapları (tüm cevaplar bir charfield olarak tutulacak)
-    user_answer = models.CharField(max_length=250, blank=True, null=True)
-
-    # Sorunun doğru olup olmadığı bilgisi ve soruda geçen süre
-    is_correct = models.BooleanField(default=False)
-    time_taken = models.FloatField(null=True, blank=True, help_text="Süreyi saniye cinsinden saklar")
+    # Kart hangi kelime listesinden geldi (varsa) — oturumu listeye
+    # daraltmak için. Silinirse kart kalır, yalnızca bağ kopar.
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        abstract = True # Bu model için veritabanında tablo OLUŞTURULMAYACAK.
-        ordering = ['id'] # Soruların sıralı gelmesi için
+        ordering = ("due_at", "id")
+        indexes = [
+            models.Index(fields=["user", "due_at"]),
+            models.Index(fields=["user", "state"]),
+            models.Index(fields=["user", "word"]),
+            models.Index(fields=["user", "aspect"]),
+        ]
+        constraints = [
+            # Anlama bağlı kartlarda tekillik anlam üzerinden;
+            # kelime düzeyindekilerde kelime üzerinden. İki ayrı kısıt
+            # olmasının sebebi SQL'de NULL'un NULL'a eşit sayılmaması:
+            # tek bir unique_together, meaning boşken hiçbir şeyi
+            # engellemezdi ve aynı kart defalarca oluşurdu.
+            models.UniqueConstraint(
+                fields=["user", "meaning", "aspect", "target_id"],
+                condition=models.Q(meaning__isnull=False),
+                name="uniq_review_item_meaning",
+            ),
+            models.UniqueConstraint(
+                fields=["user", "word", "aspect", "target_id"],
+                condition=models.Q(meaning__isnull=True),
+                name="uniq_review_item_word",
+            ),
+        ]
 
-    # Template'lerin hangi partial'ı include edeceğini bilmesi için.
-    # Eskiden bu değer view içinde elle atanıyordu.
-    @property
-    def template_name(self):
-        return self.__class__.__name__
+    def __str__(self):
+        return f"{self.user.username} · {self.word.text} · {self.get_aspect_display()}"
 
-    # Bu sorunun quiz toplamına kattığı doğru/yanlış sayısı.
-    # Çoğu soru tipi için 1 veya 0; MatchingQuestion bunları override eder.
-    @property
-    def correct_score(self):
-        return 1 if self.is_correct else 0
+    # --- hedef çözümleme ---------------------------------------------------
 
-    @property
-    def wrong_score(self):
-        return 0 if self.is_correct else 1
-
-    # Tüm alt sınıflar için ortak istatistik güncelleme metodu
-    def update_word_stats(self):
-        # Attempt'in sahibinin bu kelime ile olan ilişkisini tutan wordlink'i al 
-        links = UserWordLink.objects.filter(user=self.attempt.owner, word__in=self.words.all())
-        
-        # F() expression kullanarak veri tabanındaki güncellemeleri kesikli yapıyoruz.
-        # Böylece aynı anda veriler güncellenemeyecek.
-        # Soru doğruysa veya yanlışsa kullanıcının bu soruları kaç kere doğru veya 
-        # yanlış yaptığının bilgisini güncelle.
-        if self.is_correct: links.update(correctCount=F('correctCount') + 1)
-        else: links.update(wrongCount=F('wrongCount') + 1)
-
-    # Bu metot her alt sınıf tarafından override edilmeli yoksa hata fırlatır
-    def check_answer(self, user_input, time_taken=None):
-        raise NotImplementedError("check_answer() metodu alt sınıfta tanımlanmalıdır.")
-
-# Çoktan seçmeli soruların modeli (Question abstract class'ını extend ediyor)
-class MultipleChoiceQuestion(QuizQuestion):
-
-    # Sorunun metni ve seçeneklerin metni ve doğru cevabın şıkkı charfield olarak tutulacak
-    question_text = models.CharField(max_length=300)
-    options_data = models.TextField(max_length=500)
-    correct_option = models.CharField(max_length=1)
-
-    # Şıkların tutulduğu metni şık listesine çevirir (str -> list)
-    # "A:koşmak_#_B:yemek" ->  [('A', 'koşmak'), ('B', 'yemek')]
-    @property
-    def options_as_list(self):
-        # Şıkların arasındaki ayraç
-        safe_delimiter = "_#_" 
-        try:
-            # Option data'nın ayraca göre ayrılmış hali üzerinde gez ve bunları tuple olarak oluştur.
-            return [tuple(pair.split(':', 1)) for pair in self.options_data.split(safe_delimiter)]
-        
-        except Exception as e:
-            # Hata varsa görelim
-            print(f"options_as_list HATA: {e}, Data: {self.options_data}") # Hata ayıklama için
-            return []
-        
-    # Cevabı kontrol eden fonksiyon (kullanıcı cevabını al)
-    def check_answer(self, user_input, time_taken = None):
-        #Cevabı düzenle ve eğer ki doğru cevapla kullanıcınınki aynı ise doğru de
-        self.user_answer = user_input.strip()
-        self.is_correct = (self.user_answer == self.correct_option)
-
-        # Geçen süre boş değilse ata 
-        if time_taken is not None:
-            self.time_taken = time_taken
-
-        # Cevabı kaydet ve cevaplara göre question modelindeki kelimelerin durumunu
-        # güncelle fonksiyonunu çağır
-        self.save()
-        self.update_word_stats() 
-
-# Yazma sorularınun modeli (Question abstract class'ını extend ediyor)
-class WritingQuestion(QuizQuestion):
-    #Soru metni ve doğru cevaplar
-    question_text = models.CharField(max_length=300)
-    correct_answer = models.CharField(max_length=100)
-
-    def check_answer(self, user_input, time_taken = None):
-        # Kullanıcının cevabını al ve düzenle ve doğru cevabı da kullanıcının cevabını da küçült
-        self.user_answer = user_input.strip()
-        clean_user_input = self.user_answer.lower()
-        clean_correct_answer = self.correct_answer.lower()
-
-        # Eğer cevap ve doğru cevap tam olarak aynıysa doğru yapıldı
-        if clean_user_input == clean_correct_answer:
-            self.is_correct = True
-
-        # Değilse ama 
-        else:
-            # Cevapta dikkate alınmayacak kelimeler (amaç kelimenin kendisi doğru yazıldı mı)
-            abbreviations = {'sb', 'sth', 'smb', 'smth'}
-            
-            # Doğru cevaptaki "temel" kelimeleri bul ve üstteki kısaltmaları at
-            correct_words_list = re.findall(r'\b[a-z0-9/-]+\b', clean_correct_answer)
-            essential_correct_set = {w for w in correct_words_list if w not in abbreviations}
-
-            # Kullanıcı girdisindeki kelimeleri bul ve üstteki kısaltmaları at
-            user_words_list = re.findall(r'\b[a-z0-9/-]+\b', clean_user_input)
-            essential_user_set = {w for w in user_words_list if w not in abbreviations}
-            
-            # Eğer cevaptaki ve doğru cevaptaki temel kelimeler aynıysa cevap doğru kabul et
-            if essential_correct_set == essential_user_set:
-                self.is_correct = True
-
-            # Değilse ama 
-            else:
-                # Küçük yazım hataları varsa bunların oranını (ratio) tespit et
-                essential_correct_str = " ".join(sorted(list(essential_correct_set)))
-                essential_user_str = " ".join(sorted(list(essential_user_set)))
-                ratio = SequenceMatcher(None, essential_user_str, essential_correct_str).ratio()
-                
-                # Benzerlik %80 ve üzerindeyse kabul et değilse yanlış
-                if ratio >= 0.80:
-                    self.is_correct = True
-                else:
-                    self.is_correct = False
-
-        #Geçen zaman none değilse geçen zamanı ata
-        if time_taken is not None:
-            self.time_taken = time_taken
-        
-        # Cevabı kaydet ve abstract class'taki kelimeleri güncelle
-        self.save()
-        self.update_word_stats()
-    
-#Eşleştirme sorularının modeli (Question abstract class'ını extend ediyor)
-class MatchingQuestion(QuizQuestion):    
-    # Sorunun text'i (default var), soruda eşleştirilecek alanların kullanımı (default var)
-    question_text = models.CharField(max_length=100, default="Kelimeleri eşleştiriniz.")
-    left_col_field = models.CharField(max_length=50, default="englishWord")
-    right_col_field = models.CharField(max_length=50, default="meaningTr")
-
-    # Kaç tane soru tutulduğu verisi (default var)
-    word_count = models.IntegerField(default=5)
-
-    # Doğru eşleşmeler ve yanlış eşleşmeleri say
-    correct_matches = models.IntegerField(default=0, help_text="Doğru eşleşen çift sayısı")
-    wrong_matches = models.IntegerField(default=0, help_text="Yanlış eşleşen çift sayısı")
-
-    # Sağ sütundaki veriler (kelime id'leri)
-    right_col_order_ids = models.CharField(max_length=100)
-
-    # Eşleştirme kısmi puanlanır: 5 çiftin 3'ü doğruysa 3 doğru + 2 yanlış sayılır
-    @property
-    def correct_score(self):
-        return self.correct_matches
+    #: Boyut -> hedefin bulunduğu model. target_id 0 ise hedef yoktur.
+    TARGET_MODELS = {
+        Aspect.COLLOCATION: Collocation,
+        Aspect.PATTERN: UsagePattern,
+        Aspect.FALSE_FRIEND: FalseFriend,
+        Aspect.CONFUSABLE: WordRelation,
+    }
 
     @property
-    def wrong_score(self):
-        return self.wrong_matches
-
-    # quizComplete'teki inceleme tablosu için sol/kullanıcı/doğru üçlüsü.
-    # Eskiden view içinde zip'leniyordu.
-    @property
-    def combined_items(self):
-        left = self.left_column_items
-        user_ordered = self.right_column_items_user_ordered
-        correct = self.correct_column_items
-
-        # Hiç cevaplanmamışsa (süre doldu vb.) inceleme boş kalmasın
-        if not user_ordered:
-            user_ordered = [{'id': None, 'text': '—'} for _ in left]
-
-        return list(zip(left, user_ordered, correct))
-
-    # Verilen kelimelerin istenilen field alanlarını alır ve liste olarak döner
-    # [{'id': 123, 'text': 'run'}, {'id': 124, 'text': 'eat'}]
-    def _get_items_for_column(self, word_list, field_name):
-        items = []
-        # Kelime listesinin içinde gez ve get attribute ile kelimenin istenen field'ını al
-        # Listeye bu kelimeyi id'si ve text'iyle ekle
-        for word in word_list:
-            text = getattr(word, field_name, "HATA") 
-            items.append({'id': word.id, 'text': text})
-        return items
-
-    # Sol sütundaki kelimeleri döner 
-    @property
-    def left_column_items(self):
-        table_name = self.words.model._meta.db_table
-        
-        # RawSQL kullanarak 'id'nin hangi tabloya ait olduğunu netleştiriyoruz.
-        # Çift tırnak, SQLite'ın tablo/sütun adlarını tanıması için.
-        # Params için boş liste [] gönderiyoruz.
-        words = self.words.all().order_by(RawSQL(f'{table_name}.id', []))
-        return self._get_items_for_column(words, self.left_col_field)
-
-    # Sağ sütundaki kelimeleri karışık bir şekilde döner
-    @property
-    def right_column_items(self):
-        # Sağ sütundaki kelimelerin id'lerini al. (;'e göre ayır) ve karıştır
-        ids = self.right_col_order_ids.split(';')
-        
-        clauses = []
-        params = []
-        table_name = self.words.model._meta.db_table 
-        
-        for i, pk in enumerate(ids):
-            clauses.append(f'WHEN {table_name}.id=%s THEN %s')
-            params.append(pk)
-            params.append(i)
-            
-        ordering = 'CASE %s END' % ' '.join(clauses)
-        words = self.words.all().order_by().order_by(RawSQL(ordering, params)) 
-        
-        return self._get_items_for_column(words, self.right_col_field)
-    
-    # Doğru cevapları sıralı bir şekilde dön
-    @property
-    def correct_column_items(self):
-        table_name = self.words.model._meta.db_table
-        words = self.words.all().order_by(RawSQL(f'{table_name}.id', []))
-        return self._get_items_for_column(words, self.right_col_field)
-    
-    # Kullanıcının girdiği cevapları al
-    @property
-    def right_column_items_user_ordered(self):
-
-        if not self.user_answer:
-            # Cevap verilmemişse (örn: süre dolmuş), boş liste dön
-            return []
-
-        # self.user_answer "sol_id:sağ_id;sol_id:sağ_id" formatındadır
-        try:
-            # 1. Kullanıcının cevap haritasını çıkar: {'sol_id_str': 'sağ_id_str'}
-            answer_map = dict(pair.split(':') for pair in self.user_answer.split(';'))
-        except ValueError:
-            return [] # Hatalı format
-
-        # 2. Sol sütunu HER ZAMAN aynı sırayla (ID sırası) al
-        ordered_left_items = self.left_column_items 
-        
-        # 3. Sağ sütundaki TÜM kelimeleri bir haritada topla (hızlı erişim için)
-        all_right_words = {str(word.id): word for word in self.words.all()}
-        
-        ordered_right_items = []
-        for left_item in ordered_left_items:
-            left_id_str = str(left_item['id'])
-            # Kullanıcının bu sol öğeye karşılık hangi sağ ID'yi seçtiğini bul
-            right_id_str = answer_map.get(left_id_str)
-            
-            # Bu ID'ye karşılık gelen kelime objesini bul
-            matched_word = all_right_words.get(right_id_str)
-            
-            if matched_word:
-                # 'item' formatıyla (sizin çiziminizdeki gibi) listeye ekle
-                ordered_right_items.append({
-                    'id': matched_word.id,
-                    'text': getattr(matched_word, self.right_col_field, "HATA")
-                })
-        
-        return ordered_right_items
-
-    #Cevapları kontrol et metodu
-    def check_answer(self, user_input, time_taken = None):
-        self.user_answer = user_input.strip()
-        if time_taken is not None:
-            self.time_taken = time_taken
-
-        # 1. Doğru cevap haritasını oluştur: {'sol_id': 'sağ_id'}
-        correct_pairs_map = {str(w.id): str(w.id) for w in self.words.all()}
-        
-        # 2. Kullanıcı cevap haritasını oluştur
-        user_pairs_map = {}
-        try:
-            # Gelen "1:1;2:2;..." formatını parse et
-            pairs = self.user_answer.split(';')
-            for pair in pairs:
-                if ':' in pair: # Boş string veya hatalı formata karşı koruma
-                    left_id, right_id = pair.split(':', 1)
-                    user_pairs_map[left_id] = right_id
-        except Exception:
-            pass # Hatalı format, user_pairs_map boş kalır
-
-        correct_word_ids = []
-        wrong_word_ids = []
-
-        # 3. Her bir kelimeyi (sol_id) tek tek kontrol et
-        for left_id, correct_right_id in correct_pairs_map.items():
-            user_right_id = user_pairs_map.get(left_id) # Kullanıcı bu sol_id için ne demiş?
-            
-            if user_right_id == correct_right_id:
-                correct_word_ids.append(left_id)
-            else:
-                # Kullanıcı ya hiç eşleştirmemiş (None) ya da yanlış eşleştirmiş
-                wrong_word_ids.append(left_id)
-
-        # 4. YENİ alanları (correct_matches, wrong_matches) doldur
-        self.correct_matches = len(correct_word_ids)
-        self.wrong_matches = len(wrong_word_ids)
-        
-        # Eski 'is_correct' flag'ını da (tamamı doğruysa True) olarak güncelleyelim
-        self.is_correct = (self.correct_matches == self.word_count and self.wrong_matches == 0)
-        
-        self.save() # Önce MatchingQuestion objesini kaydet
-        
-        # 5. İstatistikleri Toplu ve KISMİ Güncelle
-        # (update_word_stats() metodunu çağırmıyoruz, çünkü o "ya hep ya hiç" idi)
-        if correct_word_ids:
-            UserWordLink.objects.filter(
-                user=self.attempt.owner, 
-                word_id__in=correct_word_ids
-            ).update(correctCount=F('correctCount') + 1)
-        
-        if wrong_word_ids:
-             UserWordLink.objects.filter(
-                user=self.attempt.owner, 
-                word_id__in=wrong_word_ids
-            ).update(wrongCount=F('wrongCount') + 1)
-
-
-# Eş/Zıt anlamlı test sorularının modeli (QuizQuestion abstract class'ını extend ediyor)
-class SynonymAntonymQuestion(QuizQuestion):
-    """
-    Bir kelimenin eş veya zıt anlamlısını soran çoktan seçmeli soru.
-    Soru tipi (eş/zıt) question_text içinde belirtilir.
-    Şık formatı MultipleChoiceQuestion ile aynıdır: "A:obtain_#_B:lose_#_C:run_#_D:eat"
-    """
-
-    question_text = models.CharField(max_length=400)
-    options_data = models.TextField(max_length=500)
-    correct_option = models.CharField(max_length=1)
-
-    # "A:obtain_#_B:lose" → [('A', 'obtain'), ('B', 'lose')]
-    @property
-    def options_as_list(self):
-        safe_delimiter = "_#_"
-        try:
-            return [tuple(pair.split(':', 1)) for pair in self.options_data.split(safe_delimiter)]
-        except Exception as e:
-            print(f"SynonymAntonymQuestion options_as_list HATA: {e}, Data: {self.options_data}")
-            return []
-
-    def check_answer(self, user_input, time_taken=None):
-        self.user_answer = user_input.strip()
-        self.is_correct = (self.user_answer == self.correct_option)
-
-        if time_taken is not None:
-            self.time_taken = time_taken
-
-        self.save()
-        self.update_word_stats()
-
-
-# Boşluk doldurma sorularının modeli (QuizQuestion abstract class'ını extend ediyor)
-class FillInTheBlankQuestion(QuizQuestion):
-    """
-    Kelimenin geçtiği bir örnek cümlede o kelime boşluğa çevrilir ve kullanıcıdan
-    boşluğu doldurması istenir.
-
-    Çoktan seçmeliden farkı: kullanıcı kelimeyi TANIMIYOR, ÜRETİYOR. Pasif
-    kelime bilgisini aktif kullanıma taşıyan asıl soru tipi budur.
-
-    Cümlede kelimenin çekimli hâli geçebildiği için (örn. "retain" ->
-    "retained"), `correct_answer` maskelenen yüzey biçimi tutar;
-    `accepted_answers` ise kabul edilecek diğer yazımları (kök hâl gibi)
-    virgülle ayrılmış olarak tutar.
-    """
-
-    BLANK = "____"
-
-    # Boşluğu içeren cümle: "The company managed to ____ most of its customers."
-    sentence_with_blank = models.CharField(max_length=400)
-
-    # Cümlede maskelenen yüzey biçim: "retain" ya da "retained"
-    correct_answer = models.CharField(max_length=100)
-
-    # Ek olarak kabul edilecek yazımlar (kök hâl, v2/v3 vb.), virgülle ayrılmış
-    accepted_answers = models.CharField(max_length=300, blank=True, null=True)
-
-    # Kullanıcıya ipucu olarak gösterilecek Türkçe anlam (opsiyonel)
-    hint = models.CharField(max_length=200, blank=True, null=True)
-
-    # Diğer soru tiplerinde question_text bir veritabanı alanı; burada sabit
-    # olduğu için property olarak veriliyor. Böylece template'ler her soru
-    # tipinde aynı şekilde {{ question.question_text }} kullanabiliyor.
-    @property
-    def question_text(self):
-        return "Boşluğa uygun kelimeyi yazınız:"
+    def target(self):
+        """Kartın dayandığı satır (eş dizim, kalıp, yanlış dost, bağ)."""
+        model = self.TARGET_MODELS.get(self.aspect)
+        if model is None or not self.target_id:
+            return None
+        return model.objects.filter(pk=self.target_id).first()
 
     @property
-    def accepted_answers_list(self):
-        """Kabul edilen tüm cevapların küçük harfli, tekilleştirilmiş listesi."""
-        candidates = [self.correct_answer]
-        if self.accepted_answers:
-            candidates += self.accepted_answers.split(',')
+    def is_due(self):
+        return self.due_at is not None and self.due_at <= timezone.now()
 
-        seen = set()
-        result = []
-        for candidate in candidates:
-            cleaned = (candidate or "").strip().lower()
-            if cleaned and cleaned not in seen:
-                seen.add(cleaned)
-                result.append(cleaned)
-        return result
+    @property
+    def is_new(self):
+        return self.state == ItemState.NEW
 
-    def check_answer(self, user_input, time_taken=None):
+    @property
+    def elapsed_days(self) -> float:
+        """En son sorulmasından bu yana geçen gün (kesirli)."""
+        if not self.last_reviewed_at:
+            return 0.0
+        fark = timezone.now() - self.last_reviewed_at
+        return max(fark.total_seconds() / 86400.0, 0.0)
+
+    @property
+    def retrievability(self) -> float:
         """
-        Cevabı kontrol eder.
+        Şu anda sorulsa hatırlanma olasılığı.
 
-        NOT: Burada WritingQuestion'daki gibi benzerlik toleransı UYGULANMAZ.
-        Boşluğa tek bir kelime yazılıyor ve "retain" ile "retail" arasındaki
-        benzerlik oranı, gerçek bir yazım hatasınınkiyle aynı seviyede çıkıyor.
-        Yani tolerans, yazım hatasını affetmekten çok yanlış kelimeyi doğru
-        saymaya yarardı. Bunun yerine kabul edilen biçimlerin listesi geniş
-        tutuluyor (kök hâl + çekimli hâl).
+        İlerleme göstergesi olarak DOĞRU ölçü budur, "kaç kelime
+        çalıştım" değil. Bir kullanıcının bilgisi, kartlarının
+        hatırlanabilirlik toplamıdır; zamanla kendiliğinden erir ve
+        yalnızca tekrarla geri gelir. Sayfada gösterilen "kalıcı bilgi"
+        değeri bunun toplamı.
         """
-        self.user_answer = (user_input or "").strip()
+        from . import scheduler
 
-        # Baştaki/sondaki noktalama işaretlerini yok say
-        cleaned = self.user_answer.lower().strip(" .,!?;:'\"")
+        if self.stability is None:
+            return 0.0
+        return scheduler.hatirlanabilirlik(self.elapsed_days, self.stability)
 
-        self.is_correct = cleaned in self.accepted_answers_list if cleaned else False
+    def memory(self):
+        """Zamanlayıcının anlayacağı hafıza nesnesi (yoksa None)."""
+        from . import scheduler
 
-        if time_taken is not None:
-            self.time_taken = time_taken
+        if self.stability is None or self.difficulty is None:
+            return None
+        return scheduler.Hafiza(kararlilik=self.stability, zorluk=self.difficulty)
 
-        self.save()
-        self.update_word_stats()
+
+class ReviewLog(models.Model):
+    """
+    Tek bir cevabın kalıcı kaydı.
+
+    Kart silinse bile kayıt durur (`item` boşa düşer, `user` kalır):
+    parametre eğitimi için geçmişin bütünlüğü, tek tek kartların
+    varlığından önemli.
+    """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name="review_logs")
+    item = models.ForeignKey(ReviewItem, on_delete=models.SET_NULL,
+                             blank=True, null=True, related_name="logs")
+    session = models.ForeignKey("StudySession", on_delete=models.SET_NULL,
+                                blank=True, null=True, related_name="logs")
+
+    # Kaydın kendi başına anlamlı olması için kopyalanan alanlar.
+    # (item silinse bile hangi kelimenin hangi boyutuydu, bilinsin.)
+    word_text = models.CharField(max_length=120)
+    aspect = models.CharField(max_length=20, choices=Aspect.choices)
+    format = models.CharField(max_length=16, choices=Format.choices)
+
+    is_correct = models.BooleanField()
+    grade = models.PositiveSmallIntegerField(verbose_name="not (1-4)")
+    seconds = models.FloatField(blank=True, null=True)
+    used_hint = models.BooleanField(default=False)
+    # Hızlı verilmiş yanlış cevap — bkz. ReviewItem.recheck_by
+    was_confident_error = models.BooleanField(default=False)
+
+    # Cevap ANINDAKİ durum (öncesi) ve sonrasındaki durum.
+    # İkisi birden tutuluyor çünkü parametre eğitimi "şu kararlılıkla,
+    # şu kadar gün sonra sorulduğunda hatırlandı mı" sorusunu sorar.
+    elapsed_days = models.FloatField(default=0)
+    stability_before = models.FloatField(blank=True, null=True)
+    difficulty_before = models.FloatField(blank=True, null=True)
+    stability_after = models.FloatField(blank=True, null=True)
+    difficulty_after = models.FloatField(blank=True, null=True)
+    scheduled_days = models.FloatField(default=0)
+
+    answered_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        ordering = ("-answered_at", "-id")
+        indexes = [
+            models.Index(fields=["user", "answered_at"]),
+        ]
+
+    def __str__(self):
+        sonuc = "doğru" if self.is_correct else "yanlış"
+        return f"{self.user.username} · {self.word_text} · {sonuc}"
+
+
+class SessionMode(models.TextChoices):
+    """
+    Oturum modu.
+
+    DUE tek gerçek moddur; diğer ikisi kullanıcının kendi isteğiyle
+    programın dışına çıktığı hâllerdir ve bilinçli olarak zamanlamayı
+    BOZMAZLAR: serbest çalışmada verilen cevaplar da kaydedilir ve
+    kartları ilerletir, yalnızca kart seçimi sıraya değil kullanıcının
+    seçtiği listeye göre yapılır.
+    """
+
+    DUE = "due", "Sırası gelenler"
+    LIST = "list", "Seçili liste"
+    WEAK = "weak", "Zorlandıklarım"
+
+
+class StudySession(models.Model):
+    """
+    Bir çalışma oturumu.
+
+    Kuyruk veritabanında tutuluyor, oturum (session) çerezinde değil:
+    kullanıcı sayfayı yenilediğinde, telefondan devam ettiğinde ya da
+    sunucu birden çok süreçle çalıştığında kaldığı yerden devam etsin.
+    """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name="study_sessions")
+    mode = models.CharField(max_length=10, choices=SessionMode.choices,
+                            default=SessionMode.DUE)
+
+    started_at = models.DateTimeField(auto_now_add=True)
+    finished_at = models.DateTimeField(blank=True, null=True)
+
+    planned_count = models.PositiveIntegerField(default=0,
+                                                verbose_name="planlanan soru")
+    answered_count = models.PositiveIntegerField(default=0)
+    correct_count = models.PositiveIntegerField(default=0)
+
+    # Kuyruk: sırası gelen ReviewItem id'leri.
+    # Yanlış cevaplanan kart bu listenin İÇİNE geri konuyor (oturum içi
+    # tekrar), o yüzden liste çalışma sırasında hem kısalıyor hem uzuyor.
+    queue = models.JSONField(default=list, blank=True)
+    # Bu oturumda en az bir kez yanlış cevaplanmış kart id'leri —
+    # oturum sonu özetinde "bunlar takıldıkların" diye gösteriliyor.
+    missed = models.JSONField(default=list, blank=True)
+
+    class Meta:
+        ordering = ("-started_at",)
+        indexes = [models.Index(fields=["user", "started_at"])]
+
+    def __str__(self):
+        return f"{self.user.username} · {self.started_at:%d.%m.%Y %H:%M}"
+
+    @property
+    def is_finished(self):
+        return self.finished_at is not None
+
+    @property
+    def remaining(self):
+        return len(self.queue or [])
+
+    @property
+    def accuracy(self):
+        if not self.answered_count:
+            return 0
+        return round(100 * self.correct_count / self.answered_count)
+
+    @property
+    def duration_seconds(self):
+        bitis = self.finished_at or timezone.now()
+        return int((bitis - self.started_at).total_seconds())
+
+    @property
+    def formatted_duration(self):
+        toplam = self.duration_seconds
+        dakika, saniye = divmod(toplam, 60)
+        if dakika:
+            return f"{dakika} dk {saniye} sn"
+        return f"{saniye} sn"
+
+    def finish(self):
+        if self.finished_at is None:
+            self.finished_at = timezone.now()
+            self.save(update_fields=["finished_at"])
+
+
+class DailyGoalDefaults:
+    """
+    Günlük yeni kart sınırının varsayılanları.
+
+    UserSettings.dailyGoal "günde kaç kelime" olarak zaten var ve
+    kullanıcıya sorulmuş bir sayı; yenisini sormak yerine o kullanılıyor.
+    Sıfır seçilmişse yeni kart hiç açılmaz — yalnızca tekrar yapılır,
+    bu da geçerli bir çalışma biçimidir (sınav haftası).
+    """
+
+    NEW_ITEMS_FALLBACK = 5
+    # Birikmiş tekrar bu sayıyı aşarsa yeni kelime AÇILMAZ.
+    # Aralıklı tekrar uygulamalarının klasik ölüm sarmalı budur: kullanıcı
+    # her gün yeni kart ekler, birikmiş tekrar büyür, bir gün 300 kart
+    # görüp uygulamayı siler. Borç varken yeni borç açılmıyor.
+    BACKLOG_BLOCK_THRESHOLD = 60
+
+
+def due_items(user, now=None):
+    """Sırası gelmiş kartlar (yeni olanlar hariç)."""
+    now = now or timezone.now()
+    return (ReviewItem.objects
+            .filter(user=user, due_at__lte=now)
+            .exclude(state=ItemState.NEW))
+
+
+def new_items(user):
+    """Hiç sorulmamış kartlar."""
+    return ReviewItem.objects.filter(user=user, state=ItemState.NEW)
+
+
+def overdue_count(user, now=None):
+    """Gecikmiş kart sayısı — yeni kart açılıp açılmayacağına bu karar verir."""
+    return due_items(user, now).count()
+
+
+def studied_today(user, now=None):
+    """Bugün cevaplanan kart sayısı (yeni kart kotası için)."""
+    now = now or timezone.now()
+    bugun = now.astimezone(timezone.get_current_timezone()).date()
+    return ReviewLog.objects.filter(user=user, answered_at__date=bugun).count()
+
+
+def new_items_introduced_today(user, now=None):
+    """Bugün ilk kez açılan kart sayısı."""
+    now = now or timezone.now()
+    bugun = now.astimezone(timezone.get_current_timezone()).date()
+    return (ReviewItem.objects
+            .filter(user=user, reps=1, last_reviewed_at__date=bugun)
+            .count())
+
+
+def knowledge_score(user):
+    """
+    "Kalıcı bilgi" — kullanıcının kartlarının hatırlanabilirlik toplamı.
+
+    Kaç kelime çalıştığından farklı bir şey ölçer: çalışılan kelime
+    sayısı yalnızca artar, bu değer çalışılmadığında düşer. Gerçekte
+    olan da budur. Kullanıcıya gösterilen sayının gerçeği yansıtması,
+    motive edici olmasından önemli — şişirilmiş bir ilerleme çubuğu
+    öğrenciyi çalışmaması gerektiğine ikna eder.
+    """
+    toplam = 0.0
+    for item in ReviewItem.objects.filter(user=user).exclude(stability=None):
+        toplam += item.retrievability
+    return round(toplam, 1)
+
+
+def study_streak(user, now=None):
+    """Kaç gündür aralıksız çalışıyor."""
+    now = now or timezone.now()
+    tz = timezone.get_current_timezone()
+    gunler = set(
+        ReviewLog.objects.filter(user=user)
+        .values_list("answered_at", flat=True)
+    )
+    tarihler = {an.astimezone(tz).date() for an in gunler}
+    if not tarihler:
+        return 0
+
+    bugun = now.astimezone(tz).date()
+    # Bugün henüz çalışmadıysa seri dünden sayılır; bugünü kaçırmak
+    # seriyi anında sıfırlamamalı (gün daha bitmedi).
+    baslangic = bugun if bugun in tarihler else bugun - timedelta(days=1)
+    if baslangic not in tarihler:
+        return 0
+
+    seri = 0
+    gun = baslangic
+    while gun in tarihler:
+        seri += 1
+        gun -= timedelta(days=1)
+    return seri

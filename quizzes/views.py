@@ -1,605 +1,321 @@
-from django.shortcuts import render, redirect, get_object_or_404
+"""
+Çalışma görünümleri.
+
+AKIŞ
+----
+    /quizzes/study/                 durum + "Çalışmaya başla"
+    /quizzes/study/<id>/            tek soru  (GET)
+                                    cevap + geri bildirim  (POST)
+    /quizzes/study/<id>/finish/     oturum özeti
+    /quizzes/progress/              ilerleme
+    /quizzes/analysis/              kelime kelime analiz
+
+Tek soru, tek ekran. Eski sistemde soru indeksi adresin içindeydi
+(`/quiz/12/3/`) ve kullanıcı geri tuşuyla soruları gezebiliyordu —
+hatırlama denemesinin tekrarlanabilir olması onu hatırlama denemesi
+olmaktan çıkarır. Şimdi sıradaki soru sunucuda: adresin içinde soru
+numarası yok, geri gitmek yeni bir soru getirmiyor.
+
+GERİ BİLDİRİM AYNI SAYFADA
+--------------------------
+Cevap POST edilir, aynı şablon bu kez geri bildirim paneliyle basılır.
+Sonraki soruya geçmek ayrı bir tıklama ister. Otomatik geçmemesinin
+sebebi: düzeltmeyi okumaya vakit bırakmak. Öğrenmenin olduğu an orası.
+"""
+
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.db.models import ExpressionWrapper, F, FloatField, Sum
+from django.db.models import (
+    Count, ExpressionWrapper, F, FloatField, Sum,
+)
 from django.db.models.functions import Cast, NullIf
-from django.http import JsonResponse
-from django.contrib import messages
-from random import choice, shuffle, sample
-
-from django.conf import settings as django_settings
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
+from django.views.decorators.http import require_POST
 
 from LearnVocab import pagination
 from LearnVocab.authgate import login_gate
+from words.models import UserWordLink, WordList
 
-
-def quizzes_enabled(view):
-    """
-    Quizler kapalıyken üreteçlere hiç girmeden bilgilendirme sayfası döner.
-    Açmak için: settings.QUIZZES_ENABLED = True
-    """
-    from functools import wraps
-
-    @wraps(view)
-    def sarmalayici(request, *args, **kwargs):
-        if not getattr(django_settings, "QUIZZES_ENABLED", True):
-            return render(request, "pages/quizzes/quizzesDisabled.html",
-                          {"active_page": "Quizler", "exercise_tab": "quizzes"})
-        return view(request, *args, **kwargs)
-
-    return sarmalayici
-
-from words.models import UserWordLink, Word, WordList
-from .models import QuizType, QuizAttempt, MultipleChoiceQuestion, WritingQuestion, MatchingQuestion, SynonymAntonymQuestion
-from usersettings.models import UserSettings
-
-from .question_generator import (
-    generate_mc_question,
-    generate_writing_question,
-    generate_matching_question,
-    generate_synonym_antonym_question,
-    generate_fill_blank_question,
-    can_generate_blank,
+from . import build, session as oturum
+from .analysis import (  # noqa: F401 — eski içe aktarmalar için yeniden dışa veriliyor
+    classify_links_by_priority, declaration_summary, declared_stuck,
+    encounter_signals, recent_confident_errors, weak_items,
 )
-
-
-# Create your views here.
-
-# wrongRatio bir YÜZDE döndürür (0-100). Eşikler de yüzde cinsindendir.
-WRONG_RATIO_HIGH = 50   # %50 ve üzeri yanlış -> en yüksek öncelik
-WRONG_RATIO_MID = 20    # %20 ve üzeri yanlış -> orta öncelik
-
-
-def encounter_signals(user):
-    """
-    Öğren-Geç'ten gelen iki sinyali kelime id'lerine göre döner.
-
-    misjudged: kullanıcının "biliyorum" deyip anlamı görünce yanıldığını
-               kabul ettiği kelimeler. Bunlar kendi başına ASLA çalışmayacağı
-               kelimelerdir (bildiğini sanıyor), o yüzden quizde öne alınıyor.
-    learned:   Öğren-Geç'te doğrulayarak bildiği kelimeler. Listeden
-               silinmiyor, sadece en sona düşüyor.
-    """
-    from learnpass.models import WordEncounter
-
-    kayitlar = WordEncounter.objects.filter(user=user).values_list(
-        "word_id", "misjudged_count", "is_learned"
-    )
-    misjudged, learned = set(), set()
-    for word_id, misjudged_count, is_learned in kayitlar:
-        if misjudged_count:
-            misjudged.add(word_id)
-        elif is_learned:
-            learned.add(word_id)
-    return misjudged, learned
-
-
-def classify_links_by_priority(links, misjudged_ids=None, learned_ids=None):
-    """
-    Kullanıcının kelime bağlantılarını (UserWordLink) üç öncelik grubuna ayırır
-    ve her grubu kendi içinde sıralar.
-
-    - priority1: yeni kelimeler (<=2 deneme), yanlış oranı yüksek olanlar ve
-                 Öğren-Geç'te "bildiğini sanıyordum" çıkanlar
-    - priority2: orta düzeyde zorlananlar
-    - priority3: iyi bilinen kelimeler ve Öğren-Geç'te "öğrenildi" işaretliler
-
-    misjudged_ids / learned_ids verilmezse fonksiyon yalnızca quiz
-    istatistiklerine bakar (eski davranış).
-
-    NOT: Bu fonksiyon eskiden attemptQuiz içinde satır arasındaydı ve
-    yüzdelik wrongRatio değeri 0.50 / 0.2 gibi ondalık eşiklerle
-    karşılaştırıldığı için neredeyse her kelime priority1'e düşüyordu.
-    """
-    priority1, priority2, priority3 = [], [], []
-    misjudged_ids = misjudged_ids or set()
-    learned_ids = learned_ids or set()
-
-    for link in links:
-        # Öğren-Geç sinyalleri quiz istatistiklerinin önüne geçiyor:
-        # "bildiğini sanıyordu" bilgisi, birkaç doğru cevaptan daha değerli.
-        if link.word_id in misjudged_ids:
-            priority1.append(link)
-
-        elif link.word_id in learned_ids:
-            priority3.append(link)
-
-        elif link.totalAttempts <= 2:
-            priority1.append(link)
-
-        elif link.totalAttempts <= 6:
-            if link.wrongRatio >= WRONG_RATIO_HIGH:
-                priority1.append(link)
-            else:
-                priority2.append(link)
-
-        else:
-            if link.wrongRatio >= WRONG_RATIO_HIGH:
-                priority1.append(link)
-            elif link.wrongRatio >= WRONG_RATIO_MID:
-                priority2.append(link)
-            else:
-                priority3.append(link)
-
-    # En az denenmiş ve en çok yanlış yapılan kelimeler önce sorulsun
-    priority1.sort(key=lambda link: (link.totalAttempts, -link.wrongRatio))
-    priority2.sort(key=lambda link: link.wrongRatio, reverse=True)
-    priority3.sort(key=lambda link: link.wrongRatio, reverse=True)
-
-    return priority1, priority2, priority3
-
-
-
-@login_required
-@quizzes_enabled
-def attemptQuiz(request):
-
-    if request.method == "POST":
-        quizType = request.POST.get("quizType")
-        totalQuestion = request.POST.get("totalQuestion")
-
-        if quizType not in ("mixed", "matching", "multiple_choice", "writing", "random", "synonym_antonym", "fill_blank"):
-            messages.error(request, "Hatalı bir quiz tipi seçildi.")
-            return redirect("attempt_quiz")
-
-        if totalQuestion not in ("5", "10", "15", "25", "40"):
-            messages.error(request, "Hatalı bir soru sayısı seçildi.")
-            return redirect("attempt_quiz")
-
-        totalQuestion = int(totalQuestion)
-
-        choices = ["mixed", "matching", "multiple_choice", "writing", "fill_blank"]
-        if quizType == "random":
-            quizType = choice(choices)
-
-        # Opsiyonel: kullanıcı belirli kelimeler seçtiyse sadece onlardan quiz hazırla
-        selected_raw = request.POST.getlist("selected_word_ids")
-        selected_ids = []
-        for v in selected_raw:
-            try:
-                selected_ids.append(int(v))
-            except (TypeError, ValueError):
-                continue
-
-        links = UserWordLink.objects.filter(user=request.user)
-        if selected_ids:
-            links = links.filter(word_id__in=selected_ids)
-
-        # Eşleştirme tipi quiz 5'er gruplar halinde çalışır; uygun değilse uyar
-        if quizType == "matching" and totalQuestion % 5 != 0:
-            messages.error(request, "Eşleştirme quiz'i 5'in katları olan soru sayılarıyla çalışır (5, 10, 15, 25, 40).")
-            return redirect("attempt_quiz")
-
-        # Eş/Zıt anlamlı quiz: sadece synonyms veya antonyms dolu kelimelere kısıtla
-        if quizType == "synonym_antonym":
-            eligible_links = [
-                lnk for lnk in links.select_related('word')
-                if (lnk.word.synonyms and lnk.word.synonyms.strip())
-                or (lnk.word.antonyms and lnk.word.antonyms.strip())
-            ]
-            if totalQuestion > len(eligible_links):
-                messages.error(
-                    request,
-                    f"Eş/Zıt Anlamlı quiz için yeterli kelime yok. "
-                    f"Listenizde eş veya zıt anlamlısı girilmiş {len(eligible_links)} kelime var, "
-                    f"ancak {totalQuestion} soruluk bir quiz istendi. "
-                    "Kelimelerinize eş/zıt anlamlı ekleyin ya da soru sayısını azaltın."
-                )
-                return redirect("attempt_quiz")
-            # links'i eligible ile değiştir; normal kelime sayısı kontrolünü atla
-            links = eligible_links
-
-        elif quizType == "fill_blank":
-            # Boşluk doldurma: sadece örnek cümlesinde (ya da collocation'ında)
-            # kelimenin bir biçimi bulunabilen kelimeler sorulabilir.
-            eligible_links = [
-                lnk for lnk in links.select_related('word')
-                if can_generate_blank(lnk.word)
-            ]
-            if totalQuestion > len(eligible_links):
-                messages.error(
-                    request,
-                    f"Boşluk doldurma quiz'i için yeterli kelime yok. "
-                    f"Listenizde örnek cümlesinden boşluk üretilebilen {len(eligible_links)} kelime var, "
-                    f"ancak {totalQuestion} soruluk bir quiz istendi. "
-                    "Kelimelerinize örnek cümle ekleyin ya da soru sayısını azaltın."
-                )
-                return redirect("attempt_quiz")
-            links = eligible_links
-
-        elif totalQuestion > len(links):
-            if selected_ids:
-                messages.error(
-                    request,
-                    f"Seçtiğiniz {len(links)} kelime ile {totalQuestion} soruluk bir quiz oluşturulamaz. "
-                    "Daha fazla kelime seçin ya da soru sayısını azaltın."
-                )
-            else:
-                messages.error(request, "Listenizde bu istediğiniz soru sayısında kelime yok.")
-            return redirect("attempt_quiz")
-
-        misjudged_ids, learned_ids = encounter_signals(request.user)
-        priority1, priority2, priority3 = classify_links_by_priority(
-            links, misjudged_ids=misjudged_ids, learned_ids=learned_ids
-        )
-
-        links_to_ask = get_words_for_quiz(priority1, priority2, priority3, totalQuestion)
-        shuffle(links_to_ask)
-
-        if len(links_to_ask) != totalQuestion:
-            messages.error(request, f"İstenen soru sayısında bir quiz oluşturulamadı. Mevcut kelime sayısı: {len(links_to_ask)}")
-            return redirect("attempt_quiz")
-
-        newQuiz = QuizAttempt.objects.create(
-            owner = request.user,
-            totalQuestion = len(links_to_ask), # Bu, "10 kelime" sayısını saklar (Doğru)
-            quizType = quizType,
-        )
-
-        all_user_words = Word.objects.filter(userLinks__user=request.user).distinct()
-        
-        if quizType == "mixed":
-            if totalQuestion == 5: # Örn: 3 ÇS, 2 Yazma
-                num_matching_words = 0
-                mc_links = links_to_ask[:3]
-                wq_links = links_to_ask[3:]
-                mq_links_list = []
-            elif totalQuestion == 10: # Örn: 1 Eşleştirme (5), 3 ÇS, 2 Yazma
-                num_matching_words = 5
-                mq_links_list = [links_to_ask[:5]] 
-                mc_links = links_to_ask[5:8]
-                wq_links = links_to_ask[8:]
-            elif totalQuestion == 15: # 15 Soru: 1 Eşleştirme (5), 6 ÇS, 4 Yazma
-                num_matching_words = 5
-                mq_links_list = [links_to_ask[:5]]
-                mc_links = links_to_ask[5:11]
-                wq_links = links_to_ask[11:]
-            elif totalQuestion == 25: # 25 Soru: 1 Eşleştirme (5), 6 ÇS, 4 Yazma
-                num_matching_words = 10
-                mq_links_list = [links_to_ask[0:5], links_to_ask[5:10]]
-                mc_links = links_to_ask[10:18]
-                wq_links = links_to_ask[18:]
-            else:
-                num_matching_words = 15
-                mq_links_list = [links_to_ask[0:5], links_to_ask[5:10], links_to_ask[10:15]]
-                mc_links = links_to_ask[15:28]
-                wq_links = links_to_ask[28:]
-
-            # Üretim gerektiren soruların yarısını boşluk doldurmaya ayır.
-            # (Yazma ve boşluk doldurma aynı beceriyi farklı biçimde yokluyor:
-            # biri tanımdan kelime, diğeri bağlamdan kelime.)
-            split_at = len(wq_links) // 2
-            fb_links = wq_links[:split_at]
-            wq_links = wq_links[split_at:]
-
-            for link in mc_links:
-                generate_mc_question(link, newQuiz, all_user_words)
-            for link in wq_links:
-                generate_writing_question(link, newQuiz)
-            for link in fb_links:
-                # Boşluk üretilemeyen kelime için çoktan seçmeliye düş;
-                # böylece toplam soru sayısı bozulmaz.
-                if not generate_fill_blank_question(link, newQuiz):
-                    generate_mc_question(link, newQuiz, all_user_words)
-            for group in mq_links_list:
-                generate_matching_question(group, newQuiz)
-
-        elif quizType == "multiple_choice":
-            for link in links_to_ask:
-                generate_mc_question(link, newQuiz, all_user_words)
-
-        elif quizType == "writing":
-            for link in links_to_ask:
-                generate_writing_question(link, newQuiz)
-
-        elif quizType == "matching":
-            group_size = 5
-            for i in range(0, totalQuestion, group_size):
-                link_group = links_to_ask[i : i + group_size]
-                if len(link_group) == group_size:
-                    generate_matching_question(link_group, newQuiz)
-
-        elif quizType == "synonym_antonym":
-            for link in links_to_ask:
-                generate_synonym_antonym_question(link, newQuiz, all_user_words)
-
-        elif quizType == "fill_blank":
-            created = 0
-            for link in links_to_ask:
-                if generate_fill_blank_question(link, newQuiz):
-                    created += 1
-
-            # Ön filtreye rağmen bir soru üretilemediyse toplamı gerçeğe çek
-            if created != newQuiz.totalQuestion:
-                newQuiz.totalQuestion = created
-                newQuiz.save(update_fields=["totalQuestion"])
-
-            if created == 0:
-                messages.error(request, "Boşluk doldurma sorusu üretilemedi.")
-                newQuiz.delete()
-                return redirect("attempt_quiz")
-
-        return redirect('quiz_page', attempt_id=newQuiz.id, question_index=1)
-
-    # GET: Kullanıcının kelime listesini kaynak rozetleriyle hazırla
-    user = request.user
-    user_links = (
-        UserWordLink.objects
-        .filter(user=user)
-        .select_related("word", "word__owner")
-        .prefetch_related("word__in_user_lists")
-        .order_by("word__text")
-    )
-    friend_ids = set(user.friends.values_list("id", flat=True))
-
-    # Kullanıcının özel kelime listeleri (klasörleri)
-    user_lists = list(WordList.objects.filter(owner=user).order_by("name"))
-    list_count_map = {wl.id: 0 for wl in user_lists}
-
-    word_items = []
-    counts = {"base": 0, "own": 0, "friend": 0, "saved": 0}
-    for link in user_links:
-        w = link.word
-        if w.isBaseWord:
-            source, source_label = "base", "ODTÜ"
-        elif w.owner_id == user.id:
-            source, source_label = "own", "Kendi"
-        elif w.owner_id in friend_ids:
-            source, source_label = "friend", "Arkadaş"
-        else:
-            source, source_label = "saved", "Eklenen"
-        counts[source] += 1
-
-        # Bu kelimenin hangi kullanıcı listelerinde olduğunu çıkar
-        word_list_ids = [wl.id for wl in w.in_user_lists.all() if wl.owner_id == user.id]
-        for lid in word_list_ids:
-            if lid in list_count_map:
-                list_count_map[lid] += 1
-
-        word_items.append({
-            "id": w.id,
-            "english": w.text,
-            "meaning": w.meaningTr,
-            "level": w.cefr or "—",
-            "source": source,
-            "source_label": source_label,
-            # Veri olarak listele (template data-lists attribute olarak join'leyecek)
-            "list_ids": word_list_ids,
-            "lists_attr": ",".join(str(i) for i in word_list_ids),
-        })
-
-    # Template'in render edebileceği zenginleştirilmiş liste meta verisi
-    user_lists_meta = [
-        {
-            "id": wl.id,
-            "name": wl.name,
-            "color": wl.color,
-            "count": list_count_map.get(wl.id, 0),
-        }
-        for wl in user_lists
-    ]
-
-    context = {
-        "word_items": word_items,
-        "total_word_count": len(word_items),
-        "counts": counts,
-        "user_lists": user_lists_meta,
-    }
-    return render(request, "pages/quizzes/attemptQuiz.html", context)
-
-def get_words_for_quiz(priority1, priority2, priority3, total_question):
-    # ... (Bu fonksiyonunuzda da hiçbir hata yoktu, aynı kalabilir) ...
-    links_to_ask = list()
-
-    if total_question == 5:
-        (k1, k2, k3) = (3, 1, 1)
-    elif total_question == 10:
-        (k1, k2, k3) = (7, 2, 1)
-    elif total_question == 15:
-        (k1, k2, k3) = (10, 3, 2)
-    elif total_question == 25:
-        (k1, k2, k3) = (17, 5, 3)
-    else: # 40
-        (k1, k2, k3) = (28, 8, 4)
-
-    actual_count_p1 = min(k1, len(priority1))
-    actual_links_p1 = priority1[:actual_count_p1]
-    links_to_ask.extend(actual_links_p1)
-    
-    quota_transfer_to_p2 = k1 - actual_count_p1
-    k2_new = k2 + quota_transfer_to_p2
-    actual_count_p2 = min(k2_new, len(priority2))
-    actual_links_p2 = priority2[:actual_count_p2]
-    links_to_ask.extend(actual_links_p2)
-
-    quota_transfer_to_p3 = k2_new - actual_count_p2
-    k3_new = k3 + quota_transfer_to_p3
-    actual_count_p3 = min(k3_new, len(priority3))
-    actual_links_p3 = priority3[:actual_count_p3]
-    links_to_ask.extend(actual_links_p3)
-    
-    current_count = len(links_to_ask)
-
-    if current_count < total_question:
-        remaining_needed = total_question - current_count
-        remaining_p1 = priority1[actual_count_p1:]
-        remaining_p2 = priority2[actual_count_p2:]
-        remaining_p3 = priority3[actual_count_p3:]
-        
-        backfill_pool = remaining_p1 + remaining_p2 + remaining_p3
-        links_to_ask.extend(backfill_pool[:remaining_needed])
-
-    shuffle(links_to_ask)
-    
-    return links_to_ask
-
-@login_required
-@quizzes_enabled
-def quizPage(request, attempt_id, question_index):
-    
-    """
-    Quiz'in gerçekleştiği, soruları tek tek gösteren ve cevapları kontrol eden view.
-    """
-    attempt = get_object_or_404(QuizAttempt, id=attempt_id, owner=request.user)
-    userset = UserSettings.objects.filter(user = request.user)
-    audio = None
-
-    if userset.exists():
-        audio = userset.first().audio
-
-    # 1. Bu attempt'e ait tüm soruları (tiplerinden bağımsız) sıralı olarak al.
-    # Soru tiplerinin listesi QUESTION_RELATED_NAMES'te tek yerde duruyor.
-    all_questions = attempt.all_questions()
-
-    try:
-        current_question = all_questions[question_index - 1]
-    except IndexError:
-        return redirect('quiz_complete', attempt_id=attempt.id)
-    
-    question_type = current_question.__class__.__name__ 
-    total_questions = len(all_questions)
-    next_question_index = question_index + 1
-    is_last_question = (question_index == total_questions)
-
-    # 4. Cevabı Kontrol Etme (POST)
-    if request.method == "POST":
-        user_input = request.POST.get("answer") 
-
-        time_taken_str = request.POST.get("time_taken") # JS'ten gelen veriyi al
-        
-        try:
-            time_taken = float(time_taken_str)
-        except (ValueError, TypeError):
-            time_taken = None
-        
-        # Bu kod, bir önceki adımdaki 'models.py' değişikliğini (time_taken parametresi)
-        # yaptığınızı varsayar.
-        current_question.check_answer(user_input, time_taken=time_taken)
-        
-        is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
-        
-        if is_ajax:
-            correct_answer_value = ""
-            
-            if question_type in ("MultipleChoiceQuestion", "SynonymAntonymQuestion"):
-                correct_answer_value = current_question.correct_option
-            elif question_type in ("WritingQuestion", "FillInTheBlankQuestion"):
-                correct_answer_value = current_question.correct_answer
-            
-            return JsonResponse({
-                'is_correct': current_question.is_correct,
-                'correct_answer': correct_answer_value
-            })
-            
-        context = {
-            'attempt': attempt, 
-            'question': current_question,
-            'attempt_id': attempt_id,
-            'question_index': question_index,
-            'total_questions': total_questions,
-            'is_last_question': is_last_question,
-            'next_question_index': next_question_index,
-            'question_type': question_type,
-            'answer_checked': True, 
-            'is_correct': current_question.is_correct, 
-            "audio":audio,
-        }
-        return render(request, "pages/quizzes/quizPage.html", context)
-
-
-    # 5. Soruyu Gösterme (GET)
-    context = {
-        'attempt': attempt, 
-        'question': current_question,
-        'attempt_id': attempt_id,
-        'question_index': question_index,
-        'total_questions': total_questions,
-        'is_last_question': is_last_question,
-        'next_question_index': next_question_index,
-        'question_type': question_type,
-        'answer_checked': False, 
-        "audio":audio,
-    }
-    
-    return render(request, "pages/quizzes/quizPage.html", context)
-
-@login_required
-@quizzes_enabled
-def quizComplete(request, attempt_id):
-    
-    """
-    Quiz bittiğinde sonuçları gösteren sayfa.
-    (TEMİZLENMİŞ VE DÜZELTİLMİŞ FONKSİYON)
-    """
-    attempt = get_object_or_404(QuizAttempt, id=attempt_id, owner=request.user)
-    
-    # Henüz tamamlanmadıysa (ilk ziyaretse) skoru hesapla
-    if not attempt.isCompleted:
-        # Bu, 'models.py' dosyanızdaki DÜZELTİLMİŞ 'calculateScore' metodunu
-        # çağırdığınızı varsayar (Puanlama hatası için)
-        attempt.calculateScore() 
-        
-    # --- Soru listesi (template_name ve combined_items artık model property'si) ---
-    all_questions = attempt.all_questions()
-
-    context = {
-        "attempt": attempt,
-        "all_questions": all_questions
-    }
-        
-    return render(request, "pages/quizzes/quizComplete.html", context)
-    
-@login_required
-@quizzes_enabled
-def quizReviewList(request):
-    
-    """
-    Kullanıcının tamamladığı tüm geçmiş quiz'leri listeler.
-    """
-    # Sadece oturum açmış kullanıcıya ait VE tamamlanmış olanları al
-    attempts = QuizAttempt.objects.filter(
-        owner=request.user, 
-        isCompleted=True
-    ).order_by('-createdAt') # En yeniden eskiye doğru sırala
-
-    context = {
-        'attempts': attempts
-    }
-    
-    return render(request, 'pages/quizzes/quizReviews.html', context)
-
-@login_required
-def removeQuiz(request, quiz_id):
-    if request.method == "POST":
-        # Silinmek istenen quiz'i bul, AMA sadece bu kullanıcıya aitse
-        attempt = get_object_or_404(QuizAttempt, id=quiz_id, owner=request.user)
-        
-        # Quiz'i sil
-        # (Modellerdeki 'on_delete=models.CASCADE' sayesinde 
-        # bu quiz'e bağlı tüm sorular da otomatik silinecektir)
-        attempt.delete()
-        
-        # Kullanıcıya başarı mesajı göster
-        messages.success(request, "Quiz kaydı başarıyla silindi.")
-        
-        # Kullanıcıyı quiz listesine geri yönlendir
-        return redirect('quiz_review')
-    
-    # Eğer birisi bu URL'e GET isteği ile (adres çubuğundan) gelirse,
-    # hiçbir şey yapma ve listeye geri yönlendir.
-    return redirect('quiz_revi')
-
-
-# ======================================================================
-# Bilgi Analizi
-# ======================================================================
+from .aspects import Aspect
+from .models import (
+    ItemState, ReviewItem, ReviewLog, SessionMode, StudySession,
+)
 
 ANALYSIS_PER_PAGE_OPTIONS = (25, 50, 100, 200)
 ANALYSIS_DEFAULT_PER_PAGE = 50
 
-# Doğruluk oranını renge çeviren aralık: 0 = kırmızı, ortası sarı, 130 = yeşil.
-# Şablon bu sayıyı hsl() içinde kullanıyor, böylece renk basamaklı değil
-# sürekli oluyor (%61 ile %62 birbirinden bir tık farklı).
+GATE_NOTE = ("Çalışma senin kendi kelimelerinle ve kendi geçmişinle "
+             "yürüdüğü için giriş yapman gerekiyor.")
+
+
+# ----------------------------------------------------------------------
+# Çalışma
+# ----------------------------------------------------------------------
+
+@login_gate("Çalışma", GATE_NOTE)
+def studyHome(request):
+    """
+    Çalışma ana sayfası: bugün ne var, ne kadar birikmiş.
+
+    Sayfada soru tipi seçeneği YOK. Bilinçli: kullanıcı hangi tipte
+    çalışacağını seçtiğinde kendini iyi hissettiren tipi seçer.
+    Seçilebilen tek şey oturumun KAPSAMI (hepsi / bir liste /
+    zorlandıkların), çünkü bu bir kolaylık tercihi, zorluk tercihi değil.
+    """
+    user = request.user
+
+    # Kelime eklenmiş ama kart açılmamışsa burada tamamlanıyor; böylece
+    # sayfadaki sayılar gerçeği gösteriyor.
+    build.ensure_all_entry_items(user)
+
+    ozet = oturum.summary_for(user)
+
+    # Yarım kalmış oturum varsa ona devam etmeyi öner.
+    devam = (StudySession.objects
+             .filter(user=user, finished_at=None)
+             .exclude(queue=[])
+             .first())
+
+    return render(request, "pages/quizzes/studyHome.html", {
+        "active_page": "Çalışma",
+        "exercise_tab": "quizzes",
+        "summary": ozet,
+        "resume_session": devam,
+        "word_lists": WordList.objects.filter(owner=user),
+        "has_items": ozet["total_items"] > 0,
+    })
+
+
+@require_POST
+@login_required
+def studyStart(request):
+    """Yeni oturum kurar ve ilk soruya götürür."""
+    mod = request.POST.get("mode") or SessionMode.DUE
+    if mod not in dict(SessionMode.choices):
+        mod = SessionMode.DUE
+
+    liste_id = request.POST.get("list_id") or None
+    if liste_id:
+        try:
+            liste_id = int(liste_id)
+        except (TypeError, ValueError):
+            liste_id = None
+        else:
+            # Başkasının listesiyle oturum açılmasın.
+            if not WordList.objects.filter(id=liste_id, owner=request.user).exists():
+                liste_id = None
+
+    calisma = oturum.start(request.user, mode=mod, list_id=liste_id)
+
+    if not calisma.queue:
+        calisma.finish()
+        messages.info(request, "Şu an sırası gelen kart yok. Yarın görüşürüz.")
+        return redirect("study_home")
+
+    return redirect("study_run", session_id=calisma.id)
+
+
+@login_required
+def studyRun(request, session_id):
+    """Tek soruluk ekran. GET soru verir, POST cevabı işler."""
+    calisma = get_object_or_404(StudySession, id=session_id, user=request.user)
+
+    if request.method == "POST":
+        return _cevabi_isle(request, calisma)
+
+    if calisma.is_finished or not calisma.queue:
+        return redirect("study_finish", session_id=calisma.id)
+
+    item, soru = oturum.next_question(calisma)
+    if soru is None:
+        return redirect("study_finish", session_id=calisma.id)
+
+    return render(request, "pages/quizzes/studyRun.html", {
+        "active_page": "Çalışma",
+        "session": calisma,
+        "item": item,
+        "question": soru,
+        "progress": _ilerleme(calisma),
+    })
+
+
+def _cevabi_isle(request, calisma):
+    item_id = request.POST.get("item_id")
+    item = ReviewItem.objects.filter(id=item_id, user=request.user).first()
+    if item is None:
+        return redirect("study_run", session_id=calisma.id)
+
+    saniye = request.POST.get("seconds")
+    try:
+        saniye = float(saniye) if saniye else None
+    except (TypeError, ValueError):
+        saniye = None
+    # Sekmeyi açık bırakıp dönen kullanıcı "çok yavaş" sayılmasın:
+    # makul bir üst sınırın üstündeki süreler ölçülmemiş kabul ediliyor.
+    if saniye is not None and (saniye <= 0 or saniye > 300):
+        saniye = None
+
+    sonuc = oturum.answer(
+        calisma, item,
+        user_input=request.POST.get("answer", ""),
+        seconds=saniye,
+        used_hint=request.POST.get("used_hint") == "1",
+    )
+
+    if not sonuc.get("ok"):
+        return redirect("study_run", session_id=calisma.id)
+
+    _kelime_sayaclarini_guncelle(request.user, item, sonuc["correct"])
+
+    return render(request, "pages/quizzes/studyRun.html", {
+        "active_page": "Çalışma",
+        "session": calisma,
+        "item": item,
+        "question": sonuc["question"],
+        "feedback": sonuc,
+        "user_answer": _cevabi_goster(sonuc["question"], request.POST.get("answer", "")),
+        "progress": _ilerleme(calisma),
+    })
+
+
+def _cevabi_goster(soru, ham_cevap):
+    """
+    Kullanıcının verdiği cevabı okunabilir hâle getirir.
+
+    Çoktan seçmelide form "A" gönderiyor; geri bildirimde "Senin cevabın: A"
+    yazmak hiçbir şey anlatmıyor — öğrenci bir soru önce neyi işaretlediğini
+    şıkkın HARFİYLE hatırlamıyor, METNİYLE hatırlıyor. Yanlış cevabın ne
+    olduğunu görmek düzeltmenin yarısı.
+    """
+    ham_cevap = (ham_cevap or "").strip()
+    if not ham_cevap or soru.is_typed:
+        return ham_cevap
+    for secenek in soru.options:
+        if secenek["key"] == ham_cevap.upper():
+            return secenek["text"]
+    return ham_cevap
+
+
+def _kelime_sayaclarini_guncelle(user, item, dogru):
+    """
+    UserWordLink sayaçlarını da güncel tutar.
+
+    Yeni sistem bu sayaçları KULLANMIYOR (zamanlama kart bazında ve
+    kararlılık üzerinden yapılıyor). Yine de güncelleniyorlar çünkü
+    analiz sayfası ve Öğren-Geç'in öncelik sıralaması onlara bakıyor;
+    iki sistem aynı anda yaşarken birinin verisi donmuş olmamalı.
+    """
+    from django.db.models import F as _F
+
+    baglar = UserWordLink.objects.filter(user=user, word_id=item.word_id)
+    if dogru:
+        baglar.update(correctCount=_F("correctCount") + 1)
+    else:
+        baglar.update(wrongCount=_F("wrongCount") + 1)
+
+
+def _ilerleme(calisma):
+    """Üstteki ilerleme çubuğu için yüzde."""
+    plan = max(calisma.planned_count, 1)
+    yapilan = min(calisma.answered_count, plan)
+    return {
+        "answered": calisma.answered_count,
+        "planned": calisma.planned_count,
+        "remaining": len(calisma.queue or []),
+        "percent": round(100 * yapilan / plan),
+    }
+
+
+@login_required
+def studyFinish(request, session_id):
+    """
+    Oturum özeti.
+
+    Ekranda yüzde YOK — bilinçli. Yüzde bir sınav çıktısıdır ve yanlış
+    şeyi ödüllendirir: yüzdesini yüksek tutmak isteyen öğrenci kolay
+    kartları çalışır, zorlarından kaçar. Onun yerine gösterilen şey
+    NE OLDUĞU: kaç kart ilerledi, hangileri takıldı, yarın kaç kart var.
+    """
+    calisma = get_object_or_404(StudySession, id=session_id, user=request.user)
+    ozet = oturum.finish(calisma)
+
+    yarin = timezone.now() + timezone.timedelta(days=1)
+    yarinki = (ReviewItem.objects
+               .filter(user=request.user, due_at__lte=yarin)
+               .exclude(state=ItemState.NEW)
+               .count())
+
+    return render(request, "pages/quizzes/studyFinish.html", {
+        "active_page": "Çalışma",
+        "exercise_tab": "quizzes",
+        "session": calisma,
+        "missed_words": ozet["missed_words"],
+        "tomorrow_count": yarinki,
+        "summary": oturum.summary_for(request.user),
+    })
+
+
+def legacyRedirect(request):
+    """Eski quiz adreslerinden çalışma sayfasına."""
+    return redirect("study_home")
+
+
+# ----------------------------------------------------------------------
+# İlerleme
+# ----------------------------------------------------------------------
+
+@login_gate("İlerleme", GATE_NOTE)
+def studyProgress(request):
+    """
+    İlerleme sayfası.
+
+    Üç şey gösteriliyor ve üçü de bilinçli seçildi:
+
+    1. KALICI BİLGİ — kartların hatırlanabilirlik toplamı. Çalışılmadığında
+       DÜŞER. Sürekli artan bir sayaç (çalışılan kelime sayısı) öğrenciye
+       yanlış bir güvenlik hissi verir; gerçekte bilgi eriyor.
+    2. BOYUT DAĞILIMI — "tanıdığın 400 kelimenin 90'ını üretebiliyorsun".
+       Tek bir "kelime sayısı" rakamı bu farkı gizler.
+    3. SERİ — kaç gündür çalışıyor. Doğru cevap serisi değil, GÜN serisi:
+       doğru cevabı ödüllendiren bir seri, öğrenciyi zor kart açmaktan
+       caydırır.
+    """
+    user = request.user
+
+    dagilim = build.aspect_breakdown(user)
+    # Boyutlar merdiven sırasına göre gösteriliyor.
+    sirali = [dagilim[a] for a in Aspect.values if a in dagilim]
+
+    son_gunler = (ReviewLog.objects
+                  .filter(user=user)
+                  .order_by("-answered_at")[:200])
+
+    return render(request, "pages/quizzes/studyProgress.html", {
+        "active_page": "İlerleme",
+        "exercise_tab": "quizzes",
+        "summary": oturum.summary_for(user),
+        "breakdown": sirali,
+        "weak": weak_items(user, limit=15),
+        "confident_errors": recent_confident_errors(user, limit=8),
+        "declared_stuck": declared_stuck(user, limit=10),
+        "declarations": declaration_summary(user),
+        "recent_sessions": StudySession.objects.filter(user=user)[:10],
+        "log_count": ReviewLog.objects.filter(user=user).count(),
+        "recent_logs": son_gunler[:20],
+    })
+
+
+# ----------------------------------------------------------------------
+# Analiz (eski sayfa, kelime bazında)
+# ----------------------------------------------------------------------
+
 HUE_MAX = 130
 
 
@@ -631,10 +347,6 @@ def wordAnalysis(request):
     Sıralama en çok yanlış yapılandan en çok doğru yapılana doğru. Aynı orana
     sahip kelimelerde çok denenmiş olan öne alınıyor: 20 denemede %50, 2
     denemede %50'den daha güvenilir bir "bunu bilmiyorsun" sinyali.
-
-    Havuz yalnızca kullanıcının KENDİ listesindeki kelimeler. Hiç çalışılmamış
-    kelimeler listeye girmiyor — doğruluk ekseninde yerleri yok — ama sayıları
-    en altta tek satır olarak belirtiliyor.
     """
     user = request.user
 
@@ -659,7 +371,6 @@ def wordAnalysis(request):
     paginator = Paginator(links, per_page)
     page_obj = paginator.get_page(request.GET.get("page") or 1)
 
-    # Özet: oranın tek başına anlatmadığını anlatan üç sayı
     toplamlar = UserWordLink.objects.filter(user=user).aggregate(
         dogru=Sum("correctCount"), yanlis=Sum("wrongCount")
     )

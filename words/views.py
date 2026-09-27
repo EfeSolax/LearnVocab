@@ -1,4 +1,5 @@
 import logging
+import re
 import threading
 
 from django.conf import settings
@@ -15,7 +16,7 @@ from LearnVocab import pagination, progress
 
 from . import ai_import
 from .models import (
-    CEFR_LEVELS, PartOfSpeech, UserMeaning, UserWordLink, UserWordNote, Word,
+    CEFR_LEVELS, PartOfSpeech, UserMeaning, UserWordLink, UserWordNote, Word, WordFamily,
 )
 
 logger = logging.getLogger(__name__)
@@ -83,6 +84,9 @@ def add_to_my_list(request, word_id):
         return redirect("all_words")
 
     UserWordLink.objects.get_or_create(user=request.user, word=word)
+    if _ajax_mi(request):   # Tüm Kelimeler: sayfa yenilenmeden düğme değişir
+        return JsonResponse({"ok": True, "kayitli": True,
+                             "html": _dugme_html(request, word.id, True, request.GET.get("boyut", "k"))})
     return _redirect_with_anchor(word.id, request)
 
 
@@ -90,6 +94,9 @@ def add_to_my_list(request, word_id):
 def remove_from_my_list(request, word_id):
     word = get_object_or_404(Word, id=word_id)
     UserWordLink.objects.filter(user=request.user, word=word).delete()
+    if _ajax_mi(request):
+        return JsonResponse({"ok": True, "kayitli": False,
+                             "html": _dugme_html(request, word.id, False, request.GET.get("boyut", "k"))})
     return _redirect_with_anchor(word.id, request)
 
 
@@ -219,91 +226,463 @@ def _q_from_fields(query, fields):
     return q
 
 
-def allWords(request):
-    user = request.user
+# ---------------------------------------------------------------------------
+# Arama parametreleri (25 Eylül: filtre paneli, çoklu seçim)
+# ---------------------------------------------------------------------------
 
-    # 1) Kullanıcının görme yetkisi olan kelimeler
-    words = visible_words_qs(user)
+# "Nerede aransın" onay kutuları -> alanlar
+ARAMA_ALANLARI = {
+    "kelime": ("Kelime", ["text__icontains", "v2Form__icontains", "v3Form__icontains"]),
+    "anlam": ("Türkçe anlam", ["meanings__meaning_tr__icontains"]),
+    "aciklama": ("İngilizce açıklama", ["meanings__definition__icontains"]),
+    "yazar": ("Ekleyen kullanıcı", ["owner__username__icontains"]),
+}
+VARSAYILAN_ALANLAR = ("kelime", "anlam")
+KAYNAKLAR = {"sozluk": "Sözlük kelimeleri", "kullanici": "Kullanıcı kelimeleri"}
+ICERIKLER = {"kelime": "Kelimeler", "ifade": "İfadeler"}
 
-    # 2) Filtreleri uygula
-    query = (request.GET.get("q") or "").strip()
-    filter_by = request.GET.get("filter_by")
-    level = request.GET.get("level")
+# Eski tek seçimli combobox değerleri (eski bağlantılar bozulmasın)
+_ESKI_FILTRE = {"english": ("alan", "kelime"), "meaning": ("alan", "anlam"),
+                "explanation": ("alan", "aciklama"), "author": ("alan", "yazar"),
+                "only_METU": ("kaynak", "sozluk"), "only_User": ("kaynak", "kullanici")}
 
-    if filter_by == "only_METU":
-        words = words.filter(isBaseWord=True)
-    elif filter_by == "only_User":
-        # Kullanıcı kendi eklediklerini ve listesine kaydettiklerini görür.
-        if user.is_authenticated:
-            words = words.filter(
-                Q(owner=user) | Q(saved_by=user)
-            ).filter(isBaseWord=False)
-        else:
-            words = words.none()
 
-    if query:
-        fields = _FIELD_FILTERS.get(filter_by, _DEFAULT_QUERY_FIELDS)
-        words = words.filter(_q_from_fields(query, fields))
+def _liste(request, ad, gecerli):
+    return [v for v in request.GET.getlist(ad) if v in gecerli and v != "all"]
 
-    if level and level != "all":
-        words = words.filter(cefr=level)
 
-    pos = request.GET.get("pos")
-    if pos and pos != "all":
-        words = words.filter(pos=pos)
-
-    # 3) Sıralama + tekilleştirme + N+1 önleme.
-    # Aile, anlam ve örnek cümleler tek seferde çekiliyor: liste ekranı
-    # her satır için ayrı sorgu atmasın.
-    words = (
-        words.distinct()
-        .select_related("family", "owner")
-        .prefetch_related("meanings__examples", "meanings__categories")
-        .order_by("text", "pos")
-    )
-
-    # 4) Sayfalama
-    per_page = pagination.resolve_per_page(request, ALL_WORDS_PER_PAGE_OPTIONS,
-                                           ALL_WORDS_DEFAULT_PER_PAGE)
-    paginator = Paginator(words, per_page)
-    page_number = request.GET.get("page") or 1
-    page_obj = paginator.get_page(page_number)
-
-    # Kullanıcının listesinde hangi kelimeler var? (Sadece bu sayfada görünenler)
-    saved_ids = set()
-    if user.is_authenticated:
-        page_word_ids = [w.id for w in page_obj.object_list]
-        if page_word_ids:
-            saved_ids = set(
-                UserWordLink.objects
-                .filter(user=user, word_id__in=page_word_ids)
-                .values_list("word_id", flat=True)
-            )
-
-    context = {
-        "words": page_obj.object_list,  # Geriye dönük uyumluluk: template hala "words" bekliyor
-        "current_query": query,
-        "current_filter": filter_by or "",
-        "current_level": level or "all",
-        # Seviye süzgecinin seçenekleri modelden geliyor; şablona
-        # elle yazılan 101–501 listesi bu yüzden kaldırıldı.
-        "cefr_levels": CEFR_LEVELS,
-        "current_pos": pos or "all",
-        "pos_choices": PartOfSpeech.choices,
-        "saved_ids": saved_ids,
+def arama_parametreleri(request):
+    """GET'ten arama durumu. Boş liste = hepsi."""
+    alanlar = _liste(request, "alan", ARAMA_ALANLARI)
+    kaynaklar = _liste(request, "kaynak", KAYNAKLAR)
+    eski = _ESKI_FILTRE.get(request.GET.get("filter_by") or "")
+    if eski:
+        (alanlar if eski[0] == "alan" else kaynaklar).append(eski[1])
+    turler = _liste(request, "pos", dict(PartOfSpeech.choices))
+    seviyeler = _liste(request, "level", CEFR_LEVELS)
+    if set(kaynaklar) == set(KAYNAKLAR):
+        kaynaklar = []
+    icerik = _liste(request, "icerik", ICERIKLER) or list(ICERIKLER)
+    q = (request.GET.get("q") or "").strip()
+    return {
+        "q": q,
+        "alanlar": alanlar or list(VARSAYILAN_ALANLAR),
+        "alan_ozel": bool(alanlar) and set(alanlar) != set(VARSAYILAN_ALANLAR),
+        "turler": turler,
+        "seviyeler": seviyeler,
+        "kaynaklar": kaynaklar,
+        "icerik": icerik,
+        "kelime_goster": "kelime" in icerik,
+        "ifade_goster": "ifade" in icerik,
     }
 
-    # Sayfalama arayüzü "Kelimelerim" sayfasıyla ortak (bkz. base/_pagination.html):
-    # ilk/son, sayfa numaraları, sayfa başına adet ve doğrudan sayfaya atlama.
+
+def _filtreli_kelimeler(user, p):
+    words = visible_words_qs(user)
+    if p["kaynaklar"] == ["sozluk"]:
+        words = words.filter(isBaseWord=True)
+    elif p["kaynaklar"] == ["kullanici"]:
+        words = (words.filter(Q(owner=user) | Q(saved_by=user)).filter(isBaseWord=False)
+                 if user.is_authenticated else words.none())
+    if p["q"]:
+        alanlar = [f for a in p["alanlar"] for f in ARAMA_ALANLARI[a][1]]
+        words = words.filter(_q_from_fields(p["q"], alanlar))
+    if p["seviyeler"]:
+        words = words.filter(cefr__in=p["seviyeler"])
+    if p["turler"]:
+        words = words.filter(pos__in=p["turler"])
+    return words
+
+
+def _anlam_metni(kelimeler):
+    """Bir ya da birkaç kaydın (anger isim + fiil) anlamları tek satırda."""
+    return "; ".join(m.meaning_tr for w in kelimeler for m in w.meanings.all()
+                     if m.meaning_tr)
+
+
+def _kayitli_idler(user, kelimeler):
+    if not user.is_authenticated or not kelimeler:
+        return set()
+    return set(UserWordLink.objects.filter(user=user, word_id__in=[w.id for w in kelimeler])
+               .values_list("word_id", flat=True))
+
+
+def _kelime_satirlari(kelimeler, saved_ids):
+    return [{"w": w, "anlam": _anlam_metni([w]), "kayitli": w.id in saved_ids}
+            for w in kelimeler]
+
+
+# ---------------------------------------------------------------------------
+# "Bunu mu demek istediniz?" — sonuç çıkmayan aramalar için öneriler
+# ---------------------------------------------------------------------------
+
+def _kucuk(metin):
+    """Türkçe küçük harf: I -> ı, İ -> i."""
+    return (metin or "").replace("I", "ı").replace("İ", "i").lower()
+
+
+def _oneri_sozlugu():
+    """
+    (kelime metinleri, Türkçe anlam sözcüğü -> kelime metinleri). Kelime ya da
+    anlam sayısı değişince önbellek kendiliğinden yenilenir.
+    """
+    from django.core.cache import cache
+    from .models import Meaning
+    anahtar = f"oneri-sozlugu-{Word.objects.count()}-{Meaning.objects.count()}"
+    sozluk = cache.get(anahtar)
+    if sozluk is None:
+        herkese_acik = Q(word__isBaseWord=True) | Q(word__visibility="public")
+        metinler = sorted({t.lower() for t in Word.objects
+                           .filter(Q(isBaseWord=True) | Q(visibility="public"))
+                           .values_list("text", flat=True)})
+        anlamlar = {}
+        for anlam, metin in Meaning.objects.filter(herkese_acik).values_list(
+                "meaning_tr", "word__text"):
+            for sozcuk in re.findall(r"\w{3,}", _kucuk(anlam)):
+                anlamlar.setdefault(sozcuk, set()).add(metin.lower())
+        sozluk = (metinler, {k: sorted(v) for k, v in anlamlar.items()})
+        cache.set(anahtar, sozluk, 3600)
+    return sozluk
+
+
+def oneriler(user, sorgu, en_cok=12):
+    """
+    Yazım hatasına dayanıklı öneriler: benzer yazılan kelimeler (difflib),
+    sorguyu içeren kelimeler, sorgunun içinde geçen kelimeler ve Türkçe
+    anlamı benzeyenler. Sıra bu önceliğe göre.
+    """
+    import difflib
+    q = _kucuk(sorgu).strip()
+    if len(q) < 2:
+        return []
+    metinler, anlamlar = _oneri_sozlugu()
+    sira = []
+
+    def ekle(liste):
+        for m in liste:
+            if m not in sira:
+                sira.append(m)
+
+    ekle(difflib.get_close_matches(q, metinler, n=8, cutoff=0.72))
+    if len(q) >= 3:
+        ekle([m for m in metinler if q in m][:8])
+        ekle(sorted((m for m in metinler if len(m) >= 4 and m in q), key=len, reverse=True)[:4])
+    for sozcuk in difflib.get_close_matches(q, list(anlamlar), n=4, cutoff=0.78):
+        ekle(anlamlar[sozcuk][:4])
+    sira = sira[:en_cok]
+    if not sira:
+        return []
+    kelimeler = list(visible_words_qs(user).filter(text__in=sira).distinct()
+                     .prefetch_related("meanings"))
+    kelimeler.sort(key=lambda w: (sira.index(w.text.lower()), w.pos))
+    return kelimeler
+
+
+# ---------------------------------------------------------------------------
+# İfadeler (bağlayıcılar ve kalıplar) — 25 Eylül
+# ---------------------------------------------------------------------------
+
+def visible_expressions_qs(user):
+    from .models import Expression
+    qs = Expression.objects.all()
+    if user.is_authenticated:
+        return qs.filter(Q(visibility="public") | Q(owner=user))
+    return qs.filter(visibility="public")
+
+
+_IFADE_ALANLARI = {"kelime": ["text__icontains"], "anlam": ["meaning_tr__icontains"],
+                   "aciklama": ["definition__icontains"], "yazar": ["owner__username__icontains"]}
+
+
+def _ifadeler(user, p):
+    """Arama/süzgeçlere uyan ifadeler (tür ve kaynak süzgeçleri yalnızca kelimeler için)."""
+    qs = visible_expressions_qs(user)
+    if p["q"]:
+        qs = qs.filter(_q_from_fields(p["q"], [f for a in p["alanlar"] for f in _IFADE_ALANLARI[a]]))
+    if p["seviyeler"]:
+        qs = qs.filter(cefr__in=p["seviyeler"])
+    return qs.distinct()
+
+
+def _kayitli_ifadeler(user, ifadeler):
+    from .models import UserExpressionLink
+    if not user.is_authenticated or not ifadeler:
+        return set()
+    return set(UserExpressionLink.objects.filter(user=user, expression__in=ifadeler)
+               .values_list("expression_id", flat=True))
+
+
+def _ifade_satirlari(ifadeler, kayitli):
+    return [{"e": e, "kayitli": e.id in kayitli} for e in ifadeler]
+
+
+def _ifade_gruplari(user, p):
+    """Arama yokken: işlev başlıkları altında ifadeler (ek işlevde de görünür)."""
+    from .models import ExpressionGroup
+    ifadeler = list(_ifadeler(user, p).select_related("group").prefetch_related("extra_groups")
+                    .order_by("sort_order", "text"))
+    kayitli = _kayitli_ifadeler(user, ifadeler)
+    gruba_gore = {}
+    for e in ifadeler:
+        for g in ([e.group] if e.group else []) + list(e.extra_groups.all()):
+            gruba_gore.setdefault(g.id, []).append(e)
+    bloklar = []
+    for g in ExpressionGroup.objects.order_by("sort_order"):
+        if gruba_gore.get(g.id):
+            bloklar.append({"grup": g, "satirlar": _ifade_satirlari(gruba_gore[g.id], kayitli)})
+    grupsuz = [e for e in ifadeler if not e.group]
+    if grupsuz:
+        bloklar.append({"grup": None, "satirlar": _ifade_satirlari(grupsuz, kayitli)})
+    return bloklar, len(ifadeler)
+
+
+def allWords(request):
+    """
+    Tüm Kelimeler.
+
+    İki görünüm:
+      * Arama ya da filtre YOKSA: AİLE listesi (24 Eylül). Satır = aile; kök
+        ve anlamı, açılınca diğer kelimeler.
+      * Arama ya da filtre VARSA: kelimeler ailelerinden BAĞIMSIZ, tek tek
+        (25 Eylül, Efe: "aramada kullanıcının aklını karıştırmayalım").
+        Tam eşleşme önce, sonra "ile başlayan", sonra "içeren".
+    Sonuç yoksa öneriler gösterilir ("Bu aradığınız sanırım bizde yok…").
+
+    ?partial=1 (canlı arama, sayfalama): yalnızca sonuç bölümü döner.
+    """
+    user = request.user
+    p = arama_parametreleri(request)
+    words = _filtreli_kelimeler(user, p)
+    if not p["kelime_goster"]:
+        words = words.none()
+    duz = bool(p["q"] or p["turler"] or p["seviyeler"] or p["kaynaklar"])
+
+    per_page = pagination.resolve_per_page(request, ALL_WORDS_PER_PAGE_OPTIONS,
+                                           ALL_WORDS_DEFAULT_PER_PAGE)
+    context = {"duz": duz, "p": p, "geri_qs": request.GET.urlencode().replace("partial=1", "").strip("&")}
+
+    if duz:
+        from django.db.models import Case, IntegerField, Value, When
+        sira = Case(
+            When(text__iexact=p["q"], then=Value(0)),
+            When(text__istartswith=p["q"], then=Value(1)),
+            When(text__icontains=p["q"], then=Value(2)),
+            default=Value(3), output_field=IntegerField(),
+        ) if p["q"] else Value(0)
+        words = (words.distinct().annotate(sira=sira)
+                 .prefetch_related("meanings").order_by("sira", "text", "pos"))
+        paginator = Paginator(words, per_page)
+        page_obj = paginator.get_page(request.GET.get("page") or 1)
+        kelimeler = list(page_obj.object_list)
+        saved_ids = _kayitli_idler(user, kelimeler)
+        context["satirlar"] = _kelime_satirlari(kelimeler, saved_ids)
+        context["kelime_sayisi"] = paginator.count
+        ifade_bulunan = 0
+        if p["ifade_goster"] and (p["q"] or p["seviyeler"]) and page_obj.number == 1:
+            ifadeler = list(_ifadeler(user, p).order_by("text"))
+            if p["q"]:
+                q = p["q"].lower()
+                ifadeler.sort(key=lambda e: (e.text.lower() != q,
+                                             not e.text.lower().startswith(q), e.text))
+            context["ifade_satirlari"] = _ifade_satirlari(ifadeler, _kayitli_ifadeler(user, ifadeler))
+            ifade_bulunan = len(ifadeler)
+        if not paginator.count and not ifade_bulunan and p["q"]:
+            oneri = oneriler(user, p["q"])
+            context["oneriler"] = _kelime_satirlari(oneri, _kayitli_idler(user, oneri))
+            # Filtreler yüzünden mi çıkmadı?
+            if p["turler"] or p["seviyeler"] or p["kaynaklar"] or p["alan_ozel"]:
+                genis = dict(p, turler=[], seviyeler=[], kaynaklar=[],
+                             alanlar=list(ARAMA_ALANLARI))
+                context["filtresiz_sayi"] = _filtreli_kelimeler(user, genis).distinct().count()
+    else:
+        aile_idleri = words.values_list("family_id", flat=True).distinct()
+        aileler = WordFamily.objects.filter(id__in=aile_idleri).order_by("root")
+        paginator = Paginator(aileler, per_page)
+        page_obj = paginator.get_page(request.GET.get("page") or 1)
+        # İfadeler konu konu, yalnızca ilk sayfada (aile sayfalarında tekrar etmesin)
+        if p["ifade_goster"] and page_obj.number == 1:
+            context["ifade_bloklari"], context["ifade_sayisi"] = _ifade_gruplari(user, p)
+            context["ifade_acik"] = not p["kelime_goster"]
+        uyeler = list(visible_words_qs(user)
+                      .filter(family__in=list(page_obj.object_list))
+                      .distinct().prefetch_related("meanings").order_by("text", "pos"))
+        aileye_gore = {}
+        for w in uyeler:
+            aileye_gore.setdefault(w.family_id, []).append(w)
+        saved_ids = _kayitli_idler(user, uyeler)
+        satirlar = []
+        for aile in page_obj.object_list:
+            uye = aileye_gore.get(aile.id, [])
+            if not uye:
+                continue
+            kokler = [w for w in uye if w.text == aile.root] or uye[:1]
+            digerleri = [w for w in uye if w not in kokler]
+            # Aynı yazılışın birden çok türü varsa (burning sıfat / isim) türü
+            # küçük harfle göster; yoksa satırda başka ayrıntı yok.
+            sayim = {}
+            for w in digerleri:
+                sayim[w.text] = sayim.get(w.text, 0) + 1
+            satirlar.append({
+                "aile": aile,
+                "kok_metin": kokler[0].text,
+                "kok_anlam": _anlam_metni(kokler),
+                "kok_idleri": [w.id for w in kokler],
+                "kok_kayitli": all(w.id in saved_ids for w in kokler),
+                "uyeler": [dict(r, tur_goster=sayim[r["w"].text] > 1)
+                           for r in _kelime_satirlari(digerleri, saved_ids)],
+                "eklenmemis": sum(1 for w in uye if w.id not in saved_ids),
+            })
+        context["aileler"] = satirlar
+        context["kelime_sayisi"] = words.distinct().count()
+
+    context.update({
+        "arama_alanlari": [(k, v[0]) for k, v in ARAMA_ALANLARI.items()],
+        "kaynaklar": list(KAYNAKLAR.items()),
+        "icerikler": list(ICERIKLER.items()),
+        "cefr_levels": CEFR_LEVELS,
+        "pos_choices": PartOfSpeech.choices,
+        "current_query": p["q"],
+    })
+    params = [("q", p["q"])]
+    if p["alan_ozel"]:
+        params += [("alan", a) for a in p["alanlar"]]
+    params += [("kaynak", k) for k in p["kaynaklar"]]
+    if set(p["icerik"]) != set(ICERIKLER):
+        params += [("icerik", i) for i in p["icerik"]]
+    params += [("pos", t) for t in p["turler"]] + [("level", s) for s in p["seviyeler"]]
     context.update(pagination.pagination_context(
-        page_obj, paginator,
-        params=[("q", query), ("filter_by", filter_by), ("level", level), ("pos", pos)],
-        per_page=per_page,
+        page_obj, paginator, params=params, per_page=per_page,
         per_page_options=ALL_WORDS_PER_PAGE_OPTIONS,
         default_per_page=ALL_WORDS_DEFAULT_PER_PAGE,
     ))
+    sablon = ("pages/words/_sonuclar.html" if request.GET.get("partial")
+              else "pages/words/allWords.html")
+    return render(request, sablon, context)
 
-    return render(request, "pages/words/allWords.html", context)
+
+def _ajax_mi(request):
+    return request.headers.get("X-Requested-With") == "fetch"
+
+
+def _dugme_html(request, word_id, kayitli, boyut="k"):
+    from django.template.loader import render_to_string
+    return render_to_string("pages/words/_listeDugmesi.html",
+                            {"wid": word_id, "kayitli": kayitli, "boyut": boyut,
+                             "geri_qs": request.GET.urlencode()}, request=request)
+
+
+def _ifade_dugme_html(request, expression_id, kayitli, boyut="b"):
+    from django.template.loader import render_to_string
+    return render_to_string("pages/words/_ifadeDugmesi.html",
+                            {"eid": expression_id, "kayitli": kayitli, "boyut": boyut,
+                             "geri_qs": request.GET.urlencode()}, request=request)
+
+
+def _ifade_listesi(request, expression_id, ekle):
+    from .models import UserExpressionLink
+    ifade = get_object_or_404(visible_expressions_qs(request.user), id=expression_id)
+    if ekle:
+        UserExpressionLink.objects.get_or_create(user=request.user, expression=ifade)
+    else:
+        UserExpressionLink.objects.filter(user=request.user, expression=ifade).delete()
+    if _ajax_mi(request):
+        return JsonResponse({"ok": True, "kayitli": ekle,
+                             "html": _ifade_dugme_html(request, ifade.id, ekle,
+                                                       request.GET.get("boyut", "b"))})
+    sonraki = request.GET.get("next")
+    if sonraki == "detay":
+        return redirect("expression_detail", id=ifade.id)
+    geri = request.GET.copy()
+    geri.pop("next", None)
+    qs = geri.urlencode()
+    return redirect(f"{reverse('all_words')}{'?' + qs if qs else ''}#expr-{ifade.id}")
+
+
+@login_required
+def add_expression_to_my_list(request, expression_id):
+    """İfade listesi (kelime listesinden ayrı). fetch ile JSON, yoksa geri dönüş."""
+    return _ifade_listesi(request, expression_id, True)
+
+
+@login_required
+def remove_expression_from_my_list(request, expression_id):
+    return _ifade_listesi(request, expression_id, False)
+
+
+def expression_detail(request, id):
+    """
+    İfade detayı: anlamı, işlevi ("yönü"), kalıbı, noktalama kuralı (doğru ve
+    YANLIŞ örneklerle), akademik kullanım, örnek cümleler ve aynı işi yapan
+    ifadeler (birinden ötekine atlayarak öğrenmek için).
+    """
+    from .models import ExampleKind
+    ifade = get_object_or_404(
+        visible_expressions_qs(request.user).select_related("group")
+        .prefetch_related("extra_groups", "examples"), id=id)
+    ornekler = list(ifade.examples.all())
+    benzerler = list(ifade.similar.select_related("group")[:40])
+    gruplar = ([ifade.group] if ifade.group else []) + list(ifade.extra_groups.all())
+    return render(request, "pages/words/expressionDetail.html", {
+        "ifade": ifade,
+        "gruplar": gruplar,
+        "ornekler": [o for o in ornekler if o.kind == ExampleKind.EXAMPLE],
+        "dogrular": [o for o in ornekler if o.kind == ExampleKind.CORRECT],
+        "yanlislar": [o for o in ornekler if o.kind == ExampleKind.WRONG],
+        "benzerler": benzerler,
+        "kayitli": bool(_kayitli_ifadeler(request.user, [ifade])),
+    })
+
+
+@login_required
+@require_POST
+def add_family_to_my_list(request, family_id):
+    """
+    Tüm Kelimeler'deki aile düğmeleri.
+      kapsam=hepsi : ailenin bütün görünür kelimeleri ("Tüm aileyi listeme ekle")
+      kapsam=kok   : yalnızca kök satırı (alarm isim + fiil gibi birden çok kayıt)
+      islem=cikar  : ekleme yerine listeden çıkar (kök düğmesi)
+    fetch ile çağrılırsa JSON döner, sayfa yenilenmez.
+    """
+    aile = get_object_or_404(WordFamily, id=family_id)
+    kelimeler = visible_words_qs(request.user).filter(family=aile).distinct()
+    kapsam = request.POST.get("kapsam")
+    if kapsam == "kok":
+        kokler = kelimeler.filter(text=aile.root)
+        kelimeler = kokler if kokler.exists() else kelimeler.order_by("text")[:1]
+    ids = list(kelimeler.values_list("id", flat=True))
+
+    if request.POST.get("islem") == "cikar":
+        UserWordLink.objects.filter(user=request.user, word_id__in=ids).delete()
+        yeni, kayitli = [], False
+    else:
+        mevcut = set(UserWordLink.objects.filter(user=request.user, word_id__in=ids)
+                     .values_list("word_id", flat=True))
+        yeni = [i for i in ids if i not in mevcut]
+        UserWordLink.objects.bulk_create(
+            [UserWordLink(user=request.user, word_id=i) for i in yeni], ignore_conflicts=True)
+        kayitli = True
+
+    if _ajax_mi(request):
+        from django.template.loader import render_to_string
+        mesaj = ""
+        if kapsam == "hepsi":
+            mesaj = (f"{aile.root} ailesinden {len(yeni)} kelime listene eklendi." if yeni
+                     else f"{aile.root} ailesinin bütün kelimeleri zaten listende.")
+        return JsonResponse({
+            "ok": True, "idler": ids, "mesaj": mesaj,
+            "dugmeler": {i: _dugme_html(request, i, kayitli) for i in ids},
+            "kok_html": render_to_string("pages/words/_kokDugmesi.html",
+                                         {"aile_id": aile.id, "kayitli": kayitli,
+                                          "geri_qs": request.POST.get("geri", "")},
+                                         request=request),
+        })
+    if kapsam == "hepsi":
+        if yeni:
+            messages.success(request, f"{aile.root} ailesinden {len(yeni)} kelime listene eklendi.")
+        else:
+            messages.info(request, f"{aile.root} ailesinin bütün kelimeleri zaten listende.")
+    geri = request.POST.get("geri") or ""
+    return redirect(f"{reverse('all_words')}{'?' + geri if geri else ''}#family-{aile.id}")
 
 
 # ---------------------------------------------------------------------------

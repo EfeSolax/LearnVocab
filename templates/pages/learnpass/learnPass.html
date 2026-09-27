@@ -24,7 +24,8 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
 <div class="mx-auto max-w-2xl" id="learnpass"
      data-mode="{{ mode }}"
      data-verdict-url="{% url 'learn_pass_verdict' %}"
-     data-undo-url="{% url 'learn_pass_undo' %}">
+     data-undo-url="{% url 'learn_pass_undo' %}"
+     data-declare-url="{% url 'learn_pass_declare' %}">
 
     {% csrf_token %}
 
@@ -70,6 +71,9 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
         <div class="px-6 py-8 sm:px-10 sm:py-10 text-center">
             <span id="card-level"
                   class="inline-block rounded-full bg-gray-100 dark:bg-slate-700 px-2.5 py-0.5 text-xs font-semibold text-gray-600 dark:text-slate-300"></span>
+
+            <span id="card-seen"
+                  class="hidden ml-1.5 rounded-full bg-amber-100 dark:bg-amber-950 px-2.5 py-0.5 text-xs font-semibold text-amber-700 dark:text-amber-300"></span>
 
             <h2 id="card-word" class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-slate-100 break-words"></h2>
 
@@ -125,6 +129,35 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
                         Evet
                     </button>
                 </div>
+            </div>
+
+            {% comment %}
+            Beyan şeridi. Yalnızca kelime yeterince görüldüyse çıkıyor.
+
+            Öğren-Geç'in asıl ürünü bu iki düğme. Karar (biliyorum /
+            bilmiyorum) tek bir ana ait; beyan kullanıcının o kelimeyle
+            kurduğu İLİŞKİ hakkında ve tekrar sayısını hesaba katıyor.
+            "Bu kadar çok çıkmasına rağmen hâlâ öğrenemedim" bilgisi
+            sayaçlardan çıkarılamaz, yalnızca sorularak öğrenilir.
+
+            Zorunlu değil: kullanıcı hiçbirine basmadan "Sonraki kelime"
+            diyebiliyor. Zorunlu olsaydı rastgele basılırdı ve veri
+            değersizleşirdi.
+            {% endcomment %}
+            <div id="step-declare" class="hidden mb-3 rounded-xl bg-gray-50 dark:bg-slate-900 p-3">
+                <p id="declare-question"
+                   class="mb-2.5 text-center text-xs font-medium text-gray-500 dark:text-slate-400"></p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button type="button" data-action="declare-stuck"
+                            class="rounded-lg bg-white dark:bg-slate-800 px-3 py-2.5 text-sm font-bold text-rose-700 dark:text-rose-300 ring-1 ring-inset ring-rose-300 dark:ring-rose-800 hover:bg-rose-50 dark:hover:bg-rose-950 transition">
+                        Hâlâ öğrenemedim
+                    </button>
+                    <button type="button" data-action="declare-mastered"
+                            class="rounded-lg bg-white dark:bg-slate-800 px-3 py-2.5 text-sm font-bold text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-300 dark:ring-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-950 transition">
+                        Artık öğrendim
+                    </button>
+                </div>
+                <p id="declare-done" class="hidden mt-2 text-center text-xs font-semibold text-indigo-600 dark:text-indigo-400"></p>
             </div>
 
             {# 3. adım: okuduktan sonra ilerle #}
@@ -190,6 +223,10 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
         stepAsk: document.getElementById("step-ask"),
         stepConfirm: document.getElementById("step-confirm"),
         stepNext: document.getElementById("step-next"),
+        seen: document.getElementById("card-seen"),
+        stepDeclare: document.getElementById("step-declare"),
+        declareQuestion: document.getElementById("declare-question"),
+        declareDone: document.getElementById("declare-done"),
         undo: document.getElementById("undo-button"),
         statSeen: document.getElementById("stat-seen"),
         statAdded: document.getElementById("stat-added"),
@@ -243,12 +280,24 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
         el.sentence.textContent = kart.prompt_sentence || "";
         el.sentence.classList.toggle("hidden", !kart.prompt_sentence);
 
+        // "Kaçıncı kez" rozeti: beyanın anlamlı olması için kullanıcının
+        // bu sayıyı görmesi gerekiyor.
+        const karsilasma = kart.encounter || { times_seen: 0 };
+        if (karsilasma.times_seen > 0) {
+            el.seen.textContent = (karsilasma.times_seen + 1) + ". kez";
+            el.seen.classList.remove("hidden");
+        } else {
+            el.seen.classList.add("hidden");
+        }
+
         // Anlam kapalı başlar: karar anlamı GÖRMEDEN veriliyor
         gizle(el.reveal);
         gizle(el.addedBadge);
         goster(el.stepAsk);
         gizle(el.stepConfirm);
         gizle(el.stepNext);
+        gizle(el.stepDeclare);
+        gizle(el.declareDone);
 
         el.card.scrollIntoView({ block: "nearest" });
     }
@@ -355,6 +404,45 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
         kartiCiz(kart);
     }
 
+    function beyanSeridiniGoster(durum, karar) {
+        // Kullanıcı zaten beyan vermişse tekrar sorulmuyor.
+        if (!durum || !durum.can_declare || durum.declaration !== "none") { return; }
+
+        // Soru metni kararla birlikte değişiyor: aynı iki düğme, ama
+        // kullanıcının içinde bulunduğu duruma göre farklı bir soru.
+        const kez = durum.times_seen;
+        if (karar === "known") {
+            el.declareQuestion.textContent =
+                "Bu kelimeyi " + kez + " kez gördün. Artık öğrendin mi?";
+        } else {
+            el.declareQuestion.textContent =
+                "Bu kelimeyi " + kez + " kez gördün, " + durum.miss_count +
+                " kez bilemedin. Ne dersin?";
+        }
+        goster(el.stepDeclare);
+    }
+
+    async function beyanGonder(beyan) {
+        if (!mevcut) { return; }
+        try {
+            const cevap = await fetch(kok.dataset.declareUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "X-CSRFToken": csrf },
+                body: JSON.stringify({ word_id: mevcut.id, declaration: beyan, mode: mode }),
+            });
+            if (!cevap.ok) { return; }
+            const veri = await cevap.json();
+            el.declareDone.textContent = beyan === "mastered"
+                ? "Kaydedildi — bu kelime Öğren-Geç'te bir daha çıkmayacak."
+                : "Kaydedildi — bu kelime çalışmalarında öne alınacak.";
+            gizle(el.stepDeclare.querySelector(".grid"));
+            goster(el.declareDone);
+            if (typeof veri.remaining === "number") {
+                el.statRemaining.textContent = veri.remaining;
+            }
+        } catch (e) { /* beyan kaybolursa akış bozulmasın */ }
+    }
+
     async function eylem(ad) {
         if (ad === "unknown") {
             anlamiAc();
@@ -363,7 +451,8 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
             gizle(el.stepAsk);
             goster(el.stepNext);
             adim = "next";
-            await kararGonder("unknown");
+            const veri = await kararGonder("unknown");
+            if (veri) { beyanSeridiniGoster(veri.answered, "unknown"); }
 
         } else if (ad === "claim-known") {
             // Henüz kaydetmiyoruz: önce anlamı gösterip dürüstlük sorusunu soruyoruz
@@ -375,8 +464,17 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
         } else if (ad === "known") {
             gizle(el.stepConfirm);
             adim = "next";
-            await kararGonder("known");
-            ilerle();   // gerçekten biliyorsa bekletmeye gerek yok
+            const veri = await kararGonder("known");
+            // Gerçekten biliyorsa bekletmeye gerek yok — AMA kelime
+            // yeterince görüldüyse "artık öğrendim mi" sorusunu sormanın
+            // tam yeri burası. Öğren-Geç'in topladığı asıl veri bu.
+            if (veri && veri.answered && veri.answered.can_declare
+                && veri.answered.declaration === "none") {
+                goster(el.stepNext);
+                beyanSeridiniGoster(veri.answered, "known");
+            } else {
+                ilerle();
+            }
 
         } else if (ad === "misjudged") {
             el.addedText.textContent = "Listene eklendi — egzersizlerde öne alınacak";
@@ -384,10 +482,18 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
             gizle(el.stepConfirm);
             goster(el.stepNext);
             adim = "next";
-            await kararGonder("misjudged");
+            const veri = await kararGonder("misjudged");
+            if (veri) { beyanSeridiniGoster(veri.answered, "misjudged"); }
+
+        } else if (ad === "declare-mastered") {
+            await beyanGonder("mastered");
+
+        } else if (ad === "declare-stuck") {
+            await beyanGonder("stuck");
 
         } else if (ad === "next") {
             gizle(el.stepNext);
+            gizle(el.stepDeclare);
             ilerle();
         }
     }
@@ -406,6 +512,14 @@ Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
         else if (adim === "ask" && tus === "2") { olay.preventDefault(); eylem("claim-known"); }
         else if (adim === "confirm" && tus === "1") { olay.preventDefault(); eylem("misjudged"); }
         else if (adim === "confirm" && tus === "2") { olay.preventDefault(); eylem("known"); }
+        else if (adim === "next" && tus === "3"
+                 && !el.stepDeclare.classList.contains("hidden")) {
+            olay.preventDefault(); eylem("declare-stuck");
+        }
+        else if (adim === "next" && tus === "4"
+                 && !el.stepDeclare.classList.contains("hidden")) {
+            olay.preventDefault(); eylem("declare-mastered");
+        }
         else if (adim === "next" && (tus === " " || tus === "enter")) { olay.preventDefault(); eylem("next"); }
         else if (tus === "z") { olay.preventDefault(); geriAl(); }
     });

@@ -7,5 +7,6 @@ urlpatterns = [
     # JSON uçları mod adresinden ÖNCE: "verdict" bir mod adı sanılmasın
     path("learn/api/verdict/", views.learnPassVerdict, name="learn_pass_verdict"),
     path("learn/api/undo/", views.learnPassUndo, name="learn_pass_undo"),
+    path("learn/api/declare/", views.learnPassDeclare, name="learn_pass_declare"),
     path("learn/<str:mode>/", views.learnPassRun, name="learn_pass_run"),
 ]

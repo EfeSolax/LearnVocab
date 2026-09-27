@@ -1,0 +1,149 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}
+Çalışma ana sayfası.
+
+Sayfada SORU TİPİ SEÇENEĞİ YOK ve bu bilinçli. Kullanıcıya zorluk
+seçtirmek zorluğun faydasını ortadan kaldırıyor: insan kendini iyi
+hissettiren tipi seçer (tanıma), zorlandığını seçmez (üretim) — oysa
+öğreten ikincisidir. Seçilebilen tek şey KAPSAM (hepsi / bir liste /
+zorlandıkların), çünkü o bir kolaylık tercihi.
+{% endcomment %}
+
+{% block title %}Çalışma{% endblock %}
+{% block page_heading %}{% endblock %}
+
+{% block page %}
+
+{% include 'base/_exerciseTabs.html' with exercise_tab="quizzes" %}
+
+<div class="mx-auto max-w-3xl">
+
+    {# --------------------------- Durum şeridi --------------------------- #}
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+        <div class="rounded-xl bg-white dark:bg-slate-800 p-4 ring-1 ring-gray-200 dark:ring-slate-700">
+            <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{{ summary.due }}</div>
+            <div class="text-xs font-medium text-gray-500 dark:text-slate-400 mt-1">sırası gelen</div>
+        </div>
+        <div class="rounded-xl bg-white dark:bg-slate-800 p-4 ring-1 ring-gray-200 dark:ring-slate-700">
+            <div class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{{ summary.new_budget }}</div>
+            <div class="text-xs font-medium text-gray-500 dark:text-slate-400 mt-1">bugün yeni</div>
+        </div>
+        <div class="rounded-xl bg-white dark:bg-slate-800 p-4 ring-1 ring-gray-200 dark:ring-slate-700"
+             title="Kartlarının hatırlanabilirlik toplamı. Çalışmadığın günlerde DÜŞER — gerçekte olan da budur.">
+            <div class="text-2xl font-bold text-gray-900 dark:text-slate-100">{{ summary.knowledge }}</div>
+            <div class="text-xs font-medium text-gray-500 dark:text-slate-400 mt-1">kalıcı bilgi</div>
+        </div>
+        <div class="rounded-xl bg-white dark:bg-slate-800 p-4 ring-1 ring-gray-200 dark:ring-slate-700">
+            <div class="text-2xl font-bold text-amber-600 dark:text-amber-400">{{ summary.streak }}</div>
+            <div class="text-xs font-medium text-gray-500 dark:text-slate-400 mt-1">günlük seri</div>
+        </div>
+    </div>
+
+    {% if resume_session %}
+    <div class="mb-6 rounded-xl bg-amber-50 dark:bg-amber-950/40 p-4 ring-1 ring-amber-200 dark:ring-amber-900 flex flex-wrap items-center justify-between gap-3">
+        <p class="text-sm text-amber-900 dark:text-amber-200">
+            Yarım kalmış bir oturumun var — {{ resume_session.remaining }} kart bekliyor.
+        </p>
+        <a href="{% url 'study_run' session_id=resume_session.id %}"
+           class="rounded-lg bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700 transition">
+            Devam et
+        </a>
+    </div>
+    {% endif %}
+
+    {# --------------------------- Başlat --------------------------- #}
+    <div class="rounded-2xl bg-white dark:bg-slate-800 p-6 sm:p-8 ring-1 ring-gray-200 dark:ring-slate-700">
+
+        {% if not has_items %}
+            <h2 class="text-xl font-bold text-gray-900 dark:text-slate-100">Önce birkaç kelime ekle</h2>
+            <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">
+                Çalışma senin listendeki kelimelerden yürüyor. Kelime eklediğinde
+                kartların kendiliğinden açılır.
+            </p>
+            <a href="{% url 'all_words' %}"
+               class="mt-5 inline-block rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 transition">
+                Kelimelere göz at
+            </a>
+
+        {% elif summary.due == 0 and summary.new_budget == 0 %}
+            <h2 class="text-xl font-bold text-gray-900 dark:text-slate-100">Bugünlük bu kadar</h2>
+            <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">
+                Sırası gelen kart kalmadı. Fazladan çalışmak kalıcılığı artırmıyor —
+                tekrarın işe yaraması için aradan zaman geçmesi gerekiyor.
+                Yine de takıldığın kelimelere bakmak istersen:
+            </p>
+            <form method="POST" action="{% url 'study_start' %}" class="mt-5">
+                {% csrf_token %}
+                <input type="hidden" name="mode" value="weak">
+                <button type="submit"
+                        class="rounded-lg bg-white dark:bg-slate-800 px-5 py-2.5 text-sm font-semibold text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-300 dark:ring-indigo-700 hover:bg-indigo-50 dark:hover:bg-indigo-950 transition">
+                    Zorlandıklarımı çalış
+                </button>
+            </form>
+
+        {% else %}
+            <h2 class="text-xl font-bold text-gray-900 dark:text-slate-100">
+                {{ summary.due }} kart sırasını bekliyor
+            </h2>
+            <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">
+                {% if summary.new_budget %}
+                    Bunlara bugünkü {{ summary.new_budget }} yeni kart da eklenecek.
+                {% else %}
+                    Bugünlük yeni kart açılmıyor; önce birikenler.
+                {% endif %}
+            </p>
+
+            <form method="POST" action="{% url 'study_start' %}" class="mt-6">
+                {% csrf_token %}
+                <input type="hidden" name="mode" value="due">
+                <button type="submit"
+                        class="w-full sm:w-auto rounded-xl bg-indigo-600 px-8 py-3.5 text-base font-semibold text-white hover:bg-indigo-700 transition shadow-sm">
+                    Çalışmaya başla
+                </button>
+            </form>
+        {% endif %}
+    </div>
+
+    {# --------------------------- Kapsam --------------------------- #}
+    {% if has_items %}
+    <div class="mt-6 rounded-2xl bg-white dark:bg-slate-800 p-6 ring-1 ring-gray-200 dark:ring-slate-700">
+        <h3 class="text-sm font-bold text-gray-900 dark:text-slate-100">Başka bir kapsamla çalış</h3>
+        <p class="mt-1 text-xs text-gray-500 dark:text-slate-400">
+            Bunlar programın dışına çıkar. Verdiğin cevaplar yine kaydedilir ve
+            kartları ilerletir; yalnızca hangi kartların geleceği değişir.
+        </p>
+
+        <div class="mt-4 flex flex-wrap gap-2">
+            <form method="POST" action="{% url 'study_start' %}">
+                {% csrf_token %}
+                <input type="hidden" name="mode" value="weak">
+                <button type="submit"
+                        class="rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 dark:text-slate-200 ring-1 ring-inset ring-gray-300 dark:ring-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition">
+                    Zorlandıklarım
+                </button>
+            </form>
+
+            {% for liste in word_lists %}
+            <form method="POST" action="{% url 'study_start' %}">
+                {% csrf_token %}
+                <input type="hidden" name="mode" value="list">
+                <input type="hidden" name="list_id" value="{{ liste.id }}">
+                <button type="submit"
+                        class="rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 dark:text-slate-200 ring-1 ring-inset ring-gray-300 dark:ring-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition">
+                    {{ liste.name }}
+                </button>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="mt-6 text-center">
+        <a href="{% url 'study_progress' %}"
+           class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
+            İlerlemeni gör →
+        </a>
+    </div>
+</div>
+{% endblock %}

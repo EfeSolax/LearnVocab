@@ -3,24 +3,53 @@
 
 İki mod var ve ikisi tamamen farklı havuzlardan besleniyor:
 
-  mine -> kullanıcının kendi listesi. Amaç hızlı gözden geçirme.
+  mine -> kullanıcının kendi listesi. Amaç ZORLANDIĞINI ORTAYA ÇIKARMAK.
   new  -> kullanıcının listesinde OLMAYAN temel kelimeler. Amaç keşif.
 
-"new" modunda seviyeler eşit değil: hazırlık öğrencisinin asıl ihtiyacı
-orta-üst seviyede olduğu için ağırlık B2'de. Dağılım LEVEL_WEIGHTS'te,
-tek yerde.
+SIRALAMA — "EN ÇOK YANILDIĞINDAN EN AZ YANILDIĞINA"
+---------------------------------------------------
+Kendi kelimeleri modunda kartlar artık rastgele ya da "en uzun süredir
+görülmeyen" sırasıyla gelmiyor; ZORLANMA PUANINA göre, en zorlanılandan
+en az zorlanılana doğru geliyor.
+
+Sebebi Öğren-Geç'in ne işe yaradığıyla ilgili. Bu bölüm bir alıştırma
+değil, bir ölçüm: "kullanıcı bu kelimeyi bildiğini düşünüyor mu?"
+sorusunu soruyor. Bu soruyu iyi bildiği kelimelerde sormanın bilgi
+değeri düşük — cevabı zaten biliyoruz. Değerli olan, zorlandığı
+kelimelerde sormak: orada cevap tahmin edilemez ve çoğu zaman
+şaşırtıcıdır ("biliyorum" deyip yanılmak).
+
+ZORLANMA PUANI ÜÇ KAYNAKTAN GELİYOR
+-----------------------------------
+Tek bir kaynak yetmiyor çünkü üçü farklı şeyleri ölçüyor:
+
+  Öğren-Geç       kullanıcı kendini nasıl değerlendiriyor (miss_ratio)
+  Çalışma         gerçekte kaç kez unuttu (ReviewItem.lapses)
+  Eski sayaçlar   quizlerde yanlış oranı (UserWordLink.wrongRatio)
+
+En ağır olan birincisi değil ikincisi de değil — kullanıcının kendi
+BEYANI. "Bu kadar gördüm ve hâlâ öğrenemedim" diyen bir kelime her
+şeyin önüne geçiyor, çünkü bu bilgi başka hiçbir yerden gelmiyor.
+
+HİÇ VERİSİ OLMAYAN KELİMELER
+----------------------------
+Puanı ORTA (0.5) alıyorlar. Sıfır verilseydi hiç dokunulmamış kelimeler
+listenin en sonuna düşer ve kullanıcı onlarla hiç karşılaşmazdı; yüksek
+verilseydi bu sefer gerçekten zorlandıkları geri plana düşerdi. Ortada
+durmaları şunu sağlıyor: önce zorlandıkları, sonra hiç bakmadıkları,
+en sonda iyi bildikleri.
 """
 
 import random
 
 from django.db.models import Q
 
-from words.models import Word
+from words.models import UserWordLink, Word
 
-from .models import WordEncounter
+from .models import Declaration, WordEncounter
 
 
-# Seviye seçilme ağırlıkları. Toplamı 100 olmak zorunda değil; oranlar önemli.
+# Seviye seçilme ağırlıkları ("new" modu). Toplamı 100 olmak zorunda değil.
 LEVEL_WEIGHTS = (
     ("B2", 40),
     ("B1", 25),
@@ -29,15 +58,22 @@ LEVEL_WEIGHTS = (
     ("A2", 5),
 )
 
+# Zorlanma puanının bileşen ağırlıkları.
+AGIRLIK_BEYAN = 10.0        # "hâlâ öğrenemedim" — her şeyin önünde
+AGIRLIK_OGREN_GEC = 3.0     # kullanıcının kendi değerlendirmesi
+AGIRLIK_UNUTMA = 1.5        # Çalışma'da kaç kez unuttu
+AGIRLIK_ESKI_ORAN = 1.0     # quiz sayaçlarındaki yanlış oranı
+
+# Hiç verisi olmayan kelimenin puanı.
+NOTR_PUAN = 0.5
+
+# Unutma sayısının doyduğu nokta: 3 kez unutmakla 9 kez unutmak arasında
+# sıralama açısından anlamlı fark yok, ikisi de "bu kelime sorunlu".
+UNUTMA_DOYUM = 3
+
 
 def _weighted_levels(rng=None):
-    """
-    Seviyeleri ağırlıklarına göre rastgele sıraya dizer.
-
-    Tek bir seviye seçip "boşsa vazgeç" demek yerine bütün seviyeleri
-    sıralıyoruz: seçilen seviyede gösterilecek kelime kalmadıysa sıradakine
-    düşülüyor, yani havuz tükenene kadar kart gelmeye devam ediyor.
-    """
+    """Seviyeleri ağırlıklarına göre rastgele sıraya dizer."""
     rng = rng or random
     kalan = list(LEVEL_WEIGHTS)
     sira = []
@@ -77,8 +113,7 @@ def own_words_qs(user):
 def new_words_qs(user, level=None):
     """
     Kullanıcının listesinde olmayan ve daha önce Öğren-Geç'te görmediği
-    temel kelimeler. Kişisel/gizli kelimeler buraya hiç girmiyor: havuz
-    yalnızca herkese açık temel kelimelerden oluşuyor.
+    temel kelimeler. Kişisel/gizli kelimeler buraya hiç girmiyor.
     """
     qs = (
         Word.objects.filter(isBaseWord=True)
@@ -91,61 +126,112 @@ def new_words_qs(user, level=None):
     return qs.distinct()
 
 
+# ----------------------------------------------------------------------
+# Zorlanma puanı
+# ----------------------------------------------------------------------
+
+def struggle_scores(user, word_ids=None):
+    """
+    {word_id: puan} — puan büyükse kullanıcı o kelimede daha çok zorlanıyor.
+
+    Üç kaynak tek geçişte toplanıyor; kelime başına sorgu açılmıyor
+    (havuz binlerce kelime olabilir).
+    """
+    puanlar = {}
+
+    def ekle(word_id, miktar):
+        puanlar[word_id] = puanlar.get(word_id, 0.0) + miktar
+
+    # 1. Öğren-Geç'in kendi verisi + kullanıcının beyanı
+    kayitlar = WordEncounter.objects.filter(user=user)
+    if word_ids is not None:
+        kayitlar = kayitlar.filter(word_id__in=word_ids)
+    for kayit in kayitlar.only("word_id", "times_seen", "unknown_count",
+                               "misjudged_count", "declaration"):
+        ekle(kayit.word_id, AGIRLIK_OGREN_GEC * kayit.miss_ratio)
+        if kayit.declaration == Declaration.STUCK:
+            ekle(kayit.word_id, AGIRLIK_BEYAN)
+
+    # 2. Çalışma'daki unutmalar
+    try:
+        from quizzes.models import ReviewItem
+
+        kartlar = ReviewItem.objects.filter(user=user, lapses__gt=0)
+        if word_ids is not None:
+            kartlar = kartlar.filter(word_id__in=word_ids)
+        # Aynı kelimenin birden çok kartı olabilir; en çok unutulan boyut
+        # kelimenin puanını belirliyor (toplamak, çok kartlı kelimeleri
+        # yapay olarak öne çıkarırdı).
+        en_cok = {}
+        for word_id, lapses in kartlar.values_list("word_id", "lapses"):
+            en_cok[word_id] = max(en_cok.get(word_id, 0), lapses)
+        for word_id, lapses in en_cok.items():
+            ekle(word_id, AGIRLIK_UNUTMA * min(lapses / UNUTMA_DOYUM, 1.0))
+    except Exception:  # pragma: no cover — quizzes yoksa Öğren-Geç yine çalışsın
+        pass
+
+    # 3. Eski quiz sayaçları
+    baglar = UserWordLink.objects.filter(user=user)
+    if word_ids is not None:
+        baglar = baglar.filter(word_id__in=word_ids)
+    for bag in baglar.only("word_id", "correctCount", "wrongCount"):
+        if bag.totalAttempts:
+            ekle(bag.word_id, AGIRLIK_ESKI_ORAN * (bag.wrongRatio / 100.0))
+
+    return puanlar
+
+
+# Puanı en yüksek kaç aday arasından rastgele seçileceği.
+#
+# Kesin sıra (hep en yüksek puanlıyı göstermek) kullanıcıyı aynı kelimeye
+# kilitler: kart her açtığında aynı kelime gelir, karar verir, kelime yine
+# en tepede kalır. Tepeden rastgele seçmek hem en zorlandıklarında kalmayı
+# hem de tekrarı önlemeyi sağlıyor.
+ADAY_PENCERESI = 12
+
+
+def pick_own_word(user, rng=None):
+    """
+    Kendi listesinden sıradaki kelime — en çok zorlanılandan başlayarak.
+
+    Eski davranış: hiç görülmemişler mutlak öncelikli, sonra en uzun
+    süredir görülmeyenler. O sıralama Öğren-Geç'i bir "liste gezme"
+    aracına çeviriyordu; artık bölüm zorlanmayı ortaya çıkarmak için var.
+    """
+    rng = rng or random
+    adaylar = list(own_words_qs(user).only("id"))
+    if not adaylar:
+        return None
+
+    puanlar = struggle_scores(user, [k.id for k in adaylar])
+    # Hiç verisi olmayan kelime ortada durur (bkz. dosya başı).
+    sirali = sorted(adaylar,
+                    key=lambda k: puanlar.get(k.id, NOTR_PUAN),
+                    reverse=True)
+    havuz = sirali[:ADAY_PENCERESI]
+    return Word.objects.filter(id=rng.choice(havuz).id).first()
+
+
 def _random_from(qs, rng=None):
-    """
-    Queryset'ten rastgele bir kayıt. order_by("?") büyük tablolarda yavaş
-    olduğu için önce id listesi alınıp aralarından seçiliyor.
-    """
+    """Queryset'ten rastgele bir kayıt."""
     ids = list(qs.values_list("id", flat=True)[:2000])
     if not ids:
         return None
     return Word.objects.filter(id=(rng or random).choice(ids)).first()
 
 
-# Aynı kelimenin üst üste gelmemesi için rastgele seçim yapılan aday penceresi
-OWN_CANDIDATE_WINDOW = 30
-
-
-def pick_own_word(user, rng=None):
-    """
-    Kendi listesinden sıradaki kelime.
-
-    Hiç görülmemiş kelimeler KESİN önceliklidir: bir tane bile varsa, daha
-    önce görülmüş kelimeler hiç değerlendirmeye girmez. (Önceki sürümde iki
-    grup tek bir listede sıralanıp ilk 30 aday arasından rastgele seçiliyordu;
-    havuz küçükken bu, görülmüş bir kelimenin görülmemişin önüne geçmesine
-    sebep oluyordu.)
-
-    Görülmemiş kalmadıysa en uzun süredir görülmeyenlere düşülür. Her iki
-    durumda da ilk OWN_CANDIDATE_WINDOW aday arasından rastgele seçiliyor ki
-    aynı kelime arka arkaya gelmesin.
-    """
-    rng = rng or random
-    gorulme = dict(
-        WordEncounter.objects.filter(user=user).values_list("word_id", "last_seen_at")
-    )
-    adaylar = list(own_words_qs(user).only("id"))
-    if not adaylar:
-        return None
-
-    gorulmemis = [w for w in adaylar if w.id not in gorulme]
-    if gorulmemis:
-        havuz = gorulmemis[:OWN_CANDIDATE_WINDOW]
-    else:
-        adaylar.sort(key=lambda w: gorulme[w.id])
-        havuz = adaylar[:OWN_CANDIDATE_WINDOW]
-
-    return Word.objects.filter(id=rng.choice(havuz).id).first()
-
-
 def pick_new_word(user, rng=None):
-    """Kur havuzundan, ağırlıklı kur sırasına göre sıradaki yeni kelime."""
+    """
+    Kur havuzundan, ağırlıklı kur sırasına göre sıradaki yeni kelime.
+
+    Burada zorlanma sıralaması YOK ve olamaz: kullanıcı bu kelimeleri
+    hiç görmedi, zorlandığına dair veri yok. Bu mod keşif için.
+    """
     rng = rng or random
     for kur in _weighted_levels(rng):
         kelime = _random_from(new_words_qs(user, level=kur), rng)
         if kelime is not None:
             return kelime
-    # Ağırlık tablosunda olmayan bir kur seviyesi kalmış olabilir
     return _random_from(new_words_qs(user), rng)
 
 
@@ -161,3 +247,17 @@ def remaining_count(user, mode):
     if mode == WordEncounter.MODE_MINE:
         return own_words_qs(user).count()
     return new_words_qs(user).count()
+
+
+def stuck_word_ids(user):
+    """
+    Kullanıcının "hâlâ öğrenemedim" dediği kelimeler.
+
+    Çalışma bölümü bunu sıralamada kullanıyor (quizzes/session.py):
+    aynı gün sırası gelmiş kartlar arasında bunlar öne alınıyor.
+    """
+    return set(
+        WordEncounter.objects
+        .filter(user=user, declaration=Declaration.STUCK)
+        .values_list("word_id", flat=True)
+    )

@@ -26,7 +26,7 @@ from LearnVocab.authgate import login_gate
 from words.models import UserWordLink, Word
 
 from . import selection
-from .models import WordEncounter
+from .models import Declaration, EncounterLog, WordEncounter
 
 
 GATE_LABEL = "Egzersizler"
@@ -44,6 +44,27 @@ HISTORY_LIMIT = 20
 # ----------------------------------------------------------------------
 # Kart verisi
 # ----------------------------------------------------------------------
+
+def encounter_payload(word, user):
+    """
+    Kartın altına basılacak karşılaşma bilgisi.
+
+    Kullanıcıya kaçıncı kez gördüğünü söylemek bir süs değil: beyanın
+    kendisi ("bu kadar çok çıkmasına RAĞMEN hâlâ öğrenemedim") ancak
+    sayıyı bilirse anlamlı. Sayı görünmeden sorulan soru, kullanıcının
+    hafızasındaki belirsiz bir izlenime dayanır.
+    """
+    kayit = WordEncounter.objects.filter(user=user, word=word).first()
+    if kayit is None:
+        return {"times_seen": 0, "can_declare": False,
+                "declaration": Declaration.NONE, "miss_count": 0}
+    return {
+        "times_seen": kayit.times_seen,
+        "can_declare": kayit.can_declare,
+        "declaration": kayit.declaration,
+        "miss_count": kayit.miss_count,
+    }
+
 
 def card_payload(word, user):
     """Bir kelimeyi karta basılacak hâle getirir."""
@@ -69,6 +90,7 @@ def card_payload(word, user):
         "v3": word.v3Form or "",
         "in_my_list": UserWordLink.objects.filter(user=user, word=word).exists(),
         "detail_url": f"/words/word-detail/{word.id}/",
+        "encounter": encounter_payload(word, user),
     }
 
 
@@ -186,8 +208,11 @@ def learnPassVerdict(request):
             "last_verdict": onceki.last_verdict,
             "last_mode": onceki.last_mode,
             "times_seen": onceki.times_seen,
+            "unknown_count": onceki.unknown_count,
+            "known_count": onceki.known_count,
             "misjudged_count": onceki.misjudged_count,
             "is_learned": onceki.is_learned,
+            "declaration": onceki.declaration,
         },
         "added_to_list": False,
     }
@@ -215,6 +240,10 @@ def learnPassVerdict(request):
 
     return JsonResponse({
         "stats": stats,
+        # Cevaplanan kelimenin GÜNCEL durumu. Beyan şeridinin çıkıp
+        # çıkmayacağına bu karar veriyor; eşiğin (BEYAN_ESIGI) tarayıcıda
+        # tekrar yazılmaması için sunucu hesaplayıp gönderiyor.
+        "answered": encounter_payload(word, request.user),
         "card": next_card(request.user, mode),
         "remaining": selection.remaining_count(request.user, mode),
     })
@@ -249,6 +278,15 @@ def learnPassUndo(request):
     else:
         WordEncounter.objects.filter(user=request.user, word=word).update(**onceki)
 
+    # Günlükteki son karşılaşma kaydı da geri alınıyor. Yanlış tuşa
+    # basılarak oluşmuş bir kayıt, ileride "kullanıcı bu kelimeyi kaçıncı
+    # karşılaşmada öğrendi" sorusunun cevabını bozar.
+    son_kayit = (EncounterLog.objects
+                 .filter(user=request.user, word=word, kind=EncounterLog.VERDICT)
+                 .order_by("-created_at", "-id").first())
+    if son_kayit is not None:
+        son_kayit.delete()
+
     if kayit["added_to_list"]:
         UserWordLink.objects.filter(user=request.user, word=word).delete()
 
@@ -263,5 +301,48 @@ def learnPassUndo(request):
     return JsonResponse({
         "stats": stats,
         "card": card_payload(word, request.user),
+        "remaining": selection.remaining_count(request.user, mode),
+    })
+
+
+@require_POST
+def learnPassDeclare(request):
+    """
+    Kullanıcının "artık öğrendim" / "hâlâ öğrenemedim" beyanını kaydeder.
+
+    Bu uç Öğren-Geç'in asıl ürününü topluyor. Karar (biliyorum/bilmiyorum)
+    tek bir ana ait; beyan ise kullanıcının o kelimeyle kurduğu İLİŞKİ
+    hakkında ve tekrar sayısını da hesaba katıyor.
+
+    Beyan yalnızca kelime yeterince görüldükten sonra kabul ediliyor
+    (BEYAN_ESIGI): "bu kadar çok çıkmasına rağmen" ifadesi, birinci
+    karşılaşmada bir şey anlatmaz.
+    """
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "auth"}, status=403)
+
+    payload = _body(request)
+    beyan = payload.get("declaration")
+    if beyan not in (Declaration.MASTERED, Declaration.STUCK):
+        return JsonResponse({"error": "declaration"}, status=400)
+
+    word = get_object_or_404(Word, id=payload.get("word_id") or 0)
+    kayit = WordEncounter.objects.filter(user=request.user, word=word).first()
+
+    if kayit is None or not kayit.can_declare:
+        return JsonResponse({"error": "too_early"}, status=400)
+
+    kayit.declare(beyan)
+
+    # "Hâlâ öğrenemedim" denen kelime listede olmalı: kullanıcı onunla
+    # uğraşmaya devam edecek. "Öğrendim" denen kelime listeden
+    # ÇIKARILMIYOR — yalnızca Öğren-Geç havuzundan düşüyor.
+    if beyan == Declaration.STUCK:
+        UserWordLink.objects.get_or_create(user=request.user, word=word)
+
+    mode = _mode_from(request, payload)
+    return JsonResponse({
+        "ok": True,
+        "declaration": beyan,
         "remaining": selection.remaining_count(request.user, mode),
     })

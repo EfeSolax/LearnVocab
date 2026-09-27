@@ -1,20 +1,20 @@
-from django.conf import settings
-from django.conf.urls.static import static
 from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    # Yeni Quiz oluşturulurken bağlanacak link
-    path("quizzes/attempt-quiz/", views.attemptQuiz, name = "attempt_quiz"),
-    path("quizzes/quiz-page/", views.quizPage, name = "quiz_page"),
+    # Çalışma akışı
+    path("study/", views.studyHome, name="study_home"),
+    path("study/start/", views.studyStart, name="study_start"),
+    path("study/<int:session_id>/", views.studyRun, name="study_run"),
+    path("study/<int:session_id>/finish/", views.studyFinish, name="study_finish"),
 
-    path('quiz/<int:attempt_id>/<int:question_index>/', views.quizPage, name='quiz_page'),
-    path('quiz/<int:attempt_id>/complete/', views.quizComplete, name='quiz_complete'),
-
-    path("quizzes/quiz-review/", views.quizReviewList, name = "quiz_review"),
-    path("quizzes/remove-quiz/<int:quiz_id>", views.removeQuiz, name = "remove_quiz"),
-
-    # Bilgi analizi: hangi kelimeyi iyi biliyor, hangisinde takılıyor
+    # İlerleme ve analiz
+    path("progress/", views.studyProgress, name="study_progress"),
     path("analysis/", views.wordAnalysis, name="word_analysis"),
+
+    # Eski adreslerin karşılığı — şablonlarda ve yer imlerinde
+    # kalmış bağlantılar kırılmasın diye çalışma sayfasına yönlendiriyor.
+    path("attempt-quiz/", views.legacyRedirect, name="attempt_quiz"),
+    path("quiz-review/", views.studyProgress, name="quiz_review"),
 ]
