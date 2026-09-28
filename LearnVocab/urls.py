@@ -14,6 +14,7 @@ from django.conf.urls.static import static
 from django.shortcuts import render
 from django.urls import include, path
 
+from readings import api as readings_api
 from words import views as word_views
 
 
@@ -59,20 +60,13 @@ def showAbout(request):
     return render(request, "pages/about.html")
 
 
-def showReadings(request):
-    """
-    Okumalar — henüz içerik yok, yer tutucu.
-    Mobil alt sekme çubuğundaki beş bölümden biri olduğu için adresi
-    şimdiden tanımlı; gerçek sayfa geldiğinde burası değişecek.
-    """
-    return render(request, "pages/readings.html", {"active_page": "Okumalar"})
-
-
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", showIndex, name="index"),
     path("about/", showAbout, name="about"),
-    path("readings/", showReadings, name="readings"),
+    # Okumalar (rapor 8) ve kelime sorgulama API'si (okuma baloncuğu, Chrome eklentisi)
+    path("readings/", include("readings.urls")),
+    path("api/kelime/", readings_api.kelime, name="kelime_api"),
     # Sözlük (rapor 4). Adres paylaşılabilir: /sozluk/?q=aim
     path("sozluk/", word_views.sozluk, name="sozluk"),
     path("users/", include("users.urls")),

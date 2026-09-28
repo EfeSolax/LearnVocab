@@ -56,7 +56,7 @@ NAV_SECTIONS = (
         "key": "readings",
         "label": "Okumalar",
         "url_name": "readings",
-        "matches": ("readings",),
+        "matches": ("readings", "readings_library_text", "readings_user_text", "readings_add"),
     },
     {
         # Eski "Metinler" bölümünün yeni adı (rapor 2.1).

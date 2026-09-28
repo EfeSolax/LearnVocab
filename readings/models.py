@@ -48,6 +48,12 @@ class ReadingText(models.Model):
 
     word_count = models.PositiveIntegerField(default=0)
 
+    # Kütüphane (rapor 8, veri işi D5) için: metnin seviyesi ve kaynağı
+    # ("Project Gutenberg", "Yapay zekâ ile üretildi" …). İkisi de boş olabilir;
+    # kitaptan gelen ilk 40 metinde yok.
+    cefr = models.CharField(max_length=15, blank=True, default="", verbose_name="seviye")
+    source = models.CharField(max_length=200, blank=True, default="", verbose_name="kaynak")
+
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
@@ -61,7 +67,7 @@ class ReadingText(models.Model):
     @property
     def paragraphs(self):
         """Boş olmayan paragraflar, metindeki sırayla."""
-        return [p.strip() for p in self.body.split("\n\n") if p.strip()]
+        return paragraflara_bol(self.body)
 
     @property
     def topic_label(self):
@@ -94,3 +100,59 @@ class ReadingProgress(models.Model):
 
     def __str__(self):
         return f"{self.user.username} · {self.text}"
+
+
+def paragraflara_bol(metin):
+    """Boş satırla ayrılmış paragraflar; boş olanlar atılır."""
+    return [p.strip() for p in (metin or "").split("\n\n") if p.strip()]
+
+
+class UserTextQuerySet(models.QuerySet):
+    def gorunen(self):
+        """Silinmemiş (çöpte olmayan) metinler."""
+        return self.filter(deleted_at__isnull=True)
+
+
+class UserText(models.Model):
+    """
+    "Kendi metinlerim" (rapor 8): kullanıcının yüklediği PDF'ten çıkarılan
+    ya da yapıştırdığı metin. YALNIZCA SAHİBİ görür; telif riski olmaması
+    bunun üstüne kurulu.
+
+    PDF dosyasının kendisi saklanmıyor, yalnızca çıkarılan metin: dosyayı
+    tutmak gizlilik açısından gereksiz bir yük olurdu.
+
+    Silme onaysız ve "Geri al"lı (rapor 12.7): önce `deleted_at` dolar
+    (yumuşak silme), metin listeden kalkar; Geri al onu boşaltır. Çöpteki
+    metinler bir gün sonra kalıcı olarak temizlenir (bkz. views._copu_bosalt).
+    """
+
+    SOURCE_PDF = "pdf"
+    SOURCE_PASTE = "paste"
+    SOURCE_CHOICES = [(SOURCE_PDF, "PDF"), (SOURCE_PASTE, "Yapıştırma")]
+
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reading_texts")
+    title = models.CharField(max_length=200)
+    body = models.TextField()
+    source_kind = models.CharField(max_length=10, choices=SOURCE_CHOICES)
+    word_count = models.PositiveIntegerField(default=0)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    deleted_at = models.DateTimeField(blank=True, null=True)
+
+    objects = UserTextQuerySet.as_manager()
+
+    class Meta:
+        ordering = ("-created_at", "-id")
+        indexes = [models.Index(fields=["owner", "deleted_at", "created_at"])]
+
+    def __str__(self):
+        return f"{self.owner_id} · {self.title}"
+
+    @property
+    def paragraphs(self):
+        return paragraflara_bol(self.body)
+
+    @property
+    def reading_minutes(self):
+        return max(1, round(self.word_count / WORDS_PER_MINUTE))

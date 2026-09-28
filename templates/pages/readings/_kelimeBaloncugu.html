@@ -1,0 +1,280 @@
+{% comment %}
+Okuma ekranının dokun-anlamını-gör baloncuğu (rapor 8).
+
+Bir kelimeye dokununca anlamı küçük bir baloncukta, yanında "+" (listeye
+ekle). Başka bir şey yok.
+
+NEDEN KELİMELER <span>'LERE BÖLÜNMÜYOR
+  Metin düz <p> olarak basılıyor; dokunulan kelimeyi tarayıcı buluyor
+  (caretRangeFromPoint / caretPositionFromPoint). Böylece:
+    - 5.000 kelimelik bir PDF 5.000 DOM düğümü olmuyor (sayfa hafif, kaydırma akıcı),
+    - kopyalama, seçme ve ekran okuyucular normal metindeki gibi çalışıyor,
+    - aynı yöntem Chrome eklentisinde de, sunucunun hazırlamadığı her
+      sayfada çalışıyor.
+  Sayfadaki kelimeler önceden sorgulanmıyor; yalnızca dokunulan kelime
+  /api/kelime/ ucuna gidiyor (sonuç sayfa içinde de önbellekte kalıyor).
+
+Phrasal verb için dokunulan kelimenin aynı cümledeki 2 önceki ve 3 sonraki
+kelimesi de gönderiliyor (once / sonra): "gave it up" -> give up.
+
+"+" düğmesi kelime kartındakiyle aynı öznitelikleri taşıyor; ekleme /
+çıkarma ve "Geri al" base/_kelimeKartiJs.html'den geliyor. Girişsiz
+ziyaretçide girişe yönlendiriyor (data-giris-gerekli="liste").
+{% endcomment %}
+
+<style>
+    ::highlight(okuma-kelime) { background-color: rgb(224 231 255); }
+    .dark ::highlight(okuma-kelime) { background-color: rgb(55 48 163); }
+</style>
+
+<div data-kelime-baloncugu hidden aria-live="polite"
+     class="fixed z-50 w-[min(20rem,calc(100vw-2rem))] rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-3 text-sm text-gray-800 dark:text-slate-200 shadow-lg"></div>
+
+<script>
+(function () {
+    var metin = document.querySelector('[data-okuma-metni]');
+    var balon = document.querySelector('[data-kelime-baloncugu]');
+    if (!metin || !balon) { return; }
+
+    var API = "{% url 'kelime_api' %}";
+    var EKLE = "{% url 'add_to_my_list' 0 %}";
+    var CIKAR = "{% url 'remove_from_my_list' 0 %}";
+    var GIRISLI = {{ user.is_authenticated|yesno:'true,false' }};
+
+    var HARF = /[A-Za-zÀ-ɏ'’\-]/;
+    var CUMLE_SINIRI = /[.!?;:,()\[\]"“”]/;
+    var sozler = new Map();      // anahtar -> Promise
+    var sonuclar = new Map();    // anahtar -> sonuç (listede güncellemesi için)
+    var etkin = null;            // { aralik, anahtar }
+    var istekNo = 0;
+    var vurgu = (window.CSS && CSS.highlights && window.Highlight) ? CSS.highlights : null;
+
+    // ---------- Dokunulan kelimeyi bul ----------
+    function noktadakiAralik(x, y) {
+        if (document.caretRangeFromPoint) { return document.caretRangeFromPoint(x, y); }
+        if (document.caretPositionFromPoint) {
+            var p = document.caretPositionFromPoint(x, y);
+            if (!p) { return null; }
+            var r = document.createRange();
+            r.setStart(p.offsetNode, p.offset);
+            r.collapse(true);
+            return r;
+        }
+        return null;
+    }
+
+    function kelimeler(yazi) {
+        return yazi.split(/\s+/).filter(function (k) { return /[A-Za-z]/.test(k); });
+    }
+
+    function kelimeBul(x, y) {
+        var r = noktadakiAralik(x, y);
+        if (!r) { return null; }
+        var dugum = r.startContainer;
+        if (dugum.nodeType !== 3 || !metin.contains(dugum)) { return null; }
+        var yazi = dugum.data;
+        var bas = r.startOffset, son = r.startOffset;
+        while (bas > 0 && HARF.test(yazi[bas - 1])) { bas--; }
+        while (son < yazi.length && HARF.test(yazi[son])) { son++; }
+        while (bas < son && /['’\-]/.test(yazi[bas])) { bas++; }
+        while (son > bas && /['’\-]/.test(yazi[son - 1])) { son--; }
+        var kelime = yazi.slice(bas, son);
+        if (!/[A-Za-z]/.test(kelime)) { return null; }
+
+        var aralik = document.createRange();
+        aralik.setStart(dugum, bas);
+        aralik.setEnd(dugum, son);
+        // Nokta gerçekten kelimenin üstünde mi? (satır sonundaki boşluğa dokunmak sayılmaz)
+        var kutular = aralik.getClientRects(), ustunde = false;
+        for (var i = 0; i < kutular.length; i++) {
+            var b = kutular[i];
+            if (x >= b.left - 3 && x <= b.right + 3 && y >= b.top - 3 && y <= b.bottom + 3) { ustunde = true; break; }
+        }
+        if (!ustunde) { return null; }
+
+        // Aynı cümle parçasındaki komşu kelimeler (phrasal verb için).
+        var onceki = yazi.slice(Math.max(0, bas - 60), bas).split(CUMLE_SINIRI).pop();
+        var sonraki = yazi.slice(son, son + 60).split(CUMLE_SINIRI)[0];
+        if (bas > 0 && CUMLE_SINIRI.test(yazi[bas - 1])) { onceki = ''; }
+        if (son < yazi.length && CUMLE_SINIRI.test(yazi[son])) { sonraki = ''; }
+        return {
+            aralik: aralik,
+            kelime: kelime,
+            once: kelimeler(onceki).slice(-2).join(' '),
+            sonra: kelimeler(sonraki).slice(0, 3).join(' '),
+        };
+    }
+
+    // ---------- Sorgu ----------
+    function sorgula(s) {
+        var anahtar = s.kelime.toLowerCase() + '|' + s.once.toLowerCase() + '|' + s.sonra.toLowerCase();
+        if (!sozler.has(anahtar)) {
+            var p = new URLSearchParams({ q: s.kelime });
+            if (s.once) { p.set('once', s.once); }
+            if (s.sonra) { p.set('sonra', s.sonra); }
+            var soz = fetch(API + '?' + p.toString(), {
+                credentials: 'same-origin', headers: { 'Accept': 'application/json' },
+            }).then(function (c) {
+                if (!c.ok) { throw new Error('HTTP ' + c.status); }
+                return c.json();
+            }).then(function (sonuc) { sonuclar.set(anahtar, sonuc); return sonuc; });
+            soz.catch(function () { sozler.delete(anahtar); });
+            sozler.set(anahtar, soz);
+        }
+        return { anahtar: anahtar, soz: sozler.get(anahtar) };
+    }
+
+    // "+" ile eklenince/çıkarılınca önbellekteki sonuçlar da güncellensin.
+    document.addEventListener('kelime-listesi', function (olay) {
+        var id = olay.detail.id, listede = olay.detail.listede;
+        sonuclar.forEach(function (s) {
+            [s, s.phrasal].concat(s.digerleri || []).forEach(function (m) {
+                if (m && m.word_id === id) { m.listede = listede; }
+            });
+        });
+    });
+
+    // ---------- Baloncuk ----------
+    function eleman(etiket, sinif, yazi) {
+        var e = document.createElement(etiket);
+        if (sinif) { e.className = sinif; }
+        if (yazi != null) { e.textContent = yazi; }
+        return e;
+    }
+
+    function listeDugmesi(madde) {
+        var d = eleman('button', 'shrink-0 inline-flex h-7 w-7 items-center justify-center rounded-lg text-sm font-semibold transition-colors disabled:opacity-60 ' +
+            "data-[listede='0']:bg-indigo-600 data-[listede='0']:text-white data-[listede='0']:hover:bg-indigo-700 " +
+            "data-[listede='1']:bg-emerald-50 data-[listede='1']:text-emerald-700 data-[listede='1']:ring-1 data-[listede='1']:ring-inset data-[listede='1']:ring-emerald-200 " +
+            "dark:data-[listede='1']:bg-emerald-950 dark:data-[listede='1']:text-emerald-300 dark:data-[listede='1']:ring-emerald-800");
+        d.type = 'button';
+        d.setAttribute('data-kelime-liste', '');
+        d.dataset.kelimeId = madde.word_id;
+        d.dataset.kelimeYazi = madde.kok;
+        d.dataset.listede = madde.listede ? '1' : '0';
+        d.dataset.ekleUrl = EKLE.replace('/0/', '/' + madde.word_id + '/');
+        d.dataset.cikarUrl = CIKAR.replace('/0/', '/' + madde.word_id + '/');
+        if (!GIRISLI) { d.dataset.girisGerekli = 'liste'; }
+        d.setAttribute('aria-pressed', madde.listede ? 'true' : 'false');
+        d.title = madde.listede ? 'Listemde — çıkarmak için dokun' : 'Listeme ekle';
+        var ekle = eleman('span', null, '+');
+        ekle.setAttribute('data-ekle-yazi', '');
+        ekle.hidden = !!madde.listede;
+        var var_ = eleman('span', null, '✓');
+        var_.setAttribute('data-listede-yazi', '');
+        var_.hidden = !madde.listede;
+        d.append(ekle, var_);
+        return d;
+    }
+
+    function blok(madde, yazim) {
+        var kutu = eleman('div', 'space-y-1');
+        var ust = eleman('div', 'flex items-start justify-between gap-2');
+        var baslik = eleman('p', 'min-w-0 pt-0.5');
+        if (yazim && yazim.toLowerCase() !== madde.kok) {
+            baslik.append(eleman('span', 'text-gray-400 dark:text-slate-500', yazim + ' → '));
+        }
+        baslik.append(eleman('span', 'text-base font-bold text-gray-900 dark:text-slate-100', madde.kok));
+        ust.append(baslik, listeDugmesi(madde));
+        kutu.append(ust);
+
+        var anlamlar = madde.anlamlar || [];
+        var liste = eleman(anlamlar.length > 1 ? 'ol' : 'div',
+            anlamlar.length > 1 ? 'list-decimal space-y-0.5 pl-5 marker:text-gray-400' : '');
+        anlamlar.forEach(function (a) {
+            var s = eleman(anlamlar.length > 1 ? 'li' : 'p', 'leading-snug', a.tr);
+            if (a.tanim) { s.title = a.tanim; }
+            liste.append(s);
+        });
+        kutu.append(liste);
+        return kutu;
+    }
+
+    function ciz(sonuc, kelime) {
+        var bloklar = [];
+        if (sonuc.phrasal) { bloklar.push(blok(sonuc.phrasal)); }
+        if (sonuc.bulundu) {
+            bloklar.push(blok(sonuc, kelime));
+            (sonuc.digerleri || []).forEach(function (m) { bloklar.push(blok(m)); });
+        }
+        balon.replaceChildren();
+        if (!bloklar.length) {
+            balon.append(eleman('p', 'font-semibold text-gray-900 dark:text-slate-100', kelime));
+            balon.append(eleman('p', 'text-gray-500 dark:text-slate-400', 'Henüz sözlüğümüzde yok.'));
+            return;
+        }
+        bloklar.forEach(function (b, i) {
+            if (i) { balon.append(eleman('hr', 'my-2 border-gray-100 dark:border-slate-700')); }
+            balon.append(b);
+        });
+    }
+
+    function konumla() {
+        if (!etkin) { return; }
+        var r = etkin.aralik.getBoundingClientRect();
+        var altBosluk = window.innerWidth < 1024 ? 88 : 8;       // mobilde alt menü
+        if (r.bottom < 0 || r.top > window.innerHeight - altBosluk) { kapat(); return; }
+        var gen = balon.offsetWidth, yuk = balon.offsetHeight;
+        var x = Math.min(Math.max(8, r.left + r.width / 2 - gen / 2), window.innerWidth - gen - 8);
+        var y = r.bottom + 8;
+        if (y + yuk > window.innerHeight - altBosluk && r.top - yuk - 8 > 8) { y = r.top - yuk - 8; }
+        balon.style.left = x + 'px';
+        balon.style.top = Math.max(8, y) + 'px';
+    }
+
+    function kapat() {
+        etkin = null;
+        balon.hidden = true;
+        if (vurgu) { vurgu.delete('okuma-kelime'); }
+    }
+
+    function ac(s) {
+        var sorgu = sorgula(s);
+        var no = ++istekNo;
+        etkin = { aralik: s.aralik, anahtar: sorgu.anahtar };
+        if (vurgu) { vurgu.set('okuma-kelime', new Highlight(s.aralik)); }
+
+        var hazir = sonuclar.get(sorgu.anahtar);
+        if (hazir) {
+            ciz(hazir, s.kelime);
+        } else {
+            balon.replaceChildren(eleman('p', 'text-gray-400 dark:text-slate-500', s.kelime + ' …'));
+        }
+        balon.hidden = false;
+        konumla();
+
+        if (!hazir) {
+            sorgu.soz.then(function (sonuc) {
+                if (no !== istekNo || !etkin) { return; }
+                ciz(sonuc, s.kelime);
+                konumla();
+            }).catch(function () {
+                if (no !== istekNo || !etkin) { return; }
+                balon.replaceChildren(eleman('p', 'text-gray-500 dark:text-slate-400', 'Anlamı şu an getiremedik, tekrar dokunur musun?'));
+                konumla();
+            });
+        }
+    }
+
+    // ---------- Olaylar ----------
+    metin.addEventListener('click', function (olay) {
+        // Kopyalamak için metin seçiliyorsa baloncuk açılmasın.
+        var secim = window.getSelection && window.getSelection();
+        if (secim && !secim.isCollapsed && secim.toString().trim()) { return; }
+        var s = kelimeBul(olay.clientX, olay.clientY);
+        if (!s) { kapat(); return; }
+        ac(s);
+    });
+
+    document.addEventListener('click', function (olay) {
+        if (!etkin) { return; }
+        if (balon.contains(olay.target) || metin.contains(olay.target)) { return; }
+        kapat();
+    });
+    document.addEventListener('keydown', function (olay) {
+        if (olay.key === 'Escape') { kapat(); }
+    });
+    window.addEventListener('scroll', konumla, { passive: true });
+    window.addEventListener('resize', konumla);
+})();
+</script>

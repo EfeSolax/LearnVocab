@@ -1,0 +1,46 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}
+Okuma ekranı (rapor 8): tek işi odaklanıp okumak. Kütüphane metni ve
+kendi metnim aynı şablonu kullanır (readings.views).
+
+Metin düz paragraflar olarak basılır; kelimeler <span>'lere BÖLÜNMEZ.
+Dokunulan kelimeyi tarayıcı bulur (_kelimeBaloncugu.html).
+
+Bağlam: baslik, paragraflar, metin (ReadingText ya da UserText), kutuphane (bool)
+{% endcomment %}
+
+{% block title %}{% if kutuphane %}{{ baslik|lower|capfirst }}{% else %}{{ baslik }}{% endif %} — Okumalar{% endblock %}
+{% block page_heading %}{% endblock %}
+{% block sayfa_genisligi %}max-w-2xl{% endblock %}
+
+{% block page %}
+
+<a href="{% url 'readings' %}" class="inline-flex items-center gap-1 text-sm font-semibold text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200">
+    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+    Okumalar
+</a>
+
+<header class="mt-3 mb-6">
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">
+        {% if kutuphane %}{{ baslik|lower|capfirst }}{% else %}{{ baslik }}{% endif %}
+    </h1>
+    <p class="mt-1 text-xs text-gray-500 dark:text-slate-400">
+        {% if kutuphane %}<span class="font-semibold text-{{ metin.topic_color }}-700 dark:text-{{ metin.topic_color }}-300">{{ metin.topic_label }}</span> · {% endif %}~{{ metin.reading_minutes }} dk
+        {% if kutuphane and metin.cefr %} · {{ metin.cefr }}{% endif %}
+        · Bir kelimeye dokun, anlamı görünsün.
+    </p>
+</header>
+
+<article data-okuma-metni lang="en"
+         class="text-[1.125rem] leading-8 text-gray-800 dark:text-slate-200 [&>p]:mb-5 break-words">
+    {% for p in paragraflar %}<p>{{ p }}</p>{% endfor %}
+</article>
+
+{% if kutuphane and metin.source %}
+<p class="mt-6 text-xs text-gray-400 dark:text-slate-500">Kaynak: {{ metin.source }}</p>
+{% endif %}
+
+{% include 'pages/readings/_kelimeBaloncugu.html' %}
+
+{% endblock %}

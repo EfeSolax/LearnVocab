@@ -1,30 +1,170 @@
 {% extends 'base/appLayout.html' %}
 
 {% comment %}
-Okumalar — henüz yapılmadı, yer tutucu.
-Mobil alt sekme çubuğunda beş bölümden biri olduğu için adresi şimdiden var;
-içerik geldiğinde bu şablonun yerine gerçek sayfa konacak.
+Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
+
+  - Kendi metinlerim: PDF yükle ya da yapıştır; yalnızca sahibine görünür.
+    Girişsiz ziyaretçi de "PDF yükle" düğmesini görür; basınca girişe
+    yönlendirilir (rapor 2.3, data-giris-gerekli="pdf").
+    Silme onaysız: satır kalkar, "… silindi · Geri al" bildirimi çıkar (12.7).
+  - Kütüphane: herkese açık metinler (ReadingText), konu renkleriyle.
 {% endcomment %}
 
 {% block title %}Okumalar{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
-<div class="mx-auto max-w-xl text-center py-10 sm:py-16">
 
-    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-950">
-        <svg class="h-8 w-8 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75c-1.5-1-3.4-1.5-5.25-1.5-1.1 0-2.2.15-3.15.45v12c.95-.3 2.05-.45 3.15-.45 1.85 0 3.75.5 5.25 1.5m0-12c1.5-1 3.4-1.5 5.25-1.5 1.1 0 2.2.15 3.15.45v12c-.95-.3-2.05-.45-3.15-.45-1.85 0-3.75.5-5.25 1.5m0-12v12" />
-        </svg>
+<header class="mb-6">
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Okumalar</h1>
+    <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Oku, takıldığın kelimeye dokun: anlamı hemen yanında.</p>
+</header>
+
+{# ---------- Kendi metinlerim ---------- #}
+<section aria-labelledby="metinlerim-baslik" class="mb-8">
+    <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <div>
+            <h2 id="metinlerim-baslik" class="text-lg font-bold text-gray-900 dark:text-slate-100">Kendi metinlerim</h2>
+            <p class="text-xs text-gray-500 dark:text-slate-400">Yalnızca sen görürsün.</p>
+        </div>
+        <div class="flex gap-2">
+            <a href="{% url 'readings_add' %}?tur=yapistir"
+               {% if not user.is_authenticated %}data-giris-gerekli="pdf"{% endif %}
+               class="inline-flex items-center rounded-lg px-3 py-2 text-sm font-semibold text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-800 hover:bg-indigo-50 dark:hover:bg-indigo-950">
+                Metin yapıştır
+            </a>
+            <a href="{% url 'readings_add' %}"
+               {% if not user.is_authenticated %}data-giris-gerekli="pdf"{% endif %}
+               class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
+                PDF yükle
+            </a>
+        </div>
     </div>
 
-    <h1 class="mt-6 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">
-        Okumalar
-    </h1>
-
-    <p class="mt-3 text-base text-gray-600 dark:text-slate-400">
-        Bu bölüm hazırlanıyor. Yakında burada seviyene uygun okuma parçaları
-        ve içlerinde geçen kelimeler olacak.
+    {% if user.is_authenticated %}
+    <ul data-metinlerim class="divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 {% if not metinlerim %}hidden{% endif %}">
+        {% for m in metinlerim %}
+        <li data-metnim="{{ m.id }}" class="flex items-center gap-2 pl-4 pr-2">
+            <a href="{% url 'readings_user_text' m.id %}" class="min-w-0 flex-1 py-3">
+                <span class="block truncate font-semibold text-gray-900 dark:text-slate-100">{{ m.title }}</span>
+                <span class="block text-xs text-gray-500 dark:text-slate-400">{% if m.source_kind == "pdf" %}PDF{% else %}Yapıştırılan metin{% endif %} · ~{{ m.reading_minutes }} dk</span>
+            </a>
+            <button type="button" data-metnim-sil
+                    data-sil-url="{% url 'readings_user_text_delete' m.id %}"
+                    data-baslik="{{ m.title }}"
+                    class="shrink-0 rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700 dark:text-slate-500 dark:hover:bg-slate-700 dark:hover:text-slate-200"
+                    title="Sil" aria-label="“{{ m.title }}” metnini sil">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
+            </button>
+        </li>
+        {% endfor %}
+    </ul>
+    <p data-metinlerim-bos class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-5 text-center text-sm text-gray-600 dark:text-slate-400 {% if metinlerim %}hidden{% endif %}">
+        Henüz metin eklemedin. Derste okuduğun bir PDF'i yükle ya da bir yazıyı yapıştır; kelimelerine dokunarak oku.
     </p>
-</div>
+    {% else %}
+    <p class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-5 text-center text-sm text-gray-600 dark:text-slate-400">
+        PDF'lerini ve kopyaladığın yazıları burada, kelimelerine dokunarak okuyabilirsin.
+    </p>
+    {% endif %}
+</section>
+
+{# ---------- Kütüphane ---------- #}
+<section aria-labelledby="kutuphane-baslik">
+    <h2 id="kutuphane-baslik" class="mb-3 text-lg font-bold text-gray-900 dark:text-slate-100">Kütüphane</h2>
+
+    {% if kutuphane_bos %}
+    <div class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-6 text-center">
+        <p class="font-semibold text-gray-800 dark:text-slate-200">Kütüphane hazırlanıyor.</p>
+        <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">
+            Yakında burada kısa hikâyeler ve yazılar olacak. O zamana kadar kendi metinlerini ekleyip okuyabilirsin.
+        </p>
+    </div>
+    {% else %}
+
+    {% if konular %}
+    <nav aria-label="Konular" class="-mx-4 mb-3 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
+        <a href="{% url 'readings' %}" {% if not secili_konu %}aria-current="page"{% endif %}
+           class="shrink-0 rounded-full px-3 py-1 text-sm font-semibold {% if not secili_konu %}bg-gray-900 text-white dark:bg-slate-100 dark:text-slate-900{% else %}bg-white text-gray-700 ring-1 ring-inset ring-gray-200 dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700{% endif %}">Tümü</a>
+        {% for k in konular %}
+        <a href="{% url 'readings' %}?konu={{ k.anahtar }}" {% if secili_konu == k.anahtar %}aria-current="page"{% endif %}
+           class="shrink-0 rounded-full px-3 py-1 text-sm font-semibold {% if secili_konu == k.anahtar %}bg-{{ k.renk }}-600 text-white{% else %}bg-{{ k.renk }}-50 text-{{ k.renk }}-700 dark:bg-{{ k.renk }}-950 dark:text-{{ k.renk }}-300{% endif %}">{{ k.ad }}</a>
+        {% endfor %}
+    </nav>
+    {% endif %}
+
+    <ul class="space-y-2">
+        {% for m in kutuphane %}
+        <li>
+            <a href="{% url 'readings_library_text' m.number %}"
+               class="flex items-center gap-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 hover:border-indigo-300 dark:hover:border-indigo-700">
+                <span class="h-10 w-1 shrink-0 rounded-full bg-{{ m.topic_color }}-400" aria-hidden="true"></span>
+                <span class="min-w-0 flex-1">
+                    <span class="block truncate font-semibold text-gray-900 dark:text-slate-100">{{ m.title|lower|capfirst }}</span>
+                    <span class="block text-xs text-gray-500 dark:text-slate-400">
+                        <span class="text-{{ m.topic_color }}-700 dark:text-{{ m.topic_color }}-300">{{ m.topic_label }}</span>
+                        · ~{{ m.reading_minutes }} dk{% if m.cefr %} · {{ m.cefr }}{% endif %}
+                    </span>
+                </span>
+            </a>
+        </li>
+        {% empty %}
+        <li class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-5 text-center text-sm text-gray-600 dark:text-slate-400">
+            Bu konuda henüz metin yok. <a href="{% url 'readings' %}" class="font-semibold text-indigo-600 dark:text-indigo-400">Tümüne bak</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</section>
+
+{% if user.is_authenticated %}
+<script>
+(function () {
+    // Kendi metnini silme: onay yok, "Geri al" var (rapor 12.7).
+    function csrf() {
+        var meta = document.querySelector('meta[name="csrf-token"]');
+        return meta ? meta.content : '';
+    }
+    function gonder(adres) {
+        return fetch(adres, {
+            method: 'POST', credentials: 'same-origin',
+            headers: { 'X-CSRFToken': csrf(), 'X-Requested-With': 'fetch' },
+        }).then(function (c) { if (!c.ok) { throw new Error('HTTP ' + c.status); } return c.json(); });
+    }
+    var liste = document.querySelector('[data-metinlerim]');
+    var bos = document.querySelector('[data-metinlerim-bos]');
+    function bosDurumu() {
+        var var_ = liste && liste.children.length > 0;
+        if (liste) { liste.classList.toggle('hidden', !var_); }
+        if (bos) { bos.classList.toggle('hidden', var_); }
+    }
+
+    document.addEventListener('click', function (olay) {
+        var dugme = olay.target.closest('[data-metnim-sil]');
+        if (!dugme) { return; }
+        olay.preventDefault();
+        var satir = dugme.closest('[data-metnim]');
+        var sonraki = satir.nextElementSibling;
+        dugme.disabled = true;
+        gonder(dugme.dataset.silUrl).then(function (cevap) {
+            satir.remove();
+            bosDurumu();
+            window.geriAl.goster('“' + dugme.dataset.baslik + '” silindi', function () {
+                gonder(cevap.geri_al_url).then(function () {
+                    if (sonraki && sonraki.parentNode === liste) { liste.insertBefore(satir, sonraki); }
+                    else { liste.appendChild(satir); }
+                    dugme.disabled = false;
+                    bosDurumu();
+                }).catch(function () { window.geriAl.bildir('Geri alınamadı, sayfayı yenileyip tekrar dener misin?'); });
+            });
+        }).catch(function () {
+            dugme.disabled = false;
+            window.geriAl.bildir('Bir sorun oldu, tekrar dener misin?');
+        });
+    });
+})();
+</script>
+{% endif %}
+
 {% endblock %}

@@ -5,7 +5,7 @@ from .models import ReadingProgress, ReadingText
 
 @admin.register(ReadingText)
 class ReadingTextAdmin(admin.ModelAdmin):
-    list_display = ("number", "title", "topic", "word_count")
+    list_display = ("number", "title", "topic", "cefr", "word_count")
     list_filter = ("topic",)
     search_fields = ("title", "body")
     ordering = ("number",)
