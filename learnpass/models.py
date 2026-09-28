@@ -125,6 +125,14 @@ class WordEncounter(models.Model):
     # için ayrıca saklanması gerekiyor.
     declared_after_seen = models.PositiveIntegerField(default=0)
 
+    # "Bilmiyorum" denmiş, kullanıcının listesinde OLMAYAN ve kullanıcıya
+    # henüz "listene ekleyelim mi?" diye sorulmamış kelime (rapor 6.1).
+    # Bilinmeyenler listeye kendiliğinden girmiyor: oturum sonunda sorulur;
+    # oturum yarıda bırakıldıysa bir sonraki girişte "Geçen sefer bilmediğin
+    # N kelime" kartı bu işaretten çıkar. Kullanıcı ekleyince ya da "şimdilik
+    # hayır" deyince, ya da kelimeyi sonradan "biliyorum" diye geçince kalkar.
+    listeye_sorulacak = models.BooleanField(default=False)
+
     first_seen_at = models.DateTimeField(auto_now_add=True)
     last_seen_at = models.DateTimeField(auto_now=True)
 
@@ -210,6 +218,8 @@ class WordEncounter(models.Model):
         elif verdict == cls.KNOWN:
             encounter.known_count += 1
             encounter.is_learned = True
+            # Artık biliyor: "listene ekleyelim mi?" sorusu anlamını yitirdi.
+            encounter.listeye_sorulacak = False
             if encounter.declaration == Declaration.STUCK:
                 encounter.declaration = Declaration.NONE
                 encounter.declared_at = None

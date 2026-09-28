@@ -1,686 +1,527 @@
 {% extends 'base/appLayout.html' %}
 
 {% comment %}
-Learn & Pass kart ekranı.
+Learn & Pass kart akışı (ürün raporu 6.1).
 
-Kartın üç hâli var:
-  ask     -> sadece kelime + içinde geçtiği cümle. Anlam YOK.
-  reveal  -> karar verildikten sonra anlam, açıklama, collocation'lar.
-  confirm -> "Biliyorum" diyene sorulan tek soru: aklındaki bu muydu?
+  soru  -> kart yalnızca KELİMEYİ gösterir (tür etiketi ve seviye yok).
+           Sağa kaydır / → / "Biliyorum"  = biliyorum
+           Sola kaydır / ← / "Bilmiyorum" = bilmiyorum
+  acik  -> kartın altında aşağı doğru açılan balon: kapibara yer tutucusu,
+           "Düşündüğün bu muydu?" + Türkçe anlamlar, silik İngilizce örnek.
+           Bir kaydırma / dokunuş / tuş daha -> sonraki kelime.
+  bitti -> özet + "Bilmediğin N kelimeyi listene ekleyelim mi?"
 
-"Biliyorum -> Evet" en hızlı yol: anlamı bir saniye görüp geçer.
-"Bilmiyorum" ve "yanılmışım" yollarında kart açık kalır ki kelime okunsun.
-
-Sonsuz akış: tur yok, sayaç var. Kullanıcı istediği yerde bırakır.
+Girişli: her kaydırma anında POST edilir (sırayla, kısa yeniden denemeyle);
+cevap sıradaki kartı getirir. Misafir: bütün kartlar sayfayla gelir, hiçbir
+istek atılmaz.
 {% endcomment %}
 
-{% block title %}Learn &amp; Pass — {{ mode_label }}{% endblock %}
+{% block title %}Learn &amp; Pass{% endblock %}
 {% block page_heading %}{% endblock %}
 
+{% block extra_head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<style>
+    .lp-kelime { font-family: 'Fredoka', 'Nunito', ui-rounded, system-ui, sans-serif; font-weight: 600;
+                 font-size: clamp(2.25rem, 10vw, 3.75rem); line-height: 1.1; letter-spacing: .01em; }
+    /* Aşağı doğru açılan balon: yükseklik 0fr -> 1fr */
+    .lp-acilim { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s ease; }
+    .lp-acilim.acik { grid-template-rows: 1fr; }
+    .lp-acilim > div { overflow: hidden; }
+    .lp-balon { position: relative; }
+    .lp-balon::before { content: ''; position: absolute; left: -7px; top: 18px; width: 14px; height: 14px;
+                        transform: rotate(45deg); background: inherit; border-left: inherit; border-bottom: inherit; }
+    #lp-kart { transition: transform .25s ease, opacity .25s ease, box-shadow .2s ease; will-change: transform; }
+    #lp-kart.suruklen { transition: none; }
+</style>
+{% endblock %}
+
 {% block page %}
-
-{% include 'base/_exerciseTabs.html' with exercise_tab="learn" %}
-
-<div class="mx-auto max-w-2xl" id="learnpass"
+<div id="lp" class="mx-auto max-w-xl"
+     data-misafir="{% if misafir %}1{% else %}0{% endif %}"
      data-mode="{{ mode }}"
+     data-toplam="{{ oturum_kart_sayisi }}"
+     {% if not misafir %}
      data-verdict-url="{% url 'learn_pass_verdict' %}"
      data-undo-url="{% url 'learn_pass_undo' %}"
-     data-declare-url="{% url 'learn_pass_declare' %}">
+     data-bilinmeyen-url="{% url 'learn_pass_bilinmeyenler' %}"
+     {% endif %}>
 
-    {% csrf_token %}
+    {{ kartlar|json_script:"lp-kartlar" }}
 
-    {# ---------------- Üst şerit: mod, sayaçlar, geri al ---------------- #}
-    <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div class="flex items-center gap-2">
-            <a href="{% url 'learn_pass_page' %}"
-               class="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-sm font-medium text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200">
-                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
-                Mod
-            </a>
-            <span class="rounded-full bg-indigo-100 dark:bg-indigo-950 px-3 py-1 text-xs font-bold text-indigo-700 dark:text-indigo-300">
-                {{ mode_label }}
-            </span>
+    {# ---------------- Üst şerit: çık, ilerleme, geri al, bitir ---------------- #}
+    <div class="flex items-center gap-3">
+        <a href="{% url 'learn_pass_page' %}" aria-label="Çık" title="Çık"
+           class="flex h-9 w-9 flex-none items-center justify-center rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </a>
+        <div class="h-2.5 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700">
+            <div id="lp-ilerleme" class="h-full w-0 rounded-full bg-indigo-500 transition-all duration-300"></div>
         </div>
-
-        <button type="button" id="undo-button" disabled
-                class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold text-gray-600 dark:text-slate-300 ring-1 ring-inset ring-gray-300 dark:ring-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition">
-            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"/></svg>
-            Geri al
-        </button>
+        <span id="lp-sayac" class="w-12 flex-none text-right text-xs font-semibold tabular-nums text-gray-500 dark:text-slate-400">0/{{ oturum_kart_sayisi }}</span>
     </div>
 
-    <div class="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm text-gray-500 dark:text-slate-400">
-        <span>Gördüğün: <strong id="stat-seen" class="text-gray-800 dark:text-slate-200">0</strong></span>
-        <span>Listene eklenen: <strong id="stat-added" class="text-emerald-600 dark:text-emerald-400">0</strong></span>
-        <span>Yanıldığın: <strong id="stat-misjudged" class="text-amber-600 dark:text-amber-400">0</strong></span>
-        <span class="ml-auto">Havuzda: <strong id="stat-remaining" class="text-gray-800 dark:text-slate-200">{{ remaining }}</strong></span>
+    <div class="mt-3 flex items-center justify-between gap-2 text-sm">
+        {% if misafir %}
+        {# Seviye seçimi yalnızca adreste (?seviye=), hiçbir yere kaydedilmez (rapor 2.3). #}
+        <form method="get" class="flex items-center gap-2 text-gray-500 dark:text-slate-400">
+            <label for="lp-seviye">Seviyeni seç</label>
+            <select id="lp-seviye" name="seviye" onchange="this.form.submit()"
+                    class="rounded-lg border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 py-0.5 pl-2 pr-7 text-sm text-gray-800 dark:text-slate-200">
+                {% for s in seviyeler %}<option value="{{ s }}" {% if s == seviye %}selected{% endif %}>{{ s }}</option>{% endfor %}
+            </select>
+        </form>
+        {% else %}
+        <span class="text-gray-500 dark:text-slate-400">{{ mode_label }}</span>
+        {% endif %}
+        <div class="flex items-center gap-1">
+            <button type="button" id="lp-geri-al" disabled
+                    class="inline-flex items-center gap-1 rounded-lg px-2.5 py-1 font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"/></svg>
+                Geri al
+            </button>
+            <button type="button" id="lp-bitir"
+                    class="rounded-lg px-2.5 py-1 font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700">
+                Bitir
+            </button>
+        </div>
     </div>
 
-    {# ---------------- Kart ---------------- #}
-    {# touch-action: pan-y -> dikey kaydırma sayfada kalsın, yatay hareketi biz yakalayalım #}
-    <div id="card" style="touch-action: pan-y;"
-         class="relative rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-lg overflow-hidden {% if not first_card %}hidden{% endif %}">
+    {% if misafir %}
+    <p class="mt-2 text-xs text-gray-400 dark:text-slate-500">
+        Misafir olarak kaydırıyorsun, hiçbir şey kaydedilmez.
+        <a href="{% url 'login' %}" data-giris-gerekli="calisma" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Giriş yap</a>
+    </p>
+    {% endif %}
 
-        {% comment %}
-        Parmak kartı sürüklerken o anki hareketin ne anlama geldiğini gösterir.
-        Hareketin anlamı kartın hâline göre değiştiği için metni JS yazıyor.
-        {% endcomment %}
-        <div id="swipe-hint" aria-hidden="true"
-             class="pointer-events-none absolute left-1/2 top-7 sm:top-9 z-10 -translate-x-1/2 rounded-lg border-2 px-3 py-1 text-sm font-extrabold uppercase tracking-wide opacity-0 transition-opacity duration-100"></div>
+    {# ---------------- Sahne ---------------- #}
+    <div id="lp-sahne" class="mt-6 {% if not kartlar %}hidden{% endif %}">
 
-        <div class="px-6 py-8 sm:px-10 sm:py-10 text-center">
-            <span id="card-level"
-                  class="inline-block rounded-full bg-gray-100 dark:bg-slate-700 px-2.5 py-0.5 text-xs font-semibold text-gray-600 dark:text-slate-300"></span>
-
-            <span id="card-seen"
-                  class="hidden ml-1.5 rounded-full bg-amber-100 dark:bg-amber-950 px-2.5 py-0.5 text-xs font-semibold text-amber-700 dark:text-amber-300"></span>
-
-            <h2 id="card-word" class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-slate-100 break-words"></h2>
-
-            <p id="card-forms" class="mt-1 text-sm text-gray-500 dark:text-slate-400 hidden"></p>
-
-            <p id="card-sentence" class="mx-auto mt-6 max-w-xl border-t border-gray-100 dark:border-slate-700 pt-6 text-base sm:text-lg leading-relaxed text-gray-700 dark:text-slate-300"></p>
+        {# touch-action: pan-y -> dikey kaydırma sayfada kalsın, yatay hareketi biz yakalayalım #}
+        <div id="lp-kart" style="touch-action: pan-y;" role="group" aria-live="polite"
+             class="relative flex min-h-[13rem] sm:min-h-[15rem] cursor-grab select-none items-center justify-center rounded-3xl border-2 border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-6 py-10 shadow-lg">
+            <span id="lp-etiket-sol" aria-hidden="true"
+                  class="pointer-events-none absolute left-4 top-4 rounded-lg border-2 border-rose-400 px-2 py-0.5 text-xs font-extrabold uppercase tracking-wide text-rose-500 opacity-0">Bilmiyorum</span>
+            <span id="lp-etiket-sag" aria-hidden="true"
+                  class="pointer-events-none absolute right-4 top-4 rounded-lg border-2 border-emerald-400 px-2 py-0.5 text-xs font-extrabold uppercase tracking-wide text-emerald-500 opacity-0">Biliyorum</span>
+            <h1 id="lp-kelime" class="lp-kelime break-words text-center text-gray-900 dark:text-slate-100"></h1>
         </div>
 
-        {# --- Anlam: yalnızca karar verildikten sonra --- #}
-        <div id="card-reveal" class="hidden border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 px-6 py-6 sm:px-10">
-            <p id="card-meaning" class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-slate-100"></p>
-            <p id="card-explanation" class="mt-2 text-sm text-gray-600 dark:text-slate-400 hidden"></p>
-
-            <div id="card-collocations" class="mt-4 flex-wrap gap-2 hidden"></div>
-
-            <ul id="card-extra" class="mt-4 space-y-2 text-sm text-gray-600 dark:text-slate-400 hidden"></ul>
-
-            <div id="added-badge" class="mt-4 hidden">
-                <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950 px-3 py-1 text-sm font-semibold text-emerald-700 dark:text-emerald-300">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                    <span id="added-badge-text">Listene eklendi</span>
-                </span>
+        {# --- Aşağı doğru açılan balon --- #}
+        <div id="lp-acilim" class="lp-acilim" aria-hidden="true">
+            <div>
+                <div class="flex items-start gap-3 pt-5">
+                    {# Kapibara maskotu: şimdilik boş yer tutucu (çizimi Bölüm 16). #}
+                    <div data-kapibara-yeri aria-hidden="true"
+                         class="h-14 w-14 flex-none rounded-2xl border-2 border-dashed border-gray-300 dark:border-slate-600"></div>
+                    <div class="lp-balon min-w-0 flex-1 rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 shadow-sm">
+                        <p class="text-xs font-semibold text-gray-400 dark:text-slate-500">Düşündüğün bu muydu?</p>
+                        <ol id="lp-anlamlar" class="mt-1 space-y-0.5 text-lg font-bold text-gray-900 dark:text-slate-100"></ol>
+                        <p id="lp-ornek" class="mt-2 text-sm italic text-gray-400 dark:text-slate-500"></p>
+                    </div>
+                </div>
             </div>
         </div>
 
         {# --- Düğmeler --- #}
-        <div id="card-actions" class="border-t border-gray-200 dark:border-slate-700 p-4 sm:p-5">
-
-            {# 1. adım: anlamı görmeden karar #}
-            <div id="step-ask" class="grid grid-cols-2 gap-3">
-                <button type="button" data-action="unknown"
-                        class="rounded-xl bg-white dark:bg-slate-800 px-4 py-4 text-base font-bold text-rose-700 dark:text-rose-300 ring-2 ring-inset ring-rose-300 dark:ring-rose-800 hover:bg-rose-50 dark:hover:bg-rose-950 transition">
-                    Bilmiyorum
-                </button>
-                <button type="button" data-action="claim-known"
-                        class="rounded-xl bg-indigo-600 px-4 py-4 text-base font-bold text-white shadow-sm hover:bg-indigo-700 transition">
-                    Biliyorum
-                </button>
-            </div>
-
-            {# 2. adım: dürüstlük kontrolü #}
-            <div id="step-confirm" class="hidden">
-                <p class="mb-3 text-center text-sm font-semibold text-gray-700 dark:text-slate-300">
-                    Aklındaki bu muydu?
-                </p>
-                <div class="grid grid-cols-2 gap-3">
-                    <button type="button" data-action="misjudged"
-                            class="rounded-xl bg-white dark:bg-slate-800 px-4 py-4 text-base font-bold text-amber-700 dark:text-amber-300 ring-2 ring-inset ring-amber-300 dark:ring-amber-800 hover:bg-amber-50 dark:hover:bg-amber-950 transition">
-                        Hayır, yanılmışım
-                    </button>
-                    <button type="button" data-action="known"
-                            class="rounded-xl bg-emerald-600 px-4 py-4 text-base font-bold text-white shadow-sm hover:bg-emerald-700 transition">
-                        Evet
-                    </button>
-                </div>
-            </div>
-
-            {% comment %}
-            Beyan şeridi. Yalnızca kelime yeterince görüldüyse çıkıyor.
-
-            Learn & Pass'in asıl ürünü bu iki düğme. Karar (biliyorum /
-            bilmiyorum) tek bir ana ait; beyan kullanıcının o kelimeyle
-            kurduğu İLİŞKİ hakkında ve tekrar sayısını hesaba katıyor.
-            "Bu kadar çok çıkmasına rağmen hâlâ öğrenemedim" bilgisi
-            sayaçlardan çıkarılamaz, yalnızca sorularak öğrenilir.
-
-            Zorunlu değil: kullanıcı hiçbirine basmadan "Sonraki kelime"
-            diyebiliyor. Zorunlu olsaydı rastgele basılırdı ve veri
-            değersizleşirdi.
-            {% endcomment %}
-            <div id="step-declare" class="hidden mb-3 rounded-xl bg-gray-50 dark:bg-slate-900 p-3">
-                <p id="declare-question"
-                   class="mb-2.5 text-center text-xs font-medium text-gray-500 dark:text-slate-400"></p>
-                <div class="grid grid-cols-2 gap-2">
-                    <button type="button" data-action="declare-stuck"
-                            class="rounded-lg bg-white dark:bg-slate-800 px-3 py-2.5 text-sm font-bold text-rose-700 dark:text-rose-300 ring-1 ring-inset ring-rose-300 dark:ring-rose-800 hover:bg-rose-50 dark:hover:bg-rose-950 transition">
-                        Hâlâ öğrenemedim
-                    </button>
-                    <button type="button" data-action="declare-mastered"
-                            class="rounded-lg bg-white dark:bg-slate-800 px-3 py-2.5 text-sm font-bold text-emerald-700 dark:text-emerald-300 ring-1 ring-inset ring-emerald-300 dark:ring-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-950 transition">
-                        Artık öğrendim
-                    </button>
-                </div>
-                <p id="declare-done" class="hidden mt-2 text-center text-xs font-semibold text-indigo-600 dark:text-indigo-400"></p>
-            </div>
-
-            {# 3. adım: okuduktan sonra ilerle #}
-            <div id="step-next" class="hidden">
-                <button type="button" data-action="next"
-                        class="w-full rounded-xl bg-gray-900 dark:bg-slate-100 px-4 py-4 text-base font-bold text-white dark:text-slate-900 hover:bg-gray-800 dark:hover:bg-white transition">
-                    Sonraki kelime
-                </button>
-            </div>
+        <div id="lp-soru-dugmeleri" class="mt-6 grid grid-cols-2 gap-3">
+            <button type="button" data-karar="-1"
+                    class="rounded-2xl bg-white dark:bg-slate-800 px-4 py-4 text-base font-bold text-rose-600 dark:text-rose-300 ring-2 ring-inset ring-rose-200 dark:ring-rose-900 hover:bg-rose-50 dark:hover:bg-rose-950 transition">
+                ← Bilmiyorum
+            </button>
+            <button type="button" data-karar="1"
+                    class="rounded-2xl bg-white dark:bg-slate-800 px-4 py-4 text-base font-bold text-emerald-600 dark:text-emerald-300 ring-2 ring-inset ring-emerald-200 dark:ring-emerald-900 hover:bg-emerald-50 dark:hover:bg-emerald-950 transition">
+                Biliyorum →
+            </button>
         </div>
-    </div>
-
-    {# ---------------- Havuz bitti ---------------- #}
-    <div id="empty-state" class="{% if first_card %}hidden{% endif %} rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-10 text-center shadow-sm">
-        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950">
-            <svg class="h-7 w-7 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        <div id="lp-acik-dugmeleri" class="mt-6 hidden">
+            <button type="button" id="lp-sonraki"
+                    class="w-full rounded-2xl bg-indigo-600 px-4 py-4 text-base font-bold text-white shadow-sm hover:bg-indigo-700 transition">
+                Sonraki kelime
+            </button>
         </div>
-        <h2 class="mt-4 text-xl font-bold text-gray-900 dark:text-slate-100">Bu modda gösterilecek kelime kalmadı</h2>
-        <p class="mt-2 text-sm text-gray-600 dark:text-slate-400" id="empty-summary">
-            Diğer modu deneyebilir ya da listene yeni kelimeler ekleyebilirsin.
+        <p id="lp-ipucu" class="mt-3 text-center text-xs text-gray-400 dark:text-slate-500">
+            Sağa kaydır: biliyorum · Sola kaydır: bilmiyorum<span class="hidden sm:inline"> · ← → tuşları da olur</span>
         </p>
-        <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3">
-            <a href="{% url 'learn_pass_page' %}" class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 transition">Mod değiştir</a>
-            <a href="{% url 'profile_words' %}" class="rounded-lg bg-white dark:bg-slate-800 px-5 py-2.5 text-sm font-semibold text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-300 dark:ring-indigo-700 hover:bg-indigo-50 dark:hover:bg-indigo-950 transition">Kelimelerim</a>
-        </div>
+        <p id="lp-hata" class="mt-3 hidden rounded-xl bg-amber-50 dark:bg-amber-950/40 px-4 py-3 text-center text-sm text-amber-800 dark:text-amber-300">
+            Bağlantı koptu, son kaydırman henüz kaydedilmedi.
+            <button type="button" id="lp-tekrar-dene" class="font-semibold underline">Tekrar dene</button>
+        </p>
     </div>
 
-    <p class="mt-4 lg:hidden text-center text-xs text-gray-400 dark:text-slate-500">
-        Kartı sola kaydır: biliyorum · sağa kaydır: bilmiyorum
-    </p>
+    {# ---------------- Oturum sonu ---------------- #}
+    <div id="lp-bitis" class="mt-6 {% if kartlar %}hidden{% endif %} space-y-4">
+        <div class="rounded-3xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-6 py-8 text-center shadow-sm">
+            <div data-kapibara-yeri aria-hidden="true"
+                 class="mx-auto h-16 w-16 rounded-2xl border-2 border-dashed border-gray-300 dark:border-slate-600"></div>
+            <h2 id="lp-bitis-baslik" class="mt-4 text-xl font-bold text-gray-900 dark:text-slate-100">
+                {% if kartlar %}Güzel iş!{% else %}Şu an gösterecek kelime kalmadı{% endif %}
+            </h2>
+            <p id="lp-bitis-ozet" class="mt-1 text-sm text-gray-600 dark:text-slate-400">
+                {% if not kartlar %}{% if misafir %}Başka bir seviye seçip devam edebilirsin.{% else %}Sözlük'ten listene kelime ekleyebilir ya da başka bir zaman tekrar gelebilirsin.{% endif %}{% endif %}
+            </p>
+        </div>
 
-    <p class="mt-4 hidden lg:block text-center text-xs text-gray-400 dark:text-slate-500">
-        Kısayollar: <kbd class="font-semibold">1</kbd> bilmiyorum · <kbd class="font-semibold">2</kbd> biliyorum · <kbd class="font-semibold">Boşluk</kbd> devam · <kbd class="font-semibold">Z</kbd> geri al
-    </p>
+        {# "Bilmediğin N kelimeyi listene ekleyelim mi?" #}
+        <div id="lp-ekle-sorusu" class="hidden rounded-2xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40 p-4 sm:p-5">
+            <div data-soru>
+                <h3 class="text-base font-bold text-amber-900 dark:text-amber-200" id="lp-ekle-baslik"></h3>
+                <div id="lp-bilinmeyenler" class="mt-3 flex flex-wrap gap-1.5"></div>
+                {% if misafir %}
+                <p class="mt-3 text-sm text-amber-800 dark:text-amber-300">Listene eklemek için giriş yapman gerekiyor.</p>
+                <a href="{% url 'login' %}" data-giris-gerekli="liste"
+                   class="mt-3 block rounded-xl bg-amber-500 px-4 py-2.5 text-center text-sm font-bold text-white hover:bg-amber-600 transition">Giriş yap</a>
+                {% else %}
+                <div class="mt-4 flex gap-2">
+                    <button type="button" data-islem="ekle"
+                            class="flex-1 rounded-xl bg-amber-500 px-4 py-2.5 text-sm font-bold text-white hover:bg-amber-600 transition">Evet, ekle</button>
+                    <button type="button" data-islem="gec"
+                            class="flex-1 rounded-xl bg-white dark:bg-slate-800 px-4 py-2.5 text-sm font-semibold text-amber-800 dark:text-amber-300 ring-1 ring-inset ring-amber-300 dark:ring-amber-800 hover:bg-amber-100 dark:hover:bg-slate-700 transition">Şimdilik hayır</button>
+                </div>
+                {% endif %}
+            </div>
+            <p data-sonuc class="hidden text-sm font-semibold text-amber-900 dark:text-amber-200"></p>
+        </div>
+
+        {% block bildirim_izni %}
+        {% comment %}
+        Adım 11 (Bildirimler, rapor 10): bildirim izni burada, anlamlı anda
+        sorulacak — "Yarın hatırlatayım mı?". Sayfa açılır açılmaz sorulmaz.
+        {% endcomment %}
+        {% endblock %}
+
+        <div class="grid grid-cols-2 gap-3">
+            <a href="{{ request.get_full_path }}" id="lp-yeni-tur"
+               class="rounded-2xl bg-indigo-600 px-4 py-3.5 text-center text-base font-bold text-white shadow-sm hover:bg-indigo-700 transition">Yeni tur</a>
+            <a href="{% url 'learn_pass_page' %}"
+               class="rounded-2xl bg-white dark:bg-slate-800 px-4 py-3.5 text-center text-base font-semibold text-gray-700 dark:text-slate-200 ring-1 ring-inset ring-gray-300 dark:ring-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition">Bitir</a>
+        </div>
+    </div>
 </div>
-
-{{ first_card|json_script:"first-card" }}
 
 <script>
 (function () {
-    const kok = document.getElementById("learnpass");
-    if (!kok) { return; }
+    var kok = document.getElementById('lp');
+    var MISAFIR = kok.dataset.misafir === '1';
+    var MOD = kok.dataset.mode;
+    var TOPLAM = parseInt(kok.dataset.toplam, 10) || 20;
+    var ESIK = 80;   // px: bu kadar sürüklenince kaydırma sayılır
+    var csrfMeta = document.querySelector('meta[name="csrf-token"]');
+    var CSRF = csrfMeta ? csrfMeta.content : '';
 
-    const mode = kok.dataset.mode;
-    const csrf = kok.querySelector("[name=csrfmiddlewaretoken]").value;
+    var $ = function (id) { return document.getElementById(id); };
+    var kart = $('lp-kart'), kelimeEl = $('lp-kelime'), acilim = $('lp-acilim');
+    var etiketSol = $('lp-etiket-sol'), etiketSag = $('lp-etiket-sag');
 
-    const el = {
-        card: document.getElementById("card"),
-        empty: document.getElementById("empty-state"),
-        level: document.getElementById("card-level"),
-        word: document.getElementById("card-word"),
-        forms: document.getElementById("card-forms"),
-        sentence: document.getElementById("card-sentence"),
-        reveal: document.getElementById("card-reveal"),
-        meaning: document.getElementById("card-meaning"),
-        explanation: document.getElementById("card-explanation"),
-        collocations: document.getElementById("card-collocations"),
-        extra: document.getElementById("card-extra"),
-        actions: document.getElementById("card-actions"),
-        hint: document.getElementById("swipe-hint"),
-        addedBadge: document.getElementById("added-badge"),
-        addedText: document.getElementById("added-badge-text"),
-        stepAsk: document.getElementById("step-ask"),
-        stepConfirm: document.getElementById("step-confirm"),
-        stepNext: document.getElementById("step-next"),
-        seen: document.getElementById("card-seen"),
-        stepDeclare: document.getElementById("step-declare"),
-        declareQuestion: document.getElementById("declare-question"),
-        declareDone: document.getElementById("declare-done"),
-        undo: document.getElementById("undo-button"),
-        statSeen: document.getElementById("stat-seen"),
-        statAdded: document.getElementById("stat-added"),
-        statMisjudged: document.getElementById("stat-misjudged"),
-        statRemaining: document.getElementById("stat-remaining"),
-        emptySummary: document.getElementById("empty-summary"),
-    };
+    var kuyruk = JSON.parse($('lp-kartlar').textContent) || [];
+    var mevcut = kuyruk.shift() || null;
+    var durum = mevcut ? 'soru' : 'bitti';
+    var gorulen = 0, bilinen = 0, bilinmeyen = 0;
+    var bilinmeyenler = [];          // [{id, word}] listede OLMAYAN bilinmeyenler
+    var gecmis = [];                 // [{kart, karar}] geri al için
+    var zincir = Promise.resolve();  // sunucu istekleri sırayla gider
+    var bekleyenIstek = null;        // başarısız kalan istek (Tekrar dene)
 
-    let mevcut = JSON.parse(document.getElementById("first-card").textContent);
-    let sonraki;              // sunucudan gelen bir sonraki kart.
-                              // undefined: henüz karar yok / istek başarısız
-                              // null: havuzda kart kalmadı
-    let adim = "ask";
-    let mesgul = false;
-    let gecmisSayisi = 0;
-    let sonIstatistik = { seen: 0, added: 0, misjudged: 0 };
-
-    function gizle(dugum) { dugum.classList.add("hidden"); }
-    function goster(dugum) { dugum.classList.remove("hidden"); }
-
-    function kartiCiz(kart) {
-        mevcut = kart;
-        adim = "ask";
-
-        if (!kart) {
-            gizle(el.card);
-            goster(el.empty);
-            el.emptySummary.textContent =
-                sonIstatistik.seen + " kelime gördün, " + sonIstatistik.added +
-                " tanesi listene eklendi" +
-                (sonIstatistik.misjudged ? ", " + sonIstatistik.misjudged + " tanesinde bildiğini sanıyordun." : ".");
-            return;
-        }
-
-        gizle(el.empty);
-        goster(el.card);
-        kartiYerineKoy();
-
-        el.level.textContent = kart.level ? kart.level + " kuru" : "";
-        el.level.classList.toggle("hidden", !kart.level);
-        el.word.textContent = kart.word;
-
-        const formlar = [kart.v2, kart.v3].filter(Boolean);
-        if (kart.is_verb && formlar.length) {
-            el.forms.textContent = formlar.join(" · ");
-            goster(el.forms);
-        } else {
-            gizle(el.forms);
-        }
-
-        el.sentence.textContent = kart.prompt_sentence || "";
-        el.sentence.classList.toggle("hidden", !kart.prompt_sentence);
-
-        // "Kaçıncı kez" rozeti: beyanın anlamlı olması için kullanıcının
-        // bu sayıyı görmesi gerekiyor.
-        const karsilasma = kart.encounter || { times_seen: 0 };
-        if (karsilasma.times_seen > 0) {
-            el.seen.textContent = (karsilasma.times_seen + 1) + ". kez";
-            el.seen.classList.remove("hidden");
-        } else {
-            el.seen.classList.add("hidden");
-        }
-
-        // Anlam kapalı başlar: karar anlamı GÖRMEDEN veriliyor
-        gizle(el.reveal);
-        gizle(el.addedBadge);
-        goster(el.stepAsk);
-        gizle(el.stepConfirm);
-        gizle(el.stepNext);
-        gizle(el.stepDeclare);
-        gizle(el.declareDone);
-
-        el.card.scrollIntoView({ block: "nearest" });
-    }
-
-    function anlamiAc() {
-        const kart = mevcut;
-        el.meaning.textContent = kart.meaning;
-
-        el.explanation.textContent = kart.explanation || "";
-        el.explanation.classList.toggle("hidden", !kart.explanation);
-
-        el.collocations.innerHTML = "";
-        if (kart.collocations && kart.collocations.length) {
-            kart.collocations.forEach(function (c) {
-                const rozet = document.createElement("span");
-                rozet.className = "inline-block rounded-md bg-indigo-50 dark:bg-indigo-950 px-2 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 mr-2 mb-2";
-                rozet.textContent = c;
-                el.collocations.appendChild(rozet);
-            });
-            el.collocations.classList.remove("hidden");
-            el.collocations.classList.add("flex");
-        } else {
-            el.collocations.classList.add("hidden");
-            el.collocations.classList.remove("flex");
-        }
-
-        el.extra.innerHTML = "";
-        if (kart.extra_sentences && kart.extra_sentences.length) {
-            kart.extra_sentences.forEach(function (c) {
-                const satir = document.createElement("li");
-                satir.className = "border-l-2 border-gray-200 dark:border-slate-700 pl-3";
-                satir.textContent = c;
-                el.extra.appendChild(satir);
-            });
-            goster(el.extra);
-        } else {
-            gizle(el.extra);
-        }
-
-        goster(el.reveal);
-
-        // Anlam açılınca kart uzuyor ve düğmeler ekranın altında kalabiliyor.
-        // Hızlı dokunulan bir ekranda kullanıcıyı kaydırmaya zorlamamak için
-        // düğme alanını kadraja alıyoruz.
-        requestAnimationFrame(function () {
-            el.actions.scrollIntoView({ block: "end", behavior: "smooth" });
+    // ---------------- Sunucu ----------------
+    function postJson(url, govde) {
+        return fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': CSRF },
+            body: JSON.stringify(govde),
+        }).then(function (c) {
+            if (!c.ok) { var h = new Error('http'); h.durum = c.status; throw h; }
+            return c.json();
         });
     }
 
-    function istatistikleriYaz(stats, remaining) {
-        sonIstatistik = stats;
-        el.statSeen.textContent = stats.seen;
-        el.statAdded.textContent = stats.added;
-        el.statMisjudged.textContent = stats.misjudged;
-        if (typeof remaining === "number") { el.statRemaining.textContent = remaining; }
-    }
-
-    async function kararGonder(verdict) {
-        if (mesgul || !mevcut) { return null; }
-        mesgul = true;
-        try {
-            const cevap = await fetch(kok.dataset.verdictUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json", "X-CSRFToken": csrf },
-                body: JSON.stringify({ word_id: mevcut.id, verdict: verdict, mode: mode }),
+    // Kısa yeniden denemeyle gönderir; 4xx'te yeniden denemez.
+    function denemeli(url, govde) {
+        var beklemeler = [700, 2000];
+        function dene(i) {
+            return postJson(url, govde).catch(function (h) {
+                if (h.durum && h.durum < 500) { throw h; }
+                if (i >= beklemeler.length) { throw h; }
+                return new Promise(function (r) { setTimeout(r, beklemeler[i]); }).then(function () { return dene(i + 1); });
             });
-            if (!cevap.ok) { return null; }
-            const veri = await cevap.json();
-            istatistikleriYaz(veri.stats, veri.remaining);
-            sonraki = veri.card;
-            gecmisSayisi += 1;
-            el.undo.disabled = false;
-            return veri;
-        } finally {
-            mesgul = false;
         }
+        return dene(0);
     }
 
-    async function geriAl() {
-        if (mesgul || gecmisSayisi === 0) { return; }
-        mesgul = true;
-        try {
-            const cevap = await fetch(kok.dataset.undoUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json", "X-CSRFToken": csrf },
-                body: JSON.stringify({ mode: mode }),
-            });
-            if (!cevap.ok) { return; }
-            const veri = await cevap.json();
-            istatistikleriYaz(veri.stats, veri.remaining);
-            gecmisSayisi -= 1;
-            el.undo.disabled = gecmisSayisi === 0;
-            sonraki = undefined;
-            kartiCiz(veri.card);
-        } finally {
-            mesgul = false;
-        }
+    // İstekleri sıraya koyar: geri al, kendinden önceki kaydırma yazılmadan gitmesin.
+    function sirala(is) {
+        var p = zincir.then(is);
+        zincir = p.catch(function () {});
+        return p;
     }
 
-    function ilerle() {
-        if (sonraki === undefined) { return; }
-        const kart = sonraki;
-        sonraki = undefined;
-        kartiCiz(kart);
+    function hataGoster(tekrarIs) {
+        bekleyenIstek = tekrarIs;
+        $('lp-hata').classList.remove('hidden');
     }
-
-    function beyanSeridiniGoster(durum, karar) {
-        // Kullanıcı zaten beyan vermişse tekrar sorulmuyor.
-        if (!durum || !durum.can_declare || durum.declaration !== "none") { return; }
-
-        // Soru metni kararla birlikte değişiyor: aynı iki düğme, ama
-        // kullanıcının içinde bulunduğu duruma göre farklı bir soru.
-        const kez = durum.times_seen;
-        if (karar === "known") {
-            el.declareQuestion.textContent =
-                "Bu kelimeyi " + kez + " kez gördün. Artık öğrendin mi?";
-        } else {
-            el.declareQuestion.textContent =
-                "Bu kelimeyi " + kez + " kez gördün, " + durum.miss_count +
-                " kez bilemedin. Ne dersin?";
-        }
-        goster(el.stepDeclare);
-    }
-
-    async function beyanGonder(beyan) {
-        if (!mevcut) { return; }
-        try {
-            const cevap = await fetch(kok.dataset.declareUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json", "X-CSRFToken": csrf },
-                body: JSON.stringify({ word_id: mevcut.id, declaration: beyan, mode: mode }),
-            });
-            if (!cevap.ok) { return; }
-            const veri = await cevap.json();
-            el.declareDone.textContent = beyan === "mastered"
-                ? "Kaydedildi — bu kelime Learn & Pass'te bir daha çıkmayacak."
-                : "Kaydedildi — bu kelime çalışmalarında öne alınacak.";
-            gizle(el.stepDeclare.querySelector(".grid"));
-            goster(el.declareDone);
-            if (typeof veri.remaining === "number") {
-                el.statRemaining.textContent = veri.remaining;
-            }
-        } catch (e) { /* beyan kaybolursa akış bozulmasın */ }
-    }
-
-    async function eylem(ad) {
-        if (ad === "unknown") {
-            anlamiAc();
-            el.addedText.textContent = "Listene eklendi";
-            goster(el.addedBadge);
-            gizle(el.stepAsk);
-            goster(el.stepNext);
-            adim = "next";
-            const veri = await kararGonder("unknown");
-            if (veri) { beyanSeridiniGoster(veri.answered, "unknown"); }
-
-        } else if (ad === "claim-known") {
-            // Henüz kaydetmiyoruz: önce anlamı gösterip dürüstlük sorusunu soruyoruz
-            anlamiAc();
-            gizle(el.stepAsk);
-            goster(el.stepConfirm);
-            adim = "confirm";
-
-        } else if (ad === "known") {
-            gizle(el.stepConfirm);
-            adim = "next";
-            const veri = await kararGonder("known");
-            // Gerçekten biliyorsa bekletmeye gerek yok — AMA kelime
-            // yeterince görüldüyse "artık öğrendim mi" sorusunu sormanın
-            // tam yeri burası. Learn & Pass'in topladığı asıl veri bu.
-            if (veri && veri.answered && veri.answered.can_declare
-                && veri.answered.declaration === "none") {
-                goster(el.stepNext);
-                beyanSeridiniGoster(veri.answered, "known");
-            } else {
-                ilerle();
-            }
-
-        } else if (ad === "misjudged") {
-            el.addedText.textContent = "Listene eklendi — egzersizlerde öne alınacak";
-            goster(el.addedBadge);
-            gizle(el.stepConfirm);
-            goster(el.stepNext);
-            adim = "next";
-            const veri = await kararGonder("misjudged");
-            if (veri) { beyanSeridiniGoster(veri.answered, "misjudged"); }
-
-        } else if (ad === "declare-mastered") {
-            await beyanGonder("mastered");
-
-        } else if (ad === "declare-stuck") {
-            await beyanGonder("stuck");
-
-        } else if (ad === "next") {
-            gizle(el.stepNext);
-            gizle(el.stepDeclare);
-            ilerle();
-        }
-    }
-
-    kok.addEventListener("click", function (olay) {
-        const dugme = olay.target.closest("[data-action]");
-        if (dugme) { eylem(dugme.dataset.action); }
+    $('lp-tekrar-dene').addEventListener('click', function () {
+        $('lp-hata').classList.add('hidden');
+        var is = bekleyenIstek; bekleyenIstek = null;
+        if (is) { is(); }
     });
 
-    el.undo.addEventListener("click", geriAl);
-
-    document.addEventListener("keydown", function (olay) {
-        if (olay.target.matches("input, textarea, select")) { return; }
-        const tus = olay.key.toLowerCase();
-        if (adim === "ask" && tus === "1") { olay.preventDefault(); eylem("unknown"); }
-        else if (adim === "ask" && tus === "2") { olay.preventDefault(); eylem("claim-known"); }
-        else if (adim === "confirm" && tus === "1") { olay.preventDefault(); eylem("misjudged"); }
-        else if (adim === "confirm" && tus === "2") { olay.preventDefault(); eylem("known"); }
-        else if (adim === "next" && tus === "3"
-                 && !el.stepDeclare.classList.contains("hidden")) {
-            olay.preventDefault(); eylem("declare-stuck");
-        }
-        else if (adim === "next" && tus === "4"
-                 && !el.stepDeclare.classList.contains("hidden")) {
-            olay.preventDefault(); eylem("declare-mastered");
-        }
-        else if (adim === "next" && (tus === " " || tus === "enter")) { olay.preventDefault(); eylem("next"); }
-        else if (tus === "z") { olay.preventDefault(); geriAl(); }
-    });
-
-    // ------------------------------------------------------------------
-    // Mobil kaydırma
-    //
-    // Terimler kullanıcının gördüğü yönle: "sağa kaydırmak", parmağı SOLA
-    // çekip sağdan yeni bir şey getirmek demek (sayfa çevirir gibi). Kodda
-    // buna "ileri" deniyor; tersi "geri".
-    //
-    //   ask     ileri -> Biliyorum (anlam açılır, dürüstlük sorusu gelir)
-    //           geri  -> Bilmiyorum (anlam açılır, kelime listeye eklenir)
-    //   confirm ileri -> Evet, biliyordum      -> sonraki kart
-    //           geri  -> Hayır, yanılmışım     -> kart açık kalır
-    //   next    ileri -> sonraki kart
-    //
-    // Kart yalnızca SONRAKİ KARTA geçen hareketlerde uçuyor; anlamın açıldığı
-    // hareketlerde yerine geri yaslanıyor, çünkü kullanıcının o kartı okuması
-    // gerekiyor.
-    // ------------------------------------------------------------------
-
-    const KAYDIRMA_ESIGI = 70;    // bu mesafeden kısa hareketler iptal
-    const YON_TOLERANSI = 1.3;    // yatay hareket dikeyin bu katı olmalı
-    const UCUS_SURESI = 180;      // ms
-
-    const TONLAR = {
-        bilir:   "#10b981",   // emerald-500
-        bilmez:  "#f43f5e",   // rose-500
-        yanildi: "#f59e0b",   // amber-500
-        notr:    "#94a3b8",   // slate-400
-    };
-
-    let dokunus = null;
-
-    function kartiYerineKoy(animasyonlu) {
-        el.card.style.transition = animasyonlu ? "transform 160ms ease-out, opacity 160ms ease-out" : "";
-        el.card.style.transform = "";
-        el.card.style.opacity = "";
-        el.hint.style.opacity = "0";
-        el.level.style.opacity = "";
+    function kaydet(k, karar) {
+        if (MISAFIR) { return; }
+        var govde = { word_id: k.id, verdict: karar > 0 ? 'known' : 'unknown', mode: MOD, kaynak: k.kaynak };
+        var is = function () {
+            return sirala(function () { return denemeli(kok.dataset.verdictUrl, govde); })
+                .then(function (cevap) { if (cevap.card) { kuyruk.push(cevap.card); } })
+                .catch(function () { hataGoster(is); });
+        };
+        is();
     }
 
-    function hareketinAnlami(yon) {
-        if (adim === "ask") {
-            return yon === "ileri"
-                ? { eylem: "claim-known", metin: "Biliyorum", ton: TONLAR.bilir, ilerletir: false }
-                : { eylem: "unknown", metin: "Bilmiyorum", ton: TONLAR.bilmez, ilerletir: false };
-        }
-        if (adim === "confirm") {
-            return yon === "ileri"
-                ? { eylem: "known", metin: "Evet, biliyordum", ton: TONLAR.bilir, ilerletir: true }
-                : { eylem: "misjudged", metin: "Yanılmışım", ton: TONLAR.yanildi, ilerletir: false };
-        }
-        if (adim === "next" && yon === "ileri") {
-            return { eylem: "next", metin: "Sonraki", ton: TONLAR.notr, ilerletir: true };
-        }
-        return null;   // bu hâlde o yönün bir karşılığı yok
+    // ---------------- Görünüm ----------------
+    function ilerlemeyiGoster() {
+        $('lp-ilerleme').style.width = Math.min(100, gorulen / TOPLAM * 100) + '%';
+        $('lp-sayac').textContent = gorulen + '/' + TOPLAM;
+        $('lp-geri-al').disabled = gecmis.length === 0 || durum === 'bitti';
     }
 
-    function ipucunuGoster(anlam, mesafe) {
-        // İpucu, kur rozetiyle aynı yerde duruyor: sürükledikçe biri silinip
-        // diğeri beliriyor. Üst üste binmesinler.
-        if (!anlam) {
-            el.hint.style.opacity = "0";
-            el.level.style.opacity = "";
-            return;
-        }
-        const gorunurluk = Math.min(1, mesafe / KAYDIRMA_ESIGI);
-        el.hint.textContent = anlam.metin;
-        el.hint.style.color = anlam.ton;
-        el.hint.style.borderColor = anlam.ton;
-        el.hint.style.opacity = gorunurluk.toFixed(2);
-        el.level.style.opacity = (1 - gorunurluk).toFixed(2);
+    function kartiCiz(k) {
+        kelimeEl.textContent = k.word;
+        var liste = $('lp-anlamlar');
+        liste.innerHTML = '';
+        (k.meanings || []).forEach(function (anlam, i) {
+            var li = document.createElement('li');
+            li.textContent = (k.meanings.length > 1 ? (i + 1) + '. ' : '') + anlam;
+            liste.appendChild(li);
+        });
+        $('lp-ornek').textContent = k.example || '';
+        $('lp-ornek').classList.toggle('hidden', !k.example);
     }
 
-    function ucur(yonIsareti) {
-        return new Promise(function (bitti) {
-            el.card.style.transition = "transform " + UCUS_SURESI + "ms ease-in, opacity " + UCUS_SURESI + "ms ease-in";
-            el.card.style.transform = "translateX(" + (yonIsareti * 120) + "%) rotate(" + (yonIsareti * 8) + "deg)";
-            el.card.style.opacity = "0";
-            setTimeout(bitti, UCUS_SURESI);
+    function soruHali() {
+        durum = 'soru';
+        acilim.classList.remove('acik');
+        acilim.setAttribute('aria-hidden', 'true');
+        kart.classList.remove('border-emerald-300', 'border-rose-300', 'dark:border-emerald-700', 'dark:border-rose-800');
+        kart.classList.add('border-gray-200', 'dark:border-slate-700');
+        $('lp-soru-dugmeleri').classList.remove('hidden');
+        $('lp-acik-dugmeleri').classList.add('hidden');
+        $('lp-ipucu').classList.remove('hidden');
+        ilerlemeyiGoster();
+    }
+
+    function acikHali(karar) {
+        durum = 'acik';
+        kart.classList.remove('border-gray-200', 'dark:border-slate-700');
+        kart.classList.add.apply(kart.classList, karar > 0
+            ? ['border-emerald-300', 'dark:border-emerald-700']
+            : ['border-rose-300', 'dark:border-rose-800']);
+        acilim.classList.add('acik');
+        acilim.setAttribute('aria-hidden', 'false');
+        $('lp-soru-dugmeleri').classList.add('hidden');
+        $('lp-acik-dugmeleri').classList.remove('hidden');
+        $('lp-ipucu').classList.add('hidden');
+        ilerlemeyiGoster();
+        // Küçük ekranda balon görünür olsun
+        setTimeout(function () {
+            var alt = acilim.getBoundingClientRect().bottom;
+            if (alt > window.innerHeight - 80) { acilim.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        }, 340);
+    }
+
+    function kartKonumu(dx, gecisli) {
+        kart.classList.toggle('suruklen', !gecisli);
+        kart.style.transform = dx ? 'translateX(' + dx + 'px) rotate(' + (dx / 22) + 'deg)' : '';
+        var oran = Math.min(1, Math.abs(dx) / ESIK);
+        etiketSag.style.opacity = (durum === 'soru' && dx > 0) ? oran : 0;
+        etiketSol.style.opacity = (durum === 'soru' && dx < 0) ? oran : 0;
+    }
+
+    // ---------------- Akış ----------------
+    function karar(yon) {
+        if (durum !== 'soru' || !mevcut) { return; }
+        gorulen += 1;
+        if (yon > 0) { bilinen += 1; }
+        else {
+            bilinmeyen += 1;
+            if (!mevcut.listede) { bilinmeyenler.push({ id: mevcut.id, word: mevcut.word }); }
+        }
+        gecmis.push({ kart: mevcut, karar: yon });
+        kaydet(mevcut, yon);
+        kartKonumu(0, true);
+        acikHali(yon);
+    }
+
+    function siradakiKart() {
+        if (kuyruk.length || MISAFIR) { return Promise.resolve(kuyruk.shift() || null); }
+        // Sunucunun cevabı henüz gelmediyse bekle.
+        return zincir.then(function () { return kuyruk.shift() || null; });
+    }
+
+    var geciliyor = false;
+    function ilerle(yon) {
+        if (durum !== 'acik' || geciliyor) { return; }
+        if (gorulen >= TOPLAM) { bitir(); return; }
+        geciliyor = true;
+        yon = yon || 1;
+        kart.classList.remove('suruklen');
+        kart.style.transform = 'translateX(' + (yon * 130) + '%) rotate(' + (yon * 12) + 'deg)';
+        kart.style.opacity = '0';
+        var bekle = new Promise(function (r) { setTimeout(r, 230); });
+        Promise.all([bekle, siradakiKart()]).then(function (s) {
+            geciliyor = false;
+            var yeni = s[1];
+            if (!yeni) { bitir(true); return; }
+            mevcut = yeni;
+            kartiCiz(mevcut);
+            soruHali();
+            kart.classList.add('suruklen');
+            kart.style.transform = 'scale(.94)';
+            kart.style.opacity = '0';
+            requestAnimationFrame(function () { requestAnimationFrame(function () {
+                kart.classList.remove('suruklen');
+                kart.style.transform = '';
+                kart.style.opacity = '1';
+            }); });
         });
     }
 
-    function kartiIceriAl() {
-        el.card.style.transition = "";
-        el.card.style.transform = "translateX(35%)";
-        el.card.style.opacity = "0";
-        void el.card.offsetWidth;          // tarayıcı başlangıç durumunu görsün
-        kartiYerineKoy(true);
+    function geriAl() {
+        // Kaydedilemeyen bir kaydırma varken geri al yanlış kaydı geri alırdı.
+        if (!gecmis.length || geciliyor || bekleyenIstek) { return; }
+        var son = gecmis.pop();
+        if (durum === 'soru' && mevcut) { kuyruk.unshift(mevcut); }
+        gorulen = Math.max(0, gorulen - 1);
+        if (son.karar > 0) { bilinen = Math.max(0, bilinen - 1); }
+        else {
+            bilinmeyen = Math.max(0, bilinmeyen - 1);
+            bilinmeyenler = bilinmeyenler.filter(function (b) { return b.id !== son.kart.id; });
+        }
+        mevcut = son.kart;
+        kartiCiz(mevcut);
+        kartKonumu(0, true);
+        kart.style.opacity = '1';
+        soruHali();
+        if (!MISAFIR) {
+            var is = function () {
+                return sirala(function () { return denemeli(kok.dataset.undoUrl, { mode: MOD }); })
+                    .catch(function (h) { if (!h.durum || h.durum >= 500) { hataGoster(is); } });
+            };
+            is();
+        }
     }
 
-    async function kaydirmaUygula(anlam) {
-        if (anlam.ilerletir) {
-            await ucur(-1);
-            await eylem(anlam.eylem);
-            kartiIceriAl();
+    function bitir(havuzBitti) {
+        if (durum === 'bitti') { return; }
+        durum = 'bitti';
+        $('lp-sahne').classList.add('hidden');
+        $('lp-bitis').classList.remove('hidden');
+        $('lp-bitir').classList.add('invisible');
+        ilerlemeyiGoster();
+        var bilmedigi = bilinmeyenler.length;
+        $('lp-bitis-baslik').textContent = gorulen ? 'Güzel iş!' : 'Bir dahaki sefere!';
+        $('lp-bitis-ozet').textContent = gorulen
+            ? gorulen + ' kelimeye baktın: ' + bilinen + ' biliyorum, ' + bilinmeyen + ' bilmiyorum.'
+              + (havuzBitti ? ' Şimdilik gösterecek kelime kalmadı.' : '')
+            : 'Hiç kaydırmadın; istediğin zaman tekrar başlayabilirsin.';
+        if (!bilmedigi) { return; }
+
+        $('lp-ekle-baslik').textContent = 'Bilmediğin ' + bilmedigi + ' kelimeyi listene ekleyelim mi?';
+        var kutu = $('lp-bilinmeyenler');
+        kutu.innerHTML = '';
+        bilinmeyenler.forEach(function (b) {
+            var s = document.createElement('span');
+            s.className = 'rounded-full bg-white dark:bg-slate-800 px-2.5 py-0.5 text-sm text-gray-800 dark:text-slate-200 ring-1 ring-amber-200 dark:ring-amber-900';
+            s.textContent = b.word;
+            kutu.appendChild(s);
+        });
+        $('lp-ekle-sorusu').classList.remove('hidden');
+    }
+
+    // Oturum sonu: toplu ekleme / şimdilik hayır (+ Geri al)
+    var ekleKutusu = $('lp-ekle-sorusu');
+    ekleKutusu.addEventListener('click', function (olay) {
+        var dugme = olay.target.closest('[data-islem]');
+        if (!dugme || MISAFIR) { return; }
+        var islem = dugme.dataset.islem;
+        var idler = bilinmeyenler.map(function (b) { return b.id; });
+        var soru = ekleKutusu.querySelector('[data-soru]');
+        var sonuc = ekleKutusu.querySelector('[data-sonuc]');
+        var dugmeler = ekleKutusu.querySelectorAll('[data-islem]');
+        dugmeler.forEach(function (d) { d.disabled = true; });
+        // Son kaydırmaların yazılmasını bekle: uç yalnızca kaydedilmiş kelimeleri kabul eder.
+        zincir.then(function () {
+            return denemeli(kok.dataset.bilinmeyenUrl, { islem: islem, word_ids: idler });
+        }).then(function (cevap) {
+            var eklenenler = cevap.eklenenler || [];
+            var mesaj = islem === 'ekle' ? eklenenler.length + ' kelime listene eklendi' : 'Tamam, şimdilik eklemedik';
+            soru.classList.add('hidden');
+            sonuc.textContent = islem === 'ekle' ? '✓ ' + mesaj + '. Egzersizlerde karşına çıkacaklar.' : mesaj + '.';
+            sonuc.classList.remove('hidden');
+            window.geriAl.goster(mesaj, function () {
+                denemeli(kok.dataset.bilinmeyenUrl, { islem: 'geri_al', word_ids: idler, eklenenler: eklenenler })
+                    .then(function () {
+                        sonuc.classList.add('hidden');
+                        soru.classList.remove('hidden');
+                        dugmeler.forEach(function (d) { d.disabled = false; });
+                    });
+            });
+        }).catch(function () {
+            dugmeler.forEach(function (d) { d.disabled = false; });
+            window.geriAl.bildir('Bağlantı kurulamadı, birazdan tekrar dene.');
+        });
+    });
+
+    // ---------------- Girdi: sürükleme ----------------
+    var basla = null, dx = 0;
+    kart.addEventListener('pointerdown', function (o) {
+        if (durum === 'bitti' || geciliyor) { return; }
+        basla = { x: o.clientX, y: o.clientY }; dx = 0;
+        try { kart.setPointerCapture(o.pointerId); } catch (h) { /* eski tarayıcı */ }
+    });
+    window.addEventListener('pointermove', function (o) {
+        if (!basla) { return; }
+        dx = o.clientX - basla.x;
+        if (Math.abs(dx) > 4) { kartKonumu(dx, false); }
+    });
+    function birak() {
+        if (!basla) { return; }
+        basla = null;
+        var yon = dx > 0 ? 1 : -1;
+        if (Math.abs(dx) >= ESIK) {
+            if (durum === 'soru') { karar(yon); } else { ilerle(yon); }
+        } else if (Math.abs(dx) < 6 && durum === 'acik') {
+            ilerle(1);   // açıkken karta dokunmak da sonrakine geçirir
         } else {
-            kartiYerineKoy(true);
-            await eylem(anlam.eylem);
+            kartKonumu(0, true);
         }
+        dx = 0;
     }
+    // Parmak kartın dışında kalkarsa da yakalansın.
+    window.addEventListener('pointerup', birak);
+    window.addEventListener('pointercancel', function () { basla = null; dx = 0; kartKonumu(0, true); });
 
-    el.card.addEventListener("touchstart", function (olay) {
-        if (mesgul || olay.touches.length !== 1) { dokunus = null; return; }
-        // Düğmeye dokunulduysa karışmayalım
-        if (olay.target.closest("[data-action], a, button")) { dokunus = null; return; }
-        const nokta = olay.touches[0];
-        dokunus = { x: nokta.clientX, y: nokta.clientY, dx: 0, yatay: false };
-    }, { passive: true });
+    // ---------------- Girdi: düğmeler ve tuşlar ----------------
+    $('lp-soru-dugmeleri').addEventListener('click', function (o) {
+        var d = o.target.closest('[data-karar]');
+        if (d) { karar(parseInt(d.dataset.karar, 10)); }
+    });
+    $('lp-sonraki').addEventListener('click', function () { ilerle(1); });
+    $('lp-geri-al').addEventListener('click', geriAl);
+    $('lp-bitir').addEventListener('click', function () { bitir(false); });
 
-    el.card.addEventListener("touchmove", function (olay) {
-        if (!dokunus) { return; }
-        const nokta = olay.touches[0];
-        const dx = nokta.clientX - dokunus.x;
-        const dy = nokta.clientY - dokunus.y;
-
-        if (!dokunus.yatay) {
-            if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * YON_TOLERANSI) {
-                dokunus.yatay = true;
-            } else if (Math.abs(dy) > 12) {
-                // Dikey kaydırma: hareketi sayfaya bırak
-                dokunus = null;
-                kartiYerineKoy(true);
-                return;
-            } else {
-                return;
-            }
+    document.addEventListener('keydown', function (o) {
+        var hedef = o.target;
+        if ((hedef && hedef.closest && hedef.closest('input, textarea, select')) || o.metaKey || o.ctrlKey || o.altKey) { return; }
+        if (durum === 'soru') {
+            if (o.key === 'ArrowRight') { o.preventDefault(); karar(1); }
+            else if (o.key === 'ArrowLeft') { o.preventDefault(); karar(-1); }
+        } else if (durum === 'acik') {
+            if (o.key === 'ArrowRight' || o.key === 'Enter' || o.key === ' ') { o.preventDefault(); ilerle(1); }
+            else if (o.key === 'ArrowLeft') { o.preventDefault(); ilerle(-1); }
         }
+    });
 
-        dokunus.dx = dx;
-        const anlam = hareketinAnlami(dx < 0 ? "ileri" : "geri");
-
-        // Karşılığı olmayan yönde kart çok az oynasın: "burada bir şey yok" hissi
-        const oynama = anlam ? dx : dx * 0.25;
-        el.card.style.transition = "";
-        el.card.style.transform = "translateX(" + oynama + "px) rotate(" + (oynama / 28) + "deg)";
-        ipucunuGoster(anlam, Math.abs(dx));
-    }, { passive: true });
-
-    el.card.addEventListener("touchend", function () {
-        if (!dokunus) { return; }
-        const dx = dokunus.dx;
-        const yatay = dokunus.yatay;
-        dokunus = null;
-
-        const anlam = yatay ? hareketinAnlami(dx < 0 ? "ileri" : "geri") : null;
-        if (!anlam || Math.abs(dx) < KAYDIRMA_ESIGI) {
-            kartiYerineKoy(true);
-            return;
-        }
-        kaydirmaUygula(anlam);
-    }, { passive: true });
-
-    el.card.addEventListener("touchcancel", function () {
-        dokunus = null;
-        kartiYerineKoy(true);
-    }, { passive: true });
-
-    kartiCiz(mevcut);
+    if (mevcut) { kartiCiz(mevcut); soruHali(); }
 })();
 </script>
 {% endblock %}
