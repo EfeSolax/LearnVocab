@@ -4,7 +4,7 @@ from .models import (
     Category, Collocation, ExampleSentence, Expression, ExpressionExample,
     FalseFriend, Meaning, UsagePattern, UserExampleSentence, UserMeaning,
     UserWordLink, UserWordNote, Word, WordFamily, WordForm, WordList,
-    WordRelation,
+    WordRelation, BulunamayanArama, HazirListe, HazirListeKelimesi, HazirListeSecimi,
 )
 
 
@@ -155,3 +155,39 @@ class UserMeaningAdmin(admin.ModelAdmin):
 
 admin.site.register(UserWordLink)
 admin.site.register(WordList)
+
+
+# --- Sözlük: hazır listeler ve bulunamayan aramalar (rapor 4.1, 4.2) ---
+
+class HazirListeKelimesiInline(admin.TabularInline):
+    model = HazirListeKelimesi
+    extra = 0
+    raw_id_fields = ("word",)
+    ordering = ("sira", "id")
+
+
+@admin.register(HazirListe)
+class HazirListeAdmin(admin.ModelAdmin):
+    list_display = ("ad", "kurum", "slug", "sira", "yayinda", "kelime_sayisi")
+    list_editable = ("sira", "yayinda")
+    prepopulated_fields = {"slug": ("ad",)}
+    search_fields = ("ad", "kurum")
+    inlines = (HazirListeKelimesiInline,)
+
+    @admin.display(description="kelime")
+    def kelime_sayisi(self, obj):
+        return obj.uyelikler.count()
+
+
+@admin.register(HazirListeSecimi)
+class HazirListeSecimiAdmin(admin.ModelAdmin):
+    list_display = ("user", "liste", "secildi")
+    raw_id_fields = ("user",)
+
+
+@admin.register(BulunamayanArama)
+class BulunamayanAramaAdmin(admin.ModelAdmin):
+    list_display = ("sorgu", "sayi", "kaynak", "oneri_vardi", "ilk", "son")
+    list_filter = ("kaynak", "oneri_vardi")
+    search_fields = ("sorgu",)
+    ordering = ("-sayi", "-son")

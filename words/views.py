@@ -1078,41 +1078,5 @@ def aiAddWordsFinish(request, job_id):
 
 
 # ---------------------------------------------------------------------------
-# Sözlük (ürün raporu 4) — İSKELET
+# Sözlük (ürün raporu 4 ve 5): words/sozluk_views.py, adresler words/sozluk_urls.py
 # ---------------------------------------------------------------------------
-
-def sozluk(request):
-    """
-    Sözlük: üstte Keşfet | Listem sekmeleri (Listem yalnızca girişliye).
-
-    Şimdilik iskelet (uygulama planı adım 3). Keşfet'te arama kutusu ve
-    İngilizce TAM eşleşme: kelimenin her türü için ayrı kart, ilki açık,
-    diğerleri kapalı (rapor 4.2). Anlık öneri, Türkçe sorgu, diğer
-    sonuçlar ve bulunamayan akışı 4. adımda; Listem 5. adımda gelecek.
-    Paylaşılabilir adres: /sozluk/?q=aim
-    """
-    from .kart import kart_verisi
-
-    sekme = request.GET.get("sekme")
-    if sekme != "listem" or not request.user.is_authenticated:
-        sekme = "kesfet"
-
-    sorgu = (request.GET.get("q") or "").strip()[:120]
-    kartlar = []
-    if sekme == "kesfet" and sorgu:
-        kelimeler = (visible_words_qs(request.user)
-                     .filter(text__iexact=sorgu)
-                     .order_by("pos", "id").distinct())
-        kartlar = kart_verisi(kelimeler, request.user)
-
-    liste_sayisi = 0
-    if sekme == "listem":
-        liste_sayisi = UserWordLink.objects.filter(user=request.user).count()
-
-    return render(request, "pages/sozluk.html", {
-        "active_page": "Sözlük",
-        "sekme": sekme,
-        "sorgu": sorgu,
-        "kartlar": kartlar,
-        "liste_sayisi": liste_sayisi,
-    })

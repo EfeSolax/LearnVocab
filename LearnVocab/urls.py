@@ -68,7 +68,7 @@ urlpatterns = [
     path("readings/", include("readings.urls")),
     path("api/kelime/", readings_api.kelime, name="kelime_api"),
     # Sözlük (rapor 4). Adres paylaşılabilir: /sozluk/?q=aim
-    path("sozluk/", word_views.sozluk, name="sozluk"),
+    path("sozluk/", include("words.sozluk_urls")),
     path("users/", include("users.urls")),
     path("words/", include("words.urls")),
     # Arkadaşlık özelliği şu an KAPALI.

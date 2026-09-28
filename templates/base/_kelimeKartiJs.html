@@ -90,3 +90,69 @@ ulaşmaz (base/_girisGerekli.html yakalar).
     window.kelimeKarti = { durumuYay: durumuYay };
 })();
 </script>
+
+{% comment %}
+Kartı yerinde açmak (rapor 4.3: "Kart bulunduğu yerde açılır ve kapanır").
+
+  <a href="/sozluk/?q=goal" data-kart-ac="42">goal</a>
+      -> /sozluk/kart/42/ parçası getirilir ve tıklanan kartın hemen altına
+         açık olarak eklenir. O kart sayfada zaten varsa ona kaydırılır ve açılır.
+  data-kart-hedef="yerine" -> öğenin en yakın [data-kart-satiri] kabı kartla
+         değiştirilir ("Diğer sonuçlar" satırı gibi).
+
+Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de çalışır).
+{% endcomment %}
+<script>
+(function () {
+    var KART_ADRESI = '{% url "sozluk_kart" 0 %}';
+
+    function kartAdresi(id) {
+        return KART_ADRESI.replace(/\/0\/$/, '/' + id + '/');
+    }
+
+    function ac(kart) {
+        if (window.Alpine && kart) {
+            try { window.Alpine.$data(kart).acik = true; } catch (e) { /* Alpine henüz başlamadı */ }
+        }
+    }
+
+    document.addEventListener('click', function (olay) {
+        var bag = olay.target.closest('[data-kart-ac]');
+        if (!bag || olay.defaultPrevented || olay.metaKey || olay.ctrlKey || olay.shiftKey) { return; }
+        var id = bag.getAttribute('data-kart-ac');
+        var yerine = bag.getAttribute('data-kart-hedef') === 'yerine';
+        var satir = yerine ? bag.closest('[data-kart-satiri]') : null;
+        var kaynak = bag.closest('[data-kelime-karti]');
+        if (!satir && !kaynak) { return; }   // kart dışında: normal bağlantı
+        olay.preventDefault();
+
+        // Kaynak kartın hemen altında zaten açılmışsa ona git
+        var mevcut = kaynak && kaynak.nextElementSibling;
+        if (mevcut && mevcut.getAttribute('data-kelime-karti') === id) {
+            ac(mevcut);
+            mevcut.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            return;
+        }
+
+        fetch(kartAdresi(id), { credentials: 'same-origin', headers: { 'X-Requested-With': 'fetch' } })
+            .then(function (cevap) {
+                if (!cevap.ok) { throw new Error('HTTP ' + cevap.status); }
+                return cevap.text();
+            })
+            .then(function (html) {
+                var sablon = document.createElement('template');
+                sablon.innerHTML = html.trim();
+                var yeni = sablon.content.firstElementChild;
+                if (!yeni) { throw new Error('boş'); }
+                if (satir) {
+                    satir.replaceWith(yeni);
+                } else {
+                    yeni.classList.add('mt-3');
+                    kaynak.after(yeni);
+                }
+                yeni.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            })
+            .catch(function () { window.location.href = bag.href; });
+    });
+})();
+</script>

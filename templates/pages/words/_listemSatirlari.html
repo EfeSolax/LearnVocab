@@ -1,0 +1,46 @@
+{% comment %}
+Listem satırları (rapor 5). İlk sayfa _listem.html içinde, sonrakiler
+"Daha fazla göster" ile (?parca=1) bu parça olarak gelir.
+
+Satır: kelime (+ aynı yazımın iki türü listedeyse küçük gri tür etiketi),
+altında numaralı Türkçe anlamlar, yanında "Listemden çıkar". Başka hiçbir şey yok.
+Dokununca aynı kart bileşeni satırın yerinde açılır (/sozluk/kart/<id>/?kapat=olay);
+kartın ⌃ düğmesi satırı geri getirir.
+"Listemden çıkar" kartın liste düğmesiyle aynı mekanizma (base/_kelimeKartiJs.html):
+onay yok, "Geri al" var; satır kelime-listesi olayıyla gizlenip geri gelir.
+{% endcomment %}
+{% for s in satirlar %}
+<li data-listem-satiri data-id="{{ s.id }}" x-data="{ acik: false }" @kart-kapat="acik = false">
+    <div x-show="!acik" class="flex items-start gap-3 px-4 py-3">
+        <input type="checkbox" x-show="sec" x-cloak :checked="secili.includes({{ s.id }})" @click="degistir({{ s.id }})"
+               aria-label="{{ s.text }} seç" class="mt-1 h-5 w-5 shrink-0 rounded border-gray-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+        <button type="button" @click="dokun({{ s.id }}, $el.closest('[data-listem-satiri]'))"
+                class="min-w-0 flex-1 text-left">
+            <span class="font-bold text-gray-900 dark:text-slate-100">{{ s.text }}</span>{% if s.tur %} <span class="text-xs text-gray-400 dark:text-slate-500" data-tur>· {{ s.tur }}</span>{% endif %}
+            {% if s.anlamlar %}
+            <ol class="mt-0.5 space-y-0.5 text-sm text-gray-600 dark:text-slate-300">
+                {% for anlam in s.anlamlar %}<li><span class="text-gray-400 dark:text-slate-500">{{ forloop.counter }}.</span> {{ anlam }}</li>{% endfor %}
+            </ol>
+            {% endif %}
+        </button>
+        <button type="button" x-show="!sec"
+                data-kelime-liste
+                data-kelime-id="{{ s.id }}"
+                data-kelime-yazi="{{ s.text }}"
+                data-listede="1"
+                data-ekle-url="{% url 'add_to_my_list' s.id %}"
+                data-cikar-url="{% url 'remove_from_my_list' s.id %}"
+                aria-pressed="true" title="Listemden çıkar"
+                class="shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-gray-500 dark:text-slate-400 ring-1 ring-inset ring-gray-200 dark:ring-slate-600 hover:bg-rose-50 hover:text-rose-700 hover:ring-rose-200 dark:hover:bg-rose-950 dark:hover:text-rose-300 transition-colors disabled:opacity-60">
+            <span data-listede-yazi>Listemden çıkar</span><span data-ekle-yazi hidden>Listeme ekle</span>
+        </button>
+    </div>
+    <div x-show="acik" x-cloak data-kart-yuva class="p-2"></div>
+</li>
+{% endfor %}
+{% if devam_adresi %}
+<li data-listem-devam class="px-4 py-3 text-center">
+    <button type="button" data-adres="{{ devam_adresi }}" @click="devam($el)"
+            class="rounded-lg px-4 py-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-slate-700 disabled:opacity-50">Daha fazla göster</button>
+</li>
+{% endif %}

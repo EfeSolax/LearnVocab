@@ -1,0 +1,44 @@
+{% comment %}
+oneriKutusu(adres): _oneriKutusu.html'in Alpine bileşeni. Sayfada bir kez eklenir.
+Yazdıkça 120 ms bekler, eski isteği iptal eder; yalnızca son sorgunun
+cevabı gösterilir (yavaş cevap yeni yazılanın üstüne yazmasın).
+{% endcomment %}
+<script>
+function oneriKutusu(adres) {
+    return {
+        oneriler: [], secili: -1, acik: false, zamanlayici: null, denetim: null,
+        sorgu() { return this.$refs.girdi.value.trim(); },
+        yaz() {
+            clearTimeout(this.zamanlayici);
+            var q = this.sorgu();
+            if (!q) { this.oneriler = []; this.acik = false; return; }
+            this.zamanlayici = setTimeout(() => this.getir(q), 120);
+        },
+        getir(q) {
+            if (this.denetim) { this.denetim.abort(); }
+            this.denetim = new AbortController();
+            fetch(adres + '?q=' + encodeURIComponent(q), {
+                signal: this.denetim.signal, credentials: 'same-origin',
+                headers: { 'X-Requested-With': 'fetch' },
+            })
+                .then((c) => c.ok ? c.json() : { oneriler: [] })
+                .then((veri) => {
+                    if (q !== this.sorgu()) { return; }
+                    this.oneriler = veri.oneriler || [];
+                    this.secili = -1;
+                    this.acik = this.oneriler.length > 0;
+                })
+                .catch(() => {});
+        },
+        asagi() { if (this.oneriler.length) { this.acik = true; this.secili = (this.secili + 1) % this.oneriler.length; } },
+        yukari() { if (this.oneriler.length) { this.secili = this.secili <= 0 ? this.oneriler.length - 1 : this.secili - 1; } },
+        sec(olay) {
+            if (this.acik && this.secili >= 0 && this.oneriler[this.secili]) {
+                olay.preventDefault();
+                window.location.href = this.oneriler[this.secili].adres;
+            }
+        },
+        kapat() { this.acik = false; this.secili = -1; },
+    };
+}
+</script>

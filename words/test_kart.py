@@ -325,7 +325,7 @@ class SozlukSayfasiTests(TestCase):
 
     def test_bulunamayan_sorgu(self):
         html = self.client.get(reverse("sozluk"), {"q": "gskjengkwng"}).content.decode()
-        self.assertIn("henüz bir kart bulamadık", html)
+        self.assertIn("Henüz sözlüğümüzde yok.", html)
 
     def test_gizli_kelime_kart_olarak_gelmez(self):
         diger = User.objects.create_user(username="diger", password="Sifre1234")

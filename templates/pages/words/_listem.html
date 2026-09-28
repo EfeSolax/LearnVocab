@@ -1,0 +1,187 @@
+{% comment %}
+Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
+
+  - Arama kutusu + anlık öneri YALNIZCA listedeki kelimelerden (İngilizce ya da Türkçe anlam).
+  - Tek "Filtre" düğmesi: Sırala (En yeni / En eski / A→Z) · Zaman · Zorlandıklarım.
+  - "Seç": onay kutuları; üst çubuk "N seçili · Tümünü seç · Çıkar · İptal".
+    Tümünü seç o anki süzgece uyan BÜTÜN kelimeleri seçer (yüklenmemişler dahil).
+  - Çıkarmada onay yok, "Geri al" bildirimi var (tek satır da, toplu da).
+  - Satıra dokununca Sözlük'teki kartın aynısı yerinde açılır.
+{% endcomment %}
+{{ tum_idler|json_script:"listem-idler" }}
+<div x-data="listem()" @kelime-listesi.document="satirDurumu($event.detail)" data-listem>
+
+    {# ---------- Arama + Filtre + Seç ---------- #}
+    <div class="flex items-start gap-2">
+        <form method="get" action="{% url 'sozluk' %}" role="search" class="min-w-0 flex-1">
+            <input type="hidden" name="sekme" value="listem">
+            {% if d.sira != "yeni" %}<input type="hidden" name="sira" value="{{ d.sira }}">{% endif %}
+            {% if d.zaman != "tumu" %}<input type="hidden" name="zaman" value="{{ d.zaman }}">{% endif %}
+            {% if d.zor %}<input type="hidden" name="zor" value="1">{% endif %}
+            {% url 'listem_oneri' as listem_oneri_adresi %}
+            {% include 'pages/words/_oneriKutusu.html' with girdi_id="listem-ara" ad="ara" deger=d.ara etiket="Listende ara" adres=listem_oneri_adresi %}
+        </form>
+        <div class="flex shrink-0 flex-col gap-1.5 sm:flex-row">
+            <button type="button" @click="filtre = !filtre" :aria-expanded="filtre.toString()" data-filtre-dugmesi
+                    class="relative inline-flex h-[3.125rem] items-center gap-1.5 rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 text-sm font-semibold text-gray-700 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-700">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h18M6.75 12h10.5M10.5 19.5h3"/></svg>
+                Filtre
+                {% if d.filtre_var %}<span class="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-indigo-600 dark:bg-indigo-400" aria-label="Filtre açık"></span>{% endif %}
+            </button>
+        </div>
+    </div>
+
+    {# ---------- Filtre paneli (tek düğme, açılınca üç satır) ---------- #}
+    <div x-show="filtre" x-cloak x-transition.opacity data-filtre-paneli
+         class="mt-2 space-y-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 text-sm">
+        {% for baslik, secenekler in filtre_satirlari %}
+        <div class="flex flex-wrap items-center gap-2">
+            <span class="w-14 shrink-0 text-gray-500 dark:text-slate-400">{{ baslik }}</span>
+            {% for ad, adres, secili in secenekler %}
+            <a href="{{ adres }}" {% if secili %}aria-current="true"{% endif %}
+               class="rounded-full px-3 py-1 font-medium transition-colors {% if secili %}bg-indigo-600 text-white{% else %}bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600{% endif %}">{{ ad }}</a>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <div class="flex flex-wrap items-center gap-2">
+            <a href="{{ zor_adresi }}" role="switch" aria-checked="{{ d.zor|yesno:'true,false' }}" data-zorlandiklarim
+               class="inline-flex items-center gap-2 rounded-full px-3 py-1 font-medium transition-colors {% if d.zor %}bg-indigo-600 text-white{% else %}bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600{% endif %}">
+                {% if d.zor %}✓ {% endif %}Zorlandıklarım
+            </a>
+            <span class="text-xs text-gray-500 dark:text-slate-400">L&amp;P'de bilmediğin ya da egzersizde yanlış yaptığın kelimeler</span>
+        </div>
+    </div>
+
+    {# ---------- Seçim çubuğu ---------- #}
+    <div class="mt-4 flex min-h-[2.5rem] items-center justify-between gap-2 text-sm">
+        <template x-if="!sec">
+            <div class="flex w-full items-center justify-between">
+                <span class="text-gray-500 dark:text-slate-400" data-listem-sayisi x-text="tumIdler.length ? tumIdler.length + ' kelime' : ''">{% if toplam %}{{ toplam }} kelime{% endif %}</span>
+                {% if toplam %}
+                <button type="button" @click="sec = true" x-show="tumIdler.length" data-sec-dugmesi
+                        class="rounded-lg px-3 py-1.5 font-semibold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-slate-800">Seç</button>
+                {% endif %}
+            </div>
+        </template>
+        <template x-if="sec">
+            <div class="sticky top-16 z-20 flex w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-xl bg-gray-900 dark:bg-slate-100 px-4 py-2 text-white dark:text-slate-900" data-secim-cubugu>
+                <span class="font-semibold"><span x-text="secili.length"></span> seçili</span>
+                <span class="opacity-40" aria-hidden="true">·</span>
+                <button type="button" @click="tumunuSec()" class="font-semibold text-indigo-300 dark:text-indigo-700 hover:underline">Tümünü seç</button>
+                <span class="opacity-40" aria-hidden="true">·</span>
+                <button type="button" @click="cikar()" :disabled="!secili.length || mesgul"
+                        class="font-semibold text-rose-300 dark:text-rose-700 hover:underline disabled:opacity-40 disabled:no-underline">Çıkar</button>
+                <span class="opacity-40" aria-hidden="true">·</span>
+                <button type="button" @click="iptal()" class="font-semibold hover:underline">İptal</button>
+            </div>
+        </template>
+    </div>
+
+    {# ---------- Satırlar ---------- #}
+    {% if satirlar %}
+    <ul class="mt-1 divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800" data-listem-satirlari x-ref="satirlar">
+        {% include 'pages/words/_listemSatirlari.html' %}
+    </ul>
+    {% endif %}
+
+    <p x-show="bosaldi" x-cloak class="mt-3 rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-6 text-center text-gray-600 dark:text-slate-400">
+        Bu görünümde kelime kalmadı.
+    </p>
+
+    {% if liste_bos %}
+    <p class="mt-3 rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-6 text-center text-gray-600 dark:text-slate-400" data-liste-bos>
+        Listen boş. Sözlük'te + ile ya da Learn &amp; Pass'te kelime ekleyebilirsin.
+    </p>
+    {% elif not satirlar %}
+    <div class="mt-3 rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-6 text-center text-gray-600 dark:text-slate-400" data-filtre-bos>
+        <p>{% if d.ara %}Listende “{{ d.ara }}” ile eşleşen kelime yok.{% else %}Bu seçimde kelime yok.{% endif %}</p>
+        <a href="{{ temizle_adresi }}" class="mt-2 inline-block text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Bütün listeyi göster</a>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function listem() {
+    var CIKAR = '{% url "listem_toplu_cikar" %}';
+    var GERI_AL = '{% url "listem_geri_yukle" %}';
+    var KART = '{% url "sozluk_kart" 0 %}';
+
+    function csrf() {
+        var meta = document.querySelector('meta[name="csrf-token"]');
+        return meta ? meta.content : '';
+    }
+    function gonder(adres, veri) {
+        return fetch(adres, {
+            method: 'POST', credentials: 'same-origin',
+            headers: { 'X-CSRFToken': csrf(), 'X-Requested-With': 'fetch', 'Content-Type': 'application/json' },
+            body: JSON.stringify(veri),
+        }).then(function (c) { if (!c.ok) { throw new Error('HTTP ' + c.status); } return c.json(); });
+    }
+
+    return {
+        filtre: false, sec: false, secili: [], mesgul: false, bosaldi: false,
+        tumIdler: JSON.parse(document.getElementById('listem-idler').textContent),
+
+        satir(id) { return this.$root.querySelector('[data-listem-satiri][data-id="' + id + '"]'); },
+        gorunurSay() { return this.$root.querySelectorAll('[data-listem-satiri]:not([hidden])').length; },
+        gizle(id, gizli) {
+            var s = this.satir(id);
+            if (s) { s.hidden = gizli; }
+            if (gizli) {
+                this.tumIdler = this.tumIdler.filter(function (x) { return x !== id; });
+                this.secili = this.secili.filter(function (x) { return x !== id; });
+            } else if (this.tumIdler.indexOf(id) === -1) {
+                this.tumIdler.push(id);
+            }
+            this.bosaldi = this.$refs.satirlar ? this.gorunurSay() === 0 : false;
+        },
+        // Tek satırın "Listemden çıkar"ı (ya da açık karttaki düğme): satır gizlenir,
+        // "Geri al" kelimeyi eklenme tarihiyle geri koyunca satır geri gelir.
+        satirDurumu(detay) { this.gizle(Number(detay.id), !detay.listede); },
+
+        dokun(id, satirEl) {
+            if (this.sec) { this.degistir(id); return; }
+            var yuva = satirEl.querySelector('[data-kart-yuva]');
+            var veri = window.Alpine.$data(satirEl);
+            if (yuva.dataset.yuklendi) { veri.acik = true; return; }
+            fetch(KART.replace(/\/0\/$/, '/' + id + '/') + '?kapat=olay', { credentials: 'same-origin' })
+                .then(function (c) { if (!c.ok) { throw new Error(); } return c.text(); })
+                .then(function (html) { yuva.innerHTML = html; yuva.dataset.yuklendi = '1'; veri.acik = true; })
+                .catch(function () { window.geriAl.bildir('Kart açılamadı, tekrar dener misin?'); });
+        },
+        degistir(id) {
+            var i = this.secili.indexOf(id);
+            if (i === -1) { this.secili.push(id); } else { this.secili.splice(i, 1); }
+        },
+        tumunuSec() { this.secili = this.tumIdler.slice(); },
+        iptal() { this.sec = false; this.secili = []; },
+
+        cikar() {
+            var self = this;
+            var idler = this.secili.slice();
+            if (!idler.length) { return; }
+            this.mesgul = true;
+            gonder(CIKAR, { idler: idler }).then(function (cevap) {
+                idler.forEach(function (id) { self.gizle(id, true); });
+                self.iptal();
+                window.geriAl.goster(cevap.sayi + ' kelime çıkarıldı', function () {
+                    gonder(GERI_AL, { geri: cevap.geri }).then(function () {
+                        cevap.geri.forEach(function (g) { self.gizle(Number(g.word), false); });
+                    }).catch(function (h) { console.error(h); window.geriAl.bildir('Geri alınamadı, sayfayı yenileyip tekrar dener misin?'); });
+                }, { sure: 7000 });
+            }).catch(function () {
+                window.geriAl.bildir('Bir sorun oldu, tekrar dener misin?');
+            }).finally(function () { self.mesgul = false; });
+        },
+
+        devam(dugme) {
+            var kap = dugme.closest('[data-listem-devam]');
+            dugme.disabled = true;
+            fetch(dugme.dataset.adres, { credentials: 'same-origin' })
+                .then(function (c) { if (!c.ok) { throw new Error(); } return c.text(); })
+                .then(function (html) { kap.insertAdjacentHTML('beforebegin', html); kap.remove(); })
+                .catch(function () { dugme.disabled = false; window.geriAl.bildir('Yüklenemedi, tekrar dener misin?'); });
+        },
+    };
+}
+</script>

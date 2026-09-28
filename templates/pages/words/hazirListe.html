@@ -1,0 +1,66 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}
+Hazır liste sayfası (rapor 4.1, D7): kelimeler kapalı kartlar, "Bu listeyle çalış".
+"Listenin hepsini ekle" YOK (rapor 17). Görünüm: words.sozluk_views.hazir_liste_sayfasi
+{% endcomment %}
+
+{% block title %}{{ liste.ad }} kelime listesi — LearnVocab Sözlük{% endblock %}
+{% block extra_head %}{% if liste.aciklama %}<meta name="description" content="{{ liste.aciklama }}">{% endif %}{% endblock %}
+{% block page_heading %}{% endblock %}
+
+{% block page %}
+<a href="{% url 'sozluk' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
+    <span aria-hidden="true">‹</span> Sözlük
+</a>
+
+<header class="mt-3 mb-5">
+    {% if liste.kurum %}<p class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">{{ liste.kurum }}</p>{% endif %}
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">{{ liste.ad }}</h1>
+    {% if liste.aciklama %}<p class="mt-1 text-gray-600 dark:text-slate-400">{{ liste.aciklama }}</p>{% endif %}
+    <p class="mt-1 text-sm text-gray-500 dark:text-slate-400">{{ sayfa.paginator.count }} kelime</p>
+
+    <div class="mt-4 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4" data-listeyle-calis>
+        {% if calisiliyor %}
+        <p class="font-semibold text-emerald-700 dark:text-emerald-300">✓ Bu listeyle çalışıyorsun</p>
+        <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Learn &amp; Pass yeni kelimeleri bu listeden getiriyor. Bilmediklerini listene eklemeyi sen seçersin.</p>
+        <div class="mt-3 flex flex-wrap items-center gap-2">
+            <a href="{% url 'learn_pass_page' %}" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Learn &amp; Pass'e git</a>
+            <form method="post" action="{% url 'hazir_liste_calis' liste.slug %}">
+                {% csrf_token %}
+                <input type="hidden" name="islem" value="birak">
+                <button type="submit" class="rounded-lg px-3 py-2 text-sm font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700">Seviyeme dön</button>
+            </form>
+        </div>
+        {% else %}
+        <p class="text-sm text-gray-600 dark:text-slate-400">Learn &amp; Pass yeni kelimeleri seviyen yerine bu listeden getirsin. Bilmediklerini listene eklemeyi sen seçersin.</p>
+        <form method="post" action="{% url 'hazir_liste_calis' liste.slug %}" class="mt-3">
+            {% csrf_token %}
+            <button type="submit" {% if not user.is_authenticated %}data-giris-gerekli="calisma"{% endif %}
+                    class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Bu listeyle çalış</button>
+        </form>
+        {% endif %}
+    </div>
+</header>
+
+{% if kartlar %}
+<div class="space-y-2" data-hazir-liste-kartlari>
+    {% include 'pages/words/_hazirListeKartlari.html' %}
+</div>
+{% else %}
+<p class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-6 text-center text-gray-600 dark:text-slate-400">Bu listeye henüz kelime eklenmedi.</p>
+{% endif %}
+
+<script>
+document.addEventListener('click', function (olay) {
+    var dugme = olay.target.closest('[data-hazir-liste-devam]');
+    if (!dugme) { return; }
+    olay.preventDefault();
+    dugme.disabled = true;
+    fetch(dugme.dataset.adres, { credentials: 'same-origin' })
+        .then(function (c) { if (!c.ok) { throw new Error(); } return c.text(); })
+        .then(function (html) { dugme.insertAdjacentHTML('beforebegin', html); dugme.remove(); })
+        .catch(function () { window.location.href = dugme.dataset.yedek; });
+});
+</script>
+{% endblock %}

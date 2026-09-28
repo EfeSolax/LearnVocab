@@ -951,3 +951,113 @@ class WordList(models.Model):
 
     def __str__(self):
         return f"{self.owner.username} · {self.name}"
+
+
+# ----------------------------------------------------------------------
+# Hazır listeler (ürün raporu 4.1, veri işi D7)
+# ----------------------------------------------------------------------
+
+class HazirListe(models.Model):
+    """
+    Kurumların kelime listeleri: ODTÜ 101, Bilkent upp-int, Cambridge B2 …
+
+    Liste sayfasında kelimeler kapalı kartlar olarak durur. "Hepsini ekle"
+    YOK (rapor 17): kullanıcı "Bu listeyle çalış" der, Learn & Pass'in yeni
+    kelime kaynağı seviye yerine bu liste olur (bkz. HazirListeSecimi ve
+    words.hazir_liste.aktif_liste). Veriyi `hazir_liste_yukle` komutu yükler.
+    """
+
+    ad = models.CharField(max_length=80)                        # "ODTÜ 101"
+    slug = models.SlugField(max_length=80, unique=True)         # adres: /sozluk/liste/odtu-101/
+    kurum = models.CharField(max_length=80, blank=True)         # "ODTÜ"
+    aciklama = models.CharField(max_length=300, blank=True)
+    sira = models.PositiveIntegerField(default=0)
+    # Yüklenip gözden geçirilene kadar Keşfet'te görünmesin.
+    yayinda = models.BooleanField(default=True)
+    kelimeler = models.ManyToManyField(Word, through="HazirListeKelimesi",
+                                       related_name="hazir_listeler", blank=True)
+    olusturulma = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ("sira", "ad")
+        verbose_name = "hazır liste"
+        verbose_name_plural = "hazır listeler"
+
+    def __str__(self):
+        return self.ad
+
+    def sirali_kelimeler(self):
+        """Listedeki kelimeler, listedeki sırasıyla (L&P de bu sırayı kullanabilir)."""
+        return (Word.objects.filter(hazir_liste_uyelikleri__liste=self)
+                .order_by("hazir_liste_uyelikleri__sira", "hazir_liste_uyelikleri__id"))
+
+
+class HazirListeKelimesi(models.Model):
+    """Sıralı üyelik: listenin kaçıncı kelimesi."""
+
+    liste = models.ForeignKey(HazirListe, on_delete=models.CASCADE, related_name="uyelikler")
+    word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="hazir_liste_uyelikleri")
+    sira = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ("sira", "id")
+        unique_together = ("liste", "word")
+        verbose_name = "hazır liste kelimesi"
+        verbose_name_plural = "hazır liste kelimeleri"
+
+    def __str__(self):
+        return f"{self.liste} · {self.sira}. {self.word.text}"
+
+
+class HazirListeSecimi(models.Model):
+    """
+    "Bu listeyle çalış": kullanıcının L&P'de yeni kelimeleri seviye yerine
+    bu listeden alması. Kullanıcı başına en çok bir liste; satır yoksa
+    seviye kullanılır. Okumak için: words.hazir_liste.aktif_liste(user).
+    """
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="hazir_liste_secimi")
+    liste = models.ForeignKey(HazirListe, on_delete=models.CASCADE, related_name="secimler")
+    secildi = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "hazır liste seçimi"
+        verbose_name_plural = "hazır liste seçimleri"
+
+    def __str__(self):
+        return f"{self.user} → {self.liste}"
+
+
+# ----------------------------------------------------------------------
+# Bulunamayan aramalar (ürün raporu 4.2 ve 8)
+# ----------------------------------------------------------------------
+
+class BulunamayanArama(models.Model):
+    """
+    Sözlükte karşılığı çıkmayan sorgular. Hangi kelimelerin ekleneceğine bu
+    kayıttan karar verilir (rapor 4.2). Aynı sorgu tek satır, sayaç artar.
+    Okumalar'da dokunulup bulunamayan kelimeler de buraya yazılabilir
+    (kaynak="okuma"); yazmak için words.arama.bulunamayan_kaydet.
+    """
+
+    KAYNAK_SOZLUK = "sozluk"
+    KAYNAK_OKUMA = "okuma"
+    KAYNAKLAR = [(KAYNAK_SOZLUK, "Sözlük"), (KAYNAK_OKUMA, "Okumalar")]
+
+    sorgu = models.CharField(max_length=120)                 # küçük harfe çevrilmiş
+    kaynak = models.CharField(max_length=10, choices=KAYNAKLAR, default=KAYNAK_SOZLUK)
+    sayi = models.PositiveIntegerField(default=1, verbose_name="kaç kez")
+    # Son aramada "Bunu mu demek istediniz?" önerisi çıktı mı (büyük
+    # olasılıkla yazım hatası) yoksa hiçbir şey mi çıkmadı.
+    oneri_vardi = models.BooleanField(default=False, verbose_name="öneri çıktı")
+    ilk = models.DateTimeField(auto_now_add=True)
+    son = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("sorgu", "kaynak")
+        ordering = ("-sayi", "-son")
+        verbose_name = "bulunamayan arama"
+        verbose_name_plural = "bulunamayan aramalar"
+
+    def __str__(self):
+        return f"{self.sorgu} ({self.sayi})"

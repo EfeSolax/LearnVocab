@@ -1,0 +1,17 @@
+{% comment %}
+Tek satırlık sonuç: "carpet · isim · halı · B1" ("Diğer sonuçlar", "Bunu mu demek istediniz?").
+Bağlam: satir = {"metin", "tur", "anlam", "cefr", "id"} (words.arama._satir)
+id varsa dokununca o kelimenin kartı satırın yerinde açılır (data-kart-ac);
+yoksa (ifade, öneri) /sozluk/?q=<metin> adresine gidilir.
+{% endcomment %}
+<li data-kart-satiri>
+    <a href="{% url 'sozluk' %}?q={{ satir.metin|urlencode }}"{% if satir.id %} data-kart-ac="{{ satir.id }}" data-kart-hedef="yerine"{% endif %}
+       class="flex items-baseline gap-1.5 px-4 py-2.5 text-sm hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+        <span class="font-semibold text-gray-900 dark:text-slate-100">{{ satir.metin }}</span>
+        {% if satir.tur %}<span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>
+        <span class="shrink-0 text-xs text-gray-500 dark:text-slate-400">{{ satir.tur }}</span>{% endif %}
+        {% if satir.anlam %}<span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>
+        <span class="truncate text-gray-700 dark:text-slate-300">{{ satir.anlam }}</span>{% endif %}
+        {% if satir.cefr %}<span class="ml-auto shrink-0 self-center rounded-md bg-indigo-50 dark:bg-indigo-950 px-1.5 py-0.5 text-[11px] font-bold text-indigo-700 dark:text-indigo-300">{{ satir.cefr }}</span>{% endif %}
+    </a>
+</li>

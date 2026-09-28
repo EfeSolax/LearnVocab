@@ -70,6 +70,17 @@ class Kart:
     listede: bool
     anlamlar: list
     aile: list                # aynı ailedeki diğer kelimeler (Word), yazımı farklı olanlar
+    # Türkçe sorguda ("bitir") kapalı kartta vurgulanan anlam; o anlamın
+    # açıklaması da tek satır olarak altında görünür (rapor 4.2).
+    eslesen: str = ""
+
+    @property
+    def eslesen_tanim(self):
+        """Eşleşen Türkçe anlamın İngilizce açıklaması (yoksa ilk anlamınki)."""
+        for a in self.anlamlar:
+            if a.meaning_tr == self.eslesen:
+                return a.definition
+        return self.anlamlar[0].definition if self.anlamlar else ""
 
     @property
     def ozet(self):

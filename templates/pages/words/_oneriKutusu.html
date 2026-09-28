@@ -1,0 +1,37 @@
+{% comment %}
+Anlık öneri kutusu (autocomplete, rapor 4.2 ve 5). Keşfet ve Listem ortak.
+Bir <form method="get"> içinde kullanılır; davranış _oneriKutusuJs.html.
+
+Bağlam: girdi_id, ad (input name), deger, etiket (placeholder), adres (JSON ucu)
+JSON: {"oneriler": [{"metin": "carpet", "anlam": "halı", "adres": "/sozluk/?q=carpet"}]}
+Satıra dokununca doğrudan satırın adresine gidilir. Klavye: ↑ ↓ Enter Esc.
+{% endcomment %}
+<div class="relative" x-data="oneriKutusu('{{ adres }}')" @click.outside="kapat()" @keydown.escape="kapat()">
+    <label for="{{ girdi_id }}" class="sr-only">{{ etiket }}</label>
+    <input id="{{ girdi_id }}" type="search" name="{{ ad }}" value="{{ deger }}" x-ref="girdi"
+           autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search"
+           placeholder="{{ etiket }}" role="combobox" aria-autocomplete="list"
+           aria-controls="{{ girdi_id }}-oneriler" :aria-expanded="acik.toString()"
+           @input="yaz()" @focus="acik = oneriler.length > 0"
+           @keydown.arrow-down.prevent="asagi()" @keydown.arrow-up.prevent="yukari()"
+           @keydown.enter="sec($event)"
+           class="block w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 py-3 pl-4 pr-12 text-base text-gray-900 dark:text-slate-100 placeholder:text-gray-400 dark:placeholder:text-slate-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+    <button type="submit" aria-label="Ara"
+            class="absolute right-0 top-0 flex h-[3.125rem] items-center px-4 text-gray-400 hover:text-indigo-600 dark:text-slate-500 dark:hover:text-indigo-400">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+    </button>
+    <ul id="{{ girdi_id }}-oneriler" role="listbox" x-show="acik" x-cloak data-oneri-listesi
+        class="absolute inset-x-0 top-full z-30 mt-1 max-h-80 overflow-y-auto rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-1 shadow-lg">
+        <template x-for="(o, i) in oneriler" :key="o.adres">
+            <li role="option" :aria-selected="(i === secili).toString()">
+                <a :href="o.adres" @mouseenter="secili = i"
+                   class="flex items-baseline gap-1.5 px-4 py-2.5 text-sm"
+                   :class="i === secili ? 'bg-indigo-50 dark:bg-slate-700' : ''">
+                    <span class="font-semibold text-gray-900 dark:text-slate-100" x-text="o.metin"></span>
+                    <span class="text-gray-300 dark:text-slate-600" aria-hidden="true" x-show="o.anlam">·</span>
+                    <span class="truncate text-gray-600 dark:text-slate-300" x-text="o.anlam"></span>
+                </a>
+            </li>
+        </template>
+    </ul>
+</div>
