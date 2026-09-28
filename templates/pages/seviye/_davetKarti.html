@@ -1,0 +1,21 @@
+{% comment %}
+Seviye testi davet kartı (rapor 7). Ana Sayfa'da, seviyesi belirlenmemiş
+girişli kullanıcıya. Zorunlu değil: "Şimdi değil" kartı 30 gün gizler.
+{% endcomment %}
+<section data-seviye-daveti
+         class="rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-indigo-50 dark:bg-indigo-950/40 px-5 py-5">
+    <h2 class="text-base font-bold text-indigo-900 dark:text-indigo-200">Seviyeni birlikte bulalım</h2>
+    <p class="mt-1 text-sm text-indigo-800 dark:text-indigo-300">
+        Birkaç dakikalık kısa bir test: bildiğin kelimelere dokunursun, biz de sana uygun kelimelerle ilk listeni hazırlarız.
+    </p>
+    <div class="mt-4 flex flex-wrap items-center gap-2">
+        <a href="{% url 'seviye_testi' %}"
+           class="rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-indigo-700 transition">Teste başla</a>
+        <a href="{% url 'seviye_sec' %}"
+           class="rounded-xl bg-white dark:bg-slate-800 px-4 py-2.5 text-sm font-semibold text-indigo-800 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-800 hover:bg-indigo-100 dark:hover:bg-slate-700 transition">Seviyemi kendim seçeyim</a>
+        <form method="post" action="{% url 'seviye_simdi_degil' %}" class="ml-auto">
+            {% csrf_token %}
+            <button type="submit" class="px-2 py-2.5 text-sm font-medium text-indigo-700 dark:text-indigo-400 hover:underline">Şimdi değil</button>
+        </form>
+    </div>
+</section>

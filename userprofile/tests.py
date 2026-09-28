@@ -8,15 +8,12 @@ kopsa sayfa yine 200 döner ama veri sessizce kaybolurdu.
 """
 
 from django.test import TestCase
-from django.utils import timezone
-from datetime import timedelta
 from django.urls import reverse
 
 from users.models import User
 from words.models import Meaning, Word
 from userprofile.views import _satirlari_coz
 from words.models import UserWordLink
-from words.models import WordList
 from words.testing import make_word
 
 
@@ -196,71 +193,38 @@ class WordFormTests(TestCase):
         self.assertEqual(cevap.status_code, 302)
 
 
-class WordSortingTests(TestCase):
+class KelimelerimYonlendirmeTests(TestCase):
     """
-    Kelimelerim sayfasının sıralaması.
-
-    "Eklenme tarihi" kelimenin oluşturulma tarihi değil, KULLANICININ onu
-    listesine eklediği tarih: aynı kelime birden çok kullanıcıda olabiliyor.
+    Eski "Kelimelerim" sayfası (profile_words) Sözlük › Listem'e yönlendirir
+    (rapor 5). Sıralama, liste klasörleri, toplu araçlar artık Listem'de ya
+    da hiç yok (Listem aşırı basit kalır).
     """
 
     def setUp(self):
-        self.user = User.objects.create_user(username="sortuser", password="Sifre1234")
-        self.client.login(username="sortuser", password="Sifre1234")
+        self.user = User.objects.create_user(username="listemci", password="Sifre1234")
 
-        # eski -> yeni sırayla ekleniyor
-        self.words = {}
-        for offset, name in enumerate(["zeta", "alpha", "mu"]):
-            word = make_word(name, owner=self.user, is_base=False)
-            link = UserWordLink.objects.create(user=self.user, word=word)
-            UserWordLink.objects.filter(pk=link.pk).update(
-                dateAdded=timezone.now() - timedelta(days=10 - offset * 5)
-            )
-            self.words[name] = word
+    def test_girisli_kullanici_listeme_gider(self):
+        self.client.login(username="listemci", password="Sifre1234")
+        cevap = self.client.get(reverse("profile_words"))
+        self.assertRedirects(cevap, f"{reverse('sozluk')}?sekme=listem")
 
-    def _listed(self, **params):
-        response = self.client.get(reverse("profile_words"), params)
-        self.assertEqual(response.status_code, 200)
-        return [w.text for w in response.context["page_obj"].object_list]
+    def test_eski_arama_listem_aramasina_tasinir(self):
+        self.client.login(username="listemci", password="Sifre1234")
+        cevap = self.client.get(reverse("profile_words"), {"q": "aim", "sort": "az"})
+        self.assertRedirects(cevap, f"{reverse('sozluk')}?sekme=listem&ara=aim")
 
-    def test_default_sort_is_newest_first(self):
-        self.assertEqual(self._listed(), ["mu", "alpha", "zeta"])
+    def test_girissiz_ziyaretci_aciklama_ekrani_gorur(self):
+        cevap = self.client.get(reverse("profile_words"))
+        self.assertEqual(cevap.status_code, 200)
+        self.assertContains(cevap, "Listem")
+        self.assertContains(cevap, "next=")
 
-    def test_oldest_first(self):
-        self.assertEqual(self._listed(sort="old"), ["zeta", "alpha", "mu"])
+    def test_kelime_eklendikten_sonra_listeme_varilir(self):
+        """Eski uçlar hâlâ profile_words'e dönüyor; zincirin sonu Listem."""
+        self.client.login(username="listemci", password="Sifre1234")
+        cevap = self.client.get(reverse("profile_words"), follow=True)
+        self.assertEqual(cevap.context["sekme"], "listem")
 
-    def test_alphabetical(self):
-        self.assertEqual(self._listed(sort="az"), ["alpha", "mu", "zeta"])
-
-    def test_reverse_alphabetical(self):
-        self.assertEqual(self._listed(sort="za"), ["zeta", "mu", "alpha"])
-
-    def test_unknown_sort_falls_back_to_the_default(self):
-        self.assertEqual(self._listed(sort="uydurma"), ["mu", "alpha", "zeta"])
-
-    def test_sort_dropdown_is_rendered(self):
-        response = self.client.get(reverse("profile_words"))
-        self.assertContains(response, 'name="sort"')
-        self.assertContains(response, "Önce en yeni")
-
-    def test_sort_is_kept_in_pagination_links(self):
-        response = self.client.get(reverse("profile_words"), {"sort": "az"})
-        self.assertIn("sort=az", response.context["base_qs"])
-
-    def test_default_sort_is_not_repeated_in_the_query_string(self):
-        response = self.client.get(reverse("profile_words"))
-        self.assertNotIn("sort=", response.context["base_qs"])
-
-    def test_sort_works_together_with_search(self):
-        self.assertEqual(self._listed(q="a", sort="az"), ["alpha", "zeta"])
-
-    def test_word_without_a_link_falls_back_to_its_creation_date(self):
-        """Bağlantısı olmayan kelime sıralamadan düşmemeli."""
-        orphan = make_word("orphan", owner=self.user, is_base=False)
-        Word.objects.filter(pk=orphan.pk).update(
-            createdAt=timezone.now() - timedelta(days=100)
-        )
-        self.assertEqual(self._listed(sort="old")[0], "orphan")
 
 class KurTopluIslemTests(TestCase):
     """
@@ -309,51 +273,6 @@ class KurTopluIslemTests(TestCase):
         self.assertEqual(cevap.status_code, 302)
         self.assertEqual(self._listemdeki(), set())
 
-
-class KelimelerimSayfaAraclariTests(TestCase):
-    """
-    Kelimelerim sayfasının toplu işlem araçları şablonda yaşıyor.
-
-    Bu testler araçların yanlışlıkla düşürülmesini yakalıyor: sayfa bir kez
-    bu formları kaybettiğinde arkadaki uçlar çalışsa bile kullanıcı onlara
-    ulaşamıyor.
-    """
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="arac_kullanici", password="Sifre1234")
-        self.client.login(username="arac_kullanici", password="Sifre1234")
-        self.word = make_word("obtain", pos="verb", meaning="elde etmek", owner=self.user)
-        UserWordLink.objects.create(user=self.user, word=self.word)
-
-    def _govde(self):
-        cevap = self.client.get(reverse("profile_words"))
-        self.assertEqual(cevap.status_code, 200)
-        return cevap.content.decode()
-
-    def test_sayfa_liste_olusturma_formunu_tasiyor(self):
-        self.assertIn(reverse("wordlist_create"), self._govde())
-
-    def test_sayfa_kur_ekle_ve_cikar_formlarini_tasiyor(self):
-        govde = self._govde()
-        self.assertIn(reverse("add_all_words"), govde)
-        self.assertIn(reverse("delete_all_words"), govde)
-        self.assertIn('name="bulk_level"', govde)
-        self.assertIn('value="B2"', govde)   # seviyeler CEFR
-
-    def test_sayfa_toplu_silme_formunu_tasiyor(self):
-        self.assertIn(reverse("delete_selected_words"), self._govde())
-
-    def test_secili_liste_icin_ad_degistir_ve_sil_gorunur(self):
-        liste = WordList.objects.create(owner=self.user, name="Sınav")
-        liste.words.add(self.word)   # seçim çubuğu ancak listede kelime varken çıkar
-        cevap = self.client.get(reverse("profile_words"), {"list_id": liste.id})
-        govde = cevap.content.decode()
-        self.assertIn(reverse("wordlist_rename", kwargs={"list_id": liste.id}), govde)
-        self.assertIn(reverse("wordlist_delete", kwargs={"list_id": liste.id}), govde)
-        self.assertIn(reverse("wordlist_remove_words", kwargs={"list_id": liste.id}), govde)
-
-    def test_liste_yokken_ad_degistirme_formu_cikmiyor(self):
-        self.assertNotIn("wordlist_rename", self._govde())
 
 class AlanAyiriciTests(TestCase):
     """

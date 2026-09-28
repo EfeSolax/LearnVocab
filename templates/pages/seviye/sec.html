@@ -1,0 +1,27 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}"Seviyemi kendim seçeyim" (rapor 7): test yerine doğrudan seviye seçimi.{% endcomment %}
+
+{% block title %}Seviyeni seç{% endblock %}
+{% block page_heading %}{% endblock %}
+
+{% block page %}
+<form method="post" class="space-y-5" data-seviye-sec>
+    {% csrf_token %}
+    <div>
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Seviyeni seç</h1>
+        <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Günün kelimesi ve egzersizler bu seviyeye göre gelir. İstediğin zaman değiştirebilirsin.</p>
+    </div>
+    <div class="space-y-2">
+        {% for kod, aciklama in secenekler %}
+        <label class="flex cursor-pointer items-center gap-4 rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3.5 hover:bg-gray-50 dark:hover:bg-slate-700/50 has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50 dark:has-[:checked]:bg-indigo-950/50">
+            <input type="radio" name="seviye" value="{{ kod }}" class="text-indigo-600 focus:ring-indigo-500" {% if kod == mevcut %}checked{% endif %} required>
+            <span class="w-9 text-lg font-extrabold text-indigo-600 dark:text-indigo-400">{{ kod }}</span>
+            <span class="text-sm text-gray-700 dark:text-slate-200">{{ aciklama }}</span>
+        </label>
+        {% endfor %}
+    </div>
+    <button type="submit" class="w-full rounded-2xl bg-indigo-600 px-6 py-3.5 text-base font-bold text-white hover:bg-indigo-700 transition">Kaydet</button>
+    <p class="text-center text-sm"><a href="{% url 'seviye_testi' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Emin değilim, testi çözeyim</a></p>
+</form>
+{% endblock %}

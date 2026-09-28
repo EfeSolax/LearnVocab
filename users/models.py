@@ -3,12 +3,20 @@ from django.db import models
 # Django'nun hazır AbstractUser modelini import edelim.
 from django.contrib.auth.models import AbstractUser
 
+from .seviye import SEVIYE_SECENEKLERI
+
 
 # Create your models here.
 
 class User(AbstractUser):
     # Kullanıcının kurunu temsilen oluşturulan değişken.
     level = models.PositiveBigIntegerField(default = 1, verbose_name="level")
+
+    # CEFR seviyesi (rapor 7): seviye testi ya da "Seviyemi kendim seçeyim"
+    # yazar. Boşsa seviye henüz belirlenmemiş demek; okurken her zaman
+    # users.seviye.kullanici_seviyesi(user) kullanılır (eski kur, varsayılan B1).
+    cefr = models.CharField(max_length=2, choices=SEVIYE_SECENEKLERI, blank=True, default="",
+                            verbose_name="CEFR seviyesi")
 
     profile_pic = models.ImageField(
         upload_to='profile_pics/',  # Yüklenecekleri klasör

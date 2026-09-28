@@ -764,7 +764,7 @@ class LoginGateTests(TestCase):
     """
 
     GATED = {
-        "profile_words": "Kelimelerim",
+        "profile_words": "Listem",
         "exercises_page": "Egzersizler",
         "profile_texts": "Yazma",
         "user_profile": "Profilim",
@@ -1407,21 +1407,8 @@ class CoreEditPermissionTests(TestCase):
         cevap = self.client.get(reverse("edit_word", args=[self.sahipsiz.id]), follow=True)
         self.assertContains(cevap, "Kendi anlamını")
 
-    # --- listedeki simge ---
-
-    def test_the_pencil_is_hidden_for_words_you_do_not_own(self):
-        """Düzenleyemediğin kelimede kalem göstermek tuzak olurdu."""
-        UserWordLink.objects.create(user=self.baskasi, word=self.sahipsiz)
-        self.client.login(username="baskasi", password="Sifre1234")
-        html = self.client.get(reverse("profile_words")).content.decode()
-        self.assertNotIn(reverse("edit_word", args=[self.sahipsiz.id]), html)
-        self.assertIn(f'{reverse("word_detail", args=[self.sahipsiz.id])}#kisisel', html)
-
-    def test_the_pencil_is_there_for_your_own_word(self):
-        UserWordLink.objects.create(user=self.sahip, word=self.benim)
-        self.client.login(username="sahibi", password="Sifre1234")
-        html = self.client.get(reverse("profile_words")).content.decode()
-        self.assertIn(reverse("edit_word", args=[self.benim.id]), html)
+    # (Eski Kelimelerim listesindeki kalem simgesi testleri kaldırıldı: sayfa
+    #  artık Sözlük › Listem'e yönlendiriyor, Listem'de düzenleme simgesi yok.)
 
     def test_the_detail_page_shows_edit_only_to_the_owner(self):
         self.client.login(username="sahibi", password="Sifre1234")

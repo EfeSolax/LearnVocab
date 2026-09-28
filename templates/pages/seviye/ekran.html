@@ -1,0 +1,48 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}
+Seviye testi 1. kısım: bir ekran, 40 kelime (rapor 7). Kullanıcı yalnızca
+bildiklerine dokunur. Seçim gizli onay kutularıyla yapılır: JS olmadan da
+çalışır; Alpine yalnızca sayacı günceller. Tür etiketi ve seviye YOK.
+{% endcomment %}
+
+{% block title %}Seviye testi · {{ ekran }}. ekran{% endblock %}
+{% block page_heading %}{% endblock %}
+
+{% block page %}
+<form method="post" x-data="{ secili: {{ bilinen|length }} }" class="space-y-5" data-seviye-ekrani="{{ ekran }}">
+    {% csrf_token %}
+    <div class="flex items-center justify-between gap-3">
+        <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">{{ ekran }}. ekran</p>
+            <h1 class="mt-0.5 text-xl sm:text-2xl font-bold text-gray-900 dark:text-slate-100">Bildiğin kelimelere dokun</h1>
+        </div>
+        <a href="{% url 'index' %}" aria-label="Testten çık" title="Testten çık"
+           class="rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700 dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-slate-200">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </a>
+    </div>
+    <p class="text-sm text-gray-600 dark:text-slate-400">Anlamını bildiğini düşündüklerini seç. Emin olmadıklarını boş bırakman en doğru sonucu verir.</p>
+
+    <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+        {% for k in kelimeler %}
+        <li>
+            <label class="block">
+                <input type="checkbox" name="bilinen" value="{{ k.id }}" class="peer sr-only"
+                       {% if k.id in bilinen %}checked{% endif %}
+                       @change="secili += $event.target.checked ? 1 : -1">
+                <span class="flex min-h-[2.75rem] cursor-pointer select-none items-center justify-center rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-2 py-2 text-center text-base font-semibold text-gray-800 dark:text-slate-100 transition-colors hover:border-indigo-300 dark:hover:border-indigo-700 peer-checked:border-indigo-600 peer-checked:bg-indigo-600 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-focus-visible:ring-offset-2 dark:peer-focus-visible:ring-offset-slate-900">
+                    {{ k.text }}
+                </span>
+            </label>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div class="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] lg:bottom-4 flex items-center justify-between gap-3 rounded-2xl bg-white/95 dark:bg-slate-800/95 backdrop-blur px-4 py-3 shadow-lg ring-1 ring-gray-200 dark:ring-slate-700">
+        <span class="text-sm text-gray-600 dark:text-slate-300"><strong class="text-gray-900 dark:text-slate-100" x-text="secili">{{ bilinen|length }}</strong> / {{ kelimeler|length }} seçili</span>
+        <button type="submit" data-seviye-devam
+                class="rounded-xl bg-indigo-600 px-6 py-2.5 text-base font-bold text-white hover:bg-indigo-700 transition">Devam</button>
+    </div>
+</form>
+{% endblock %}

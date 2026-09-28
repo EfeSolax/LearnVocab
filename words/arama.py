@@ -36,6 +36,8 @@ from django.db.models.functions import Length
 from django.db.models.signals import post_delete, post_save
 from django.utils import timezone
 
+from users.seviye import kullanici_seviyesi  # noqa: F401  (arama.kullanici_seviyesi)
+
 from .models import (
     CEFR_LEVELS, BulunamayanArama, ExampleSentence, Expression, FormKind, Meaning,
     PartOfSpeech, Word, WordForm,
@@ -480,20 +482,8 @@ def bulunamayan_kaydet(sorgu, kaynak=BulunamayanArama.KAYNAK_SOZLUK, oneri_vardi
 
 VARSAYILAN_SEVIYE = "B1"
 
-# Eski kayıt formundaki kur (User.level) -> CEFR. 1 (varsayılan) bilinmiyor
-# demek: B1. Seviye testi (rapor 7) gelince kullanıcının CEFR seviyesi
-# `cefr`/`seviye` alanında durursa o önce okunur.
-_KUR_SEVIYESI = {101: "A1", 201: "A2", 301: "B1", 401: "B2", 501: "C1"}
-
-
-def kullanici_seviyesi(user):
-    if user is None or not user.is_authenticated:
-        return VARSAYILAN_SEVIYE
-    for ad in ("cefr", "seviye", "cefr_level"):
-        deger = getattr(user, ad, None)
-        if deger in CEFR_SIRASI:
-            return deger
-    return _KUR_SEVIYESI.get(getattr(user, "level", None), VARSAYILAN_SEVIYE)
+# Kullanıcının seviyesi tek kaynaktan: users.seviye.kullanici_seviyesi
+# (User.cefr, yoksa eski kur User.level, yoksa B1). Yukarıda import edildi.
 
 
 def _gunun_sirasi(gun, tur, seviye, adet):

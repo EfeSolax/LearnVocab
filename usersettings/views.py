@@ -7,7 +7,8 @@ from users.models import User
 from usersettings.models import UserSettings
 from words.models import Word, UserWordLink
 from comments.models import Comment
-from texts.models import Text
+from texts import degerlendirme
+from texts.models import Text, YaziDurumu
 
 from django.db.models import Q
 
@@ -203,11 +204,62 @@ def exportMyComments(request):
     return response
 
 
+
+def metin_disa_aktarma_satirlari(text):
+    """
+    Bir Yazma kaydının dışa aktarma satırları.
+
+    Yeni kayıtlar (rapor 9.1): 5 üzerinden puan, durum, iki liste (iyi
+    yapılanlar ve hatalar). Eski sistemin kayıtları (durum=eski) eskisi gibi:
+    100 üzerinden puan, kriter puanları, modelin düz cevabı.
+    """
+    satirlar = [f"Eklenme Tarihi: {text.createdAt.strftime('%d-%m-%Y')}"]
+    if text.konu:
+        satirlar.append(f"Konu: {text.konu}")
+    satirlar += ["--- Metniniz ---", text.content]
+
+    if text.durum == YaziDurumu.ESKI:
+        satirlar += [
+            "--- Değerlendirme (eski sistem) ---",
+            f"Puanınız: {text.score} / 100",
+            f"Kriter Puanları: {text.scores}",
+            f"Açıklama: {text.response}",
+        ]
+        return satirlar
+
+    satirlar.append(f"Durum: {text.get_durum_display()}")
+    if text.durum != YaziDurumu.TAMAM:
+        return satirlar
+
+    satirlar.append("--- Değerlendirme ---")
+    if text.puan is not None:
+        satirlar.append(f"Puanınız: {degerlendirme.puan_yazisi(text.puan)} / 5 "
+                        f"({degerlendirme.puan_etiketi(text.puan)})")
+    geri = text.geri_bildirim or {}
+    iyiler = geri.get("iyi") or []
+    hatalar = geri.get("hatalar") or []
+    if iyiler:
+        satirlar.append("İyi yapılanlar:")
+        satirlar += [f"  + \"{m.get('alinti', '')}\": {m.get('aciklama', '')}" for m in iyiler]
+    if hatalar:
+        satirlar.append("Hatalar:")
+        satirlar += [f"  - {m.get('alinti', '')} → {m.get('dogrusu', '')} · {m.get('neden', '')}"
+                     for m in hatalar]
+    else:
+        satirlar.append("Hata bulunmadı.")
+    return satirlar
+
+
+def _disa_aktarilacak_metinler(user):
+    """Kullanıcının sildiği (Geri al süresindeki) metinler dışa aktarılmaz."""
+    return Text.objects.filter(owner=user, silindi__isnull=True).order_by("createdAt", "id")
+
+
 @login_required
 def exportMyTexts(request):
     user = request.user
     
-    texts = Text.objects.filter(owner = user)
+    texts = _disa_aktarilacak_metinler(user)
 
     # content_type doğru
     response = HttpResponse(content_type='application/octet-stream')
@@ -228,16 +280,13 @@ def exportMyTexts(request):
     write_line("="*30 + "\n")
     
     if texts.exists():
-        write_line("Yorumlarınız:\n")
+        write_line("Metinleriniz:\n")
         for text in texts:
-            write_line(f"Metniniz: {text.content}")
-            write_line(f"Eklenme Tarihi: {text.createdAt.strftime('%d-%m-%Y')}")
-            write_line(f"Puanınız: {text.score}")
-            write_line(f"Kriter Puanları: {text.scores}")
-            write_line(f"Gemini Pro Cevap: {text.response}")
+            for satir in metin_disa_aktarma_satirlari(text):
+                write_line(satir)
             write_line("--------------------")
     else:
-        write_line("Dışa aktarılacak yorum bulunamadı.")
+        write_line("Dışa aktarılacak metin bulunamadı.")
 
     return response
 
@@ -328,17 +377,12 @@ def exportAll(request):
     write_line(" BOLUM 4: METINLERIM (WRITING ALANI)")
     write_line("="*50 + "\n")
     
-    texts = Text.objects.filter(owner = user)
+    texts = _disa_aktarilacak_metinler(user)
     if texts.exists():
         write_line(f"Toplam {texts.count()} metin bulundu:\n")
         for text in texts:
-            write_line(f"Eklenme Tarihi: {text.createdAt.strftime('%d-%m-%Y')}")
-            write_line(f"Puanınız: {text.score}")
-            write_line("--- Sizin Metniniz ---")
-            write_line(text.content)
-            write_line("--- Gemini Değerlendirmesi ---")
-            write_line(f"Kriter Puanları: {text.scores}")
-            write_line(f"Açıklama: {text.response}")
+            for satir in metin_disa_aktarma_satirlari(text):
+                write_line(satir)
             write_line("--------------------")
     else:
         write_line("Dışa aktarılacak metin bulunamadı.")

@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "readings",
     "egzersizler",
     "bildirimler",
+    "seviye",
 
     # Kullanılmayan dosyaları (profile_pic) otomatik olarak temizleyecek bir eklenti
     'django_cleanup',
@@ -165,6 +166,9 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+# @login_required uçları /accounts/login/ yerine bizim giriş sayfamıza gitsin.
+LOGIN_URL = "login"
 
 
 # Static dosyalar için ayarlarınız zaten burada olmalı (STATIC_URL vb.)

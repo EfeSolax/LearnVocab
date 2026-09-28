@@ -1,0 +1,44 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}
+Seviye testi giriş ekranı (rapor 7). Zorunlu değil: üç yol var — teste
+başla, seviyemi kendim seçeyim, şimdi değil (Ana Sayfa'ya döner).
+{% endcomment %}
+
+{% block title %}Seviye testi{% endblock %}
+{% block page_heading %}{% endblock %}
+
+{% block page %}
+<div class="space-y-6">
+    <div class="rounded-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 px-5 py-8 sm:px-10 text-center shadow-sm">
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Seviyeni birlikte bulalım</h1>
+        <p class="mx-auto mt-3 max-w-lg text-gray-600 dark:text-slate-400">
+            Ekranda kelimeler göreceksin. Yalnızca <strong class="text-gray-900 dark:text-slate-100">bildiklerine dokun</strong>;
+            emin olmadıklarını boş bırak. Uydurma kelime yok, hepsi gerçek.
+        </p>
+        <ul class="mx-auto mt-5 max-w-sm space-y-1.5 text-left text-sm text-gray-600 dark:text-slate-300">
+            <li class="flex gap-2"><span class="text-indigo-500" aria-hidden="true">•</span> En çok 3 ekran, her ekranda 40 kelime.</li>
+            {% if okuma_var %}<li class="flex gap-2"><span class="text-indigo-500" aria-hidden="true">•</span> Ardından 3 kısa metin ve birer soru.</li>{% endif %}
+            <li class="flex gap-2"><span class="text-indigo-500" aria-hidden="true">•</span> Sonunda seviyeni ve sana özel ilk listeni görürsün.</li>
+        </ul>
+        <form method="post" action="{% url 'seviye_basla' %}" class="mt-7">
+            {% csrf_token %}
+            <button type="submit" data-seviye-basla
+                    class="w-full sm:w-auto rounded-2xl bg-indigo-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-indigo-200 dark:shadow-none hover:bg-indigo-700 transition">
+                {% if son_sonuc %}Testi yeniden çöz{% else %}Teste başla{% endif %}
+            </button>
+        </form>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+            <a href="{% url 'seviye_sec' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Seviyemi kendim seçeyim</a>
+            <a href="{% url 'index' %}" class="font-medium text-gray-500 dark:text-slate-400 hover:underline">Şimdi değil</a>
+        </div>
+    </div>
+
+    {% if son_sonuc %}
+    <p class="text-center text-sm text-gray-500 dark:text-slate-400">
+        Son testin: <strong class="text-gray-800 dark:text-slate-200">{{ son_sonuc.tahmin }}</strong> · {{ son_sonuc.olusturuldu|date:"j F Y" }}
+        · <a href="{% url 'seviye_sonuc' %}" class="text-indigo-600 dark:text-indigo-400 hover:underline">Sonucu gör</a>
+    </p>
+    {% endif %}
+</div>
+{% endblock %}

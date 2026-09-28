@@ -91,9 +91,25 @@ MY_WORDS_PER_PAGE_OPTIONS = (15, 30, 60, 120)
 MY_WORDS_DEFAULT_PER_PAGE = 30
 
 
-#Profilde "Kelimelerim" görünümü
-@login_gate("Kelimelerim", "Kendi kelime listelerini oluşturmak ve kelime eklemek için bir hesaba ihtiyacın var.")
+@login_gate("Listem", "Listene kelime ekleyebilmek için bir hesaba ihtiyacın var.")
 def showWordsView(request):
+    """
+    Eski "Kelimelerim" adresi (profile_words) artık Sözlük › Listem'e gider
+    (rapor 5). Eski kodlar, eklemeden ve silmeden sonra hâlâ bu adrese
+    yönlendiriyor; hepsi Listem'e düşer. Aramada eski ?q= Listem'in ?ara='sına taşınır.
+    """
+    from urllib.parse import urlencode
+    parametreler = {"sekme": "listem"}
+    ara = (request.GET.get("q") or "").strip()
+    if ara:
+        parametreler["ara"] = ara
+    return redirect(f"{reverse('sozluk')}?{urlencode(parametreler)}")
+
+
+# ESKİ "Kelimelerim" sayfası: arayüzden kaldırıldı, hiçbir adres buraya
+# bağlı değil (rapor 14: kod gerekmedikçe silinmez). Şablonu
+# pages/profile/words.html.
+def eskiKelimelerimSayfasi(request):
     """
     Kullanıcının "Kelimelerim" sayfası. Aşağıdaki ?list_id= sorgu parametresi
     bir liste ID'si verirse sadece o listeye ait kelimeleri gösterir.
