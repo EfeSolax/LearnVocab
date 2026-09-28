@@ -1,0 +1,71 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}
+Bitiş ekranı (rapor 6.2): skor (8/10), yanlışların listesi ve üç seçenek:
+Yanlışları tekrar çöz · Yeni tur · Bitir. Cesaretlendirici dil (rapor 12.4).
+Hızlı Egzersiz'de liste 10 kelimeden kısaysa "Listene kelime ekle" daveti.
+{% endcomment %}
+
+{% block title %}Egzersiz bitti{% endblock %}
+{% block page_heading %}{% endblock %}
+{% block sayfa_genisligi %}max-w-2xl{% endblock %}
+
+{% block page %}
+<div class="pb-10">
+
+    <div class="mt-4 text-center">
+        <p class="text-sm font-medium text-gray-500 dark:text-slate-400">{{ oturum.get_tur_display }}{% if oturum.kaynak_id %} · yanlışların tekrarı{% endif %}</p>
+        <p class="mt-3 text-6xl font-extrabold tracking-tight text-gray-900 dark:text-slate-100 tabular-nums" data-skor>
+            {{ oturum.dogru_sayisi }}<span class="text-gray-400 dark:text-slate-500">/{{ oturum.soru_sayisi }}</span>
+        </p>
+        <p class="mt-3 text-base text-gray-700 dark:text-slate-300">{{ mesaj }}</p>
+    </div>
+
+    {% if yanlislar %}
+    <section class="mt-8">
+        <h2 class="text-sm font-semibold text-gray-700 dark:text-slate-300">Yanlışların</h2>
+        <ul class="mt-2 divide-y divide-gray-200 dark:divide-slate-700 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+            {% for y in yanlislar %}
+            <li class="px-4 py-3">
+                <p class="text-xs text-gray-500 dark:text-slate-400">{{ y.etiket }}</p>
+                <p class="mt-0.5 font-semibold text-gray-900 dark:text-slate-100 break-words {% if y.cumle %}text-sm{% endif %}">{{ y.soru }}</p>
+                <p class="mt-0.5 text-sm text-emerald-700 dark:text-emerald-300 break-words">→ {{ y.dogru }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+    {% if kisa_liste %}
+    <div class="mt-6 rounded-xl border border-indigo-200 dark:border-indigo-900 bg-indigo-50 dark:bg-indigo-950 p-4 text-sm text-indigo-900 dark:text-indigo-200">
+        Listen büyüdükçe Hızlı Egzersiz tam 10 soruya çıkar.
+        <a href="{% url 'sozluk' %}" class="font-semibold underline">Listene kelime ekle</a>
+    </div>
+    {% endif %}
+
+    <div class="mt-8 space-y-3">
+        {% if yanlislar %}
+        <form method="post" action="{% url 'egzersiz_tekrar' pk=oturum.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="w-full rounded-xl bg-indigo-600 px-5 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-indigo-700 transition">
+                Yanlışları tekrar çöz
+            </button>
+        </form>
+        {% endif %}
+        <form method="post" action="{% url 'egzersiz_basla' %}">
+            {% csrf_token %}
+            <input type="hidden" name="tur" value="{{ oturum.tur }}">
+            <input type="hidden" name="tip" value="{{ oturum.tip }}">
+            <input type="hidden" name="sayi" value="{{ oturum.istenen }}">
+            <button type="submit" class="w-full rounded-xl px-5 py-3.5 text-base font-semibold transition
+                {% if yanlislar %}border-2 border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 hover:border-gray-400 dark:hover:border-slate-400{% else %}bg-indigo-600 text-white shadow-sm hover:bg-indigo-700{% endif %}">
+                Yeni tur
+            </button>
+        </form>
+        <a href="{% url 'exercises_page' %}"
+           class="block w-full rounded-xl px-5 py-3 text-center text-base font-semibold text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-800 transition">
+            Bitir
+        </a>
+    </div>
+</div>
+{% endblock %}

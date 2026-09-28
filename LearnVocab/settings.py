@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "usersettings",
     "learnpass",
     "readings",
+    "egzersizler",
 
     # Kullanılmayan dosyaları (profile_pic) otomatik olarak temizleyecek bir eklenti
     'django_cleanup',

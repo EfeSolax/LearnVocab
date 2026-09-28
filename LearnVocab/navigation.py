@@ -44,7 +44,8 @@ NAV_SECTIONS = (
         # Bölüm Learn & Pass ile açılıyor; Egzersizler sekmesine oradaki
         # şeritten geçiliyor (bkz. base/_exerciseTabs.html).
         "url_name": "learn_pass_page",
-        "matches": ("learn_pass_page", "learn_pass_run", "exercises_page"),
+        "matches": ("learn_pass_page", "learn_pass_run", "exercises_page",
+                    "egzersiz_oturum"),
     },
     {
         "key": "home",

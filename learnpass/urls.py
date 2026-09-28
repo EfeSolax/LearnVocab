@@ -9,6 +9,5 @@ urlpatterns = [
     path("learn/api/undo/", views.learnPassUndo, name="learn_pass_undo"),
     path("learn/api/declare/", views.learnPassDeclare, name="learn_pass_declare"),
     path("learn/<str:mode>/", views.learnPassRun, name="learn_pass_run"),
-    # Egzersizler sekmesi (şimdilik yer tutucu, 7. adımda yazılacak)
-    path("practice/", views.exercisesPage, name="exercises_page"),
+    # Egzersizler sekmesi (exercises_page) egzersizler uygulamasında: /egzersizler/
 ]

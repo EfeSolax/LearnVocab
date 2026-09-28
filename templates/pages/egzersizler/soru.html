@@ -1,0 +1,243 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}
+Soru ekranı (rapor 6.2):
+  - Üstte ilerleme çubuğu ve ✕ (çık; tur kaydedili, açılışta "Devam et" çıkar).
+  - Küçük gri soru tipi etiketi ("Anlamını seç"; gramer etiketi DEĞİL, rapor 12.1).
+  - Büyük soru metni, 4 büyük şık. Masaüstünde 1–4 tuşları, sonuçta Enter = Devam.
+  - Cevaptan sonra doğru yeşil / yanlış kırmızı, TEK satır açıklama, "Devam".
+    Kelime biçiminde yanlış cevapta şıklardaki bütün biçimler anlamlarıyla.
+Doğru şık tarayıcıya cevaptan ÖNCE gitmez (config.soru'da yok); cevap
+sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
+{% endcomment %}
+
+{% block title %}Egzersiz · {{ sira_no }}/{{ oturum.soru_sayisi }}{% endblock %}
+{% block page_heading %}{% endblock %}
+{% block sayfa_genisligi %}max-w-2xl{% endblock %}
+
+{% block page %}
+{{ config|json_script:"egzersiz-config" }}
+
+<div x-data="egzersizSoru" @keydown.window="tus($event)" class="pb-10">
+
+    {# --- İlerleme + çık --- #}
+    <div class="flex items-center gap-3">
+        <div class="h-2.5 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700"
+             role="progressbar" aria-valuemin="0" aria-valuemax="{{ oturum.soru_sayisi }}" aria-valuenow="{{ oturum.sira }}"
+             aria-label="İlerleme">
+            <div class="h-full rounded-full bg-indigo-600 dark:bg-indigo-400 transition-all duration-500"
+                 style="width: {{ ilerleme }}%" :style="'width: ' + (sonuc ? '{% widthratio sira_no oturum.soru_sayisi 100 %}' : '{{ ilerleme }}') + '%'"></div>
+        </div>
+        <span class="text-xs font-semibold tabular-nums text-gray-500 dark:text-slate-400">{{ sira_no }}/{{ oturum.soru_sayisi }}</span>
+        <a href="{% url 'exercises_page' %}" aria-label="Egzersizden çık" title="Çık (tur kaydedildi, sonra devam edebilirsin)"
+           class="-mr-2 flex h-9 w-9 items-center justify-center rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 hover:text-gray-800 dark:hover:text-slate-100">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </a>
+    </div>
+
+    {# --- Soru --- #}
+    <div class="mt-8 sm:mt-10">
+        <p class="text-sm font-medium text-gray-500 dark:text-slate-400" data-soru-etiketi>{{ soru.etiket }}</p>
+        <h1 class="mt-2 font-bold text-gray-900 dark:text-slate-100 break-words
+                   {% if soru.cumle %}text-xl sm:text-2xl leading-relaxed{% else %}text-3xl sm:text-4xl tracking-tight{% endif %}">{{ soru.soru }}</h1>
+        {% if soru.alt %}
+        <p class="mt-2 text-base text-gray-500 dark:text-slate-400">{{ soru.alt }}</p>
+        {% endif %}
+    </div>
+
+    {% if soru.tip == "eslestirme" %}
+    {# --- Eşleştirme: soldan kelime, sağdan anlam --- #}
+    <p class="mt-4 text-sm text-gray-500 dark:text-slate-400" x-show="!sonuc">Bir kelimeye, sonra anlamına dokun.</p>
+    <div class="mt-4 grid grid-cols-2 gap-3">
+        <div class="space-y-3">
+            {% for w in soru.sol %}
+            <button type="button" @click="solSec({{ forloop.counter0 }})" :disabled="!!sonuc"
+                    :class="solSinif({{ forloop.counter0 }})"
+                    class="relative flex min-h-[3.5rem] w-full flex-col items-start justify-center rounded-xl border-2 px-3 py-2 text-left text-base font-semibold transition">
+                <span class="break-words">{{ w }}</span>
+                <span x-show="sonuc && !solDogru({{ forloop.counter0 }})" x-cloak
+                      class="mt-0.5 text-xs font-normal text-emerald-700 dark:text-emerald-300"
+                      x-text="'→ ' + soru.sag[sonuc?.eslesme?.[{{ forloop.counter0 }}]]"></span>
+            </button>
+            {% endfor %}
+        </div>
+        <div class="space-y-3">
+            {% for m in soru.sag %}
+            <button type="button" @click="sagSec({{ forloop.counter0 }})" :disabled="!!sonuc"
+                    :class="sagSinif({{ forloop.counter0 }})"
+                    class="flex min-h-[3.5rem] w-full items-center rounded-xl border-2 px-3 py-2 text-left text-sm sm:text-base transition">
+                <span class="break-words">{{ m }}</span>
+            </button>
+            {% endfor %}
+        </div>
+    </div>
+    <button type="button" x-show="!sonuc" @click="eslesmeGonder()" :disabled="!eslesmeTamam() || gonderiliyor"
+            class="mt-6 w-full rounded-xl bg-indigo-600 px-5 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-40 transition">
+        Kontrol et
+    </button>
+
+    {% else %}
+    {# --- Dört şık --- #}
+    <form method="post" action="{% url 'egzersiz_cevap' pk=oturum.pk %}" class="mt-8 space-y-3" @submit.prevent>
+        {% csrf_token %}
+        {% for s in soru.secenekler %}
+        <button type="submit" name="secim" value="{{ forloop.counter0 }}"
+                @click.prevent="sec({{ forloop.counter0 }})" :disabled="!!sonuc || gonderiliyor"
+                :class="sikSinif({{ forloop.counter0 }})"
+                class="group flex w-full items-center gap-3 rounded-xl border-2 border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-4 text-left text-base sm:text-lg font-medium text-gray-900 dark:text-slate-100 shadow-sm transition">
+            <span class="hidden sm:flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-gray-300 dark:border-slate-500 text-xs font-bold text-gray-500 dark:text-slate-400">{{ forloop.counter }}</span>
+            <span class="min-w-0 flex-1 break-words">{{ s }}</span>
+        </button>
+        {% endfor %}
+    </form>
+    {% endif %}
+
+    {# --- Sonuç: tek satır açıklama + Devam --- #}
+    <div x-show="sonuc" x-cloak aria-live="polite"
+         class="mt-6 rounded-xl border p-4"
+         :class="sonuc?.dogru_mu ? 'border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950' : 'border-rose-200 bg-rose-50 dark:border-rose-900 dark:bg-rose-950'">
+        <p class="font-bold" :class="sonuc?.dogru_mu ? 'text-emerald-800 dark:text-emerald-200' : 'text-rose-800 dark:text-rose-200'"
+           x-text="sonuc?.dogru_mu ? 'Doğru!' : (soru.tip === 'eslestirme' ? 'Bu sefer olmadı. Doğru eşler kelimelerin altında.' : 'Bu sefer olmadı. Doğrusu yeşil olan.')"></p>
+        <p class="mt-1 text-sm text-gray-800 dark:text-slate-200" x-show="soru.tip !== 'eslestirme'" x-text="sonuc?.aciklama"></p>
+        <template x-if="sonuc?.bicimler">
+            <ul class="mt-3 space-y-1 border-t border-rose-200 dark:border-rose-900 pt-3 text-sm">
+                <template x-for="b in sonuc.bicimler">
+                    <li class="text-gray-800 dark:text-slate-200"><span class="font-semibold" x-text="b.metin"></span> <span class="text-gray-600 dark:text-slate-400" x-text="'— ' + b.anlam"></span></li>
+                </template>
+            </ul>
+        </template>
+        <form method="post" action="{% url 'egzersiz_ilerle' pk=oturum.pk %}" class="mt-4" x-ref="devam">
+            {% csrf_token %}
+            <button type="submit" x-ref="devamDugmesi"
+                    class="w-full rounded-xl bg-gray-900 dark:bg-slate-100 px-5 py-3.5 text-base font-semibold text-white dark:text-slate-900 hover:bg-gray-800 dark:hover:bg-white transition">
+                {% if sira_no == oturum.soru_sayisi %}Sonucu gör{% else %}Devam{% endif %}
+            </button>
+        </form>
+    </div>
+
+    <p class="mt-6 hidden sm:block text-center text-xs text-gray-400 dark:text-slate-500">
+        {% if soru.tip != "eslestirme" %}1–4 tuşlarıyla seçebilirsin · {% endif %}Enter ile devam
+    </p>
+</div>
+
+<script>
+document.addEventListener("alpine:init", () => {
+    Alpine.data("egzersizSoru", () => {
+        const config = JSON.parse(document.getElementById("egzersiz-config").textContent);
+        const RENKLER = [
+            "border-indigo-500 bg-indigo-50 dark:bg-indigo-950",
+            "border-amber-500 bg-amber-50 dark:bg-amber-950",
+            "border-sky-500 bg-sky-50 dark:bg-sky-950",
+            "border-fuchsia-500 bg-fuchsia-50 dark:bg-fuchsia-950",
+        ];
+        const NOTR = "border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100";
+        return {
+            soru: config.soru,
+            sonuc: config.sonuc,
+            gonderiliyor: false,
+            // eşleştirme durumu
+            aktifSol: null,
+            eslesme: (config.soru.sol || []).map(() => null),
+
+            init() {
+                if (this.sonuc && this.soru.tip === "eslestirme") this.eslesme = this.sonuc.secim;
+                if (this.sonuc) this.$nextTick(() => this.$refs.devamDugmesi?.focus());
+            },
+
+            async gonder(secim) {
+                if (this.sonuc || this.gonderiliyor) return;
+                this.gonderiliyor = true;
+                try {
+                    const yanit = await fetch(config.cevapUrl, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json",
+                            "X-CSRFToken": document.querySelector('meta[name="csrf-token"]').content,
+                        },
+                        body: JSON.stringify({ secim }),
+                    });
+                    if (!yanit.ok) { window.location.reload(); return; }
+                    this.sonuc = await yanit.json();
+                    this.sesCal(this.sonuc.dogru_mu);
+                    this.$nextTick(() => this.$refs.devamDugmesi?.focus());
+                } catch (e) {
+                    window.geriAl?.bildir?.("Bağlantı koptu. Tekrar dener misin?");
+                } finally {
+                    this.gonderiliyor = false;
+                }
+            },
+
+            sesCal(dogru) {
+                if (!config.ses) return;
+                try { new Audio(dogru ? config.sesDogru : config.sesYanlis).play().catch(() => {}); } catch (e) {}
+            },
+
+            // --- dört şık ---
+            sec(i) { this.gonder(i); },
+            sikSinif(i) {
+                if (!this.sonuc) return "hover:border-indigo-400 dark:hover:border-indigo-500 hover:bg-indigo-50/50 dark:hover:bg-slate-700";
+                if (i === this.sonuc.dogru) return "!border-emerald-500 !bg-emerald-50 dark:!bg-emerald-950 !text-emerald-900 dark:!text-emerald-100";
+                if (i === this.sonuc.secim) return "!border-rose-500 !bg-rose-50 dark:!bg-rose-950 !text-rose-900 dark:!text-rose-100";
+                return "opacity-50";
+            },
+
+            // --- eşleştirme ---
+            solSec(i) {
+                if (this.sonuc) return;
+                if (this.eslesme[i] !== null && this.aktifSol !== i) { this.eslesme[i] = null; this.aktifSol = i; return; }
+                this.aktifSol = this.aktifSol === i ? null : i;
+            },
+            sagSec(j) {
+                if (this.sonuc) return;
+                const eski = this.eslesme.indexOf(j);
+                if (this.aktifSol === null) { if (eski !== -1) this.eslesme[eski] = null; return; }
+                if (eski !== -1) this.eslesme[eski] = null;
+                this.eslesme[this.aktifSol] = j;
+                const bos = this.eslesme.indexOf(null);
+                this.aktifSol = bos === -1 ? null : bos;
+            },
+            eslesmeTamam() { return this.eslesme.length > 0 && this.eslesme.every((j) => j !== null); },
+            eslesmeGonder() { if (this.eslesmeTamam()) this.gonder(this.eslesme.slice()); },
+            solDogru(i) { return this.sonuc && this.sonuc.eslesme[i] === this.eslesme[i]; },
+            solSinif(i) {
+                if (this.sonuc) return this.solDogru(i)
+                    ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-100"
+                    : "border-rose-500 bg-rose-50 dark:bg-rose-950 text-rose-900 dark:text-rose-100";
+                if (this.aktifSol === i) return "border-gray-900 dark:border-slate-100 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 ring-2 ring-offset-1 ring-gray-900 dark:ring-slate-100 dark:ring-offset-slate-900";
+                if (this.eslesme[i] !== null) return RENKLER[i] + " text-gray-900 dark:text-slate-100";
+                return NOTR + " hover:border-gray-400";
+            },
+            sagSinif(j) {
+                const i = this.eslesme.indexOf(j);
+                if (this.sonuc) {
+                    if (i === -1) return NOTR;
+                    return this.sonuc.eslesme[i] === j
+                        ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-100"
+                        : "border-rose-500 bg-rose-50 dark:bg-rose-950 text-rose-900 dark:text-rose-100";
+                }
+                if (i !== -1) return RENKLER[i] + " text-gray-900 dark:text-slate-100";
+                return NOTR + (this.aktifSol !== null ? " hover:border-gray-400" : "");
+            },
+
+            // --- klavye ---
+            tus(e) {
+                if (e.target.closest("input, textarea, [contenteditable]")) return;
+                if (this.sonuc) {
+                    if (e.key === "Enter" && document.activeElement !== this.$refs.devamDugmesi) {
+                        e.preventDefault();
+                        this.$refs.devam.submit();
+                    }
+                    return;
+                }
+                if (this.soru.tip === "eslestirme") return;
+                const n = parseInt(e.key, 10);
+                if (n >= 1 && n <= (this.soru.secenekler || []).length) { e.preventDefault(); this.sec(n - 1); }
+            },
+        };
+    });
+});
+</script>
+{% endblock %}

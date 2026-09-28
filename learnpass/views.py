@@ -170,22 +170,7 @@ def learnPassRun(request, mode):
     return render(request, "pages/learnpass/learnPass.html", context)
 
 
-EXERCISES_GATE_NOTE = "Egzersizler kendi listenle çalıştığı için giriş yapman gerekiyor."
-
-
-@login_gate("Egzersizler", EXERCISES_GATE_NOTE)
-def exercisesPage(request):
-    """
-    Egzersizler sekmesi — şimdilik yer tutucu.
-
-    Eski quizzes uygulaması kaldırıldı; Hızlı ve Tempolu Egzersiz uygulama
-    planının 7. adımında sıfırdan yazılacak (bkz. ürün raporu, 6.2).
-    """
-    context = {
-        "active_page": "Egzersizler",
-        "exercise_tab": "exercises",
-    }
-    return render(request, "pages/learnpass/exercisesSoon.html", context)
+# Egzersizler sekmesi (exercises_page) egzersizler uygulamasına taşındı.
 
 
 # ----------------------------------------------------------------------

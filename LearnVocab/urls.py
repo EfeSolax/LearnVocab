@@ -79,6 +79,8 @@ urlpatterns = [
     # path("friends/", include("friends.urls")),
     path("profile/", include("userprofile.urls")),
     path("exercises/", include("learnpass.urls")),
+    # Egzersizler (rapor 6.2): Hızlı ve Tempolu Egzersiz
+    path("egzersizler/", include("egzersizler.urls")),
     # Yorumlar özelliği şu an KAPALI (arkadaşlık gibi).
     # comments uygulaması, view'ları, şablonu ve Comment modeli duruyor;
     # veriler yalnızca admin panelinden görülebiliyor. Geri açmak için bu
