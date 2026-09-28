@@ -81,6 +81,8 @@ urlpatterns = [
     path("exercises/", include("learnpass.urls")),
     # Egzersizler (rapor 6.2): Hızlı ve Tempolu Egzersiz
     path("egzersizler/", include("egzersizler.urls")),
+    # Bildirimler ve PWA (rapor 10): /manifest.webmanifest, /sw.js, /bildirimler/...
+    path("", include("bildirimler.urls")),
     # Yorumlar özelliği şu an KAPALI (arkadaşlık gibi).
     # comments uygulaması, view'ları, şablonu ve Comment modeli duruyor;
     # veriler yalnızca admin panelinden görülebiliyor. Geri açmak için bu

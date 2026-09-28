@@ -187,9 +187,11 @@ istek atılmaz.
 
         {% block bildirim_izni %}
         {% comment %}
-        Adım 11 (Bildirimler, rapor 10): bildirim izni burada, anlamlı anda
-        sorulacak — "Yarın hatırlatayım mı?". Sayfa açılır açılmaz sorulmaz.
+        Bildirim izni (rapor 10) burada, anlamlı anda sorulur: "Yarın
+        hatırlatayım mı?". Yalnızca girişli kullanıcı ve gerçekten biten bir
+        oturumda (kart yoksa bu ekran sayfa açılır açılmaz görünüyor; orada sorulmaz).
         {% endcomment %}
+        {% if kartlar and not misafir and user.is_authenticated %}{% include 'bildirimler/_izinKarti.html' %}{% endif %}
         {% endblock %}
 
         <div class="grid grid-cols-2 gap-3">

@@ -26,6 +26,12 @@ django-cleanup==9.0.0
 # --- Görsel işleme (profil fotoğrafı) ---
 pillow==12.3.0
 
+# --- Web Push bildirimleri (bildirimler uygulaması, rapor 10) ---
+# aiohttp vb. alt bağımlılıklarını pip kendisi çeker.
+pywebpush==2.5.0
+py-vapid==1.9.4
+http-ece==1.2.1
+
 # --- Ortam değişkenleri ---
 python-dotenv==1.2.3
 

@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "learnpass",
     "readings",
     "egzersizler",
+    "bildirimler",
 
     # Kullanılmayan dosyaları (profile_pic) otomatik olarak temizleyecek bir eklenti
     'django_cleanup',
@@ -328,6 +329,15 @@ LLM_KONTROL_PROVIDER_SORT = os.environ.get('LLM_KONTROL_PROVIDER_SORT', 'price')
 TEXT_SUBMISSION_INTERVAL_MINUTES = int(
     os.environ.get('TEXT_SUBMISSION_INTERVAL_MINUTES', '1440')
 )
+
+
+# Web Push bildirimleri (rapor 10 · bildirimler uygulaması)
+# Anahtarları üretmek için: python manage.py vapid_anahtari_uret
+# (doğrudan .env'e yazar, ekrana basmaz). Anahtar yoksa bildirimler
+# tamamen kapalıdır: arayüz gizlenir, gönderim atlanır.
+VAPID_PUBLIC_KEY = os.environ.get('VAPID_PUBLIC_KEY', '')
+VAPID_PRIVATE_KEY = os.environ.get('VAPID_PRIVATE_KEY', '')
+VAPID_ADMIN_EMAIL = os.environ.get('VAPID_ADMIN_EMAIL', '')
 
 
 # Önbellek
