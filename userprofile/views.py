@@ -12,8 +12,6 @@ from words.models import (
     Word, WordList,
 )
 from users.models import User
-from texts.models import Text
-from texts import limits as text_limits
 from django.contrib import messages
 from usersettings.models import UserSettings
 
@@ -427,28 +425,6 @@ def showMyAccountView(request):
         return showProfile(request)
     return redirect("user_profile")
 
-
-@login_gate("Yazma", "Yazdığın metinler hesabına kaydedildiği için giriş yapman gerekiyor.")
-def showTextsView(request):
-    
-    texts = Text.objects.filter(owner = request.user).order_by("-createdAt")
-
-    # Kısıt ve kalan süre tek kaynaktan geliyor (bkz. texts/limits.py).
-    # Eskiden burada timedelta(days=1) tekrar yazılıydı ve kalan süre
-    # "saat:dakika:saniye" varsayımıyla elle biçimlendiriliyordu; süre bir günü
-    # aştığında ("1 day, 3:00:00") bu biçimlendirme bozuluyordu.
-    can_write_new_text = text_limits.can_write_new_text(request.user)
-    remaining_time = text_limits.remaining_label(request.user) or None
-
-    context = {
-        "mytexts":texts,
-        "isWriteable":can_write_new_text,
-        "remaining_time":remaining_time,
-        # Bilgilendirme kutusundaki süre metni de ayardan gelsin
-        "text_interval_label": text_limits.interval_label(),
-    }
-
-    return render(request, "pages/profile/texts.html", context)
 
 @login_required
 def showSettingsView(request):

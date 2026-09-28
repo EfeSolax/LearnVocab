@@ -1,142 +1,163 @@
-{% extends 'base/layout.html' %}
-{% load static %}
+{% extends 'base/appLayout.html' %}
 
-{% block title %}Metin Değerlendirmesi{% endblock %}
+{% comment %}
+Bir yazının değerlendirmesi (ürün raporu 9.1).
 
-{% block content %}
+  - Puan (5 üzerinden, yarım adım) ve kısa bir etiket.
+  - Metin: hatalı parçaların altı çizili; dokununca ilgili hata maddesi açılır.
+  - İki liste: İyi yaptıkların · Hatalar (alıntı → doğrusu · neden).
+    "Geliştirilebilir" bölümü bilerek yok.
+  - Bekleyen metin: sarı "Henüz değerlendirilmedi" kutusu.
+  - Eski (100 puanlık) kayıt: "eski değerlendirme" olarak olduğu gibi.
+{% endcomment %}
 
-<div class="container mx-auto p-4 md:p-8 max-w-4xl">
+{% block title %}Yazın{% endblock %}
+{% block page_heading %}{% endblock %}
 
-    <header class="mb-10 flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-4 border-gray-200 dark:border-slate-700">
-        <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-slate-100 mb-2 md:mb-0">
-            Metin Değerlendirmesi
-        </h1>
-        <a href="{% url 'profile_texts' %}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors font-semibold text-lg">
-            &larr; Metinlerime Dön
-        </a>
-    </header>
+{% block page %}
 
-    <main class="space-y-8">
-        
-        <section class="bg-indigo-700 text-white p-6 md:p-8 rounded-xl shadow-2xl shadow-indigo-300">
-            <div class="flex justify-between items-center">
-                <div class="space-y-1">
-                    <span class="text-xl font-medium opacity-80">TOPLAM DEĞERLENDİRME PUANI</span>
-                    <h2 class="text-5xl md:text-7xl font-black">
-                        {{ text.score }}<span class="text-3xl opacity-70">/100</span>
-                    </h2>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 opacity-70">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V4.875C16.5 4.254 16.248 4 15.627 4H8.373c-.621 0-1.125.254-1.125.875V7.5m9 0h-9"/>
-                </svg>
-            </div>
-            <a href="{% url 'about_grading_page' %}" class="mt-4 block text-indigo-200 hover:text-white transition-colors font-semibold text-sm underline">
-                Puanlama kriterleri hakkında daha detaylı bilgi edinin.
-            </a>
-        </section>
+<a href="{% url 'profile_texts' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200">
+    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+    Yazılarım
+</a>
+<p class="mt-2 text-sm text-gray-500 dark:text-slate-400">
+    {{ yazi.createdAt|date:"j F Y" }}{% if yazi.konu %} · {{ yazi.konu }}{% endif %}{% if yazi.durum != "eski" and sertlik_adi %} · {{ sertlik_adi }} geri bildirim{% endif %}
+</p>
 
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-xl border-t-4 border-blue-600">
-                <h3 class="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-4 pb-2 border-b border-gray-200 dark:border-slate-700">
-                    Metin İçeriği
-                    <span class="float-right text-3xl font-black text-blue-600 dark:text-blue-400">{{ context_point }}/60</span>
-                </h3>
+{% if yazi.durum == "tamam" %}
+<div x-data="{ aktif: null, sec(i) { this.aktif = (this.aktif === i ? null : i); } }" class="mt-3 space-y-5">
 
-                <div class="space-y-2 text-gray-700 dark:text-slate-300">
-                    
-                    <div class="flex justify-between items-center text-lg py-1 border-b border-gray-100 dark:border-slate-700 last:border-b-0">
-                        <span class="text-gray-700 dark:text-slate-300">Konu açık bir şekilde belirtildi mi:</span>
-                        <span class="font-bold text-lg text-blue-700 dark:text-blue-300">{{ point1 }}/10</span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center text-lg py-1 border-b border-gray-100 dark:border-slate-700 last:border-b-0">
-                        <span class="text-gray-700 dark:text-slate-300">Metnin major ve minor kısımları:</span>
-                        <span class="font-bold text-lg text-blue-700 dark:text-blue-300">{{ point2 }}/25</span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center text-lg py-1 border-b border-gray-100 dark:border-slate-700 last:border-b-0">
-                        <span class="text-gray-700 dark:text-slate-300">Özet kısmı başarılı yazılmış mı:</span>
-                        <span class="font-bold text-lg text-blue-700 dark:text-blue-300">{{ point3 }}/5</span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center text-lg py-1 border-b border-gray-100 dark:border-slate-700 last:border-b-0">
-                        <span class="text-gray-700 dark:text-slate-300">Metin akıcı ve içerik aktarımı başarılı mı:</span>
-                        <span class="font-bold text-lg text-blue-700 dark:text-blue-300">{{ point4 }}/10</span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center text-lg py-1 border-b border-gray-100 dark:border-slate-700 last:border-b-0">
-                        <span class="text-gray-700 dark:text-slate-300">Metin formal (akademik) bir dille mi yazılmış:</span>
-                        <span class="font-bold text-lg text-blue-700 dark:text-blue-300">{{ point5 }}/10</span>
-                    </div>
+    {# ---------- Puan ---------- #}
+    <section class="flex items-center justify-between rounded-2xl bg-indigo-600 px-5 py-4 text-white shadow-sm">
+        <div>
+            <p class="text-sm font-medium text-indigo-100">Puanın</p>
+            <p class="text-4xl font-black leading-tight" data-puan>{{ puan_yazisi }}<span class="text-xl font-semibold text-indigo-200"> / 5</span></p>
+        </div>
+        <p class="text-right text-lg font-semibold">{{ puan_etiketi }}</p>
+    </section>
 
-                </div>
-            </div>
+    {# ---------- Metin (hatalar altı çizili) ---------- #}
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+        <h2 class="sr-only">Metnin</h2>
+        <p class="whitespace-pre-wrap break-words text-base leading-8 text-gray-900 dark:text-slate-100" data-metin>{% for p in parcalar %}{% if p.hata is None %}{{ p.metin }}{% else %}<button type="button" data-hata="{{ p.hata }}" @click="sec({{ p.hata }})" :class="aktif === {{ p.hata }} ? 'bg-red-100 dark:bg-red-900/60' : ''" class="rounded-sm text-left underline decoration-red-500 decoration-2 underline-offset-4 hover:bg-red-50 dark:hover:bg-red-950/60">{{ p.metin }}</button>{% endif %}{% endfor %}</p>
 
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-xl border-t-4 border-green-600">
-                <h3 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4 pb-2 border-b border-gray-200 dark:border-slate-700">
-                    İngilizce Kullanımı
-                    <span class="float-right text-3xl font-black text-green-600 dark:text-green-400">{{ language_point }}/40</span>
-                </h3>
+        {% for h in hatalar %}
+        <div x-show="aktif === {{ forloop.counter0 }}" x-cloak x-transition.opacity
+             class="mt-3 rounded-xl bg-red-50 dark:bg-red-950/60 px-4 py-3 text-sm">
+            <p><span class="text-red-700 line-through decoration-red-400 dark:text-red-300">{{ h.alinti }}</span>
+               <span class="text-gray-400">→</span>
+               <span class="font-semibold text-emerald-700 dark:text-emerald-300">{{ h.dogrusu }}</span></p>
+            <p class="mt-1 text-gray-700 dark:text-slate-300">{{ h.neden }}</p>
+        </div>
+        {% endfor %}
 
-                <div class="space-y-2 text-gray-700 dark:text-slate-300">
-                    
-                    <div class="flex justify-between items-center text-lg py-1 border-b border-gray-100 dark:border-slate-700 last:border-b-0">
-                        <span class="text-gray-700 dark:text-slate-300">Metin gramatik olarak doğru mu:</span>
-                        <span class="font-bold text-lg text-green-700 dark:text-green-300">{{ point6 }}/20</span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center text-lg py-1 border-b border-gray-100 dark:border-slate-700 last:border-b-0">
-                        <span class="text-gray-700 dark:text-slate-300">Kelimelerin kullanımı doğru yapılmış mı:</span>
-                        <span class="font-bold text-lg text-green-700 dark:text-green-300">{{ point7 }}/5</span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center text-lg py-1 border-b border-gray-100 dark:border-slate-700 last:border-b-0">
-                        <span class="text-gray-700 dark:text-slate-300">Yazım kuralları (doğru yazım, noktalama) doğru mu:</span>
-                        <span class="font-bold text-lg text-green-700 dark:text-green-300">{{ point8 }}/5</span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center text-lg py-1 border-b border-gray-100 dark:border-slate-700 last:border-b-0">
-                        <span class="text-gray-700 dark:text-slate-300">Metin içinde özneler formal bir şekilde kullanılmış mı:</span>
-                        <span class="font-bold text-lg text-green-700 dark:text-green-300">{{ point9 }}/5</span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center text-lg py-1 border-b border-gray-100 dark:border-slate-700 last:border-b-0">
-                        <span class="text-gray-700 dark:text-slate-300">Metinde kesinlik bildiren ifadelerin kullanımından kaçılmış mı:</span>
-                        <span class="font-bold text-lg text-green-700 dark:text-green-300">{{ point10 }}/5</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+        {% if hatalar %}
+        <p class="mt-3 text-xs text-gray-500 dark:text-slate-400">Altı çizili yerlere dokun.</p>
+        {% endif %}
+    </section>
 
-        <section class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-xl">
-            <h2 class="text-2xl font-semibold text-gray-900 dark:text-slate-100 mb-4 border-b pb-2">
-                📝 Gönderdiğiniz Metin
-            </h2>
-            <div class="text-gray-800 dark:text-slate-200 leading-relaxed prose max-w-none p-4 bg-gray-50 dark:bg-slate-900 rounded-md border">
-                <p>{{ text.content|linebreaksbr }}</p>
-            </div>
-        </section>
+    {% if onerilenler %}
+    <section class="text-sm text-gray-700 dark:text-slate-300">
+        <span class="font-semibold">Kullanmayı dene:</span>
+        {% for k in onerilenler %}
+            {% if k in kullanilanlar %}
+            <span class="ml-1 inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 font-medium text-emerald-800 dark:text-emerald-200">{{ k }} <span aria-label="kullandın">✓</span></span>
+            {% else %}
+            <span class="ml-1 inline-flex rounded-full bg-gray-100 dark:bg-slate-700 px-2 py-0.5 text-gray-600 dark:text-slate-300">{{ k }}</span>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
 
-        <section class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-xl">
-            <h2 class="text-2xl font-semibold text-gray-900 dark:text-slate-100 mb-4 border-b pb-2">
-                🤖 Yapay Zeka Değerlendirmesi
-            </h2>
-            <div class="text-gray-800 dark:text-slate-200 leading-relaxed prose max-w-none p-4 bg-yellow-50 dark:bg-yellow-950 rounded-md border border-yellow-300 dark:border-yellow-700">
-                <p>{{ text.response|linebreaksbr }}</p>
-            </div>
-        </section>
+    {# ---------- İyi yaptıkların ---------- #}
+    {% if iyi %}
+    <section>
+        <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-slate-100">İyi yaptıkların</h2>
+        <ul class="space-y-2">
+            {% for m in iyi %}
+            <li class="rounded-xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50/70 dark:bg-emerald-950/40 px-4 py-3 text-sm">
+                <p class="font-medium text-emerald-900 dark:text-emerald-200">“{{ m.alinti }}”</p>
+                <p class="mt-0.5 text-gray-700 dark:text-slate-300">{{ m.aciklama }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
 
-        <footer class="flex justify-between items-center pt-4">
-            <div class="text-gray-600 dark:text-slate-400 text-sm">
-                Oluşturma Tarihi: <span class="font-medium text-gray-800 dark:text-slate-200">{{ text.createdAt|date:"d F Y, H:i" }}</span>
-            </div>
-            <a href="{% url 'remove_text' text.id %}" class="bg-red-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-red-700 transition-colors duration-200">
-                Metni Sil
-            </a>
-        </footer>
-
-    </main>
+    {# ---------- Hatalar ---------- #}
+    <section>
+        <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-slate-100">Hatalar</h2>
+        {% if hatalar %}
+        <ol class="space-y-2">
+            {% for h in hatalar %}
+            <li>
+                <button type="button" @click="sec({{ forloop.counter0 }})"
+                        :class="aktif === {{ forloop.counter0 }} ? 'ring-2 ring-red-300 dark:ring-red-800' : ''"
+                        class="block w-full rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 text-left text-sm">
+                    <span class="text-red-700 line-through decoration-red-400 dark:text-red-300">{{ h.alinti }}</span>
+                    <span class="text-gray-400">→</span>
+                    <span class="font-semibold text-emerald-700 dark:text-emerald-300">{{ h.dogrusu }}</span>
+                    <span class="block mt-0.5 text-gray-700 dark:text-slate-300">{{ h.neden }}</span>
+                </button>
+            </li>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <p class="rounded-xl border border-dashed border-emerald-300 dark:border-emerald-800 px-4 py-4 text-sm text-emerald-800 dark:text-emerald-200">
+            Gerçek bir hata bulamadık. Harika iş!
+        </p>
+        {% endif %}
+    </section>
 </div>
+
+{% elif yazi.durum == "bekliyor" %}
+<div class="mt-3 space-y-4">
+    <div class="rounded-2xl border border-yellow-300 dark:border-yellow-700 bg-yellow-50 dark:bg-yellow-950/60 p-4 text-yellow-900 dark:text-yellow-100" data-etiket="bekliyor">
+        <p class="font-semibold">Henüz değerlendirilmedi</p>
+        <p class="mt-1 text-sm">Metnin kayıtlı, kaybolmadı. Değerlendirme servisi şu an cevap veremedi; biraz sonra kendimiz yeniden deneyeceğiz. Hazır olunca burada görürsün.</p>
+        <form method="post" action="{% url 'retry_text' yazi.id %}" class="mt-3">
+            {% csrf_token %}
+            <button type="submit" class="rounded-xl bg-yellow-400 px-4 py-2 text-sm font-semibold text-yellow-950 hover:bg-yellow-300">Şimdi tekrar dene</button>
+            {% if yogun %}<span class="ml-2 text-xs">Şu an yoğunuz; biraz sonra tekrar dene.</span>{% endif %}
+        </form>
+    </div>
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+        <p class="whitespace-pre-wrap break-words text-base leading-8 text-gray-900 dark:text-slate-100">{{ yazi.content }}</p>
+    </section>
+</div>
+
+{% elif yazi.durum == "eski" %}
+<div class="mt-3 space-y-4">
+    <div class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 p-4 text-sm text-gray-700 dark:text-slate-300">
+        <p><span class="font-semibold">Eski değerlendirme.</span> Bu metin önceki puanlama sistemiyle (100 üzerinden) değerlendirildi: <span class="font-semibold" data-eski-puan>{{ yazi.score }}/100</span>.
+        Yeni sistemde puan 5 üzerinden ve yalnızca gerçek hatalar yazılıyor.</p>
+    </div>
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+        <p class="whitespace-pre-wrap break-words text-base leading-8 text-gray-900 dark:text-slate-100">{{ yazi.content }}</p>
+    </section>
+    {% if yazi.response %}
+    <details class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+        <summary class="cursor-pointer text-sm font-semibold text-gray-700 dark:text-slate-200">Eski değerlendirmeyi göster</summary>
+        <div class="mt-3 whitespace-pre-line text-sm leading-relaxed text-gray-700 dark:text-slate-300">{{ yazi.response }}</div>
+    </details>
+    {% endif %}
+</div>
+
+{% else %}
+<div class="mt-3 space-y-4">
+    <div class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 p-4 text-sm text-gray-700 dark:text-slate-300">
+        <p class="font-semibold">Bu metni değerlendiremedik.</p>
+        <p class="mt-1">İngilizce, 3–8 cümlelik bir metin yazdığından emin olup yeniden deneyebilirsin.</p>
+    </div>
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+        <p class="whitespace-pre-wrap break-words text-base leading-8 text-gray-900 dark:text-slate-100">{{ yazi.content }}</p>
+    </section>
+</div>
+{% endif %}
+
+<form method="post" action="{% url 'remove_text' yazi.id %}" class="mt-8 border-t border-gray-200 dark:border-slate-700 pt-4">
+    {% csrf_token %}
+    <button type="submit" class="text-sm font-medium text-gray-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400">Bu yazıyı sil</button>
+</form>
 
 {% endblock %}

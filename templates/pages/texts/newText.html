@@ -1,85 +1,161 @@
-{% extends 'base/layout.html' %}
+{% extends 'base/appLayout.html' %}
 
-{% block title %}Yeni Metin Yaz {% endblock %}
+{% comment %}
+Serbest yazma (ürün raporu 9.1). Görev kısa: 3–8 cümle. Konu önerilerinden
+biri seçilir ya da serbest yazılır; listeden 3–5 "kullanmayı dene" kelimesi
+(zorunlu değil). Sertlik burada seçilir ve hatırlanır (ayarlar sayfası
+henüz yok, rapor 16).
+{% endcomment %}
 
-{% block content %}
+{% block title %}Serbest yazma{% endblock %}
+{% block page_heading %}{% endblock %}
 
-<div class="container mx-auto p-4 md:p-8 max-w-3xl">
+{% block page %}
 
-    <header class="mb-6 flex justify-between items-center">
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-slate-100">
-            Yeni Metin Oluşturma Sayfası
-        </h1>
-        <a href="{% url 'profile_texts' %}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors font-medium">
-            &larr; Metinlerime Geri Dön
-        </a>
-    </header>
+<a href="{% url 'profile_texts' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200">
+    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+    Yazma
+</a>
+<h1 class="mt-2 mb-5 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Serbest yazma</h1>
 
-    <form id="evaluateForm" method="POST" action="{% url 'create_text' %}">
-        {% csrf_token %}
-        
-        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-
-            <div class="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-4 rounded-lg mb-6 overflow-hidden">
-                
-                <h2 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-2">Bu kelimeleri kullanmaya çalışın:</h2>
-                {% if not links %}
-                <p class="text-sm text-blue-700 dark:text-blue-300 mb-3">Görünen o ki son 7 günde listenize bir kelime eklememişsiniz. O halde tamamen istediğiniz gibi yazabilirsiniz.</p>
-                {% else %}
-                <div class="flex flex-wrap gap-2">
-                    {% for link in links %}
-                    <span class="inline-block text-blue-900 dark:text-blue-200 font-medium px-3 py-1 text-sm">
-                        {{ link.word.englishWord }}
-                    </span>
-                    {% endfor %}
-                </div>
-                {% endif %}
-                
-                <input type="hidden" name="target_words" value="{{ target_words_str }}">
-            </div>
-
-
-            <div>
-                <label for="user_text" class="block text-lg font-semibold text-gray-700 dark:text-slate-300 mb-2">Metniniz:</label>
-                <p class="text-sm text-gray-600 dark:text-slate-400 mb-3">
-                    Yukarıdaki kelimeleri kullanarak anlamlı bir metin yazmaya çalışın.
-                </p>
-                
-                <textarea 
-                    id="user_text"
-                    name="user_text" 
-                    rows="25" 
-                    class="w-full mt-2 p-4 border border-gray-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600 focus:border-indigo-500 dark:focus:border-indigo-600"
-                    placeholder="Pratik metninizi buraya yazın..."
-                    required
-                ></textarea>
-            </div>
-
-
-            <div class="text-center mt-6">
-                <p class="text-sm text-gray-600 dark:text-slate-400 mb-3">
-                    Metnin değerlendirme süreci yaklaşık 30-40 saniye sürebilir. Lütfen metin değerlendirilirken sayfayı kapatmayınız veya sayfayı yinelemeyiniz.
-                </p>                
-                <button type="submit" id="evaluateButton" class="w-full md:w-auto bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-200 disabled:opacity-60">
-                    Metni Değerlendir
-                </button>
-            </div>
-
-            {% include 'base/_progressBar.html' %}
-
-        </div> 
-    </form>
-
+{% if not yazabilir %}
+<div class="rounded-2xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/60 p-5 text-indigo-900 dark:text-indigo-200">
+    <p class="font-semibold">{{ sinir_mesaji }}</p>
+    <p class="mt-1 text-sm">O zamana kadar <a class="font-semibold underline" href="{% url 'diyalog_page' %}">Diyalogda doğru kelime</a> ile devam edebilirsin.</p>
 </div>
+{% else %}
+
+{{ konular|json_script:"konular-verisi" }}
+
+<form id="yazmaFormu" method="POST" action="{% url 'create_text' %}" x-data="serbestYazma()" class="space-y-5">
+    {% csrf_token %}
+    <input type="hidden" name="konu" :value="konu">
+
+    {# ---------- Konu ---------- #}
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+        <div class="flex items-baseline justify-between gap-3">
+            <h2 class="text-sm font-semibold text-gray-900 dark:text-slate-100">Konu</h2>
+            <button type="button" @click="baskaKonular()" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 dark:text-indigo-400">Başka öner</button>
+        </div>
+        <div class="mt-3 flex flex-wrap gap-2">
+            <button type="button" @click="konu = ''"
+                    :class="konu === '' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-200 border-gray-300 dark:border-slate-600'"
+                    class="rounded-full border px-3 py-1.5 text-sm font-medium">Serbest</button>
+            <template x-for="k in gorunen" :key="k.anahtar">
+                <button type="button" @click="konu = k.anahtar" x-text="k.baslik"
+                        :class="konu === k.anahtar ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-200 border-gray-300 dark:border-slate-600'"
+                        class="rounded-full border px-3 py-1.5 text-sm font-medium"></button>
+            </template>
+        </div>
+        <p x-show="secili" x-cloak class="mt-3 text-sm italic text-gray-600 dark:text-slate-400" x-text="secili ? secili.yonerge : ''"></p>
+    </section>
+
+    {# ---------- Kullanmayı dene ---------- #}
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+        <h2 class="text-sm font-semibold text-gray-900 dark:text-slate-100">Kullanmayı dene <span class="font-normal text-gray-500 dark:text-slate-400">· zorunlu değil</span></h2>
+        {% if oneriler %}
+        <ul class="mt-3 flex flex-wrap gap-2">
+            {% for kelime in oneriler %}
+            <li class="rounded-xl bg-indigo-50 dark:bg-indigo-950/60 px-3 py-1.5 text-sm">
+                <span class="font-semibold text-indigo-900 dark:text-indigo-200">{{ kelime.text }}</span>
+                {% if kelime.ilk_anlam %}<span class="text-indigo-700/80 dark:text-indigo-300/80"> · {{ kelime.ilk_anlam }}</span>{% endif %}
+                <input type="hidden" name="kelimeler" value="{{ kelime.id }}">
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">Listende henüz kelime yok; istediğin gibi yazabilirsin. Sözlük'te + ile eklediğin kelimeler burada önerilir.</p>
+        {% endif %}
+    </section>
+
+    {# ---------- Metin ---------- #}
+    <section>
+        <label for="user_text" class="text-sm font-semibold text-gray-900 dark:text-slate-100">Metnin</label>
+        <textarea id="user_text" name="user_text" rows="8" required minlength="{{ en_az }}" maxlength="{{ en_cok }}"
+                  x-model="metin" spellcheck="false" autocapitalize="sentences"
+                  placeholder="3–8 cümle yaz. Akademik olması gerekmiyor."
+                  class="mt-2 block w-full rounded-2xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 p-4 text-base leading-relaxed text-gray-900 dark:text-slate-100 placeholder:text-gray-400 dark:placeholder:text-slate-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"></textarea>
+        <p class="mt-1.5 text-xs" :class="cumle > 8 ? 'text-amber-700 dark:text-amber-300' : 'text-gray-500 dark:text-slate-400'">
+            <span x-text="cumle"></span> cümle
+            <span x-show="cumle > 0 && cumle < 3" x-cloak> · birkaç cümle daha yazabilirsin</span>
+            <span x-show="cumle > 8" x-cloak> · kısa tutmak yeterli, 8 cümle idealdir</span>
+        </p>
+    </section>
+
+    {# ---------- Sertlik ---------- #}
+    <fieldset>
+        <legend class="text-sm font-semibold text-gray-900 dark:text-slate-100">Geri bildirim</legend>
+        <div class="mt-2 grid grid-cols-3 gap-2">
+            {% for deger, ad, aciklama in sertlikler %}
+            <label class="cursor-pointer">
+                <input type="radio" name="sertlik" value="{{ deger }}" class="peer sr-only" {% if deger == sertlik %}checked{% endif %} x-model="sertlik">
+                <span class="block rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-2 py-2 text-center text-sm font-semibold text-gray-700 dark:text-slate-200 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 peer-checked:text-indigo-800 dark:peer-checked:border-indigo-400 dark:peer-checked:bg-indigo-950/60 dark:peer-checked:text-indigo-200 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500/40">{{ ad }}</span>
+            </label>
+            {% endfor %}
+        </div>
+        <p class="mt-1.5 text-xs text-gray-500 dark:text-slate-400">
+            {% for deger, ad, aciklama in sertlikler %}<span x-show="sertlik === '{{ deger }}'" {% if deger != sertlik %}x-cloak{% endif %}>{{ aciklama }} Puanı etkilemez.</span>{% endfor %}
+        </p>
+    </fieldset>
+
+    <div>
+        <button type="submit" id="gonderDugmesi"
+                class="w-full rounded-xl bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-700 disabled:opacity-60 sm:w-auto">
+            Değerlendir
+        </button>
+        {% if kalan_hak is not None %}
+        <p class="mt-2 text-xs text-gray-500 dark:text-slate-400">Bugün {{ kalan_hak }} metin daha değerlendirebilirsin.</p>
+        {% endif %}
+    </div>
+
+    {% include 'base/_progressBar.html' %}
+</form>
+
+<script>
+function serbestYazma() {
+    var tum = JSON.parse(document.getElementById('konular-verisi').textContent);
+    // Her ziyarette farklı sırayla; ekranda 4 öneri.
+    for (var i = tum.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = tum[i]; tum[i] = tum[j]; tum[j] = t;
+    }
+    return {
+        tum: tum,
+        bas: 0,
+        konu: '',
+        metin: '',
+        sertlik: '{{ sertlik }}',
+        get gorunen() {
+            var liste = this.tum.slice(this.bas, this.bas + 4);
+            var secili = this.secili;
+            if (secili && liste.indexOf(secili) === -1) { liste = [secili].concat(liste.slice(0, 3)); }
+            return liste;
+        },
+        get secili() {
+            var k = this.konu;
+            return this.tum.find(function (x) { return x.anahtar === k; }) || null;
+        },
+        get cumle() {
+            var m = this.metin.trim();
+            if (!m) { return 0; }
+            return m.split(/[.!?]+(?:\s+|$)/).filter(function (s) { return s.trim().length > 1; }).length;
+        },
+        baskaKonular: function () {
+            this.bas = (this.bas + 4) % this.tum.length;
+        }
+    };
+}
+</script>
 
 {% include 'base/_progressScript.html' %}
 <script>
   startProgressJob({
-    form: document.getElementById('evaluateForm'),
-    button: document.getElementById('evaluateButton'),
+    form: document.getElementById('yazmaFormu'),
+    button: document.getElementById('gonderDugmesi'),
     progressUrl: "{% url 'create_text_progress' '__JOB__' %}",
     finishUrl: "{% url 'create_text_finish' '__JOB__' %}",
   });
 </script>
+{% endif %}
 
 {% endblock %}

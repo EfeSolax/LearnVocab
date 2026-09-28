@@ -1,0 +1,125 @@
+{% extends 'base/appLayout.html' %}
+
+{% comment %}
+Diyalogda doğru kelime (ürün raporu 9.2). 4–6 satırlık hazır diyalog, tek
+boşluk, altında Türkçe ipucu; kullanıcı İngilizce kelimeyi YAZAR. Cevap
+sunucuda değerlendirilir (cevap sayfada yazmaz). Diyaloglar havuzdan (D6);
+havuz boşken cesaretlendirici bir boş hâl görünür.
+{% endcomment %}
+
+{% block title %}Diyalogda doğru kelime{% endblock %}
+{% block page_heading %}{% endblock %}
+
+{% block page %}
+
+<a href="{% url 'profile_texts' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200">
+    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+    Yazma
+</a>
+<h1 class="mt-2 mb-5 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Diyalogda doğru kelime</h1>
+
+{% if havuz_bos %}
+<div class="rounded-2xl border border-dashed border-indigo-300 dark:border-indigo-800 bg-indigo-50/60 dark:bg-indigo-950/40 px-5 py-8 text-center" data-bos="havuz">
+    <p class="text-lg font-semibold text-indigo-900 dark:text-indigo-200">Diyaloglar hazırlanıyor</p>
+    <p class="mx-auto mt-2 max-w-md text-sm text-indigo-900/80 dark:text-indigo-200/80">
+        Çok yakında burada listendeki kelimelerle kısa diyaloglar olacak. O zamana kadar serbest yazmayla kelimelerini kullanmayı deneyebilirsin.
+    </p>
+    <a href="{% url 'new_text_page' %}" class="mt-5 inline-flex rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">Serbest yazmaya geç</a>
+</div>
+
+{% elif liste_bos %}
+<div class="rounded-2xl border border-dashed border-gray-300 dark:border-slate-600 px-5 py-8 text-center" data-bos="liste">
+    <p class="text-lg font-semibold text-gray-900 dark:text-slate-100">Listen henüz boş</p>
+    <p class="mx-auto mt-2 max-w-md text-sm text-gray-600 dark:text-slate-400">Diyaloglar listendeki kelimelerle gelir. Sözlük'te + ile ya da Learn &amp; Pass'te kelime ekleyebilirsin.</p>
+    <a href="{% url 'sozluk' %}" class="mt-5 inline-flex rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">Sözlük'e git</a>
+</div>
+
+{% elif not diyalog %}
+<div class="rounded-2xl border border-dashed border-gray-300 dark:border-slate-600 px-5 py-8 text-center" data-bos="kelime">
+    <p class="text-lg font-semibold text-gray-900 dark:text-slate-100">Listendeki kelimeler için henüz diyalog yok</p>
+    <p class="mx-auto mt-2 max-w-md text-sm text-gray-600 dark:text-slate-400">Havuz büyüdükçe listendeki kelimelerle diyaloglar burada görünecek. Bu arada serbest yazmayı deneyebilirsin.</p>
+    <a href="{% url 'new_text_page' %}" class="mt-5 inline-flex rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">Serbest yazmaya geç</a>
+</div>
+
+{% else %}
+<form x-data="diyalogCevabi()" @submit.prevent="gonder()" class="space-y-5"
+      data-adres="{% url 'diyalog_cevap' diyalog.id %}">
+    {% csrf_token %}
+    <section class="space-y-3 rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+        {% for s in satirlar %}
+        <div class="flex gap-3">
+            <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full {% cycle 'bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-200' 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200' %} text-xs font-bold">{{ s.kisi|default:"–"|slice:":1" }}</span>
+            <p class="text-base leading-9 text-gray-900 dark:text-slate-100">
+                {{ s.once }}{% if s.bosluk %}<span class="inline-flex flex-col align-top leading-tight"><input type="text" x-model="girdi" x-ref="girdi" :disabled="sonuc && sonuc.durum !== 'bos'"
+                       autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Boşluğa gelen İngilizce kelime"
+                       :placeholder="ipucuAcik ? '{{ ilk_harf|escapejs }}…' : ''"
+                       :class="renk()"
+                       class="mx-1 w-36 rounded-lg border-2 bg-white dark:bg-slate-900 px-2 py-1 text-base font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500/30"><span class="mx-1 mt-1 text-xs italic text-gray-500 dark:text-slate-400">{{ diyalog.ipucu }}</span></span>{{ s.sonra }}{% endif %}
+            </p>
+        </div>
+        {% endfor %}
+    </section>
+
+    <div x-show="sonuc && sonuc.durum !== 'bos'" x-cloak class="rounded-2xl px-4 py-3 text-sm" :class="kutuRengi()">
+        <p class="font-semibold" x-text="sonuc ? sonuc.mesaj : ''"></p>
+        <p x-show="sonuc && sonuc.not" class="mt-1" x-text="sonuc ? sonuc.not : ''"></p>
+    </div>
+    <p x-show="sonuc && sonuc.durum === 'bos'" x-cloak class="text-sm text-gray-600 dark:text-slate-400" x-text="sonuc ? sonuc.mesaj : ''"></p>
+
+    <div class="flex flex-wrap items-center gap-3">
+        <template x-if="!sonuc || sonuc.durum === 'bos'">
+            <div class="flex flex-wrap items-center gap-3">
+                <button type="submit" :disabled="bekliyor" class="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-60">Kontrol et</button>
+                <button type="button" @click="ipucuAcik = true; $refs.girdi && $refs.girdi.focus()" x-show="!ipucuAcik"
+                        class="text-sm font-medium text-indigo-600 hover:text-indigo-800 dark:text-indigo-400">İlk harfi göster</button>
+            </div>
+        </template>
+        <a x-show="sonuc && sonuc.durum !== 'bos'" x-cloak href="{% url 'diyalog_page' %}?onceki={{ diyalog.id }}"
+           class="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">Sonraki</a>
+    </div>
+</form>
+
+<script>
+function diyalogCevabi() {
+    return {
+        girdi: '',
+        sonuc: null,
+        ipucuAcik: false,
+        bekliyor: false,
+        gonder: function () {
+            if (this.bekliyor || (this.sonuc && this.sonuc.durum !== 'bos')) { return; }
+            var form = this.$el.closest('form') || this.$el;
+            var veri = new FormData();
+            veri.append('cevap', this.girdi);
+            this.bekliyor = true;
+            var self = this;
+            fetch(form.dataset.adres, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': document.querySelector('meta[name="csrf-token"]').content,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: veri
+            }).then(function (r) { return r.json(); })
+              .then(function (d) { self.sonuc = d; })
+              .catch(function () { self.sonuc = {durum: 'bos', mesaj: 'Bağlantı koptu, bir daha dener misin?'}; })
+              .finally(function () { self.bekliyor = false; });
+        },
+        renk: function () {
+            if (!this.sonuc || this.sonuc.durum === 'bos') { return 'border-indigo-300 dark:border-indigo-700 text-gray-900 dark:text-slate-100'; }
+            if (this.sonuc.durum === 'dogru') { return 'border-emerald-500 text-emerald-800 dark:text-emerald-200'; }
+            if (this.sonuc.durum === 'neredeyse') { return 'border-amber-500 text-amber-800 dark:text-amber-200'; }
+            return 'border-red-400 text-red-800 dark:text-red-200';
+        },
+        kutuRengi: function () {
+            if (!this.sonuc) { return ''; }
+            if (this.sonuc.durum === 'dogru') { return 'bg-emerald-50 text-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-100'; }
+            if (this.sonuc.durum === 'neredeyse') { return 'bg-amber-50 text-amber-900 dark:bg-amber-950/60 dark:text-amber-100'; }
+            return 'bg-red-50 text-red-900 dark:bg-red-950/60 dark:text-red-100';
+        }
+    };
+}
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,123 +1,119 @@
 """
-Metin yazma sıklığı kısıtı — TEK KAYNAK.
+Yazma sınırları — TEK KAYNAK (rapor 9.1 "Sınırlar").
 
-Kullanıcının ne sıklıkla yeni metin yazabileceği tek bir ayardan yönetilir:
+1) Kullanıcı başına GÜNLÜK değerlendirme sınırı
 
-    settings.TEXT_SUBMISSION_INTERVAL_MINUTES   (.env: TEXT_SUBMISSION_INTERVAL_MINUTES)
+       settings.TEXT_DAILY_LIMIT   (.env: TEXT_DAILY_LIMIT, varsayılan 3, 0 = sınırsız)
 
-Örnekler:
-    1440 -> günde bir metin (varsayılan)
-       5 -> beş dakikada bir
-       0 -> kısıt tamamen kapalı
+   Bugün (yerel saatle) gönderilen metinler sayılır. Henüz değerlendirilemeyen
+   ve silinen metinler de sayılır: ilki sonradan yine Gemini'ye gidecek,
+   ikincisi silip yeniden yazarak sınır aşılmasın diye (silme yumuşak, bkz.
+   Text.silindi). Arka plandaki yeniden denemeler hak harcamaz.
 
-Eskiden bu süre üç ayrı yerde `timedelta(days=1)` olarak yazılıydı
-(texts/views.py'de iki kez, userprofile/views.py'de bir kez) ve kullanıcıya
-gösterilen "1 gün" metinleri de sabitti. Süreyi değiştirmek için hepsini
-bulmak gerekiyordu; artık tek satır yetiyor.
+   Eskiden sınır "iki metin arasında 1440 dakika" idi
+   (TEXT_SUBMISSION_INTERVAL_MINUTES); artık kullanılmıyor.
+
+2) Yoğunluk: site genelinde dakikalık çağrı sınırı
+
+       settings.YAZMA_DAKIKADA_EN_COK   (varsayılan 4)
+
+   Gemini'nin ücretsiz katmanı model başına dakikada ~5 istek kabul ediyor.
+   Son 60 saniyede bu kadar değerlendirme istendiyse yenisi hiç gönderilmez;
+   metin kaydedilir ve kullanıcıya "Biraz sonra tekrar dene" denir. Sayaç
+   süreçler arasında paylaşılan cache'te (bkz. settings.CACHES).
 """
 
-from datetime import timedelta
+import time
+from datetime import datetime, time as dtime
 
 from django.conf import settings
+from django.core.cache import cache
 from django.utils import timezone
 
-from texts.models import Text
+VARSAYILAN_GUNLUK = 3
+VARSAYILAN_DAKIKALIK = 4
+_CAGRI_ANAHTARI = "yazma:gemini-cagrilari"
 
-DEFAULT_INTERVAL_MINUTES = 1440  # 1 gün
 
-
-def interval():
-    """Ayarlardaki bekleme süresi. Kısıt kapalıysa sıfır uzunlukta timedelta."""
-    minutes = getattr(settings, "TEXT_SUBMISSION_INTERVAL_MINUTES", DEFAULT_INTERVAL_MINUTES)
+def _tam_sayi(ad, varsayilan):
     try:
-        minutes = int(minutes)
+        return max(0, int(getattr(settings, ad, varsayilan)))
     except (TypeError, ValueError):
-        minutes = DEFAULT_INTERVAL_MINUTES
-    return timedelta(minutes=max(0, minutes))
+        return varsayilan
 
 
-def is_enabled():
-    """Kısıt açık mı?"""
-    return interval() > timedelta(0)
+def gunluk_limit():
+    """Günlük sınır; 0 ise sınır yok."""
+    return _tam_sayi("TEXT_DAILY_LIMIT", VARSAYILAN_GUNLUK)
 
 
-def remaining_for(user):
-    """
-    Kullanıcının yeni metin yazabilmesi için kalan süre.
+def _bugunun_basi():
+    bugun = timezone.localdate()
+    bas = datetime.combine(bugun, dtime.min)
+    return timezone.make_aware(bas) if settings.USE_TZ else bas
 
-    Yazabiliyorsa None döner.
-    """
-    wait = interval()
-    if not wait:
+
+def bugun_gonderilen(user):
+    from texts.models import Text, YaziDurumu
+
+    return (Text.objects
+            .filter(owner=user, createdAt__gte=_bugunun_basi())
+            .exclude(durum=YaziDurumu.ESKI)
+            .count())
+
+
+def kalan_hak(user):
+    """Bugün kalan değerlendirme hakkı; sınır yoksa None."""
+    sinir = gunluk_limit()
+    if not sinir:
         return None
-
-    last = Text.objects.filter(owner=user).order_by("-createdAt").first()
-    if last is None:
-        return None
-
-    remaining = (last.createdAt + wait) - timezone.now()
-    return remaining if remaining > timedelta(0) else None
+    return max(0, sinir - bugun_gonderilen(user))
 
 
-def can_write_new_text(user):
-    """Kullanıcı şu anda yeni metin yazabilir mi?"""
-    return remaining_for(user) is None
+def yazabilir_mi(user):
+    kalan = kalan_hak(user)
+    return kalan is None or kalan > 0
 
 
-def can_delete(text):
+def sinir_mesaji():
+    return "Bugünkü yazma hakkın doldu. Yarın yeni bir metinle devam edebilirsin."
+
+
+# ---------------------------------------------------------------------------
+# Yoğunluk
+# ---------------------------------------------------------------------------
+
+def dakikalik_sinir():
+    return _tam_sayi("YAZMA_DAKIKADA_EN_COK", VARSAYILAN_DAKIKALIK)
+
+
+def _son_cagrilar(simdi):
+    return [t for t in (cache.get(_CAGRI_ANAHTARI) or []) if simdi - t < 60]
+
+
+def yogun_mu():
+    """Son 60 saniyede sınır kadar değerlendirme istendi mi?"""
+    sinir = dakikalik_sinir()
+    return bool(sinir) and len(_son_cagrilar(time.time())) >= sinir
+
+
+def cagri_hakki_al():
     """
-    Metin silinebilir mi?
-
-    Kısıtla bilerek aynı süreye bağlı: aksi hâlde kullanıcı metnini silip
-    hemen yenisini yazarak sınırı atlayabilirdi. Kısıt kapalıyken silme de
-    serbest.
+    Yoğun değilse bir çağrı hakkı ayırır ve True döner; yoğunsa False.
+    (Süreçler arası tam kilit değil; ücretsiz katmanın sınırını aşmamak için yeterli.)
     """
-    wait = interval()
-    if not wait:
+    sinir = dakikalik_sinir()
+    if not sinir:
         return True
-    return (timezone.now() - text.createdAt) >= wait
+    simdi = time.time()
+    cagrilar = _son_cagrilar(simdi)
+    if len(cagrilar) >= sinir:
+        return False
+    cagrilar.append(simdi)
+    cache.set(_CAGRI_ANAHTARI, cagrilar, 120)
+    return True
 
 
-def humanize(delta):
-    """
-    Bir süreyi Türkçe okunur hâle getirir: "1 gün", "2 saat 5 dakika", "3 dakika".
-
-    Saniyeler yukarı yuvarlanır; "0 dakika kaldı" gibi bir çıktı olmaz.
-    """
-    if delta is None:
-        return ""
-
-    total_seconds = int(delta.total_seconds())
-    if total_seconds <= 0:
-        return "0 dakika"
-
-    days, rest = divmod(total_seconds, 86400)
-    hours, rest = divmod(rest, 3600)
-    minutes = -(-rest // 60)  # yukarı yuvarla
-
-    if minutes == 60:
-        hours += 1
-        minutes = 0
-    if hours == 24:
-        days += 1
-        hours = 0
-
-    parts = []
-    if days:
-        parts.append(f"{days} gün")
-    if hours:
-        parts.append(f"{hours} saat")
-    if minutes and not days:
-        parts.append(f"{minutes} dakika")
-
-    return " ".join(parts) or "1 dakika"
-
-
-def interval_label():
-    """Ayardaki sürenin okunur hâli; kısıt kapalıysa boş string."""
-    return humanize(interval()) if is_enabled() else ""
-
-
-def remaining_label(user):
-    """Kullanıcı için kalan sürenin okunur hâli; yazabiliyorsa boş string."""
-    return humanize(remaining_for(user))
+def yogunluk_sifirla():
+    """Testler için."""
+    cache.delete(_CAGRI_ANAHTARI)

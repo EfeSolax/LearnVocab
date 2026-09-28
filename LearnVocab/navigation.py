@@ -63,7 +63,8 @@ NAV_SECTIONS = (
         "key": "yazma",
         "label": "Yazma",
         "url_name": "profile_texts",
-        "matches": ("profile_texts", "new_text_page", "review_text", "about_grading_page"),
+        "matches": ("profile_texts", "new_text_page", "review_text", "about_grading_page",
+                    "diyalog_page"),
         "giris_gerekli": "yazma",
     },
 )

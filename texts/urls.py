@@ -1,18 +1,21 @@
-from django.contrib import admin
 from django.urls import path
-from django.shortcuts import render
+
 from . import views
 
-# Diğer app'lerin altındaki urls.py 'leri dahil edebilmesi için include'u dahil ediyoruz.
-
-# Bunlar profile_pics kısmını görüntülemek için gerekli import'lar
+# LearnVocab/urls.py bunları "texts/" altına bağlıyor: /texts/, /texts/yaz/ …
+# Menü `profile_texts`, `new_text_page`, `review_text` adlarına bağlı; adlar değişmemeli.
 
 urlpatterns = [
-    path("texts/new-text/", views.newTextPage, name = "new_text_page"),
-    path("texts/create-text/", views.createText, name = "create_text"),
-    path("texts/create-text/progress/<str:job_id>/", views.createTextProgress, name = "create_text_progress"),
-    path("texts/create-text/finish/<str:job_id>/", views.createTextFinish, name = "create_text_finish"),
-    path("texts/reviews-text/<int:text_id>", views.reviewText, name = "review_text"),
-    path("texts/remove-text/<int:text_id>", views.removeText, name = "remove_text"),
-    path("texts/about-grading/", views.aboutGradingPage, name = "about_grading_page")
+    path("", views.yazmaSayfasi, name="profile_texts"),
+    path("yaz/", views.newTextPage, name="new_text_page"),
+    path("gonder/", views.createText, name="create_text"),
+    path("gonder/ilerleme/<str:job_id>/", views.createTextProgress, name="create_text_progress"),
+    path("gonder/bitis/<str:job_id>/", views.createTextFinish, name="create_text_finish"),
+    path("<int:text_id>/", views.reviewText, name="review_text"),
+    path("<int:text_id>/tekrar-dene/", views.retryText, name="retry_text"),
+    path("<int:text_id>/sil/", views.removeText, name="remove_text"),
+    path("<int:text_id>/geri-al/", views.restoreText, name="restore_text"),
+    path("puanlama/", views.aboutGradingPage, name="about_grading_page"),
+    path("diyalog/", views.diyalogSayfasi, name="diyalog_page"),
+    path("diyalog/<int:diyalog_id>/cevap/", views.diyalogCevap, name="diyalog_cevap"),
 ]

@@ -1,13 +1,15 @@
 from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render
+from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
     path("profile/", views.showProfile, name="user_profile"),
     path("profile/words/", views.showWordsView, name="profile_words"),
     path("profile/myaccount/", views.showMyAccountView, name="profile_myaccount"),
-    path("profile/texts/", views.showTextsView, name="profile_texts"),
+    # Yazma sayfası texts uygulamasına taşındı (/texts/); eski adres oraya gider.
+    path("profile/texts/", RedirectView.as_view(pattern_name="profile_texts", permanent=True)),
     path("profile/settings/", views.showSettingsView, name="profile_settings"),
 
     # kelimelerle ilgili url'ler

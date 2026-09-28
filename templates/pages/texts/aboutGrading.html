@@ -1,252 +1,61 @@
-{% extends 'base/layout.html' %}
+{% extends 'base/appLayout.html' %}
 
-{% block title %}Puanlandırma Kriterleri{% endblock %}
+{% comment %}
+Yazıların nasıl değerlendirildiği (ürün raporu 9.1). Eski sayfa 10 kriterli
+100 puanlık rubriği anlatıyordu; o sistem bırakıldı.
+{% endcomment %}
 
-{% block content %}
+{% block title %}Nasıl değerlendiriliyor?{% endblock %}
+{% block page_heading %}{% endblock %}
 
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    indigo: {
-                        50: '#eef2ff',
-                        100: '#e0e7ff',
-                        600: '#4f46e5',
-                        700: '#4338ca',
-                        800: '#3730a3',
-                    },
-                    // Örnekler için yeşil ve kırmızı tonları
-                    green: {
-                        50: '#f0fdf4',
-                        400: '#4ade80',
-                        800: '#166534',
-                    },
-                    red: {
-                        50: '#fef2f2',
-                        400: '#f87171',
-                        800: '#991b1b',
-                    }
-                }
-            }
-        }
-    }
-</script>
-<body class="bg-gray-100 dark:bg-slate-700">
+{% block page %}
 
-    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+<a href="{% url 'profile_texts' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200">
+    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+    Yazma
+</a>
+<h1 class="mt-2 mb-5 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Nasıl değerlendiriliyor?</h1>
 
-        <header class="mb-8 flex justify-between items-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-slate-100">
-                Puanlandırma Kriterleri
-            </h1>
-            <a href="{% url 'profile_texts' %}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors font-medium">
-                &larr; Metinlerime Geri Dön
-            </a>
-        </header>
+<div class="space-y-5 text-sm leading-relaxed text-gray-700 dark:text-slate-300">
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+        <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Kısa yaz, akademik olması gerekmez</h2>
+        <p class="mt-1">3–8 cümle yeterli. Konu cümlesi, paragraf yapısı ya da resmî dil beklemiyoruz. "Kullanmayı dene" kelimeleri öneridir; kullanmamak puanı düşürmez.</p>
+    </section>
 
-        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg mb-8">
-            <p class="text-lg text-gray-700 dark:text-slate-300 leading-relaxed">
-                Yazdığınız metinler, yapay zeka tarafından aşağıdaki 10 kritere göre 100 puan üzerinden değerlendirilir. Her kriterin puan ağırlığı farklıdır. 
-                Başarılı bir metin yazmak için bu kılavuzu inceleyebilirsiniz.
-            </p>
-        </div>
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+        <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">İki liste</h2>
+        <ul class="mt-1 list-disc space-y-1 pl-5">
+            <li><span class="font-semibold">İyi yaptıkların:</span> metninden bir alıntı ve neden iyi olduğu.</li>
+            <li><span class="font-semibold">Hatalar:</span> yalnızca gerçek hatalar (dilbilgisi, yanlış kelime, anlamı bozan kullanım). Her biri: yazdığın → doğrusu · kısa neden. Üslup tercihi hata sayılmaz.</li>
+        </ul>
+    </section>
 
-        <main class="space-y-6">
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+        <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Puan (5 üzerinden)</h2>
+        <dl class="mt-2 grid grid-cols-[4rem_1fr] gap-y-1">
+            <dt class="font-semibold">4,5–5</dt><dd>Çok iyi</dd>
+            <dt class="font-semibold">4</dt><dd>İyi</dd>
+            <dt class="font-semibold">3,5</dt><dd>Ortalama</dd>
+            <dt class="font-semibold">3</dt><dd>Biraz daha çalışalım</dd>
+            <dt class="font-semibold">2</dt><dd>Zorlanmışsın</dd>
+            <dt class="font-semibold">1</dt><dd>Metin neredeyse anlaşılmıyor</dd>
+        </dl>
+    </section>
 
-            <!-- 1. kriter -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">1. Konu cümlesi:</h3>
-                    <span class="flex-shrink-0 font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">10 Puan</span>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    Konu (topic) yeterli bir şekilde bildirilmelidir. Bu genelde metnin en başındadır. Aşağıda buna yönelik örneklere yer verilmiştir. 
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
-                    <div class="bg-green-50 dark:bg-green-950 border-l-4 border-green-400 dark:border-green-700 p-4 rounded">
-                        <p class="font-semibold text-green-800 dark:text-green-200 mb-2">Doğru Örnek:</p>
-                        <blockquote class="text-green-700 dark:text-green-300 italic">
-                            There are two significant advantages of studying in a workstation.<br>
-                            Despite its advantages, there are two main disadvantages of studying in a workstation.
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+        <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Geri bildirim sertliği</h2>
+        <ul class="mt-1 space-y-1">
+            {% for deger, ad, aciklama in sertlikler %}
+            <li><span class="font-semibold">{{ ad }}:</span> {{ aciklama }}</li>
+            {% endfor %}
+        </ul>
+        <p class="mt-2">Sertlik yalnızca hata listesini değiştirir; puan her sertlikte aynıdır. Yazarken seçersin, seçimin hatırlanır.</p>
+    </section>
 
-            <!-- 2. kriter -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">2. Major ve Minor'lar</h3>
-                    <span class="flex-shrink-0 font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">25 Puan</span>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    Konu açıklanırken kullanılan alt başlıklara major denilebilir. Bu major'lar <u>en az</u> iki tane olmalıdır. Genelde <i>firstly, first of all, to begin with</i> kalıplarıyla ilk major'a giriş yapılabilir. Diğer major'lara ise <i>another advantage of ..., secondly, the other reasons are ...</i> gibi kalıplarla başlanılabilir. Bir major genelde bir veya iki cümle ile belirtildikten sonra o major'un açıklanması, hakkında örnekler verilmesi ve detaylandırılması ise minor'ler olarak açıklanabilir. Genelde major'lara göre daha uzun olmaları beklenir.<br><br>Major ve minor'lar ile ilgili bir diğer önemli kısım ise her bir major-minor ikilisinden dengeli bir şekilde bahsedilmelidir. Eğer bir alt başlıktan (majordan) diğerlerine göre bariz bir miktarda daha az bahsedilmişse bu metin içinde başlıkların kullanımı dengesizdir.<br><br> Düzgün ve dengeli bir major, minor kullanımı örneği aşağıdadır:
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
-                    <div class="bg-green-50 dark:bg-green-950 border-l-4 border-green-400 dark:border-green-700 p-4 rounded">
-                        <p class="font-semibold text-green-800 dark:text-green-200 mb-2">Doğru Örnek:</p>
-                        <blockquote class="text-green-700 dark:text-green-300 italic">
-                            The first advantage is that a workstation provides a dedicated and organized space for learning, which helps effectively minimize distractions. (Major 1)<br><br>
-                            When students have a specific area reserved solely for their studies, they face fewer interruptions. They are less likely to be disturbed by noise or other activities. This helps them fully immerse themselves in their tasks. This focused and distraction-free environment improves concentration and efficiency. As a result, students study more effectively and achieve better academic results. (Minor 1)<br><br>
-                            The second advantage is that studying in a workstation often means being in an environment where others are also working. (Major 2) <br><br>
-                            Seeing peers engaged in their studies can be highly inspiring and energizing, encouraging students to stay focused and maintain their study routines. This sense of shared commitment and collective discipline can foster a strong work ethic, reinforce positive study habits, and increase overall motivation. (Minor 2)
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. kriter -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">3. Özet (Summary) Başarısı</h3>
-                    <span class="flex-shrink-0 font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">5 Puan</span>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    Metnin bir özet (summary) kısmı olması da önemlidir. Tüm alt başlıklardan ve örneklerden bahsedildikten sonra bir özet kısmı yazılarak metnin genel olarak ne hakkında olduğundan ve içeriğinden bahsedilmelidir. Ayrıca özet kısımlarında konuya dair bir özdeyiş veya söz kullanılabilir, geleceğe dair bir tahminde veya uyarıda bulunulabilir, bir tavsiye verilebilir. Özet kısımlarına <i>to sum up, in summary</i> gibi kalıplarla başlanılabilir. Aşağıda bir summary örneği verilmiştir:
-                    <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
-                    <div class="bg-green-50 dark:bg-green-950 border-l-4 border-green-400 dark:border-green-700 p-4 rounded">
-                        <p class="font-semibold text-green-800 dark:text-green-200 mb-2">Doğru Örnek:</p>
-                        <blockquote class="text-green-700 dark:text-green-300 italic">
-                            In summary, studying in a workstation minimizes distractions, boosts focus, enhances motivation, and provides structure, creating an ideal environment for academic success.
-                        </blockquote>
-                    </div>
-                </div>
-                </p>
-            </div>
-            
-            <!-- 4. kriter -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">4. Akıcılık ve Doğallık</h3>
-                    <span class="flex-shrink-0 font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">10 Puan</span>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    Metin içindeki anlatım akıcı ve doğal olmalıdır. Yalnız burada kastedilen doğallık günlük hayattaki konuşma dili değildir. Bu metinlerin formal (akademik) bir dille yazılması beklenmektedir.<br><br>
-                    Metin içinde konunun akıcı bir şekilde anlatılması bir konu üzerinde yeterince durulması, mümkünse örneklerle pekiştirilmesi gerekmektedir. Aynı zamanda konu geçişleri arasında gerekli bağlaçlar ve zıt düşüncelerin belirtilmesi sırasında ise buna uygun bağlaçların kullanılması gerekmektedir.
-                </p>
-            </div>
-
-            <!-- 5. kriter -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">5. Akademik Dil Kullanımı</h3>
-                    <span class="flex-shrink-0 font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">10 Puan</span>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    Metin formal (akademik) bir dille kaleme alınmalıdır. Günlük hayatta kullanılan ifadeler ve hitaplara yer verilmemeli ve konuşma dilinde kullanılacak ifadeler (e.g. gotta, wanna, gonna) kullanılmamalıdır.
-                </p>
-            </div>
-
-            <!-- 6. kriter -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">6. Grammar</h3>
-                    <span class="flex-shrink-0 font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">20 Puan</span>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    Değerlendirmede önemli olan diğer bir konu ise grammar kurallarına uyulmasıdır. Bu kurallarda uygun tense'lerin uygun yerlerde kullanılması, modal'ların anlamsal olarak doğru yerde ve doğru formda olması, etken-edilgen (active-passive) formların kullanımı, doğru preposition'ların (edat) doğru söz öbekleri ve fiilerle kullanılması, özellikle singular-plural gibi özne-yüklem uyumlulukları, noun ve relative clause'ların doğru bir şekilde kullanılması, conjunction (bağlaçların) doğru cümleleri veya ifadeleri bağlaması gibi kriterler dikkate alınır.
-                </p>
-            </div>
-
-            <!-- 7. kriter -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">7. Hedef Kelime Kullanımı</h3>
-                    <span class="flex-shrink-0 font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">5 Puan</span>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    Sizin kelime listenize son bir haftada eklediğiniz kelimelerden ne kadarının başarılı bir şekilde kullanıldığının ölçütüdür. Böylece writing alanındaki yeteneklerinizi zenginleştirebilirsiniz.<br><br>
-                    NOT: Size sunulan kelime listesindeki kelimeler çok alakasızsa veya birçoğunu kullanacağınız uygun bir bağlam oluşmuyorsa anlaşılabilir ki kelimelerin bir çoğunu efektif bir şekilde kullanamazsınız. Bu yüzden metniniz değerlendirilirken kelimelerin sayısına değil kullanıldığı bağlamdaki uyumlarına ve tür olarak doğru kullanılıp kullanılmadıklarına bakılmıştır. FAKAT eğer size sunulan listeden hiç kelime kullanmazsanız ya da sadece bir tane kelime kullanırsanız bu alandan size düşük puan verilecektir. Önemli olan en az iki tane kelimenin metin içindeki bağlamda uygun ve doğru bir şekilde kullanılmasıdır.
-                </p>
-            </div>
-
-            <!-- 8. kriter -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">8. Noktalama ve Harf Kullanımı</h3>
-                    <span class="flex-shrink-0 font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">5 Puan</span>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    Burada metin içindeki noktalama ve büyük küçük harflerin kullanımı dikkate alınacaktır. Özellikle bağlaçların türlerine ve anlamlarına göre konulması ve konulmaması gereken virgül (,), nokta (.) ve noktalı virgül (;) kullanımlarına dikkat edilecektir. Aynı zamanda büyük küçük harflere de dikkat edilecektir. Bu yüzden yazım kurallarına uygun bir metin yazılmaya çalışılmalıdır.<br><br>
-                    NOT: Bir cümle bittikten sonra yeni cümleye and bağlacı ile başlamak <strong>kesinlikle</strong> doğru değildir. Bunun yerine <i>In addition, Moreover, Besides</i> gibi yapılar tercih edilebilir.
-                </p>
-            </div>
-
-            <!-- 9. kriter -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">9. Özne Kullanımı</h3>
-                    <span class="flex-shrink-0 font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">5 Puan</span>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    Metin içindeki öznelerin kullanımı da bir hayli önemlidir. Metin formal (akademik) bir şekilde yazılmaya çalışıldığından olabildiğince she/he/you gibi özneler kullanılmaktan çekinilmelidir. Daha çok akademik bir dilde kullanılacak <i>they, human being, people, one, individual(s), them, their</i> gibi yapıların kullanılması tercih edilir.<br><br>
-                    Bir diğer önemli konu da bir paragraf içinde ani özne değişimleri yapılmaması gerektiğidir. İki paragrafta kullanılan özneler farklılık gösterebilse de bir paragraf içinde bu doğal değildir ve okuyucunun kafasını karıştırabilir.<br><br>
-                    Aşağıda doğru ve yanlış kullanımlara örnek verilmiştir:
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-red-50 dark:bg-red-950 border-l-4 border-red-400 dark:border-red-700 p-4 rounded">
-                        <p class="font-semibold text-red-800 dark:text-red-200 mb-2">Yanlış Örnek:</p>
-                        <blockquote class="text-red-700 dark:text-red-300 italic">
-                            <b>People</b> need to study English by reading a lot of materials. If <b>a person</b> reads a lot, <b>he</b> or <b>she</b> can learn new vocabulary easily. <b>You</b> see the words in different texts often. Then, <b>a student</b> remembers words the next time he or she sees the words. In this way, <b>we</b> can learn many words.
-                        </blockquote>
-                    </div>
-                    <div class="bg-green-50 dark:bg-green-950 border-l-4 border-green-400 dark:border-green-700 p-4 rounded">
-                        <p class="font-semibold text-green-800 dark:text-green-200 mb-2">Doğru Örnek:</p>
-                        <blockquote class="text-green-700 dark:text-green-300 italic">
-                            <b>Individuals</b> can significantly improve <b>their</b> English proficiency by reading a wide range of materials. When learners read extensively, <b>they</b> tend to acquire new vocabulary more effectively. Encountering the same words in various contexts helps to reinforce <b>their</b> meaning and usage. Consequently, learners are more likely to remember these words the next time <b>they</b> encounter them. This method is, therefore, a highly effective way to expand <b>one's</b> vocabulary.
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 10. kriter -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">10. Kesin İfadelerden Kaçınma</h3>
-                    <span class="flex-shrink-0 font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">5 Puan</span>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    Metin içindeki cümlelerin kesinlikten uzak olması da önemlidir. Bir metinde ifadeler kesinlikten ne kadar uzak ise metnin yapısı o kadar iyi olur. Bilimsel olarak %100 kanıtlanmış ve aksinin yanlış olduğu kesin bilinen konular dışındaki örneklerde olabildiğince <i>always, no, all</i> gibi ifadelerin kullanımından kaçınılmalı ve daha çok <i>some, many, most, can, may, tend, be likely to, usually, often</i> gibi ifadelere yer verilmelidir. <br><br>
-                    Buna uygun doğru ve yanlış örnekler aşağıda verilmiştir:
-
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-red-50 dark:bg-red-950 border-l-4 border-red-400 dark:border-red-700 p-4 rounded">
-                        <p class="font-semibold text-red-800 dark:text-red-200 mb-2">Yanlış Örnek:</p>
-                        <blockquote class="text-red-700 dark:text-red-300 italic pl-4">
-                            <li>Using too much plastic cause plastic pollution</li>
-                            <li>Plastic waste put wildlife in danger.</li>
-                            <li>Plastic bags end up in landfills or oceans, which is bad for the environment.</li>
-                            <li>Online learning helps students improve their time management skills</li>
-                            <li>All factories and businesses dump their waste in the water, which causes water pollution.</li>
-                        </blockquote>
-                    </div>
-                    <div class="bg-green-50 dark:bg-green-950 border-l-4 border-green-400 dark:border-green-700 p-4 rounded">
-                        <p class="font-semibold text-green-800 dark:text-green-200 mb-2">Doğru Örnek:</p>
-                        <blockquote class="text-green-700 dark:text-green-300 italic pl-4">
-                            <li>Using too much plastic <b>can</b> cause plastic pollution. </li>
-                            <li>Plastic waste <b>may</b> put wildlife in danger.</li>
-                            <li>Plastic bags <b>tend to/are likely to</b> end up in landfills or oceans, which is bad for the environment.</li>
-                            <li>Online learning <b>usually</b> helps students improve their time management skills.</li>
-                            <li><b>Many</b> factories and businesses dump their waste in the water, which causes water pollution.</li>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100">Örnek iki metin:</h3>
-                </div>
-                <p class="text-gray-700 dark:text-slate-300 mb-4">
-                    There are two significant advantages of studying in a workstation. The first advantage is that a workstation provides a dedicated and organized space for learning, which helps effectively minimize distractions. When students have a specific area reserved solely for their studies, they face fewer interruptions. They are less likely to be disturbed by noise or other activities. This helps them fully immerse themselves in their tasks. This focused and distraction-free environment improves concentration and efficiency. As a result, students study more effectively and achieve better academic results. The second advantage is that studying in a workstation often means being in an environment where others are also working. Seeing peers engaged in their studies can be highly inspiring and energizing, encouraging students to stay focused and maintain their study routines. This sense of shared commitment and collective discipline can foster a strong work ethic, reinforce positive study habits, and increase overall motivation. In summary, studying in a workstation minimizes distractions, boosts focus, enhances motivation, and provides structure, creating an ideal environment for academic success.<br><br>
-                    Despite its advantages, there are two main disadvantages of studying in a workstation. First, going to a workstation to study requires time and transportation fees most of the time. Those who are willing to study at such a place has to get dressed, leave home, drive or take the bus or metro. On top of that, s/he has to buy something to eat or drink there, and this also increases the cost. Second, workstations can become noisy or crowded. Other customers going in and out or ordering food or drinks can cause interruptions, making it hard to concentrate. The presence of others can lead to a lack of privacy as well as constant distractions, and this may reduce the effectiveness of the study session. Noise and overcrowding can significantly affect a student's ability to focus and retain information. To sum up, while workstations offer a structured study environment, the high costs and potential for noise and crowding are significant disadvantages that can impact both financial stability and the quality of study time.
-                </p>
-            </div>
-
-
-        </main>
-    </div> </body>
+    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+        <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Değerlendirmeyi kim yapıyor?</h2>
+        <p class="mt-1">Google'ın Gemini modeli. Servis yoğunsa metnin kaybolmaz: "Henüz değerlendirilmedi" etiketiyle kaydedilir ve biz birazdan kendimiz yeniden deneriz.{% if gunluk_limit %} Günde en çok {{ gunluk_limit }} metin değerlendirilir.{% endif %}</p>
+    </section>
+</div>
 
 {% endblock %}

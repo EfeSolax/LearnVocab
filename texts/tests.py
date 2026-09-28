@@ -1,701 +1,876 @@
 """
-Gemini entegrasyonu testleri.
+Yazma bölümü testleri (ürün raporu 9).
 
-Gerçek API'ye istek atılmaz; istemci mock'lanır. Amaç, ağ olmadan da
-şu yolların doğru çalıştığını garanti etmek:
-  - anahtar / paket yoksa özellik sessizce devre dışı kalmalı, sayfa patlamamalı
-  - geçici hata (503) ile kota hatası (429) ile kalıcı hata BİRBİRİNDEN ayrılmalı
-    ve her biri kullanıcıya farklı, dürüst bir mesajla dönmeli
-  - geçici hatada önce tekrar denenmeli, sonra yedek modele geçilmeli
-  - kullanıcının metni ve kelimeleri prompt'a gerçekten girmeli
+Gerçek Gemini çağrısı YAPILMAZ: `LearnVocab.gemini.generate` ya da istemci
+mock'lanır (başarılı JSON, bozuk JSON, kota hatası, yeniden deneme).
 """
 
+import json
+from datetime import timedelta
+from io import StringIO
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from unittest.mock import MagicMock, patch
 
+from django.core.management import call_command
 from django.test import TestCase, override_settings
 from django.urls import reverse
+from django.utils import timezone
 
-from users.models import User
-from words.models import Word, UserWordLink
-from texts.models import Text
-from texts.send_gemini import (
-    RATE_LIMIT_RESPONSE,
-    UNAVAILABLE_RESPONSE,
-    _classify_error,
-    _strip_formatting,
-    _words_to_text,
-    get_client,
-    send_message_to_gemini,
+from LearnVocab import gemini
+from texts import degerlendirme as dg
+from texts import diyalog as dy
+from texts import limits, sinyaller
+from texts.models import (
+    Diyalog, DiyalogCevabi, Sertlik, Text, YaziDurumu, YazmaAyari,
 )
-from texts.views import _parse_gemini_scores
+from texts.views import _degerlendirme_isi
+from users.models import User
+from words.models import Meaning, UserWordLink, Word, WordFamily
 
 TEST_MODEL = "gemini-test-model"
 FALLBACK_MODEL = "gemini-test-fallback"
 
-# Testlerin varsayılanı: tekrar deneme yok, yedek model yok, bekleme yok.
-# İhtiyacı olan testler bunları kendi içinde override ediyor.
-FAST = dict(
+# Varsayılan: tekrar deneme yok, yedek model yok, bekleme yok, yoğunluk
+# sınırı kapalı (sayaç süreçler arası paylaşılan cache'te; paralel testler
+# birbirini etkilemesin).
+HIZLI = dict(
+    GEMINI_API_TOKEN="dummy-key",
     GEMINI_MODEL=TEST_MODEL,
     GEMINI_FALLBACK_MODELS=[],
     GEMINI_MAX_RETRIES=0,
     GEMINI_RETRY_BACKOFF_SECONDS=0,
     GEMINI_TIMEOUT_SECONDS=5,
     GEMINI_MIN_SECONDS_BETWEEN_REQUESTS=0,
+    YAZMA_DAKIKADA_EN_COK=0,
+    TEXT_DAILY_LIMIT=0,
+)
+
+METIN = (
+    "Last weekend I visit my grandmother in Izmir. "
+    "We cooked dinner together and she told me old stories. "
+    "I decided to postpone my homework because the day was so nice. "
+    "It was a lovely weekend."
 )
 
 
-def ok_response(text):
-    response = MagicMock()
-    response.text = text
-    return response
+def cevap(veri):
+    """generate() dönüşünü taklit eder: .text içinde model çıktısı."""
+    nesne = MagicMock()
+    nesne.text = veri if isinstance(veri, str) else json.dumps(veri, ensure_ascii=False)
+    return nesne
 
 
-def fake_client(responses):
-    """
-    generate_content çağrısını taklit eden istemci.
-
-    `responses` bir liste: her eleman ya bir Exception (fırlatılır) ya da
-    bir metin (başarılı cevap olarak döner). Çağrılar sırayla tüketilir.
-    """
-    client = MagicMock()
-
-    def side_effect(*args, **kwargs):
-        item = responses.pop(0)
-        if isinstance(item, Exception):
-            raise item
-        return ok_response(item)
-
-    client.models.generate_content.side_effect = side_effect
-    return client
+def iyi_cevap(**ek):
+    veri = {
+        "puan": 3.5,
+        "iyi": [{"alinti": "We cooked dinner together",
+                 "aciklama": "Geçmiş zamanı doğru kullanıp olayı akıcı anlatmışsın."}],
+        "hatalar": [{"alinti": "I visit my grandmother",
+                     "dogrusu": "I visited my grandmother",
+                     "neden": "Geçmişte olan bir olay için fiilin geçmiş hâli kullanılır."}],
+        "kullanilan_kelimeler": ["postpone"],
+    }
+    veri.update(ek)
+    return veri
 
 
-def called_models(client):
-    return [c.kwargs["model"] for c in client.models.generate_content.call_args_list]
+def kelime_olustur(text, pos="verb", anlam="", v2=None, v3=None):
+    aile, _ = WordFamily.objects.get_or_create(root=f"{text}-{pos}")
+    kelime = Word.objects.create(family=aile, text=text, pos=pos, v2Form=v2, v3Form=v3, cefr="B1")
+    if anlam:
+        Meaning.objects.create(word=kelime, meaning_tr=anlam)
+    return kelime
 
 
-class ClassifyErrorTests(TestCase):
-    def test_quota_errors(self):
-        self.assertEqual(_classify_error("429 RESOURCE_EXHAUSTED"), "rate_limit")
-        self.assertEqual(_classify_error("quota exceeded"), "rate_limit")
-
-    def test_transient_errors(self):
-        self.assertEqual(
-            _classify_error("503 UNAVAILABLE. This model is currently experiencing high demand."),
-            "transient",
-        )
-        self.assertEqual(_classify_error("500 INTERNAL"), "transient")
-
-    def test_fatal_errors(self):
-        self.assertEqual(_classify_error("400 INVALID_ARGUMENT. API key not valid."), "fatal")
-        self.assertEqual(_classify_error("404 NOT_FOUND. Model not found."), "fatal")
+def diyalog_olustur(kelime, cevap_="postponed", denetlendi=True, **ek):
+    satirlar = [
+        {"kisi": "A", "metin": "Are we still meeting on Friday?"},
+        {"kisi": "B", "metin": f"No, the manager {Diyalog.BOSLUK} it until next week."},
+        {"kisi": "A", "metin": "Oh, why?"},
+        {"kisi": "B", "metin": "Half of the team is away."},
+    ]
+    return Diyalog.objects.create(
+        word=kelime, satirlar=satirlar, cevap=cevap_, ipucu="ertelemek",
+        denetlendi=denetlendi, anahtar=f"{kelime.pk}-{cevap_}-{Diyalog.objects.count()}", **ek)
 
 
-class WordsToTextTests(TestCase):
-    def test_words_are_lowercased_and_joined(self):
-        self.assertEqual(_words_to_text(["Retain", "OBTAIN"]), "retain, obtain")
+# ===========================================================================
+# Prompt
+# ===========================================================================
 
-    def test_blank_entries_are_dropped(self):
-        self.assertEqual(_words_to_text(["retain", "  ", "", "obtain"]), "retain, obtain")
+class PromptTests(TestCase):
+    def test_contains_text_words_and_topic(self):
+        p = dg.prompt_olustur("My text here.", Sertlik.NORMAL, ["aim", "decide"], "Hafta sonum")
+        self.assertIn("My text here.", p)
+        self.assertIn("aim, decide", p)
+        self.assertIn("Hafta sonum", p)
+        self.assertIn("Write about what you did last weekend.", p)
 
-    def test_empty_list_gives_empty_string(self):
-        self.assertEqual(_words_to_text([]), "")
-        self.assertEqual(_words_to_text(None), "")
+    def test_changes_with_severity(self):
+        nazik = dg.prompt_olustur("x", Sertlik.NAZIK)
+        normal = dg.prompt_olustur("x", Sertlik.NORMAL)
+        titiz = dg.prompt_olustur("x", Sertlik.TITIZ)
+        self.assertEqual(len({nazik, normal, titiz}), 3)
+        self.assertIn("SERTLİK: NAZİK", nazik)
+        self.assertIn("ANLAMI BOZAN", nazik)
+        self.assertIn("En çok 3", nazik)
+        self.assertIn("SERTLİK: NORMAL", normal)
+        self.assertIn("En çok 6", normal)
+        self.assertIn("SERTLİK: TİTİZ", titiz)
+        self.assertIn("noktalama", titiz)
 
+    def test_unknown_severity_falls_back_to_normal(self):
+        self.assertIn("SERTLİK: NORMAL", dg.prompt_olustur("x", "cok-sert"))
 
-@override_settings(**FAST)
-class SendMessageToGeminiTests(TestCase):
-    @override_settings(GEMINI_API_TOKEN=None)
-    def test_missing_api_key_disables_the_feature(self):
-        with self.assertLogs("LearnVocab.gemini", level="ERROR"):
-            self.assertIsNone(get_client())
-        with self.assertLogs("LearnVocab.gemini", level="ERROR"):
-            self.assertEqual(send_message_to_gemini("Some text.", ["retain"]), "")
+    def test_score_bands_are_the_same_for_every_severity(self):
+        bant = "3.5 = ortalama"
+        for s in Sertlik.values:
+            with self.subTest(sertlik=s):
+                self.assertIn(bant, dg.prompt_olustur("x", s))
 
-    @override_settings(GEMINI_API_TOKEN="dummy-key")
-    def test_successful_response_is_returned(self):
-        with patch("LearnVocab.gemini.get_client", return_value=fake_client(["  Değerlendirme  "])):
-            self.assertEqual(send_message_to_gemini("Some text.", ["retain"]), "Değerlendirme")
-
-    @override_settings(GEMINI_API_TOKEN="dummy-key")
-    def test_none_response_text_becomes_empty_string(self):
-        """Güvenlik filtresine takılan cevaplarda .text None gelebiliyor."""
-        with patch("LearnVocab.gemini.get_client", return_value=fake_client([None])):
-            self.assertEqual(send_message_to_gemini("Some text.", ["retain"]), "")
-
-    @override_settings(GEMINI_API_TOKEN="dummy-key")
-    def test_quota_error_returns_rate_limit_marker(self):
-        """
-        Eski kodda `if "429" in e:` yazıyordu; `e` bir Exception olduğu için
-        bu satır TypeError fırlatıyor ve kota aşımı hiç yakalanamıyordu.
-        """
-        error = Exception("429 RESOURCE_EXHAUSTED: quota exceeded")
-        with patch("LearnVocab.gemini.get_client", return_value=fake_client([error])):
-            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
-                self.assertEqual(
-                    send_message_to_gemini("Some text.", ["retain"]), RATE_LIMIT_RESPONSE
-                )
-
-    @override_settings(GEMINI_API_TOKEN="dummy-key")
-    def test_service_unavailable_returns_its_own_marker(self):
-        """503, kullanıcının metniyle ilgili değil; ayrı bir mesajla dönmeli."""
-        error = Exception("503 UNAVAILABLE. This model is currently experiencing high demand.")
-        with patch("LearnVocab.gemini.get_client", return_value=fake_client([error])):
-            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
-                self.assertEqual(
-                    send_message_to_gemini("Some text.", ["retain"]), UNAVAILABLE_RESPONSE
-                )
-
-    @override_settings(GEMINI_API_TOKEN="dummy-key")
-    def test_fatal_errors_return_empty_string(self):
-        error = Exception("400 INVALID_ARGUMENT. API key not valid.")
-        with patch("LearnVocab.gemini.get_client", return_value=fake_client([error])):
-            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
-                self.assertEqual(send_message_to_gemini("Some text.", ["retain"]), "")
-
-    @override_settings(GEMINI_API_TOKEN="dummy-key")
-    def test_prompt_contains_user_text_and_words(self):
-        client = fake_client(["ok"])
-        with patch("LearnVocab.gemini.get_client", return_value=client):
-            send_message_to_gemini("The company retained its staff.", ["Retain", "Obtain"])
-
-        prompt = client.models.generate_content.call_args.kwargs["contents"]
-        self.assertIn("The company retained its staff.", prompt)
-        self.assertIn("retain, obtain", prompt)
-
-    @override_settings(GEMINI_API_TOKEN="dummy-key")
-    def test_model_comes_from_settings(self):
-        """Model adı koda gömülü olmamalı; .env'den değiştirilebilmeli."""
-        client = fake_client(["ok"])
-        with patch("LearnVocab.gemini.get_client", return_value=client):
-            send_message_to_gemini("Some text.", ["retain"])
-
-        self.assertEqual(called_models(client), [TEST_MODEL])
+    def test_asks_for_json_in_turkish_without_old_rubric(self):
+        p = dg.prompt_olustur("x")
+        for parca in ('"puan"', '"iyi"', '"hatalar"', '"kullanilan_kelimeler"', "TÜRKÇE"):
+            self.assertIn(parca, p)
+        for eski in ("major", "minor", "100 puan", "summary", "Geliştirilebilir\":"):
+            self.assertNotIn(eski, p)
+        self.assertIn("Üslup tercihi", p)
 
 
-@override_settings(
-    GEMINI_API_TOKEN="dummy-key",
-    GEMINI_MODEL=TEST_MODEL,
-    GEMINI_FALLBACK_MODELS=[FALLBACK_MODEL],
-    GEMINI_MAX_RETRIES=1,
-    GEMINI_RETRY_BACKOFF_SECONDS=0,
-    GEMINI_TIMEOUT_SECONDS=5,
-    GEMINI_MIN_SECONDS_BETWEEN_REQUESTS=0,
-)
-class RetryAndFallbackTests(TestCase):
-    """Geçici hatalarda önce tekrar dene, sonra yedek modele geç."""
+# ===========================================================================
+# Cevabın doğrulanması
+# ===========================================================================
 
-    def test_transient_error_is_retried_on_the_same_model(self):
-        error = Exception("503 UNAVAILABLE. high demand")
-        client = fake_client([error, "İkinci denemede geldi"])
-        with patch("LearnVocab.gemini.get_client", return_value=client):
-            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
-                result = send_message_to_gemini("Some text.", ["retain"])
+class PuanYuvarlaTests(TestCase):
+    def test_half_steps(self):
+        for girdi, beklenen in ((3.2, 3.0), (3.25, 3.5), (3.74, 3.5), (3.75, 4.0),
+                                (4.5, 4.5), (2, 2.0)):
+            with self.subTest(girdi=girdi):
+                self.assertEqual(dg.puan_yuvarla(girdi), beklenen)
 
-        self.assertEqual(result, "İkinci denemede geldi")
-        self.assertEqual(called_models(client), [TEST_MODEL, TEST_MODEL])
+    def test_clamped_to_one_and_five(self):
+        self.assertEqual(dg.puan_yuvarla(0.3), 1.0)
+        self.assertEqual(dg.puan_yuvarla(7), 5.0)
 
-    def test_falls_back_to_the_next_model(self):
-        error = Exception("503 UNAVAILABLE. high demand")
-        client = fake_client([error, error, "Yedek modelden geldi"])
-        with patch("LearnVocab.gemini.get_client", return_value=client):
-            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
-                result = send_message_to_gemini("Some text.", ["retain"])
+    def test_string_scores_are_read(self):
+        self.assertEqual(dg.cevabi_coz({**iyi_cevap(), "puan": "3,5"}, METIN)["puan"], 3.5)
+        self.assertEqual(dg.cevabi_coz({**iyi_cevap(), "puan": "4/5"}, METIN)["puan"], 4.0)
+        self.assertEqual(dg.cevabi_coz({**iyi_cevap(), "puan": 12}, METIN)["puan"], 5.0)
 
-        self.assertEqual(result, "Yedek modelden geldi")
-        # Asıl model 2 kez (1 deneme + 1 tekrar), yedek 1 kez denenmeli
-        self.assertEqual(called_models(client), [TEST_MODEL, TEST_MODEL, FALLBACK_MODEL])
-
-    def test_all_models_failing_returns_unavailable(self):
-        error = Exception("503 UNAVAILABLE. high demand")
-        client = fake_client([error, error, error])
-        with patch("LearnVocab.gemini.get_client", return_value=client):
-            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
-                result = send_message_to_gemini("Some text.", ["retain"])
-
-        self.assertEqual(result, UNAVAILABLE_RESPONSE)
-
-    def test_quota_error_does_not_try_other_models(self):
-        """Kota hesaba bağlı; model değiştirmek boşuna istek harcar."""
-        error = Exception("429 RESOURCE_EXHAUSTED")
-        client = fake_client([error])
-        with patch("LearnVocab.gemini.get_client", return_value=client):
-            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
-                result = send_message_to_gemini("Some text.", ["retain"])
-
-        self.assertEqual(result, RATE_LIMIT_RESPONSE)
-        self.assertEqual(called_models(client), [TEST_MODEL])
-
-    def test_fatal_error_does_not_retry_the_same_model(self):
-        error = Exception("400 INVALID_ARGUMENT. API key not valid.")
-        client = fake_client([error, error])
-        with patch("LearnVocab.gemini.get_client", return_value=client):
-            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
-                send_message_to_gemini("Some text.", ["retain"])
-
-        # Asıl modelde tekrar denenmemeli; yedek yine de bir kez denenir
-        self.assertEqual(called_models(client), [TEST_MODEL, FALLBACK_MODEL])
+    def test_score_label_and_text(self):
+        self.assertEqual(dg.puan_yazisi(3.5), "3,5")
+        self.assertEqual(dg.puan_yazisi(4.0), "4")
+        self.assertEqual(dg.puan_etiketi(3.5), "Ortalama")
+        self.assertEqual(dg.puan_etiketi(5.0), "Çok iyi")
 
 
-@override_settings(**FAST, GEMINI_API_TOKEN="dummy-key")
-class CreateTextViewTests(TestCase):
+class CevabiCozTests(TestCase):
+    def test_valid_json(self):
+        s = dg.cevabi_coz(json.dumps(iyi_cevap()), METIN)
+        self.assertEqual(s["puan"], 3.5)
+        self.assertEqual(len(s["iyi"]), 1)
+        self.assertEqual(s["hatalar"][0]["dogrusu"], "I visited my grandmother")
+
+    def test_json_inside_prose_and_code_fence(self):
+        ham = "Tabii! İşte sonuç:\n```json\n" + json.dumps(iyi_cevap()) + "\n```\nBaşarılar."
+        self.assertEqual(dg.cevabi_coz(ham, METIN)["puan"], 3.5)
+
+    def test_non_json_raises(self):
+        for ham in ("Bu metin güzel.", "", "{bozuk json", "[1, 2]"):
+            with self.subTest(ham=ham):
+                with self.assertRaises(dg.GecersizCevap):
+                    dg.cevabi_coz(ham, METIN)
+
+    def test_missing_score_raises(self):
+        veri = iyi_cevap()
+        del veri["puan"]
+        with self.assertRaises(dg.GecersizCevap):
+            dg.cevabi_coz(veri, METIN)
+        with self.assertRaises(dg.GecersizCevap):
+            dg.cevabi_coz({**iyi_cevap(), "puan": "harika"}, METIN)
+
+    def test_missing_lists_are_tolerated(self):
+        s = dg.cevabi_coz({"puan": 4}, METIN)
+        self.assertEqual((s["iyi"], s["hatalar"]), ([], []))
+
+    def test_quote_not_in_text_is_dropped(self):
+        veri = iyi_cevap(hatalar=[
+            {"alinti": "she go to market", "dogrusu": "she goes to market", "neden": "Uydurma."},
+            {"alinti": "I visit my grandmother", "dogrusu": "I visited my grandmother", "neden": "Geçmiş zaman."},
+        ], iyi=[{"alinti": "not in the text", "aciklama": "x"}])
+        s = dg.cevabi_coz(veri, METIN)
+        self.assertEqual([h["alinti"] for h in s["hatalar"]], ["I visit my grandmother"])
+        self.assertEqual(s["iyi"], [])
+
+    def test_incomplete_items_are_dropped(self):
+        veri = iyi_cevap(hatalar=[
+            {"alinti": "I visit my grandmother", "dogrusu": "", "neden": "x"},
+            {"alinti": "I visit my grandmother", "dogrusu": "I visited"},
+            "düz metin",
+            {"alinti": "so nice", "dogrusu": "so nice", "neden": "Aynı; hata değil."},
+        ])
+        self.assertEqual(dg.cevabi_coz(veri, METIN)["hatalar"], [])
+
+    def test_quote_is_taken_from_the_text(self):
+        veri = iyi_cevap(hatalar=[{"alinti": "i  VISIT my grandmother", "dogrusu": "I visited my grandmother",
+                                   "neden": "Geçmiş zaman."}])
+        self.assertEqual(dg.cevabi_coz(veri, METIN)["hatalar"][0]["alinti"], "I visit my grandmother")
+
+    def test_duplicate_errors_are_merged(self):
+        h = {"alinti": "I visit my grandmother", "dogrusu": "I visited my grandmother", "neden": "x"}
+        self.assertEqual(len(dg.cevabi_coz(iyi_cevap(hatalar=[h, h]), METIN)["hatalar"]), 1)
+
+    def test_error_count_is_capped_by_severity(self):
+        metin = " ".join(f"word{i} is wrong." for i in range(12))
+        hatalar = [{"alinti": f"word{i} is", "dogrusu": f"word{i} are", "neden": "x"} for i in range(12)]
+        veri = {"puan": 3, "iyi": [], "hatalar": hatalar}
+        self.assertEqual(len(dg.cevabi_coz(veri, metin, Sertlik.NAZIK)["hatalar"]), 3)
+        self.assertEqual(len(dg.cevabi_coz(veri, metin, Sertlik.NORMAL)["hatalar"]), 6)
+        self.assertEqual(len(dg.cevabi_coz(veri, metin, Sertlik.TITIZ)["hatalar"]), 10)
+
+    def test_good_points_are_capped_at_four(self):
+        iyi = [{"alinti": "It was a lovely weekend", "aciklama": f"açıklama {i}"} for i in range(6)]
+        self.assertEqual(len(dg.cevabi_coz(iyi_cevap(iyi=iyi), METIN)["iyi"]), 4)
+
+    def test_zero_score_means_not_evaluable(self):
+        self.assertEqual(dg.cevabi_coz({"puan": 0, "iyi": [], "hatalar": []}, "asdf"), {"uygun_degil": True})
+
+    def test_markdown_is_stripped_from_fields(self):
+        veri = iyi_cevap(hatalar=[{"alinti": "I visit my grandmother", "dogrusu": "**I visited my grandmother**",
+                                   "neden": "`Geçmiş` zaman."}])
+        h = dg.cevabi_coz(veri, METIN)["hatalar"][0]
+        self.assertEqual((h["dogrusu"], h["neden"]), ("I visited my grandmother", "Geçmiş zaman."))
+
+    def test_used_words_come_from_suggestions_and_inflections(self):
+        postpone = kelime_olustur("postpone")
+        decide = kelime_olustur("decide")
+        aim = kelime_olustur("aim")
+        # Model "aim" dese de metinde yok ama öneride var -> modelin sözü alınır;
+        # "decide" modelin listesinde yok ama "decided" metinde geçiyor.
+        s = dg.cevabi_coz(iyi_cevap(kullanilan_kelimeler=["postpone", "unrelated"]),
+                          METIN, kelimeler=[postpone, decide, aim])
+        self.assertEqual(s["kullanilan_kelimeler"], ["postpone", "decide"])
+
+
+class AlintiVeParcalarTests(TestCase):
+    def test_find_is_forgiving_and_returns_first(self):
+        metin = "It’s fine. it's fine again."
+        self.assertEqual(dg.alinti_bul(metin, "it's fine"), (0, 9))
+        self.assertIsNone(dg.alinti_bul(metin, "not here"))
+        self.assertIsNone(dg.alinti_bul(metin, ""))
+
+    def test_segments_underline_errors(self):
+        hatalar = [{"alinti": "I visit my grandmother"}, {"alinti": "so nice"}]
+        parcalar = dg.metin_parcalari(METIN, hatalar)
+        self.assertEqual("".join(p["metin"] for p in parcalar), METIN)
+        cizili = [(p["metin"], p["hata"]) for p in parcalar if p["hata"] is not None]
+        self.assertEqual(cizili, [("I visit my grandmother", 0), ("so nice", 1)])
+
+    def test_repeated_quote_underlines_the_first(self):
+        metin = "He go home. He go school."
+        parcalar = dg.metin_parcalari(metin, [{"alinti": "He go"}])
+        self.assertEqual(parcalar[0], {"metin": "He go", "hata": 0})
+        self.assertEqual(sum(1 for p in parcalar if p["hata"] is not None), 1)
+
+    def test_overlapping_quotes_are_not_drawn_twice(self):
+        metin = "I visit my grandmother yesterday."
+        parcalar = dg.metin_parcalari(metin, [{"alinti": "visit my"}, {"alinti": "my grandmother"}])
+        self.assertEqual([p["hata"] for p in parcalar if p["hata"] is not None], [0])
+        self.assertEqual("".join(p["metin"] for p in parcalar), metin)
+
+
+# ===========================================================================
+# Değerlendirme (Gemini mock'lu)
+# ===========================================================================
+
+@override_settings(**HIZLI)
+class DegerlendirTests(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="textuser", password="Sifre1234")
-        self.client.login(username="textuser", password="Sifre1234")
+        self.user = User.objects.create_user(username="yazar", password="Sifre1234")
 
-        from words.testing import make_word
+    def _yazi(self, **ek):
+        return Text.objects.create(owner=self.user, content=METIN, **ek)
 
-        word = make_word("retain", pos="verb", meaning="elde tutmak",
-                         sentences=["They retain control."])
-        UserWordLink.objects.create(user=self.user, word=word)
+    def test_success_saves_feedback(self):
+        yazi = self._yazi(sertlik=Sertlik.NAZIK)
+        with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap(puan=3.3))) as gen:
+            self.assertEqual(dg.degerlendir(yazi), dg.TAMAM)
+        yazi.refresh_from_db()
+        self.assertEqual(yazi.durum, YaziDurumu.TAMAM)
+        self.assertEqual(yazi.puan, 3.5)
+        self.assertEqual(len(yazi.geri_bildirim["hatalar"]), 1)
+        self.assertIn("Puan: 3,5 / 5", yazi.response)
+        self.assertIs(gen.call_args.kwargs["response_schema"], dg.DegerlendirmeSemasi)
+        self.assertIn("SERTLİK: NAZİK", gen.call_args.args[0])
 
-    def _post(self, text="This is my English paragraph about work."):
-        return self.client.post(reverse("create_text"), {"user_text": text}, follow=True)
+    def test_quota_keeps_text_waiting(self):
+        yazi = self._yazi()
+        with patch("LearnVocab.gemini.generate", side_effect=gemini.GeminiRateLimit("429")):
+            self.assertEqual(dg.degerlendir(yazi), dg.KOTA)
+        yazi.refresh_from_db()
+        self.assertEqual(yazi.durum, YaziDurumu.BEKLIYOR)
+        self.assertEqual(yazi.deneme_sayisi, 1)
+        self.assertIsNotNone(yazi.son_deneme)
 
-    def _messages(self, response):
-        return " ".join(str(m) for m in response.context["messages"])
+    def test_broken_json_keeps_text_waiting(self):
+        yazi = self._yazi()
+        with patch("LearnVocab.gemini.generate", return_value=cevap("Harika bir metin!")):
+            with self.assertLogs("texts.degerlendirme", level="WARNING"):
+                self.assertEqual(dg.degerlendir(yazi), dg.BOZUK)
+        self.assertEqual(Text.objects.get(pk=yazi.pk).durum, YaziDurumu.BEKLIYOR)
 
-    def test_quota_error_shows_a_dedicated_message(self):
-        with patch("texts.views.send_message_to_gemini", return_value=RATE_LIMIT_RESPONSE):
-            response = self._post()
+    def test_unavailable_and_unconfigured(self):
+        yazi = self._yazi()
+        with patch("LearnVocab.gemini.generate", side_effect=gemini.GeminiUnavailable("503")):
+            self.assertEqual(dg.degerlendir(yazi), dg.SERVIS)
+        with patch("LearnVocab.gemini.generate", side_effect=gemini.GeminiUnconfigured("yok")):
+            self.assertEqual(dg.degerlendir(yazi), dg.YAPILANDIRMA)
 
-        self.assertIn("kota", self._messages(response).lower())
-        self.assertEqual(Text.objects.count(), 0)
+    def test_not_evaluable(self):
+        yazi = self._yazi()
+        with patch("LearnVocab.gemini.generate", return_value=cevap({"puan": 0, "iyi": [], "hatalar": []})):
+            self.assertEqual(dg.degerlendir(yazi), dg.UYGUN_DEGIL)
+        self.assertEqual(Text.objects.get(pk=yazi.pk).durum, YaziDurumu.UYGUN_DEGIL)
 
-    def test_service_unavailable_does_not_blame_the_user(self):
-        """
-        503 alındığında kullanıcıya "geçerli bir İngilizce metin yazınız"
-        denmesi yanlıştı: sorun kullanıcının metninde değil, serviste.
-        """
-        with patch("texts.views.send_message_to_gemini", return_value=UNAVAILABLE_RESPONSE):
-            response = self._post()
+    def test_hook_is_called_on_completion(self):
+        yazi = self._yazi()
+        alinan = []
 
-        text = self._messages(response).lower()
-        self.assertIn("yoğun", text)
-        self.assertNotIn("ingilizce bir metin yazınız", text)
-        self.assertEqual(Text.objects.count(), 0)
+        def alici(sender, yazi, arka_planda, **kw):
+            alinan.append((yazi.pk, arka_planda))
 
-    def test_configuration_error_shows_a_service_message(self):
-        with patch("texts.views.send_message_to_gemini", return_value=""):
-            response = self._post()
+        sinyaller.yazi_degerlendirildi.connect(alici)
+        try:
+            with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap())):
+                dg.degerlendir(yazi, arka_planda=True)
+        finally:
+            sinyaller.yazi_degerlendirildi.disconnect(alici)
+        self.assertEqual(alinan, [(yazi.pk, True)])
 
-        text = self._messages(response).lower()
-        self.assertIn("ulaşılamıyor", text)
-        self.assertNotIn("ingilizce bir metin yazınız", text)
-        self.assertEqual(Text.objects.count(), 0)
+    def test_already_evaluated_text_is_not_sent_again(self):
+        yazi = self._yazi(durum=YaziDurumu.TAMAM, puan=4)
+        with patch("LearnVocab.gemini.generate") as gen:
+            self.assertEqual(dg.degerlendir(yazi), dg.TAMAM)
+        gen.assert_not_called()
 
-    def test_model_refusing_to_grade_shows_the_user_message(self):
-        """Bu mesaj artık YALNIZCA model 'değerlendirmedim' dediğinde çıkmalı."""
-        with patch("texts.views.send_message_to_gemini", return_value="Bu metin değerlendirilmedi."):
-            response = self._post()
-
-        self.assertIn("İngilizce bir metin yazınız", self._messages(response))
-
-    def test_malformed_response_does_not_create_a_text(self):
-        with patch("texts.views.send_message_to_gemini", return_value="Değerlendirme ama puan yok"):
-            with self.assertLogs("texts.views", level="WARNING"):
-                self._post()
-        self.assertEqual(Text.objects.count(), 0)
-
-    def test_valid_response_creates_a_text_with_scores(self):
-        answer = "Değerlendirme metni burada.\n[8,22,3,9,6,16,3,2,5,1]"
-        with patch("texts.views.send_message_to_gemini", return_value=answer):
-            self._post()
-
-        text = Text.objects.get()
-        self.assertEqual(text.score, 75)
-        self.assertEqual(text.owner, self.user)
-        self.assertIn("Değerlendirme metni burada.", text.response)
-        self.assertNotIn("[8,22", text.response)
-
-    def test_empty_user_text_is_rejected_without_calling_the_api(self):
-        with patch("texts.views.send_message_to_gemini") as mocked:
-            self._post(text="   ")
-        mocked.assert_not_called()
-        self.assertEqual(Text.objects.count(), 0)
-
-    def test_failed_attempt_does_not_consume_the_daily_limit(self):
-        """Servis hatası kullanıcının günlük hakkını yakmamalı."""
-        with patch("texts.views.send_message_to_gemini", return_value=UNAVAILABLE_RESPONSE):
-            self._post()
-
-        answer = "Değerlendirme metni burada.\n[8,22,3,9,6,16,3,2,5,1]"
-        with patch("texts.views.send_message_to_gemini", return_value=answer):
-            self._post()
-
-        self.assertEqual(Text.objects.count(), 1)
+    @override_settings(YAZMA_DAKIKADA_EN_COK=1,
+                       CACHES={"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+                                           "LOCATION": "yazma-yogunluk"}})
+    def test_busy_minute_does_not_call_gemini(self):
+        limits.yogunluk_sifirla()
+        with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap())) as gen:
+            self.assertEqual(dg.degerlendir(self._yazi()), dg.TAMAM)
+            self.assertTrue(limits.yogun_mu())
+            ikinci = self._yazi()
+            self.assertEqual(dg.degerlendir(ikinci), dg.YOGUN)
+        self.assertEqual(gen.call_count, 1)
+        self.assertEqual(Text.objects.get(pk=ikinci.pk).durum, YaziDurumu.BEKLIYOR)
+        limits.yogunluk_sifirla()
 
 
-class StripFormattingTests(TestCase):
-    """
-    Cevap kullanıcıya `linebreaksbr` ile ham gösteriliyor; kaçan bir Markdown
-    veya LaTeX işareti ekranda olduğu gibi görünüyor. Prompt modelden düz metin
-    istiyor ama modeller bu alışkanlıktan tam vazgeçmiyor, o yüzden ikinci bir
-    savunma katmanı olarak cevabı temizliyoruz.
-    """
+def sahte_istemci(cevaplar):
+    istemci = MagicMock()
 
-    def test_bold_and_italic_are_removed(self):
-        self.assertEqual(_strip_formatting("**Genel:** Metin ***iyi*** yazılmış."),
-                         "Genel: Metin iyi yazılmış.")
-        self.assertEqual(_strip_formatting("_italik_ ve __kalın__"), "italik ve kalın")
+    def yan_etki(*args, **kwargs):
+        oge = cevaplar.pop(0)
+        if isinstance(oge, Exception):
+            raise oge
+        return cevap(oge)
 
-    def test_word_internal_underscores_are_kept(self):
-        self.assertEqual(_strip_formatting("değişken adı user_word_link olmalı"),
-                         "değişken adı user_word_link olmalı")
-
-    def test_latex_arrows_become_plain_arrows(self):
-        self.assertEqual(_strip_formatting('"introvert" $\\rightarrow$ *introverted*.'),
-                         '"introvert" -> introverted.')
-        self.assertEqual(_strip_formatting("serbest \\rightarrow da olur"),
-                         "serbest -> da olur")
-
-    def test_dollar_amounts_are_not_eaten(self):
-        """İki para birimi işareti LaTeX sanılıp aradaki metin yutulmamalı."""
-        self.assertEqual(_strip_formatting("Fiyat $100 ve $200 arasında."),
-                         "Fiyat $100 ve $200 arasında.")
-
-    def test_headings_and_quotes_are_removed(self):
-        self.assertEqual(_strip_formatting("### Dil Kullanımı\n> alıntı"),
-                         "Dil Kullanımı\nalıntı")
-
-    def test_bullets_are_normalised(self):
-        self.assertEqual(_strip_formatting("* madde bir\n+ madde iki\n• madde üç"),
-                         "- madde bir\n- madde iki\n- madde üç")
-
-    def test_code_and_links_are_flattened(self):
-        self.assertEqual(_strip_formatting("Bkz [kaynak](https://x.com) ve `kod`."),
-                         "Bkz kaynak ve kod.")
-        self.assertEqual(_strip_formatting("```\nkod bloğu\n```"), "kod bloğu")
-
-    def test_excess_blank_lines_are_collapsed(self):
-        self.assertEqual(_strip_formatting("bir\n\n\n\niki"), "bir\n\niki")
-
-    def test_empty_input(self):
-        self.assertEqual(_strip_formatting(""), "")
-        self.assertEqual(_strip_formatting(None), "")
-
-    def test_score_line_survives_and_still_parses(self):
-        """Model puan satırını kalın yazsa bile parser'a uygun hâle gelmeli."""
-        raw = "**Değerlendirme:** iyi.\n\n**[8,22,3,9,6,16,3,2,5,1]**"
-        cleaned = _strip_formatting(raw)
-        self.assertTrue(cleaned.endswith("[8,22,3,9,6,16,3,2,5,1]"))
-
-        points, main_text = _parse_gemini_scores(cleaned)
-        self.assertEqual(sum(points), 75)
-        self.assertIn("Değerlendirme: iyi.", main_text)
-
-    def test_real_world_sample(self):
-        raw = (
-            '* *Kalıp/Preposition hataları:* "make research" $\\rightarrow$ '
-            '*conduct/carry out research*; "studying on how" $\\rightarrow$ *studying how*.'
-        )
-        self.assertEqual(
-            _strip_formatting(raw),
-            '- Kalıp/Preposition hataları: "make research" -> conduct/carry out research; '
-            '"studying on how" -> studying how.',
-        )
+    istemci.models.generate_content.side_effect = yan_etki
+    return istemci
 
 
-@override_settings(**FAST, GEMINI_API_TOKEN="dummy-key")
-class ResponseIsCleanedTests(TestCase):
-    def test_model_response_is_stripped_before_returning(self):
-        raw = '**Değerlendirme:** "introvert" $\\rightarrow$ *introverted*.'
-        with patch("LearnVocab.gemini.get_client", return_value=fake_client([raw])):
-            result = send_message_to_gemini("Some text.", ["retain"])
-
-        self.assertEqual(result, 'Değerlendirme: "introvert" -> introverted.')
-        for marker in ("**", "$", "\\rightarrow"):
-            self.assertNotIn(marker, result)
-
-    def test_prompt_tells_the_model_to_use_plain_text(self):
-        client = fake_client(["ok"])
-        with patch("LearnVocab.gemini.get_client", return_value=client):
-            send_message_to_gemini("Some text.", ["retain"])
-
-        prompt = client.models.generate_content.call_args.kwargs["contents"]
-        self.assertIn("plain text", prompt)
-        self.assertIn("KESİNLİKLE KULLANMA", prompt)
-
-
-# ---------------------------------------------------------------------------
-# Metin yazma sıklığı kısıtı
-# ---------------------------------------------------------------------------
-
-from datetime import timedelta
-
-from django.utils import timezone
-
-from texts import limits
-
-
-class HumanizeTests(TestCase):
-    def test_minutes(self):
-        self.assertEqual(limits.humanize(timedelta(minutes=5)), "5 dakika")
-
-    def test_rounds_seconds_up(self):
-        """'0 dakika kaldı' gibi bir mesaj çıkmamalı."""
-        self.assertEqual(limits.humanize(timedelta(seconds=30)), "1 dakika")
-
-    def test_hours_and_minutes(self):
-        self.assertEqual(limits.humanize(timedelta(hours=2, minutes=5)), "2 saat 5 dakika")
-
-    def test_one_day(self):
-        self.assertEqual(limits.humanize(timedelta(days=1)), "1 gün")
-
-    def test_more_than_a_day(self):
-        """Eski elle biçimlendirme burada bozuluyordu ('1 day, 3:00:00')."""
-        self.assertEqual(limits.humanize(timedelta(days=1, hours=3)), "1 gün 3 saat")
-
-    def test_zero_and_none(self):
-        self.assertEqual(limits.humanize(timedelta(0)), "0 dakika")
-        self.assertEqual(limits.humanize(None), "")
-
-
-class LimitSettingTests(TestCase):
-    """Süre tek bir ayardan yönetilmeli."""
+@override_settings(**{**HIZLI, "GEMINI_FALLBACK_MODELS": [FALLBACK_MODEL], "GEMINI_MAX_RETRIES": 1})
+class GeminiKatmaniTests(TestCase):
+    """Gerçek gemini.generate + sahte istemci: tekrar deneme ve yedek model."""
 
     def setUp(self):
-        self.user = User.objects.create_user(username="limituser", password="Sifre1234")
+        self.user = User.objects.create_user(username="katman", password="Sifre1234")
+        self.yazi = Text.objects.create(owner=self.user, content=METIN)
 
-    def _write_text(self, minutes_ago=0):
-        text = Text.objects.create(owner=self.user, content="x", response="y")
-        if minutes_ago:
-            Text.objects.filter(pk=text.pk).update(
-                createdAt=timezone.now() - timedelta(minutes=minutes_ago)
-            )
-        return text
+    def _modeller(self, istemci):
+        return [c.kwargs["model"] for c in istemci.models.generate_content.call_args_list]
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=1440)
-    def test_default_is_one_day(self):
-        self.assertEqual(limits.interval(), timedelta(days=1))
-        self.assertEqual(limits.interval_label(), "1 gün")
+    def test_transient_error_is_retried_then_succeeds(self):
+        istemci = sahte_istemci([Exception("503 UNAVAILABLE"), iyi_cevap()])
+        with patch("LearnVocab.gemini.get_client", return_value=istemci):
+            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
+                self.assertEqual(dg.degerlendir(self.yazi), dg.TAMAM)
+        self.assertEqual(self._modeller(istemci), [TEST_MODEL, TEST_MODEL])
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=5)
-    def test_five_minute_interval(self):
-        self.assertEqual(limits.interval(), timedelta(minutes=5))
-        self.assertEqual(limits.interval_label(), "5 dakika")
+    def test_falls_back_to_next_model(self):
+        hata = Exception("503 UNAVAILABLE")
+        istemci = sahte_istemci([hata, hata, iyi_cevap()])
+        with patch("LearnVocab.gemini.get_client", return_value=istemci):
+            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
+                self.assertEqual(dg.degerlendir(self.yazi), dg.TAMAM)
+        self.assertEqual(self._modeller(istemci), [TEST_MODEL, TEST_MODEL, FALLBACK_MODEL])
 
-        self._write_text(minutes_ago=1)
-        self.assertFalse(limits.can_write_new_text(self.user))
-        self.assertEqual(limits.remaining_label(self.user), "4 dakika")
+    def test_quota_does_not_try_other_models(self):
+        istemci = sahte_istemci([Exception("429 RESOURCE_EXHAUSTED")])
+        with patch("LearnVocab.gemini.get_client", return_value=istemci):
+            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
+                self.assertEqual(dg.degerlendir(self.yazi), dg.KOTA)
+        self.assertEqual(self._modeller(istemci), [TEST_MODEL])
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=5)
-    def test_interval_elapsed_allows_writing(self):
-        self._write_text(minutes_ago=6)
-        self.assertTrue(limits.can_write_new_text(self.user))
-        self.assertIsNone(limits.remaining_for(self.user))
-
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=0)
-    def test_zero_disables_the_limit(self):
-        self._write_text()
-        self.assertFalse(limits.is_enabled())
-        self.assertTrue(limits.can_write_new_text(self.user))
-        self.assertEqual(limits.interval_label(), "")
-
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=1440)
-    def test_first_text_is_always_allowed(self):
-        self.assertTrue(limits.can_write_new_text(self.user))
-
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=1440)
-    def test_delete_is_blocked_while_the_limit_is_active(self):
-        text = self._write_text(minutes_ago=10)
-        self.assertFalse(limits.can_delete(text))
-
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=0)
-    def test_delete_is_free_when_the_limit_is_off(self):
-        text = self._write_text()
-        self.assertTrue(limits.can_delete(text))
-
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES="bozuk-deger")
-    def test_invalid_setting_falls_back_to_the_default(self):
-        self.assertEqual(limits.interval(), timedelta(minutes=limits.DEFAULT_INTERVAL_MINUTES))
+    def test_missing_key_keeps_text(self):
+        with override_settings(GEMINI_API_TOKEN=None):
+            with self.assertLogs("LearnVocab.gemini", level="ERROR"):
+                self.assertEqual(dg.degerlendir(self.yazi), dg.YAPILANDIRMA)
+        self.assertEqual(Text.objects.get(pk=self.yazi.pk).durum, YaziDurumu.BEKLIYOR)
 
 
-@override_settings(**FAST, GEMINI_API_TOKEN="dummy-key")
-class LimitViewTests(TestCase):
+# ===========================================================================
+# Sayfalar
+# ===========================================================================
+
+@override_settings(**HIZLI)
+class YazmaSayfalariTests(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="limitview", password="Sifre1234")
-        self.client.login(username="limitview", password="Sifre1234")
+        self.user = User.objects.create_user(username="yazar", password="Sifre1234")
+        self.client.login(username="yazar", password="Sifre1234")
 
-    def _existing_text(self, minutes_ago=0):
-        text = Text.objects.create(owner=self.user, content="x", response="y")
-        if minutes_ago:
-            Text.objects.filter(pk=text.pk).update(
-                createdAt=timezone.now() - timedelta(minutes=minutes_ago)
-            )
-        return text
+    def _gonder(self, **ek):
+        veri = {"user_text": METIN, "sertlik": "normal", **ek}
+        return self.client.post(reverse("create_text"), veri)
 
-    def _messages(self, response):
-        return " ".join(str(m) for m in response.context["messages"])
+    def test_guest_sees_login_gate(self):
+        self.client.logout()
+        for ad, argumanlar in (("profile_texts", []), ("new_text_page", []), ("diyalog_page", []),
+                               ("review_text", [1]), ("about_grading_page", [])):
+            with self.subTest(sayfa=ad):
+                html = self.client.get(reverse(ad, args=argumanlar)).content.decode()
+                self.assertIn("önce giriş yapın", html)
+        yanit = self.client.post(reverse("create_text"), {"user_text": METIN})
+        self.assertEqual(yanit.status_code, 302)
+        self.assertIn("login", yanit["Location"])
+        self.assertFalse(Text.objects.exists())
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=5)
-    def test_new_text_page_explains_the_remaining_time(self):
-        self._existing_text(minutes_ago=1)
-        response = self.client.get(reverse("new_text_page"), follow=True)
-        self.assertIn("4 dakika", self._messages(response))
+    def test_old_profile_address_redirects(self):
+        # userprofile.urls "profile/" altına bağlı: eski adres /profile/profile/texts/
+        yanit = self.client.get("/profile/profile/texts/")
+        self.assertRedirects(yanit, reverse("profile_texts"), status_code=301)
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=0)
-    def test_new_text_page_is_open_when_the_limit_is_off(self):
-        self._existing_text()
-        response = self.client.get(reverse("new_text_page"))
-        self.assertEqual(response.status_code, 200)
+    def test_new_text_page_offers_topics_words_and_severity(self):
+        kelime = kelime_olustur("postpone", anlam="ertelemek")
+        UserWordLink.objects.create(user=self.user, word=kelime)
+        YazmaAyari.objects.create(user=self.user, sertlik=Sertlik.TITIZ)
+        html = self.client.get(reverse("new_text_page")).content.decode()
+        self.assertIn("Kullanmayı dene", html)
+        self.assertIn("postpone", html)
+        self.assertIn("ertelemek", html)
+        self.assertIn("Hafta sonum", html)  # konu listesi (json_script)
+        self.assertIn('value="titiz" class="peer sr-only" checked', html)
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=0)
-    def test_second_text_can_be_written_immediately(self):
-        self._existing_text()
-        answer = "Değerlendirme.\n[8,22,3,9,6,16,3,2,5,1]"
-        with patch("texts.views.send_message_to_gemini", return_value=answer):
-            self.client.post(reverse("create_text"), {"user_text": "My paragraph."}, follow=True)
+    def test_suggestions_are_three_to_five_from_the_list(self):
+        from texts.views import kullanmayi_dene
+        for i in range(8):
+            UserWordLink.objects.create(user=self.user, word=kelime_olustur(f"word{i}"))
+        oneriler = kullanmayi_dene(self.user)
+        self.assertEqual(len(oneriler), 5)
+        self.assertEqual(len({k.id for k in oneriler}), 5)
 
-        self.assertEqual(Text.objects.filter(owner=self.user).count(), 2)
+    def test_successful_submission_shows_underlined_review(self):
+        kelime = kelime_olustur("postpone")
+        UserWordLink.objects.create(user=self.user, word=kelime)
+        with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap())):
+            yanit = self._gonder(konu="hafta-sonu", sertlik="nazik", kelimeler=[str(kelime.id), "999999"])
+        yazi = Text.objects.get()
+        self.assertRedirects(yanit, reverse("review_text", args=[yazi.id]))
+        self.assertEqual((yazi.durum, yazi.sertlik, yazi.konu), ("tamam", "nazik", "Hafta sonum"))
+        self.assertEqual(list(yazi.words.all()), [kelime])
+        self.assertEqual(YazmaAyari.sertlik_of(self.user), "nazik")
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=5)
-    def test_create_is_blocked_within_the_interval(self):
-        self._existing_text(minutes_ago=1)
-        with patch("texts.views.send_message_to_gemini") as mocked:
-            response = self.client.post(
-                reverse("create_text"), {"user_text": "My paragraph."}, follow=True
-            )
-        mocked.assert_not_called()
-        self.assertIn("4 dakika", self._messages(response))
-        self.assertEqual(Text.objects.filter(owner=self.user).count(), 1)
+        html = self.client.get(reverse("review_text", args=[yazi.id])).content.decode()
+        self.assertIn('data-hata="0"', html)
+        self.assertRegex(html, r'data-hata="0"[^>]*>I visit my grandmother</button>')
+        self.assertIn("I visited my grandmother", html)
+        self.assertIn("İyi yaptıkların", html)
+        self.assertIn("3,5", html)
+        self.assertIn("Ortalama", html)
+        self.assertNotIn("Geliştirilebilir", html)
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=0)
-    def test_delete_is_allowed_when_the_limit_is_off(self):
-        text = self._existing_text()
-        self.client.get(reverse("remove_text", args=[text.id]), follow=True)
-        self.assertEqual(Text.objects.filter(pk=text.pk).count(), 0)
+    def test_short_or_empty_text_is_rejected_without_calling_gemini(self):
+        with patch("LearnVocab.gemini.generate") as gen:
+            self._gonder(user_text="Hi.")
+        gen.assert_not_called()
+        self.assertFalse(Text.objects.exists())
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=1440)
-    def test_delete_message_uses_the_configured_interval(self):
-        text = self._existing_text(minutes_ago=10)
-        response = self.client.get(reverse("remove_text", args=[text.id]), follow=True)
-        self.assertIn("1 gün", self._messages(response))
-        self.assertEqual(Text.objects.filter(pk=text.pk).count(), 1)
+    def test_quota_then_command_retry_removes_yellow_label(self):
+        with patch("LearnVocab.gemini.generate", side_effect=gemini.GeminiRateLimit("429")):
+            yanit = self._gonder()
+        yazi = Text.objects.get()
+        self.assertEqual(yazi.durum, YaziDurumu.BEKLIYOR)
+        self.assertRedirects(yanit, reverse("review_text", args=[yazi.id]), fetch_redirect_response=False)
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=5)
-    def test_info_box_reflects_the_setting(self):
-        response = self.client.get(reverse("profile_texts"))
-        self.assertContains(response, "5 dakika")
+        liste = self.client.get(reverse("profile_texts")).content.decode()
+        self.assertIn("Henüz değerlendirilmedi", liste)
+        self.assertIn('data-etiket="bekliyor"', liste)
+        inceleme = self.client.get(reverse("review_text", args=[yazi.id])).content.decode()
+        self.assertIn("Henüz değerlendirilmedi", inceleme)
+        self.assertIn(METIN, inceleme)
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=0)
-    def test_info_box_hides_the_limit_line_when_off(self):
-        response = self.client.get(reverse("profile_texts"))
-        self.assertNotContains(response, "aralıklarla yazılabilmektedir")
+        # Arka plan: cron komutu. Son denemenin üzerinden süre geçmiş olsun.
+        Text.objects.filter(pk=yazi.pk).update(son_deneme=timezone.now() - timedelta(hours=1))
+        alinan = []
+        sinyaller.yazi_degerlendirildi.connect(lambda sender, yazi, arka_planda, **kw: alinan.append(arka_planda),
+                                               weak=False, dispatch_uid="test-yazma")
+        try:
+            with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap())):
+                call_command("yazilari_yeniden_dene", stdout=StringIO())
+        finally:
+            sinyaller.yazi_degerlendirildi.disconnect(dispatch_uid="test-yazma")
 
+        yazi.refresh_from_db()
+        self.assertEqual(yazi.durum, YaziDurumu.TAMAM)
+        self.assertEqual(alinan, [True])
+        liste = self.client.get(reverse("profile_texts")).content.decode()
+        self.assertNotIn("Henüz değerlendirilmedi", liste)
+        self.assertIn("3,5", liste)
 
-from django.core.cache import cache as django_cache
+    def test_retry_button(self):
+        yazi = Text.objects.create(owner=self.user, content=METIN)
+        with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap())):
+            yanit = self.client.post(reverse("retry_text", args=[yazi.id]))
+        self.assertRedirects(yanit, reverse("review_text", args=[yazi.id]))
+        self.assertEqual(Text.objects.get(pk=yazi.pk).durum, YaziDurumu.TAMAM)
 
-from LearnVocab import progress
-from texts import views as text_views
-
-
-@override_settings(**FAST, GEMINI_API_TOKEN="dummy-key", TEXT_SUBMISSION_INTERVAL_MINUTES=0)
-class EvaluationJobFlowTests(TestCase):
-    """Metin değerlendirmenin ilerleme çubuklu akışı."""
-
-    def setUp(self):
-        django_cache.clear()
-        self.user = User.objects.create_user(username="jobtext", password="Sifre1234")
-        self.other = User.objects.create_user(username="digeri", password="Sifre1234")
-        self.client.login(username="jobtext", password="Sifre1234")
-
-    def _start(self, text="My English paragraph about work."):
-        return self.client.post(
-            reverse("create_text"),
-            {"user_text": text},
-            headers={"x-requested-with": "XMLHttpRequest"},
-        )
-
-    def test_ajax_start_returns_a_job_id(self):
+    def test_ajax_job_flow(self):
         with patch("texts.views.threading.Thread") as thread:
-            response = self._start()
+            yanit = self.client.post(reverse("create_text"), {"user_text": METIN},
+                                     HTTP_X_REQUESTED_WITH="XMLHttpRequest")
+        job_id = yanit.json()["job_id"]
+        thread.return_value.start.assert_called_once()
+        yazi = Text.objects.get()
+        self.assertEqual(yazi.durum, YaziDurumu.BEKLIYOR)  # kaydedildi, kaybolmaz
 
-        self.assertEqual(response.status_code, 200)
-        job_id = response.json()["job_id"]
-        thread.assert_called_once()
-        self.assertEqual(progress.read(job_id)["owner_id"], self.user.id)
+        with patch("LearnVocab.gemini.generate", side_effect=gemini.GeminiRateLimit("429")), \
+                patch("django.db.connection.close"):
+            _degerlendirme_isi(job_id, yazi.id)
+        bitis = self.client.post(reverse("create_text_finish", args=[job_id]),
+                                 HTTP_X_REQUESTED_WITH="XMLHttpRequest")
+        self.assertEqual(bitis.json()["redirect"], reverse("review_text", args=[yazi.id]))
 
-    def test_ajax_start_rejects_empty_text(self):
-        with patch("texts.views.threading.Thread") as thread:
-            response = self._start(text="   ")
-        self.assertEqual(response.status_code, 400)
-        thread.assert_not_called()
+    def test_old_records_are_shown_as_old_evaluation(self):
+        eski = Text.objects.create(owner=self.user, content="Old academic essay.", score=72,
+                                   scores="[8,22,3,9,6,16,3,2,2,1]", response="Konu: 8/10 ...",
+                                   durum=YaziDurumu.ESKI)
+        liste = self.client.get(reverse("profile_texts")).content.decode()
+        self.assertIn("Eski değerlendirme · 72/100", liste)
+        html = self.client.get(reverse("review_text", args=[eski.id])).content.decode()
+        self.assertIn("Eski değerlendirme", html)
+        self.assertIn("72/100", html)
+        self.assertIn("Konu: 8/10", html)
 
-    @override_settings(TEXT_SUBMISSION_INTERVAL_MINUTES=1440)
-    def test_ajax_start_respects_the_interval(self):
-        Text.objects.create(owner=self.user, content="x", response="y")
-        with patch("texts.views.threading.Thread") as thread:
-            response = self._start()
+    def test_other_users_text_is_hidden(self):
+        baska = User.objects.create_user(username="baska", password="Sifre1234")
+        yazi = Text.objects.create(owner=baska, content=METIN)
+        self.assertEqual(self.client.get(reverse("review_text", args=[yazi.id])).status_code, 404)
 
-        self.assertEqual(response.status_code, 429)
-        thread.assert_not_called()
+    def test_delete_with_undo(self):
+        yazi = Text.objects.create(owner=self.user, content=METIN, durum=YaziDurumu.TAMAM, puan=4)
+        yanit = self.client.post(reverse("remove_text", args=[yazi.id]))
+        self.assertRedirects(yanit, f"{reverse('profile_texts')}?silindi={yazi.id}")
+        liste = self.client.get(yanit["Location"]).content.decode()
+        self.assertIn("Yazı silindi", liste)
+        self.assertIn(reverse("restore_text", args=[yazi.id]), liste)
+        self.assertEqual(self.client.get(reverse("review_text", args=[yazi.id])).status_code, 404)
 
-    def test_progress_of_another_user_is_not_visible(self):
-        job_id = progress.create(self.other.id)
-        response = self.client.get(reverse("create_text_progress", args=[job_id]))
-        self.assertEqual(response.status_code, 404)
+        self.client.post(reverse("restore_text", args=[yazi.id]))
+        self.assertIsNone(Text.objects.get(pk=yazi.pk).silindi)
 
-    def test_successful_job_redirects_to_the_review_page(self):
-        text = Text.objects.create(owner=self.user, content="x", response="y")
-        job_id = progress.create(self.user.id)
-        progress.finish(job_id, {"text_id": text.id})
+    def test_grading_page_describes_new_system(self):
+        html = self.client.get(reverse("about_grading_page")).content.decode()
+        self.assertIn("5 üzerinden", html)
+        self.assertNotIn("/100", html)
 
-        response = self.client.post(reverse("create_text_finish", args=[job_id]))
-        self.assertEqual(response.json()["redirect"], reverse("review_text", args=[text.id]))
-        self.assertIsNone(progress.read(job_id))
 
-    def test_failed_job_reports_the_reason(self):
-        job_id = progress.create(self.user.id)
-        progress.fail(job_id, "Servis yoğun")
+# ===========================================================================
+# Günlük sınır
+# ===========================================================================
 
-        response = self.client.post(reverse("create_text_finish", args=[job_id]))
-        self.assertEqual(response.json()["redirect"], reverse("profile_texts"))
-        self.assertIn("Servis yoğun",
-                      " ".join(str(m) for m in response.wsgi_request._messages))
+@override_settings(**{**HIZLI, "TEXT_DAILY_LIMIT": 2})
+class GunlukSinirTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="sinir", password="Sifre1234")
+        self.client.login(username="sinir", password="Sifre1234")
 
-    def test_job_body_saves_the_text_and_finishes(self):
-        answer = "Değerlendirme metni.\n[8,22,3,9,6,16,3,2,5,1]"
-        job_id = progress.create(self.user.id)
+    def test_limit_counts_todays_texts(self):
+        self.assertEqual(limits.kalan_hak(self.user), 2)
+        Text.objects.create(owner=self.user, content=METIN)
+        Text.objects.create(owner=self.user, content=METIN, durum=YaziDurumu.ESKI)  # eski sayılmaz
+        self.assertEqual(limits.kalan_hak(self.user), 1)
 
-        with patch("texts.views.send_message_to_gemini", return_value=answer):
-            with patch("django.db.connection.close"):
-                text_views._run_text_evaluation(job_id, self.user.id, "My paragraph.")
+    def test_yesterday_does_not_count(self):
+        yazi = Text.objects.create(owner=self.user, content=METIN)
+        Text.objects.filter(pk=yazi.pk).update(createdAt=timezone.now() - timedelta(days=2))
+        self.assertEqual(limits.kalan_hak(self.user), 2)
 
-        job = progress.read(job_id)
-        self.assertEqual(job["state"], progress.STATE_DONE)
-        self.assertEqual(job["percent"], 100)
-        self.assertEqual(Text.objects.get().score, 75)
+    def test_third_submission_is_blocked_even_after_delete(self):
+        with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap())):
+            for _ in range(2):
+                self.client.post(reverse("create_text"), {"user_text": METIN})
+        ilk = Text.objects.first()
+        self.client.post(reverse("remove_text", args=[ilk.id]))
 
-    def test_job_body_marks_service_errors_as_failed(self):
-        job_id = progress.create(self.user.id)
+        with patch("LearnVocab.gemini.generate") as gen:
+            yanit = self.client.post(reverse("create_text"), {"user_text": METIN},
+                                     HTTP_X_REQUESTED_WITH="XMLHttpRequest")
+        self.assertEqual(yanit.status_code, 429)
+        self.assertIn("Bugünkü yazma hakkın doldu", yanit.json()["error"])
+        gen.assert_not_called()
+        self.assertEqual(Text.objects.count(), 2)
 
-        with patch("texts.views.send_message_to_gemini", return_value=UNAVAILABLE_RESPONSE):
-            with patch("django.db.connection.close"):
-                text_views._run_text_evaluation(job_id, self.user.id, "My paragraph.")
+        sayfa = self.client.get(reverse("profile_texts")).content.decode()
+        self.assertIn("Bugünkü yazma hakkın doldu", sayfa)
+        self.assertIn("Bugünkü yazma hakkın doldu", self.client.get(reverse("new_text_page")).content.decode())
 
-        job = progress.read(job_id)
-        self.assertEqual(job["state"], progress.STATE_FAILED)
-        self.assertIn("yoğun", job["message"].lower())
-        self.assertEqual(Text.objects.count(), 0)
+    def test_zero_disables_limit(self):
+        with override_settings(TEXT_DAILY_LIMIT=0):
+            self.assertIsNone(limits.kalan_hak(self.user))
+            self.assertTrue(limits.yazabilir_mi(self.user))
 
-    def test_progress_advances_when_a_fallback_model_is_tried(self):
-        self.job_id = progress.create(self.user.id)
-        gorulen = []
 
-        def fake_send(text, words, on_event=None):
-            if on_event:
-                on_event("attempt", {"model": "m1", "model_index": 0, "model_count": 2,
-                                     "attempt": 1, "attempts": 1})
-                gorulen.append(progress.read(self.job_id)["percent"])
-                on_event("error", {"model": "m1", "kind": "transient", "message": "503"})
-                on_event("attempt", {"model": "m2", "model_index": 1, "model_count": 2,
-                                     "attempt": 1, "attempts": 1})
-                gorulen.append(progress.read(self.job_id)["percent"])
-            return "Değerlendirme.\n[8,22,3,9,6,16,3,2,5,1]"
+# ===========================================================================
+# Yeniden deneme komutu
+# ===========================================================================
 
-        with patch("texts.views.send_message_to_gemini", side_effect=fake_send):
-            with patch("django.db.connection.close"):
-                text_views._run_text_evaluation(self.job_id, self.user.id, "My paragraph.")
+@override_settings(**HIZLI)
+class YenidenDenemeKomutuTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="cron", password="Sifre1234")
+        eski = timezone.now() - timedelta(hours=2)
+        self.yazilar = []
+        for i in range(4):
+            yazi = Text.objects.create(owner=self.user, content=METIN)
+            Text.objects.filter(pk=yazi.pk).update(createdAt=eski + timedelta(minutes=i))
+            self.yazilar.append(yazi)
 
-        self.assertGreater(gorulen[1], gorulen[0],
-                           "yedek modele geçildiğinde çubuk ilerlemedi")
+    def _calistir(self, *args):
+        cikti = StringIO()
+        call_command("yazilari_yeniden_dene", *args, stdout=cikti)
+        return cikti.getvalue()
+
+    def test_respects_the_limit(self):
+        with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap())) as gen:
+            self._calistir("--limit", "2")
+        self.assertEqual(gen.call_count, 2)
+        self.assertEqual(Text.objects.filter(durum=YaziDurumu.TAMAM).count(), 2)
+        # En eski ikisi
+        self.assertEqual(set(Text.objects.filter(durum=YaziDurumu.TAMAM).values_list("pk", flat=True)),
+                         {self.yazilar[0].pk, self.yazilar[1].pk})
+
+    def test_stops_on_quota(self):
+        with patch("LearnVocab.gemini.generate", side_effect=gemini.GeminiRateLimit("429")) as gen:
+            cikti = self._calistir()
+        self.assertEqual(gen.call_count, 1)
+        self.assertIn("durduruldu", cikti)
+        self.assertEqual(Text.objects.filter(durum=YaziDurumu.BEKLIYOR).count(), 4)
+
+    def test_skips_recently_tried_and_deleted(self):
+        Text.objects.filter(pk=self.yazilar[0].pk).update(son_deneme=timezone.now() - timedelta(minutes=5))
+        Text.objects.filter(pk=self.yazilar[1].pk).update(silindi=timezone.now())
+        with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap())) as gen:
+            self._calistir()
+        self.assertEqual(gen.call_count, 2)
+        self.assertEqual(Text.objects.get(pk=self.yazilar[0].pk).durum, YaziDurumu.BEKLIYOR)
+
+    def test_dry_run_calls_nothing(self):
+        with patch("LearnVocab.gemini.generate") as gen:
+            cikti = self._calistir("--dry-run")
+        gen.assert_not_called()
+        self.assertIn("4 metin denenecekti", cikti)
+
+    def test_purges_old_deleted_texts(self):
+        Text.objects.filter(pk=self.yazilar[0].pk).update(silindi=timezone.now() - timedelta(days=2))
+        Text.objects.filter(pk=self.yazilar[1].pk).update(silindi=timezone.now())
+        with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap())):
+            cikti = self._calistir()
+        self.assertFalse(Text.objects.filter(pk=self.yazilar[0].pk).exists())
+        self.assertTrue(Text.objects.filter(pk=self.yazilar[1].pk).exists())
+        self.assertIn("Temizlenen silinmiş kayıt: 1", cikti)
+
+
+# ===========================================================================
+# Diyalogda doğru kelime
+# ===========================================================================
+
+class TekHarfTests(TestCase):
+    def test_one_edit(self):
+        for a, b in (("postponed", "postpned"), ("postponed", "postponedd"), ("postponed", "postpaned"),
+                     ("postponed", "postpnoed")):
+            with self.subTest(a=a, b=b):
+                self.assertTrue(dy.tek_harf_farki_mi(a, b))
+
+    def test_not_one_edit(self):
+        for a, b in (("postponed", "postponed"), ("postponed", "postpnd"), ("postponed", "delayed")):
+            with self.subTest(a=a, b=b):
+                self.assertFalse(dy.tek_harf_farki_mi(a, b))
+
+
+class DiyalogCevabiTests(TestCase):
+    def setUp(self):
+        self.kelime = kelime_olustur("postpone", anlam="ertelemek")
+        self.diyalog = diyalog_olustur(self.kelime)
+
+    def test_exact_answer(self):
+        self.assertEqual(dy.cevabi_degerlendir(self.diyalog, "  Postponed. ").durum, dy.DOGRU)
+
+    def test_inflected_form_is_accepted(self):
+        sonuc = dy.cevabi_degerlendir(self.diyalog, "postpone")
+        self.assertEqual(sonuc.durum, dy.DOGRU)
+        self.assertIn("Bu cümlede: postponed", sonuc.mesaj)
+        self.assertEqual(dy.cevabi_degerlendir(self.diyalog, "postpones").durum, dy.DOGRU)
+
+    def test_wordform_rows_are_used(self):
+        from words.models import WordForm
+        git = kelime_olustur("go", v2="went", v3="gone")
+        WordForm.objects.create(word=git, surface="went")
+        d = diyalog_olustur(git, cevap_="gone")
+        self.assertEqual(dy.cevabi_degerlendir(d, "went").durum, dy.DOGRU)
+
+    def test_one_letter_typo_is_almost(self):
+        sonuc = dy.cevabi_degerlendir(self.diyalog, "postpned")
+        self.assertEqual(sonuc.durum, dy.NEREDEYSE)
+        self.assertEqual(sonuc.mesaj, "Neredeyse! Doğrusu: postponed")
+
+    def test_wrong_answer(self):
+        sonuc = dy.cevabi_degerlendir(self.diyalog, "cancelled")
+        self.assertEqual(sonuc.durum, dy.YANLIS)
+        self.assertIn("Doğrusu: postponed", sonuc.mesaj)
+
+    def test_empty_answer(self):
+        self.assertEqual(dy.cevabi_degerlendir(self.diyalog, "   ").durum, dy.BOS)
+
+    def test_short_words_are_not_almost(self):
+        d = diyalog_olustur(kelime_olustur("do", v2="did", v3="done"), cevap_="do")
+        self.assertEqual(dy.cevabi_degerlendir(d, "go").durum, dy.YANLIS)
+
+    def test_register_note(self):
+        self.assertEqual(dy.register_notu(self.diyalog), "")
+        d = diyalog_olustur(self.kelime, register="formal", sentiment="negative")
+        self.assertEqual(dy.register_notu(d), "Üslup: resmî · Ton: olumsuz")
+        d.not_metni = "Resmî bir kelime."
+        self.assertEqual(dy.register_notu(d), "Resmî bir kelime.")
+
+
+class DiyalogSayfasiTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="diyalog", password="Sifre1234")
+        self.client.login(username="diyalog", password="Sifre1234")
+        self.kelime = kelime_olustur("postpone", anlam="ertelemek")
+
+    def _html(self):
+        return self.client.get(reverse("diyalog_page")).content.decode()
+
+    def test_empty_pool_is_encouraging(self):
+        UserWordLink.objects.create(user=self.user, word=self.kelime)
+        html = self._html()
+        self.assertIn('data-bos="havuz"', html)
+        self.assertIn("Diyaloglar hazırlanıyor", html)
+
+    def test_unreviewed_dialogs_do_not_count(self):
+        UserWordLink.objects.create(user=self.user, word=self.kelime)
+        diyalog_olustur(self.kelime, denetlendi=False)
+        self.assertIn('data-bos="havuz"', self._html())
+
+    def test_empty_list(self):
+        diyalog_olustur(self.kelime)
+        self.assertIn('data-bos="liste"', self._html())
+
+    def test_no_dialog_for_listed_words(self):
+        diyalog_olustur(self.kelime)
+        UserWordLink.objects.create(user=self.user, word=kelime_olustur("decide"))
+        html = self._html()
+        self.assertIn('data-bos="kelime"', html)
+        self.assertIn("Listendeki kelimeler için henüz diyalog yok", html)
+
+    def test_dialog_is_shown_without_revealing_the_answer(self):
+        d = diyalog_olustur(self.kelime)
+        UserWordLink.objects.create(user=self.user, word=self.kelime)
+        html = self._html()
+        self.assertIn("ertelemek", html)
+        self.assertIn("Are we still meeting on Friday?", html)
+        self.assertIn("İlk harfi göster", html)
+        self.assertNotIn("postponed", html)
+        self.assertIn(reverse("diyalog_cevap", args=[d.id]), html)
+
+    def test_answer_endpoint(self):
+        d = diyalog_olustur(self.kelime, register="formal")
+        yanit = self.client.post(reverse("diyalog_cevap", args=[d.id]), {"cevap": "postpned"})
+        veri = yanit.json()
+        self.assertEqual(veri["durum"], "neredeyse")
+        self.assertEqual(veri["mesaj"], "Neredeyse! Doğrusu: postponed")
+        self.assertEqual(veri["not"], "Üslup: resmî")
+        self.assertEqual(DiyalogCevabi.objects.get().sonuc, "neredeyse")
+
+    def test_unseen_dialogs_come_first(self):
+        d1 = diyalog_olustur(self.kelime)
+        d2 = diyalog_olustur(self.kelime)
+        UserWordLink.objects.create(user=self.user, word=self.kelime)
+        DiyalogCevabi.objects.create(user=self.user, diyalog=d1, girdi="postponed", sonuc="dogru")
+        for _ in range(5):
+            self.assertEqual(dy.siradaki(self.user), d2)
+
+    def test_guest_cannot_answer(self):
+        d = diyalog_olustur(self.kelime)
+        self.client.logout()
+        yanit = self.client.post(reverse("diyalog_cevap", args=[d.id]), {"cevap": "postponed"})
+        self.assertEqual(yanit.status_code, 302)
+        self.assertFalse(DiyalogCevabi.objects.exists())
+
+
+class DiyalogYukleTests(TestCase):
+    def setUp(self):
+        self.kelime = kelime_olustur("postpone", anlam="ertelemek")
+        self.gecerli = {
+            "kelime": "postpone", "tur": "verb", "anlam": "ertelemek",
+            "satirlar": [
+                {"kisi": "A", "metin": "Are we still meeting on Friday?"},
+                {"kisi": "B", "metin": "No, the manager ___ it until next week."},
+                {"kisi": "A", "metin": "Oh, why?"},
+                {"kisi": "B", "metin": "Half of the team is away."},
+            ],
+            "cevap": "postponed", "ipucu": "ertelemek", "register": "formal", "denetlendi": True,
+        }
+
+    def _yukle(self, kayitlar, *args):
+        with TemporaryDirectory() as klasor:
+            yol = Path(klasor) / "havuz.json"
+            yol.write_text(json.dumps(kayitlar, ensure_ascii=False), encoding="utf-8")
+            cikti = StringIO()
+            call_command("diyalog_yukle", str(yol), *args, stdout=cikti)
+            return cikti.getvalue()
+
+    def test_dry_run_writes_nothing(self):
+        cikti = self._yukle([self.gecerli], "--dry-run")
+        self.assertIn("1 yeni", cikti)
+        self.assertFalse(Diyalog.objects.exists())
+
+    def test_loads_and_is_idempotent(self):
+        self._yukle([self.gecerli])
+        d = Diyalog.objects.get()
+        self.assertEqual((d.word, d.cevap, d.register, d.denetlendi), (self.kelime, "postponed", "formal", True))
+        self.assertEqual(d.meaning.meaning_tr, "ertelemek")
+        cikti = self._yukle([{**self.gecerli, "ipucu": "sonraya bırakmak"}])
+        self.assertIn("1 güncellendi", cikti)
+        self.assertEqual(Diyalog.objects.get().ipucu, "sonraya bırakmak")
+
+    def test_invalid_records_are_skipped(self):
+        iki_bosluk = {**self.gecerli, "satirlar": [dict(s, metin=s["metin"] + " ___") for s in self.gecerli["satirlar"]]}
+        az_satir = {**self.gecerli, "satirlar": self.gecerli["satirlar"][:2]}
+        yanlis_cevap = {**self.gecerli, "cevap": "cancelled"}
+        yok = {**self.gecerli, "kelime": "flibbertigibbet"}
+        cikti = self._yukle([iki_bosluk, az_satir, yanlis_cevap, yok, self.gecerli])
+        self.assertIn("1 yeni", cikti)
+        self.assertIn("4 atlandı", cikti)
+        self.assertEqual(Diyalog.objects.count(), 1)
+
+    def test_jsonl_is_accepted(self):
+        with TemporaryDirectory() as klasor:
+            yol = Path(klasor) / "havuz.jsonl"
+            yol.write_text(json.dumps(self.gecerli, ensure_ascii=False) + "\n", encoding="utf-8")
+            call_command("diyalog_yukle", str(yol), stdout=StringIO())
+        self.assertEqual(Diyalog.objects.count(), 1)
