@@ -58,3 +58,34 @@ class MetinDisaAktarmaTests(TestCase):
         metin = self._indir("export_all")
         self.assertIn("Puanınız: 4 / 5", metin)
         self.assertIn("Hata bulunmadı.", metin)
+
+
+class KelimeDisaAktarmaTests(TestCase):
+    """Listedeki kelimeler yeni kelime modeliyle hatasız dökülür."""
+
+    def setUp(self):
+        from words.models import Meaning, UserWordLink, Word, WordFamily, WordRelation
+
+        self.user = User.objects.create_user(username="okur", password=SIFRE)
+        self.client.login(username="okur", password=SIFRE)
+        bank = Word.objects.create(text="bank", pos="noun", cefr="B1",
+                                   family=WordFamily.objects.create(root="bank"))
+        shore = Word.objects.create(text="shore", pos="noun", cefr="B1",
+                                    family=WordFamily.objects.create(root="shore"))
+        kiyi = Meaning.objects.create(word=bank, meaning_tr="nehir kıyısı")
+        WordRelation.objects.create(from_word=bank, to_word=shore, type="synonym", meaning=kiyi)
+        UserWordLink.objects.create(user=self.user, word=bank)
+
+    def _indir(self, ad):
+        cevap = self.client.get(reverse(ad))
+        self.assertEqual(cevap.status_code, 200)
+        return cevap.content.decode("utf-8")
+
+    def test_listedeki_kelime_yazilir(self):
+        metin = self._indir("export_mywords")
+        self.assertIn("Kelime: bank", metin)
+        self.assertIn("Eş Anlamlılar: shore", metin)
+        self.assertNotIn("QuerySet", metin)
+
+    def test_tum_verilerde_kelime_bolumu(self):
+        self.assertIn("Kelime: bank", self._indir("export_all"))

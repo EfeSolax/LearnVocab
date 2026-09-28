@@ -115,6 +115,11 @@ def deleteMyAccount(request):
     return redirect("index")
 
 
+def _virgullu(parcalar):
+    """Kelime ilişkilerini ve kalıpları dökümde tek satırda yazar."""
+    return ", ".join(p for p in parcalar if p)
+
+
 @login_required
 def exportMyWords(request):
     user = request.user
@@ -130,7 +135,8 @@ def exportMyWords(request):
     # BU SORGUNUN SİZDE NE OLDUĞUNU BİLMİYORUM, SADECE BİR ÖRNEK:
     words_in_list = Word.objects.filter(owner=user)
 
-    total_words = words_from_links_qs.union(words_in_list)
+    # union() varsayılan sıralamayla SQLite'ta çöküyor; tek sorgu yeterli.
+    total_words = Word.objects.filter(Q(id__in=word_ids_from_links) | Q(owner=user)).distinct()
 
     # 2. Bir HttpResponse objesi oluşturun
     #    content_type='text/plain', tarayıcıya bunun bir metin dosyası olduğunu söyler.
@@ -146,16 +152,15 @@ def exportMyWords(request):
     response.write(f"Tarih: {datetime.date.today().strftime('%d-%m-%Y')}\n")
     response.write("="*30 + "\n\n")
     
-    if words_in_list.exists():
+    if total_words.exists():
         response.write("Kelime Listeniz:\n\n")
         for word in total_words:
             response.write(f"Kelime: {word.text}\n")
             response.write(f"Anlamı: {word.meaningTr}\n")
             response.write(f"Açıklama: {word.explanation}\n")
-            response.write(f"Not: {word.note}\n")
-            response.write(f"Eş Anlamlılar: {word.synonyms or '-'}\n")
-            response.write(f"Zıt Anlamlılar: {word.antonyms or '-'}\n")
-            response.write(f"Kullanım Kalıpları: {word.collocations or '-'}\n")
+            response.write(f"Eş Anlamlılar: {_virgullu(r.to_word.text for r in word.synonyms) or '-'}\n")
+            response.write(f"Zıt Anlamlılar: {_virgullu(r.to_word.text for r in word.antonyms) or '-'}\n")
+            response.write(f"Kullanım Kalıpları: {_virgullu(c.pattern for c in word.collocations) or '-'}\n")
             for index, sentence in enumerate(word.example_sentences, start=1):
                 response.write(f"Örnek Cümle {index}: {sentence}\n")
             response.write(f"Seviye: {word.cefr}\n")
@@ -337,7 +342,8 @@ def exportAll(request):
     word_ids_from_links = UserWordLink.objects.filter(user=user).values_list('word_id', flat=True)
     words_from_links_qs = Word.objects.filter(id__in=word_ids_from_links)
     words_in_list = Word.objects.filter(owner=user)
-    total_words = words_from_links_qs.union(words_in_list)
+    # union() varsayılan sıralamayla SQLite'ta çöküyor; tek sorgu yeterli.
+    total_words = Word.objects.filter(Q(id__in=word_ids_from_links) | Q(owner=user)).distinct()
 
     if total_words.exists():
         write_line(f"Toplam {total_words.count()} kelime bulundu:\n")
@@ -345,7 +351,6 @@ def exportAll(request):
             write_line(f"Kelime: {word.text}")
             write_line(f"Anlamı: {word.meaningTr}")
             write_line(f"Açıklama: {word.explanation or ''}") # None ise hata vermesin
-            write_line(f"Not: {word.note or ''}")           # None ise hata vermesin
             write_line(f"Seviye: {word.cefr}")
             write_line("--------------------")
     else:
