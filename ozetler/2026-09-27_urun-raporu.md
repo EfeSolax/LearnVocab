@@ -621,6 +621,21 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 - Giriş yapmamış ziyaretçiye L&P ve günün kelimesi B1 civarından gelir. L&P'de kaydedilmeyen bir "seviyeni seç" seçeneği vardır.
 - Yazma sertliği yalnızca hata listesini etkiler, puanı etkilemez.
 
+**Efe'nin 28 Eylül kararları:**
+- Veri havuzları (D2–D6) için **hiç LLM harcaması yapılmaz**. Yükleme komutları ve biçimler hazır; havuzlar boş, ilgili arayüzler boş hâli gösterir ("Yakında" / "hazırlanıyor").
+- `reading-texts/` metinlerine dokunulmaz, kütüphaneye yeni metin eklenmez.
+- Hazır liste verisi (ODTÜ, Bilkent, Cambridge…) şimdilik eklenmez; altyapı ve `hazir_liste_yukle` komutu hazır.
+- Barındırma Veridyen: cron ve HTTPS var.
+
+**Uygulama sırasında Claude'un verdiği, Efe'ye sorulacak ara kararlar** (değişebilir):
+- Kur → CEFR eşlemesi (seviye alanı boşken): 101→A1, 201→A2, 301→B1, 401→B2, 501→C1; bilinmiyorsa B1.
+- L&P turu 20 kart. Bekleyen tekrar 40'ı aşınca yeni oranı 0,30 × 40 / bekleyen (en az 0,10).
+- L&P'de listeye eklenmeyen bilinmeyen yeni kelime bir daha gelmiyor (eski seçim kuralı; tekrar algoritmasıyla birlikte konuşulacak). Yeni kelime seçimi her seviyede ilk 2000 kayıttan yapıldığı için alfabetik başa kayıyor, düzeltilmeli.
+- Egzersizler: üç hâli aynı düzensiz fiiller (cut/put/hit) sorulmuyor; eşleştirme tek soru sayılıyor.
+- Yazma: günlük değerlendirme sınırı 3 (`TEXT_DAILY_LIMIT`), site genelinde dakikada en çok 4. Titiz sertlikte en çok 10 hata. Metin 20–1500 karakter. Diyalog cevapları Zorlandıklarım'a yazılmıyor.
+- Okumalar: kendi metni silinince 1 gün çöpte kalır; kullanıcı başına en çok 100 metin; PDF en çok 10 MB / 60 sayfa, dosya saklanmaz.
+- Hazır liste dosyasında türü verilmemiş çok türlü kelimenin yalnızca en yaygın türü eklenir.
+
 ---
 
 ## 17. Vazgeçilen fikirler (geri getirme)
@@ -648,3 +663,4 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 - **2026-09-27:** İlk sürüm. Kaynak: `ozetler/2026-09-26_urun-kararlari.md` (26–27 Eylül konuşmaları).
 - **2026-09-28:** D1 yapıldı (migration `words/0020_iliski_anlam`, komut `iliskileri_anlama_bagla`). 56.187 bağ anlama atandı, 512'si birden çok anlamda geçtiği için çoğaltıldı. Silinmiş anlamlardan gelen 44 bağ boş kaldı (kartta görünmez). `confused_with` kelime düzeyinde kaldı. `aile_doldur` artık bağları doğrudan anlama yazıyor; silinmiş anlamın bağını geri kurmuyor.
 - **2026-09-28:** Adım 3 (İskelet) yapıldı. Menü `LearnVocab/navigation.py` (Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma; mobilde altta, masaüstünde üstte; içerik `max-w-3xl`). Sözlük iskeleti `/sozluk/` (Keşfet | Listem; şimdilik yalnızca İngilizce tam eşleşme). Ortak kelime kartı `templates/base/_kelimeKarti.html` + veri `words/kart.py` (`kart_verisi`, sabit 8 sorgu). Düzensiz fiil: `inflect.duzensiz_fiil_mi` (veritabanında düzenli fiillerin de v2/v3'ü dolu olduğu için kural çıktısıyla karşılaştırılıyor). Giriş gerekli: `data-giris-gerekli="<neden>"` + `/users/login/?next=…&neden=…` (girişte `next`'e dönülüyor). "Geri al" bildirimi: `window.geriAl.goster(mesaj, fn)`. Ara durum: L&P açılış sayfası girişsiz açık ama misafir kaydırma akışı 6. adımda; o zamana kadar mod düğmeleri girişe yönlendiriyor. Dişli simgesi ayarlar sayfası tasarlanana kadar Profilim'e gidiyor.
+- **2026-09-28:** Adım 4–9 yapıldı (her biri ayrı commit). Sözlük ve Listem (`words/arama.py`, `words/listem.py`, `words/hazir_liste.py`, `words/sozluk_views.py`); Learn & Pass (misafir modu, oturum sonu soru, "geçen sefer" kartı); Egzersizler (yeni `egzersizler` uygulaması, `/egzersizler/`); Okumalar (kendi metinlerim, dokun-anlam baloncuğu, `GET /api/kelime/`); Yazma (JSON geri bildirim, sertlik, `yazilari_yeniden_dene`, diyaloglar). `quizzes` uygulaması kaldırıldı (`learnpass/0003`). Efe'nin 28 Eylül kararları ve açık sorular Bölüm 16'da.
