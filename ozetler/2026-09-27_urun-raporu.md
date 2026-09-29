@@ -940,7 +940,7 @@ Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
 - (h) **Takvim:** Önceki aylara oklarla geçilir.
 - (i) **Saat:** Kullanıcının yerel saati kullanılır.
 - (j) **Seri 0 iken:** Bildirim gitmez.
-- (k) **Dondurma uyarısı:** 23.50 metni onaylandı.
+- (k) **Dondurma uyarısı:** gece uyarısının metni onaylandı (saat 23.45, 18.32).
 
 **Metin geçerlilik kontrolü (Efe'nin kararı, ölçütler Efe onayladı):**
 Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak için gönderildiği anda şu kontrollerden geçmeli. Kontroller Gemini'siz, anında ve ücretsizdir:
