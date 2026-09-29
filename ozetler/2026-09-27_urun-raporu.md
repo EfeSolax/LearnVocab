@@ -822,7 +822,9 @@ Genel kural değişir: **giriş gerektiren öğeler misafire gösterilmez.** Ger
 - Kare "+" düğmesi kalkar: Türkçe sorgudaki kompakt kartlar, kapalı kart satırları, okuma baloncuğu dahil.
 - Misafirde düğme görünmez (18.3).
 
-### 18.6 "Daha basit" kuralı (Efe'nin kararı)
+### 18.6 "Daha basit" kuralı (Efe'nin kararı) — **YAPILDI (30 Eylül)**
+> `manage.py veri_tara` (kural: `words/veri_kurallari.py`). Oxford kalibrasyonundan sonra uygulandı. 15.918 ilişkiden **5.989'u silindi** (hedef B2+ ise 4.012; hedef kaynaktan alt seviyede değilse 1.977), 9.929'u kaldı. Kalanlarda anlamca tuhaf olanlar (accompaniment → add gibi) B aşamasında elle taranacak.
+
 Bir "daha basit" ilişkisi yalnızca **iki koşul birden** sağlanırsa kalır:
 1. Hedef kelimenin seviyesi **A1, A2 ya da B1**.
 2. Hedef, kaynaktan **kesinlikle daha alt** bir seviyede. Aynı seviye de yetmez.
@@ -832,7 +834,18 @@ Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
 - **Varsayım (Claude):** Kaynağın seviyesi ilişkinin bağlı olduğu **anlamın** CEFR'idir (anlamda yoksa kelimenin). Hedefin seviyesi hedef kelimenin CEFR'idir.
 - **Sıra:** Kural CEFR etiketlerine dayanıyor. Bu yüzden 18.16 (CEFR doğrulaması) **bittikten sonra** uygulanır. Etiketler sonradan değişirse silinen ilişkiler ancak yedekten ya da ham önbellekten (`ara-depo-tam`) geri gelir.
 
-### 18.7 Veritabanı taraması: yanlışlar silinir ya da düzeltilir (Efe'nin kararı)
+### 18.7 Veritabanı taraması: yanlışlar silinir ya da düzeltilir (Efe'nin kararı) — **A aşaması YAPILDI (30 Eylül)**
+> **Sonuçlar:**
+> - Kendine bağlanan ilişki, aynı yazımın başka türüne ilişki, yinelenen ilişki / anlam / örnek / eş dizim, boş anlam ya da tanım, anlamsız kelime, örneksiz anlam: **hiç yok (0)**.
+> - Kelimesi geçmeyen örnek cümle: 91.106 cümlede **0**. Bulunan 23 şüphelinin hepsi iyelik ekli ("owl's") çıktı.
+> - Eş/zıt çakışması: 1 (despairing → hopeless); zıt kaydı silindi.
+> - Hassas filtre: anlamlarda 0. Örneklerde 16 eşleşme var, hepsi akademik ya da nötr kullanım ("vulgar words", "sex of each respondent"); dokunulmadı.
+> - "papist" (aşağılayıcı, 12.2) silindi.
+> - Tek tek düzeltmeler: `words/duzeltmeler/d_2026_09_30.py`. Yedek: `~/LearnVocab-yedekler/db.sqlite3.yedek-20260930-veri-tara-oncesi`.
+> - Türkçe yazım denetimi (spylls) bu turda çalıştırılmadı; sözlük dosyası kurulu değil, B aşamasına bırakıldı.
+>
+> **Sıradaki:** B aşaması (Claude + Efe, elle). Öncelik: ilişkiler ve `learnvocab` etiketli seviyeler.
+
 **Yöntem (Efe'nin kararı, 29 Eylül):**
 1. Önce **A**: kural tabanlı kontrollerle mevcut veritabanı ayıklanır.
 2. Geri kalanı sonra Efe ile birlikte **B** ile taranır (Claude oturumlarda parça parça okur).
@@ -1169,9 +1182,13 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
     - Kalan 11.033 kelime `learnvocab` (bizim etiketimiz); C2'lerin hepsi bunların içinde.
   - Seviyeler değişince nadir tür yeniden hesaplandı: **146**.
   - Yedek: `~/LearnVocab-yedekler/db.sqlite3.yedek-20260930-oxford-oncesi`.
-- **Bulgu, sözlükteki boşluk:** Oxford'daki 611 (kelime, tür) çifti bizde yok. Bir kısmı yalnızca tür farkı (above bizde edat var, zarf yok), ama banana, bathroom, because, be gibi **temel A1 kelimeleri eksik**. **Karar bekliyor:** Nasıl eklenecek? (LLM harcaması yok kararı var.)
+- **Bulgu, sözlükteki boşluk:** Oxford'daki 611 (kelime, tür) çifti bizde yok. Bir kısmı yalnızca tür farkı (above bizde edat var, zarf yok), ama banana, bathroom, because, be gibi **temel A1 kelimeleri eksik**. **Efe'nin kararı (30 Eylül):** Eksik ~600 kelimeyi **Claude elle yazacak** (anlam, açıklama, örnekler; API yok), A1–A2'den başlayarak. **Şimdilik ertelendi**, veri adımından sonra yapılacak. Liste `manage.py oxford_cefr_yukle --dry-run` çıktısından yeniden üretilebilir.
 - **Cambridge EVP:** Ücretsiz ama yalnızca sitede arama var, indirilebilir liste yok. ~7.000 kelimeyi almak siteyi otomatik gezmeyi (scraping) gerektirir. Kullanım koşulları doğrulanamadığı için yapılmadı. C2 ve Oxford dışı kelimeler sıklık tutarsızlığı + B aşamasıyla denetlenecek.
-- Sırada: özel adlar, kural tabanlı tarama (18.7), "daha basit" kuralı (18.6).
+- **Özel adlar (30 Eylül):** Yalnızca özel ad olan kayıt bulunamadı; aile hattı bunları zaten almamış. İki tarama yapıldı: örnek cümlelerde hep büyük harfle geçen kelimeler, Türkçe anlamında "soyadı / adı / şehri" geçenler. Bulunanların hepsi gerçek kelime (milliyet, dil, "surname" vb.).
+- **Bulgu, büyük harf:** Arab, Arabic, Chinese, Caucasian, Guinean gibi hep büyük harfle yazılan kelimeler veritabanında küçük harfle duruyor.
+  - Düzeltmek için önce okuma ekranının kelime sorgusunun (`readings/kelime_sorgu.py`, `text__in`) büyük-küçük harfe duyarsız hâle getirilmesi gerekiyor. Yoksa "Arabic"e dokunan kullanıcı "sözlükte yok" görür.
+  - Ertelendi; 18.13 kod işleriyle birlikte yapılır.
+  - "oriental" (insanlar için kullanımı eskimiş ve rahatsız edici) de o sırada gözden geçirilecek.
 
 **Önceki not (tarihçe):**
 - **Öncelik yüksek.** Şunlar bu karara bağlı: misafir L&P dağılımı (18.3), "daha basit" silme kuralı (18.6), kademeli dizine alma (18.15), yeni kelime seçimi.
@@ -1475,3 +1492,5 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-09-30 (7):** Telaffuz: Kokoro ile bütün sözlüğün US/UK MP3'leri üretiliyor (araclar/telaffuz_uret.py); kart önce dosyayı çalıyor, yoksa tarayıcı sesi.
 - **2026-09-30 (8):** Veri adımı başladı: siklik / cefr_kaynak / nadir_tur alanları ve siklik_hesapla komutu (81 nadir tür, 904 kelime <2,3).
 - **2026-09-30 (9):** Oxford 3000/5000 kalibrasyonu: 5.076 kelime oxford kaynaklı, 3.217 seviye değişti; 611 Oxford kelimesi bizde yok (A1'ler dahil). Cambridge EVP indirilebilir değil, scraping yapılmadı.
+- **2026-09-30 (10):** Eksik ~600 Oxford kelimesini Claude elle ekleyecek (ertelendi).
+- **2026-09-30 (11):** Veri A aşaması: 'daha basit' kuralı uygulandı (5.989 silindi), veri yapısal olarak temiz, özel ad yok, papist ve 1 eş/zıt çakışması silindi. Büyük harf bulgusu ertelendi.
