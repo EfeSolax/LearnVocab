@@ -1154,6 +1154,15 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 
 9. **Sıklık ekranda hiç görünmez** (Efe onayladı). Kullanıcı yalnızca CEFR rozetini (B1 gibi) görür. Sıklık yalnızca arka planda kullanılır: L&P olasılığı, şüpheli etiket bulma, Google'dan gizleme.
 
+**Uygulama durumu (30 Eylül):**
+- `Word.siklik` (Zipf), `Word.cefr_kaynak` (varsayılan `learnvocab`) ve `Word.nadir_tur` alanları eklendi (`words/0023`).
+- `manage.py siklik_hesapla` çalıştırıldı:
+  - 16.109 kelime.
+  - Sıklık dağılımı: <2,3: 904 · 2,3–3,5: 6.464 · 3,5–5: 7.565 · ≥5: 1.176.
+  - **81 nadir tür** (second/dog/bed/tree/window fiil…).
+- Kod: `words/siklik.py` (`siklik_puani`, `lp_agirligi`, `nadir_tur_idleri`).
+- Sırada: Oxford 3000/5000 ile kalibrasyon, etiket düzeltmeleri, özel adlar, kural tabanlı tarama (18.7), "daha basit" kuralı (18.6).
+
 **Önceki not (tarihçe):**
 - **Öncelik yüksek.** Şunlar bu karara bağlı: misafir L&P dağılımı (18.3), "daha basit" silme kuralı (18.6), kademeli dizine alma (18.15), yeni kelime seçimi.
 - **Bulgular (29 Eylül, salt okunur analiz):**
@@ -1454,3 +1463,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-09-30 (5):** 18.32 barındırma sınırları: metinler diskte, EncounterLog 90 gün + özet, seri uyarısı 23.45. Maliyet ilkesi yazıldı.
 - **2026-09-30 (6):** Telaffuz denemesi: Kokoro sesleri iyi, bm_george kötü. Seçim: US af_heart, UK bf_emma.
 - **2026-09-30 (7):** Telaffuz: Kokoro ile bütün sözlüğün US/UK MP3'leri üretiliyor (araclar/telaffuz_uret.py); kart önce dosyayı çalıyor, yoksa tarayıcı sesi.
+- **2026-09-30 (8):** Veri adımı başladı: siklik / cefr_kaynak / nadir_tur alanları ve siklik_hesapla komutu (81 nadir tür, 904 kelime <2,3).

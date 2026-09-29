@@ -255,6 +255,28 @@ class Word(models.Model):
     frequency_rank = models.PositiveIntegerField(blank=True, null=True,
                                                  verbose_name="yaygınlık sırası")
 
+    # Sıklık (rapor 18.16): wordfreq Zipf puanı (≈ 1 çok seyrek … 7 çok sık).
+    # Ekranda HİÇ görünmez; yalnızca arka planda: L&P'de yeni kelimenin çıkma
+    # olasılığı, şüpheli CEFR etiketi bulma, Google'dan gizleme.
+    # Hesaplama: manage.py siklik_hesapla
+    siklik = models.FloatField(blank=True, null=True, verbose_name="sıklık (Zipf)")
+
+    # CEFR etiketinin kaynağı (rapor 18.16/8). Resmî kaynakla doğrulanmış
+    # etiketler bir daha incelenmez; sonraki denetimler yalnızca "learnvocab"
+    # (bizim etiketimiz) olanlara bakar.
+    CEFR_KAYNAK_CHOICES = [
+        ("oxford", "Oxford 3000/5000"),
+        ("cambridge", "Cambridge (EVP)"),
+        ("learnvocab", "LearnVocab (bizim etiketimiz)"),
+    ]
+    cefr_kaynak = models.CharField(max_length=12, choices=CEFR_KAYNAK_CHOICES,
+                                   default="learnvocab", verbose_name="seviye kaynağı")
+
+    # Nadir tür (rapor 18.16/7): kelimenin temel türü A1–B1 iken bu tür C1–C2
+    # (dog fiil, tree fiil). Sözlükte durur; L&P'ye yalnızca C1–C2 kullanıcılara
+    # girer, günün kelimesi olmaz. Hesaplama: manage.py siklik_hesapla
+    nadir_tur = models.BooleanField(default=False, verbose_name="nadir tür")
+
     isBaseWord = models.BooleanField(default=False)
 
     owner = models.ForeignKey(
