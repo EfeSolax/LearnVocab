@@ -51,3 +51,6 @@ rapor*.json
 
 # extract_words'ün ürettiği büyük ham rapor
 /listeler/pdf-kelimeler-rapor.json
+
+# pywebpush test artığı (şifreli Web Push yükü)
+encrypted.data

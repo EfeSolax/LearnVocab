@@ -18,9 +18,6 @@ Her bölüm:
                    (değer: authgate.GIRIS_NEDENLERI anahtarı). Bölüm yine de
                    menüde görünür (rapor 2.3: giriş gerektiren düğmeler
                    gizlenmez).
-
-Eski kelime sayfaları (Kelimelerim, Tüm Kelimeler, kelime detayı…) menüden
-ulaşılmıyor ama adresleri duruyor; açılırlarsa Sözlük bölümü aktif görünür.
 """
 
 from django.urls import reverse
@@ -31,12 +28,7 @@ NAV_SECTIONS = (
         "key": "sozluk",
         "label": "Sözlük",
         "url_name": "sozluk",
-        "matches": (
-            "sozluk",
-            # Eski kelime sayfaları: menüde yoklar ama Sözlük'e aitler.
-            "profile_words", "all_words", "word_detail", "expression_detail",
-            "add_word", "edit_word", "ai_add_words_page",
-        ),
+        "matches": ("sozluk",),
     },
     {
         "key": "calismalar",

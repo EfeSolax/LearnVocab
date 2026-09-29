@@ -30,6 +30,9 @@
 15. Uygulama planı
 16. Sonra konuşulacaklar ve varsayımlar
 17. Vazgeçilen fikirler
+18. Yapılacaklar (29 Eylül 2026 kararları)
+
+> **29 Eylül notu:** Bölüm 18'deki kararlar uygulanana kadar önceki bölümlerde onlarla çelişen yerler **"→ 18.x"** notuyla işaretlidir. Çelişki olursa **Bölüm 18 geçerlidir.**
 
 ---
 
@@ -75,6 +78,8 @@ Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma
 - **Masaüstü:** aynı menü üste taşınır. Geri kalan her şey mobil ile aynıdır: aynı kartlar, aynı sıra, aynı bileşenler. Masaüstü için ayrı düzen tasarlanmaz, içerik ortada makul bir genişlikte durur.
 
 ### 2.3 Giriş yapmamış ziyaretçi
+> **→ 18.3:** Misafir kuralları değişiyor (Sözlük'te sekme ve "Listeme ekle" yok, Çalışmalar'da yalnızca L&P, Yazma'da yalnızca diyalog; giriş gerektiren öğeler gizlenip yerine tek bir davet bağlantısı konur).
+
 | Bölüm | Giriş yapmamış ziyaretçi ne görür |
 |---|---|
 | Sözlük | Yalnızca **Keşfet**: arama, kartlar, günün kelimesi/ifadesi, hazır listeler. **Listem sekmesi yoktur.** |
@@ -89,6 +94,8 @@ Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma
 ---
 
 ## 3. Ana Sayfa (giriş yapmış kullanıcı)
+> **→ 18.8:** Günün kelimesi ve günün ifadesi 29 Eylül'de yeniden kararlaştırıldı. **→ 18.9:** Seri 29 Eylül'de kararlaştırıldı; kutu şu an yalnızca yer tutucu.
+
 
 - **Seri (streak):** yeri ayrılır. Nasıl sayılacağı **sonra konuşulacak** (bkz. Bölüm 16).
 - **Listemdeki kelime sayısı:** tek sayısal gösterge budur. "Öğrenilen kelime" kavramı yoktur (bkz. Bölüm 17).
@@ -150,6 +157,8 @@ Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma
 - **Paylaşılabilir adres:** Arama sonucu `/sozluk?q=aim` gibi bir adreste durur. Hem paylaşılabilir, hem Google tarafından görülebilir (SEO).
 
 ### 4.3 Kelime kartı (en önemli bileşen)
+> **→ 18.4:** Telaffuz düğmeleri (Amerikan / İngiliz) eklenecek. **→ 18.5:** Liste düğmesi her yerde aynı "Listeme ekle" olacak. **→ 18.6:** "Daha basit" satırına seviye kuralı gelecek. **→ 18.15:** Kartın adresi SEO için yeniden tasarlanacak.
+
 Aynı bileşen **her yerde** kullanılır: Keşfet, Listem, günün kelimesi. **Hiçbir kelimenin ayrı bir sayfası yoktur.** Kart bulunduğu yerde açılır ve kapanır.
 
 ```
@@ -236,6 +245,8 @@ Aynı bileşen **her yerde** kullanılır: Keşfet, Listem, günün kelimesi. **
 Üstte iki sekme: **Learn & Pass** (varsayılan açılan) | **Egzersizler**.
 
 ### 6.1 Learn & Pass (L&P): ürünün kalbi
+> **→ 18.1:** Kart akışı değişiyor ("Düşündüğün bu muydu?" kaydırmayla cevaplanacak). **→ 18.2:** Aralıklı tekrar şimdi kararlaştırılacak. **→ 18.10:** L&P ekranı dikkat dağıtıcılardan arındırılarak yeniden tasarlanacak. **→ 18.11:** L&P'nin ne olduğunu anlatan açıklama kutusu eklenecek.
+
 **Neden değerli:**
 - Hızlıdır ve her an bırakılabilir.
 - Hatırlatır, yeni kelime keşfettirir.
@@ -436,7 +447,7 @@ Açılışta **iki büyük seçenek** vardır:
 - Sayfa açılır açılmaz **sorulmaz**. Anlamlı bir anda sorulur; örneğin L&P bitince: "Yarın hatırlatayım mı?"
 - Reddedilen izin bir daha sorulamaz, bu yüzden zamanlama önemlidir.
 
-**Kullanım:**
+**Kullanım:** (→ 18.9: günde iki zaman, 12.00 · 23.50 yerel saatle; gün tamamlandıysa ya da seri 0 ise gitmez)
 - Günlük L&P hatırlatması.
 - "Yazın değerlendirildi" bildirimi.
 - Bildirimler **az ve anlamlı** tutulur.
@@ -465,7 +476,7 @@ Açılışta **iki büyük seçenek** vardır:
 3. **Uydurma kelime kullanılmaz** (seviye testi dahil).
 4. **Cesaretlendirici dil.** Hiçbir ekran cezalandırmaz, hata mesajları öğretir.
 5. **Ayrı kelime sayfası yoktur.** Kelime her zaman kart bileşeni olarak, bulunduğu yerde açılır.
-6. **Giriş gerektiren düğmeler gizlenmez.** Basılınca girişe yönlendirir.
+6. **Giriş gerektiren düğmeler gizlenmez.** Basılınca girişe yönlendirir. **→ 18.3:** Bu kural değişiyor: misafire giriş gerektiren öğeler gösterilmez, bölümde tek bir giriş davet bağlantısı olur.
 7. **Onay penceresi yerine "Geri al" bildirimi** kullanılır.
 8. **Yeni veri üretimi** önce önbelleğe (cache) yazılır, `--dry-run` ile kontrol edilir, sonra gerçek yazım yapılır. Her partiden sonra çıktı gözden geçirilir.
 
@@ -473,11 +484,13 @@ Açılışta **iki büyük seçenek** vardır:
 
 ## 13. Veri
 
-### 13.1 Mevcut durum (27 Eylül 2026)
+> **→ 18.7:** Bütün veritabanı taranıp yanlış alanlar silinecek ya da düzeltilecek. **→ 18.16:** CEFR ile sıklık (wordfreq) ilişkisi kararlaştırılacak. **→ 18.14:** Boş havuzlara 5'er örnek yazılacak.
+
+### 13.1 Mevcut durum (27 Eylül 2026; kelime ve aile sayısı 29 Eylül)
 | Öğe | Sayı |
 |---|---|
-| Kelime (`Word`, her tür ayrı kayıt) | 16.189 |
-| Kelime ailesi | 4.924 |
+| Kelime (`Word`, her tür ayrı kayıt) | 16.109 (29 Eylül: yalnızca sayı anlamı taşıyan 80 kayıt silindi, bkz. 18.16) |
+| Kelime ailesi | 4.897 (29 Eylül: boş kalan 27 aile silindi) |
 | Anlam (`Meaning`) | 19.828 (çok anlamlı kelime: 3.288) |
 | Örnek cümle | 91.480 |
 | Eş dizim (`Collocation`) | 35.687 (fiil+isim 12.498 · sıfat+isim 13.104 · hafif fiilli ~650) |
@@ -530,7 +543,8 @@ Açılışta **iki büyük seçenek** vardır:
 ```
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$HOME timeout 170 $HOME/lvenv/bin/python manage.py test --settings=testayar --parallel 4
 ```
-776 test geçiyor. Her değişiklikten sonra çalıştırılır.
+Bu komut Claude'un VM'i içindir (`testayar` ve `$HOME/lvenv` yalnızca orada var). Efe'nin Mac'inde: `.venv/bin/python manage.py test --parallel 4 --noinput`.
+829 test geçiyor (29 Eylül; silinen eski sayfaların testleri kaldırıldı). Her değişiklikten sonra çalıştırılır.
 
 **Betik çalıştırma:** `yazayar` ile çalışırken `PYTHONPATH=$HOME:.` gerekir.
 
@@ -564,7 +578,7 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$HOME timeout 170 $HOME/lvenv/bin/python ma
 | `words`, `users`, `userprofile`, `usersettings`, `learnpass`, `readings`, `texts` | Aktif |
 | `quizzes` | **Tamamen silinecek** (Efe'nin kararı). Önce başka modellerden gelen bağımlılıklar ve FK'ler kontrol edilir, tablolar migration ile kaldırılır. |
 | `comments`, `friends` | Arayüzden kaldırıldı, **kodları kalıyor**. |
-| Diğer eski arayüz parçaları (Tüm Kelimeler sayfası, filtre paneli, eski egzersiz sayfaları) | **Arayüzden kaldırılır**, kod gerekmedikçe silinmez. |
+| Diğer eski arayüz parçaları (Tüm Kelimeler, kelime/ifade detayı, Kelimelerim, elle kelime ekleme, kelime klasörleri, yapay zekâ ile kelime ekleme) | **Kodlarıyla birlikte silindi** (29 Eylül, 18.13). |
 
 ---
 
@@ -608,9 +622,11 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 
 ## 16. Sonra konuşulacaklar ve varsayımlar
 
+> **29 Eylül:** Karar bekleyen konular Bölüm 18'de; tam liste 18.20'nin sonunda. En yakın konuşmalar: **CEFR (18.16)**, **seri (18.9)** ve **günün kelimesi/ifadesi (18.8)**.
+
 **Efe ile konuşulmadan uygulanmayacaklar:**
-- **Tekrar algoritması (L&P):** "biliyorum" ve "bilmiyorum" denen kelimeler ne zaman tekrar gelir, birikme nasıl yönetilir.
-- **Seri (streak):** nasıl sayılır, kaçırılan gün affı. Efe'nin fikirleri var.
+- **Tekrar algoritması (L&P):** (→ 18.2: 29 Eylül'de karar verildi: Efe'nin 1-3-7-21 kuralı) "biliyorum" ve "bilmiyorum" denen kelimeler ne zaman tekrar gelir, birikme nasıl yönetilir.
+- **Seri (streak):** → 18.9'da 29 Eylül'de kararlaştırıldı.
 - **Ayarlar sayfası:** raporda ayarlara yapılan bütün göndermeler (oran kaydırıcısı, varsayılan soru sayısı, yazma sertliği, seviye, bildirimler, hesap) geçerli ama sayfa henüz tasarlanmadı. Mevcut kullanıcı verisinin taşınması da bu sırada ele alınacak.
 - **Kapibara:** çizim ve animasyon Claude tarafından yapılacak, Efe ile birlikte. Şimdilik boş yer tutucu.
 - **Hakkında / yardım içeriği:** her şey bittikten sonra.
@@ -652,7 +668,7 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 | Seviye testinde uydurma kelime | Fark edilirse güven kaybı. |
 | Egzersizlerde her seferinde yeni/eski oranı sormak | Ayarlardaki kaydırıcıya taşındı. |
 | Egzersizlerde gramer kuralı anlatmak ya da tür etiketi göstermek | Amaç hissettirmek. Etiket yalnızca Sözlük'te ve Türkçe. |
-| Her kelimeye ayrı sayfa, "Tüm Kelimeler" sayfası, filtre paneli | Kart bileşeni yerinde açılır. Sayfa kalabalığı gider. |
+| Her kelimeye ayrı sayfa, "Tüm Kelimeler" sayfası, filtre paneli | Kart bileşeni yerinde açılır. Sayfa kalabalığı gider. **Not (29 Eylül, 18.15):** Bu, ayrı bir sayfa *tasarımından* vazgeçmektir. Her kelimenin SEO için kalıcı bir **adresi** olur (`/sozluk/bank/`); o adreste aynı Sözlük ekranı ve aynı kart görünür. |
 | Eş, zıt ve basit anlamlıları kelime düzeyinde göstermek | Yanlış eşleşme (bank → shore). Anlama özel gösterilir. |
 | Okurken yapay zekâyla bağlamdan tek anlam seçmek | Maliyet ve gecikme. Tüm anlamlar numaralı gösterilir. |
 | Hazır listeyi toplu "hepsini ekle" | Kullanıcıyı boğar. Yerine "Bu listeyle çalış" geldi. |
@@ -663,9 +679,611 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 
 ---
 
+## 18. Yapılacaklar (29 Eylül 2026 kararları)
+
+Kaynak: Claude'un 29 Eylül eleştirisi ve Efe'nin cevabı. **Henüz hiçbiri uygulanmadı.**
+- **"Efe'nin kararı"** yazan maddeler kesindir.
+- **"Karar bekliyor"** yazan maddeler Efe ile konuşulmadan uygulanmaz. Seçenekler ve Claude'un önerisi maddenin altında durur.
+
+### 18.1 L&P kart akışı: "Düşündüğün bu muydu?" kaydırmayla cevaplanır (Efe'nin kararı)
+**Sorun:** Şu an "Biliyorum" denince anlam ve "Düşündüğün bu muydu?" sorusu çıkıyor, ama tek düğme "Sonraki kelime". `WordEncounter.MISJUDGED` modelde var, arayüz hiç göndermiyor (`learnPass.html`, `verdict` yalnızca `known`/`unknown`). L&P'nin "biliyorum sanıyordum / gerçekten biliyorum" vaadi toplanmıyor.
+
+**Yeni akış:**
+1. Kart kelimeyi gösterir. Sağa kaydır = **biliyorum**, sola kaydır = **bilmiyorum**.
+2. **"Biliyorum" dediyse:** anlam ve "Düşündüğün bu muydu?" açılır. Bu ekranda ikinci kaydırma cevaptır:
+   - **Sağa kaydır = "Evet, eminim"** → `known`
+   - **Sola kaydır = "Hayır, yanılmışım"** → `misjudged`
+   - Ekranda iki yönün ne anlama geldiği yazar.
+3. **"Bilmiyorum" dediyse:** yalnızca anlam gösterilir, altında **"Devam etmek için kaydır"** yazar. Hangi yöne kaydırıldığı önemli değil → `unknown`.
+4. Kayıt ikinci adımda yapılır. Karar `known` / `misjudged` / `unknown` olarak gönderilir; misafirde hiçbir şey kaydedilmez.
+- **Varsayım (Claude):** Masaüstünde kaydırma zor olduğu için düğmeler ve ok tuşları da aynı iki seçeneği verir ("Evet, eminim" / "Hayır, yanılmışım"). Yeni tasarımda (18.10) netleşir.
+
+### 18.2 Tekrar kuralı (Efe'nin kararı, 29 Eylül: FSRS yerine Efe'nin kuralı)
+**Sorun:**
+- Tekrar algoritması yok.
+- Listeye eklenmeyen bilinmeyen yeni kelime bir daha hiç gelmiyor.
+- Rapor "öğrenildi kavramı yok" diyor (Bölüm 17), ama kodda `WordEncounter.is_learned` ve `Declaration.MASTERED` duruyor ve seçimi etkiliyor.
+
+**Önce FSRS kabul edilmişti; aynı gün Efe'nin aşağıdaki kuralı yerine geçti. FSRS kullanılmaz.**
+
+**1. Toplanan bilgi.** L&P'deki kararlar (`unknown`, `misjudged`, `known`) ve egzersizdeki doğru/yanlış cevaplar kullanıcı+kelime başına tutulur:
+- **Son karşılaşma zamanı** (dakika hassasiyetinde). L&P ve egzersizler **aynı** zamanı paylaşır.
+- Bilmeme / yanılma / yanlış sayıları ve bunlardan **zorlanma oranı**.
+- Bilinen kelimelerde **tekrar basamağı** (aşağıda 4).
+
+**2. Kimler aday olur** (L&P'de ve egzersizlerde):
+- **Zorlandığı kelimeler:** son sonucu "bilmiyorum", "yanılmışım" ya da yanlış cevap olanlar. Bunlar her zaman adaydır.
+- **Bildiği kelimeler:** yalnızca tekrar aralığı dolmuşsa adaydır.
+
+**3. Sıralama.**
+1. **En son karşısına çıkma zamanı en eski olan önce.**
+2. Zaman eşitse **zorlanma oranı yüksek olan** önce.
+3. Hâlâ eşitse **rastgele.**
+
+> **Örnek (Efe):** A–Z kelimeleri 12.40'taki bir egzersizde soruldu. a–z kelimeleri listede, en son aynı gün 12.10'da görüldü. Yeni bir L&P ya da egzersizde **önce a–z** gelir.
+
+Böylece yeni bir tur açıldığında, sistemde başka aday varsa **az önce çıkan kelimeler değil, çıkmayanlar** gelir.
+
+**4. Bilinen kelimelerde 1-3-7-21 kuralı.**
+- Kelime bilindikçe bir sonraki tekrarı giderek uzayan aralıkla gelir: **1 → 3 → 7 → 21.**
+- Her doğru bilişte bir basamak ilerlenir.
+
+**5. Sıfırlama.**
+- Kelime bu zincirin herhangi bir basamağında bilinemezse ("bilmiyorum", "yanılmışım" ya da yanlış cevap), **bütün ilerleme silinir.**
+- Kelime hiç bilinmiyormuş gibi zorlandıkları arasına döner (basamak 0).
+
+**6. Önceki kararlardan geçerli kalanlar:**
+- Listem'deki her kelime ve L&P'de `unknown` / `misjudged` denen **her kelime** (listede olmasa bile) takip edilir.
+- Yeni bir kelimeye ilk seferde "Evet, eminim" denirse kelime takibe girmez, bilinen sayılır.
+- **Egzersizler:**
+  - Yanlış cevap her zaman "bilemedi" sayılır (sıfırlar).
+  - Doğru cevap basamağı yalnızca kelimenin aralığı dolmuşsa ilerletir.
+- **Oturum:**
+  - 20 kart. Mevcut oran kuralı korunur: varsayılan %70 tekrar / %30 yeni.
+  - Günde en çok 15 yeni kelime.
+- **"Zorlandıklarım"** filtresi = son sonucu "bilemedi" olan kelimeler.
+- **`is_learned` / `MASTERED` kaldırılır.**
+
+**7. Vazgeçilenler:**
+- **FSRS.**
+- **Mevcut listelerin ilk tekrarlarını 2–4 haftaya yaymak.** Kullanıcı tekrar sayısını görmüyor; sıralama zaten en eskiyi öne alıyor.
+
+**Efe'nin cevapları (29 Eylül):**
+- (b) **Aralığın başlangıcı:** Kelimenin çalışmada (L&P ya da egzersiz) **en son görülüp bilindiği andan** itibaren sayılır.
+- (c) **21'den sonra:** Kelime **21 günde bir** gelmeye devam eder.
+- (e) **Sıfırlama:** Sayaçlar **silinmez**, bilgi korunur. Yalnızca basamak başa döner.
+
+- (a) **Birim: 1 gün** (Efe'nin kararı, 29 Eylül). Aralıklar 1 · 3 · 7 · 21 gündür.
+  - Birim ve basamaklar tek bir ayar sabitinde tutulur.
+  - Birkaç hafta sonra `EncounterLog` ile basamak başına unutma oranı ölçülüp gerekirse ayarlanır.
+- (d) **Listede olup hiç görülmemiş kelimeler EN BÜYÜK önceliktir** (Efe'nin kararı). Bütün sıralamanın önüne geçer, sonra 3'teki sıralama işler.
+
+### 18.3 Misafir (giriş yapmamış) kuralları (Efe'nin kararı)
+Genel kural değişir: **giriş gerektiren öğeler misafire gösterilmez.** Gerekli yerlerde bölümün içinde tek bir giriş davet bağlantısı olur. Bölüm 2.3 ve 12.6 bu maddeye göre güncellenecek.
+
+- **Sözlük:**
+  - Keşfet | Listem sekme çubuğu misafirde **tamamen kalkar**, sayfa doğrudan Keşfet olur.
+  - Keşfet aynen çalışır. Tek fark: **"Listeme ekle" düğmesi görünmez.**
+  - Sayfanın **en üstünde** bir giriş davet mesajı durur ("Kelimelerini kaydetmek için giriş yap" gibi).
+- **Çalışmalar:**
+  - Misafirde yalnızca **Learn & Pass** vardır. Egzersizler sekmesi ve üstteki sekme çubuğu **kalkar**.
+  - **Seviye seçici yoktur.**
+  - Kelime dağılımı sabittir: **%60 B1 · %20 B2 · %20 C1.** Mesaj şu olmalı: "bir şeyler biliyorsun, bir şeyler de öğreneceksin".
+  - Bu dağılım ancak CEFR etiketleri doğrulandıktan (18.16) sonra anlamlı olur.
+  - Sayfada bir bağlantı durur: **"Kişisel egzersiz çözebilmek için giriş yap"**.
+- **Ana Sayfa:** Görünür (değişiklik yok).
+- **Okumalar:** Misafire açık (değişiklik yok).
+- **Yazma:**
+  - Menüde misafire açılır. **Serbest metin yazma misafirde yoktur, yalnızca diyalog egzersizi vardır.**
+  - Şu anlamda bir davet yazısı durur: "Metin yazıp yapay zekâ ile değerlendirilmesini istiyorsan hemen şimdi giriş yapabilirsin".
+  - Menüdeki `giris_gerekli` işareti Yazma'dan kalkar.
+
+- **Misafirin diyalogları:** L&P ile aynı dağılım (%60 B1 · %20 B2 · %20 C1). Giriş yapmış kullanıcıda hedef kelime yine listeden gelir (9.2).
+
+### 18.4 Telaffuz: Amerikan ve İngiliz düğmeleri (Efe'nin kararı)
+- Kelime kartına (başlıkta, kelimenin yanında) **iki ses düğmesi:** 🇺🇸 Amerikan · 🇬🇧 İngiliz.
+- **Altyapı:** Tarayıcının `speechSynthesis` özelliği (`en-US` ve `en-GB` sesleri). Ücretsiz, API yok, dosya saklanmaz.
+- **Sınır:** Ses kalitesi ve varlığı cihaza bağlı.
+  - iPhone, Mac, Android Chrome ve Windows'ta genelde iki aksan da var.
+  - Bazı cihazlarda (özellikle Linux, bazı eski Android'ler) İngiliz sesi olmayabilir. O aksanın sesi yoksa düğmesi gizlenir; hiç İngilizce ses yoksa ikisi de gizlenir.
+- Daha sonra düşünülebilir: IPA gösterimi (açık veri, ör. CMUdict ABD telaffuzu). Bu ayrı bir karardır.
+
+### 18.5 Liste düğmesi her yerde aynı (Efe'nin kararı)
+- Giriş yapmış kullanıcıda kelimenin listeye eklendiği her yerde **aynı "Listeme ekle +" düğmesi** kullanılır. Listedeyse "Listemde ✓" yazar.
+- Kare "+" düğmesi kalkar: Türkçe sorgudaki kompakt kartlar, kapalı kart satırları, okuma baloncuğu dahil.
+- Misafirde düğme görünmez (18.3).
+
+### 18.6 "Daha basit" kuralı (Efe'nin kararı)
+Bir "daha basit" ilişkisi yalnızca **iki koşul birden** sağlanırsa kalır:
+1. Hedef kelimenin seviyesi **A1, A2 ya da B1**.
+2. Hedef, kaynaktan **kesinlikle daha alt** bir seviyede. Aynı seviye de yetmez.
+
+Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
+- Sonuç: A1 kelimelerin "daha basit" satırı hiç olmaz. `go (A1) → leave (A2)` silinir.
+- **Varsayım (Claude):** Kaynağın seviyesi ilişkinin bağlı olduğu **anlamın** CEFR'idir (anlamda yoksa kelimenin). Hedefin seviyesi hedef kelimenin CEFR'idir.
+- **Sıra:** Kural CEFR etiketlerine dayanıyor. Bu yüzden 18.16 (CEFR doğrulaması) **bittikten sonra** uygulanır. Etiketler sonradan değişirse silinen ilişkiler ancak yedekten ya da ham önbellekten (`ara-depo-tam`) geri gelir.
+
+### 18.7 Veritabanı taraması: yanlışlar silinir ya da düzeltilir (Efe'nin kararı)
+**Yöntem (Efe'nin kararı, 29 Eylül):**
+1. Önce **A**: kural tabanlı kontrollerle mevcut veritabanı ayıklanır.
+2. Geri kalanı sonra Efe ile birlikte **B** ile taranır (Claude oturumlarda parça parça okur).
+3. **C (LLM API) yapılmayacak.** Harcama yok.
+
+- **Kapsam:** Kelime, anlam, örnek cümle, eş dizim, ilişki (eş/zıt/basit), aile ve ifade verisi.
+- **Ne yapılacak:** Yanlış olan alan ya da kayıt silinir. Doğrusu biliniyorsa düzeltilir.
+- **Kurallar:**
+  - Önce `db.sqlite3.yedek-…` yedeği alınır; yeri 18.13'e göre proje dışıdır.
+  - Çalışma `yazayar` kopyasında yapılır.
+  - Her partiden sonra özet rapor çıkarılır.
+- **Kural tabanlı ve ücretsiz kontroller:**
+  - 18.6 kuralı.
+  - Kendisine bağlanan ilişkiler.
+  - Aynı kelimenin hem eş hem zıt anlamlısı olması.
+  - Örnek cümlede kelimenin (ya da çekimli biçiminin) geçmemesi.
+  - Boş ya da yinelenen alanlar.
+  - Türkçe yazım denetimi (`spylls`).
+  - Hassas filtreler.
+  - Sıklığı çok düşük aile üyeleri (ör. `goer`).
+- **Anlam hataları kuralla yakalanamaz** (bank → Zıt: borrower gibi). Bunlar B aşamasında elle taranır. Öncelik: ilişkiler ve seviye etiketleri (~56 bin ilişki, ~20 bin anlam, ~91 bin cümle).
+- 18.6'daki "daha basit" silme kuralı, CEFR doğrulamasından (18.16) sonra uygulanır.
+
+### 18.8 Günün kelimesi ve günün ifadesi (Efe'nin kararı, 29 Eylül)
+**Nerede:**
+- İki **ayrı** kart: Günün Kelimesi ve Günün İfadesi.
+- İkisi de **Ana Sayfa'da** ve **Sözlük › Keşfet'in boş hâlinde** durur.
+- Ana Sayfa'da "Bugünün çalışmasına başla" düğmesinin altında, ikinci planda yer alırlar.
+
+**Günün kelimesi nasıl seçilir:**
+- Kullanıcının seviyesinde olur. Misafire B1 gelir.
+- Kullanıcı onu henüz görmemiş olmalıdır: listesinde olmamalı, L&P'de ya da egzersizde karşısına çıkmamış olmalı.
+- Sıklık ağırlığıyla seçilir (18.16). "heath" ya da "humbler" gibi kelimeler gelmez.
+- Yalnızca Google'a açık (`noindex` olmayan) kelimelerden seçilir.
+- Verisi zengin olmalı: en az 2 örnek cümle ve eş dizim. Seviyesi resmî kaynakla doğrulanmış (`cefr_kaynak` = oxford/cambridge) kelimeler tercih edilir.
+- Nadir türler gelmez (18.16/7).
+- **Misafirlere** o gün herkese aynı kelime gelir (paylaşılabilir, önbelleğe alınabilir). **Giriş yapmış kullanıcıya** kişiye özel kelime gelir.
+
+**Günün kelimesi kartı:**
+- Kelime, seviye rozeti, telaffuz düğmeleri (18.4), tek anlam ve bir örnek cümle.
+- Giriş yapmış kullanıcı için "Listeme ekle" düğmesi (18.5).
+- **"Biliyordum / Bilmiyordum" düğmeleri.** Cevap L&P verisine yazılır ve son karşılaşma zamanını günceller:
+  - "Bilmiyordum" denirse kelime tekrar takibine girer (18.2).
+  - "Biliyordum" denirse bilinen sayılır (yeni kelimede ilk "eminim" kuralı).
+- Karta dokununca Sözlük'teki tam kart açılır (`/sozluk/<kelime>/`).
+- **Kullanıcı kelimeyi listesine ekler ya da "Biliyordum" derse, o gün o kelime bir daha gösterilmez.**
+
+**Günün ifadesi:**
+- Claude, 295 ifadeyi **"yaygın bilinen"** ve **"az bilinen"** olarak işaretler (elle, API yok). Modele bir alan eklenir.
+- **Herkese aynı ifade** gösterilir (misafir ve giriş yapmış kullanıcı): az bilinenlerden, sırası bir kez rastgele karıştırılmış döngüyle. Az bilinen ifade sayısı N ise döngü N günde bir başa döner.
+- Kart: ifade, seviye, Türkçe anlamı, bir örnek. Giriş yapmış kullanıcı için "Listeme ekle".
+- Listeye eklenirse o gün bir daha gösterilmez.
+- Daha sonra ifade havuzu büyütülecek (Efe).
+- **SEO:**
+  - İfadelerin de kalıcı adresi olur (`/sozluk/<ifade>/`, 18.15). Kart bu adrese bağlanır.
+  - Aynı kurallar geçerli: yalnızca anlamı ve en az 2 örneği olan ifade sayfaları Google'a açılır.
+  - "X ne demek" aramaları ifadeler için de gerçek aramalardır. İçeriği dolu sayfalar ceza riski taşımaz.
+
+**Bildirim:** 12.00 bildiriminde günün kelimesi yazar (18.9). Örnek: "Günün kelimesi: resilient · Bugünün çalışması seni bekliyor."
+
+**Efe'nin kararları (29 Eylül):**
+- (a) **Kart gizlenince:** Kelime kartının yerinde **"Bugünün kelimesi tamam ✓, yarın yenisi gelecek."** mesajı görünür. Yerine başka kelime gelmez. İfade kartı da listeye eklenince aynı biçimde kapanır ("Bugünün ifadesi tamam ✓").
+- (b) **İfadelerde "Biliyordum / Bilmiyordum" yoktur** ve ifadeler için bilme kaydı tutulmaz. İfade kartında yalnızca "Listeme ekle" vardır.
+
+### 18.9 Seri (streak) (Efe'nin kararı, 29 Eylül)
+**Seriyi ne devam ettirir** (bir gün "tamamlandı" sayılır):
+- **10 L&P kartı**, **ya da**
+- **10 egzersiz sorusu**, **ya da**
+- **1 metin yazmak** (Yazma), **ya da**
+- **1 diyalog yapmak.**
+- **Başka hiçbir şey seriyi devam ettirmez:** okuma, kelimeye dokunma, listeye ekleme, günün kelimesi sayılmaz.
+- Misafirde seri yoktur.
+
+**Günün sınırı:**
+- Gün **tam 00.00'da** biter, **kullanıcının yerel saatiyle.** Geç saat esnekliği yoktur; bu ayrı bir heyecan katıyor (Efe).
+- Yerel saat için kullanıcının saat dilimi tarayıcıdan alınıp kaydedilir.
+
+**Çalışma ekranındaki alev (L&P ve egzersizler):**
+- Üstteki ilerleme çubuğu normalde **sönük gri** durur. 10. soru hizasında **gri bir alev simgesi** vardır.
+- O gün 10 soru sınırına ulaşılınca alev **animasyonla, yanıyormuş gibi tatlı bir şekilde** **sarı-turuncu** tonlara boyanır. Çubuk da bu renge döner.
+- L&P ve egzersiz **ayrı sayılır, toplanmaz**; ikisinden **biri** 10'a ulaşınca gün tamamlanır. Çubuk o ekranın kendi sayısını gösterir, ama gün zaten tamamlandıysa alev baştan yanık görünür.
+
+**Dondurma hakkı:**
+- Herkes **1 hakla** başlar.
+- **Art arda 5 gün** tamamlanınca 1 hak kazanılır.
+- En fazla **3 hak** birikir.
+- Kaçırılan gün, hak varsa **otomatik** dondurulur ve seri bozulmaz. Birden çok gün kaçırılırsa her güne bir hak harcanır. Haklar biterse seri bozulur.
+- **Dondurulan gün seri sayısını artırmaz.** Seri sayısı yalnızca tamamlanan günleri sayar.
+- **Hak kazanma:** Ardışık tamamlanan gün sayacı tutulur. Sayaç 5 olunca +1 hak verilir ve sayaç sıfırlanır. Dondurulan (atlanan) gün sayacı sıfırlar.
+  - Efe'nin örneği: 1–6. günler yapıldı → 5. günde +1. 7. gün atlandı (donduruldu), sayaç sıfır. 8. günden itibaren yeniden sayılır.
+  - 8, 9, 10, 11 ve 12. günler yapılınca **12. gün** +1 hak verilir (Efe onayladı).
+
+**Seri bozulunca:** "Yeni seri başlatmak için hemen alıştırma yap" gibi cesaretlendirici bir dil kullanılır. "Serini kaybettin" denmez.
+
+**Ana Sayfa'daki seri:**
+- Seri kutusunda gün sayısı ve yanında **kapibara simgesi** durur. Kapibara çizimi gelene kadar geçici bir simge kullanılır (Bölüm 16).
+- **Seriye dokununca** küçük bir **açılır kutu** çıkar. Diğer içeriğin **üzerine biner**; aşağı doğru genişleyen bir alan **değildir**. Kutuda:
+  - **Mevcut seri** (gün sayısı)
+  - **Dondurma hakkı** sayısı (bu bilgi yalnızca burada görünür)
+  - **En uzun seri** rekoru
+  - **Takvim:** Günlerin renkleri
+    - **Tamamlanan:** sarı-turuncu
+    - **Dondurulan:** mavi
+    - **Diğerleri:** gri
+
+**Bildirimler** (Bölüm 10'daki "günde tek, 19:00" kararının yerine geçer):
+- **Günde iki zaman: 12.00 ve 23.50** (kullanıcının yerel saatiyle). 23.50 bildirimi seriyi kaçırma uyarısıdır.
+- **Kullanıcı o günü tamamladıysa sonraki bildirim gitmez.**
+- **Serisi 0 olan kullanıcıya bildirim gitmez.**
+- 12.00 bildiriminde günün kelimesi yer alır (18.8).
+- Dondurma hakkı varsa 23.50 bildirimi şöyle der: **"Bugün çalışmazsan 1 dondurma hakkın kullanılacak."**
+- Dil cesaretlendiricidir.
+
+**Efe'nin cevapları (29 Eylül):**
+- (a) **Sayım:** L&P ve egzersiz toplanmaz; biri tek başına 10 olmalı.
+- (b) **L&P:** Kaydırılan her kelime 1 sayılır, bilinen ya da bilinmeyen fark etmez. **Egzersiz:** Cevaplanan her soru 1 sayılır; "yanlışları tekrar çöz" gerekmez. Claude'un varsayımı: tekrar çözülen sorular sayıma girmez.
+- (c) **Metin:** Gönderildiği an sayılır, **ama yalnızca geçerli bir metinse** (aşağıya bak).
+- (d) **Diyalog:** Cevaplanan 1 diyalog yeter; doğru ya da yanlış önemli değil.
+- (e)–(g) Yukarıdaki dondurma kurallarına yazıldı.
+- (h) **Takvim:** Önceki aylara oklarla geçilir.
+- (i) **Saat:** Kullanıcının yerel saati kullanılır.
+- (j) **Seri 0 iken:** Bildirim gitmez.
+- (k) **Dondurma uyarısı:** 23.50 metni onaylandı.
+
+**Metin geçerlilik kontrolü (Efe'nin kararı, ölçütler Efe onayladı):**
+Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak için gönderildiği anda şu kontrollerden geçmeli. Kontroller Gemini'siz, anında ve ücretsizdir:
+1. **Uzunluk:** En az **5 cümle** ve **50 kelime** olmalı.
+2. **Gerçek İngilizce:** Kelimelerin en az **%90'ı** gerçek İngilizce kelime olmalı. Ölçüt wordfreq'te sıklığının olması ya da sözlüğümüzde bulunması.
+3. **Tekrar yok:** Aynı kelime ya da cümlenin kopyalanıp çoğaltıldığı metinler geçersizdir. Ölçüt: farklı kelime oranı düşükse ya da aynı cümle tekrarlanıyorsa.
+4. **Anlamsız harf dizileri yok** ("asdfgh", "aaaaaa").
+5. **Aynı metin iki kez sayılmaz:** Kullanıcının önceki bir metninin kopyası sayılmaz.
+- Geçmeyen metin yine gönderilebilir ve değerlendirilebilir, ama **seriye sayılmaz.** Kullanıcıya nazikçe nedeni söylenir.
+- Gemini değerlendirmesi sonradan metni "değerlendirilemez" bulursa bu bilgi ileride kullanılabilir. Seri anında hesaplandığı için şimdilik yalnızca yukarıdaki kontroller geçerlidir.
+
+### 18.10 L&P ekranı sıfırdan, dikkat dağıtıcısız tasarlanır (Efe'nin kararı)
+- **Şu an oturum sırasında ekranda olanlar:** üst çubuk, alt menü, seviye seçici, "Geri al", "Bitir" ve ✕. "Bitir" ile ✕ aynı işi yapan iki çıkış.
+- **Hedef:** Oturum sırasında ekranda yalnızca kart, ilerleme ve tek çıkış kalsın.
+- **Claude'un önerisi:**
+  - Oturumda üst çubuk ve alt menü gizlenir.
+  - Tek çıkış ✕ olur.
+  - "Geri al" küçük ve ikincil kalır.
+  - Seviye seçici oturum ekranından çıkar.
+  - Kapibara yer tutucusu çizim gelene kadar gösterilmez.
+- Ayrıntılar tasarım oturumunda netleşir.
+
+### 18.11 L&P açıklama kutusu (Efe'nin kararı)
+- "Learn & Pass" adı ne yaptığını anlatmıyor. L&P açılış ekranına, L&P'nin ne olduğunu ve nasıl oynandığını anlatan **belirgin bir açıklama kutusu** eklenir.
+- Aynı eylemin üç adı var: "Bugünün çalışmasına başla", "Learn & Pass'e başla" ve "Hemen Başla". Adlar tasarım oturumunda tekleştirilir.
+
+### 18.12 Genel tasarım (Efe'nin kararı; ayrıntılar tasarım oturumunda)
+- **Tema:** Mevcut indigo-mor-pembe geçişli tema bırakılır, **temiz beyaz bir temaya** geçilir.
+- **Yazı boyutu:** **Önemli bilgiler küçük yazıyla yazılmaz.** Efe'nin gözlemi: sayfalar kullanıcı dostu değil. Bütün sayfalar bu gözle yeniden elden geçirilecek.
+- **Logo:** Şimdilik dokunulmaz, sonra ele alınacak.
+- **Dil:** `<html lang="en">` → **`lang="tr"`**.
+  - Şu an Türkçe büyük harf bozuk: "BİLMİYORUM" ekranda "BILMIYORUM" çıkıyor.
+  - Ekran okuyucular ve Google sayfayı İngilizce sanıyor.
+
+### 18.13 Temizlik (Efe'nin kararı)
+**Kod:**
+- Eski yollar ve ölü kod **tamamen silinir**. Örnekler: `/words/all-words/`, `word-detail`, `add-all-words`, `add-selected-to-my-list`, `add-family-to-my-list`, eski ifade sayfaları, eski profil kelime sayfası ve bunların şablonları.
+- **`ai-add` özellikle silinir:** `words/views.py` içindeki uçlar, `words/ai_import.py`, `aiAddWords.html` ve testleri. Veritabanında kullanıcının eklediği (`owner` dolu) kelime yok (29 Eylül: 0), yani veri kaybı olmaz.
+- Silmeden önce yeni bileşenlerin kullandığı uçlar taranır; kullanılan bir uç (ör. kartın "Listeme ekle" isteği) silinmez.
+- **Kod temizliği yapıldı (29 Eylül):**
+  - **Silinen sayfalar ve yollar:** Tüm Kelimeler, kelime detayı, ifade detayı, toplu/seçili/aile ekleme, `ai-add` (4 uç), eski Kelimelerim, elle kelime ekleme/düzenleme/silme, kelime klasörleri (6 uç), toplu kelime silme, eski `profile/myaccount`, `profile/settings`, `profile/texts` yönlendirmeleri ve kullanılmayan `save_mybio`.
+  - **Silinen modüller ve şablonlar:** `words/ai_import.py`, `words/addWeeks/`, `LearnVocab/pagination.py`, 19 eski şablon ve `quizzes/` kalıntısı.
+  - **Kalanlar:**
+    - `words/views.py` artık yalnızca liste ekle/çıkar uçlarını tutuyor (kelime ve ifade; fetch ile JSON döner).
+    - `userprofile` yalnızca Profilim ve arkadaşlık için profil görüntülemeyi tutuyor.
+    - `comments` ve `friends` kaldı.
+  - **Testler:** Silinen özelliklerin testleri kaldırıldı. Eski adreslerin 404 döndüğünü doğrulayan test eklendi (`OldPagesRemovedTests`). 829 test geçiyor.
+  - **`encrypted.data`:** `pywebpush`'un test modunda diske yazdığı şifreli Web Push yüküydü (28 Eylül 07:26, bildirim geliştirmesi sırasında). İçinde işe yarar sır yoktu. Silindi, `.gitignore`'a eklendi.
+- **Karar bekliyor: artık hiçbir yerden kullanılmayan veritabanı modelleri.**
+  - Liste: `WordList` (kelime klasörleri), `UserMeaning`, `UserWordNote`, `UserExampleSentence` (kişisel anlam, not ve örnekler).
+  - Silmek migration ile tablo kaldırmak demek. Admin, dışa aktarma ve model yardımcıları da güncellenir.
+  - `Word.owner` / `visibility` / `isBaseWord` alanları görünürlük kuralında hâlâ kullanılıyor; kullanıcı artık kelime ekleyemediği için onlar da sadeleştirilebilir.
+  - Claude'un önerisi: sil (canlı veri önemsiz, Efe 29 Eylül).
+- **`comments` ve `friends` kalır.**
+- Bölüm 17 ile çelişen kod kalkar (`is_learned`, `MASTERED`; 18.2 ile birlikte).
+
+**Proje klasörü:**
+- Proje kökünde ~1,5 GB veri var: 20 veritabanı yedeği, `ara-depo-*` klasörleri ve `pdfler`.
+**Efe'nin kararı (29 Eylül):**
+
+| Ne | Karar |
+|---|---|
+| `pdfler/`, `_arsiv/` | **Kalır.** |
+| `ara-depo-tam/`, `ara-depo-pdf-1/` | Efe proje dışına kopyaladı. **Projeden silinir.** |
+| `ara-depo-deneme-4…11`, `ara-depo-kontrol-*` | Silinir. |
+| `db.sqlite3.yedek-*` (20 dosya) | Silinir. |
+| `tmp/` | Silinir. |
+| `encrypted.data` | Efe de bilmiyor (büyük olasılıkla başka bir Claude oturumu üretti). **Claude'a inceleme izni verildi.** İncelenip Efe'ye raporlanır; ne olduğu anlaşılmadan silinmez. |
+
+- **Silme Efe'nin Mac'inde yapılır.** CLAUDE.md'deki "bağlı klasörde dosya silinmez" kuralı Claude'un VM'i içindir; burada Efe açıkça izin verdi.
+- **Yapıldı (29 Eylül):**
+  - Deneme ve kontrol depoları, 20 `db.sqlite3.yedek-*` dosyası ve `tmp/django-cache` silindi (~450 MB).
+  - `tmp/restart.txt` (Passenger yeniden başlatma dosyası) bırakıldı.
+  - `ara-depo-tam` ve `ara-depo-pdf-1`'i Efe proje dışına taşıdı ve kopyayı doğruladı.
+  - **Projede artık `db.sqlite3` dışında veritabanı kopyası yok.** Veri işlerinden (18.6, 18.7) önce proje dışına yedek alınmalı.
+- Kalan kalıntı: `quizzes/` klasöründe yalnızca `.DS_Store` ve `__pycache__` var; ölü kod temizliğinde kaldırılır.
+- **Silmeden önceki kontrol notu (tarihçe):**
+  - Efe'nin aldığı `ara-depo-tam` kopyasının yeri ve boyutu doğrulanır (`anlamlar.jsonl` ~548 MB).
+  - Veri işlerinden (18.6, 18.7) önce **proje dışında** tek bir güncel `db.sqlite3` yedeği alınır. Projedeki 20 eski yedek silinince elde başka kopya kalmaz.
+- **Dış depo yolu:** `iliskileri_anlama_bagla` ve `kelime_listesi` komutlarının varsayılan `--depo ara-depo-tam` değeri artık çalışmaz. Dış yol `.env`'e (ör. `ARA_DEPO_DIZINI`) ya da belgeye yazılır.
+
+### 18.14 Boş havuzlara 5'er örnek (Efe'nin kararı)
+- Boş görünmesinler diye her boş havuza **5 örnek**, Claude tarafından **elle** yazılır. API harcaması olmaz.
+- **Havuzlar:**
+  - D2 bağlaç/ifade cümleleri
+  - D3 eş dizim çeldiricileri
+  - D4 seviye testi okuma metinleri
+  - D5 okuma kütüphanesi
+  - D6 diyaloglar
+- Örnekler "örnek" olarak işaretlenir; gerçek havuz gelince değiştirilir.
+- Bu karar, 28 Eylül'deki "kütüphaneye yeni metin eklenmez" kararını **yalnızca bu 5'er örnek için** değiştirir.
+- **D7 hazır listeler de kapsamda** (Efe'nin kararı, 29 Eylül).
+  - Örnek listeler bir kurumun gerçek listesiymiş gibi adlandırılmaz. Örneğin "ODTÜ 101" yerine "Örnek liste: Akademik fiiller" gibi bir ad kullanılır.
+  - Kelimeler veritabanındaki mevcut kelimelerden seçilir.
+
+### 18.15 Adresler (URL) ve SEO (Efe'nin kararı, 29 Eylül: kalıcı kelime adresleri onaylandı)
+
+**Temel ilke (Efe):** Google'da çıkmak ürün için kat kat değerli. **SEO bizi kesinlikle cezalandırmamalı.** Her SEO kararında önce ceza riski değerlendirilir; risk varsa temkinli seçenek seçilir.
+
+**SEO güvenlik kuralları (Efe onayladı, 29 Eylül; kademeli dizine alma dahil):**
+1. **Kademeli dizine alma:**
+   - Sitemap'e ve dizine önce yalnızca **denetimden geçmiş** kelime sayfaları girer: 18.7 A aşamasından temiz çıkan, en az bir anlamı ve örneği olanlar.
+   - Denetlenmeyen ya da zayıf sayfalar `noindex` kalır ve denetlendikçe açılır.
+   - 16 bin sayfa tek günde açılmaz; partiler hâlinde (ör. önce A1–B1 sık kelimeler) açılır.
+2. **Toplu ince sayfa üretilmez:**
+   - Türkçe → İngilizce sayfalar (`/sozluk/tr/…`) yalnızca birden çok sonucu ve gerçek içeriği olan sorgular için açılır, otomatik binlerce sayfa üretilmez.
+   - Göz atma sayfaları sayfalı olur ve her satırda anlam bulunur; yalnızca bağlantı listesi olmaz.
+3. **Aynı içerik tek adreste:**
+   - `?q=` adresleri ya kalıcı adrese 301 ile yönlenir ya da `noindex` olur.
+   - `www` / `www`'suz ve `http` / `https`'den yalnızca biri yaşar.
+4. **Görünmez içerik ya da anahtar kelime doldurma yok.** Başlık ve açıklama sayfanın gerçekten gösterdiğini söyler.
+5. **Yapılandırılmış veri yalnızca sayfada görünen içeriği** anlatır.
+6. **Veri kalitesi SEO işidir:** 18.7 ve 18.16 bitmeden toplu dizine alma yapılmaz.
+
+**Şu anki sorunlar:**
+- Adresler karışık: Çalışmalar `/exercises/learn/` altında, Egzersizler `/egzersizler/`, Yazma `/texts/`, Okumalar `/readings/`, Sözlük `/sozluk/`. `/exercises/` ise 404.
+- `robots.txt` ve `sitemap.xml` yok.
+- Kelime sonuçları `/sozluk/?q=bank` adresinde duruyor. Google site içi arama sonuç sayfalarını dizine almamayı öneriyor.
+- `canonical` adresi istekten üretiliyor (canlıda `http` olarak çıkma riski var).
+- Kelime kartlarındaki bağlantılar `?q=` adreslerine gidiyor.
+
+**Claude'un önerdiği adres şeması:**
+
+| Sayfa | Adres | Google'da |
+|---|---|---|
+| Ana Sayfa | `/` | dizine alınır |
+| Sözlük arama | `/sozluk/` | dizine alınır |
+| **Kelime** | **`/sozluk/bank/`** (bütün türleri tek sayfada) | **dizine alınır, sitemap'te** |
+| İfade / phrasal verb | `/sozluk/give-up/` | dizine alınır |
+| Türkçe → İngilizce | `/sozluk/tr/bitirmek/` (2. aşama) | dizine alınır |
+| Hazır liste | `/listeler/odtu-101/` | dizine alınır |
+| Seviye testi | `/seviye-testi/` | dizine alınır |
+| Okumalar | `/okumalar/`, `/okumalar/<metin-adi>/` | kütüphane metinleri dizine alınır |
+| Çalışmalar | `/calismalar/`, `/calismalar/egzersizler/` | `noindex` |
+| Yazma | `/yazma/`, `/yazma/diyalog/` | `noindex` |
+| Hesap | `/giris/`, `/kayit/`, `/ayarlar/`, `/profil/` | `noindex` |
+| API | `/api/…` | `robots.txt` ile kapalı |
+
+- **Biçim:** küçük harf, ASCII (`sozluk`, `sözlük` değil), kelimeler tireyle ayrılır, sonda `/` olur.
+- **Eski adresler** yeni adreslere **301** ile yönlenir; canlıda dizine girmiş sayfalar kaybolmaz.
+- `/sozluk/?q=bank` tam eşleşmede `/sozluk/bank/` adresine yönlenir. Eşleşmeyen aramalar `noindex` olur.
+
+**Bölüm 17 ile ilişkisi (Efe onayladı, 29 Eylül):**
+- Bölüm 17'de "her kelimeye ayrı sayfa" fikrinden vazgeçildi. Oradaki sorun eski, kalabalık `word_detail` sayfasıydı.
+- Burada **arayüz hiç değişmez**: aynı Sözlük sayfası, üstte arama kutusu, aynı kart bileşeni yerinde açılır. Değişen yalnızca **adres** (`?q=bank` yerine `/sozluk/bank/`).
+- Bölüm 17'deki satıra bu açıklama eklendi.
+
+**Yapılacak diğer SEO işleri (Efe'nin kararı: hepsi yapılacaklar listesinde):**
+- `sitemap.xml` (Django sitemaps): bütün kelime, ifade, liste ve kütüphane metni sayfaları.
+- `robots.txt`: `/api/`, `/admin/` ve hesap sayfaları kapalı; sitemap satırı eklenir.
+- `canonical` sabit `https://learnvocab.com.tr/...` olarak üretilir. `www` ve `www`'suz adreslerden biri seçilip diğeri 301 ile ona yönlenir.
+- Başlık kalıbı korunur ve genişletilir: "bank ne demek? Türkçe anlamı ve cümle içinde kullanımı".
+- Yapılandırılmış veri: schema.org `DefinedTerm` ve `BreadcrumbList` (JSON-LD).
+- İç bağlantılar gerçek `<a href="/sozluk/x/">` olur: eş/zıt çipleri, aile, "diğer sonuçlar".
+- Taranabilir göz atma sayfaları eklenir: `/sozluk/seviye/b1/`, `/sozluk/harf/a/`.
+- Hız (Core Web Vitals sıralamayı etkiler): 18.17 (Tailwind) ve Alpine'in sürümünü sabitleyip siteden sunmak.
+- Google Search Console kurulur, sitemap gönderilir. Alan adı doğrulamasını **Efe yapar** (kendi Google hesabıyla, DNS kaydı); Claude adımları hazırlar.
+- **Asıl adres: `https://www.learnvocab.com.tr/`** (Efe'nin kararı, 29 Eylül).
+  - v1.0 bu adreste yayında ve Google'da bu adresle biliniyor. SEO açısından iki seçenek eşit, yerleşik adresi korumak en güvenlisi.
+  - `learnvocab.com.tr` ve `http` istekleri 301 ile buraya yönlenir.
+- **Risk:** Google, toplu üretilmiş ve düşük değerli sayfaları cezalandırabilir. Veri kalitesi (18.7) SEO'nun doğrudan parçasıdır. İçeriği çok zayıf kelime sayfalarına `noindex` konması değerlendirilir.
+
+### 18.16 CEFR ve sıklık (wordfreq) (29 Eylül'de konuşuldu; kararlar aşağıda)
+**Efe'nin kararları (29 Eylül):**
+1. **Etiket düzeltme izni:** Claude yanlış bulduğu CEFR etiketlerini düzeltebilir (ör. "justice C1", "literally C1").
+2. **Sayılar silinir.** **Yapıldı (29 Eylül):**
+   - Anlamı yalnızca sayı olan 80 kayıt silindi: sayılar, sıra sayıları (seventieth…), kesirler (fourth = dörtte bir), katlar (tenfold). Bağlı anlam, örnek, ilişki ve eş dizimlerle birlikte 1.320 satır.
+   - Boş kalan 27 aile de silindi; aralarında daha önce kelimeleri hassas filtreyle silinmiş gay, negro ve shit aileleri vardı.
+   - Yedek: `~/LearnVocab-yedekler/db.sqlite3.yedek-20260929-sayilar-oncesi`.
+   - **Sayı dışında önemli anlamı olduğu için kalanlar:** first (ilk), second (saniye, ikincil, desteklemek), zero (fiil: odaklanmak), score, teen, fortnight, centenarian, dozen ("dozens of").
+3. **Sıklığa göre L&P'de çıkma olasılığı:**
+   - Yeni kelime seçiminde her kelimenin çıkma olasılığı sıklığıyla orantılıdır: sık kullanılan sık, az kullanılan az çıkar.
+   - Claude'un belirlediği ilk formül: **ağırlık = (max(zipf, 1,5) − 1)²**. Örnekler: zipf 5 → 16 · 4 → 9 · 3 → 4 · 2 → 1. Çok sık bir kelime, çok seyrek bir kelimeden ~60 kat fazla çıkar.
+   - Formül ayar sabitinde tutulur, gerekirse değiştirilir.
+   - Bu ağırlık yalnızca **yeni** kelime seçimini etkiler. Tekrarlar 18.2'deki kurala göre gelir.
+4. **Google'dan gizleme:**
+   - Sıklığı çok düşük kelimelerin sayfaları `noindex` olur ve sitemap'e girmez. İlk eşik: **zipf < 2,3**.
+   - İçeriği zayıf ya da SEO'ya zarar verebilecek her sayfa da gizlenir (18.15).
+5. **İşe yaramaz kayıtlar silinmez:** doorknob, humbler gibi kelimeler kalır. Yalnızca gizlenir ve L&P'de nadir çıkar.
+6. **Özel adlar:**
+   - Yalnızca özel ad olarak anlam taşıyan ve öğrenci için önem taşımayan kayıtlar Claude tarafından silinebilir.
+   - Okurken **kelime anlamıyla** karşılaşılabilecekler (ör. heath = fundalık) silinmez.
+   - Özel adlar sıklık hesabından da düşülür.
+7. **Nadir türler:**
+   - Tanım: kelimenin temel türü A1–B1 iken kendisi C1–C2 olan tür. Örnekler: dog (fiil), tree (fiil), husband (fiil), traffic (fiil).
+   - Bu türler Sözlük'te kalır, ama L&P'ye **yalnızca seviyesi C1–C2 olan kullanıcılar** için girer. Diğer kullanıcılarda dolaşıma girmez.
+   - Kelimenin temel türleri herkese çıkmaya devam eder.
+8. **Resmî kaynakla kalibrasyon:** Oxford 3000/5000 ve Cambridge (English Vocabulary Profile) seviyeleri veritabanıyla karşılaştırılır.
+   - `Word` modeline yeni bir alan eklenir: **`cefr_kaynak`** (`oxford` / `cambridge` / `learnvocab`).
+   - Resmî kaynakta seviyesi olan kelimeler o seviyeyi alır ve **bir daha incelenmez.**
+   - Resmî kaynakta olmayanlar "`learnvocab`" (bizim etiketimiz) olarak işaretlenir. Sonraki CEFR denetimleri yalnızca bunlara bakar.
+   - **Sınırlar:**
+     - Oxford listeleri ~5.000 kelimeyi kapsar, A1–C1 arasıdır (C2 yok).
+     - Cambridge EVP'ye erişim üyelik gerektirebilir; uygulamada erişilebilirliği kontrol edilecek.
+     - Veritabanına yalnızca seviye etiketi ve kaynağı yazılır, listelerin kendisi projeye konmaz.
+
+9. **Sıklık ekranda hiç görünmez** (Efe onayladı). Kullanıcı yalnızca CEFR rozetini (B1 gibi) görür. Sıklık yalnızca arka planda kullanılır: L&P olasılığı, şüpheli etiket bulma, Google'dan gizleme.
+
+**Önceki not (tarihçe):**
+- **Öncelik yüksek.** Şunlar bu karara bağlı: misafir L&P dağılımı (18.3), "daha basit" silme kuralı (18.6), kademeli dizine alma (18.15), yeni kelime seçimi.
+- **Bulgular (29 Eylül, salt okunur analiz):**
+  - Seviyelerin ortanca sıklığı (Zipf) düzenli azalıyor: A1 4,95 · A2 4,58 · B1 3,86 · B2 3,35 · C1 2,92. Etiketler **genel olarak** tutarlı.
+  - C2 (84 kelime) ortancası 3,28, yani C1'den yüksek. Bu kelimelerin çoğu sık kelimelerin nadir türleri.
+  - **Sıklık türü (isim/fiil) ayırmıyor:** "dog (fiil) C1", "tree (fiil) C2", "second (fiil) C1" etiketleri **doğru**, ama sıklıkları çok yüksek görünüyor. Sıklık CEFR'in yerine konsaydı bunlar A1 olurdu.
+  - **Gerçek etiket hatası örnekleri:** "justice C1", "literally C1" (ikisi de B1–B2 olmalı).
+  - **Asıl sorun işe yaramaz kayıtlar:** "handwrite, spectate, humbler, rooter, dully, pillared" gibi sıklığı çok düşük türetilmiş kelimeler B1 etiketli. "gramme, seventieth, bedsheet" ise A1–A2. Bunlar hem öğrenmeye hem SEO'ya zarar verir.
+  - Özel adlar sıklığı şişiriyor: "heath" 3,76 çıkıyor (Heath soyadı yüzünden).
+- **Claude'un görüşü:** CEFR'i sıklıkla **değiştirmemek**; ikisini birlikte kullanmak.
+- **Sıklık zorluk demek değildir:**
+  - "however", "despite" çok sık geçer ama B1–B2'dir.
+  - "cat", "government"tan seyrek geçer ama çok daha kolaydır.
+  - wordfreq kelime biçimini sayar; tür ve anlam ayırmaz ("bank" isim ve fiil aynı sayılır).
+  - Film altyazısı ve web ağırlıklı bir kaynaktır.
+- **Önerilen yol:**
+  1. **CEFR etiket olarak kalır.** Öğrenci ve hazırlık okulları bu dili konuşuyor.
+  2. **Sıklık, L&P'de yeni kelime seçiminde sıralama ölçütü olur** (aynı seviyede önce sık kelimeler). "heath" sorunu ve alfabetik kayma böyle çözülür.
+  3. **Sıklık tutarsızlık bulucu olarak kullanılır:** çok sık ama C1 etiketli, ya da çok seyrek ama A1–B1 etiketli kelimeler listelenir ve 18.7'deki denetimle düzeltilir.
+- Şu anki dağılım şüpheli: C2 yalnızca 84, B2 7.120. Kalibrasyon için kamuya açık kaynaklarla karşılaştırma yapılabilir.
+
+### 18.17 Tailwind (Efe'nin kararı, 29 Eylül: A, Standalone CLI)
+- **Sorun Tailwind'in kendisi değil, Play CDN** (`cdn.tailwindcss.com`, `templates/base/layout.html`).
+  - Bu betik her sayfa açılışında telefonda sayfayı tarayıp CSS'i **tarayıcıda** üretiyor. Tailwind bunu canlıda kullanılmamak üzere işaretliyor.
+  - Büyük bir JavaScript indiriliyor; ilk açılışta stil gecikebiliyor. Bu hem kullanıcıya hem Google'ın hız ölçümüne yansıyor.
+  - Başka birinin sunucusuna bağımlılık yaratıyor.
+- **Seçenekler:**
+  - (A) **Tailwind Standalone CLI** (Node gerekmez, tek dosya). CSS yerelde derlenir; `static/css/site.css` (~15–30 KB) üretilir ve depoya konur. Sunucuda hiçbir şey çalışmaz.
+  - (B) `django-tailwind` paketi. Node gerektirir.
+  - (C) Tailwind'i bırakıp düz CSS yazmak. ~8.600 satırlık şablonun baştan yazılması demek.
+- **Öneri: A.** Beyaz tema (18.12) de aynı derleme adımında kurulur.
+- **Alpine:** `unpkg …@3.x.x` sürümü sabitlenmeden çekiliyor. Sürüm sabitlenip dosya `static/` altından sunulur.
+
+### 18.18 Rapor yalnızca mevcut durumu yazar (Efe'nin kararı)
+- Rapor ürünün **şu anki** hâlini anlatır. Kodla ya da kendi içinde çelişen yerler düzeltilir.
+- Bölüm 18'deki işler uygulandıkça ilgili bölümler güncellenir, "→ 18.x" notları kaldırılır, madde buradan silinip Değişiklik kaydına yazılır.
+
+### 18.19 KVKK
+- Efe ayarlayacak. Bölüm 16'daki not geçerli.
+
+### 18.21 Google ile giriş (Efe'nin kararı, 29 Eylül)
+- Giriş ve kayıt sayfalarına **"Google ile giriş yap"** eklenir. Mevcut e-posta/şifre girişi kalır.
+- **Altyapı (Claude'un önerisi):** `django-allauth` (Google sağlayıcısı).
+  - Aynı e-postayla kayıtlı hesap varsa Google girişi o hesaba bağlanır.
+  - Google ile ilk girişte kullanıcı adı otomatik üretilir.
+  - Kayıt formundaki zorunlu "kur" seçimi Google girişinde sorulmaz (Bölüm 16'daki açık soruyla birlikte ele alınır).
+- **Efe'nin yapması gereken:** Google Cloud Console'da OAuth istemcisi oluşturmak. Yönlendirme adresi `https://www.learnvocab.com.tr/…` olur. İstemci kimliği ve gizli anahtar `.env`'e yazılır, sohbete yazılmaz.
+- KVKK metninde Google girişi belirtilir (18.19).
+
+### 18.22 Dil seçeneği (Efe'nin kararı, 29 Eylül)
+- Siteye **dil seçeneği** eklenecek.
+- Bu yüzden arayüz metinleri şablonlara ve koda gömülü kalmaz. Seçili dile göre metinlerin çekileceği **dil dosyaları** hazırlanır.
+  - **Claude'un önerisi:** Django'nun kendi çeviri sistemi (`gettext`: `{% translate %}`, `.po`/`.mo` dosyaları, `LocaleMiddleware`).
+  - Bundan sonra yazılan her yeni arayüz metni baştan çeviriye hazır yazılır.
+  - Mevcut metinler adım adım dönüştürülür.
+- **Bağlantılar:**
+  - `<html lang>` seçili dile göre gelir (18.12).
+  - SEO için her dilin kendi adres öneki ve `hreflang` etiketleri olur (18.15).
+- **Efe'nin kararları (29 Eylül):**
+  - (a) **Diller:** Hedef **tr · en · de · es · fr**. **Şimdilik tr, en ve de.** es ve fr sonra eklenir.
+  - (b) **Kapsam:** **Şimdilik yalnızca arayüz** çevrilir. Kelime anlamları Türkçe kalır.
+- **Açık soru:**
+  - (c) **Adres biçimi:** Türkçe öneksiz mi kalsın, diğer diller önekli mi olsun (`/en/…`, `/de/…`)? Claude'un önerisi bu; SEO'da yerleşik adresler bozulmaz.
+
+### 18.23 Kayıt formu ve Profilim (Efe'nin kararı, 29 Eylül)
+- **Kayıt formunda alınacaklar:** **ad, soyad, e-posta, kullanıcı adı, şifre.**
+  - **Şifre tek kez** alınır; "şifreyi tekrar yaz" alanı olmaz. Kullanıcı yanlış yazmasın diye **"göster / gizle"** düğmesi olur.
+  - Eski zorunlu **"kur" seçimi kaldırılır.** Seviye, seviye testinden ya da "Seviyemi kendim seçeyim"den gelir (Bölüm 7).
+  - Bölüm 16'daki "kur → CEFR eşlemesi" ara kararı bununla birlikte düşer.
+- **Profilim'deki "günlük hedef" ayarı** (0/5/10/15/20) **kaldırılır.** Seri sabit kurallarla çalışır (18.9).
+
+### 18.24 Okumalar: sınırlar, saklama ve çöp kutusu (Efe'nin kararı, 29 Eylül)
+**Sınırlar:**
+- Kullanıcı başına en çok **100 metin**, bunların en çok **15'i PDF**.
+- **PDF başına en çok 400 sayfa** (önceden 60).
+
+**Saklama:**
+- PDF dosyası zaten **saklanmıyor**; yalnızca çıkarılan metin veritabanına yazılıyor (`UserText.body`).
+- **Sıkıştırma (Claude'un önerisi, onay bekliyor):**
+  - Metin veritabanına **zlib ile sıkıştırılmış** olarak yazılır. Düz İngilizce metin genelde 3–4 kat küçülür.
+  - 400 sayfalık bir kitap (~1 MB metin) ~250–300 KB olur.
+  - Okurken metin açılır; kullanıcı farkı görmez.
+  - Okuma ekranı uzun metni **bölüm bölüm** gösterir, 400 sayfa tek seferde yüklenmez.
+- **Karar bekliyor:** Yükleme dosya boyutu sınırı. 400 sayfalık, resimli PDF'ler 10 MB'ı rahatça aşar. Öneri: 50 MB.
+
+**Çöp kutusu (Efe'nin kararı: tasarlanacak):**
+- Silinen metinler çöp kutusuna gider. Kullanıcı buradan geri alabilir ya da kalıcı olarak silebilir.
+- **Karar bekliyor:** Çöpte kalma süresi. Önceki ara karar 1 gündü; Claude'un önerisi 30 gün.
+- **Karar bekliyor:** Çöpteki metinler 100 metin sınırına sayılsın mı? Öneri: sayılmasın.
+- Tasarımı tasarım oturumunda yapılır.
+
+### 18.20 Önerilen uygulama sırası (Claude'un önerisi)
+Her adım ayrı commit, her adımdan sonra testler.
+
+| # | İş | Maddeler | Bekleyen karar |
+|---|---|---|---|
+| 1 | Dosya temizliği, `encrypted.data` incelemesi, dış yedek | 18.13 | yok |
+| 2 | Ölü kod ve eski yollar, `ai-add`, `is_learned` / `MASTERED` | 18.13, 18.2 | yok |
+| 3 | `lang="tr"`, liste düğmesi, telaffuz | 18.12, 18.5, 18.4 | yok |
+| 4 | **CEFR konuşması** | 18.16 | **Efe ile konuşma** |
+| 5 | Veri taraması A + "daha basit" kuralı | 18.7, 18.6 | 4'e bağlı |
+| 6 | Tekrar kuralı + yeni L&P akışı + dikkat dağıtıcısız L&P ekranı + açıklama kutusu | 18.2, 18.1, 18.10, 18.11 | ekran tasarımı Efe'ye gösterilir |
+| 7 | Misafir kuralları | 18.3 | 4'e bağlı (dağılım) |
+| 8 | Adresler ve SEO (kademeli dizine alma) | 18.15 | `www` seçimi; dizine alma 5'ten sonra |
+| 9 | 5'er örnek | 18.14 | yok |
+| 10 | Tailwind derleme + beyaz tema + yazı boyutları | 18.17, 18.12 | tema tasarımı |
+| 11 | Google ile giriş | 18.21 | Efe'nin OAuth istemcisi |
+
+- 1–3 hemen yapılabilir.
+- 6'da L&P aynı ekranda hem akış hem tasarım değiştirdiği için tek seferde yapılır.
+
+**Hâlâ açık kararlar:**
+- Tema tasarımı (18.12)
+- Dil seçeneğinde adres biçimi (18.22 c)
+- Okumalar: sıkıştırma, PDF dosya boyutu, çöp süresi (18.24)
+
+**Kullanıcı verisi notu (Efe, 29 Eylül):**
+- Canlıdaki v1.0'da çok az kullanıcı verisi var (çoğu Efe'nin arkadaşlarının kaydı). Sistem baştan değişecek.
+- Eski verinin taşınması ve tekrar kuralı için geçmişten tohumlama önemsizdir.
+- Eski adreslerin 301 yönlendirmesi yine yapılır, çünkü Google'da dizine girmiş olabilirler.
+
+---
+
 ## Değişiklik kaydı
 - **2026-09-27:** İlk sürüm. Kaynak: `ozetler/2026-09-26_urun-kararlari.md` (26–27 Eylül konuşmaları).
 - **2026-09-28:** D1 yapıldı (migration `words/0020_iliski_anlam`, komut `iliskileri_anlama_bagla`). 56.187 bağ anlama atandı, 512'si birden çok anlamda geçtiği için çoğaltıldı. Silinmiş anlamlardan gelen 44 bağ boş kaldı (kartta görünmez). `confused_with` kelime düzeyinde kaldı. `aile_doldur` artık bağları doğrudan anlama yazıyor; silinmiş anlamın bağını geri kurmuyor.
 - **2026-09-28:** Adım 3 (İskelet) yapıldı. Menü `LearnVocab/navigation.py` (Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma; mobilde altta, masaüstünde üstte; içerik `max-w-3xl`). Sözlük iskeleti `/sozluk/` (Keşfet | Listem; şimdilik yalnızca İngilizce tam eşleşme). Ortak kelime kartı `templates/base/_kelimeKarti.html` + veri `words/kart.py` (`kart_verisi`, sabit 8 sorgu). Düzensiz fiil: `inflect.duzensiz_fiil_mi` (veritabanında düzenli fiillerin de v2/v3'ü dolu olduğu için kural çıktısıyla karşılaştırılıyor). Giriş gerekli: `data-giris-gerekli="<neden>"` + `/users/login/?next=…&neden=…` (girişte `next`'e dönülüyor). "Geri al" bildirimi: `window.geriAl.goster(mesaj, fn)`. Ara durum: L&P açılış sayfası girişsiz açık ama misafir kaydırma akışı 6. adımda; o zamana kadar mod düğmeleri girişe yönlendiriyor. Dişli simgesi ayarlar sayfası tasarlanana kadar Profilim'e gidiyor.
 - **2026-09-28:** Adım 4–9 yapıldı (her biri ayrı commit). Sözlük ve Listem (`words/arama.py`, `words/listem.py`, `words/hazir_liste.py`, `words/sozluk_views.py`); Learn & Pass (misafir modu, oturum sonu soru, "geçen sefer" kartı); Egzersizler (yeni `egzersizler` uygulaması, `/egzersizler/`); Okumalar (kendi metinlerim, dokun-anlam baloncuğu, `GET /api/kelime/`); Yazma (JSON geri bildirim, sertlik, `yazilari_yeniden_dene`, diyaloglar). `quizzes` uygulaması kaldırıldı (`learnpass/0003`). Efe'nin 28 Eylül kararları ve açık sorular Bölüm 16'da.
 - **2026-09-28:** Adım 10–11 yapıldı. Seviye testi (`seviye` uygulaması, `User.cefr`, tek kaynak `users.seviye.kullanici_seviyesi`), yeni Ana Sayfa (`LearnVocab/anasayfa.py`), Bildirimler ve PWA (`bildirimler` uygulaması; kurulum ve cron: `bildirimler/CRON.md`). Uygulama planının 11 adımı tamamlandı; D2–D6 havuzları Efe'nin kararıyla boş, D7 liste verisi yüklenmedi.
+- **2026-09-29:** Claude'un eleştirisi ve Efe'nin cevabı sonucunda Bölüm 18 (Yapılacaklar) eklendi; etkilenen bölümlere "→ 18.x" notları kondu. Henüz hiçbir madde uygulanmadı. Bölüm 14'teki test bilgisi düzeltildi (1017 test; Mac komutu eklendi).
+- **2026-09-29 (2):** Efe'nin cevapları işlendi:
+  - 18.2 FSRS önerisi olduğu gibi kabul edildi.
+  - 18.3 misafir L&P ve diyalog dağılımı %60 B1 · %20 B2 · %20 C1; seviye seçici yok; Sözlük'te üstte giriş daveti.
+  - 18.6 "daha basit" için ikinci koşul (hedef kaynaktan kesinlikle alt seviye) eklendi.
+  - 18.7 yöntem: önce A, sonra B, C yok.
+  - 18.9 seri kutusu şimdilik kalıyor.
+  - 18.13 dosya kararları.
+  - 18.14 D7 dahil.
+  - 18.15 kalıcı kelime adresleri onaylandı, SEO güvenlik kuralları eklendi, Bölüm 17'ye açıklama notu kondu.
+  - 18.20 uygulama sırası eklendi.
+  - Henüz hiçbir madde uygulanmadı.
+- **2026-09-29 (3):**
+  - 18.2'de FSRS'nin yerini Efe'nin kuralı aldı: en eski görülen önce, sonra zorlanma oranı, sonra rastgele; bilinenlerde 1-3-7-21; bilemezse sıfırlama.
+  - 18.13'teki silme yapıldı.
+- **2026-09-29 (4):**
+  - 18.2'ye Efe'nin (b)(c)(e) cevapları yazıldı; (a) birim ve (d) açık.
+  - 18.16 CEFR kararları yazıldı.
+  - Sayı kayıtları (80) ve boş aileler (27) veritabanından silindi, 13.1 güncellendi.
+  - Yedek proje dışında: `~/LearnVocab-yedekler/`.
+- **2026-09-29 (5):**
+  - 18.2: birim 1 gün; hiç görülmemiş liste kelimesi en büyük öncelik.
+  - 18.15: asıl adres `https://www.learnvocab.com.tr/`; kademeli dizine alma onaylandı.
+  - 18.16: sıklık ekranda görünmez.
+  - 18.17: Tailwind Standalone CLI onaylandı.
+  - 18.21 (Google ile giriş) eklendi.
+- **2026-09-29 (6):** 18.8 Günün kelimesi ve ifadesi kararlaştırıldı: seçim kuralları, kart, iki ayrı kart (Ana Sayfa ve Keşfet), herkese aynı az bilinen ifade döngüsü, 19:00 bildirimi.
+- **2026-09-29 (7):** 18.8 a–b kararlaştırıldı: tamamlanan kartın yerine "Bugünün kelimesi tamam ✓" mesajı gelir; ifadelerde bilme düğmesi ve kaydı yoktur.
+- **2026-09-29 (8):** 18.22 Dil seçeneği eklendi (dil dosyaları, gettext önerisi, açık sorular).
+- **2026-09-29 (9):** 18.13 kod temizliği yapıldı (eski yollar, `ai-add`, eski şablonlar, sayfalama, `quizzes` kalıntısı); `encrypted.data` incelendi ve silindi; 829 test geçiyor. Ölü modeller için karar bekleniyor.
+- **2026-09-29 (10):** 18.9 Seri kararlaştırıldı: 10 soru / 1 metin / 1 diyalog, 00.00 sınırı, alevli ilerleme çubuğu, dondurma hakları (başlangıç 1, 5 günde 1, en çok 3), takvimli açılır kutu, 12.00 · 19.00 · 23.50 bildirimleri.
+- **2026-09-29 (11):** 18.9 ayrıntıları kesinleşti: L&P ya da egzersizden biri tek başına 10, yerel saat, dondurulan gün sayıyı artırmaz, ardışık 5 günde +1 hak, bildirimler 12.00 ve 23.50 (seri 0 ise yok), metin geçerlilik kontrolü eklendi.
+- **2026-09-29 (12):** 18.9 hak günü (12) ve metin ölçütleri (5 cümle, 50 kelime, %90) kesinleşti; 18.22 diller (tr, en, de; yalnızca arayüz); 18.23 kayıt formu ve günlük hedefin kaldırılması; 18.24 okuma sınırları, sıkıştırma önerisi, çöp kutusu eklendi.

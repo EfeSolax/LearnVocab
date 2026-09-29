@@ -448,11 +448,6 @@ class YazmaSayfalariTests(TestCase):
         self.assertIn("login", yanit["Location"])
         self.assertFalse(Text.objects.exists())
 
-    def test_old_profile_address_redirects(self):
-        # userprofile.urls "profile/" altına bağlı: eski adres /profile/profile/texts/
-        yanit = self.client.get("/profile/profile/texts/")
-        self.assertRedirects(yanit, reverse("profile_texts"), status_code=301)
-
     def test_new_text_page_offers_topics_words_and_severity(self):
         kelime = kelime_olustur("postpone", anlam="ertelemek")
         UserWordLink.objects.create(user=self.user, word=kelime)

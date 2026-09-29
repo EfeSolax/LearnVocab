@@ -73,7 +73,7 @@ Ayrıca: kullanıcı profili, ayarlar ve veri dışa aktarma.
 | `learnpass`   | Learn & Pass (Öğren-Geç) ve Egzersizler sekmesi           |
 | `readings`    | Okumalar                                                  |
 | `texts`       | Yazma: kullanıcı metinleri ve Gemini ile değerlendirme    |
-| `userprofile` | Profil sayfası ve Kelimelerim                             |
+| `userprofile` | Profilim sayfası (kullanıcının listesi Sözlük › Listem'de) |
 | `usersettings`| Kullanıcı ayarları, hesap silme/dışa aktarma              |
 | `friends`, `comments` | Arayüzden kaldırıldı; kodları şimdilik duruyor    |
 

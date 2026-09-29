@@ -13,7 +13,6 @@ from django.urls import include, path
 
 from LearnVocab.anasayfa import ana_sayfa
 from readings import api as readings_api
-from words import views as word_views
 
 
 def showAbout(request):
