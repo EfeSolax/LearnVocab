@@ -790,6 +790,14 @@ Genel kural değişir: **giriş gerektiren öğeler misafire gösterilmez.** Ger
 >   - (C) Açık kaynak bir yapay zekâ ses modeliyle (ör. Kokoro, ücretsiz, Mac'te çalışır) bütün kelimelerin US/UK seslerini bir kez üretip dosya olarak saklamak.
 >   - (D) Google Cloud TTS'nin ücretsiz kotası (faturalandırma hesabı ister; "harcama yok" kararıyla çelişebilir).
 >   - Claude'un önerisi: B + C (önce insan kaydı, yoksa üretilmiş ses). İlk olarak C'yi 20 kelimede deneyip Efe'nin dinlemesi.
+>
+> **Deneme (30 Eylül):**
+> - Kokoro (kokoro-onnx, açık kaynak, ücretsiz, yerel) ile 20 kelime × 4 ses üretildi (`~/LearnVocab-ses-deneme/`, proje dışında).
+> - Fonetik kontrol doğru: scatter US skæɾɚ / UK skatə, schedule US skɛdʒuːl / UK ʃɛdjuːl.
+> - Dosya başına ~5 KB (Opus), 80 dosya 71 saniyede üretildi.
+> - **Efe'nin değerlendirmesi:** bm_george neredeyse bütün kelimelerde çok kötü, diğerleri iyi.
+> - **Seçilen sesler: US `af_heart`, UK `bf_emma`** (ikisi de kadın; Claude'un önerisi, Efe US'de erkek sesi isterse `am_michael`).
+> - **Karar bekliyor:** Bütün sözlüğe (~13.900 kelime × 2) C mi uygulansın, B (insan kayıtları) da eklensin mi? Ne zaman üretilsin?
 
 > Uygulama: `templates/base/_telaffuz.html` (kartta tür ve seviyenin yanında "US" / "UK" düğmeleri). Ses algılama ve okuma kodu `base/_kelimeKartiJs.html`'de. Cihazda o aksanın sesi yoksa `<html>`'e `ses-us` / `ses-uk` sınıfı eklenmez ve düğme görünmez (CSS: `base/layout.html`). Hız 0,9. Günün kelimesi kartına 18.8 ile eklenecek.
 
@@ -1436,3 +1444,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-09-30 (3):** Uygulama 1. adım yapıldı: `lang="tr"`, telaffuz düğmeleri (18.4), tek biçim liste düğmesi (18.5). 829 test geçiyor.
 - **2026-09-30 (4):** Telaffuz ses seçimi düzeltildi (şaka sesleri dışlandı); tarayıcı sesinin kalitesi yetersiz, kalıcı çözüm 18.4'te karar bekliyor.
 - **2026-09-30 (5):** 18.32 barındırma sınırları: metinler diskte, EncounterLog 90 gün + özet, seri uyarısı 23.45. Maliyet ilkesi yazıldı.
+- **2026-09-30 (6):** Telaffuz denemesi: Kokoro sesleri iyi, bm_george kötü. Seçim: US af_heart, UK bf_emma.
