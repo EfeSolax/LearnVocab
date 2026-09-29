@@ -447,7 +447,7 @@ Açılışta **iki büyük seçenek** vardır:
 - Sayfa açılır açılmaz **sorulmaz**. Anlamlı bir anda sorulur; örneğin L&P bitince: "Yarın hatırlatayım mı?"
 - Reddedilen izin bir daha sorulamaz, bu yüzden zamanlama önemlidir.
 
-**Kullanım:** (→ 18.9: günde iki zaman, 12.00 · 23.50 yerel saatle; gün tamamlandıysa ya da seri 0 ise gitmez)
+**Kullanım:** (→ 18.9: günde iki zaman, 12.00 · 23.45 yerel saatle; gün tamamlandıysa ya da seri 0 ise gitmez)
 - Günlük L&P hatırlatması.
 - "Yazın değerlendirildi" bildirimi.
 - Bildirimler **az ve anlamlı** tutulur.
@@ -924,11 +924,11 @@ Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
     - **Diğerleri:** gri
 
 **Bildirimler** (Bölüm 10'daki "günde tek, 19:00" kararının yerine geçer):
-- **Günde iki zaman: 12.00 ve 23.50** (kullanıcının yerel saatiyle). 23.50 bildirimi seriyi kaçırma uyarısıdır.
+- **Günde iki zaman: 12.00 ve 23.45** (kullanıcının yerel saatiyle). 23.45 bildirimi seriyi kaçırma uyarısıdır. (Önce 23.50'ydi; sunucuda cron en sık 15 dakikada bir çalıştığı için 23.45'e alındı, Efe onayladı 30 Eylül.)
 - **Kullanıcı o günü tamamladıysa sonraki bildirim gitmez.**
 - **Serisi 0 olan kullanıcıya bildirim gitmez.**
 - 12.00 bildiriminde günün kelimesi yer alır (18.8).
-- Dondurma hakkı varsa 23.50 bildirimi şöyle der: **"Bugün çalışmazsan 1 dondurma hakkın kullanılacak."**
+- Dondurma hakkı varsa 23.45 bildirimi şöyle der: **"Bugün çalışmazsan 1 dondurma hakkın kullanılacak."**
 - Dil cesaretlendiricidir.
 
 **Efe'nin cevapları (29 Eylül):**
@@ -1216,6 +1216,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 
 **Saklama:**
 - PDF dosyası zaten **saklanmıyor**; yalnızca çıkarılan metin veritabanına yazılıyor (`UserText.body`).
+- **Metinler diskte saklanır (Efe'nin kararı, 30 Eylül):** Sunucudaki MySQL veritabanı en çok 1 GB. Kullanıcı metinleri veritabanına değil, **sıkıştırılmış dosya olarak diske** yazılır (disk limitsiz). Veritabanında yalnızca başlık, dosya adı ve bilgiler durur.
 - **Sıkıştırma (Efe onayladı, 29 Eylül):**
   - Metin veritabanına **zlib ile sıkıştırılmış** olarak yazılır. Düz İngilizce metin genelde 3–4 kat küçülür.
   - 400 sayfalık bir kitap (~1 MB metin) ~250–300 KB olur.
@@ -1347,6 +1348,18 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Bildirim izni kabul oranı
   - Günün tamamlanma oranı
 
+### 18.32 Barındırma sınırları ve sonuçları (Efe'nin kararları, 30 Eylül)
+- **Paket:** Veridyen **Senior**.
+  - Disk ve trafik limitsiz. **Inode 400.000.** **MySQL veritabanı başına en çok 1 GB** (MariaDB 10.6+).
+  - 4 çekirdek, 4 GB RAM. **Cron en sık 15 dakikada bir.**
+  - Python sürümü seçilebilir; SSH, Git ve Let's Encrypt var.
+- **Sonuçları:**
+  - Okuma metinleri diskte sıkıştırılmış dosya (18.24).
+  - **Ayrıntılı karşılaşma kayıtları (`EncounterLog`) 90 gün tutulur**, daha eskileri günlük özetlere çevrilir. Tekrar kuralı (18.2) ve istatistik ekranı (18.31) bu özetlerle çalışır. Böylece veritabanı 1 GB'ın altında kalır.
+  - Seri kaçırma bildirimi **23.45** (18.9).
+  - Ses dosyaları (18.4, seçilirse) sunucuda durabilir: ~28 bin dosya (~70–110 MB) inode sınırının %7'si.
+- **Maliyet ilkesi (Efe):** Bu süreçte ek masraf çıkmamalı. Ücretli servis, API ya da hesap gerektiren çözümler önerilmez; ücretsiz ve yerel çözümler tercih edilir.
+
 ### 18.20 Önerilen uygulama sırası (Claude'un önerisi)
 Her adım ayrı commit, her adımdan sonra testler.
 
@@ -1422,3 +1435,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-09-30 (2):** 18.27 kesinleşti: sonuç = doğru cevaplanan en yüksek seviye, özet cevapları gösterilmez, seviye düzeltmesi herkese, C2 yerine en zor C1 yedeği, kendi seçenlere küçük Ayarlar notu.
 - **2026-09-30 (3):** Uygulama 1. adım yapıldı: `lang="tr"`, telaffuz düğmeleri (18.4), tek biçim liste düğmesi (18.5). 829 test geçiyor.
 - **2026-09-30 (4):** Telaffuz ses seçimi düzeltildi (şaka sesleri dışlandı); tarayıcı sesinin kalitesi yetersiz, kalıcı çözüm 18.4'te karar bekliyor.
+- **2026-09-30 (5):** 18.32 barındırma sınırları: metinler diskte, EncounterLog 90 gün + özet, seri uyarısı 23.45. Maliyet ilkesi yazıldı.
