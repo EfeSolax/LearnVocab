@@ -780,7 +780,17 @@ Genel kural değişir: **giriş gerektiren öğeler misafire gösterilmez.** Ger
 
 - **Misafirin diyalogları:** L&P ile aynı dağılım (%60 B1 · %20 B2 · %20 C1). Giriş yapmış kullanıcıda hedef kelime yine listeden gelir (9.2).
 
-### 18.4 Telaffuz: Amerikan ve İngiliz düğmeleri (Efe'nin kararı) — **YAPILDI (30 Eylül)**
+### 18.4 Telaffuz: Amerikan ve İngiliz düğmeleri (Efe'nin kararı) — **YAPILDI ama kalitesi yetersiz (30 Eylül)**
+> **Sorun (Efe, 30 Eylül):**
+> - Mac'te US düğmesi "Albert" adlı şaka sesini seçiyordu ("sincap gibi"). Düzeltildi: şaka ve eski sentez sesleri dışlandı, artık Samantha seçiliyor.
+> - UK için Mac'teki tek düzgün ses Daniel, o da "scatter"ı yanlış okudu.
+> - **Tarayıcı sesi cihazdan cihaza değişiyor ve yanlış okuyabiliyor.** Kalıcı çözüm karar bekliyor:
+>   - (A) Tarayıcı sesiyle kalmak.
+>   - (B) Wikimedia Commons'taki gerçek insan kayıtları (ücretsiz, CC BY-SA, kaynak gösterilmeli, her kelime yok).
+>   - (C) Açık kaynak bir yapay zekâ ses modeliyle (ör. Kokoro, ücretsiz, Mac'te çalışır) bütün kelimelerin US/UK seslerini bir kez üretip dosya olarak saklamak.
+>   - (D) Google Cloud TTS'nin ücretsiz kotası (faturalandırma hesabı ister; "harcama yok" kararıyla çelişebilir).
+>   - Claude'un önerisi: B + C (önce insan kaydı, yoksa üretilmiş ses). İlk olarak C'yi 20 kelimede deneyip Efe'nin dinlemesi.
+
 > Uygulama: `templates/base/_telaffuz.html` (kartta tür ve seviyenin yanında "US" / "UK" düğmeleri). Ses algılama ve okuma kodu `base/_kelimeKartiJs.html`'de. Cihazda o aksanın sesi yoksa `<html>`'e `ses-us` / `ses-uk` sınıfı eklenmez ve düğme görünmez (CSS: `base/layout.html`). Hız 0,9. Günün kelimesi kartına 18.8 ile eklenecek.
 
 - Kelime kartına (başlıkta, kelimenin yanında) **iki ses düğmesi:** 🇺🇸 Amerikan · 🇬🇧 İngiliz.
@@ -1411,3 +1421,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-09-30:** 18.26 tema düğmesi Ayarlar'a, varsayılan sistem teması. 18.27 seviye testi yeniden yazıldı: 3 kelime ekranı (20 A1+20 A2 / 20 B1+20 B2 / 30 C1+10 C2, %60 eşiği), en çok 3 özet sorusu (seçim kuralı ve tablo), kendi seçenlerin seviyesinin L&P ve egzersiz verisinden düzeltilmesi. 18.29 bildirim izni ölçütü onaylandı.
 - **2026-09-30 (2):** 18.27 kesinleşti: sonuç = doğru cevaplanan en yüksek seviye, özet cevapları gösterilmez, seviye düzeltmesi herkese, C2 yerine en zor C1 yedeği, kendi seçenlere küçük Ayarlar notu.
 - **2026-09-30 (3):** Uygulama 1. adım yapıldı: `lang="tr"`, telaffuz düğmeleri (18.4), tek biçim liste düğmesi (18.5). 829 test geçiyor.
+- **2026-09-30 (4):** Telaffuz ses seçimi düzeltildi (şaka sesleri dışlandı); tarayıcı sesinin kalitesi yetersiz, kalıcı çözüm 18.4'te karar bekliyor.
