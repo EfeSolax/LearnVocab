@@ -199,6 +199,9 @@ def learnPassPage(request):
         "exercise_tab": "learn",
     }
     if request.user.is_authenticated:
+        # Seviye, L&P ve egzersiz cevaplarından kendiliğinden düzelir (rapor 18.27).
+        from seviye.duzeltme import seviyeyi_sessizce_duzelt
+        seviyeyi_sessizce_duzelt(request.user)
         context.update(acilis_verisi(request.user))
     return render(request, "pages/learnpass/modePicker.html", context)
 

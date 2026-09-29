@@ -1,14 +1,17 @@
 """
-Seviye testi (ürün raporu 7; veri D4 ve D8).
+Seviye testi (ürün raporu 7, 18.27; veri D4 ve D8).
 
   SeviyeKelimesi     1. kısmın ekran kelimeleri (D8). `seviye_kelimeleri_sec`
                      komutu seçer ve yazar; her testte havuzdan rastgele 40.
                      Tablo boşsa seçim aynı kuralla anında yapılır (secim.py).
-  OkumaSorusu        2. kısmın okuma havuzu (D4). Yapay zekâ üretimi gerektirdiği
-                     için BOŞ başlar; `seviye_okuma_yukle` ile JSON'dan yüklenir.
-                     Havuz eksikse 2. kısım atlanır.
+  OkumaSorusu        2. kısmın özet soruları (D4): A1–C2 her seviyeden 50,
+                     Claude elle yazar; `seviye_okuma_yukle` ile yüklenir.
+                     İstenen seviyede soru yoksa o soru atlanır.
   SeviyeTestiSonucu  Her bitirilen test: tahmin, ekranlardaki bilinen sayıları,
                      okuma sonucu ve ilk listeye eklenen kelimeler (Geri al için).
+  SeviyeDuzeltmesi   Seviyenin L&P ve egzersiz verisinden kendiliğinden
+                     düzelmesi (18.27; kural seviye/duzeltme.py). Haftada en
+                     çok bir basamak; kayıt bu sınır ve istatistik için.
 """
 
 from django.conf import settings
@@ -20,14 +23,15 @@ from words.models import Word
 
 class Ekran(models.IntegerChoices):
     KOLAY = 1, "A1–A2"
-    ORTA = 2, "B1–B1+"
-    ZOR = 3, "B2–C1"
+    ORTA = 2, "B1–B2"
+    ZOR = 3, "C1–C2"
 
 
 class SeviyeKelimesi(models.Model):
     ekran = models.PositiveSmallIntegerField(choices=Ekran.choices, db_index=True)
     word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="seviye_testi_satirlari")
-    # Seçildiği andaki seviye (ekranın içindeki A1/A2 dengesi için).
+    # Ekrandaki yuvası (A1/A2 · B1/B2 · C1/C2). C2 yuvasına, C2 havuzu resmî
+    # kaynakla genişletilene kadar en zor C1 kelimeleri girer (rapor 18.27).
     cefr = models.CharField(max_length=2)
     # wordfreq zipf sıklığı (kurulu değilse boş). Denetim için saklanır.
     zipf = models.FloatField(blank=True, null=True)
@@ -43,17 +47,10 @@ class SeviyeKelimesi(models.Model):
         return f"{self.ekran}. ekran · {self.word.text} ({self.cefr})"
 
 
-class OkumaZorlugu(models.IntegerChoices):
-    KOLAY = 1, "Kolay"
-    ORTA = 2, "Orta"
-    ZOR = 3, "Zor"
-
-
 class OkumaSorusu(models.Model):
-    """Kısa metin (4–5 cümle) + "metni en iyi özetleyen cümle" sorusu (D4)."""
+    """Kısa metin (4 cümle) + "metni en iyi özetleyen cümle" sorusu (D4)."""
 
-    zorluk = models.PositiveSmallIntegerField(choices=OkumaZorlugu.choices, db_index=True)
-    cefr = models.CharField(max_length=2, blank=True, default="")
+    cefr = models.CharField(max_length=2, choices=SEVIYE_SECENEKLERI, db_index=True)
     metin = models.TextField()
     dogru = models.CharField(max_length=400)
     celdiriciler = models.JSONField(default=list)
@@ -69,7 +66,7 @@ class OkumaSorusu(models.Model):
         verbose_name_plural = "okuma soruları"
 
     def __str__(self):
-        return f"{self.get_zorluk_display()} · {self.metin[:60]}"
+        return f"{self.cefr} · {self.metin[:60]}"
 
 
 class SeviyeTestiSonucu(models.Model):
@@ -94,3 +91,21 @@ class SeviyeTestiSonucu(models.Model):
 
     def __str__(self):
         return f"{self.user} · {self.tahmin} · {self.olusturuldu:%Y-%m-%d}"
+
+
+class SeviyeDuzeltmesi(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="seviye_duzeltmeleri")
+    eski = models.CharField(max_length=2, choices=SEVIYE_SECENEKLERI)
+    yeni = models.CharField(max_length=2, choices=SEVIYE_SECENEKLERI)
+    # Karar anındaki hesap: {"B1": {"gorulen": 40, "bilinen": 31}, …, "hedef": "B2"}
+    ozet = models.JSONField(default=dict)
+    olusturuldu = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "seviye düzeltmesi"
+        verbose_name_plural = "seviye düzeltmeleri"
+        ordering = ("-olusturuldu", "-id")
+
+    def __str__(self):
+        return f"{self.user} · {self.eski} → {self.yeni}"

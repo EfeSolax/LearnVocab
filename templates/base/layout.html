@@ -91,6 +91,9 @@
 
     {% include 'base/_mobileTabBar.html' %}
 
+    {# Seviye testi daveti: test yapılana kadar her sayfada (rapor 18.27, seviye/baglam.py) #}
+    {% if seviye_daveti_goster %}{% include 'pages/seviye/_davetPenceresi.html' %}{% endif %}
+
     {# Site geneli bileşenler: "Geri al" bildirimi, giriş gerektiren düğmeler, kelime kartı davranışı #}
     {% include 'base/_geriAl.html' %}
     {% include 'base/_girisGerekli.html' %}

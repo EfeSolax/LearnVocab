@@ -4,7 +4,7 @@
 Ana Sayfa (ürün raporu 3; girişsiz ziyaretçi 2.3). Görünüm: LearnVocab/anasayfa.py
 
 Girişli (yukarıdan aşağı, en önemli en büyük ve en üstte):
-  1. Selam + seviye testi davet kartı (seviyesi belirlenmemişse; zorunlu değil)
+  1. Selam (seviye testi daveti her sayfada ayrı çıkar: pages/seviye/_davetPenceresi.html)
   2. Büyük "Bugünün çalışmasına başla" -> Learn & Pass
   3. Şerit: Seri (rapor 18.9, takvimli açılır kutu) · Listemdeki kelime sayısı
   4. Günün Kelimesi · Günün İfadesi: Sözlük kartlarının küçük hâli, dokununca
@@ -28,9 +28,6 @@ günün kelimesi (B1), giriş / kayıt.
         Merhaba, {{ user.first_name|default:user.username }}
     </h1>
 
-    {% if seviye_daveti %}
-    {% include 'pages/seviye/_davetKarti.html' %}
-    {% endif %}
 
     {# ---------------- 2. Bugünün çalışması ---------------- #}
     <a href="{% url 'learn_pass_page' %}" data-bugunun-calismasi

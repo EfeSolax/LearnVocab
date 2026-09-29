@@ -11,14 +11,15 @@ python manage.py seviye_okuma_yukle havuz.json             # sonra gerçek yazı
 
 Dosya bir JSON listesi (`[ {...}, {...} ]`) ya da JSONL (her satırda bir kayıt) olabilir.
 
-**Havuz boşken** (ya da üç zorluğun birinde hiç denetlenmiş soru yokken) 2. kısım
-bütünüyle atlanır ve seviye yalnızca kelime ekranlarından tahmin edilir.
+Rapor 18.27: A1, A2, B1, B2, C1 ve C2 için **50'şer soru** (Claude elle yazar, API yok).
+Testte kelime ekranlarının sonucuna göre **en çok 3 seviyeden birer soru** sorulur.
+İstenen seviyede denetlenmiş soru yoksa o soru atlanır; hiçbiri yoksa 2. kısım
+bütünüyle atlanır ve seviye yalnızca kelime ekranlarından belirlenir.
 
 ## Bir kayıt
 
 ```json
 {
-  "zorluk": 1,
   "cefr": "A2",
   "metin": "Tom works in a small bakery. He starts work at five in the morning. He makes bread and cakes for the people in his town. In the afternoon he goes home and sleeps.",
   "dogru": "Tom is a baker who starts his day very early.",
@@ -34,8 +35,7 @@ bütünüyle atlanır ve seviye yalnızca kelime ekranlarından tahmin edilir.
 
 | Alan | Zorunlu | Açıklama |
 |---|---|---|
-| `zorluk` | evet | `1` kolay · `2` orta · `3` zor. Testte her zorluktan bir metin, kolaydan zora. |
-| `cefr` | hayır | Metnin hedef seviyesi (A1–C2). Yalnızca denetim içindir. |
+| `cefr` | evet | Sorunun seviyesi (A1–C2). Test bu seviyeye göre soru seçer. |
 | `metin` | evet | 4–5 cümlelik kısa İngilizce metin (yükleyici 3–6 cümleyi kabul eder). |
 | `dogru` | evet | Metni en iyi özetleyen cümle. |
 | `celdiriciler` | evet | 2–4 çeldirici. Metinle ilgili görünmeli ama özeti **yanlış** ya da **eksik** vermeli; birden çok doğru şık olmamalı. |

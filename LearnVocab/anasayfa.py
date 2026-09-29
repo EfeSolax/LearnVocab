@@ -8,7 +8,7 @@ Girişli kullanıcı:
   - Günün kelimesi ve günün ifadesi: Sözlük'teki kartların küçük hâli. İçerik
     Sözlük ile aynı kaynaktan (words.arama.gunun_kelimesi / gunun_ifadesi);
     dokununca Sözlük'te ilgili kart açılır (/sozluk/?q=…).
-  - Seviyesi belirlenmemişse nazik bir seviye testi davet kartı (zorunlu değil).
+  - Seviye testi daveti her sayfada ayrı çıkar (seviye/baglam.py, rapor 18.27).
   - Yardım bağlantısı (içerik Bölüm 16: şimdilik Hakkında sayfası).
 
 Girişsiz ziyaretçi: kısa tanıtım, Learn & Pass'e başla (misafir), Sözlük'te
@@ -18,7 +18,6 @@ ara, günün kelimesi (B1).
 from django.shortcuts import render
 
 from seri import hesap as seri_hesap
-from seviye.views import davet_gosterilsin_mi
 from words import arama
 from words.kart import kart_verisi
 from words.models import UserWordLink
@@ -35,7 +34,6 @@ def ana_sayfa(request):
         baglam.update({
             "liste_sayisi": UserWordLink.objects.filter(user=user).count(),
             "gunun_ifadesi": arama.gunun_ifadesi(user),
-            "seviye_daveti": davet_gosterilsin_mi(request),
             "seri": seri_hesap.durum(user),
         })
     return render(request, "pages/index.html", baglam)

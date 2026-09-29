@@ -58,9 +58,9 @@ eklendi; onay yerine "Geri al" (rapor 12.7).
             {% for e in ekranlar %}
             <li>{{ e.no }}. ekran ({{ e.ad }}): {{ e.gosterilen }} kelimeden {{ e.bilinen }} tanesini bildin (%{{ e.yuzde }}).</li>
             {% endfor %}
-            {% if son.okuma %}<li>Okuma: {{ son.okuma.toplam }} metinden {{ son.okuma.dogru }} tanesinde doğru özeti seçtin.</li>{% endif %}
         </ul>
-        <p class="mt-3">Bir ekrandaki kelimelerin en az %{{ gecme_yuzdesi }}'sini bildiğinde bir sonraki ekrana geçersin. Seviyen, rahat geçtiğin en zor ekrana göre belirlenir{% if son.okuma %}; okumada hepsi doğruysa bir basamak yukarı, hiçbiri doğru değilse bir basamak aşağı alınır{% endif %}.</p>
+        <p class="mt-3">Bir ekrandaki kelimelerin %{{ gecme_yuzdesi }}'ından fazlasını bildiğinde bir sonraki ekrana geçersin.{% if son.okuma %} Ardından okuduğun kısa paragraflar seviyeni netleştirdi.{% endif %}</p>
+        <p class="mt-2">Seviyen, Learn &amp; Pass ve egzersizlerdeki cevaplarına göre zamanla kendiliğinden de güncellenir.</p>
         <p class="mt-2">Seviyen kesin bir not değil, başlangıç noktası. Testi <a href="{% url 'seviye_testi' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">istediğin zaman yeniden çözebilir</a> ya da <a href="{% url 'seviye_sec' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">kendin seçebilirsin</a>.</p>
     </details>
 </div>

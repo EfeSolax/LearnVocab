@@ -22,7 +22,7 @@ açılmaz (seviye/okuma.py).
     <fieldset class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-5 sm:px-6">
         <legend class="sr-only">{{ forloop.counter }}. metin</legend>
         <p class="text-xs font-semibold text-gray-400 dark:text-slate-500">{{ forloop.counter }} / {{ sorular|length }}</p>
-        <p class="mt-2 leading-relaxed text-gray-800 dark:text-slate-200">{{ soru.metin }}</p>
+        <p lang="en" class="mt-2 leading-relaxed text-gray-800 dark:text-slate-200">{{ soru.metin }}</p>
         <p class="mt-4 text-sm font-semibold text-gray-900 dark:text-slate-100">Metni en iyi özetleyen cümle hangisi?</p>
         <div class="mt-2 space-y-2">
             {% for sik in soru.siklar %}

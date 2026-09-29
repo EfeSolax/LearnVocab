@@ -19,7 +19,7 @@ from pathlib import Path
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
-from seviye.models import OkumaSorusu, OkumaZorlugu
+from seviye.models import OkumaSorusu
 from users.seviye import SEVIYELER
 
 EN_AZ_CUMLE = 3
@@ -55,12 +55,9 @@ def kaydi_coz(kayit):
     if not isinstance(kayit, dict):
         raise KayitHatasi("kayıt bir nesne değil")
 
-    try:
-        zorluk = int(kayit.get("zorluk"))
-    except (TypeError, ValueError):
-        raise KayitHatasi("'zorluk' 1, 2 ya da 3 olmalı")
-    if zorluk not in OkumaZorlugu.values:
-        raise KayitHatasi("'zorluk' 1, 2 ya da 3 olmalı")
+    cefr = str(kayit.get("cefr") or "").strip().upper()
+    if cefr not in SEVIYELER:
+        raise KayitHatasi("'cefr' A1, A2, B1, B2, C1 ya da C2 olmalı")
 
     metin = " ".join(str(kayit.get("metin") or "").split())
     if not metin:
@@ -84,12 +81,7 @@ def kaydi_coz(kayit):
     if any(len(s) > 400 for s in [dogru, *celdiriciler]):
         raise KayitHatasi("bir şık 400 karakterden uzun")
 
-    cefr = str(kayit.get("cefr") or "").strip().upper()
-    if cefr and cefr not in SEVIYELER:
-        raise KayitHatasi(f"bilinmeyen cefr: {cefr}")
-
     return {
-        "zorluk": zorluk,
         "cefr": cefr,
         "metin": metin,
         "dogru": dogru,

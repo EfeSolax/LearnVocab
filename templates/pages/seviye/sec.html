@@ -23,5 +23,7 @@
     </div>
     <button type="submit" class="w-full rounded-2xl bg-indigo-600 px-6 py-3.5 text-base font-bold text-white hover:bg-indigo-700 transition">Kaydet</button>
     <p class="text-center text-sm"><a href="{% url 'seviye_testi' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Emin değilim, testi çözeyim</a></p>
+    {# Rapor 18.27: çok küçük, tek satırlık not; Ayarlar'a bağlanır (ayarlar sayfası gelene kadar Profilim). #}
+    <p class="text-center text-xs text-gray-400 dark:text-slate-500" data-ayarlar-notu>Seviyeni istediğin zaman <a href="{% url 'user_profile' %}" class="underline hover:text-indigo-600 dark:hover:text-indigo-400">Ayarlar</a>'dan değiştirebilirsin.</p>
 </form>
 {% endblock %}

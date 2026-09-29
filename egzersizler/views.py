@@ -177,6 +177,9 @@ def oturum(request, pk):
 
 
 def _bitis(request, o):
+    # Seviye, L&P ve egzersiz cevaplarından kendiliğinden düzelir (rapor 18.27).
+    from seviye.duzeltme import seviyeyi_sessizce_duzelt
+    seviyeyi_sessizce_duzelt(request.user)
     yanlislar = []
     for soru, cevap in zip(o.sorular, o.cevaplar):
         if cevap and not cevap.get("dogru_mu"):

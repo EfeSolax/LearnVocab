@@ -508,6 +508,7 @@ class ListemSatirTests(ListemTemeli):
         self.assertIn("data-filtre-bos", html)
 
     def test_seviye_filtresi_yok(self):
+        User.objects.filter(pk=self.user.pk).update(cefr="B1")   # seviye testi daveti çıkmasın
         html = _html(self.listem())
         self.assertNotIn("Seviye", html)
         self.assertIn("Zorlandıklarım", html)

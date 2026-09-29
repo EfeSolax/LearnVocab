@@ -1,5 +1,5 @@
 """
-Seviye testi (rapor 7; D4, D8) ve kullanıcı seviyesi yardımcısı.
+Seviye testi (rapor 7, 18.27; D4, D8) ve kullanıcı seviyesi yardımcısı.
 """
 
 import json
@@ -22,11 +22,11 @@ from words.testing import make_word
 from . import secim, tahmin
 from .duzeltme import seviyeyi_sessizce_duzelt
 from .models import OkumaSorusu, SeviyeKelimesi, SeviyeTestiSonucu
-from .views import DAVET_CEREZI, OTURUM_ANAHTARI
+from .views import OTURUM_ANAHTARI
 
 SIFRE = "Sifre1234"
 # Seviye başına harf öneki: kelimeler yalnızca a–z olmalı (secim._YAZIM).
-ONEK = {"A1": "aa", "A2": "ab", "B1": "ba", "B2": "bb", "C1": "ca"}
+ONEK = {"A1": "aa", "A2": "ab", "B1": "ba", "B2": "bb", "C1": "ca", "C2": "cb"}
 
 
 # Test kelimeleri uydurma yazımlar ("aaab"): wordfreq sıklığı 0, bant dışı
@@ -82,13 +82,6 @@ class KullaniciSeviyesiTests(TestCase):
         self.assertIs(egz.kullanici_seviyesi, kullanici_seviyesi)
         self.assertIs(arama.kullanici_seviyesi, kullanici_seviyesi)
 
-    def test_duzeltme_kancasi_bir_sey_yapmaz(self):
-        self.user.cefr = "B1"
-        self.user.save()
-        self.assertIsNone(seviyeyi_sessizce_duzelt(self.user, olay="lp"))
-        self.user.refresh_from_db()
-        self.assertEqual(self.user.cefr, "B1")
-
 
 # ----------------------------------------------------------------------
 # Tahmin kuralı
@@ -96,40 +89,6 @@ class KullaniciSeviyesiTests(TestCase):
 
 def _e(bilinen, gosterilen=40):
     return {"gosterilen": gosterilen, "bilinen": bilinen}
-
-
-class TahminKuraliTests(TestCase):
-    def test_ekran_atlama(self):
-        self.assertIsNone(tahmin.sonraki_ekran(1, _e(19)))   # yarıdan az: zor ekran yok
-        self.assertEqual(tahmin.sonraki_ekran(1, _e(20)), 2)
-        self.assertIsNone(tahmin.sonraki_ekran(2, _e(5)))
-        self.assertEqual(tahmin.sonraki_ekran(2, _e(30)), 3)
-        self.assertIsNone(tahmin.sonraki_ekran(3, _e(40)))   # son ekran
-
-    def test_kelime_tahmini(self):
-        self.assertEqual(tahmin.kelime_tahmini({1: _e(10)}), "A1")
-        self.assertEqual(tahmin.kelime_tahmini({1: _e(30), 2: _e(10)}), "A2")
-        self.assertEqual(tahmin.kelime_tahmini({1: _e(38), 2: _e(25), 3: _e(12)}), "B1")
-        self.assertEqual(tahmin.kelime_tahmini({"1": _e(40), "2": _e(35), "3": _e(25)}), "B2")
-        self.assertEqual(tahmin.kelime_tahmini({1: _e(40), 2: _e(40), 3: _e(32)}), "C1")
-
-    def test_okuma_yalnizca_uclarda_duzeltir(self):
-        self.assertEqual(tahmin.okuma_duzeltmesi("B1", 3, 3), "B2")
-        self.assertEqual(tahmin.okuma_duzeltmesi("B1", 0, 3), "A2")
-        self.assertEqual(tahmin.okuma_duzeltmesi("B1", 2, 3), "B1")
-        self.assertEqual(tahmin.okuma_duzeltmesi("C1", 3, 3), "C1")
-        self.assertEqual(tahmin.okuma_duzeltmesi("A1", 0, 3), "A1")
-        self.assertEqual(tahmin.okuma_duzeltmesi("B1", 0, 0), "B1")   # 2. kısım atlandı
-
-    def test_ilk_liste_seviyenin_ekranindaki_dokunulmayanlar(self):
-        gosterilen = {"1": [1, 2, 3], "2": [4, 5, 6], "3": [7, 8, 9]}
-        bilinen = {"1": [1, 2, 3], "2": [4], "3": [7]}
-        self.assertEqual(tahmin.ilk_liste("B1", gosterilen, bilinen), [5, 6])
-        self.assertEqual(tahmin.ilk_liste("B2", gosterilen, bilinen), [8, 9])
-
-    def test_ilk_liste_gosterilmeyen_ekranda_en_yakina_kayar(self):
-        # A2 + okumada hepsi doğru -> B1; ama 2. ekran gösterilmedi.
-        self.assertEqual(tahmin.ilk_liste("B1", {"1": [1, 2]}, {"1": [1]}), [2])
 
 
 # ----------------------------------------------------------------------
@@ -176,9 +135,10 @@ class SecimTests(TestCase):
                 self.assertIn(seviyeler[wid], beklenen)
 
     def test_zipf_bandi(self):
-        def sahte(text):
-            return 7.0 if text.endswith("aa") else 4.2   # "...aa" çok sık: band dışı
-        adaylar = secim.adaylar(sahte)
+        """Sıklık Word.siklik alanından okunur (manage.py siklik_hesapla)."""
+        Word.objects.filter(text__endswith="aa").update(siklik=7.0)   # çok sık: bant dışı
+        Word.objects.exclude(text__endswith="aa").update(siklik=4.2)
+        adaylar = secim.adaylar()
         self.assertFalse(any(a.text.endswith("aa") and a.cefr in ("A1", "A2") for a in adaylar))
         self.assertTrue(all(a.zipf is not None for a in adaylar))
 
@@ -286,12 +246,14 @@ class SeviyeTestiAkisTests(TestCase):
         self.assertRedirects(cevap, reverse("seviye_ekran", args=[2]))
         cevap, *_ = self._gonder(2, 0.75)
         self.assertRedirects(cevap, reverse("seviye_ekran", args=[3]))
-        cevap, gosterilen, bilinen = self._gonder(3, 0.6)
-        self.assertRedirects(cevap, reverse("seviye_sonuc"))   # okuma yok
+        cevap, *_ = self._gonder(3, 0.6)   # tam %60: geçilemez (üstü gerekir)
+        self.assertRedirects(cevap, reverse("seviye_sonuc"))   # okuma havuzu boş
         sonuc = SeviyeTestiSonucu.objects.get(user=self.user)
-        self.assertEqual(sonuc.tahmin, "B2")
+        self.assertEqual(sonuc.tahmin, "B2")                    # son geçilen ekranın üstü
         self.assertIsNone(sonuc.okuma)
-        self.assertEqual(set(sonuc.eklenen), set(gosterilen) - set(bilinen))
+        # İlk liste B2'nin ekranından (2. ekran: B1–B2) dokunulmayanlar
+        durum_2 = sonuc.ekranlar["2"]
+        self.assertEqual(len(sonuc.eklenen), durum_2["gosterilen"] - durum_2["bilinen"])
         self.assertNotIn(OTURUM_ANAHTARI, self.client.session)
 
     def test_ekran_sayfasi_yalnizca_kelimeyi_gosterir(self):
@@ -323,39 +285,6 @@ class SeviyeTestiAkisTests(TestCase):
 
 
 @wordfreq_yok
-class OkumaKismiTests(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.k = kelimeler_kur(4)
-        metin = "One sentence here. Two sentences here. Three are here. Four is the last."
-        for z in (1, 2, 3):
-            OkumaSorusu.objects.create(zorluk=z, metin=f"{metin} ({z})", dogru=f"Doğru {z}",
-                                       celdiriciler=[f"Yanlış {z}a", f"Yanlış {z}b"],
-                                       denetlendi=True, anahtar=f"k{z}")
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="okur", password=SIFRE)
-        self.client.login(username="okur", password=SIFRE)
-
-    def test_denetlenmemis_havuz_yok_sayilir(self):
-        OkumaSorusu.objects.filter(zorluk=3).update(denetlendi=False)
-        self.client.post(reverse("seviye_basla"))
-        durum = self.client.session[OTURUM_ANAHTARI]
-        cevap = self.client.post(reverse("seviye_ekran", args=[1]), {"bilinen": []})
-        self.assertRedirects(cevap, reverse("seviye_sonuc"))
-        self.assertTrue(durum)
-
-    def test_okuma_hepsi_dogru_bir_seviye_ustu(self):
-        self.client.post(reverse("seviye_basla"))
-        cevap = self.client.post(reverse("seviye_ekran", args=[1]), {"bilinen": []})
-        self.assertRedirects(cevap, reverse("seviye_okuma"))
-        html = self.client.get(reverse("seviye_okuma")).content.decode()
-        self.assertIn("en iyi özetleyen", html)
-        veri = {f"soru_{s.id}": s.dogru for s in OkumaSorusu.objects.all()}
-        self.assertRedirects(self.client.post(reverse("seviye_okuma"), veri), reverse("seviye_sonuc"))
-        sonuc = SeviyeTestiSonucu.objects.get(user=self.user)
-        self.assertEqual((sonuc.kelime_tahmini, sonuc.tahmin), ("A1", "A2"))
-        self.assertEqual(sonuc.okuma, {"dogru": 3, "toplam": 3})
 
 
 class OkumaYukleKomutuTests(TestCase):
@@ -368,7 +297,7 @@ class OkumaYukleKomutuTests(TestCase):
         return cikti.getvalue()
 
     def _kayit(self, **degisen):
-        kayit = {"zorluk": 1, "cefr": "A2",
+        kayit = {"cefr": "A2",
                  "metin": "Tom works in a bakery. He starts at five. He makes bread. He goes home at two.",
                  "dogru": "Tom is a baker who starts early.",
                  "celdiriciler": ["Tom buys bread.", "Tom hates his job.", "Tom sleeps at work."],
@@ -389,7 +318,7 @@ class OkumaYukleKomutuTests(TestCase):
 
     def test_hatali_kayitlar_atlanir(self):
         cikti = self._yukle([
-            self._kayit(zorluk=5),
+            self._kayit(cefr="Z9"),
             self._kayit(metin="Too short."),
             self._kayit(celdiriciler=["only one"]),
             self._kayit(celdiriciler=["Tom is a baker who starts early.", "x y"]),
@@ -402,26 +331,161 @@ class OkumaYukleKomutuTests(TestCase):
 # Davet kartı
 # ----------------------------------------------------------------------
 
-class DavetKartiTests(TestCase):
+
+# ----------------------------------------------------------------------
+# Tahmin kuralı (rapor 18.27)
+# ----------------------------------------------------------------------
+
+def _e(*oranlar):
+    return {str(i + 1): {"gosterilen": 40, "bilinen": round(40 * o)} for i, o in enumerate(oranlar)}
+
+
+class TahminKuraliTests(TestCase):
+    def test_gecmek_icin_yuzde_60_in_ustu(self):
+        self.assertFalse(tahmin.gecti_mi({"gosterilen": 40, "bilinen": 24}))   # tam %60
+        self.assertTrue(tahmin.gecti_mi({"gosterilen": 40, "bilinen": 25}))
+        self.assertIsNone(tahmin.sonraki_ekran(1, {"gosterilen": 40, "bilinen": 24}))
+        self.assertEqual(tahmin.sonraki_ekran(1, {"gosterilen": 40, "bilinen": 25}), 2)
+
+    def test_efenin_dort_ornegi_sorulacak_seviyeler(self):
+        self.assertEqual(tahmin.sorulacak_seviyeler(_e(0.3)), ["A1", "A2"])
+        self.assertEqual(tahmin.sorulacak_seviyeler(_e(0.9, 0.3)), ["A2", "B1"])
+        self.assertEqual(tahmin.sorulacak_seviyeler(_e(0.9, 0.9, 0.3)), ["A2", "B2", "C1"])
+        self.assertEqual(tahmin.sorulacak_seviyeler(_e(0.9, 0.9, 0.9)), ["A2", "B2", "C2"])
+
+    def test_sonuc_dogru_cevaplanan_en_yuksek_seviye(self):
+        sorulan = ["A2", "B1"]
+        self.assertEqual(tahmin.sonuc_seviyesi("A2", sorulan, ["A2", "B1"]), "B1")
+        self.assertEqual(tahmin.sonuc_seviyesi("A2", sorulan, ["A2"]), "A2")
+        self.assertEqual(tahmin.sonuc_seviyesi("A2", sorulan, []), "A2")   # sorulan en düşük
+        self.assertEqual(tahmin.sonuc_seviyesi("A1", ["A1", "A2"], []), "A1")
+
+    def test_soru_yoksa_kelime_tahmini(self):
+        self.assertEqual(tahmin.kelime_tahmini(_e(0.3)), "A1")
+        self.assertEqual(tahmin.kelime_tahmini(_e(0.9, 0.3)), "A2")
+        self.assertEqual(tahmin.kelime_tahmini(_e(0.9, 0.9, 0.9)), "C2")
+        self.assertEqual(tahmin.sonuc_seviyesi("B2", [], []), "B2")
+
+    def test_ilk_liste_seviyenin_ekranindaki_dokunulmayanlar(self):
+        self.assertEqual(tahmin.ilk_liste("B2", {"1": [1, 2], "2": [3, 4, 5]}, {"2": [4]}), [3, 5])
+        self.assertEqual(tahmin.ilk_liste("C1", {"1": [1, 2], "2": [3, 4]}, {"2": [4]}), [3])
+
+
+class OkumaKismiTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.k = kelimeler_kur(24)
+        for seviye in ("A1", "A2", "B1", "B2", "C1", "C2"):
+            OkumaSorusu.objects.create(cefr=seviye, metin=f"Paragraph {seviye}.", dogru=f"Doğru {seviye}",
+                                       celdiriciler=["Yanlış 1", "Yanlış 2", "Yanlış 3"],
+                                       denetlendi=True, anahtar=f"k{seviye}")
+
+    def setUp(self):
+        self.user = User.objects.create_user(username="okur", password=SIFRE)
+        self.client.login(username="okur", password=SIFRE)
+
+    def _ekran(self, ekran, oran):
+        gosterilen = self.client.session[OTURUM_ANAHTARI]["gosterilen"][str(ekran)]
+        return self.client.post(reverse("seviye_ekran", args=[ekran]),
+                                {"bilinen": gosterilen[:round(len(gosterilen) * oran)]})
+
+    def _okuma(self, dogru_seviyeler):
+        sorular = self.client.session[OTURUM_ANAHTARI]["okuma"]
+        veri = {f"soru_{s['id']}": (f"Doğru {s['cefr']}" if s["cefr"] in dogru_seviyeler else "Yanlış 1")
+                for s in sorular}
+        return [s["cefr"] for s in sorular], self.client.post(reverse("seviye_okuma"), veri)
+
+    def _a2_b1_yolu(self):
+        self.client.post(reverse("seviye_basla"))
+        self._ekran(1, 0.9)
+        cevap = self._ekran(2, 0.3)
+        self.assertRedirects(cevap, reverse("seviye_okuma"))
+
+    def test_sorular_kelime_sonucuna_gore_ve_sonuc_en_yuksek_dogru(self):
+        self._a2_b1_yolu()
+        sorulan, _ = self._okuma({"A2", "B1"})
+        self.assertEqual(sorulan, ["A2", "B1"])
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.cefr, "B1")
+
+    def test_yalnizca_a2_dogru(self):
+        self._a2_b1_yolu()
+        self._okuma({"A2"})
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.cefr, "A2")
+
+    def test_hic_dogru_yoksa_sorulan_en_dusuk(self):
+        self._a2_b1_yolu()
+        self._okuma(set())
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.cefr, "A2")
+
+    def test_ilk_ekran_gecilemezse_a1_ve_a2_sorulur(self):
+        self.client.post(reverse("seviye_basla"))
+        self._ekran(1, 0.3)
+        sorulan, _ = self._okuma({"A1"})
+        self.assertEqual(sorulan, ["A1", "A2"])
+
+    def test_dogru_cevap_ve_sayisi_gosterilmez(self):
+        self._a2_b1_yolu()
+        _, cevap = self._okuma({"A2"})
+        html = self.client.get(reverse("seviye_sonuc")).content.decode()
+        self.assertNotIn("Doğru A2", html)
+        self.assertNotIn("doğru özeti", html)
+
+    def test_denetlenmemis_soru_sorulmaz(self):
+        OkumaSorusu.objects.filter(cefr="B1").update(denetlendi=False)
+        self._a2_b1_yolu()
+        sorulan, _ = self._okuma(set())
+        self.assertEqual(sorulan, ["A2"])
+
+
+class C2YuvasiTests(TestCase):
+    def test_c2_yuvasi_resmi_c2_yoksa_en_zor_oxford_c1(self):
+        for i in range(40):
+            make_word(f"ca{_harfler(i)}", level="C1", forms=False, siklik=3.0 + i / 100,
+                      cefr_kaynak="oxford")
+        c2 = [a for a in secim.adaylar() if a.cefr == "C2"]
+        self.assertEqual(len(c2), secim.HAVUZ_BOYU["C2"])
+        c1 = {a.word_id for a in secim.adaylar() if a.cefr == "C1"}
+        self.assertFalse(c1 & {a.word_id for a in c2})
+
+
+# ----------------------------------------------------------------------
+# Davet (rapor 18.27: her sayfada, oturumlarda değil)
+# ----------------------------------------------------------------------
+
+class DavetTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="davet", password=SIFRE)
         self.client.login(username="davet", password=SIFRE)
 
-    def test_seviyesi_bossa_davet_var_zorla_yonlendirme_yok(self):
-        cevap = self.client.get(reverse("index"))
-        self.assertEqual(cevap.status_code, 200)
-        self.assertContains(cevap, "data-seviye-daveti")
-        self.assertContains(cevap, reverse("seviye_sec"))
+    def test_her_sayfada_davet(self):
+        for ad in ("index", "sozluk", "readings", "learn_pass_page"):
+            with self.subTest(sayfa=ad):
+                cevap = self.client.get(reverse(ad))
+                self.assertContains(cevap, "data-seviye-daveti")
+                self.assertContains(cevap, reverse("seviye_sec"))
 
-    def test_simdi_degil_karti_gizler(self):
-        cevap = self.client.post(reverse("seviye_simdi_degil"))
-        self.assertRedirects(cevap, reverse("index"))
-        self.assertEqual(cevap.cookies[DAVET_CEREZI].value, "kapali")
+    def test_oturumlarda_ve_test_sayfalarinda_davet_yok(self):
+        for url in (reverse("learn_pass_run", kwargs={"mode": "karma"}), reverse("seviye_testi"),
+                    reverse("seviye_sec")):
+            with self.subTest(url=url):
+                self.assertNotContains(self.client.get(url), "data-seviye-daveti")
+
+    def test_simdi_degil_kalkti(self):
+        self.assertEqual(self.client.post("/seviye/simdi-degil/").status_code, 404)
+
+    def test_seviye_secilince_davet_durur_ve_kucuk_not(self):
+        html = self.client.get(reverse("seviye_sec")).content.decode()
+        self.assertIn("data-ayarlar-notu", html)
+        self.assertIn('value="C2"', html)
+        cevap = self.client.post(reverse("seviye_sec"), {"seviye": "B2"}, follow=True)
+        self.assertContains(cevap, "Ayarlar&#x27;dan değiştirebilirsin")
         self.assertNotContains(self.client.get(reverse("index")), "data-seviye-daveti")
 
-    def test_seviyesi_belliyse_davet_yok(self):
-        self.user.cefr = "B1"
-        self.user.save()
+    def test_misafire_davet_yok(self):
+        self.client.logout()
         self.assertNotContains(self.client.get(reverse("index")), "data-seviye-daveti")
 
     def test_profilde_testi_tekrarla_baglantisi(self):
@@ -430,3 +494,43 @@ class DavetKartiTests(TestCase):
         cevap = self.client.get(reverse("user_profile"))
         self.assertContains(cevap, "Seviye testini tekrarla")
         self.assertContains(cevap, reverse("seviye_testi"))
+
+
+# ----------------------------------------------------------------------
+# Seviyenin kendiliğinden düzelmesi (rapor 18.27)
+# ----------------------------------------------------------------------
+
+class SeviyeDuzeltmeTests(TestCase):
+    def setUp(self):
+        from .duzeltme import hedef_seviye, gosterdigi_seviye
+        self.hedef, self.gosterdigi = hedef_seviye, gosterdigi_seviye
+
+    def test_seviye_basina_kural(self):
+        self.assertEqual(self.gosterdigi("B1", 38, 40), 3)    # %75 üstü -> B2
+        self.assertEqual(self.gosterdigi("B1", 20, 40), 2)    # arada -> B1
+        self.assertEqual(self.gosterdigi("B1", 5, 40), 1)     # %35 altı -> A2
+
+    def test_agirlikli_ortalama(self):
+        ozet = {"B1": {"gorulen": 90, "bilinen": 85}, "B2": {"gorulen": 30, "bilinen": 15}}
+        self.assertEqual(self.hedef(ozet), "B2")   # (3*90 + 3*30)/120 = 3 -> B2
+
+    def test_az_veride_dokunulmaz(self):
+        self.assertIsNone(self.hedef({"B1": {"gorulen": 40, "bilinen": 40}}))    # toplam < 50
+        self.assertIsNone(self.hedef({"B1": {"gorulen": 19, "bilinen": 19},
+                                      "B2": {"gorulen": 19, "bilinen": 19},
+                                      "C1": {"gorulen": 19, "bilinen": 19}}))   # hiçbiri >= 20
+
+    def test_haftada_bir_basamak_ve_seviyesiz_kullaniciya_dokunmaz(self):
+        from learnpass import tekrar
+        from learnpass.models import WordEncounter
+        user = User.objects.create_user(username="duz", password=SIFRE)
+        kelimeler = [make_word(f"ba{_harfler(i)}", level="B1", forms=False) for i in range(60)]
+        for w in kelimeler:
+            tekrar.kaydet(user, w, WordEncounter.KNOWN, "new")
+        self.assertIsNone(seviyeyi_sessizce_duzelt(user))      # seviyesi belli değil
+        user.cefr = "A1"
+        user.save()
+        self.assertEqual(seviyeyi_sessizce_duzelt(user), "A2")  # hedef B2, tek basamak
+        self.assertIsNone(seviyeyi_sessizce_duzelt(user))      # bir hafta dolmadı
+        user.refresh_from_db()
+        self.assertEqual(user.cefr, "A2")

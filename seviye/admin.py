@@ -13,8 +13,8 @@ class SeviyeKelimesiAdmin(admin.ModelAdmin):
 
 @admin.register(OkumaSorusu)
 class OkumaSorusuAdmin(admin.ModelAdmin):
-    list_display = ("__str__", "zorluk", "cefr", "denetlendi", "kaynak")
-    list_filter = ("zorluk", "denetlendi")
+    list_display = ("__str__", "cefr", "denetlendi", "kaynak")
+    list_filter = ("cefr", "denetlendi")
     search_fields = ("metin", "dogru")
 
 

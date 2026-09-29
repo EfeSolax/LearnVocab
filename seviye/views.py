@@ -1,19 +1,18 @@
 """
 Seviye testi (ürün raporu 7). Adresler: seviye/urls.py (/seviye/…)
 
-    /seviye/                giriş: Başla · Seviyemi kendim seçeyim · Şimdi değil
+    /seviye/                giriş: Başla · Seviyemi kendim seçeyim
     /seviye/basla/          (POST) 1. ekranı hazırlar
     /seviye/ekran/<n>/      1. kısım: 40 kelime, yalnızca bildiklerine dokunur
-    /seviye/okuma/          2. kısım: 3 kısa metin (havuz boşsa hiç açılmaz)
+    /seviye/okuma/          2. kısım: en çok 3 özet sorusu (rapor 18.27)
     /seviye/sonuc/          son testin sonucu + ilk liste ("Geri al")
     /seviye/geri-al/        (POST) ilk listeye eklenenleri çıkarır
     /seviye/sec/            "Seviyemi kendim seçeyim"
-    /seviye/simdi-degil/    (POST) Ana Sayfa'daki davet kartını gizler
 
-Test zorunlu değil (rapor 1, serbestlik): hiçbir yerden zorla buraya
-yönlendirilmez; Ana Sayfa'da seviyesi belirlenmemiş kullanıcıya nazik bir
-davet kartı çıkar. Testin ara durumu oturumda (session) tutulur; yarıda
-bırakılan test hiçbir şey yazmaz.
+Davet (18.27): kullanıcı testi yapana ya da seviyesini seçene kadar her
+sayfada küçük bir davet çıkar (seviye/baglam.py); L&P ve egzersiz
+oturumlarında çıkmaz. Testin ara durumu oturumda (session) tutulur; yarıda
+bırakılan test hiçbir şey yazmaz. Kural: seviye/tahmin.py.
 """
 
 import random
@@ -34,16 +33,13 @@ from .models import Ekran, OkumaSorusu, SeviyeTestiSonucu
 
 OTURUM_ANAHTARI = "seviye_testi"
 
-# "Şimdi değil": davet kartı bu çerez varken çıkmaz (30 gün, cihaz başına).
-DAVET_CEREZI = "seviye_daveti"
-DAVET_CEREZ_SURESI = 30 * 24 * 3600
-
 SECILEBILIR_SEVIYELER = (
     ("A1", "Yeni başlıyorum"),
     ("A2", "Temel kelimeleri biliyorum"),
     ("B1", "Günlük konuları anlıyorum"),
     ("B2", "Akademik metinleri takip edebiliyorum"),
     ("C1", "İleri düzeydeyim"),
+    ("C2", "Neredeyse anadil düzeyindeyim"),
 )
 
 # Sonuç ekranındaki kısa, cesaretlendirici açıklama.
@@ -53,13 +49,13 @@ SEVIYE_NOTLARI = {
     "B1": "Günlük konularda rahatsın. Şimdi okumaları ve yazmayı güçlendirecek kelimelerin zamanı.",
     "B2": "Güçlü bir kelime bilgin var. Akademik ve daha ince anlamlı kelimelerle devam edebilirsin.",
     "C1": "Çok iyi! İleri düzey kelimelerle kelime hazneni daha da zenginleştirebilirsin.",
+    "C2": "Harika! Çok ileri bir düzeydesin; nadir ve incelikli kelimelerle devam edebilirsin.",
 }
 
 
 def davet_gosterilsin_mi(request):
-    """Ana Sayfa'daki seviye testi davet kartı."""
-    return (request.user.is_authenticated and not seviyesi_belli_mi(request.user)
-            and request.COOKIES.get(DAVET_CEREZI) != "kapali")
+    """Seviye testi daveti: testi yapmamış ve seviyesini seçmemiş girişli kullanıcı."""
+    return request.user.is_authenticated and not seviyesi_belli_mi(request.user)
 
 
 def _durum(request):
@@ -90,7 +86,7 @@ def giris(request):
         "active_page": "Seviye testi",
         "son_sonuc": SeviyeTestiSonucu.objects.filter(user=request.user).first(),
         "seviye_belli": seviyesi_belli_mi(request.user),
-        "okuma_var": okuma.havuz_hazir_mi(),
+        "okuma_var": okuma.havuz_var_mi(),
     })
 
 
@@ -136,7 +132,8 @@ def ekran(request, ekran):
             _kaydet(request, durum)
             return redirect("seviye_ekran", ekran=sonraki)
 
-        sorular = okuma.sorulari_sec(random.Random())
+        ekranlar = _ekran_sonuclari(durum)
+        sorular = okuma.sorulari_sec(tahmin.sorulacak_seviyeler(ekranlar), random.Random())
         if sorular:
             durum["okuma"] = sorular
             _kaydet(request, durum)
@@ -169,7 +166,7 @@ def okuma_sayfasi(request):
 
     if request.method == "POST":
         cevaplar = {str(s["id"]): request.POST.get(f"soru_{s['id']}", "") for s in sorular}
-        durum["okuma_dogru"] = okuma.dogru_sayisi(sorular, cevaplar)
+        durum["okuma_dogru"] = okuma.dogru_seviyeler(sorular, cevaplar)
         return _bitir(request, durum)
 
     metinler = dict(OkumaSorusu.objects.filter(id__in=[s["id"] for s in sorular])
@@ -185,17 +182,22 @@ def okuma_sayfasi(request):
 # Bitiş ve sonuç
 # ----------------------------------------------------------------------
 
+def _ekran_sonuclari(durum):
+    return {e: {"gosterilen": len(ids), "bilinen": len(durum["bilinen"].get(e, []))}
+            for e, ids in durum["gosterilen"].items() if e in durum["bilinen"]}
+
+
 def _bitir(request, durum):
     user = request.user
-    ekranlar = {e: {"gosterilen": len(ids), "bilinen": len(durum["bilinen"].get(e, []))}
-                for e, ids in durum["gosterilen"].items() if e in durum["bilinen"]}
+    ekranlar = _ekran_sonuclari(durum)
     kelime_seviyesi = tahmin.kelime_tahmini(ekranlar)
 
-    okuma_sonucu = None
-    seviye = kelime_seviyesi
-    if durum.get("okuma"):
-        okuma_sonucu = {"dogru": durum.get("okuma_dogru", 0), "toplam": len(durum["okuma"])}
-        seviye = tahmin.okuma_duzeltmesi(seviye, okuma_sonucu["dogru"], okuma_sonucu["toplam"])
+    # Sonuç: doğru cevaplanan en yüksek seviye (rapor 18.27). Doğru cevaplar
+    # ve doğru sayısı kullanıcıya GÖSTERİLMEZ; yalnızca kayıtta durur.
+    sorulan = [s["cefr"] for s in durum.get("okuma") or []]
+    dogru = durum.get("okuma_dogru") or []
+    seviye = tahmin.sonuc_seviyesi(kelime_seviyesi, sorulan, dogru)
+    okuma_sonucu = {"sorulan": sorulan, "dogru": dogru} if sorulan else None
 
     gosterilen = {e: ids for e, ids in durum["gosterilen"].items() if e in durum["bilinen"]}
     ilk = tahmin.ilk_liste(seviye, gosterilen, durum["bilinen"])
@@ -266,7 +268,7 @@ def sec(request):
             request.user.cefr = seviye
             request.user.save(update_fields=["cefr"])
             messages.success(request, f"Seviyen {seviye} olarak kaydedildi. "
-                                      "İstediğin zaman seviye testini çözebilirsin.")
+                                      "Seviyeni istediğin zaman Ayarlar'dan değiştirebilirsin.")
             return redirect("index")
         messages.error(request, "Lütfen bir seviye seç.")
     return render(request, "pages/seviye/sec.html", {
@@ -274,10 +276,3 @@ def sec(request):
         "secenekler": SECILEBILIR_SEVIYELER,
         "mevcut": kullanici_seviyesi(request.user) if seviyesi_belli_mi(request.user) else "",
     })
-
-
-@require_POST
-def simdi_degil(request):
-    cevap = redirect("index")
-    cevap.set_cookie(DAVET_CEREZI, "kapali", max_age=DAVET_CEREZ_SURESI, samesite="Lax")
-    return cevap

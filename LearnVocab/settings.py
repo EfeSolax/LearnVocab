@@ -94,6 +94,8 @@ TEMPLATES = [
                 # Ana menü (navbar + mobil alt sekme çubuğu) tek kaynaktan
                 # geliyor; bkz. LearnVocab/navigation.py
                 'LearnVocab.navigation.navigation',
+                # Seviye testi daveti her sayfada (rapor 18.27)
+                'seviye.baglam.davet',
             ],
         },
     },

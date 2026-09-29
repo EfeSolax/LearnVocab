@@ -17,8 +17,8 @@ başla, seviyemi kendim seçeyim, şimdi değil (Ana Sayfa'ya döner).
             emin olmadıklarını boş bırak. Uydurma kelime yok, hepsi gerçek.
         </p>
         <ul class="mx-auto mt-5 max-w-sm space-y-1.5 text-left text-sm text-gray-600 dark:text-slate-300">
-            <li class="flex gap-2"><span class="text-indigo-500" aria-hidden="true">•</span> En çok 3 ekran, her ekranda 40 kelime.</li>
-            {% if okuma_var %}<li class="flex gap-2"><span class="text-indigo-500" aria-hidden="true">•</span> Ardından 3 kısa metin ve birer soru.</li>{% endif %}
+            <li class="flex gap-2"><span class="text-indigo-500" aria-hidden="true">•</span> En çok 3 ekran, her ekranda 40 kelime: A1–A2, B1–B2, C1–C2.</li>
+            {% if okuma_var %}<li class="flex gap-2"><span class="text-indigo-500" aria-hidden="true">•</span> Ardından en çok 3 kısa paragraf ve birer soru.</li>{% endif %}
             <li class="flex gap-2"><span class="text-indigo-500" aria-hidden="true">•</span> Sonunda seviyeni ve sana özel ilk listeni görürsün.</li>
         </ul>
         <form method="post" action="{% url 'seviye_basla' %}" class="mt-7">

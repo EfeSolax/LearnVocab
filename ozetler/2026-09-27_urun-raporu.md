@@ -706,7 +706,7 @@ Kaynak: Claude'un 29 Eylül eleştirisi ve Efe'nin cevabı. **Henüz hiçbiri uy
 > - **Zorlandıklarım:** Son sonucu "bilemedi" olanlar (`words/listem.py`).
 > - **Birim:** `settings.TEKRAR_BIRIMI_SAAT` (24).
 > - **Testler:** `learnpass/test_tekrar.py` (Efe'nin 12.10 / 12.40 örneği dahil).
-> - **Varsayım (Claude, onay bekliyor):** Girişli kullanıcıda yeni kelimenin seviyesi %60 kendi seviyesi, %25 bir üstü, %15 bir altı (sıklık ağırlıklı). Seviyesi bilinmeyene misafir dağılımı uygulanır.
+> - **Efe onayladı (30 Eylül):** Girişli kullanıcıda yeni kelimenin seviyesi %60 kendi seviyesi, %25 bir üstü, %15 bir altı (sıklık ağırlıklı). Seviyesi bilinmeyene misafir dağılımı uygulanır.
 
 **Sorun:**
 - Tekrar algoritması yok.
@@ -930,7 +930,7 @@ Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
 > - Tarayıcı saat dilimini bir kez gönderir (`base/layout.html`).
 > - Testler: `seri/tests.py`, `bildirimler/tests.py`.
 >
-> **Varsayımlar (Claude, onay bekliyor):**
+> **Varsayımlar (Efe onayladı, 30 Eylül):**
 > - (1) Serisi 0 olan kullanıcının kaçırdığı gün dondurma hakkı harcatmaz.
 > - (2) L&P'de "Geri al" günün sayacını bir azaltır, ama tamamlanmış günü geri almaz.
 > - (3) Alev, çubukta günün tamamlanacağı kart hizasında durur. Gün zaten tamamlandıysa çubuğun sonunda yanık durur.
@@ -1329,7 +1329,23 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - **Varsayılan tema cihazın sistem temasıdır** (açık ya da koyu). Kullanıcı Ayarlar'dan değiştirirse onun seçimi geçerli olur.
   - Beyaz tema (18.12) açık temanın yeni hâlidir; koyu tema da korunur.
 
-### 18.27 Seviye testi değişiklikleri (Efe'nin kararları, 29–30 Eylül)
+### 18.27 Seviye testi değişiklikleri (Efe'nin kararları, 29–30 Eylül) — **YAPILDI (30 Eylül; özet soruları havuzu henüz boş)**
+> **Kod:**
+> - Kural: `seviye/tahmin.py`. Ekran seçimi: `seviye/secim.py`. Özet soruları: `seviye/okuma.py`.
+> - Seviyenin kendiliğinden düzelmesi: `seviye/duzeltme.py` + `SeviyeDuzeltmesi` modeli (L&P açılışında ve egzersiz bitişinde çalışır).
+> - Davet: `seviye/baglam.py` + `pages/seviye/_davetPenceresi.html`, her sayfada. "Şimdi değil" ve Ana Sayfa'daki eski davet kartı silindi.
+> - Migration `seviye/0002`: OkumaSorusu'nun `zorluk` alanı silindi, soru artık `cefr` ile seçiliyor. C2 seçilebilir seviyeler arasına eklendi.
+>
+> **Kelime havuzu yeniden seçildi (`seviye_kelimeleri_sec`):**
+> - A1 · A2 · B1 · B2 60'ar, C1 90, C2 yuvası 30.
+> - Kelimeler önce Oxford'la doğrulanmışlardan seçiliyor.
+> - C2 yuvası: seviyesi Oxford'la doğrulanmış en zor C1'ler (Zipf >= 2,8). Örnekler: deteriorate, embody, ensue, deprive.
+> - İlk denemede eşik 2,3'tü; "concentrator, interfacial" gibi tanınmaz teknik kelimeler geldiği için 2,8'e çıkarıldı.
+>
+> **Kendi seviyesini seçen kullanıcıya not:** Seçim sayfasında tek satırlık küçük bir not var; kayıttan sonra aynı cümle başarı mesajında görünür. Ayarlar sayfası gelene kadar not Profilim'e bağlanıyor.
+>
+> **Sıradaki içerik işi:** A1–C2 her seviyeye 50 özet sorusu (Claude elle yazacak, `seviye_okuma_yukle`). Havuz boşken okuma kısmı atlanır ve sonuç kelime ekranlarından belirlenir.
+
 **Davet:**
 - Kullanıcı testi yapana kadar **her sayfa açılışında** seviye testi daveti çıkar. Önceki "Şimdi değil → 30 gün" ara kararının yerine geçer.
 - **L&P ve egzersiz oturumları sırasında davet çıkmaz.**
@@ -1522,3 +1538,5 @@ Her adım ayrı commit, her adımdan sonra testler.
   - Tekrar kuralı (`learnpass/tekrar.py`, `learnpass/0005`); yeni L&P akışı (18.1); egzersiz ve Zorlandıklarım bağlantısı; misafir dağılımı.
   - Seri uygulaması: günlük sayım, yerel saat, dondurma, takvimli Ana Sayfa kutusu, alevli çubuk, metin geçerlilik kontrolü, 12.00 / 23.45 bildirimleri.
   - 865 test geçiyor. Tarayıcıda veritabanı kopyasıyla uçtan uca denendi.
+- **2026-09-30 (13):** 18.2 ve 18.9'daki dört varsayım Efe tarafından onaylandı.
+- **2026-09-30 (14):** Uygulama 5. adım yapıldı: yeni seviye testi (3 ekran, %60 üstü, özet sorusu seviyeleri, en yüksek doğru), her sayfada davet, seviyenin kendiliğinden düzelmesi, C2 yuvası için Oxford'lu en zor C1'ler. 875 test geçiyor.

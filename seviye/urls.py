@@ -12,5 +12,4 @@ urlpatterns = [
     path("sonuc/", v.sonuc, name="seviye_sonuc"),
     path("geri-al/", v.geri_al, name="seviye_geri_al"),
     path("sec/", v.sec, name="seviye_sec"),
-    path("simdi-degil/", v.simdi_degil, name="seviye_simdi_degil"),
 ]
