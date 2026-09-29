@@ -58,6 +58,7 @@
         /* Telaffuz düğmeleri (base/_telaffuz.html): yalnızca cihazda o aksanın
            sesi varsa görünür; sınıfları base/_kelimeKartiJs.html ekler. */
         .telaffuz-dugmesi { display: none; }
+        .telaffuz-dugmesi[data-ses],
         html.ses-us .telaffuz-dugmesi[data-telaffuz="en-US"],
         html.ses-uk .telaffuz-dugmesi[data-telaffuz="en-GB"] { display: inline-flex; }
     </style>

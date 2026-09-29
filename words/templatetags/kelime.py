@@ -18,3 +18,21 @@ register = template.Library()
 @register.filter
 def tur_etiketi(pos):
     return _tur_etiketi(pos)
+
+
+@register.simple_tag
+def telaffuz_adresi(metin, aksan):
+    """
+    Üretilmiş telaffuz dosyasının adresi (rapor 18.4); dosya yoksa "".
+    {% telaffuz_adresi kart.text "us" as ses_us %}
+    """
+    import os
+
+    from django.conf import settings
+
+    from words.telaffuz import KLASOR, dosya_adi
+
+    ad = dosya_adi(metin, aksan)
+    if not ad or not os.path.exists(os.path.join(settings.MEDIA_ROOT, KLASOR, ad)):
+        return ""
+    return f"{settings.MEDIA_URL}{KLASOR}/{ad}"

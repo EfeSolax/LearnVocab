@@ -797,7 +797,14 @@ Genel kural değişir: **giriş gerektiren öğeler misafire gösterilmez.** Ger
 > - Dosya başına ~5 KB (Opus), 80 dosya 71 saniyede üretildi.
 > - **Efe'nin değerlendirmesi:** bm_george neredeyse bütün kelimelerde çok kötü, diğerleri iyi.
 > - **Seçilen sesler: US `af_heart`, UK `bf_emma`** (ikisi de kadın; Claude'un önerisi, Efe US'de erkek sesi isterse `am_michael`).
-> - **Karar bekliyor:** Bütün sözlüğe (~13.900 kelime × 2) C mi uygulansın, B (insan kayıtları) da eklensin mi? Ne zaman üretilsin?
+> - **Efe'nin kararı (30 Eylül):** Yalnızca C (Kokoro). İnsan kayıtları (B) ve erkek sesler **yok**. US `af_heart`, UK `bf_emma`, **MP3** (her cihazda çalışsın diye).
+> - **Uygulama:**
+>   - Ortak dosya adı kuralı `words/telaffuz.py` (Django'suz): `give-up_us.mp3`.
+>   - Üretim betiği `araclar/telaffuz_uret.py`. Kokoro'nun ayrı ortamında çalışır: `~/LearnVocab-ses-deneme/.venv/bin/python araclar/telaffuz_uret.py --model ~/LearnVocab-ses-deneme --paralel 4`. Veritabanını salt okur, var olan dosyayı atlar (yarıda kalırsa devam eder).
+>   - Çıktı `media/telaffuz/` (git'e girmez). 13.806 metin × 2 = 27.572 dosya, dakikada ~105 dosya, ~4,5 saat. İlk üretim 30 Eylül'de başlatıldı.
+>   - Kart: `{% telaffuz_adresi %}` (words/templatetags/kelime.py) dosya varsa `data-ses` basar. Düğme dosyayı çalar; dosya yoksa ya da çalınamazsa tarayıcı sesine döner.
+>   - Canlıda `/media` Apache tarafından sunuluyor (`.htaccess`). Dosyaların sunucuya yüklenmesi geçiş planında (18.30).
+>   - **Yeni kelime eklenince** betik yeniden çalıştırılır; yalnızca eksik dosyaları üretir.
 
 > Uygulama: `templates/base/_telaffuz.html` (kartta tür ve seviyenin yanında "US" / "UK" düğmeleri). Ses algılama ve okuma kodu `base/_kelimeKartiJs.html`'de. Cihazda o aksanın sesi yoksa `<html>`'e `ses-us` / `ses-uk` sınıfı eklenmez ve düğme görünmez (CSS: `base/layout.html`). Hız 0,9. Günün kelimesi kartına 18.8 ile eklenecek.
 
@@ -1341,6 +1348,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Search Console
   - `www` yönlendirmesi
   - kademeli dizine alma (18.15)
+  - `media/telaffuz/` ses dosyalarının (~140 MB, ~27.600 dosya) sunucuya yüklenmesi (18.4)
 
 ### 18.31 İstatistik ekranı (admin) (Efe'nin kararı, 29 Eylül)
 - **Admin panelinde** bir istatistik ekranı olur.
@@ -1445,3 +1453,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-09-30 (4):** Telaffuz ses seçimi düzeltildi (şaka sesleri dışlandı); tarayıcı sesinin kalitesi yetersiz, kalıcı çözüm 18.4'te karar bekliyor.
 - **2026-09-30 (5):** 18.32 barındırma sınırları: metinler diskte, EncounterLog 90 gün + özet, seri uyarısı 23.45. Maliyet ilkesi yazıldı.
 - **2026-09-30 (6):** Telaffuz denemesi: Kokoro sesleri iyi, bm_george kötü. Seçim: US af_heart, UK bf_emma.
+- **2026-09-30 (7):** Telaffuz: Kokoro ile bütün sözlüğün US/UK MP3'leri üretiliyor (araclar/telaffuz_uret.py); kart önce dosyayı çalıyor, yoksa tarayıcı sesi.

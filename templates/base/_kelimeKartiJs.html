@@ -164,8 +164,10 @@ Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de ça
 // sınıfı eklenir ve o aksanın düğmeleri görünür (CSS: base/layout.html).
 // Sonradan sayfaya eklenen kartlar da sınıf sayesinde kendiliğinden görünür.
 (function () {
-    if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') { return; }
+    // Konuşma motoru yalnızca YEDEK: üretilmiş dosya her tarayıcıda çalar.
+    var TTS = ('speechSynthesis' in window) && typeof SpeechSynthesisUtterance !== 'undefined';
     var sesler = {};
+    var calan = null;   // çalmakta olan ses dosyası
 
     // Kaliteli sesler, tercih sırasıyla (ad başlangıcına göre). Mac'teki şaka
     // sesleri (Albert, Bubbles, Zarvox…) ve eski sentez sesleri (Eddy, Rocko,
@@ -182,6 +184,7 @@ Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de ça
     var KARA_LISTE = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|İyi Haber|Kötü Haber|Jester|Junior|Kathy|Org|Organ|Ralph|Fred|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley|Princess|Hysterical|Deranged|Pipe Organ)\b/i;
 
     function sesBul(aksan) {
+        if (!TTS) { return null; }
         var liste = window.speechSynthesis.getVoices().filter(function (v) {
             return (v.lang || '').replace('_', '-').toLowerCase() === aksan.toLowerCase()
                 && !KARA_LISTE.test(v.name);
@@ -202,17 +205,30 @@ Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de ça
         document.documentElement.classList.toggle('ses-uk', !!sesler['en-GB']);
     }
 
-    sesleriYukle();
-    if (typeof window.speechSynthesis.addEventListener === 'function') {
-        window.speechSynthesis.addEventListener('voiceschanged', sesleriYukle);
-    } else {
-        window.speechSynthesis.onvoiceschanged = sesleriYukle;
+    if (TTS) {
+        sesleriYukle();
+        if (typeof window.speechSynthesis.addEventListener === 'function') {
+            window.speechSynthesis.addEventListener('voiceschanged', sesleriYukle);
+        } else {
+            window.speechSynthesis.onvoiceschanged = sesleriYukle;
+        }
     }
 
     document.addEventListener('click', function (olay) {
         var dugme = olay.target.closest('[data-telaffuz]');
         if (!dugme) { return; }
         olay.preventDefault();
+        if (dugme.dataset.ses) {
+            // Üretilmiş dosya (rapor 18.4); çalınamazsa tarayıcı sesine dön.
+            if (calan) { calan.pause(); }
+            calan = new Audio(dugme.dataset.ses);
+            calan.play().catch(function () { tarayiciylaOku(dugme); });
+            return;
+        }
+        tarayiciylaOku(dugme);
+    });
+
+    function tarayiciylaOku(dugme) {
         var aksan = dugme.dataset.telaffuz;
         var ses = sesler[aksan] || sesBul(aksan);
         if (!ses) { return; }
@@ -222,6 +238,6 @@ Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de ça
         soz.rate = 0.9;
         window.speechSynthesis.cancel();   // üst üste basılırsa öncekini kes
         window.speechSynthesis.speak(soz);
-    });
+    }
 })();
 </script>

@@ -359,3 +359,30 @@ class SozlukSayfasiTests(TestCase):
         make_word("secretword", is_base=False, visibility="private", owner=diger)
         cevap = self.client.get(reverse("sozluk"), {"q": "secretword"})
         self.assertEqual(cevap.context["kartlar"], [])
+
+
+class TelaffuzDosyasiTests(TestCase):
+    """Rapor 18.4: üretilmiş MP3 varsa düğme onu çalar, yoksa tarayıcı sesine döner."""
+
+    def test_dosya_adi_kurali(self):
+        from words.telaffuz import dosya_adi
+        self.assertEqual(dosya_adi("Give up", "us"), "give-up_us.mp3")
+        self.assertEqual(dosya_adi("it's", "uk"), "it-s_uk.mp3")
+        self.assertEqual(dosya_adi("  ", "us"), None)
+        self.assertEqual(dosya_adi("bank", "fr"), None)
+
+    def test_dosya_varsa_dugme_adresi_tasir(self):
+        import os
+        import tempfile
+
+        from django.test import override_settings
+
+        make_word("bank", meaning="banka")
+        with tempfile.TemporaryDirectory() as klasor:
+            os.makedirs(os.path.join(klasor, "telaffuz"))
+            open(os.path.join(klasor, "telaffuz", "bank_us.mp3"), "wb").close()
+            with override_settings(MEDIA_ROOT=klasor):
+                html = self.client.get(reverse("sozluk"), {"q": "bank"}).content.decode()
+        self.assertIn('data-telaffuz="en-US" data-metin="bank" data-ses="/media/telaffuz/bank_us.mp3"', html)
+        # UK dosyası yok: düğme var ama adres taşımıyor (tarayıcı sesi yedek)
+        self.assertIn('data-telaffuz="en-GB" data-metin="bank"\n', html)
