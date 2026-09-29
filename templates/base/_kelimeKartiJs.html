@@ -167,15 +167,31 @@ Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de ça
     if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') { return; }
     var sesler = {};
 
+    // Kaliteli sesler, tercih sırasıyla (ad başlangıcına göre). Mac'teki şaka
+    // sesleri (Albert, Bubbles, Zarvox…) ve eski sentez sesleri (Eddy, Rocko,
+    // Grandma…) kelimeyi anlaşılmaz okuyor; onlar hiç seçilmez. Listede
+    // olmayan ama kara listede de olmayan bir ses en son çare.
+    var TERCIH = {
+        'en-US': ['Google US English', 'Microsoft Aria', 'Microsoft Jenny', 'Microsoft Guy',
+                  'Microsoft Ava', 'Microsoft Andrew', 'Ava', 'Samantha', 'Allison', 'Alex',
+                  'Nathan', 'Evan', 'Joelle', 'Susan', 'Tom'],
+        'en-GB': ['Google UK English Female', 'Google UK English Male', 'Microsoft Sonia',
+                  'Microsoft Ryan', 'Microsoft Libby', 'Microsoft Maisie', 'Serena', 'Kate',
+                  'Stephanie', 'Arthur', 'Oliver', 'Daniel']
+    };
+    var KARA_LISTE = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|İyi Haber|Kötü Haber|Jester|Junior|Kathy|Org|Organ|Ralph|Fred|Superstar|Trinoids|Whisper|Wobble|Zarvox|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley|Princess|Hysterical|Deranged|Pipe Organ)\b/i;
+
     function sesBul(aksan) {
         var liste = window.speechSynthesis.getVoices().filter(function (v) {
-            return (v.lang || '').replace('_', '-').toLowerCase() === aksan.toLowerCase();
+            return (v.lang || '').replace('_', '-').toLowerCase() === aksan.toLowerCase()
+                && !KARA_LISTE.test(v.name);
         });
         if (!liste.length) { return null; }
-        // Cihazın kendi (çevrimdışı çalışan) sesi, sonra varsayılan ses öne alınır.
-        liste.sort(function (a, b) {
-            return (b.localService - a.localService) || (b['default'] - a['default']);
-        });
+        function sira(v) {
+            var i = TERCIH[aksan].findIndex(function (ad) { return v.name.indexOf(ad) === 0; });
+            return i === -1 ? 999 : i;
+        }
+        liste.sort(function (a, b) { return sira(a) - sira(b); });
         return liste[0];
     }
 
