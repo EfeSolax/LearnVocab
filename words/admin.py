@@ -2,8 +2,7 @@ from django.contrib import admin
 
 from .models import (
     Category, Collocation, ExampleSentence, Expression, ExpressionExample,
-    FalseFriend, Meaning, UsagePattern, UserExampleSentence, UserMeaning,
-    UserWordLink, UserWordNote, Word, WordFamily, WordForm, WordList,
+    FalseFriend, Meaning, UsagePattern, UserWordLink, Word, WordFamily, WordForm,
     WordRelation, BulunamayanArama, HazirListe, HazirListeKelimesi, HazirListeSecimi,
 )
 
@@ -100,18 +99,6 @@ class WordFormAdmin(admin.ModelAdmin):
     search_fields = ("surface", "word__text")
 
 
-@admin.register(UserWordNote)
-class UserWordNoteAdmin(admin.ModelAdmin):
-    list_display = ("user", "word", "updatedAt")
-    search_fields = ("user__username", "word__text")
-
-
-@admin.register(UserExampleSentence)
-class UserExampleSentenceAdmin(admin.ModelAdmin):
-    list_display = ("user", "word", "sentence")
-    search_fields = ("user__username", "word__text")
-
-
 @admin.register(Meaning)
 class MeaningAdmin(admin.ModelAdmin):
     """Anlam artık kendi başına bir kayıt: cümleleri, collocation'ları,
@@ -147,14 +134,7 @@ class FalseFriendAdmin(admin.ModelAdmin):
     search_fields = ("word__text", "turkish_lookalike")
 
 
-@admin.register(UserMeaning)
-class UserMeaningAdmin(admin.ModelAdmin):
-    list_display = ("user", "word", "meaning_tr", "createdAt")
-    search_fields = ("user__username", "word__text", "meaning_tr")
-
-
 admin.site.register(UserWordLink)
-admin.site.register(WordList)
 
 
 # --- Sözlük: hazır listeler ve bulunamayan aramalar (rapor 4.1, 4.2) ---

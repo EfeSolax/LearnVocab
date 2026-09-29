@@ -26,9 +26,6 @@ Yapı beş katmanlı:
     "banka" ile "nehir kıyısı" aynı şeyi öğretmez: `open a bank account`
     sadece birine aittir, tonu, üslubu, alanı da öyle. Bu yüzden collocation,
     ton, üslup, alan ve örnek cümleler `Word`'e değil `Meaning`'e bağlıdır.
-
-Kullanıcının kendi yazdıkları çekirdeğe hiç dokunmaz; `UserWordNote`,
-`UserExampleSentence` ve `UserMeaning` üstüne biner.
 """
 
 from django.db import models
@@ -402,18 +399,6 @@ class Word(models.Model):
             baglar = baglar.exclude(user_id=user.id)
         return baglar.count()
 
-    def note_of(self, user):
-        """Kullanıcının bu kelimeye yazdığı kişisel not (yoksa None)."""
-        if not user or not user.is_authenticated:
-            return None
-        return self.user_notes.filter(user=user).first()
-
-    def meanings_of(self, user):
-        """Kullanıcının bu kelimeye kendi eklediği anlamlar."""
-        if not user or not user.is_authenticated:
-            return UserMeaning.objects.none()
-        return self.user_meanings.filter(user=user)
-
 
 class Meaning(models.Model):
     """
@@ -508,8 +493,6 @@ class Meaning(models.Model):
 class ExampleSentence(models.Model):
     """
     Çekirdek örnek cümle. Anlam başına 5 tane.
-
-    Kullanıcının kendi yazdıkları buraya değil, UserExampleSentence'a gider.
     """
 
     meaning = models.ForeignKey(Meaning, on_delete=models.CASCADE,
@@ -810,73 +793,6 @@ class ExpressionExample(models.Model):
 # Kullanıcı katmanı — çekirdeğe dokunmaz, üstüne biner
 # ----------------------------------------------------------------------
 
-class UserMeaning(models.Model):
-    """
-    Kullanıcının bir kelimeye kendi eklediği anlam. Yalnızca kendisi görür.
-
-    Çekirdek sözlük hiçbir zaman tamamlanmaz: öğrenci metinde kelimeyi
-    listedeki anlamlarına uymayan bir yerde görür. Eskiden yapabileceği tek
-    şey nota yazmaktı. Artık anlamı anlam olarak ekliyor — ve kendi anlamı
-    çekirdeğe dokunmuyor, başkasının sayfasında görünmüyor.
-    """
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name="word_meanings")
-    word = models.ForeignKey(Word, on_delete=models.CASCADE,
-                             related_name="user_meanings")
-
-    meaning_tr = models.CharField(max_length=300, verbose_name="anlamı")
-    definition = models.CharField(max_length=600, blank=True, null=True,
-                                  verbose_name="açıklaması")
-
-    createdAt = models.DateTimeField(auto_now_add=True)
-    updatedAt = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = ("createdAt", "id")
-
-    def __str__(self):
-        return f"{self.user.username} · {self.word.text}: {self.meaning_tr}"
-
-
-class UserWordNote(models.Model):
-    """
-    Kullanıcının bir kelimeye yazdığı kişisel not.
-
-    Eski modelde `note` paylaşılan Word satırının üzerinde bir alandı; yani
-    "Kişisel Not" aslında kişisel değildi. Artık gerçekten kişisel.
-    """
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="word_notes")
-    word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="user_notes")
-    note = models.TextField(max_length=800)
-
-    createdAt = models.DateTimeField(auto_now_add=True)
-    updatedAt = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        unique_together = ("user", "word")
-
-    def __str__(self):
-        return f"{self.user.username} · {self.word.text}"
-
-
-class UserExampleSentence(models.Model):
-    """Kullanıcının kendi yazdığı örnek cümle. Yalnızca kendisi görür."""
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="word_examples")
-    word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="user_examples")
-    sentence = models.CharField(max_length=400)
-
-    createdAt = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ("createdAt",)
-
-    def __str__(self):
-        return f"{self.user.username} · {self.sentence[:40]}"
-
-
 class UserExpressionLink(models.Model):
     """
     Kullanıcının ifade listesi (kelime listesinden ayrı): ifade bir Word
@@ -925,32 +841,6 @@ class UserWordLink(models.Model):
         if toplam == 0:
             return 0
         return (self.wrongCount / toplam) * 100
-
-
-class WordList(models.Model):
-    """Kullanıcının kendi kelime klasörü."""
-
-    COLOR_CHOICES = [
-        ("indigo", "Indigo"), ("blue", "Mavi"), ("emerald", "Yeşil"),
-        ("amber", "Sarı"), ("rose", "Kırmızı"), ("purple", "Mor"),
-        ("teal", "Turkuaz"), ("slate", "Gri"),
-    ]
-
-    owner = models.ForeignKey(User, related_name="word_lists", on_delete=models.CASCADE)
-    name = models.CharField(max_length=80)
-    color = models.CharField(max_length=20, choices=COLOR_CHOICES, default="indigo")
-
-    createdAt = models.DateTimeField(auto_now_add=True)
-    updatedAt = models.DateTimeField(auto_now=True)
-
-    words = models.ManyToManyField(Word, related_name="in_user_lists", blank=True)
-
-    class Meta:
-        ordering = ("name",)
-        unique_together = ("owner", "name")
-
-    def __str__(self):
-        return f"{self.owner.username} · {self.name}"
 
 
 # ----------------------------------------------------------------------

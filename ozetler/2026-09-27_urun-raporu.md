@@ -975,11 +975,11 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
     - `comments` ve `friends` kaldı.
   - **Testler:** Silinen özelliklerin testleri kaldırıldı. Eski adreslerin 404 döndüğünü doğrulayan test eklendi (`OldPagesRemovedTests`). 829 test geçiyor.
   - **`encrypted.data`:** `pywebpush`'un test modunda diske yazdığı şifreli Web Push yüküydü (28 Eylül 07:26, bildirim geliştirmesi sırasında). İçinde işe yarar sır yoktu. Silindi, `.gitignore`'a eklendi.
-- **Karar bekliyor: artık hiçbir yerden kullanılmayan veritabanı modelleri.**
-  - Liste: `WordList` (kelime klasörleri), `UserMeaning`, `UserWordNote`, `UserExampleSentence` (kişisel anlam, not ve örnekler).
-  - Silmek migration ile tablo kaldırmak demek. Admin, dışa aktarma ve model yardımcıları da güncellenir.
-  - `Word.owner` / `visibility` / `isBaseWord` alanları görünürlük kuralında hâlâ kullanılıyor; kullanıcı artık kelime ekleyemediği için onlar da sadeleştirilebilir.
-  - Claude'un önerisi: sil (canlı veri önemsiz, Efe 29 Eylül).
+- **Ölü tablolar silindi (29 Eylül, Efe'nin kararı):**
+  - `WordList` (kelime klasörleri), `UserMeaning`, `UserWordNote`, `UserExampleSentence`. Migration: `words/0022_olu_kullanici_tablolari`.
+  - Yerelde yalnızca 1 klasör kaydı vardı. Yedek: `~/LearnVocab-yedekler/db.sqlite3.yedek-20260929-olu-tablolar-oncesi`.
+  - 826 test geçiyor.
+  - Not: `Word.owner` / `visibility` / `isBaseWord` alanları görünürlük kuralında hâlâ kullanılıyor. Kullanıcı artık kelime ekleyemediği için ileride sadeleştirilebilir.
 - **`comments` ve `friends` kalır.**
 - Bölüm 17 ile çelişen kod kalkar (`is_learned`, `MASTERED`; 18.2 ile birlikte).
 
@@ -1186,8 +1186,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **Efe'nin kararları (29 Eylül):**
   - (a) **Diller:** Hedef **tr · en · de · es · fr**. **Şimdilik tr, en ve de.** es ve fr sonra eklenir.
   - (b) **Kapsam:** **Şimdilik yalnızca arayüz** çevrilir. Kelime anlamları Türkçe kalır.
-- **Açık soru:**
-  - (c) **Adres biçimi:** Türkçe öneksiz mi kalsın, diğer diller önekli mi olsun (`/en/…`, `/de/…`)? Claude'un önerisi bu; SEO'da yerleşik adresler bozulmaz.
+  - (c) **Adres biçimi:** Türkçe öneksiz kalır, diğer diller önekli olur (`/en/…`, `/de/…`). Her sayfada `hreflang` etiketleri bulunur (Efe onayladı: SEO'da yerleşik adresler bozulmaz, ceza riski yok).
 
 ### 18.23 Kayıt formu ve Profilim (Efe'nin kararı, 29 Eylül)
 - **Kayıt formunda alınacaklar:** **ad, soyad, e-posta, kullanıcı adı, şifre.**
@@ -1203,18 +1202,89 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 
 **Saklama:**
 - PDF dosyası zaten **saklanmıyor**; yalnızca çıkarılan metin veritabanına yazılıyor (`UserText.body`).
-- **Sıkıştırma (Claude'un önerisi, onay bekliyor):**
+- **Sıkıştırma (Efe onayladı, 29 Eylül):**
   - Metin veritabanına **zlib ile sıkıştırılmış** olarak yazılır. Düz İngilizce metin genelde 3–4 kat küçülür.
   - 400 sayfalık bir kitap (~1 MB metin) ~250–300 KB olur.
   - Okurken metin açılır; kullanıcı farkı görmez.
   - Okuma ekranı uzun metni **bölüm bölüm** gösterir, 400 sayfa tek seferde yüklenmez.
-- **Karar bekliyor:** Yükleme dosya boyutu sınırı. 400 sayfalık, resimli PDF'ler 10 MB'ı rahatça aşar. Öneri: 50 MB.
+- **PDF dosya boyutu sınırı: 50 MB** (Efe'nin kararı; önceden 10 MB).
 
 **Çöp kutusu (Efe'nin kararı: tasarlanacak):**
 - Silinen metinler çöp kutusuna gider. Kullanıcı buradan geri alabilir ya da kalıcı olarak silebilir.
-- **Karar bekliyor:** Çöpte kalma süresi. Önceki ara karar 1 gündü; Claude'un önerisi 30 gün.
-- **Karar bekliyor:** Çöpteki metinler 100 metin sınırına sayılsın mı? Öneri: sayılmasın.
+- **Çöpte kalma süresi: 1 hafta.** Sonra kendiliğinden kalıcı olarak silinir (Efe'nin kararı).
+- **Çöpteki metinler 100 metin sınırına sayılmaz** (Efe'nin kararı).
 - Tasarımı tasarım oturumunda yapılır.
+
+### 18.25 Gelir modeli (Efe'nin kararı, 29 Eylül)
+- Site **ücretsiz.** **Ücretli üyelik / premium kesinlikle olmayacak.** (Ücretsiz hesap açma elbette kalır.)
+- Site beğenilirse **ileride reklam** alınabilir. Bu ileri bir konu, şimdilik tasarımda reklam alanı ayrılmaz.
+- Reklam gelirse L&P ve egzersiz gibi çalışma ekranlarına konmaz (odak, 18.10), sayfa hızını bozmayacak biçimde yerleştirilir (SEO, 18.15). (Claude'un önerisi.)
+
+### 18.26 Gezinme: profil fotoğrafı, Hesap ve Ayarlar (Efe'nin kararı, 29 Eylül)
+- Sağ üstteki **dişli (ayarlar) simgesi kalkar.** Yerine kullanıcının **profil fotoğrafı** gelir.
+- Profil fotoğrafına dokununca **Hesap** sayfası açılır. **Ayarlar** sayfasına Hesap sayfasından gidilir.
+- **Alttaki menü ve sağ üstteki profil fotoğrafı her sayfada sabittir.** Ayarlar ve Hesap sayfaları da dahil, hiçbir sayfada değişmez ya da kaybolmaz.
+- Misafirde profil fotoğrafının yerinde "Giriş Yap" durur.
+- **Ayarlar sayfasının içeriği** (raporda şimdiye kadar geçen ayarlar):
+  - tekrar/yeni oranı
+  - egzersizde varsayılan soru sayısı
+  - yazma sertliği
+  - seviye ve seviye testini tekrarlama
+  - bildirimleri açma/kapama
+  - dil
+  - hesap işlemleri
+  - Tasarımı tasarım oturumunda yapılır.
+- **Karar bekliyor:** Üst çubuktaki tema (açık/koyu) düğmesi ne olacak? Beyaz temaya geçilecek (18.12). Claude'un önerisi: düğme üst çubuktan kalksın; koyu tema isteniyorsa Ayarlar'a taşınsın.
+
+### 18.27 Seviye testi değişiklikleri (Efe'nin kararı, 29 Eylül)
+- **Davet:** Kullanıcı testi yapana kadar **her sayfa açılışında** seviye testi daveti çıkar. Önceki "Şimdi değil → 30 gün" ara kararının yerine geçer.
+- **Geçme eşiği %60:** Bir ekranda ya da seviyede %60'ı geçemeyen kullanıcıya sonraki ekran ya da soru açılmaz. Önceki %50'nin yerine geçer.
+- **Okuma soruları (D4 yeniden tanımlandı):**
+  - Soru tipi: "Bu 4 cümlelik paragrafı en iyi özetleyen cümle hangisi?"
+  - **A1, A2, B1, B2, C1 ve C2 için 50'şer soru** (toplam 300) **Claude tarafından elle yazılır** (API yok).
+  - Test sırasında havuzdan **rastgele** seçilir.
+  - Bu, 18.14'teki "D4'e 5 örnek" maddesinin yerine geçer.
+- **Karar bekliyor:**
+  - (a) Her seviyede kaç soru sorulsun? %60'ın anlamlı olması için Claude'un önerisi: seviye başına 5 soru, en az 3 doğruyla geçilir.
+  - (b) "Seviyemi kendim seçeyim" diyen kullanıcı "testi yapmış" sayılıp davet dursun mu? Öneri: evet.
+  - (c) Davet L&P ve egzersiz oturumu sırasında da çıksın mı? Öneri: hayır; oturum dışındaki sayfalarda çıksın.
+
+### 18.28 Egzersizler: düzensiz fiiller (Efe'nin kararı, 29 Eylül)
+- 2. ve 3. hâli kendisiyle aynı olan fiiller (cut, put, hit…) **da sorulur.** Önceki "sorulmuyor" ara kararının yerine geçer.
+
+### 18.29 Bildirim izni akışı (Efe'nin kararı, 29 Eylül)
+- **Zamanlama:** Tarayıcının izin penceresinden **önce** küçük bir **ön ekran** çıkar.
+  - Bildirimin neden önemli olduğunu kısaca anlatır (seri hatırlatması, günün kelimesi).
+  - Üzerinde **kapibara** vardır (kabul oranını artırmak için).
+  - Kullanıcı kabul ederse tarayıcının kendi izin penceresi açılır.
+- **Ne zaman çıkar:** Kullanıcı birkaç şey yaptıktan sonra: **en az 3–4 egzersiz** çözmüş ve **biraz L&P** yapmış olmalı. Önceki "yalnızca L&P turu bitince" ara kararının yerine geçer.
+- **Ayarlar'dan** bildirimler açılıp kapatılabilir.
+- **Karar bekliyor:** "3–4 egzersiz" ve "biraz L&P" nasıl ölçülsün? Claude'un önerisi: en az 3 tamamlanmış egzersiz oturumu ve en az 20 L&P kartı.
+
+### 18.30 Yeni sisteme geçiş planı (konuşulacak; unutulmayacak)
+- Efe'nin kararı: **Önce bütün değişiklikler yapılır, her şey bitince** geçiş konuşulur.
+- Konuşulacaklar:
+  - sözlük verisinin yereldeki SQLite'tan canlıdaki MySQL'e taşınması
+  - canlıdaki v1.0 kullanıcı verisinin ne olacağı (Efe: çok az ve önemsiz)
+  - geçiş günü ve bakım ekranı
+  - eski adreslerin 301 yönlendirmeleri
+  - Search Console
+  - `www` yönlendirmesi
+  - kademeli dizine alma (18.15)
+
+### 18.31 İstatistik ekranı (admin) (Efe'nin kararı, 29 Eylül)
+- **Admin panelinde** bir istatistik ekranı olur.
+- **Amaç:** Tekrar biriminin (1 gün, 18.2) ve genel kullanımın doğru çalışıp çalışmadığını anlamak.
+- **Gizlilik önceliklidir:**
+  - Ekranda **yalnızca toplu sayılar** vardır. Kullanıcı adı, e-posta, yazılan metin ya da kişi bazında kayıt gösterilmez.
+  - Çok küçük gruplar (ör. 5 kişiden az) kişiyi belli edebileceği için gösterilmez. (Claude'un önerisi.)
+- **Claude'un önerdiği göstergeler:**
+  - Tekrar basamağı başına (1-3-7-21) unutma oranı
+  - L&P turlarının yarıda bırakılma oranı
+  - Günlük/haftalık aktif kullanıcı sayısı
+  - Seri uzunluğu dağılımı
+  - Bildirim izni kabul oranı
+  - Günün tamamlanma oranı
 
 ### 18.20 Önerilen uygulama sırası (Claude'un önerisi)
 Her adım ayrı commit, her adımdan sonra testler.
@@ -1237,9 +1307,10 @@ Her adım ayrı commit, her adımdan sonra testler.
 - 6'da L&P aynı ekranda hem akış hem tasarım değiştirdiği için tek seferde yapılır.
 
 **Hâlâ açık kararlar:**
-- Tema tasarımı (18.12)
-- Dil seçeneğinde adres biçimi (18.22 c)
-- Okumalar: sıkıştırma, PDF dosya boyutu, çöp süresi (18.24)
+- Tema tasarımı (18.12) ve tema düğmesinin yeri (18.26)
+- Seviye testi ayrıntıları (18.27 a–c)
+- Bildirim izni eşiği (18.29)
+- Yeni sisteme geçiş planı (18.30, her şey bitince)
 
 **Kullanıcı verisi notu (Efe, 29 Eylül):**
 - Canlıdaki v1.0'da çok az kullanıcı verisi var (çoğu Efe'nin arkadaşlarının kaydı). Sistem baştan değişecek.
@@ -1287,3 +1358,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-09-29 (10):** 18.9 Seri kararlaştırıldı: 10 soru / 1 metin / 1 diyalog, 00.00 sınırı, alevli ilerleme çubuğu, dondurma hakları (başlangıç 1, 5 günde 1, en çok 3), takvimli açılır kutu, 12.00 · 19.00 · 23.50 bildirimleri.
 - **2026-09-29 (11):** 18.9 ayrıntıları kesinleşti: L&P ya da egzersizden biri tek başına 10, yerel saat, dondurulan gün sayıyı artırmaz, ardışık 5 günde +1 hak, bildirimler 12.00 ve 23.50 (seri 0 ise yok), metin geçerlilik kontrolü eklendi.
 - **2026-09-29 (12):** 18.9 hak günü (12) ve metin ölçütleri (5 cümle, 50 kelime, %90) kesinleşti; 18.22 diller (tr, en, de; yalnızca arayüz); 18.23 kayıt formu ve günlük hedefin kaldırılması; 18.24 okuma sınırları, sıkıştırma önerisi, çöp kutusu eklendi.
+- **2026-09-29 (13):** Ölü tablolar silindi (`words/0022`, 826 test). 18.24 sıkıştırma, 50 MB, çöp 1 hafta ve sınıra sayılmaz; 18.22 dil adres biçimi onaylandı. Yeni: 18.25 gelir modeli, 18.26 gezinme (profil fotoğrafı → Hesap → Ayarlar), 18.27 seviye testi (%60, her sayfada davet, 6 seviye × 50 okuma sorusu), 18.28 düzensiz fiiller, 18.29 bildirim izni ön ekranı, 18.30 geçiş planı (sonra), 18.31 admin istatistik ekranı.

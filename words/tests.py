@@ -17,9 +17,9 @@ from django.urls import reverse, NoReverseMatch
 from users.models import User
 from words import inflect
 from words.models import (
-    CEFR_CHOICES, CEFR_LEVELS, Category, Collocation, ExampleSentence, Expression, FalseFriend, Meaning,
-    Register, Sentiment, UsagePattern, UserMeaning, UserWordLink, UserWordNote,
-    Word, WordFamily, WordRelation,
+    CEFR_CHOICES, CEFR_LEVELS, Category, Collocation, ExampleSentence, Expression,
+    FalseFriend, Meaning, Register, Sentiment, UsagePattern, UserWordLink, Word,
+    WordFamily, WordRelation,
 )
 from words.testing import make_word
 from words.views import can_view_word, visible_words_qs
@@ -263,34 +263,6 @@ class WordRelationTests(TestCase):
         WordRelation.objects.create(from_word=self.harmful, to_word=self.harmless, type="antonym")
         with self.assertRaises(IntegrityError):
             WordRelation.objects.create(from_word=self.harmful, to_word=self.harmless, type="antonym")
-
-
-class UserWordNoteTests(TestCase):
-    """
-    Kişisel not kullanıcıya ait, kelimeye değil.
-
-    Eski modelde `note` paylaşılan Word satırının üstündeydi — iki kullanıcı
-    aynı kelimeyi kaydettiğinde aynı notu paylaşıyorlardı.
-    """
-
-    def setUp(self):
-        self.efe = User.objects.create_user(username="efe", password="Sifre1234")
-        self.ayse = User.objects.create_user(username="ayse", password="Sifre1234")
-        self.word = make_word("immaculate")
-
-    def test_each_user_has_their_own_note(self):
-        UserWordNote.objects.create(user=self.efe, word=self.word, note="benim notum")
-        UserWordNote.objects.create(user=self.ayse, word=self.word, note="onun notu")
-
-        self.assertEqual(self.word.note_of(self.efe).note, "benim notum")
-        self.assertEqual(self.word.note_of(self.ayse).note, "onun notu")
-
-    def test_missing_note_is_none(self):
-        self.assertIsNone(self.word.note_of(self.efe))
-
-
-    def test_the_core_word_has_no_note_field(self):
-        self.assertNotIn("note", {f.name for f in Word._meta.get_fields()})
 
 
 class DarkThemeTests(TestCase):
