@@ -1161,7 +1161,17 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Sıklık dağılımı: <2,3: 904 · 2,3–3,5: 6.464 · 3,5–5: 7.565 · ≥5: 1.176.
   - **81 nadir tür** (second/dog/bed/tree/window fiil…).
 - Kod: `words/siklik.py` (`siklik_puani`, `lp_agirligi`, `nadir_tur_idleri`).
-- Sırada: Oxford 3000/5000 ile kalibrasyon, etiket düzeltmeleri, özel adlar, kural tabanlı tarama (18.7), "daha basit" kuralı (18.6).
+- **Oxford kalibrasyonu yapıldı (30 Eylül):**
+  - `pdfler/` altına Oxford'un resmî sitesinden iki PDF indirildi (Efe onayladı; git'e girmez, listeler projeye konmaz).
+  - `manage.py oxford_cefr_yukle` (okuyucu `words/oxford.py`) çalıştırıldı:
+    - Oxford'da 5.687 (kelime, tür) çifti var; 5.076'sı bizde eşleşti. **3.217'sinin seviyesi değişti (%63)**. En sık kaymalar: B1→B2 686, B2→C1 656, A2→A1 393, B1→C1 391.
+    - Bu 5.076 kelime artık `cefr_kaynak = oxford`, bir daha incelenmez.
+    - Kalan 11.033 kelime `learnvocab` (bizim etiketimiz); C2'lerin hepsi bunların içinde.
+  - Seviyeler değişince nadir tür yeniden hesaplandı: **146**.
+  - Yedek: `~/LearnVocab-yedekler/db.sqlite3.yedek-20260930-oxford-oncesi`.
+- **Bulgu, sözlükteki boşluk:** Oxford'daki 611 (kelime, tür) çifti bizde yok. Bir kısmı yalnızca tür farkı (above bizde edat var, zarf yok), ama banana, bathroom, because, be gibi **temel A1 kelimeleri eksik**. **Karar bekliyor:** Nasıl eklenecek? (LLM harcaması yok kararı var.)
+- **Cambridge EVP:** Ücretsiz ama yalnızca sitede arama var, indirilebilir liste yok. ~7.000 kelimeyi almak siteyi otomatik gezmeyi (scraping) gerektirir. Kullanım koşulları doğrulanamadığı için yapılmadı. C2 ve Oxford dışı kelimeler sıklık tutarsızlığı + B aşamasıyla denetlenecek.
+- Sırada: özel adlar, kural tabanlı tarama (18.7), "daha basit" kuralı (18.6).
 
 **Önceki not (tarihçe):**
 - **Öncelik yüksek.** Şunlar bu karara bağlı: misafir L&P dağılımı (18.3), "daha basit" silme kuralı (18.6), kademeli dizine alma (18.15), yeni kelime seçimi.
@@ -1464,3 +1474,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-09-30 (6):** Telaffuz denemesi: Kokoro sesleri iyi, bm_george kötü. Seçim: US af_heart, UK bf_emma.
 - **2026-09-30 (7):** Telaffuz: Kokoro ile bütün sözlüğün US/UK MP3'leri üretiliyor (araclar/telaffuz_uret.py); kart önce dosyayı çalıyor, yoksa tarayıcı sesi.
 - **2026-09-30 (8):** Veri adımı başladı: siklik / cefr_kaynak / nadir_tur alanları ve siklik_hesapla komutu (81 nadir tür, 904 kelime <2,3).
+- **2026-09-30 (9):** Oxford 3000/5000 kalibrasyonu: 5.076 kelime oxford kaynaklı, 3.217 seviye değişti; 611 Oxford kelimesi bizde yok (A1'ler dahil). Cambridge EVP indirilebilir değil, scraping yapılmadı.
