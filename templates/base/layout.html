@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="en">
+{% load static i18n %}
+{% get_current_language as DIL %}
+{# Sayfa dili (rapor 18.12): Türkçe büyük harf (İ/I) ve ekran okuyucular için doğru dil. İngilizce içerik lang="en" ile ayrıca işaretlenir. #}
+<html lang="{{ DIL }}">
 
 <head>
     <meta charset="UTF-8">
@@ -53,6 +55,11 @@
         html.dark { color-scheme: dark; }
         /* Alpine yüklenene kadar gizli kalması gerekenler (ör. kapalı kelime kartı). */
         [x-cloak] { display: none !important; }
+        /* Telaffuz düğmeleri (base/_telaffuz.html): yalnızca cihazda o aksanın
+           sesi varsa görünür; sınıfları base/_kelimeKartiJs.html ekler. */
+        .telaffuz-dugmesi { display: none; }
+        html.ses-us .telaffuz-dugmesi[data-telaffuz="en-US"],
+        html.ses-uk .telaffuz-dugmesi[data-telaffuz="en-GB"] { display: inline-flex; }
     </style>
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>

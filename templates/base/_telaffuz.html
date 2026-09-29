@@ -1,0 +1,21 @@
+{% comment %}
+Telaffuz düğmeleri: Amerikan (US) ve İngiliz (UK) aksanı (rapor 18.4).
+Tarayıcının kendi konuşma motoru (speechSynthesis) okur; ücretsiz, dosya yok.
+Düğmeler başta gizli: cihazda o aksanın sesi varsa <html>'e "ses-us" /
+"ses-uk" sınıfı eklenir ve düğme görünür (base/layout.html). Sesi olmayan
+aksanın düğmesi hiç görünmez. Davranış: base/_kelimeKartiJs.html.
+
+Bağlam: metin (okunacak İngilizce kelime ya da ifade)
+{% endcomment %}
+<span class="inline-flex items-center gap-1 align-middle" data-telaffuz-grubu>
+    <button type="button" data-telaffuz="en-US" data-metin="{{ metin }}"
+            title="Amerikan aksanıyla dinle" aria-label="{{ metin }}: Amerikan aksanıyla dinle"
+            class="telaffuz-dugmesi items-center gap-0.5 rounded-md px-1.5 py-0.5 text-xs font-semibold text-gray-500 ring-1 ring-inset ring-gray-200 hover:bg-indigo-50 hover:text-indigo-700 dark:text-slate-400 dark:ring-slate-600 dark:hover:bg-indigo-950 dark:hover:text-indigo-300">
+        {% include 'base/_hoparlorSimgesi.html' %}US
+    </button>
+    <button type="button" data-telaffuz="en-GB" data-metin="{{ metin }}"
+            title="İngiliz aksanıyla dinle" aria-label="{{ metin }}: İngiliz aksanıyla dinle"
+            class="telaffuz-dugmesi items-center gap-0.5 rounded-md px-1.5 py-0.5 text-xs font-semibold text-gray-500 ring-1 ring-inset ring-gray-200 hover:bg-indigo-50 hover:text-indigo-700 dark:text-slate-400 dark:ring-slate-600 dark:hover:bg-indigo-950 dark:hover:text-indigo-300">
+        {% include 'base/_hoparlorSimgesi.html' %}UK
+    </button>
+</span>

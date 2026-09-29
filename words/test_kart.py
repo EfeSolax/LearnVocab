@@ -157,6 +157,10 @@ class KartVerisiTests(TestCase):
         self.assertIn("kelime11", html)
 
 
+# Sayfadaki gerçek liste düğmeleri (JS içindeki seçici yazıları sayılmasın)
+LISTE_DUGMESI = re.compile(r"<button[^>]*\bdata-kelime-liste\b")
+
+
 class KartSablonuTests(TestCase):
 
     def setUp(self):
@@ -231,10 +235,33 @@ class KartSablonuTests(TestCase):
         self.assertIn("hedeflemek", html)
         self.assertIn(">fiil<", html)
 
-    def test_girissiz_arti_dugmesi_girise_yonlendirir(self):
+    def test_girissiz_liste_dugmesi_yok(self):
+        """Rapor 18.3 / 18.5: misafire "Listeme ekle" düğmesi hiç gösterilmez."""
         html = self._sozluk("bank")
-        self.assertIn("Listeme ekle", html)
-        self.assertIn('data-giris-gerekli="liste"', html)
+        self.assertEqual(LISTE_DUGMESI.findall(html), [])
+        self.assertNotIn('data-giris-gerekli="liste"', html)
+
+    def test_kapali_kartta_da_ayni_liste_dugmesi(self):
+        """Rapor 18.5: kapalı (tek satırlık) kartta da kare "+" değil "Listeme ekle +"."""
+        aile = WordFamily.objects.create(root="aim")
+        make_word("aim", family=aile, meaning="amaç")
+        make_word("aim", pos="verb", family=aile, meaning="hedeflemek")
+        html = self._sozluk("aim", giris=True)
+        # İki kart (açık isim + kapalı fiil), her birinde iki hâl: 4 düğme, hepsi yazılı
+        self.assertEqual(len(LISTE_DUGMESI.findall(html)), 4)
+        self.assertEqual(html.count("Listeme ekle <span"), 4)
+        self.assertNotIn('<span class="sr-only">Listeme ekle</span>', html)
+
+    def test_telaffuz_dugmeleri_iki_aksan(self):
+        """Rapor 18.4: kartta Amerikan ve İngiliz aksanı düğmeleri, okunacak kelimeyle."""
+        html = self._sozluk("bank")
+        self.assertIn('data-telaffuz="en-US" data-metin="bank"', html)
+        self.assertIn('data-telaffuz="en-GB" data-metin="bank"', html)
+
+    def test_ingilizce_icerik_lang_en(self):
+        html = self._sozluk("bank")
+        self.assertIn('<html lang="tr">', html)
+        self.assertIn('<h3 lang="en"', html)
 
     def test_girisli_dugme_listede_durumunu_gosterir(self):
         UserWordLink.objects.create(user=self.user, word=self.bank)

@@ -780,7 +780,9 @@ Genel kural değişir: **giriş gerektiren öğeler misafire gösterilmez.** Ger
 
 - **Misafirin diyalogları:** L&P ile aynı dağılım (%60 B1 · %20 B2 · %20 C1). Giriş yapmış kullanıcıda hedef kelime yine listeden gelir (9.2).
 
-### 18.4 Telaffuz: Amerikan ve İngiliz düğmeleri (Efe'nin kararı)
+### 18.4 Telaffuz: Amerikan ve İngiliz düğmeleri (Efe'nin kararı) — **YAPILDI (30 Eylül)**
+> Uygulama: `templates/base/_telaffuz.html` (kartta tür ve seviyenin yanında "US" / "UK" düğmeleri). Ses algılama ve okuma kodu `base/_kelimeKartiJs.html`'de. Cihazda o aksanın sesi yoksa `<html>`'e `ses-us` / `ses-uk` sınıfı eklenmez ve düğme görünmez (CSS: `base/layout.html`). Hız 0,9. Günün kelimesi kartına 18.8 ile eklenecek.
+
 - Kelime kartına (başlıkta, kelimenin yanında) **iki ses düğmesi:** 🇺🇸 Amerikan · 🇬🇧 İngiliz.
 - **Altyapı:** Tarayıcının `speechSynthesis` özelliği (`en-US` ve `en-GB` sesleri). Ücretsiz, API yok, dosya saklanmaz.
 - **Sınır:** Ses kalitesi ve varlığı cihaza bağlı.
@@ -788,7 +790,9 @@ Genel kural değişir: **giriş gerektiren öğeler misafire gösterilmez.** Ger
   - Bazı cihazlarda (özellikle Linux, bazı eski Android'ler) İngiliz sesi olmayabilir. O aksanın sesi yoksa düğmesi gizlenir; hiç İngilizce ses yoksa ikisi de gizlenir.
 - Daha sonra düşünülebilir: IPA gösterimi (açık veri, ör. CMUdict ABD telaffuzu). Bu ayrı bir karardır.
 
-### 18.5 Liste düğmesi her yerde aynı (Efe'nin kararı)
+### 18.5 Liste düğmesi her yerde aynı (Efe'nin kararı) — **YAPILDI (30 Eylül)**
+> Uygulama: `base/_kartListeDugmesi.html` tek biçim (kompakt "+" kalktı). Okuma baloncuğu aynı yazıyı JS ile çiziyor. Misafirde düğme hiç basılmıyor. Listem'deki "Listemden çıkar" Bölüm 5 gereği aynen kaldı.
+
 - Giriş yapmış kullanıcıda kelimenin listeye eklendiği her yerde **aynı "Listeme ekle +" düğmesi** kullanılır. Listedeyse "Listemde ✓" yazar.
 - Kare "+" düğmesi kalkar: Türkçe sorgudaki kompakt kartlar, kapalı kart satırları, okuma baloncuğu dahil.
 - Misafirde düğme görünmez (18.3).
@@ -957,7 +961,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **Tema:** Mevcut indigo-mor-pembe geçişli tema bırakılır, **temiz beyaz bir temaya** geçilir.
 - **Yazı boyutu:** **Önemli bilgiler küçük yazıyla yazılmaz.** Efe'nin gözlemi: sayfalar kullanıcı dostu değil. Bütün sayfalar bu gözle yeniden elden geçirilecek.
 - **Logo:** Şimdilik dokunulmaz, sonra ele alınacak.
-- **Dil:** `<html lang="en">` → **`lang="tr"`**.
+- **Dil:** `<html lang="en">` → **`lang="tr"`**. **YAPILDI (30 Eylül):** `lang` seçili dilden geliyor (`get_current_language`, 18.22'ye hazır). Kelime kartındaki ve okuma baloncuğundaki İngilizce metinler `lang="en"` taşıyor. "BİLMİYORUM" artık doğru görünüyor.
   - Şu an Türkçe büyük harf bozuk: "BİLMİYORUM" ekranda "BILMIYORUM" çıkıyor.
   - Ekran okuyucular ve Google sayfayı İngilizce sanıyor.
 
@@ -1234,20 +1238,67 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - dil
   - hesap işlemleri
   - Tasarımı tasarım oturumunda yapılır.
-- **Karar bekliyor:** Üst çubuktaki tema (açık/koyu) düğmesi ne olacak? Beyaz temaya geçilecek (18.12). Claude'un önerisi: düğme üst çubuktan kalksın; koyu tema isteniyorsa Ayarlar'a taşınsın.
+- **Tema düğmesi (Efe'nin kararı, 30 Eylül):**
+  - Üst çubuktan kalkar, **Ayarlar'a taşınır**. Ayarlar'da **kolayca görülen** bir yerde durur.
+  - **Varsayılan tema cihazın sistem temasıdır** (açık ya da koyu). Kullanıcı Ayarlar'dan değiştirirse onun seçimi geçerli olur.
+  - Beyaz tema (18.12) açık temanın yeni hâlidir; koyu tema da korunur.
 
-### 18.27 Seviye testi değişiklikleri (Efe'nin kararı, 29 Eylül)
-- **Davet:** Kullanıcı testi yapana kadar **her sayfa açılışında** seviye testi daveti çıkar. Önceki "Şimdi değil → 30 gün" ara kararının yerine geçer.
-- **Geçme eşiği %60:** Bir ekranda ya da seviyede %60'ı geçemeyen kullanıcıya sonraki ekran ya da soru açılmaz. Önceki %50'nin yerine geçer.
-- **Okuma soruları (D4 yeniden tanımlandı):**
-  - Soru tipi: "Bu 4 cümlelik paragrafı en iyi özetleyen cümle hangisi?"
-  - **A1, A2, B1, B2, C1 ve C2 için 50'şer soru** (toplam 300) **Claude tarafından elle yazılır** (API yok).
-  - Test sırasında havuzdan **rastgele** seçilir.
-  - Bu, 18.14'teki "D4'e 5 örnek" maddesinin yerine geçer.
-- **Karar bekliyor:**
-  - (a) Her seviyede kaç soru sorulsun? %60'ın anlamlı olması için Claude'un önerisi: seviye başına 5 soru, en az 3 doğruyla geçilir.
-  - (b) "Seviyemi kendim seçeyim" diyen kullanıcı "testi yapmış" sayılıp davet dursun mu? Öneri: evet.
-  - (c) Davet L&P ve egzersiz oturumu sırasında da çıksın mı? Öneri: hayır; oturum dışındaki sayfalarda çıksın.
+### 18.27 Seviye testi değişiklikleri (Efe'nin kararları, 29–30 Eylül)
+**Davet:**
+- Kullanıcı testi yapana kadar **her sayfa açılışında** seviye testi daveti çıkar. Önceki "Şimdi değil → 30 gün" ara kararının yerine geçer.
+- **L&P ve egzersiz oturumları sırasında davet çıkmaz.**
+- **"Seviyemi kendim seçeyim"** diyen kullanıcıda davet durur. İsterse testi Ayarlar'dan yapar. Seviyesini sistem arka planda kendisi düzeltir (aşağıda).
+  - Seviye seçildikten sonra **çok küçük bir not** gösterilir: "Seviyeni istediğin zaman Ayarlar'dan değiştirebilirsin." Not Ayarlar'a bağlanır. Ayrı bir kutu ya da kart değildir, tek satırlık küçük bir yazıdır.
+
+**1. kısım: kelime ekranları** (Bölüm 7'deki ekran düzeninin ve D8'deki "ekran başına 120 kelimelik havuz" ara kararının yerine geçer):
+
+| Ekran | Kelimeler | Sonraki ekran ne zaman açılır |
+|---|---|---|
+| 1 | 40 kelime: **20 A1 + 20 A2** | İşaretlenen oran **%60'ın üstündeyse** |
+| 2 | 40 kelime: **20 B1 + 20 B2** | İşaretlenen oran **%60'ın üstündeyse** |
+| 3 | 40 kelime: **30 C1 + 10 C2** | Son ekran |
+
+- %60'ı geçemeyen kullanıcıya sonraki ekran açılmaz.
+- Kelimeler sık kullanılan ve seviyesi resmî kaynakla doğrulanmış (18.16) kelimelerden seçilir.
+- **C2 yedeği (Efe onayladı):** Veritabanında şu an C2 kelime çok az (84'ten azı, çoğu nadir tür). C2 havuzu resmî kaynakla (Cambridge EVP, 18.16) genişletilene kadar 3. ekrandaki 10 C2 kelimenin yerine **en zor C1 kelimeleri** (sıklığı en düşük, ama Google'a açık ve nadir tür olmayanlar) kullanılır.
+
+**2. kısım: özet soruları** ("Bu 4 cümlelik paragrafı en iyi özetleyen cümle hangisi?"):
+- **En çok 3 soru** sorulur. Hangi seviyelerden sorulacağı kelime ekranlarının sonucuna göre belirlenir.
+- **Kural:**
+  - Geçilen her ekranın **üst** seviyesinden 1 soru.
+  - Geçilemeyen ilk ekranın **alt** seviyesinden 1 soru.
+  - İstisna: 1. ekran geçilemezse A1 ve A2'den birer soru sorulur, çünkü tek soru yetersiz kalır.
+
+| Kelime ekranlarının sonucu | Sorulan özet soruları |
+|---|---|
+| 1. ekran geçilemedi | A1 · A2 |
+| 1 geçildi, 2 geçilemedi | A2 · B1 |
+| 1 ve 2 geçildi, 3 geçilemedi | A2 · B2 · C1 |
+| Üçü de geçildi | A2 · B2 · C2 |
+
+- **Havuz:** A1, A2, B1, B2, C1 ve C2 için **50'şer soru** (toplam 300), **Claude tarafından elle yazılır** (API yok). Test sırasında rastgele seçilir. Bu, 18.14'teki "D4'e 5 örnek" maddesinin yerine geçer.
+
+**Sonuç seviyesi (Efe onayladı, 30 Eylül):**
+- Kelime ekranlarından bir **başlangıç tahmini** çıkar: son geçilen ekranın üst seviyesi (A2 / B2 / C2). Hiç geçilemediyse A1.
+- Özet soruları bu tahmini düzeltir: **doğru cevaplanan en yüksek seviye** sonuç olur.
+  - Örnek: 1 geçildi, 2 geçilemedi, A2 ve B1 soruları doğru → **B1**. Yalnızca A2 doğru → **A2**. İkisi de yanlış → **A1**.
+- Hiçbir özet sorusu doğru değilse sonuç, sorulan en düşük seviyedir.
+- **Özet sorularının doğru cevabı kullanıcıya gösterilmez** (Efe'nin kararı: demoralize etmemek için). Doğru/yanlış işareti de yoktur, test sonuç ekranına geçer.
+
+**Seviyenin kendiliğinden düzelmesi** (Efe'nin kararı; matematik Claude'un önerisi, Efe onayladı):
+- Kullanıcının L&P ve egzersizlerde karşılaştığı kelimelerden her seviye için **bilme oranı** hesaplanır.
+  - **Bilindi sayılanlar:** L&P'de "Evet, eminim" ve egzersizde doğru cevap.
+  - **Bilinmedi sayılanlar:** "bilmiyorum", "yanılmışım" ve yanlış cevap.
+- **Seviye başına kural (Efe):**
+  - Bilme oranı **%75'in üstünde** → o seviye bitmiştir, gösterdiği seviye bir üsttür.
+  - **%35–75** → o seviyededir.
+  - **%35'in altında** → bir alt seviyededir.
+- **Ağırlıklı ortalama:** Her seviyenin gösterdiği seviye, o seviyede görülen kelime sayısıyla ağırlıklandırılıp ortalanır. Sonuç en yakın seviyeye yuvarlanır. Çok kelime görülen seviyenin sözü daha çok geçer.
+- **Kararlılık önlemleri (Claude'un önerisi):**
+  - Bir seviye hesaba girmek için en az 20 kelime görülmüş olmalı. Toplam en az 50 kelime yoksa seviye değişmez.
+  - Oranlar az veride zıplamasın diye yumuşatılır: (bilinen + 1) / (görülen + 2).
+  - Seviye haftada en çok bir basamak değişir.
+- **Herkese uygulanır** (Efe onayladı, 30 Eylül): seviyesini kendisi seçenlere de testi yapanlara da. `seviye/duzeltme.py`'deki boş kanca bununla dolar.
 
 ### 18.28 Egzersizler: düzensiz fiiller (Efe'nin kararı, 29 Eylül)
 - 2. ve 3. hâli kendisiyle aynı olan fiiller (cut, put, hit…) **da sorulur.** Önceki "sorulmuyor" ara kararının yerine geçer.
@@ -1259,7 +1310,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Kullanıcı kabul ederse tarayıcının kendi izin penceresi açılır.
 - **Ne zaman çıkar:** Kullanıcı birkaç şey yaptıktan sonra: **en az 3–4 egzersiz** çözmüş ve **biraz L&P** yapmış olmalı. Önceki "yalnızca L&P turu bitince" ara kararının yerine geçer.
 - **Ayarlar'dan** bildirimler açılıp kapatılabilir.
-- **Karar bekliyor:** "3–4 egzersiz" ve "biraz L&P" nasıl ölçülsün? Claude'un önerisi: en az 3 tamamlanmış egzersiz oturumu ve en az 20 L&P kartı.
+- **Ölçüt (Efe onayladı, 30 Eylül):** En az **3 tamamlanmış egzersiz oturumu** ve en az **20 L&P kartı.**
 
 ### 18.30 Yeni sisteme geçiş planı (konuşulacak; unutulmayacak)
 - Efe'nin kararı: **Önce bütün değişiklikler yapılır, her şey bitince** geçiş konuşulur.
@@ -1307,9 +1358,7 @@ Her adım ayrı commit, her adımdan sonra testler.
 - 6'da L&P aynı ekranda hem akış hem tasarım değiştirdiği için tek seferde yapılır.
 
 **Hâlâ açık kararlar:**
-- Tema tasarımı (18.12) ve tema düğmesinin yeri (18.26)
-- Seviye testi ayrıntıları (18.27 a–c)
-- Bildirim izni eşiği (18.29)
+- Tema tasarımı (18.12)
 - Yeni sisteme geçiş planı (18.30, her şey bitince)
 
 **Kullanıcı verisi notu (Efe, 29 Eylül):**
@@ -1359,3 +1408,6 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-09-29 (11):** 18.9 ayrıntıları kesinleşti: L&P ya da egzersizden biri tek başına 10, yerel saat, dondurulan gün sayıyı artırmaz, ardışık 5 günde +1 hak, bildirimler 12.00 ve 23.50 (seri 0 ise yok), metin geçerlilik kontrolü eklendi.
 - **2026-09-29 (12):** 18.9 hak günü (12) ve metin ölçütleri (5 cümle, 50 kelime, %90) kesinleşti; 18.22 diller (tr, en, de; yalnızca arayüz); 18.23 kayıt formu ve günlük hedefin kaldırılması; 18.24 okuma sınırları, sıkıştırma önerisi, çöp kutusu eklendi.
 - **2026-09-29 (13):** Ölü tablolar silindi (`words/0022`, 826 test). 18.24 sıkıştırma, 50 MB, çöp 1 hafta ve sınıra sayılmaz; 18.22 dil adres biçimi onaylandı. Yeni: 18.25 gelir modeli, 18.26 gezinme (profil fotoğrafı → Hesap → Ayarlar), 18.27 seviye testi (%60, her sayfada davet, 6 seviye × 50 okuma sorusu), 18.28 düzensiz fiiller, 18.29 bildirim izni ön ekranı, 18.30 geçiş planı (sonra), 18.31 admin istatistik ekranı.
+- **2026-09-30:** 18.26 tema düğmesi Ayarlar'a, varsayılan sistem teması. 18.27 seviye testi yeniden yazıldı: 3 kelime ekranı (20 A1+20 A2 / 20 B1+20 B2 / 30 C1+10 C2, %60 eşiği), en çok 3 özet sorusu (seçim kuralı ve tablo), kendi seçenlerin seviyesinin L&P ve egzersiz verisinden düzeltilmesi. 18.29 bildirim izni ölçütü onaylandı.
+- **2026-09-30 (2):** 18.27 kesinleşti: sonuç = doğru cevaplanan en yüksek seviye, özet cevapları gösterilmez, seviye düzeltmesi herkese, C2 yerine en zor C1 yedeği, kendi seçenlere küçük Ayarlar notu.
+- **2026-09-30 (3):** Uygulama 1. adım yapıldı: `lang="tr"`, telaffuz düğmeleri (18.4), tek biçim liste düğmesi (18.5). 829 test geçiyor.

@@ -1,8 +1,8 @@
 {% comment %}
 Okuma ekranının dokun-anlamını-gör baloncuğu (rapor 8).
 
-Bir kelimeye dokununca anlamı küçük bir baloncukta, yanında "+" (listeye
-ekle). Başka bir şey yok.
+Bir kelimeye dokununca anlamı küçük bir baloncukta, yanında "Listeme ekle +"
+(yalnızca girişli; rapor 18.5). Başka bir şey yok.
 
 NEDEN KELİMELER <span>'LERE BÖLÜNMÜYOR
   Metin düz <p> olarak basılıyor; dokunulan kelimeyi tarayıcı buluyor
@@ -17,9 +17,9 @@ NEDEN KELİMELER <span>'LERE BÖLÜNMÜYOR
 Phrasal verb için dokunulan kelimenin aynı cümledeki 2 önceki ve 3 sonraki
 kelimesi de gönderiliyor (once / sonra): "gave it up" -> give up.
 
-"+" düğmesi kelime kartındakiyle aynı öznitelikleri taşıyor; ekleme /
-çıkarma ve "Geri al" base/_kelimeKartiJs.html'den geliyor. Girişsiz
-ziyaretçide girişe yönlendiriyor (data-giris-gerekli="liste").
+Liste düğmesi kelime kartındakiyle (base/_kartListeDugmesi.html) aynı yazıyı
+ve öznitelikleri taşıyor; ekleme / çıkarma ve "Geri al"
+base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizilmiyor.
 {% endcomment %}
 
 <style>
@@ -143,7 +143,8 @@ ziyaretçide girişe yönlendiriyor (data-giris-gerekli="liste").
     }
 
     function listeDugmesi(madde) {
-        var d = eleman('button', 'shrink-0 inline-flex h-7 w-7 items-center justify-center rounded-lg text-sm font-semibold transition-colors disabled:opacity-60 ' +
+        if (!GIRISLI) { return null; }
+        var d = eleman('button', 'shrink-0 inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors disabled:opacity-60 ' +
             "data-[listede='0']:bg-indigo-600 data-[listede='0']:text-white data-[listede='0']:hover:bg-indigo-700 " +
             "data-[listede='1']:bg-emerald-50 data-[listede='1']:text-emerald-700 data-[listede='1']:ring-1 data-[listede='1']:ring-inset data-[listede='1']:ring-emerald-200 " +
             "dark:data-[listede='1']:bg-emerald-950 dark:data-[listede='1']:text-emerald-300 dark:data-[listede='1']:ring-emerald-800");
@@ -154,13 +155,12 @@ ziyaretçide girişe yönlendiriyor (data-giris-gerekli="liste").
         d.dataset.listede = madde.listede ? '1' : '0';
         d.dataset.ekleUrl = EKLE.replace('/0/', '/' + madde.word_id + '/');
         d.dataset.cikarUrl = CIKAR.replace('/0/', '/' + madde.word_id + '/');
-        if (!GIRISLI) { d.dataset.girisGerekli = 'liste'; }
         d.setAttribute('aria-pressed', madde.listede ? 'true' : 'false');
         d.title = madde.listede ? 'Listemde — çıkarmak için dokun' : 'Listeme ekle';
-        var ekle = eleman('span', null, '+');
+        var ekle = eleman('span', null, 'Listeme ekle +');
         ekle.setAttribute('data-ekle-yazi', '');
         ekle.hidden = !!madde.listede;
-        var var_ = eleman('span', null, '✓');
+        var var_ = eleman('span', null, 'Listemde ✓');
         var_.setAttribute('data-listede-yazi', '');
         var_.hidden = !madde.listede;
         d.append(ekle, var_);
@@ -174,8 +174,12 @@ ziyaretçide girişe yönlendiriyor (data-giris-gerekli="liste").
         if (yazim && yazim.toLowerCase() !== madde.kok) {
             baslik.append(eleman('span', 'text-gray-400 dark:text-slate-500', yazim + ' → '));
         }
-        baslik.append(eleman('span', 'text-base font-bold text-gray-900 dark:text-slate-100', madde.kok));
-        ust.append(baslik, listeDugmesi(madde));
+        var kok = eleman('span', 'text-base font-bold text-gray-900 dark:text-slate-100', madde.kok);
+        kok.lang = 'en';
+        baslik.append(kok);
+        var dugme = listeDugmesi(madde);
+        ust.append(baslik);
+        if (dugme) { ust.append(dugme); }
         kutu.append(ust);
 
         var anlamlar = madde.anlamlar || [];

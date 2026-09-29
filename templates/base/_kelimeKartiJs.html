@@ -156,3 +156,56 @@ Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de ça
     });
 })();
 </script>
+
+<script>
+// Telaffuz (rapor 18.4, base/_telaffuz.html): tarayıcının konuşma motoru.
+// Sesler bazı tarayıcılarda (Chrome, iOS Safari) geç yüklenir; "voiceschanged"
+// gelince yeniden bakılır. Bir aksanın sesi varsa <html>'e ses-us / ses-uk
+// sınıfı eklenir ve o aksanın düğmeleri görünür (CSS: base/layout.html).
+// Sonradan sayfaya eklenen kartlar da sınıf sayesinde kendiliğinden görünür.
+(function () {
+    if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') { return; }
+    var sesler = {};
+
+    function sesBul(aksan) {
+        var liste = window.speechSynthesis.getVoices().filter(function (v) {
+            return (v.lang || '').replace('_', '-').toLowerCase() === aksan.toLowerCase();
+        });
+        if (!liste.length) { return null; }
+        // Cihazın kendi (çevrimdışı çalışan) sesi, sonra varsayılan ses öne alınır.
+        liste.sort(function (a, b) {
+            return (b.localService - a.localService) || (b['default'] - a['default']);
+        });
+        return liste[0];
+    }
+
+    function sesleriYukle() {
+        sesler['en-US'] = sesBul('en-US');
+        sesler['en-GB'] = sesBul('en-GB');
+        document.documentElement.classList.toggle('ses-us', !!sesler['en-US']);
+        document.documentElement.classList.toggle('ses-uk', !!sesler['en-GB']);
+    }
+
+    sesleriYukle();
+    if (typeof window.speechSynthesis.addEventListener === 'function') {
+        window.speechSynthesis.addEventListener('voiceschanged', sesleriYukle);
+    } else {
+        window.speechSynthesis.onvoiceschanged = sesleriYukle;
+    }
+
+    document.addEventListener('click', function (olay) {
+        var dugme = olay.target.closest('[data-telaffuz]');
+        if (!dugme) { return; }
+        olay.preventDefault();
+        var aksan = dugme.dataset.telaffuz;
+        var ses = sesler[aksan] || sesBul(aksan);
+        if (!ses) { return; }
+        var soz = new SpeechSynthesisUtterance(dugme.dataset.metin || '');
+        soz.voice = ses;
+        soz.lang = aksan;
+        soz.rate = 0.9;
+        window.speechSynthesis.cancel();   // üst üste basılırsa öncekini kes
+        window.speechSynthesis.speak(soz);
+    });
+})();
+</script>
