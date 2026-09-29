@@ -1,9 +1,10 @@
 """
 Öğren-Geç testleri.
 
-En çok korunması gereken kurallar (rapor 6.1, 2.3): kullanıcı kararını
-ANLAMI GÖRMEDEN verir; her kaydırma anında kaydedilir; bilinmeyenler listeye
-kendiliğinden girmez; misafir için hiçbir şey kaydedilmez.
+En çok korunması gereken kurallar (rapor 6.1, 18.1, 2.3): kullanıcı kararını
+ANLAMI GÖRMEDEN verir; kesinleşen karar anında kaydedilir; bilinmeyenler
+listeye kendiliğinden girmez; misafir için hiçbir şey kaydedilmez.
+Tekrar kuralının kendisi: learnpass/test_tekrar.py
 """
 
 import json
@@ -15,8 +16,8 @@ from django.urls import reverse
 from users.models import User
 from words.models import UserWordLink, Word
 
-from learnpass import selection
-from learnpass.models import Declaration, EncounterLog, WordEncounter
+from learnpass import selection, tekrar
+from learnpass.models import EncounterLog, WordEncounter
 
 
 def kelime_yap(englishWord="immaculate", **kwargs):
@@ -26,181 +27,6 @@ def kelime_yap(englishWord="immaculate", **kwargs):
     kwargs.setdefault("meaning", "tertemiz")
     kwargs.setdefault("sentences", [f"Her kitchen was {englishWord}."])
     return make_word(englishWord, **kwargs)
-
-
-class WordEncounterModelTests(TestCase):
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="ogrenci", password="Sifre1234")
-        self.word = kelime_yap()
-
-    def test_unknown_verdict_does_not_mark_learned(self):
-        kayit = WordEncounter.record(self.user, self.word, WordEncounter.UNKNOWN, "new")
-        self.assertFalse(kayit.is_learned)
-        self.assertEqual(kayit.times_seen, 1)
-
-    def test_confirmed_known_marks_learned(self):
-        kayit = WordEncounter.record(self.user, self.word, WordEncounter.KNOWN, "mine")
-        self.assertTrue(kayit.is_learned)
-
-    def test_misjudged_is_counted_and_clears_learned(self):
-        """Bir kez 'biliyorum' demiş olmak kelimeyi sonsuza kadar gizlememeli."""
-        WordEncounter.record(self.user, self.word, WordEncounter.KNOWN, "mine")
-        kayit = WordEncounter.record(self.user, self.word, WordEncounter.MISJUDGED, "mine")
-        self.assertFalse(kayit.is_learned)
-        self.assertEqual(kayit.misjudged_count, 1)
-        self.assertTrue(kayit.was_misjudged)
-
-    def test_one_row_per_user_and_word(self):
-        WordEncounter.record(self.user, self.word, WordEncounter.UNKNOWN, "new")
-        WordEncounter.record(self.user, self.word, WordEncounter.UNKNOWN, "new")
-        self.assertEqual(WordEncounter.objects.filter(user=self.user, word=self.word).count(), 1)
-        self.assertEqual(WordEncounter.objects.get(user=self.user, word=self.word).times_seen, 2)
-
-
-class SelectionTests(TestCase):
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="secim", password="Sifre1234")
-
-    def test_new_mode_skips_words_already_in_the_list(self):
-        listemde = kelime_yap("alreadyhere")
-        UserWordLink.objects.create(user=self.user, word=listemde)
-        disarida = kelime_yap("fresh")
-
-        havuz = list(selection.new_words_qs(self.user))
-        self.assertIn(disarida, havuz)
-        self.assertNotIn(listemde, havuz)
-
-    def test_new_mode_skips_words_already_seen(self):
-        kelime = kelime_yap("seenbefore")
-        WordEncounter.record(self.user, kelime, WordEncounter.KNOWN, "new")
-        self.assertNotIn(kelime, selection.new_words_qs(self.user))
-
-    def test_new_mode_ignores_private_words_of_other_users(self):
-        baskasi = User.objects.create_user(username="baska", password="Sifre1234")
-        gizli = kelime_yap("secret", is_base=False,
-                           visibility="private", owner=baskasi)
-        self.assertNotIn(gizli, selection.new_words_qs(self.user))
-
-    def test_own_mode_skips_learned_words(self):
-        ogrenildi = kelime_yap("mastered")
-        kalan = kelime_yap("stillhard")
-        UserWordLink.objects.create(user=self.user, word=ogrenildi)
-        UserWordLink.objects.create(user=self.user, word=kalan)
-        WordEncounter.record(self.user, ogrenildi, WordEncounter.KNOWN, "mine")
-
-        havuz = list(selection.own_words_qs(self.user))
-        self.assertIn(kalan, havuz)
-        self.assertNotIn(ogrenildi, havuz)
-
-    def test_own_mode_prefers_the_word_user_struggles_with(self):
-        """
-        Sıra artık "en uzun süredir görülmeyen" değil, EN ÇOK ZORLANILAN.
-
-        Eski davranış Öğren-Geç'i bir liste gezme aracına çeviriyordu.
-        Bölümün işi ölçüm: "kullanıcı bu kelimeyi bildiğini düşünüyor mu"
-        sorusunu iyi bildiği kelimede sormanın bilgi değeri yok.
-        """
-        kolay = kelime_yap("easyone")
-        zor = kelime_yap("hardone")
-        for kelime in (kolay, zor):
-            UserWordLink.objects.create(user=self.user, word=kelime)
-
-        # Kolay kelime: üç kez görüldü, üçünde de bilindi ama "öğrendim"
-        # denmediği için havuzda; zor kelime: üç kez görüldü, üçünde de yanıldı.
-        for _ in range(3):
-            WordEncounter.record(self.user, zor, WordEncounter.MISJUDGED, "mine")
-        for _ in range(3):
-            WordEncounter.record(self.user, kolay, WordEncounter.UNKNOWN, "mine")
-        # kolay'ın oranını düşür: çok sayıda doğru karşılaşma ekle
-        for _ in range(12):
-            WordEncounter.record(self.user, kolay, WordEncounter.KNOWN, "mine")
-        WordEncounter.objects.filter(user=self.user, word=kolay).update(is_learned=False)
-
-        puanlar = selection.struggle_scores(self.user)
-        self.assertGreater(puanlar[zor.id], puanlar[kolay.id])
-
-    def test_stuck_declaration_outranks_everything(self):
-        """
-        "Hâlâ öğrenemedim" beyanı diğer bütün sinyallerin önüne geçmeli:
-        bu bilgi başka hiçbir yerden gelmiyor.
-        """
-        beyanli = kelime_yap("declaredstuck")
-        cok_yanlis = kelime_yap("manymisses")
-        for kelime in (beyanli, cok_yanlis):
-            UserWordLink.objects.create(user=self.user, word=kelime)
-
-        for _ in range(10):
-            WordEncounter.record(self.user, cok_yanlis, WordEncounter.MISJUDGED, "mine")
-        for _ in range(3):
-            WordEncounter.record(self.user, beyanli, WordEncounter.UNKNOWN, "mine")
-        WordEncounter.objects.get(user=self.user, word=beyanli).declare(Declaration.STUCK)
-
-        puanlar = selection.struggle_scores(self.user)
-        self.assertGreater(puanlar[beyanli.id], puanlar[cok_yanlis.id])
-
-    def test_words_with_no_data_sit_in_the_middle(self):
-        """
-        Hiç verisi olmayan kelime ne en önde ne en arkada olmalı:
-        önde olsa gerçekten zorlandıkları geri düşer, arkada olsa
-        kullanıcı o kelimeyle hiç karşılaşmaz.
-        """
-        bos = kelime_yap("nodata")
-        zor = kelime_yap("struggling")
-        kolay = kelime_yap("wellknown")
-        for kelime in (bos, zor, kolay):
-            UserWordLink.objects.create(user=self.user, word=kelime)
-
-        for _ in range(4):
-            WordEncounter.record(self.user, zor, WordEncounter.UNKNOWN, "mine")
-        for _ in range(4):
-            WordEncounter.record(self.user, kolay, WordEncounter.KNOWN, "mine")
-        WordEncounter.objects.filter(user=self.user, word=kolay).update(is_learned=False)
-
-        puanlar = selection.struggle_scores(self.user)
-        bos_puan = puanlar.get(bos.id, selection.NOTR_PUAN)
-        self.assertGreater(puanlar[zor.id], bos_puan)
-        self.assertGreater(bos_puan, puanlar.get(kolay.id, 0.0))
-
-    def test_empty_pool_returns_none(self):
-        self.assertIsNone(selection.pick_own_word(self.user))
-        self.assertIsNone(selection.pick_new_word(self.user))
-
-
-class LevelWeightTests(TestCase):
-    """Kur dağılımı: 401 %40, 301 %25, 501 %25, 101 %5, 201 %5."""
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="dagilim", password="Sifre1234")
-        for seviye in ("A1", "A2", "B1", "B2", "C1"):
-            for i in range(40):
-                kelime_yap(f"w{seviye}_{i}", level=seviye)
-
-    def test_weights_sum_to_one_hundred(self):
-        self.assertEqual(sum(agirlik for _, agirlik in selection.LEVEL_WEIGHTS), 100)
-
-    def test_distribution_roughly_matches_the_weights(self):
-        rng = random.Random(20260911)
-        sayac = {seviye: 0 for seviye, _ in selection.LEVEL_WEIGHTS}
-        tur = 600
-        for _ in range(tur):
-            kelime = selection.pick_new_word(self.user, rng=rng)
-            sayac[kelime.cefr] += 1
-
-        for seviye, agirlik in selection.LEVEL_WEIGHTS:
-            oran = sayac[seviye] / tur * 100
-            # Rastgelelik payı: 600 çekimde ±8 puan makul
-            self.assertAlmostEqual(
-                oran, agirlik, delta=8,
-                msg=f"{seviye} seviyesi %{oran:.1f} çıktı, beklenen %{agirlik}")
-
-    def test_falls_back_to_another_level_when_one_is_empty(self):
-        """Seçilen seviyede kelime kalmadıysa kart gelmeye devam etmeli."""
-        Word.objects.exclude(cefr="A1").delete()
-        kelime = selection.pick_new_word(self.user)
-        self.assertIsNotNone(kelime)
-        self.assertEqual(kelime.cefr, "A1")
 
 
 class LearnPassFlowTests(TestCase):
@@ -246,7 +72,7 @@ class LearnPassFlowTests(TestCase):
 
     def test_sonradan_biliyorum_denirse_soru_isareti_kalkar(self):
         self._verdict(self.word, "unknown")
-        WordEncounter.record(self.user, self.word, WordEncounter.KNOWN, "new")
+        tekrar.kaydet(self.user, self.word, WordEncounter.KNOWN, "new")
         self.assertFalse(WordEncounter.objects.get(user=self.user, word=self.word).listeye_sorulacak)
 
     def test_kart_listede_olup_olmadigini_tasir(self):
@@ -290,7 +116,7 @@ class LearnPassFlowTests(TestCase):
         self._undo()
         kayit = WordEncounter.objects.get(user=self.user, word=self.word)
         self.assertEqual(kayit.last_verdict, WordEncounter.UNKNOWN)
-        self.assertFalse(kayit.is_learned)
+        self.assertFalse(kayit.son_basarili)
         self.assertTrue(kayit.listeye_sorulacak)
 
     def test_undo_without_history_is_rejected(self):
@@ -387,7 +213,7 @@ class BilinmeyenlerTests(TestCase):
         import learnpass
 
         bilinen = kelime_yap("delta")
-        WordEncounter.record(self.user, bilinen, WordEncounter.KNOWN, "new")
+        tekrar.kaydet(self.user, bilinen, WordEncounter.KNOWN, "new")
         zor = set(learnpass.zorlanilanlar(self.user))
         self.assertEqual(zor, {self.a, self.b})
         baska = User.objects.create_user(username="baskasi", password="Sifre1234")
@@ -459,7 +285,7 @@ class HazirListeBaglantiTests(TestCase):
         sahte.aktif_liste = lambda user: Word.objects.filter(id=listede.id)
         with mock.patch.dict(sys.modules, {"words.hazir_liste": sahte}):
             for _ in range(5):
-                self.assertEqual(selection.pick_new_word(self.user), listede)
+                self.assertEqual(selection.pick_word(self.user, "new"), listede)
 
 
 class LearnPassPageTests(TestCase):
@@ -474,16 +300,16 @@ class LearnPassPageTests(TestCase):
         self.assertIn("Hemen Başla", html)
         self.assertIn(reverse("learn_pass_run", kwargs={"mode": "karma"}), html)
         self.assertIn("Neden işe yarar", html)
-        self.assertIn("data-seri-yeri", html)
+        self.assertIn("data-seri", html)   # rapor 18.9
         self.assertIn("%70 tekrar", html)
         self.assertIn(reverse("user_profile"), html)   # oran notu -> ayarlar
         self.assertNotIn('data-giris-gerekli="', html)
 
-    def test_misafir_acilis_ekrani_seviye_secer(self):
+    def test_misafir_acilis_ekraninda_seviye_secimi_yok(self):
+        """Rapor 18.3: misafirde seviye seçici yok."""
         html = self.client.get(reverse("learn_pass_page")).content.decode()
         self.assertIn("Hemen Başla", html)
-        self.assertIn('name="seviye"', html)
-        self.assertIn('<option value="B1" selected>', html)
+        self.assertNotIn('name="seviye"', html)
         self.assertIn('data-giris-gerekli="egzersiz"', html)
 
     def test_unknown_mode_falls_back_to_the_picker(self):
@@ -535,7 +361,7 @@ class MisafirTests(TestCase):
     """Girişsiz ziyaretçi: yalnızca kaydırır, hiçbir şey kaydedilmez (rapor 2.3)."""
 
     def setUp(self):
-        for seviye in ("A2", "B1", "B2"):
+        for seviye in ("A2", "B1", "B2", "C1"):
             for i in range(25):
                 kelime_yap(f"g{seviye}{i}", level=seviye)
 
@@ -551,11 +377,19 @@ class MisafirTests(TestCase):
         self.assertNotIn("önce giriş yapın", cevap.content.decode())
         kartlar = self._kartlar(cevap)
         self.assertEqual(len(kartlar), 20)
-        self.assertTrue(all(Word.objects.get(id=k["id"]).cefr == "B1" for k in kartlar))
+        # Rapor 18.3: %60 B1 · %20 B2 · %20 C1
+        from collections import Counter
+        dagilim = Counter(Word.objects.get(id=k["id"]).cefr for k in kartlar)
+        self.assertEqual(dagilim, {"B1": 12, "B2": 4, "C1": 4})
 
-    def test_seviyeni_sec_parametresi(self):
+    def test_seviye_parametresi_yok_sayilir(self):
         cevap = self.client.get(reverse("learn_pass_run", kwargs={"mode": "karma"}) + "?seviye=a2")
-        self.assertTrue(all(Word.objects.get(id=k["id"]).cefr == "A2" for k in self._kartlar(cevap)))
+        self.assertFalse(any(Word.objects.get(id=k["id"]).cefr == "A2" for k in self._kartlar(cevap)))
+
+    def test_misafire_nadir_tur_gelmez(self):
+        Word.objects.filter(cefr="C1").update(nadir_tur=True)
+        cevap = self.client.get(reverse("learn_pass_run", kwargs={"mode": "karma"}))
+        self.assertFalse(any(Word.objects.get(id=k["id"]).nadir_tur for k in self._kartlar(cevap)))
 
     def test_misafir_hicbir_sey_kaydetmez(self):
         from django.contrib.sessions.models import Session
@@ -575,7 +409,7 @@ class MisafirTests(TestCase):
         self.assertEqual(Session.objects.count(), 0)
 
     def test_misafir_sayfasi_az_sorguyla_acilir(self):
-        with self.assertNumQueries(4):   # id listesi + kelimeler + anlamlar + örnekler
+        with self.assertNumQueries(6):   # 3 seviyenin aday listesi + kelimeler + anlamlar + örnekler
             self.client.get(reverse("learn_pass_run", kwargs={"mode": "karma"}))
 
     def test_misafirin_kendi_listesi_yok(self):
@@ -583,149 +417,3 @@ class MisafirTests(TestCase):
         self.assertRedirects(cevap, reverse("learn_pass_run", kwargs={"mode": "karma"}))
 
 
-class DeclarationTests(TestCase):
-    """
-    Kullanıcının kendi beyanı — Öğren-Geç'in asıl ürünü.
-
-    Karar (biliyorum/bilmiyorum) tek bir ana ait; beyan kullanıcının o
-    kelimeyle kurduğu ilişkiye ait ve tekrar sayısını hesaba katıyor.
-    """
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="beyan", password="Sifre1234")
-        self.word = kelime_yap("stubborn")
-        UserWordLink.objects.create(user=self.user, word=self.word)
-
-    def _gor(self, kez, verdict=WordEncounter.UNKNOWN):
-        for _ in range(kez):
-            WordEncounter.record(self.user, self.word, verdict, "mine")
-        return WordEncounter.objects.get(user=self.user, word=self.word)
-
-    def test_beyan_esigin_altinda_sorulmaz(self):
-        """"Bu kadar çok çıkmasına rağmen" ifadesi ilk karşılaşmada boştur."""
-        kayit = self._gor(1)
-        self.assertFalse(kayit.can_declare)
-        kayit = self._gor(2)
-        self.assertTrue(kayit.can_declare)
-
-    def test_ogrendim_beyani_havuzdan_cikarir(self):
-        kayit = self._gor(3)
-        kayit.declare(Declaration.MASTERED)
-        kayit.refresh_from_db()
-        self.assertTrue(kayit.is_learned)
-        self.assertNotIn(self.word, selection.own_words_qs(self.user))
-
-    def test_ogrenemedim_beyani_havuzda_tutar_ve_one_alir(self):
-        kayit = self._gor(3)
-        kayit.declare(Declaration.STUCK)
-        kayit.refresh_from_db()
-        self.assertFalse(kayit.is_learned)
-        self.assertIn(self.word, selection.own_words_qs(self.user))
-        self.assertIn(self.word.id, selection.stuck_word_ids(self.user))
-
-    def test_ogrendim_dedikten_sonra_bilemezse_beyan_duser(self):
-        """Bir kez 'öğrendim' demek kelimeyi sonsuza kadar kapatmamalı."""
-        kayit = self._gor(3)
-        kayit.declare(Declaration.MASTERED)
-        WordEncounter.record(self.user, self.word, WordEncounter.UNKNOWN, "mine")
-        kayit.refresh_from_db()
-        self.assertEqual(kayit.declaration, Declaration.NONE)
-        self.assertFalse(kayit.is_learned)
-
-    def test_ogrenemedim_dedikten_sonra_bilirse_beyan_duser(self):
-        """Takıldığı yerden çıkmışsa eski beyanı onu zor kelime saymamalı."""
-        kayit = self._gor(3)
-        kayit.declare(Declaration.STUCK)
-        WordEncounter.record(self.user, self.word, WordEncounter.KNOWN, "mine")
-        kayit.refresh_from_db()
-        self.assertEqual(kayit.declaration, Declaration.NONE)
-
-    def test_her_karsilasma_gunluge_yaziliyor(self):
-        """Geçmiş geriye dönük üretilemez; kayıt tutulmazsa o kapı kapanır."""
-        self._gor(3)
-        kayitlar = EncounterLog.objects.filter(user=self.user,
-                                               kind=EncounterLog.VERDICT)
-        self.assertEqual(kayitlar.count(), 3)
-        self.assertEqual(list(kayitlar.order_by("id").values_list("seen_index", flat=True)),
-                         [1, 2, 3])
-
-    def test_beyan_da_gunluge_yaziliyor(self):
-        kayit = self._gor(3)
-        kayit.declare(Declaration.STUCK)
-        gunluk = EncounterLog.objects.get(user=self.user,
-                                          kind=EncounterLog.DECLARATION)
-        self.assertEqual(gunluk.declaration, Declaration.STUCK)
-        self.assertEqual(gunluk.seen_index, 3)
-
-    def test_kacinci_karsilasmada_ogrendigini_soyledi(self):
-        """İleride sorulacak asıl soru bu; alan o yüzden ayrıca tutuluyor."""
-        kayit = self._gor(5, WordEncounter.KNOWN)
-        kayit.declare(Declaration.MASTERED)
-        kayit.refresh_from_db()
-        self.assertEqual(kayit.declared_after_seen, 5)
-
-    def test_zorlanma_orani_yanilmayi_agir_sayar(self):
-        """
-        Bildiğini sanıp yanılmak, düpedüz bilmemekten kötüdür.
-
-        Karışık durumda ölçülüyor: her iki kelime de 6 kez görülmüş,
-        birinde 3 kez yanılınmış, diğerinde 3 kez bilinmemiş. Hepsi
-        kaçırılmış kelimelerde oran 1.0'da doyuyor ve ikisi eşit
-        çıkıyor — doğrusu da bu, ikisi de azami derecede sorunlu.
-        """
-        kelime_b = kelime_yap("plainunknown")
-        UserWordLink.objects.create(user=self.user, word=kelime_b)
-        for _ in range(3):
-            WordEncounter.record(self.user, self.word, WordEncounter.MISJUDGED, "mine")
-            WordEncounter.record(self.user, self.word, WordEncounter.KNOWN, "mine")
-            WordEncounter.record(self.user, kelime_b, WordEncounter.UNKNOWN, "mine")
-            WordEncounter.record(self.user, kelime_b, WordEncounter.KNOWN, "mine")
-
-        yanilan = WordEncounter.objects.get(user=self.user, word=self.word)
-        bilmeyen = WordEncounter.objects.get(user=self.user, word=kelime_b)
-        self.assertEqual(yanilan.times_seen, bilmeyen.times_seen)
-        self.assertGreater(yanilan.miss_ratio, bilmeyen.miss_ratio)
-
-
-class DeclarationEndpointTests(TestCase):
-    """Beyan ucunun HTTP tarafı."""
-
-    def setUp(self):
-        self.user = User.objects.create_user(username="ucnokta", password="Sifre1234")
-        self.word = kelime_yap("endpointword")
-        UserWordLink.objects.create(user=self.user, word=self.word)
-        self.client.login(username="ucnokta", password="Sifre1234")
-
-    def _beyan(self, beyan):
-        return self.client.post(
-            reverse("learn_pass_declare"),
-            data=json.dumps({"word_id": self.word.id, "declaration": beyan,
-                             "mode": "mine"}),
-            content_type="application/json",
-        )
-
-    def test_esik_altinda_reddedilir(self):
-        WordEncounter.record(self.user, self.word, WordEncounter.UNKNOWN, "mine")
-        self.assertEqual(self._beyan("stuck").status_code, 400)
-
-    def test_gecerli_beyan_kaydedilir(self):
-        for _ in range(3):
-            WordEncounter.record(self.user, self.word, WordEncounter.UNKNOWN, "mine")
-        cevap = self._beyan("stuck")
-        self.assertEqual(cevap.status_code, 200)
-        kayit = WordEncounter.objects.get(user=self.user, word=self.word)
-        self.assertEqual(kayit.declaration, Declaration.STUCK)
-
-    def test_gecersiz_beyan_reddedilir(self):
-        for _ in range(3):
-            WordEncounter.record(self.user, self.word, WordEncounter.UNKNOWN, "mine")
-        self.assertEqual(self._beyan("banana").status_code, 400)
-
-    def test_kart_beyan_bilgisini_tasiyor(self):
-        """Kullanıcı kaçıncı kez gördüğünü görmeden beyan anlamsız."""
-        for _ in range(3):
-            WordEncounter.record(self.user, self.word, WordEncounter.UNKNOWN, "mine")
-        from learnpass.views import card_payload
-        kart = card_payload(self.word, self.user)
-        self.assertEqual(kart["encounter"]["times_seen"], 3)
-        self.assertTrue(kart["encounter"]["can_declare"])

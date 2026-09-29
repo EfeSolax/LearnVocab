@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "egzersizler",
     "bildirimler",
     "seviye",
+    "seri",
 
     # Kullanılmayan dosyaları (profile_pic) otomatik olarak temizleyecek bir eklenti
     'django_cleanup',
@@ -328,6 +329,11 @@ LLM_KONTROL_PRICE_OUTPUT = float(os.environ.get('LLM_KONTROL_PRICE_OUTPUT', '0')
 # Gemini'nin 3 kademesi var: flex ($0.375), normal ($0.75), priority ($1.35).
 # "price" -> flex. "throughput" priority'ye gidebiliyordu (24 Eylül).
 LLM_KONTROL_PROVIDER_SORT = os.environ.get('LLM_KONTROL_PROVIDER_SORT', 'price')
+
+
+# Tekrar kuralının birimi (rapor 18.2): 1 · 3 · 7 · 21 birim. 24 = gün.
+# EncounterLog'daki basamak başına unutma oranına bakılarak ayarlanır.
+TEKRAR_BIRIMI_SAAT = int(os.environ.get('TEKRAR_BIRIMI_SAAT', '24'))
 
 
 TEXT_SUBMISSION_INTERVAL_MINUTES = int(

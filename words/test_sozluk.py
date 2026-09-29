@@ -18,7 +18,7 @@ from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 from django.utils import timezone
 
-from learnpass.models import Declaration, WordEncounter
+from learnpass.models import WordEncounter
 from users.models import User
 from words import arama, hazir_liste
 from words.models import (
@@ -476,18 +476,21 @@ class ListemSatirTests(ListemTemeli):
         self.assertEqual(set(self.idler(zaman="ay")), {self.aim_n.id, self.aim_v.id, self.decide.id})
 
     def test_zorlandiklarim(self):
+        """Rapor 18.2: son sonucu "bilemedi" olan kelimeler (L&P ya da egzersiz)."""
         self.assertEqual(self.idler(zor="1"), [])
-        UserWordLink.objects.filter(pk=self.baglar[self.zebra.id].pk).update(wrongCount=2)
+        WordEncounter.objects.create(user=self.user, word=self.zebra, last_verdict="yanlis",
+                                     egz_yanlis=1, times_seen=1, son_basarili=False)
         WordEncounter.objects.create(user=self.user, word=self.decide, last_verdict="unknown",
-                                     unknown_count=1)
+                                     unknown_count=1, times_seen=1, son_basarili=False)
         WordEncounter.objects.create(user=self.user, word=self.aim_v, last_verdict="known",
-                                     known_count=3)     # bildi: zorlanmadı
+                                     known_count=3, times_seen=3)     # bildi: zorlanmadı
         diger = User.objects.create_user(username="diger", password="x")
-        WordEncounter.objects.create(user=diger, word=self.aim_n, last_verdict="unknown", unknown_count=1)
+        WordEncounter.objects.create(user=diger, word=self.aim_n, last_verdict="unknown",
+                                     unknown_count=1, times_seen=1, son_basarili=False)
         self.assertEqual(set(self.idler(zor="1")), {self.zebra.id, self.decide.id})
-        WordEncounter.objects.create(user=self.user, word=self.aim_n, last_verdict="known",
-                                     declaration=Declaration.STUCK)
-        self.assertIn(self.aim_n.id, self.idler(zor="1"))
+        # Sonra bilinirse Zorlandıklarım'dan çıkar (sayaçlar kalsa da)
+        WordEncounter.objects.filter(user=self.user, word=self.decide).update(son_basarili=True)
+        self.assertEqual(self.idler(zor="1"), [self.zebra.id])
 
     def test_listede_ara_ingilizce_ve_turkce(self):
         self.assertEqual(set(self.idler(ara="aim")), {self.aim_n.id, self.aim_v.id})

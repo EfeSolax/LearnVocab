@@ -6,7 +6,7 @@ Ana Sayfa (ürün raporu 3; girişsiz ziyaretçi 2.3). Görünüm: LearnVocab/an
 Girişli (yukarıdan aşağı, en önemli en büyük ve en üstte):
   1. Selam + seviye testi davet kartı (seviyesi belirlenmemişse; zorunlu değil)
   2. Büyük "Bugünün çalışmasına başla" -> Learn & Pass
-  3. Şerit: Seri (yer tutucu, Bölüm 16) · Listemdeki kelime sayısı (tek gösterge)
+  3. Şerit: Seri (rapor 18.9, takvimli açılır kutu) · Listemdeki kelime sayısı
   4. Günün Kelimesi · Günün İfadesi: Sözlük kartlarının küçük hâli, dokununca
      Sözlük'te ilgili kart açılır (içerik tek yerde: words.arama)
   5. Yardım bağlantısı (içerik Bölüm 16)
@@ -46,11 +46,8 @@ günün kelimesi (B1), giriş / kayıt.
 
     {# ---------------- 3. Şerit: seri + Listem ---------------- #}
     <div class="grid grid-cols-2 gap-3">
-        {# Seri: yeri ayrıldı, nasıl sayılacağı Efe ile konuşulacak (rapor 3, 16). #}
-        <div class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-3 py-4 text-center" data-seri-yeri>
-            <div class="text-2xl font-bold text-gray-300 dark:text-slate-600">–</div>
-            <div class="mt-0.5 text-xs text-gray-500 dark:text-slate-400">Seri</div>
-        </div>
+        {# Seri (rapor 18.9): dokununca takvimli kutu açılır. #}
+        {% include 'pages/anasayfa/_seriKutusu.html' %}
         <a href="{% url 'sozluk' %}?sekme=listem" data-liste-sayisi
            class="rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 px-3 py-4 text-center hover:border-indigo-300 dark:hover:border-indigo-700 transition">
             <div class="text-2xl font-bold text-gray-900 dark:text-slate-100">{{ liste_sayisi }}</div>

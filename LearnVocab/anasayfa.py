@@ -2,7 +2,7 @@
 Ana Sayfa (ürün raporu 3; girişsiz ziyaretçi 2.3). Adres: "/" (url adı `index`).
 
 Girişli kullanıcı:
-  - Seri için yer (nasıl sayılacağı Bölüm 16'da; şimdilik nötr yer tutucu).
+  - Seri (rapor 18.9): sayı + kapibara; dokununca takvimli kutu (seri/hesap.py).
   - Listemdeki kelime sayısı: TEK sayısal gösterge ("öğrenilen kelime" yok, Bölüm 17).
   - Büyük "Bugünün çalışmasına başla" -> Learn & Pass.
   - Günün kelimesi ve günün ifadesi: Sözlük'teki kartların küçük hâli. İçerik
@@ -17,6 +17,7 @@ ara, günün kelimesi (B1).
 
 from django.shortcuts import render
 
+from seri import hesap as seri_hesap
 from seviye.views import davet_gosterilsin_mi
 from words import arama
 from words.kart import kart_verisi
@@ -35,5 +36,6 @@ def ana_sayfa(request):
             "liste_sayisi": UserWordLink.objects.filter(user=user).count(),
             "gunun_ifadesi": arama.gunun_ifadesi(user),
             "seviye_daveti": davet_gosterilsin_mi(request),
+            "seri": seri_hesap.durum(user),
         })
     return render(request, "pages/index.html", baglam)

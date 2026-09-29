@@ -1,0 +1,52 @@
+{% comment %}
+Alevli ilerleme çubuğu (rapor 18.9). L&P ve egzersiz ekranlarının üstünde.
+
+Çubuk normalde sönük gri. Günün tamamlanacağı soru hizasında gri bir alev
+durur; o gün L&P ya da egzersizde 10'a ulaşılınca alev animasyonla
+"yanar" ve çubukla birlikte sarı-turuncuya döner. Gün zaten tamamlandıysa
+alev baştan yanıktır. Davranış: window.alev (aşağıda).
+
+Bağlam: alev_kimlik (sayfadaki kök kimliği), misafir (True ise alev yok)
+{% endcomment %}
+<style>
+    .alev-cubuk { background: rgb(209 213 219); transition: background .6s ease; }
+    .dark .alev-cubuk { background: rgb(100 116 139); }
+    .alev-yanik .alev-cubuk { background: linear-gradient(90deg, #fbbf24, #f97316); }
+    .alev-simge { color: rgb(156 163 175); transition: color .5s ease, filter .5s ease; }
+    .alev-yanik .alev-simge { color: #f97316; filter: drop-shadow(0 0 6px rgba(251, 146, 60, .75)); }
+    .alev-tutus .alev-simge { animation: alev-tutus 1.1s ease-out; }
+    .alev-yanik .alev-simge path.ic { fill: #fde047; }
+    @keyframes alev-tutus {
+        0% { transform: translate(-50%, -50%) scale(1); }
+        25% { transform: translate(-50%, -50%) scale(1.7) rotate(-8deg); }
+        45% { transform: translate(-50%, -50%) scale(1.25) rotate(6deg); }
+        65% { transform: translate(-50%, -50%) scale(1.5) rotate(-4deg); }
+        100% { transform: translate(-50%, -50%) scale(1.15); }
+    }
+    .alev-yanik:not(.alev-tutus) .alev-simge { animation: alev-titre 1.6s ease-in-out infinite; }
+    @keyframes alev-titre {
+        0%, 100% { transform: translate(-50%, -50%) scale(1.15); }
+        50% { transform: translate(-50%, -50%) scale(1.25) rotate(3deg); }
+    }
+</style>
+<script>
+// window.alev.kur(kok, {esik, onceki, tamamlandi, toplam, yer?}) ve .guncelle(kok, tamamlandi)
+window.alev = window.alev || {
+    kur: function (kok, s) {
+        if (!kok || !s) { return; }
+        var simge = kok.querySelector('[data-alev-simge]');
+        var kalan = Math.max(0, (s.esik || 10) - (s.onceki || 0));
+        var yer = s.tamamlandi ? 100
+            : (s.yer != null ? Math.min(100, s.yer) : Math.min(100, kalan / (s.toplam || 20) * 100));
+        if (simge) { simge.style.left = yer + '%'; simge.removeAttribute('hidden'); }   // SVG'de .hidden özelliği yok
+        kok.classList.toggle('alev-yanik', !!s.tamamlandi);
+        kok.dataset.alevYanik = s.tamamlandi ? '1' : '0';
+    },
+    guncelle: function (kok, tamamlandi) {
+        if (!kok || !tamamlandi || kok.dataset.alevYanik === '1') { return; }
+        kok.dataset.alevYanik = '1';
+        kok.classList.add('alev-yanik', 'alev-tutus');
+        setTimeout(function () { kok.classList.remove('alev-tutus'); }, 1150);
+    }
+};
+</script>

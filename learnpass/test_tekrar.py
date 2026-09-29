@@ -1,0 +1,224 @@
+"""Tekrar kuralı (rapor 18.2): learnpass/tekrar.py."""
+
+import json
+import random
+from datetime import timedelta
+from unittest import mock
+
+from django.test import TestCase
+from django.urls import reverse
+from django.utils import timezone
+
+from learnpass import tekrar
+from learnpass.models import EncounterLog, WordEncounter
+from users.models import User
+from words.models import UserWordLink
+from words.testing import make_word
+
+K, U, M = WordEncounter.KNOWN, WordEncounter.UNKNOWN, WordEncounter.MISJUDGED
+D, Y = WordEncounter.DOGRU, WordEncounter.YANLIS
+
+
+class KayitTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="tekrar", password="Sifre1234")
+        self.w = make_word("scatter", level="B2")
+        self.t0 = timezone.now()
+
+    def _kaydet(self, sonuc, gun=0, mode="mine"):
+        return tekrar.kaydet(self.user, self.w, sonuc, mode, simdi=self.t0 + timedelta(days=gun))
+
+    def test_1_3_7_21_ve_21_de_bir(self):
+        UserWordLink.objects.create(user=self.user, word=self.w)
+        beklenen = [1, 3, 7, 21, 21, 21]
+        gun = 0
+        for aralik in beklenen:
+            enc = self._kaydet(K, gun)
+            self.assertEqual(enc.sonraki_tekrar - enc.son_bilinen_at, timedelta(days=aralik))
+            gun += aralik
+        self.assertEqual(enc.basamak, 6)
+
+    def test_bilemeyince_ilerleme_sifirlanir_sayaclar_kalir(self):
+        UserWordLink.objects.create(user=self.user, word=self.w)
+        self._kaydet(K, 0)
+        self._kaydet(K, 1)
+        enc = self._kaydet(M, 4)
+        self.assertEqual((enc.basamak, enc.son_basarili, enc.sonraki_tekrar), (0, False, None))
+        self.assertEqual((enc.known_count, enc.misjudged_count, enc.times_seen), (2, 1, 3))
+        self.assertTrue(tekrar.aday_mi(enc))   # zorlanan kelime her zaman aday
+        enc = self._kaydet(K, 4)
+        self.assertEqual(enc.sonraki_tekrar - enc.son_bilinen_at, timedelta(days=1))  # baştan
+
+    def test_ilk_goruste_eminim_takibe_girmez(self):
+        enc = self._kaydet(K, mode="new")
+        self.assertFalse(enc.takipte)
+        self.assertNotIn(self.w.id, tekrar.tekrar_sirasi(self.user, simdi=self.t0 + timedelta(days=30)))
+
+    def test_bilinmeyen_yeni_kelime_listede_olmasa_da_takibe_girer(self):
+        enc = self._kaydet(U, mode="new")
+        self.assertTrue(enc.takipte)
+        self.assertIn(self.w.id, tekrar.tekrar_sirasi(self.user))
+
+    def test_egzersiz_dogrusu_yalnizca_adayken_ilerletir(self):
+        UserWordLink.objects.create(user=self.user, word=self.w)
+        self._kaydet(K, 0)                       # basamak 1, 1 gün sonra aday
+        enc = self._kaydet(D, 0.5, mode="egzersiz")
+        self.assertEqual(enc.basamak, 1)         # henüz aday değildi
+        enc = self._kaydet(D, 1.5, mode="egzersiz")
+        self.assertEqual(enc.basamak, 2)
+        enc = self._kaydet(Y, 2, mode="egzersiz")  # yanlış her zaman sıfırlar
+        self.assertEqual((enc.basamak, enc.egz_yanlis, enc.egz_dogru), (0, 1, 2))
+
+    def test_gunluge_basamak_yazilir(self):
+        UserWordLink.objects.create(user=self.user, word=self.w)
+        self._kaydet(K, 0)
+        self._kaydet(U, 1)
+        self.assertEqual(list(EncounterLog.objects.order_by("id").values_list("basamak_once", flat=True)),
+                         [0, 1])
+
+    def test_birim_ayardan_degisir(self):
+        UserWordLink.objects.create(user=self.user, word=self.w)
+        with self.settings(TEKRAR_BIRIMI_SAAT=12):
+            enc = self._kaydet(K)
+        self.assertEqual(enc.sonraki_tekrar - enc.son_bilinen_at, timedelta(hours=12))
+
+
+class SiralamaTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="sira", password="Sifre1234")
+        self.simdi = timezone.now()
+
+    def _liste(self, ad):
+        w = make_word(ad)
+        UserWordLink.objects.create(user=self.user, word=w)
+        return w
+
+    def _gorulmus(self, w, dakika_once, sonuc=U, **alanlar):
+        enc = tekrar.kaydet(self.user, w, sonuc, "mine")
+        WordEncounter.objects.filter(pk=enc.pk).update(
+            last_seen_at=self.simdi - timedelta(minutes=dakika_once), **alanlar)
+
+    def test_hic_gorulmemis_once_sonra_en_eski(self):
+        """Efe'nin örneği: 12.10'da görülenler 12.40'ta görülenlerden önce."""
+        yeni = self._liste("never")
+        eski, taze = self._liste("old"), self._liste("fresh")
+        self._gorulmus(eski, 40)   # 12.10
+        self._gorulmus(taze, 10)   # 12.40
+        self.assertEqual(tekrar.tekrar_sirasi(self.user, simdi=self.simdi), [yeni.id, eski.id, taze.id])
+
+    def test_ayni_dakikada_zorlanan_once(self):
+        a, b = self._liste("alpha"), self._liste("beta")
+        self._gorulmus(a, 20, unknown_count=1, times_seen=4)   # %25
+        self._gorulmus(b, 20, unknown_count=3, times_seen=4)   # %75
+        self.assertEqual(tekrar.tekrar_sirasi(self.user, simdi=self.simdi), [b.id, a.id])
+
+    def test_araligi_dolmamis_bilinen_aday_degil(self):
+        w = self._liste("known")
+        tekrar.kaydet(self.user, w, K, "mine", simdi=self.simdi)
+        self.assertEqual(tekrar.tekrar_sirasi(self.user, simdi=self.simdi), [])
+        self.assertEqual(tekrar.tekrar_sirasi(self.user, simdi=self.simdi + timedelta(days=1, minutes=1)),
+                         [w.id])
+
+    def test_egzersiz_sirasi_once_adaylar_sonra_digerleri(self):
+        bilinen, zor = self._liste("known"), self._liste("hard")
+        tekrar.kaydet(self.user, bilinen, K, "mine")
+        tekrar.kaydet(self.user, zor, U, "mine")
+        self.assertEqual(tekrar.liste_sirasi(self.user), [zor.id, bilinen.id])
+
+
+class YeniKelimeTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="yeni", password="Sifre1234", cefr="B1")
+
+    def test_gunluk_15_sinir(self):
+        for i in range(20):
+            make_word(f"new{i}", level="B1")
+        for _ in range(tekrar.GUNLUK_YENI_SINIRI):
+            w = tekrar.yeni_kelime(self.user)
+            tekrar.kaydet(self.user, w, K, WordEncounter.MODE_NEW)
+        self.assertIsNone(tekrar.yeni_kelime(self.user))
+
+    def test_nadir_tur_c1_alti_kullaniciya_gelmez(self):
+        make_word("dog", pos="verb", level="B1", nadir_tur=True)
+        self.assertIsNone(tekrar.yeni_kelime(self.user))
+        self.user.cefr = "C1"
+        self.user.save()
+        self.assertEqual(tekrar.yeni_kelime(self.user).text, "dog")
+
+    def test_sik_kelime_daha_sik_gelir(self):
+        make_word("house", level="B1", siklik=5.5)
+        make_word("heath", level="B1", siklik=2.0)
+        rng = random.Random(3)
+        sayac = {"house": 0, "heath": 0}
+        for _ in range(300):
+            sayac[tekrar.yeni_kelime(self.user, rng=rng).text] += 1
+        self.assertGreater(sayac["house"], sayac["heath"] * 5)
+
+
+class YeniAkisTests(TestCase):
+    """Rapor 18.1: ikinci kaydırma "Hayır, yanılmışım" -> misjudged olarak kaydedilir."""
+
+    def setUp(self):
+        self.user = User.objects.create_user(username="akis2", password="Sifre1234")
+        self.client.login(username="akis2", password="Sifre1234")
+        self.w = make_word("candidate")
+
+    def _post(self, verdict):
+        return self.client.post(reverse("learn_pass_verdict"),
+                                data=json.dumps({"word_id": self.w.id, "verdict": verdict, "mode": "new"}),
+                                content_type="application/json")
+
+    def test_yanilmisim_kaydedilir_ve_seriye_sayilir(self):
+        cevap = self._post("misjudged")
+        self.assertEqual(cevap.status_code, 200)
+        enc = WordEncounter.objects.get(user=self.user, word=self.w)
+        self.assertEqual((enc.last_verdict, enc.misjudged_count, enc.son_basarili), (M, 1, False))
+        self.assertEqual(cevap.json()["seri"]["lp"], 1)
+
+    def test_eski_beyan_ucu_yok(self):
+        self.assertEqual(self.client.post("/exercises/learn/api/declare/").status_code, 404)
+
+    def test_geri_al_tekrar_alanlarini_da_geri_getirir(self):
+        UserWordLink.objects.create(user=self.user, word=self.w)
+        self._post("known")
+        onceki = WordEncounter.objects.get(user=self.user, word=self.w)
+        self._post("unknown")
+        self.client.post(reverse("learn_pass_undo"), data=json.dumps({"mode": "new"}),
+                         content_type="application/json")
+        enc = WordEncounter.objects.get(user=self.user, word=self.w)
+        self.assertEqual((enc.basamak, enc.son_basarili, enc.sonraki_tekrar),
+                         (onceki.basamak, True, onceki.sonraki_tekrar))
+
+    def test_sayfada_ikinci_adim_dugmeleri(self):
+        html = self.client.get(reverse("learn_pass_run", kwargs={"mode": "karma"})).content.decode()
+        self.assertIn("Hayır, yanılmışım", html)
+        self.assertIn("Evet, eminim", html)
+        self.assertIn("Devam etmek için kaydır", html)
+        self.assertIn('id="lp-alev"', html)
+
+
+class EgzersizBaglantiTests(TestCase):
+    """Egzersiz cevapları tekrar kuralına ve seriye işlenir; "tekrar çöz" turu işlenmez."""
+
+    def setUp(self):
+        from egzersizler.models import EgzersizOturumu
+        self.user = User.objects.create_user(username="egz", password="Sifre1234")
+        self.w = make_word("scatter")
+        UserWordLink.objects.create(user=self.user, word=self.w)
+        self.oturum = EgzersizOturumu.objects.create(user=self.user, tur="hizli", tip="anlam",
+                                                     istenen=10, sorular=[])
+
+    def test_yanlis_cevap_sifirlar_ve_seriye_sayilir(self):
+        from egzersizler.kayit import cevaplari_kaydet
+        seri = cevaplari_kaydet(self.user, self.oturum, "anlam", [(self.w.id, False)])
+        enc = WordEncounter.objects.get(user=self.user, word=self.w)
+        self.assertEqual((enc.egz_yanlis, enc.son_basarili, enc.last_mode), (1, False, "egzersiz"))
+        self.assertEqual(seri["egzersiz"], 1)
+
+    def test_tekrar_coz_turu_islenmez(self):
+        from egzersizler.kayit import cevaplari_kaydet
+        from egzersizler.models import EgzersizOturumu
+        tekrar_turu = EgzersizOturumu.objects.create(user=self.user, tur="hizli", tip="anlam",
+                                                     istenen=10, sorular=[], kaynak=self.oturum)
+        self.assertIsNone(cevaplari_kaydet(self.user, tekrar_turu, "anlam", [(self.w.id, False)]))
+        self.assertFalse(WordEncounter.objects.filter(user=self.user).exists())

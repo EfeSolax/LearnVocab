@@ -50,6 +50,8 @@ urlpatterns = [
     path("settings/", include("usersettings.urls")),
     # Seviye testi (rapor 7)
     path("seviye/", include("seviye.urls")),
+    # Seri (rapor 18.9): açılır kutunun verisi, saat dilimi
+    path("seri/", include("seri.urls")),
     # Bildirimler ve PWA (rapor 10): /manifest.webmanifest, /sw.js, /bildirimler/...
     path("", include("bildirimler.urls")),
 ]

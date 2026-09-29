@@ -1,97 +1,56 @@
 """
-Öğren-Geç kayıtları.
-
-BU BÖLÜMÜN İŞİ NEDİR
---------------------
-Öğren-Geç bir alıştırma değil, bir ÖLÇÜM. Kullanıcıya soru sormuyor,
-puan vermiyor, kartları zamanlamıyor — o iş Egzersizler'in (eski
-quizzes uygulaması kaldırıldı, bölüm yeniden yazılacak). Öğren-Geç'in
-topladığı şey başka türden ve başka hiçbir yerden elde edilemeyen bir veri:
-
-    Kullanıcı bu kelimeyi BİLDİĞİNİ DÜŞÜNÜYOR MU?
-
-Bu, "doğru cevap verdi mi" sorusundan farklıdır ve ondan bağımsız olarak
-yanlış olabilir. İnsan kendi bilgisini sistematik olarak fazla tahmin
-eder; bir kelimeye bakıp "bunu biliyorum" deyip anlamı görünce
-yanıldığını fark etmek, o kelimenin kendi başına ASLA çalışılmayacağı
-anlamına gelir — çünkü öğrenci onu eksik saymıyor.
+Learn & Pass ve egzersiz karşılaşmalarının kayıtları (rapor 18.2 tekrar kuralı).
 
 İKİ KATMANLI VERİ
 -----------------
-WordEncounter  kullanıcı+kelime başına TEK satır, güncel durum.
-EncounterLog   her dokunuşun ayrı kaydı, hiç silinmez.
+WordEncounter  kullanıcı+kelime başına TEK satır: güncel durum, sayaçlar ve
+               tekrar kuralının basamağı.
+EncounterLog   her cevabın ayrı kaydı. Tekrar biriminin (1 gün) doğru olup
+               olmadığını ölçmek için (rapor 18.31: basamak başına unutma
+               oranı) cevap anındaki basamak da yazılır.
 
-İkincisinin gerekçesi: geçmiş geriye dönük üretilemez. Bugün yalnızca sayaç tutup yarın "kullanıcı bu kelimeyi
-kaçıncı karşılaşmada öğrendi" diye sorulduğunda cevap veremeyiz.
-Satırlar küçük, yalnızca ileri doğru büyüyor.
-
-KULLANICININ KENDİ BEYANI
--------------------------
-Sayaçların söyleyemediği bir şey var: kullanıcı bir kelimeyi kaç kez
-görürse görsün, o kelimeyle arasındaki ilişkiyi en iyi kendisi bilir.
-İki beyan toplanıyor ve ikisi de yalnızca kelime YETERİNCE GÖRÜLDÜKTEN
-sonra sorulabiliyor (bkz. BEYAN_ESIGI):
-
-  MASTERED  "artık öğrendim, karşıma çıka çıka halloldu"
-  STUCK     "bu kadar çok çıkmasına rağmen hâlâ öğrenemedim"
-
-İkincisi birincisinden daha değerli. "Öğrendim" zaten sayaçlardan tahmin
-edilebilir; "bu kadar gördüm ve hâlâ olmuyor" ise tahmin edilemez ve
-başka türlü bir müdahale gerektirir: o kelime daha sık sorulmakla
-öğrenilmiyor, farklı bir yoldan çalışılması gerekiyor.
-
-BEYANLAR ZAMANLAMAYI DEĞİŞTİRMEZ
---------------------------------
-Bilerek: aralıklı tekrarın aralıkları CEVAPLARDAN hesaplanmalı ve
-kullanıcının kendi hakkındaki yargısı o
-hesabın girdisi değil — olsaydı, sistemin kendisini yanıltmasına izin
-vermiş olurduk. Beyan yalnızca SIRALAMAYI etkiliyor: aynı gün sırası
-gelmiş kartlar arasında "hâlâ öğrenemedim" denenler öne alınıyor.
-Sıralama değiştirmek zamanlamayı bozmaz.
+TEKRAR KURALI (rapor 18.2; kuralın kendisi learnpass/tekrar.py)
+---------------------------------------------------------------
+- Bilinen kelime 1 · 3 · 7 · 21 gün arayla gelir (21'den sonra 21 günde bir).
+  `basamak` art arda kaç kez bilindiğini, `sonraki_tekrar` ne zaman yeniden
+  aday olacağını tutar.
+- Bilemezse ("bilmiyorum", "yanılmışım", egzersizde yanlış) bütün ilerleme
+  sıfırlanır: basamak 0, `son_basarili` False (her zaman aday). Sayaçlar
+  SİLİNMEZ; zorlanma oranı onlardan hesaplanır.
+- "Öğrenildi" kavramı YOK (rapor 17).
 """
 
 from django.db import models
-from django.utils import timezone
 
 from users.models import User
 from words.models import Word
 
 
-# Kullanıcıya "öğrendim / öğrenemedim" beyanının sorulması için kelimenin
-# en az kaç kez görülmüş olması gerekir.
-#
-# Üç sayısı keyfî değil: beyanın anlamı "bu kadar çok çıkmasına RAĞMEN".
-# İlk ya da ikinci karşılaşmada "hâlâ öğrenemedim" demek bir bilgi
-# taşımaz — henüz öğrenme fırsatı olmamıştır.
-BEYAN_ESIGI = 3
-
-
-class Declaration(models.TextChoices):
-    """Kullanıcının kelime hakkındaki kendi beyanı."""
-
-    NONE = "none", "beyan yok"
-    MASTERED = "mastered", "artık öğrendim"
-    STUCK = "stuck", "hâlâ öğrenemedim"
-
-
 class WordEncounter(models.Model):
-    # Kullanıcının karara bağladığı üç sonuç
+    # L&P kararları (18.1)
     UNKNOWN = "unknown"        # "Bilmiyorum"
-    KNOWN = "known"            # "Biliyorum" -> "Evet, aklımdaki buydu"
+    KNOWN = "known"            # "Biliyorum" -> "Evet, eminim"
     MISJUDGED = "misjudged"    # "Biliyorum" -> "Hayır, yanılmışım"
+    # Egzersiz sonuçları (yalnızca günlükte)
+    DOGRU = "dogru"
+    YANLIS = "yanlis"
 
     VERDICT_CHOICES = [
         (UNKNOWN, "Bilmiyordu"),
         (KNOWN, "Biliyordu"),
         (MISJUDGED, "Bildiğini sanıyordu"),
+        (DOGRU, "Egzersizde doğru"),
+        (YANLIS, "Egzersizde yanlış"),
     ]
 
-    # Kartın hangi modda geldiği
+    # Kartın / cevabın nereden geldiği
     MODE_MINE = "mine"
     MODE_NEW = "new"
+    MODE_EGZERSIZ = "egzersiz"
     MODE_CHOICES = [
-        (MODE_MINE, "Kendi Kelimelerim"),
+        (MODE_MINE, "Tekrar"),
         (MODE_NEW, "Yeni Kelimeler"),
+        (MODE_EGZERSIZ, "Egzersiz"),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="word_encounters")
@@ -100,199 +59,74 @@ class WordEncounter(models.Model):
     last_verdict = models.CharField(max_length=20, choices=VERDICT_CHOICES)
     last_mode = models.CharField(max_length=10, choices=MODE_CHOICES, default=MODE_NEW)
 
+    # Toplam karşılaşma (L&P + egzersiz). Zorlanma oranının paydası.
     times_seen = models.PositiveIntegerField(default=0)
 
-    # Karar sayaçları. `misjudged_count` eskiden tek başına tutuluyordu;
-    # diğer ikisi eklendi çünkü zorlanma oranı ancak üçü birlikte
-    # hesaplanabiliyor (5 kez görülüp 4'ünde bilinmeyen bir kelimeyle,
-    # 5 kez görülüp 1'inde bilinmeyen kelime aynı şey değil).
+    # Sayaçlar: sıfırlamada SİLİNMEZ (rapor 18.2 e).
     unknown_count = models.PositiveIntegerField(default=0)
     known_count = models.PositiveIntegerField(default=0)
     misjudged_count = models.PositiveIntegerField(default=0)
+    egz_dogru = models.PositiveIntegerField(default=0)
+    egz_yanlis = models.PositiveIntegerField(default=0)
 
-    # "Öğrenildi" işareti: kelime listeden SİLİNMİYOR, yalnızca Öğren-Geç'te
-    # bir daha karşısına çıkmıyor ve egzersizlerde en son sıraya düşüyor.
-    # Kullanıcı yanılırsa işaret kendiliğinden kalkıyor (bkz. record()).
-    is_learned = models.BooleanField(default=False)
+    # --- Tekrar kuralı (rapor 18.2) ---
+    # Art arda kaç kez bilindiği. 0 = zincir yok (yeni ya da sıfırlandı).
+    basamak = models.PositiveSmallIntegerField(default=0)
+    # Son sonuç başarılı mı? False ise kelime "zorlandığı" kelimedir ve her
+    # zaman adaydır; Listem'deki "Zorlandıklarım" da budur.
+    son_basarili = models.BooleanField(default=True)
+    # Aralığın başladığı an: çalışmada en son görülüp BİLİNDİĞİ an (18.2 b).
+    son_bilinen_at = models.DateTimeField(blank=True, null=True)
+    # Bu andan sonra yeniden aday olur. Zorlanan kelimede boş (hep aday).
+    sonraki_tekrar = models.DateTimeField(blank=True, null=True)
+    # Listede olmasa da tekrar takibinde mi? L&P'de bilmediği ya da yanıldığı
+    # her kelime takibe girer; yeni kelimeye ilk seferde "eminim" denirse girmez.
+    takipte = models.BooleanField(default=False)
 
-    # Kullanıcının kendi beyanı (bkz. dosya başındaki açıklama).
-    declaration = models.CharField(max_length=10, choices=Declaration.choices,
-                                   default=Declaration.NONE,
-                                   verbose_name="kullanıcının beyanı")
-    declared_at = models.DateTimeField(blank=True, null=True)
-    # Beyan verildiği ANDAKİ karşılaşma sayısı. "Kaçıncı karşılaşmada
-    # öğrendiğini söyledi" sorusunun cevabı; sonradan times_seen büyüdüğü
-    # için ayrıca saklanması gerekiyor.
-    declared_after_seen = models.PositiveIntegerField(default=0)
-
-    # "Bilmiyorum" denmiş, kullanıcının listesinde OLMAYAN ve kullanıcıya
-    # henüz "listene ekleyelim mi?" diye sorulmamış kelime (rapor 6.1).
-    # Bilinmeyenler listeye kendiliğinden girmiyor: oturum sonunda sorulur;
-    # oturum yarıda bırakıldıysa bir sonraki girişte "Geçen sefer bilmediğin
-    # N kelime" kartı bu işaretten çıkar. Kullanıcı ekleyince ya da "şimdilik
-    # hayır" deyince, ya da kelimeyi sonradan "biliyorum" diye geçince kalkar.
+    # "Bilmiyorum" denmiş, listede OLMAYAN ve kullanıcıya henüz "listene
+    # ekleyelim mi?" diye sorulmamış kelime (rapor 6.1).
     listeye_sorulacak = models.BooleanField(default=False)
 
     first_seen_at = models.DateTimeField(auto_now_add=True)
+    # Son karşılaşma (L&P ve egzersiz ortak). Sıralamanın ilk ölçütü (18.2/3).
     last_seen_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         unique_together = ("user", "word")
         indexes = [
-            models.Index(fields=["user", "is_learned"]),
             models.Index(fields=["user", "last_seen_at"]),
-            models.Index(fields=["user", "declaration"]),
+            models.Index(fields=["user", "son_basarili"]),
+            models.Index(fields=["user", "sonraki_tekrar"]),
         ]
 
     def __str__(self):
         return f"{self.user.username} · {self.word.text} · {self.get_last_verdict_display()}"
 
     @property
-    def was_misjudged(self):
-        """Kullanıcı bu kelimede en az bir kez bildiğini sanıp yanıldı mı?"""
-        return self.misjudged_count > 0
-
-    @property
     def miss_count(self):
-        """Bilinemeyen karşılaşma sayısı (bilmiyorum + yanılmışım)."""
-        return self.unknown_count + self.misjudged_count
+        """Bilinemeyen karşılaşma sayısı (bilmiyorum + yanılmışım + egzersizde yanlış)."""
+        return self.unknown_count + self.misjudged_count + self.egz_yanlis
 
     @property
-    def miss_ratio(self):
-        """
-        Zorlanma oranı (0-1).
-
-        `misjudged` ağırlıklı sayılıyor: bildiğini sanıp yanılmak, düpedüz
-        bilmemekten daha kötü bir durumdur. Bilmediğini bilen öğrenci o
-        kelimeyi çalışır; bildiğini sanan çalışmaz.
-
-        Oran 1.0'da doyuyor: bütün karşılaşmaları kaçırılmış iki kelime
-        eşit sayılıyor. Ağırlık yalnızca karışık durumlarda ayrım yapıyor
-        ki asıl anlamlı olan da orası — hepsini kaçırdığı kelimelerin
-        ikisi de azami derecede sorunlu.
-        """
+    def zorlanma_orani(self):
+        """0-1: karşılaşmaların ne kadarında bilinemedi (sıralamanın ikinci ölçütü)."""
         if not self.times_seen:
             return 0.0
-        agirlikli = self.unknown_count + (self.misjudged_count * 1.5)
-        return min(agirlikli / self.times_seen, 1.0)
-
-    @property
-    def can_declare(self):
-        """Kullanıcıya 'öğrendim / öğrenemedim' sorulabilir mi?"""
-        return self.times_seen >= BEYAN_ESIGI
-
-    @property
-    def is_stuck(self):
-        return self.declaration == Declaration.STUCK
-
-    @property
-    def is_mastered(self):
-        return self.declaration == Declaration.MASTERED
-
-    @classmethod
-    def record(cls, user, word, verdict, mode):
-        """
-        Bir karşılaşmayı kaydeder ve güncel satırı döner.
-
-        "Öğrenildi" işareti yalnızca kullanıcı bildiğini DOĞRULADIĞINDA
-        konuyor. Sonradan aynı kelimede yanılırsa işaret kalkıyor: bir kez
-        "biliyorum" demiş olmak kelimeyi sonsuza kadar gözden kaçırmamıza
-        sebep olmamalı.
-
-        Kullanıcı daha önce "hâlâ öğrenemedim" demiş ve sonra kelimeyi
-        DOĞRULAYARAK bildiyse beyan kalkıyor — takıldığı yerden çıkmış
-        demektir ve eski beyanı onu sonsuza kadar zor kelime saymamalı.
-        """
-        encounter, _ = cls.objects.get_or_create(user=user, word=word, defaults={
-            "last_verdict": verdict,
-            "last_mode": mode,
-        })
-
-        encounter.last_verdict = verdict
-        encounter.last_mode = mode
-        encounter.times_seen += 1
-
-        if verdict == cls.MISJUDGED:
-            encounter.misjudged_count += 1
-            encounter.is_learned = False
-        elif verdict == cls.KNOWN:
-            encounter.known_count += 1
-            encounter.is_learned = True
-            # Artık biliyor: "listene ekleyelim mi?" sorusu anlamını yitirdi.
-            encounter.listeye_sorulacak = False
-            if encounter.declaration == Declaration.STUCK:
-                encounter.declaration = Declaration.NONE
-                encounter.declared_at = None
-        else:  # UNKNOWN
-            encounter.unknown_count += 1
-            encounter.is_learned = False
-            # "Artık öğrendim" demiş ama bilemediyse beyan düşüyor.
-            if encounter.declaration == Declaration.MASTERED:
-                encounter.declaration = Declaration.NONE
-                encounter.declared_at = None
-
-        encounter.save()
-
-        EncounterLog.objects.create(
-            user=user, word=word, word_text=word.text,
-            kind=EncounterLog.VERDICT, verdict=verdict, mode=mode,
-            seen_index=encounter.times_seen,
-        )
-        return encounter
-
-    def declare(self, declaration):
-        """
-        Kullanıcının beyanını kaydeder.
-
-        MASTERED aynı zamanda kelimeyi Öğren-Geç havuzundan çıkarıyor
-        (is_learned): kullanıcı zaten "bir daha karşıma çıkmasın" diyor.
-        STUCK çıkarmıyor — tam tersine kelimeyi en öne alıyor.
-        """
-        if declaration not in (Declaration.MASTERED, Declaration.STUCK):
-            return self
-
-        self.declaration = declaration
-        self.declared_at = timezone.now()
-        self.declared_after_seen = self.times_seen
-        if declaration == Declaration.MASTERED:
-            self.is_learned = True
-        else:
-            self.is_learned = False
-        self.save()
-
-        EncounterLog.objects.create(
-            user=self.user, word=self.word, word_text=self.word.text,
-            kind=EncounterLog.DECLARATION, declaration=declaration,
-            mode=self.last_mode, seen_index=self.times_seen,
-        )
-        return self
+        return min(self.miss_count / self.times_seen, 1.0)
 
 
 class EncounterLog(models.Model):
     """
-    Her dokunuşun kalıcı kaydı.
+    Her cevabın kalıcı kaydı (L&P ve egzersiz).
 
-    WordEncounter yalnızca ŞU ANKİ durumu tutuyor. Bu tablo geçmişi
-    tutuyor ve şu soruların cevabı yalnızca burada var:
-
-      - Kullanıcı bu kelimeyi kaçıncı karşılaşmada öğrendiğini söyledi?
-      - "Bildiğini sanma" hataları zamanla azalıyor mu?
-      - Hangi kelimeler çok görülmesine rağmen öğrenilmiyor? (İçerik
-        sorunu olabilir: kötü örnek cümle, yanlış anlam, fazla soyut.)
-      - Bir kelimeyi "öğrendim" dedikten sonra Çalışma'da kaç kez unuttu?
-        (= kullanıcının kendine güveni ne kadar kalibre?)
-
-    Bu sorular bugün sorulmuyor ama sorulacakları gün veri yoksa cevap
-    üretilemez; geçmiş geriye dönük uydurulamaz. Satır başına birkaç
-    bayt, yılda birkaç bin satır.
+    WordEncounter yalnızca şu anki durumu tutar; geçmiş geriye dönük
+    üretilemez. `basamak_once` ile "hangi basamakta ne kadar unutuluyor"
+    ölçülür ve tekrar birimi ona göre ayarlanır (rapor 18.2 a, 18.31).
+    Rapor 18.32: ayrıntılı kayıtlar 90 gün tutulup sonra özetlenecek.
     """
 
     VERDICT = "verdict"
-    DECLARATION = "declaration"
-    KIND_CHOICES = [
-        (VERDICT, "karşılaşma"),
-        (DECLARATION, "beyan"),
-    ]
+    KIND_CHOICES = [(VERDICT, "karşılaşma")]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE,
                              related_name="encounter_logs")
@@ -304,13 +138,13 @@ class EncounterLog(models.Model):
     kind = models.CharField(max_length=12, choices=KIND_CHOICES, default=VERDICT)
     verdict = models.CharField(max_length=20, blank=True, null=True,
                                choices=WordEncounter.VERDICT_CHOICES)
-    declaration = models.CharField(max_length=10, blank=True, null=True,
-                                   choices=Declaration.choices)
     mode = models.CharField(max_length=10, blank=True, null=True,
                             choices=WordEncounter.MODE_CHOICES)
 
     # Bu kayıt sırasında kelimenin kaçıncı kez görüldüğü.
     seen_index = models.PositiveIntegerField(default=0)
+    # Cevaptan ÖNCEKİ basamak (0 = zincir yok).
+    basamak_once = models.PositiveSmallIntegerField(default=0)
 
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
@@ -319,5 +153,4 @@ class EncounterLog(models.Model):
         indexes = [models.Index(fields=["user", "created_at"])]
 
     def __str__(self):
-        etiket = self.verdict or self.declaration or "?"
-        return f"{self.user.username} · {self.word_text} · {etiket}"
+        return f"{self.user.username} · {self.word_text} · {self.verdict or '?'}"

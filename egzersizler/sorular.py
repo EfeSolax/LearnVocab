@@ -666,7 +666,15 @@ VARSAYILAN_SORU_SAYISI = 10
 
 
 def liste_kelimeleri(user):
-    return _anlamli(Word.objects.filter(userLinks__user=user).distinct()).prefetch_related("forms")
+    """
+    Kullanıcının listesi, tekrar kuralının öncelik sırasıyla (rapor 18.2):
+    önce hiç görülmemişler, sonra en uzun süredir görülmeyenler, sonra en
+    çok zorlanılanlar (learnpass/tekrar.py). L&P ile aynı sıra.
+    """
+    from learnpass.tekrar import liste_sirasi
+    sira = liste_sirasi(user)
+    kelimeler = {w.id: w for w in _anlamli(Word.objects.filter(id__in=sira)).prefetch_related("forms")}
+    return [kelimeler[i] for i in sira if i in kelimeler]
 
 
 def tip_durumlari(user):
@@ -692,8 +700,7 @@ def tip_durumlari(user):
 
 def _liste_sorulari(tip, kelimeler, rng, adet, haric=()):
     """haric: bu turda başka tipte zaten sorulmuş kelimeler; önce sorulmamışlar gelir."""
-    kelimeler = list(kelimeler)
-    rng.shuffle(kelimeler)
+    kelimeler = list(kelimeler)   # öncelik sırasında (liste_kelimeleri)
     kelimeler.sort(key=lambda w: w.id in haric)
     if tip == TIP_ESLESTIRME:
         return [eslestirme_sorusu(g, rng) for g in eslestirme_gruplari(kelimeler, adet)]
@@ -759,8 +766,7 @@ def hizli_sorular(user, rng=None):
     anlam, TR→EN ve EN→TR karışık, yalnızca kullanıcının listesinden.
     """
     rng = rng or random.Random()
-    kelimeler = list(liste_kelimeleri(user))
-    rng.shuffle(kelimeler)
+    kelimeler = list(liste_kelimeleri(user))   # öncelik sırasında (rapor 18.2)
     yonler = ["en_tr", "tr_en"] * (HIZLI_SORU_SAYISI // 2)
     rng.shuffle(yonler)
     sorular = []

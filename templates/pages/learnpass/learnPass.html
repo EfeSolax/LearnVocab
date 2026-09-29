@@ -1,25 +1,27 @@
 {% extends 'base/appLayout.html' %}
 
 {% comment %}
-Learn & Pass kart akışı (ürün raporu 6.1).
+Learn & Pass kart akışı (ürün raporu 6.1, 18.1).
 
-  soru  -> kart yalnızca KELİMEYİ gösterir (tür etiketi ve seviye yok).
-           Sağa kaydır / → / "Biliyorum"  = biliyorum
-           Sola kaydır / ← / "Bilmiyorum" = bilmiyorum
-  acik  -> kartın altında aşağı doğru açılan balon: kapibara yer tutucusu,
-           "Düşündüğün bu muydu?" + Türkçe anlamlar, silik İngilizce örnek.
-           Bir kaydırma / dokunuş / tuş daha -> sonraki kelime.
-  bitti -> özet + "Bilmediğin N kelimeyi listene ekleyelim mi?"
+  soru     -> kart yalnızca KELİMEYİ gösterir (tür etiketi ve seviye yok).
+              Sağa kaydır / → / "Biliyorum" · Sola kaydır / ← / "Bilmiyorum"
+  dogrula  -> ("Biliyorum" dediyse) anlam açılır: "Düşündüğün bu muydu?"
+              Sağa = "Evet, eminim" (known) · Sola = "Hayır, yanılmışım" (misjudged)
+  bilmiyor -> ("Bilmiyorum" dediyse) yalnızca anlam ve "Devam etmek için
+              kaydır"; hangi yöne kaydırıldığı önemli değil (unknown).
+  bitti    -> özet + "Bilmediğin N kelimeyi listene ekleyelim mi?"
 
-Girişli: her kaydırma anında POST edilir (sırayla, kısa yeniden denemeyle);
-cevap sıradaki kartı getirir. Misafir: bütün kartlar sayfayla gelir, hiçbir
-istek atılmaz.
+Karar ikinci adımda kesinleşir. Girişli: kesinleşen karar anında POST
+edilir (sırayla, kısa yeniden denemeyle); cevap sıradaki kartı ve günün
+seri sayacını getirir (alevli çubuk, rapor 18.9). Misafir: bütün kartlar
+sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
 {% endcomment %}
 
 {% block title %}Learn &amp; Pass{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block extra_head %}
+{% include 'base/_alev.html' %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
@@ -43,6 +45,7 @@ istek atılmaz.
      data-misafir="{% if misafir %}1{% else %}0{% endif %}"
      data-mode="{{ mode }}"
      data-toplam="{{ oturum_kart_sayisi }}"
+     {% if seri %}data-seri-lp="{{ seri.lp }}" data-seri-esik="{{ seri.esik }}" data-seri-tamam="{% if seri.tamamlandi %}1{% else %}0{% endif %}"{% endif %}
      {% if not misafir %}
      data-verdict-url="{% url 'learn_pass_verdict' %}"
      data-undo-url="{% url 'learn_pass_undo' %}"
@@ -57,25 +60,17 @@ istek atılmaz.
            class="flex h-9 w-9 flex-none items-center justify-center rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </a>
-        <div class="h-2.5 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700">
-            <div id="lp-ilerleme" class="h-full w-0 rounded-full bg-indigo-500 transition-all duration-300"></div>
+        <div id="lp-alev" class="relative flex-1">
+            <div class="h-2.5 overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700">
+                <div id="lp-ilerleme" class="alev-cubuk h-full w-0 rounded-full transition-all duration-300"></div>
+            </div>
+            {% if not misafir %}{% include 'base/_alevSimgesi.html' %}{% endif %}
         </div>
         <span id="lp-sayac" class="w-12 flex-none text-right text-xs font-semibold tabular-nums text-gray-500 dark:text-slate-400">0/{{ oturum_kart_sayisi }}</span>
     </div>
 
     <div class="mt-3 flex items-center justify-between gap-2 text-sm">
-        {% if misafir %}
-        {# Seviye seçimi yalnızca adreste (?seviye=), hiçbir yere kaydedilmez (rapor 2.3). #}
-        <form method="get" class="flex items-center gap-2 text-gray-500 dark:text-slate-400">
-            <label for="lp-seviye">Seviyeni seç</label>
-            <select id="lp-seviye" name="seviye" onchange="this.form.submit()"
-                    class="rounded-lg border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 py-0.5 pl-2 pr-7 text-sm text-gray-800 dark:text-slate-200">
-                {% for s in seviyeler %}<option value="{{ s }}" {% if s == seviye %}selected{% endif %}>{{ s }}</option>{% endfor %}
-            </select>
-        </form>
-        {% else %}
-        <span class="text-gray-500 dark:text-slate-400">{{ mode_label }}</span>
-        {% endif %}
+        <span class="text-gray-500 dark:text-slate-400">{% if misafir %}Deneme turu{% else %}{{ mode_label }}{% endif %}</span>
         <div class="flex items-center gap-1">
             <button type="button" id="lp-geri-al" disabled
                     class="inline-flex items-center gap-1 rounded-lg px-2.5 py-1 font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed">
@@ -117,7 +112,7 @@ istek atılmaz.
                     <div data-kapibara-yeri aria-hidden="true"
                          class="h-14 w-14 flex-none rounded-2xl border-2 border-dashed border-gray-300 dark:border-slate-600"></div>
                     <div class="lp-balon min-w-0 flex-1 rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 shadow-sm">
-                        <p class="text-xs font-semibold text-gray-400 dark:text-slate-500">Düşündüğün bu muydu?</p>
+                        <p id="lp-balon-soru" class="text-xs font-semibold text-gray-400 dark:text-slate-500">Düşündüğün bu muydu?</p>
                         <ol id="lp-anlamlar" class="mt-1 space-y-0.5 text-lg font-bold text-gray-900 dark:text-slate-100"></ol>
                         <p id="lp-ornek" class="mt-2 text-sm italic text-gray-400 dark:text-slate-500"></p>
                     </div>
@@ -136,14 +131,26 @@ istek atılmaz.
                 Biliyorum →
             </button>
         </div>
-        <div id="lp-acik-dugmeleri" class="mt-6 hidden">
-            <button type="button" id="lp-sonraki"
+        {# "Biliyorum" sonrası: Düşündüğün bu muydu? (18.1) #}
+        <div id="lp-dogrula-dugmeleri" class="mt-6 hidden grid-cols-2 gap-3">
+            <button type="button" data-dogrula="-1"
+                    class="rounded-2xl bg-white dark:bg-slate-800 px-3 py-4 text-base font-bold text-rose-600 dark:text-rose-300 ring-2 ring-inset ring-rose-200 dark:ring-rose-900 hover:bg-rose-50 dark:hover:bg-rose-950 transition">
+                ← Hayır, yanılmışım
+            </button>
+            <button type="button" data-dogrula="1"
+                    class="rounded-2xl bg-white dark:bg-slate-800 px-3 py-4 text-base font-bold text-emerald-600 dark:text-emerald-300 ring-2 ring-inset ring-emerald-200 dark:ring-emerald-900 hover:bg-emerald-50 dark:hover:bg-emerald-950 transition">
+                Evet, eminim →
+            </button>
+        </div>
+        {# "Bilmiyorum" sonrası: yalnızca anlam, devam (18.1) #}
+        <div id="lp-devam-dugmeleri" class="mt-6 hidden">
+            <button type="button" id="lp-devam"
                     class="w-full rounded-2xl bg-indigo-600 px-4 py-4 text-base font-bold text-white shadow-sm hover:bg-indigo-700 transition">
-                Sonraki kelime
+                Devam
             </button>
         </div>
         <p id="lp-ipucu" class="mt-3 text-center text-xs text-gray-400 dark:text-slate-500">
-            Sağa kaydır: biliyorum · Sola kaydır: bilmiyorum<span class="hidden sm:inline"> · ← → tuşları da olur</span>
+            Sağa kaydır: biliyorum · Sola kaydır: bilmiyorum
         </p>
         <p id="lp-hata" class="mt-3 hidden rounded-xl bg-amber-50 dark:bg-amber-950/40 px-4 py-3 text-center text-sm text-amber-800 dark:text-amber-300">
             Bağlantı koptu, son kaydırman henüz kaydedilmedi.
@@ -160,7 +167,7 @@ istek atılmaz.
                 {% if kartlar %}Güzel iş!{% else %}Şu an gösterecek kelime kalmadı{% endif %}
             </h2>
             <p id="lp-bitis-ozet" class="mt-1 text-sm text-gray-600 dark:text-slate-400">
-                {% if not kartlar %}{% if misafir %}Başka bir seviye seçip devam edebilirsin.{% else %}Sözlük'ten listene kelime ekleyebilir ya da başka bir zaman tekrar gelebilirsin.{% endif %}{% endif %}
+                {% if not kartlar %}{% if misafir %}Birazdan yeni bir tur deneyebilirsin.{% else %}Sözlük'ten listene kelime ekleyebilir ya da başka bir zaman tekrar gelebilirsin.{% endif %}{% endif %}
             </p>
         </div>
 
@@ -216,15 +223,25 @@ istek atılmaz.
     var $ = function (id) { return document.getElementById(id); };
     var kart = $('lp-kart'), kelimeEl = $('lp-kelime'), acilim = $('lp-acilim');
     var etiketSol = $('lp-etiket-sol'), etiketSag = $('lp-etiket-sag');
+    var alevKok = $('lp-alev');
 
     var kuyruk = JSON.parse($('lp-kartlar').textContent) || [];
     var mevcut = kuyruk.shift() || null;
+    // soru -> (dogrula | bilmiyor) -> sonraki kart
     var durum = mevcut ? 'soru' : 'bitti';
     var gorulen = 0, bilinen = 0, bilinmeyen = 0;
     var bilinmeyenler = [];          // [{id, word}] listede OLMAYAN bilinmeyenler
-    var gecmis = [];                 // [{kart, karar}] geri al için
+    var gecmis = [];                 // [{kart, karar}] geri al için (kesinleşmiş kararlar)
     var zincir = Promise.resolve();  // sunucu istekleri sırayla gider
     var bekleyenIstek = null;        // başarısız kalan istek (Tekrar dene)
+
+    // Alevli çubuk (rapor 18.9): günün L&P sayısı 10'a ulaşınca yanar.
+    if (!MISAFIR && kok.dataset.seriEsik) {
+        window.alev.kur(alevKok, {
+            esik: parseInt(kok.dataset.seriEsik, 10), onceki: parseInt(kok.dataset.seriLp, 10) || 0,
+            tamamlandi: kok.dataset.seriTamam === '1', toplam: TOPLAM
+        });
+    }
 
     // ---------------- Sunucu ----------------
     function postJson(url, govde) {
@@ -251,7 +268,7 @@ istek atılmaz.
         return dene(0);
     }
 
-    // İstekleri sıraya koyar: geri al, kendinden önceki kaydırma yazılmadan gitmesin.
+    // İstekleri sıraya koyar: geri al, kendinden önceki karar yazılmadan gitmesin.
     function sirala(is) {
         var p = zincir.then(is);
         zincir = p.catch(function () {});
@@ -270,10 +287,13 @@ istek atılmaz.
 
     function kaydet(k, karar) {
         if (MISAFIR) { return; }
-        var govde = { word_id: k.id, verdict: karar > 0 ? 'known' : 'unknown', mode: MOD, kaynak: k.kaynak };
+        var govde = { word_id: k.id, verdict: karar, mode: MOD, kaynak: k.kaynak };
         var is = function () {
             return sirala(function () { return denemeli(kok.dataset.verdictUrl, govde); })
-                .then(function (cevap) { if (cevap.card) { kuyruk.push(cevap.card); } })
+                .then(function (cevap) {
+                    if (cevap.card) { kuyruk.push(cevap.card); }
+                    if (cevap.seri) { window.alev.guncelle(alevKok, cevap.seri.tamamlandi); }
+                })
                 .catch(function () { hataGoster(is); });
         };
         is();
@@ -283,7 +303,7 @@ istek atılmaz.
     function ilerlemeyiGoster() {
         $('lp-ilerleme').style.width = Math.min(100, gorulen / TOPLAM * 100) + '%';
         $('lp-sayac').textContent = gorulen + '/' + TOPLAM;
-        $('lp-geri-al').disabled = gecmis.length === 0 || durum === 'bitti';
+        $('lp-geri-al').disabled = (gecmis.length === 0 && durum === 'soru') || durum === 'bitti';
     }
 
     function kartiCiz(k) {
@@ -299,29 +319,45 @@ istek atılmaz.
         $('lp-ornek').classList.toggle('hidden', !k.example);
     }
 
+    function goster(id, acik) {
+        var el = $(id);
+        el.classList.toggle('hidden', !acik);
+        if (id === 'lp-dogrula-dugmeleri') { el.classList.toggle('grid', acik); }
+    }
+
     function soruHali() {
         durum = 'soru';
         acilim.classList.remove('acik');
         acilim.setAttribute('aria-hidden', 'true');
         kart.classList.remove('border-emerald-300', 'border-rose-300', 'dark:border-emerald-700', 'dark:border-rose-800');
         kart.classList.add('border-gray-200', 'dark:border-slate-700');
-        $('lp-soru-dugmeleri').classList.remove('hidden');
-        $('lp-acik-dugmeleri').classList.add('hidden');
-        $('lp-ipucu').classList.remove('hidden');
+        etiketSag.textContent = 'Biliyorum';
+        etiketSol.textContent = 'Bilmiyorum';
+        goster('lp-soru-dugmeleri', true);
+        goster('lp-dogrula-dugmeleri', false);
+        goster('lp-devam-dugmeleri', false);
+        $('lp-ipucu').textContent = 'Sağa kaydır: biliyorum · Sola kaydır: bilmiyorum';
         ilerlemeyiGoster();
     }
 
-    function acikHali(karar) {
-        durum = 'acik';
+    // "Biliyorum" -> dogrula, "Bilmiyorum" -> bilmiyor (18.1)
+    function acikHali(yon) {
+        durum = yon > 0 ? 'dogrula' : 'bilmiyor';
         kart.classList.remove('border-gray-200', 'dark:border-slate-700');
-        kart.classList.add.apply(kart.classList, karar > 0
+        kart.classList.add.apply(kart.classList, yon > 0
             ? ['border-emerald-300', 'dark:border-emerald-700']
             : ['border-rose-300', 'dark:border-rose-800']);
+        $('lp-balon-soru').textContent = yon > 0 ? 'Düşündüğün bu muydu?' : 'Anlamı:';
+        etiketSag.textContent = 'Eminim';
+        etiketSol.textContent = 'Yanılmışım';
         acilim.classList.add('acik');
         acilim.setAttribute('aria-hidden', 'false');
-        $('lp-soru-dugmeleri').classList.add('hidden');
-        $('lp-acik-dugmeleri').classList.remove('hidden');
-        $('lp-ipucu').classList.add('hidden');
+        goster('lp-soru-dugmeleri', false);
+        goster('lp-dogrula-dugmeleri', yon > 0);
+        goster('lp-devam-dugmeleri', yon < 0);
+        $('lp-ipucu').textContent = yon > 0
+            ? 'Sağa kaydır: evet, eminim · Sola kaydır: hayır, yanılmışım'
+            : 'Devam etmek için kaydır';
         ilerlemeyiGoster();
         // Küçük ekranda balon görünür olsun
         setTimeout(function () {
@@ -334,23 +370,36 @@ istek atılmaz.
         kart.classList.toggle('suruklen', !gecisli);
         kart.style.transform = dx ? 'translateX(' + dx + 'px) rotate(' + (dx / 22) + 'deg)' : '';
         var oran = Math.min(1, Math.abs(dx) / ESIK);
-        etiketSag.style.opacity = (durum === 'soru' && dx > 0) ? oran : 0;
-        etiketSol.style.opacity = (durum === 'soru' && dx < 0) ? oran : 0;
+        var etiketli = durum === 'soru' || durum === 'dogrula';
+        etiketSag.style.opacity = (etiketli && dx > 0) ? oran : 0;
+        etiketSol.style.opacity = (etiketli && dx < 0) ? oran : 0;
     }
 
     // ---------------- Akış ----------------
+    // 1. adım: kart yalnızca açılır, henüz hiçbir şey kaydedilmez.
     function karar(yon) {
         if (durum !== 'soru' || !mevcut) { return; }
+        kartKonumu(0, true);
+        acikHali(yon);
+    }
+
+    // 2. adım: karar kesinleşir ve kaydedilir, sonraki karta geçilir.
+    function kesinlestir(sonuc, yon) {
+        if ((durum !== 'dogrula' && durum !== 'bilmiyor') || !mevcut || geciliyor) { return; }
         gorulen += 1;
-        if (yon > 0) { bilinen += 1; }
+        if (sonuc === 'known') { bilinen += 1; }
         else {
             bilinmeyen += 1;
             if (!mevcut.listede) { bilinmeyenler.push({ id: mevcut.id, word: mevcut.word }); }
         }
-        gecmis.push({ kart: mevcut, karar: yon });
-        kaydet(mevcut, yon);
-        kartKonumu(0, true);
-        acikHali(yon);
+        gecmis.push({ kart: mevcut, karar: sonuc });
+        kaydet(mevcut, sonuc);
+        ilerle(yon);
+    }
+
+    function ikinciAdim(yon) {
+        if (durum === 'dogrula') { kesinlestir(yon > 0 ? 'known' : 'misjudged', yon); }
+        else if (durum === 'bilmiyor') { kesinlestir('unknown', yon || 1); }
     }
 
     function siradakiKart() {
@@ -361,7 +410,6 @@ istek atılmaz.
 
     var geciliyor = false;
     function ilerle(yon) {
-        if (durum !== 'acik' || geciliyor) { return; }
         if (gorulen >= TOPLAM) { bitir(); return; }
         geciliyor = true;
         yon = yon || 1;
@@ -388,12 +436,14 @@ istek atılmaz.
     }
 
     function geriAl() {
-        // Kaydedilemeyen bir kaydırma varken geri al yanlış kaydı geri alırdı.
-        if (!gecmis.length || geciliyor || bekleyenIstek) { return; }
+        if (geciliyor || bekleyenIstek) { return; }
+        // Açıkken (henüz kaydedilmemiş): yalnızca soru hâline dön.
+        if (durum === 'dogrula' || durum === 'bilmiyor') { kartKonumu(0, true); soruHali(); return; }
+        if (!gecmis.length) { return; }
         var son = gecmis.pop();
         if (durum === 'soru' && mevcut) { kuyruk.unshift(mevcut); }
         gorulen = Math.max(0, gorulen - 1);
-        if (son.karar > 0) { bilinen = Math.max(0, bilinen - 1); }
+        if (son.karar === 'known') { bilinen = Math.max(0, bilinen - 1); }
         else {
             bilinmeyen = Math.max(0, bilinmeyen - 1);
             bilinmeyenler = bilinmeyenler.filter(function (b) { return b.id !== son.kart.id; });
@@ -422,7 +472,7 @@ istek atılmaz.
         var bilmedigi = bilinmeyenler.length;
         $('lp-bitis-baslik').textContent = gorulen ? 'Güzel iş!' : 'Bir dahaki sefere!';
         $('lp-bitis-ozet').textContent = gorulen
-            ? gorulen + ' kelimeye baktın: ' + bilinen + ' biliyorum, ' + bilinmeyen + ' bilmiyorum.'
+            ? gorulen + ' kelimeye baktın: ' + bilinen + ' biliyordun, ' + bilinmeyen + ' tekrar edeceğiz.'
               + (havuzBitti ? ' Şimdilik gösterecek kelime kalmadı.' : '')
             : 'Hiç kaydırmadın; istediğin zaman tekrar başlayabilirsin.';
         if (!bilmedigi) { return; }
@@ -434,6 +484,7 @@ istek atılmaz.
             var s = document.createElement('span');
             s.className = 'rounded-full bg-white dark:bg-slate-800 px-2.5 py-0.5 text-sm text-gray-800 dark:text-slate-200 ring-1 ring-amber-200 dark:ring-amber-900';
             s.textContent = b.word;
+            s.lang = 'en';
             kutu.appendChild(s);
         });
         $('lp-ekle-sorusu').classList.remove('hidden');
@@ -450,7 +501,7 @@ istek atılmaz.
         var sonuc = ekleKutusu.querySelector('[data-sonuc]');
         var dugmeler = ekleKutusu.querySelectorAll('[data-islem]');
         dugmeler.forEach(function (d) { d.disabled = true; });
-        // Son kaydırmaların yazılmasını bekle: uç yalnızca kaydedilmiş kelimeleri kabul eder.
+        // Son kararların yazılmasını bekle: uç yalnızca kaydedilmiş kelimeleri kabul eder.
         zincir.then(function () {
             return denemeli(kok.dataset.bilinmeyenUrl, { islem: islem, word_ids: idler });
         }).then(function (cevap) {
@@ -490,9 +541,9 @@ istek atılmaz.
         basla = null;
         var yon = dx > 0 ? 1 : -1;
         if (Math.abs(dx) >= ESIK) {
-            if (durum === 'soru') { karar(yon); } else { ilerle(yon); }
-        } else if (Math.abs(dx) < 6 && durum === 'acik') {
-            ilerle(1);   // açıkken karta dokunmak da sonrakine geçirir
+            if (durum === 'soru') { karar(yon); } else { ikinciAdim(yon); }
+        } else if (Math.abs(dx) < 6 && durum === 'bilmiyor') {
+            ikinciAdim(1);   // "Bilmiyorum" sonrası karta dokunmak da devam ettirir
         } else {
             kartKonumu(0, true);
         }
@@ -507,7 +558,11 @@ istek atılmaz.
         var d = o.target.closest('[data-karar]');
         if (d) { karar(parseInt(d.dataset.karar, 10)); }
     });
-    $('lp-sonraki').addEventListener('click', function () { ilerle(1); });
+    $('lp-dogrula-dugmeleri').addEventListener('click', function (o) {
+        var d = o.target.closest('[data-dogrula]');
+        if (d) { ikinciAdim(parseInt(d.dataset.dogrula, 10)); }
+    });
+    $('lp-devam').addEventListener('click', function () { ikinciAdim(1); });
     $('lp-geri-al').addEventListener('click', geriAl);
     $('lp-bitir').addEventListener('click', function () { bitir(false); });
 
@@ -517,9 +572,13 @@ istek atılmaz.
         if (durum === 'soru') {
             if (o.key === 'ArrowRight') { o.preventDefault(); karar(1); }
             else if (o.key === 'ArrowLeft') { o.preventDefault(); karar(-1); }
-        } else if (durum === 'acik') {
-            if (o.key === 'ArrowRight' || o.key === 'Enter' || o.key === ' ') { o.preventDefault(); ilerle(1); }
-            else if (o.key === 'ArrowLeft') { o.preventDefault(); ilerle(-1); }
+        } else if (durum === 'dogrula') {
+            if (o.key === 'ArrowRight') { o.preventDefault(); ikinciAdim(1); }
+            else if (o.key === 'ArrowLeft') { o.preventDefault(); ikinciAdim(-1); }
+        } else if (durum === 'bilmiyor') {
+            if (['ArrowRight', 'ArrowLeft', 'Enter', ' '].indexOf(o.key) !== -1) {
+                o.preventDefault(); ikinciAdim(o.key === 'ArrowLeft' ? -1 : 1);
+            }
         }
     });
 

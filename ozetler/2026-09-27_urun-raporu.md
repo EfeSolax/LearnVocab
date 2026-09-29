@@ -685,7 +685,9 @@ Kaynak: Claude'un 29 Eylül eleştirisi ve Efe'nin cevabı. **Henüz hiçbiri uy
 - **"Efe'nin kararı"** yazan maddeler kesindir.
 - **"Karar bekliyor"** yazan maddeler Efe ile konuşulmadan uygulanmaz. Seçenekler ve Claude'un önerisi maddenin altında durur.
 
-### 18.1 L&P kart akışı: "Düşündüğün bu muydu?" kaydırmayla cevaplanır (Efe'nin kararı)
+### 18.1 L&P kart akışı: "Düşündüğün bu muydu?" kaydırmayla cevaplanır (Efe'nin kararı) — **YAPILDI (30 Eylül)**
+> `templates/pages/learnpass/learnPass.html`: durumlar soru → dogrula / bilmiyor. Karar ikinci adımda kesinleşip gönderilir. Düğmeler ve ← → tuşları da aynı iki seçeneği verir. Açıkken "Geri al" yalnızca soruya döner; kesinleşmiş kararı sunucuda geri alır.
+
 **Sorun:** Şu an "Biliyorum" denince anlam ve "Düşündüğün bu muydu?" sorusu çıkıyor, ama tek düğme "Sonraki kelime". `WordEncounter.MISJUDGED` modelde var, arayüz hiç göndermiyor (`learnPass.html`, `verdict` yalnızca `known`/`unknown`). L&P'nin "biliyorum sanıyordum / gerçekten biliyorum" vaadi toplanmıyor.
 
 **Yeni akış:**
@@ -698,7 +700,14 @@ Kaynak: Claude'un 29 Eylül eleştirisi ve Efe'nin cevabı. **Henüz hiçbiri uy
 4. Kayıt ikinci adımda yapılır. Karar `known` / `misjudged` / `unknown` olarak gönderilir; misafirde hiçbir şey kaydedilmez.
 - **Varsayım (Claude):** Masaüstünde kaydırma zor olduğu için düğmeler ve ok tuşları da aynı iki seçeneği verir ("Evet, eminim" / "Hayır, yanılmışım"). Yeni tasarımda (18.10) netleşir.
 
-### 18.2 Tekrar kuralı (Efe'nin kararı, 29 Eylül: FSRS yerine Efe'nin kuralı)
+### 18.2 Tekrar kuralı (Efe'nin kararı, 29 Eylül: FSRS yerine Efe'nin kuralı) — **YAPILDI (30 Eylül)**
+> **Kod:** `learnpass/tekrar.py` (kaydet, tekrar_sirasi, liste_sirasi, yeni_kelime, misafir_kelimeleri). Migration `learnpass/0005_tekrar_kurali`: `is_learned` ve beyan alanları silindi; `basamak`, `son_basarili`, `son_bilinen_at`, `sonraki_tekrar`, `takipte`, `egz_dogru`, `egz_yanlis` alanları ve günlükte `basamak_once` eklendi. Beyan ucu silindi.
+> - **Egzersizler:** Cevaplar aynı kurala işlenir (`egzersizler/kayit.py`). Liste kelimeleri aynı öncelik sırasıyla sorulur (`sorular.liste_kelimeleri`). "Tekrar çöz" turları işlenmez.
+> - **Zorlandıklarım:** Son sonucu "bilemedi" olanlar (`words/listem.py`).
+> - **Birim:** `settings.TEKRAR_BIRIMI_SAAT` (24).
+> - **Testler:** `learnpass/test_tekrar.py` (Efe'nin 12.10 / 12.40 örneği dahil).
+> - **Varsayım (Claude, onay bekliyor):** Girişli kullanıcıda yeni kelimenin seviyesi %60 kendi seviyesi, %25 bir üstü, %15 bir altı (sıklık ağırlıklı). Seviyesi bilinmeyene misafir dağılımı uygulanır.
+
 **Sorun:**
 - Tekrar algoritması yok.
 - Listeye eklenmeyen bilinmeyen yeni kelime bir daha hiç gelmiyor.
@@ -779,6 +788,7 @@ Genel kural değişir: **giriş gerektiren öğeler misafire gösterilmez.** Ger
   - Menüdeki `giris_gerekli` işareti Yazma'dan kalkar.
 
 - **Misafirin diyalogları:** L&P ile aynı dağılım (%60 B1 · %20 B2 · %20 C1). Giriş yapmış kullanıcıda hedef kelime yine listeden gelir (9.2).
+- **Kısmen yapıldı (30 Eylül):** L&P'de misafirin seviye seçicisi kalktı; dağılım %60/20/20, sıklık ağırlıklı, nadir tür yok (`tekrar.misafir_kelimeleri`). Sözlük, Çalışmalar sekmeleri ve Yazma kuralları 8. adımda yapılacak.
 
 ### 18.4 Telaffuz: Amerikan ve İngiliz düğmeleri (Efe'nin kararı) — **YAPILDI ama kalitesi yetersiz (30 Eylül)**
 > **Sorun (Efe, 30 Eylül):**
@@ -910,7 +920,21 @@ Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
 - (a) **Kart gizlenince:** Kelime kartının yerinde **"Bugünün kelimesi tamam ✓, yarın yenisi gelecek."** mesajı görünür. Yerine başka kelime gelmez. İfade kartı da listeye eklenince aynı biçimde kapanır ("Bugünün ifadesi tamam ✓").
 - (b) **İfadelerde "Biliyordum / Bilmiyordum" yoktur** ve ifadeler için bilme kaydı tutulmaz. İfade kartında yalnızca "Listeme ekle" vardır.
 
-### 18.9 Seri (streak) (Efe'nin kararı, 29 Eylül)
+### 18.9 Seri (streak) (Efe'nin kararı, 29 Eylül) — **YAPILDI (30 Eylül)**
+> **Kod:**
+> - `seri` uygulaması: `GunlukCalisma`, `SeriDurumu`; kural `seri/hesap.py`; yerel saat `seri/zaman.py`; uçlar `/seri/durum/` ve `/seri/saat-dilimi/`.
+> - Ana Sayfa kutusu ve takvim: `pages/anasayfa/_seriKutusu.html`. Kapibara simgesi geçici (`base/_kapibara.html`).
+> - Alevli çubuk: `base/_alev.html` (L&P ve egzersiz).
+> - Metin kontrolü: `texts/gecerlilik.py`.
+> - Bildirimler: `bildirim_gonder_hatirlatma` 15 dakikada bir (`bildirimler/CRON.md`).
+> - Tarayıcı saat dilimini bir kez gönderir (`base/layout.html`).
+> - Testler: `seri/tests.py`, `bildirimler/tests.py`.
+>
+> **Varsayımlar (Claude, onay bekliyor):**
+> - (1) Serisi 0 olan kullanıcının kaçırdığı gün dondurma hakkı harcatmaz.
+> - (2) L&P'de "Geri al" günün sayacını bir azaltır, ama tamamlanmış günü geri almaz.
+> - (3) Alev, çubukta günün tamamlanacağı kart hizasında durur. Gün zaten tamamlandıysa çubuğun sonunda yanık durur.
+
 **Seriyi ne devam ettirir** (bir gün "tamamlandı" sayılır):
 - **10 L&P kartı**, **ya da**
 - **10 egzersiz sorusu**, **ya da**
@@ -1407,7 +1431,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Python sürümü seçilebilir; SSH, Git ve Let's Encrypt var.
 - **Sonuçları:**
   - Okuma metinleri diskte sıkıştırılmış dosya (18.24).
-  - **Ayrıntılı karşılaşma kayıtları (`EncounterLog`) 90 gün tutulur**, daha eskileri günlük özetlere çevrilir. Tekrar kuralı (18.2) ve istatistik ekranı (18.31) bu özetlerle çalışır. Böylece veritabanı 1 GB'ın altında kalır.
+  - **Ayrıntılı karşılaşma kayıtları (`EncounterLog`) 90 gün tutulur**, daha eskileri günlük özetlere çevrilir. (Henüz yapılmadı; istatistik ekranıyla birlikte, 18.31.) Tekrar kuralı (18.2) ve istatistik ekranı (18.31) bu özetlerle çalışır. Böylece veritabanı 1 GB'ın altında kalır.
   - Seri kaçırma bildirimi **23.45** (18.9).
   - Ses dosyaları (18.4, seçilirse) sunucuda durabilir: ~28 bin dosya (~70–110 MB) inode sınırının %7'si.
 - **Maliyet ilkesi (Efe):** Bu süreçte ek masraf çıkmamalı. Ücretli servis, API ya da hesap gerektiren çözümler önerilmez; ücretsiz ve yerel çözümler tercih edilir.
@@ -1494,3 +1518,7 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-09-30 (9):** Oxford 3000/5000 kalibrasyonu: 5.076 kelime oxford kaynaklı, 3.217 seviye değişti; 611 Oxford kelimesi bizde yok (A1'ler dahil). Cambridge EVP indirilebilir değil, scraping yapılmadı.
 - **2026-09-30 (10):** Eksik ~600 Oxford kelimesini Claude elle ekleyecek (ertelendi).
 - **2026-09-30 (11):** Veri A aşaması: 'daha basit' kuralı uygulandı (5.989 silindi), veri yapısal olarak temiz, özel ad yok, papist ve 1 eş/zıt çakışması silindi. Büyük harf bulgusu ertelendi.
+- **2026-09-30 (12):** Uygulama 3. ve 4. adım yapıldı:
+  - Tekrar kuralı (`learnpass/tekrar.py`, `learnpass/0005`); yeni L&P akışı (18.1); egzersiz ve Zorlandıklarım bağlantısı; misafir dağılımı.
+  - Seri uygulaması: günlük sayım, yerel saat, dondurma, takvimli Ana Sayfa kutusu, alevli çubuk, metin geçerlilik kontrolü, 12.00 / 23.45 bildirimleri.
+  - 865 test geçiyor. Tarayıcıda veritabanı kopyasıyla uçtan uca denendi.

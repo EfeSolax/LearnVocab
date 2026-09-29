@@ -36,7 +36,8 @@ class AnaSayfaTests(TestCase):
         self.assertIn("Merhaba, Efe", html)
         self.assertIn("Bugünün çalışmasına başla", html)
         self.assertIn(f'href="{reverse("learn_pass_page")}" data-bugunun-calismasi', html)
-        self.assertIn("data-seri-yeri", html)
+        self.assertIn("data-seri-kutusu", html)          # rapor 18.9
+        self.assertIn("günlük seri", html)
         self.assertIn("Listemdeki kelime", html)
         liste = html[html.index("data-liste-sayisi"):]
         self.assertIn(">1<", liste[:liste.index("</a>")])

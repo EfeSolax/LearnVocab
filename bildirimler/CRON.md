@@ -5,7 +5,7 @@ LearnVocab'ın iki düzenli işi var (rapor 9.1 ve 10):
 | Komut | Ne yapar | Ne sıklıkla |
 |---|---|---|
 | `yazilari_yeniden_dene` | Gemini'nin cevap veremediği ("Henüz değerlendirilmedi") yazıları kotaya uyarak yeniden dener; arka planda değerlendirilen yazı için "Yazın değerlendirildi" bildirimi gider. Bir günden eski silinmiş yazıları da temizler. | 30 dakikada bir |
-| `bildirim_gonder_hatirlatma` | Bugün Learn & Pass'te hiç kaydırma yapmamış abonelere günde **en çok bir** hatırlatma gönderir. 09:00–22:00 (Türkiye saati) dışında çalışırsa hiçbir şey göndermez. | Her akşam bir kez |
+| `bildirim_gonder_hatirlatma` | Seri hatırlatmaları (rapor 18.9): kullanıcının **yerel** saatiyle 12.00'de "Günün kelimesi" ve 23.45'te seriyi kaçırma uyarısı. Günü tamamlayana ya da serisi 0 olana gitmez; aynı bildirim aynı gün iki kez gitmez. | **15 dakikada bir** |
 | `clearsessions` | Süresi dolmuş oturum kayıtlarını siler (Django'nun kendi komutu). İsteğe bağlı. | Günde bir, gece |
 
 ## 1. Yolları bul
@@ -31,8 +31,8 @@ cPanel → **Cron Jobs** → her satır için "Add New Cron Job" (saat alanları
 # Yazıları yeniden dene — 30 dakikada bir
 */30 * * * * cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py yazilari_yeniden_dene >> /home/KULLANICI/logs/yazilari_yeniden_dene.log 2>&1
 
-# Günlük L&P hatırlatması — her akşam 19:00
-0 19 * * * cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py bildirim_gonder_hatirlatma >> /home/KULLANICI/logs/hatirlatma.log 2>&1
+# Seri hatırlatmaları (yerel 12.00 ve 23.45) — 15 dakikada bir
+*/15 * * * * cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py bildirim_gonder_hatirlatma >> /home/KULLANICI/logs/hatirlatma.log 2>&1
 
 # Eski oturumları temizle — her gece 04:15 (isteğe bağlı)
 15 4 * * * cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py clearsessions >> /home/KULLANICI/logs/clearsessions.log 2>&1

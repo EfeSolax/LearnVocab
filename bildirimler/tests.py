@@ -16,7 +16,7 @@ from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
-from learnpass.models import EncounterLog
+from seri.models import GunlukCalisma, SeriDurumu
 from texts.models import Text
 from texts.sinyaller import degerlendirildi
 from users.models import User
@@ -265,7 +265,7 @@ class VapidYokkenTest(TestCase):
         _abonelik(self.user)
         yama, webpush = _webpush_mock()
         with yama:
-            call_command("bildirim_gonder_hatirlatma", "--saat-kontrolu-yok", stdout=StringIO())
+            call_command("bildirim_gonder_hatirlatma", stdout=StringIO())
         webpush.assert_not_called()
         self.assertFalse(GunlukHatirlatma.objects.exists())
 
@@ -318,64 +318,80 @@ class YaziSinyaliTest(TestCase):
 
 @override_settings(**SAHTE_VAPID)
 class HatirlatmaKomutuTest(TestCase):
-    AKSAM = datetime(2026, 9, 28, 19, 0, tzinfo=IST)
+    """Rapor 18.9: yerel 12.00 ve 23.45; gün tamamlandıysa ya da seri 0 ise gitmez."""
+
+    OGLE = datetime(2026, 9, 28, 12, 5, tzinfo=IST)
+    GECE = datetime(2026, 9, 28, 23, 50, tzinfo=IST)
 
     def setUp(self):
-        self.kaydiran = _kullanici("kaydiran")
-        self.kaydirmayan = _kullanici("kaydirmayan")
-        self.dun_kaydiran = _kullanici("dun")
+        dun = self.OGLE.date() - timedelta(days=1)
+        self.seri_var = _kullanici("seri-var")
+        self.tamamlamis = _kullanici("tamamlamis")
+        self.seri_yok = _kullanici("seri-yok")
         self.abone_olmayan = _kullanici("abone-degil")
-        for u in (self.kaydiran, self.kaydirmayan, self.dun_kaydiran):
+        for u in (self.seri_var, self.tamamlamis, self.abone_olmayan):
+            SeriDurumu.objects.create(user=u, mevcut=4, hak=1, son_islenen_gun=dun)
+        SeriDurumu.objects.create(user=self.seri_yok, mevcut=0, son_islenen_gun=dun)
+        GunlukCalisma.objects.create(user=self.tamamlamis, gun=self.OGLE.date(), lp=10, tamamlandi=True)
+        for u in (self.seri_var, self.tamamlamis, self.seri_yok):
             _abonelik(u)
-        self._kaydirma(self.kaydiran, self.AKSAM - timedelta(hours=3))
-        self._kaydirma(self.dun_kaydiran, self.AKSAM - timedelta(days=1))
 
-    def _kaydirma(self, user, zaman):
-        log = EncounterLog.objects.create(user=user, word_text="aim", kind=EncounterLog.VERDICT)
-        EncounterLog.objects.filter(pk=log.pk).update(created_at=zaman)
-
-    def _calistir(self, simdi=None, *arg):
+    def _calistir(self, simdi, *arg):
         yama, webpush = _webpush_mock()
-        with yama, mock.patch.object(timezone, "now", return_value=simdi or self.AKSAM):
+        with yama, mock.patch.object(timezone, "now", return_value=simdi):
             call_command("bildirim_gonder_hatirlatma", *arg, stdout=StringIO())
         return webpush
 
-    def test_yalnizca_bugun_kaydirmamislara(self):
-        webpush = self._calistir()
-        self.assertEqual(webpush.call_count, 2)
-        alanlar = set(GunlukHatirlatma.objects.values_list("user__username", flat=True))
-        self.assertEqual(alanlar, {"kaydirmayan", "dun"})
-        veri = json.loads(webpush.call_args.kwargs["data"])
+    def _govde(self, webpush):
+        return json.loads(webpush.call_args.kwargs["data"])
+
+    def test_ogle_yalnizca_serisi_olup_gunu_bitirmemise(self):
+        webpush = self._calistir(self.OGLE)
+        self.assertEqual(webpush.call_count, 1)
+        self.assertEqual(set(GunlukHatirlatma.objects.values_list("user__username", "tur")),
+                         {("seri-var", "ogle")})
+        veri = self._govde(webpush)
+        self.assertIn("Bugünün çalışması seni bekliyor", veri["govde"])
         self.assertEqual(veri["url"], reverse("learn_pass_page"))
 
-    def test_gunde_bir_kez(self):
-        self._calistir()
-        webpush = self._calistir(self.AKSAM + timedelta(hours=1))
+    def test_ayni_pencerede_bir_kez(self):
+        self._calistir(self.OGLE)
+        webpush = self._calistir(self.OGLE + timedelta(minutes=5))
         webpush.assert_not_called()
-        self.assertEqual(GunlukHatirlatma.objects.count(), 2)
 
-    def test_ertesi_gun_yeniden_gider(self):
-        self._calistir()
-        webpush = self._calistir(self.AKSAM + timedelta(days=1))
-        # Ertesi gün kimse kaydırmadı: üç abone de hatırlatma alır.
-        self.assertEqual(webpush.call_count, 3)
+    def test_pencere_disinda_gitmez(self):
+        for saat in (11, 13, 19, 23):
+            webpush = self._calistir(self.OGLE.replace(hour=saat, minute=10))
+            webpush.assert_not_called()
+
+    def test_gece_dondurma_hakki_varsa(self):
+        webpush = self._calistir(self.GECE)
+        self.assertIn("1 dondurma hakkın kullanılacak", self._govde(webpush)["govde"])
+
+    def test_gece_hak_yoksa_seri_uyarisi(self):
+        SeriDurumu.objects.filter(user=self.seri_var).update(hak=0)
+        webpush = self._calistir(self.GECE)
+        self.assertIn("4 günlük serin gece yarısı bitiyor", self._govde(webpush)["govde"])
+
+    def test_ogle_ve_gece_ayri_ayri_gider(self):
+        self._calistir(self.OGLE)
+        self._calistir(self.GECE)
+        self.assertEqual(GunlukHatirlatma.objects.filter(user=self.seri_var).count(), 2)
+
+    def test_yerel_saat(self):
+        """Londra'daki kullanıcıya Londra'nın 12.00'sinde (İstanbul 14.05) gider."""
+        SeriDurumu.objects.filter(user=self.seri_var).update(saat_dilimi="Europe/London")
+        self._calistir(self.OGLE).assert_not_called()
+        self.assertEqual(self._calistir(self.OGLE + timedelta(hours=2)).call_count, 1)
 
     def test_cok_cihazli_kullaniciya_tek_kayit(self):
-        _abonelik(self.kaydirmayan, 2)
-        webpush = self._calistir()
-        self.assertEqual(webpush.call_count, 3)   # 2 cihaz + dun
-        kayit = GunlukHatirlatma.objects.get(user=self.kaydirmayan)
-        self.assertEqual(kayit.gonderilen, 2)
-
-    def test_gece_gonderilmez(self):
-        webpush = self._calistir(datetime(2026, 9, 28, 23, 30, tzinfo=IST))
-        webpush.assert_not_called()
-        webpush = self._calistir(datetime(2026, 9, 28, 23, 30, tzinfo=IST), "--saat-kontrolu-yok")
+        _abonelik(self.seri_var, 2)
+        webpush = self._calistir(self.OGLE)
         self.assertEqual(webpush.call_count, 2)
+        self.assertEqual(GunlukHatirlatma.objects.get(user=self.seri_var).gonderilen, 2)
 
     def test_dry_run(self):
-        webpush = self._calistir(None, "--dry-run")
-        webpush.assert_not_called()
+        self._calistir(self.OGLE, "--dry-run").assert_not_called()
         self.assertFalse(GunlukHatirlatma.objects.exists())
 
 

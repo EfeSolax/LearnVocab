@@ -9,7 +9,7 @@ Sıra (yukarıdan aşağı):
      sayılar; seri için yer ayrıldı, nasıl sayılacağı Bölüm 16.
   2. "Geçen sefer bilmediğin N kelime" kartı (yarıda kalan oturumdan
      sorulmamış bilinmeyenler varsa).
-  3. Slogan + büyük "Hemen Başla". Misafirde küçük "seviyeni seç" (kaydedilmez).
+  3. Slogan + büyük "Hemen Başla". Misafirde seviye seçimi yok (rapor 18.3).
   4. Oran notu + ayarlara bağlantı (ayarlar sayfası tasarlanana kadar Profilim).
   5. "Neden işe yarar": 3 madde.
 {% endcomment %}
@@ -26,9 +26,9 @@ Sıra (yukarıdan aşağı):
     {% if user.is_authenticated %}
     {# ---------------- 1. İstatistik şeridi ---------------- #}
     <div class="grid grid-cols-4 gap-2 sm:gap-3" id="lp-istatistik">
-        {# Seri: yeri ayrıldı, nasıl sayılacağı Efe ile konuşulacak (rapor 3, 16). #}
-        <div class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-2 py-3 text-center" data-seri-yeri>
-            <div class="text-lg sm:text-xl font-bold text-gray-300 dark:text-slate-600">–</div>
+        {# Seri (rapor 18.9): takvim Ana Sayfa'daki kutuda. #}
+        <div class="rounded-xl border px-2 py-3 text-center {% if seri.bugun_tamam %}border-amber-300 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/40{% else %}border-gray-200 bg-white dark:border-slate-700 dark:bg-slate-800{% endif %}" data-seri>
+            <div class="text-lg sm:text-xl font-bold {% if seri.mevcut %}text-orange-600 dark:text-orange-400{% else %}text-gray-400 dark:text-slate-500{% endif %}">{{ seri.mevcut }}</div>
             <div class="mt-0.5 text-[11px] sm:text-xs text-gray-500 dark:text-slate-400">Seri</div>
         </div>
         <div class="rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 px-2 py-3 text-center">
@@ -88,20 +88,12 @@ Sıra (yukarıdan aşağı):
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </a>
         {% else %}
-        {# Misafir: seviye seçimi adrese yazılır (?seviye=B1), hiçbir yere kaydedilmez (rapor 2.3). #}
-        <form method="get" action="{% url 'learn_pass_run' mode='karma' %}" class="mt-6">
-            <button type="submit" id="hemen-basla"
-                    class="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl bg-indigo-600 px-10 py-4 text-lg font-bold text-white shadow-md hover:bg-indigo-700 transition">
-                Hemen Başla
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-            </button>
-            <label class="mt-3 flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-slate-400">
-                Seviyeni seç
-                <select name="seviye" class="rounded-lg border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 py-1 pl-2 pr-7 text-sm text-gray-800 dark:text-slate-200">
-                    {% for s in seviyeler %}<option value="{{ s }}" {% if s == misafir_seviye %}selected{% endif %}>{{ s }}</option>{% endfor %}
-                </select>
-            </label>
-        </form>
+        {# Misafir: seviye seçimi yok; kelimeler %60 B1 · %20 B2 · %20 C1 (rapor 18.3). #}
+        <a href="{% url 'learn_pass_run' mode='karma' %}" id="hemen-basla"
+           class="mt-6 inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl bg-indigo-600 px-10 py-4 text-lg font-bold text-white shadow-md hover:bg-indigo-700 transition">
+            Hemen Başla
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
         {% endif %}
 
         {# ---------------- 4. Oran notu ---------------- #}

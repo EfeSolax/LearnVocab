@@ -1,31 +1,36 @@
 """
 Learn & Pass görünümleri (ürün raporu 6.1, misafir kuralları 2.3).
 
-Akış:
+Akış (rapor 18.1):
   1) Kart yalnızca kelimeyi gösterir (tür etiketi yok, rapor 12.1).
-  2) Sağa kaydır = biliyorum, sola = bilmiyorum. "Biliyorum" doğrulanmaz.
-  3) Kaydırınca anlam aşağı doğru açılır ("Düşündüğün bu muydu?" + Türkçe
-     anlamlar + silik bir İngilizce örnek). Bir kaydırma daha: sonraki kelime.
+  2) Sağa kaydır = biliyorum, sola = bilmiyorum.
+  3) Anlam açılır. "Biliyorum" dediyse "Düşündüğün bu muydu?": ikinci
+     kaydırma sağa = "Evet, eminim" (known), sola = "Hayır, yanılmışım"
+     (misjudged). "Bilmiyorum" dediyse yalnızca anlam ve "Devam etmek için
+     kaydır" (unknown).
+  4) Karar İKİNCİ adımda kesinleşir ve anında sunucuya yazılır
+     (learnPassVerdict); oturum yarıda kalsa da kayıp yok.
 
 Kurallar:
-  - Her kaydırma anında sunucuya yazılır (learnPassVerdict); oturum yarıda
-    kalsa da kayıp yok.
+  - Tekrar kuralı learnpass/tekrar.py (rapor 18.2); her karar seriye de
+    sayılır (seri/hesap.py, rapor 18.9).
   - Bilinmeyenler listeye kendiliğinden EKLENMEZ. Oturum sonunda sorulur
     (learnPassBilinmeyenler). Sorulmadan kalanlar WordEncounter.listeye_sorulacak
     işaretiyle bekler ve açılış ekranında "Geçen sefer bilmediğin N kelime"
     kartı olarak çıkar.
   - Girişsiz ziyaretçi yalnızca kaydırır: kartlar sayfayla birlikte gelir,
-    hiçbir istek atılmaz, oturuma bile yazılmaz. Seviye ?seviye= ile seçilir.
+    hiçbir istek atılmaz. Seviye seçimi yok: %60 B1 · %20 B2 · %20 C1 (18.3).
 
 Oturum türleri (adresteki `mode`):
-  karma -> "Hemen Başla": ~%70 tekrar (kendi listesi) / ~%30 yeni kelime
-  mine  -> yalnızca kendi listesi      new -> yalnızca yeni kelimeler
+  karma -> "Hemen Başla": ~%70 tekrar / ~%30 yeni kelime
+  mine  -> yalnızca tekrar adayları    new -> yalnızca yeni kelimeler
 Her kart hangi havuzdan geldiğini (`kaynak`: mine/new) taşır ve karar o
 havuzun adıyla kaydedilir.
 """
 
 import json
 import random
+from datetime import datetime
 
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -34,8 +39,10 @@ from django.views.decorators.http import require_POST
 
 from words.models import UserWordLink, Word
 
-from . import selection
-from .models import Declaration, EncounterLog, WordEncounter
+from seri import hesap as seri_hesap
+
+from . import selection, tekrar
+from .models import EncounterLog, WordEncounter
 
 
 KARMA = "karma"
@@ -62,22 +69,12 @@ HISTORY_LIMIT = 20
 # ----------------------------------------------------------------------
 
 def encounter_payload(word, user):
-    """
-    Kelimenin kullanıcıdaki güncel karşılaşma bilgisi.
-
-    Kartta gösterilmiyor; beyan ucu (learnPassDeclare) ve ileride tekrar
-    algoritması için veride duruyor.
-    """
+    """Kelimenin kullanıcıdaki güncel tekrar bilgisi (kartta gösterilmez)."""
     kayit = WordEncounter.objects.filter(user=user, word=word).first()
     if kayit is None:
-        return {"times_seen": 0, "can_declare": False,
-                "declaration": Declaration.NONE, "miss_count": 0}
-    return {
-        "times_seen": kayit.times_seen,
-        "can_declare": kayit.can_declare,
-        "declaration": kayit.declaration,
-        "miss_count": kayit.miss_count,
-    }
+        return {"times_seen": 0, "basamak": 0, "miss_count": 0}
+    return {"times_seen": kayit.times_seen, "basamak": kayit.basamak,
+            "miss_count": kayit.miss_count}
 
 
 def card_payload(word, user=None, kaynak=None):
@@ -172,15 +169,10 @@ def _gosterildi(session, mode, kart):
 # Sayfalar
 # ----------------------------------------------------------------------
 
-def _misafir_seviyesi(request):
-    seviye = (request.GET.get("seviye") or "").upper()
-    return seviye if seviye in selection.MISAFIR_SEVIYELERI else selection.MISAFIR_VARSAYILAN_SEVIYE
-
-
 def acilis_verisi(user):
     """Açılış ekranı için girişli kullanıcının sayıları (tek yerde)."""
     bugun = timezone.localtime().replace(hour=0, minute=0, second=0, microsecond=0)
-    bekleyen_tekrar = selection.own_words_qs(user).count()
+    bekleyen_tekrar = tekrar.bekleyen_tekrar_sayisi(user)
     oran = selection.yeni_orani(user, bekleyen_tekrar)
     bekleyenler = list(selection.bekleyen_bilinmeyenler(user).order_by("text")
                        .values("id", "text"))
@@ -193,6 +185,7 @@ def acilis_verisi(user):
         "tekrar_yuzde": 100 - round(oran * 100),
         "oran_azaldi": oran < selection.kullanici_yeni_orani(user),
         "gecen_sefer": bekleyenler,
+        "seri": seri_hesap.durum(user),
     }
 
 
@@ -204,8 +197,6 @@ def learnPassPage(request):
     context = {
         "active_page": "Learn & Pass",
         "exercise_tab": "learn",
-        "seviyeler": selection.MISAFIR_SEVIYELERI,
-        "misafir_seviye": _misafir_seviyesi(request),
     }
     if request.user.is_authenticated:
         context.update(acilis_verisi(request.user))
@@ -234,12 +225,9 @@ def learnPassRun(request, mode):
     if not request.user.is_authenticated:
         if mode == WordEncounter.MODE_MINE:  # misafirin listesi yok
             return redirect("learn_pass_run", mode=KARMA)
-        seviye = _misafir_seviyesi(request)
-        kelimeler = selection.misafir_kelimeleri(seviye, OTURUM_KART_SAYISI)
+        kelimeler = tekrar.misafir_kelimeleri(OTURUM_KART_SAYISI)
         context.update({
             "misafir": True,
-            "seviye": seviye,
-            "seviyeler": selection.MISAFIR_SEVIYELERI,
             "kartlar": [card_payload(k) for k in kelimeler],
         })
         return render(request, "pages/learnpass/learnPass.html", context)
@@ -250,6 +238,7 @@ def learnPassRun(request, mode):
     context.update({
         "misafir": False,
         "kartlar": [ilk] if ilk else [],
+        "seri": seri_hesap.bugun(request.user),   # alevli çubuk (rapor 18.9)
     })
     return render(request, "pages/learnpass/learnPass.html", context)
 
@@ -260,11 +249,6 @@ def learnPassRun(request, mode):
 # ----------------------------------------------------------------------
 # JSON uçları (yalnızca girişli kullanıcı; misafir hiçbirini çağırmaz)
 # ----------------------------------------------------------------------
-
-def _mode_from(request, payload):
-    mode = payload.get("mode")
-    return mode if mode in KAYNAKLAR else WordEncounter.MODE_NEW
-
 
 def _run_from(payload):
     mode = payload.get("mode")
@@ -278,10 +262,36 @@ def _body(request):
         return {}
 
 
+# Geri al için saklanan WordEncounter alanları (datetime'lar ISO metin olarak).
+_GERI_AL_ALANLARI = ("last_verdict", "last_mode", "times_seen", "unknown_count", "known_count",
+                     "misjudged_count", "egz_dogru", "egz_yanlis", "basamak", "son_basarili",
+                     "son_bilinen_at", "sonraki_tekrar", "takipte", "listeye_sorulacak",
+                     "last_seen_at")
+_ZAMAN_ALANLARI = {"son_bilinen_at", "sonraki_tekrar", "last_seen_at"}
+KARARLAR = (WordEncounter.KNOWN, WordEncounter.UNKNOWN, WordEncounter.MISJUDGED)
+
+
+def _anlik_goruntu(kayit):
+    if kayit is None:
+        return None
+    veri = {}
+    for alan in _GERI_AL_ALANLARI:
+        deger = getattr(kayit, alan)
+        veri[alan] = deger.isoformat() if isinstance(deger, datetime) else deger
+    return veri
+
+
+def _goruntuden(veri):
+    return {alan: (datetime.fromisoformat(d) if alan in _ZAMAN_ALANLARI and d else d)
+            for alan, d in veri.items()}
+
+
 @require_POST
 def learnPassVerdict(request):
     """
-    Bir kaydırmayı ANINDA kaydeder ve sıradaki kartı döner.
+    Kesinleşen kararı (18.1: ikinci kaydırma) ANINDA kaydeder ve sıradaki
+    kartı döner. verdict: known ("Evet, eminim") / misjudged ("Hayır,
+    yanılmışım") / unknown ("Bilmiyorum").
 
     Bilinmeyen kelime listeye EKLENMEZ (rapor 6.1): listede değilse
     `listeye_sorulacak` işaretlenir; oturum sonunda ya da bir sonraki
@@ -296,32 +306,18 @@ def learnPassVerdict(request):
     if kaynak not in KAYNAKLAR:
         kaynak = run if run in KAYNAKLAR else WordEncounter.MODE_NEW
     verdict = payload.get("verdict")
-
-    if verdict not in dict(WordEncounter.VERDICT_CHOICES):
+    if verdict not in KARARLAR:
         return JsonResponse({"error": "verdict"}, status=400)
 
     word = get_object_or_404(Word, id=payload.get("word_id") or 0)
 
     # --- Geri al için önceki hâli sakla ---
     onceki = WordEncounter.objects.filter(user=request.user, word=word).first()
-    gecmis_kaydi = {
-        "word_id": word.id,
-        "verdict": verdict,
-        "kaynak": kaynak,
-        "encounter": None if onceki is None else {
-            "last_verdict": onceki.last_verdict,
-            "last_mode": onceki.last_mode,
-            "times_seen": onceki.times_seen,
-            "unknown_count": onceki.unknown_count,
-            "known_count": onceki.known_count,
-            "misjudged_count": onceki.misjudged_count,
-            "is_learned": onceki.is_learned,
-            "declaration": onceki.declaration,
-            "listeye_sorulacak": onceki.listeye_sorulacak,
-        },
-    }
+    gecmis_kaydi = {"word_id": word.id, "verdict": verdict, "kaynak": kaynak,
+                    "encounter": _anlik_goruntu(onceki)}
 
-    kayit = WordEncounter.record(request.user, word, verdict, kaynak)
+    kayit = tekrar.kaydet(request.user, word, verdict, kaynak)
+    seri = seri_hesap.say(request.user, seri_hesap.LP)
 
     bilmiyor = verdict in (WordEncounter.UNKNOWN, WordEncounter.MISJUDGED)
     if bilmiyor and not kayit.listeye_sorulacak:
@@ -348,14 +344,16 @@ def learnPassVerdict(request):
         "stats": stats,
         "answered": encounter_payload(word, request.user),
         "card": kart,
+        "seri": seri,
     })
 
 
 @require_POST
 def learnPassUndo(request):
     """
-    Son kaydırmayı geri alır: kaydı eski hâline döndürür ve kartı tekrar
+    Son kaydı geri alır: kaydı eski hâline döndürür ve kartı tekrar
     gösterir. Hızlı kaydırılan bir ekranda yanlış yöne kaydırmak kaçınılmaz.
+    Günün L&P sayacı da bir azalır (tamamlanmış gün geri alınmaz).
     """
     if not request.user.is_authenticated:
         return JsonResponse({"error": "auth"}, status=403)
@@ -377,20 +375,16 @@ def learnPassUndo(request):
     if onceki is None:
         WordEncounter.objects.filter(user=request.user, word=word).delete()
     else:
-        WordEncounter.objects.filter(user=request.user, word=word).update(**onceki)
+        WordEncounter.objects.filter(user=request.user, word=word).update(**_goruntuden(onceki))
 
-    # Günlükteki son karşılaşma kaydı da geri alınıyor. Yanlış yöne
-    # kaydırılarak oluşmuş bir kayıt, ileride "kullanıcı bu kelimeyi kaçıncı
-    # karşılaşmada öğrendi" sorusunun cevabını bozar.
+    # Günlükteki son kayıt da geri alınır: yanlış yöne kaydırılarak oluşmuş
+    # bir kayıt basamak başına unutma ölçümünü bozar.
     son_kayit = (EncounterLog.objects
                  .filter(user=request.user, word=word, kind=EncounterLog.VERDICT)
                  .order_by("-created_at", "-id").first())
     if son_kayit is not None:
         son_kayit.delete()
-
-    # Eski sürümün geçmiş kaydı (bilinmeyeni listeye ekliyordu).
-    if kayit.get("added_to_list"):
-        UserWordLink.objects.filter(user=request.user, word=word).delete()
+    seri = seri_hesap.geri_al(request.user, seri_hesap.LP)
 
     stats = read_stats(request.session, run)
     stats["seen"] = max(0, stats.get("seen", 0) - 1)
@@ -402,6 +396,7 @@ def learnPassUndo(request):
     return JsonResponse({
         "stats": stats,
         "card": card_payload(word, request.user, kayit.get("kaynak")),
+        "seri": seri,
     })
 
 
@@ -458,45 +453,3 @@ def learnPassBilinmeyenler(request):
     UserWordLink.objects.filter(user=request.user, word_id__in=geri).delete()
     kayitlar.update(listeye_sorulacak=True)
     return JsonResponse({"ok": True})
-
-
-@require_POST
-def learnPassDeclare(request):
-    """
-    Kullanıcının "artık öğrendim" / "hâlâ öğrenemedim" beyanını kaydeder.
-
-    Yeni kart akışında (6.1) beyan düğmeleri yok; uç ve veri korunuyor
-    (tekrar algoritması konuşulunca yeniden kullanılabilir, Bölüm 16).
-
-    Beyan yalnızca kelime yeterince görüldükten sonra kabul ediliyor
-    (BEYAN_ESIGI): "bu kadar çok çıkmasına rağmen" ifadesi, birinci
-    karşılaşmada bir şey anlatmaz.
-    """
-    if not request.user.is_authenticated:
-        return JsonResponse({"error": "auth"}, status=403)
-
-    payload = _body(request)
-    beyan = payload.get("declaration")
-    if beyan not in (Declaration.MASTERED, Declaration.STUCK):
-        return JsonResponse({"error": "declaration"}, status=400)
-
-    word = get_object_or_404(Word, id=payload.get("word_id") or 0)
-    kayit = WordEncounter.objects.filter(user=request.user, word=word).first()
-
-    if kayit is None or not kayit.can_declare:
-        return JsonResponse({"error": "too_early"}, status=400)
-
-    kayit.declare(beyan)
-
-    # "Hâlâ öğrenemedim" denen kelime listede olmalı: kullanıcı onunla
-    # uğraşmaya devam edecek. "Öğrendim" denen kelime listeden
-    # ÇIKARILMIYOR — yalnızca Öğren-Geç havuzundan düşüyor.
-    if beyan == Declaration.STUCK:
-        UserWordLink.objects.get_or_create(user=request.user, word=word)
-
-    mode = _mode_from(request, payload)
-    return JsonResponse({
-        "ok": True,
-        "declaration": beyan,
-        "remaining": selection.remaining_count(request.user, mode),
-    })

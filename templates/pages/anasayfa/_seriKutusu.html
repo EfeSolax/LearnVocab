@@ -1,0 +1,114 @@
+{% comment %}
+Ana Sayfa seri kutusu (rapor 18.9). Seri sayısı + kapibara simgesi.
+Dokununca küçük bir kutu AÇILIR ve diğer içeriğin ÜZERİNE BİNER (aşağı doğru
+genişlemez): mevcut seri, dondurma hakkı (yalnızca burada görünür), en uzun
+seri ve takvim. Takvimde tamamlanan günler sarı-turuncu, dondurulanlar mavi,
+diğerleri gri; önceki aylara oklarla geçilir. Veri: seri_durum (seri/views.py).
+
+Bağlam: seri (seri.hesap.durum)
+{% endcomment %}
+<div class="relative" x-data="seriKutusu('{% url 'seri_durum' %}')" @keydown.escape.window="acik = false" data-seri-kutusu>
+    <button type="button" @click="ac()" :aria-expanded="acik.toString()"
+            class="flex w-full items-center justify-center gap-2 rounded-xl border px-3 py-4 transition
+                   {% if seri.bugun_tamam %}border-amber-300 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/40{% else %}border-gray-200 bg-white dark:border-slate-700 dark:bg-slate-800{% endif %} hover:border-amber-400">
+        {% include 'base/_kapibara.html' with sinif='h-8 w-8' %}
+        <span class="text-left">
+            <span class="block text-2xl font-bold leading-none {% if seri.mevcut %}text-orange-600 dark:text-orange-400{% else %}text-gray-400 dark:text-slate-500{% endif %}" data-seri-sayi>{{ seri.mevcut }}</span>
+            <span class="mt-1 block text-xs text-gray-500 dark:text-slate-400">günlük seri</span>
+        </span>
+    </button>
+
+    <div x-show="acik" x-cloak @click.outside="acik = false" x-transition.opacity
+         class="absolute left-0 top-full z-40 mt-2 w-[min(20rem,calc(100vw-2rem))] rounded-2xl border border-gray-200 bg-white p-4 shadow-xl dark:border-slate-700 dark:bg-slate-800"
+         role="dialog" aria-label="Seri takvimi">
+        <div class="flex items-center gap-3">
+            {% include 'base/_kapibara.html' with sinif='h-10 w-10' %}
+            <div>
+                <p class="text-lg font-bold text-gray-900 dark:text-slate-100"><span x-text="veri.mevcut"></span> günlük seri</p>
+                <p class="text-sm text-gray-500 dark:text-slate-400">En uzun seri: <span x-text="veri.en_uzun"></span> gün</p>
+            </div>
+        </div>
+
+        <p class="mt-3 flex items-center gap-1.5 text-sm text-gray-700 dark:text-slate-200">
+            Dondurma hakkı:
+            <template x-for="i in veri.en_cok_hak" :key="i">
+                <svg :class="i <= veri.hak ? 'text-sky-500' : 'text-gray-300 dark:text-slate-600'" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4.9 6.5l14.2 11M19.1 6.5 4.9 17.5M9 3.5 12 6l3-2.5M9 20.5l3-2.5 3 2.5"/></svg>
+            </template>
+            <span class="text-gray-500 dark:text-slate-400">(<span x-text="veri.hak"></span>/<span x-text="veri.en_cok_hak"></span>)</span>
+        </p>
+
+        <template x-if="veri.bozuldu">
+            <a href="{% url 'learn_pass_page' %}" class="mt-3 block rounded-xl bg-orange-50 px-3 py-2 text-sm font-semibold text-orange-700 hover:bg-orange-100 dark:bg-orange-950/40 dark:text-orange-300">
+                Yeni seri başlatmak için hemen alıştırma yap →
+            </a>
+        </template>
+
+        <div class="mt-4 flex items-center justify-between">
+            <button type="button" @click="ayDegistir(-1)" aria-label="Önceki ay" class="rounded-lg px-2 py-1 text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-700">‹</button>
+            <p class="text-sm font-semibold text-gray-800 dark:text-slate-100" x-text="ayBasligi()"></p>
+            <button type="button" @click="ayDegistir(1)" aria-label="Sonraki ay" class="rounded-lg px-2 py-1 text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-700">›</button>
+        </div>
+        <div class="mt-2 grid grid-cols-7 gap-1 text-center text-[11px] text-gray-400 dark:text-slate-500">
+            <span>Pt</span><span>Sa</span><span>Ça</span><span>Pe</span><span>Cu</span><span>Ct</span><span>Pz</span>
+        </div>
+        <div class="mt-1 grid grid-cols-7 gap-1 text-center text-xs">
+            <template x-for="(h, i) in hucreler()" :key="i">
+                <span class="flex h-8 items-center justify-center rounded-lg"
+                      :class="h ? renk(h) : ''" x-text="h ? h.gun : ''"></span>
+            </template>
+        </div>
+        <div class="mt-3 flex flex-wrap gap-3 text-[11px] text-gray-500 dark:text-slate-400">
+            <span class="flex items-center gap-1"><span class="h-2.5 w-2.5 rounded-full bg-gradient-to-br from-amber-300 to-orange-500"></span>Yapıldı</span>
+            <span class="flex items-center gap-1"><span class="h-2.5 w-2.5 rounded-full bg-sky-400"></span>Donduruldu</span>
+            <span class="flex items-center gap-1"><span class="h-2.5 w-2.5 rounded-full bg-gray-200 dark:bg-slate-600"></span>Yapılmadı</span>
+        </div>
+    </div>
+</div>
+
+<script>
+function seriKutusu(adres) {
+    var AYLAR = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+    return {
+        acik: false,
+        veri: { mevcut: {{ seri.mevcut }}, en_uzun: {{ seri.en_uzun }}, hak: {{ seri.hak }}, en_cok_hak: {{ seri.en_cok_hak }},
+                bozuldu: {{ seri.bozuldu|yesno:'true,false' }}, gunler: {}, yil: null, ay: null, bugun: '' },
+        ac: function () {
+            this.acik = !this.acik;
+            if (this.acik && this.veri.yil === null) { this.yukle(); }
+        },
+        yukle: function (yil, ay) {
+            var self = this;
+            var url = adres + (yil ? '?yil=' + yil + '&ay=' + ay : '');
+            fetch(url, { credentials: 'same-origin' }).then(function (c) { return c.json(); })
+                .then(function (d) { self.veri = d; });
+        },
+        ayDegistir: function (f) {
+            if (this.veri.yil === null) { return; }
+            var ay = this.veri.ay + f, yil = this.veri.yil;
+            if (ay < 1) { ay = 12; yil -= 1; }
+            if (ay > 12) { ay = 1; yil += 1; }
+            this.yukle(yil, ay);
+        },
+        ayBasligi: function () { return this.veri.ay ? AYLAR[this.veri.ay - 1] + ' ' + this.veri.yil : ''; },
+        hucreler: function () {
+            if (!this.veri.yil) { return []; }
+            var ilk = new Date(this.veri.yil, this.veri.ay - 1, 1);
+            var bos = (ilk.getDay() + 6) % 7;   // pazartesi başlangıçlı
+            var gunSayisi = new Date(this.veri.yil, this.veri.ay, 0).getDate();
+            var h = [];
+            for (var i = 0; i < bos; i++) { h.push(null); }
+            for (var g = 1; g <= gunSayisi; g++) {
+                var tarih = this.veri.yil + '-' + String(this.veri.ay).padStart(2, '0') + '-' + String(g).padStart(2, '0');
+                h.push({ gun: g, durum: this.veri.gunler[g] || '', bugun: tarih === this.veri.bugun });
+            }
+            return h;
+        },
+        renk: function (h) {
+            var r = h.durum === 'tamam' ? 'bg-gradient-to-br from-amber-300 to-orange-500 font-bold text-white'
+                  : h.durum === 'dondurulan' ? 'bg-sky-400 font-bold text-white'
+                  : 'bg-gray-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400';
+            return r + (h.bugun ? ' ring-2 ring-offset-1 ring-orange-400 dark:ring-offset-slate-800' : '');
+        }
+    };
+}
+</script>

@@ -96,6 +96,25 @@
     {% include 'base/_girisGerekli.html' %}
     {% include 'base/_kelimeKartiJs.html' %}
 
+    {% if user.is_authenticated %}
+    <script>
+        // Seri günü kullanıcının YEREL saatiyle 00.00'da biter (rapor 18.9):
+        // tarayıcının saat dilimi değiştiyse bir kez sunucuya bildirilir.
+        (function () {
+            try {
+                var ad = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                if (!ad || localStorage.getItem('saat_dilimi') === ad) { return; }
+                var csrf = document.querySelector('meta[name="csrf-token"]');
+                fetch('{% url "seri_saat_dilimi" %}', {
+                    method: 'POST', credentials: 'same-origin',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrf ? csrf.content : '' },
+                    body: JSON.stringify({ saat_dilimi: ad })
+                }).then(function (c) { if (c.ok) { localStorage.setItem('saat_dilimi', ad); } }).catch(function () {});
+            } catch (e) { /* eski tarayıcı ya da gizli sekme */ }
+        })();
+    </script>
+    {% endif %}
+
     <script>
         // Service worker (rapor 10): yalnızca bildirimleri gösterir, önbellekleme yapmaz.
         if ('serviceWorker' in navigator) {

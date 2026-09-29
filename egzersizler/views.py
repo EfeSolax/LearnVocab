@@ -27,6 +27,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 
 from LearnVocab.authgate import giris_adresi, login_gate
+from seri import hesap as seri_hesap
 from words.models import UserWordLink
 
 from . import sorular as S
@@ -146,11 +147,20 @@ def oturum(request, pk):
 
     soru = o.sorular[o.sira]
     sonuc = S.sonuc_verisi(soru, o.cevaplar[o.sira]) if o.cevaplandi_mi(o.sira) else None
+    # Alevli çubuk (rapor 18.9): günün egzersiz sayısı 10'a ulaşınca yanar.
+    # Alev, günün tamamlanacağı soru hizasında durur. "Yanlışları tekrar
+    # çöz" turları seriye sayılmadığı için orada alev yalnızca durumu gösterir.
+    seri = seri_hesap.bugun(request.user)
+    kalan = max(0, seri["esik"] - seri["egzersiz"])
+    tekrar_turu = o.kaynak_id is not None
+    alev = {"esik": seri["esik"], "tamamlandi": seri["tamamlandi"],
+            "yer": 100 if tekrar_turu else round(100 * (o.sira + kalan) / o.soru_sayisi, 1)}
     context = {
         "active_page": "Egzersizler",
         "exercise_tab": "exercises",
         "oturum": o,
         "soru": soru,
+        "alev": alev,
         "sira_no": o.sira + 1,
         "ilerleme": round(100 * o.sira / o.soru_sayisi),
         "sonuc": sonuc,
@@ -230,9 +240,13 @@ def cevap(request, pk):
         cevaplar[o.sira] = {"secim": _secim_oku(request), "dogru_mu": dogru_mu}
         o.cevaplar = cevaplar
         o.save(update_fields=["cevaplar", "guncelleme"])
-        cevaplari_kaydet(request.user, o, soru["tip"], sonuclar)
+        seri = cevaplari_kaydet(request.user, o, soru["tip"], sonuclar)
+    else:
+        seri = None
     # Aynı soruya ikinci cevap sayılmaz: kayıtlı sonuç döner.
     sonuc = S.sonuc_verisi(soru, o.cevaplar[o.sira])
+    if seri is not None:
+        sonuc = dict(sonuc, seri=seri)
     if _json_istiyor(request):
         return JsonResponse(sonuc)
     return redirect("egzersiz_oturum", pk=o.pk)

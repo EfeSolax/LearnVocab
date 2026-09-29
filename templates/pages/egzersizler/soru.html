@@ -17,16 +17,21 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
 
 {% block page %}
 {{ config|json_script:"egzersiz-config" }}
+{{ alev|json_script:"egzersiz-alev" }}
+{% include 'base/_alev.html' %}
 
 <div x-data="egzersizSoru" @keydown.window="tus($event)" class="pb-10">
 
     {# --- İlerleme + çık --- #}
     <div class="flex items-center gap-3">
-        <div class="h-2.5 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700"
-             role="progressbar" aria-valuemin="0" aria-valuemax="{{ oturum.soru_sayisi }}" aria-valuenow="{{ oturum.sira }}"
-             aria-label="İlerleme">
-            <div class="h-full rounded-full bg-indigo-600 dark:bg-indigo-400 transition-all duration-500"
-                 style="width: {{ ilerleme }}%" :style="'width: ' + (sonuc ? '{% widthratio sira_no oturum.soru_sayisi 100 %}' : '{{ ilerleme }}') + '%'"></div>
+        <div id="egz-alev" class="relative flex-1">
+            <div class="h-2.5 overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700"
+                 role="progressbar" aria-valuemin="0" aria-valuemax="{{ oturum.soru_sayisi }}" aria-valuenow="{{ oturum.sira }}"
+                 aria-label="İlerleme">
+                <div class="alev-cubuk h-full rounded-full transition-all duration-500"
+                     style="width: {{ ilerleme }}%" :style="'width: ' + (sonuc ? '{% widthratio sira_no oturum.soru_sayisi 100 %}' : '{{ ilerleme }}') + '%'"></div>
+            </div>
+            {% include 'base/_alevSimgesi.html' %}
         </div>
         <span class="text-xs font-semibold tabular-nums text-gray-500 dark:text-slate-400">{{ sira_no }}/{{ oturum.soru_sayisi }}</span>
         <a href="{% url 'exercises_page' %}" aria-label="Egzersizden çık" title="Çık (tur kaydedildi, sonra devam edebilirsin)"
@@ -162,6 +167,7 @@ document.addEventListener("alpine:init", () => {
                     if (!yanit.ok) { window.location.reload(); return; }
                     this.sonuc = await yanit.json();
                     this.sesCal(this.sonuc.dogru_mu);
+                    if (this.sonuc.seri) { window.alev.guncelle(document.getElementById('egz-alev'), this.sonuc.seri.tamamlandi); }
                     this.$nextTick(() => this.$refs.devamDugmesi?.focus());
                 } catch (e) {
                     window.geriAl?.bildir?.("Bağlantı koptu. Tekrar dener misin?");
@@ -239,5 +245,10 @@ document.addEventListener("alpine:init", () => {
         };
     });
 });
+</script>
+<script>
+    // Alevli çubuk (rapor 18.9)
+    window.alev.kur(document.getElementById('egz-alev'),
+                    JSON.parse(document.getElementById('egzersiz-alev').textContent));
 </script>
 {% endblock %}

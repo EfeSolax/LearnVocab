@@ -8,7 +8,7 @@ Süzgeçler (tek "Filtre" düğmesinin içinde):
     sira  : yeni (varsayılan) · eski · az
     zaman : tumu (varsayılan) · hafta · ay
     zor   : 1 -> Zorlandıklarım: L&P'de "bilmiyorum" dediği / bildiğini sanıp
-            yanıldığı / "hâlâ öğrenemedim" dediği (learnpass.WordEncounter)
+            yanıldığı ya da egzersizde yanlış yaptığı; son sonuç (learnpass.WordEncounter)
             ya da egzersizde yanlış yaptığı (UserWordLink.wrongCount > 0).
     ara   : listede ara (İngilizce yazım ya da Türkçe anlam)
 
@@ -80,11 +80,14 @@ def durum(get):
 
 
 def zorlandiklarim_q(user):
-    """L&P'de bilmediği/yanıldığı/öğrenemediği ya da egzersizde yanlış yaptığı kelimeler."""
-    from learnpass.models import Declaration, WordEncounter
-    lp = WordEncounter.objects.filter(user=user, word=OuterRef("word")).filter(
-        Q(unknown_count__gt=0) | Q(misjudged_count__gt=0) | Q(declaration=Declaration.STUCK))
-    return Q(wrongCount__gt=0) | Q(Exists(lp))
+    """
+    Zorlandıklarım (rapor 18.2): son sonucu "bilemedi" olan kelimeler — L&P'de
+    bilmiyorum / yanılmışım ya da egzersizde yanlış; sonra bilinirse çıkar.
+    """
+    from learnpass.models import WordEncounter
+    zor = WordEncounter.objects.filter(user=user, word=OuterRef("word"),
+                                       son_basarili=False, times_seen__gt=0)
+    return Q(Exists(zor))
 
 
 def baglar(user, d):

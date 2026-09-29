@@ -37,13 +37,18 @@ class PushAboneligi(models.Model):
 
 class GunlukHatirlatma(models.Model):
     """
-    Günlük L&P hatırlatmasının gönderildiği gün. Kullanıcı başına günde tek
-    kayıt: komut aynı gün birden çok kez çalışsa bile ikinci bildirim gitmez.
+    Seri hatırlatmasının gönderildiği gün ve zaman (rapor 18.9: 12.00 ve
+    23.45). Kullanıcı + gün + tür başına tek kayıt: komut aynı zaman
+    diliminde birden çok kez çalışsa bile ikinci bildirim gitmez.
     """
+
+    OGLE, GECE = "ogle", "gece"
+    TUR_CHOICES = [(OGLE, "12.00"), (GECE, "23.45")]
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
                              related_name="gunluk_hatirlatmalar")
-    gun = models.DateField()
+    gun = models.DateField()   # kullanıcının yerel günü
+    tur = models.CharField(max_length=5, choices=TUR_CHOICES, default=OGLE)
     gonderilen = models.PositiveSmallIntegerField(default=0)  # başarılı cihaz sayısı
     olusturuldu = models.DateTimeField(auto_now_add=True)
 
@@ -51,8 +56,8 @@ class GunlukHatirlatma(models.Model):
         verbose_name = "günlük hatırlatma"
         verbose_name_plural = "günlük hatırlatmalar"
         constraints = [
-            models.UniqueConstraint(fields=["user", "gun"], name="gunluk_hatirlatma_tek"),
+            models.UniqueConstraint(fields=["user", "gun", "tur"], name="gunluk_hatirlatma_tek"),
         ]
 
     def __str__(self):
-        return f"{self.user} · {self.gun}"
+        return f"{self.user} · {self.gun} · {self.tur}"

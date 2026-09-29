@@ -183,6 +183,21 @@ def _yazi_olustur(request, metin):
     return yazi
 
 
+def _seriye_say(user, yazi):
+    """
+    Metin gönderildiği an seriye sayılır, ama yalnızca geçerliyse (rapor 18.9,
+    texts/gecerlilik.py). Döner: kullanıcıya gösterilecek not ya da "".
+    """
+    from seri import hesap as seri_hesap
+
+    from .gecerlilik import seriye_sayilir_mi
+    sayilir, neden = seriye_sayilir_mi(user, yazi.content, haric_id=yazi.pk)
+    if sayilir:
+        seri_hesap.say(user, seri_hesap.METIN)
+        return ""
+    return neden
+
+
 def _olay_isleyici(reporter):
     """Gemini olaylarını ilerleme çubuğuna çevirir."""
     def isle(ad, bilgi):
@@ -240,6 +255,9 @@ def createText(request):
         return hata(sorun)
 
     yazi = _yazi_olustur(request, metin)
+    seri_notu = _seriye_say(request.user, yazi)
+    if seri_notu:   # sonuç sayfasında görünür (AJAX'ta da yönlendirmeden sonra)
+        messages.info(request, seri_notu)
 
     if ajax:
         job_id = progress.create(request.user.id, message="Metnin gönderiliyor...")
@@ -376,9 +394,15 @@ def diyalogCevap(request, diyalog_id):
     diyalog = get_object_or_404(Diyalog.objects.select_related("word"), pk=diyalog_id, denetlendi=True)
     girdi = (request.POST.get("cevap") or "")[:120]
     sonuc = dy.cevabi_degerlendir(diyalog, girdi)
+    seri = None
     if sonuc.durum != dy.BOS:
         DiyalogCevabi.objects.create(user=request.user, diyalog=diyalog,
                                      girdi=girdi.strip(), sonuc=sonuc.durum)
+        # Cevaplanan diyalog, doğru ya da yanlış, seriye sayılır (rapor 18.9).
+        from seri import hesap as seri_hesap
+        seri = seri_hesap.say(request.user, seri_hesap.DIYALOG)
     veri = sonuc.sozluk()
+    if seri is not None:
+        veri["seri"] = seri
     veri["not"] = dy.register_notu(diyalog) if sonuc.durum != dy.BOS else ""
     return JsonResponse(veri)
