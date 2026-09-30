@@ -17,12 +17,12 @@ except ImportError:
 
 class UserAdmin(BaseUserAdmin):
     # Varsayılan UserAdmin sayfasında görünmesini istediğimiz özellikler
-    list_display = ('username', 'email', 'first_name', 'last_name', 'level')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'cefr')
 
     # UserAdmin sayfasında hangi özellikler görünecek. Detayları göster:
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('Kişisel Bilgiler', {'fields': ('first_name', 'last_name', 'email', 'level')}),
+        ('Kişisel Bilgiler', {'fields': ('first_name', 'last_name', 'email', 'cefr')}),
         ('Arkadaşlıklar', {'fields': ('friends', 'incomingRequests')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),

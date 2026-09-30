@@ -84,7 +84,7 @@ def _yazilar(user):
 # Yazma ana sayfası
 # ---------------------------------------------------------------------------
 
-@login_gate("Yazma", GIRIS_ACIKLAMASI)
+@login_gate("Yazılar", GIRIS_ACIKLAMASI)
 def yazmaSayfasi(request):
     yazilar = list(_yazilar(request.user).order_by("-createdAt"))
     for yazi in yazilar:
@@ -136,7 +136,7 @@ def kullanmayi_dene(user, adet=ONERI_SAYISI):
     return sonuc
 
 
-@login_gate("Yazma", GIRIS_ACIKLAMASI)
+@login_gate("Yazılar", GIRIS_ACIKLAMASI)
 def newTextPage(request):
     yazabilir = limits.yazabilir_mi(request.user)
     return render(request, "pages/texts/newText.html", {
@@ -303,7 +303,7 @@ def createTextFinish(request, job_id):
 # Değerlendirme görünümü
 # ---------------------------------------------------------------------------
 
-@login_gate("Yazma", GIRIS_ACIKLAMASI)
+@login_gate("Yazılar", GIRIS_ACIKLAMASI)
 def reviewText(request, text_id):
     yazi = get_object_or_404(_yazilar(request.user), id=text_id)
     geri = yazi.geri_bildirim or {}
@@ -355,7 +355,7 @@ def restoreText(request, text_id):
     return JsonResponse({"ok": True, "adres": reverse("review_text", args=[yazi.pk])})
 
 
-@login_gate("Yazma", GIRIS_ACIKLAMASI)
+@login_gate("Yazılar", GIRIS_ACIKLAMASI)
 def aboutGradingPage(request):
     return render(request, "pages/texts/aboutGrading.html", {
         "sertlikler": SERTLIK_ACIKLAMALARI,
@@ -367,7 +367,7 @@ def aboutGradingPage(request):
 # Diyalogda doğru kelime
 # ---------------------------------------------------------------------------
 
-@login_gate("Yazma", GIRIS_ACIKLAMASI)
+@login_gate("Yazılar", GIRIS_ACIKLAMASI)
 def diyalogSayfasi(request):
     liste_bos = not UserWordLink.objects.filter(user=request.user).exists()
     havuz_bos = dy.havuz_bos_mu()

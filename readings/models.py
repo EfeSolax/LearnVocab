@@ -142,9 +142,14 @@ class UserText(models.Model):
     PDF dosyasının kendisi saklanmıyor, yalnızca çıkarılan metin: dosyayı
     tutmak gizlilik açısından gereksiz bir yük olurdu.
 
+    Metnin gövdesi VERİTABANINDA DEĞİL, diskte sıkıştırılmış dosyada durur
+    (rapor 18.24; readings/depo.py). `body` bir özelliktir: okurken dosya
+    açılır, atanınca kaydederken dosyaya yazılır. Satır silinince dosya da
+    silinir (readings/sinyaller.py).
+
     Silme onaysız ve "Geri al"lı (rapor 12.7): önce `deleted_at` dolar
-    (yumuşak silme), metin listeden kalkar; Geri al onu boşaltır. Çöpteki
-    metinler bir gün sonra kalıcı olarak temizlenir (bkz. views._copu_bosalt).
+    (yumuşak silme), metin çöp kutusuna gider. Çöpteki metinler bir hafta
+    sonra kalıcı olarak temizlenir (bkz. views._copu_bosalt).
     """
 
     SOURCE_PDF = "pdf"
@@ -153,7 +158,8 @@ class UserText(models.Model):
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reading_texts")
     title = models.CharField(max_length=200)
-    body = models.TextField()
+    # Gövdenin depodaki dosya adı: "okumalar/<kullanıcı>/<rastgele>.txt.z"
+    dosya = models.CharField(max_length=80, blank=True, default="", editable=False)
     source_kind = models.CharField(max_length=10, choices=SOURCE_CHOICES)
     word_count = models.PositiveIntegerField(default=0)
 
@@ -168,6 +174,33 @@ class UserText(models.Model):
 
     def __str__(self):
         return f"{self.owner_id} · {self.title}"
+
+    # --- gövde: diskteki sıkıştırılmış dosya -----------------------------
+    _body = None
+    _body_degisti = False
+
+    @property
+    def body(self):
+        if self._body is None:
+            from . import depo
+            self._body = depo.oku(self.dosya) if self.dosya else ""
+        return self._body
+
+    @body.setter
+    def body(self, metin):
+        self._body = metin or ""
+        self._body_degisti = True
+
+    def save(self, *args, **kwargs):
+        if self._body_degisti:
+            from . import depo
+            if not self.dosya:
+                self.dosya = depo.yeni_ad(self.owner_id)
+                if kwargs.get("update_fields") is not None:
+                    kwargs["update_fields"] = set(kwargs["update_fields"]) | {"dosya"}
+            depo.yaz(self.dosya, self._body)
+            self._body_degisti = False
+        super().save(*args, **kwargs)
 
     @property
     def paragraphs(self):

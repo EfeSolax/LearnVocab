@@ -316,7 +316,13 @@ class OkumalarSayfasiTests(TestCase):
         veri = cevap.json()
         self.alinin.refresh_from_db()
         self.assertIsNotNone(self.alinin.deleted_at)
-        self.assertNotContains(self.client.get(reverse("readings")), "Ali&#x27;nin notu")
+        sayfa = self.client.get(reverse("readings"))
+        self.assertEqual(sayfa.context["metinlerim"], [])
+        # Çöp kutusunda durur: geri alınabilir ya da kalıcı silinebilir (rapor 18.24)
+        self.assertEqual([m.id for m in sayfa.context["cop"]], [self.alinin.id])
+        self.assertContains(sayfa, "data-cop-kutusu")
+        self.assertContains(sayfa, "7 gün kaldı")
+        self.assertContains(sayfa, reverse("readings_user_text_purge", args=[self.alinin.id]))
         self.assertEqual(self.client.get(reverse("readings_user_text", args=[self.alinin.id])).status_code, 404)
 
         # Başkası geri alamaz
@@ -330,12 +336,80 @@ class OkumalarSayfasiTests(TestCase):
         self.assertIsNone(self.alinin.deleted_at)
         self.assertContains(self.client.get(reverse("readings")), "Ali&#x27;nin notu")
 
-    def test_eski_cop_temizlenir(self):
-        self.alinin.deleted_at = timezone.now() - timedelta(days=2)
+    def test_cop_bir_hafta_sonra_temizlenir(self):
+        from readings import depo
+        dosya = self.alinin.dosya
+        self.assertEqual(depo.oku(dosya), "Private text here.")
+        self.alinin.deleted_at = timezone.now() - timedelta(days=6)
         self.alinin.save()
         self.client.force_login(self.ali)
         self.client.get(reverse("readings"))
+        self.assertTrue(UserText.objects.filter(pk=self.alinin.pk).exists())     # 6 gün: duruyor
+
+        UserText.objects.filter(pk=self.alinin.pk).update(deleted_at=timezone.now() - timedelta(days=8))
+        self.client.get(reverse("readings"))
         self.assertFalse(UserText.objects.filter(pk=self.alinin.pk).exists())
+        self.assertEqual(depo.oku(dosya), "")                                    # dosyası da gitti
+
+    def test_kalici_silme_yalnizca_coptekine_ve_sahibine(self):
+        self.client.force_login(self.ali)
+        adres = reverse("readings_user_text_purge", args=[self.alinin.id])
+        self.assertEqual(self.client.post(adres).status_code, 404)               # çöpte değil
+        self.alinin.deleted_at = timezone.now()
+        self.alinin.save()
+        self.client.force_login(self.veli)
+        self.assertEqual(self.client.post(adres).status_code, 404)               # başkasının
+        self.client.force_login(self.ali)
+        self.assertRedirects(self.client.post(adres), reverse("readings"))
+        self.assertFalse(UserText.objects.filter(pk=self.alinin.pk).exists())
+
+    def test_govde_veritabaninda_degil_diskte_sikistirilmis(self):
+        from django.conf import settings
+        from readings import depo
+        uzun = "The quick brown fox jumps over the lazy dog. " * 400
+        m = UserText.objects.create(owner=self.ali, title="Uzun", body=uzun, source_kind="paste")
+        self.assertFalse(any(f.name == "body" for f in UserText._meta.get_fields()))
+        self.assertTrue(m.dosya.startswith(f"okumalar/{self.ali.id}/"))
+        yol = settings.OZEL_DEPO / m.dosya
+        self.assertLess(yol.stat().st_size, len(uzun) / 3)                      # sıkıştırılmış
+        self.assertEqual(UserText.objects.get(pk=m.pk).body, uzun)              # okurken açılır
+        with self.assertRaises(ValueError):
+            depo.yaz("../disari.txt", "x")
+
+    def test_en_cok_15_pdf_ama_yapistirma_serbest(self):
+        from readings import views
+        for i in range(views.EN_COK_PDF):
+            UserText.objects.create(owner=self.ali, title=f"p{i}", body="x", source_kind="pdf")
+        self.client.force_login(self.ali)
+        cevap = self.client.post(reverse("readings_add"), {"tur": "pdf"})
+        self.assertEqual(cevap.status_code, 400)
+        self.assertContains(cevap, "En çok 15 PDF", status_code=400)
+        cevap = self.client.post(reverse("readings_add"), {
+            "tur": "yapistir", "metin": "This is a pasted text that is long enough to read."})
+        self.assertEqual(cevap.status_code, 302)
+        # Çöpteki PDF sınıra sayılmaz
+        UserText.objects.filter(owner=self.ali, title="p0").update(deleted_at=timezone.now())
+        cevap = self.client.post(reverse("readings_add"), {"tur": "pdf"})
+        self.assertContains(cevap, "Bir PDF dosyası seçer misin?", status_code=400)
+
+    def test_uzun_metin_bolum_bolum(self):
+        from readings import views
+        paragraf = " ".join(["word"] * 500)
+        m = UserText.objects.create(owner=self.ali, title="Kitap", source_kind="pdf",
+                                    body="\n\n".join([paragraf] * 7), word_count=3500)
+        self.assertEqual([len(b) for b in views.bolumle(m.paragraphs)], [3, 3, 1])
+        self.client.force_login(self.ali)
+        adres = reverse("readings_user_text", args=[m.id])
+        ilk = self.client.get(adres)
+        self.assertEqual((ilk.context["bolum"], ilk.context["bolum_sayisi"], len(ilk.context["paragraflar"])),
+                         (1, 3, 3))
+        self.assertContains(ilk, "Bölüm 1 / 3")
+        self.assertContains(ilk, 'rel="next" href="?bolum=2"')
+        son = self.client.get(adres, {"bolum": 99})
+        self.assertEqual((son.context["bolum"], len(son.context["paragraflar"])), (3, 1))
+        # Kısa metinde bölüm çubuğu yok
+        self.assertNotContains(self.client.get(reverse("readings_user_text", args=[self.alinin.id])),
+                               "data-bolumler")
 
     def test_silme_get_ile_olmaz(self):
         self.client.force_login(self.ali)
@@ -367,7 +441,7 @@ class PdfMetniTests(TestCase):
 
     def test_boyut_siniri(self):
         with mock.patch.object(pdf_okuyucu, "EN_BUYUK_BOYUT", 10):
-            with self.assertRaisesMessage(pdf_okuyucu.PdfOkunamadi, "10 MB"):
+            with self.assertRaisesMessage(pdf_okuyucu.PdfOkunamadi, "50 MB"):
                 pdf_okuyucu.pdf_metni(pdf_uret(["some text"]))
 
     def test_satir_sonu_tiresi_birlesir(self):

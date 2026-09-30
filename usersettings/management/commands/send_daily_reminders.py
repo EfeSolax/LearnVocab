@@ -41,8 +41,8 @@ class Command(BaseCommand):
             subject = f"LearnVocab Günlük Hatırlatman, {user.username}!"
             message = (
                 f"Merhaba {user.username},\n\n"
-                f"Günün kelimelerini öğrenme zamanı! Bugünkü hedefin {setting.dailyGoal} kelime.\n\n"
-                f"Pratik yapmak için hemen giriş yap: http://127.0.0.1:8000/login\n" # (Bunu kendi site adresinizle değiştirin)
+                f"Günün kelimelerini öğrenme zamanı!\n\n"
+                f"Pratik yapmak için: {settings.SITE_ADRESI}/calismalar/\n"
                 f"\n\n"
                 f"Bu e-postaları almak istemiyorsan, profilindeki 'Ayarlar' sayfasından bildirimleri kapatabilirsin.\n\n"
                 f"İyi öğrenmeler!"

@@ -301,9 +301,10 @@ class DarkThemeTests(TestCase):
         html = self._html("sozluk")
         self.assertIn("color-scheme: dark", html)
 
-    def test_toggle_button_is_present(self):
-        html = self._html("sozluk")
-        self.assertIn("data-theme-toggle", html)
+    def test_tema_dugmesi_ust_cubukta_degil_ayarlarda(self):
+        """Rapor 18.26: tema düğmesi üst çubuktan kalktı, Ayarlar sayfasında."""
+        self.assertNotIn("data-theme-toggle", self._html("sozluk"))
+        self.assertNotIn("data-tema-sec", self._html("sozluk").split("</header>")[0])
 
     def test_pages_carry_dark_variants(self):
         for url_name in ("sozluk", "index", "about", "login", "register"):
@@ -442,7 +443,7 @@ class NavbarMenuTests(TestCase):
     logo ana sayfaya; sağ üstte Ayarlar dişlisi ya da Giriş Yap.
     """
 
-    SECTIONS = (">Sözlük<", ">Çalışmalar<", ">Ana Sayfa<", ">Okumalar<", ">Yazma<")
+    SECTIONS = (">Sözlük<", ">Çalışmalar<", ">Ana Sayfa<", ">Okumalar<", ">Yazılar<")
 
     def setUp(self):
         self.user = User.objects.create_user(username="menuuser", password="Sifre1234")
@@ -488,9 +489,12 @@ class NavbarMenuTests(TestCase):
                 self.assertNotIn("/words/all-words/", navbar)
                 self.assertNotIn("/profile/profile/words/", navbar)
 
-    def test_settings_gear_when_logged_in(self):
+    def test_profil_fotografi_hesaba_goturur(self):
+        """Rapor 18.26: dişli yerine profil fotoğrafı; dokununca Hesap."""
         navbar = self._navbar(logged_in=True)
-        self.assertIn('title="Ayarlar"', navbar)
+        self.assertIn("data-hesap-dugmesi", navbar)
+        self.assertIn('title="Hesap"', navbar)
+        self.assertNotIn('title="Ayarlar"', navbar)
         self.assertIn(reverse("user_profile"), navbar)
         self.assertNotIn("Giriş Yap", navbar)
         self.assertNotIn("Hoş geldin", navbar)
@@ -499,10 +503,10 @@ class NavbarMenuTests(TestCase):
         navbar = self._navbar(logged_in=False)
         self.assertIn("Giriş Yap", navbar)
         self.assertIn(f"{reverse('login')}?next=", navbar)
-        self.assertNotIn('title="Ayarlar"', navbar)
+        self.assertNotIn("data-hesap-dugmesi", navbar)
 
     def test_logout_is_on_the_profile_page(self):
-        """Üst çubukta çıkış yok; dişlinin açtığı profil/ayarlar sayfasında var."""
+        """Üst çubukta çıkış yok; profil fotoğrafının açtığı Hesap sayfasında var."""
         navbar = self._navbar(logged_in=True)
         self.assertNotIn(">Çıkış Yap<", navbar)
         page = self.client.get(reverse("user_profile"), follow=True).content.decode()
@@ -537,7 +541,7 @@ class MobileTabBarTests(TestCase):
     def test_home_is_in_the_middle(self):
         bar = self._bar()
         etiketler = re.findall(r'<span class="text-\[11px\][^"]*">([^<]+)</span>', bar)
-        self.assertEqual(etiketler, ["Sözlük", "Çalışmalar", "Ana Sayfa", "Okumalar", "Yazma"])
+        self.assertEqual(etiketler, ["Sözlük", "Çalışmalar", "Ana Sayfa", "Okumalar", "Yazılar"])
         self.assertEqual(etiketler[2], "Ana Sayfa")
 
     def test_every_section_has_an_icon(self):
@@ -631,8 +635,9 @@ class LoginGateTests(TestCase):
 
     GATED = {
         "exercises_page": "Egzersizler",
-        "profile_texts": "Yazma",
-        "user_profile": "Profilim",
+        "profile_texts": "Yazılar",
+        "user_profile": "Hesap",
+        "settings_page": "Ayarlar",
     }
 
     def test_gated_pages_explain_instead_of_redirecting(self):
@@ -666,8 +671,8 @@ class LoginGateTests(TestCase):
                 self.assertNotIn("önce giriş yapın", html)
 
 
-class MergedProfilePageTests(TestCase):
-    """Hesap bilgileri + ayarlar tek sayfada."""
+class HesapVeAyarlarTests(TestCase):
+    """Rapor 18.26: Hesap (profil fotoğrafından açılır) ve ondan gidilen Ayarlar."""
 
     def setUp(self):
         from usersettings.models import UserSettings
@@ -678,52 +683,57 @@ class MergedProfilePageTests(TestCase):
         UserSettings.objects.create(user=self.user)
         self.client.login(username="profiluser", password="Sifre1234")
 
-    def _page(self):
-        response = self.client.get(reverse("user_profile"), follow=True)
+    def _hesap(self):
+        response = self.client.get(reverse("user_profile"))
         self.assertEqual(response.status_code, 200)
         return response.content.decode()
 
-    def test_page_contains_every_section(self):
-        html = self._page()
-        for parca in ("Hesap Bilgileri", "Öğrenme", "E-posta Bildirimleri",
-                      "Verilerim", "Tehlikeli Bölge", "Parolamı Değiştir"):
-            with self.subTest(bolum=parca):
+    def _ayarlar(self):
+        response = self.client.get(reverse("settings_page"))
+        self.assertEqual(response.status_code, 200)
+        return response.content.decode()
+
+    def test_hesap_sayfasi(self):
+        html = self._hesap()
+        for parca in ("Hesap Bilgileri", "Parolamı Değiştir", "Çıkış Yap", 'name="first_name"',
+                      'name="last_name"', 'name="email"', 'name="username"', 'name="profile_pic"'):
+            with self.subTest(parca=parca):
                 self.assertIn(parca, html)
+        # Ayarlar'a buradan gidilir; ayarların kendisi burada değil.
+        self.assertIn(reverse("settings_page"), html)
+        self.assertNotIn("Tehlikeli Bölge", html)
+        self.assertIn('action="%s"' % reverse("user_profile"), html)
 
-    def test_every_setting_field_survived_the_redesign(self):
-        """Tasarım değişti, alanlar aynı kalmalı: form adları korunuyor mu?"""
-        html = self._page()
-        for alan in ('name="first_name"', 'name="last_name"', 'name="email"',
-                     'name="username"', 'name="profile_pic"', 'name="dailyGoal"',
-                     'name="audio"', 'name="dailyGoalsMail"', 'name="featuresMail"',
-                     'name="improvementsMail"', 'name="confirm_password"'):
-            with self.subTest(alan=alan):
-                self.assertIn(alan, html)
+    def test_ayarlar_sayfasi(self):
+        html = self._ayarlar()
+        for parca in ("Görünüm", "Çalışma", "E-posta Bildirimleri", "Verilerim", "Tehlikeli Bölge",
+                      'data-tema-sec="sistem"', 'data-tema-sec="light"', 'data-tema-sec="dark"',
+                      'name="sertlik"', 'name="audio"', 'name="dailyGoalsMail"',
+                      'name="featuresMail"', 'name="improvementsMail"', "data-seviye-ayari"):
+            with self.subTest(parca=parca):
+                self.assertIn(parca, html)
+        self.assertIn(reverse("user_profile"), html)          # Hesap'a geri dönüş
 
-    def test_dangerous_actions_still_ask_for_the_password(self):
-        html = self._page()
+    def test_gunluk_hedef_kalkti(self):
+        """Rapor 18.23: günlük hedef ayarı yok; seri sabit kurallarla çalışır."""
+        from usersettings.models import UserSettings
+        self.assertNotIn("dailyGoal\"", self._ayarlar())
+        self.assertNotIn("Günlük Soru Hedefi", self._ayarlar())
+        self.assertFalse(hasattr(UserSettings, "dailyGoal"))
+
+    def test_tehlikeli_islemler_parola_sorar(self):
+        html = self._ayarlar()
         self.assertEqual(html.count('name="confirm_password"'), 2)
         self.assertIn(reverse("remove_all_words"), html)
         self.assertIn(reverse("delete_myaccount"), html)
 
-    def test_export_links_are_all_present(self):
-        html = self._page()
+    def test_disa_aktarma_baglantilari(self):
+        html = self._ayarlar()
         for ad in ("export_all", "export_mywords", "export_mytexts"):
             with self.subTest(baglanti=ad):
                 self.assertIn(reverse(ad), html)
 
-    def test_account_form_posts_to_a_url_that_actually_saves(self):
-        """
-        Formun action'ı gerçekten kaydeden adrese gitmeli.
-
-        Sayfalar birleştirilirken 'profile_myaccount' salt yönlendirmeye
-        dönüştü; form hâlâ oraya POST ediyorsa 302 sonrası tarayıcı GET ile
-        geri geliyor ve kullanıcının yazdıkları sessizce kayboluyor.
-        """
-        html = self._page()
-        self.assertIn('action="%s"' % reverse("user_profile"), html)
-
-    def test_account_form_saves_from_the_merged_page(self):
+    def test_hesap_formu_kaydeder(self):
         self.client.post(reverse("user_profile"), {
             "email": "yeni@x.com", "first_name": "Efe", "last_name": "Solmaz",
         })
@@ -731,50 +741,61 @@ class MergedProfilePageTests(TestCase):
         self.assertEqual(self.user.email, "yeni@x.com")
         self.assertEqual(self.user.first_name, "Efe")
 
-    def test_page_has_no_left_sidebar(self):
-        """Sol menü tamamen kaldırıldı; sayfa tam genişlikte."""
-        html = self._page()
-        self.assertNotIn('id="mobile-sidebar"', html)
-        self.assertNotIn(">Ayarlar</span>", html)
-        self.assertNotIn(">Hesap Bilgilerim</span>", html)
-
-    def test_comment_controls_are_hidden(self):
+    def test_yorum_dugmeleri_gizli(self):
         """Yorumlar kapalıyken 'yorumlarımı sil' düğmesi görünmemeli."""
-        html = self._page()
+        html = self._ayarlar()
         self.assertNotIn("Yorumları Kaldır", html)
         self.assertNotIn("Tüm Yorumlarımı Dışa Aktar", html)
 
-    def test_daily_goal_can_be_set_back_to_zero(self):
-        """
-        "Yok" seçeneği hedefi gerçekten sıfırlamalı.
-
-        Kaydeden view'daki if/elif zincirinde 0 için bir dal yoktu; kullanıcı
-        "Yok" seçtiğinde eski hedefi sessizce olduğu gibi kalıyordu.
-        """
+    def test_ayarlari_kaydetmek_ayarlara_doner_ve_sertligi_yazar(self):
+        from texts.models import YazmaAyari
         from usersettings.models import UserSettings
-
+        response = self.client.post(reverse("save_settings"), {"sertlik": "titiz", "audio": "on"})
+        self.assertRedirects(response, reverse("settings_page"))
+        self.assertEqual(YazmaAyari.sertlik_of(self.user), "titiz")
         ayar = UserSettings.objects.get(user=self.user)
-        ayar.dailyGoal = 15
-        ayar.save()
+        self.assertTrue(ayar.audio)
+        self.assertFalse(ayar.featuresMail)
 
-        self.client.post(reverse("save_settings"), {"dailyGoal": "0"})
-        ayar.refresh_from_db()
-        self.assertEqual(ayar.dailyGoal, 0)
 
-    def test_daily_goal_ignores_values_outside_the_options(self):
-        from usersettings.models import UserSettings
+class KayitFormuTests(TestCase):
+    """Rapor 18.23: ad, soyad, e-posta, kullanıcı adı, şifre (tek kez, göster/gizle)."""
 
-        ayar = UserSettings.objects.get(user=self.user)
-        ayar.dailyGoal = 10
-        ayar.save()
+    VERI = {"first_name": "Efe", "last_name": "Solmaz", "email": "Efe@Example.com",
+            "username": "efes", "password": "Sifre1234"}
 
-        self.client.post(reverse("save_settings"), {"dailyGoal": "999"})
-        ayar.refresh_from_db()
-        self.assertEqual(ayar.dailyGoal, 10)
+    def test_form_alanlari(self):
+        html = self.client.get(reverse("register")).content.decode()
+        for alan in ('name="first_name"', 'name="last_name"', 'name="email"', 'name="username"',
+                     'name="password"', "data-sifre-goster"):
+            self.assertIn(alan, html)
+        for eski in ('name="level"', 'name="password2"', 'name="password1"', "Kur"):
+            self.assertNotIn(eski, html)
 
-    def test_saving_settings_returns_to_the_merged_page(self):
-        response = self.client.post(reverse("save_settings"), {"dailyGoal": "7"})
-        self.assertRedirects(response, reverse("user_profile"))
+    def test_kayit_olur(self):
+        cevap = self.client.post(reverse("register"), self.VERI)
+        self.assertRedirects(cevap, reverse("login"))
+        u = User.objects.get(username="efes")
+        self.assertEqual((u.first_name, u.last_name, u.email, u.cefr),
+                         ("Efe", "Solmaz", "efe@example.com", ""))
+        self.assertTrue(u.check_password("Sifre1234"))
+        self.assertTrue(hasattr(u, "mysettings"))
+        self.assertFalse(hasattr(u, "level"))
+
+    def test_hata_olunca_yazilanlar_kalir(self):
+        cevap = self.client.post(reverse("register"), {**self.VERI, "password": "kisa"})
+        self.assertEqual(cevap.status_code, 400)
+        html = cevap.content.decode()
+        self.assertIn('value="Efe"', html)
+        self.assertIn('value="efes"', html)
+        self.assertIn("en az 8 karakter", html)
+        self.assertNotIn("kisa", html)
+        self.assertFalse(User.objects.filter(username="efes").exists())
+
+    def test_ad_soyad_zorunlu_ve_kullanici_adi_tekil(self):
+        self.assertEqual(self.client.post(reverse("register"), {**self.VERI, "last_name": ""}).status_code, 400)
+        User.objects.create_user(username="EFES", password="Sifre1234")
+        self.assertEqual(self.client.post(reverse("register"), self.VERI).status_code, 400)
 
 
 class TemplateCommentSyntaxTests(TestCase):

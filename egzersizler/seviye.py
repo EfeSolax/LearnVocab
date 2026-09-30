@@ -2,10 +2,10 @@
 Kullanıcının seviyesi (CEFR) ve komşu seviyeler.
 
 Seviyenin kendisi tek kaynaktan okunur: users.seviye.kullanici_seviyesi
-(User.cefr, yoksa eski kur User.level 101…501, yoksa B1).
+(User.cefr, yoksa B1).
 """
 
-from users.seviye import KUR_CEFR, VARSAYILAN, kullanici_seviyesi  # noqa: F401
+from users.seviye import VARSAYILAN, kullanici_seviyesi  # noqa: F401
 from words.models import CEFR_LEVELS
 
 

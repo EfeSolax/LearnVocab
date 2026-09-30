@@ -48,7 +48,7 @@ v1'de OCR yok: taranmış PDF'te nazik bir hata gösterilir.
         <label for="dosya" class="mb-1 block text-sm font-semibold text-gray-700 dark:text-slate-300">PDF dosyası</label>
         <input id="dosya" name="dosya" type="file" accept=".pdf,application/pdf"
                class="block w-full text-sm text-gray-700 dark:text-slate-300 file:mr-3 file:rounded-lg file:border-0 file:bg-indigo-50 file:px-3 file:py-2 file:font-semibold file:text-indigo-700 dark:file:bg-indigo-950 dark:file:text-indigo-300">
-        <p class="mt-1 text-xs text-gray-500 dark:text-slate-400">En çok 10 MB ve {{ en_cok_sayfa }} sayfa. Taranmış (fotoğraf) PDF'ler şimdilik okunamıyor.</p>
+        <p class="mt-1 text-xs text-gray-500 dark:text-slate-400">En çok {{ en_buyuk_mb }} MB ve {{ en_cok_sayfa }} sayfa. Taranmış (fotoğraf) PDF'ler şimdilik okunamıyor.</p>
     </div>
 
     <div x-show="tur === 'yapistir'" {% if tur != 'yapistir' %}x-cloak{% endif %}>

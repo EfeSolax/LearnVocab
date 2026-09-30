@@ -51,7 +51,8 @@ class UserSettings(models.Model):
     improvementsMail = models.BooleanField(default = True)
     dailyGoalsMail = models.BooleanField(default = True)
 
-    dailyGoal = models.IntegerField(default = 5)
+    # Günlük hedef (dailyGoal) 30 Eylül'de kaldırıldı: seri sabit kurallarla
+    # çalışır (rapor 18.9, 18.23).
 
     audio = models.BooleanField(default = True)
 

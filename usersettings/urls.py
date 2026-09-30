@@ -4,6 +4,7 @@ from usersettings import views
 
 # LearnVocab/urls.py: path("ayarlar/", include(...))
 urlpatterns = [
+    path("", views.ayarlarSayfasi, name="settings_page"),
     path("kaydet/", views.saveSettings, name="save_settings"),
     path("kelimelerimi-sil/", views.removeAllWords, name="remove_all_words"),
     path("yorumlarimi-sil/", views.removeAllComments, name="remove_all_comments"),

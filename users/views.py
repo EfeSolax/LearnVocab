@@ -45,76 +45,52 @@ PUT, DELETE, PATCH => Daha çok API ve güncelleme işlemlerinde kullanılan req
 """
 
 
-# Kayıt olma işlemi için register fonksiyonu çalıştırılacak.
 def register(request):
-    """Kullanıcı kayıt görünümü."""
+    """
+    Kayıt (rapor 18.23): ad, soyad, e-posta, kullanıcı adı, şifre.
 
-    # POST değilse formu göster
+    Şifre TEK kez alınır ("göster / gizle" düğmesi formda). Eski "kur" seçimi
+    yok: seviye, seviye testinden ya da "Seviyemi kendim seçeyim"den gelir.
+    Hata olursa form yazılanlarla birlikte yeniden çizilir (şifre hariç).
+    """
     if request.method != "POST":
-        return render(request, "pages/users/register.html")
+        return render(request, "pages/users/register.html", {"degerler": {}})
 
-    # POST verilerini güvenli al (None gelirse "" varsayalım)
-    name      = (request.POST.get("first_name") or "").strip()
-    surname   = (request.POST.get("last_name") or "").strip()
-    username  = (request.POST.get("username") or "").strip()
-    email     = (request.POST.get("email") or "").strip().lower()
-    level     = request.POST.get("level")
-    password1 = request.POST.get("password1") or ""
-    password2 = request.POST.get("password2") or ""
+    degerler = {
+        "first_name": (request.POST.get("first_name") or "").strip()[:150],
+        "last_name": (request.POST.get("last_name") or "").strip()[:150],
+        "username": (request.POST.get("username") or "").strip(),
+        "email": (request.POST.get("email") or "").strip().lower(),
+    }
+    sifre = request.POST.get("password") or ""
 
-    # --- Validasyon ---
-    if not username:
-        messages.error(request, "Kullanıcı adı boş olamaz.")
-        return redirect("register")
+    hata = None
+    if not degerler["first_name"] or not degerler["last_name"]:
+        hata = "Adını ve soyadını yazar mısın?"
+    elif not degerler["email"]:
+        hata = "E-posta boş olamaz."
+    elif not degerler["username"]:
+        hata = "Kullanıcı adı boş olamaz."
+    elif len(degerler["username"]) > 150:
+        hata = "Kullanıcı adı en çok 150 karakter olabilir."
+    elif checkThePassword(sifre) != "correct":
+        hata = checkThePassword(sifre)
+    elif User.objects.filter(username__iexact=degerler["username"]).exists():
+        hata = "Bu kullanıcı adı alınmış."
+    elif User.objects.filter(email__iexact=degerler["email"]).exists():
+        hata = "Bu e-posta adresi ile daha önce kayıt yapılmış."
 
-    if not email:
-        messages.error(request, "E-posta boş olamaz.")
-        return redirect("register")
+    if hata:
+        messages.error(request, hata)
+        return render(request, "pages/users/register.html", {"degerler": degerler}, status=400)
 
-    if password1 != password2:
-        messages.error(request, "Şifreler uyuşmuyor!")
-        return redirect("register")
-
-    pwd_check = checkThePassword(password1)
-    if pwd_check != "correct":
-        messages.error(request, pwd_check)
-        return redirect("register")
-
-    if User.objects.filter(username__iexact=username).exists():
-        messages.error(request, "Bu kullanıcı adı alınmış.")
-        return redirect("register")
-
-    if User.objects.filter(email__iexact=email).exists():
-        messages.error(request, "Bu e-posta adresi ile daha önce kayıt yapılmış.")
-        return redirect("register")
-
-    if not level:
-        messages.error(request, "Lütfen seviye (kur) seçiniz.")
-        return redirect("register")
-
-    try:
-        level_int = int(level)
-        if level_int not in (1, 101, 201, 301, 401, 501):
-            raise ValueError
-    except (TypeError, ValueError):
-        messages.error(request, "Geçersiz seviye seçimi.")
-        return redirect("register")
-
-    # --- Kayıt ---
-    user = User.objects.create_user(
-        username=username,
-        email=email,
-        password=password1,
-        first_name=name,
-        last_name=surname,
-    )
-    user.level = level_int
-    user.save()
-
+    user = User.objects.create_user(password=sifre, **degerler)
     UserSettings.objects.create(user=user)
 
     messages.success(request, "Başarılı bir şekilde kaydınız yapıldı. Artık giriş yapabilirsiniz!")
     return redirect("login")
+
+
 def checkThePassword(s):
     if (len(s) < 8):
         return "Şifre en az 8 karakterli olmalıdır."

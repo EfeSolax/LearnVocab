@@ -9,9 +9,6 @@ from .seviye import SEVIYE_SECENEKLERI
 # Create your models here.
 
 class User(AbstractUser):
-    # Kullanıcının kurunu temsilen oluşturulan değişken.
-    level = models.PositiveBigIntegerField(default = 1, verbose_name="level")
-
     # CEFR seviyesi (rapor 7): seviye testi ya da "Seviyemi kendim seçeyim"
     # yazar. Boşsa seviye henüz belirlenmemiş demek; okurken her zaman
     # users.seviye.kullanici_seviyesi(user) kullanılır (eski kur, varsayılan B1).

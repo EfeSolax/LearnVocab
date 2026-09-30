@@ -5,7 +5,7 @@ Hem üstteki çubuk (masaüstü) hem de mobildeki alt sekme çubuğu bu listeden
 besleniyor. Bir bölümün adını, adresini veya ikonunu değiştirmek için
 yalnızca burayı düzenlemek yeterli.
 
-Menü (ürün raporu 2.1): Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma
+Menü (ürün raporu 2.1): Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazılar
 Ana Sayfa ortada. "Hakkında" menüde yok (yardım bağlantısı Ana Sayfa'da),
 Ayarlar sağ üstteki dişli simgesinde.
 
@@ -52,9 +52,10 @@ NAV_SECTIONS = (
         "matches": ("readings", "readings_library_text", "readings_user_text", "readings_add"),
     },
     {
-        # Eski "Metinler" bölümünün yeni adı (rapor 2.1).
+        # Eski "Metinler" / "Yazma" bölümü. Türkçe adı "Yazılar", İngilizcesi "Writings"
+        # (Efe, 30 Eylül). url adları ve uygulama adı (texts) değişmedi.
         "key": "yazma",
-        "label": "Yazma",
+        "label": "Yazılar",
         "url_name": "profile_texts",
         "matches": ("profile_texts", "new_text_page", "review_text", "about_grading_page",
                     "diyalog_page"),

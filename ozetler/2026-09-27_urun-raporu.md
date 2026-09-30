@@ -21,7 +21,7 @@
 6. Çalışmalar (Learn & Pass, Egzersizler)
 7. Seviye testi
 8. Okumalar
-9. Yazma
+9. Yazılar
 10. Bildirimler
 11. Chrome eklentisi (v1 sonrası)
 12. Site geneli kurallar
@@ -48,7 +48,7 @@
 |---|---|
 | Bilgi: kelimeyi tanımak ve hatırlamak | Sözlük + Çalışmalar |
 | Pasif tekrar: kelimeyi bağlamda görmek | Okumalar |
-| Aktif üretim: kelimeyi kullanmak | Yazma |
+| Aktif üretim: kelimeyi kullanmak | Yazılar |
 
 **Tasarım ilkeleri:**
 - **Az seçenek, güçlü altyapı.** Kullanıcı ekranda az karar verir; kalite arka planda.
@@ -65,13 +65,13 @@
 Beş bölüm, bu sırayla:
 
 ```
-Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma
+Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazılar
 ```
 
 - **Ana Sayfa** menünün ortasındadır.
-- Eski "Metinler" bölümünün yeni adı **Yazma**.
+- Eski "Metinler" bölümünün adı **Yazılar** (İngilizcesi **Writings**; Efe'nin kararı, 30 Eylül). Bir ara "Yazma" denmişti; adres de `/yazilar/` oldu. Kodda uygulama adı `texts` olarak kaldı.
 - "Hakkında" menüde yer almaz. Yardım bağlantısı Ana Sayfa'dadır.
-- Ayarlar sağ üstteki dişli simgesindedir.
+- Sağ üstte kullanıcının **profil fotoğrafı** durur; dokununca **Hesap** açılır, **Ayarlar**'a oradan gidilir (18.26). Misafirde aynı yerde "Giriş Yap" vardır.
 
 ### 2.2 Mobil ve masaüstü
 - **Mobil:** menü ekranın altında sabit bir sekme çubuğudur.
@@ -86,7 +86,7 @@ Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma
 | Çalışmalar › Learn & Pass | **Açık.** Yalnızca kaydırma: hiçbir şey kaydedilmez ve listeye eklenmez. |
 | Çalışmalar › Egzersizler | Kapalı. Tıklanınca giriş yönlendirmesi yapılır. |
 | Okumalar | **Açık**, yalnızca varsayılan (kütüphane) metinler. "PDF yükle" düğmesi görünür; basılınca "Önce giriş yapmalısın" denip giriş sayfasına yönlendirilir. |
-| Yazma | Kapalı. Tıklanınca giriş yönlendirmesi yapılır. |
+| Yazılar | Kapalı. Tıklanınca giriş yönlendirmesi yapılır. |
 
 - **Genel kural:** Giriş gerektiren düğmeler gizlenmez; basılınca kısa bir açıklamayla girişe yönlendirir. Bu, "+ Listeme ekle" düğmeleri için de geçerlidir.
 - **Varsayım:** Giriş yapmamış ziyaretçinin seviyesi bilinmediği için L&P ve günün kelimesi B1 civarından gelir. L&P'de üstte küçük bir "seviyeni seç" seçeneği bulunur; seçim kaydedilmez.
@@ -198,6 +198,7 @@ Aynı bileşen **her yerde** kullanılır: Keşfet, Listem, günün kelimesi. **
      - Her satırda en fazla 3–4 çip olur. Boş satır hiç gösterilmez.
      - Çipe dokununca o kelimenin kartı açılır.
 - **Kartın en altında, bir kez:** **Aile** (see also), yani aynı kelime ailesindeki diğer kelimeler.
+- **Örnek cümlede çift tıklama (Efe'nin kararı, 30 Eylül; yapıldı):** Karttaki bir örnek cümlede (ilk örnek, "Daha fazla örnek", kalıp örnekleri, ifade kartı) bir kelimeye **çift tıklanınca o kelime Sözlük'te aranır** ve sayfasına gidilir. Çekimli hâller köke bağlanır ("withdrew" → withdraw). Kod: `base/_kelimeKartiJs.html`, `data-cift-tikla-ara`.
 - **Eş, zıt ve basit anlamlılar anlama özeldir, kelimeye değil.** Örneğin "bank" için "shore" yalnızca "nehir kıyısı" anlamının altında görünür. Bu kesin bir karardır (bkz. Bölüm 13.3, veri işi D1).
 
 ---
@@ -359,11 +360,12 @@ Açılışta **iki büyük seçenek** vardır:
 - **Phrasal verb'ler algılanır** (give up, look after).
 - Veritabanında olmayan kelime için "Henüz sözlüğümüzde yok" yazar. Bu da kaydedilir.
 - **v1'de OCR yoktur.** Taranmış (resim) PDF'ler desteklenmez.
+- **Sınırlar, saklama, bölüm bölüm okuma ve çöp kutusu:** 18.24.
 - Kelime sorgulama **API olarak** yazılır; Chrome eklentisi aynı API'yi kullanacaktır.
 
 ---
 
-## 9. Yazma
+## 9. Yazılar
 
 **Eski sistemin sorunları** (`texts/send_gemini.py`):
 - 10 kriter ve 100 puan var. Akademik yapı bekleniyor (topic, major, minor, summary), formal dil, özne tutarlılığı, hedging.
@@ -544,7 +546,7 @@ Açılışta **iki büyük seçenek** vardır:
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$HOME timeout 170 $HOME/lvenv/bin/python manage.py test --settings=testayar --parallel 4
 ```
 Bu komut Claude'un VM'i içindir (`testayar` ve `$HOME/lvenv` yalnızca orada var). Efe'nin Mac'inde: `.venv/bin/python manage.py test --parallel 4 --noinput`.
-904 test geçiyor (30 Eylül). Her değişiklikten sonra çalıştırılır.
+909 test geçiyor (30 Eylül). Her değişiklikten sonra çalıştırılır.
 
 **Betik çalıştırma:** `yazayar` ile çalışırken `PYTHONPATH=$HOME:.` gerekir.
 
@@ -1117,15 +1119,15 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 | Seviye testi | `/seviye-testi/` (adımları `noindex`) | giriş ekranı açık |
 | Okumalar | `/okumalar/`, `/okumalar/<metin-adi>/` | kütüphane metinleri açık; `/okumalar/metinlerim/…` `noindex` |
 | Çalışmalar | `/calismalar/`, `/calismalar/learn-pass/<mod>/`, `/calismalar/egzersizler/` | `noindex` |
-| Yazma | `/yazma/`, `/yazma/yaz/`, `/yazma/diyalog/` | `noindex` |
-| Hesap | `/giris/`, `/kayit/`, `/cikis/`, `/sifremi-unuttum/`, `/sifre-degistir/`, `/profil/`, `/ayarlar/…` | `noindex` |
+| Yazılar | `/yazilar/`, `/yazilar/yaz/`, `/yazilar/diyalog/` | `noindex` |
+| Hesap | `/giris/`, `/kayit/`, `/cikis/`, `/sifremi-unuttum/`, `/sifre-degistir/`, `/profil/` (Hesap), `/ayarlar/` | `noindex` |
 | Hakkında | `/hakkinda/` | açık |
 | Uçlar (JSON, kart parçası) | `/api/…` | `robots.txt` ile kapalı |
 | Kökte duranlar | `/robots.txt`, `/sitemap.xml`, `/sw.js`, `/manifest.webmanifest`, `/admin/` | — |
 
 **Nasıl çalışıyor (kod):**
 - **Beyaz liste** (`LearnVocab/seo.py`, `DIZINE_ACIK`): Yalnızca listedeki sayfalar Google'a açıktır. Listede olmayan her şey ve her hata sayfası kendiliğinden `noindex` alır (hem `X-Robots-Tag` başlığı hem `<meta name="robots">`). Yeni eklenen bir sayfa, listeye yazılmadıkça kapalı kalır.
-- **`robots.txt` yalnızca `/admin/` ve `/api/`'yi kapatır.** Hesap, Çalışmalar ve Yazma sayfaları `robots.txt` ile kapatılmaz; çünkü Google `noindex`'i ancak sayfayı açabilirse görür. (İlk plandaki "hesap sayfaları robots.txt ile kapalı" maddesi bu yüzden `noindex`'e çevrildi.)
+- **`robots.txt` yalnızca `/admin/` ve `/api/`'yi kapatır.** Hesap, Çalışmalar ve Yazılar sayfaları `robots.txt` ile kapatılmaz; çünkü Google `noindex`'i ancak sayfayı açabilirse görür. (İlk plandaki "hesap sayfaları robots.txt ile kapalı" maddesi bu yüzden `noindex`'e çevrildi.)
 - **canonical** ortak başlıkta (`base/layout.html`) üretilir. Sorgu parametreleri atılır; yalnızca `sayfa` kalır.
 - **Kelime sayfası** (`words.sozluk_views.sozluk_kelime`): Arayüz Sözlük sayfasının aynısıdır; üstte arama kutusu, altında kartlar. Eklenen tek görünür şey kartların üstündeki küçük konum satırıdır: `Sözlük › A1 kelimeleri › bank`.
   - Başlık: "bank ne demek? Türkçe anlamı ve cümle içinde kullanımı — LearnVocab Sözlük".
@@ -1136,7 +1138,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **İç bağlantılar** gerçek `<a href="/sozluk/x/">` bağlantılarıdır: eş / zıt / basit çipleri, aile, "Diğer sonuçlar", anlık öneri, günün kelimesi.
 - **Göz atma sayfaları** (`words/gozat.py`): Her satırda kelime, tür, Türkçe anlam ve seviye var; 100'er kelime. Sıklığı 2,3'ün altındaki kayıtlar listelenmez. Bağlantıları Keşfet'in boş hâlinin en altında ("Kelimelere göz at").
 - **`sitemap.xml`** (`LearnVocab/seo_views.py`): sabit sayfalar, göz atma sayfaları, **açılmış** kelime ve ifade sayfaları, yayındaki hazır listeler, kütüphane metinleri.
-- **Eski adresler** (`LearnVocab/eski_adresler.py`): v1.0'ın ve geliştirme sırasındaki İngilizce sayfa adresleri yenilerine 301 ile gider (`/users/login/` → `/giris/`, `/exercises/learn/` → `/calismalar/`, `/texts/` → `/yazma/`, `/readings/` → `/okumalar/` …). v1.0'daki `/words/word-detail/<id>/` adresleri Sözlük'e gider; o kimlikler yeni veritabanında geçerli değil. POST ile çalışan eski uçlar yönlenmez.
+- **Eski adresler** (`LearnVocab/eski_adresler.py`): v1.0'ın ve geliştirme sırasındaki İngilizce sayfa adresleri yenilerine 301 ile gider (`/users/login/` → `/giris/`, `/exercises/learn/` → `/calismalar/`, `/texts/` → `/yazilar/`, `/readings/` → `/okumalar/` …). v1.0'daki `/words/word-detail/<id>/` adresleri Sözlük'e gider; o kimlikler yeni veritabanında geçerli değil. POST ile çalışan eski uçlar yönlenmez.
 - **`www` ve `https`:** Canlıda `PREPEND_WWW` ve `SECURE_SSL_REDIRECT` açık; `learnvocab.com.tr` ve `http` istekleri asıl adrese 301 ile gider.
 - **Diller (18.22):** Bütün sayfalar dil önekine hazır (`i18n_patterns`; Türkçe öneksiz). Şu an yalnızca Türkçe yayında. Bir dil `settings.LANGUAGES`'a eklenince `/en/…` adresleri ve `hreflang` etiketleri kendiliğinden gelir. **Çevirisi bitmemiş dil eklenmez**: çevirisiz `/en/` sayfaları Türkçe sayfaların kopyası olur.
 
@@ -1282,57 +1284,56 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - (b) **Kapsam:** **Şimdilik yalnızca arayüz** çevrilir. Kelime anlamları Türkçe kalır.
   - (c) **Adres biçimi:** Türkçe öneksiz kalır, diğer diller önekli olur (`/en/…`, `/de/…`). Her sayfada `hreflang` etiketleri bulunur (Efe onayladı: SEO'da yerleşik adresler bozulmaz, ceza riski yok).
 
-### 18.23 Kayıt formu ve Profilim (Efe'nin kararı, 29 Eylül)
-- **Kayıt formunda alınacaklar:** **ad, soyad, e-posta, kullanıcı adı, şifre.**
-  - **Şifre tek kez** alınır; "şifreyi tekrar yaz" alanı olmaz. Kullanıcı yanlış yazmasın diye **"göster / gizle"** düğmesi olur.
-  - Eski zorunlu **"kur" seçimi kaldırılır.** Seviye, seviye testinden ya da "Seviyemi kendim seçeyim"den gelir (Bölüm 7).
-  - Bölüm 16'daki "kur → CEFR eşlemesi" ara kararı bununla birlikte düşer.
-- **Profilim'deki "günlük hedef" ayarı** (0/5/10/15/20) **kaldırılır.** Seri sabit kurallarla çalışır (18.9).
+### 18.23 Kayıt formu ve günlük hedef (Efe'nin kararı, 29 Eylül) — **YAPILDI (30 Eylül)**
+- **Kayıt formu:** **ad, soyad, e-posta, kullanıcı adı, şifre**; hepsi zorunlu.
+  - **Şifre tek kez** alınır; "şifreyi tekrar yaz" alanı yok. Alanın içinde **"Göster / Gizle"** düğmesi var.
+  - Şifre kuralı değişmedi: en az 8 karakter, bir büyük harf, bir küçük harf, bir rakam.
+  - Hata olursa form, yazılanlar silinmeden yeniden gösterilir (şifre hariç).
+- **"Kur" kalktı:** Kayıtta seviye sorulmaz; `User.level` alanı silindi. Seviye yalnızca seviye testinden ya da "Seviyemi kendim seçeyim"den gelir (`User.cefr`); belirlenmemişse B1 varsayılır. Bölüm 16'daki "kur → CEFR eşlemesi" kararı düştü.
+- **"Günlük hedef" ayarı kalktı** (`UserSettings.dailyGoal` silindi). Seri sabit kurallarla çalışır (18.9). "Günlük hatırlatma e-postası" ayarı duruyor.
 
-### 18.24 Okumalar: sınırlar, saklama ve çöp kutusu (Efe'nin kararı, 29 Eylül)
+### 18.24 Okumalar: sınırlar, saklama ve çöp kutusu (Efe'nin kararı, 29–30 Eylül) — **YAPILDI (30 Eylül; çöp kutusunun görsel tasarımı tasarım oturumunda)**
 **Sınırlar:**
-- Kullanıcı başına en çok **100 metin**, bunların en çok **15'i PDF**.
-- **PDF başına en çok 400 sayfa** (önceden 60).
+- Kullanıcı başına en çok **100 metin**, bunların en çok **15'i PDF**. Çöpteki metinler sayılmaz.
+- **PDF başına en çok 400 sayfa ve 50 MB.** 400 sayfayı aşan PDF reddedilir; metni ~1,5 milyon karakteri aşarsa ilk kısmı alınır.
+- Yapıştırılan metin en çok 150.000 karakter.
 
 **Saklama:**
-- PDF dosyası zaten **saklanmıyor**; yalnızca çıkarılan metin veritabanına yazılıyor (`UserText.body`).
-- **Metinler diskte saklanır (Efe'nin kararı, 30 Eylül):** Sunucudaki MySQL veritabanı en çok 1 GB. Kullanıcı metinleri veritabanına değil, **sıkıştırılmış dosya olarak diske** yazılır (disk limitsiz). Veritabanında yalnızca başlık, dosya adı ve bilgiler durur.
-- **Sıkıştırma (Efe onayladı, 29 Eylül):**
-  - Metin veritabanına **zlib ile sıkıştırılmış** olarak yazılır. Düz İngilizce metin genelde 3–4 kat küçülür.
-  - 400 sayfalık bir kitap (~1 MB metin) ~250–300 KB olur.
-  - Okurken metin açılır; kullanıcı farkı görmez.
-  - Okuma ekranı uzun metni **bölüm bölüm** gösterir, 400 sayfa tek seferde yüklenmez.
-- **PDF dosya boyutu sınırı: 50 MB** (Efe'nin kararı; önceden 10 MB).
+- PDF dosyası **saklanmaz**; yalnızca çıkarılan metin tutulur.
+- **Metnin gövdesi veritabanında değil, diskte** durur: zlib ile sıkıştırılmış dosya (`readings/depo.py`). Sunucudaki MySQL en çok 1 GB, disk limitsiz (18.32).
+  - Veritabanında yalnızca başlık, tür, kelime sayısı ve dosya adı var (`UserText.dosya`).
+  - Depo klasörü **`ozel_depo/`** (`settings.OZEL_DEPO`). **Web'den sunulmaz**; `media/` değildir, çünkü bu metinler yalnızca sahibine özeldir. Git'e girmez.
+  - Ölçüm: yerelde 296 KB'lık iki metin diskte 108 KB oldu.
+  - Metin silinince dosyası da silinir.
+- **Okuma ekranı uzun metni bölüm bölüm gösterir:** her bölüm yaklaşık 1.500 kelime, paragraf sınırında biter. Üstte ve altta "Önceki bölüm · Bölüm 2 / 40 · Sonraki bölüm" (`?bolum=2`).
 
-**Çöp kutusu (Efe'nin kararı: tasarlanacak):**
-- Silinen metinler çöp kutusuna gider. Kullanıcı buradan geri alabilir ya da kalıcı olarak silebilir.
-- **Çöpte kalma süresi: 1 hafta.** Sonra kendiliğinden kalıcı olarak silinir (Efe'nin kararı).
-- **Çöpteki metinler 100 metin sınırına sayılmaz** (Efe'nin kararı).
-- Tasarımı tasarım oturumunda yapılır.
+**Çöp kutusu:**
+- Silinen metin çöp kutusuna gider (Okumalar sayfasında, "Kendi metinlerim"in altında açılır liste).
+- Buradan **geri alınabilir** ya da **kalıcı silinebilir** (kalıcı silme onay sorar; geri alınamaz).
+- **1 hafta** sonra kendiliğinden kalıcı olarak silinir; satırda kaç gün kaldığı yazar.
+- Görsel tasarımı tasarım oturumunda yapılacak.
+
+**Canlıya geçişte (18.30):** Sunucuda `ozel_depo/` klasörü web kökünün dışında olmalı ve yedeğe dahil edilmeli. 50 MB'lık yüklemeye sunucunun (Apache/Passenger) izin verdiği doğrulanmalı.
 
 ### 18.25 Gelir modeli (Efe'nin kararı, 29 Eylül)
 - Site **ücretsiz.** **Ücretli üyelik / premium kesinlikle olmayacak.** (Ücretsiz hesap açma elbette kalır.)
 - Site beğenilirse **ileride reklam** alınabilir. Bu ileri bir konu, şimdilik tasarımda reklam alanı ayrılmaz.
 - Reklam gelirse L&P ve egzersiz gibi çalışma ekranlarına konmaz (odak, 18.10), sayfa hızını bozmayacak biçimde yerleştirilir (SEO, 18.15). (Claude'un önerisi.)
 
-### 18.26 Gezinme: profil fotoğrafı, Hesap ve Ayarlar (Efe'nin kararı, 29 Eylül)
-- Sağ üstteki **dişli (ayarlar) simgesi kalkar.** Yerine kullanıcının **profil fotoğrafı** gelir.
-- Profil fotoğrafına dokununca **Hesap** sayfası açılır. **Ayarlar** sayfasına Hesap sayfasından gidilir.
-- **Alttaki menü ve sağ üstteki profil fotoğrafı her sayfada sabittir.** Ayarlar ve Hesap sayfaları da dahil, hiçbir sayfada değişmez ya da kaybolmaz.
+### 18.26 Gezinme: profil fotoğrafı, Hesap ve Ayarlar (Efe'nin kararı, 29–30 Eylül) — **YAPILDI (30 Eylül; görsel tasarım ve eksik ayarlar tasarım oturumunda)**
+- Sağ üstteki dişli kalktı; yerinde kullanıcının **profil fotoğrafı** var. Dokununca **Hesap** (`/profil/`) açılır.
+- **Hesap sayfası:** fotoğraf, ad, çıkış; hesap bilgileri formu; **Ayarlar** bağlantısı; parola değiştirme.
+- **Ayarlar sayfası** (`/ayarlar/`), Hesap'tan gidilir. Sırasıyla:
+  1. **Görünüm (tema):** Sistem · Açık · Koyu. En üstte, kolayca görülür.
+  2. **Seviye:** seviyeyi gösterir, seviye testini tekrarlatır.
+  3. **Çalışma:** yazılarda geri bildirim sertliği (Nazik · Normal · Titiz), sesi otomatik oynatma.
+  4. **E-posta bildirimleri.**
+  5. **Verilerim** (dışa aktarma).
+  6. **Tehlikeli bölge** (listeyi boşalt, hesabı sil; parola sorar).
+- **Alttaki menü ve sağ üstteki profil fotoğrafı her sayfada sabittir** (Hesap ve Ayarlar dahil).
 - Misafirde profil fotoğrafının yerinde "Giriş Yap" durur.
-- **Ayarlar sayfasının içeriği** (raporda şimdiye kadar geçen ayarlar):
-  - tekrar/yeni oranı
-  - egzersizde varsayılan soru sayısı
-  - yazma sertliği
-  - seviye ve seviye testini tekrarlama
-  - bildirimleri açma/kapama
-  - dil
-  - hesap işlemleri
-  - Tasarımı tasarım oturumunda yapılır.
-- **Tema düğmesi (Efe'nin kararı, 30 Eylül):**
-  - Üst çubuktan kalkar, **Ayarlar'a taşınır**. Ayarlar'da **kolayca görülen** bir yerde durur.
-  - **Varsayılan tema cihazın sistem temasıdır** (açık ya da koyu). Kullanıcı Ayarlar'dan değiştirirse onun seçimi geçerli olur.
-  - Beyaz tema (18.12) açık temanın yeni hâlidir; koyu tema da korunur.
+- **Tema:** Üst çubuktaki tema düğmesi kalktı. **Varsayılan tema cihazın sistem temasıdır**; kullanıcı Ayarlar'dan Açık ya da Koyu seçerse onun seçimi geçerli olur ("Sistem"e dönebilir). Seçim cihazda saklanır.
+- **Henüz Ayarlar'da olmayanlar (tasarım oturumunda):** tekrar/yeni oranı, egzersizde varsayılan soru sayısı, anlık bildirimleri açma/kapama, dil. Beyaz tema (18.12) açık temanın yeni hâli olacak.
 
 ### 18.27 Seviye testi değişiklikleri (Efe'nin kararları, 29–30 Eylül) — **YAPILDI (30 Eylül; özet soruları havuzu henüz boş)**
 > **Kod:**
@@ -1554,3 +1555,9 @@ Her adım ayrı commit, her adımdan sonra testler.
   - Kademeli dizine alma: `Word.dizinde`, `manage.py dizine_ac`; 1. parti (A1–B1 Oxford, 2.080 sayfa) açıldı.
   - Plandan sapma: hesap sayfaları `robots.txt` yerine `noindex` ile kapatıldı (Google `noindex`'i ancak sayfayı açabilirse görür).
   - 904 test geçiyor.
+- **2026-09-30 (16):** Efe'nin kararları: bölümün adı **Yazılar** (İngilizcesi Writings), adresi `/yazilar/`; örnek cümlede kelimeye çift tıklanınca o kelime aranır (yapıldı).
+- **2026-09-30 (17):** Uygulama 7. adım yapıldı:
+  - Kayıt formu (ad, soyad, e-posta, kullanıcı adı, tek şifre + göster/gizle); "kur" (`User.level`) ve günlük hedef (`UserSettings.dailyGoal`) silindi (18.23).
+  - Okumalar: gövdeler diskte sıkıştırılmış (`readings/depo.py`, `ozel_depo/`), 100 metin / 15 PDF / 400 sayfa / 50 MB, 1 haftalık çöp kutusu, bölüm bölüm okuma (18.24).
+  - Gezinme: profil fotoğrafı → Hesap → Ayarlar; tema Ayarlar'da, varsayılan sistem teması (18.26).
+  - 909 test geçiyor.

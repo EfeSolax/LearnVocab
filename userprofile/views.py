@@ -1,37 +1,20 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.contrib import messages
 
 from LearnVocab.authgate import login_gate
 from users.models import User
-from usersettings.models import UserSettings
 from words.models import Word
 
 # Eski Kelimelerim sayfası, kelime klasörleri (WordList), elle kelime ekleme/
 # düzenleme ve toplu ekleme/silme 29 Eylül'de kaldırıldı (rapor 18.13).
 # Kullanıcının listesi artık Sözlük › Listem'de (words/listem.py).
 
-# "Profilim" sayfasındaki günlük hedef seçenekleri.
-# Değerler int: şablon `settings.dailyGoal == deger` karşılaştırmasını
-# bunun üzerinden yapıyor.
-DAILY_GOAL_OPTIONS = (
-    (0, "Yok"),
-    (5, "5"),
-    (10, "10"),
-    (15, "15"),
-    (20, "20"),
-)
-
-
-#Ana profil sayfasının görünümü 
-@login_gate("Profilim")
+@login_gate("Hesap")
 def showProfile(request):
     """
-    "Profilim" sayfası.
-
-    Eskiden üç ayrı sayfa vardı: profil özeti, "Hesap Bilgilerim" ve "Ayarlar".
-    Üçü de aynı şeyin parçasıydı, kullanıcıyı sekmeler arasında gezdiriyordu;
-    tek sayfada birleştirildi. Hesap bilgisi formu da buraya POST ediyor.
+    Hesap sayfası (rapor 18.26): sağ üstteki profil fotoğrafından açılır.
+    Kimlik kartı, hesap bilgileri formu (buraya POST eder), parola ve
+    Ayarlar bağlantısı. Ayarlar ayrı sayfada: usersettings.views.ayarlarSayfasi
     """
     if request.method == "POST":
         user = request.user
@@ -48,18 +31,7 @@ def showProfile(request):
         messages.success(request, "Hesap bilgileriniz başarıyla güncellendi.")
         return redirect("user_profile")
 
-    context = {
-        "active_page": "Profilim",
-        "settings": UserSettings.objects.filter(user=request.user).first(),
-        "daily_goal_options": DAILY_GOAL_OPTIONS,
-        "export_links": [
-            {"url": reverse("export_all"), "label": "Tüm verilerim"},
-            {"url": reverse("export_mywords"), "label": "Kelimelerim"},
-            {"url": reverse("export_mytexts"), "label": "Metinlerim"},
-        ],
-    }
-
-    return render(request, "pages/profile/myprofile.html", context)
+    return render(request, "pages/profile/hesap.html", {"active_page": "Hesap"})
 
 
 # Arkadaşlık özelliği (friends) kapalı ama kodu duruyor; profil görüntüleme ona ait.

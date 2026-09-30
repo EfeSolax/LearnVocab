@@ -32,10 +32,26 @@ Bağlam: baslik, paragraflar, metin (ReadingText ya da UserText), kutuphane (boo
     </p>
 </header>
 
+{% if bolum_sayisi > 1 %}
+<nav aria-label="Bölümler" class="mb-4 flex items-center justify-between text-sm font-semibold" data-bolumler>
+    {% if onceki_bolum %}<a rel="prev" href="?bolum={{ onceki_bolum }}" class="rounded-lg px-3 py-2 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950">‹ Önceki bölüm</a>{% else %}<span></span>{% endif %}
+    <span class="text-gray-500 dark:text-slate-400">Bölüm {{ bolum }} / {{ bolum_sayisi }}</span>
+    {% if sonraki_bolum %}<a rel="next" href="?bolum={{ sonraki_bolum }}" class="rounded-lg px-3 py-2 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950">Sonraki bölüm ›</a>{% else %}<span></span>{% endif %}
+</nav>
+{% endif %}
+
 <article data-okuma-metni lang="en"
          class="text-[1.125rem] leading-8 text-gray-800 dark:text-slate-200 [&>p]:mb-5 break-words">
     {% for p in paragraflar %}<p>{{ p }}</p>{% endfor %}
 </article>
+
+{% if bolum_sayisi > 1 %}
+<nav aria-label="Bölümler" class="mt-6 flex items-center justify-between text-sm font-semibold" data-bolumler>
+    {% if onceki_bolum %}<a rel="prev" href="?bolum={{ onceki_bolum }}" class="rounded-lg px-3 py-2 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950">‹ Önceki bölüm</a>{% else %}<span></span>{% endif %}
+    <span class="text-gray-500 dark:text-slate-400">Bölüm {{ bolum }} / {{ bolum_sayisi }}</span>
+    {% if sonraki_bolum %}<a rel="next" href="?bolum={{ sonraki_bolum }}" class="rounded-lg px-3 py-2 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950">Sonraki bölüm ›</a>{% else %}<span></span>{% endif %}
+</nav>
+{% endif %}
 
 {% if kutuphane and metin.source %}
 <p class="mt-6 text-xs text-gray-400 dark:text-slate-500">Kaynak: {{ metin.source }}</p>

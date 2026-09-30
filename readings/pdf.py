@@ -13,9 +13,11 @@ verilir.
 import re
 
 # Sınırlar: sunucuyu yormasın, okuma ekranı da makul kalsın.
-EN_BUYUK_BOYUT = 10 * 1024 * 1024        # 10 MB
-EN_COK_SAYFA = 60
-EN_COK_KARAKTER = 150_000                 # ~25 bin kelime; fazlası kesilir
+# Rapor 18.24: PDF başına en çok 400 sayfa ve 50 MB.
+EN_BUYUK_BOYUT = 50 * 1024 * 1024        # 50 MB
+EN_BUYUK_BOYUT_MB = EN_BUYUK_BOYUT // (1024 * 1024)
+EN_COK_SAYFA = 400
+EN_COK_KARAKTER = 1_500_000               # ~400 sayfalık kitap; fazlası kesilir
 
 # Bütün belgede bundan az harf varsa belge büyük olasılıkla görüntü (tarama).
 TARAMA_ESIGI = 20
@@ -59,7 +61,8 @@ def pdf_metni(veri):
     Okunamazsa PdfOkunamadi (mesajı kullanıcıya gösterilebilir).
     """
     if len(veri) > EN_BUYUK_BOYUT:
-        raise PdfOkunamadi("Bu PDF çok büyük. En çok 10 MB'lık dosyaları okuyabiliyoruz.")
+        raise PdfOkunamadi(f"Bu PDF çok büyük. En çok {EN_BUYUK_BOYUT_MB} MB'lık dosyaları "
+                           "okuyabiliyoruz.")
     if not veri.startswith(b"%PDF"):
         raise PdfOkunamadi("Bu dosyayı PDF olarak açamadık. Başka bir dosya dener misin?")
 

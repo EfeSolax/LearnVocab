@@ -278,15 +278,15 @@ class KesfetBosHalTests(AramaTemeli):
         gun = date(2026, 9, 28)
         self.assertEqual(arama.gunun_kelimesi(None, gun), arama.gunun_kelimesi(None, gun))
         self.assertEqual(arama.gunun_kelimesi(None, gun).cefr, "B1")   # girişsiz: B1
-        self.user.level = 101                                         # eski kur: A1
+        self.user.cefr = "A1"
         self.assertEqual(arama.gunun_kelimesi(self.user, gun).cefr, "A1")
         # Günler arasında değişebilir; en az bir günde farklı çıkmalı
         gunler = {arama.gunun_kelimesi(None, gun + timedelta(days=i)).id for i in range(20)}
         self.assertGreater(len(gunler), 1)
 
     def test_kullanici_seviyesi(self):
-        self.assertEqual(arama.kullanici_seviyesi(self.user), "B1")   # level=1: bilinmiyor
-        self.user.level = 401
+        self.assertEqual(arama.kullanici_seviyesi(self.user), "B1")   # seviye belirlenmemiş
+        self.user.cefr = "B2"
         self.assertEqual(arama.kullanici_seviyesi(self.user), "B2")
 
 

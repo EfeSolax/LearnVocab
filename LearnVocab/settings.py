@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 from dotenv import load_dotenv # Yeni eklediğimiz kütüphane
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -161,6 +162,14 @@ LANGUAGES = [
     ('tr', 'Türkçe'),
 ]
 LOCALE_PATHS = [BASE_DIR / 'locale']
+
+# Web'den SUNULMAYAN özel depo (rapor 18.24): kullanıcıların okuma metinleri
+# burada, sıkıştırılmış dosya olarak durur (readings/depo.py). media/ değil:
+# media/ herkese açık sunulur. Testler geçici bir klasöre yazar.
+OZEL_DEPO = Path(os.environ.get('OZEL_DEPO', BASE_DIR / 'ozel_depo'))
+if 'test' in sys.argv:
+    import tempfile
+    OZEL_DEPO = Path(tempfile.gettempdir()) / 'learnvocab-test-depo'
 
 # Sitenin asıl adresi (rapor 18.15): canonical, sitemap ve robots.txt
 # buradan üretilir; istekteki adresten DEĞİL.

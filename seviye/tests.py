@@ -56,19 +56,12 @@ class KullaniciSeviyesiTests(TestCase):
         self.user = User.objects.create_user(username="sev", password=SIFRE)
 
     def test_varsayilan_b1(self):
-        self.assertEqual(kullanici_seviyesi(self.user), "B1")      # level=1, cefr boş
+        self.assertEqual(kullanici_seviyesi(self.user), "B1")      # cefr boş
         self.assertEqual(kullanici_seviyesi(AnonymousUser()), "B1")
         self.assertEqual(kullanici_seviyesi(None), "B1")
         self.assertFalse(seviyesi_belli_mi(self.user))
 
-    def test_eski_kur_eslenir(self):
-        for kur, cefr in ((101, "A1"), (201, "A2"), (301, "B1"), (401, "B2"), (501, "C1")):
-            self.user.level = kur
-            self.assertEqual(kullanici_seviyesi(self.user), cefr)
-        self.assertFalse(seviyesi_belli_mi(self.user))
-
-    def test_alan_eski_kurdan_once_gelir(self):
-        self.user.level = 101
+    def test_alan_doluysa_o_gecerli(self):
         self.user.cefr = "C1"
         self.assertEqual(kullanici_seviyesi(self.user), "C1")
         self.assertTrue(seviyesi_belli_mi(self.user))
@@ -491,7 +484,7 @@ class DavetTests(TestCase):
     def test_profilde_testi_tekrarla_baglantisi(self):
         self.user.cefr = "B1"
         self.user.save()
-        cevap = self.client.get(reverse("user_profile"))
+        cevap = self.client.get(reverse("settings_page"))
         self.assertContains(cevap, "Seviye testini tekrarla")
         self.assertContains(cevap, reverse("seviye_testi"))
 

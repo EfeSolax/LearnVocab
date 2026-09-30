@@ -10,7 +10,7 @@ Sıra (yukarıdan aşağı):
   2. "Geçen sefer bilmediğin N kelime" kartı (yarıda kalan oturumdan
      sorulmamış bilinmeyenler varsa).
   3. Slogan + büyük "Hemen Başla". Misafirde seviye seçimi yok (rapor 18.3).
-  4. Oran notu + ayarlara bağlantı (ayarlar sayfası tasarlanana kadar Profilim).
+  4. Oran notu + Ayarlar bağlantısı.
   5. "Neden işe yarar": 3 madde.
 {% endcomment %}
 
@@ -102,7 +102,7 @@ Sıra (yukarıdan aşağı):
             Karışım: yaklaşık %{{ tekrar_yuzde }} tekrar · %{{ yeni_yuzde }} yeni kelime.
             {% if not bekleyen_tekrar %}Listende tekrar bekleyen kelime yok; şimdilik yeni kelimeler keşfedeceksin.
             {% elif oran_azaldi %}Tekrar bekleyen kelimelerin birikti; bugün önce onları pekiştirelim.{% else %}Dengeli bir karışım, böyle devam!{% endif %}
-            <a href="{% url 'user_profile' %}" class="whitespace-nowrap font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Oranı ayarla</a>
+            <a href="{% url 'settings_page' %}" class="whitespace-nowrap font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Oranı ayarla</a>
         </p>
         {% else %}
         <p class="mt-5 text-sm text-gray-500 dark:text-slate-400">

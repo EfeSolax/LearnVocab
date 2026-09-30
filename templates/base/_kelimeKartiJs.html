@@ -241,3 +241,22 @@ Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de ça
     }
 })();
 </script>
+
+{% comment %}
+Örnek cümlede çift tıklama (rapor 4.3): [data-cift-tikla-ara] içindeki bir
+kelimeye çift tıklanınca o kelime Sözlük'te aranır. Tarayıcı çift tıklamada
+kelimeyi zaten seçer; seçilen kelime /sozluk/?q=<kelime> adresine gider
+(çekimli hâller köke bağlanır: "withdrew" -> withdraw).
+{% endcomment %}
+<script>
+(function () {
+    var SOZLUK = '{% url "sozluk" %}';
+    document.addEventListener('dblclick', function (olay) {
+        if (!olay.target.closest || !olay.target.closest('[data-cift-tikla-ara]')) { return; }
+        var secim = window.getSelection ? String(window.getSelection()) : '';
+        var kelime = secim.replace(/[^A-Za-z'’-]/g, '').replace(/^['’-]+|['’-]+$/g, '');
+        if (kelime.length < 2) { return; }
+        window.location.href = SOZLUK + '?q=' + encodeURIComponent(kelime.toLowerCase());
+    });
+})();
+</script>

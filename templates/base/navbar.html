@@ -4,11 +4,11 @@
 Üst çubuk (ürün raporu 2.1–2.2).
 
 Solda logo + "Learn Vocab" (ana sayfaya götürür). Masaüstünde ortada beş
-bölüm: Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma — mobilde aynı
+bölüm: Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazılar — mobilde aynı
 liste ekranın altındaki sabit sekme çubuğunda (base/_mobileTabBar.html).
 İkisi de LearnVocab/navigation.py içindeki tek listeden besleniyor.
-Sağda tema düğmesi ve Ayarlar (dişli); girişsizken dişlinin yerinde
-"Giriş Yap".
+Sağda kullanıcının profil fotoğrafı (Hesap sayfasına götürür; rapor 18.26);
+girişsizken aynı yerde "Giriş Yap". Tema düğmesi Ayarlar sayfasındadır.
 
 Girişsiz ziyaretçi için giriş gerektiren bölümde data-giris-gerekli var:
 dokununca giriş sayfasına yönlendirilir (bkz. base/_girisGerekli.html).
@@ -37,9 +37,8 @@ dokununca giriş sayfasına yönlendirilir (bkz. base/_girisGerekli.html).
             {% endfor %}
         </div>
 
-        {# --- Sağ: tema + ayarlar/giriş --- #}
+        {# --- Sağ: profil fotoğrafı / giriş (tema düğmesi Ayarlar'da, rapor 18.26) --- #}
         <div class="flex shrink-0 items-center gap-1 sm:gap-2">
-            {% include 'base/_themeToggle.html' %}
             {% include 'base/_accountButton.html' %}
         </div>
     </nav>

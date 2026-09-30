@@ -8,24 +8,51 @@ from usersettings.models import UserSettings
 from words.models import Word, UserWordLink
 from comments.models import Comment
 from texts import degerlendirme
-from texts.models import Text, YaziDurumu
+from texts.models import Sertlik, Text, YaziDurumu, YazmaAyari
+from django.urls import reverse
+from LearnVocab.authgate import login_gate
 
 from django.db.models import Q
 
-# Create your views here.
+TEMA_SECENEKLERI = (("sistem", "Sistem"), ("light", "Açık"), ("dark", "Koyu"))
+
+
+@login_gate("Ayarlar")
+def ayarlarSayfasi(request):
+    """
+    Ayarlar sayfası (rapor 18.26). Hesap sayfasından gelinir.
+    Tema cihazda saklanır (tarayıcı); diğerleri save_settings'e POST eder.
+    """
+    ayarlar, _ = UserSettings.objects.get_or_create(user=request.user)
+    return render(request, "pages/profile/ayarlar.html", {
+        "active_page": "Ayarlar",
+        "settings": ayarlar,
+        "tema_secenekleri": TEMA_SECENEKLERI,
+        "sertlik": YazmaAyari.sertlik_of(request.user),
+        "sertlik_secenekleri": Sertlik.choices,
+        "export_links": [
+            {"url": reverse("export_all"), "label": "Tüm verilerim"},
+            {"url": reverse("export_mywords"), "label": "Kelimelerim"},
+            {"url": reverse("export_mytexts"), "label": "Metinlerim"},
+        ],
+    })
+
 
 @login_required
 def saveSettings(request):
     if request.method == "POST":
         user = request.user
 
-        dailyGoal = request.POST.get("dailyGoal")
         audio = request.POST.get("audio")
         dailyGoalMail = request.POST.get("dailyGoalsMail")
         featuresMail = request.POST.get("featuresMail")
         improvementsMail  = request.POST.get("improvementsMail")
 
-        settings = UserSettings.objects.filter(user = user).first()
+        settings, _ = UserSettings.objects.get_or_create(user=user)
+
+        sertlik = request.POST.get("sertlik")
+        if sertlik in Sertlik.values:
+            YazmaAyari.objects.update_or_create(user=user, defaults={"sertlik": sertlik})
 
         #print(dailyGoal, audio, dailyGoalMail, featuresMail, improvementsMail, sep = "\n")
 
@@ -41,21 +68,10 @@ def saveSettings(request):
         if improvementsMail != None: settings.improvementsMail = True
         else: settings.improvementsMail = False
 
-        # Geçerli seçenekler tek yerde (userprofile.views.DAILY_GOAL_OPTIONS);
-        # burada yalnızca gelen değerin o kümede olup olmadığına bakılıyor.
-        # NOT: Eskiden zincirde 0 için bir dal yoktu, yani kullanıcı "Yok"
-        # seçtiğinde hedefi değişmiyor, eski değeri sessizce kalıyordu.
-        from userprofile.views import DAILY_GOAL_OPTIONS
-
-        gecerli_hedefler = {str(deger) for deger, _ in DAILY_GOAL_OPTIONS}
-        if dailyGoal in gecerli_hedefler:
-            settings.dailyGoal = int(dailyGoal)
-
-        
         settings.save()
 
-        messages.success(request, "Ayarlarınız kaydedildi.")
-        return redirect("user_profile")
+        messages.success(request, "Ayarların kaydedildi.")
+        return redirect("settings_page")
 
 def _confirm_with_password(request):
     """
@@ -82,31 +98,31 @@ def _confirm_with_password(request):
 @login_required
 def removeAllWords(request):
     if not _confirm_with_password(request):
-        return redirect("user_profile")
+        return redirect("settings_page")
 
     user = request.user
     UserWordLink.objects.filter(user=user).delete()
     Word.objects.filter(owner=user).delete()
 
     messages.success(request, "Tüm kelimeleriniz listenizden başarıyla silindi.")
-    return redirect("user_profile")
+    return redirect("settings_page")
 
 
 @login_required
 def removeAllComments(request):
     if not _confirm_with_password(request):
-        return redirect("user_profile")
+        return redirect("settings_page")
 
     Comment.objects.filter(owner=request.user).delete()
 
     messages.success(request, "Tüm yorumlarınız silindi.")
-    return redirect("user_profile")
+    return redirect("settings_page")
 
 
 @login_required
 def deleteMyAccount(request):
     if not _confirm_with_password(request):
-        return redirect("user_profile")
+        return redirect("settings_page")
 
     # Doğru objeyi sil — request.user zaten doğru User objesidir
     request.user.delete()
@@ -323,7 +339,6 @@ def exportAll(request):
     write_line("="*50 + "\n")
     try:
         settings = UserSettings.objects.get(user=user)
-        write_line(f"Günlük Hedef: {settings.dailyGoal}")
         write_line(f"Ses Ayarı (Audio): {'Açık' if settings.audio else 'Kapalı'}")
         write_line(f"Günlük Hedef Maili: {'İzin Verildi' if settings.dailyGoalsMail else 'İzin Verilmedi'}")
         write_line(f"Yeni Özellikler Maili: {'İzin Verildi' if settings.featuresMail else 'İzin Verilmedi'}")

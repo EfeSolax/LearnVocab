@@ -511,7 +511,7 @@ def bulunamayan_kaydet(sorgu, kaynak=BulunamayanArama.KAYNAK_SOZLUK, oneri_vardi
 VARSAYILAN_SEVIYE = "B1"
 
 # Kullanıcının seviyesi tek kaynaktan: users.seviye.kullanici_seviyesi
-# (User.cefr, yoksa eski kur User.level, yoksa B1). Yukarıda import edildi.
+# (User.cefr, yoksa B1). Yukarıda import edildi.
 
 
 def _gunun_sirasi(gun, tur, seviye, adet):

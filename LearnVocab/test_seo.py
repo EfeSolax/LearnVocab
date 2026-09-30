@@ -118,6 +118,12 @@ class KelimeSayfasiTests(TestCase):
             self.assertEqual(cevap.status_code, 200)
             self.assertIn('content="noindex"', _html(cevap))
 
+    def test_ornek_cumlede_cift_tiklama_aramasi(self):
+        """Örnek cümledeki kelimeye çift tıklanınca o kelime aranır (rapor 4.3)."""
+        html = _html(self._sayfa())
+        self.assertRegex(html, r'<p lang="en" data-cift-tikla-ara[^>]*>“I went to the bank\.”</p>')
+        self.assertIn("addEventListener('dblclick'", html)
+
     def test_cipler_ve_satirlar_kalici_adrese_baglanir(self):
         make_word("banker", meaning="bankacı", level="B1")
         html = _html(self._sayfa())
@@ -289,7 +295,9 @@ class EskiAdresTests(TestCase):
             "/egzersizler/": "/calismalar/egzersizler/",
             "/readings/": "/okumalar/",
             "/readings/kutuphane/7/": "/okumalar/siblings/",
-            "/texts/": "/yazma/",
+            "/texts/": "/yazilar/",
+            "/yazma/": "/yazilar/",
+            "/writings/": "/yazilar/",
             "/seviye/": "/seviye-testi/",
             "/users/login/": "/giris/",
             "/users/register/": "/kayit/",
@@ -307,7 +315,7 @@ class EskiAdresTests(TestCase):
         beklenen = {
             "index": "/", "sozluk": "/sozluk/", "learn_pass_page": "/calismalar/",
             "exercises_page": "/calismalar/egzersizler/", "readings": "/okumalar/",
-            "profile_texts": "/yazma/", "diyalog_page": "/yazma/diyalog/",
+            "profile_texts": "/yazilar/", "diyalog_page": "/yazilar/diyalog/",
             "seviye_testi": "/seviye-testi/", "login": "/giris/", "register": "/kayit/",
             "user_profile": "/profil/", "sozluk_oneri": "/api/sozluk/oneri/",
             "learn_pass_verdict": "/api/learn-pass/verdict/", "seri_durum": "/api/seri/durum/",

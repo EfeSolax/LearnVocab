@@ -54,3 +54,6 @@ rapor*.json
 
 # pywebpush test artığı (şifreli Web Push yükü)
 encrypted.data
+
+# Kullanıcıların okuma metinleri (özel, web'den sunulmaz)
+/ozel_depo/

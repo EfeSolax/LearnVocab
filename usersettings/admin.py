@@ -59,7 +59,7 @@ class UserSettingsInline(admin.StackedInline):
     
     fieldsets = (
         ('Öğrenme Ayarları', {
-            'fields': ('dailyGoal', 'audio')
+            'fields': ('audio',)
         }),
         ('E-posta Bildirimleri', {
             'classes': ('collapse',),
@@ -70,5 +70,5 @@ class UserSettingsInline(admin.StackedInline):
 # İsteğe bağlı: UserSettings modelini ayrıca görmek isterseniz
 # @admin.register(UserSettings)
 # class UserSettingsAdmin(admin.ModelAdmin):
-#     list_display = ('user', 'dailyGoal', 'audio')
+#     list_display = ('user', 'audio')
 #     search_fields = ('user__username',)

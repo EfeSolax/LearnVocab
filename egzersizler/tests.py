@@ -487,8 +487,8 @@ class GirisTests(TestCase):
 class SeviyeTests(TestCase):
     def test_seviye(self):
         u = User.objects.create_user(username="s", password="Sifre1234")
-        self.assertEqual(seviye_mod.kullanici_seviyesi(u), "B1")      # level=1: belirtilmemiş
-        u.level = 401
+        self.assertEqual(seviye_mod.kullanici_seviyesi(u), "B1")      # seviye belirlenmemiş
+        u.cefr = "B2"
         self.assertEqual(seviye_mod.kullanici_seviyesi(u), "B2")
         self.assertEqual(seviye_mod.bir_ust("B1"), "B2")
         self.assertEqual(seviye_mod.bir_ust("C2"), "C2")

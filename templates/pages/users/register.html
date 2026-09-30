@@ -12,7 +12,7 @@
 <br>
 <div class="flex min-h-full flex-col justify-center px-6 py-1 lg:px-8 mb-16">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-slate-100">Hesabınızı Oluşturun!</h2>
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-slate-100">Hesabını oluştur</h2>
   </div>
 
   <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm bg-white dark:bg-slate-800 p-8 rounded-lg shadow-md">
@@ -21,129 +21,49 @@
     <form action="{% url 'register' %}" method="POST" class="space-y-6">
       {% csrf_token %}
       
-      <div class="flex items-center space-x-2">
-          <svg class="h-4 w-4 flex-shrink-0 text-gray-400 dark:text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <span class="text-xs text-gray-600 dark:text-slate-400">Şifreniz en az 8 karakterli olmalıdır.</span>
-      </div>
-
-      <div class="flex items-center space-x-2">
-          <svg class="h-4 w-4 flex-shrink-0 text-gray-400 dark:text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <span class="text-xs text-gray-600 dark:text-slate-400">Şifrenizde en az 1 tane büyük harf (A-Z) olmalıdır.</span>
-      </div>
-
-      <div class="flex items-center space-x-2">
-          <svg class="h-4 w-4 flex-shrink-0 text-gray-400 dark:text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <span class="text-xs text-gray-600 dark:text-slate-400">Şifrenizde en az 1 tane küçük harf (a-z) olmalıdır.</span>
-      </div>
-
-      <div class="flex items-center space-x-2">
-          <svg class="h-4 w-4 flex-shrink-0 text-gray-400 dark:text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <span class="text-xs text-gray-600 dark:text-slate-400">Şifrenizde en az 1 tane rakam (0-9) olmalıdır.</span>
-      </div>
-      
-      <div class="flex items-center space-x-2">
-          <svg class="h-4 w-4 flex-shrink-0 text-gray-400 dark:text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <span class="text-xs text-gray-600 dark:text-slate-400">Kullanıcı adınız sitede bulunan bir kullanıcıya ait olmamalıdır.</span>
-      </div>
-      
-      <div class="flex items-center space-x-2">
-          <svg class="h-4 w-4 flex-shrink-0 text-gray-400 dark:text-slate-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <span class="text-xs text-gray-600 dark:text-slate-400">Daha sonra size mail atabilmemiz için lütfen doğru mail'inizi giriniz.</span>
-      </div>
-
-      <!-- İsim isteme -->
+      {# Rapor 18.23: ad, soyad, e-posta, kullanıcı adı, şifre. Kur seçimi ve "şifre tekrar" yok. #}
       <div>
-        <label class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">İsim</label>
+        <label for="first_name" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Ad</label>
         <div class="mt-2">
-          <input id="first_name" type="text" name="first_name" autocomplete="off" placeholder="İsim"
-          class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
-        </div>
-      </div>
-    
-      <!-- Soyisim isteme -->
-      <div>
-        <label class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Soyisim</label>
-        <div class="mt-2">
-          <input id="last_name" type="text" name="last_name" autocomplete="off" placeholder="Soyisim"
+          <input id="first_name" type="text" name="first_name" required autocomplete="given-name" value="{{ degerler.first_name }}"
           class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
         </div>
       </div>
 
-      <!-- Kullanıcı adı isteme -->
       <div>
-        <label class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Kullanıcı Adı</label>
+        <label for="last_name" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Soyad</label>
         <div class="mt-2">
-          <input id="username" type="text" name="username" autocomplete="off" placeholder="Kullanıcı Adı"
-          class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
-        </div>
-      </div>
-    
-      <!-- Email isteme -->
-      <div>
-        <label for="email" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Email Adresi</label>
-        <div class="mt-2">
-          <input id="email" type="email" name="email" required autocomplete="email" placeholder="Email"
+          <input id="last_name" type="text" name="last_name" required autocomplete="family-name" value="{{ degerler.last_name }}"
           class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
         </div>
       </div>
 
-      <!-- Seviye isteme -->
       <div>
-        <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Seviye (Kur)</label>
-        </div>
-        
-        <div class="relative">
-        <select id="level" name="level"
-            class="block w-full appearance-none rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-gray-900 dark:text-slate-100 text-sm shadow-sm focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600">
-            <option value="" disabled selected>Seviyenizi seçin</option>
-            <option value="1">1. Seviye</option>
-            <option value="2">2. Seviye</option>
-            <option value="3">3. Seviye</option>
-            <option value="4">4. Seviye</option>
-            <option value="5">5. Seviye</option>
-        </select>
-
-        <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400 dark:text-slate-500">
-            ▼
-        </div>
-        </div>
-      </div>
-
-      <!-- Şifre isteme -->
-      <div>
-        <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Şifre</label>
-        </div>
-        
+        <label for="email" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">E-posta</label>
         <div class="mt-2">
-          <input id="password1" type="password" name="password1" autocomplete="new-password" placeholder="Şifre"
+          <input id="email" type="email" name="email" required autocomplete="email" value="{{ degerler.email }}"
           class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
         </div>
       </div>
 
-      <!-- Şifre (Tekrar) isteme -->
       <div>
-        <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Şifre (Tekrar)</label>
-        </div>
-        
+        <label for="username" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Kullanıcı adı</label>
         <div class="mt-2">
-          <input id="password2" type="password" name="password2" autocomplete="new-password" placeholder="Şifre (Tekrar)"
-          class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6"/>
+          <input id="username" type="text" name="username" required autocomplete="username" value="{{ degerler.username }}"
+          class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
         </div>
+      </div>
+
+      <div x-data="{ goster: false }">
+        <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Şifre</label>
+        <div class="relative mt-2">
+          <input id="password" :type="goster ? 'text' : 'password'" type="password" name="password" required autocomplete="new-password"
+          class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6 pr-20" />
+          <button type="button" @click="goster = !goster" :aria-pressed="goster.toString()" data-sifre-goster
+                  class="absolute inset-y-0 right-0 px-3 text-sm font-semibold text-indigo-600 dark:text-indigo-400"
+                  x-text="goster ? 'Gizle' : 'Göster'">Göster</button>
+        </div>
+        <p class="mt-1.5 text-xs text-gray-500 dark:text-slate-400">En az 8 karakter; bir büyük harf, bir küçük harf ve bir rakam.</p>
       </div>
 
       <div>

@@ -61,7 +61,9 @@ urlpatterns = [
     path("readings/metinlerim/ekle/", _yonlendir("readings_add")),
     path("readings/metinlerim/<int:pk>/", _ayni_parcalarla("readings_user_text")),
 
-    # Yazma
+    # Yazılar (ara adlar: /yazma/, /writings/)
+    path("yazma/", _yonlendir("profile_texts")),
+    path("writings/", _yonlendir("profile_texts")),
     path("texts/", _yonlendir("profile_texts")),
     path("texts/yaz/", _yonlendir("new_text_page")),
     path("texts/puanlama/", _yonlendir("about_grading_page")),

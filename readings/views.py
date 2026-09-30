@@ -5,8 +5,14 @@ Okumalar (rapor 8): tek işi odaklanıp okumak.
   /okumalar/<metin-adi>/             kütüphane metni (misafire açık, dizine açık)
   /okumalar/metinlerim/<id>/         kendi metni (yalnızca sahibi; başkası 404)
   /okumalar/metinlerim/ekle/         PDF yükle ya da yapıştır (giriş gerekli)
-  /okumalar/metinlerim/<id>/sil/     yumuşak silme ("Geri al"lı, onaysız)
-  /okumalar/metinlerim/<id>/geri-al/ silmeyi geri alma
+  /okumalar/metinlerim/<id>/sil/     çöp kutusuna atar ("Geri al"lı, onaysız)
+  /okumalar/metinlerim/<id>/geri-al/ çöpten geri alır
+  /okumalar/metinlerim/<id>/kalici-sil/  çöpteki metni kalıcı olarak siler
+
+Sınırlar (rapor 18.24): kullanıcı başına 100 metin, bunların en çok 15'i PDF;
+PDF başına 400 sayfa ve 50 MB. Çöpteki metinler sınıra sayılmaz ve 1 hafta
+sonra kendiliğinden silinir. Gövdeler diskte durur (readings/depo.py).
+Uzun metinler bölüm bölüm gösterilir (?bolum=2).
 
 Okuma ekranında kelimeye dokununca anlam /api/kelime/ ucundan gelir (api.py).
 """
@@ -28,13 +34,17 @@ from . import pdf as pdf_okuyucu
 from .models import TOPICS, ReadingText, UserText
 
 
-# Kullanıcı başına en çok kaç metin (çöptekiler hariç).
+# Kullanıcı başına en çok kaç metin ve bunların en çok kaçı PDF (çöptekiler hariç).
 EN_COK_METIN = 100
-# Yapıştırılan metin sınırları (PDF'in karakter sınırıyla aynı).
+EN_COK_PDF = 15
+# Yapıştırılan metin sınırları.
 EN_AZ_KARAKTER = 20
-EN_COK_KARAKTER = pdf_okuyucu.EN_COK_KARAKTER
-# Silinen metin bu kadar süre çöpte kalır ("Geri al" için), sonra temizlenir.
-COP_SURESI = timedelta(days=1)
+EN_COK_KARAKTER = 150_000
+# Silinen metin bu kadar süre çöp kutusunda kalır, sonra kalıcı olarak silinir.
+COP_SURESI = timedelta(days=7)
+# Okuma ekranında bir bölümün yaklaşık uzunluğu (kelime). 400 sayfalık bir
+# kitap tek seferde yüklenmez; bölüm paragraf sınırında biter.
+BOLUM_KELIME = 1500
 
 
 def _ajax_mi(request):
@@ -42,7 +52,7 @@ def _ajax_mi(request):
 
 
 def _copu_bosalt(user):
-    """Kullanıcının bir günden eski silinmiş metinlerini kalıcı olarak siler."""
+    """Kullanıcının çöpte bir haftayı dolduran metinlerini kalıcı olarak siler."""
     UserText.objects.filter(owner=user, deleted_at__lt=timezone.now() - COP_SURESI).delete()
 
 
@@ -56,11 +66,17 @@ def okumalar(request):
     else:
         konu = ""
 
-    metinlerim = []
+    metinlerim, cop = [], []
     if request.user.is_authenticated:
         _copu_bosalt(request.user)
         metinlerim = list(UserText.objects.gorunen().filter(owner=request.user)
                           .only("id", "title", "source_kind", "word_count", "created_at"))
+        cop = list(UserText.objects.filter(owner=request.user, deleted_at__isnull=False)
+                   .order_by("-deleted_at")
+                   .only("id", "title", "source_kind", "word_count", "deleted_at"))
+        simdi = timezone.now()
+        for m in cop:
+            m.kalan_gun = max(1, (m.deleted_at + COP_SURESI - simdi).days + 1)
 
     kutuphane = list(kutuphane)
     return render(request, "pages/readings.html", {
@@ -70,7 +86,40 @@ def okumalar(request):
         "konular": konular if (kutuphane or konu) else [],
         "secili_konu": konu,
         "metinlerim": metinlerim,
+        "cop": cop,
+        "cop_gun": COP_SURESI.days,
     })
+
+
+def bolumle(paragraflar, hedef=BOLUM_KELIME):
+    """Paragrafları yaklaşık `hedef` kelimelik bölümlere ayırır: [[p, p…], …]."""
+    bolumler, simdiki, sayi = [], [], 0
+    for p in paragraflar:
+        simdiki.append(p)
+        sayi += len(p.split())
+        if sayi >= hedef:
+            bolumler.append(simdiki)
+            simdiki, sayi = [], 0
+    if simdiki:
+        bolumler.append(simdiki)
+    return bolumler or [[]]
+
+
+def _bolum_baglami(request, paragraflar):
+    """Okuma ekranı için: o bölümün paragrafları ve önceki/sonraki bölüm."""
+    bolumler = bolumle(paragraflar)
+    try:
+        no = int(request.GET.get("bolum") or 1)
+    except ValueError:
+        no = 1
+    no = min(max(no, 1), len(bolumler))
+    return {
+        "paragraflar": bolumler[no - 1],
+        "bolum": no,
+        "bolum_sayisi": len(bolumler),
+        "onceki_bolum": no - 1 if no > 1 else None,
+        "sonraki_bolum": no + 1 if no < len(bolumler) else None,
+    }
 
 
 def _metin_ozeti(metin, en_cok=155):
@@ -85,9 +134,9 @@ def kutuphane_metni(request, slug):
         "active_page": "Okumalar",
         "meta_aciklama": _metin_ozeti(metin),
         "baslik": metin.title,
-        "paragraflar": metin.paragraphs,
         "metin": metin,
         "kutuphane": True,
+        **_bolum_baglami(request, metin.paragraphs),
     })
 
 
@@ -98,9 +147,9 @@ def kendi_metnim(request, pk):
     return render(request, "pages/readings/oku.html", {
         "active_page": "Okumalar",
         "baslik": metin.title,
-        "paragraflar": metin.paragraphs,
         "metin": metin,
         "kutuphane": False,
+        **_bolum_baglami(request, metin.paragraphs),
     })
 
 
@@ -138,15 +187,20 @@ def metin_ekle(request):
         baslik = (request.POST.get("baslik") or "").strip()[:200]
         yapistirilan = request.POST.get("metin") or ""
 
-        if UserText.objects.gorunen().filter(owner=request.user).count() >= EN_COK_METIN:
+        mevcut = UserText.objects.gorunen().filter(owner=request.user)
+        if mevcut.count() >= EN_COK_METIN:
             hata = (f"En çok {EN_COK_METIN} metin saklayabiliyorsun. Yenisini eklemek için "
                     "eskilerden birini silebilirsin.")
+        elif tur == "pdf" and mevcut.filter(source_kind=UserText.SOURCE_PDF).count() >= EN_COK_PDF:
+            hata = (f"En çok {EN_COK_PDF} PDF saklayabiliyorsun. Yenisini eklemek için eski "
+                    "PDF'lerden birini silebilir ya da metni yapıştırabilirsin.")
         elif tur == "pdf":
             dosya = request.FILES.get("dosya")
             if not dosya:
                 hata = "Bir PDF dosyası seçer misin?"
             elif dosya.size > pdf_okuyucu.EN_BUYUK_BOYUT:
-                hata = "Bu PDF çok büyük. En çok 10 MB'lık dosyaları okuyabiliyoruz."
+                hata = (f"Bu PDF çok büyük. En çok {pdf_okuyucu.EN_BUYUK_BOYUT_MB} MB'lık "
+                        "dosyaları okuyabiliyoruz.")
             else:
                 try:
                     # Dosya yalnızca bellekte okunur, saklanmaz.
@@ -183,6 +237,7 @@ def metin_ekle(request):
         "baslik": baslik,
         "yapistirilan": yapistirilan,
         "en_cok_sayfa": pdf_okuyucu.EN_COK_SAYFA,
+        "en_buyuk_mb": pdf_okuyucu.EN_BUYUK_BOYUT_MB,
     }, status=400 if hata else 200)
 
 
@@ -211,4 +266,17 @@ def metnim_geri_al(request, pk):
     metin.save(update_fields=["deleted_at"])
     if _ajax_mi(request):
         return JsonResponse({"ok": True})
+    return redirect("readings")
+
+
+@login_required
+@require_POST
+def metnim_kalici_sil(request, pk):
+    """Çöp kutusundaki metni kalıcı olarak siler (geri alınamaz; dosyası da silinir)."""
+    metin = get_object_or_404(UserText, pk=pk, owner=request.user, deleted_at__isnull=False)
+    baslik = metin.title
+    metin.delete()
+    if _ajax_mi(request):
+        return JsonResponse({"ok": True})
+    messages.info(request, f"“{baslik}” kalıcı olarak silindi.")
     return redirect("readings")

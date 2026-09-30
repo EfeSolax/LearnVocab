@@ -61,9 +61,9 @@ urlpatterns += i18n_patterns(
     # Çalışmalar (rapor 6): Learn & Pass ve Egzersizler
     path("calismalar/", include("learnpass.urls")),
     path("calismalar/egzersizler/", include("egzersizler.urls")),
-    # Okumalar (rapor 8) ve Yazma (rapor 9)
+    # Okumalar (rapor 8) ve Yazılar (rapor 9; İngilizce adı "Writings")
     path("okumalar/", include("readings.urls")),
-    path("yazma/", include("texts.urls")),
+    path("yazilar/", include("texts.urls")),
     # Seviye testi (rapor 7)
     path("seviye-testi/", include("seviye.urls")),
     # Hesap: /giris/, /kayit/, /cikis/, /sifremi-unuttum/, /profil/, /ayarlar/

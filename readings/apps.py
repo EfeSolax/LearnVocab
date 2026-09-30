@@ -5,3 +5,6 @@ class ReadingsConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "readings"
     verbose_name = "Okumalar"
+
+    def ready(self):
+        from . import sinyaller  # noqa: F401  (post_delete: gövde dosyasını sil)
