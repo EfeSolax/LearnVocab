@@ -769,7 +769,7 @@ Kurallar 2.3'teki tabloda. Kod:
 - Çalışmalar: `base/_exerciseTabs.html` misafirde hiç çizilmez; L&P açılışında "Kişisel egzersiz çözebilmek için giriş yap" (`data-egzersiz-daveti`). Misafir L&P dağılımı `learnpass.tekrar.misafir_kelimeleri`.
 - Yazılar: menüde giriş işareti kalktı (`LearnVocab/navigation.py`). `texts.views.yazmaSayfasi` misafire diyalog kartı + davet gösterir; `diyalogSayfasi` ve `diyalogCevap` misafire açık (`texts.diyalog.misafir_siradaki`, cevap kaydedilmez). Diyalog havuzu (D6) henüz boş; dolunca kendiliğinden çalışır.
 
-### 18.4 Telaffuz: Amerikan ve İngiliz düğmeleri (Efe'nin kararı) — **YAPILDI ama kalitesi yetersiz (30 Eylül)**
+### 18.4 Telaffuz: Amerikan ve İngiliz düğmeleri (Efe'nin kararı) — **YAPILDI (1 Ekim: bütün sözlüğün Kokoro sesleri üretildi)**
 > **Sorun (Efe, 30 Eylül):**
 > - Mac'te US düğmesi "Albert" adlı şaka sesini seçiyordu ("sincap gibi"). Düzeltildi: şaka ve eski sentez sesleri dışlandı, artık Samantha seçiliyor.
 > - UK için Mac'teki tek düzgün ses Daniel, o da "scatter"ı yanlış okudu.
@@ -1212,7 +1212,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - **Eklenmeyenler (~100):** İngiliz yazım farkları (colour, centre, favourite, analyse, jewellery, judgement… — Amerikan yazımı sözlükte var); zaten ifade kartı olarak bulunan bağlaçlar (and, because, however, although…; bunların bağlaç dışı anlamları — for "için", as "olarak", so "çok", once "bir kez" gibi — kelime olarak eklendi); hassas kelimeler (rape, abortion, sexual, lesbian; "gay" daha önce Efe'nin kararıyla silinmişti); "born" (fiil; sıfatı var) ve PDF'ten yanlış okunan "diplomatic" (isim).
   - Ay ve gün adları büyük harfle yazıldı (April, Monday…); CD, DVD, TV, IT, OK, AIDS da öyle.
   - A1–B1 olanlar kademeli dizine almanın 1. partisine katıldı.
-  - **Ses dosyaları:** Bu kelimelerin telaffuzu henüz yok; ses üretimi bittikten sonra `araclar/telaffuz_uret.py` bir kez daha çalıştırılınca (yalnızca eksikleri üretir) gelir.
+  - Bu kelimelerin telaffuz dosyaları da üretildi (1 Ekim).
 - Eksik listesi `manage.py oxford_cefr_yukle --dry-run` ile yeniden üretilebilir (şu an 101; yukarıda sayılan bilinçli olarak eklenmeyenler).
 - **Cambridge EVP:** Ücretsiz ama yalnızca sitede arama var, indirilebilir liste yok. ~7.000 kelimeyi almak siteyi otomatik gezmeyi (scraping) gerektirir. Kullanım koşulları doğrulanamadığı için yapılmadı. C2 ve Oxford dışı kelimeler sıklık tutarsızlığı + B aşamasıyla denetlenecek.
 - **Özel adlar (30 Eylül):** Yalnızca özel ad olan kayıt bulunamadı; aile hattı bunları zaten almamış. İki tarama yapıldı: örnek cümlelerde hep büyük harfle geçen kelimeler, Türkçe anlamında "soyadı / adı / şehri" geçenler. Bulunanların hepsi gerçek kelime (milliyet, dil, "surname" vb.).
@@ -1444,13 +1444,13 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Search Console
   - `www` yönlendirmesi
   - kademeli dizine alma (18.15)
-  - `media/telaffuz/` ses dosyalarının (~140 MB, ~27.600 dosya) sunucuya yüklenmesi (18.4)
+  - `media/telaffuz/` ses dosyalarının (218 MB, 28.372 dosya) sunucuya yüklenmesi (18.4)
   - `.env`'e `SITE_ADRESI` (varsayılanı zaten `https://www.learnvocab.com.tr`); `http` + `www`'suz isteğin tek adımda yönlenmesi (`.htaccess`)
   - kademeli dizine alma partilerinin takvimi (18.15: 1. parti açık, sırada B2 Oxford)
 
 **Claude'un hazırladığı TASLAK kontrol listesi (1 Ekim; uygulanmadı, Efe ile konuşulacak):**
 1. **Önce yerelde:** `.venv/bin/python manage.py test --parallel 4 --noinput` · `manage.py check --deploy` · veritabanı yedeği (`~/LearnVocab-yedekler/`).
-2. **Veri boyutu:** Yerel SQLite 44 MB; MySQL'de benzer olur, 1 GB sınırının çok altında. Telaffuz dosyaları ~170 MB (~28 bin dosya, inode sınırının ~%7'si). `ozel_depo/` şu an 108 KB.
+2. **Veri boyutu:** Yerel SQLite 44 MB; MySQL'de benzer olur, 1 GB sınırının çok altında. Telaffuz dosyaları 218 MB (28.372 dosya, inode sınırının ~%7'si). `ozel_depo/` şu an 108 KB.
 3. **Veritabanı taşıma (önerilen yol):** yerelde `manage.py dumpdata --natural-foreign --exclude contenttypes --exclude auth.permission --exclude sessions > veri.json`; sunucuda boş MySQL'e `migrate` ve `loaddata veri.json`. (v1.0 kullanıcı verisinin ne olacağı Efe'nin kararı: çok az ve önemsiz.)
 4. **Kod:** `git pull`; `pip install -r requirements.txt` (sunucu Python 3.10 — kodda 3.11+ özelliği yok, denetlendi; `wordfreq`, `lemminflect`, `spylls` yalnızca veri komutları için, sunucuda şart değil ama `pymupdf` PDF yükleme için ŞART); `migrate`; `collectstatic`.
 5. **Dosyalar:** `media/telaffuz/` sunucudaki `media/`'ya (SFTP/rsync). `ozel_depo/` web kökünün DIŞINDA olmalı ve yedeğe girmeli.
@@ -1603,3 +1603,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-01 (6):** Boş havuzlara 5'er örnek yazılıp yüklendi (D2, D3, D5, D6, D7; `veri/ornek/`).
 - **2026-10-01 (7):** Eksik Oxford kelimelerinden 522'si elle yazılıp eklendi (`veri/oxford_eksik/`, `elle_kelime_yukle`).
 - **2026-10-01 (8):** Veri B aşaması için inceleme listesi hazırlandı (`ozetler/b-asamasi-inceleme.md`; değişiklik uygulanmadı). Seviye testi özet soruları tarayıcıda uçtan uca denendi.
+- **2026-10-01 (9):** Telaffuz ses üretimi TAMAMLANDI: sözlükteki her kelime ve ifade için US + UK, 28.372 MP3 (218 MB), 0 hata, eksik yok.
