@@ -1448,6 +1448,20 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - `.env`'e `SITE_ADRESI` (varsayılanı zaten `https://www.learnvocab.com.tr`); `http` + `www`'suz isteğin tek adımda yönlenmesi (`.htaccess`)
   - kademeli dizine alma partilerinin takvimi (18.15: 1. parti açık, sırada B2 Oxford)
 
+**Claude'un hazırladığı TASLAK kontrol listesi (1 Ekim; uygulanmadı, Efe ile konuşulacak):**
+1. **Önce yerelde:** `.venv/bin/python manage.py test --parallel 4 --noinput` · `manage.py check --deploy` · veritabanı yedeği (`~/LearnVocab-yedekler/`).
+2. **Veri boyutu:** Yerel SQLite 44 MB; MySQL'de benzer olur, 1 GB sınırının çok altında. Telaffuz dosyaları ~170 MB (~28 bin dosya, inode sınırının ~%7'si). `ozel_depo/` şu an 108 KB.
+3. **Veritabanı taşıma (önerilen yol):** yerelde `manage.py dumpdata --natural-foreign --exclude contenttypes --exclude auth.permission --exclude sessions > veri.json`; sunucuda boş MySQL'e `migrate` ve `loaddata veri.json`. (v1.0 kullanıcı verisinin ne olacağı Efe'nin kararı: çok az ve önemsiz.)
+4. **Kod:** `git pull`; `pip install -r requirements.txt` (sunucu Python 3.10 — kodda 3.11+ özelliği yok, denetlendi; `wordfreq`, `lemminflect`, `spylls` yalnızca veri komutları için, sunucuda şart değil ama `pymupdf` PDF yükleme için ŞART); `migrate`; `collectstatic`.
+5. **Dosyalar:** `media/telaffuz/` sunucudaki `media/`'ya (SFTP/rsync). `ozel_depo/` web kökünün DIŞINDA olmalı ve yedeğe girmeli.
+6. **`.env`:** `DEBUG=False`, `SITE_ADRESI=https://www.learnvocab.com.tr`, `OZEL_DEPO` (web dışı tam yol), VAPID anahtarları (`manage.py vapid_anahtari_uret`), Gemini anahtarı. Anahtarlar sohbete yazılmaz.
+7. **Yönlendirmeler:** `.htaccess` ile `http://` ve `www`'suz isteklerin tek adımda `https://www.` adresine 301'i. Canlıdaki v1.0 adreslerinden örnekleri elle dene (`/users/login/`, `/texts/`, `/readings/` → yeni adresler).
+8. **Cron** (`bildirimler/CRON.md`): `yazilari_yeniden_dene` 30 dk, `bildirim_gonder_hatirlatma` 15 dk, `karsilasma_ozetle` her gece, `clearsessions` isteğe bağlı.
+9. **PDF yükleme sınırı:** Apache/Passenger'ın 50 MB yüklemeye izin verdiği doğrulanır (gerekirse `LimitRequestBody`).
+10. **Google:** Search Console'da alan adı doğrulaması (Efe, DNS TXT), `sitemap.xml` gönderimi; birkaç gün "Dizine eklenen / taranan ama eklenmeyen" sayılarının izlenmesi; sonra kademeli dizine almanın 2. partisi (B2 Oxford).
+11. **Geçiş günü:** kısa bakım ekranı (Passenger `tmp/restart.txt` ile yeniden başlatma), geçişten sonra ana akışların elle denenmesi (kayıt, L&P, egzersiz, okuma, yazı, bildirim).
+
+
 ### 18.31 İstatistik ekranı (admin) (Efe'nin kararı, 29 Eylül) — **YAPILDI (1 Ekim)**
 **Uygulama:** `/admin/istatistik/` (yalnızca yönetici; admin ana sayfasında "İstatistikler" bağlantısı). Kod `LearnVocab/istatistik.py`.
 - Göstergeler: aktif kullanıcılar (bugün, 7 gün, 30 gün, son 14 gün); tekrar basamağı başına unutma oranı; günün tamamlanma oranı; L&P'de 10 karta ulaşmadan bırakılan günler (L&P turu ayrı kaydedilmediği için yarıda bırakma bu ölçüyle görülür); yarıda bırakılan egzersiz oturumları; seri uzunluğu dağılımı; bildirim ön ekranı ölçütünü sağlayanların bildirimi açma oranı.
