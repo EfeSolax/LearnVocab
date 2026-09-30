@@ -1062,7 +1062,16 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Veri işlerinden (18.6, 18.7) önce **proje dışında** tek bir güncel `db.sqlite3` yedeği alınır. Projedeki 20 eski yedek silinince elde başka kopya kalmaz.
 - **Dış depo yolu:** `iliskileri_anlama_bagla` ve `kelime_listesi` komutlarının varsayılan `--depo ara-depo-tam` değeri artık çalışmaz. Dış yol `.env`'e (ör. `ARA_DEPO_DIZINI`) ya da belgeye yazılır.
 
-### 18.14 Boş havuzlara 5'er örnek (Efe'nin kararı)
+### 18.14 Boş havuzlara 5'er örnek (Efe'nin kararı) — **YAPILDI (1 Ekim)**
+**Uygulama (1 Ekim):** Claude elle yazdı ve yükledi; dosyalar `veri/ornek/` (yükleme komutları oradaki README'de). Hepsinin `kaynak` alanında "örnek" yazar.
+- D2 bağlaç: 5 cümle (so, although, unless, on the other hand, as a result).
+- D3 eş dizim: 5 eş dizim (make friends, make progress, do a favor, have fun, make an effort), her birinde 3 doğrulanmış çeldirici. Doğal okunabilecek adaylar ("have friends", "take a decision" gibi) çeldirici yapılmadı.
+- D4 seviye testi: 5 değil, tam havuz yazıldı (301 soru, 18.27).
+- D5 kütüphane: her konuda bir metin (hukuk, psikoloji, sosyoloji, antropoloji, eğitim), B1–B2, özgün.
+- D6 diyalog: 5 diyalog (apologize, exhausted, reluctant, borrow, delicious).
+- D7 hazır liste: "Örnek liste: Akademik fiiller" (20 fiil, hepsi sözlükte eşleşti).
+- **Göze çarpan veri sorunu (B aşamasına):** Örnek listede bazı fiillerin ilk anlamı yanlış sırada: "interpret" → önce "çevirmenlik yapmak", "occur" → önce "aklına gelmek". Asıl anlam ("yorumlamak", "meydana gelmek") başa alınmalı.
+
 - Boş görünmesinler diye her boş havuza **5 örnek**, Claude tarafından **elle** yazılır. API harcaması olmaz.
 - **Havuzlar:**
   - D2 bağlaç/ifade cümleleri
@@ -1572,3 +1581,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-01 (3):** Uygulama 9. adım yapıldı: admin istatistik ekranı (18.31, yalnızca toplu sayılar, 5 kişi eşiği) ve 90 günden eski karşılaşma kayıtlarının kişisiz günlük özete çevrilmesi (18.32, `karsilasma_ozetle`, gece cron'u).
 - **2026-10-01 (4):** 18.28 (cut/put/hit 3 şıkla soruluyor) ve büyük harf düzeltmesi (harf duyarsız okuma sorgusu; 6 kelime büyük harfle; "oriental" isim silindi) yapıldı.
 - **2026-10-01 (5):** Seviye testinin özet soruları yazıldı ve yüklendi (301 soru, `seviye/havuz/`).
+- **2026-10-01 (6):** Boş havuzlara 5'er örnek yazılıp yüklendi (D2, D3, D5, D6, D7; `veri/ornek/`).

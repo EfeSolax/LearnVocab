@@ -1,0 +1,21 @@
+# Örnek liste: Akademik fiiller (rapor 18.14 — örnek; bir kurumun listesi DEĞİL)
+assess:verb
+define:verb
+establish:verb
+identify:verb
+indicate:verb
+interpret:verb
+require:verb
+obtain:verb
+occur:verb
+estimate:verb
+evaluate:verb
+demonstrate:verb
+investigate:verb
+contribute:verb
+derive:verb
+conclude:verb
+illustrate:verb
+maintain:verb
+approach:verb
+emerge:verb
