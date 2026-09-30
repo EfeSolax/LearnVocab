@@ -1602,3 +1602,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-01 (5):** Seviye testinin özet soruları yazıldı ve yüklendi (301 soru, `seviye/havuz/`).
 - **2026-10-01 (6):** Boş havuzlara 5'er örnek yazılıp yüklendi (D2, D3, D5, D6, D7; `veri/ornek/`).
 - **2026-10-01 (7):** Eksik Oxford kelimelerinden 522'si elle yazılıp eklendi (`veri/oxford_eksik/`, `elle_kelime_yukle`).
+- **2026-10-01 (8):** Veri B aşaması için inceleme listesi hazırlandı (`ozetler/b-asamasi-inceleme.md`; değişiklik uygulanmadı). Seviye testi özet soruları tarayıcıda uçtan uca denendi.
