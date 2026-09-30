@@ -2,10 +2,10 @@
 Tek satırlık sonuç: "carpet · isim · halı · B1" ("Diğer sonuçlar", "Bunu mu demek istediniz?").
 Bağlam: satir = {"metin", "tur", "anlam", "cefr", "id"} (words.arama._satir)
 id varsa dokununca o kelimenin kartı satırın yerinde açılır (data-kart-ac);
-yoksa (ifade, öneri) /sozluk/?q=<metin> adresine gidilir.
+yoksa (ifade, öneri) kalıcı sayfasına (/sozluk/<metin>/) gidilir.
 {% endcomment %}
 <li data-kart-satiri>
-    <a href="{% url 'sozluk' %}?q={{ satir.metin|urlencode }}"{% if satir.id %} data-kart-ac="{{ satir.id }}" data-kart-hedef="yerine"{% endif %}
+    <a href="{{ satir.metin|kelime_adresi }}"{% if satir.id %} data-kart-ac="{{ satir.id }}" data-kart-hedef="yerine"{% endif %}
        class="flex items-baseline gap-1.5 px-4 py-2.5 text-sm hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
         <span class="font-semibold text-gray-900 dark:text-slate-100">{{ satir.metin }}</span>
         {% if satir.tur %}<span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>

@@ -445,7 +445,7 @@ class YazmaSayfalariTests(TestCase):
                 self.assertIn("önce giriş yapın", html)
         yanit = self.client.post(reverse("create_text"), {"user_text": METIN})
         self.assertEqual(yanit.status_code, 302)
-        self.assertIn("login", yanit["Location"])
+        self.assertIn(reverse("login"), yanit["Location"])
         self.assertFalse(Text.objects.exists())
 
     def test_new_text_page_offers_topics_words_and_severity(self):

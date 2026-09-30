@@ -1,4 +1,4 @@
-"""Seviye testi adresleri (rapor 7). LearnVocab/urls.py: path("seviye/", include(...))."""
+"""Seviye testi adresleri (rapor 7). LearnVocab/urls.py: path("seviye-testi/", include(...))."""
 
 from django.urls import path
 

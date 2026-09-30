@@ -606,13 +606,13 @@ class OldPagesRemovedTests(TestCase):
     alt sayfaları 29 Eylül'de tamamen kaldırıldı (rapor 18.13).
     """
 
+    # İşlem uçları ve kaldırılan özellikler: 404. Eski SAYFA adresleri ise yeni
+    # karşılıklarına 301 ile yönlenir (LearnVocab/test_seo.py, rapor 18.15).
     ESKI_ADRESLER = (
-        "/words/all-words/", "/words/word-detail/1/", "/words/expression/1/",
         "/words/add-all-words/", "/words/add-selected-to-my-list/",
         "/words/add-family-to-my-list/1/", "/words/ai-add/", "/words/ai-add/create/",
-        "/profile/profile/words/", "/profile/profile/words/add-word/",
-        "/profile/profile/myaccount/", "/profile/profile/settings/",
-        "/profile/profile/texts/", "/profile/delete-all-words/",
+        "/profile/profile/words/add-word/", "/profile/delete-all-words/",
+        "/words/add-to-my-list/1/", "/sozluk/kart/1/", "/exercises/learn/api/verdict/",
     )
 
     def test_old_addresses_are_gone(self):
@@ -1194,4 +1194,4 @@ class IfadeTests(TestCase):
         e = self._ifade("however")
         r = self.client.get(reverse("add_expression_to_my_list", args=[e.id]))
         self.assertEqual(r.status_code, 302)
-        self.assertIn("login", r.url)
+        self.assertIn(reverse("login"), r.url)

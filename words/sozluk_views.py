@@ -1,20 +1,27 @@
 """
-Sözlük sayfası ve uçları (ürün raporu 4 ve 5). Adresler: words/sozluk_urls.py
+Sözlük sayfası ve uçları (ürün raporu 4, 5 ve 18.15).
+Adresler: words/sozluk_urls.py (sayfalar) ve words/api_urls.py (uçlar)
 
-    /sozluk/                     Keşfet (boş hâl ya da ?q= arama) | ?sekme=listem Listem
-    /sozluk/oneri/?q=            anlık öneri (JSON)
-    /sozluk/kart/<id>/           tek kelime kartı (HTML parçası; çip ve Listem satırı yerinde açar)
-    /sozluk/liste/<slug>/        hazır liste sayfası
-    /sozluk/liste/<slug>/calis/  "Bu listeyle çalış" / "Seviyeme dön" (POST)
-    /sozluk/listem/oneri/?q=     Listem'in anlık önerisi (JSON, yalnızca listedekiler)
-    /sozluk/listem/cikar/        toplu çıkar (POST JSON {"idler": [...]})
-    /sozluk/listem/geri-al/      toplu "Geri al" (POST JSON {"geri": [...]})
+    /sozluk/                     Keşfet (boş hâl) | ?sekme=listem Listem
+    /sozluk/?q=bank              arama: tam eşleşme /sozluk/bank/ adresine 301;
+                                 diğer sonuçlar burada gösterilir (noindex)
+    /sozluk/bank/                kelimenin KALICI sayfası: aynı arayüz, aynı kartlar
+    /sozluk/seviye/b1/           seviyeye göre göz at (sayfalı)
+    /sozluk/harf/a/              harfe göre göz at (sayfalı)
+    /listeler/<slug>/            hazır liste sayfası
+    /listeler/<slug>/calis/      "Bu listeyle çalış" / "Seviyeme dön" (POST)
+    /api/sozluk/oneri/?q=        anlık öneri (JSON)
+    /api/sozluk/kart/<id>/       tek kelime kartı (HTML parçası; çip ve Listem satırı yerinde açar)
+    /api/listem/oneri/?q=        Listem'in anlık önerisi (JSON, yalnızca listedekiler)
+    /api/listem/cikar/           toplu çıkar (POST JSON {"idler": [...]})
+    /api/listem/geri-al/         toplu "Geri al" (POST JSON {"geri": [...]})
 
 Arama mantığı words/arama.py'de, Listem mantığı words/listem.py'de,
 hazır listeler words/hazir_liste.py'de. Buradaki görünümler ince.
 """
 
-from urllib.parse import quote, urlencode
+import json
+from urllib.parse import urlencode
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -25,9 +32,12 @@ from django.urls import reverse
 from django.utils.cache import patch_cache_control
 from django.views.decorators.http import require_GET, require_POST
 
-from . import arama, hazir_liste, listem
+from LearnVocab.seo import tam_adres
+
+from . import arama, dizine_alma, gozat, hazir_liste, listem
+from .adres import kelime_adresi, slug_yap
 from .kart import kart_verisi
-from .models import HazirListe
+from .models import CEFR_LEVELS, HazirListe
 
 HAZIR_LISTE_SAYFA_BOYU = 40
 
@@ -46,8 +56,10 @@ def sozluk(request):
 
     Keşfet:
       - ?q= yoksa boş hâl: Günün Kelimesi, Günün İfadesi, Hazır Listeler.
-      - ?q= varsa arama (sunucuda çizilir; adres paylaşılabilir ve
-        arama motorları görebilir: /sozluk/?q=aim).
+      - ?q= varsa arama. Tam eşleşen kelime ya da ifade kendi kalıcı adresine
+        301 ile gider (/sozluk/?q=aim -> /sozluk/aim/): aynı içerik tek
+        adreste durur. Geri kalan sonuç sayfaları (Türkçe sorgu, çekimli hâl,
+        öneri, bulunamadı) dizine girmez (rapor 18.15, SEO kuralı 3).
     Listem: ?sekme=listem (+ ara, sira, zaman, zor, sayfa). ?parca=1 ile
     yalnızca satırlar döner ("Daha fazla göster").
     """
@@ -64,14 +76,89 @@ def sozluk(request):
         sorgu = (request.GET.get("q") or "").strip()[:120]
         baglam["sorgu"] = sorgu
         if sorgu:
-            baglam.update(_arama_baglami(request, sorgu))
+            sonuc = arama.ara(request.user, sorgu)
+            slug = arama.tam_eslesme_slug(sonuc)
+            if slug:
+                return redirect("sozluk_kelime", slug=slug, permanent=True)
+            baglam.update(_sonuc_baglami(request, sonuc))
+            if not sonuc.bulundu:
+                arama.bulunamayan_kaydet(sorgu, oneri_vardi=bool(sonuc.oneriler or sonuc.digerleri))
         else:
             baglam.update(_kesfet_baglami(request))
+    # Arama sonucu ve Listem kişiye/sorguya özel: dizine girmez.
+    baglam["noindex"] = bool(baglam["sorgu"]) or sekme == "listem"
     return render(request, "pages/sozluk.html", baglam)
 
 
-def _arama_baglami(request, sorgu):
-    sonuc = arama.ara(request.user, sorgu)
+def sozluk_kelime(request, slug):
+    """
+    Kelimenin kalıcı sayfası (rapor 18.15). Arayüz Sözlük sayfasının aynısı:
+    üstte arama kutusu, altında o kelimenin kartları. Değişen yalnızca adres.
+    """
+    dogru = slug_yap(slug)
+    if dogru and dogru != slug:                       # /sozluk/Bank/ -> /sozluk/bank/
+        return redirect("sozluk_kelime", slug=dogru, permanent=True)
+
+    baglam = {"active_page": "Sözlük", "sekme": "kesfet", "kartlar": []}
+    sonuc = arama.kelime_sayfasi(request.user, slug)
+    if sonuc is None:
+        # Böyle bir kelime yok: benzerleri göster ama 404 dön (yumuşak 404 olmasın).
+        sorgu = slug.replace("-", " ")
+        sonuc = arama.ara(request.user, sorgu)
+        baglam.update(_sonuc_baglami(request, sonuc), sorgu=sorgu, noindex=True)
+        return render(request, "pages/sozluk.html", baglam, status=404)
+
+    baglam.update(_sonuc_baglami(request, sonuc), sorgu=sonuc.sorgu, kelime_sayfasi=True)
+    baglam["noindex"] = not dizine_alma.sayfa_acik_mi(sonuc.kelimeler, sonuc.ifadeler)
+    baglam["sayfa_basligi"] = (f"{sonuc.sorgu} ne demek? Türkçe anlamı ve cümle içinde "
+                               f"kullanımı — LearnVocab Sözlük")
+    baglam["ekmek_kirintisi"] = _ekmek_kirintisi(sonuc)
+    baglam["yapisal_veri"] = _yapisal_veri(sonuc, baglam["kartlar"], baglam["ekmek_kirintisi"])
+    return render(request, "pages/sozluk.html", baglam)
+
+
+def _ekmek_kirintisi(sonuc):
+    """[(ad, yol)] — sayfada görünen satır: Sözlük › B1 kelimeleri › bank"""
+    adimlar = [("Sözlük", reverse("sozluk"))]
+    seviye = next((k.cefr for k in sonuc.kelimeler if k.cefr in CEFR_LEVELS), "")
+    if seviye:
+        adimlar.append((f"{seviye} kelimeleri", reverse("sozluk_seviye", args=[seviye.lower()])))
+    adimlar.append((sonuc.sorgu, kelime_adresi(sonuc.sorgu)))
+    return adimlar
+
+
+def _yapisal_veri(sonuc, kartlar, ekmek_kirintisi):
+    """
+    JSON-LD (schema.org DefinedTerm + BreadcrumbList). Yalnızca sayfada
+    GÖRÜNEN içeriği anlatır (rapor 18.15, SEO kuralı 5).
+    """
+    adres = tam_adres(kelime_adresi(sonuc.sorgu))
+    terim = {
+        "@context": "https://schema.org",
+        "@type": "DefinedTerm",
+        "name": sonuc.sorgu,
+        "description": ", ".join(_turkce_anlamlar(sonuc, kartlar)),
+        "inLanguage": "en",
+        "url": adres,
+        "inDefinedTermSet": {
+            "@type": "DefinedTermSet",
+            "name": "LearnVocab Sözlük",
+            "url": tam_adres(reverse("sozluk")),
+        },
+    }
+    kirinti = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i, "name": ad, "item": tam_adres(yol)}
+            for i, (ad, yol) in enumerate(ekmek_kirintisi, start=1)
+        ],
+    }
+    # "</script>" metnin içinde geçemesin.
+    return [json.dumps(v, ensure_ascii=False).replace("<", "\\u003c") for v in (terim, kirinti)]
+
+
+def _sonuc_baglami(request, sonuc):
     kartlar = kart_verisi(sonuc.kelimeler, request.user)
 
     turkce_kartlar = []
@@ -81,29 +168,33 @@ def _arama_baglami(request, sorgu):
         for kart in turkce_kartlar:
             kart.eslesen = eslesen.get(kart.id, "")
 
-    if not sonuc.bulundu:
-        arama.bulunamayan_kaydet(sorgu, oneri_vardi=bool(sonuc.oneriler or sonuc.digerleri))
-
     return {
         "sonuc": sonuc,
         "kartlar": kartlar,
         "turkce_kartlar": turkce_kartlar,
-        # Arama motoru için: bulunamayan sayfa dizine girmesin.
-        "noindex": not sonuc.bulundu,
-        "meta_aciklama": _meta_aciklama(sorgu, kartlar),
+        "meta_aciklama": _meta_aciklama(sonuc, kartlar),
     }
 
 
-def _meta_aciklama(sorgu, kartlar):
-    if not kartlar:
+def _turkce_anlamlar(sonuc, kartlar):
+    """Sayfadaki kartların Türkçe anlamları, sırayla ve tekrarsız."""
+    anlamlar = [a.meaning_tr for kart in kartlar for a in kart.anlamlar]
+    anlamlar += [ifade.meaning_tr for ifade in sonuc.ifadeler]
+    return list(dict.fromkeys(a for a in anlamlar if a))
+
+
+def _meta_aciklama(sonuc, kartlar):
+    """Arama sonucunda görünen açıklama: sayfadaki Türkçe anlamlar ve ilk örnek cümle."""
+    anlamlar = _turkce_anlamlar(sonuc, kartlar)
+    if not anlamlar:
         return ""
-    anlamlar = []
-    for kart in kartlar:
-        for a in kart.anlamlar:
-            if a.meaning_tr and a.meaning_tr not in anlamlar:
-                anlamlar.append(a.meaning_tr)
-    return f"{kartlar[0].text} ne demek? Türkçe anlamı: {', '.join(anlamlar[:4])}. " \
-           f"Örnek cümleler, eş ve zıt anlamlılar LearnVocab Sözlük'te."
+    ornekler = [a.ornek for kart in kartlar for a in kart.anlamlar]
+    ornekler += [ifade.ilk_ornek for ifade in sonuc.ifadeler]
+    ornek = next((o for o in ornekler if o), "")
+    metin = f"{sonuc.sorgu} ne demek? Türkçe anlamı: {', '.join(anlamlar[:4])}."
+    if ornek:
+        metin += f" Örnek: “{ornek}”"
+    return metin
 
 
 def _kesfet_baglami(request):
@@ -114,6 +205,9 @@ def _kesfet_baglami(request):
         "gunun_ifadesi": arama.gunun_ifadesi(user),
         "hazir_listeler": list(hazir_liste.yayindaki_listeler()),
         "aktif_liste": hazir_liste.aktif_liste(user),
+        # Göz atma bağlantıları (rapor 18.15)
+        "seviyeler": gozat.dolu_seviyeler(),
+        "harfler": gozat.dolu_harfler(),
     }
 
 
@@ -157,9 +251,8 @@ def sozluk_oneri(request):
     """{"oneriler": [{"metin", "anlam", "cefr", "adres"}]} — kullanıcıdan bağımsız, önbelleklenebilir."""
     sorgu = (request.GET.get("q") or "")[:60]
     satirlar = arama.otomatik_oneri(sorgu)
-    adres = reverse("sozluk")
     for s in satirlar:
-        s["adres"] = f"{adres}?q={quote(s['metin'])}"
+        s["adres"] = kelime_adresi(s["metin"])
     cevap = JsonResponse({"oneriler": satirlar})
     patch_cache_control(cevap, public=True, max_age=300)
     return cevap
@@ -214,8 +307,58 @@ def listem_geri_yukle(request):
 
 
 # ----------------------------------------------------------------------
+# Göz atma sayfaları (rapor 18.15)
+# ----------------------------------------------------------------------
+
+def _gozat(request, kelimeler, baslik, aciklama, **ek):
+    sayfa = Paginator(kelimeler.prefetch_related("meanings"), gozat.SAYFA_BOYU) \
+        .get_page(request.GET.get("sayfa") or 1)
+    if sayfa.number > 1:
+        baslik = f"{baslik} (sayfa {sayfa.number})"
+    return render(request, "pages/words/gozat.html", {
+        "active_page": "Sözlük",
+        "baslik": baslik,
+        "meta_aciklama": aciklama,
+        "sayfa": sayfa,
+        "satirlar": [arama._satir(word=w) for w in sayfa.object_list],
+        "seviyeler": gozat.dolu_seviyeler(),
+        "harfler": gozat.dolu_harfler(),
+        **ek,
+    })
+
+
+def sozluk_seviye(request, seviye):
+    if seviye != seviye.lower():
+        return redirect("sozluk_seviye", seviye=seviye.lower(), permanent=True)
+    kod = seviye.upper()
+    if kod not in CEFR_LEVELS:
+        raise Http404
+    return _gozat(request, gozat.seviye_kelimeleri(kod),
+                  f"{kod} seviyesi İngilizce kelimeler",
+                  f"{kod} seviyesindeki İngilizce kelimeler: Türkçe anlamları, örnek cümleleri "
+                  f"ve telaffuzlarıyla.",
+                  secili_seviye=kod)
+
+
+def sozluk_harf(request, harf):
+    if harf != harf.lower():
+        return redirect("sozluk_harf", harf=harf.lower(), permanent=True)
+    if harf not in gozat.HARFLER:
+        raise Http404
+    return _gozat(request, gozat.harf_kelimeleri(harf),
+                  f"{harf.upper()} harfiyle başlayan İngilizce kelimeler",
+                  f"{harf.upper()} harfiyle başlayan İngilizce kelimeler ve Türkçe anlamları.",
+                  secili_harf=harf)
+
+
+# ----------------------------------------------------------------------
 # Hazır listeler
 # ----------------------------------------------------------------------
+
+def hazir_listeler(request):
+    """/listeler/ : ayrı bir sayfa yok; listeler Sözlük'ün Keşfet ekranında durur."""
+    return redirect("sozluk")
+
 
 def hazir_liste_sayfasi(request, slug):
     """Liste sayfası: kelimeler kapalı kartlar; "Bu listeyle çalış". Toplu ekleme YOK."""
@@ -228,6 +371,7 @@ def hazir_liste_sayfasi(request, slug):
         "liste": liste,
         "kartlar": kartlar,
         "sayfa": sayfa,
+        "meta_aciklama": liste.aciklama,
         "calisiliyor": hazir_liste.aktif_liste(request.user) == liste,
     }
     if request.GET.get("parca"):

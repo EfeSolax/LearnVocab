@@ -1,13 +1,13 @@
 """
-Seviye testi (ürün raporu 7). Adresler: seviye/urls.py (/seviye/…)
+Seviye testi (ürün raporu 7). Adresler: seviye/urls.py (/seviye-testi/…)
 
-    /seviye/                giriş: Başla · Seviyemi kendim seçeyim
-    /seviye/basla/          (POST) 1. ekranı hazırlar
-    /seviye/ekran/<n>/      1. kısım: 40 kelime, yalnızca bildiklerine dokunur
-    /seviye/okuma/          2. kısım: en çok 3 özet sorusu (rapor 18.27)
-    /seviye/sonuc/          son testin sonucu + ilk liste ("Geri al")
-    /seviye/geri-al/        (POST) ilk listeye eklenenleri çıkarır
-    /seviye/sec/            "Seviyemi kendim seçeyim"
+    /seviye-testi/                giriş: Başla · Seviyemi kendim seçeyim
+    /seviye-testi/basla/          (POST) 1. ekranı hazırlar
+    /seviye-testi/ekran/<n>/      1. kısım: 40 kelime, yalnızca bildiklerine dokunur
+    /seviye-testi/okuma/          2. kısım: en çok 3 özet sorusu (rapor 18.27)
+    /seviye-testi/sonuc/          son testin sonucu + ilk liste ("Geri al")
+    /seviye-testi/geri-al/        (POST) ilk listeye eklenenleri çıkarır
+    /seviye-testi/sec/            "Seviyemi kendim seçeyim"
 
 Davet (18.27): kullanıcı testi yapana ya da seviyesini seçene kadar her
 sayfada küçük bir davet çıkar (seviye/baglam.py); L&P ve egzersiz

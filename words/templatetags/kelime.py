@@ -3,6 +3,7 @@ Kelime şablon süzgeçleri.
 
     {% load kelime %}
     {{ word.pos|tur_etiketi }}   -> isim, fiil, sıfat, zarf…
+    {{ word.text|kelime_adresi }} -> /sozluk/bank/
 
 Rapor 12.1: gramer (tür) etiketleri YALNIZCA Sözlük kartında gösterilir;
 L&P kartlarında ve egzersizlerde kullanılmaz.
@@ -18,6 +19,13 @@ register = template.Library()
 @register.filter
 def tur_etiketi(pos):
     return _tur_etiketi(pos)
+
+
+@register.filter
+def kelime_adresi(metin):
+    """{{ k.text|kelime_adresi }} -> /sozluk/give-up/ (kalıcı kelime sayfası, rapor 18.15)"""
+    from words.adres import kelime_adresi as _adres
+    return _adres(metin)
 
 
 @register.simple_tag

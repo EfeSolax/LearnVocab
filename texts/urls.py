@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-# LearnVocab/urls.py bunları "texts/" altına bağlıyor: /texts/, /texts/yaz/ …
+# LearnVocab/urls.py bunları "yazma/" altına bağlıyor: /yazma/, /yazma/yaz/ …
 # Menü `profile_texts`, `new_text_page`, `review_text` adlarına bağlı; adlar değişmemeli.
 
 urlpatterns = [

@@ -10,6 +10,17 @@
     {# fetch ile yapılan POST'lar (ör. kelime kartındaki "Listeme ekle") CSRF anahtarını buradan okur. #}
     <meta name="csrf-token" content="{{ csrf_token }}">
     <title>{% block title %}LearnVocab{% endblock %}</title>
+    {# Arama motorları (rapor 18.15, LearnVocab/seo.py). Dizine açık olmayan sayfa noindex alır; #}
+    {# canonical her zaman asıl adresten (https://www…) üretilir, istekten değil. #}
+    {% if noindex or not seo.dizine_acik %}
+    <meta name="robots" content="noindex">
+    {% else %}
+    <link rel="canonical" href="{% if canonical_yol %}{{ seo.site_adresi }}{{ canonical_yol }}{% else %}{{ seo.canonical }}{% endif %}">
+    {% for kod, adres in seo.diller %}<link rel="alternate" hreflang="{{ kod }}" href="{{ adres }}">
+    {% endfor %}
+    {% endif %}
+    {# Açıklama: görünüm `meta_aciklama` verir ya da sayfa şablonu bu bloğu doldurur. #}
+    {% block meta_aciklama %}{% if meta_aciklama %}<meta name="description" content="{{ meta_aciklama }}">{% endif %}{% endblock %}
     <link rel="icon" href="{% static 'images/favicon.jpg' %}">
     {# PWA (rapor 10): ana ekrana eklenebilir uygulama; iPhone'da bildirim için gerekli. #}
     <link rel="manifest" href="{% url 'pwa_manifest' %}">

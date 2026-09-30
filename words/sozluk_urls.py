@@ -1,6 +1,13 @@
 """
-Sözlük adresleri (ürün raporu 4 ve 5). LearnVocab/urls.py: path("sozluk/", include(...)).
-Görünümler: words/sozluk_views.py
+Sözlük sayfaları (ürün raporu 4, 5 ve 18.15). Görünümler: words/sozluk_views.py
+LearnVocab/urls.py: path("sozluk/", include(...)); hazır listeler "listeler/" altında.
+
+    /sozluk/                   Keşfet | Listem (?sekme=listem); ?q= arama
+    /sozluk/bank/              kelimenin kalıcı sayfası (bütün türleri)
+    /sozluk/seviye/b1/         seviyeye göre göz at
+    /sozluk/harf/a/            harfe göre göz at
+
+JSON / HTML parçası dönen uçlar words/api_urls.py'de (/api/ altında).
 """
 
 from django.urls import path
@@ -8,13 +15,15 @@ from django.urls import path
 from . import sozluk_views as v
 
 urlpatterns = [
-    # Paylaşılabilir arama adresi: /sozluk/?q=aim
     path("", v.sozluk, name="sozluk"),
-    path("oneri/", v.sozluk_oneri, name="sozluk_oneri"),
-    path("kart/<int:word_id>/", v.kart_parcasi, name="sozluk_kart"),
-    path("liste/<slug:slug>/", v.hazir_liste_sayfasi, name="hazir_liste"),
-    path("liste/<slug:slug>/calis/", v.hazir_liste_calis, name="hazir_liste_calis"),
-    path("listem/oneri/", v.listem_oneri, name="listem_oneri"),
-    path("listem/cikar/", v.listem_toplu_cikar, name="listem_toplu_cikar"),
-    path("listem/geri-al/", v.listem_geri_yukle, name="listem_geri_yukle"),
+    path("seviye/<str:seviye>/", v.sozluk_seviye, name="sozluk_seviye"),
+    path("harf/<str:harf>/", v.sozluk_harf, name="sozluk_harf"),
+    # En sonda: tek parçalı her adres bir kelimedir.
+    path("<slug:slug>/", v.sozluk_kelime, name="sozluk_kelime"),
+]
+
+liste_urlpatterns = [
+    path("", v.hazir_listeler, name="hazir_listeler"),
+    path("<slug:slug>/", v.hazir_liste_sayfasi, name="hazir_liste"),
+    path("<slug:slug>/calis/", v.hazir_liste_calis, name="hazir_liste_calis"),
 ]

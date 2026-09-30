@@ -54,6 +54,11 @@ class ReadingText(models.Model):
     cefr = models.CharField(max_length=15, blank=True, default="", verbose_name="seviye")
     source = models.CharField(max_length=200, blank=True, default="", verbose_name="kaynak")
 
+    # Kalıcı adres (rapor 18.15): /okumalar/<slug>/. Başlıktan üretilir;
+    # aynı başlık ikinci kez gelirse sonuna numara eklenir. Bir kez verilince
+    # başlık değişse de değişmez (dizine girmiş adres kaybolmasın).
+    slug = models.SlugField(max_length=220, unique=True, blank=True, null=True, editable=False)
+
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
@@ -63,6 +68,21 @@ class ReadingText(models.Model):
 
     def __str__(self):
         return f"{self.number} {self.title}"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._slug_uret()
+            if kwargs.get("update_fields") is not None:
+                kwargs["update_fields"] = set(kwargs["update_fields"]) | {"slug"}
+        super().save(*args, **kwargs)
+
+    def _slug_uret(self):
+        from django.utils.text import slugify
+        kok = slugify(self.title)[:200] or f"metin-{self.number}"
+        # "metinlerim" kendi metinlerimin adres öneki; başlıkla çakışmasın.
+        if kok == "metinlerim" or ReadingText.objects.filter(slug=kok).exclude(pk=self.pk).exists():
+            kok = f"{kok}-{self.number}"
+        return kok
 
     @property
     def paragraphs(self):

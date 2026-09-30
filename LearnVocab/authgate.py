@@ -12,7 +12,7 @@ yönlendirilir; girişten sonra `?next=` ile geldiği sayfaya döner.
      özniteliği konur — yalnızca girişsiz ziyaretçiye basılır, örneğin
          <button {% if not user.is_authenticated %}data-giris-gerekli="liste"{% endif %}>
      Ortak JS (base/_girisGerekli.html) tıklamayı yakalar ve
-     /users/login/?next=<bu sayfa>&neden=liste adresine gider.
+     /giris/?next=<bu sayfa>&neden=liste adresine gider.
 
   2) SAYFA (sunucuda): @login_gate. Adres doğrudan açılırsa kullanıcı giriş
      formuna fırlatılmaz; "bu sayfa için giriş yapmalısın" ekranı ve menü
@@ -44,7 +44,7 @@ GIRIS_NEDENLERI = {
 
 
 def giris_adresi(sonraki=None, neden=None):
-    """/users/login/?next=…&neden=… — boş parçalar eklenmez."""
+    """/giris/?next=…&neden=… — boş parçalar eklenmez."""
     parametreler = {}
     if sonraki:
         parametreler["next"] = sonraki

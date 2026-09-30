@@ -176,7 +176,8 @@ class KartSablonuTests(TestCase):
     def _sozluk(self, q, giris=False):
         if giris:
             self.client.login(username="sablon", password="Sifre1234")
-        cevap = self.client.get(reverse("sozluk"), {"q": q})
+        # Tam eşleşen arama kelimenin kalıcı sayfasına yönlenir (rapor 18.15).
+        cevap = self.client.get(reverse("sozluk"), {"q": q}, follow=True)
         self.assertEqual(cevap.status_code, 200)
         return cevap.content.decode()
 
@@ -184,7 +185,7 @@ class KartSablonuTests(TestCase):
         html = self._sozluk("bank")
         banka = _bolum(html, "data-anlam", self.banka.id)
         kiyi = _bolum(html, "data-anlam", self.kiyi.id)
-        cip = f'{reverse("sozluk")}?q=shore'
+        cip = 'href="/sozluk/shore/"'
         self.assertIn(cip, kiyi)
         self.assertNotIn(cip, banka)
         self.assertIn(">Benzer:<", kiyi.replace("\n", ""))
@@ -230,7 +231,7 @@ class KartSablonuTests(TestCase):
         durumlar = re.findall(r'x-data="\{ acik: (true|false) \}"', html)
         self.assertEqual(durumlar, ["true", "false"])
         self.assertIn("Aile:", html)
-        self.assertIn(f'{reverse("sozluk")}?q=aimless', html)
+        self.assertIn('href="/sozluk/aimless/"', html)
         # Kapalı hâlin tek satırı: kelime · tür · anlam · seviye
         self.assertIn("hedeflemek", html)
         self.assertIn(">fiil<", html)
@@ -382,7 +383,7 @@ class TelaffuzDosyasiTests(TestCase):
             os.makedirs(os.path.join(klasor, "telaffuz"))
             open(os.path.join(klasor, "telaffuz", "bank_us.mp3"), "wb").close()
             with override_settings(MEDIA_ROOT=klasor):
-                html = self.client.get(reverse("sozluk"), {"q": "bank"}).content.decode()
+                html = self.client.get(reverse("sozluk_kelime", args=["bank"])).content.decode()
         self.assertIn('data-telaffuz="en-US" data-metin="bank" data-ses="/media/telaffuz/bank_us.mp3"', html)
         # UK dosyası yok: düğme var ama adres taşımıyor (tarayıcı sesi yedek)
         self.assertIn('data-telaffuz="en-GB" data-metin="bank"\n', html)

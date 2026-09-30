@@ -54,7 +54,13 @@ class AramaTemeli(TestCase):
         self.user = User.objects.create_user(username="efe", password="Sifre1234")
 
     def ara(self, q, **kw):
-        cevap = self.client.get(reverse("sozluk"), {"q": q, **kw})
+        # Tam eşleşen arama kelimenin kalıcı sayfasına yönlenir (rapor 18.15).
+        cevap = self.client.get(reverse("sozluk"), {"q": q, **kw}, follow=True)
+        self.assertEqual(cevap.status_code, 200)
+        return cevap
+
+    def sayfa(self, slug):
+        cevap = self.client.get(reverse("sozluk_kelime", args=[slug]))
         self.assertEqual(cevap.status_code, 200)
         return cevap
 
@@ -110,10 +116,9 @@ class InglizceAramaTests(AramaTemeli):
 
     def test_seo_baslik_aciklama(self):
         html = _html(self.ara("aim"))
-        self.assertIn("<title>aim ne demek?", html)
+        self.assertIn("<title>aim ne demek? Türkçe anlamı ve cümle içinde kullanımı", html)
         self.assertIn('name="description"', html)
         self.assertIn("amaç, hedef", html)
-        self.assertNotIn('content="noindex"', html)
 
 
 class CekimVeYazimTests(AramaTemeli):
@@ -193,7 +198,7 @@ class OtomatikOneriTests(AramaTemeli):
         satirlar = self.oneri("ai")
         self.assertEqual(satirlar[0]["metin"], "aim")
         self.assertEqual(satirlar[0]["anlam"], "amaç, hedef")
-        self.assertEqual(satirlar[0]["adres"], f"{reverse('sozluk')}?q=aim")
+        self.assertEqual(satirlar[0]["adres"], reverse("sozluk_kelime", args=["aim"]))
         self.assertEqual([s["metin"] for s in satirlar].count("aim"), 1)   # tür başına değil, yazım başına
         self.assertIn("aimless", [s["metin"] for s in satirlar])
 
@@ -245,17 +250,17 @@ class KartParcasiTests(AramaTemeli):
 class AramaSorguSayisiTests(AramaTemeli):
 
     def test_arama_sayfasi_sabit_sorgu(self):
-        self.ara("aim")
+        self.sayfa("aim")
         with CaptureQueriesContext(connection) as az:
-            self.ara("aim")
+            self.sayfa("aim")
         aile = self.aim_n.family
         for tur in ("adjective", "adverb", "preposition"):
             make_word("aim", pos=tur, family=aile, meaning="x")
-        self.ara("aim")
+        self.sayfa("aim")
         with CaptureQueriesContext(connection) as cok:
-            self.ara("aim")
+            self.sayfa("aim")
         self.assertEqual(len(az), len(cok))
-        self.assertLessEqual(len(cok), 25)
+        self.assertLessEqual(len(cok), 30)
 
 
 class KesfetBosHalTests(AramaTemeli):

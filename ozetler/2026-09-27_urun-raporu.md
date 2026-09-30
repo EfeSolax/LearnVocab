@@ -154,10 +154,10 @@ Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma
   2. **Yazım hatası:** `recieve` → "Bunu mu demek istediniz?" altında 3–5 tek satırlık öneri. 16 bin kelimede benzerlik araması yeterince hızlıdır.
   3. **Hiçbir şey yoksa** (`gskjengkwng`): "Henüz sözlüğümüzde yok."
   - Bulunamayan aramalar **kaydedilir**. Hangi kelimelerin ekleneceğine bu kayıttan karar verilir.
-- **Paylaşılabilir adres:** Arama sonucu `/sozluk?q=aim` gibi bir adreste durur. Hem paylaşılabilir, hem Google tarafından görülebilir (SEO).
+- **Paylaşılabilir adres:** Her kelimenin kalıcı adresi vardır: `/sozluk/aim/`. `/sozluk/?q=aim` araması tam eşleşmede bu adrese yönlenir (18.15). Arayüz aynıdır; değişen yalnızca adres.
 
 ### 4.3 Kelime kartı (en önemli bileşen)
-> **→ 18.4:** Telaffuz düğmeleri (Amerikan / İngiliz) eklenecek. **→ 18.5:** Liste düğmesi her yerde aynı "Listeme ekle" olacak. **→ 18.6:** "Daha basit" satırına seviye kuralı gelecek. **→ 18.15:** Kartın adresi SEO için yeniden tasarlanacak.
+> **→ 18.4:** Telaffuz düğmeleri (Amerikan / İngiliz) eklenecek. **→ 18.5:** Liste düğmesi her yerde aynı "Listeme ekle" olacak. **→ 18.6:** "Daha basit" satırına seviye kuralı gelecek.
 
 Aynı bileşen **her yerde** kullanılır: Keşfet, Listem, günün kelimesi. **Hiçbir kelimenin ayrı bir sayfası yoktur.** Kart bulunduğu yerde açılır ve kapanır.
 
@@ -544,7 +544,7 @@ Açılışta **iki büyük seçenek** vardır:
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$HOME timeout 170 $HOME/lvenv/bin/python manage.py test --settings=testayar --parallel 4
 ```
 Bu komut Claude'un VM'i içindir (`testayar` ve `$HOME/lvenv` yalnızca orada var). Efe'nin Mac'inde: `.venv/bin/python manage.py test --parallel 4 --noinput`.
-829 test geçiyor (29 Eylül; silinen eski sayfaların testleri kaldırıldı). Her değişiklikten sonra çalıştırılır.
+904 test geçiyor (30 Eylül). Her değişiklikten sonra çalıştırılır.
 
 **Betik çalıştırma:** `yazayar` ile çalışırken `PYTHONPATH=$HOME:.` gerekir.
 
@@ -1088,72 +1088,77 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Örnek listeler bir kurumun gerçek listesiymiş gibi adlandırılmaz. Örneğin "ODTÜ 101" yerine "Örnek liste: Akademik fiiller" gibi bir ad kullanılır.
   - Kelimeler veritabanındaki mevcut kelimelerden seçilir.
 
-### 18.15 Adresler (URL) ve SEO (Efe'nin kararı, 29 Eylül: kalıcı kelime adresleri onaylandı)
+### 18.15 Adresler (URL) ve SEO (Efe'nin kararı, 29 Eylül) — **YAPILDI (30 Eylül; canlıya geçişte yapılacaklar aşağıda)**
 
 **Temel ilke (Efe):** Google'da çıkmak ürün için kat kat değerli. **SEO bizi kesinlikle cezalandırmamalı.** Her SEO kararında önce ceza riski değerlendirilir; risk varsa temkinli seçenek seçilir.
 
-**SEO güvenlik kuralları (Efe onayladı, 29 Eylül; kademeli dizine alma dahil):**
-1. **Kademeli dizine alma:**
-   - Sitemap'e ve dizine önce yalnızca **denetimden geçmiş** kelime sayfaları girer: 18.7 A aşamasından temiz çıkan, en az bir anlamı ve örneği olanlar.
-   - Denetlenmeyen ya da zayıf sayfalar `noindex` kalır ve denetlendikçe açılır.
-   - 16 bin sayfa tek günde açılmaz; partiler hâlinde (ör. önce A1–B1 sık kelimeler) açılır.
-2. **Toplu ince sayfa üretilmez:**
-   - Türkçe → İngilizce sayfalar (`/sozluk/tr/…`) yalnızca birden çok sonucu ve gerçek içeriği olan sorgular için açılır, otomatik binlerce sayfa üretilmez.
-   - Göz atma sayfaları sayfalı olur ve her satırda anlam bulunur; yalnızca bağlantı listesi olmaz.
-3. **Aynı içerik tek adreste:**
-   - `?q=` adresleri ya kalıcı adrese 301 ile yönlenir ya da `noindex` olur.
-   - `www` / `www`'suz ve `http` / `https`'den yalnızca biri yaşar.
+**SEO güvenlik kuralları (Efe onayladı, 29 Eylül):**
+1. **Kademeli dizine alma:** Bir kelime sayfası ancak **açılınca** Google'a görünür; açılmayan sayfa `noindex` kalır ve sitemap'e girmez. Sayfalar partiler hâlinde açılır.
+2. **Toplu ince sayfa üretilmez.** Göz atma sayfaları sayfalıdır ve her satırda anlam bulunur.
+3. **Aynı içerik tek adreste:** `?q=` aramaları ya kalıcı adrese 301 ile gider ya da `noindex` olur. `www`'suz ve `http` adresler asıl adrese yönlenir.
 4. **Görünmez içerik ya da anahtar kelime doldurma yok.** Başlık ve açıklama sayfanın gerçekten gösterdiğini söyler.
 5. **Yapılandırılmış veri yalnızca sayfada görünen içeriği** anlatır.
-6. **Veri kalitesi SEO işidir:** 18.7 ve 18.16 bitmeden toplu dizine alma yapılmaz.
+6. **Veri kalitesi SEO işidir:** Denetlenmemiş kelimeler toplu açılmaz.
 
-**Şu anki sorunlar:**
-- Adresler karışık: Çalışmalar `/exercises/learn/` altında, Egzersizler `/egzersizler/`, Yazma `/texts/`, Okumalar `/readings/`, Sözlük `/sozluk/`. `/exercises/` ise 404.
-- `robots.txt` ve `sitemap.xml` yok.
-- Kelime sonuçları `/sozluk/?q=bank` adresinde duruyor. Google site içi arama sonuç sayfalarını dizine almamayı öneriyor.
-- `canonical` adresi istekten üretiliyor (canlıda `http` olarak çıkma riski var).
-- Kelime kartlarındaki bağlantılar `?q=` adreslerine gidiyor.
+**Asıl adres: `https://www.learnvocab.com.tr/`** (Efe'nin kararı). Kodda `settings.SITE_ADRESI`; canonical, sitemap ve robots.txt buradan üretilir, istekteki adresten değil.
 
-**Claude'un önerdiği adres şeması:**
+**Adres şeması (uygulandı).** Biçim: küçük harf, ASCII, Türkçe, sözcükler tireyle, sonda `/`.
 
 | Sayfa | Adres | Google'da |
 |---|---|---|
-| Ana Sayfa | `/` | dizine alınır |
-| Sözlük arama | `/sozluk/` | dizine alınır |
-| **Kelime** | **`/sozluk/bank/`** (bütün türleri tek sayfada) | **dizine alınır, sitemap'te** |
-| İfade / phrasal verb | `/sozluk/give-up/` | dizine alınır |
-| Türkçe → İngilizce | `/sozluk/tr/bitirmek/` (2. aşama) | dizine alınır |
-| Hazır liste | `/listeler/odtu-101/` | dizine alınır |
-| Seviye testi | `/seviye-testi/` | dizine alınır |
-| Okumalar | `/okumalar/`, `/okumalar/<metin-adi>/` | kütüphane metinleri dizine alınır |
-| Çalışmalar | `/calismalar/`, `/calismalar/egzersizler/` | `noindex` |
-| Yazma | `/yazma/`, `/yazma/diyalog/` | `noindex` |
-| Hesap | `/giris/`, `/kayit/`, `/ayarlar/`, `/profil/` | `noindex` |
-| API | `/api/…` | `robots.txt` ile kapalı |
+| Ana Sayfa | `/` | açık |
+| Sözlük (Keşfet) | `/sozluk/` | açık |
+| **Kelime** | **`/sozluk/bank/`** (bütün türleri tek sayfada) | açılan partiler açık, gerisi `noindex` |
+| İfade / phrasal verb | `/sozluk/give-up/`, `/sozluk/on-the-other-hand/` | kelime gibi |
+| Arama sonucu | `/sozluk/?q=…` | tam eşleşme kalıcı adrese 301; gerisi `noindex` |
+| Listem | `/sozluk/?sekme=listem` | `noindex` |
+| Göz atma | `/sozluk/seviye/b1/`, `/sozluk/harf/a/` (sayfalı: `?sayfa=2`) | açık |
+| Hazır liste | `/listeler/odtu-101/` | açık |
+| Seviye testi | `/seviye-testi/` (adımları `noindex`) | giriş ekranı açık |
+| Okumalar | `/okumalar/`, `/okumalar/<metin-adi>/` | kütüphane metinleri açık; `/okumalar/metinlerim/…` `noindex` |
+| Çalışmalar | `/calismalar/`, `/calismalar/learn-pass/<mod>/`, `/calismalar/egzersizler/` | `noindex` |
+| Yazma | `/yazma/`, `/yazma/yaz/`, `/yazma/diyalog/` | `noindex` |
+| Hesap | `/giris/`, `/kayit/`, `/cikis/`, `/sifremi-unuttum/`, `/sifre-degistir/`, `/profil/`, `/ayarlar/…` | `noindex` |
+| Hakkında | `/hakkinda/` | açık |
+| Uçlar (JSON, kart parçası) | `/api/…` | `robots.txt` ile kapalı |
+| Kökte duranlar | `/robots.txt`, `/sitemap.xml`, `/sw.js`, `/manifest.webmanifest`, `/admin/` | — |
 
-- **Biçim:** küçük harf, ASCII (`sozluk`, `sözlük` değil), kelimeler tireyle ayrılır, sonda `/` olur.
-- **Eski adresler** yeni adreslere **301** ile yönlenir; canlıda dizine girmiş sayfalar kaybolmaz.
-- `/sozluk/?q=bank` tam eşleşmede `/sozluk/bank/` adresine yönlenir. Eşleşmeyen aramalar `noindex` olur.
+**Nasıl çalışıyor (kod):**
+- **Beyaz liste** (`LearnVocab/seo.py`, `DIZINE_ACIK`): Yalnızca listedeki sayfalar Google'a açıktır. Listede olmayan her şey ve her hata sayfası kendiliğinden `noindex` alır (hem `X-Robots-Tag` başlığı hem `<meta name="robots">`). Yeni eklenen bir sayfa, listeye yazılmadıkça kapalı kalır.
+- **`robots.txt` yalnızca `/admin/` ve `/api/`'yi kapatır.** Hesap, Çalışmalar ve Yazma sayfaları `robots.txt` ile kapatılmaz; çünkü Google `noindex`'i ancak sayfayı açabilirse görür. (İlk plandaki "hesap sayfaları robots.txt ile kapalı" maddesi bu yüzden `noindex`'e çevrildi.)
+- **canonical** ortak başlıkta (`base/layout.html`) üretilir. Sorgu parametreleri atılır; yalnızca `sayfa` kalır.
+- **Kelime sayfası** (`words.sozluk_views.sozluk_kelime`): Arayüz Sözlük sayfasının aynısıdır; üstte arama kutusu, altında kartlar. Eklenen tek görünür şey kartların üstündeki küçük konum satırıdır: `Sözlük › A1 kelimeleri › bank`.
+  - Başlık: "bank ne demek? Türkçe anlamı ve cümle içinde kullanımı — LearnVocab Sözlük".
+  - Açıklama: sayfadaki Türkçe anlamlar ve ilk örnek cümle.
+  - Yapılandırılmış veri: `DefinedTerm` ve `BreadcrumbList` (JSON-LD); ikisi de sayfada görünen içerikten üretilir.
+  - Adres yazımdan üretilir (`words/adres.py`, `Word.slug` / `Expression.slug`). `/sozluk/Bank/` küçük harfe 301 ile gider. Olmayan kelime 404 döner (benzer kelimeler gösterilir).
+  - Çekimli hâl (`?q=went`) ve Türkçe sorgu (`?q=bitir`) yönlenmez; arama sayfasında `noindex` olarak gösterilir.
+- **İç bağlantılar** gerçek `<a href="/sozluk/x/">` bağlantılarıdır: eş / zıt / basit çipleri, aile, "Diğer sonuçlar", anlık öneri, günün kelimesi.
+- **Göz atma sayfaları** (`words/gozat.py`): Her satırda kelime, tür, Türkçe anlam ve seviye var; 100'er kelime. Sıklığı 2,3'ün altındaki kayıtlar listelenmez. Bağlantıları Keşfet'in boş hâlinin en altında ("Kelimelere göz at").
+- **`sitemap.xml`** (`LearnVocab/seo_views.py`): sabit sayfalar, göz atma sayfaları, **açılmış** kelime ve ifade sayfaları, yayındaki hazır listeler, kütüphane metinleri.
+- **Eski adresler** (`LearnVocab/eski_adresler.py`): v1.0'ın ve geliştirme sırasındaki İngilizce sayfa adresleri yenilerine 301 ile gider (`/users/login/` → `/giris/`, `/exercises/learn/` → `/calismalar/`, `/texts/` → `/yazma/`, `/readings/` → `/okumalar/` …). v1.0'daki `/words/word-detail/<id>/` adresleri Sözlük'e gider; o kimlikler yeni veritabanında geçerli değil. POST ile çalışan eski uçlar yönlenmez.
+- **`www` ve `https`:** Canlıda `PREPEND_WWW` ve `SECURE_SSL_REDIRECT` açık; `learnvocab.com.tr` ve `http` istekleri asıl adrese 301 ile gider.
+- **Diller (18.22):** Bütün sayfalar dil önekine hazır (`i18n_patterns`; Türkçe öneksiz). Şu an yalnızca Türkçe yayında. Bir dil `settings.LANGUAGES`'a eklenince `/en/…` adresleri ve `hreflang` etiketleri kendiliğinden gelir. **Çevirisi bitmemiş dil eklenmez**: çevirisiz `/en/` sayfaları Türkçe sayfaların kopyası olur.
 
-**Bölüm 17 ile ilişkisi (Efe onayladı, 29 Eylül):**
-- Bölüm 17'de "her kelimeye ayrı sayfa" fikrinden vazgeçildi. Oradaki sorun eski, kalabalık `word_detail` sayfasıydı.
-- Burada **arayüz hiç değişmez**: aynı Sözlük sayfası, üstte arama kutusu, aynı kart bileşeni yerinde açılır. Değişen yalnızca **adres** (`?q=bank` yerine `/sozluk/bank/`).
-- Bölüm 17'deki satıra bu açıklama eklendi.
+**Kademeli dizine alma (uygulandı):**
+- Alan: `Word.dizinde` ve `Expression.dizinde` (admin'de "Google'a açık"). Kurallar `words/dizine_alma.py`, komut `manage.py dizine_ac`.
+- **Açılabilme koşulu:** ortak sözlükte olmak, Türkçe anlamı + İngilizce açıklaması + en az bir örnek cümlesi olmak, sıklığı 2,3 ve üstü olmak (18.16). Bir sayfada türlerden biri açıksa sayfa açıktır.
+- **1. parti açıldı (30 Eylül): A1–B1, seviyesi Oxford'la doğrulanmış 2.476 kayıt = 2.080 sayfa.**
+- **Bekleyenler:** B2 Oxford 1.423 · C1 Oxford 1.177 · bizim etiketimizle A1–C2 10.129 · ifadeler 295. Uygun olmayan (seyrek) 903.
+- **Önerilen sıra:** B2 Oxford → C1 Oxford → ifadeler → bizim etiketli kelimeler (18.7 B aşamasındaki elle kontrolden sonra, seviye seviye). Partiler arasında Search Console'da "Dizine eklenen sayfalar" ve "Taranan ama dizine eklenmeyen" sayıları izlenir.
+- Komut örnekleri: `dizine_ac` (durum), `dizine_ac --seviye B2 --kaynak oxford --dry-run`, `dizine_ac --ifadeler`, `dizine_ac --kapat-hepsi`.
 
-**Yapılacak diğer SEO işleri (Efe'nin kararı: hepsi yapılacaklar listesinde):**
-- `sitemap.xml` (Django sitemaps): bütün kelime, ifade, liste ve kütüphane metni sayfaları.
-- `robots.txt`: `/api/`, `/admin/` ve hesap sayfaları kapalı; sitemap satırı eklenir.
-- `canonical` sabit `https://learnvocab.com.tr/...` olarak üretilir. `www` ve `www`'suz adreslerden biri seçilip diğeri 301 ile ona yönlenir.
-- Başlık kalıbı korunur ve genişletilir: "bank ne demek? Türkçe anlamı ve cümle içinde kullanımı".
-- Yapılandırılmış veri: schema.org `DefinedTerm` ve `BreadcrumbList` (JSON-LD).
-- İç bağlantılar gerçek `<a href="/sozluk/x/">` olur: eş/zıt çipleri, aile, "diğer sonuçlar".
-- Taranabilir göz atma sayfaları eklenir: `/sozluk/seviye/b1/`, `/sozluk/harf/a/`.
-- Hız (Core Web Vitals sıralamayı etkiler): 18.17 (Tailwind) ve Alpine'in sürümünü sabitleyip siteden sunmak.
-- Google Search Console kurulur, sitemap gönderilir. Alan adı doğrulamasını **Efe yapar** (kendi Google hesabıyla, DNS kaydı); Claude adımları hazırlar.
-- **Asıl adres: `https://www.learnvocab.com.tr/`** (Efe'nin kararı, 29 Eylül).
-  - v1.0 bu adreste yayında ve Google'da bu adresle biliniyor. SEO açısından iki seçenek eşit, yerleşik adresi korumak en güvenlisi.
-  - `learnvocab.com.tr` ve `http` istekleri 301 ile buraya yönlenir.
-- **Risk:** Google, toplu üretilmiş ve düşük değerli sayfaları cezalandırabilir. Veri kalitesi (18.7) SEO'nun doğrudan parçasıdır. İçeriği çok zayıf kelime sayfalarına `noindex` konması değerlendirilir.
+**Henüz yapılmayanlar:**
+- **Türkçe → İngilizce sayfalar** (`/sozluk/tr/bitirmek/`): 2. aşama. Yalnızca birden çok sonucu olan gerçek sorgular için açılacak; otomatik binlerce sayfa üretilmeyecek.
+- **Hız:** Tailwind derlemesi ve Alpine'in siteden sunulması (18.17).
+- **Canlıya geçişte (18.30):**
+  - Google Search Console: alan adı doğrulamasını **Efe yapar** (kendi Google hesabıyla, DNS'e TXT kaydı). Sonra `https://www.learnvocab.com.tr/sitemap.xml` gönderilir.
+  - `http://learnvocab.com.tr` isteği şu an iki adımda yönleniyor (önce `https`, sonra `www`). Sunucuda (`.htaccess`) tek adıma indirilir.
+  - Canlıdaki v1.0 adreslerinden birkaçı elle denenir (301 ve hedef doğru mu).
+
+**Bölüm 17 ile ilişkisi (Efe onayladı, 29 Eylül):** Bölüm 17'de vazgeçilen şey eski, kalabalık `word_detail` sayfasıydı. Burada arayüz değişmedi; değişen yalnızca adres.
+
+**Risk:** Google, toplu üretilmiş ve düşük değerli sayfaları cezalandırabilir. Veri kalitesi (18.7) SEO'nun doğrudan parçasıdır; bu yüzden denetlenmemiş kelimeler kapalı tutuluyor.
 
 ### 18.16 CEFR ve sıklık (wordfreq) (29 Eylül'de konuşuldu; kararlar aşağıda)
 **Efe'nin kararları (29 Eylül):**
@@ -1425,6 +1430,8 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - `www` yönlendirmesi
   - kademeli dizine alma (18.15)
   - `media/telaffuz/` ses dosyalarının (~140 MB, ~27.600 dosya) sunucuya yüklenmesi (18.4)
+  - `.env`'e `SITE_ADRESI` (varsayılanı zaten `https://www.learnvocab.com.tr`); `http` + `www`'suz isteğin tek adımda yönlenmesi (`.htaccess`)
+  - kademeli dizine alma partilerinin takvimi (18.15: 1. parti açık, sırada B2 Oxford)
 
 ### 18.31 İstatistik ekranı (admin) (Efe'nin kararı, 29 Eylül)
 - **Admin panelinde** bir istatistik ekranı olur.
@@ -1464,7 +1471,7 @@ Her adım ayrı commit, her adımdan sonra testler.
 | 5 | Veri taraması A + "daha basit" kuralı | 18.7, 18.6 | 4'e bağlı |
 | 6 | Tekrar kuralı + yeni L&P akışı + dikkat dağıtıcısız L&P ekranı + açıklama kutusu | 18.2, 18.1, 18.10, 18.11 | ekran tasarımı Efe'ye gösterilir |
 | 7 | Misafir kuralları | 18.3 | 4'e bağlı (dağılım) |
-| 8 | Adresler ve SEO (kademeli dizine alma) | 18.15 | `www` seçimi; dizine alma 5'ten sonra |
+| 8 | Adresler ve SEO (kademeli dizine alma) — **yapıldı** | 18.15 | yok |
 | 9 | 5'er örnek | 18.14 | yok |
 | 10 | Tailwind derleme + beyaz tema + yazı boyutları | 18.17, 18.12 | tema tasarımı |
 | 11 | Google ile giriş | 18.21 | Efe'nin OAuth istemcisi |
@@ -1540,3 +1547,10 @@ Her adım ayrı commit, her adımdan sonra testler.
   - 865 test geçiyor. Tarayıcıda veritabanı kopyasıyla uçtan uca denendi.
 - **2026-09-30 (13):** 18.2 ve 18.9'daki dört varsayım Efe tarafından onaylandı.
 - **2026-09-30 (14):** Uygulama 5. adım yapıldı: yeni seviye testi (3 ekran, %60 üstü, özet sorusu seviyeleri, en yüksek doğru), her sayfada davet, seviyenin kendiliğinden düzelmesi, C2 yuvası için Oxford'lu en zor C1'ler. 875 test geçiyor.
+- **2026-09-30 (15):** Uygulama 6. adım yapıldı (18.15):
+  - Yeni adres şeması (Türkçe, ASCII): `/sozluk/bank/`, `/listeler/…`, `/calismalar/…`, `/okumalar/…`, `/yazma/…`, `/seviye-testi/`, `/giris/`, `/kayit/`, `/profil/`, `/ayarlar/…`, uçlar `/api/…`. Eski adresler 301.
+  - Kalıcı kelime sayfaları (başlık, açıklama, canonical, JSON-LD, konum satırı); `?q=` tam eşleşmede 301, gerisi `noindex`.
+  - Beyaz listeli `noindex`, `robots.txt`, `sitemap.xml`, göz atma sayfaları, dil öneki altyapısı (yalnızca Türkçe yayında).
+  - Kademeli dizine alma: `Word.dizinde`, `manage.py dizine_ac`; 1. parti (A1–B1 Oxford, 2.080 sayfa) açıldı.
+  - Plandan sapma: hesap sayfaları `robots.txt` yerine `noindex` ile kapatıldı (Google `noindex`'i ancak sayfayı açabilirse görür).
+  - 904 test geçiyor.

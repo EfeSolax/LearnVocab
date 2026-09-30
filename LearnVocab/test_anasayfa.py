@@ -1,6 +1,5 @@
 """Ana Sayfa (rapor 3, 2.3) ve LOGIN_URL."""
 
-from urllib.parse import quote
 
 from django.test import TestCase
 from django.urls import reverse
@@ -46,8 +45,8 @@ class AnaSayfaTests(TestCase):
     def test_gunun_kelimesi_ve_ifadesi_sozluge_gider(self):
         html = self._html(giris=True)
         kelime = arama.gunun_kelimesi(self.user)
-        self.assertIn(f'{reverse("sozluk")}?q={quote(kelime.text)}" data-gunun-kelimesi', html)
-        self.assertIn(f'{reverse("sozluk")}?q={quote("on the other hand")}" data-gunun-ifadesi', html)
+        self.assertIn(f'{reverse("sozluk_kelime", args=[kelime.slug])}" data-gunun-kelimesi', html)
+        self.assertIn('/sozluk/on-the-other-hand/" data-gunun-ifadesi', html)
 
     def test_gunun_kelimesi_kullanicinin_seviyesinden(self):
         self.user.cefr = "C1"

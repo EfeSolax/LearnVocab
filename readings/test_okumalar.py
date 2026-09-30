@@ -235,7 +235,7 @@ class OkumalarSayfasiTests(TestCase):
         self.assertContains(cevap, "PDF yükle")
         self.assertNotContains(cevap, "Ali&#x27;nin notu")
 
-        metin = self.client.get(reverse("readings_library_text", args=[7]))
+        metin = self.client.get(reverse("readings_library_text", args=[ReadingText.objects.get(number=7).slug]))
         self.assertEqual(metin.status_code, 200)
         self.assertContains(metin, "Brothers decided to share.")
         self.assertContains(metin, "data-okuma-metni")

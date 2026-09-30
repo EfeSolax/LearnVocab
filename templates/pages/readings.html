@@ -10,7 +10,8 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
   - Kütüphane: herkese açık metinler (ReadingText), konu renkleriyle.
 {% endcomment %}
 
-{% block title %}Okumalar{% endblock %}
+{% block title %}İngilizce okuma metinleri — LearnVocab{% endblock %}
+{% block meta_aciklama %}<meta name="description" content="Seviyene göre İngilizce okuma metinleri. Bilmediğin kelimeye dokun, Türkçe anlamını gör ve listene ekle.">{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
@@ -97,7 +98,7 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
     <ul class="space-y-2">
         {% for m in kutuphane %}
         <li>
-            <a href="{% url 'readings_library_text' m.number %}"
+            <a href="{% url 'readings_library_text' m.slug %}"
                class="flex items-center gap-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 hover:border-indigo-300 dark:hover:border-indigo-700">
                 <span class="h-10 w-1 shrink-0 rounded-full bg-{{ m.topic_color }}-400" aria-hidden="true"></span>
                 <span class="min-w-0 flex-1">

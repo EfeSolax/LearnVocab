@@ -283,7 +283,7 @@ def otomatik_oneri(sorgu, en_cok=8):
     Yazarken açılan satırlar: [{"metin": "carpet", "anlam": "halı"}].
     Önce bu harflerle başlayan İngilizce kelimeler (yaygından nadire), yer
     kalırsa Türkçe anlamı bu harflerle başlayanlar ("bitir" -> finish · bitirmek).
-    Her yazım bir kez; satıra dokununca /sozluk/?q=<metin> o kelimenin kartlarını açar.
+    Her yazım bir kez; satıra dokununca /sozluk/<kelime>/ o kelimenin kartlarını açar.
     """
     en = en_normal(sorgu)
     if not en:
@@ -438,6 +438,34 @@ def ara(user, sorgu):
     if not (sonuc.bulundu or sonuc.digerleri):
         sonuc.oneriler = yazim_onerileri(sorgu)
     return sonuc
+
+
+def kelime_sayfasi(user, slug):
+    """
+    /sozluk/<slug>/ sayfasının içeriği (rapor 18.15): o yazımın bütün türleri
+    (her biri ayrı kart), aynı adresteki ifadeler ve "Diğer sonuçlar".
+    Böyle bir kelime de ifade de yoksa None.
+    """
+    kelimeler = yaygin_sirala(gorunur_kelimeler(user).filter(slug=slug))
+    ifadeler = [ifade_hazirla(e) for e in Expression.objects
+                .filter(visibility="public", slug=slug).prefetch_related("examples")]
+    if not kelimeler and not ifadeler:
+        return None
+    metin = kelimeler[0].text if kelimeler else ifadeler[0].text
+    sonuc = AramaSonucu(sorgu=metin, kelimeler=kelimeler, ifadeler=ifadeler)
+    sonuc.digerleri = _digerleri(user, en_normal(metin))
+    return sonuc
+
+
+def tam_eslesme_slug(sonuc):
+    """Arama tam bir kelimeyi ya da ifadeyi bulduysa onun adresi (slug); yoksa ''."""
+    if sonuc.cekim_notlari:
+        return ""          # went -> go: sayfa go'nun, adres went'in değil
+    if sonuc.kelimeler:
+        return sonuc.kelimeler[0].slug
+    if sonuc.ifadeler:
+        return sonuc.ifadeler[0].slug
+    return ""
 
 
 def yazim_onerileri(sorgu, en_cok=5):

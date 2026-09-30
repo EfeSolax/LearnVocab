@@ -7,17 +7,19 @@ Sözlük (ürün raporu 4 ve 5). Görünüm: words/sozluk_views.py
 görünür (rapor 2.3).
   Keşfet, sorgu yokken: Günün Kelimesi, Günün İfadesi, Hazır Listeler (4.1)
   Keşfet, ?q= ile:      pages/words/_sozlukSonuclari.html (4.2)
+  Kelime sayfası:       /sozluk/bank/ — aynı sonuç parçası, kalıcı adres (18.15)
   Listem:               pages/words/_listem.html (5)
 Kartlar her yerde aynı bileşen: base/_kelimeKarti.html.
 Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
 {% endcomment %}
 
-{% block title %}{% if sorgu %}{{ sorgu }} ne demek? Türkçe anlamı — LearnVocab Sözlük{% elif sekme == "listem" %}Listem — Sözlük{% else %}Sözlük — LearnVocab{% endif %}{% endblock %}
+{% block title %}{% if sayfa_basligi %}{{ sayfa_basligi }}{% elif sorgu %}“{{ sorgu }}” araması — LearnVocab Sözlük{% elif sekme == "listem" %}Listem — Sözlük{% else %}İngilizce–Türkçe Sözlük — LearnVocab{% endif %}{% endblock %}
 
+{# noindex, canonical ve açıklama ortak başlıkta (base/layout.html, LearnVocab/seo.py). #}
+{% block meta_aciklama %}{% if meta_aciklama %}{{ block.super }}{% elif not sorgu and sekme == "kesfet" %}<meta name="description" content="İngilizce–Türkçe sözlük: kelimelerin Türkçe anlamları, örnek cümleleri, eş ve zıt anlamlıları, telaffuzu ve seviyesi (A1–C2).">{% endif %}{% endblock %}
 {% block extra_head %}
-{% if noindex %}<meta name="robots" content="noindex">{% endif %}
-{% if meta_aciklama %}<meta name="description" content="{{ meta_aciklama }}">{% endif %}
-{% if sorgu and not noindex %}<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{% url 'sozluk' %}?q={{ sorgu|lower|urlencode }}">{% endif %}
+{% for veri in yapisal_veri %}<script type="application/ld+json">{{ veri|safe }}</script>
+{% endfor %}
 {% endblock %}
 
 {% block page_heading %}{% endblock %}
@@ -53,6 +55,15 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
 </form>
 
 {% if sorgu %}
+    {% if ekmek_kirintisi %}
+    {# Yapılandırılmış verideki (BreadcrumbList) adımların sayfada görünen hâli. #}
+    <nav aria-label="Konum" class="mt-4 flex flex-wrap items-center gap-1.5 text-sm text-gray-500 dark:text-slate-400" data-ekmek-kirintisi>
+        {% for ad, yol in ekmek_kirintisi %}
+            {% if forloop.last %}<span lang="en" class="font-medium text-gray-700 dark:text-slate-300" aria-current="page">{{ ad }}</span>
+            {% else %}<a href="{{ yol }}" class="hover:text-indigo-600 dark:hover:text-indigo-400">{{ ad }}</a><span aria-hidden="true">›</span>{% endif %}
+        {% endfor %}
+    </nav>
+    {% endif %}
     {% include 'pages/words/_sozlukSonuclari.html' %}
 {% else %}
     {# ---------- Keşfet: boş hâl (rapor 4.1) ---------- #}
@@ -96,6 +107,8 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
             </p>
             {% endif %}
         </section>
+
+        {% include 'pages/words/_gozatBaglantilari.html' %}
     </div>
 {% endif %}
 

@@ -16,6 +16,7 @@ günün kelimesi (B1), giriş / kayıt.
 {% endcomment %}
 
 {% block title %}LearnVocab{% if user.is_authenticated %} — Ana Sayfa{% else %} — İngilizce kelime öğren{% endif %}{% endblock %}
+{% block meta_aciklama %}<meta name="description" content="LearnVocab ile İngilizce kelime öğren: Türkçe anlamlı sözlük, kaydırarak kelime çalışması, egzersizler, okuma metinleri ve yazma alıştırmaları. Ücretsiz.">{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
@@ -56,7 +57,7 @@ günün kelimesi (B1), giriş / kayıt.
     <div class="grid gap-3 sm:grid-cols-2">
         {% if gunun_karti %}{% include 'pages/anasayfa/_gununKelimesi.html' with kart=gunun_karti %}{% endif %}
         {% if gunun_ifadesi %}
-        <a href="{% url 'sozluk' %}?q={{ gunun_ifadesi.text|urlencode }}" data-gunun-ifadesi
+        <a href="{{ gunun_ifadesi.text|kelime_adresi }}" data-gunun-ifadesi
            class="block min-w-0 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-4 shadow-sm hover:border-indigo-300 dark:hover:border-indigo-700 transition">
             <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Günün İfadesi</span>
             <span class="mt-1.5 flex items-start justify-between gap-2">

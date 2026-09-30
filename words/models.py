@@ -277,6 +277,14 @@ class Word(models.Model):
     # girer, günün kelimesi olmaz. Hesaplama: manage.py siklik_hesapla
     nadir_tur = models.BooleanField(default=False, verbose_name="nadir tür")
 
+    # Kalıcı adres (rapor 18.15): /sozluk/<slug>/. Yazımdan üretilir
+    # (words.adres.slug_yap); aynı yazımın bütün türleri aynı sayfadadır.
+    slug = models.CharField(max_length=140, blank=True, default="", db_index=True,
+                            editable=False)
+    # Kademeli dizine alma (rapor 18.15): yalnızca True olanların sayfası
+    # arama motorlarına açılır ve sitemap'e girer. Açma: manage.py dizine_ac
+    dizinde = models.BooleanField(default=False, db_index=True, verbose_name="Google'a açık")
+
     isBaseWord = models.BooleanField(default=False)
 
     owner = models.ForeignKey(
@@ -302,6 +310,13 @@ class Word(models.Model):
 
     def __str__(self):
         return f"{self.text} ({self.get_pos_display()})"
+
+    def save(self, *args, **kwargs):
+        from .adres import slug_yap
+        self.slug = slug_yap(self.text)
+        if kwargs.get("update_fields") is not None and "text" in kwargs["update_fields"]:
+            kwargs["update_fields"] = set(kwargs["update_fields"]) | {"slug"}
+        super().save(*args, **kwargs)
 
     # --- kısayollar -----------------------------------------------------
 
@@ -768,6 +783,11 @@ class Expression(models.Model):
                                   default="private")
     saved_by = models.ManyToManyField(User, related_name="saved_expressions", blank=True)
 
+    # Kalıcı adres ve kademeli dizine alma: Word'deki aynı adlı alanlar gibi.
+    slug = models.CharField(max_length=220, blank=True, default="", db_index=True,
+                            editable=False)
+    dizinde = models.BooleanField(default=False, db_index=True, verbose_name="Google'a açık")
+
     createdAt = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -775,6 +795,13 @@ class Expression(models.Model):
 
     def __str__(self):
         return self.text
+
+    def save(self, *args, **kwargs):
+        from .adres import slug_yap
+        self.slug = slug_yap(self.text)
+        if kwargs.get("update_fields") is not None and "text" in kwargs["update_fields"]:
+            kwargs["update_fields"] = set(kwargs["update_fields"]) | {"slug"}
+        super().save(*args, **kwargs)
 
     @property
     def similar(self):
@@ -880,7 +907,7 @@ class HazirListe(models.Model):
     """
 
     ad = models.CharField(max_length=80)                        # "ODTÜ 101"
-    slug = models.SlugField(max_length=80, unique=True)         # adres: /sozluk/liste/odtu-101/
+    slug = models.SlugField(max_length=80, unique=True)         # adres: /listeler/odtu-101/
     kurum = models.CharField(max_length=80, blank=True)         # "ODTÜ"
     aciklama = models.CharField(max_length=300, blank=True)
     sira = models.PositiveIntegerField(default=0)

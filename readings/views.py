@@ -1,12 +1,12 @@
 """
 Okumalar (rapor 8): tek işi odaklanıp okumak.
 
-  /readings/                         ana sayfa: Kendi metinlerim + Kütüphane
-  /readings/kutuphane/<numara>/      kütüphane metni (misafire açık)
-  /readings/metinlerim/<id>/         kendi metni (yalnızca sahibi; başkası 404)
-  /readings/metinlerim/ekle/         PDF yükle ya da yapıştır (giriş gerekli)
-  /readings/metinlerim/<id>/sil/     yumuşak silme ("Geri al"lı, onaysız)
-  /readings/metinlerim/<id>/geri-al/ silmeyi geri alma
+  /okumalar/                         ana sayfa: Kendi metinlerim + Kütüphane
+  /okumalar/<metin-adi>/             kütüphane metni (misafire açık, dizine açık)
+  /okumalar/metinlerim/<id>/         kendi metni (yalnızca sahibi; başkası 404)
+  /okumalar/metinlerim/ekle/         PDF yükle ya da yapıştır (giriş gerekli)
+  /okumalar/metinlerim/<id>/sil/     yumuşak silme ("Geri al"lı, onaysız)
+  /okumalar/metinlerim/<id>/geri-al/ silmeyi geri alma
 
 Okuma ekranında kelimeye dokununca anlam /api/kelime/ ucundan gelir (api.py).
 """
@@ -49,7 +49,7 @@ def _copu_bosalt(user):
 def okumalar(request):
     """Okumalar ana sayfası: Kendi metinlerim (girişli) + Kütüphane (herkese açık)."""
     konu = request.GET.get("konu") or ""
-    kutuphane = ReadingText.objects.only("number", "title", "topic", "word_count", "cefr")
+    kutuphane = ReadingText.objects.only("number", "slug", "title", "topic", "word_count", "cefr")
     konular = [{"anahtar": a, "ad": ad, "renk": renk} for a, ad, renk in TOPICS]
     if konu in {k["anahtar"] for k in konular}:
         kutuphane = kutuphane.filter(topic=konu)
@@ -73,10 +73,17 @@ def okumalar(request):
     })
 
 
-def kutuphane_metni(request, number):
-    metin = get_object_or_404(ReadingText, number=number)
+def _metin_ozeti(metin, en_cok=155):
+    """Arama sonucunda görünecek açıklama: metnin kendi ilk cümleleri."""
+    ilk = (metin.paragraphs or [""])[0]
+    return ilk if len(ilk) <= en_cok else ilk[:en_cok].rsplit(" ", 1)[0] + "…"
+
+
+def kutuphane_metni(request, slug):
+    metin = get_object_or_404(ReadingText, slug=slug)
     return render(request, "pages/readings/oku.html", {
         "active_page": "Okumalar",
+        "meta_aciklama": _metin_ozeti(metin),
         "baslik": metin.title,
         "paragraflar": metin.paragraphs,
         "metin": metin,

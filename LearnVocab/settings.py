@@ -72,11 +72,15 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # Adres önekinden dili seçer (/en/…); öneksiz adres Türkçedir.
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Dizine açık olmayan her cevaba X-Robots-Tag: noindex (LearnVocab/seo.py)
+    'LearnVocab.seo.SeoMiddleware',
 ]
 
 ROOT_URLCONF = 'LearnVocab.urls'
@@ -87,6 +91,8 @@ TEMPLATES = [
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
+            # Her şablonda hazır: |kelime_adresi, |tur_etiketi, {% telaffuz_adresi %}
+            'builtins': ['words.templatetags.kelime'],
             'context_processors': [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -96,6 +102,8 @@ TEMPLATES = [
                 'LearnVocab.navigation.navigation',
                 # Seviye testi daveti her sayfada (rapor 18.27)
                 'seviye.baglam.davet',
+                # canonical, noindex, hreflang (rapor 18.15)
+                'LearnVocab.seo.seo',
             ],
         },
     },
@@ -143,6 +151,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = 'tr'
+
+# YAYINDAKİ diller (rapor 18.22). Türkçe öneksizdir; diğer diller adres
+# önekiyle gelir (/en/…, /de/…) ve her sayfada hreflang basılır.
+# Bir dil, arayüz çevirisi BİTMEDEN buraya eklenmez: çevirisiz /en/ sayfaları
+# Türkçe sayfaların kopyası olur (SEO'da kopya içerik, rapor 18.15).
+# Hedef sıra: en, de; sonra es, fr.
+LANGUAGES = [
+    ('tr', 'Türkçe'),
+]
+LOCALE_PATHS = [BASE_DIR / 'locale']
+
+# Sitenin asıl adresi (rapor 18.15): canonical, sitemap ve robots.txt
+# buradan üretilir; istekteki adresten DEĞİL.
+SITE_ADRESI = os.environ.get('SITE_ADRESI', 'https://www.learnvocab.com.tr')
 
 TIME_ZONE = 'Europe/Istanbul'
 
@@ -401,6 +423,8 @@ LOGGING = {
 if not DEBUG:
     # HTTPS'e zorla
     SECURE_SSL_REDIRECT = True
+    # Tek adres yaşar (rapor 18.15): learnvocab.com.tr -> www.learnvocab.com.tr (301)
+    PREPEND_WWW = True
     # HSTS: tarayıcılar sitenle sadece HTTPS üzerinden konuşsun
     SECURE_HSTS_SECONDS = 31536000  # 1 yıl
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True

@@ -72,8 +72,8 @@ class WordFamilyAdmin(admin.ModelAdmin):
 
 @admin.register(Word)
 class WordAdmin(admin.ModelAdmin):
-    list_display = ("text", "pos", "family", "meaning_preview", "cefr", "isBaseWord")
-    list_filter = ("pos", "cefr", "isBaseWord", "visibility")
+    list_display = ("text", "pos", "family", "meaning_preview", "cefr", "isBaseWord", "dizinde")
+    list_filter = ("pos", "cefr", "isBaseWord", "visibility", "dizinde")
     search_fields = ("text", "meanings__meaning_tr")
     autocomplete_fields = ("family", "base_verb")
     inlines = (MeaningInline, FormInline, RelationInline, FalseFriendInline)
@@ -121,8 +121,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Expression)
 class ExpressionAdmin(admin.ModelAdmin):
-    list_display = ("text", "meaning_tr", "kind", "cefr", "register")
-    list_filter = ("kind", "cefr", "register", "sentiment")
+    list_display = ("text", "meaning_tr", "kind", "cefr", "register", "dizinde")
+    list_filter = ("kind", "cefr", "register", "sentiment", "dizinde")
     search_fields = ("text", "meaning_tr")
     filter_horizontal = ("categories", "words")
     inlines = (ExpressionExampleInline,)

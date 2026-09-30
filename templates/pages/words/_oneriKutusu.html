@@ -3,7 +3,7 @@ Anlık öneri kutusu (autocomplete, rapor 4.2 ve 5). Keşfet ve Listem ortak.
 Bir <form method="get"> içinde kullanılır; davranış _oneriKutusuJs.html.
 
 Bağlam: girdi_id, ad (input name), deger, etiket (placeholder), adres (JSON ucu)
-JSON: {"oneriler": [{"metin": "carpet", "anlam": "halı", "adres": "/sozluk/?q=carpet"}]}
+JSON: {"oneriler": [{"metin": "carpet", "anlam": "halı", "adres": "/sozluk/carpet/"}]}
 Satıra dokununca doğrudan satırın adresine gidilir. Klavye: ↑ ↓ Enter Esc.
 {% endcomment %}
 <div class="relative" x-data="oneriKutusu('{{ adres }}')" @click.outside="kapat()" @keydown.escape="kapat()">
