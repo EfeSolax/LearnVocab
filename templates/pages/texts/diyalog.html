@@ -22,9 +22,9 @@ havuz boşken cesaretlendirici bir boş hâl görünür.
 <div class="rounded-2xl border border-dashed border-indigo-300 dark:border-indigo-800 bg-indigo-50/60 dark:bg-indigo-950/40 px-5 py-8 text-center" data-bos="havuz">
     <p class="text-lg font-semibold text-indigo-900 dark:text-indigo-200">Diyaloglar hazırlanıyor</p>
     <p class="mx-auto mt-2 max-w-md text-sm text-indigo-900/80 dark:text-indigo-200/80">
-        Çok yakında burada listendeki kelimelerle kısa diyaloglar olacak. O zamana kadar serbest yazmayla kelimelerini kullanmayı deneyebilirsin.
+        {% if misafir %}Çok yakında burada kısa diyaloglar olacak.{% else %}Çok yakında burada listendeki kelimelerle kısa diyaloglar olacak. O zamana kadar serbest yazmayla kelimelerini kullanmayı deneyebilirsin.{% endif %}
     </p>
-    <a href="{% url 'new_text_page' %}" class="mt-5 inline-flex rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">Serbest yazmaya geç</a>
+    {% if not misafir %}<a href="{% url 'new_text_page' %}" class="mt-5 inline-flex rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">Serbest yazmaya geç</a>{% endif %}
 </div>
 
 {% elif liste_bos %}

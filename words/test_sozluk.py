@@ -266,23 +266,16 @@ class AramaSorguSayisiTests(AramaTemeli):
 class KesfetBosHalTests(AramaTemeli):
 
     def test_gunun_kelimesi_ve_ifadesi(self):
-        Expression.objects.create(text="however", meaning_tr="ancak", visibility="public", cefr="B1")
+        Expression.objects.create(text="nonetheless", meaning_tr="yine de", visibility="public",
+                                  cefr="C1", bilinirlik="az")
+        make_word("tidy", level="B1", meaning="düzenli", siklik=4.0, sentences=["a.", "b."],
+                  collocations=[("keep tidy", "verb_adj")])
         html = _html(self.client.get(reverse("sozluk")))
         self.assertIn("Günün Kelimesi", html)
         self.assertIn("Günün İfadesi", html)
-        self.assertIn("however", html)
+        self.assertIn("nonetheless", html)
         self.assertIn("Hazır Listeler", html)
         self.assertIn("yakında burada", html)       # liste yokken sade boş hâl
-
-    def test_gunun_kelimesi_gunluk_deterministik_ve_seviyeye_gore(self):
-        gun = date(2026, 9, 28)
-        self.assertEqual(arama.gunun_kelimesi(None, gun), arama.gunun_kelimesi(None, gun))
-        self.assertEqual(arama.gunun_kelimesi(None, gun).cefr, "B1")   # girişsiz: B1
-        self.user.cefr = "A1"
-        self.assertEqual(arama.gunun_kelimesi(self.user, gun).cefr, "A1")
-        # Günler arasında değişebilir; en az bir günde farklı çıkmalı
-        gunler = {arama.gunun_kelimesi(None, gun + timedelta(days=i)).id for i in range(20)}
-        self.assertGreater(len(gunler), 1)
 
     def test_kullanici_seviyesi(self):
         self.assertEqual(arama.kullanici_seviyesi(self.user), "B1")   # seviye belirlenmemiş

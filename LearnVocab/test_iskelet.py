@@ -58,9 +58,10 @@ class GirisGerekliTests(TestCase):
         self.assertIn("neden=liste", cevap["Location"])
 
     def test_egzersizler_ve_yazma_girissizken_yonlendirir(self):
+        # Rapor 18.3: misafirde Egzersizler sekmesi yok, yerine tek davet; Yazılar misafire açık.
         html = self.client.get(reverse("learn_pass_page")).content.decode()
-        self.assertIn('data-giris-gerekli="egzersiz"', html)
-        self.assertIn('data-giris-gerekli="yazma"', html)
+        self.assertIn("data-egzersiz-daveti", html)
+        self.assertNotIn('data-giris-gerekli="yazma"', html)
         self.client.login(username="girisci", password="Sifre1234")
         html = self.client.get(reverse("learn_pass_page")).content.decode()
         self.assertNotIn('data-giris-gerekli="', html)

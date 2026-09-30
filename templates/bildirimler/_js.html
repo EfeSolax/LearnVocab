@@ -1,0 +1,88 @@
+{% load bildirim %}{% bildirim_genel_anahtar as vapid_anahtari %}
+{% comment %}
+Bildirim (Web Push) yardımcıları — tek kaynak. Ön ekran (bildirimler/_onEkran.html)
+ve Ayarlar'daki bölüm (bildirimler/_ayar.html) bunu kullanır.
+
+  window.lvBildirim.durum()  -> Promise<"yok" | "ios" | "reddedildi" | "acik" | "kapali">
+        yok: tarayıcı desteklemiyor · ios: iPhone'da önce ana ekrana eklenmeli
+        reddedildi: izin tarayıcıda engelli · acik: bu cihaz abone · kapali: abone değil
+  window.lvBildirim.ac()     -> izin ister + abone eder; Promise<true | false>
+        (Tarayıcının izin penceresi YALNIZCA bu çağrıda, kullanıcının dokunuşuyla açılır.)
+  window.lvBildirim.kapat()  -> bu cihazın aboneliğini siler
+
+VAPID anahtarı yoksa (bildirimler kapalı) hiçbir şey basılmaz.
+{% endcomment %}
+{% if vapid_anahtari and user.is_authenticated %}
+<script>
+window.lvBildirim = (function () {
+    var ANAHTAR = '{{ vapid_anahtari|escapejs }}';
+    var SW = '{% url "service_worker" %}';
+    var ABONE_OL = '{% url "bildirim_abone_ol" %}';
+    var CIK = '{% url "bildirim_abonelikten_cik" %}';
+
+    function csrf() {
+        var meta = document.querySelector('meta[name="csrf-token"]');
+        return meta ? meta.content : '';
+    }
+    function gonder(adres, veri) {
+        return fetch(adres, {
+            method: 'POST', credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrf() },
+            body: JSON.stringify(veri)
+        }).then(function (c) { if (!c.ok) { throw new Error('http'); } return c; });
+    }
+    function anahtarDizisi(b64) {
+        var dolgu = '='.repeat((4 - b64.length % 4) % 4);
+        var ham = atob((b64 + dolgu).replace(/-/g, '+').replace(/_/g, '/'));
+        var dizi = new Uint8Array(ham.length);
+        for (var i = 0; i < ham.length; i++) { dizi[i] = ham.charCodeAt(i); }
+        return dizi;
+    }
+    function kayit() {
+        return navigator.serviceWorker.register(SW, { scope: '/' })
+            .then(function () { return navigator.serviceWorker.ready; });
+    }
+    function abonelik() {
+        return navigator.serviceWorker.getRegistration('/').then(function (reg) {
+            return reg ? reg.pushManager.getSubscription() : null;
+        });
+    }
+
+    function durum() {
+        var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        var kurulu = window.navigator.standalone === true ||
+                     (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+        var destek = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+        if (ios && !kurulu) { return Promise.resolve('ios'); }
+        if (!destek) { return Promise.resolve('yok'); }
+        if (Notification.permission === 'denied') { return Promise.resolve('reddedildi'); }
+        return abonelik().then(function (a) { return a ? 'acik' : 'kapali'; })
+            .catch(function () { return 'kapali'; });
+    }
+
+    function ac() {
+        // İzin penceresi kullanıcının dokunuşuyla, ilk iş olarak açılmalı.
+        return Promise.resolve(Notification.requestPermission()).then(function (cevap) {
+            if (cevap !== 'granted') { return false; }
+            return kayit().then(function (reg) {
+                return reg.pushManager.subscribe({
+                    userVisibleOnly: true, applicationServerKey: anahtarDizisi(ANAHTAR)
+                });
+            }).then(function (a) { return gonder(ABONE_OL, a.toJSON()); })
+              .then(function () { return true; });
+        });
+    }
+
+    function kapat() {
+        return abonelik().then(function (a) {
+            if (!a) { return; }
+            var uc = a.endpoint;
+            return a.unsubscribe().then(function () { return gonder(CIK, { endpoint: uc }); });
+        });
+    }
+
+    return { durum: durum, ac: ac, kapat: kapat };
+})();
+</script>
+{% endif %}

@@ -192,15 +192,6 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
             <p data-sonuc class="hidden text-sm font-semibold text-amber-900 dark:text-amber-200"></p>
         </div>
 
-        {% block bildirim_izni %}
-        {% comment %}
-        Bildirim izni (rapor 10) burada, anlamlı anda sorulur: "Yarın
-        hatırlatayım mı?". Yalnızca girişli kullanıcı ve gerçekten biten bir
-        oturumda (kart yoksa bu ekran sayfa açılır açılmaz görünüyor; orada sorulmaz).
-        {% endcomment %}
-        {% if kartlar and not misafir and user.is_authenticated %}{% include 'bildirimler/_izinKarti.html' %}{% endif %}
-        {% endblock %}
-
         <div class="grid grid-cols-2 gap-3">
             <a href="{{ request.get_full_path }}" id="lp-yeni-tur"
                class="rounded-2xl bg-indigo-600 px-4 py-3.5 text-center text-base font-bold text-white shadow-sm hover:bg-indigo-700 transition">Yeni tur</a>

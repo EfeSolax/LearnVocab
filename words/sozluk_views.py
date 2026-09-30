@@ -34,7 +34,7 @@ from django.views.decorators.http import require_GET, require_POST
 
 from LearnVocab.seo import tam_adres
 
-from . import arama, dizine_alma, gozat, hazir_liste, listem
+from . import arama, dizine_alma, gozat, gunun, hazir_liste, listem
 from .adres import kelime_adresi, slug_yap
 from .kart import kart_verisi
 from .models import CEFR_LEVELS, HazirListe
@@ -199,10 +199,9 @@ def _meta_aciklama(sonuc, kartlar):
 
 def _kesfet_baglami(request):
     user = request.user
-    kelime = arama.gunun_kelimesi(user)
     return {
-        "gunun_karti": kart_verisi([kelime], user)[0] if kelime else None,
-        "gunun_ifadesi": arama.gunun_ifadesi(user),
+        "gunun_kelimesi": gunun.kelime_durumu(user),
+        "gunun_ifadesi": gunun.ifade_durumu(user),
         "hazir_listeler": list(hazir_liste.yayindaki_listeler()),
         "aktif_liste": hazir_liste.aktif_liste(user),
         # Göz atma bağlantıları (rapor 18.15)
@@ -273,6 +272,16 @@ def kart_parcasi(request, word_id):
     return render(request, "pages/words/_kartParcasi.html", {
         "kart": kart, "kapat_olay": request.GET.get("kapat") == "olay",
     })
+
+
+@login_required
+@require_POST
+def gunun_kelimesi_cevap(request):
+    """Günün kelimesinde "Biliyordum" / "Bilmiyordum" (rapor 18.8). POST: cevap=known|unknown"""
+    durum = gunun.cevapla(request.user, request.POST.get("cevap"))
+    if durum is None:
+        return JsonResponse({"ok": False}, status=400)
+    return JsonResponse({"ok": True, "tamam": durum["tamam"], "cevap": durum["cevap"]})
 
 
 # ----------------------------------------------------------------------

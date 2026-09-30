@@ -3,8 +3,8 @@
 {% comment %}
 Sözlük (ürün raporu 4 ve 5). Görünüm: words/sozluk_views.py
 
-Üstte iki sekme: Keşfet | Listem. Listem yalnızca giriş yapmış kullanıcıya
-görünür (rapor 2.3).
+Üstte iki sekme: Keşfet | Listem. Misafirde sekme çubuğu hiç yoktur; yerine
+en üstte giriş daveti durur (rapor 18.3).
   Keşfet, sorgu yokken: Günün Kelimesi, Günün İfadesi, Hazır Listeler (4.1)
   Keşfet, ?q= ile:      pages/words/_sozlukSonuclari.html (4.2)
   Kelime sayfası:       /sozluk/bank/ — aynı sonuç parçası, kalıcı adres (18.15)
@@ -26,7 +26,8 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
 
 {% block page %}
 
-{# ---------- Sekmeler ---------- #}
+{# ---------- Sekmeler: yalnızca giriş yapmış kullanıcıda (rapor 18.3) ---------- #}
+{% if user.is_authenticated %}
 <div class="-mx-4 sm:mx-0 mb-5">
     <div class="flex border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 sm:rounded-t-xl" role="tablist">
         <a href="{% url 'sozluk' %}" role="tab" {% if sekme == "kesfet" %}aria-current="page" aria-selected="true"{% endif %}
@@ -34,15 +35,19 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
                   {% if sekme == 'kesfet' %}border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400{% else %}border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200{% endif %}">
             Keşfet
         </a>
-        {% if user.is_authenticated %}
         <a href="{% url 'sozluk' %}?sekme=listem" role="tab" {% if sekme == "listem" %}aria-current="page" aria-selected="true"{% endif %}
            class="flex-1 px-4 py-3 text-center text-sm sm:text-base font-semibold border-b-2 transition-colors
                   {% if sekme == 'listem' %}border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400{% else %}border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200{% endif %}">
             Listem
         </a>
-        {% endif %}
     </div>
 </div>
+{% else %}
+{# Misafir: sekme çubuğu yok, sayfa doğrudan Keşfet; en üstte tek bir davet. #}
+<p class="mb-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 px-4 py-2.5 text-sm text-indigo-900 dark:text-indigo-200" data-misafir-daveti>
+    Kelimelerini kaydetmek için <a href="{% url 'login' %}?next={{ request.get_full_path|urlencode:'' }}&neden=liste" class="font-semibold underline">giriş yap</a>.
+</p>
+{% endif %}
 
 {% include 'pages/words/_oneriKutusuJs.html' %}
 
@@ -68,18 +73,13 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
 {% else %}
     {# ---------- Keşfet: boş hâl (rapor 4.1) ---------- #}
     <div class="mt-6 space-y-6">
-        {% if gunun_karti %}
-        <section aria-labelledby="gunun-kelimesi" data-gunun-kelimesi>
-            <h2 id="gunun-kelimesi" class="mb-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Günün Kelimesi</h2>
-            {% include 'base/_kelimeKarti.html' with kart=gunun_karti kapali=False %}
-        </section>
-        {% endif %}
-
-        {% if gunun_ifadesi %}
-        <section aria-labelledby="gunun-ifadesi" data-gunun-ifadesi>
-            <h2 id="gunun-ifadesi" class="mb-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Günün İfadesi</h2>
-            {% include 'pages/words/_ifadeKarti.html' with ifade=gunun_ifadesi %}
-        </section>
+        {# Günün kelimesi ve ifadesi: Ana Sayfa'dakiyle aynı iki kart (rapor 18.8) #}
+        {% if gunun_kelimesi or gunun_ifadesi %}
+        <div class="grid items-start gap-3 sm:grid-cols-2">
+            {% if gunun_kelimesi %}{% include 'pages/gunun/_kelime.html' with gk=gunun_kelimesi %}{% endif %}
+            {% if gunun_ifadesi %}{% include 'pages/gunun/_ifade.html' with gi=gunun_ifadesi %}{% endif %}
+        </div>
+        {% include 'pages/gunun/_js.html' %}
         {% endif %}
 
         <section aria-labelledby="hazir-listeler" data-hazir-listeler>

@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from users.models import User
-from words import arama
+from words import gunun
 from words.models import Expression, UserWordLink
 from words.testing import make_word
 
@@ -15,11 +15,13 @@ SIFRE = "Sifre1234"
 class AnaSayfaTests(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.b1 = make_word("tidy", level="B1", meaning="düzenli", forms=False)
-        cls.c1 = make_word("ubiquitous", pos="adjective", level="C1", meaning="her yerde olan",
-                           forms=False)
+        # Günün kelimesi olabilmek için (rapor 18.8): 2 örnek, bir eş dizim, sıklık.
+        zengin = dict(sentences=["It is tidy.", "Keep it tidy."], siklik=4.0,
+                      collocations=[("keep tidy", "verb_adj")], forms=False)
+        cls.b1 = make_word("tidy", level="B1", meaning="düzenli", **zengin)
+        cls.c1 = make_word("ubiquitous", pos="adjective", level="C1", meaning="her yerde olan", **zengin)
         Expression.objects.create(text="on the other hand", meaning_tr="öte yandan", cefr="B1",
-                                  visibility="public")
+                                  visibility="public", bilinirlik="az")
         cls.user = User.objects.create_user(username="ana", password=SIFRE, first_name="Efe")
 
     def _html(self, giris=False):
@@ -44,9 +46,11 @@ class AnaSayfaTests(TestCase):
 
     def test_gunun_kelimesi_ve_ifadesi_sozluge_gider(self):
         html = self._html(giris=True)
-        kelime = arama.gunun_kelimesi(self.user)
-        self.assertIn(f'{reverse("sozluk_kelime", args=[kelime.slug])}" data-gunun-kelimesi', html)
-        self.assertIn('/sozluk/on-the-other-hand/" data-gunun-ifadesi', html)
+        kelime = gunun.gunun_kelimesi(self.user)
+        self.assertIn(f'data-gunun-kelimesi="{kelime.id}"', html)
+        self.assertIn(f'href="{reverse("sozluk_kelime", args=[kelime.slug])}"', html)
+        self.assertIn('href="/sozluk/on-the-other-hand/"', html)
+        self.assertIn("data-gunun-ifadesi", html)
 
     def test_gunun_kelimesi_kullanicinin_seviyesinden(self):
         self.user.cefr = "C1"

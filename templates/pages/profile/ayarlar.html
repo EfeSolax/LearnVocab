@@ -8,6 +8,7 @@ Sıra: Görünüm (tema — kolayca görülsün diye en üstte), seviye, çalı�
 tercihleri, e-posta bildirimleri, verilerim, tehlikeli bölge.
 Tema cihazda saklanır (localStorage "theme"); kayıt yoksa cihazın sistem
 teması geçerlidir (base/layout.html).
+Anlık bildirimler cihaza özeldir (bildirimler/_ayar.html).
 Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
 {% endcomment %}
 
@@ -52,6 +53,9 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
             </svg>
         </a>
     </section>
+
+    {# ================= BİLDİRİMLER (anlık) ================= #}
+    {% include 'bildirimler/_ayar.html' %}
 
     <form method="POST" action="{% url 'save_settings' %}" class="space-y-5">
         {% csrf_token %}

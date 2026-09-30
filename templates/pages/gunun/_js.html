@@ -1,0 +1,65 @@
+{% comment %}
+Günün kelimesi / ifadesi kartlarının davranışı (rapor 18.8).
+  - "Biliyordum" / "Bilmiyordum" -> /api/gunun-kelimesi/cevap/ (L&P verisine yazılır).
+    Biliyordum: kart kapanır. Bilmiyordum: düğmeler gider, küçük not çıkar.
+  - Kelime listeye eklenince (base/_kelimeKartiJs.html "kelime-listesi" olayı) kart kapanır.
+  - İfadede "Listeme ekle" -> kart kapanır.
+{% endcomment %}
+{% if user.is_authenticated %}
+<script>
+(function () {
+    var CEVAP = '{% url "gunun_kelimesi_cevap" %}';
+
+    function csrf() {
+        var meta = document.querySelector('meta[name="csrf-token"]');
+        return meta ? meta.content : '';
+    }
+    function gonder(adres, veri) {
+        return fetch(adres, {
+            method: 'POST', credentials: 'same-origin',
+            headers: { 'X-CSRFToken': csrf(), 'X-Requested-With': 'fetch' },
+            body: new URLSearchParams(veri || {})
+        }).then(function (c) { if (!c.ok) { throw new Error('HTTP ' + c.status); } return c.json(); });
+    }
+    function kapat(kart) {
+        kart.querySelector('[data-gunun-icerik]').hidden = true;
+        kart.querySelector('[data-gunun-tamam]').hidden = false;
+    }
+    function hata() {
+        if (window.geriAl) { window.geriAl.bildir('Bir sorun oldu, tekrar dener misin?'); }
+    }
+
+    document.addEventListener('click', function (olay) {
+        var cevap = olay.target.closest('[data-gunun-cevap]');
+        if (cevap) {
+            var kart = cevap.closest('[data-gunun-kelimesi]');
+            var dugmeler = kart.querySelectorAll('[data-gunun-cevap]');
+            dugmeler.forEach(function (d) { d.disabled = true; });
+            gonder(CEVAP, { cevap: cevap.getAttribute('data-gunun-cevap') }).then(function (veri) {
+                if (veri.tamam) { kapat(kart); return; }
+                kart.querySelector('[data-gunun-dugmeler]').remove();   // .flex, hidden'ı ezer
+                kart.querySelector('[data-gunun-not]').hidden = false;
+            }).catch(function () {
+                dugmeler.forEach(function (d) { d.disabled = false; });
+                hata();
+            });
+            return;
+        }
+        var ekle = olay.target.closest('[data-ifade-ekle]');
+        if (ekle) {
+            ekle.disabled = true;
+            gonder(ekle.getAttribute('data-ifade-ekle')).then(function () {
+                kapat(ekle.closest('[data-gunun-ifadesi]'));
+            }).catch(function () { ekle.disabled = false; hata(); });
+        }
+    });
+
+    // Günün kelimesi listeye eklendiyse kart kapanır; "Geri al" ile çıkarılırsa yeniden açılır.
+    document.addEventListener('kelime-listesi', function (olay) {
+        document.querySelectorAll('[data-gunun-kelimesi="' + olay.detail.id + '"]').forEach(function (kart) {
+            if (olay.detail.listede) { kapat(kart); }
+        });
+    });
+})();
+</script>
+{% endif %}

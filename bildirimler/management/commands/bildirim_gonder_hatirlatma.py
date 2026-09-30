@@ -46,7 +46,7 @@ def zaman_dilimi(yerel):
 
 def mesaj(user, tur, durum):
     if tur == GunlukHatirlatma.OGLE:
-        from words.arama import gunun_kelimesi
+        from words.gunun import gunun_kelimesi
         kelime = gunun_kelimesi(user)
         on = f"Günün kelimesi: {kelime.text} · " if kelime else ""
         return f"{on}Bugünün çalışması seni bekliyor."

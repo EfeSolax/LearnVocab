@@ -24,13 +24,12 @@ Türkçe klavyenin büyük harf tuzağı düzeltilir: "Interest"/"İnterest" -> 
 
 import bisect
 import difflib
-import hashlib
 import re
 import time
 from dataclasses import dataclass, field
 
 from django.db.models import (
-    Case, Count, Exists, IntegerField, Max, OuterRef, Q, Value, When,
+    Case, Count, IntegerField, Max, Q, Value, When,
 )
 from django.db.models.functions import Length
 from django.db.models.signals import post_delete, post_save
@@ -39,7 +38,7 @@ from django.utils import timezone
 from users.seviye import kullanici_seviyesi  # noqa: F401  (arama.kullanici_seviyesi)
 
 from .models import (
-    CEFR_LEVELS, BulunamayanArama, ExampleSentence, Expression, FormKind, Meaning,
+    CEFR_LEVELS, BulunamayanArama, Expression, FormKind, Meaning,
     PartOfSpeech, Word, WordForm,
 )
 
@@ -504,60 +503,9 @@ def bulunamayan_kaydet(sorgu, kaynak=BulunamayanArama.KAYNAK_SOZLUK, oneri_vardi
                                                defaults={"oneri_vardi": oneri_vardi})
 
 
-# ----------------------------------------------------------------------
-# Günün kelimesi / günün ifadesi (rapor 4.1, kişiye özel: seviyeye göre)
-# ----------------------------------------------------------------------
-
-VARSAYILAN_SEVIYE = "B1"
-
+# Günün kelimesi ve günün ifadesi: words/gunun.py (rapor 18.8).
 # Kullanıcının seviyesi tek kaynaktan: users.seviye.kullanici_seviyesi
 # (User.cefr, yoksa B1). Yukarıda import edildi.
-
-
-def _gunun_sirasi(gun, tur, seviye, adet):
-    ozet = hashlib.sha1(f"{gun.isoformat()}:{tur}:{seviye}".encode()).hexdigest()
-    return int(ozet[:12], 16) % adet
-
-
-def _yakin_seviyeler(seviye):
-    """B1 -> B1, B2, A2, C1 … havuz boşsa komşu seviyeye kayılır."""
-    i = CEFR_SIRASI.get(seviye, CEFR_SIRASI[VARSAYILAN_SEVIYE])
-    return sorted(CEFR_LEVELS, key=lambda s: (abs(CEFR_SIRASI[s] - i), -CEFR_SIRASI[s]))
-
-
-# Günün kelimesi dört ana türden (edat/bağlaç "günün kelimesi" olmasın).
-_GUNUN_TURLERI = (PartOfSpeech.NOUN, PartOfSpeech.VERB, PartOfSpeech.ADJECTIVE, PartOfSpeech.ADVERB)
-
-
-def gunun_kelimesi(user, gun=None):
-    """
-    Günlük, deterministik: aynı gün aynı seviyedeki herkese aynı kelime.
-    Havuz: kullanıcının seviyesindeki, örnek cümlesi olan tek sözcüklü kur
-    kelimeleri. Ana Sayfa da aynı fonksiyonu kullanmalı (içerik tek yerde).
-    """
-    gun = gun or timezone.localdate()
-    ornekli = Exists(ExampleSentence.objects.filter(meaning__word=OuterRef("pk")))
-    for seviye in _yakin_seviyeler(kullanici_seviyesi(user))[:3]:
-        havuz = (Word.objects.filter(isBaseWord=True, cefr=seviye, pos__in=_GUNUN_TURLERI)
-                 .exclude(text__contains=" ").filter(ornekli).order_by("id"))
-        adet = havuz.count()
-        if adet:
-            return havuz[_gunun_sirasi(gun, "kelime", seviye, adet)]
-    return None
-
-
-def gunun_ifadesi(user, gun=None):
-    """Günün ifadesi (bağlayıcılar ve kalıplar): seviyeye yakın, günlük deterministik."""
-    gun = gun or timezone.localdate()
-    ortak = Expression.objects.filter(visibility="public").order_by("id")
-    for seviye in _yakin_seviyeler(kullanici_seviyesi(user))[:3]:
-        havuz = ortak.filter(cefr=seviye)
-        adet = havuz.count()
-        if adet:
-            return ifade_hazirla(havuz.prefetch_related("examples")
-                                 [_gunun_sirasi(gun, "ifade", seviye, adet)])
-    adet = ortak.count()
-    return ifade_hazirla(ortak[_gunun_sirasi(gun, "ifade", "", adet)]) if adet else None
 
 
 def ifade_hazirla(ifade):

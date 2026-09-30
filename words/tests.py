@@ -562,9 +562,9 @@ class MobileTabBarTests(TestCase):
         html = self.client.get(reverse("index")).content.decode()
         self.assertIn("pb-20 lg:pb-0", html)
 
-    def test_writing_section_requires_login_only_for_guests(self):
-        """Yazma gizlenmez; girişsizken dokununca giriş sayfasına yönlendirir."""
-        self.assertIn('data-giris-gerekli="yazma"', self._bar())
+    def test_yazilar_misafire_acik(self):
+        """Rapor 18.3: Yazılar misafire açık (yalnızca diyalog); menüde giriş işareti yok."""
+        self.assertNotIn("data-giris-gerekli", self._bar())
         self.assertNotIn("data-giris-gerekli", self._bar(logged_in=True))
 
 
@@ -635,7 +635,6 @@ class LoginGateTests(TestCase):
 
     GATED = {
         "exercises_page": "Egzersizler",
-        "profile_texts": "Yazılar",
         "user_profile": "Hesap",
         "settings_page": "Ayarlar",
     }

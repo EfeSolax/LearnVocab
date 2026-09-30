@@ -257,9 +257,13 @@ class VapidYokkenTest(TestCase):
                                  content_type="application/json")
         self.assertEqual(yanit.status_code, 404)
 
-    def test_izin_karti_cizilmez(self):
+    def test_on_ekran_ve_ayar_cizilmez(self):
         from django.template.loader import render_to_string
-        self.assertNotIn("bildirim-izni", render_to_string("bildirimler/_izinKarti.html"))
+        self.assertNotIn("data-bildirim-ayari", render_to_string("bildirimler/_ayar.html"))
+        self.client.force_login(self.user)
+        html = self.client.get(reverse("index")).content.decode()
+        self.assertNotIn("bildirim-on-ekrani", html)
+        self.assertNotIn("lvBildirim", html)
 
     def test_hatirlatma_komutu_bir_sey_gondermez(self):
         _abonelik(self.user)
@@ -275,18 +279,69 @@ class VapidYokkenTest(TestCase):
 
 
 @override_settings(**SAHTE_VAPID)
-class IzinKartiTest(TestCase):
-    def test_kart_anahtarla_cizilir_ve_izni_kendiliginden_istemez(self):
-        from django.template.loader import render_to_string
-        html = render_to_string("bildirimler/_izinKarti.html")
-        self.assertIn('id="bildirim-izni"', html)
-        self.assertIn(SAHTE_VAPID["VAPID_PUBLIC_KEY"], html)
-        self.assertIn("Yarın hatırlatayım mı?", html)
+class OnEkranTest(TestCase):
+    """Rapor 18.29: izin ön ekranı 3 biten egzersiz + 20 L&P kartından sonra çıkar."""
+
+    def setUp(self):
+        self.user = User.objects.create_user(username="onekran", password="Sifre1234", cefr="B1")
+        self.client.force_login(self.user)
+
+    def _html(self, ad="index", **kw):
+        return self.client.get(reverse(ad, kwargs=kw)).content.decode()
+
+    def _olcutu_sagla(self, egzersiz=3, kart=20):
+        from egzersizler.models import EgzersizOturumu
+        from learnpass.models import WordEncounter
+        from words.testing import make_word
+        for _ in range(egzersiz):
+            EgzersizOturumu.objects.create(user=self.user, tur="hizli", tip="anlam", istenen=10,
+                                           sorular=[], durum=EgzersizOturumu.DURUM_BITTI)
+        w = make_word("onekran")
+        WordEncounter.objects.create(user=self.user, word=w, last_verdict="known",
+                                     known_count=kart - 5, unknown_count=5, times_seen=kart)
+
+    def test_olcut_saglanmadan_cikmaz(self):
+        self.assertNotIn('id="bildirim-on-ekrani"', self._html())
+        self._olcutu_sagla(egzersiz=2, kart=40)
+        self.assertNotIn('id="bildirim-on-ekrani"', self._html())
+
+    def test_az_lp_karti_yetmez(self):
+        self._olcutu_sagla(egzersiz=3, kart=19)
+        self.assertNotIn('id="bildirim-on-ekrani"', self._html())
+
+    def test_olcut_saglaninca_kapibarali_on_ekran(self):
+        self._olcutu_sagla()
+        html = self._html()
+        self.assertIn('id="bildirim-on-ekrani"', html)
+        self.assertIn("window.lvBildirim = ", html)
+        self.assertIn("günün kelimesini", html)
         self.assertIn("Ana Ekrana Ekle", html)
-        # İzin isteği yalnızca düğme dinleyicisinin içinde.
-        tiklama = html.index("addEventListener('click'")
-        self.assertGreater(html.index("Notification.requestPermission()"), tiklama)
-        self.assertEqual(html.count("requestPermission"), 1)
+        on_ekran = html[html.index('id="bildirim-on-ekrani"'):]
+        self.assertIn('viewBox="0 0 32 32"', on_ekran)                 # kapibara
+        # Tarayıcının izin penceresi yalnızca ac() içinde, o da tıklamayla çağrılır.
+        self.assertEqual(html.count("Notification.requestPermission()"), 1)
+        self.assertGreater(on_ekran.index("window.lvBildirim.ac()"), on_ekran.index("addEventListener('click'"))
+
+    def test_calisma_ekranlarinda_cikmaz(self):
+        self._olcutu_sagla()
+        self.assertNotIn('id="bildirim-on-ekrani"', self._html("learn_pass_run", mode="karma"))
+
+    def test_seviyesi_belirsizken_once_seviye_daveti(self):
+        self._olcutu_sagla()
+        self.user.cefr = ""
+        self.user.save()
+        html = self._html()
+        self.assertIn("data-seviye-daveti", html)
+        self.assertNotIn('id="bildirim-on-ekrani"', html)
+
+    def test_lp_bitis_ekraninda_eski_kart_yok(self):
+        self.assertNotIn("Yarın hatırlatayım mı?", self._html("learn_pass_run", mode="karma"))
+
+    def test_ayarlarda_bildirim_bolumu(self):
+        html = self._html("settings_page")
+        self.assertIn("data-bildirim-ayari", html)
+        self.assertIn("window.lvBildirim.kapat()", html)
+
 
 
 # ------------------------------------------------------ "Yazın değerlendirildi"

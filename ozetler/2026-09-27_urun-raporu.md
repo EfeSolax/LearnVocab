@@ -69,7 +69,7 @@ Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazılar
 ```
 
 - **Ana Sayfa** menünün ortasındadır.
-- Eski "Metinler" bölümünün adı **Yazılar** (İngilizcesi **Writings**; Efe'nin kararı, 30 Eylül). Bir ara "Yazma" denmişti; adres de `/yazilar/` oldu. Kodda uygulama adı `texts` olarak kaldı.
+- Eski "Metinler" bölümünün adı **Yazılar**. Adres ve ad dile göre (Efe'nin kararı, 1 Ekim): Türkçe **`/yazilar/` · Yazılar**, İngilizce **`/en/writings/` · Writings** (çeviri `locale/en/LC_MESSAGES/django.po`). İngilizce yayına alınana kadar `/writings/` Türkçe sayfaya yönlenir. Kodda uygulama adı `texts` olarak kaldı.
 - "Hakkında" menüde yer almaz. Yardım bağlantısı Ana Sayfa'dadır.
 - Sağ üstte kullanıcının **profil fotoğrafı** durur; dokununca **Hesap** açılır, **Ayarlar**'a oradan gidilir (18.26). Misafirde aynı yerde "Giriş Yap" vardır.
 
@@ -77,30 +77,26 @@ Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazılar
 - **Mobil:** menü ekranın altında sabit bir sekme çubuğudur.
 - **Masaüstü:** aynı menü üste taşınır. Geri kalan her şey mobil ile aynıdır: aynı kartlar, aynı sıra, aynı bileşenler. Masaüstü için ayrı düzen tasarlanmaz, içerik ortada makul bir genişlikte durur.
 
-### 2.3 Giriş yapmamış ziyaretçi
-> **→ 18.3:** Misafir kuralları değişiyor (Sözlük'te sekme ve "Listeme ekle" yok, Çalışmalar'da yalnızca L&P, Yazma'da yalnızca diyalog; giriş gerektiren öğeler gizlenip yerine tek bir davet bağlantısı konur).
+### 2.3 Giriş yapmamış ziyaretçi (18.3, uygulandı)
+**Kural:** Giriş gerektiren öğeler misafire **gösterilmez**. Bölümün içinde tek bir giriş davet bağlantısı olur.
 
-| Bölüm | Giriş yapmamış ziyaretçi ne görür |
+| Bölüm | Misafir ne görür |
 |---|---|
-| Sözlük | Yalnızca **Keşfet**: arama, kartlar, günün kelimesi/ifadesi, hazır listeler. **Listem sekmesi yoktur.** |
-| Çalışmalar › Learn & Pass | **Açık.** Yalnızca kaydırma: hiçbir şey kaydedilmez ve listeye eklenmez. |
-| Çalışmalar › Egzersizler | Kapalı. Tıklanınca giriş yönlendirmesi yapılır. |
-| Okumalar | **Açık**, yalnızca varsayılan (kütüphane) metinler. "PDF yükle" düğmesi görünür; basılınca "Önce giriş yapmalısın" denip giriş sayfasına yönlendirilir. |
-| Yazılar | Kapalı. Tıklanınca giriş yönlendirmesi yapılır. |
-
-- **Genel kural:** Giriş gerektiren düğmeler gizlenmez; basılınca kısa bir açıklamayla girişe yönlendirir. Bu, "+ Listeme ekle" düğmeleri için de geçerlidir.
-- **Varsayım:** Giriş yapmamış ziyaretçinin seviyesi bilinmediği için L&P ve günün kelimesi B1 civarından gelir. L&P'de üstte küçük bir "seviyeni seç" seçeneği bulunur; seçim kaydedilmez.
+| Ana Sayfa | Kısa tanıtım, "Learn & Pass'e başla", Sözlük arama kutusu, günün kelimesi ve günün ifadesi (düğmesiz), hesap açma daveti. |
+| Sözlük | Sekme çubuğu yok, sayfa doğrudan Keşfet. En üstte "Kelimelerini kaydetmek için giriş yap". "Listeme ekle" yok. |
+| Çalışmalar | Yalnızca Learn & Pass; sekme çubuğu yok, seviye seçici yok. Kelimeler %60 B1 · %20 B2 · %20 C1. Altta "Kişisel egzersiz çözebilmek için giriş yap". Hiçbir şey kaydedilmez. |
+| Okumalar | Açık, yalnızca kütüphane metinleri. "PDF yükle" basılınca giriş sayfasına yönlendirir. |
+| Yazılar | Açık, yalnızca **diyalog egzersizi** (hedef kelime %60 B1 · %20 B2 · %20 C1; cevap kaydedilmez, seriye sayılmaz). Serbest yazma yok; yerine "Metin yazıp yapay zekâ ile değerlendirilmesini istiyorsan hemen şimdi giriş yapabilirsin". |
 
 ---
 
 ## 3. Ana Sayfa (giriş yapmış kullanıcı)
-> **→ 18.8:** Günün kelimesi ve günün ifadesi 29 Eylül'de yeniden kararlaştırıldı. **→ 18.9:** Seri 29 Eylül'de kararlaştırıldı; kutu şu an yalnızca yer tutucu.
 
 
-- **Seri (streak):** yeri ayrılır. Nasıl sayılacağı **sonra konuşulacak** (bkz. Bölüm 16).
+- **Seri (streak):** sayı ve kapibara; dokununca takvimli kutu açılır (18.9).
 - **Listemdeki kelime sayısı:** tek sayısal gösterge budur. "Öğrenilen kelime" kavramı yoktur (bkz. Bölüm 17).
 - **"Bugünün çalışmasına başla":** büyük düğme, Learn & Pass'e gider.
-- **Günün kelimesi ve günün ifadesi:** Sözlük'teki kartların küçük hâli. Tıklanınca Sözlük'te ilgili kart açılır; içerik iki ayrı yerde tutulmaz.
+- **Günün kelimesi ve günün ifadesi:** iki ayrı kart, Sözlük › Keşfet'tekilerle aynı (18.8).
 - **Yardım bağlantısı:** içeriği en son yazılacak.
 
 ---
@@ -129,7 +125,7 @@ Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazılar
 │  › Cambridge B2 …            │
 └──────────────────────────────┘
 ```
-- **Günün kelimesi kişiye özeldir**, kullanıcının seviyesine göre seçilir.
+- **Günün kelimesi ve ifadesi:** 18.8.
 - **Hazır listeler:** ODTÜ hazırlık (101…), Bilkent (upp-int…), Cambridge (B2…) vb.
   - Kurum adları kullanılabilir; kelime derlemeleri telife konu değildir (Efe'nin kararı).
   - Liste sayfasında **"Bu listeyle çalış"** düğmesi vardır. Basılınca L&P'nin yeni kelime kaynağı seviye yerine bu liste olur. "Bilmiyorum" denen kelimeler Listem'e girer.
@@ -445,16 +441,14 @@ Açılışta **iki büyük seçenek** vardır:
 - `pywebpush` / `django-webpush`
 - Sunucuda **cron**. Yazma yeniden denemesi de aynı cron'u kullanır.
 
-**İzin zamanı:**
-- Sayfa açılır açılmaz **sorulmaz**. Anlamlı bir anda sorulur; örneğin L&P bitince: "Yarın hatırlatayım mı?"
-- Reddedilen izin bir daha sorulamaz, bu yüzden zamanlama önemlidir.
+**İzin zamanı:** kapibaralı ön ekranla, kullanıcı birkaç şey yaptıktan sonra (18.29). Reddedilen izin bir daha sorulamaz, bu yüzden zamanlama önemlidir.
 
-**Kullanım:** (→ 18.9: günde iki zaman, 12.00 · 23.45 yerel saatle; gün tamamlandıysa ya da seri 0 ise gitmez)
+**Kullanım:** günde en çok iki bildirim, 12.00 (günün kelimesiyle) ve 23.45, yerel saatle; gün tamamlandıysa ya da seri 0 ise gitmez (18.9).
 - Günlük L&P hatırlatması.
 - "Yazın değerlendirildi" bildirimi.
 - Bildirimler **az ve anlamlı** tutulur.
 
-**Kontrol edilecek:** Mevcut barındırma (Apache + Passenger, learnvocab.com.tr) cron ve HTTPS'i destekliyor mu? Bu adıma gelince Efe'ye sorulacak.
+**Barındırma:** Veridyen Senior cron (en sık 15 dakika) ve HTTPS'i destekliyor (18.32).
 
 ---
 
@@ -478,7 +472,7 @@ Açılışta **iki büyük seçenek** vardır:
 3. **Uydurma kelime kullanılmaz** (seviye testi dahil).
 4. **Cesaretlendirici dil.** Hiçbir ekran cezalandırmaz, hata mesajları öğretir.
 5. **Ayrı kelime sayfası yoktur.** Kelime her zaman kart bileşeni olarak, bulunduğu yerde açılır.
-6. **Giriş gerektiren düğmeler gizlenmez.** Basılınca girişe yönlendirir. **→ 18.3:** Bu kural değişiyor: misafire giriş gerektiren öğeler gösterilmez, bölümde tek bir giriş davet bağlantısı olur.
+6. **Giriş gerektiren öğeler misafire gösterilmez**; bölümde tek bir giriş davet bağlantısı olur (2.3, 18.3). Adresi doğrudan açılan korumalı sayfa "önce giriş yapın" ekranını gösterir.
 7. **Onay penceresi yerine "Geri al" bildirimi** kullanılır.
 8. **Yeni veri üretimi** önce önbelleğe (cache) yazılır, `--dry-run` ile kontrol edilir, sonra gerçek yazım yapılır. Her partiden sonra çıktı gözden geçirilir.
 
@@ -546,7 +540,7 @@ Açılışta **iki büyük seçenek** vardır:
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$HOME timeout 170 $HOME/lvenv/bin/python manage.py test --settings=testayar --parallel 4
 ```
 Bu komut Claude'un VM'i içindir (`testayar` ve `$HOME/lvenv` yalnızca orada var). Efe'nin Mac'inde: `.venv/bin/python manage.py test --parallel 4 --noinput`.
-909 test geçiyor (30 Eylül). Her değişiklikten sonra çalıştırılır.
+932 test geçiyor (1 Ekim). Her değişiklikten sonra çalıştırılır.
 
 **Betik çalıştırma:** `yazayar` ile çalışırken `PYTHONPATH=$HOME:.` gerekir.
 
@@ -769,28 +763,11 @@ Böylece yeni bir tur açıldığında, sistemde başka aday varsa **az önce ç
   - Birkaç hafta sonra `EncounterLog` ile basamak başına unutma oranı ölçülüp gerekirse ayarlanır.
 - (d) **Listede olup hiç görülmemiş kelimeler EN BÜYÜK önceliktir** (Efe'nin kararı). Bütün sıralamanın önüne geçer, sonra 3'teki sıralama işler.
 
-### 18.3 Misafir (giriş yapmamış) kuralları (Efe'nin kararı)
-Genel kural değişir: **giriş gerektiren öğeler misafire gösterilmez.** Gerekli yerlerde bölümün içinde tek bir giriş davet bağlantısı olur. Bölüm 2.3 ve 12.6 bu maddeye göre güncellenecek.
-
-- **Sözlük:**
-  - Keşfet | Listem sekme çubuğu misafirde **tamamen kalkar**, sayfa doğrudan Keşfet olur.
-  - Keşfet aynen çalışır. Tek fark: **"Listeme ekle" düğmesi görünmez.**
-  - Sayfanın **en üstünde** bir giriş davet mesajı durur ("Kelimelerini kaydetmek için giriş yap" gibi).
-- **Çalışmalar:**
-  - Misafirde yalnızca **Learn & Pass** vardır. Egzersizler sekmesi ve üstteki sekme çubuğu **kalkar**.
-  - **Seviye seçici yoktur.**
-  - Kelime dağılımı sabittir: **%60 B1 · %20 B2 · %20 C1.** Mesaj şu olmalı: "bir şeyler biliyorsun, bir şeyler de öğreneceksin".
-  - Bu dağılım ancak CEFR etiketleri doğrulandıktan (18.16) sonra anlamlı olur.
-  - Sayfada bir bağlantı durur: **"Kişisel egzersiz çözebilmek için giriş yap"**.
-- **Ana Sayfa:** Görünür (değişiklik yok).
-- **Okumalar:** Misafire açık (değişiklik yok).
-- **Yazma:**
-  - Menüde misafire açılır. **Serbest metin yazma misafirde yoktur, yalnızca diyalog egzersizi vardır.**
-  - Şu anlamda bir davet yazısı durur: "Metin yazıp yapay zekâ ile değerlendirilmesini istiyorsan hemen şimdi giriş yapabilirsin".
-  - Menüdeki `giris_gerekli` işareti Yazma'dan kalkar.
-
-- **Misafirin diyalogları:** L&P ile aynı dağılım (%60 B1 · %20 B2 · %20 C1). Giriş yapmış kullanıcıda hedef kelime yine listeden gelir (9.2).
-- **Kısmen yapıldı (30 Eylül):** L&P'de misafirin seviye seçicisi kalktı; dağılım %60/20/20, sıklık ağırlıklı, nadir tür yok (`tekrar.misafir_kelimeleri`). Sözlük, Çalışmalar sekmeleri ve Yazma kuralları 8. adımda yapılacak.
+### 18.3 Misafir (giriş yapmamış) kuralları (Efe'nin kararı) — **YAPILDI (1 Ekim)**
+Kurallar 2.3'teki tabloda. Kod:
+- Sözlük: `pages/sozluk.html` (misafirde sekme çubuğu yerine `data-misafir-daveti`).
+- Çalışmalar: `base/_exerciseTabs.html` misafirde hiç çizilmez; L&P açılışında "Kişisel egzersiz çözebilmek için giriş yap" (`data-egzersiz-daveti`). Misafir L&P dağılımı `learnpass.tekrar.misafir_kelimeleri`.
+- Yazılar: menüde giriş işareti kalktı (`LearnVocab/navigation.py`). `texts.views.yazmaSayfasi` misafire diyalog kartı + davet gösterir; `diyalogSayfasi` ve `diyalogCevap` misafire açık (`texts.diyalog.misafir_siradaki`, cevap kaydedilmez). Diyalog havuzu (D6) henüz boş; dolunca kendiliğinden çalışır.
 
 ### 18.4 Telaffuz: Amerikan ve İngiliz düğmeleri (Efe'nin kararı) — **YAPILDI ama kalitesi yetersiz (30 Eylül)**
 > **Sorun (Efe, 30 Eylül):**
@@ -881,7 +858,16 @@ Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
 - **Anlam hataları kuralla yakalanamaz** (bank → Zıt: borrower gibi). Bunlar B aşamasında elle taranır. Öncelik: ilişkiler ve seviye etiketleri (~56 bin ilişki, ~20 bin anlam, ~91 bin cümle).
 - 18.6'daki "daha basit" silme kuralı, CEFR doğrulamasından (18.16) sonra uygulanır.
 
-### 18.8 Günün kelimesi ve günün ifadesi (Efe'nin kararı, 29 Eylül)
+### 18.8 Günün kelimesi ve günün ifadesi (Efe'nin kararı, 29 Eylül) — **YAPILDI (1 Ekim)**
+**Uygulama (1 Ekim):**
+- Kod: `words/gunun.py`, kartlar `templates/pages/gunun/` (Ana Sayfa ve Keşfet'te aynı kartlar), uç `/api/gunun-kelimesi/cevap/`.
+- Giriş yapmış kullanıcının kelimesi `GununKelimesi` tablosuna yazılır (gün boyu değişmesin diye). Gün, kullanıcının yerel günüdür. Misafirin kelimesi saklanmaz; tarihten hesaplanır, önbellekte tutulur.
+- **"Google'a açık ve resmî kaynaklı" koşulu kademeli gevşer:** Şu an Google'a yalnızca A1–B1 Oxford kelimeleri açık (18.15). B2 ve üstü kullanıcıya da kelime gelebilsin diye sıra: (1) Google'a açık + Oxford/Cambridge, (2) Google'a açık, (3) Oxford/Cambridge, (4) diğer uygun kelimeler. Partiler açıldıkça kendiliğinden (1)'e döner.
+- Aday sayıları (1 Ekim): A1 744, B1 785, B2 1.346, C1 1.045, C2 29.
+- **"Bilmiyordum" denince** kart açık kalır, düğmeler gider, "Tekrarlarına eklendi" notu çıkar. Karta bir kez cevap verilir.
+- **İfade bilinirliği işaretlendi** (elle, API yok; `words/ifadeler/bilinirlik.py`, `manage.py ifade_bilinirligi`): A1–A2'nin hepsi ve B1–B2'nin sık bağlaçları **yaygın (146)**; geri kalanı **az bilinen (149)**. Günün ifadesi 149 ifadelik döngüden gelir.
+- İfade sayfası Google'a ancak Türkçe anlamı ve **en az 2 örneği** varsa açılır (`words/dizine_alma.uygun_ifadeler`).
+
 **Nerede:**
 - İki **ayrı** kart: Günün Kelimesi ve Günün İfadesi.
 - İkisi de **Ana Sayfa'da** ve **Sözlük › Keşfet'in boş hâlinde** durur.
@@ -1119,7 +1105,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 | Seviye testi | `/seviye-testi/` (adımları `noindex`) | giriş ekranı açık |
 | Okumalar | `/okumalar/`, `/okumalar/<metin-adi>/` | kütüphane metinleri açık; `/okumalar/metinlerim/…` `noindex` |
 | Çalışmalar | `/calismalar/`, `/calismalar/learn-pass/<mod>/`, `/calismalar/egzersizler/` | `noindex` |
-| Yazılar | `/yazilar/`, `/yazilar/yaz/`, `/yazilar/diyalog/` | `noindex` |
+| Yazılar | `/yazilar/` (İngilizce `/en/writings/`), `/yazilar/yaz/`, `/yazilar/diyalog/` | `noindex` |
 | Hesap | `/giris/`, `/kayit/`, `/cikis/`, `/sifremi-unuttum/`, `/sifre-degistir/`, `/profil/` (Hesap), `/ayarlar/` | `noindex` |
 | Hakkında | `/hakkinda/` | açık |
 | Uçlar (JSON, kart parçası) | `/api/…` | `robots.txt` ile kapalı |
@@ -1326,14 +1312,18 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **Ayarlar sayfası** (`/ayarlar/`), Hesap'tan gidilir. Sırasıyla:
   1. **Görünüm (tema):** Sistem · Açık · Koyu. En üstte, kolayca görülür.
   2. **Seviye:** seviyeyi gösterir, seviye testini tekrarlatır.
-  3. **Çalışma:** yazılarda geri bildirim sertliği (Nazik · Normal · Titiz), sesi otomatik oynatma.
-  4. **E-posta bildirimleri.**
-  5. **Verilerim** (dışa aktarma).
-  6. **Tehlikeli bölge** (listeyi boşalt, hesabı sil; parola sorar).
+  3. **Çalışma:**
+     - **Learn & Pass tekrar/yeni oranı: kaydırma çubuğu** (Efe'nin kararı, 1 Ekim). Sola çektikçe tekrar, sağa çektikçe yeni kelime artar; yalnızca **%10'luk adımlar** (%0–%100). Altında "Tekrar %70 · Yeni %30" yazar. Varsayılan %30 yeni.
+     - **Egzersizde soru sayısı: 5 · 10 · 15 · 20** (Efe'nin kararı). Tempolu Egzersiz bu sayıyla açılır; açılış ekranındaki seçenekler de aynı dört sayı (25 kalktı).
+     - Yazılarda geri bildirim sertliği (Nazik · Normal · Titiz), sesi otomatik oynatma.
+  4. **Bildirimler (anlık):** bu cihazda aç / kapat (18.29).
+  5. **E-posta bildirimleri.**
+  6. **Verilerim** (dışa aktarma).
+  7. **Tehlikeli bölge** (listeyi boşalt, hesabı sil; parola sorar).
 - **Alttaki menü ve sağ üstteki profil fotoğrafı her sayfada sabittir** (Hesap ve Ayarlar dahil).
 - Misafirde profil fotoğrafının yerinde "Giriş Yap" durur.
 - **Tema:** Üst çubuktaki tema düğmesi kalktı. **Varsayılan tema cihazın sistem temasıdır**; kullanıcı Ayarlar'dan Açık ya da Koyu seçerse onun seçimi geçerli olur ("Sistem"e dönebilir). Seçim cihazda saklanır.
-- **Henüz Ayarlar'da olmayanlar (tasarım oturumunda):** tekrar/yeni oranı, egzersizde varsayılan soru sayısı, anlık bildirimleri açma/kapama, dil. Beyaz tema (18.12) açık temanın yeni hâli olacak.
+- **Henüz Ayarlar'da olmayan:** dil (çeviriyle birlikte, 18.22). Beyaz tema (18.12) açık temanın yeni hâli olacak.
 
 ### 18.27 Seviye testi değişiklikleri (Efe'nin kararları, 29–30 Eylül) — **YAPILDI (30 Eylül; özet soruları havuzu henüz boş)**
 > **Kod:**
@@ -1411,7 +1401,15 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 ### 18.28 Egzersizler: düzensiz fiiller (Efe'nin kararı, 29 Eylül)
 - 2. ve 3. hâli kendisiyle aynı olan fiiller (cut, put, hit…) **da sorulur.** Önceki "sorulmuyor" ara kararının yerine geçer.
 
-### 18.29 Bildirim izni akışı (Efe'nin kararı, 29 Eylül)
+### 18.29 Bildirim izni akışı (Efe'nin kararı, 29 Eylül) — **YAPILDI (1 Ekim; kapibara çizimi geçici)**
+**Uygulama (1 Ekim):**
+- Ön ekran `templates/bildirimler/_onEkran.html` (kapibaralı, sayfanın altında küçük pencere). Ölçüt `bildirimler/baglam.py`: en az 3 **bitmiş** egzersiz oturumu ve en az 20 L&P kartı. Ölçüt bir kez sağlanınca oturumda işaretlenir.
+- Çıkmadığı yerler: L&P ve egzersiz oturumları, seviye testi, giriş/kayıt sayfaları. Seviye testi daveti gösterilirken de çıkmaz (iki pencere üst üste binmesin).
+- Bu cihaz zaten aboneyse, izin tarayıcıda engelliyse ya da desteklenmiyorsa çıkmaz. "Şimdi değil" → 7 gün bu cihazda çıkmaz. iPhone'da site ana ekrana eklenmediyse "Ana ekrana ekle" rehberi çıkar.
+- Eski "Yarın hatırlatayım mı?" kartı L&P bitişinden kaldırıldı.
+- **Ayarlar › Bildirimler:** bu cihazda Aç / Kapat (abonelik cihaza özel). Ortak kod `templates/bildirimler/_js.html` (`window.lvBildirim`).
+- VAPID anahtarı `.env`'de yoksa bildirimle ilgili hiçbir şey görünmez.
+
 - **Zamanlama:** Tarayıcının izin penceresinden **önce** küçük bir **ön ekran** çıkar.
   - Bildirimin neden önemli olduğunu kısaca anlatır (seri hatırlatması, günün kelimesi).
   - Üzerinde **kapibara** vardır (kabul oranını artırmak için).
@@ -1561,3 +1559,5 @@ Her adım ayrı commit, her adımdan sonra testler.
   - Okumalar: gövdeler diskte sıkıştırılmış (`readings/depo.py`, `ozel_depo/`), 100 metin / 15 PDF / 400 sayfa / 50 MB, 1 haftalık çöp kutusu, bölüm bölüm okuma (18.24).
   - Gezinme: profil fotoğrafı → Hesap → Ayarlar; tema Ayarlar'da, varsayılan sistem teması (18.26).
   - 909 test geçiyor.
+- **2026-10-01 (1):** Efe'nin kararları: Yazılar'ın İngilizce adresi ve adı `/en/writings/` · Writings; Ayarlar'da tekrar/yeni oranı kaydırma çubuğu (%10'luk adımlar) ve egzersiz soru sayısı 5/10/15/20. İkisi de yapıldı.
+- **2026-10-01 (2):** Uygulama 8. adım yapıldı: günün kelimesi ve ifadesi (18.8; ifadeler yaygın 146 / az 149 işaretlendi), misafir kuralları (18.3, 2.3, 12.6), bildirim izni ön ekranı ve Ayarlar'da bildirim aç/kapat (18.29). Testler kendi önbelleklerini kullanıyor (gerçek önbellek klasörüne yazmıyor). 932 test geçiyor.

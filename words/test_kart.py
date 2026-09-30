@@ -336,7 +336,10 @@ class SozlukSayfasiTests(TestCase):
 
     def test_girissiz_yalnizca_kesfet(self):
         html = self.client.get(reverse("sozluk")).content.decode()
-        self.assertIn(">Keşfet<", html.replace("\n", "").replace("  ", ""))
+        # Rapor 18.3: misafirde sekme çubuğu hiç yok; en üstte giriş daveti.
+        self.assertNotIn('role="tablist"', html)
+        self.assertIn("data-misafir-daveti", html)
+        self.assertIn("Kelimelerini kaydetmek için", html)
         self.assertNotIn("?sekme=listem", html)
         self.assertIn("İngilizce veya Türkçe ara", html)
         # Adresle Listem istense bile Keşfet açılır

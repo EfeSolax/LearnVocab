@@ -165,6 +165,26 @@ def siradaki(user, haric=None):
     return Diyalog.objects.select_related("word").get(pk=random.choice(adaylar))
 
 
+# Misafirin diyalogları: L&P ile aynı dağılım (rapor 18.3).
+MISAFIR_DAGILIMI = (("B1", 60), ("B2", 20), ("C1", 20))
+
+
+def misafir_siradaki(haric=None, rng=None):
+    """
+    Misafir için rastgele bir diyalog: hedef kelimenin seviyesi %60 B1 ·
+    %20 B2 · %20 C1. Seçilen seviyede diyalog yoksa havuzun tamamından.
+    """
+    rng = rng or random
+    havuz = Diyalog.objects.filter(denetlendi=True).exclude(pk=haric)
+    seviye = rng.choices([s for s, _ in MISAFIR_DAGILIMI],
+                         weights=[a for _, a in MISAFIR_DAGILIMI], k=1)[0]
+    for adaylar in (havuz.filter(word__cefr=seviye), havuz):
+        idler = list(adaylar.values_list("pk", flat=True))
+        if idler:
+            return Diyalog.objects.select_related("word").get(pk=rng.choice(idler))
+    return None
+
+
 def satirlari_hazirla(diyalog):
     """Şablon için: [{"kisi", "once", "sonra", "bosluk"}] — boşluklu satır ikiye bölünür."""
     satirlar = []

@@ -107,7 +107,10 @@ Sıra (yukarıdan aşağı):
         {% else %}
         <p class="mt-5 text-sm text-gray-500 dark:text-slate-400">
             Giriş yapmadan da kaydırabilirsin; yalnızca hiçbir şey kaydedilmez.
-            <a href="{% url 'login' %}" data-giris-gerekli="calisma" class="whitespace-nowrap font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Giriş yap</a>
+        </p>
+        {# Misafirde Egzersizler sekmesi yok; yerine tek bir davet (rapor 18.3). #}
+        <p class="mt-2 text-sm" data-egzersiz-daveti>
+            <a href="{% url 'login' %}?next={% url 'exercises_page' %}&neden=egzersiz" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Kişisel egzersiz çözebilmek için giriş yap</a>
         </p>
         {% endif %}
     </div>

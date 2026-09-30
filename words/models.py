@@ -783,6 +783,12 @@ class Expression(models.Model):
                                   default="private")
     saved_by = models.ManyToManyField(User, related_name="saved_expressions", blank=True)
 
+    # Bilinirlik (rapor 18.8): Günün İfadesi yalnızca "az bilinen"lerden seçilir.
+    # İşaretleme elle: words/ifadeler/bilinirlik.py
+    BILINIRLIK_CHOICES = [("yaygin", "Yaygın bilinen"), ("az", "Az bilinen")]
+    bilinirlik = models.CharField(max_length=6, choices=BILINIRLIK_CHOICES, default="az",
+                                  db_index=True)
+
     # Kalıcı adres ve kademeli dizine alma: Word'deki aynı adlı alanlar gibi.
     slug = models.CharField(max_length=220, blank=True, default="", db_index=True,
                             editable=False)
@@ -970,6 +976,31 @@ class HazirListeSecimi(models.Model):
 # ----------------------------------------------------------------------
 # Bulunamayan aramalar (ürün raporu 4.2 ve 8)
 # ----------------------------------------------------------------------
+
+class GununKelimesi(models.Model):
+    """
+    Giriş yapmış kullanıcının o günkü kelimesi (rapor 18.8). Kişiye özeldir ve
+    gün boyunca değişmez; bu yüzden ilk gösterildiğinde buraya yazılır.
+    Gün, kullanıcının YEREL günüdür (seri ile aynı). Misafirin kelimesi
+    saklanmaz; o gün herkese aynı kelime hesaplanır (words/gunun.py).
+
+    cevap: "" (henüz cevaplamadı) · "known" (Biliyordum) · "unknown" (Bilmiyordum)
+    """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="gunun_kelimeleri")
+    gun = models.DateField()
+    word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="gunun_kelimesi_oldu")
+    cevap = models.CharField(max_length=8, blank=True, default="")
+    olusturuldu = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("user", "gun")
+        verbose_name = "günün kelimesi"
+        verbose_name_plural = "günün kelimeleri"
+
+    def __str__(self):
+        return f"{self.user_id} · {self.gun} · {self.word_id}"
+
 
 class BulunamayanArama(models.Model):
     """

@@ -11,6 +11,7 @@ from . import views
 urlpatterns = [
     path("sozluk/oneri/", v.sozluk_oneri, name="sozluk_oneri"),
     path("sozluk/kart/<int:word_id>/", v.kart_parcasi, name="sozluk_kart"),
+    path("gunun-kelimesi/cevap/", v.gunun_kelimesi_cevap, name="gunun_kelimesi_cevap"),
     path("listem/oneri/", v.listem_oneri, name="listem_oneri"),
     path("listem/cikar/", v.listem_toplu_cikar, name="listem_toplu_cikar"),
     path("listem/geri-al/", v.listem_geri_yukle, name="listem_geri_yukle"),

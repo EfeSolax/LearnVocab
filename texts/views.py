@@ -84,8 +84,12 @@ def _yazilar(user):
 # Yazma ana sayfası
 # ---------------------------------------------------------------------------
 
-@login_gate("Yazılar", GIRIS_ACIKLAMASI)
 def yazmaSayfasi(request):
+    # Misafir (rapor 18.3): serbest yazma yok, yalnızca diyalog egzersizi ve
+    # tek bir giriş daveti.
+    if not request.user.is_authenticated:
+        return render(request, "pages/texts/yazma.html", {"misafir": True})
+
     yazilar = list(_yazilar(request.user).order_by("-createdAt"))
     for yazi in yazilar:
         yazi.puan_yazisi = dg.puan_yazisi(yazi.puan)
@@ -367,19 +371,31 @@ def aboutGradingPage(request):
 # Diyalogda doğru kelime
 # ---------------------------------------------------------------------------
 
-@login_gate("Yazılar", GIRIS_ACIKLAMASI)
 def diyalogSayfasi(request):
-    liste_bos = not UserWordLink.objects.filter(user=request.user).exists()
+    """
+    Girişli kullanıcıda hedef kelime listeden gelir. Misafire de açıktır
+    (rapor 18.3): diyalog havuzdan %60 B1 · %20 B2 · %20 C1 dağılımıyla
+    seçilir, cevabı kaydedilmez.
+    """
+    misafir = not request.user.is_authenticated
     havuz_bos = dy.havuz_bos_mu()
+    haric = request.GET.get("onceki")
+    haric = int(haric) if haric and haric.isdigit() else None
     diyalog = None
-    if not liste_bos and not havuz_bos:
-        haric = request.GET.get("onceki")
-        diyalog = dy.siradaki(request.user, haric=int(haric) if haric and haric.isdigit() else None)
-        if diyalog is None and haric:
-            # Tek diyalog varsa "Sonraki" aynısını getirebilir.
-            diyalog = dy.siradaki(request.user)
+    if misafir:
+        liste_bos = False
+        if not havuz_bos:
+            diyalog = dy.misafir_siradaki(haric=haric) or dy.misafir_siradaki()
+    else:
+        liste_bos = not UserWordLink.objects.filter(user=request.user).exists()
+        if not liste_bos and not havuz_bos:
+            diyalog = dy.siradaki(request.user, haric=haric)
+            if diyalog is None and haric:
+                # Tek diyalog varsa "Sonraki" aynısını getirebilir.
+                diyalog = dy.siradaki(request.user)
 
     return render(request, "pages/texts/diyalog.html", {
+        "misafir": misafir,
         "liste_bos": liste_bos,
         "havuz_bos": havuz_bos,
         "diyalog": diyalog,
@@ -388,14 +404,14 @@ def diyalogSayfasi(request):
     })
 
 
-@login_required
 @require_POST
 def diyalogCevap(request, diyalog_id):
+    """Cevabı değerlendirir. Misafirin cevabı kaydedilmez ve seriye sayılmaz (rapor 18.3)."""
     diyalog = get_object_or_404(Diyalog.objects.select_related("word"), pk=diyalog_id, denetlendi=True)
     girdi = (request.POST.get("cevap") or "")[:120]
     sonuc = dy.cevabi_degerlendir(diyalog, girdi)
     seri = None
-    if sonuc.durum != dy.BOS:
+    if sonuc.durum != dy.BOS and request.user.is_authenticated:
         DiyalogCevabi.objects.create(user=request.user, diyalog=diyalog,
                                      girdi=girdi.strip(), sonuc=sonuc.durum)
         # Cevaplanan diyalog, doğru ya da yanlış, seriye sayılır (rapor 18.9).

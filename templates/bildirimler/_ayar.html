@@ -1,0 +1,54 @@
+{% load bildirim %}{% bildirim_genel_anahtar as vapid_anahtari %}
+{% comment %}
+Ayarlar'daki "Bildirimler" bölümü (rapor 18.29): anlık bildirimleri bu
+cihazda açıp kapatır. Abonelik cihaza özeldir; her cihazda ayrı açılır.
+Yardımcılar: bildirimler/_js.html (window.lvBildirim)
+{% endcomment %}
+{% if vapid_anahtari %}
+<section class="overflow-hidden rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800" data-bildirim-ayari>
+    <header class="border-b border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6">
+        <h2 class="text-base font-bold text-gray-900 dark:text-slate-100">Bildirimler</h2>
+        <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">Çalışmadığın günlerde öğlen günün kelimesi, gece yarısına doğru seri hatırlatması. Günde en çok iki bildirim.</p>
+    </header>
+    <div class="flex items-center justify-between gap-4 px-5 py-4 sm:px-6">
+        <p data-bildirim-durumu class="min-w-0 text-sm text-gray-700 dark:text-slate-300">Kontrol ediliyor…</p>
+        <button type="button" data-bildirim-dugmesi hidden
+                class="shrink-0 rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-60"></button>
+    </div>
+</section>
+<script>
+(function () {
+    var kok = document.querySelector('[data-bildirim-ayari]');
+    if (!kok || !window.lvBildirim) { return; }
+    var yazi = kok.querySelector('[data-bildirim-durumu]');
+    var dugme = kok.querySelector('[data-bildirim-dugmesi]');
+    var METINLER = {
+        yok: 'Bu tarayıcı bildirimleri desteklemiyor.',
+        ios: 'iPhone\'da bildirim için LearnVocab\'ı önce ana ekrana eklemelisin (Paylaş › Ana Ekrana Ekle).',
+        reddedildi: 'Bildirim izni tarayıcıda engellenmiş. Tarayıcının site ayarlarından izin verebilirsin.',
+        acik: 'Bu cihazda bildirimler açık.',
+        kapali: 'Bu cihazda bildirimler kapalı.'
+    };
+    var simdiki = null;
+
+    function ciz(d) {
+        simdiki = d;
+        yazi.textContent = METINLER[d] || '';
+        dugme.hidden = !(d === 'acik' || d === 'kapali');
+        dugme.textContent = d === 'acik' ? 'Kapat' : 'Aç';
+        dugme.disabled = false;
+    }
+    function yenile() { window.lvBildirim.durum().then(ciz); }
+
+    dugme.addEventListener('click', function () {
+        dugme.disabled = true;
+        var is = simdiki === 'acik' ? window.lvBildirim.kapat() : window.lvBildirim.ac();
+        Promise.resolve(is).then(yenile).catch(function () {
+            yenile();
+            if (window.geriAl) { window.geriAl.bildir('Bir sorun oldu, tekrar dener misin?'); }
+        });
+    });
+    yenile();
+})();
+</script>
+{% endif %}

@@ -103,6 +103,8 @@ TEMPLATES = [
                 'LearnVocab.navigation.navigation',
                 # Seviye testi daveti her sayfada (rapor 18.27)
                 'seviye.baglam.davet',
+                # Bildirim izni ön ekranı (rapor 18.29)
+                'bildirimler.baglam.on_ekran',
                 # canonical, noindex, hreflang (rapor 18.15)
                 'LearnVocab.seo.seo',
             ],
@@ -398,6 +400,11 @@ CACHES = {
         'OPTIONS': {'MAX_ENTRIES': 2000},
     }
 }
+
+# Testler gerçek önbellek klasörüne yazmasın (test veritabanının kimlikleri
+# geliştirme sunucusuna sızıyordu).
+if 'test' in sys.argv:
+    CACHES = {'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}}
 
 
 # Loglama

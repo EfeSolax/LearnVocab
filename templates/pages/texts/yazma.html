@@ -14,6 +14,22 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 
 {% block page %}
 
+{% if misafir %}
+{# Misafir (rapor 18.3): serbest yazma yok; diyalog egzersizi ve tek bir davet. #}
+<div class="space-y-4" data-misafir-yazilar>
+    <div class="flex flex-col rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm">
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-slate-100">Diyalogda doğru kelime</h2>
+        <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Kısa bir diyalogdaki boşluğa doğru İngilizce kelimeyi yaz.</p>
+        <a href="{% url 'diyalog_page' %}"
+           class="mt-4 inline-flex items-center justify-center rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700">Başla</a>
+    </div>
+    <p class="rounded-xl bg-indigo-50 dark:bg-indigo-950/60 px-4 py-3 text-sm text-indigo-900 dark:text-indigo-200" data-misafir-daveti>
+        Metin yazıp yapay zekâ ile değerlendirilmesini istiyorsan hemen şimdi
+        <a href="{% url 'login' %}?next={% url 'profile_texts' %}&neden=yazma" class="font-semibold underline">giriş yapabilirsin</a>.
+    </p>
+</div>
+{% else %}
+
 <div class="grid gap-3 sm:grid-cols-2">
     <div class="flex flex-col rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm">
         <h2 class="text-lg font-semibold text-gray-900 dark:text-slate-100">Serbest yazma</h2>
@@ -93,6 +109,8 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
     </p>
     {% endif %}
 </section>
+
+{% endif %}{# misafir değil #}
 
 {% if silinen %}
 <script>

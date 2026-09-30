@@ -438,11 +438,15 @@ class YazmaSayfalariTests(TestCase):
 
     def test_guest_sees_login_gate(self):
         self.client.logout()
-        for ad, argumanlar in (("profile_texts", []), ("new_text_page", []), ("diyalog_page", []),
-                               ("review_text", [1]), ("about_grading_page", [])):
+        # Yazılar ana sayfası ve diyalog misafire açık (rapor 18.3); serbest yazma kapalı.
+        for ad, argumanlar in (("new_text_page", []), ("review_text", [1]), ("about_grading_page", [])):
             with self.subTest(sayfa=ad):
                 html = self.client.get(reverse(ad, args=argumanlar)).content.decode()
                 self.assertIn("önce giriş yapın", html)
+        html = self.client.get(reverse("profile_texts")).content.decode()
+        self.assertIn("data-misafir-yazilar", html)
+        self.assertIn("yapay zekâ ile değerlendirilmesini istiyorsan", html)
+        self.assertNotIn(reverse("new_text_page"), html.split("<main")[1])
         yanit = self.client.post(reverse("create_text"), {"user_text": METIN})
         self.assertEqual(yanit.status_code, 302)
         self.assertIn(reverse("login"), yanit["Location"])
@@ -809,12 +813,43 @@ class DiyalogSayfasiTests(TestCase):
         for _ in range(5):
             self.assertEqual(dy.siradaki(self.user), d2)
 
-    def test_guest_cannot_answer(self):
+    def test_misafir_cevaplar_ama_kaydedilmez(self):
+        """Rapor 18.3: misafir diyalog çözebilir; cevabı kaydedilmez, seriye sayılmaz."""
         d = diyalog_olustur(self.kelime)
         self.client.logout()
         yanit = self.client.post(reverse("diyalog_cevap", args=[d.id]), {"cevap": "postponed"})
-        self.assertEqual(yanit.status_code, 302)
+        self.assertEqual(yanit.status_code, 200)
+        self.assertEqual(yanit.json()["durum"], "dogru")
+        self.assertNotIn("seri", yanit.json())
         self.assertFalse(DiyalogCevabi.objects.exists())
+
+    def test_misafir_diyalog_sayfasi(self):
+        d = diyalog_olustur(self.kelime)
+        self.client.logout()
+        cevap = self.client.get(reverse("diyalog_page"))
+        self.assertEqual(cevap.status_code, 200)
+        self.assertEqual(cevap.context["diyalog"], d)
+        self.assertNotContains(cevap, "Serbest yazmaya geç")
+
+    def test_misafir_dagilimi(self):
+        import random
+        from texts import diyalog as dy
+        seviyeler = {}
+        for seviye in ("B1", "B2", "C1"):
+            w = kelime_olustur(f"w{seviye.lower()}", anlam="x")
+            w.cefr = seviye
+            w.save()
+            seviyeler[seviye] = diyalog_olustur(w).id
+        rng = random.Random(4)
+        sayac = {s: 0 for s in seviyeler}
+        ters = {v: k for k, v in seviyeler.items()}
+        for _ in range(500):
+            d = dy.misafir_siradaki(rng=rng)
+            if d.id in ters:
+                sayac[ters[d.id]] += 1
+        self.assertGreater(sayac["B1"], 200)                            # ~%60
+        self.assertGreater(sayac["B1"], sayac["B2"] + 100)
+        self.assertGreater(sayac["B1"], sayac["C1"] + 100)
 
 
 class DiyalogYukleTests(TestCase):

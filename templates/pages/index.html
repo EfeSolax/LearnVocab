@@ -53,24 +53,12 @@ günün kelimesi (B1), giriş / kayıt.
         </a>
     </div>
 
-    {# ---------------- 4. Günün kelimesi / ifadesi ---------------- #}
-    <div class="grid gap-3 sm:grid-cols-2">
-        {% if gunun_karti %}{% include 'pages/anasayfa/_gununKelimesi.html' with kart=gunun_karti %}{% endif %}
-        {% if gunun_ifadesi %}
-        <a href="{{ gunun_ifadesi.text|kelime_adresi }}" data-gunun-ifadesi
-           class="block min-w-0 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-4 shadow-sm hover:border-indigo-300 dark:hover:border-indigo-700 transition">
-            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Günün İfadesi</span>
-            <span class="mt-1.5 flex items-start justify-between gap-2">
-                <span class="min-w-0 text-lg font-bold text-gray-900 dark:text-slate-100">{{ gunun_ifadesi.text }}</span>
-                {% if gunun_ifadesi.cefr and gunun_ifadesi.cefr != "Belirtilmemiş" %}
-                <span class="shrink-0 rounded-md bg-indigo-50 dark:bg-indigo-950 px-1.5 py-0.5 text-[11px] font-bold text-indigo-700 dark:text-indigo-300">{{ gunun_ifadesi.cefr }}</span>
-                {% endif %}
-            </span>
-            <span class="mt-1 block text-sm font-semibold text-gray-700 dark:text-slate-200">{{ gunun_ifadesi.meaning_tr }}</span>
-            {% if gunun_ifadesi.ilk_ornek %}<span class="mt-1 block truncate text-sm italic text-gray-500 dark:text-slate-400">“{{ gunun_ifadesi.ilk_ornek }}”</span>{% endif %}
-        </a>
-        {% endif %}
+    {# ---------------- 4. Günün kelimesi / ifadesi (rapor 18.8): iki ayrı kart ---------------- #}
+    <div class="grid items-start gap-3 sm:grid-cols-2">
+        {% if gunun_kelimesi %}{% include 'pages/gunun/_kelime.html' with gk=gunun_kelimesi %}{% endif %}
+        {% if gunun_ifadesi %}{% include 'pages/gunun/_ifade.html' with gi=gunun_ifadesi %}{% endif %}
     </div>
+    {% include 'pages/gunun/_js.html' %}
 
     {# ---------------- 5. Yardım ---------------- #}
     <p class="pt-2 text-center text-sm">
@@ -106,7 +94,10 @@ günün kelimesi (B1), giriş / kayıt.
         </form>
     </section>
 
-    {% if gunun_karti %}{% include 'pages/anasayfa/_gununKelimesi.html' with kart=gunun_karti %}{% endif %}
+    <div class="grid items-start gap-3 sm:grid-cols-2">
+        {% if gunun_kelimesi %}{% include 'pages/gunun/_kelime.html' with gk=gunun_kelimesi %}{% endif %}
+        {% if gunun_ifadesi %}{% include 'pages/gunun/_ifade.html' with gi=gunun_ifadesi %}{% endif %}
+    </div>
 
     <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-5 text-center">
         <p class="text-sm text-gray-600 dark:text-slate-300">Kelimelerini kaydetmek, egzersiz çözmek ve yazdıklarına geri bildirim almak için:</p>

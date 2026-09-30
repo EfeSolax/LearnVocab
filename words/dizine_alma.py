@@ -17,10 +17,10 @@ biri açıksa sayfa açıktır.
 Komut: manage.py dizine_ac
 """
 
-from django.db.models import Exists, OuterRef
+from django.db.models import Count, Exists, OuterRef
 
 from .arama import cefr_sira_ifadesi, ortak_sozluk
-from .models import ExampleSentence, Expression, ExpressionExample, Meaning, Word
+from .models import ExampleSentence, Expression, Meaning, Word
 
 # Zipf 2,3'ün altı: "handwrite", "pillared" gibi çok seyrek kayıtlar.
 EN_AZ_SIKLIK = 2.3
@@ -36,9 +36,9 @@ def uygun_kelimeler():
 
 
 def uygun_ifadeler():
-    ornek = ExpressionExample.objects.filter(expression=OuterRef("pk"))
+    """İfade sayfası: Türkçe anlamı ve en az 2 örneği olanlar (rapor 18.8)."""
     return (Expression.objects.filter(visibility="public").exclude(slug="")
-            .exclude(meaning_tr="").filter(Exists(ornek)))
+            .exclude(meaning_tr="").annotate(_ornek=Count("examples")).filter(_ornek__gte=2))
 
 
 def siradaki_kelimeler(seviyeler=None, kaynak=None, en_az_siklik=None):

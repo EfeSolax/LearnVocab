@@ -105,6 +105,10 @@
     {# Seviye testi daveti: test yapılana kadar her sayfada (rapor 18.27, seviye/baglam.py) #}
     {% if seviye_daveti_goster %}{% include 'pages/seviye/_davetPenceresi.html' %}{% endif %}
 
+    {# Bildirim (Web Push) yardımcıları ve izin ön ekranı (rapor 18.29) #}
+    {% include 'bildirimler/_js.html' %}
+    {% if bildirim_on_ekrani_goster %}{% include 'bildirimler/_onEkran.html' %}{% endif %}
+
     {# Site geneli bileşenler: "Geri al" bildirimi, giriş gerektiren düğmeler, kelime kartı davranışı #}
     {% include 'base/_geriAl.html' %}
     {% include 'base/_girisGerekli.html' %}

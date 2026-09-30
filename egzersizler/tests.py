@@ -479,9 +479,11 @@ class GirisTests(TestCase):
         self.assertIn("önce giriş yapın",
                       self.client.get(reverse("egzersiz_oturum", args=[1])).content.decode())
 
-    def test_sekme_giris_gerekli_isareti(self):
+    def test_misafirde_sekme_yok_davet_var(self):
+        """Rapor 18.3: misafirde Çalışmalar sekme çubuğu yok; tek bir giriş daveti."""
         html = self.client.get(reverse("learn_pass_page")).content.decode()
-        self.assertIn('data-giris-gerekli="egzersiz"', html)
+        self.assertNotIn(reverse("exercises_page") + '"', html.split('aria-label="Alt menü"')[0].split("<main")[1])
+        self.assertIn("Kişisel egzersiz çözebilmek için giriş yap", html)
 
 
 class SeviyeTests(TestCase):

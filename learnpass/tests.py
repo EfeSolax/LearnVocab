@@ -310,7 +310,7 @@ class LearnPassPageTests(TestCase):
         html = self.client.get(reverse("learn_pass_page")).content.decode()
         self.assertIn("Hemen Başla", html)
         self.assertNotIn('name="seviye"', html)
-        self.assertIn('data-giris-gerekli="egzersiz"', html)
+        self.assertIn("data-egzersiz-daveti", html)
 
     def test_unknown_mode_falls_back_to_the_picker(self):
         self.client.login(username="sayfa", password="Sifre1234")
