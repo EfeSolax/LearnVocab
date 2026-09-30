@@ -122,7 +122,8 @@ class EncounterLog(models.Model):
     WordEncounter yalnızca şu anki durumu tutar; geçmiş geriye dönük
     üretilemez. `basamak_once` ile "hangi basamakta ne kadar unutuluyor"
     ölçülür ve tekrar birimi ona göre ayarlanır (rapor 18.2 a, 18.31).
-    Rapor 18.32: ayrıntılı kayıtlar 90 gün tutulup sonra özetlenecek.
+    Rapor 18.32: ayrıntılı kayıtlar 90 gün tutulur; daha eskileri kişisiz
+    günlük özetlere (KarsilasmaOzeti) çevrilip silinir: manage.py karsilasma_ozetle
     """
 
     VERDICT = "verdict"
@@ -154,3 +155,30 @@ class EncounterLog(models.Model):
 
     def __str__(self):
         return f"{self.user.username} · {self.word_text} · {self.verdict or '?'}"
+
+
+class KarsilasmaOzeti(models.Model):
+    """
+    90 günden eski EncounterLog kayıtlarının KİŞİSİZ günlük özeti (rapor 18.32).
+    Veritabanı 1 GB sınırının altında kalsın diye ayrıntı silinir, yalnızca
+    toplu sayı kalır. Kullanıcı ya da kelime bilgisi YOKTUR.
+    İstatistik ekranı (LearnVocab/istatistik.py) ayrıntılı kayıtlarla birlikte
+    bunu da okur.
+
+    gun: kaydın tarihi (sunucu saatiyle) · mode · basamak_once · verdict · sayi
+    """
+
+    gun = models.DateField()
+    mode = models.CharField(max_length=10, blank=True, default="")
+    basamak_once = models.PositiveSmallIntegerField(default=0)
+    verdict = models.CharField(max_length=20, blank=True, default="")
+    sayi = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        verbose_name = "karşılaşma özeti"
+        verbose_name_plural = "karşılaşma özetleri"
+        constraints = [models.UniqueConstraint(fields=["gun", "mode", "basamak_once", "verdict"],
+                                               name="karsilasma_ozeti_tek")]
+
+    def __str__(self):
+        return f"{self.gun} · {self.mode} · b{self.basamak_once} · {self.verdict}: {self.sayi}"

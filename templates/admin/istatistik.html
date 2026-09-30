@@ -1,0 +1,42 @@
+{% extends "admin/base_site.html" %}
+{% comment %}
+Admin istatistik ekranı (rapor 18.31). Görünüm: LearnVocab/istatistik.py
+Yalnızca toplu sayılar; 5'ten az kişinin ardındaki oranlar gösterilmez.
+{% endcomment %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'admin:index' %}">Başlangıç</a> › İstatistikler</div>{% endblock %}
+{% block content %}
+<div id="content-main">
+<p>Bu ekranda <strong>yalnızca toplu sayılar</strong> var; kişi bazında kayıt yok. Arkasında {{ ist.en_az_kisi }} kişiden az olan oranlar gösterilmez, küçük sayılar “&lt;{{ ist.en_az_kisi }}” yazılır.</p>
+
+<div class="module"><table style="width:100%">
+    <caption>Aktif kullanıcılar (L&amp;P, egzersiz, metin ya da diyalog yapan)</caption>
+    <tr><th>Bugün</th><td>{{ ist.aktif.gunluk }}</td></tr>
+    <tr><th>Son 7 gün</th><td>{{ ist.aktif.haftalik }}</td></tr>
+    <tr><th>Son 30 gün</th><td>{{ ist.aktif.aylik }}</td></tr>
+    <tr><th>Son 14 gün (günlük)</th><td>{% for gun, n in ist.aktif.son_14_gun %}{{ gun|date:"j M" }}: {{ n }}{% if not forloop.last %} · {% endif %}{% endfor %}</td></tr>
+</table></div>
+
+<div class="module" data-unutma><table style="width:100%">
+    <caption>Tekrar basamağı başına unutma oranı (tekrar birimi doğru mu? rapor 18.2)</caption>
+    <tr><th>Basamak</th><th>Cevap</th><th>Unutulan</th></tr>
+    {% for b in ist.unutma %}
+    <tr><td>{{ b.ad }}</td><td>{{ b.toplam }}</td><td>{% if b.oran is not None %}%{{ b.oran }}{% else %}—{% endif %}</td></tr>
+    {% endfor %}
+    <tr><td colspan="3" style="color:#666">Kişi: {{ ist.unutma_kisi }}. Oran her basamakta yaklaşık %10–20 ise birim uygun; bir basamakta çok yüksekse o aralık uzun demektir.</td></tr>
+</table></div>
+
+<div class="module"><table style="width:100%">
+    <caption>Son 30 gün</caption>
+    <tr><th>Günün tamamlanma oranı</th><td>{% if ist.tamamlama.oran is not None %}%{{ ist.tamamlama.oran }}{% else %}—{% endif %} ({{ ist.tamamlama.gun }} çalışılan gün)</td></tr>
+    <tr><th>L&amp;P'de {{ ist.birakma.lp_esik }} karta ulaşmadan bırakılan günler</th><td>{% if ist.birakma.lp_oran is not None %}%{{ ist.birakma.lp_oran }}{% else %}—{% endif %} ({{ ist.birakma.lp_gun }} gün)</td></tr>
+    <tr><th>Yarıda bırakılan egzersiz oturumları (tüm zamanlar)</th><td>{% if ist.birakma.egz_oran is not None %}%{{ ist.birakma.egz_oran }}{% else %}—{% endif %} ({{ ist.birakma.egz_oturum }} oturum)</td></tr>
+    <tr><th>Bildirim ön ekranı ölçütünü sağlayanların bildirimi açma oranı</th><td>{% if ist.bildirim.oran is not None %}%{{ ist.bildirim.oran }}{% else %}—{% endif %} ({{ ist.bildirim.uygun }} kişi)</td></tr>
+</table></div>
+
+<div class="module"><table style="width:100%">
+    <caption>Seri uzunluğu dağılımı ({{ ist.seri.kisi }} kişi)</caption>
+    {% for s in ist.seri.satirlar %}<tr><th>{{ s.ad }}</th><td>{{ s.sayi }}</td></tr>
+    {% empty %}<tr><td>{{ ist.en_az_kisi }} kişiden az; gösterilmiyor.</td></tr>{% endfor %}
+</table></div>
+</div>
+{% endblock %}

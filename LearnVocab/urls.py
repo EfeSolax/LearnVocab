@@ -24,7 +24,7 @@ from django.utils.translation import gettext_lazy as _
 
 from bildirimler.urls import kok_urlpatterns as pwa_urlpatterns
 from learnpass.urls import api_urlpatterns as learnpass_api
-from LearnVocab import eski_adresler, seo_views
+from LearnVocab import eski_adresler, istatistik, seo_views
 from LearnVocab.anasayfa import ana_sayfa
 from readings import api as readings_api
 from words.sozluk_urls import liste_urlpatterns
@@ -34,7 +34,12 @@ def showAbout(request):
     return render(request, "pages/about.html")
 
 
+# Admin ana sayfasına "İstatistikler" bağlantısı (rapor 18.31)
+admin.site.index_template = "admin/lv_index.html"
+
 urlpatterns = [
+    # Admin istatistik ekranı (rapor 18.31): yalnızca toplu sayılar
+    path("admin/istatistik/", istatistik.istatistik, name="admin_istatistik"),
     path("admin/", admin.site.urls),
     path("robots.txt", seo_views.robots_txt, name="robots_txt"),
     path("sitemap.xml", seo_views.sitemap_xml, name="sitemap_xml"),

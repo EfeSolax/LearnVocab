@@ -1432,7 +1432,11 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - `.env`'e `SITE_ADRESI` (varsayılanı zaten `https://www.learnvocab.com.tr`); `http` + `www`'suz isteğin tek adımda yönlenmesi (`.htaccess`)
   - kademeli dizine alma partilerinin takvimi (18.15: 1. parti açık, sırada B2 Oxford)
 
-### 18.31 İstatistik ekranı (admin) (Efe'nin kararı, 29 Eylül)
+### 18.31 İstatistik ekranı (admin) (Efe'nin kararı, 29 Eylül) — **YAPILDI (1 Ekim)**
+**Uygulama:** `/admin/istatistik/` (yalnızca yönetici; admin ana sayfasında "İstatistikler" bağlantısı). Kod `LearnVocab/istatistik.py`.
+- Göstergeler: aktif kullanıcılar (bugün, 7 gün, 30 gün, son 14 gün); tekrar basamağı başına unutma oranı; günün tamamlanma oranı; L&P'de 10 karta ulaşmadan bırakılan günler (L&P turu ayrı kaydedilmediği için yarıda bırakma bu ölçüyle görülür); yarıda bırakılan egzersiz oturumları; seri uzunluğu dağılımı; bildirim ön ekranı ölçütünü sağlayanların bildirimi açma oranı.
+- Gizlilik: yalnızca toplu sayı; arkasında 5'ten az kişi olan oran gösterilmez, 1–4 arası sayılar "<5" yazılır.
+
 - **Admin panelinde** bir istatistik ekranı olur.
 - **Amaç:** Tekrar biriminin (1 gün, 18.2) ve genel kullanımın doğru çalışıp çalışmadığını anlamak.
 - **Gizlilik önceliklidir:**
@@ -1453,7 +1457,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Python sürümü seçilebilir; SSH, Git ve Let's Encrypt var.
 - **Sonuçları:**
   - Okuma metinleri diskte sıkıştırılmış dosya (18.24).
-  - **Ayrıntılı karşılaşma kayıtları (`EncounterLog`) 90 gün tutulur**, daha eskileri günlük özetlere çevrilir. (Henüz yapılmadı; istatistik ekranıyla birlikte, 18.31.) Tekrar kuralı (18.2) ve istatistik ekranı (18.31) bu özetlerle çalışır. Böylece veritabanı 1 GB'ın altında kalır.
+  - **Ayrıntılı karşılaşma kayıtları (`EncounterLog`) 90 gün tutulur**, daha eskileri **kişisiz** günlük özetlere (`KarsilasmaOzeti`: gün, mod, basamak, karar, sayı) çevrilip silinir: `manage.py karsilasma_ozetle`, cron her gece 04.00 (`bildirimler/CRON.md`). **Yapıldı (1 Ekim).** Tekrar kuralı `WordEncounter`'daki güncel durumla, seviye düzeltmesi son 90 günle çalışır; istatistik ekranı ikisini birlikte okur. Böylece veritabanı 1 GB'ın altında kalır.
   - Seri kaçırma bildirimi **23.45** (18.9).
   - Ses dosyaları (18.4, seçilirse) sunucuda durabilir: ~28 bin dosya (~70–110 MB) inode sınırının %7'si.
 - **Maliyet ilkesi (Efe):** Bu süreçte ek masraf çıkmamalı. Ücretli servis, API ya da hesap gerektiren çözümler önerilmez; ücretsiz ve yerel çözümler tercih edilir.
@@ -1474,6 +1478,8 @@ Her adım ayrı commit, her adımdan sonra testler.
 | 9 | 5'er örnek | 18.14 | yok |
 | 10 | Tailwind derleme + beyaz tema + yazı boyutları | 18.17, 18.12 | tema tasarımı |
 | 11 | Google ile giriş | 18.21 | Efe'nin OAuth istemcisi |
+
+**1 Ekim durumu:** 8. adım (günün kelimesi, misafir, bildirim izni) ve 9. adım (istatistik, özetler) yapıldı.
 
 - 1–3 hemen yapılabilir.
 - 6'da L&P aynı ekranda hem akış hem tasarım değiştirdiği için tek seferde yapılır.
@@ -1561,3 +1567,4 @@ Her adım ayrı commit, her adımdan sonra testler.
   - 909 test geçiyor.
 - **2026-10-01 (1):** Efe'nin kararları: Yazılar'ın İngilizce adresi ve adı `/en/writings/` · Writings; Ayarlar'da tekrar/yeni oranı kaydırma çubuğu (%10'luk adımlar) ve egzersiz soru sayısı 5/10/15/20. İkisi de yapıldı.
 - **2026-10-01 (2):** Uygulama 8. adım yapıldı: günün kelimesi ve ifadesi (18.8; ifadeler yaygın 146 / az 149 işaretlendi), misafir kuralları (18.3, 2.3, 12.6), bildirim izni ön ekranı ve Ayarlar'da bildirim aç/kapat (18.29). Testler kendi önbelleklerini kullanıyor (gerçek önbellek klasörüne yazmıyor). 932 test geçiyor.
+- **2026-10-01 (3):** Uygulama 9. adım yapıldı: admin istatistik ekranı (18.31, yalnızca toplu sayılar, 5 kişi eşiği) ve 90 günden eski karşılaşma kayıtlarının kişisiz günlük özete çevrilmesi (18.32, `karsilasma_ozetle`, gece cron'u).

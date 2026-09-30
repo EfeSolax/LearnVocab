@@ -1,0 +1,11 @@
+{% extends "admin/index.html" %}
+{# Admin ana sayfası + istatistik bağlantısı (rapor 18.31) #}
+{% block content %}
+<div class="module" style="margin-bottom:20px">
+    <table style="width:100%"><caption>LearnVocab</caption>
+        <tr><th scope="row"><a href="{% url 'admin_istatistik' %}">İstatistikler</a></th>
+            <td>Yalnızca toplu sayılar: aktif kullanıcı, unutma oranı, seri, bildirim.</td></tr>
+    </table>
+</div>
+{{ block.super }}
+{% endblock %}

@@ -1,11 +1,12 @@
 # Zamanlanmış işler (cron) — Veridyen / cPanel
 
-LearnVocab'ın iki düzenli işi var (rapor 9.1 ve 10):
+LearnVocab'ın düzenli işleri (rapor 9.1, 10 ve 18.32):
 
 | Komut | Ne yapar | Ne sıklıkla |
 |---|---|---|
 | `yazilari_yeniden_dene` | Gemini'nin cevap veremediği ("Henüz değerlendirilmedi") yazıları kotaya uyarak yeniden dener; arka planda değerlendirilen yazı için "Yazın değerlendirildi" bildirimi gider. Bir günden eski silinmiş yazıları da temizler. | 30 dakikada bir |
 | `bildirim_gonder_hatirlatma` | Seri hatırlatmaları (rapor 18.9): kullanıcının **yerel** saatiyle 12.00'de "Günün kelimesi" ve 23.45'te seriyi kaçırma uyarısı. Günü tamamlayana ya da serisi 0 olana gitmez; aynı bildirim aynı gün iki kez gitmez. | **15 dakikada bir** |
+| `karsilasma_ozetle` | 90 günden eski ayrıntılı karşılaşma kayıtlarını kişisiz günlük özetlere çevirip siler (veritabanı 1 GB'ın altında kalsın, rapor 18.32). | Günde bir, gece |
 | `clearsessions` | Süresi dolmuş oturum kayıtlarını siler (Django'nun kendi komutu). İsteğe bağlı. | Günde bir, gece |
 
 ## 1. Yolları bul
@@ -33,6 +34,9 @@ cPanel → **Cron Jobs** → her satır için "Add New Cron Job" (saat alanları
 
 # Seri hatırlatmaları (yerel 12.00 ve 23.45) — 15 dakikada bir
 */15 * * * * cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py bildirim_gonder_hatirlatma >> /home/KULLANICI/logs/hatirlatma.log 2>&1
+
+# Karşılaşma kayıtlarını özetle — her gece 04:00
+0 4 * * * cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py karsilasma_ozetle >> /home/KULLANICI/logs/karsilasma_ozetle.log 2>&1
 
 # Eski oturumları temizle — her gece 04:15 (isteğe bağlı)
 15 4 * * * cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py clearsessions >> /home/KULLANICI/logs/clearsessions.log 2>&1
@@ -87,6 +91,6 @@ touch tmp/restart.txt                    # Passenger'ı yeniden başlat (.env ye
 .venv/bin/python manage.py runserver
 ```
 
-`http://localhost:8000` üzerinden bir L&P oturumu bitir → "Yarın hatırlatayım mı?" → **Evet**.
+`http://localhost:8000/ayarlar/` › **Bildirimler** › **Aç** (ön ekran ancak 3 egzersiz + 20 L&P kartından sonra çıkar, rapor 18.29).
 Sonra `.venv/bin/python manage.py bildirim_gonder_hatirlatma --saat-kontrolu-yok` bugün kaydırma yapmadıysan bildirimi gönderir
 (yaptıysan göndermez — bu doğru davranış). Tarayıcının bildirimleri bu site için kapalıysa (sistem ayarları dahil) bildirim görünmez.
