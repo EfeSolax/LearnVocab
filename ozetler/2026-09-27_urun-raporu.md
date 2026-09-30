@@ -1326,7 +1326,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **Tema:** Üst çubuktaki tema düğmesi kalktı. **Varsayılan tema cihazın sistem temasıdır**; kullanıcı Ayarlar'dan Açık ya da Koyu seçerse onun seçimi geçerli olur ("Sistem"e dönebilir). Seçim cihazda saklanır.
 - **Henüz Ayarlar'da olmayan:** dil (çeviriyle birlikte, 18.22). Beyaz tema (18.12) açık temanın yeni hâli olacak.
 
-### 18.27 Seviye testi değişiklikleri (Efe'nin kararları, 29–30 Eylül) — **YAPILDI (30 Eylül; özet soruları havuzu henüz boş)**
+### 18.27 Seviye testi değişiklikleri (Efe'nin kararları, 29–30 Eylül) — **YAPILDI (30 Eylül; özet soruları 1 Ekim'de yüklendi)**
 > **Kod:**
 > - Kural: `seviye/tahmin.py`. Ekran seçimi: `seviye/secim.py`. Özet soruları: `seviye/okuma.py`.
 > - Seviyenin kendiliğinden düzelmesi: `seviye/duzeltme.py` + `SeviyeDuzeltmesi` modeli (L&P açılışında ve egzersiz bitişinde çalışır).
@@ -1341,7 +1341,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 >
 > **Kendi seviyesini seçen kullanıcıya not:** Seçim sayfasında tek satırlık küçük bir not var; kayıttan sonra aynı cümle başarı mesajında görünür. Ayarlar sayfası gelene kadar not Profilim'e bağlanıyor.
 >
-> **Sıradaki içerik işi:** A1–C2 her seviyeye 50 özet sorusu (Claude elle yazacak, `seviye_okuma_yukle`). Havuz boşken okuma kısmı atlanır ve sonuç kelime ekranlarından belirlenir.
+> **Özet soruları (1 Ekim):** Claude elle yazdı (API yok): A1 50 · A2 50 · B1 50 · B2 50 · C1 51 · C2 50 = **301 soru**. Dosyalar `seviye/havuz/ozet_*.jsonl`, yükleme `manage.py seviye_okuma_yukle`. Her soruda 4–5 cümlelik metin, bir doğru özet ve metinle çelişen 3 çeldirici var; hepsi "denetlendi" işaretli. Efe admin'den (Seviye › Okuma soruları) göz atabilir; beğenmediği soru `denetlendi` kaldırılarak testten çıkarılır.
 
 **Davet:**
 - Kullanıcı testi yapana kadar **her sayfa açılışında** seviye testi daveti çıkar. Önceki "Şimdi değil → 30 gün" ara kararının yerine geçer.
@@ -1571,3 +1571,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-01 (2):** Uygulama 8. adım yapıldı: günün kelimesi ve ifadesi (18.8; ifadeler yaygın 146 / az 149 işaretlendi), misafir kuralları (18.3, 2.3, 12.6), bildirim izni ön ekranı ve Ayarlar'da bildirim aç/kapat (18.29). Testler kendi önbelleklerini kullanıyor (gerçek önbellek klasörüne yazmıyor). 932 test geçiyor.
 - **2026-10-01 (3):** Uygulama 9. adım yapıldı: admin istatistik ekranı (18.31, yalnızca toplu sayılar, 5 kişi eşiği) ve 90 günden eski karşılaşma kayıtlarının kişisiz günlük özete çevrilmesi (18.32, `karsilasma_ozetle`, gece cron'u).
 - **2026-10-01 (4):** 18.28 (cut/put/hit 3 şıkla soruluyor) ve büyük harf düzeltmesi (harf duyarsız okuma sorgusu; 6 kelime büyük harfle; "oriental" isim silindi) yapıldı.
+- **2026-10-01 (5):** Seviye testinin özet soruları yazıldı ve yüklendi (301 soru, `seviye/havuz/`).
