@@ -1208,7 +1208,12 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
     - Kalan 11.033 kelime `learnvocab` (bizim etiketimiz); C2'lerin hepsi bunların içinde.
   - Seviyeler değişince nadir tür yeniden hesaplandı: **146**.
   - Yedek: `~/LearnVocab-yedekler/db.sqlite3.yedek-20260930-oxford-oncesi`.
-- **Bulgu, sözlükteki boşluk:** Oxford'daki 611 (kelime, tür) çifti bizde yok. Bir kısmı yalnızca tür farkı (above bizde edat var, zarf yok), ama banana, bathroom, because, be gibi **temel A1 kelimeleri eksik**. **Efe'nin kararı (30 Eylül):** Eksik ~600 kelimeyi **Claude elle yazacak** (anlam, açıklama, örnekler; API yok), A1–A2'den başlayarak. **Şimdilik ertelendi**, veri adımından sonra yapılacak. Liste `manage.py oxford_cefr_yukle --dry-run` çıktısından yeniden üretilebilir.
+- **Eksik Oxford kelimeleri eklendi (1 Ekim):** Claude elle yazdı (API yok): **522 kelime** (A1 100 · A2 62 · B1 53 · B2 110 · C1 197). Her birinde Türkçe anlam, İngilizce açıklama ve örnek cümleler var; seviye kaynağı `oxford`. Dosyalar `veri/oxford_eksik/*.jsonl`, yükleme `manage.py elle_kelime_yukle` (var olanı atlar; `be`, `have` gibi kurala uymayan çekimler elle verilir).
+  - **Eklenmeyenler (~100):** İngiliz yazım farkları (colour, centre, favourite, analyse, jewellery, judgement… — Amerikan yazımı sözlükte var); zaten ifade kartı olarak bulunan bağlaçlar (and, because, however, although…; bunların bağlaç dışı anlamları — for "için", as "olarak", so "çok", once "bir kez" gibi — kelime olarak eklendi); hassas kelimeler (rape, abortion, sexual, lesbian; "gay" daha önce Efe'nin kararıyla silinmişti); "born" (fiil; sıfatı var) ve PDF'ten yanlış okunan "diplomatic" (isim).
+  - Ay ve gün adları büyük harfle yazıldı (April, Monday…); CD, DVD, TV, IT, OK, AIDS da öyle.
+  - A1–B1 olanlar kademeli dizine almanın 1. partisine katıldı.
+  - **Ses dosyaları:** Bu kelimelerin telaffuzu henüz yok; ses üretimi bittikten sonra `araclar/telaffuz_uret.py` bir kez daha çalıştırılınca (yalnızca eksikleri üretir) gelir.
+- Eksik listesi `manage.py oxford_cefr_yukle --dry-run` ile yeniden üretilebilir (şu an 101; yukarıda sayılan bilinçli olarak eklenmeyenler).
 - **Cambridge EVP:** Ücretsiz ama yalnızca sitede arama var, indirilebilir liste yok. ~7.000 kelimeyi almak siteyi otomatik gezmeyi (scraping) gerektirir. Kullanım koşulları doğrulanamadığı için yapılmadı. C2 ve Oxford dışı kelimeler sıklık tutarsızlığı + B aşamasıyla denetlenecek.
 - **Özel adlar (30 Eylül):** Yalnızca özel ad olan kayıt bulunamadı; aile hattı bunları zaten almamış. İki tarama yapıldı: örnek cümlelerde hep büyük harfle geçen kelimeler, Türkçe anlamında "soyadı / adı / şehri" geçenler. Bulunanların hepsi gerçek kelime (milliyet, dil, "surname" vb.).
 - **Büyük harf düzeltildi (1 Ekim):**
@@ -1582,3 +1587,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-01 (4):** 18.28 (cut/put/hit 3 şıkla soruluyor) ve büyük harf düzeltmesi (harf duyarsız okuma sorgusu; 6 kelime büyük harfle; "oriental" isim silindi) yapıldı.
 - **2026-10-01 (5):** Seviye testinin özet soruları yazıldı ve yüklendi (301 soru, `seviye/havuz/`).
 - **2026-10-01 (6):** Boş havuzlara 5'er örnek yazılıp yüklendi (D2, D3, D5, D6, D7; `veri/ornek/`).
+- **2026-10-01 (7):** Eksik Oxford kelimelerinden 522'si elle yazılıp eklendi (`veri/oxford_eksik/`, `elle_kelime_yukle`).
