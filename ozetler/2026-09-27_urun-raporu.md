@@ -1202,10 +1202,11 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **Bulgu, sözlükteki boşluk:** Oxford'daki 611 (kelime, tür) çifti bizde yok. Bir kısmı yalnızca tür farkı (above bizde edat var, zarf yok), ama banana, bathroom, because, be gibi **temel A1 kelimeleri eksik**. **Efe'nin kararı (30 Eylül):** Eksik ~600 kelimeyi **Claude elle yazacak** (anlam, açıklama, örnekler; API yok), A1–A2'den başlayarak. **Şimdilik ertelendi**, veri adımından sonra yapılacak. Liste `manage.py oxford_cefr_yukle --dry-run` çıktısından yeniden üretilebilir.
 - **Cambridge EVP:** Ücretsiz ama yalnızca sitede arama var, indirilebilir liste yok. ~7.000 kelimeyi almak siteyi otomatik gezmeyi (scraping) gerektirir. Kullanım koşulları doğrulanamadığı için yapılmadı. C2 ve Oxford dışı kelimeler sıklık tutarsızlığı + B aşamasıyla denetlenecek.
 - **Özel adlar (30 Eylül):** Yalnızca özel ad olan kayıt bulunamadı; aile hattı bunları zaten almamış. İki tarama yapıldı: örnek cümlelerde hep büyük harfle geçen kelimeler, Türkçe anlamında "soyadı / adı / şehri" geçenler. Bulunanların hepsi gerçek kelime (milliyet, dil, "surname" vb.).
-- **Bulgu, büyük harf:** Arab, Arabic, Chinese, Caucasian, Guinean gibi hep büyük harfle yazılan kelimeler veritabanında küçük harfle duruyor.
-  - Düzeltmek için önce okuma ekranının kelime sorgusunun (`readings/kelime_sorgu.py`, `text__in`) büyük-küçük harfe duyarsız hâle getirilmesi gerekiyor. Yoksa "Arabic"e dokunan kullanıcı "sözlükte yok" görür.
-  - Ertelendi; 18.13 kod işleriyle birlikte yapılır.
-  - "oriental" (insanlar için kullanımı eskimiş ve rahatsız edici) de o sırada gözden geçirilecek.
+- **Büyük harf düzeltildi (1 Ekim):**
+  - Okuma ekranının kelime sorgusu (`readings/kelime_sorgu.py`) artık büyük-küçük harfe duyarsız (küçük harfli `slug` üzerinden).
+  - Arab, Arabian, Arabic, Caucasian, Chinese, Guinean büyük harfle yazıldı (`words/duzeltmeler/d_2026_10_01.py`). Tarama: örnek cümlelerde cümle ortasında hep büyük harfle geçen kelimeler; diğer adaylar (Arctic, senate, pope, commonwealth…) küçük harfle de doğru olduğu için değiştirilmedi.
+  - "oriental" (isim, "Doğulu kişi"): insanlar için eskimiş ve rahatsız edici; silindi. Sıfatı (eşya, sanat) kaldı.
+  - Yedek: `~/LearnVocab-yedekler/db.sqlite3.yedek-20261001-buyuk-harf-oncesi`.
 
 **Önceki not (tarihçe):**
 - **Öncelik yüksek.** Şunlar bu karara bağlı: misafir L&P dağılımı (18.3), "daha basit" silme kuralı (18.6), kademeli dizine alma (18.15), yeni kelime seçimi.
@@ -1398,8 +1399,9 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Seviye haftada en çok bir basamak değişir.
 - **Herkese uygulanır** (Efe onayladı, 30 Eylül): seviyesini kendisi seçenlere de testi yapanlara da. `seviye/duzeltme.py`'deki boş kanca bununla dolar.
 
-### 18.28 Egzersizler: düzensiz fiiller (Efe'nin kararı, 29 Eylül)
-- 2. ve 3. hâli kendisiyle aynı olan fiiller (cut, put, hit…) **da sorulur.** Önceki "sorulmuyor" ara kararının yerine geçer.
+### 18.28 Egzersizler: düzensiz fiiller (Efe'nin kararı, 29 Eylül) — **YAPILDI (1 Ekim)**
+- 2. ve 3. hâli kendisiyle aynı olan fiiller (cut, put, hit…) **da sorulur.**
+- Bu fiillerde gerçek çeldirici yalnızca -ing ve -s hâlidir; soru **3 şıkla** gelir (cut · cutting · cuts). "cutted" gibi uydurma biçim yine kullanılmaz (12.3). Kod: `egzersizler/sorular.fiil_sorusu`.
 
 ### 18.29 Bildirim izni akışı (Efe'nin kararı, 29 Eylül) — **YAPILDI (1 Ekim; kapibara çizimi geçici)**
 **Uygulama (1 Ekim):**
@@ -1568,3 +1570,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-01 (1):** Efe'nin kararları: Yazılar'ın İngilizce adresi ve adı `/en/writings/` · Writings; Ayarlar'da tekrar/yeni oranı kaydırma çubuğu (%10'luk adımlar) ve egzersiz soru sayısı 5/10/15/20. İkisi de yapıldı.
 - **2026-10-01 (2):** Uygulama 8. adım yapıldı: günün kelimesi ve ifadesi (18.8; ifadeler yaygın 146 / az 149 işaretlendi), misafir kuralları (18.3, 2.3, 12.6), bildirim izni ön ekranı ve Ayarlar'da bildirim aç/kapat (18.29). Testler kendi önbelleklerini kullanıyor (gerçek önbellek klasörüne yazmıyor). 932 test geçiyor.
 - **2026-10-01 (3):** Uygulama 9. adım yapıldı: admin istatistik ekranı (18.31, yalnızca toplu sayılar, 5 kişi eşiği) ve 90 günden eski karşılaşma kayıtlarının kişisiz günlük özete çevrilmesi (18.32, `karsilasma_ozetle`, gece cron'u).
+- **2026-10-01 (4):** 18.28 (cut/put/hit 3 şıkla soruluyor) ve büyük harf düzeltmesi (harf duyarsız okuma sorgusu; 6 kelime büyük harfle; "oriental" isim silindi) yapıldı.

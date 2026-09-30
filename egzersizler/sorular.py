@@ -384,8 +384,11 @@ def fiil_sorusu(word, rng, hangi=None):
     """
     "go" -> 2. hâli? Şıklar yalnızca GERÇEK biçimlerden: diğer hâl, yalın
     hâl, -ing ve -s (uydurma "goed" yok, rapor 12.3). Doğru kabul edilen
-    hiçbir biçim çeldirici olmaz; bu yüzden cut/put gibi üç hâli aynı
-    fiillerde yeterli çeldirici çıkmaz ve soru üretilmez.
+    hiçbir biçim çeldirici olmaz.
+
+    cut/put/hit gibi üç hâli aynı fiiller de sorulur (rapor 18.28): onlarda
+    gerçek çeldirici yalnızca -ing ve -s hâlidir, soru 3 şıkla gelir
+    ("cutted" gibi uydurma biçim yine YOK).
     """
     kok = word.text.lower()
     cekim = inflect.cekimler(kok, "verb")
@@ -401,6 +404,9 @@ def fiil_sorusu(word, rng, hangi=None):
         "v3": set(v3) | set(_bicimler(c["v3Form"])) | ek.get("v3", set()) | diger,
     }
     goster = {"v2": v2[0], "v3": v3[0]}
+    # Üç hâli aynı fiil (cut · cut · cut): 3 şık yeter.
+    ayni_bicimli = goster["v2"] == goster["v3"] == kok
+    gereken = 2 if ayni_bicimli else SECENEK_SAYISI - 1
     anlam = _ilk_anlam(word)
     sira = [hangi] if hangi else rng.sample(["v2", "v3"], 2)
     for h in sira:
@@ -414,7 +420,7 @@ def fiil_sorusu(word, rng, hangi=None):
             a = (a or "").strip().lower()
             if a and a != dogru and a not in kabul[h] and a not in celdirici:
                 celdirici.append(a)
-        if len(celdirici) < SECENEK_SAYISI - 1:
+        if len(celdirici) < gereken:
             continue
         return _soru(
             TIP_FIIL, "2. hâlini seç" if h == "v2" else "3. hâlini seç", word.text, dogru,

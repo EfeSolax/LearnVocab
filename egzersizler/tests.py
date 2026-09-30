@@ -173,9 +173,14 @@ class FiilSorusuTests(Kurulum):
             dogrular = [s for s in soru["secenekler"] if s in ("gotten", "got")]
             self.assertEqual(dogrular, ["gotten"])
 
-    def test_uc_hali_ayni_fiilde_soru_yok(self):
+    def test_uc_hali_ayni_fiil_de_sorulur(self):
+        # Rapor 18.28: üç hâli aynı fiiller de sorulur; 3 gerçek şıkla (uydurma yok).
         cut = make_word("cut", pos="verb", meaning="kesmek", v2="cut", v3="cut", level="A2")
-        self.assertIsNone(S.fiil_sorusu(cut, random.Random(0)))
+        soru = S.fiil_sorusu(cut, random.Random(0))
+        self.assertIsNotNone(soru)
+        self.assertEqual(sorted(soru["secenekler"]), ["cut", "cuts", "cutting"])
+        self.assertEqual(soru["secenekler"][soru["dogru"]], "cut")
+        self.assertNotIn("cutted", soru["secenekler"])
 
     def test_duzenli_fiil_ve_listeden_bagimsizlik(self):
         make_word("decide", pos="verb", meaning="karar vermek", v2="decided", v3="decided")

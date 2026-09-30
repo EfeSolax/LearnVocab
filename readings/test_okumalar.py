@@ -484,3 +484,16 @@ class KutuphaneYukleTests(TestCase):
             with self.subTest(satir=satir):
                 with self.assertRaises(CommandError):
                     call_command("kutuphane_yukle", self._dosya([satir]), stdout=io.StringIO())
+
+
+class BuyukHarfTests(TestCase):
+    """Rapor 18.16: sözlükte büyük harfle duran kelime metinde küçük yazılsa da bulunur."""
+
+    def test_harf_duyarsiz(self):
+        from readings.kelime_sorgu import sorgula
+        from words.testing import make_word
+        make_word("Arabic", meaning="Arapça", level="A2")
+        for yazim in ("arabic", "Arabic", "ARABIC"):
+            sonuc = sorgula(yazim)
+            self.assertTrue(sonuc["bulundu"], yazim)
+            self.assertEqual(sonuc["kok"], "Arabic")

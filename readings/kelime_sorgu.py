@@ -30,6 +30,7 @@ import re
 from django.core.cache import cache
 from django.db.models import Prefetch, Q
 
+from words.adres import slug_yap
 from words.extract.phrasal import PARCACIKLAR
 from words.models import FormKind, Meaning, PartOfSpeech, Word, WordForm
 
@@ -37,7 +38,7 @@ from words.models import FormKind, Meaning, PartOfSpeech, Word, WordForm
 # Sonuçlar sunucu önbelleğinde bu kadar kalır. Sözlük sık değişmiyor;
 # değişse bile en kötü ihtimalle bir gün eski anlam görünür.
 ONBELLEK_SURESI = 60 * 60 * 24
-ONBELLEK_SURUMU = 1          # sonuç biçimi değişirse artır
+ONBELLEK_SURUMU = 2          # sonuç biçimi değişirse artır (2: 1 Ekim, harf duyarsız)
 
 # Baloncuk küçük kalsın: bir kelimede en çok bu kadar anlam.
 EN_COK_ANLAM = 8
@@ -167,7 +168,8 @@ def _madde(yazim, kelimeler, ipucu=None):
     if not kelimeler:
         return None
     return {
-        "kok": yazim,
+        # Sözlükteki yazım (büyük harfli olabilir: "Arabic")
+        "kok": kelimeler[0].text if kelimeler[0].text.lower() == yazim.lower() else yazim,
         "word_id": kelimeler[0].id,
         "word_ids": [k.id for k in kelimeler],
         "anlamlar": _anlamlar(kelimeler),
@@ -274,11 +276,13 @@ def _hesapla(t, once_k, sonra_k):
     yazimlar = cekim_kokleri + [t]
     kural = [] if cekim_kokleri else _kural_adaylari(t)
 
-    # 2) Kelimeler + anlamlar (2 sorgu).
+    # 2) Kelimeler + anlamlar (2 sorgu). Büyük-küçük harfe duyarsız: "Arabic"
+    #    sözlükte büyük harfle durur, metinde de küçük harfle yazılmış olabilir.
+    #    Karşılaştırma küçük harfli slug üzerinden (words.adres.slug_yap).
     kelimeler = {}
-    for kelime in (Word.objects.filter(_ortak_sozluk(), text__in=yazimlar + kural)
+    for kelime in (Word.objects.filter(_ortak_sozluk(), slug__in=[slug_yap(y) for y in yazimlar + kural])
                    .only("id", "text", "pos").prefetch_related(_anlam_prefetch())):
-        kelimeler.setdefault(kelime.text, []).append(kelime)
+        kelimeler.setdefault(kelime.text.lower(), []).append(kelime)
 
     if not kelimeler.get(t) and not cekim_kokleri:
         # Kural adaylarından sözlükte olan ilki kök sayılır.
@@ -311,11 +315,12 @@ def _hesapla(t, once_k, sonra_k):
             kokler.append(olasi)
         adaylar = _phrasal_adaylari(pencere, dokunulan, kokler)
         if adaylar:
-            bulunan = list(Word.objects.filter(_ortak_sozluk(), text__in=adaylar,
+            bulunan = list(Word.objects.filter(_ortak_sozluk(), slug__in=[slug_yap(a) for a in adaylar],
                                                pos=PartOfSpeech.PHRASAL_VERB)
                            .only("id", "text", "pos").prefetch_related(_anlam_prefetch()))
+            bulunan = [k for k in bulunan if k.text.lower() in adaylar]
             # En uzun eşleşme kazanır: "come up with" > "come up".
-            bulunan.sort(key=lambda k: (-len(k.text.split()), adaylar.index(k.text)))
+            bulunan.sort(key=lambda k: (-len(k.text.split()), adaylar.index(k.text.lower())))
             for kelime in bulunan:
                 madde = _madde(kelime.text, [kelime])
                 if madde:
