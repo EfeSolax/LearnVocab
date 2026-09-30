@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.shortcuts import render
 from django.urls import include, path
+from django.utils.translation import gettext_lazy as _
 
 from bildirimler.urls import kok_urlpatterns as pwa_urlpatterns
 from learnpass.urls import api_urlpatterns as learnpass_api
@@ -61,9 +62,11 @@ urlpatterns += i18n_patterns(
     # Çalışmalar (rapor 6): Learn & Pass ve Egzersizler
     path("calismalar/", include("learnpass.urls")),
     path("calismalar/egzersizler/", include("egzersizler.urls")),
-    # Okumalar (rapor 8) ve Yazılar (rapor 9; İngilizce adı "Writings")
+    # Okumalar (rapor 8) ve Yazılar (rapor 9).
+    # Yazılar'ın adresi dile göre çevrilir: Türkçe /yazilar/, İngilizce
+    # /en/writings/ (çeviri: locale/en/LC_MESSAGES/django.po).
     path("okumalar/", include("readings.urls")),
-    path("yazilar/", include("texts.urls")),
+    path(_("yazilar/"), include("texts.urls")),
     # Seviye testi (rapor 7)
     path("seviye-testi/", include("seviye.urls")),
     # Hesap: /giris/, /kayit/, /cikis/, /sifremi-unuttum/, /profil/, /ayarlar/

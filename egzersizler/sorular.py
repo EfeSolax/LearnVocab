@@ -659,10 +659,17 @@ def esdizim_sorulari(user, seviye, rng, adet):
 # ----------------------------------------------------------------------
 
 HIZLI_SORU_SAYISI = 10
-SORU_SAYILARI = (5, 10, 15, 20, 25)
-# Varsayılan soru sayısı ayarlardan değişecek (rapor 6.2); ayarlar sayfası
-# henüz tasarlanmadı (rapor 16), o zamana kadar sabit.
+SORU_SAYILARI = (5, 10, 15, 20)
 VARSAYILAN_SORU_SAYISI = 10
+
+
+def varsayilan_soru_sayisi(user):
+    """Tempolu Egzersiz'in açılışta seçili gelen soru sayısı: Ayarlar'dan (rapor 18.26)."""
+    try:
+        sayi = user.mysettings.egzersiz_soru_sayisi
+    except Exception:   # ayar satırı olmayan eski kullanıcılar
+        return VARSAYILAN_SORU_SAYISI
+    return sayi if sayi in SORU_SAYILARI else VARSAYILAN_SORU_SAYISI
 
 
 def liste_kelimeleri(user):

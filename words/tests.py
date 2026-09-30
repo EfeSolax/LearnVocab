@@ -714,6 +714,29 @@ class HesapVeAyarlarTests(TestCase):
                 self.assertIn(parca, html)
         self.assertIn(reverse("user_profile"), html)          # Hesap'a geri dönüş
 
+    def test_oran_kaydirma_cubugu_ve_soru_sayisi(self):
+        """Efe, 30 Eylül: oran %10'luk adımlarla kaydırma çubuğu; soru sayısı 5/10/15/20."""
+        from egzersizler import sorular
+        from learnpass import selection
+        from usersettings.models import UserSettings
+        html = self._ayarlar()
+        self.assertIn('type="range" id="learnpass_yeni_orani" name="learnpass_yeni_orani" min="0" max="100" step="10"', html)
+        for sayi in (5, 10, 15, 20):
+            self.assertIn(f'name="egzersiz_soru_sayisi" value="{sayi}"', html)
+        self.assertNotIn('name="egzersiz_soru_sayisi" value="25"', html)
+
+        self.client.post(reverse("save_settings"), {"learnpass_yeni_orani": "70", "egzersiz_soru_sayisi": "15"})
+        self.user.refresh_from_db()
+        self.assertEqual(selection.kullanici_yeni_orani(self.user), 0.7)
+        self.assertEqual(sorular.varsayilan_soru_sayisi(self.user), 15)
+
+        # Adım dışı / seçenek dışı değerler yok sayılır
+        self.client.post(reverse("save_settings"), {"learnpass_yeni_orani": "75", "egzersiz_soru_sayisi": "25"})
+        ayar = UserSettings.objects.get(user=self.user)
+        self.assertEqual((ayar.learnpass_yeni_orani, ayar.egzersiz_soru_sayisi), (70, 15))
+        self.client.post(reverse("save_settings"), {"learnpass_yeni_orani": "0"})
+        self.assertEqual(selection.kullanici_yeni_orani(User.objects.get(pk=self.user.pk)), 0.0)
+
     def test_gunluk_hedef_kalkti(self):
         """Rapor 18.23: günlük hedef ayarı yok; seri sabit kurallarla çalışır."""
         from usersettings.models import UserSettings

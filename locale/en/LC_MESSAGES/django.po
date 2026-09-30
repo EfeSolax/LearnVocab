@@ -1,0 +1,22 @@
+# LearnVocab — İngilizce arayüz çevirisi (rapor 18.22).
+# Şimdilik yalnızca "Yazılar" bölümünün adı ve adresi çevrildi; geri kalan
+# arayüz çeviri adımında eklenecek. İngilizce, settings.LANGUAGES'a
+# eklenene kadar YAYINDA DEĞİLDİR.
+#
+# Derleme (django.mo): .venv/bin/python manage.py compilemessages -l en --ignore .venv
+msgid ""
+msgstr ""
+"Project-Id-Version: LearnVocab\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: LearnVocab/urls.py
+msgid "yazilar/"
+msgstr "writings/"
+
+#: LearnVocab/navigation.py
+msgid "Yazılar"
+msgstr "Writings"

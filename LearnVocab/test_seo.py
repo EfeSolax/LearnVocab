@@ -177,6 +177,22 @@ class NoindexVeCanonicalTests(TestCase):
         self.assertIn('<html lang="en">', _html(cevap))
         self.assertIn(f'<link rel="canonical" href="{SITE}/en/sozluk/">', _html(cevap))
 
+    @override_settings(LANGUAGES=[("tr", "Türkçe"), ("en", "English")])
+    def test_yazilar_ingilizcede_writings(self):
+        """Efe, 30 Eylül: adres Türkçe /yazilar/, İngilizce /en/writings/; menüde Yazılar / Writings."""
+        from django.utils import translation
+        self.assertEqual(reverse("profile_texts"), "/yazilar/")
+        with translation.override("en"):
+            self.assertEqual(reverse("profile_texts"), "/en/writings/")
+            self.assertEqual(reverse("diyalog_page"), "/en/writings/diyalog/")
+        self.assertIn(">Yazılar<", _html(self.client.get("/sozluk/")))
+        ingilizce = _html(self.client.get("/en/sozluk/"))
+        self.assertIn(">Writings<", ingilizce)
+        self.assertIn('href="/en/writings/"', ingilizce)
+        self.assertEqual(self.client.get("/en/writings/").status_code, 200)
+        self.assertEqual(self.client.get("/en/yazilar/").status_code, 404)
+        self.assertEqual(self.client.get("/writings/")["Location"], "/en/writings/")
+
     def test_yayinda_olmayan_dil_oneki_404(self):
         self.assertEqual(self.client.get("/en/sozluk/").status_code, 404)
 

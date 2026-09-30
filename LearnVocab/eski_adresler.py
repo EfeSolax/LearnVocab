@@ -32,6 +32,20 @@ def _ayni_parcalarla(ad):
     return view
 
 
+def _ingilizce_ya_da_turkce(ad):
+    """
+    Öneksiz İngilizce adres (/writings/): İngilizce yayındaysa /en/writings/
+    adresine, değilse Türkçe sayfaya (/yazilar/) gider.
+    """
+    def view(request, **kwargs):
+        from django.conf import settings
+        from django.utils import translation
+        dil = "en" if "en" in dict(settings.LANGUAGES) else settings.LANGUAGE_CODE
+        with translation.override(dil):
+            return HttpResponsePermanentRedirect(reverse(ad))
+    return view
+
+
 def _kutuphane_metni(request, number):
     from readings.models import ReadingText
     metin = get_object_or_404(ReadingText, number=number)
@@ -63,7 +77,7 @@ urlpatterns = [
 
     # Yazılar (ara adlar: /yazma/, /writings/)
     path("yazma/", _yonlendir("profile_texts")),
-    path("writings/", _yonlendir("profile_texts")),
+    path("writings/", _ingilizce_ya_da_turkce("profile_texts")),
     path("texts/", _yonlendir("profile_texts")),
     path("texts/yaz/", _yonlendir("new_text_page")),
     path("texts/puanlama/", _yonlendir("about_grading_page")),

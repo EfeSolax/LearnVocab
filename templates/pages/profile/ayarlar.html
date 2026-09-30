@@ -8,8 +8,7 @@ Sıra: Görünüm (tema — kolayca görülsün diye en üstte), seviye, çalı�
 tercihleri, e-posta bildirimleri, verilerim, tehlikeli bölge.
 Tema cihazda saklanır (localStorage "theme"); kayıt yoksa cihazın sistem
 teması geçerlidir (base/layout.html).
-Henüz olmayan ayarlar (tekrar/yeni oranı, egzersizde soru sayısı, anlık
-bildirimler, dil) ve görsel tasarım tasarım oturumunda eklenecek.
+Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
 {% endcomment %}
 
 {% block title %}Ayarlar{% endblock %}
@@ -64,7 +63,37 @@ bildirimler, dil) ve görsel tasarım tasarım oturumunda eklenecek.
                 <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">Çalışırken geçerli olan tercihlerin.</p>
             </header>
 
-            <div class="px-5 py-5 sm:px-6" data-sertlik-ayari>
+            {# Tekrar / yeni oranı: kaydırma çubuğu, %10'luk adımlar (Efe, 30 Eylül) #}
+            <div class="px-5 py-5 sm:px-6" data-oran-ayari x-data="{ yeni: {{ settings.learnpass_yeni_orani }} }">
+                <label for="learnpass_yeni_orani" class="mb-1 block text-sm font-semibold text-gray-700 dark:text-slate-300">Learn &amp; Pass'te tekrar ve yeni kelime oranı</label>
+                <span class="mb-3 block text-sm text-gray-500 dark:text-slate-400">Sola çektikçe listendeki kelimeleri daha çok tekrar edersin, sağa çektikçe daha çok yeni kelime görürsün.</span>
+                <input type="range" id="learnpass_yeni_orani" name="learnpass_yeni_orani" min="0" max="100" step="10"
+                       x-model.number="yeni" value="{{ settings.learnpass_yeni_orani }}"
+                       class="w-full accent-indigo-600">
+                <div class="mt-2 flex justify-between text-sm font-semibold">
+                    <span class="text-gray-700 dark:text-slate-300">Tekrar %<span x-text="100 - yeni">{{ tekrar_orani }}</span></span>
+                    <span class="text-indigo-600 dark:text-indigo-400">Yeni %<span x-text="yeni">{{ settings.learnpass_yeni_orani }}</span></span>
+                </div>
+            </div>
+
+            {# Egzersizde soru sayısı: 5 · 10 · 15 · 20 #}
+            <div class="border-t border-gray-200 dark:border-slate-700 px-5 py-5 sm:px-6" data-soru-sayisi-ayari>
+                <span class="mb-1 block text-sm font-semibold text-gray-700 dark:text-slate-300">Egzersizde soru sayısı</span>
+                <span class="mb-3 block text-sm text-gray-500 dark:text-slate-400">Tempolu Egzersiz bu sayıyla açılır; başlarken yine değiştirebilirsin.</span>
+                <div class="grid grid-cols-4 gap-2">
+                    {% for sayi in soru_sayilari %}
+                    <label class="block">
+                        <input type="radio" name="egzersiz_soru_sayisi" value="{{ sayi }}" class="peer sr-only"
+                               {% if settings.egzersiz_soru_sayisi == sayi %}checked{% endif %}>
+                        <span class="block cursor-pointer rounded-xl border border-gray-300 dark:border-slate-600 px-3 py-2.5 text-center text-sm font-semibold text-gray-700 dark:text-slate-300 transition-colors hover:bg-gray-50 dark:hover:bg-slate-700 peer-checked:border-indigo-600 peer-checked:bg-indigo-600 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-focus-visible:ring-offset-2 dark:peer-focus-visible:ring-offset-slate-800">
+                            {{ sayi }}
+                        </span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 dark:border-slate-700 px-5 py-5 sm:px-6" data-sertlik-ayari>
                 <span class="mb-1 block text-sm font-semibold text-gray-700 dark:text-slate-300">Yazılarda geri bildirim</span>
                 <span class="mb-3 block text-sm text-gray-500 dark:text-slate-400">Yazdığın metinlerde hataların ne kadar ayrıntılı gösterileceği.</span>
                 <div class="grid grid-cols-3 gap-2">

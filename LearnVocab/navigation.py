@@ -21,6 +21,7 @@ Her bölüm:
 """
 
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 
 NAV_SECTIONS = (
@@ -55,7 +56,7 @@ NAV_SECTIONS = (
         # Eski "Metinler" / "Yazma" bölümü. Türkçe adı "Yazılar", İngilizcesi "Writings"
         # (Efe, 30 Eylül). url adları ve uygulama adı (texts) değişmedi.
         "key": "yazma",
-        "label": "Yazılar",
+        "label": _("Yazılar"),
         "url_name": "profile_texts",
         "matches": ("profile_texts", "new_text_page", "review_text", "about_grading_page",
                     "diyalog_page"),

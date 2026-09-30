@@ -77,7 +77,7 @@ def exercises_page(request):
         "hizli_tam": S.HIZLI_SORU_SAYISI,
         "tipler": S.tip_durumlari(request.user),
         "soru_sayilari": S.SORU_SAYILARI,
-        "varsayilan_sayi": S.VARSAYILAN_SORU_SAYISI,
+        "varsayilan_sayi": S.varsayilan_soru_sayisi(request.user),
         "yarim": yarim if yarim and yarim.soru_sayisi else None,
     }
     return render(request, "pages/egzersizler/acilis.html", context)
@@ -109,12 +109,13 @@ def basla(request):
         tip = request.POST.get("tip") or S.KARISIK
         if tip != S.KARISIK and tip not in S.TIPLER:
             tip = S.KARISIK
+        varsayilan = S.varsayilan_soru_sayisi(user)
         try:
-            sayi = int(request.POST.get("sayi") or S.VARSAYILAN_SORU_SAYISI)
+            sayi = int(request.POST.get("sayi") or varsayilan)
         except ValueError:
-            sayi = S.VARSAYILAN_SORU_SAYISI
+            sayi = varsayilan
         if sayi not in S.SORU_SAYILARI:
-            sayi = S.VARSAYILAN_SORU_SAYISI
+            sayi = varsayilan
         sorular = S.tempolu_sorular(user, tip, sayi)
         if not sorular:
             messages.info(request, "Bu tip için şu an soru hazırlayamadık. "

@@ -81,9 +81,8 @@ def kullanici_yeni_orani(user):
     """
     Kullanıcının ayarladığı yeni kelime oranı (0-1).
 
-    Ayarlar sayfası henüz tasarlanmadı (Bölüm 16); UserSettings'te oran
-    alanı yok. Alan eklendiğinde (`learnpass_yeni_orani`, 0-1 ya da 0-100)
-    buradan okunur; yoksa sabit varsayılan.
+    Ayarlar'daki kaydırma çubuğu (rapor 18.26): UserSettings.learnpass_yeni_orani,
+    0–100 arası %10'luk adımlar. Ayar satırı yoksa (misafir) sabit varsayılan.
     """
     ayarlar = None
     try:

@@ -56,6 +56,15 @@ class UserSettings(models.Model):
 
     audio = models.BooleanField(default = True)
 
+    # Learn & Pass'te kartların yüzde kaçı YENİ kelime olsun (kalanı tekrar).
+    # Ayarlar'da kaydırma çubuğu, %10'luk adımlar (rapor 18.26).
+    # Okuyan: learnpass.selection.kullanici_yeni_orani
+    learnpass_yeni_orani = models.PositiveSmallIntegerField(default=30)
+
+    # Tempolu Egzersiz'de varsayılan soru sayısı: 5, 10, 15 ya da 20.
+    # Okuyan: egzersizler.sorular.varsayilan_soru_sayisi
+    egzersiz_soru_sayisi = models.PositiveSmallIntegerField(default=10)
+
     # Diğer eklenecek seçenekler
     # Tüm verilerimi dışa aktar
     # Tüm kelimelerimi dışa aktar

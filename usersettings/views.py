@@ -10,6 +10,7 @@ from comments.models import Comment
 from texts import degerlendirme
 from texts.models import Sertlik, Text, YaziDurumu, YazmaAyari
 from django.urls import reverse
+from egzersizler.sorular import SORU_SAYILARI
 from LearnVocab.authgate import login_gate
 
 from django.db.models import Q
@@ -27,9 +28,11 @@ def ayarlarSayfasi(request):
     return render(request, "pages/profile/ayarlar.html", {
         "active_page": "Ayarlar",
         "settings": ayarlar,
+        "tekrar_orani": 100 - ayarlar.learnpass_yeni_orani,
         "tema_secenekleri": TEMA_SECENEKLERI,
         "sertlik": YazmaAyari.sertlik_of(request.user),
         "sertlik_secenekleri": Sertlik.choices,
+        "soru_sayilari": SORU_SAYILARI,
         "export_links": [
             {"url": reverse("export_all"), "label": "Tüm verilerim"},
             {"url": reverse("export_mywords"), "label": "Kelimelerim"},
@@ -49,6 +52,15 @@ def saveSettings(request):
         improvementsMail  = request.POST.get("improvementsMail")
 
         settings, _ = UserSettings.objects.get_or_create(user=user)
+
+        # Yeni kelime oranı: 0–100, %10'luk adımlar. Geçersiz değer yok sayılır.
+        oran = request.POST.get("learnpass_yeni_orani")
+        if oran is not None and oran.isdigit() and int(oran) in range(0, 101, 10):
+            settings.learnpass_yeni_orani = int(oran)
+
+        sayi = request.POST.get("egzersiz_soru_sayisi")
+        if sayi is not None and sayi.isdigit() and int(sayi) in SORU_SAYILARI:
+            settings.egzersiz_soru_sayisi = int(sayi)
 
         sertlik = request.POST.get("sertlik")
         if sertlik in Sertlik.values:
