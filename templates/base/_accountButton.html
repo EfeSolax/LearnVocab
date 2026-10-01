@@ -19,7 +19,7 @@ dönülür (?next=). Masaüstünde ve mobilde aynı, her sayfada sabit.
 {% else %}
 {# Giriş/kayıt sayfalarının kendisinde ?next= eklenmez: girişten sonra forma geri dönülmesin. #}
 <a href="{% url 'login' %}{% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'register' %}?next={{ request.get_full_path|urlencode:'' }}{% endif %}"
-   class="shrink-0 inline-flex items-center rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors">
+   class="lv-dugme lv-kucuk shrink-0 inline-flex">
     Giriş Yap
 </a>
 {% endif %}

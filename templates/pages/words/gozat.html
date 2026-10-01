@@ -17,7 +17,7 @@ bağlantılarla (?sayfa=2).
 </a>
 
 <header class="mt-3 mb-4">
-    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">{{ baslik }}</h1>
+    <h1 class="lv-sayfa-basligi">{{ baslik }}</h1>
     <p class="mt-1 text-sm text-gray-500 dark:text-slate-400">{{ sayfa.paginator.count }} kelime</p>
 </header>
 
@@ -26,7 +26,7 @@ bağlantılarla (?sayfa=2).
     {% for satir in satirlar %}{% include 'pages/words/_aramaSatiri.html' %}{% endfor %}
 </ul>
 {% else %}
-<p class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-6 text-center text-gray-600 dark:text-slate-400">Burada henüz kelime yok.</p>
+<p class="lv-el text-[22px] leading-snug py-2 text-center">Burada henüz kelime yok.</p>
 {% endif %}
 
 {% if sayfa.has_other_pages %}

@@ -17,7 +17,7 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
 {% block page %}
 
 <header class="mb-6">
-    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Okumalar</h1>
+    <h1 class="lv-sayfa-basligi">Okumalar</h1>
     <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Oku, takıldığın kelimeye dokun: anlamı hemen yanında.</p>
 </header>
 
@@ -25,7 +25,7 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
 <section aria-labelledby="metinlerim-baslik" class="mb-8">
     <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
         <div>
-            <h2 id="metinlerim-baslik" class="text-lg font-bold text-gray-900 dark:text-slate-100">Kendi metinlerim</h2>
+            <h2 id="metinlerim-baslik" class="lv-serif text-2xl font-bold text-gray-900 dark:text-slate-100">Kendi metinlerim</h2>
             <p class="text-xs text-gray-500 dark:text-slate-400">Yalnızca sen görürsün.</p>
         </div>
         <div class="flex gap-2">
@@ -36,7 +36,7 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
             </a>
             <a href="{% url 'readings_add' %}"
                {% if not user.is_authenticated %}data-giris-gerekli="pdf"{% endif %}
-               class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+               class="lv-dugme lv-kucuk inline-flex">
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
                 PDF yükle
             </a>
@@ -61,7 +61,7 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
         </li>
         {% endfor %}
     </ul>
-    <p data-metinlerim-bos class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-5 text-center text-sm text-gray-600 dark:text-slate-400 {% if metinlerim %}hidden{% endif %}">
+    <p data-metinlerim-bos class="lv-el text-[22px] leading-snug py-2 text-center">
         Henüz metin eklemedin. Derste okuduğun bir PDF'i yükle ya da bir yazıyı yapıştır; kelimelerine dokunarak oku.
     </p>
 
@@ -94,7 +94,7 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
     </details>
     {% endif %}
     {% else %}
-    <p class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-5 text-center text-sm text-gray-600 dark:text-slate-400">
+    <p class="lv-el text-[22px] leading-snug py-2 text-center">
         PDF'lerini ve kopyaladığın yazıları burada, kelimelerine dokunarak okuyabilirsin.
     </p>
     {% endif %}
@@ -102,10 +102,10 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
 
 {# ---------- Kütüphane ---------- #}
 <section aria-labelledby="kutuphane-baslik">
-    <h2 id="kutuphane-baslik" class="mb-3 text-lg font-bold text-gray-900 dark:text-slate-100">Kütüphane</h2>
+    <h2 id="kutuphane-baslik" class="lv-serif text-2xl font-bold text-gray-900 dark:text-slate-100 mb-3">Kütüphane</h2>
 
     {% if kutuphane_bos %}
-    <div class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-6 text-center">
+    <div class="lv-el text-[22px] leading-snug py-2 text-center">
         <p class="font-semibold text-gray-800 dark:text-slate-200">Kütüphane hazırlanıyor.</p>
         <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">
             Yakında burada kısa hikâyeler ve yazılar olacak. O zamana kadar kendi metinlerini ekleyip okuyabilirsin.
@@ -140,7 +140,7 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
             </a>
         </li>
         {% empty %}
-        <li class="rounded-xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-5 text-center text-sm text-gray-600 dark:text-slate-400">
+        <li class="lv-el text-[22px] leading-snug py-2 text-center">
             Bu konuda henüz metin yok. <a href="{% url 'readings' %}" class="font-semibold text-indigo-600 dark:text-indigo-400">Tümüne bak</a>
         </li>
         {% endfor %}

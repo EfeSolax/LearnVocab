@@ -47,7 +47,7 @@ Hızlı Egzersiz'de liste 10 kelimeden kısaysa "Listene kelime ekle" daveti.
         {% if yanlislar %}
         <form method="post" action="{% url 'egzersiz_tekrar' pk=oturum.pk %}">
             {% csrf_token %}
-            <button type="submit" class="w-full rounded-xl bg-indigo-600 px-5 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-indigo-700 transition">
+            <button type="submit" class="lv-dugme w-full">
                 Yanlışları tekrar çöz
             </button>
         </form>

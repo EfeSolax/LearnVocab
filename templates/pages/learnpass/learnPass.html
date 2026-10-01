@@ -22,10 +22,10 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
 
 {% block extra_head %}
 {% include 'base/_alev.html' %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
 <style>
+    /* Oturum dikkat dağıtıcısız (rapor 18.10): üst çubuk ve alt menü gizli, tek çıkış ✕. */
+    #navbar, nav[aria-label="Alt menü"] { display: none !important; }
+    main { padding-top: 1.25rem !important; padding-bottom: 1.5rem !important; }
     .lp-kelime { font-family: 'Fredoka', 'Nunito', ui-rounded, system-ui, sans-serif; font-weight: 600;
                  font-size: clamp(2.25rem, 10vw, 3.75rem); line-height: 1.1; letter-spacing: .01em; }
     /* Aşağı doğru açılan balon: yükseklik 0fr -> 1fr */
@@ -36,6 +36,9 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     .lp-balon::before { content: ''; position: absolute; left: -7px; top: 18px; width: 14px; height: 14px;
                         transform: rotate(45deg); background: inherit; border-left: inherit; border-bottom: inherit; }
     #lp-kart { transition: transform .25s ease, opacity .25s ease, box-shadow .2s ease; will-change: transform; }
+    /* Kart: çizgili kelime fişi (defter, rapor 18.12) */
+    #lp-kart.lv-fis { background-position: 0 46px, 0 48px; }
+    .lp-damga { font-family: var(--el); font-size: 26px; font-weight: 700; text-transform: none; letter-spacing: 0; border-width: 2.5px; }
     #lp-kart.suruklen { transition: none; }
 </style>
 {% endblock %}
@@ -56,36 +59,30 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
 
     {# ---------------- Üst şerit: çık, ilerleme, geri al, bitir ---------------- #}
     <div class="flex items-center gap-3">
-        <a href="{% url 'learn_pass_page' %}" aria-label="Çık" title="Çık"
-           class="flex h-9 w-9 flex-none items-center justify-center rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-        </a>
+        {# Tek çıkış (rapor 18.10): hiç kart görülmediyse Learn & Pass'e döner, yoksa oturum özetini açar. #}
+        <button type="button" id="lp-bitir" aria-label="Bitir" title="Bitir" data-cikis="{% url 'learn_pass_page' %}"
+           class="flex h-10 w-10 flex-none items-center justify-center rounded-full text-gray-600 dark:text-slate-300 hover:bg-[color:var(--kare)]">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
         <div id="lp-alev" class="relative flex-1">
             <div class="h-2.5 overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700">
                 <div id="lp-ilerleme" class="alev-cubuk h-full w-0 rounded-full transition-all duration-300"></div>
             </div>
             {% if not misafir %}{% include 'base/_alevSimgesi.html' %}{% endif %}
         </div>
-        <span id="lp-sayac" class="w-12 flex-none text-right text-xs font-semibold tabular-nums text-gray-500 dark:text-slate-400">0/{{ oturum_kart_sayisi }}</span>
+        <span id="lp-sayac" class="lv-el w-14 flex-none text-right text-2xl font-bold tabular-nums">0/{{ oturum_kart_sayisi }}</span>
     </div>
 
-    <div class="mt-3 flex items-center justify-between gap-2 text-sm">
-        <span class="text-gray-500 dark:text-slate-400">{% if misafir %}Deneme turu{% else %}{{ mode_label }}{% endif %}</span>
-        <div class="flex items-center gap-1">
-            <button type="button" id="lp-geri-al" disabled
-                    class="inline-flex items-center gap-1 rounded-lg px-2.5 py-1 font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed">
-                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"/></svg>
-                Geri al
-            </button>
-            <button type="button" id="lp-bitir"
-                    class="rounded-lg px-2.5 py-1 font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700">
-                Bitir
-            </button>
-        </div>
+    <div class="mt-3 flex items-center justify-between gap-2">
+        <span class="lv-el text-[22px] !text-gray-600 dark:!text-slate-300">{% if misafir %}Deneme turu{% else %}{{ mode_label }}{% endif %}</span>
+        <button type="button" id="lp-geri-al" disabled
+                class="lv-el inline-flex items-center gap-1 rounded-lg px-2 py-0.5 text-[22px] font-bold hover:bg-[color:var(--kare)] disabled:opacity-40 disabled:cursor-not-allowed">
+            ↶ Geri al
+        </button>
     </div>
 
     {% if misafir %}
-    <p class="mt-2 text-xs text-gray-400 dark:text-slate-500">
+    <p class="mt-2 text-sm text-gray-600 dark:text-slate-300">
         Misafir olarak kaydırıyorsun, hiçbir şey kaydedilmez.
         <a href="{% url 'login' %}" data-giris-gerekli="calisma" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Giriş yap</a>
     </p>
@@ -96,11 +93,11 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
 
         {# touch-action: pan-y -> dikey kaydırma sayfada kalsın, yatay hareketi biz yakalayalım #}
         <div id="lp-kart" style="touch-action: pan-y;" role="group" aria-live="polite"
-             class="relative flex min-h-[13rem] sm:min-h-[15rem] cursor-grab select-none items-center justify-center rounded-3xl border-2 border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-6 py-10 shadow-lg">
+             class="lv-fis relative flex min-h-[15rem] sm:min-h-[17rem] cursor-grab select-none items-center justify-center px-6 py-12 -rotate-1">
             <span id="lp-etiket-sol" aria-hidden="true"
-                  class="pointer-events-none absolute left-4 top-4 rounded-lg border-2 border-rose-400 px-2 py-0.5 text-xs font-extrabold uppercase tracking-wide text-rose-500 opacity-0">Bilmiyorum</span>
+                  class="lp-damga pointer-events-none absolute left-4 top-3 -rotate-6 rounded-lg border-red-700 px-2 text-red-700 opacity-0 dark:border-red-300 dark:text-red-300">Bilmiyorum</span>
             <span id="lp-etiket-sag" aria-hidden="true"
-                  class="pointer-events-none absolute right-4 top-4 rounded-lg border-2 border-emerald-400 px-2 py-0.5 text-xs font-extrabold uppercase tracking-wide text-emerald-500 opacity-0">Biliyorum</span>
+                  class="lp-damga pointer-events-none absolute right-4 top-3 rotate-6 rounded-lg border-emerald-700 px-2 text-emerald-700 opacity-0 dark:border-emerald-300 dark:text-emerald-300">Biliyorum</span>
             <h1 id="lp-kelime" class="lp-kelime break-words text-center text-gray-900 dark:text-slate-100"></h1>
         </div>
 
@@ -108,13 +105,12 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         <div id="lp-acilim" class="lp-acilim" aria-hidden="true">
             <div>
                 <div class="flex items-start gap-3 pt-5">
-                    {# Kapibara maskotu: şimdilik boş yer tutucu (çizimi Bölüm 16). #}
-                    <div data-kapibara-yeri aria-hidden="true"
-                         class="h-14 w-14 flex-none rounded-2xl border-2 border-dashed border-gray-300 dark:border-slate-600"></div>
-                    <div class="lv-sayfa lp-balon min-w-0 flex-1 px-4 py-3">
-                        <p id="lp-balon-soru" class="text-xs font-semibold text-gray-400 dark:text-slate-500">Düşündüğün bu muydu?</p>
-                        <ol id="lp-anlamlar" class="mt-1 space-y-0.5 text-lg font-bold text-gray-900 dark:text-slate-100"></ol>
-                        <p id="lp-ornek" class="mt-2 text-sm italic text-gray-400 dark:text-slate-500"></p>
+                    {# Kapibara: geçici çizgi çizim (asıl çizim Bölüm 16). #}
+                    <div data-kapibara-yeri aria-hidden="true" class="w-20 flex-none pt-2">{% include 'base/_kapibara.html' with sinif='h-14 w-20' %}</div>
+                    <div class="lp-balon min-w-0 flex-1 rounded-2xl rounded-tl-sm border-2 border-indigo-600 bg-[color:var(--kagit-beyaz)] px-4 py-3 shadow-[3px_3px_0_var(--murekkep-acik)] dark:border-indigo-400">
+                        <p id="lp-balon-soru" class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">Düşündüğün bu muydu?</p>
+                        <ol id="lp-anlamlar" class="mt-1 space-y-0.5 text-xl font-bold text-indigo-600 dark:text-indigo-400"></ol>
+                        <p id="lp-ornek" lang="en" class="lv-metin mt-2 text-base text-gray-600 dark:text-slate-300"></p>
                     </div>
                 </div>
             </div>
@@ -123,33 +119,33 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         {# --- Düğmeler --- #}
         <div id="lp-soru-dugmeleri" class="mt-6 grid grid-cols-2 gap-3">
             <button type="button" data-karar="-1"
-                    class="rounded-2xl bg-white dark:bg-slate-800 px-4 py-4 text-base font-bold text-rose-600 dark:text-rose-300 ring-2 ring-inset ring-rose-200 dark:ring-rose-900 hover:bg-rose-50 dark:hover:bg-rose-950 transition">
+                    class="lp-hayir">
                 ← Bilmiyorum
             </button>
             <button type="button" data-karar="1"
-                    class="rounded-2xl bg-white dark:bg-slate-800 px-4 py-4 text-base font-bold text-emerald-600 dark:text-emerald-300 ring-2 ring-inset ring-emerald-200 dark:ring-emerald-900 hover:bg-emerald-50 dark:hover:bg-emerald-950 transition">
+                    class="lp-evet">
                 Biliyorum →
             </button>
         </div>
         {# "Biliyorum" sonrası: Düşündüğün bu muydu? (18.1) #}
         <div id="lp-dogrula-dugmeleri" class="mt-6 hidden grid-cols-2 gap-3">
             <button type="button" data-dogrula="-1"
-                    class="rounded-2xl bg-white dark:bg-slate-800 px-3 py-4 text-base font-bold text-rose-600 dark:text-rose-300 ring-2 ring-inset ring-rose-200 dark:ring-rose-900 hover:bg-rose-50 dark:hover:bg-rose-950 transition">
+                    class="lp-hayir">
                 ← Hayır, yanılmışım
             </button>
             <button type="button" data-dogrula="1"
-                    class="rounded-2xl bg-white dark:bg-slate-800 px-3 py-4 text-base font-bold text-emerald-600 dark:text-emerald-300 ring-2 ring-inset ring-emerald-200 dark:ring-emerald-900 hover:bg-emerald-50 dark:hover:bg-emerald-950 transition">
+                    class="lp-evet">
                 Evet, eminim →
             </button>
         </div>
         {# "Bilmiyorum" sonrası: yalnızca anlam, devam (18.1) #}
         <div id="lp-devam-dugmeleri" class="mt-6 hidden">
             <button type="button" id="lp-devam"
-                    class="w-full rounded-2xl bg-indigo-600 px-4 py-4 text-base font-bold text-white shadow-sm hover:bg-indigo-700 transition">
+                    class="lv-dugme w-full !min-h-[58px]">
                 Devam
             </button>
         </div>
-        <p id="lp-ipucu" class="mt-3 text-center text-xs text-gray-400 dark:text-slate-500">
+        <p id="lp-ipucu" class="mt-4 text-center text-sm text-gray-600 dark:text-slate-300">
             Sağa kaydır: biliyorum · Sola kaydır: bilmiyorum
         </p>
         <p id="lp-hata" class="mt-3 hidden rounded-xl bg-amber-50 dark:bg-amber-950/40 px-4 py-3 text-center text-sm text-amber-800 dark:text-amber-300">
@@ -161,42 +157,41 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     {# ---------------- Oturum sonu ---------------- #}
     <div id="lp-bitis" class="mt-6 {% if kartlar %}hidden{% endif %} space-y-4">
         <div class="lv-sayfa px-6 py-8 text-center">
-            <div data-kapibara-yeri aria-hidden="true"
-                 class="mx-auto h-16 w-16 rounded-2xl border-2 border-dashed border-gray-300 dark:border-slate-600"></div>
-            <h2 id="lp-bitis-baslik" class="mt-4 text-xl font-bold text-gray-900 dark:text-slate-100">
+            <div data-kapibara-yeri aria-hidden="true" class="mx-auto w-28">{% include 'base/_kapibara.html' with sinif='h-20 w-28' %}</div>
+            <h2 id="lp-bitis-baslik" class="lv-sayfa-basligi mt-4">
                 {% if kartlar %}Güzel iş!{% else %}Şu an gösterecek kelime kalmadı{% endif %}
             </h2>
-            <p id="lp-bitis-ozet" class="mt-1 text-sm text-gray-600 dark:text-slate-400">
+            <p id="lp-bitis-ozet" class="mt-2 text-base text-gray-600 dark:text-slate-300">
                 {% if not kartlar %}{% if misafir %}Birazdan yeni bir tur deneyebilirsin.{% else %}Sözlük'ten listene kelime ekleyebilir ya da başka bir zaman tekrar gelebilirsin.{% endif %}{% endif %}
             </p>
         </div>
 
         {# "Bilmediğin N kelimeyi listene ekleyelim mi?" #}
-        <div id="lp-ekle-sorusu" class="hidden rounded-2xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40 p-4 sm:p-5">
+        <div id="lp-ekle-sorusu" class="lv-not lv-bantli hidden text-gray-900 dark:text-slate-100">
             <div data-soru>
-                <h3 class="text-base font-bold text-amber-900 dark:text-amber-200" id="lp-ekle-baslik"></h3>
+                <h3 class="lv-serif text-2xl font-bold" id="lp-ekle-baslik"></h3>
                 <div id="lp-bilinmeyenler" class="mt-3 flex flex-wrap gap-1.5"></div>
                 {% if misafir %}
-                <p class="mt-3 text-sm text-amber-800 dark:text-amber-300">Listene eklemek için giriş yapman gerekiyor.</p>
+                <p class="mt-3 text-base text-gray-700 dark:text-slate-300">Listene eklemek için giriş yapman gerekiyor.</p>
                 <a href="{% url 'login' %}" data-giris-gerekli="liste"
-                   class="mt-3 block rounded-xl bg-amber-500 px-4 py-2.5 text-center text-sm font-bold text-white hover:bg-amber-600 transition">Giriş yap</a>
+                   class="lv-dugme lv-kucuk mt-3 w-full">Giriş yap</a>
                 {% else %}
                 <div class="mt-4 flex gap-2">
                     <button type="button" data-islem="ekle"
-                            class="flex-1 rounded-xl bg-amber-500 px-4 py-2.5 text-sm font-bold text-white hover:bg-amber-600 transition">Evet, ekle</button>
+                            class="lv-dugme lv-kucuk flex-1">Evet, ekle</button>
                     <button type="button" data-islem="gec"
-                            class="flex-1 rounded-xl bg-white dark:bg-slate-800 px-4 py-2.5 text-sm font-semibold text-amber-800 dark:text-amber-300 ring-1 ring-inset ring-amber-300 dark:ring-amber-800 hover:bg-amber-100 dark:hover:bg-slate-700 transition">Şimdilik hayır</button>
+                            class="lv-dugme lv-ikincil lv-kucuk flex-1">Şimdilik hayır</button>
                 </div>
                 {% endif %}
             </div>
-            <p data-sonuc class="hidden text-sm font-semibold text-amber-900 dark:text-amber-200"></p>
+            <p data-sonuc class="hidden text-base font-semibold"></p>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
             <a href="{{ request.get_full_path }}" id="lp-yeni-tur"
-               class="rounded-2xl bg-indigo-600 px-4 py-3.5 text-center text-base font-bold text-white shadow-sm hover:bg-indigo-700 transition">Yeni tur</a>
+               class="lv-dugme">Yeni tur</a>
             <a href="{% url 'learn_pass_page' %}"
-               class="lv-sayfa px-4 py-3.5 text-center text-base font-semibold text-gray-700 dark:text-slate-200 ring-gray-300 dark:ring-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition">Bitir</a>
+               class="lv-dugme lv-ikincil">Bitir</a>
         </div>
     </div>
 </div>
@@ -473,7 +468,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         kutu.innerHTML = '';
         bilinmeyenler.forEach(function (b) {
             var s = document.createElement('span');
-            s.className = 'rounded-full bg-white dark:bg-slate-800 px-2.5 py-0.5 text-sm text-gray-800 dark:text-slate-200 ring-1 ring-amber-200 dark:ring-amber-900';
+            s.className = 'lv-serif bg-[color:var(--kagit-beyaz)] px-2 py-0.5 text-base font-bold shadow-sm';
             s.textContent = b.word;
             s.lang = 'en';
             kutu.appendChild(s);
@@ -555,7 +550,11 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     });
     $('lp-devam').addEventListener('click', function () { ikinciAdim(1); });
     $('lp-geri-al').addEventListener('click', geriAl);
-    $('lp-bitir').addEventListener('click', function () { bitir(false); });
+    $('lp-bitir').addEventListener('click', function () {
+        // Hiç kart görülmediyse özet anlamsız: doğrudan Learn & Pass'e dön.
+        if (!gorulen) { location.href = this.dataset.cikis; return; }
+        bitir(false);
+    });
 
     document.addEventListener('keydown', function (o) {
         var hedef = o.target;

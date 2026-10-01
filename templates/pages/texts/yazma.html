@@ -9,7 +9,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 
 {% block title %}Yazılar{% endblock %}
 {% block page_heading %}
-<h1 class="mb-5 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Yazılar</h1>
+<h1 class="lv-sayfa-basligi mb-5">Yazılar</h1>
 {% endblock %}
 
 {% block page %}
@@ -21,7 +21,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
         <h2 class="text-lg font-semibold text-gray-900 dark:text-slate-100">Diyalogda doğru kelime</h2>
         <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Kısa bir diyalogdaki boşluğa doğru İngilizce kelimeyi yaz.</p>
         <a href="{% url 'diyalog_page' %}"
-           class="mt-4 inline-flex items-center justify-center rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700">Başla</a>
+           class="lv-dugme lv-kucuk mt-4 inline-flex">Başla</a>
     </div>
     <p class="rounded-xl bg-indigo-50 dark:bg-indigo-950/60 px-4 py-3 text-sm text-indigo-900 dark:text-indigo-200" data-misafir-daveti>
         Metin yazıp yapay zekâ ile değerlendirilmesini istiyorsan hemen şimdi
@@ -38,7 +38,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
         </p>
         {% if yazabilir %}
             <a href="{% url 'new_text_page' %}"
-               class="mt-4 inline-flex items-center justify-center rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700">
+               class="lv-dugme lv-kucuk mt-4 inline-flex">
                 Yazmaya başla
             </a>
             {% if kalan_hak is not None %}
@@ -104,7 +104,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
         {% endfor %}
     </ul>
     {% else %}
-    <p class="rounded-2xl border border-dashed border-gray-300 dark:border-slate-600 px-4 py-6 text-center text-sm text-gray-600 dark:text-slate-400">
+    <p class="lv-el text-[22px] leading-snug py-2 text-center">
         Henüz bir şey yazmadın. İlk metnin birkaç cümle olsa yeter.
     </p>
     {% endif %}

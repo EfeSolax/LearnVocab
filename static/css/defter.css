@@ -210,3 +210,11 @@ html.dark .lv-sekme { filter: brightness(.82); }
 .lv-sekme-dugme:hover { color: var(--yazi); }
 .lv-sekme-dugme.lv-secili { background: var(--kagit-beyaz); color: var(--murekkep); border-color: var(--murekkep); border-bottom: 2px solid var(--kagit-beyaz); }
 @media (min-width: 640px) { .lv-sekme-dugme { flex: 0 0 auto; min-width: 140px; } }
+
+/* =====================================================================
+   Learn & Pass oturumu (pages/learnpass/learnPass.html)
+   ===================================================================== */
+.lp-hayir, .lp-evet { min-height: 58px; padding: 0 12px; font: 600 17px var(--govde); border-radius: 3px; border: 2px solid; background: var(--kagit-beyaz); cursor: pointer; }
+.lp-hayir { color: var(--kirmizi); border-color: var(--kirmizi); box-shadow: 4px 4px 0 var(--kirmizi-acik); }
+.lp-evet { color: var(--yesil); border-color: var(--yesil); box-shadow: 4px 4px 0 var(--yesil-acik); }
+.lp-hayir:active, .lp-evet:active { transform: translate(2px, 2px); box-shadow: none; }

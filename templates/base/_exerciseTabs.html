@@ -9,18 +9,16 @@ Kullanımı:  {% include 'base/_exerciseTabs.html' with exercise_tab="learn" %}
 {% endcomment %}
 
 {% if user.is_authenticated %}
-<div class="-mx-4 sm:mx-0 mb-6">
-    <div class="flex overflow-x-auto border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 sm:rounded-t-xl">
+<div class="mb-7">
+    <div class="lv-sekme-cubugu">
         <a href="{% url 'learn_pass_page' %}"
            {% if exercise_tab == "learn" %}aria-current="page"{% endif %}
-           class="flex-1 whitespace-nowrap px-4 py-3 text-center text-sm sm:text-base font-semibold border-b-2 transition-colors
-                  {% if exercise_tab == 'learn' %}border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400{% else %}border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200 hover:border-gray-300 dark:hover:border-slate-600{% endif %}">
+           class="lv-sekme-dugme whitespace-nowrap {% if exercise_tab == 'learn' %}lv-secili{% endif %}">
             Learn &amp; Pass
         </a>
         <a href="{% url 'exercises_page' %}"
            {% if exercise_tab == "exercises" %}aria-current="page"{% endif %}
-           class="flex-1 whitespace-nowrap px-4 py-3 text-center text-sm sm:text-base font-semibold border-b-2 transition-colors
-                  {% if exercise_tab == 'exercises' %}border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400{% else %}border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200 hover:border-gray-300 dark:hover:border-slate-600{% endif %}">
+           class="lv-sekme-dugme whitespace-nowrap {% if exercise_tab == 'exercises' %}lv-secili{% endif %}">
             Egzersizler
         </a>
     </div>

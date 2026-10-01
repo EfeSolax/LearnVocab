@@ -16,29 +16,29 @@ havuz boşken cesaretlendirici bir boş hâl görünür.
     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
     Yazılar
 </a>
-<h1 class="mt-2 mb-5 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Diyalogda doğru kelime</h1>
+<h1 class="lv-sayfa-basligi mt-2 mb-5">Diyalogda doğru kelime</h1>
 
 {% if havuz_bos %}
-<div class="rounded-2xl border border-dashed border-indigo-300 dark:border-indigo-800 bg-indigo-50/60 dark:bg-indigo-950/40 px-5 py-8 text-center" data-bos="havuz">
+<div class="lv-el text-[22px] leading-snug py-2 text-center" data-bos="havuz">
     <p class="text-lg font-semibold text-indigo-900 dark:text-indigo-200">Diyaloglar hazırlanıyor</p>
     <p class="mx-auto mt-2 max-w-md text-sm text-indigo-900/80 dark:text-indigo-200/80">
         {% if misafir %}Çok yakında burada kısa diyaloglar olacak.{% else %}Çok yakında burada listendeki kelimelerle kısa diyaloglar olacak. O zamana kadar serbest yazmayla kelimelerini kullanmayı deneyebilirsin.{% endif %}
     </p>
-    {% if not misafir %}<a href="{% url 'new_text_page' %}" class="mt-5 inline-flex rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">Serbest yazmaya geç</a>{% endif %}
+    {% if not misafir %}<a href="{% url 'new_text_page' %}" class="lv-dugme lv-kucuk mt-5 inline-flex">Serbest yazmaya geç</a>{% endif %}
 </div>
 
 {% elif liste_bos %}
-<div class="rounded-2xl border border-dashed border-gray-300 dark:border-slate-600 px-5 py-8 text-center" data-bos="liste">
+<div class="lv-el text-[22px] leading-snug py-2 text-center" data-bos="liste">
     <p class="text-lg font-semibold text-gray-900 dark:text-slate-100">Listen henüz boş</p>
     <p class="mx-auto mt-2 max-w-md text-sm text-gray-600 dark:text-slate-400">Diyaloglar listendeki kelimelerle gelir. Sözlük'te + ile ya da Learn &amp; Pass'te kelime ekleyebilirsin.</p>
-    <a href="{% url 'sozluk' %}" class="mt-5 inline-flex rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">Sözlük'e git</a>
+    <a href="{% url 'sozluk' %}" class="lv-dugme lv-kucuk mt-5 inline-flex">Sözlük'e git</a>
 </div>
 
 {% elif not diyalog %}
-<div class="rounded-2xl border border-dashed border-gray-300 dark:border-slate-600 px-5 py-8 text-center" data-bos="kelime">
+<div class="lv-el text-[22px] leading-snug py-2 text-center" data-bos="kelime">
     <p class="text-lg font-semibold text-gray-900 dark:text-slate-100">Listendeki kelimeler için henüz diyalog yok</p>
     <p class="mx-auto mt-2 max-w-md text-sm text-gray-600 dark:text-slate-400">Havuz büyüdükçe listendeki kelimelerle diyaloglar burada görünecek. Bu arada serbest yazmayı deneyebilirsin.</p>
-    <a href="{% url 'new_text_page' %}" class="mt-5 inline-flex rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">Serbest yazmaya geç</a>
+    <a href="{% url 'new_text_page' %}" class="lv-dugme lv-kucuk mt-5 inline-flex">Serbest yazmaya geç</a>
 </div>
 
 {% else %}
@@ -69,13 +69,13 @@ havuz boşken cesaretlendirici bir boş hâl görünür.
     <div class="flex flex-wrap items-center gap-3">
         <template x-if="!sonuc || sonuc.durum === 'bos'">
             <div class="flex flex-wrap items-center gap-3">
-                <button type="submit" :disabled="bekliyor" class="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-60">Kontrol et</button>
+                <button type="submit" :disabled="bekliyor" class="lv-dugme lv-kucuk disabled:opacity-60">Kontrol et</button>
                 <button type="button" @click="ipucuAcik = true; $refs.girdi && $refs.girdi.focus()" x-show="!ipucuAcik"
                         class="text-sm font-medium text-indigo-600 hover:text-indigo-800 dark:text-indigo-400">İlk harfi göster</button>
             </div>
         </template>
         <a x-show="sonuc && sonuc.durum !== 'bos'" x-cloak href="{% url 'diyalog_page' %}?onceki={{ diyalog.id }}"
-           class="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700">Sonraki</a>
+           class="lv-dugme lv-kucuk">Sonraki</a>
     </div>
 </form>
 

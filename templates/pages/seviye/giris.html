@@ -12,7 +12,7 @@ başla, seviyemi kendim seçeyim, şimdi değil (Ana Sayfa'ya döner).
 {% block page %}
 <div class="space-y-6">
     <div class="lv-sayfa px-5 py-8 sm:px-10 text-center">
-        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Seviyeni birlikte bulalım</h1>
+        <h1 class="lv-sayfa-basligi">Seviyeni birlikte bulalım</h1>
         <p class="mx-auto mt-3 max-w-lg text-gray-600 dark:text-slate-400">
             Ekranda kelimeler göreceksin. Yalnızca <strong class="text-gray-900 dark:text-slate-100">bildiklerine dokun</strong>;
             emin olmadıklarını boş bırak. Uydurma kelime yok, hepsi gerçek.
@@ -25,7 +25,7 @@ başla, seviyemi kendim seçeyim, şimdi değil (Ana Sayfa'ya döner).
         <form method="post" action="{% url 'seviye_basla' %}" class="mt-7">
             {% csrf_token %}
             <button type="submit" data-seviye-basla
-                    class="w-full sm:w-auto rounded-2xl bg-indigo-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-indigo-200 dark:shadow-none hover:bg-indigo-700 transition">
+                    class="lv-dugme w-full sm:w-auto">
                 {% if son_sonuc %}Testi yeniden çöz{% else %}Teste başla{% endif %}
             </button>
         </form>

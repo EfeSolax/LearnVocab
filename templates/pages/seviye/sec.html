@@ -9,7 +9,7 @@
 <form method="post" class="space-y-5" data-seviye-sec>
     {% csrf_token %}
     <div>
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Seviyeni seç</h1>
+        <h1 class="lv-sayfa-basligi">Seviyeni seç</h1>
         <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Günün kelimesi ve egzersizler bu seviyeye göre gelir. İstediğin zaman değiştirebilirsin.</p>
     </div>
     <div class="space-y-2">
@@ -21,7 +21,7 @@
         </label>
         {% endfor %}
     </div>
-    <button type="submit" class="w-full rounded-2xl bg-indigo-600 px-6 py-3.5 text-base font-bold text-white hover:bg-indigo-700 transition">Kaydet</button>
+    <button type="submit" class="lv-dugme w-full">Kaydet</button>
     <p class="text-center text-sm"><a href="{% url 'seviye_testi' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Emin değilim, testi çözeyim</a></p>
     {# Rapor 18.27: çok küçük, tek satırlık not; Ayarlar'a bağlanır (Ayarlar sayfası). #}
     <p class="text-center text-xs text-gray-400 dark:text-slate-500" data-ayarlar-notu>Seviyeni istediğin zaman <a href="{% url 'settings_page' %}" class="underline hover:text-indigo-600 dark:hover:text-indigo-400">Ayarlar</a>'dan değiştirebilirsin.</p>

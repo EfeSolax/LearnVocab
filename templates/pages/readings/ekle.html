@@ -17,7 +17,7 @@ v1'de OCR yok: taranmış PDF'te nazik bir hata gösterilir.
     Okumalar
 </a>
 
-<h1 class="mt-3 mb-1 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Kendi metnini ekle</h1>
+<h1 class="lv-sayfa-basligi mt-3 mb-1">Kendi metnini ekle</h1>
 <p class="mb-5 text-sm text-gray-600 dark:text-slate-400">Yalnızca sen görürsün. PDF dosyasını saklamıyoruz, yalnızca içindeki yazıyı alıyoruz.</p>
 
 <form method="post" enctype="multipart/form-data" x-data="{ tur: '{{ tur }}', gonderiliyor: false }" @submit="gonderiliyor = true"
@@ -58,7 +58,7 @@ v1'de OCR yok: taranmış PDF'te nazik bir hata gösterilir.
     </div>
 
     <button type="submit" :disabled="gonderiliyor"
-            class="w-full rounded-lg bg-indigo-600 px-4 py-2.5 font-semibold text-white hover:bg-indigo-700 disabled:opacity-60">
+            class="lv-dugme lv-kucuk w-full disabled:opacity-60">
         <span x-show="!gonderiliyor">Okumaya başla</span>
         <span x-show="gonderiliyor" x-cloak>Hazırlanıyor…</span>
     </button>

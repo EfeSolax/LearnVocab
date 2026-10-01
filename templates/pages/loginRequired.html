@@ -17,7 +17,7 @@ Giriş formuna fırlatmak yerine nerede olduğunu anlatıp bağlantı veriyoruz.
         </svg>
     </div>
 
-    <h1 class="mt-6 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">
+    <h1 class="lv-sayfa-basligi mt-6">
         {{ gate_area }}
     </h1>
 
@@ -32,7 +32,7 @@ Giriş formuna fırlatmak yerine nerede olduğunu anlatıp bağlantı veriyoruz.
 
     <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href="{{ gate_login_url }}"
-           class="w-full sm:w-auto inline-flex justify-center items-center rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors">
+           class="lv-dugme lv-kucuk w-full sm:w-auto inline-flex">
             Giriş Yap
         </a>
         <a href="{% url 'register' %}"
