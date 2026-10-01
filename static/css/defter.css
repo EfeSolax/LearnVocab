@@ -229,3 +229,28 @@ mark.lv-vurgu { background: var(--kalem); color: inherit; padding: 0 2px; border
 .lv-girdi::placeholder { color: var(--soluk); opacity: .7; font-weight: 400; }
 .lv-takvim .lv-buz { color: transparent; }
 .lv-takvim .lv-buz::after { content: "❄"; position: absolute; font-size: 20px; color: #3b82c4; }
+
+/* =====================================================================
+   Seçim kalıpları (Ayarlar vb.)
+   ===================================================================== */
+/* El yazısı seçenek; seçilince kalemle daire içine alınır */
+.lv-secim { position: relative; display: inline-block; font-family: var(--el); font-weight: 700; color: var(--soluk); padding: 0 10px; }
+.lv-secim::before { content: ""; position: absolute; inset: -6px -4px; background: var(--murekkep); opacity: 0;
+  -webkit-mask: var(--daire) center/100% 100% no-repeat; mask: var(--daire) center/100% 100% no-repeat; transition: opacity .2s; }
+.peer:checked ~ .lv-secim, [aria-checked="true"] .lv-secim { color: var(--murekkep); }
+.peer:checked ~ .lv-secim::before, [aria-checked="true"] .lv-secim::before { opacity: 1; }
+.peer:focus-visible ~ .lv-secim { text-decoration: underline; }
+/* Kalemle çizilmiş kutucuk; işaretlenince tik */
+.lv-kutu { position: relative; width: 24px; height: 24px; border: 2px solid var(--murekkep); border-radius: 3px; transform: rotate(-3deg); }
+.peer:checked + .lv-kutu::after { content: "✓"; position: absolute; left: 2px; top: -15px; font: 700 34px/1 var(--el); color: var(--murekkep); transform: rotate(-8deg); }
+/* Tema örnek kâğıtları */
+.lv-tema-kagit { display: block; aspect-ratio: 4/3; border-radius: 4px; box-shadow: var(--golge); border: 1px solid rgba(0,0,0,.08);
+  background-size: 12px 12px; transition: transform .15s; }
+.lv-tema-light { background-color: #fbfaf5; background-image: linear-gradient(rgba(66,110,190,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(66,110,190,.15) 1px, transparent 1px); }
+.lv-tema-dark { background-color: #16181d; background-image: linear-gradient(rgba(130,160,230,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(130,160,230,.15) 1px, transparent 1px); }
+.lv-tema-sistem { background: linear-gradient(135deg, #fbfaf5 50%, #16181d 50%); }
+.lv-tema-ornek[aria-checked="true"] .lv-tema-kagit { transform: rotate(-2deg) translateY(-3px); outline: 2.5px solid var(--murekkep); outline-offset: 3px; }
+/* Kaydırma çubuğu: mürekkep çizgi, sarı kalem tutamak */
+.lv-aralik { -webkit-appearance: none; appearance: none; height: 4px; background: var(--murekkep); border-radius: 2px; }
+.lv-aralik::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--kalem); border: 2.5px solid var(--murekkep); cursor: pointer; }
+.lv-aralik::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: var(--kalem); border: 2.5px solid var(--murekkep); cursor: pointer; }

@@ -5,13 +5,13 @@ cihazda açıp kapatır. Abonelik cihaza özeldir; her cihazda ayrı açılır.
 Yardımcılar: bildirimler/_js.html (window.lvBildirim)
 {% endcomment %}
 {% if vapid_anahtari %}
-<section class="lv-sayfa overflow-hidden" data-bildirim-ayari>
-    <header class="border-b border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6">
-        <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">Bildirimler</h2>
-        <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">Çalışmadığın günlerde öğlen günün kelimesi, gece yarısına doğru seri hatırlatması. Günde en çok iki bildirim.</p>
+<section class="lv-not lv-mavi lv-bantli text-gray-900 dark:text-slate-100" data-bildirim-ayari>
+    <header>
+        <h2 class="lv-el text-[28px] font-bold">Bildirimler</h2>
+        <p class="mt-0.5 text-base text-gray-700 dark:text-slate-300">Çalışmadığın günlerde öğlen günün kelimesi, gece yarısına doğru seri hatırlatması. Günde en çok iki bildirim.</p>
     </header>
-    <div class="flex items-center justify-between gap-4 px-5 py-4 sm:px-6">
-        <p data-bildirim-durumu class="min-w-0 text-sm text-gray-700 dark:text-slate-300">Kontrol ediliyor…</p>
+    <div class="mt-4 flex items-center justify-between gap-4">
+        <p data-bildirim-durumu class="min-w-0 text-base font-semibold">Kontrol ediliyor…</p>
         <button type="button" data-bildirim-dugmesi hidden
                 class="lv-dugme lv-kucuk shrink-0 disabled:opacity-60"></button>
     </div>

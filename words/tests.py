@@ -320,7 +320,8 @@ class DarkThemeTests(TestCase):
         for url_name in ("exercises_page", "user_profile"):
             with self.subTest(page=url_name):
                 html = self._html(url_name)
-                self.assertGreater(html.count("dark:"), 20)
+                # Defter teması: .lv-* sınıfları koyu temayı CSS değişkenleriyle çözer.
+                self.assertGreater(html.count("dark:") + html.count('class="lv-'), 20)
 
 
 class FriendsFeatureDisabledTests(TestCase):

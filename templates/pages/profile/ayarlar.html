@@ -16,153 +16,125 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
 {% block page_heading %}{% endblock %}
 
 {% block page %}
-<a href="{% url 'user_profile' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
-    <span aria-hidden="true">‹</span> Hesap
-</a>
-<h1 class="lv-sayfa-basligi mt-3 mb-5">Ayarlar</h1>
+{# Defter teması (rapor 18.12): defterin son sayfası. Seçenekler el yazısı, seçili olan kalemle daire içinde. #}
+<a href="{% url 'user_profile' %}" class="lv-el text-[22px] font-bold hover:underline">← Hesap</a>
+<h1 class="lv-baslik mt-2 !text-[44px] sm:!text-[64px]">Ayarlar</h1>
+<span class="lv-alt-baslik mt-1">defterin son sayfası: nasıl çalışmak istediğin</span>
 
-<div class="space-y-5 pb-4">
+<div class="mt-10 space-y-12 pb-4">
 
-    {# ================= GÖRÜNÜM ================= #}
-    <section class="lv-sayfa overflow-hidden" data-tema-ayari>
-        <header class="border-b border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6">
-            <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">Görünüm</h2>
-            <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">"Sistem" seçiliyken cihazının açık ya da koyu teması kullanılır.</p>
-        </header>
-        <div class="grid grid-cols-3 gap-2 px-5 py-5 sm:px-6" role="radiogroup" aria-label="Tema">
+    {# ================= GÖRÜNÜM: üç küçük kâğıt ================= #}
+    <section data-tema-ayari>
+        <h2 class="lv-bolum !text-3xl">Görünüm</h2>
+        <p class="lv-el text-[21px]">"sistem" seçiliyken cihazının açık ya da koyu teması kullanılır</p>
+        <div class="mt-5 grid max-w-xl grid-cols-3 gap-4" role="radiogroup" aria-label="Tema">
             {% for deger, etiket in tema_secenekleri %}
-            <button type="button" role="radio" aria-checked="false" data-tema-sec="{{ deger }}"
-                    class="rounded-xl border border-gray-300 dark:border-slate-600 px-3 py-2.5 text-center text-sm font-semibold text-gray-700 dark:text-slate-300 transition-colors hover:bg-gray-50 dark:hover:bg-slate-700 aria-checked:border-indigo-600 aria-checked:bg-indigo-600 aria-checked:text-white">
-                {{ etiket }}
+            <button type="button" role="radio" aria-checked="false" data-tema-sec="{{ deger }}" class="lv-tema-ornek group text-center">
+                <span class="lv-tema-kagit lv-tema-{{ deger }}" aria-hidden="true"></span>
+                <span class="lv-secim mt-2 inline-block text-[22px]">{{ etiket }}</span>
             </button>
             {% endfor %}
         </div>
     </section>
 
-    {# ================= SEVİYE (rapor 7: test ayarlardan tekrarlanabilir) ================= #}
-    <section class="lv-sayfa overflow-hidden" data-seviye-ayari>
-        <a href="{% url 'seviye_testi' %}"
-           class="flex items-center gap-4 px-5 py-4 transition-colors hover:bg-gray-50 dark:hover:bg-slate-700/40 sm:px-6">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-sm font-extrabold text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400">{{ user.cefr|default:"?" }}</span>
-            <span class="min-w-0 flex-1">
-                <span class="block text-sm font-semibold text-gray-900 dark:text-slate-100">{% if user.cefr %}Seviye testini tekrarla{% else %}Seviye testini çöz{% endif %}</span>
-                <span class="block text-sm text-gray-500 dark:text-slate-400">{% if user.cefr %}Seviyen: {{ user.cefr }}. Günün kelimesi ve egzersizler buna göre gelir.{% else %}Seviyen henüz belirlenmedi.{% endif %}</span>
+    {# ================= SEVİYE ================= #}
+    <section data-seviye-ayari>
+        <a href="{% url 'seviye_testi' %}" class="lv-sayfa lv-bantli flex items-center gap-5 p-5 transition-transform hover:-translate-y-0.5 sm:p-6">
+            <span class="lv-serif relative grid h-16 w-20 shrink-0 place-items-center text-3xl font-black text-red-700 dark:text-red-300">
+                <svg class="absolute inset-0 h-full w-full" viewBox="0 0 92 74" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M18 46C8 22 40 6 64 12c22 6 24 34 4 46-20 12-52 8-58-12-3-10 6-22 18-28"/></svg>
+                <span class="relative">{{ user.cefr|default:"?" }}</span>
             </span>
-            <svg class="h-5 w-5 shrink-0 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
+            <span class="min-w-0 flex-1">
+                <span class="lv-serif block text-xl font-bold">{% if user.cefr %}Seviye testini tekrarla{% else %}Seviye testini çöz{% endif %}</span>
+                <span class="block text-base text-gray-600 dark:text-slate-300">{% if user.cefr %}Seviyen: {{ user.cefr }}. Günün kelimesi ve egzersizler buna göre gelir.{% else %}Seviyen henüz belirlenmedi.{% endif %}</span>
+            </span>
+            <span class="lv-el text-3xl" aria-hidden="true">→</span>
         </a>
     </section>
 
     {# ================= BİLDİRİMLER (anlık) ================= #}
     {% include 'bildirimler/_ayar.html' %}
 
-    <form method="POST" action="{% url 'save_settings' %}" class="space-y-5">
+    <form method="POST" action="{% url 'save_settings' %}" class="space-y-12">
         {% csrf_token %}
 
-        {# ---- Öğrenme ---- #}
-        <section class="lv-sayfa overflow-hidden">
-            <header class="border-b border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6">
-                <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">Çalışma</h2>
-                <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">Çalışırken geçerli olan tercihlerin.</p>
-            </header>
+        {# ---- Çalışma ---- #}
+        <section>
+            <h2 class="lv-bolum !text-3xl">Çalışma</h2>
+            <p class="lv-el text-[21px]">çalışırken geçerli olan tercihlerin</p>
+            <div class="lv-sayfa mt-5 divide-y divide-dashed divide-[color:var(--satir)]">
 
-            {# Tekrar / yeni oranı: kaydırma çubuğu, %10'luk adımlar (Efe, 30 Eylül) #}
-            <div class="px-5 py-5 sm:px-6" data-oran-ayari x-data="{ yeni: {{ settings.learnpass_yeni_orani }} }">
-                <label for="learnpass_yeni_orani" class="mb-1 block text-sm font-semibold text-gray-700 dark:text-slate-300">Learn &amp; Pass'te tekrar ve yeni kelime oranı</label>
-                <span class="mb-3 block text-sm text-gray-500 dark:text-slate-400">Sola çektikçe listendeki kelimeleri daha çok tekrar edersin, sağa çektikçe daha çok yeni kelime görürsün.</span>
-                <input type="range" id="learnpass_yeni_orani" name="learnpass_yeni_orani" min="0" max="100" step="10"
-                       x-model.number="yeni" value="{{ settings.learnpass_yeni_orani }}"
-                       class="w-full accent-indigo-600">
-                <div class="mt-2 flex justify-between text-sm font-semibold">
-                    <span class="text-gray-700 dark:text-slate-300">Tekrar %<span x-text="100 - yeni">{{ tekrar_orani }}</span></span>
-                    <span class="text-indigo-600 dark:text-indigo-400">Yeni %<span x-text="yeni">{{ settings.learnpass_yeni_orani }}</span></span>
+                {# Tekrar / yeni oranı: kaydırma çubuğu, %10'luk adımlar (Efe, 30 Eylül) #}
+                <div class="px-5 py-6 sm:px-6" data-oran-ayari x-data="{ yeni: {{ settings.learnpass_yeni_orani }} }">
+                    <label for="learnpass_yeni_orani" class="block text-base font-bold">Learn &amp; Pass'te tekrar ve yeni kelime oranı</label>
+                    <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">Sola çektikçe listendeki kelimeleri daha çok tekrar edersin, sağa çektikçe daha çok yeni kelime görürsün.</span>
+                    <input type="range" id="learnpass_yeni_orani" name="learnpass_yeni_orani" min="0" max="100" step="10"
+                           x-model.number="yeni" value="{{ settings.learnpass_yeni_orani }}" class="lv-aralik mt-5 w-full">
+                    <div class="mt-2 flex justify-between">
+                        <span class="lv-el text-[24px] font-bold">← tekrar %<span x-text="100 - yeni">{{ tekrar_orani }}</span></span>
+                        <span class="lv-el text-[24px] font-bold">yeni %<span x-text="yeni">{{ settings.learnpass_yeni_orani }}</span> →</span>
+                    </div>
                 </div>
-            </div>
 
-            {# Egzersizde soru sayısı: 5 · 10 · 15 · 20 #}
-            <div class="border-t border-gray-200 dark:border-slate-700 px-5 py-5 sm:px-6" data-soru-sayisi-ayari>
-                <span class="mb-1 block text-sm font-semibold text-gray-700 dark:text-slate-300">Egzersizde soru sayısı</span>
-                <span class="mb-3 block text-sm text-gray-500 dark:text-slate-400">Tempolu Egzersiz bu sayıyla açılır; başlarken yine değiştirebilirsin.</span>
-                <div class="grid grid-cols-4 gap-2">
-                    {% for sayi in soru_sayilari %}
-                    <label class="block">
-                        <input type="radio" name="egzersiz_soru_sayisi" value="{{ sayi }}" class="peer sr-only"
-                               {% if settings.egzersiz_soru_sayisi == sayi %}checked{% endif %}>
-                        <span class="block cursor-pointer rounded-xl border border-gray-300 dark:border-slate-600 px-3 py-2.5 text-center text-sm font-semibold text-gray-700 dark:text-slate-300 transition-colors hover:bg-gray-50 dark:hover:bg-slate-700 peer-checked:border-indigo-600 peer-checked:bg-indigo-600 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-focus-visible:ring-offset-2 dark:peer-focus-visible:ring-offset-slate-800">
-                            {{ sayi }}
-                        </span>
-                    </label>
-                    {% endfor %}
+                {# Egzersizde soru sayısı: 5 · 10 · 15 · 20 #}
+                <div class="px-5 py-6 sm:px-6" data-soru-sayisi-ayari>
+                    <span class="block text-base font-bold">Egzersizde soru sayısı</span>
+                    <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">Tempolu Egzersiz bu sayıyla açılır; başlarken yine değiştirebilirsin.</span>
+                    <div class="mt-4 flex flex-wrap gap-6">
+                        {% for sayi in soru_sayilari %}
+                        <label class="cursor-pointer">
+                            <input type="radio" name="egzersiz_soru_sayisi" value="{{ sayi }}" class="peer sr-only" {% if settings.egzersiz_soru_sayisi == sayi %}checked{% endif %}>
+                            <span class="lv-secim text-[30px]">{{ sayi }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
 
-            <div class="border-t border-gray-200 dark:border-slate-700 px-5 py-5 sm:px-6" data-sertlik-ayari>
-                <span class="mb-1 block text-sm font-semibold text-gray-700 dark:text-slate-300">Yazılarda geri bildirim</span>
-                <span class="mb-3 block text-sm text-gray-500 dark:text-slate-400">Yazdığın metinlerde hataların ne kadar ayrıntılı gösterileceği.</span>
-                <div class="grid grid-cols-3 gap-2">
-                    {% for deger, etiket in sertlik_secenekleri %}
-                    <label class="block">
-                        <input type="radio" name="sertlik" value="{{ deger }}" class="peer sr-only"
-                               {% if sertlik == deger %}checked{% endif %}>
-                        <span class="block cursor-pointer rounded-xl border border-gray-300 dark:border-slate-600 px-3 py-2.5 text-center text-sm font-semibold text-gray-700 dark:text-slate-300 transition-colors hover:bg-gray-50 dark:hover:bg-slate-700 peer-checked:border-indigo-600 peer-checked:bg-indigo-600 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-focus-visible:ring-offset-2 dark:peer-focus-visible:ring-offset-slate-800">
-                            {{ etiket }}
-                        </span>
-                    </label>
-                    {% endfor %}
+                <div class="px-5 py-6 sm:px-6" data-sertlik-ayari>
+                    <span class="block text-base font-bold">Yazılarda geri bildirim</span>
+                    <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">Yazdığın metinlerde hataların ne kadar ayrıntılı gösterileceği.</span>
+                    <div class="mt-4 flex flex-wrap gap-6">
+                        {% for deger, etiket in sertlik_secenekleri %}
+                        <label class="cursor-pointer">
+                            <input type="radio" name="sertlik" value="{{ deger }}" class="peer sr-only" {% if sertlik == deger %}checked{% endif %}>
+                            <span class="lv-secim text-[26px]">{{ etiket }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
 
-            <div class="border-t border-gray-200 dark:border-slate-700">
                 {% include 'base/_toggle.html' with name="audio" checked=settings.audio label="Testlerde sesi otomatik oynat" desc="Kelime telaffuzları otomatik olarak başlar." %}
             </div>
         </section>
 
         {# ---- E-posta bildirimleri ---- #}
-        <section class="lv-sayfa overflow-hidden">
-            <header class="border-b border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6">
-                <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">E-posta Bildirimleri</h2>
-                <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">Hangi konularda e-posta almak istersin?</p>
-            </header>
-
-            <div class="divide-y divide-gray-100 dark:divide-slate-700">
+        <section>
+            <h2 class="lv-bolum !text-3xl">E-posta Bildirimleri</h2>
+            <p class="lv-el text-[21px]">hangi konularda e-posta almak istersin?</p>
+            <div class="lv-sayfa mt-5 divide-y divide-dashed divide-[color:var(--satir)]">
                 {% include 'base/_toggle.html' with name="dailyGoalsMail" checked=settings.dailyGoalsMail label="Günlük hatırlatma e-postası" desc="Pratik yapmayı unuttuğunda hatırlatma göndeririz." %}
                 {% include 'base/_toggle.html' with name="featuresMail" checked=settings.featuresMail label="Yeni özellikler ve duyurular" desc="Siteye eklenen yeni özellikler hakkında bilgi al." %}
                 {% include 'base/_toggle.html' with name="improvementsMail" checked=settings.improvementsMail label="Geliştirme ve ipuçları" desc="Uygulamayı daha verimli kullanman için ipuçları." %}
             </div>
-
-            <footer class="flex justify-end border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900/50 px-5 py-3.5 sm:px-6">
-                <button type="submit"
-                        class="lv-dugme lv-kucuk">
-                    Ayarları Kaydet
-                </button>
-            </footer>
         </section>
+
+        <button type="submit" class="lv-dugme">Ayarları Kaydet</button>
     </form>
 
     {# ================= VERİ YÖNETİMİ ================= #}
-    <section class="lv-sayfa overflow-hidden">
-        <header class="border-b border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6">
-            <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">Verilerim</h2>
-            <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">Verilerini bir dosya olarak indir.</p>
-        </header>
-
-        <div class="divide-y divide-gray-100 dark:divide-slate-700">
+    <section>
+        <h2 class="lv-bolum !text-3xl">Verilerim</h2>
+        <p class="lv-el text-[21px]">verilerini bir dosya olarak indir</p>
+        <ul class="mt-4 border-t-2 border-indigo-600 dark:border-indigo-400">
             {% for dosya in export_links %}
-            <a href="{{ dosya.url }}"
-               class="flex items-center gap-4 px-5 py-3.5 transition-colors hover:bg-gray-50 dark:hover:bg-slate-700/40 sm:px-6">
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-500 dark:bg-slate-700 dark:text-slate-300">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                    </svg>
-                </span>
-                <span class="flex-1 text-sm font-medium text-gray-900 dark:text-slate-100">{{ dosya.label }}</span>
-                <svg class="h-5 w-5 shrink-0 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-            </a>
+            <li class="border-b border-dashed border-[color:var(--satir)]">
+                <a href="{{ dosya.url }}" class="flex items-center gap-3 py-4 hover:bg-[color:var(--kare)]">
+                    <span class="lv-el text-[24px]" aria-hidden="true">↓</span>
+                    <span class="flex-1 text-base font-semibold">{{ dosya.label }}</span>
+                </a>
+            </li>
             {% endfor %}
-        </div>
+        </ul>
     </section>
 
     {# ================= TEHLİKELİ BÖLGE ================= #}
@@ -170,7 +142,7 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
     Açılır kapanır: geri alınamaz işlemler sayfayı sürekli kırmızıya
     boğmasın, ama bir tık uzakta dursun.
     {% endcomment %}
-    <details class="lv-sayfa group overflow-hidden border-rose-300 dark:border-rose-900">
+    <details class="lv-sayfa group mt-12 overflow-hidden outline outline-2 -outline-offset-8 outline-dashed outline-red-600/40">
         <summary class="flex cursor-pointer list-none items-center gap-3 px-5 py-4 sm:px-6">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-rose-50 text-rose-600 dark:bg-rose-950 dark:text-rose-400">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
@@ -178,7 +150,7 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
                 </svg>
             </span>
             <span class="min-w-0 flex-1">
-                <span class="block text-sm font-bold text-rose-600 dark:text-rose-400">Tehlikeli Bölge</span>
+                <span class="lv-el block text-[26px] font-bold !text-red-700 dark:!text-red-300">Tehlikeli Bölge</span>
                 <span class="block text-sm text-gray-500 dark:text-slate-400">Geri alınamaz işlemler.</span>
             </span>
             <svg class="h-5 w-5 shrink-0 text-gray-400 transition-transform group-open:rotate-180 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">

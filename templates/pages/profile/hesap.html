@@ -14,148 +14,78 @@ Görsel tasarımı tasarım oturumunda yapılacak.
 {% block page_heading %}{% endblock %}
 
 {% block page %}
-
-<div class="space-y-5 pb-4">
-
-    {# ================= KİMLİK + HESAP BİLGİLERİ ================= #}
-    <form method="POST" action="{% url 'user_profile' %}" enctype="multipart/form-data" class="space-y-5">
+{# Defter teması (rapor 18.12): defterin iç kapağı. "Bu defter … aittir", bantlı polaroid fotoğraf, künye, çizgi girdiler. #}
+<div class="pb-4">
+    <form method="POST" action="{% url 'user_profile' %}" enctype="multipart/form-data">
         {% csrf_token %}
 
-        {# ---- Kimlik kartı ---- #}
-        <section class="lv-sayfa overflow-hidden">
+        <section class="grid items-start gap-10 sm:grid-cols-[auto_1fr]">
+            {# ---- Polaroid ---- #}
+            <div class="relative mx-auto w-48 -rotate-3 bg-[color:var(--kagit-beyaz)] p-3 pb-10 shadow-[var(--golge)] sm:mx-0">
+                <span class="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-3 border border-black/5 bg-[color:var(--bant)]" aria-hidden="true"></span>
+                <img id="avatar-preview" class="aspect-square w-full object-cover {% if not user.profile_pic %}hidden{% endif %}"
+                     src="{% if user.profile_pic %}{{ user.profile_pic.url }}{% endif %}" alt="Profil fotoğrafı">
+                <span id="avatar-placeholder" class="grid aspect-square w-full place-items-center bg-[color:var(--kagit)] {% if user.profile_pic %}hidden{% endif %}">
+                    {% include 'base/_kapibara.html' with sinif='w-32 h-24' %}
+                </span>
+                <input type="file" name="profile_pic" id="profile_pic" accept="image/*" class="sr-only">
+                <label for="profile_pic" class="lv-el absolute inset-x-0 bottom-2 cursor-pointer text-center text-[21px] font-bold underline decoration-1 underline-offset-4">fotoğrafı değiştir</label>
+            </div>
 
-            <div class="h-24 bg-[color:var(--not)]"></div>
+            {# ---- Bu defter … aittir ---- #}
+            <div>
+                <p class="lv-el text-[26px] font-bold">bu defter</p>
+                <h1 class="lv-baslik !text-[44px] sm:!text-[56px]">{% if user.first_name or user.last_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.username }}{% endif %}</h1>
+                <p class="lv-el text-[26px] font-bold">'a aittir. <span class="!text-gray-600 dark:!text-slate-300">(@{{ user.username }})</span></p>
+                <p id="avatar-filename" class="lv-el mt-2 hidden text-[21px]"></p>
 
-            <div class="px-5 pb-5 sm:px-6 sm:pb-6">
-                <div class="-mt-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-
-                    <div class="flex items-end gap-4">
-                        {# Fotoğrafın üzerindeki kamera düğmesi dosya seçiciyi açıyor #}
-                        <div class="relative shrink-0">
-                            <img id="avatar-preview"
-                                 class="h-24 w-24 rounded-full object-cover ring-4 ring-white dark:ring-slate-800 bg-gray-100 dark:bg-slate-700 {% if not user.profile_pic %}hidden{% endif %}"
-                                 src="{% if user.profile_pic %}{{ user.profile_pic.url }}{% endif %}" alt="Profil fotoğrafı">
-
-                            <span id="avatar-placeholder"
-                                  class="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-slate-700 ring-4 ring-white dark:ring-slate-800 {% if user.profile_pic %}hidden{% endif %}">
-                                <svg class="h-full w-full text-gray-300 dark:text-slate-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                </svg>
-                            </span>
-
-                            <input type="file" name="profile_pic" id="profile_pic" accept="image/*" class="sr-only">
-                            <label for="profile_pic" title="Fotoğrafı değiştir"
-                                   class="absolute bottom-0 right-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-indigo-600 text-white ring-2 ring-white dark:ring-slate-800 hover:bg-indigo-700 transition-colors">
-                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
-                                </svg>
-                                <span class="sr-only">Fotoğrafı değiştir</span>
-                            </label>
-                        </div>
-
-                        <div class="min-w-0 pb-1">
-                            <h1 class="truncate text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-slate-100">
-                                {% if user.first_name or user.last_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.username }}{% endif %}
-                            </h1>
-                            <p class="truncate text-sm text-gray-500 dark:text-slate-400">@{{ user.username }}</p>
-                        </div>
-                    </div>
-
-                    <a href="{% url 'logout' %}"
-                       class="inline-flex shrink-0 items-center justify-center gap-1.5 self-start rounded-xl border border-gray-300 dark:border-slate-600 px-4 py-2 text-sm font-semibold text-gray-700 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors sm:self-auto">
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M18.75 15L21.75 12m0 0l-3-3m3 3H9" />
-                        </svg>
-                        Çıkış Yap
-                    </a>
-                </div>
-
-                <p id="avatar-filename" class="mt-3 hidden text-xs text-indigo-600 dark:text-indigo-400"></p>
+                <dl class="mt-6 grid grid-cols-3 gap-3 text-center">
+                    <div class="lv-sayfa -rotate-1 px-2 py-3"><dt class="lv-el text-[19px]">açılış</dt><dd class="lv-serif text-lg font-black">{{ user.date_joined|date:"M Y" }}</dd></div>
+                    <div class="lv-sayfa rotate-1 px-2 py-3"><dt class="lv-el text-[19px]">listede</dt><dd class="lv-serif text-2xl font-black">{{ liste_sayisi }}</dd></div>
+                    <div class="lv-sayfa -rotate-1 px-2 py-3"><dt class="lv-el text-[19px]">en uzun seri</dt><dd class="lv-serif text-2xl font-black">{{ seri.en_uzun }}</dd></div>
+                </dl>
+                <a href="{% url 'logout' %}" class="lv-el-bag mt-6 inline-block">Çıkış Yap</a>
             </div>
         </section>
 
-        {# ---- Hesap bilgileri ---- #}
-        <section class="lv-sayfa overflow-hidden">
-            <header class="border-b border-gray-200 dark:border-slate-700 px-5 py-4 sm:px-6">
-                <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">Hesap Bilgileri</h2>
-                <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">Platformda nasıl göründüğünü belirler.</p>
-            </header>
-
-            <div class="space-y-5 px-5 py-5 sm:px-6">
-
-                <div class="grid gap-4 sm:grid-cols-2">
-                    <div>
-                        <label for="first_name" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">İsim</label>
-                        <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}" autocomplete="given-name"
-                               class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
-                    </div>
-                    <div>
-                        <label for="last_name" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">Soyisim</label>
-                        <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}" autocomplete="family-name"
-                               class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
-                    </div>
-                </div>
-
+        {# ---- Hesap bilgileri: kâğıttaki çizgiler ---- #}
+        <section class="lv-sayfa lv-bantli mt-14 px-5 pb-6 pt-8 sm:px-8">
+            <h2 class="lv-bolum !text-3xl">Hesap Bilgileri</h2>
+            <p class="lv-el text-[21px]">platformda nasıl göründüğünü belirler</p>
+            <div class="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
-                    <label for="email" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">E-posta Adresi</label>
-                    <input type="email" name="email" id="email" value="{{ user.email }}" autocomplete="email"
-                           class="w-full rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-slate-100 transition focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+                    <label for="first_name" class="lv-el block text-[22px] font-bold">İsim</label>
+                    <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}" autocomplete="given-name" class="lv-girdi">
                 </div>
-
                 <div>
-                    <label for="username" class="mb-1.5 block text-sm font-semibold text-gray-700 dark:text-slate-300">Kullanıcı Adı</label>
-                    <div class="relative">
-                        <input type="text" name="username" id="username" value="{{ user.username }}" readonly
-                               class="w-full cursor-not-allowed rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-900/60 px-3.5 py-2.5 pr-10 text-sm text-gray-500 dark:text-slate-400">
-                        <svg class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                        </svg>
-                    </div>
-                    <p class="mt-1.5 text-xs text-gray-500 dark:text-slate-400">Kullanıcı adın değiştirilemez.</p>
+                    <label for="last_name" class="lv-el block text-[22px] font-bold">Soyisim</label>
+                    <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}" autocomplete="family-name" class="lv-girdi">
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="email" class="lv-el block text-[22px] font-bold">E-posta Adresi</label>
+                    <input type="email" name="email" id="email" value="{{ user.email }}" autocomplete="email" class="lv-girdi">
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="username" class="lv-el block text-[22px] font-bold">Kullanıcı Adı</label>
+                    <input type="text" name="username" id="username" value="{{ user.username }}" readonly class="lv-girdi cursor-not-allowed opacity-70">
+                    <p class="mt-1.5 text-sm text-gray-600 dark:text-slate-300">Kullanıcı adın değiştirilemez.</p>
                 </div>
             </div>
-
-            <footer class="flex justify-end border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900/50 px-5 py-3.5 sm:px-6">
-                <button type="submit"
-                        class="lv-dugme lv-kucuk">
-                    Değişiklikleri Kaydet
-                </button>
-            </footer>
+            <button type="submit" class="lv-dugme mt-8">Değişiklikleri Kaydet</button>
         </section>
     </form>
 
-    {# ================= AYARLAR VE PAROLA ================= #}
-    <section class="lv-sayfa overflow-hidden" data-hesap-baglantilari>
-        <a href="{% url 'settings_page' %}"
-           class="flex items-center gap-4 px-5 py-4 transition-colors hover:bg-gray-50 dark:hover:bg-slate-700/40 sm:px-6">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400">
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
-                </svg>
-            </span>
-            <span class="min-w-0 flex-1">
-                <span class="block text-sm font-semibold text-gray-900 dark:text-slate-100">Ayarlar</span>
-                <span class="block text-sm text-gray-500 dark:text-slate-400">Tema, seviye, bildirimler, verilerim.</span>
-            </span>
-            <svg class="h-5 w-5 shrink-0 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
+    {# ---- Ayarlar ve parola: iki yapışkan not ---- #}
+    <section class="mt-12 grid gap-8 sm:grid-cols-2" data-hesap-baglantilari>
+        <a href="{% url 'settings_page' %}" class="lv-not lv-bantli block text-gray-900 transition-transform hover:-translate-y-0.5 dark:text-slate-100">
+            <span class="lv-el block text-[24px] font-bold !text-gray-600 dark:!text-slate-300">ayarlar →</span>
+            <span class="lv-serif mt-1 block text-2xl font-bold">Ayarlar</span>
+            <span class="mt-1 block text-base text-gray-700 dark:text-slate-300">Tema, seviye{% if seviye %} ({{ seviye }}){% endif %}, bildirimler, verilerim.</span>
         </a>
-        <a href="{% url 'change_password_page' %}"
-           class="border-t border-gray-100 dark:border-slate-700 flex items-center gap-4 px-5 py-4 transition-colors hover:bg-gray-50 dark:hover:bg-slate-700/40 sm:px-6">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400">
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                </svg>
-            </span>
-            <span class="min-w-0 flex-1">
-                <span class="block text-sm font-semibold text-gray-900 dark:text-slate-100">Parolamı Değiştir</span>
-                <span class="block text-sm text-gray-500 dark:text-slate-400">Ayrı bir güvenli sayfada yapılır.</span>
-            </span>
-            <svg class="h-5 w-5 shrink-0 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
+        <a href="{% url 'change_password_page' %}" class="lv-not lv-mavi lv-bantli block text-gray-900 transition-transform hover:-translate-y-0.5 dark:text-slate-100">
+            <span class="lv-el block text-[24px] font-bold !text-gray-600 dark:!text-slate-300">güvenlik →</span>
+            <span class="lv-serif mt-1 block text-2xl font-bold">Parolamı Değiştir</span>
+            <span class="mt-1 block text-base text-gray-700 dark:text-slate-300">Ayrı bir güvenli sayfada yapılır.</span>
         </a>
     </section>
 </div>

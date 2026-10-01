@@ -31,7 +31,16 @@ def showProfile(request):
         messages.success(request, "Hesap bilgileriniz başarıyla güncellendi.")
         return redirect("user_profile")
 
-    return render(request, "pages/profile/hesap.html", {"active_page": "Hesap"})
+    # Defterin künyesi (defter teması, rapor 18.12): yalnızca var olan sayılar; "öğrenilen kelime" yok (Bölüm 17).
+    from seri import hesap as seri_hesap
+    from users.seviye import kullanici_seviyesi
+    from words.models import UserWordLink
+    return render(request, "pages/profile/hesap.html", {
+        "active_page": "Hesap",
+        "liste_sayisi": UserWordLink.objects.filter(user=request.user).count(),
+        "seri": seri_hesap.durum(request.user),
+        "seviye": kullanici_seviyesi(request.user),
+    })
 
 
 # Arkadaşlık özelliği (friends) kapalı ama kodu duruyor; profil görüntüleme ona ait.
