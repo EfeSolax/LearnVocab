@@ -9,15 +9,17 @@ Sıra:
   - "Diğer sonuçlar" (≤8 satır)
   - "Bunu mu demek istediniz?" / "Henüz sözlüğümüzde yok."
 {% endcomment %}
-<div class="mt-5 space-y-3" data-sonuclar>
+<div class="{% if madde %}mt-14{% else %}mt-5{% endif %} space-y-3" data-sonuclar>
 
+    {% if not madde %}{# Kelime sayfasında kartlar zaten yukarıda madde olarak (pages/words/_madde.html) #}
     {% for not in sonuc.cekim_notlari %}
-    <p class="rounded-lg bg-indigo-50 dark:bg-indigo-950/60 px-3 py-2 text-sm text-indigo-900 dark:text-indigo-200" data-cekim-notu>{{ not }}</p>
+    <p class="lv-el text-[22px] leading-snug" data-cekim-notu>{{ not }}</p>
     {% endfor %}
 
     {% for kart in kartlar %}
         {% include 'base/_kelimeKarti.html' with kart=kart kapali=forloop.counter0 %}
     {% endfor %}
+    {% endif %}
 
     {% for ifade in sonuc.ifadeler %}
         {% include 'pages/words/_ifadeKarti.html' with ifade=ifade %}
@@ -34,7 +36,7 @@ Sıra:
 
     {% if sonuc.digerleri %}
     <section class="pt-4" data-diger-sonuclar>
-        <h2 class="mb-2 text-sm font-semibold text-gray-600 dark:text-slate-400">
+        <h2 class="lv-el mb-2 text-[24px] font-bold">
             {% if sonuc.bulundu %}Diğer sonuçlar{% else %}“{{ sorgu }}” ile başlayanlar{% endif %}
         </h2>
         <ul class="lv-sayfa divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden">

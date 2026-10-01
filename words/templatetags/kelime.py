@@ -44,3 +44,23 @@ def telaffuz_adresi(metin, aksan):
     if not ad or not os.path.exists(os.path.join(settings.MEDIA_ROOT, KLASOR, ad)):
         return ""
     return f"{settings.MEDIA_URL}{KLASOR}/{ad}"
+
+
+@register.filter
+def isaretle(cumle, kelime):
+    """
+    Örnek cümlede kelimeyi sarı kalemle işaretler (defter teması, rapor 18.12):
+    {{ anlam.ornek|isaretle:kart.text }} -> "I visit the <mark class="lv-vurgu">bank</mark>."
+    Kelimenin eklerle uzamış hâli de işaretlenir (banks, banking); düzensiz
+    biçimler (went) işaretlenmez. Metin önce kaçışlanır, sonra işaretlenir.
+    """
+    import re
+
+    from django.utils.html import escape
+    from django.utils.safestring import mark_safe
+
+    metin = escape(cumle or "")
+    if not kelime:
+        return mark_safe(metin)
+    desen = re.compile(r"\b(" + re.escape(escape(kelime)) + r"[a-z]*)\b", re.IGNORECASE)
+    return mark_safe(desen.sub(r'<mark class="lv-vurgu">\1</mark>', metin))

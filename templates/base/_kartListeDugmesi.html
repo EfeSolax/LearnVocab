@@ -6,7 +6,7 @@ Davranış: base/_kelimeKartiJs.html (fetch ile, sayfa yenilenmeden; çıkarınc
 "Geri al" bildirimi). Aynı kelimenin sayfadaki bütün düğmeleri birlikte değişir.
 Girişsiz ziyaretçide düğme hiç basılmaz (rapor 18.3, 18.5).
 
-Bağlam: kart (words.kart.Kart)
+Bağlam: kart (words.kart.Kart), buyuk (isteğe bağlı: kelime sayfasındaki büyük defter düğmesi)
 {% endcomment %}
 {% if user.is_authenticated %}
 <button type="button"
@@ -18,7 +18,7 @@ Bağlam: kart (words.kart.Kart)
         data-cikar-url="{% url 'remove_from_my_list' kart.id %}"
         aria-pressed="{{ kart.listede|yesno:'true,false' }}"
         title="{% if kart.listede %}Listemde — çıkarmak için dokun{% else %}Listeme ekle{% endif %}"
-        class="shrink-0 inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-semibold transition-colors disabled:opacity-60
+        class="shrink-0 inline-flex items-center justify-center gap-1 whitespace-nowrap font-semibold transition-colors disabled:opacity-60 {% if buyuk %}min-h-[48px] rounded-[3px] px-6 text-base data-[listede='0']:shadow-[4px_4px_0_var(--kalem)]{% else %}rounded-lg px-3 py-1.5 text-sm{% endif %}
                data-[listede='0']:bg-indigo-600 data-[listede='0']:text-white data-[listede='0']:hover:bg-indigo-700
                data-[listede='1']:bg-emerald-50 data-[listede='1']:text-emerald-700 data-[listede='1']:ring-1 data-[listede='1']:ring-inset data-[listede='1']:ring-emerald-200
                dark:data-[listede='1']:bg-emerald-950 dark:data-[listede='1']:text-emerald-300 dark:data-[listede='1']:ring-emerald-800">

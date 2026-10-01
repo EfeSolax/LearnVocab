@@ -218,3 +218,6 @@ html.dark .lv-sekme { filter: brightness(.82); }
 .lp-hayir { color: var(--kirmizi); border-color: var(--kirmizi); box-shadow: 4px 4px 0 var(--kirmizi-acik); }
 .lp-evet { color: var(--yesil); border-color: var(--yesil); box-shadow: 4px 4px 0 var(--yesil-acik); }
 .lp-hayir:active, .lp-evet:active { transform: translate(2px, 2px); box-shadow: none; }
+
+/* Örnek cümlede kelime: sarı kalem (|isaretle süzgeci) */
+mark.lv-vurgu { background: var(--kalem); color: inherit; padding: 0 2px; border-radius: 2px; }

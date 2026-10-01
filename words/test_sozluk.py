@@ -71,8 +71,9 @@ class InglizceAramaTests(AramaTemeli):
         cevap = self.ara("aim")
         kartlar = cevap.context["kartlar"]
         self.assertEqual([k.id for k in kartlar], [self.aim_n.id, self.aim_v.id])  # yaygın (B1) önce
+        # Kelime sayfasında her tür açık bir defter maddesi (rapor 18.12).
         durumlar = re.findall(r'x-data="\{ acik: (true|false) \}"', _html(cevap))
-        self.assertEqual(durumlar[:2], ["true", "false"])
+        self.assertEqual(durumlar[:2], ["true", "true"])
 
     def test_buyuk_harf_ve_turkce_klavye(self):
         self.assertEqual(len(self.ara("AIM").context["kartlar"]), 2)

@@ -228,8 +228,9 @@ class KartSablonuTests(TestCase):
         make_word("aim", pos="verb", family=aile, meaning="hedeflemek", v2="aimed", v3="aimed")
         make_word("aimless", pos="adjective", family=aile)
         html = self._sozluk("aim")
+        # Kelime sayfası defter maddesidir (rapor 18.12): bütün türler açık.
         durumlar = re.findall(r'x-data="\{ acik: (true|false) \}"', html)
-        self.assertEqual(durumlar, ["true", "false"])
+        self.assertEqual(durumlar, ["true", "true"])
         self.assertIn("Aile:", html)
         self.assertIn('href="/sozluk/aimless/"', html)
         # Kapalı hâlin tek satırı: kelime · tür · anlam · seviye
@@ -248,9 +249,9 @@ class KartSablonuTests(TestCase):
         make_word("aim", family=aile, meaning="amaç")
         make_word("aim", pos="verb", family=aile, meaning="hedeflemek")
         html = self._sozluk("aim", giris=True)
-        # İki kart (açık isim + kapalı fiil), her birinde iki hâl: 4 düğme, hepsi yazılı
-        self.assertEqual(len(LISTE_DUGMESI.findall(html)), 4)
-        self.assertEqual(html.count("Listeme ekle <span"), 4)
+        # Kelime sayfası (defter maddesi): her türün kendi düğmesi, hepsi yazılı
+        self.assertEqual(len(LISTE_DUGMESI.findall(html)), 2)
+        self.assertEqual(html.count("Listeme ekle <span"), 2)
         self.assertNotIn('<span class="sr-only">Listeme ekle</span>', html)
 
     def test_telaffuz_dugmeleri_iki_aksan(self):
@@ -262,7 +263,7 @@ class KartSablonuTests(TestCase):
     def test_ingilizce_icerik_lang_en(self):
         html = self._sozluk("bank")
         self.assertIn('<html lang="tr">', html)
-        self.assertIn('<h3 lang="en"', html)
+        self.assertIn('<h1 lang="en"', html)
 
     def test_girisli_dugme_listede_durumunu_gosterir(self):
         UserWordLink.objects.create(user=self.user, word=self.bank)
@@ -274,7 +275,8 @@ class KartSablonuTests(TestCase):
     def test_karanlik_mod_siniflari(self):
         html = self._sozluk("bank")
         kart = html[html.index("<article"):html.index("</article>")]
-        self.assertGreater(kart.count("dark:"), 15)
+        # Defter teması: .lv-* sınıfları koyu temayı CSS değişkenleriyle çözer.
+        self.assertGreater(kart.count("dark:") + kart.count("lv-"), 15)
 
 
 class ListeUclariTests(TestCase):

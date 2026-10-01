@@ -67,7 +67,13 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
         {% endfor %}
     </nav>
     {% endif %}
-    {% include 'pages/words/_sozlukSonuclari.html' %}
+    {% if kelime_sayfasi and kartlar %}
+        {# Kelime sayfası: defter maddesi (rapor 18.12); ifadeler ve diğer sonuçlar altında. #}
+        {% include 'pages/words/_madde.html' %}
+        {% include 'pages/words/_sozlukSonuclari.html' with madde=True %}
+    {% else %}
+        {% include 'pages/words/_sozlukSonuclari.html' %}
+    {% endif %}
 {% else %}
     {# ---------- Keşfet: boş hâl (rapor 4.1) ---------- #}
     <div class="mt-10 space-y-12">

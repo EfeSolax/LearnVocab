@@ -114,7 +114,45 @@ def sozluk_kelime(request, slug):
                                f"kullanımı — LearnVocab Sözlük")
     baglam["ekmek_kirintisi"] = _ekmek_kirintisi(sonuc)
     baglam["yapisal_veri"] = _yapisal_veri(sonuc, baglam["kartlar"], baglam["ekmek_kirintisi"])
+    if baglam["kartlar"]:
+        baglam.update(_madde_baglami(sonuc, baglam["kartlar"]))
     return render(request, "pages/sozluk.html", baglam)
+
+
+def _madde_baglami(sonuc, kartlar):
+    """
+    Kelime sayfasının defter maddesi için ek veri (rapor 18.12; örnek
+    ozetler/tasarim-ornekleri/defter/kelime.html). Üç küçük sorgu:
+      aile    -> aynı ailedeki kelimeler, her birinin ilk Türkçe anlamıyla (ağaç çizimi)
+      komsular -> sözlükte alfabetik olarak hemen önceki ve sonraki dizine açık kelimeler
+      sayfa_no -> maddenin "sayfa numarası": dizine açık kelimeler içindeki alfabetik sırası
+    Komşular yalnızca Google'a açık kelimelerdir (rapor 18.15): kapalı sayfaya bağlantı verilmez.
+    """
+    from .models import Meaning, Word
+
+    aile, gorulen = [], {k.id for k in kartlar}
+    for kart in kartlar:
+        for uye in kart.aile:
+            if uye.pk not in gorulen:
+                gorulen.add(uye.pk)
+                aile.append(uye)
+    aile = aile[:6]
+    ilk_anlam = {}
+    for wid, tr in (Meaning.objects.filter(word__in=aile).order_by("word_id", "sort_order", "id")
+                    .values_list("word_id", "meaning_tr")):
+        ilk_anlam.setdefault(wid, tr)
+    aile_satirlari = [{"text": u.text, "anlam": ilk_anlam.get(u.pk, "")} for u in aile]
+
+    acik = Word.objects.filter(dizinde=True).exclude(text__contains=" ")
+    oncekiler = list(acik.filter(text__lt=sonuc.sorgu).order_by("-text")
+                     .values_list("text", flat=True).distinct()[:4])[::-1]
+    sonrakiler = list(acik.filter(text__gt=sonuc.sorgu).order_by("text")
+                      .values_list("text", flat=True).distinct()[:4])
+    return {
+        "aile_satirlari": aile_satirlari,
+        "komsular": (oncekiler, sonrakiler),
+        "sayfa_no": acik.filter(text__lt=sonuc.sorgu).values("text").distinct().count() + 1,
+    }
 
 
 def _ekmek_kirintisi(sonuc):
