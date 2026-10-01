@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LearnVocab tema örnekleri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Inter:wght@400;500;600;700&family=Nunito:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+/* ===================================================================
+   Bu dosya yalnızca öneri. Sitede hiçbir şey değişmedi.
+   Her tema bir avuç değişkenden (token) ibaret: gerçek sitede de
+   Tailwind'e bu değişkenler verilecek, sayfalar yalnızca adları kullanacak.
+   =================================================================== */
+
+/* ---------- Ortak ölçüler: iki temada da aynı ---------- */
+.tema {
+  --fs-xs: 13px;   /* yalnızca yasal/önemsiz not */
+  --fs-sm: 15px;   /* yardımcı bilgi: tür, seviye, sayaç */
+  --fs-base: 17px; /* gövde metni, düğme */
+  --fs-lg: 20px;   /* Türkçe anlam: sayfanın en önemli bilgisi */
+  --fs-xl: 24px;   /* bölüm başlığı */
+  --fs-2xl: 34px;  /* kelime başlığı */
+  --fs-3xl: 46px;  /* L&P kartındaki kelime */
+  --satir: 1.55;
+  --bosluk: 16px;  /* telefon kenar boşluğu */
+  --kose: 14px;
+  --dugme-boy: 52px;
+}
+
+/* ---------- Tema A: Mürekkep (sakin, sözlük güveni) ---------- */
+.tema[data-tema="a"] {
+  --zemin: #ffffff;
+  --yuzey: #f6f7f9;
+  --kart: #ffffff;
+  --cizgi: #e3e6eb;
+  --yazi: #14171f;
+  --soluk: #586070;
+  --vurgu: #1f5bd8;
+  --vurgu-yazi: #ffffff;
+  --vurgu-acik: #eaf0fd;
+  --isaret: #ffe27a;      /* fosforlu kalem: günün kelimesi, vurgulanan kelime */
+  --isaret-yazi: #3d3000;
+  --iyi: #0f7a55; --iyi-acik: #e6f5ee;
+  --kotu: #b8401a; --kotu-acik: #fcece6;
+  --golge: 0 1px 2px rgba(20,23,31,.06), 0 1px 1px rgba(20,23,31,.04);
+  --dugme-golge: none;
+  --govde-font: 'Inter', system-ui, sans-serif;
+  --baslik-font: 'Source Serif 4', Georgia, serif;
+  --kelime-font: 'Source Serif 4', Georgia, serif;
+}
+.tema[data-tema="a"][data-koyu] {
+  --zemin: #0f1115; --yuzey: #161920; --kart: #1a1d25; --cizgi: #2a2f3a;
+  --yazi: #e8eaef; --soluk: #a0a7b4;
+  --vurgu: #7ea6ff; --vurgu-yazi: #0b1020; --vurgu-acik: #1c2740;
+  --isaret: #5a4a12; --isaret-yazi: #ffe9a3;
+  --iyi: #4fd1a1; --iyi-acik: #11281f; --kotu: #ff9a76; --kotu-acik: #2e1810;
+  --golge: none;
+}
+
+/* ---------- Tema B: Kapibara (sıcak, oyunlu, maskota uygun) ---------- */
+.tema[data-tema="b"] {
+  --zemin: #fffdf9;
+  --yuzey: #f7f2ea;
+  --kart: #ffffff;
+  --cizgi: #ebe3d6;
+  --yazi: #2a221d;
+  --soluk: #6b5f56;
+  --vurgu: #0e7c59;
+  --vurgu-yazi: #ffffff;
+  --vurgu-acik: #e3f3ec;
+  --isaret: #ffd9b8;      /* yuzu turuncusu */
+  --isaret-yazi: #5a2a08;
+  --turuncu: #ec7a33;
+  --iyi: #0e7c59; --iyi-acik: #e3f3ec;
+  --kotu: #c2410c; --kotu-acik: #fdeee4;
+  --golge: 0 2px 0 #ebe3d6;
+  --dugme-golge: 0 4px 0 #0a5e43;
+  --kose: 18px;
+  --govde-font: 'Nunito', system-ui, sans-serif;
+  --baslik-font: 'Nunito', system-ui, sans-serif;
+  --kelime-font: 'Fredoka', 'Nunito', sans-serif;
+}
+.tema[data-tema="b"][data-koyu] {
+  --zemin: #17130f; --yuzey: #201b16; --kart: #241e18; --cizgi: #3a3129;
+  --yazi: #f3ece4; --soluk: #b8aa9c;
+  --vurgu: #3fcf98; --vurgu-yazi: #0c1f17; --vurgu-acik: #15342a;
+  --isaret: #5b3416; --isaret-yazi: #ffd9b8;
+  --iyi: #3fcf98; --iyi-acik: #15342a; --kotu: #ff9a6b; --kotu-acik: #33190c;
+  --golge: 0 2px 0 #0d0a08; --dugme-golge: 0 4px 0 #1f8a63;
+}
+
+/* ===================================================================
+   Sayfa iskeleti (bu kısım örnek göstericinin kendisi)
+   =================================================================== */
+:root { --dis: #e9ebef; --dis-yazi: #1b1e25; }
+@media (prefers-color-scheme: dark) { :root { --dis: #0b0c0f; --dis-yazi: #e6e8ec; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--dis); color: var(--dis-yazi); font-family: Inter, system-ui, sans-serif; }
+.ust { max-width: 1180px; margin: 0 auto; padding: 24px 16px 8px; }
+.ust h1 { font-size: 22px; margin: 0 0 4px; }
+.ust p { margin: 0 0 16px; font-size: 15px; opacity: .8; line-height: 1.5; }
+.secimler { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.grup { display: inline-flex; background: rgba(127,127,127,.15); border-radius: 10px; padding: 3px; }
+.grup button { border: 0; background: none; color: inherit; font: 600 14px Inter, sans-serif; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
+.grup button[aria-pressed="true"] { background: #fff; color: #111; box-shadow: 0 1px 2px rgba(0,0,0,.15); }
+.sahne { max-width: 1180px; margin: 0 auto; padding: 16px; display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
+.cerceve-baslik { font: 600 15px Inter, sans-serif; margin: 0 0 8px 4px; }
+.cerceve-baslik small { font-weight: 400; opacity: .7; }
+.cerceve { width: 390px; max-width: calc(100vw - 32px); height: 800px; border-radius: 34px; overflow: hidden; border: 8px solid #1b1e25; box-shadow: 0 20px 50px rgba(0,0,0,.18); }
+.sahne.masaustu { flex-direction: column; align-items: center; }
+.sahne.masaustu .cerceve { width: 1100px; max-width: calc(100vw - 32px); height: 720px; border-radius: 12px; border-width: 6px; }
+
+/* ===================================================================
+   Uygulamanın kendisi: yalnızca değişkenleri kullanır
+   =================================================================== */
+.tema { height: 100%; display: flex; flex-direction: column; background: var(--zemin); color: var(--yazi);
+        font-family: var(--govde-font); font-size: var(--fs-base); line-height: var(--satir); }
+.tema * { -webkit-font-smoothing: antialiased; }
+.tema button { font: inherit; }
+.ses, .dugme.ikincil { color: var(--yazi); }
+.ustcubuk { display: flex; align-items: center; justify-content: space-between; padding: 12px var(--bosluk);
+            border-bottom: 1px solid var(--cizgi); background: var(--zemin); }
+.logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 18px; letter-spacing: -.01em; }
+.logo i { width: 30px; height: 30px; border-radius: 9px; background: var(--vurgu); display: grid; place-items: center;
+          color: var(--vurgu-yazi); font-style: normal; font-family: var(--kelime-font); font-size: 17px; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--yuzey); border: 1px solid var(--cizgi);
+          display: grid; place-items: center; font-weight: 700; font-size: 15px; color: var(--soluk); }
+.ust-menu { display: none; gap: 4px; }
+.ust-menu a { padding: 8px 12px; border-radius: 10px; color: var(--soluk); font-weight: 600; font-size: var(--fs-sm); text-decoration: none; }
+.ust-menu a.secili { color: var(--yazi); background: var(--yuzey); }
+.icerik { flex: 1; overflow-y: auto; }
+.sutun { max-width: 680px; margin: 0 auto; padding: 20px var(--bosluk) 32px; }
+.altcubuk { display: flex; justify-content: space-around; border-top: 1px solid var(--cizgi); background: var(--zemin); padding: 8px 4px 14px; }
+.altcubuk a { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12.5px; font-weight: 600; color: var(--soluk); text-decoration: none; min-width: 60px; }
+.altcubuk a svg { width: 24px; height: 24px; }
+.altcubuk a.secili { color: var(--vurgu); }
+.masaustu .altcubuk { display: none; }
+/* L&P oturumu (rapor 18.10): üst çubuk ve alt menü gizli, tek çıkış ✕ */
+.tema.oturum .ustcubuk, .tema.oturum .altcubuk { display: none; }
+.tema.oturum .sutun { padding-top: 28px; }
+.tema.oturum .lp-kart { min-height: 440px; }
+.masaustu .ust-menu { display: flex; }
+
+h2.sayfa-baslik { font-family: var(--baslik-font); font-size: 30px; line-height: 1.15; margin: 4px 0 10px; letter-spacing: -.015em; }
+.giris-metin { font-size: var(--fs-base); color: var(--soluk); margin: 0 0 20px; }
+.dugme { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: var(--dugme-boy);
+         border: 0; border-radius: var(--kose); background: var(--vurgu); color: var(--vurgu-yazi);
+         font-weight: 700; font-size: var(--fs-base); cursor: pointer; box-shadow: var(--dugme-golge); }
+.dugme.ikincil { background: var(--kart); color: var(--yazi); border: 1.5px solid var(--cizgi); box-shadow: var(--golge); }
+.tema[data-tema="b"] .dugme { text-transform: none; letter-spacing: .01em; }
+.not { font-size: var(--fs-sm); color: var(--soluk); text-align: center; margin: 8px 0 0; }
+.arama { display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 16px; border-radius: var(--kose);
+         background: var(--kart); border: 1.5px solid var(--cizgi); color: var(--soluk); font-size: var(--fs-base); box-shadow: var(--golge); }
+.arama svg { width: 20px; height: 20px; flex: none; }
+.etiket { font-size: var(--fs-sm); font-weight: 700; color: var(--soluk); margin: 28px 0 10px; }
+.kart { background: var(--kart); border: 1px solid var(--cizgi); border-radius: var(--kose); padding: 18px; box-shadow: var(--golge); }
+.kart + .kart { margin-top: 12px; }
+.ust-etiket { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+              background: var(--isaret); color: var(--isaret-yazi); padding: 2px 8px; border-radius: 6px; }
+.satir { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.kelime { font-family: var(--kelime-font); font-weight: 600; font-size: 28px; line-height: 1.2; margin: 10px 0 2px; letter-spacing: -.01em; }
+.anlam { font-size: var(--fs-lg); font-weight: 700; margin: 2px 0 6px; }
+.ornek { font-size: var(--fs-base); color: var(--yazi); margin: 8px 0 0; padding-left: 12px; border-left: 3px solid var(--isaret); }
+.seviye { font-size: 13px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--vurgu-acik); color: var(--vurgu); white-space: nowrap; }
+.ses { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 999px;
+       border: 1.5px solid var(--cizgi); background: var(--kart); font-size: var(--fs-sm); font-weight: 600; cursor: pointer; }
+.ses svg { width: 16px; height: 16px; }
+.sesler { display: flex; gap: 8px; margin: 10px 0 4px; }
+.seri { display: flex; align-items: center; gap: 14px; }
+.seri b { font-size: 30px; line-height: 1; }
+.kapibara { width: 52px; height: 52px; border-radius: 16px; background: var(--yuzey); border: 1.5px dashed var(--cizgi);
+            display: grid; place-items: center; font-size: 11px; color: var(--soluk); text-align: center; line-height: 1.1; flex: none; }
+
+/* Kelime sayfası */
+.kirinti { font-size: var(--fs-sm); color: var(--soluk); margin: 14px 0 12px; }
+.kirinti b { color: var(--yazi); font-weight: 600; }
+.baslik-kelime { font-family: var(--kelime-font); font-size: var(--fs-2xl); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -.02em; }
+.tur { font-size: var(--fs-sm); color: var(--soluk); }
+.anlam-blok { padding: 18px 0; border-top: 1px solid var(--cizgi); }
+.anlam-blok:first-of-type { border-top: 0; }
+.anlam-no { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: var(--yuzey);
+            font-size: 14px; font-weight: 700; color: var(--soluk); margin-right: 8px; vertical-align: 3px; }
+.tanim { font-size: 16px; color: var(--soluk); margin: 4px 0 0; }
+.baglantilar { display: flex; gap: 18px; margin-top: 12px; }
+.baglantilar a { color: var(--vurgu); font-weight: 600; font-size: var(--fs-sm); text-decoration: none; }
+.yakin { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; font-size: var(--fs-sm); color: var(--soluk); }
+.yakin span { background: var(--yuzey); color: var(--yazi); padding: 4px 12px; border-radius: 999px; font-weight: 600; }
+.listeme { margin-top: 20px; }
+
+/* L&P */
+.ilerleme { display: flex; align-items: center; gap: 12px; font-size: var(--fs-sm); color: var(--soluk); font-weight: 600; }
+.ilerleme .cubuk { flex: 1; height: 10px; border-radius: 99px; background: var(--yuzey); overflow: hidden; }
+.ilerleme .cubuk i { display: block; height: 100%; width: 35%; background: var(--vurgu); border-radius: 99px; }
+.lp-kart { margin-top: 28px; min-height: 300px; border-radius: 24px; background: var(--kart); border: 1.5px solid var(--cizgi);
+           box-shadow: var(--golge), 0 12px 30px rgba(0,0,0,.06); display: flex; flex-direction: column; align-items: center;
+           justify-content: center; padding: 24px; text-align: center; cursor: pointer; }
+.lp-kelime { font-family: var(--kelime-font); font-size: var(--fs-3xl); font-weight: 600; line-height: 1.1; letter-spacing: -.01em; }
+.lp-ipucu { font-size: var(--fs-sm); color: var(--soluk); margin-top: 14px; }
+.cevap { display: none; width: 100%; margin-top: 18px; }
+.lp-kart.acik .cevap { display: block; }
+.lp-kart.acik .lp-ipucu { display: none; }
+.balon { display: flex; gap: 12px; align-items: flex-start; text-align: left; }
+.balon .ic { background: var(--vurgu-acik); border-radius: 16px; border-top-left-radius: 4px; padding: 12px 14px; flex: 1; }
+.balon .ic small { display: block; font-size: var(--fs-sm); color: var(--soluk); }
+.balon .ic b { font-size: 22px; }
+.lp-ornek { font-size: 16px; color: var(--soluk); margin-top: 12px; text-align: left; }
+.lp-dugmeler { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+.lp-dugmeler .dugme.hayir { background: var(--kotu-acik); color: var(--kotu); box-shadow: none; }
+.lp-dugmeler .dugme.evet { background: var(--iyi-acik); color: var(--iyi); box-shadow: none; }
+.tema[data-tema="b"] .lp-dugmeler .dugme.hayir { box-shadow: 0 4px 0 color-mix(in srgb, var(--kotu) 35%, transparent); }
+.tema[data-tema="b"] .lp-dugmeler .dugme.evet { box-shadow: 0 4px 0 color-mix(in srgb, var(--iyi) 35%, transparent); }
+
+/* Ölçü tablosu */
+.olcu { max-width: 1180px; margin: 8px auto 40px; padding: 0 16px; }
+.olcu .tema { height: auto; border-radius: 16px; overflow: hidden; border: 1px solid rgba(127,127,127,.25); }
+.olcu table { width: 100%; border-collapse: collapse; }
+.olcu td { padding: 10px 16px; border-top: 1px solid var(--cizgi); vertical-align: baseline; }
+.olcu td:first-child { width: 170px; color: var(--soluk); font-size: 14px; white-space: nowrap; }
+.paletler { display: flex; flex-wrap: wrap; gap: 10px; padding: 16px; }
+.renk { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.renk i { width: 28px; height: 28px; border-radius: 8px; border: 1px solid var(--cizgi); }
+</style>
+</head>
+<body>
+
+<div class="ust">
+  <h1>LearnVocab: tema örnekleri</h1>
+  <p>Bu bir öneri dosyası; sitede hiçbir şey değişmedi. Solda <b>A · Mürekkep</b>, sağda <b>B · Kapibara</b>. İkisinde de içerik, yazı boyutları ve sıra aynı; yalnızca renk, yazı tipi ve düğme dili farklı. L&amp;P'de karta dokununca anlam açılır.</p>
+  <div class="secimler">
+    <div class="grup" data-secim="sayfa">
+      <button aria-pressed="true" data-deger="ana">Ana Sayfa</button>
+      <button aria-pressed="false" data-deger="kelime">Kelime sayfası</button>
+      <button aria-pressed="false" data-deger="lp">Learn &amp; Pass</button>
+    </div>
+    <div class="grup" data-secim="gorunum">
+      <button aria-pressed="true" data-deger="acik">Açık</button>
+      <button aria-pressed="false" data-deger="koyu">Koyu</button>
+    </div>
+    <div class="grup" data-secim="ekran">
+      <button aria-pressed="true" data-deger="telefon">Telefon</button>
+      <button aria-pressed="false" data-deger="masaustu">Masaüstü</button>
+    </div>
+  </div>
+</div>
+
+<div class="sahne" id="sahne">
+  <div><div class="cerceve-baslik">A · Mürekkep <small>— sakin, sözlük gibi güvenilir</small></div><div class="cerceve"><div class="tema" data-tema="a"></div></div></div>
+  <div><div class="cerceve-baslik">B · Kapibara <small>— sıcak, oyunlu, maskota uygun</small></div><div class="cerceve"><div class="tema" data-tema="b"></div></div></div>
+</div>
+
+<div class="olcu">
+  <div class="cerceve-baslik">Yazı ölçüleri (iki temada aynı)</div>
+  <div class="tema" data-tema="a" id="olcu"></div>
+</div>
+
+<template id="t-iskelet">
+  <header class="ustcubuk">
+    <div class="logo"><i>L</i>LearnVocab</div>
+    <nav class="ust-menu">
+      <a data-bolum="sozluk">Sözlük</a><a data-bolum="calisma">Çalışmalar</a><a data-bolum="ana">Ana Sayfa</a><a>Okumalar</a><a>Yazılar</a>
+    </nav>
+    <div class="avatar">E</div>
+  </header>
+  <main class="icerik"><div class="sutun"></div></main>
+  <nav class="altcubuk">
+    <a data-bolum="sozluk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5Z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></svg>Sözlük</a>
+    <a data-bolum="calisma"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Çalışmalar</a>
+    <a data-bolum="ana"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-8Z"/></svg>Ana Sayfa</a>
+    <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>Okumalar</a>
+    <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/></svg>Yazılar</a>
+  </nav>
+</template>
+
+<template id="t-ana">
+  <div class="kart seri">
+    <div class="kapibara">kapibara<br>yeri</div>
+    <div style="flex:1">
+      <b>12</b> <span style="font-weight:700">günlük seri</span>
+      <div style="font-size:var(--fs-sm);color:var(--soluk)">Bugün 8 kelime tekrarın var.</div>
+    </div>
+  </div>
+  <div style="margin-top:16px">
+    <button class="dugme">Bugünün çalışmasına başla <span aria-hidden="true">→</span></button>
+    <p class="not">Yaklaşık 4 dakika</p>
+  </div>
+  <div class="etiket">Sözlük'te ara</div>
+  <div class="arama"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>İngilizce veya Türkçe ara</div>
+  <div class="etiket">Bugün</div>
+  <div class="kart">
+    <div class="satir"><span class="ust-etiket">Günün kelimesi</span><span class="seviye">A2</span></div>
+    <div class="kelime" lang="en">coin</div>
+    <div class="anlam">madeni para</div>
+    <div class="sesler"><button class="ses"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>US</button><button class="ses"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>UK</button></div>
+    <p class="ornek" lang="en">She found a shiny coin on the sidewalk during her morning walk.</p>
+  </div>
+  <div class="kart">
+    <div class="satir"><span class="ust-etiket">Günün ifadesi</span><span class="seviye">B1</span></div>
+    <div class="kelime" lang="en">when it comes to</div>
+    <div class="anlam">söz konusu … olunca</div>
+    <p class="ornek" lang="en">When it comes to cooking, my father is the expert.</p>
+  </div>
+</template>
+
+<template id="t-kelime">
+  <div class="arama"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span style="color:var(--yazi)">bank</span></div>
+  <div class="kirinti">Sözlük › A1 kelimeleri › <b>bank</b></div>
+  <div class="kart" style="padding:20px 18px 6px">
+    <div class="satir"><h3 class="baslik-kelime" lang="en">bank</h3><span class="seviye">A1</span></div>
+    <div class="tur">isim · /bæŋk/</div>
+    <div class="sesler"><button class="ses"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>US</button><button class="ses"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>UK</button></div>
+    <div class="anlam-blok">
+      <div class="anlam"><span class="anlam-no">1</span>banka, finans kurumu</div>
+      <p class="tanim" lang="en">a financial institution that accepts deposits and provides loans and other financial services</p>
+      <p class="ornek" lang="en">I need to visit the bank to withdraw cash.</p>
+      <div class="baglantilar"><a>Daha fazla örnek</a><a>Kalıplar</a></div>
+      <div class="yakin">Benzer: <span lang="en">depository</span> · Zıt: <span lang="en">borrower</span></div>
+    </div>
+    <div class="anlam-blok">
+      <div class="anlam"><span class="anlam-no">2</span>nehir kıyısı, sahil</div>
+      <p class="tanim" lang="en">the land alongside a river or stream</p>
+      <p class="ornek" lang="en">We set up a tent on the bank of the river.</p>
+      <div class="baglantilar"><a>Daha fazla örnek</a><a>Kalıplar</a></div>
+    </div>
+  </div>
+  <div class="listeme"><button class="dugme">+ Listeme ekle</button></div>
+  <div class="etiket">Aile</div>
+  <div class="yakin" style="margin-top:0"><span lang="en">bankable</span><span lang="en">banker</span><span lang="en">banking</span></div>
+</template>
+
+<template id="t-lp">
+  <div class="ilerleme"><span>✕</span><div class="cubuk"><i></i></div><span>7/20</span></div>
+  <div class="lp-kart" data-cevir>
+    <div class="lp-kelime" lang="en">trophy</div>
+    <div class="lp-ipucu">Biliyor musun? Kaydır ya da aşağıdan seç.</div>
+    <div class="cevap">
+      <div class="balon">
+        <div class="kapibara">kapibara</div>
+        <div class="ic"><small>Düşündüğün bu muydu?</small><b>kupa, ödül</b></div>
+      </div>
+      <p class="lp-ornek" lang="en">Our team won the trophy three years in a row.</p>
+    </div>
+  </div>
+  <div class="lp-dugmeler">
+    <button class="dugme hayir">← Bilmiyorum</button>
+    <button class="dugme evet">Biliyorum →</button>
+  </div>
+  <p class="not">↶ Geri al</p>
+</template>
+
+<template id="t-olcu">
+  <table>
+    <tr><td>46 · L&amp;P kelimesi</td><td><span style="font-family:var(--kelime-font);font-size:var(--fs-3xl);font-weight:600" lang="en">trophy</span></td></tr>
+    <tr><td>34 · kelime başlığı</td><td><span class="baslik-kelime" lang="en">bank</span></td></tr>
+    <tr><td>24 · bölüm başlığı</td><td><span style="font-size:var(--fs-xl);font-weight:700">Kendi metinlerim</span></td></tr>
+    <tr><td>20 kalın · Türkçe anlam</td><td><span class="anlam">banka, finans kurumu</span></td></tr>
+    <tr><td>17 · gövde, düğme, örnek</td><td><span lang="en">I need to visit the bank to withdraw cash.</span></td></tr>
+    <tr><td>16 soluk · İngilizce tanım</td><td><span class="tanim" lang="en">a financial institution that accepts deposits</span></td></tr>
+    <tr><td>15 · yardımcı bilgi</td><td><span style="font-size:var(--fs-sm);color:var(--soluk)">isim · Benzer · 7/20 · Yaklaşık 4 dakika</span></td></tr>
+    <tr><td>13 · yalnızca etiket</td><td><span class="seviye">A1</span> &nbsp;<span class="ust-etiket">Günün kelimesi</span></td></tr>
+    <tr><td>19 · okuma metni</td><td><span style="font-family:var(--baslik-font);font-size:19px;line-height:1.7" lang="en">Most of us have met someone, talked for ten minutes, and forgotten their name before saying goodbye.</span></td></tr>
+  </table>
+</template>
+
+<script>
+(function () {
+  var durum = { sayfa: 'ana', gorunum: 'acik', ekran: 'telefon' };
+  var bolum = { ana: 'ana', kelime: 'sozluk', lp: 'calisma' };
+
+  function ciz() {
+    document.querySelectorAll('#sahne .tema').forEach(function (t) {
+      t.innerHTML = document.getElementById('t-iskelet').innerHTML;
+      t.querySelector('.sutun').innerHTML = document.getElementById('t-' + durum.sayfa).innerHTML;
+      t.toggleAttribute('data-koyu', durum.gorunum === 'koyu');
+      t.classList.toggle('oturum', durum.sayfa === 'lp');
+      t.querySelectorAll('[data-bolum="' + bolum[durum.sayfa] + '"]').forEach(function (a) { a.classList.add('secili'); });
+    });
+    var o = document.getElementById('olcu');
+    o.innerHTML = document.getElementById('t-olcu').innerHTML;
+    o.toggleAttribute('data-koyu', durum.gorunum === 'koyu');
+    document.getElementById('sahne').classList.toggle('masaustu', durum.ekran === 'masaustu');
+  }
+
+  document.addEventListener('click', function (e) {
+    var d = e.target.closest('.grup button');
+    if (d) {
+      var grup = d.parentNode;
+      grup.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b === d); });
+      durum[grup.dataset.secim] = d.dataset.deger;
+      ciz();
+      return;
+    }
+    var k = e.target.closest('[data-cevir]');
+    if (k) { k.classList.toggle('acik'); }
+  });
+  ciz();
+})();
+</script>
+</body>
+</html>
