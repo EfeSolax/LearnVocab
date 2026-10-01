@@ -12,53 +12,48 @@ v1'de OCR yok: taranmış PDF'te nazik bir hata gösterilir.
 
 {% block page %}
 
-<a href="{% url 'readings' %}" class="inline-flex items-center gap-1 text-sm font-semibold text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200">
-    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
-    Okumalar
-</a>
-
-<h1 class="lv-sayfa-basligi mt-3 mb-1">Kendi metnini ekle</h1>
-<p class="mb-5 text-sm text-gray-600 dark:text-slate-400">Yalnızca sen görürsün. PDF dosyasını saklamıyoruz, yalnızca içindeki yazıyı alıyoruz.</p>
+{# Defter teması (rapor 18.12): deftere bir sayfa ekle; iki sekme (PDF / yapıştır), çizgili kâğıt alanı. #}
+<a href="{% url 'readings' %}" class="lv-el text-[22px] font-bold hover:underline">← Okumalar</a>
+<h1 class="lv-baslik mt-2 !text-[40px] sm:!text-[56px]">Kendi metnini ekle</h1>
+<span class="lv-alt-baslik mt-1 mb-8">yalnızca sen görürsün; PDF dosyasını saklamıyoruz, yalnızca içindeki yazıyı alıyoruz</span>
 
 <form method="post" enctype="multipart/form-data" x-data="{ tur: '{{ tur }}', gonderiliyor: false }" @submit="gonderiliyor = true"
-      class="lv-sayfa p-4 sm:p-5 space-y-4">
+      class="space-y-6">
     {% csrf_token %}
     <input type="hidden" name="tur" :value="tur" value="{{ tur }}">
 
-    <div class="grid grid-cols-2 rounded-lg bg-gray-100 dark:bg-slate-900 p-1 text-sm font-semibold" role="tablist">
+    <div class="lv-sekme-cubugu" role="tablist">
         <button type="button" role="tab" @click="tur = 'pdf'" :aria-selected="(tur === 'pdf').toString()"
-                :class="tur === 'pdf' ? 'bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100 shadow-sm' : 'text-gray-500 dark:text-slate-400'"
-                class="rounded-md py-2">PDF yükle</button>
+                :class="tur === 'pdf' ? 'lv-secili' : ''" class="lv-sekme-dugme">PDF yükle</button>
         <button type="button" role="tab" @click="tur = 'yapistir'" :aria-selected="(tur === 'yapistir').toString()"
-                :class="tur === 'yapistir' ? 'bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100 shadow-sm' : 'text-gray-500 dark:text-slate-400'"
-                class="rounded-md py-2">Metin yapıştır</button>
+                :class="tur === 'yapistir' ? 'lv-secili' : ''" class="lv-sekme-dugme">Metin yapıştır</button>
     </div>
 
     {% if hata %}
-    <p role="alert" class="rounded-lg bg-amber-50 dark:bg-amber-950 px-3 py-2 text-sm text-amber-800 dark:text-amber-200">{{ hata }}</p>
+    <p role="alert" class="lv-not lv-duz text-base font-semibold text-gray-900 dark:text-slate-100">{{ hata }}</p>
     {% endif %}
 
     <div>
-        <label for="baslik" class="mb-1 block text-sm font-semibold text-gray-700 dark:text-slate-300">Başlık <span class="font-normal text-gray-400">(isteğe bağlı)</span></label>
-        <input id="baslik" name="baslik" type="text" maxlength="200" value="{{ baslik }}"
-               class="block w-full rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-gray-900 dark:text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">
+        <label for="baslik" class="lv-el block text-[22px] font-bold">Başlık <span class="text-[19px] !text-gray-500">(isteğe bağlı)</span></label>
+        <input id="baslik" name="baslik" type="text" maxlength="200" value="{{ baslik }}" class="lv-girdi">
     </div>
 
     <div x-show="tur === 'pdf'" {% if tur != 'pdf' %}x-cloak{% endif %}>
-        <label for="dosya" class="mb-1 block text-sm font-semibold text-gray-700 dark:text-slate-300">PDF dosyası</label>
+        <label for="dosya" class="lv-el block text-[22px] font-bold">PDF dosyası</label>
         <input id="dosya" name="dosya" type="file" accept=".pdf,application/pdf"
-               class="block w-full text-sm text-gray-700 dark:text-slate-300 file:mr-3 file:rounded-lg file:border-0 file:bg-indigo-50 file:px-3 file:py-2 file:font-semibold file:text-indigo-700 dark:file:bg-indigo-950 dark:file:text-indigo-300">
-        <p class="mt-1 text-xs text-gray-500 dark:text-slate-400">En çok {{ en_buyuk_mb }} MB ve {{ en_cok_sayfa }} sayfa. Taranmış (fotoğraf) PDF'ler şimdilik okunamıyor.</p>
+               class="lv-sayfa mt-2 block w-full p-4 text-base text-gray-700 file:mr-3 file:rounded-[3px] file:border-0 file:bg-[color:var(--murekkep)] file:px-4 file:py-2 file:font-semibold file:text-[color:var(--kagit)] dark:text-slate-300">
+        <p class="mt-2 text-sm text-gray-600 dark:text-slate-300">En çok {{ en_buyuk_mb }} MB ve {{ en_cok_sayfa }} sayfa. Taranmış (fotoğraf) PDF'ler şimdilik okunamıyor.</p>
     </div>
 
     <div x-show="tur === 'yapistir'" {% if tur != 'yapistir' %}x-cloak{% endif %}>
-        <label for="metin" class="mb-1 block text-sm font-semibold text-gray-700 dark:text-slate-300">Metin</label>
+        <label for="metin" class="lv-el block text-[22px] font-bold">Metin</label>
         <textarea id="metin" name="metin" rows="10" lang="en" placeholder="Okumak istediğin İngilizce metni buraya yapıştır."
-                  class="block w-full rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-gray-900 dark:text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30">{{ yapistirilan }}</textarea>
+                  style="background-image: repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px); background-attachment: local; line-height: 32px;"
+                  class="lv-metin lv-sayfa mt-2 block w-full border-0 bg-[color:var(--kagit-beyaz)] px-5 py-[14px] text-lg text-gray-900 placeholder:italic focus:outline-none focus:ring-2 focus:ring-indigo-500/30 dark:text-slate-100">{{ yapistirilan }}</textarea>
     </div>
 
     <button type="submit" :disabled="gonderiliyor"
-            class="lv-dugme lv-kucuk w-full disabled:opacity-60">
+            class="lv-dugme w-full disabled:opacity-60 sm:w-auto">
         <span x-show="!gonderiliyor">Okumaya başla</span>
         <span x-show="gonderiliyor" x-cloak>Hazırlanıyor…</span>
     </button>

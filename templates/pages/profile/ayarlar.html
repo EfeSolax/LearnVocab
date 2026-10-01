@@ -45,7 +45,7 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
                 <span class="relative">{{ user.cefr|default:"?" }}</span>
             </span>
             <span class="min-w-0 flex-1">
-                <span class="lv-serif block text-xl font-bold">{% if user.cefr %}Seviye testini tekrarla{% else %}Seviye testini çöz{% endif %}</span>
+                <span class="lv-serif block text-lg font-bold leading-tight">{% if user.cefr %}Seviye testini tekrarla{% else %}Seviye testini çöz{% endif %}</span>
                 <span class="block text-base text-gray-600 dark:text-slate-300">{% if user.cefr %}Seviyen: {{ user.cefr }}. Günün kelimesi ve egzersizler buna göre gelir.{% else %}Seviyen henüz belirlenmedi.{% endif %}</span>
             </span>
             <span class="lv-el text-3xl" aria-hidden="true">→</span>
