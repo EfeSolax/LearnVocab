@@ -227,3 +227,5 @@ mark.lv-vurgu { background: var(--kalem); color: inherit; padding: 0 2px; border
   font: 500 18px var(--govde); color: var(--yazi); border-radius: 0; box-shadow: none; }
 .lv-girdi:focus { outline: none; border-bottom-color: var(--murekkep); box-shadow: 0 2px 0 var(--murekkep); }
 .lv-girdi::placeholder { color: var(--soluk); opacity: .7; font-weight: 400; }
+.lv-takvim .lv-buz { color: transparent; }
+.lv-takvim .lv-buz::after { content: "❄"; position: absolute; font-size: 20px; color: #3b82c4; }

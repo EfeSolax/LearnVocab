@@ -115,3 +115,35 @@ class DefterTablosuTests(TestCase):
         self.assertEqual(tablo.count("data-satir"), 5)
         self.assertIn('href="/sozluk/', tablo)
         self.assertNotIn("<form", tablo)
+
+
+class GirisliDefterTests(TestCase):
+    """Girişli kullanıcı da zengin defter sayfasını kendi verisiyle görür (rapor 18.12)."""
+
+    @classmethod
+    def setUpTestData(cls):
+        zengin = dict(sentences=["One.", "Two."], siklik=4.0, collocations=[("a b", "verb_adj")], forms=False)
+        cls.kelime = make_word("sturdy", level="B1", meaning="sağlam", **zengin)
+        cls.user = User.objects.create_user(username="defter", password=SIFRE, first_name="Efe")
+
+    def _html(self):
+        self.client.login(username="defter", password=SIFRE)
+        return self.client.get(reverse("index")).content.decode()
+
+    def test_tablo_listedeki_tekrar_kelimesinden_ve_kaydedilir(self):
+        UserWordLink.objects.create(user=self.user, word=self.kelime)
+        html = self._html()
+        tablo = html[html.index("data-defter-tablosu"):]
+        tablo = tablo[:tablo.index("</section>")]
+        self.assertIn("sturdy", tablo)
+        self.assertIn(f'data-kayit-url="{reverse("learn_pass_verdict")}"', tablo)
+        self.assertIn('data-kaynak="mine"', tablo)
+        self.assertIn("Bugünün tekrarı", html)
+
+    def test_gercek_takvim_okumalar_ve_seviye_isareti(self):
+        html = self._html()
+        self.assertIn("son beş haftan", html)
+        self.assertEqual(html.count('class="lv-bugun"'), 1)
+        self.assertIn("sen buradasın", html)
+        self.assertIn("Bugün başka ne yapsan?", html)
+        self.assertNotIn("Aklına takılanlar", html)        # sık sorulanlar yalnızca misafirde

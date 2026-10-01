@@ -2,7 +2,8 @@
 Misafir ana sayfasının küçük davranışları (rapor 18.12, defter teması):
   - Katlanan defter tablosu: kata dokununca anlam açılır; "biliyordum" kelimenin
     üstünü mürekkeple çizer, "bilmiyordum" kırmızı kalemle daire içine alır.
-    Hiçbir şey kaydedilmez (misafir, rapor 2.3); yalnızca sayfada gösterilir.
+    Misafirde hiçbir şey kaydedilmez (rapor 2.3). Girişlide (data-kayit-url) karar
+    Learn & Pass'e kaydedilir: known / unknown, kaynak "mine" ya da "new"; seriye sayılır.
   - Okuma örneğinde altı işaretli kelimeye dokununca anlam baloncuğu.
   - Seri örneği: son beş haftanın takvimi; bugün kırmızı daire, önceki 12 gün tikli.
 {% endcomment %}
@@ -18,6 +19,15 @@ Misafir ana sayfasının küçük davranışları (rapor 18.12, defter teması):
             var evet = e.target.closest('[data-evet]'), hayir = e.target.closest('[data-hayir]');
             if (!evet && !hayir) { return; }
             satir.classList.add('lv-bitti', evet ? 'lv-biliyor' : 'lv-bilmiyor');
+            if (tablo.dataset.kayitUrl) {
+                var csrf = document.querySelector('meta[name="csrf-token"]');
+                fetch(tablo.dataset.kayitUrl, {
+                    method: 'POST', credentials: 'same-origin',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrf ? csrf.content : '' },
+                    body: JSON.stringify({ word_id: parseInt(satir.dataset.kelimeId, 10), verdict: evet ? 'known' : 'unknown',
+                                           mode: 'karma', kaynak: tablo.dataset.kaynak })
+                }).catch(function () { window.geriAl && window.geriAl.bildir('Bağlantı kurulamadı; bu cevap kaydedilmedi.'); });
+            }
             cevap++; if (evet) { bilinen++; }
             if (cevap === toplam) {
                 document.querySelector('[data-defter-sonuc]').textContent =
