@@ -221,3 +221,9 @@ html.dark .lv-sekme { filter: brightness(.82); }
 
 /* Örnek cümlede kelime: sarı kalem (|isaretle süzgeci) */
 mark.lv-vurgu { background: var(--kalem); color: inherit; padding: 0 2px; border-radius: 2px; }
+
+/* Form girdisi: kâğıttaki çizginin üstüne yazmak (giriş, kayıt, şifre) */
+.lv-girdi { display: block; width: 100%; border: 0; border-bottom: 2px solid var(--satir); background: transparent; padding: 8px 2px;
+  font: 500 18px var(--govde); color: var(--yazi); border-radius: 0; box-shadow: none; }
+.lv-girdi:focus { outline: none; border-bottom-color: var(--murekkep); box-shadow: 0 2px 0 var(--murekkep); }
+.lv-girdi::placeholder { color: var(--soluk); opacity: .7; font-weight: 400; }

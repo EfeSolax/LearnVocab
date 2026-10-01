@@ -12,10 +12,11 @@
 <br>
 <div class="flex min-h-full flex-col justify-center px-6 py-1 lg:px-8 mb-16">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-slate-100">Hesabını oluştur</h2>
+    <h2 class="lv-baslik mt-6 text-center !text-[40px] sm:!text-[52px]">Defterini aç</h2>
+    <p class="lv-alt-baslik mt-1 block text-center">ilk sayfası hazır, bir dakika sürer</p>
   </div>
 
-  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm bg-white dark:bg-slate-800 p-8 rounded-lg shadow-md">
+  <div class="mt-8 lv-sayfa lv-bantli sm:mx-auto sm:w-full sm:max-w-md p-7 sm:p-8">
     
     {% include 'base/messages.html' with margin_class="" %}
     <form action="{% url 'register' %}" method="POST" class="space-y-6">
@@ -23,42 +24,42 @@
       
       {# Rapor 18.23: ad, soyad, e-posta, kullanıcı adı, şifre. Kur seçimi ve "şifre tekrar" yok. #}
       <div>
-        <label for="first_name" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Ad</label>
+        <label for="first_name" class="lv-el block text-[22px] font-bold">Ad</label>
         <div class="mt-2">
           <input id="first_name" type="text" name="first_name" required autocomplete="given-name" value="{{ degerler.first_name }}"
-          class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
+          class="lv-girdi" />
         </div>
       </div>
 
       <div>
-        <label for="last_name" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Soyad</label>
+        <label for="last_name" class="lv-el block text-[22px] font-bold">Soyad</label>
         <div class="mt-2">
           <input id="last_name" type="text" name="last_name" required autocomplete="family-name" value="{{ degerler.last_name }}"
-          class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
+          class="lv-girdi" />
         </div>
       </div>
 
       <div>
-        <label for="email" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">E-posta</label>
+        <label for="email" class="lv-el block text-[22px] font-bold">E-posta</label>
         <div class="mt-2">
           <input id="email" type="email" name="email" required autocomplete="email" value="{{ degerler.email }}"
-          class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
+          class="lv-girdi" />
         </div>
       </div>
 
       <div>
-        <label for="username" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Kullanıcı adı</label>
+        <label for="username" class="lv-el block text-[22px] font-bold">Kullanıcı adı</label>
         <div class="mt-2">
           <input id="username" type="text" name="username" required autocomplete="username" value="{{ degerler.username }}"
-          class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6" />
+          class="lv-girdi" />
         </div>
       </div>
 
       <div x-data="{ goster: false }">
-        <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Şifre</label>
+        <label for="password" class="lv-el block text-[22px] font-bold">Şifre</label>
         <div class="relative mt-2">
           <input id="password" :type="goster ? 'text' : 'password'" type="password" name="password" required autocomplete="new-password"
-          class="block w-full rounded-md border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6 pr-20" />
+          class="lv-girdi" />
           <button type="button" @click="goster = !goster" :aria-pressed="goster.toString()" data-sifre-goster
                   class="absolute inset-y-0 right-0 px-3 text-sm font-semibold text-indigo-600 dark:text-indigo-400"
                   x-text="goster ? 'Gizle' : 'Göster'">Göster</button>
@@ -67,7 +68,7 @@
       </div>
 
       <div>
-        <button type="submit" class="lv-dugme lv-kucuk flex w-full">Kayıt Ol</button>
+        <button type="submit" class="lv-dugme flex w-full">Hesabımı aç</button>
       </div>
     </form>
 
@@ -77,7 +78,7 @@
     </p>
 
     <p class="text-center text-sm/8 text-gray-500 dark:text-slate-400">
-      <a href="{% url 'login' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-400">Hesabınıza giriş yapın!</a>
+      <a href="{% url 'login' %}" class="lv-el text-[21px] font-bold underline decoration-1 underline-offset-4">Hesabınıza giriş yapın!</a>
     </p>
   </div>
 </div>

@@ -10,18 +10,19 @@
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-slate-100">Giriş Yapın!</h2>
+    <h2 class="lv-baslik mt-6 text-center !text-[40px] sm:!text-[52px]">Defterine dön</h2>
+    <p class="lv-alt-baslik mt-1 block text-center">kaldığın sayfa seni bekliyor</p>
   </div>
 
-  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm bg-white dark:bg-slate-800 p-8 rounded-lg shadow-md">
+  <div class="mt-8 lv-sayfa lv-bantli sm:mx-auto sm:w-full sm:max-w-md p-7 sm:p-8">
 
     {% include 'base/messages.html' with margin_class="" %}
 
     {# Giriş gerektiren bir düğmeden gelindiyse kısa açıklama (bkz. LearnVocab/authgate.py) #}
     {% if giris_notu %}
-    <div class="mb-6 rounded-lg border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950 p-4 text-sm" data-giris-notu>
-      <p class="font-semibold text-indigo-900 dark:text-indigo-200">{{ giris_notu.baslik }}</p>
-      {% if giris_notu.ayrinti %}<p class="mt-1 text-indigo-800 dark:text-indigo-300">{{ giris_notu.ayrinti }}</p>{% endif %}
+    <div class="lv-not lv-duz mb-6 text-base text-gray-900 dark:text-slate-100" data-giris-notu>
+      <p class="font-bold">{{ giris_notu.baslik }}</p>
+      {% if giris_notu.ayrinti %}<p class="mt-1 text-gray-700 dark:text-slate-300">{{ giris_notu.ayrinti }}</p>{% endif %}
     </div>
     {% endif %}
 
@@ -30,36 +31,36 @@
       {% if sonraki %}<input type="hidden" name="next" value="{{ sonraki }}">{% endif %}
       {% if neden %}<input type="hidden" name="neden" value="{{ neden }}">{% endif %}
       <div>
-        <label for="username" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Kullanıcı Adı</label>
+        <label for="username" class="lv-el block text-[22px] font-bold">Kullanıcı Adı</label>
         <div class="mt-2">
           <input id="username" type="text" name="username" required autocomplete="off" placeholder="Kullanıcı Adı"
-          class="block w-full rounded-md bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 outline-1 -outline-offset-1 outline-gray-300 dark:outline-slate-600 placeholder:text-gray-400 dark:placeholder:text-slate-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
+          class="lv-girdi" />
         </div>
       </div>
 
       <div>
         <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm/6 font-medium text-gray-900 dark:text-slate-100">Şifre</label>
+          <label for="password" class="lv-el block text-[22px] font-bold">Şifre</label>
           <div class="text-sm">
-            <a href="{% url 'forgot_password' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-400">Şifrenizi mi unuttunuz?</a>
+            <a href="{% url 'forgot_password' %}" class="lv-el text-[21px] font-bold underline decoration-1 underline-offset-4">Şifrenizi mi unuttunuz?</a>
           </div>
         </div>
         <div class="mt-2">
           <input id="password" type="password" name="password" autocomplete="current-password" placeholder="Şifre"
-          class="block w-full rounded-md bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 px-3 py-1.5 text-base text-gray-900 dark:text-slate-100 outline-1 -outline-offset-1 outline-gray-300 dark:outline-slate-600 placeholder:text-gray-400 dark:placeholder:text-slate-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
+          class="lv-girdi" />
         </div>
       </div>
 
       <div>
-        <button type="submit" class="lv-dugme lv-kucuk flex w-full">Giriş Yapın</button>
+        <button type="submit" class="lv-dugme flex w-full">Giriş yap</button>
       </div>
     </form>
 
-    <p class="mt-6 text-center text-sm/6 text-gray-500 dark:text-slate-400">
-      Hesap Oluşturmadınız mı?
+    <p class="mt-7 text-center text-base text-gray-600 dark:text-slate-300">
+      Henüz defterin yok mu?
     </p>
     <p class="text-center text-sm/6 text-gray-500 dark:text-slate-400">
-      <a href="{% url 'register' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-400">Hemen hesap oluşturun!</a>
+      <a href="{% url 'register' %}" class="lv-el text-[21px] font-bold underline decoration-1 underline-offset-4">ücretsiz hesap aç →</a>
     </p>
   </div>
 </div>

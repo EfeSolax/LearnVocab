@@ -1044,7 +1044,14 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - **Yazılar:** değerlendirmede puan öğretmenin kırmızı daireli notu; hatalar kırmızı dalgalı çizgi, "İyi yaptıkların" yeşil, "Hatalar" kırmızı kalem.
   - **Bütün diğer ekranlar** (egzersizler, hesap, ayarlar, giriş/kayıt, seviye testi, bildirim ön ekranı): kartlar kâğıt sayfası (`.lv-sayfa`), ana düğmeler mürekkep düğmesi (`.lv-dugme`), sayfa başlıkları Fraunces, boş durumlar el yazısı notu, seviye rozetleri el çizimi daire.
   - Kapibara (`base/_kapibara.html`) artık çizgi çizim; asıl çizim yine Efe ile (Bölüm 16).
-- **Kalanlar (tasarım):** egzersiz soru ekranları, seviye testi ve giriş/kayıt formları için sayfaya özel ince ayar; logo; Tailwind derlemesi (18.17, Standalone CLI indirmek için Efe'nin izni gerekir).
+- **Sayfalar örneklerdeki gibi baştan kuruldu (2 Ekim, Efe'nin isteği: yalnızca renk değil, düzen de):**
+  - **Kelime sayfası** (`pages/words/_madde.html`, görünüm `_madde_baglami`): dev başlık, her tür açık bir defter maddesi (rapor 4.2'deki "ilki açık, diğerleri kapalı" kuralı arama sonuçlarında sürüyor; kelime sayfasında bütün türler açık), örnek cümlede kelime sarı kalemle (`|isaretle` süzgeci), aile ağacı (üyelerin ilk Türkçe anlamıyla), "tekrar" ve "kullan" notları, sözlükte alfabetik komşular (yalnızca dizine açık kelimeler) ve sayfa numarası.
+  - **Okumalar:** kütüphane kupür kartları; okuma ekranında A−/A+ yazı boyutu (cihazda saklanır) ve okuma sonu (Learn & Pass'e geçiş, sıradaki metin).
+  - **Yazılar:** tarih + büyük başlık, çizgili kâğıt "serbest yazma" kartı, mavi not içinde diyalog önizlemesi, "Yazılarım" defter satırları ve kırmızı daireli puanlar. Serbest yazmada konu el yazısıyla, "kullanmayı dene" yapışkan notu (metinde geçen kelimenin üstü canlı çizilir), çizgili kâğıt yazı alanı.
+  - **Learn & Pass açılışı:** büyük başlık, dört küçük kâğıtta bugünün sayıları, fiş destesi görseli, "Hemen Başla", **"Nasıl oynanır?" üç adım (18.11 açıklama kutusu)**, "Neden işe yarar?" yapışkan notta.
+  - **Egzersizler, Sözlük (Keşfet), göz atma:** büyük başlıklar; seviyeler renkli defter ayraçları, harfler sözlük kenarı dizini.
+  - **Giriş / kayıt:** "Defterine dön" / "Defterini aç" başlıkları, bantlı kâğıt form, kâğıttaki çizgi gibi girdiler (`.lv-girdi`).
+- **Kalanlar (tasarım):** egzersiz soru ve bitiş ekranları, seviye testi ekranları, Hesap / Ayarlar için sayfaya özel düzen; logo; Tailwind derlemesi (18.17, Standalone CLI indirmek için Efe'nin izni gerekir).
 - **Logo:** Şimdilik dokunulmaz, sonra ele alınacak.
 - **Dil:** `<html lang="en">` → **`lang="tr"`**. **YAPILDI (30 Eylül):** `lang` seçili dilden geliyor (`get_current_language`, 18.22'ye hazır). Kelime kartındaki ve okuma baloncuğundaki İngilizce metinler `lang="en"` taşıyor. "BİLMİYORUM" artık doğru görünüyor.
   - Şu an Türkçe büyük harf bozuk: "BİLMİYORUM" ekranda "BILMIYORUM" çıkıyor.
@@ -1643,3 +1650,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-01 (11):** Tanıtım ana sayfası taslağı "fazla klasik" bulundu; iki farklı konsept hazırlandı (`konsept-defter.html`, `konsept-oyna.html`; uygulanmadı).
 - **2026-10-02 (1):** Efe defter yönünü seçti. Defter teması beş sayfaya uygulanmış örneklerle geliştirildi, ana sayfa zenginleştirildi (`ozetler/tasarim-ornekleri/defter/`; uygulanmadı).
 - **2026-10-02 (2):** Defter teması siteye uygulandı: ortak katman (`static/css/defter.css`, Tailwind renk eşlemesi, 17 px kök yazı), yeni misafir ana sayfası (`words.gunun.defter_kelimeleri`), Sözlük kartı, Learn & Pass (dikkat dağıtıcısız, 18.10), Okumalar, yazı değerlendirmesi; diğer ekranlar ortak kalıplarla. 942 test geçiyor.
+- **2026-10-02 (3):** Efe: "örneklerdeki sayfaları da yap". Kelime sayfası, Okumalar, okuma ekranı, Yazılar, serbest yazma, Learn & Pass açılışı, Egzersizler, Sözlük ve giriş/kayıt örneklerdeki düzenle baştan kuruldu. Kelime sayfasında bütün türler açık. 942 test geçiyor.

@@ -14,7 +14,7 @@ Bağlam: seviyeler, harfler; isteğe bağlı secili_seviye, secili_harf
         <span class="sr-only">Seviye:</span>
         {% for s in seviyeler %}
         <a href="{% url 'sozluk_seviye' s|lower %}" {% if s == secili_seviye %}aria-current="page"{% endif %}
-           class="lv-sekme-{{ forloop.counter }} lv-serif rounded-t-lg px-4 font-black text-[#1b1d22] shadow-sm transition-all {% if s == secili_seviye %}pb-3 pt-3 text-2xl{% else %}pb-1.5 pt-2 text-xl hover:pb-3{% endif %}">{{ s }}</a>
+           class="lv-sekme-{{ forloop.counter }} lv-serif rounded-t-lg px-3 sm:px-4 font-black text-[#1b1d22] shadow-sm transition-all {% if s == secili_seviye %}pb-3 pt-3 text-2xl{% else %}pb-1.5 pt-2 text-xl hover:pb-3{% endif %}">{{ s }}</a>
         {% endfor %}
     </div>
     {% endif %}
