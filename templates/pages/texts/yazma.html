@@ -8,95 +8,82 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 {% endcomment %}
 
 {% block title %}Yazılar{% endblock %}
-{% block page_heading %}
-<h1 class="lv-sayfa-basligi mb-5">Yazılar</h1>
-{% endblock %}
+{% block page_heading %}{% endblock %}
 
 {% block page %}
 
+{# Defter teması (rapor 18.12; örnek ozetler/tasarim-ornekleri/defter/yazilar.html) #}
+<time class="lv-tarih">{% now "j F, l" %}</time>
+<h1 class="lv-baslik mt-1 !text-[44px] sm:!text-[64px]">Yazılar</h1>
+<span class="lv-alt-baslik mt-1">bir kelimeyi gerçekten bilmenin yolu: kullanmak</span>
+
 {% if misafir %}
 {# Misafir (rapor 18.3): serbest yazma yok; diyalog egzersizi ve tek bir davet. #}
-<div class="space-y-4" data-misafir-yazilar>
-    <div class="lv-sayfa flex flex-col p-5">
-        <h2 class="lv-serif text-2xl font-bold text-gray-900 dark:text-slate-100">Diyalogda doğru kelime</h2>
-        <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Kısa bir diyalogdaki boşluğa doğru İngilizce kelimeyi yaz.</p>
-        <a href="{% url 'diyalog_page' %}"
-           class="lv-dugme lv-kucuk mt-4 inline-flex">Başla</a>
+<div class="mt-10 grid items-start gap-9 sm:grid-cols-2" data-misafir-yazilar>
+    {% include 'pages/texts/_diyalogNotu.html' %}
+    <div class="lv-sayfa lv-bantli p-6">
+        <p class="lv-el text-[24px] font-bold">serbest yazma</p>
+        <p class="mt-2 text-lg text-gray-700 dark:text-slate-300" data-misafir-daveti>
+            Metin yazıp yapay zekâ ile değerlendirilmesini istiyorsan hemen şimdi
+            <a href="{% url 'login' %}?next={% url 'profile_texts' %}&neden=yazma" class="font-bold underline decoration-1 underline-offset-4">giriş yapabilirsin</a>.
+        </p>
     </div>
-    <p class="rounded-xl bg-indigo-50 dark:bg-indigo-950/60 px-4 py-3 text-sm text-indigo-900 dark:text-indigo-200" data-misafir-daveti>
-        Metin yazıp yapay zekâ ile değerlendirilmesini istiyorsan hemen şimdi
-        <a href="{% url 'login' %}?next={% url 'profile_texts' %}&neden=yazma" class="font-semibold underline">giriş yapabilirsin</a>.
-    </p>
 </div>
 {% else %}
 
-<div class="grid gap-3 sm:grid-cols-2">
-    <div class="lv-sayfa flex flex-col p-5">
-        <h2 class="lv-serif text-2xl font-bold text-gray-900 dark:text-slate-100">Serbest yazma</h2>
-        <p class="mt-1 flex-1 text-sm text-gray-600 dark:text-slate-400">
-            3–8 cümle yaz, Türkçe geri bildirim al: neyi iyi yaptığını ve gerçek hataları.
-        </p>
-        {% if yazabilir %}
-            <a href="{% url 'new_text_page' %}"
-               class="lv-dugme lv-kucuk mt-4 inline-flex">
-                Yazmaya başla
-            </a>
-            {% if kalan_hak is not None %}
-            <p class="mt-2 text-xs text-gray-500 dark:text-slate-400">Bugün {{ kalan_hak }} metin daha yazabilirsin.</p>
+<div class="mt-10 grid items-start gap-9 sm:grid-cols-2">
+    {# ---------- Serbest yazma: çizgili kâğıt ---------- #}
+    <div class="lv-sayfa lv-bantli overflow-hidden">
+        <div class="bg-[repeating-linear-gradient(transparent_0_31px,var(--satir)_31px_32px)] px-6 pb-6 pt-7">
+            <p class="lv-el text-[24px] font-bold leading-8">serbest yazma</p>
+            <p class="text-lg leading-8 text-gray-800 dark:text-slate-200">3–8 cümle yaz, Türkçe geri bildirim al: neyi iyi yaptığını ve gerçek hataları.</p>
+            <p class="lv-metin text-lg italic leading-8 text-gray-500 dark:text-slate-400" lang="en">Last week I finally…</p>
+            {% if yazabilir %}
+                <a href="{% url 'new_text_page' %}" class="lv-dugme mt-5">Yazmaya başla</a>
+                {% if kalan_hak is not None %}
+                <p class="lv-el mt-3 text-[21px]">bugün {{ kalan_hak }} metin daha yazabilirsin</p>
+                {% endif %}
+            {% else %}
+                <p class="lv-el mt-4 text-[22px] leading-snug">{{ sinir_mesaji }}</p>
             {% endif %}
-        {% else %}
-            <p class="mt-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 px-4 py-2.5 text-sm text-indigo-900 dark:text-indigo-200">
-                {{ sinir_mesaji }}
-            </p>
-        {% endif %}
+        </div>
     </div>
 
-    <div class="lv-sayfa flex flex-col p-5">
-        <h2 class="lv-serif text-2xl font-bold text-gray-900 dark:text-slate-100">Diyalogda doğru kelime</h2>
-        <p class="mt-1 flex-1 text-sm text-gray-600 dark:text-slate-400">
-            Kısa bir diyalogdaki boşluğa listendeki doğru kelimeyi yaz.
-        </p>
-        <a href="{% url 'diyalog_page' %}"
-           class="mt-4 inline-flex items-center justify-center rounded-xl border border-indigo-600 px-4 py-2.5 text-sm font-semibold text-indigo-700 hover:bg-indigo-50 dark:border-indigo-400 dark:text-indigo-300 dark:hover:bg-indigo-950/60">
-            Başla
-        </a>
-    </div>
+    {# ---------- Diyalog: mavi not ---------- #}
+    {% include 'pages/texts/_diyalogNotu.html' %}
 </div>
 
-<section class="mt-8" aria-labelledby="yazilarim-baslik">
-    <div class="mb-3 flex items-baseline justify-between gap-3">
-        <h2 id="yazilarim-baslik" class="lv-serif text-2xl font-bold text-gray-900 dark:text-slate-100">Yazılarım</h2>
-        <a href="{% url 'about_grading_page' %}" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">Nasıl değerlendiriliyor?</a>
+{# ---------- Yazılarım ---------- #}
+<section class="mt-16" aria-labelledby="yazilarim-baslik">
+    <div class="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 id="yazilarim-baslik" class="lv-bolum !text-3xl">Yazılarım</h2>
+        <a href="{% url 'about_grading_page' %}" class="lv-el-bag !text-[22px]">nasıl değerlendiriliyor?</a>
     </div>
 
     {% if yazilar %}
-    <ul class="lv-sayfa divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden">
+    <ul class="mt-5 border-t-2 border-indigo-600 dark:border-indigo-400">
         {% for yazi in yazilar %}
-        <li>
-            <a href="{% url 'review_text' yazi.id %}" class="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-slate-700/50">
+        <li class="border-b border-[color:var(--satir)]">
+            <a href="{% url 'review_text' yazi.id %}" class="flex items-center gap-4 py-4 hover:bg-[color:var(--kare)]">
                 <div class="min-w-0 flex-1">
-                    <p class="truncate text-sm text-gray-900 dark:text-slate-100">{{ yazi.content|truncatechars:90 }}</p>
-                    <p class="mt-0.5 text-xs text-gray-500 dark:text-slate-400">
+                    <p class="lv-metin truncate text-lg text-gray-900 dark:text-slate-100" lang="en">{{ yazi.content|truncatechars:90 }}</p>
+                    <p class="mt-0.5 text-sm text-gray-600 dark:text-slate-300">
                         {{ yazi.createdAt|date:"j F Y" }}{% if yazi.konu %} · {{ yazi.konu }}{% endif %}
                     </p>
                 </div>
-                <div class="shrink-0 pt-0.5">
+                <div class="shrink-0">
                     {% if yazi.durum == "tamam" %}
-                        <span class="inline-flex items-baseline gap-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 px-2.5 py-0.5 text-sm font-semibold text-emerald-800 dark:text-emerald-200">
-                            {{ yazi.puan_yazisi }}<span class="text-xs font-normal opacity-70">/5</span>
+                        {# Puan: kırmızı kalemle daire içinde #}
+                        <span class="relative grid h-12 w-16 -rotate-6 place-items-center text-red-700 dark:text-red-300">
+                            <svg class="absolute inset-0 h-full w-full" viewBox="0 0 92 74" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M18 46C8 22 40 6 64 12c22 6 24 34 4 46-20 12-52 8-58-12-3-10 6-22 18-28"/></svg>
+                            <span class="lv-el relative text-[24px] font-bold !text-red-700 dark:!text-red-300">{{ yazi.puan_yazisi }}<span class="text-base">/5</span></span>
                         </span>
                     {% elif yazi.durum == "bekliyor" %}
-                        <span class="inline-flex rounded-full bg-yellow-100 dark:bg-yellow-900/70 px-2.5 py-0.5 text-xs font-semibold text-yellow-800 dark:text-yellow-200" data-etiket="bekliyor">
-                            Henüz değerlendirilmedi
-                        </span>
+                        <span class="lv-el inline-flex bg-[color:var(--not)] px-2 text-[20px] font-bold !text-gray-800 dark:!text-slate-100" data-etiket="bekliyor">Henüz değerlendirilmedi</span>
                     {% elif yazi.durum == "eski" %}
-                        <span class="inline-flex rounded-full bg-gray-100 dark:bg-slate-700 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:text-slate-300">
-                            Eski değerlendirme · {{ yazi.score }}/100
-                        </span>
+                        <span class="text-sm text-gray-600 dark:text-slate-300">Eski değerlendirme · {{ yazi.score }}/100</span>
                     {% else %}
-                        <span class="inline-flex rounded-full bg-gray-100 dark:bg-slate-700 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:text-slate-300">
-                            Değerlendirilemedi
-                        </span>
+                        <span class="text-sm text-gray-600 dark:text-slate-300">Değerlendirilemedi</span>
                     {% endif %}
                 </div>
             </a>
@@ -104,7 +91,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
         {% endfor %}
     </ul>
     {% else %}
-    <p class="lv-el text-[22px] leading-snug py-2 text-center">
+    <p class="lv-el mt-4 text-[22px] leading-snug">
         Henüz bir şey yazmadın. İlk metnin birkaç cümle olsa yeter.
     </p>
     {% endif %}

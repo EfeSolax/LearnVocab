@@ -136,6 +136,9 @@ def kutuphane_metni(request, slug):
         "baslik": metin.title,
         "metin": metin,
         "kutuphane": True,
+        # Okuma sonu (defter teması, rapor 18.12): kütüphanedeki sıradaki metin, sonda başa döner.
+        "siradaki": (ReadingText.objects.filter(number__gt=metin.number).order_by("number").first()
+                     or ReadingText.objects.exclude(pk=metin.pk).order_by("number").first()),
         **_bolum_baglami(request, metin.paragraphs),
     })
 

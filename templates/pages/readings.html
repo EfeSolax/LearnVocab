@@ -16,22 +16,22 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
 
 {% block page %}
 
-<header class="mb-6">
-    <h1 class="lv-sayfa-basligi">Okumalar</h1>
-    <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Oku, takıldığın kelimeye dokun: anlamı hemen yanında.</p>
+<header class="mb-10">
+    <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">Okumalar</h1>
+    <span class="lv-alt-baslik mt-1">oku, takıldığın kelimeye dokun: anlamı hemen yanında</span>
 </header>
 
 {# ---------- Kendi metinlerim ---------- #}
 <section aria-labelledby="metinlerim-baslik" class="mb-8">
     <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
         <div>
-            <h2 id="metinlerim-baslik" class="lv-serif text-2xl font-bold text-gray-900 dark:text-slate-100">Kendi metinlerim</h2>
-            <p class="text-xs text-gray-500 dark:text-slate-400">Yalnızca sen görürsün.</p>
+            <h2 id="metinlerim-baslik" class="lv-bolum !text-3xl">Kendi metinlerim</h2>
+            <p class="lv-el text-[21px]">yalnızca sen görürsün</p>
         </div>
         <div class="flex gap-2">
             <a href="{% url 'readings_add' %}?tur=yapistir"
                {% if not user.is_authenticated %}data-giris-gerekli="pdf"{% endif %}
-               class="inline-flex items-center rounded-lg px-3 py-2 text-sm font-semibold text-indigo-700 dark:text-indigo-300 ring-1 ring-inset ring-indigo-200 dark:ring-indigo-800 hover:bg-indigo-50 dark:hover:bg-indigo-950">
+               class="lv-dugme lv-ikincil lv-kucuk">
                 Metin yapıştır
             </a>
             <a href="{% url 'readings_add' %}"
@@ -48,8 +48,8 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
         {% for m in metinlerim %}
         <li data-metnim="{{ m.id }}" class="flex items-center gap-2 pl-4 pr-2">
             <a href="{% url 'readings_user_text' m.id %}" class="min-w-0 flex-1 py-3">
-                <span class="block truncate font-semibold text-gray-900 dark:text-slate-100">{{ m.title }}</span>
-                <span class="block text-xs text-gray-500 dark:text-slate-400">{% if m.source_kind == "pdf" %}PDF{% else %}Yapıştırılan metin{% endif %} · ~{{ m.reading_minutes }} dk</span>
+                <span class="lv-serif block truncate text-lg font-bold text-gray-900 dark:text-slate-100">{{ m.title }}</span>
+                <span class="block text-sm text-gray-600 dark:text-slate-300">{% if m.source_kind == "pdf" %}PDF{% else %}Yapıştırılan metin{% endif %} · ~{{ m.reading_minutes }} dk</span>
             </a>
             <button type="button" data-metnim-sil
                     data-sil-url="{% url 'readings_user_text_delete' m.id %}"
@@ -102,7 +102,8 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
 
 {# ---------- Kütüphane ---------- #}
 <section aria-labelledby="kutuphane-baslik">
-    <h2 id="kutuphane-baslik" class="lv-serif text-2xl font-bold text-gray-900 dark:text-slate-100 mb-3">Kütüphane</h2>
+    <h2 id="kutuphane-baslik" class="lv-bolum !text-3xl mt-6">Kütüphane</h2>
+    <span class="lv-bolum-notu mb-5">defterin arasına sıkıştırılmış kısa yazılar</span>
 
     {% if kutuphane_bos %}
     <div class="lv-el text-[22px] leading-snug py-2 text-center">
@@ -124,19 +125,16 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
     </nav>
     {% endif %}
 
-    <ul class="space-y-2">
+    {# Kütüphane metinleri gazete kupürü gibi (defter teması, rapor 18.12) #}
+    <ul class="mt-2 grid gap-7 sm:grid-cols-2">
         {% for m in kutuphane %}
         <li>
             <a href="{% url 'readings_library_text' m.slug %}"
-               class="lv-sayfa flex items-center gap-3 px-4 py-3 hover:border-indigo-300 dark:hover:border-indigo-700">
-                <span class="h-10 w-1 shrink-0 rounded-full bg-{{ m.topic_color }}-400" aria-hidden="true"></span>
-                <span class="min-w-0 flex-1">
-                    <span class="block truncate font-semibold text-gray-900 dark:text-slate-100">{{ m.title|lower|capfirst }}</span>
-                    <span class="block text-xs text-gray-500 dark:text-slate-400">
-                        <span class="text-{{ m.topic_color }}-700 dark:text-{{ m.topic_color }}-300">{{ m.topic_label }}</span>
-                        · ~{{ m.reading_minutes }} dk{% if m.cefr %} · {{ m.cefr }}{% endif %}
-                    </span>
-                </span>
+               class="lv-kupur {% cycle 'lv-kupur-1' 'lv-kupur-2' 'lv-kupur-3' %} block h-full text-gray-900 transition-transform hover:-translate-y-0.5 dark:text-slate-100">
+                <span class="lv-el block text-xl font-bold">{{ m.topic_label|lower }}</span>
+                <span class="lv-serif mt-0.5 block text-[22px] font-bold leading-tight" lang="en">{{ m.title|lower|capfirst }}</span>
+                <span class="lv-metin mt-2 block text-base leading-relaxed text-gray-600 dark:text-slate-300" lang="en">{{ m.body|truncatewords:18 }}</span>
+                <span class="mt-3 flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">{% if m.cefr %}<span class="lv-seviye">{{ m.cefr }}</span>{% endif %}~{{ m.reading_minutes }} dk</span>
             </a>
         </li>
         {% empty %}

@@ -12,14 +12,12 @@ henüz yok, rapor 16).
 
 {% block page %}
 
-<a href="{% url 'profile_texts' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200">
-    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
-    Yazılar
-</a>
-<h1 class="lv-sayfa-basligi mt-2 mb-5">Serbest yazma</h1>
+<a href="{% url 'profile_texts' %}" class="lv-el text-[22px] font-bold hover:underline">← Yazılar</a>
+<h1 class="lv-baslik mt-2 !text-[40px] sm:!text-[56px]">Serbest yazma</h1>
+<span class="lv-alt-baslik mt-1 mb-8">3–8 cümle yeter; akademik olmak zorunda değil</span>
 
 {% if not yazabilir %}
-<div class="rounded-2xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/60 p-5 text-indigo-900 dark:text-indigo-200">
+<div class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
     <p class="font-semibold">{{ sinir_mesaji }}</p>
     <p class="mt-1 text-sm">O zamana kadar <a class="font-semibold underline" href="{% url 'diyalog_page' %}">Diyalogda doğru kelime</a> ile devam edebilirsin.</p>
 </div>
@@ -27,15 +25,16 @@ henüz yok, rapor 16).
 
 {{ konular|json_script:"konular-verisi" }}
 
-<form id="yazmaFormu" method="POST" action="{% url 'create_text' %}" x-data="serbestYazma()" class="space-y-5">
+<form id="yazmaFormu" method="POST" action="{% url 'create_text' %}" x-data="serbestYazma()" class="space-y-8">
     {% csrf_token %}
     <input type="hidden" name="konu" :value="konu">
 
     {# ---------- Konu ---------- #}
-    <section class="lv-sayfa p-4 sm:p-5">
+    <div class="grid items-start gap-8 sm:grid-cols-[1.3fr_1fr]">
+    <section>
         <div class="flex items-baseline justify-between gap-3">
-            <h2 class="text-sm font-semibold text-gray-900 dark:text-slate-100">Konu</h2>
-            <button type="button" @click="baskaKonular()" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 dark:text-indigo-400">Başka öner</button>
+            <h2 class="lv-el text-[24px] font-bold">bugünün konusu</h2>
+            <button type="button" @click="baskaKonular()" class="lv-el-bag !text-[21px]">başka öner</button>
         </div>
         <div class="mt-3 flex flex-wrap gap-2">
             <button type="button" @click="konu = ''"
@@ -47,35 +46,42 @@ henüz yok, rapor 16).
                         class="rounded-full border px-3 py-1.5 text-sm font-medium"></button>
             </template>
         </div>
-        <p x-show="secili" x-cloak class="mt-3 text-sm italic text-gray-600 dark:text-slate-400" x-text="secili ? secili.yonerge : ''"></p>
+        <p x-show="secili" x-cloak class="lv-serif mt-4 text-[22px] font-bold leading-snug" x-text="secili ? secili.yonerge : ''"></p>
     </section>
 
     {# ---------- Kullanmayı dene ---------- #}
-    <section class="lv-sayfa p-4 sm:p-5">
-        <h2 class="text-sm font-semibold text-gray-900 dark:text-slate-100">Kullanmayı dene <span class="font-normal text-gray-500 dark:text-slate-400">· zorunlu değil</span></h2>
+    {# Kullanmayı dene: yapışkan not; metinde geçen kelimenin üstü canlı olarak çizilir. #}
+    <section class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
+        <h2 class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">Kullanmayı dene <span class="text-[20px]">· zorunlu değil</span></h2>
         {% if oneriler %}
-        <ul class="mt-3 flex flex-wrap gap-2">
+        <ul class="mt-2 space-y-1.5">
             {% for kelime in oneriler %}
-            <li class="rounded-xl bg-indigo-50 dark:bg-indigo-950/60 px-3 py-1.5 text-sm">
-                <span class="font-semibold text-indigo-900 dark:text-indigo-200">{{ kelime.text }}</span>
-                {% if kelime.ilk_anlam %}<span class="text-indigo-700/80 dark:text-indigo-300/80"> · {{ kelime.ilk_anlam }}</span>{% endif %}
+            <li class="flex items-baseline justify-between gap-3">
+                <span>
+                    <span lang="en" class="lv-serif text-[19px] font-bold decoration-indigo-600 decoration-[2.5px]" :class="kullanildi('{{ kelime.text|escapejs }}') ? 'line-through' : ''">{{ kelime.text }}</span>
+                    {% if kelime.ilk_anlam %}<span class="text-[15px] text-gray-700 dark:text-slate-300"> · {{ kelime.ilk_anlam }}</span>{% endif %}
+                </span>
+                <span class="lv-el text-[22px] font-bold !text-emerald-700 dark:!text-emerald-300" x-show="kullanildi('{{ kelime.text|escapejs }}')" x-cloak>✓</span>
                 <input type="hidden" name="kelimeler" value="{{ kelime.id }}">
             </li>
             {% endfor %}
         </ul>
         {% else %}
-        <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">Listende henüz kelime yok; istediğin gibi yazabilirsin. Sözlük'te + ile eklediğin kelimeler burada önerilir.</p>
+        <p class="mt-2 text-base text-gray-700 dark:text-slate-300">Listende henüz kelime yok; istediğin gibi yazabilirsin. Sözlük'te + ile eklediğin kelimeler burada önerilir.</p>
         {% endif %}
     </section>
 
-    {# ---------- Metin ---------- #}
+    </div>
+
+    {# ---------- Metin: çizgili kâğıt ---------- #}
     <section>
-        <label for="user_text" class="text-sm font-semibold text-gray-900 dark:text-slate-100">Metnin</label>
+        <label for="user_text" class="lv-el text-[24px] font-bold">Metnin</label>
         <textarea id="user_text" name="user_text" rows="8" required minlength="{{ en_az }}" maxlength="{{ en_cok }}"
                   x-model="metin" spellcheck="false" autocapitalize="sentences"
                   placeholder="3–8 cümle yaz. Akademik olması gerekmiyor."
-                  class="mt-2 block w-full rounded-2xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 p-4 text-base leading-relaxed text-gray-900 dark:text-slate-100 placeholder:text-gray-400 dark:placeholder:text-slate-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"></textarea>
-        <p class="mt-1.5 text-xs" :class="cumle > 8 ? 'text-amber-700 dark:text-amber-300' : 'text-gray-500 dark:text-slate-400'">
+                  style="background-image: repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px); background-attachment: local; line-height: 32px;"
+                  class="lv-metin lv-sayfa mt-2 block w-full border-0 bg-[color:var(--kagit-beyaz)] px-5 py-[14px] text-[19px] text-gray-900 placeholder:italic placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 dark:text-slate-100 dark:placeholder:text-slate-500"></textarea>
+        <p class="lv-el mt-2 text-[21px]" :class="cumle > 8 ? '!text-amber-700 dark:!text-amber-300' : ''">
             <span x-text="cumle"></span> cümle
             <span x-show="cumle > 0 && cumle < 3" x-cloak> · birkaç cümle daha yazabilirsin</span>
             <span x-show="cumle > 8" x-cloak> · kısa tutmak yeterli, 8 cümle idealdir</span>
@@ -84,7 +90,7 @@ henüz yok, rapor 16).
 
     {# ---------- Sertlik ---------- #}
     <fieldset>
-        <legend class="text-sm font-semibold text-gray-900 dark:text-slate-100">Geri bildirim</legend>
+        <legend class="lv-el text-[24px] font-bold">Geri bildirim</legend>
         <div class="mt-2 grid grid-cols-3 gap-2">
             {% for deger, ad, aciklama in sertlikler %}
             <label class="cursor-pointer">
@@ -93,18 +99,18 @@ henüz yok, rapor 16).
             </label>
             {% endfor %}
         </div>
-        <p class="mt-1.5 text-xs text-gray-500 dark:text-slate-400">
+        <p class="mt-2 text-[15px] text-gray-600 dark:text-slate-300">
             {% for deger, ad, aciklama in sertlikler %}<span x-show="sertlik === '{{ deger }}'" {% if deger != sertlik %}x-cloak{% endif %}>{{ aciklama }} Puanı etkilemez.</span>{% endfor %}
         </p>
     </fieldset>
 
     <div>
         <button type="submit" id="gonderDugmesi"
-                class="lv-dugme lv-kucuk w-full disabled:opacity-60 sm:w-auto">
+                class="lv-dugme w-full disabled:opacity-60 sm:w-auto">
             Değerlendir
         </button>
         {% if kalan_hak is not None %}
-        <p class="mt-2 text-xs text-gray-500 dark:text-slate-400">Bugün {{ kalan_hak }} metin daha değerlendirebilirsin.</p>
+        <p class="lv-el mt-3 text-[21px]">bugün {{ kalan_hak }} metin daha değerlendirebilirsin</p>
         {% endif %}
     </div>
 
@@ -139,6 +145,10 @@ function serbestYazma() {
             var m = this.metin.trim();
             if (!m) { return 0; }
             return m.split(/[.!?]+(?:\s+|$)/).filter(function (s) { return s.trim().length > 1; }).length;
+        },
+        kullanildi: function (kelime) {
+            var m = this.metin.toLowerCase();
+            return !!m && new RegExp('\\b' + kelime.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).test(m);
         },
         baskaKonular: function () {
             this.bas = (this.bas + 4) % this.tum.length;
