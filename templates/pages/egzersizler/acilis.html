@@ -16,41 +16,42 @@ Verisi olmayan tip pasif görünür ("Yakında" / "Listende en az 4 kelime olunc
 
 <div class="mx-auto max-w-3xl">
 
+    <header class="mb-8">
+        <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">Egzersizler</h1>
+        <p class="lv-alt-baslik mt-1">listendeki kelimelerle kısa sınavlar</p>
+    </header>
+
     {% if yarim %}
     <a href="{% url 'egzersiz_oturum' pk=yarim.pk %}"
-       class="mb-6 flex items-center justify-between gap-4 rounded-xl border border-indigo-200 dark:border-indigo-900 bg-indigo-50 dark:bg-indigo-950 px-4 py-3 hover:border-indigo-400 dark:hover:border-indigo-600 transition">
-        <span class="text-sm text-indigo-900 dark:text-indigo-200">
-            <span class="font-semibold">Yarım kalan bir turun var.</span>
-            <span class="text-indigo-700 dark:text-indigo-300">{{ yarim.get_tur_display }} · {{ yarim.sira }}/{{ yarim.soru_sayisi }}</span>
+       class="lv-not lv-bantli mb-10 flex items-center justify-between gap-4 text-gray-900 dark:text-slate-100">
+        <span class="text-base">
+            <span class="lv-el block text-[24px] font-bold">Yarım kalan bir turun var.</span>
+            <span>{{ yarim.get_tur_display }} · {{ yarim.sira }}/{{ yarim.soru_sayisi }}</span>
         </span>
-        <span class="shrink-0 rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white">Devam et</span>
+        <span class="lv-dugme lv-kucuk shrink-0">Devam et</span>
     </a>
     {% endif %}
 
-    <div class="grid gap-4 sm:grid-cols-2 sm:items-start">
+    <div class="grid gap-8 sm:grid-cols-2 sm:items-start">
 
         {# --- Hızlı Egzersiz --- #}
         <section class="lv-sayfa flex flex-col p-6">
-            <span class="flex h-11 w-11 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                </svg>
-            </span>
-            <h2 class="mt-4 text-xl font-bold text-gray-900 dark:text-slate-100">Hızlı Egzersiz</h2>
-            <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">
+            <span class="lv-el text-[24px] font-bold">çoğu zaman bu yeter</span>
+            <h2 class="lv-serif mt-1 text-3xl font-black text-gray-900 dark:text-slate-100">Hızlı Egzersiz</h2>
+            <p class="mt-2 text-base text-gray-600 dark:text-slate-300">
                 Listendeki kelimelerin anlamları, iki yönlü. Ayar yok: bas ve başla.
             </p>
 
             {% if liste_sayisi == 0 %}
-            <div class="mt-5 rounded-xl bg-gray-50 dark:bg-slate-900 p-4 text-sm text-gray-700 dark:text-slate-300">
+            <div class="lv-not lv-duz mt-5 text-base text-gray-800 dark:text-slate-200">
                 <p class="font-semibold text-gray-900 dark:text-slate-100">Listen seni bekliyor.</p>
                 <p class="mt-1">Sözlük'te <span class="font-semibold">+</span> ile ya da Learn &amp; Pass'te birkaç kelime ekle; Hızlı Egzersiz onlarla hazır olacak.</p>
-                <a href="{% url 'sozluk' %}" class="mt-3 inline-flex items-center rounded-lg border border-indigo-300 dark:border-indigo-700 px-3 py-1.5 font-semibold text-indigo-700 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-950">
+                <a href="{% url 'sozluk' %}" class="lv-dugme lv-ikincil lv-kucuk mt-3">
                     Sözlük'e git
                 </a>
             </div>
             {% else %}
-            <p class="mt-5 text-sm font-semibold text-gray-500 dark:text-slate-400">
+            <p class="lv-el mt-5 text-[24px] font-bold">
                 {{ hizli_soru_sayisi }} soru
             </p>
             {% if liste_sayisi < hizli_tam %}
@@ -73,13 +74,9 @@ Verisi olmayan tip pasif görünür ("Yakında" / "Listende en az 4 kelime olunc
         {# --- Tempolu Egzersiz --- #}
         <section x-data="{ sayi: {{ varsayilan_sayi }}, tip: 'karisik' }"
                  class="lv-sayfa flex flex-col p-6">
-            <span class="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                </svg>
-            </span>
-            <h2 class="mt-4 text-xl font-bold text-gray-900 dark:text-slate-100">Tempolu Egzersiz</h2>
-            <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">
+            <span class="lv-el text-[24px] font-bold">daha çok çalışmak istersen</span>
+            <h2 class="lv-serif mt-1 text-3xl font-black text-gray-900 dark:text-slate-100">Tempolu Egzersiz</h2>
+            <p class="mt-2 text-base text-gray-600 dark:text-slate-300">
                 Daha çok çalışmak istersen: bütün soru tipleri, karışık ya da tek tipe odaklı.
             </p>
 

@@ -51,6 +51,12 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
 
 {% if sekme == "kesfet" %}
 
+{% if not sorgu %}
+<header class="mb-6">
+    <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">Sözlük</h1>
+    <p class="lv-alt-baslik mt-1">her kelime, Türkçe anlamı ve gerçek bir cümlesiyle</p>
+</header>
+{% endif %}
 {# ---------- Keşfet: arama ---------- #}
 {% url 'sozluk_oneri' as oneri_adresi %}
 <form method="get" action="{% url 'sozluk' %}" role="search">

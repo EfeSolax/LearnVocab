@@ -6,22 +6,25 @@ Bağlam: seviyeler, harfler; isteğe bağlı secili_seviye, secili_harf
 {% endcomment %}
 {% if seviyeler or harfler %}
 <section aria-labelledby="goz-at" data-goz-at>
-    <h2 id="goz-at" class="lv-serif text-2xl font-bold text-gray-900 dark:text-slate-100 mb-2">Kelimelere göz at</h2>
+    <h2 id="goz-at" class="lv-bolum !text-3xl">Kelimelere göz at</h2>
+    <span class="lv-bolum-notu mb-4">sözlüğün sekmeleri: seviyeye ya da harfe göre</span>
     {% if seviyeler %}
-    <div class="flex flex-wrap items-center gap-2">
-        <span class="text-sm text-gray-500 dark:text-slate-400">Seviye:</span>
+    {# Seviyeler: defterin renkli bölüm ayraçları (ana sayfadakiyle aynı renkler) #}
+    <div class="flex flex-wrap items-end gap-1.5">
+        <span class="sr-only">Seviye:</span>
         {% for s in seviyeler %}
         <a href="{% url 'sozluk_seviye' s|lower %}" {% if s == secili_seviye %}aria-current="page"{% endif %}
-           class="rounded-full px-3 py-1 text-sm font-semibold {% if s == secili_seviye %}bg-indigo-600 text-white{% else %}bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 ring-1 ring-inset ring-gray-200 dark:ring-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700{% endif %}">{{ s }}</a>
+           class="lv-sekme-{{ forloop.counter }} lv-serif rounded-t-lg px-4 font-black text-[#1b1d22] shadow-sm transition-all {% if s == secili_seviye %}pb-3 pt-3 text-2xl{% else %}pb-1.5 pt-2 text-xl hover:pb-3{% endif %}">{{ s }}</a>
         {% endfor %}
     </div>
     {% endif %}
     {% if harfler %}
-    <div class="mt-3 flex flex-wrap items-center gap-1.5">
-        <span class="mr-0.5 text-sm text-gray-500 dark:text-slate-400">Harf:</span>
+    {# Harfler: sözlük kenarındaki harf dizini #}
+    <div class="lv-sayfa mt-0 flex flex-wrap items-center gap-1 p-3">
+        <span class="sr-only">Harf:</span>
         {% for h in harfler %}
         <a lang="en" href="{% url 'sozluk_harf' h %}" {% if h == secili_harf %}aria-current="page"{% endif %}
-           class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-sm font-semibold uppercase {% if h == secili_harf %}bg-indigo-600 text-white{% else %}bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 ring-1 ring-inset ring-gray-200 dark:ring-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700{% endif %}">{{ h }}</a>
+           class="lv-serif inline-flex h-10 w-10 items-center justify-center text-xl font-bold {% if h == secili_harf %}lv-isaret text-gray-900 dark:text-slate-100{% else %}text-gray-700 hover:underline dark:text-slate-300{% endif %}">{{ h }}</a>
         {% endfor %}
     </div>
     {% endif %}
