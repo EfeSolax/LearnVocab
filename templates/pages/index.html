@@ -1,117 +1,234 @@
 {% extends 'base/appLayout.html' %}
 
 {% comment %}
-Ana Sayfa (ürün raporu 3; girişsiz ziyaretçi 2.3). Görünüm: LearnVocab/anasayfa.py
+Ana Sayfa (ürün raporu 3; girişsiz ziyaretçi 2.3; defter teması 18.12).
+Görünüm: LearnVocab/anasayfa.py. Örnek tasarım: ozetler/tasarim-ornekleri/defter/index.html
 
 Girişli (yukarıdan aşağı, en önemli en büyük ve en üstte):
-  1. Selam (seviye testi daveti her sayfada ayrı çıkar: pages/seviye/_davetPenceresi.html)
+  1. Tarih + selam (seviye testi daveti her sayfada ayrı çıkar: pages/seviye/_davetPenceresi.html)
   2. Büyük "Bugünün çalışmasına başla" -> Learn & Pass
   3. Şerit: Seri (rapor 18.9, takvimli açılır kutu) · Listemdeki kelime sayısı
-  4. Günün Kelimesi · Günün İfadesi: Sözlük kartlarının küçük hâli, dokununca
-     Sözlük'te ilgili kart açılır (içerik tek yerde: words.arama)
+  4. Günün Kelimesi · Günün İfadesi: yapışkan notlar; dokununca Sözlük'teki kart
   5. Yardım bağlantısı (içerik Bölüm 16)
 
-Girişsiz: kısa tanıtım, Learn & Pass'e başla (misafir), Sözlük'te ara,
-günün kelimesi (B1), giriş / kayıt.
+Girişsiz: tanıtım sayfası. Başlık, misafir L&P, Sözlük'te ara, katlanan defter
+tablosu, günün kelimesi ve ifadesi, seri, "Defterin yapamadığı dört şey",
+okumalar, seviye sekmeleri, hazır liste, sık sorulanlar, hesap çağrısı.
+Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
 {% endcomment %}
 
 {% block title %}LearnVocab{% if user.is_authenticated %} — Ana Sayfa{% else %} — İngilizce kelime öğren{% endif %}{% endblock %}
 {% block meta_aciklama %}<meta name="description" content="LearnVocab ile İngilizce kelime öğren: Türkçe anlamlı sözlük, kaydırarak kelime çalışması, egzersizler, okuma metinleri ve yazma alıştırmaları. Ücretsiz.">{% endblock %}
 {% block page_heading %}{% endblock %}
+{% block sayfa_genisligi %}max-w-4xl{% endblock %}
 
 {% block page %}
-<div class="space-y-6" data-ana-sayfa>
+<div data-ana-sayfa>
 
 {% if user.is_authenticated %}
 
-    {# ---------------- 1. Selam ---------------- #}
-    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">
-        Merhaba, {{ user.first_name|default:user.username }}
-    </h1>
-
+    {# ---------------- 1. Tarih + selam ---------------- #}
+    <time class="lv-tarih">{% now "j F, l" %}</time>
+    <h1 class="lv-baslik mt-1 !text-[40px] sm:!text-[56px]">Merhaba, {{ user.first_name|default:user.username }}</h1>
 
     {# ---------------- 2. Bugünün çalışması ---------------- #}
     <a href="{% url 'learn_pass_page' %}" data-bugunun-calismasi
-       class="group flex items-center justify-between gap-4 rounded-2xl bg-indigo-600 px-6 py-6 sm:py-7 text-white shadow-lg shadow-indigo-200 dark:shadow-none hover:bg-indigo-700 transition">
+       class="lv-dugme mt-6 !flex !min-h-[76px] w-full !justify-between !px-6 text-left">
         <span>
-            <span class="block text-xl sm:text-2xl font-bold">Bugünün çalışmasına başla</span>
-            <span class="mt-1 block text-sm text-indigo-100">Learn &amp; Pass · istediğin an bırakabilirsin</span>
+            <span class="block text-xl font-bold sm:text-2xl">Bugünün çalışmasına başla</span>
+            <span class="mt-0.5 block text-[15px] font-medium opacity-80">Learn &amp; Pass · istediğin an bırakabilirsin</span>
         </span>
-        <svg class="h-7 w-7 shrink-0 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
-        </svg>
+        <span class="text-3xl" aria-hidden="true">→</span>
     </a>
 
     {# ---------------- 3. Şerit: seri + Listem ---------------- #}
-    <div class="grid grid-cols-2 gap-3">
-        {# Seri (rapor 18.9): dokununca takvimli kutu açılır. #}
+    <div class="mt-8 grid grid-cols-2 gap-4">
         {% include 'pages/anasayfa/_seriKutusu.html' %}
         <a href="{% url 'sozluk' %}?sekme=listem" data-liste-sayisi
-           class="rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 px-3 py-4 text-center hover:border-indigo-300 dark:hover:border-indigo-700 transition">
-            <div class="text-2xl font-bold text-gray-900 dark:text-slate-100">{{ liste_sayisi }}</div>
-            <div class="mt-0.5 text-xs text-gray-500 dark:text-slate-400">Listemdeki kelime</div>
+           class="lv-sayfa block px-3 py-4 text-center transition hover:-translate-y-0.5">
+            <div class="lv-serif text-3xl font-black text-gray-900 dark:text-slate-100">{{ liste_sayisi }}</div>
+            <div class="mt-0.5 text-[15px] text-gray-600 dark:text-slate-300">Listemdeki kelime</div>
         </a>
     </div>
 
-    {# ---------------- 4. Günün kelimesi / ifadesi (rapor 18.8): iki ayrı kart ---------------- #}
-    <div class="grid items-start gap-3 sm:grid-cols-2">
+    {# ---------------- 4. Günün kelimesi / ifadesi (rapor 18.8) ---------------- #}
+    <div class="mt-12 grid items-start gap-9 sm:grid-cols-2">
         {% if gunun_kelimesi %}{% include 'pages/gunun/_kelime.html' with gk=gunun_kelimesi %}{% endif %}
         {% if gunun_ifadesi %}{% include 'pages/gunun/_ifade.html' with gi=gunun_ifadesi %}{% endif %}
     </div>
     {% include 'pages/gunun/_js.html' %}
 
     {# ---------------- 5. Yardım ---------------- #}
-    <p class="pt-2 text-center text-sm">
-        <a href="{% url 'about' %}" data-yardim class="font-medium text-gray-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">Yardım ve hakkında</a>
+    <p class="mt-12 text-center">
+        <a href="{% url 'about' %}" data-yardim class="lv-el-bag">yardım ve hakkında</a>
     </p>
 
 {% else %}
 
-    {# ---------------- Girişsiz: karşılama ---------------- #}
-    <section class="pt-4 text-center">
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-slate-100">
-            Kelimeleri <span class="text-indigo-600 dark:text-indigo-400">gerçekten</span> öğren
-        </h1>
-        <p class="mx-auto mt-3 max-w-xl text-base text-gray-600 dark:text-slate-400">
-            Sözlükte ara, Learn &amp; Pass ile hızlıca tekrar et, okurken dokunup anlamını gör.
-            Hazırlık öğrencileri ve İngilizce öğrenen herkes için.
-        </p>
-        <a href="{% url 'learn_pass_page' %}" data-misafir-basla
-           class="mt-6 inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-7 py-4 text-lg font-bold text-white shadow-lg shadow-indigo-200 dark:shadow-none hover:bg-indigo-700 transition">
-            Learn &amp; Pass'e başla
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
-            </svg>
-        </a>
-        <p class="mt-2 text-xs text-gray-500 dark:text-slate-400">Hesap gerekmez, hemen dene.</p>
-    </section>
+    {# ================= Girişsiz: tanıtım (defter) ================= #}
+    <time class="lv-tarih">{% now "j F, l" %}</time>
+    <h1 class="lv-baslik mt-1">Kelime defterin, <span class="lv-isaret">bu sefer</span> yarıda kalmasın.</h1>
+    <span class="lv-alt-baslik mt-1 ml-1">(hepimizinki ikinci haftada kaldı)</span>
+    <p class="mt-5 max-w-[30em] text-lg text-gray-600 dark:text-slate-300 sm:text-[19px]">
+        Hazırlıkta herkes bir kelime defteri tutar: solda kelime, sağda anlamı, altında bir cümle.
+        Sonra sayfayı katlar, kendini dener. LearnVocab bunu senin yerine hatırlar.
+    </p>
+    <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+        <a href="{% url 'learn_pass_page' %}" data-misafir-basla class="lv-dugme">Hesap açmadan dene</a>
+        <a href="#seviye" class="lv-el-bag">ya da seviyeni öğren →</a>
+    </div>
 
     {% url 'sozluk_oneri' as oneri_adresi %}
-    <section aria-labelledby="sozlukte-ara">
-        <h2 id="sozlukte-ara" class="mb-2 text-sm font-bold text-gray-900 dark:text-slate-100">Sözlük'te ara</h2>
+    <section aria-labelledby="sozlukte-ara" class="mt-8 max-w-[520px]">
+        <h2 id="sozlukte-ara" class="sr-only">Sözlük'te ara</h2>
         <form method="get" action="{% url 'sozluk' %}" role="search">
-            {% include 'pages/words/_oneriKutusu.html' with girdi_id="ana-ara" ad="q" deger="" etiket="İngilizce veya Türkçe ara" adres=oneri_adresi %}
+            {% include 'pages/words/_oneriKutusu.html' with girdi_id="ana-ara" ad="q" deger="" etiket="Bir kelime ara (İngilizce ya da Türkçe)" adres=oneri_adresi stil="defter" %}
         </form>
     </section>
 
-    <div class="grid items-start gap-3 sm:grid-cols-2">
+    {# ---------- Katlanan defter tablosu ---------- #}
+    {% if defter_kartlari %}
+    <section class="lv-tablo mt-14" data-defter-tablosu aria-label="Kendini dene">
+        <div class="lv-tablo-basliklar"><span>kelime</span><span>anlamı</span></div>
+        {% for k in defter_kartlari %}{% with ilk=k.anlamlar.0 %}
+        <div class="lv-satir" data-satir>
+            <div class="lv-satir-kelime">
+                <a href="{{ k.text|kelime_adresi }}" class="lv-w" lang="en">{{ k.text }}<span class="lv-cizgi"></span><svg class="lv-daire" viewBox="0 0 160 52" preserveAspectRatio="none" fill="none" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M14 30C8 12 60 4 110 7c40 3 48 20 36 32-14 12-80 12-118 4C10 39 6 28 30 17"/></svg></a>
+                <small>{{ k.tur }}{% if k.cefr %} · {{ k.cefr }}{% endif %}</small>
+            </div>
+            <div class="lv-satir-sag">
+                <div class="lv-satir-anlam">{{ ilk.meaning_tr }}</div>
+                {% if ilk.ornek %}<div class="lv-satir-cumle" lang="en">{{ ilk.ornek }}</div>{% endif %}
+                <div class="lv-karar"><button type="button" data-evet>✓ biliyordum</button><button type="button" data-hayir>✗ bilmiyordum</button></div>
+                <button type="button" class="lv-kat" data-kat aria-label="{{ k.text }}: anlamını aç">dokun, aç</button>
+                <span class="lv-tekrar-notu" aria-hidden="true">3 gün sonra!</span>
+            </div>
+        </div>
+        {% endwith %}{% endfor %}
+    </section>
+    <div class="lv-kenar-notu mt-5 ml-1">
+        <svg viewBox="0 0 46 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M42 26C30 26 14 20 6 6M6 6l1 9M6 6l9 2"/></svg>
+        <span>katlanan yere dokun, kendini dene.<br>bilmediklerin birkaç gün sonra yine karşına çıkar.</span>
+    </div>
+    <p class="lv-el mt-3 ml-1 min-h-[30px] text-2xl font-bold" data-defter-sonuc aria-live="polite"></p>
+    {% endif %}
+
+    {# ---------- Bugünün sayfası ---------- #}
+    {% if gunun_kelimesi or gunun_ifadesi %}
+    <h2 class="lv-bolum mt-20">Bugünün sayfası</h2>
+    <span class="lv-bolum-notu mt-1">her gün yeni bir kelime, yeni bir ifade</span>
+    <div class="mt-8 grid items-start gap-9 sm:grid-cols-2">
         {% if gunun_kelimesi %}{% include 'pages/gunun/_kelime.html' with gk=gunun_kelimesi %}{% endif %}
         {% if gunun_ifadesi %}{% include 'pages/gunun/_ifade.html' with gi=gunun_ifadesi %}{% endif %}
     </div>
+    <div class="mt-7 flex items-center gap-3 text-indigo-600 dark:text-indigo-400">
+        {% include 'base/_kapibara.html' with sinif='h-20 w-28 shrink-0' %}
+        <span class="lv-el -rotate-2 text-2xl leading-tight">ikisini de biliyorsan<br>bugünlük benden iyisin.</span>
+    </div>
+    {% endif %}
 
-    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-5 text-center">
-        <p class="text-sm text-gray-600 dark:text-slate-300">Kelimelerini kaydetmek, egzersiz çözmek ve yazdıklarına geri bildirim almak için:</p>
-        <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
-            <a href="{% url 'register' %}" class="rounded-xl bg-gray-900 dark:bg-slate-100 px-5 py-2.5 text-sm font-semibold text-white dark:text-slate-900 hover:bg-gray-700 dark:hover:bg-white transition">Ücretsiz hesap aç</a>
-            <a href="{% url 'login' %}" class="rounded-xl px-5 py-2.5 text-sm font-semibold text-gray-700 dark:text-slate-200 ring-1 ring-inset ring-gray-300 dark:ring-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition">Giriş yap</a>
+    {# ---------- Seri ---------- #}
+    <h2 class="lv-bolum mt-20">Her gün bir tik</h2>
+    <span class="lv-bolum-notu mt-1">defterde tutulmayan tek şey: düzen</span>
+    <div class="mt-6 grid items-start gap-8 md:grid-cols-[1fr_1.1fr]">
+        <div class="text-lg text-gray-600 dark:text-slate-300">
+            <p>Günde birkaç dakika çalıştığın her gün takvimine bir tik düşer. Gün, senin saatinle gece yarısı biter.</p>
+            <p class="mt-4">İstersen tekrar zamanı geldiğinde telefonuna küçük bir hatırlatma gelir. Siteyi ana ekrana eklersen bir uygulama gibi açılır.</p>
+        </div>
+        <div class="lv-sayfa lv-bantli rotate-1 p-5" aria-hidden="true">
+            <div class="lv-el text-[26px] font-bold">örnek: son beş hafta</div>
+            <div class="lv-takvim mt-2" data-ornek-takvim></div>
+        </div>
+    </div>
+
+    {# ---------- Defterin yapamadıkları ---------- #}
+    <h2 class="lv-bolum mt-20">Defterin yapamadığı dört şey</h2>
+    <span class="lv-bolum-notu mt-1">(kâğıda bir şey demiyoruz, kâğıdı severiz)</span>
+    <ol class="lv-eksikler mt-4">
+        <li><div><b>Unutacağın günü bilmez.</b><p>Bildiğin kelimeyi 1, 3, 7 ve 21 gün sonra yeniden sorarız; tam unutmaya başladığın an.</p></div></li>
+        <li><div><b>Sesli okumaz.</b><p>Sözlükteki her kelimenin Amerikan ve İngiliz telaffuzu var.</p>
+            {% if defter_kartlari %}<div class="mt-3 flex flex-wrap items-center gap-3"><span class="lv-el text-[22px]">dinle: <span lang="en">{{ defter_kartlari.0.text }}</span> →</span>{% include 'base/_telaffuz.html' with metin=defter_kartlari.0.text %}</div>{% endif %}</div></li>
+        <li><div><b>Okurken yanında olmaz.</b><p>Bir metin oku ya da kendi PDF'ini yükle. Takıldığın kelimeye dokun:</p>
+            <div class="lv-sayfa lv-metin mt-3 px-4 py-3 text-lg leading-[1.75]" lang="en">Most people have had this experience: you meet someone at a party, and ten seconds later the name has
+                <button type="button" class="lv-dokun" data-dokun>completely<span class="lv-balon">tamamen</span></button>
+                <button type="button" class="lv-dokun" data-dokun>disappeared<span class="lv-balon">disappear · kaybolmak</span></button> from your mind.</div></div></li>
+        <li><div><b>Yazdığını düzeltmez.</b><p>Listendeki kelimelerle kısa bir metin yaz; öğretmenin kırmızı kalemi gibi, nerede yanıldığını açıklamasıyla gösterir.</p>
+            <div class="lv-sayfa lv-metin mt-3 px-4 py-2 text-lg leading-[2]" lang="en">Our team finally won the <span class="lv-iyi">trophy</span>. At first I was reluctant <s class="lv-sil">for joining</s> <span class="lv-ust-not"><i>to join</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> the club.</div>
+            <p class="lv-el mt-2 -rotate-1 text-[21px] !text-red-700 dark:!text-red-300">“reluctant” arkasından “to” + fiil gelir.</p></div></li>
+    </ol>
+
+    {# ---------- Okumalar ---------- #}
+    {% if okumalar %}
+    <h2 class="lv-bolum mt-20">Defterin arasındaki okumalar</h2>
+    <span class="lv-bolum-notu mt-1">kısa, seviyene göre, her biri birkaç dakika</span>
+    <div class="mt-8 grid gap-7 md:grid-cols-3">
+        {% for m in okumalar %}
+        <a href="{% url 'readings_library_text' m.slug %}" class="lv-kupur lv-kupur-{{ forloop.counter }} block text-gray-900 dark:text-slate-100">
+            <div class="lv-el text-xl font-bold">{{ m.get_topic_display|lower }}</div>
+            <h3 class="lv-serif mt-0.5 text-[22px] font-bold leading-tight" lang="en">{{ m.title }}</h3>
+            <p class="lv-metin mt-2 text-base leading-relaxed text-gray-600 dark:text-slate-300" lang="en">{{ m.body|truncatewords:16 }}</p>
+            <div class="mt-3 flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">{% if m.cefr %}<span class="lv-seviye">{{ m.cefr }}</span>{% endif %}~{{ m.reading_minutes }} dk</div>
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {# ---------- Seviye sekmeleri ---------- #}
+    <h2 class="lv-bolum mt-20" id="seviye">Hangi sayfadan başlamalısın?</h2>
+    <span class="lv-bolum-notu mt-1">defterin sekmeleri: istediğine atla</span>
+    <div class="lv-sekmeler mt-6">
+        {% for s, tarif in seviyeler %}
+        <a href="{% url 'sozluk_seviye' s|lower %}" class="lv-sekme lv-sekme-{{ forloop.counter }}" style="--i: {{ forloop.counter0 }}"><b>{{ s }}</b><span>{{ tarif }}</span><i aria-hidden="true">→</i></a>
+        {% endfor %}
+    </div>
+    <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <a href="{% url 'seviye_testi' %}" class="lv-dugme lv-ikincil">Seviyemi öğren</a>
+        <span class="lv-el text-[22px] leading-tight">bildiğin kelimelere dokun, birkaç kısa metin oku; gerisini biz söyleriz.</span>
+    </div>
+
+    {# ---------- Hazır liste ---------- #}
+    {% if hazir_liste %}
+    <h2 class="lv-bolum mt-20">Hazır listeler</h2>
+    <span class="lv-bolum-notu mt-1">başkası senin için yazmış; sen sadece başla</span>
+    <div class="lv-not lv-pembe lv-bantli mt-8 max-w-[420px] text-gray-900 dark:text-slate-100">
+        <h3 class="lv-serif text-2xl font-bold leading-tight">{{ hazir_liste.ad }}</h3>
+        {% if hazir_liste.aciklama %}<p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">{{ hazir_liste.aciklama }}</p>{% endif %}
+        <ol class="mt-3 list-decimal pl-6 text-base sm:columns-2" lang="en">
+            {% for w in hazir_liste_kelimeleri %}<li class="break-inside-avoid">{{ w.text }}</li>{% endfor %}
+        </ol>
+        {% if hazir_liste_sayisi > hazir_liste_kelimeleri|length %}<p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">+{{ hazir_liste_sayisi|add:"-8" }} kelime daha</p>{% endif %}
+        <a href="{% url 'hazir_liste' hazir_liste.slug %}" class="lv-el-bag mt-3 inline-block">listeyi aç →</a>
+    </div>
+    {% endif %}
+
+    {# ---------- Sık sorulanlar ---------- #}
+    <h2 class="lv-bolum mt-20">Aklına takılanlar</h2>
+    <span class="lv-bolum-notu mt-1">kenara not düştük</span>
+    <dl class="lv-sss mt-6">
+        <div><dt>Ücretli mi?</dt><dd>Hayır. Sözlük, tekrar, okuma ve yazma ücretsiz.</dd></div>
+        <div><dt>Hesap açmam gerekiyor mu?</dt><dd>Denemek için hayır. Kelimelerini ve serini saklamak istersen bir hesap yeter.</dd></div>
+        <div><dt>Telefonda çalışır mı?</dt><dd>Evet. Ana ekrana eklersen bir uygulama gibi açılır, istersen hatırlatma da gönderir.</dd></div>
+        <div><dt>Hangi seviyeler var?</dt><dd>A1'den C2'ye. Nereden başlayacağını bilmiyorsan seviye testi söyler.</dd></div>
+    </dl>
+
+    {# ---------- Kapanış ---------- #}
+    <section class="mt-24">
+        <p class="lv-serif max-w-[14em] text-[34px] font-black leading-[1.08] tracking-tight sm:text-5xl">Defterini aç. İlk sayfası hazır.</p>
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <a href="{% url 'register' %}" class="lv-dugme">Ücretsiz hesap aç</a>
+            <a href="{% url 'login' %}" class="lv-el-bag">zaten hesabım var →</a>
         </div>
     </section>
 
-    <p class="text-center text-sm">
-        <a href="{% url 'about' %}" data-yardim class="font-medium text-gray-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">Yardım ve hakkında</a>
+    <p class="lv-el mt-16 text-center text-[22px] !text-gray-500 dark:!text-slate-400">— 1 —</p>
+    <p class="mt-1 flex flex-wrap justify-center gap-x-4 gap-y-1 text-[15px]">
+        {% for s, tarif in seviyeler %}<a href="{% url 'sozluk_seviye' s|lower %}" class="text-gray-600 hover:underline dark:text-slate-300">{{ s }} kelimeleri</a>{% endfor %}
+        <a href="{% url 'hazir_listeler' %}" class="text-gray-600 hover:underline dark:text-slate-300">Hazır listeler</a>
+        <a href="{% url 'about' %}" data-yardim class="text-gray-600 hover:underline dark:text-slate-300">Yardım ve hakkında</a>
     </p>
 
     {% include 'pages/words/_oneriKutusuJs.html' %}
+    {% include 'pages/anasayfa/_defterJs.html' %}
 
 {% endif %}
 

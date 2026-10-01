@@ -271,8 +271,8 @@ class KesfetBosHalTests(AramaTemeli):
         make_word("tidy", level="B1", meaning="düzenli", siklik=4.0, sentences=["a.", "b."],
                   collocations=[("keep tidy", "verb_adj")])
         html = _html(self.client.get(reverse("sozluk")))
-        self.assertIn("Günün Kelimesi", html)
-        self.assertIn("Günün İfadesi", html)
+        self.assertIn('aria-label="Günün kelimesi"', html)
+        self.assertIn('aria-label="Günün ifadesi"', html)
         self.assertIn("nonetheless", html)
         self.assertIn("Hazır Listeler", html)
         self.assertIn("yakında burada", html)       # liste yokken sade boş hâl

@@ -60,12 +60,15 @@ class AnaSayfaTests(TestCase):
 
     def test_girissiz_karsilama(self):
         html = self._html()
-        self.assertIn("Learn &amp; Pass'e başla", html)
+        self.assertIn("Hesap açmadan dene", html)     # defter teması (rapor 18.12)
+        self.assertIn("data-defter-tablosu", html)
         self.assertIn('data-misafir-basla', html)
         self.assertIn('action="/sozluk/"', html)
         self.assertIn('name="q"', html)
-        self.assertIn("tidy", html)            # günün kelimesi B1
-        self.assertNotIn("ubiquitous", html)
+        gunun = html[html.index("data-gunun-kelimesi"):]
+        gunun = gunun[:gunun.index("</section>")]
+        self.assertIn("tidy", gunun)           # günün kelimesi B1
+        self.assertNotIn("ubiquitous", gunun)  # (defter tablosu komşu seviyeye kayabilir)
         self.assertIn(reverse("register"), html)
         self.assertNotIn("Bugünün çalışmasına başla", html)
         self.assertNotIn("data-seviye-daveti", html)
@@ -86,3 +89,29 @@ class LoginUrlTests(TestCase):
         self.assertEqual(cevap.status_code, 302)
         self.assertTrue(cevap["Location"].startswith(f"{reverse('login')}?next="))
         self.assertNotIn("/accounts/", cevap["Location"])
+
+
+class DefterTablosuTests(TestCase):
+    """Misafir ana sayfasındaki katlanan defter tablosu (rapor 18.12)."""
+
+    @classmethod
+    def setUpTestData(cls):
+        zengin = dict(sentences=["One.", "Two."], siklik=4.0, collocations=[("a b", "verb_adj")], forms=False)
+        for i, ad in enumerate(("alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf")):
+            make_word(ad, level="B1" if i < 3 else "B2", meaning=f"anlam {i}", **zengin)
+
+    def test_gunluk_bes_kelime_gunun_kelimesi_haric_ve_sabit(self):
+        from django.core.cache import cache
+        cache.clear()
+        ilk = gunun.defter_kelimeleri()
+        self.assertEqual(len(ilk), 5)
+        self.assertNotIn(gunun.misafir_kelimesi(), ilk)
+        self.assertEqual(gunun.defter_kelimeleri(), ilk)   # o gün herkese aynı
+
+    def test_tablo_kelime_sayfasina_baglanir_ve_hicbir_sey_kaydetmez(self):
+        html = self.client.get(reverse("index")).content.decode()
+        tablo = html[html.index("data-defter-tablosu"):]
+        tablo = tablo[:tablo.index("</section>")]
+        self.assertEqual(tablo.count("data-satir"), 5)
+        self.assertIn('href="/sozluk/', tablo)
+        self.assertNotIn("<form", tablo)

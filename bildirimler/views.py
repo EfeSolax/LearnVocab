@@ -13,9 +13,9 @@ from django.views.decorators.http import require_safe, require_POST
 from . import ayar
 from .models import PushAboneligi
 
-# Tema rengi: sitenin ana indigo tonu (Tailwind indigo-600).
-TEMA_RENGI = "#4f46e5"
-ARKA_PLAN = "#ffffff"
+# Tema rengi: defter teması (rapor 18.12; static/css/defter.css): kâğıt rengi.
+TEMA_RENGI = "#fbfaf5"
+ARKA_PLAN = "#fbfaf5"
 
 
 @require_safe

@@ -9,12 +9,12 @@ Bağlam: seri (seri.hesap.durum)
 {% endcomment %}
 <div class="relative" x-data="seriKutusu('{% url 'seri_durum' %}')" @keydown.escape.window="acik = false" data-seri-kutusu>
     <button type="button" @click="ac()" :aria-expanded="acik.toString()"
-            class="flex w-full items-center justify-center gap-2 rounded-xl border px-3 py-4 transition
-                   {% if seri.bugun_tamam %}border-amber-300 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/40{% else %}border-gray-200 bg-white dark:border-slate-700 dark:bg-slate-800{% endif %} hover:border-amber-400">
-        {% include 'base/_kapibara.html' with sinif='h-8 w-8' %}
+            class="lv-sayfa flex w-full items-center justify-center gap-2 px-3 py-4 transition hover:-translate-y-0.5
+                   {% if seri.bugun_tamam %}!bg-[var(--not)]{% endif %}">
+        {% include 'base/_kapibara.html' with sinif='h-10 w-12' %}
         <span class="text-left">
-            <span class="block text-2xl font-bold leading-none {% if seri.mevcut %}text-orange-600 dark:text-orange-400{% else %}text-gray-400 dark:text-slate-500{% endif %}" data-seri-sayi>{{ seri.mevcut }}</span>
-            <span class="mt-1 block text-xs text-gray-500 dark:text-slate-400">günlük seri</span>
+            <span class="lv-serif block text-3xl font-black leading-none {% if seri.mevcut %}text-gray-900 dark:text-slate-100{% else %}text-gray-400 dark:text-slate-500{% endif %}" data-seri-sayi>{{ seri.mevcut }}</span>
+            <span class="mt-1 block text-[15px] text-gray-600 dark:text-slate-300">günlük seri</span>
         </span>
     </button>
 

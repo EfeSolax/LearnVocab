@@ -89,8 +89,8 @@ class KartTests(TestCase):
         for ad in ("index", "sozluk"):
             html = self.client.get(reverse(ad)).content.decode()
             self.assertIn(f'data-gunun-kelimesi="{self.kelime.id}"', html)
-            self.assertIn("Biliyordum", html)
-            self.assertIn("Bilmiyordum", html)
+            self.assertIn("✓ biliyordum", html)
+            self.assertIn("✗ bilmiyordum", html)
             self.assertIn('href="/sozluk/habit/"', html)
             self.assertIn("data-telaffuz-grubu", html)
 

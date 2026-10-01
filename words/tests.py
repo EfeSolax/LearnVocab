@@ -458,7 +458,7 @@ class NavbarMenuTests(TestCase):
     def test_logo_goes_home(self):
         navbar = self._navbar(logged_in=False)
         self.assertIn(reverse("index"), navbar)
-        self.assertIn("Learn&nbsp;Vocab", navbar)  # logonun yanındaki isim
+        self.assertIn("Learn<span>Vocab</span>", navbar)  # logonun yanındaki isim (defter başlığı)
 
     def test_five_sections_in_order_for_everyone(self):
         """Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazma — girişsiz de."""
@@ -540,7 +540,7 @@ class MobileTabBarTests(TestCase):
 
     def test_home_is_in_the_middle(self):
         bar = self._bar()
-        etiketler = re.findall(r'<span class="text-\[11px\][^"]*">([^<]+)</span>', bar)
+        etiketler = re.findall(r'<span class="text-\[12px\][^"]*">([^<]+)</span>', bar)
         self.assertEqual(etiketler, ["Sözlük", "Çalışmalar", "Ana Sayfa", "Okumalar", "Yazılar"])
         self.assertEqual(etiketler[2], "Ana Sayfa")
 

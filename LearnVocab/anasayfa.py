@@ -10,15 +10,26 @@ Girişli kullanıcı:
   - Seviye testi daveti her sayfada ayrı çıkar (seviye/baglam.py, rapor 18.27).
   - Yardım bağlantısı (içerik Bölüm 16: şimdilik Hakkında sayfası).
 
-Girişsiz ziyaretçi: kısa tanıtım, Learn & Pass'e başla (misafir), Sözlük'te
-ara, günün kelimesi (B1) ve günün ifadesi.
+Girişsiz ziyaretçi: defter temalı tanıtım sayfası (rapor 18.12; örnek
+ozetler/tasarim-ornekleri/defter/index.html): başlık, misafir L&P, Sözlük'te
+ara, katlanan defter tablosu (words.gunun.defter_kelimeleri), günün kelimesi
+ve ifadesi, seri, "Defterin yapamadığı dört şey", kütüphaneden üç okuma,
+A1–C2 sekmeleri, bir hazır liste, sık sorulanlar.
 """
 
 from django.shortcuts import render
 
+from readings.models import ReadingText
 from seri import hesap as seri_hesap
 from words import gunun
-from words.models import UserWordLink
+from words.kart import kart_verisi
+from words.models import CEFR_LEVELS, HazirListe, UserWordLink
+
+# Seviye sekmeleri (misafir ana sayfası): kısa, abartısız tarifler.
+SEVIYE_TARIFLERI = {
+    "A1": "en temel kelimeler", "A2": "günlük hayat", "B1": "hazırlığın ilk dönemi",
+    "B2": "okuma metinleri, sınavlar", "C1": "akademik metinler", "C2": "ince ayrıntılar",
+}
 
 
 def ana_sayfa(request):
@@ -33,4 +44,18 @@ def ana_sayfa(request):
             "liste_sayisi": UserWordLink.objects.filter(user=user).count(),
             "seri": seri_hesap.durum(user),
         })
+    else:
+        baglam.update(_misafir_baglami())
     return render(request, "pages/index.html", baglam)
+
+
+def _misafir_baglami():
+    liste = HazirListe.objects.filter(yayinda=True).first()
+    return {
+        "defter_kartlari": kart_verisi(gunun.defter_kelimeleri()),
+        "okumalar": list(ReadingText.objects.order_by("number")[:3]),
+        "seviyeler": [(s, SEVIYE_TARIFLERI.get(s, "")) for s in CEFR_LEVELS],
+        "hazir_liste": liste,
+        "hazir_liste_kelimeleri": list(liste.kelimeler.order_by("hazir_liste_uyelikleri__sira")[:8]) if liste else [],
+        "hazir_liste_sayisi": liste.kelimeler.count() if liste else 0,
+    }

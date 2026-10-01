@@ -1,0 +1,199 @@
+/* =====================================================================
+   LearnVocab · Defter teması (rapor 18.12). Bütün sayfalar bunu yükler
+   (base/layout.html). Örnek tasarımlar: ozetler/tasarim-ornekleri/defter/.
+
+   Kurallar:
+   - El yazısı (Caveat, .lv-el) yalnızca süs ve kısa notlar içindir: tarih,
+     kenar notu, ok. Asıl bilgi (anlam, tanım, düğme) hep düz yazıdır.
+   - Renkler: kâğıt, mürekkep mavisi, sarı fosforlu kalem, öğretmen kırmızısı.
+   - Koyu tema html.dark ile çalışır (Tailwind darkMode: 'class').
+   - Tailwind'in indigo/gray/slate renkleri layout.html'deki ayarla bu
+     paletlere bağlıdır; eski sınıflar da kendiliğinden defter renginde görünür.
+   ===================================================================== */
+:root {
+  --kagit: #fbfaf5; --kagit-beyaz: #ffffff; --kare: rgba(66, 110, 190, .12); --satir: rgba(66, 110, 190, .22);
+  --kenar: #e7a3a3; --murekkep: #1d3f8f; --murekkep-acik: #e9eefb; --yazi: #1b1d22; --soluk: #5f6470;
+  --kalem: #ffe46b; --kirmizi: #c73a2b; --yesil: #1f7a4c; --yesil-acik: #e3f3ea; --kirmizi-acik: #fbe7e3;
+  --not: #fff1a8; --not-mavi: #d9ecff; --not-pembe: #ffd9e1; --bant: rgba(255, 255, 255, .6);
+  --golge: 0 1px 1px rgba(0, 0, 0, .06), 0 12px 18px -12px rgba(0, 0, 0, .28);
+  --dalga: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M2 5c15-4 30 2 48-1s32 2 48-1' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  --daire: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30' preserveAspectRatio='none'%3E%3Cpath d='M8 17C5 7 30 2 48 5c12 2 12 15 0 20-14 5-38 4-42-6C4 12 14 6 22 6' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  --el: 'Caveat', cursive; --serif: 'Fraunces', Georgia, serif; --metin: 'Source Serif 4', Georgia, serif;
+  --govde: 'Inter', ui-sans-serif, system-ui, sans-serif; --yuvarlak: 'Fredoka', 'Nunito', ui-rounded, system-ui, sans-serif;
+}
+html.dark {
+  --kagit: #16181d; --kagit-beyaz: #1d2027; --kare: rgba(130, 160, 230, .08); --satir: rgba(130, 160, 230, .16);
+  --kenar: #6b3434; --murekkep: #9db8ff; --murekkep-acik: #1f2a44; --yazi: #e9e8e2; --soluk: #a3a7b0;
+  --kalem: #6b5a10; --kirmizi: #ff8a78; --yesil: #6fd6a0; --yesil-acik: #13291f; --kirmizi-acik: #31170f;
+  --not: #4a4314; --not-mavi: #1c3550; --not-pembe: #4a2230; --bant: rgba(255, 255, 255, .12);
+  --golge: 0 12px 18px -12px rgba(0, 0, 0, .7);
+}
+
+/* ---------- Kâğıt ---------- */
+html {
+  background-color: var(--kagit);
+  background-image: linear-gradient(var(--kare) 1px, transparent 1px), linear-gradient(90deg, var(--kare) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+body.lv-kagit { background: transparent; color: var(--yazi); font-family: var(--govde); -webkit-font-smoothing: antialiased; }
+/* Kırmızı kenar çizgisi: yalnızca geniş ekranda, içerik sütununun solunda */
+@media (min-width: 1024px) {
+  body.lv-kagit::before { content: ""; position: fixed; top: 0; bottom: 0; left: calc(50% - 26rem); width: 2px; background: var(--kenar); opacity: .6; z-index: 0; pointer-events: none; }
+}
+main { position: relative; z-index: 1; }
+
+/* ---------- Yazı ---------- */
+.lv-el { font-family: var(--el); color: var(--murekkep); }
+.lv-serif { font-family: var(--serif); }
+.lv-metin { font-family: var(--metin); }
+.lv-yuvarlak { font-family: var(--yuvarlak); }
+.lv-soluk { color: var(--soluk); }
+.lv-isaret { background: linear-gradient(104deg, transparent 1%, var(--kalem) 3%, var(--kalem) 95%, transparent 98%) 0 62% / 100% 50% no-repeat; padding: 0 3px; }
+.lv-tarih { display: block; font: 600 26px var(--el); color: var(--murekkep); transform: rotate(-1.5deg); transform-origin: left; }
+.lv-baslik { font: 900 44px/1.02 var(--serif); letter-spacing: -.035em; margin: 0; }
+.lv-alt-baslik { display: inline-block; font: 600 28px/1.15 var(--el); color: var(--murekkep); transform: rotate(-1deg); }
+.lv-bolum { font: 900 32px/1.05 var(--serif); letter-spacing: -.03em; margin: 0; }
+.lv-bolum-notu { display: inline-block; font: 600 23px/1.2 var(--el); color: var(--murekkep); transform: rotate(-1deg); }
+.lv-sayfa-basligi { font: 900 32px/1.05 var(--serif); letter-spacing: -.03em; }
+@media (min-width: 700px) {
+  .lv-baslik { font-size: 72px; } .lv-bolum { font-size: 44px; } .lv-tarih { font-size: 30px; }
+  .lv-alt-baslik { font-size: 34px; } .lv-sayfa-basligi { font-size: 40px; }
+}
+
+/* ---------- Düğmeler ---------- */
+.lv-dugme { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 24px;
+  background: var(--murekkep); color: var(--kagit); font: 600 17px var(--govde); border-radius: 3px; box-shadow: 4px 4px 0 var(--kalem);
+  text-decoration: none; transition: transform .1s, box-shadow .1s; cursor: pointer; border: 0; }
+.lv-dugme:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--kalem); }
+.lv-dugme:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--kalem); }
+.lv-dugme.lv-ikincil { background: var(--kagit-beyaz); color: var(--murekkep); border: 1.5px solid var(--murekkep); box-shadow: 4px 4px 0 var(--murekkep-acik); }
+.lv-dugme.lv-kucuk { min-height: 42px; padding: 0 16px; font-size: 15px; }
+.lv-el-bag { font: 700 24px var(--el); color: var(--murekkep); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+
+/* ---------- Kâğıt parçaları ---------- */
+.lv-not { background: var(--not); padding: 26px 22px 22px; position: relative; transform: rotate(-1.5deg); box-shadow: var(--golge); }
+.lv-not.lv-mavi { background: var(--not-mavi); transform: rotate(1.2deg); }
+.lv-not.lv-pembe { background: var(--not-pembe); transform: rotate(-1deg); }
+.lv-not.lv-duz { transform: none; }
+.lv-bantli::before { content: ""; position: absolute; top: -12px; left: 50%; width: 90px; height: 24px; margin-left: -45px; background: var(--bant); transform: rotate(3deg); border: 1px solid rgba(0, 0, 0, .05); pointer-events: none; }
+.lv-kupur { background: var(--kagit-beyaz); padding: 18px 18px 22px; position: relative; box-shadow: var(--golge);
+  clip-path: polygon(0 2%, 6% 0, 14% 2%, 22% 0, 31% 1%, 40% 0, 50% 2%, 60% 0, 70% 1%, 80% 0, 90% 2%, 100% 0, 100% 98%, 93% 100%, 84% 98%, 75% 100%, 65% 98%, 55% 100%, 45% 98%, 35% 100%, 25% 98%, 15% 100%, 6% 98%, 0 100%); }
+.lv-sayfa { background: var(--kagit-beyaz); box-shadow: var(--golge); position: relative; }
+.lv-fis { background: var(--kagit-beyaz); border-radius: 6px; box-shadow: var(--golge); position: relative;
+  background-image: linear-gradient(var(--kirmizi), var(--kirmizi)), repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px);
+  background-size: 100% 2px, 100% 100%; background-position: 0 54px, 0 56px; background-repeat: no-repeat, no-repeat; }
+
+/* ---------- Kenar notu ---------- */
+.lv-kenar-notu { font: 600 22px/1.15 var(--el); color: var(--murekkep); transform: rotate(-2deg); display: flex; gap: 8px; align-items: flex-start; }
+.lv-kenar-notu svg { flex: none; width: 46px; height: 30px; margin-top: -4px; }
+
+/* ---------- Seviye: el ile çizilmiş daire ---------- */
+.lv-seviye { position: relative; display: inline-grid; place-items: center; min-width: 40px; height: 30px; padding: 0 6px; font: 700 14px var(--govde); color: var(--murekkep); flex: none; }
+.lv-seviye::before { content: ""; position: absolute; inset: 0; background: var(--murekkep); -webkit-mask: var(--daire) center/100% 100% no-repeat; mask: var(--daire) center/100% 100% no-repeat; }
+
+/* ---------- Arama satırı ---------- */
+.lv-arama { display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--murekkep); padding: 6px 0; }
+.lv-arama svg { width: 20px; height: 20px; color: var(--murekkep); flex: none; }
+.lv-arama input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font: 600 20px var(--govde); color: var(--yazi); padding: 4px 0; box-shadow: none; }
+.lv-arama input::placeholder { color: var(--soluk); font-weight: 400; }
+
+/* ---------- Üst çubuk ve alt menü ---------- */
+.lv-ust { background: color-mix(in srgb, var(--kagit) 92%, transparent); border-bottom: 1.5px solid var(--satir); }
+.lv-logo { font: 900 21px var(--serif); letter-spacing: -.02em; color: var(--yazi); }
+.lv-logo span { background: linear-gradient(transparent 55%, var(--kalem) 55%); }
+.lv-menu-bag { position: relative; color: var(--soluk); font-weight: 600; }
+.lv-menu-bag:hover { color: var(--yazi); }
+.lv-menu-bag[aria-current="page"] { color: var(--yazi); }
+.lv-menu-bag[aria-current="page"]::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 0; height: 8px; background: var(--murekkep);
+  -webkit-mask: var(--dalga) center/100% 100% no-repeat; mask: var(--dalga) center/100% 100% no-repeat; }
+.lv-alt-menu { background: var(--kagit); border-top: 1.5px solid var(--satir); }
+.lv-alt-menu a { color: var(--soluk); }
+.lv-alt-menu a[aria-current="page"] { color: var(--murekkep); }
+.lv-alt-menu a[aria-current="page"] span { background: linear-gradient(transparent 55%, var(--kalem) 55%); padding: 0 2px; color: var(--yazi); }
+
+/* =====================================================================
+   Ana sayfa (pages/index.html)
+   ===================================================================== */
+/* Katlanan defter tablosu */
+.lv-tablo-basliklar { display: grid; grid-template-columns: 38% minmax(0, 1fr); font: 600 24px var(--el); color: var(--murekkep); border-bottom: 2px solid var(--murekkep); padding-bottom: 2px; }
+.lv-tablo-basliklar span:last-child { padding-left: 14px; }
+.lv-satir { display: grid; grid-template-columns: 38% minmax(0, 1fr); min-height: 76px; border-bottom: 1px solid var(--satir); position: relative; }
+.lv-satir-kelime { font: 700 23px/1.2 var(--serif); padding: 14px 10px 14px 0; letter-spacing: -.01em; align-self: start; }
+.lv-satir-kelime a { color: var(--yazi); text-decoration: none; }
+.lv-satir-kelime small { display: block; font: 500 14px var(--govde); color: var(--soluk); letter-spacing: 0; margin-top: 4px; }
+.lv-satir-sag { position: relative; padding: 12px 0 12px 14px; border-left: 1px dashed var(--satir); }
+.lv-satir-anlam { font-weight: 700; font-size: 20px; color: var(--murekkep); line-height: 1.25; }
+.lv-satir-cumle { font-size: 16px; color: var(--soluk); margin-top: 4px; }
+.lv-satir:not(.lv-acik) .lv-satir-anlam, .lv-satir:not(.lv-acik) .lv-satir-cumle { display: none; }
+.lv-kat { position: absolute; inset: 4px -4px 4px 0; width: auto; text-align: left; background-color: var(--kagit);
+  background-image: linear-gradient(var(--kare) 1px, transparent 1px), linear-gradient(90deg, var(--kare) 1px, transparent 1px); background-size: 24px 24px;
+  box-shadow: -6px 0 10px -6px rgba(0, 0, 0, .25); display: flex; align-items: center; padding-left: 16px; border: 0;
+  font: 600 22px var(--el); color: var(--soluk); transform-origin: left center; transition: transform .45s cubic-bezier(.3, .7, .2, 1), opacity .45s; cursor: pointer; }
+.lv-satir.lv-acik .lv-kat { transform: perspective(600px) rotateY(-80deg); opacity: 0; pointer-events: none; }
+.lv-karar { display: none; flex-wrap: wrap; gap: 4px 8px; margin-top: 10px; }
+.lv-satir.lv-acik:not(.lv-bitti) .lv-karar { display: flex; }
+.lv-karar button { font: 700 22px var(--el); padding: 2px 8px; border-radius: 6px; white-space: nowrap; background: none; border: 0; cursor: pointer; }
+.lv-karar [data-evet] { color: var(--yesil); } .lv-karar [data-hayir] { color: var(--kirmizi); }
+.lv-karar button:hover { background: var(--kare); }
+.lv-w { position: relative; display: inline-block; }
+.lv-cizgi { position: absolute; left: -4px; top: 52%; height: 3px; width: 0; background: var(--murekkep); border-radius: 3px; transform: rotate(-3deg); transition: width .4s; }
+.lv-satir.lv-biliyor .lv-cizgi { width: calc(100% + 8px); }
+.lv-satir.lv-biliyor .lv-satir-kelime a { color: var(--soluk); }
+.lv-daire { position: absolute; left: -14px; top: -10px; width: calc(100% + 28px); height: calc(100% + 20px); pointer-events: none; }
+.lv-daire path { stroke: var(--kirmizi); stroke-dasharray: 400; stroke-dashoffset: 400; transition: stroke-dashoffset .6s; }
+.lv-satir.lv-bilmiyor .lv-daire path { stroke-dashoffset: 0; }
+.lv-tekrar-notu { position: absolute; right: 0; bottom: 8px; font: 700 20px var(--el); color: var(--kirmizi); transform: rotate(-4deg); opacity: 0; transition: opacity .3s .3s; }
+.lv-satir.lv-bilmiyor .lv-tekrar-notu { opacity: 1; }
+@media (max-width: 520px) {
+  .lv-satir, .lv-tablo-basliklar { grid-template-columns: 42% minmax(0, 1fr); }
+  .lv-satir-kelime { font-size: 20px; } .lv-tekrar-notu { display: none; }
+}
+
+/* Seri örneği takvimi */
+.lv-takvim { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+.lv-takvim b { font-size: 13px; color: var(--soluk); font-weight: 600; }
+.lv-takvim span { position: relative; height: 40px; display: grid; place-items: center; font-size: 15px; color: var(--soluk); }
+.lv-takvim .lv-tik { color: transparent; }
+.lv-takvim .lv-tik::after { content: "✓"; position: absolute; font: 700 30px var(--el); color: var(--murekkep); transform: rotate(-8deg); }
+.lv-takvim .lv-bugun { color: var(--yazi); font-weight: 700; }
+.lv-takvim .lv-bugun::before { content: ""; position: absolute; inset: 2px 0; background: var(--kirmizi); -webkit-mask: var(--daire) center/100% 100% no-repeat; mask: var(--daire) center/100% 100% no-repeat; }
+.lv-takvim .lv-gelecek { opacity: .35; }
+
+/* Defterin yapamadıkları */
+.lv-eksikler { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+.lv-eksikler > li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 6px; padding: 22px 0; border-bottom: 1px solid var(--satir); }
+.lv-eksikler > li::before { content: counter(s) "."; font: 700 32px/1 var(--el); color: var(--murekkep); }
+.lv-eksikler b { font-size: 20px; display: block; }
+.lv-eksikler p { margin: 4px 0 0; color: var(--soluk); font-size: 17px; }
+.lv-dokun { background: var(--kalem); padding: 0 2px; border-radius: 2px; cursor: pointer; position: relative; font: inherit; color: inherit; border: 0; }
+.lv-balon { display: none; position: absolute; left: 0; top: calc(100% + 8px); z-index: 5; background: var(--kagit-beyaz); border: 1.5px solid var(--murekkep);
+  padding: 8px 12px; white-space: nowrap; font: 700 16px var(--govde); color: var(--murekkep); box-shadow: 3px 3px 0 var(--murekkep); }
+.lv-dokun.lv-acik .lv-balon { display: block; }
+.lv-sil { text-decoration-color: var(--kirmizi); text-decoration-thickness: 2px; }
+.lv-iyi { text-decoration: underline wavy var(--yesil); text-underline-offset: 5px; }
+.lv-ust-not { position: relative; }
+.lv-ust-not i { position: absolute; left: 0; top: -1.15em; font: 700 22px var(--el); color: var(--kirmizi); white-space: nowrap; font-style: normal; }
+
+/* Okuma kupürleri */
+.lv-kupur { text-decoration: none; }
+.lv-kupur-1 { transform: rotate(-1.5deg); } .lv-kupur-2 { transform: rotate(1deg); } .lv-kupur-3 { transform: rotate(-.5deg); }
+
+/* Seviye sekmeleri */
+.lv-sekmeler { display: grid; max-width: 640px; }
+.lv-sekme { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 14px; text-decoration: none; padding: 14px 16px;
+  margin-left: calc(var(--i) * 6px); border-radius: 0 10px 10px 0; margin-bottom: -4px; transition: transform .15s;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .06), 0 8px 12px -10px rgba(0, 0, 0, .35); }
+.lv-sekme:hover { transform: translateX(6px); }
+.lv-sekme b { font: 900 26px var(--serif); color: #1b1d22; }
+.lv-sekme span { color: #3a3d45; font-size: 16px; line-height: 1.3; }
+.lv-sekme i { font: 700 22px var(--el); color: #1d3f8f; font-style: normal; }
+.lv-sekme-1 { background: #ffd9c7; } .lv-sekme-2 { background: #ffe9a8; } .lv-sekme-3 { background: #d8f0c8; }
+.lv-sekme-4 { background: #c9ecef; } .lv-sekme-5 { background: #d6dcfa; } .lv-sekme-6 { background: #ecd6f5; }
+html.dark .lv-sekme { filter: brightness(.82); }
+@media (min-width: 700px) { .lv-sekme { margin-left: calc(var(--i) * 12px); grid-template-columns: 70px minmax(0, 1fr) auto; } }
+
+/* Sık sorulanlar */
+.lv-sss { display: grid; gap: 22px; }
+@media (min-width: 700px) { .lv-sss { grid-template-columns: 1fr 1fr; gap: 28px 40px; } }
+.lv-sss dt { font: 700 25px/1.15 var(--el); color: var(--murekkep); }
+.lv-sss dd { margin: 4px 0 0; color: var(--soluk); font-size: 17px; }

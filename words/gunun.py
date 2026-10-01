@@ -113,6 +113,34 @@ def misafir_kelimesi(gun=None, seviye=VARSAYILAN):
     return kelime
 
 
+# Misafir ana sayfasındaki defter tablosu (rapor 18.12): katlanan sütunla
+# kendini sınama. O gün herkese aynı 5 kelime; günün kelimesiyle aynı ölçüt.
+DEFTER_KOTASI = (("B1", 2), ("B2", 3))
+
+
+def defter_kelimeleri(gun=None):
+    """O gün herkese aynı kelimeler (list[Word], en çok 5); günün kelimesi hariç."""
+    gun = gun or timezone.localdate()
+    anahtar = f"defter-kelimeleri:{gun.isoformat()}"
+    idler = cache.get(anahtar)
+    if idler is None:
+        gunun = misafir_kelimesi(gun)
+        secilen = [gunun.pk] if gunun else []
+        rng = random.Random(anahtar)
+        for seviye, adet in DEFTER_KOTASI:
+            satirlar = _adaylar(seviye, haric=set(secilen))
+            for _ in range(adet):
+                if not satirlar:
+                    break
+                wid = _agirlikli_sec(satirlar, rng)
+                secilen.append(wid)
+                satirlar = [(w, z) for w, z in satirlar if w != wid]
+        idler = secilen[1:] if gunun else secilen
+        cache.set(anahtar, idler, 26 * 3600)
+    sira = {wid: i for i, wid in enumerate(idler)}
+    return sorted(Word.objects.filter(pk__in=idler), key=lambda w: sira[w.pk])
+
+
 def _gorulenler(user):
     from learnpass.models import WordEncounter
     gorulen = set(WordEncounter.objects.filter(user=user).values_list("word_id", flat=True))

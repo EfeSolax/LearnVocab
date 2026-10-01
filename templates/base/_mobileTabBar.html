@@ -10,16 +10,16 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
 {% endcomment %}
 
 <nav aria-label="Alt menü"
-     class="lg:hidden fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
+     class="lv-alt-menu lg:hidden fixed inset-x-0 bottom-0 z-50 pb-[env(safe-area-inset-bottom)]">
     <ul class="grid grid-cols-5">
         {% for section in nav_sections %}
         <li>
             <a href="{{ section.url }}"
                {% if section.giris_gerekli %}data-giris-gerekli="{{ section.giris_gerekli }}"{% endif %}
                {% if section.is_active %}aria-current="page"{% endif %}
-               class="flex flex-col items-center justify-center gap-0.5 px-1 py-2 transition-colors {% if section.is_active %}text-indigo-600 dark:text-indigo-400{% else %}text-gray-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400{% endif %}">
+               class="flex flex-col items-center justify-center gap-0.5 px-1 py-2 transition-colors">
                 {% include 'base/_navIcon.html' with key=section.key size="h-6 w-6" %}
-                <span class="text-[11px] font-medium leading-tight text-center">{{ section.label }}</span>
+                <span class="text-[12px] font-semibold leading-tight text-center">{{ section.label }}</span>
             </a>
         </li>
         {% endfor %}
