@@ -6,24 +6,27 @@
 {% block page_heading %}{% endblock %}
 
 {% block page %}
-<form method="post" class="space-y-5" data-seviye-sec>
+{# Defter teması: seviyeler defterin renkli sekmeleri; seçilen sekme öne çıkar. #}
+<form method="post" data-seviye-sec>
     {% csrf_token %}
-    <div>
-        <h1 class="lv-sayfa-basligi">Seviyeni seç</h1>
-        <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Günün kelimesi ve egzersizler bu seviyeye göre gelir. İstediğin zaman değiştirebilirsin.</p>
-    </div>
-    <div class="space-y-2">
+    <h1 class="lv-baslik !text-[44px] sm:!text-[56px]">Seviyeni seç</h1>
+    <p class="lv-alt-baslik mt-1">günün kelimesi ve egzersizler bu seviyeye göre gelir</p>
+
+    <div class="mt-8 grid max-w-[640px]">
         {% for kod, aciklama in secenekler %}
-        <label class="flex cursor-pointer items-center gap-4 rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3.5 hover:bg-gray-50 dark:hover:bg-slate-700/50 has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50 dark:has-[:checked]:bg-indigo-950/50">
-            <input type="radio" name="seviye" value="{{ kod }}" class="text-indigo-600 focus:ring-indigo-500" {% if kod == mevcut %}checked{% endif %} required>
-            <span class="w-9 text-lg font-extrabold text-indigo-600 dark:text-indigo-400">{{ kod }}</span>
-            <span class="text-sm text-gray-700 dark:text-slate-200">{{ aciklama }}</span>
+        <label class="lv-sekme lv-sekme-{{ forloop.counter }} cursor-pointer has-[:checked]:!translate-x-4 has-[:checked]:ring-2 has-[:checked]:ring-[color:var(--murekkep)]" style="--i: {{ forloop.counter0 }}">
+            <input type="radio" name="seviye" value="{{ kod }}" class="sr-only" {% if kod == mevcut %}checked{% endif %} required>
+            <b>{{ kod }}</b><span>{{ aciklama }}</span><i aria-hidden="true">✓</i>
         </label>
         {% endfor %}
     </div>
-    <button type="submit" class="lv-dugme w-full">Kaydet</button>
-    <p class="text-center text-sm"><a href="{% url 'seviye_testi' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Emin değilim, testi çözeyim</a></p>
-    {# Rapor 18.27: çok küçük, tek satırlık not; Ayarlar'a bağlanır (Ayarlar sayfası). #}
-    <p class="text-center text-xs text-gray-400 dark:text-slate-500" data-ayarlar-notu>Seviyeni istediğin zaman <a href="{% url 'settings_page' %}" class="underline hover:text-indigo-600 dark:hover:text-indigo-400">Ayarlar</a>'dan değiştirebilirsin.</p>
+    <button type="submit" class="lv-dugme mt-10">Kaydet</button>
+    <p class="mt-5"><a href="{% url 'seviye_testi' %}" class="lv-el-bag">Emin değilim, testi çözeyim</a></p>
+    {# Rapor 18.27: çok küçük, tek satırlık not; Ayarlar'a bağlanır. #}
+    <p class="mt-4 text-sm text-gray-600 dark:text-slate-300" data-ayarlar-notu>Seviyeni istediğin zaman <a href="{% url 'settings_page' %}" class="underline">Ayarlar</a>'dan değiştirebilirsin.</p>
 </form>
+<style>
+    .lv-sekme i { opacity: 0; }
+    .lv-sekme:has(:checked) i { opacity: 1; }
+</style>
 {% endblock %}

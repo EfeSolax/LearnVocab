@@ -10,39 +10,42 @@ bildiklerine dokunur. Seçim gizli onay kutularıyla yapılır: JS olmadan da
 {% block page_heading %}{% endblock %}
 
 {% block page %}
-<form method="post" x-data="{ secili: {{ bilinen|length }} }" class="space-y-5" data-seviye-ekrani="{{ ekran }}">
+{# Defter teması: kelimeler defter sayfasında kutucuklu liste; işaretlenince mürekkep tiki ve sarı kalem. #}
+<form method="post" x-data="{ secili: {{ bilinen|length }} }" data-seviye-ekrani="{{ ekran }}">
     {% csrf_token %}
-    <div class="flex items-center justify-between gap-3">
+    <div class="flex items-start justify-between gap-3">
         <div>
-            <p class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">{{ ekran }}. ekran</p>
-            <h1 class="mt-0.5 text-xl sm:text-2xl font-bold text-gray-900 dark:text-slate-100">Bildiğin kelimelere dokun</h1>
+            <p class="lv-el text-[24px] font-bold">{{ ekran }}. sayfa</p>
+            <h1 class="lv-serif mt-0.5 text-[34px] font-black leading-tight sm:text-[44px]">Bildiğin kelimelere tik at</h1>
         </div>
         <a href="{% url 'index' %}" aria-label="Testten çık" title="Testten çık"
-           class="rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700 dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-slate-200">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+           class="flex h-10 w-10 flex-none items-center justify-center rounded-full text-gray-600 hover:bg-[color:var(--kare)] dark:text-slate-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </a>
     </div>
-    <p class="text-sm text-gray-600 dark:text-slate-400">Anlamını bildiğini düşündüklerini seç. Emin olmadıklarını boş bırakman en doğru sonucu verir.</p>
+    <p class="lv-el mt-2 text-[22px] leading-snug">anlamını bildiğini düşündüklerini seç; emin olmadıklarını boş bırakman en doğru sonucu verir.</p>
 
-    <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+    <ul class="lv-sayfa lv-bantli mt-6 grid grid-cols-2 gap-x-6 px-5 py-6 sm:grid-cols-3 sm:px-8 lg:grid-cols-4">
         {% for k in kelimeler %}
-        <li>
-            <label class="block">
+        <li class="border-b border-dashed border-[color:var(--satir)]">
+            <label class="flex cursor-pointer select-none items-center gap-3 py-2.5">
                 <input type="checkbox" name="bilinen" value="{{ k.id }}" class="peer sr-only"
                        {% if k.id in bilinen %}checked{% endif %}
                        @change="secili += $event.target.checked ? 1 : -1">
-                <span class="flex min-h-[2.75rem] cursor-pointer select-none items-center justify-center rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-2 py-2 text-center text-base font-semibold text-gray-800 dark:text-slate-100 transition-colors hover:border-indigo-300 dark:hover:border-indigo-700 peer-checked:border-indigo-600 peer-checked:bg-indigo-600 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500 peer-focus-visible:ring-offset-2 dark:peer-focus-visible:ring-offset-slate-900">
-                    {{ k.text }}
-                </span>
+                <span class="seviye-kutu" aria-hidden="true"></span>
+                <span lang="en" class="lv-serif text-lg font-bold peer-checked:[background:linear-gradient(transparent_55%,var(--kalem)_55%)] peer-focus-visible:underline">{{ k.text }}</span>
             </label>
         </li>
         {% endfor %}
     </ul>
 
-    <div class="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] lg:bottom-4 flex items-center justify-between gap-3 rounded-2xl bg-white/95 dark:bg-slate-800/95 backdrop-blur px-4 py-3 shadow-lg ring-1 ring-gray-200 dark:ring-slate-700">
-        <span class="text-sm text-gray-600 dark:text-slate-300"><strong class="text-gray-900 dark:text-slate-100" x-text="secili">{{ bilinen|length }}</strong> / {{ kelimeler|length }} seçili</span>
-        <button type="submit" data-seviye-devam
-                class="lv-dugme lv-kucuk">Devam</button>
+    <div class="lv-not lv-duz sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] mt-6 flex items-center justify-between gap-3 !py-3 lg:bottom-4">
+        <span class="lv-el text-[24px] font-bold"><span x-text="secili">{{ bilinen|length }}</span> / {{ kelimeler|length }} tik</span>
+        <button type="submit" data-seviye-devam class="lv-dugme lv-kucuk">Devam →</button>
     </div>
 </form>
+<style>
+    .seviye-kutu { position: relative; flex: none; width: 22px; height: 22px; border: 2px solid var(--murekkep); border-radius: 3px; transform: rotate(-3deg); }
+    .peer:checked + .seviye-kutu::after { content: "✓"; position: absolute; left: 1px; top: -14px; font: 700 32px/1 var(--el); color: var(--murekkep); transform: rotate(-8deg); }
+</style>
 {% endblock %}

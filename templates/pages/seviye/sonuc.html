@@ -10,50 +10,57 @@ eklendi; onay yerine "Geri al" (rapor 12.7).
 {% block page_heading %}{% endblock %}
 
 {% block page %}
-<div class="space-y-5" data-seviye-sonuc>
-    <div class="lv-sayfa px-5 py-8 sm:px-10 text-center">
-        <p class="text-sm font-semibold text-gray-500 dark:text-slate-400">Seviyen</p>
-        <p class="mt-1 text-6xl font-extrabold tracking-tight text-indigo-600 dark:text-indigo-400" data-tahmin>{{ son.tahmin }}</p>
-        <p class="mx-auto mt-4 max-w-md text-gray-700 dark:text-slate-300">{{ not_metni }}</p>
+{# Defter teması (rapor 18.12): seviye öğretmenin kırmızı kalemle daire içine aldığı not; ilk liste pembe yapışkan not. #}
+<div data-seviye-sonuc>
+    <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
+        <div class="relative grid h-36 w-48 shrink-0 -rotate-6 place-items-center text-red-700 dark:text-red-300">
+            <svg class="absolute inset-0 h-full w-full" viewBox="0 0 92 74" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 46C8 22 40 6 64 12c22 6 24 34 4 46-20 12-52 8-58-12-3-10 6-22 18-28"/></svg>
+            <p class="lv-serif relative text-[64px] font-black leading-none" data-tahmin>{{ son.tahmin }}</p>
+        </div>
+        <div class="min-w-0 flex-1">
+            <p class="lv-el text-[26px] font-bold">seviyen</p>
+            <p class="mt-1 max-w-md text-lg text-gray-700 dark:text-slate-300">{{ not_metni }}</p>
+        </div>
     </div>
 
     {# ---------------- İlk liste ---------------- #}
     <div id="ilk-liste" x-data="{ geriAlindi: {{ son.geri_alindi|yesno:'true,false' }} }"
-         class="rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 px-5 py-5">
+         class="lv-not lv-pembe lv-bantli mt-12 text-gray-900 dark:text-slate-100">
         {% if eklenen_sayisi %}
         <div x-show="!geriAlindi">
-            <h2 class="text-base font-bold text-emerald-900 dark:text-emerald-200" data-eklenen-sayisi="{{ eklenen_sayisi }}">{{ eklenen_sayisi }} kelime listene eklendi</h2>
-            <p class="mt-1 text-sm text-emerald-800 dark:text-emerald-300">Kendi seviyendeki ekranda dokunmadığın kelimeler. İlk listen bunlar; Learn &amp; Pass ve egzersizlerde karşına çıkacaklar.</p>
-            <div class="mt-3 flex flex-wrap gap-1.5">
-                {% for k in eklenenler %}<span class="rounded-full bg-white dark:bg-slate-800 px-2.5 py-0.5 text-sm text-gray-800 dark:text-slate-200 ring-1 ring-emerald-200 dark:ring-emerald-900">{{ k }}</span>{% endfor %}
-                {% if eklenen_sayisi > eklenenler|length %}<span class="px-1 py-0.5 text-sm text-emerald-700 dark:text-emerald-400">+{{ eklenen_sayisi|add:"-12" }}</span>{% endif %}
-            </div>
+            <p class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">ilk listen</p>
+            <h2 class="lv-serif mt-1 text-2xl font-bold" data-eklenen-sayisi="{{ eklenen_sayisi }}">{{ eklenen_sayisi }} kelime listene eklendi</h2>
+            <p class="mt-1 text-base text-gray-700 dark:text-slate-300">Kendi seviyendeki sayfada tik atmadığın kelimeler. Learn &amp; Pass ve egzersizlerde karşına çıkacaklar.</p>
+            <ol class="mt-3 list-decimal pl-6 text-base sm:columns-3" lang="en">
+                {% for k in eklenenler %}<li class="lv-serif break-inside-avoid font-bold">{{ k }}</li>{% endfor %}
+            </ol>
+            {% if eklenen_sayisi > eklenenler|length %}<p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">+{{ eklenen_sayisi|add:"-12" }} kelime daha</p>{% endif %}
             <form method="post" action="{% url 'seviye_geri_al' %}" class="mt-4" @submit.prevent="
                 fetch($el.action, {method: 'POST', credentials: 'same-origin',
                     headers: {'X-CSRFToken': document.querySelector('meta[name=csrf-token]').content, 'X-Requested-With': 'fetch'}})
                 .then((c) => { if (!c.ok) { throw c; } geriAlindi = true; window.geriAl && window.geriAl.bildir('İlk listen geri alındı.'); })
                 .catch(() => $el.submit())">
                 {% csrf_token %}
-                <button type="submit" data-geri-al class="rounded-xl bg-white dark:bg-slate-800 px-4 py-2 text-sm font-semibold text-emerald-800 dark:text-emerald-300 ring-1 ring-inset ring-emerald-300 dark:ring-emerald-800 hover:bg-emerald-100 dark:hover:bg-slate-700 transition">Geri al</button>
+                <button type="submit" data-geri-al class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">Geri al</button>
             </form>
         </div>
-        <p x-show="geriAlindi" x-cloak class="text-sm text-emerald-800 dark:text-emerald-300">İlk listen geri alındı. Kelimeleri istediğin zaman Sözlük'ten ekleyebilirsin.</p>
+        <p x-show="geriAlindi" x-cloak class="text-base">İlk listen geri alındı. Kelimeleri istediğin zaman Sözlük'ten ekleyebilirsin.</p>
         {% elif son.geri_alindi %}
-        <p class="text-sm text-emerald-800 dark:text-emerald-300">İlk listen geri alındı. Kelimeleri istediğin zaman Sözlük'ten ekleyebilirsin.</p>
+        <p class="text-base">İlk listen geri alındı. Kelimeleri istediğin zaman Sözlük'ten ekleyebilirsin.</p>
         {% else %}
-        <h2 class="text-base font-bold text-emerald-900 dark:text-emerald-200">Bu ekrandaki kelimelerin hepsini biliyorsun!</h2>
-        <p class="mt-1 text-sm text-emerald-800 dark:text-emerald-300">Listene yeni kelime eklemedik. Learn &amp; Pass sana yeni kelimeler gösterecek.</p>
+        <h2 class="lv-serif text-2xl font-bold">Bu sayfadaki kelimelerin hepsini biliyorsun!</h2>
+        <p class="mt-1 text-base text-gray-700 dark:text-slate-300">Listene yeni kelime eklemedik. Learn &amp; Pass sana yeni kelimeler gösterecek.</p>
         {% endif %}
     </div>
 
-    <div class="grid gap-3 sm:grid-cols-2">
-        <a href="{% url 'learn_pass_page' %}" class="lv-dugme">Learn &amp; Pass'e başla</a>
-        <a href="{% url 'sozluk' %}?sekme=listem" class="lv-sayfa px-5 py-4 text-center text-base font-semibold text-gray-800 dark:text-slate-100 ring-gray-300 dark:ring-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition">Listemi gör</a>
+    <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+        <a href="{% url 'learn_pass_page' %}" class="lv-dugme">Learn &amp; Pass'e başla →</a>
+        <a href="{% url 'sozluk' %}?sekme=listem" class="lv-el-bag">Listemi gör</a>
     </div>
 
     {# ---------------- Nasıl hesaplandı ---------------- #}
-    <details class="lv-sayfa px-5 py-4 text-sm text-gray-600 dark:text-slate-300">
-        <summary class="cursor-pointer font-semibold text-gray-800 dark:text-slate-100">Nasıl hesaplandı?</summary>
+    <details class="lv-sayfa mt-10 px-5 py-4 text-base text-gray-700 dark:text-slate-300">
+        <summary class="lv-el cursor-pointer text-[24px] font-bold">Nasıl hesaplandı?</summary>
         <ul class="mt-3 space-y-1">
             {% for e in ekranlar %}
             <li>{{ e.no }}. ekran ({{ e.ad }}): {{ e.gosterilen }} kelimeden {{ e.bilinen }} tanesini bildin (%{{ e.yuzde }}).</li>
@@ -61,7 +68,7 @@ eklendi; onay yerine "Geri al" (rapor 12.7).
         </ul>
         <p class="mt-3">Bir ekrandaki kelimelerin %{{ gecme_yuzdesi }}'ından fazlasını bildiğinde bir sonraki ekrana geçersin.{% if son.okuma %} Ardından okuduğun kısa paragraflar seviyeni netleştirdi.{% endif %}</p>
         <p class="mt-2">Seviyen, Learn &amp; Pass ve egzersizlerdeki cevaplarına göre zamanla kendiliğinden de güncellenir.</p>
-        <p class="mt-2">Seviyen kesin bir not değil, başlangıç noktası. Testi <a href="{% url 'seviye_testi' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">istediğin zaman yeniden çözebilir</a> ya da <a href="{% url 'seviye_sec' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">kendin seçebilirsin</a>.</p>
+        <p class="mt-2">Seviyen kesin bir not değil, başlangıç noktası. Testi <a href="{% url 'seviye_testi' %}" class="font-bold underline decoration-1 underline-offset-4">istediğin zaman yeniden çözebilir</a> ya da <a href="{% url 'seviye_sec' %}" class="font-bold underline decoration-1 underline-offset-4">kendin seçebilirsin</a>.</p>
     </details>
 </div>
 {% endblock %}

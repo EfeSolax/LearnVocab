@@ -10,31 +10,33 @@ açılmaz (seviye/okuma.py).
 {% block page_heading %}{% endblock %}
 
 {% block page %}
-<form method="post" class="space-y-6" data-seviye-okuma>
+{# Defter teması: her metin bir kupür, şıklar a) b) c) el yazısı harflerle. #}
+<form method="post" data-seviye-okuma>
     {% csrf_token %}
-    <div>
-        <p class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Son adım</p>
-        <h1 class="mt-0.5 text-xl sm:text-2xl font-bold text-gray-900 dark:text-slate-100">Kısa metinler</h1>
-        <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Her metni oku ve onu en iyi özetleyen cümleyi seç.</p>
-    </div>
+    <p class="lv-el text-[24px] font-bold">son adım</p>
+    <h1 class="lv-serif text-[34px] font-black leading-tight sm:text-[44px]">Kısa metinler</h1>
+    <p class="lv-el mt-1 text-[22px]">her metni oku ve onu en iyi özetleyen cümleyi seç.</p>
 
+    <div class="mt-8 space-y-10">
     {% for soru in sorular %}
-    <fieldset class="lv-sayfa px-4 py-5 sm:px-6">
+    <fieldset class="lv-kupur {% cycle 'lv-kupur-1' 'lv-kupur-2' 'lv-kupur-3' %} !px-5 !py-6 sm:!px-8">
         <legend class="sr-only">{{ forloop.counter }}. metin</legend>
-        <p class="text-xs font-semibold text-gray-400 dark:text-slate-500">{{ forloop.counter }} / {{ sorular|length }}</p>
-        <p lang="en" class="mt-2 leading-relaxed text-gray-800 dark:text-slate-200">{{ soru.metin }}</p>
-        <p class="mt-4 text-sm font-semibold text-gray-900 dark:text-slate-100">Metni en iyi özetleyen cümle hangisi?</p>
-        <div class="mt-2 space-y-2">
+        <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">metin {{ forloop.counter }} / {{ sorular|length }}</p>
+        <p lang="en" class="lv-metin mt-2 text-[19px] leading-relaxed">{{ soru.metin }}</p>
+        <p class="mt-5 text-base font-bold">Metni en iyi özetleyen cümle hangisi?</p>
+        <div class="mt-2 border-t-2 border-indigo-600 dark:border-indigo-400">
             {% for sik in soru.siklar %}
-            <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 dark:border-slate-700 px-3 py-2.5 hover:bg-gray-50 dark:hover:bg-slate-700/50 has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50 dark:has-[:checked]:bg-indigo-950/50">
-                <input type="radio" name="soru_{{ soru.id }}" value="{{ sik }}" required class="mt-1 text-indigo-600 focus:ring-indigo-500">
-                <span class="text-sm text-gray-800 dark:text-slate-200">{{ sik }}</span>
+            <label class="flex cursor-pointer items-start gap-3 border-b border-dashed border-[color:var(--satir)] px-1 py-3 hover:bg-[color:var(--kare)] has-[:checked]:bg-[color:var(--not)]">
+                <input type="radio" name="soru_{{ soru.id }}" value="{{ sik }}" required class="sr-only">
+                <span class="lv-el w-6 flex-none text-[24px] font-bold leading-none">{% if forloop.counter == 1 %}a{% elif forloop.counter == 2 %}b{% elif forloop.counter == 3 %}c{% elif forloop.counter == 4 %}d{% else %}e{% endif %})</span>
+                <span lang="en" class="text-base">{{ sik }}</span>
             </label>
             {% endfor %}
         </div>
     </fieldset>
     {% endfor %}
+    </div>
 
-    <button type="submit" class="lv-dugme w-full">Sonucumu gör</button>
+    <button type="submit" class="lv-dugme mt-10 w-full sm:w-auto">Sonucumu gör →</button>
 </form>
 {% endblock %}

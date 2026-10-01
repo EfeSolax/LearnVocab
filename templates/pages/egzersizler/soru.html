@@ -7,6 +7,9 @@ Soru ekranı (rapor 6.2):
   - Büyük soru metni, 4 büyük şık. Masaüstünde 1–4 tuşları, sonuçta Enter = Devam.
   - Cevaptan sonra doğru yeşil / yanlış kırmızı, TEK satır açıklama, "Devam".
     Kelime biçiminde yanlış cevapta şıklardaki bütün biçimler anlamlarıyla.
+Defter teması (rapor 18.12): sınav kâğıdı. Menüler gizli (L&P gibi dikkat
+dağıtıcısız), soru bantlı beyaz kâğıtta, şıklar a) b) c) d); cevaptan sonra
+öğretmen işaretleri: doğrunun harfi yeşil daire, yanlış seçimin üstü kırmızı çizgi.
 Doğru şık tarayıcıya cevaptan ÖNCE gitmez (config.soru'da yok); cevap
 sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
 {% endcomment %}
@@ -15,6 +18,22 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
 {% block page_heading %}{% endblock %}
 {% block sayfa_genisligi %}max-w-2xl{% endblock %}
 
+{% block extra_head %}
+<style>
+    #navbar, nav[aria-label="Alt menü"] { display: none !important; }
+    main { padding-top: 1.25rem !important; padding-bottom: 1.5rem !important; }
+    .egz-sik { display: flex; width: 100%; align-items: center; gap: 14px; padding: 14px 10px; text-align: left;
+               border-bottom: 1px dashed var(--satir); font-size: 18px; color: var(--yazi); transition: background .15s, opacity .2s; }
+    .egz-harf { position: relative; flex: none; width: 34px; font: 700 26px/1 var(--el); color: var(--murekkep); text-align: center; }
+    .egz-harf::before { content: ""; position: absolute; inset: -8px -6px; background: currentColor; opacity: 0;
+                        -webkit-mask: var(--daire) center/100% 100% no-repeat; mask: var(--daire) center/100% 100% no-repeat; }
+    .egz-dogru { color: var(--yesil) !important; font-weight: 700; }
+    .egz-dogru .egz-harf { color: var(--yesil); } .egz-dogru .egz-harf::before { opacity: 1; }
+    .egz-yanlis { color: var(--kirmizi) !important; text-decoration: line-through; text-decoration-thickness: 2px; }
+    .egz-yanlis .egz-harf { color: var(--kirmizi); }
+</style>
+{% endblock %}
+
 {% block page %}
 {{ config|json_script:"egzersiz-config" }}
 {{ alev|json_script:"egzersiz-alev" }}
@@ -22,8 +41,12 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
 
 <div x-data="egzersizSoru" @keydown.window="tus($event)" class="pb-10">
 
-    {# --- İlerleme + çık --- #}
+    {# --- Çık + ilerleme + sayaç --- #}
     <div class="flex items-center gap-3">
+        <a href="{% url 'exercises_page' %}" aria-label="Egzersizden çık" title="Çık (tur kaydedildi, sonra devam edebilirsin)"
+           class="flex h-10 w-10 flex-none items-center justify-center rounded-full text-gray-600 dark:text-slate-300 hover:bg-[color:var(--kare)]">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </a>
         <div id="egz-alev" class="relative flex-1">
             <div class="h-2.5 overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700"
                  role="progressbar" aria-valuemin="0" aria-valuemax="{{ oturum.soru_sayisi }}" aria-valuenow="{{ oturum.sira }}"
@@ -33,22 +56,19 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
             </div>
             {% include 'base/_alevSimgesi.html' %}
         </div>
-        <span class="text-xs font-semibold tabular-nums text-gray-500 dark:text-slate-400">{{ sira_no }}/{{ oturum.soru_sayisi }}</span>
-        <a href="{% url 'exercises_page' %}" aria-label="Egzersizden çık" title="Çık (tur kaydedildi, sonra devam edebilirsin)"
-           class="-mr-2 flex h-9 w-9 items-center justify-center rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 hover:text-gray-800 dark:hover:text-slate-100">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </a>
+        <span class="lv-el w-14 text-right text-2xl font-bold tabular-nums">{{ sira_no }}/{{ oturum.soru_sayisi }}</span>
     </div>
 
+    {# --- Sınav kâğıdı --- #}
+    <div class="lv-sayfa lv-bantli mt-8 px-5 pb-6 pt-7 sm:px-8">
+
     {# --- Soru --- #}
-    <div class="mt-8 sm:mt-10">
-        <p class="text-sm font-medium text-gray-500 dark:text-slate-400" data-soru-etiketi>{{ soru.etiket }}</p>
-        <h1 class="mt-2 font-bold text-gray-900 dark:text-slate-100 break-words
-                   {% if soru.cumle %}text-xl sm:text-2xl leading-relaxed{% else %}text-3xl sm:text-4xl tracking-tight{% endif %}">{{ soru.soru }}</h1>
+    <div>
+        <p class="lv-el text-[24px] font-bold"><span class="!text-gray-600 dark:!text-slate-300">soru {{ sira_no }} ·</span> <span data-soru-etiketi>{{ soru.etiket }}</span></p>
+        <h1 class="mt-3 break-words text-gray-900 dark:text-slate-100
+                   {% if soru.cumle %}lv-metin text-[22px] leading-relaxed sm:text-2xl{% else %}lv-serif text-[40px] font-black leading-[1.05] tracking-tight sm:text-5xl{% endif %}">{{ soru.soru }}</h1>
         {% if soru.alt %}
-        <p class="mt-2 text-base text-gray-500 dark:text-slate-400">{{ soru.alt }}</p>
+        <p class="mt-2 text-lg text-gray-600 dark:text-slate-300">{{ soru.alt }}</p>
         {% endif %}
     </div>
 
@@ -85,29 +105,29 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
 
     {% else %}
     {# --- Dört şık --- #}
-    <form method="post" action="{% url 'egzersiz_cevap' pk=oturum.pk %}" class="mt-8 space-y-3" @submit.prevent>
+    <form method="post" action="{% url 'egzersiz_cevap' pk=oturum.pk %}" class="mt-6 border-t-2 border-indigo-600 dark:border-indigo-400" @submit.prevent>
         {% csrf_token %}
         {% for s in soru.secenekler %}
         <button type="submit" name="secim" value="{{ forloop.counter0 }}"
                 @click.prevent="sec({{ forloop.counter0 }})" :disabled="!!sonuc || gonderiliyor"
                 :class="sikSinif({{ forloop.counter0 }})"
-                class="group flex w-full items-center gap-3 rounded-xl border-2 border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-4 text-left text-base sm:text-lg font-medium text-gray-900 dark:text-slate-100 shadow-sm transition">
-            <span class="hidden sm:flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-gray-300 dark:border-slate-500 text-xs font-bold text-gray-500 dark:text-slate-400">{{ forloop.counter }}</span>
+                class="egz-sik">
+            <span class="egz-harf" aria-hidden="true">{% cycle 'a' 'b' 'c' 'd' %})</span>
             <span class="min-w-0 flex-1 break-words">{{ s }}</span>
         </button>
         {% endfor %}
     </form>
     {% endif %}
+    </div>{# sınav kâğıdı #}
 
-    {# --- Sonuç: tek satır açıklama + Devam --- #}
+    {# --- Sonuç: öğretmen notu (tek satır açıklama) + Devam --- #}
     <div x-show="sonuc" x-cloak aria-live="polite"
-         class="mt-6 rounded-xl border p-4"
-         :class="sonuc?.dogru_mu ? 'border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950' : 'border-rose-200 bg-rose-50 dark:border-rose-900 dark:bg-rose-950'">
-        <p class="font-bold" :class="sonuc?.dogru_mu ? 'text-emerald-800 dark:text-emerald-200' : 'text-rose-800 dark:text-rose-200'"
+         class="lv-not lv-bantli mt-8 text-gray-900 dark:text-slate-100" :class="sonuc?.dogru_mu ? 'lv-mavi' : ''">
+        <p class="lv-el text-[28px] font-bold leading-tight" :class="sonuc?.dogru_mu ? '!text-emerald-700 dark:!text-emerald-300' : '!text-red-700 dark:!text-red-300'"
            x-text="sonuc?.dogru_mu ? 'Doğru!' : (soru.tip === 'eslestirme' ? 'Bu sefer olmadı. Doğru eşler kelimelerin altında.' : 'Bu sefer olmadı. Doğrusu yeşil olan.')"></p>
-        <p class="mt-1 text-sm text-gray-800 dark:text-slate-200" x-show="soru.tip !== 'eslestirme'" x-text="sonuc?.aciklama"></p>
+        <p class="mt-1 text-base text-gray-800 dark:text-slate-200" x-show="soru.tip !== 'eslestirme'" x-text="sonuc?.aciklama"></p>
         <template x-if="sonuc?.bicimler">
-            <ul class="mt-3 space-y-1 border-t border-rose-200 dark:border-rose-900 pt-3 text-sm">
+            <ul class="mt-3 space-y-1 border-t border-dashed border-[color:var(--satir)] pt-3 text-base">
                 <template x-for="b in sonuc.bicimler">
                     <li class="text-gray-800 dark:text-slate-200"><span class="font-semibold" x-text="b.metin"></span> <span class="text-gray-600 dark:text-slate-400" x-text="'— ' + b.anlam"></span></li>
                 </template>
@@ -116,13 +136,13 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
         <form method="post" action="{% url 'egzersiz_ilerle' pk=oturum.pk %}" class="mt-4" x-ref="devam">
             {% csrf_token %}
             <button type="submit" x-ref="devamDugmesi"
-                    class="w-full rounded-xl bg-gray-900 dark:bg-slate-100 px-5 py-3.5 text-base font-semibold text-white dark:text-slate-900 hover:bg-gray-800 dark:hover:bg-white transition">
+                    class="lv-dugme w-full">
                 {% if sira_no == oturum.soru_sayisi %}Sonucu gör{% else %}Devam{% endif %}
             </button>
         </form>
     </div>
 
-    <p class="mt-6 hidden sm:block text-center text-xs text-gray-400 dark:text-slate-500">
+    <p class="lv-el mt-6 hidden text-center text-[20px] !text-gray-500 dark:!text-slate-400 sm:block">
         {% if soru.tip != "eslestirme" %}1–4 tuşlarıyla seçebilirsin · {% endif %}Enter ile devam
     </p>
 </div>
@@ -137,7 +157,7 @@ document.addEventListener("alpine:init", () => {
             "border-sky-500 bg-sky-50 dark:bg-sky-950",
             "border-fuchsia-500 bg-fuchsia-50 dark:bg-fuchsia-950",
         ];
-        const NOTR = "border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100";
+        const NOTR = "border-[color:var(--satir)] bg-[color:var(--kagit)] text-gray-900 dark:text-slate-100";
         return {
             soru: config.soru,
             sonuc: config.sonuc,
@@ -184,10 +204,10 @@ document.addEventListener("alpine:init", () => {
             // --- dört şık ---
             sec(i) { this.gonder(i); },
             sikSinif(i) {
-                if (!this.sonuc) return "hover:border-indigo-400 dark:hover:border-indigo-500 hover:bg-indigo-50/50 dark:hover:bg-slate-700";
-                if (i === this.sonuc.dogru) return "!border-emerald-500 !bg-emerald-50 dark:!bg-emerald-950 !text-emerald-900 dark:!text-emerald-100";
-                if (i === this.sonuc.secim) return "!border-rose-500 !bg-rose-50 dark:!bg-rose-950 !text-rose-900 dark:!text-rose-100";
-                return "opacity-50";
+                if (!this.sonuc) return "hover:bg-[color:var(--kare)]";
+                if (i === this.sonuc.dogru) return "egz-dogru";
+                if (i === this.sonuc.secim) return "egz-yanlis";
+                return "opacity-40";
             },
 
             // --- eşleştirme ---
