@@ -456,8 +456,9 @@ class ListemSatirTests(ListemTemeli):
         self.assertEqual(self.idler(), [self.aim_v.id, self.aim_n.id, self.decide.id, self.zebra.id])
         html = _html(self.listem())
         self.assertIn("Listemden çıkar", html)
-        self.assertIn(">1.</span> amaç, hedef", html)
-        self.assertIn(">2.</span> nişan", html)
+        # Defter teması: el yazısı anlam numaraları (rapor 18.12)
+        self.assertIn(">1</span>amaç, hedef", html)
+        self.assertIn(">2</span>nişan", html)
 
     def test_iki_tur_iki_satir_gri_tur_etiketi(self):
         satirlar = {s.id: s for s in self.listem().context["satirlar"]}

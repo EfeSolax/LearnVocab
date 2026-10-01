@@ -11,6 +11,12 @@ Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
 {{ tum_idler|json_script:"listem-idler" }}
 <div x-data="listem()" @kelime-listesi.document="satirDurumu($event.detail)" data-listem>
 
+    {# Defter teması (rapor 18.12): Listem, kullanıcının kendi kelime defteri. #}
+    <header class="mb-6">
+        <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">Listem</h1>
+        <span class="lv-alt-baslik mt-1">senin kelime defterin{% if toplam %}: {{ toplam }} kelime{% endif %}</span>
+    </header>
+
     {# ---------- Arama + Filtre + Seç ---------- #}
     <div class="flex items-start gap-2">
         <form method="get" action="{% url 'sozluk' %}" role="search" class="min-w-0 flex-1">
@@ -19,11 +25,11 @@ Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
             {% if d.zaman != "tumu" %}<input type="hidden" name="zaman" value="{{ d.zaman }}">{% endif %}
             {% if d.zor %}<input type="hidden" name="zor" value="1">{% endif %}
             {% url 'listem_oneri' as listem_oneri_adresi %}
-            {% include 'pages/words/_oneriKutusu.html' with girdi_id="listem-ara" ad="ara" deger=d.ara etiket="Listende ara" adres=listem_oneri_adresi %}
+            {% include 'pages/words/_oneriKutusu.html' with girdi_id="listem-ara" ad="ara" deger=d.ara etiket="Listende ara" adres=listem_oneri_adresi stil="defter" %}
         </form>
         <div class="flex shrink-0 flex-col gap-1.5 sm:flex-row">
             <button type="button" @click="filtre = !filtre" :aria-expanded="filtre.toString()" data-filtre-dugmesi
-                    class="relative inline-flex h-[3.125rem] items-center gap-1.5 rounded-xl border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 text-sm font-semibold text-gray-700 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-700">
+                    class="lv-el relative inline-flex h-[3.125rem] items-center gap-1.5 px-2 text-[24px] font-bold">
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h18M6.75 12h10.5M10.5 19.5h3"/></svg>
                 Filtre
                 {% if d.filtre_var %}<span class="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-indigo-600 dark:bg-indigo-400" aria-label="Filtre açık"></span>{% endif %}
@@ -33,44 +39,44 @@ Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
 
     {# ---------- Filtre paneli (tek düğme, açılınca üç satır) ---------- #}
     <div x-show="filtre" x-cloak x-transition.opacity data-filtre-paneli
-         class="lv-sayfa mt-2 space-y-3 p-4 text-sm">
+         class="lv-not lv-duz mt-3 space-y-4 text-base text-gray-900 dark:text-slate-100">
         {% for baslik, secenekler in filtre_satirlari %}
         <div class="flex flex-wrap items-center gap-2">
-            <span class="w-14 shrink-0 text-gray-500 dark:text-slate-400">{{ baslik }}</span>
+            <span class="w-16 shrink-0 font-semibold">{{ baslik }}</span>
             {% for ad, adres, secili in secenekler %}
             <a href="{{ adres }}" {% if secili %}aria-current="true"{% endif %}
-               class="rounded-full px-3 py-1 font-medium transition-colors {% if secili %}bg-indigo-600 text-white{% else %}bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600{% endif %}">{{ ad }}</a>
+               class="lv-secim-bag text-[22px]">{{ ad }}</a>
             {% endfor %}
         </div>
         {% endfor %}
         <div class="flex flex-wrap items-center gap-2">
             <a href="{{ zor_adresi }}" role="switch" aria-checked="{{ d.zor|yesno:'true,false' }}" data-zorlandiklarim
-               class="inline-flex items-center gap-2 rounded-full px-3 py-1 font-medium transition-colors {% if d.zor %}bg-indigo-600 text-white{% else %}bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600{% endif %}">
+               {% if d.zor %}aria-current="true"{% endif %} class="lv-secim-bag text-[22px]">
                 {% if d.zor %}✓ {% endif %}Zorlandıklarım
             </a>
-            <span class="text-xs text-gray-500 dark:text-slate-400">L&amp;P'de bilmediğin ya da egzersizde yanlış yaptığın kelimeler</span>
+            <span class="text-sm text-gray-700 dark:text-slate-300">L&amp;P'de bilmediğin ya da egzersizde yanlış yaptığın kelimeler</span>
         </div>
     </div>
 
     {# ---------- Seçim çubuğu ---------- #}
-    <div class="mt-4 flex min-h-[2.5rem] items-center justify-between gap-2 text-sm">
+    <div class="mt-5 flex min-h-[2.5rem] items-center justify-between gap-2 text-base">
         <template x-if="!sec">
             <div class="flex w-full items-center justify-between">
-                <span class="text-gray-500 dark:text-slate-400" data-listem-sayisi x-text="tumIdler.length ? tumIdler.length + ' kelime' : ''">{% if toplam %}{{ toplam }} kelime{% endif %}</span>
+                <span class="lv-el text-[22px]" data-listem-sayisi x-text="tumIdler.length ? tumIdler.length + ' kelime' : ''">{% if toplam %}{{ toplam }} kelime{% endif %}</span>
                 {% if toplam %}
                 <button type="button" @click="sec = true" x-show="tumIdler.length" data-sec-dugmesi
-                        class="rounded-lg px-3 py-1.5 font-semibold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-slate-800">Seç</button>
+                        class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">Seç</button>
                 {% endif %}
             </div>
         </template>
         <template x-if="sec">
-            <div class="sticky top-16 z-20 flex w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-xl bg-gray-900 dark:bg-slate-100 px-4 py-2 text-white dark:text-slate-900" data-secim-cubugu>
+            <div class="lv-not lv-duz sticky top-16 z-20 flex w-full flex-wrap items-center gap-x-3 gap-y-1 !py-2.5 text-gray-900 dark:text-slate-100" data-secim-cubugu>
                 <span class="font-semibold"><span x-text="secili.length"></span> seçili</span>
                 <span class="opacity-40" aria-hidden="true">·</span>
-                <button type="button" @click="tumunuSec()" class="font-semibold text-indigo-300 dark:text-indigo-700 hover:underline">Tümünü seç</button>
+                <button type="button" @click="tumunuSec()" class="font-semibold text-indigo-700 underline dark:text-indigo-300">Tümünü seç</button>
                 <span class="opacity-40" aria-hidden="true">·</span>
                 <button type="button" @click="cikar()" :disabled="!secili.length || mesgul"
-                        class="font-semibold text-rose-300 dark:text-rose-700 hover:underline disabled:opacity-40 disabled:no-underline">Çıkar</button>
+                        class="font-semibold text-red-700 underline disabled:opacity-40 disabled:no-underline dark:text-red-300">Çıkar</button>
                 <span class="opacity-40" aria-hidden="true">·</span>
                 <button type="button" @click="iptal()" class="font-semibold hover:underline">İptal</button>
             </div>
@@ -79,7 +85,8 @@ Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
 
     {# ---------- Satırlar ---------- #}
     {% if satirlar %}
-    <ul class="lv-sayfa mt-1 divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden" data-listem-satirlari x-ref="satirlar">
+    <div class="lv-tablo-basliklar mt-2"><span>kelime</span><span>anlamı</span></div>
+    <ul class="divide-y divide-[color:var(--satir)] border-b border-[color:var(--satir)]" data-listem-satirlari x-ref="satirlar">
         {% include 'pages/words/_listemSatirlari.html' %}
     </ul>
     {% endif %}
@@ -95,7 +102,7 @@ Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
     {% elif not satirlar %}
     <div class="lv-el text-[22px] leading-snug py-2 mt-3 text-center" data-filtre-bos>
         <p>{% if d.ara %}Listende “{{ d.ara }}” ile eşleşen kelime yok.{% else %}Bu seçimde kelime yok.{% endif %}</p>
-        <a href="{{ temizle_adresi }}" class="mt-2 inline-block text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Bütün listeyi göster</a>
+        <a href="{{ temizle_adresi }}" class="mt-2 inline-block underline decoration-1 underline-offset-4">Bütün listeyi göster</a>
     </div>
     {% endif %}
 </div>

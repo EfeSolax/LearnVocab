@@ -6,12 +6,10 @@ yoksa (ifade, öneri) kalıcı sayfasına (/sozluk/<metin>/) gidilir.
 {% endcomment %}
 <li data-kart-satiri>
     <a href="{{ satir.metin|kelime_adresi }}"{% if satir.id %} data-kart-ac="{{ satir.id }}" data-kart-hedef="yerine"{% endif %}
-       class="flex items-baseline gap-1.5 px-4 py-2.5 text-sm hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
-        <span class="font-semibold text-gray-900 dark:text-slate-100">{{ satir.metin }}</span>
-        {% if satir.tur %}<span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>
-        <span class="shrink-0 text-xs text-gray-500 dark:text-slate-400">{{ satir.tur }}</span>{% endif %}
-        {% if satir.anlam %}<span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>
-        <span class="truncate text-gray-700 dark:text-slate-300">{{ satir.anlam }}</span>{% endif %}
+       class="flex items-baseline gap-2 px-1 py-2.5 text-base transition-colors hover:bg-[color:var(--kare)]">
+        <span lang="en" class="lv-serif text-lg font-bold text-gray-900 dark:text-slate-100">{{ satir.metin }}</span>
+        {% if satir.tur %}<span class="lv-el shrink-0 text-[19px]">{{ satir.tur }}</span>{% endif %}
+        {% if satir.anlam %}<span class="truncate font-semibold text-indigo-700 dark:text-indigo-300">{{ satir.anlam }}</span>{% endif %}
         {% if satir.cefr %}<span class="lv-seviye ml-auto shrink-0 self-center">{{ satir.cefr }}</span>{% endif %}
     </a>
 </li>

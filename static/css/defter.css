@@ -254,3 +254,8 @@ mark.lv-vurgu { background: var(--kalem); color: inherit; padding: 0 2px; border
 .lv-aralik { -webkit-appearance: none; appearance: none; height: 4px; background: var(--murekkep); border-radius: 2px; }
 .lv-aralik::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--kalem); border: 2.5px solid var(--murekkep); cursor: pointer; }
 .lv-aralik::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: var(--kalem); border: 2.5px solid var(--murekkep); cursor: pointer; }
+/* Bağlantı olarak seçenek (Listem filtreleri): seçili olan daire içinde */
+.lv-secim-bag { position: relative; display: inline-block; padding: 0 8px; font-family: var(--el); font-weight: 700; color: var(--soluk); text-decoration: none; }
+.lv-secim-bag[aria-current]::before { content: ""; position: absolute; inset: -6px -4px; background: var(--murekkep);
+  -webkit-mask: var(--daire) center/100% 100% no-repeat; mask: var(--daire) center/100% 100% no-repeat; }
+.lv-secim-bag[aria-current] { color: var(--murekkep); }
