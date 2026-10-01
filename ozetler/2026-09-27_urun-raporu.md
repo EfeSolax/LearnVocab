@@ -1020,12 +1020,31 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Bölümler: giriş (başlık, "Hemen dene", "Seviyemi öğren", arama) · rakamlar · Sözlük · Learn & Pass · Okumalar · Yazılar · seviye testi · günün kelimesi/ifadesi · hesap çağrısı · alt bilgi.
   - **Beğenilmedi (1 Ekim):** Efe'nin arkadaşları "çok klasik, yapay zekâ ile yapıldığı belli" dedi. Hazır şablon kalıpları (renkli hap etiketler, lekeli kolaj, rakam şeridi, tikli zikzak bölümler) kullanılmaz.
   - Yerine iki konsept (uygulanmadı, Efe seçecek): `konsept-defter.html` (kareli kelime defteri; katlanan sütunla kendini sınama, el yazısı notlar, çizgi kapibara) ve `konsept-oyna.html` (sayfa ziyaretçiye hemen kelime sorar; site ancak 7 kelimeden sonra kendini anlatır).
-- **Seçilen yön: Defter (Efe'nin kararı, 2 Ekim).** Site kareli bir kelime defteri gibi görünür. Örnekler `ozetler/tasarim-ornekleri/defter/` altında (uygulanmadı):
+- **Seçilen yön: Defter (Efe'nin kararı, 2 Ekim).** Site kareli bir kelime defteri gibi görünür. Örnekler `ozetler/tasarim-ornekleri/defter/` altında:
   - Ortak stil `defter.css`, ortak menü ve tema düğmesi `defter.js`.
   - Sayfalar: `index.html` (ana sayfa), `kelime.html` (bank), `learnpass.html`, `okuma.html`, `yazilar.html`.
   - Ana sayfa bölümleri: katlanan defter tablosu, bugünün kelimesi ve ifadesi (yapışkan notlar), seri takvimi, "Defterin yapamadığı dört şey", okuma kupürleri, A1–C2 seviye sekmeleri, hazır liste, sık sorulanlar.
   - **Kural:** El yazısı (Caveat) yalnızca süs ve kısa notlar içindir. Anlam, tanım ve düğme hep düz yazıdır (Inter). Başlıklar Fraunces, okuma ve örnek cümleler Source Serif 4, L&P kelimesi Fredoka.
   - L&P kartı çizgili bir fiş kartıdır; ilerleme çentikle (çetele) gösterilir. Yazılar'da puan öğretmenin kırmızı daireli notu gibidir.
+- **Siteye uygulandı (2 Ekim, adım adım):**
+  - **Ortak katman:** `static/css/defter.css` (renk değişkenleri, kâğıt zemin, `.lv-*` bileşenleri), `base/layout.html`.
+    - Tailwind'in indigo/violet/purple renkleri mürekkep mavisine, gray kâğıt nötrlerine, slate gece defterine bağlandı. Eski sınıflar da defter renginde görünür.
+    - Kök yazı boyutu 17 px (`html { font-size: 106.25% }`): bütün rem ölçüleri birlikte büyüdü.
+    - Yazı tipleri: Inter, Fraunces, Source Serif 4, Caveat, Fredoka (Google Fonts).
+    - Üst çubuk ve alt menü: kâğıt zemin, seçili bölüm mürekkep dalgasıyla ya da fosforlu kalemle işaretli. Logo görseli aynı kaldı; yanındaki yazı "Learn**Vocab**" (Fraunces, sarı vurgulu).
+    - PWA tema rengi kâğıt rengi (`#fbfaf5`).
+  - **Ana sayfa:** misafir için örnekteki tanıtım sayfası, gerçek verilerle.
+    - Defter tablosunun 5 kelimesi `words.gunun.defter_kelimeleri`: o gün herkese aynı, 2 B1 + 3 B2, günün kelimesiyle aynı ölçüt, günün kelimesi hariç. Hiçbir şey kaydedilmez.
+    - Okumalar kütüphaneden ilk üç metin; seviye sekmeleri `sozluk_seviye`'ye, hazır liste yayındaki ilk listeye bağlı. Seri takvimi açıkça "örnek" yazar.
+    - Girişli kullanıcı: tarih, selam, büyük "Bugünün çalışmasına başla", seri ve liste sayısı kâğıt kartları, günün kelimesi ve ifadesi yapışkan not.
+  - **Günün kelimesi ve ifadesi:** her yerde (Ana Sayfa, Sözlük › Keşfet) sarı ve mavi yapışkan not.
+  - **Sözlük:** kelime kartı beyaz kâğıt sayfası; kelime Fraunces, tür el yazısı, seviye el çizimi daire, numaralar ve "Daha fazla örnek / Kalıplar" el yazısı, örnek cümle okuma yazısıyla. Keşfet / Listem defter sekmeleri. Arama kutusu kâğıttaki çizgi gibi.
+  - **Learn & Pass:** oturum dikkat dağıtıcısız (18.10): üst çubuk ve alt menü gizli, tek çıkış ✕ (hiç kart görülmediyse geri döner, yoksa özet açılır), "Geri al" küçük. Kart çizgili fiş, kararlar damga gibi, kapibara çizgi çizimi konuşma balonuyla.
+  - **Okumalar:** metin deftere bantlanmış beyaz sayfa, Source Serif ile; dokunulan kelime sarı kalemle işaretlenir, anlamı sarı not baloncuğunda.
+  - **Yazılar:** değerlendirmede puan öğretmenin kırmızı daireli notu; hatalar kırmızı dalgalı çizgi, "İyi yaptıkların" yeşil, "Hatalar" kırmızı kalem.
+  - **Bütün diğer ekranlar** (egzersizler, hesap, ayarlar, giriş/kayıt, seviye testi, bildirim ön ekranı): kartlar kâğıt sayfası (`.lv-sayfa`), ana düğmeler mürekkep düğmesi (`.lv-dugme`), sayfa başlıkları Fraunces, boş durumlar el yazısı notu, seviye rozetleri el çizimi daire.
+  - Kapibara (`base/_kapibara.html`) artık çizgi çizim; asıl çizim yine Efe ile (Bölüm 16).
+- **Kalanlar (tasarım):** egzersiz soru ekranları, seviye testi ve giriş/kayıt formları için sayfaya özel ince ayar; logo; Tailwind derlemesi (18.17, Standalone CLI indirmek için Efe'nin izni gerekir).
 - **Logo:** Şimdilik dokunulmaz, sonra ele alınacak.
 - **Dil:** `<html lang="en">` → **`lang="tr"`**. **YAPILDI (30 Eylül):** `lang` seçili dilden geliyor (`get_current_language`, 18.22'ye hazır). Kelime kartındaki ve okuma baloncuğundaki İngilizce metinler `lang="en"` taşıyor. "BİLMİYORUM" artık doğru görünüyor.
   - Şu an Türkçe büyük harf bozuk: "BİLMİYORUM" ekranda "BILMIYORUM" çıkıyor.
@@ -1623,3 +1642,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-01 (10):** Tasarım oturumu başladı. Efe tema A'yı (Mürekkep) seçti. Misafir ana sayfasının görselli bir tanıtım sayfası olmasına karar verdi; örnek `ozetler/tasarim-ornekleri/` altında (uygulanmadı).
 - **2026-10-01 (11):** Tanıtım ana sayfası taslağı "fazla klasik" bulundu; iki farklı konsept hazırlandı (`konsept-defter.html`, `konsept-oyna.html`; uygulanmadı).
 - **2026-10-02 (1):** Efe defter yönünü seçti. Defter teması beş sayfaya uygulanmış örneklerle geliştirildi, ana sayfa zenginleştirildi (`ozetler/tasarim-ornekleri/defter/`; uygulanmadı).
+- **2026-10-02 (2):** Defter teması siteye uygulandı: ortak katman (`static/css/defter.css`, Tailwind renk eşlemesi, 17 px kök yazı), yeni misafir ana sayfası (`words.gunun.defter_kelimeleri`), Sözlük kartı, Learn & Pass (dikkat dağıtıcısız, 18.10), Okumalar, yazı değerlendirmesi; diğer ekranlar ortak kalıplarla. 942 test geçiyor.
