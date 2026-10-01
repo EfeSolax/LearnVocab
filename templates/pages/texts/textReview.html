@@ -16,11 +16,8 @@ Bir yazının değerlendirmesi (ürün raporu 9.1).
 
 {% block page %}
 
-<a href="{% url 'profile_texts' %}" class="inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200">
-    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
-    Yazılarım
-</a>
-<p class="mt-2 text-sm text-gray-500 dark:text-slate-400">
+<a href="{% url 'profile_texts' %}" class="lv-el text-[22px] font-bold hover:underline">← Yazılarım</a>
+<p class="mt-2 text-[15px] text-gray-600 dark:text-slate-300">
     {{ yazi.createdAt|date:"j F Y" }}{% if yazi.konu %} · {{ yazi.konu }}{% endif %}{% if yazi.durum != "eski" and sertlik_adi %} · {{ sertlik_adi }} geri bildirim{% endif %}
 </p>
 
@@ -28,22 +25,23 @@ Bir yazının değerlendirmesi (ürün raporu 9.1).
 <div x-data="{ aktif: null, sec(i) { this.aktif = (this.aktif === i ? null : i); } }" class="mt-3 space-y-5">
 
     {# ---------- Puan ---------- #}
-    <section class="flex items-center justify-between rounded-2xl bg-indigo-600 px-5 py-4 text-white shadow-sm">
-        <div>
-            <p class="text-sm font-medium text-indigo-100">Puanın</p>
-            <p class="text-4xl font-black leading-tight" data-puan>{{ puan_yazisi }}<span class="text-xl font-semibold text-indigo-200"> / 5</span></p>
+    {# Puan: öğretmenin kırmızı kalemle daire içine aldığı not (defter, rapor 18.12) #}
+    <section class="flex items-center justify-between gap-4">
+        <p class="lv-el -rotate-2 text-[30px] font-bold leading-tight !text-red-700 dark:!text-red-300">{{ puan_etiketi }}</p>
+        <div class="relative grid h-24 w-32 shrink-0 -rotate-6 place-items-center text-red-700 dark:text-red-300">
+            <svg class="absolute inset-0 h-full w-full" viewBox="0 0 92 74" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 46C8 22 40 6 64 12c22 6 24 34 4 46-20 12-52 8-58-12-3-10 6-22 18-28"/></svg>
+            <p class="lv-el relative text-5xl font-bold !text-red-700 dark:!text-red-300" data-puan><span class="sr-only">Puanın </span>{{ puan_yazisi }}<span class="text-2xl"> / 5</span></p>
         </div>
-        <p class="text-right text-lg font-semibold">{{ puan_etiketi }}</p>
     </section>
 
     {# ---------- Metin (hatalar altı çizili) ---------- #}
-    <section class="lv-sayfa p-4 sm:p-5">
+    <section class="lv-sayfa px-5 py-5 sm:px-6">
         <h2 class="sr-only">Metnin</h2>
-        <p class="whitespace-pre-wrap break-words text-base leading-8 text-gray-900 dark:text-slate-100" data-metin>{% for p in parcalar %}{% if p.hata is None %}{{ p.metin }}{% else %}<button type="button" data-hata="{{ p.hata }}" @click="sec({{ p.hata }})" :class="aktif === {{ p.hata }} ? 'bg-red-100 dark:bg-red-900/60' : ''" class="rounded-sm text-left underline decoration-red-500 decoration-2 underline-offset-4 hover:bg-red-50 dark:hover:bg-red-950/60">{{ p.metin }}</button>{% endif %}{% endfor %}</p>
+        <p class="lv-metin whitespace-pre-wrap break-words bg-[repeating-linear-gradient(transparent_0_31px,var(--satir)_31px_32px)] text-[19px] leading-8 text-gray-900 dark:text-slate-100" data-metin>{% for p in parcalar %}{% if p.hata is None %}{{ p.metin }}{% else %}<button type="button" data-hata="{{ p.hata }}" @click="sec({{ p.hata }})" :class="aktif === {{ p.hata }} ? 'bg-red-100 dark:bg-red-900/60' : ''" class="rounded-sm text-left underline decoration-wavy decoration-red-600 decoration-[1.5px] underline-offset-[6px] hover:bg-red-50 dark:hover:bg-red-950/60">{{ p.metin }}</button>{% endif %}{% endfor %}</p>
 
         {% for h in hatalar %}
         <div x-show="aktif === {{ forloop.counter0 }}" x-cloak x-transition.opacity
-             class="mt-3 rounded-xl bg-red-50 dark:bg-red-950/60 px-4 py-3 text-sm">
+             class="mt-4 border-l-[3px] border-red-600 pl-3 text-base">
             <p><span class="text-red-700 line-through decoration-red-400 dark:text-red-300">{{ h.alinti }}</span>
                <span class="text-gray-400">→</span>
                <span class="font-semibold text-emerald-700 dark:text-emerald-300">{{ h.dogrusu }}</span></p>
@@ -52,18 +50,18 @@ Bir yazının değerlendirmesi (ürün raporu 9.1).
         {% endfor %}
 
         {% if hatalar %}
-        <p class="mt-3 text-xs text-gray-500 dark:text-slate-400">Altı çizili yerlere dokun.</p>
+        <p class="lv-el mt-3 text-[21px]">Altı çizili yerlere dokun.</p>
         {% endif %}
     </section>
 
     {% if onerilenler %}
-    <section class="text-sm text-gray-700 dark:text-slate-300">
-        <span class="font-semibold">Kullanmayı dene:</span>
+    <section class="text-base text-gray-700 dark:text-slate-300">
+        <span class="lv-el text-[22px] font-bold">kullanmayı dene:</span>
         {% for k in onerilenler %}
             {% if k in kullanilanlar %}
-            <span class="ml-1 inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 font-medium text-emerald-800 dark:text-emerald-200">{{ k }} <span aria-label="kullandın">✓</span></span>
+            <span class="lv-serif ml-2 inline-flex items-center gap-1 font-bold line-through decoration-indigo-600 decoration-2">{{ k }} <span class="lv-el no-underline !text-emerald-700 dark:!text-emerald-300" aria-label="kullandın">✓</span></span>
             {% else %}
-            <span class="ml-1 inline-flex rounded-full bg-gray-100 dark:bg-slate-700 px-2 py-0.5 text-gray-600 dark:text-slate-300">{{ k }}</span>
+            <span class="lv-serif ml-2 inline-flex font-bold">{{ k }}</span>
             {% endif %}
         {% endfor %}
     </section>
@@ -72,11 +70,11 @@ Bir yazının değerlendirmesi (ürün raporu 9.1).
     {# ---------- İyi yaptıkların ---------- #}
     {% if iyi %}
     <section>
-        <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-slate-100">İyi yaptıkların</h2>
-        <ul class="space-y-2">
+        <h2 class="lv-el mb-2 text-[30px] font-bold !text-emerald-700 dark:!text-emerald-300">✓ İyi yaptıkların</h2>
+        <ul class="space-y-3">
             {% for m in iyi %}
-            <li class="rounded-xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50/70 dark:bg-emerald-950/40 px-4 py-3 text-sm">
-                <p class="font-medium text-emerald-900 dark:text-emerald-200">“{{ m.alinti }}”</p>
+            <li class="border-l-[3px] border-emerald-700 pl-3 text-base dark:border-emerald-300">
+                <p class="lv-metin text-[17px] italic">“{{ m.alinti }}”</p>
                 <p class="mt-0.5 text-gray-700 dark:text-slate-300">{{ m.aciklama }}</p>
             </li>
             {% endfor %}
@@ -86,14 +84,14 @@ Bir yazının değerlendirmesi (ürün raporu 9.1).
 
     {# ---------- Hatalar ---------- #}
     <section>
-        <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-slate-100">Hatalar</h2>
+        <h2 class="lv-el mb-2 text-[30px] font-bold !text-red-700 dark:!text-red-300">✗ Hatalar</h2>
         {% if hatalar %}
-        <ol class="space-y-2">
+        <ol class="space-y-3">
             {% for h in hatalar %}
             <li>
                 <button type="button" @click="sec({{ forloop.counter0 }})"
                         :class="aktif === {{ forloop.counter0 }} ? 'ring-2 ring-red-300 dark:ring-red-800' : ''"
-                        class="block w-full rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 text-left text-sm">
+                        class="block w-full border-l-[3px] border-red-600 py-1 pl-3 text-left text-base dark:border-red-400">
                     <span class="text-red-700 line-through decoration-red-400 dark:text-red-300">{{ h.alinti }}</span>
                     <span class="text-gray-400">→</span>
                     <span class="font-semibold text-emerald-700 dark:text-emerald-300">{{ h.dogrusu }}</span>
@@ -112,17 +110,17 @@ Bir yazının değerlendirmesi (ürün raporu 9.1).
 
 {% elif yazi.durum == "bekliyor" %}
 <div class="mt-3 space-y-4">
-    <div class="rounded-2xl border border-yellow-300 dark:border-yellow-700 bg-yellow-50 dark:bg-yellow-950/60 p-4 text-yellow-900 dark:text-yellow-100" data-etiket="bekliyor">
+    <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100" data-etiket="bekliyor">
         <p class="font-semibold">Henüz değerlendirilmedi</p>
         <p class="mt-1 text-sm">Metnin kayıtlı, kaybolmadı. Değerlendirme servisi şu an cevap veremedi; biraz sonra kendimiz yeniden deneyeceğiz. Hazır olunca burada görürsün.</p>
         <form method="post" action="{% url 'retry_text' yazi.id %}" class="mt-3">
             {% csrf_token %}
-            <button type="submit" class="rounded-xl bg-yellow-400 px-4 py-2 text-sm font-semibold text-yellow-950 hover:bg-yellow-300">Şimdi tekrar dene</button>
+            <button type="submit" class="lv-dugme lv-kucuk">Şimdi tekrar dene</button>
             {% if yogun %}<span class="ml-2 text-xs">Şu an yoğunuz; biraz sonra tekrar dene.</span>{% endif %}
         </form>
     </div>
     <section class="lv-sayfa p-4 sm:p-5">
-        <p class="whitespace-pre-wrap break-words text-base leading-8 text-gray-900 dark:text-slate-100">{{ yazi.content }}</p>
+        <p class="lv-metin whitespace-pre-wrap break-words text-[19px] leading-8 text-gray-900 dark:text-slate-100">{{ yazi.content }}</p>
     </section>
 </div>
 
@@ -133,7 +131,7 @@ Bir yazının değerlendirmesi (ürün raporu 9.1).
         Yeni sistemde puan 5 üzerinden ve yalnızca gerçek hatalar yazılıyor.</p>
     </div>
     <section class="lv-sayfa p-4 sm:p-5">
-        <p class="whitespace-pre-wrap break-words text-base leading-8 text-gray-900 dark:text-slate-100">{{ yazi.content }}</p>
+        <p class="lv-metin whitespace-pre-wrap break-words text-[19px] leading-8 text-gray-900 dark:text-slate-100">{{ yazi.content }}</p>
     </section>
     {% if yazi.response %}
     <details class="lv-sayfa p-4 sm:p-5">
@@ -150,7 +148,7 @@ Bir yazının değerlendirmesi (ürün raporu 9.1).
         <p class="mt-1">İngilizce, 3–8 cümlelik bir metin yazdığından emin olup yeniden deneyebilirsin.</p>
     </div>
     <section class="lv-sayfa p-4 sm:p-5">
-        <p class="whitespace-pre-wrap break-words text-base leading-8 text-gray-900 dark:text-slate-100">{{ yazi.content }}</p>
+        <p class="lv-metin whitespace-pre-wrap break-words text-[19px] leading-8 text-gray-900 dark:text-slate-100">{{ yazi.content }}</p>
     </section>
 </div>
 {% endif %}

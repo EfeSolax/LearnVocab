@@ -18,12 +18,12 @@ Yazıların nasıl değerlendirildiği (ürün raporu 9.1). Eski sayfa 10 kriter
 
 <div class="space-y-5 text-sm leading-relaxed text-gray-700 dark:text-slate-300">
     <section class="lv-sayfa p-5">
-        <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Kısa yaz, akademik olması gerekmez</h2>
+        <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">Kısa yaz, akademik olması gerekmez</h2>
         <p class="mt-1">3–8 cümle yeterli. Konu cümlesi, paragraf yapısı ya da resmî dil beklemiyoruz. "Kullanmayı dene" kelimeleri öneridir; kullanmamak puanı düşürmez.</p>
     </section>
 
     <section class="lv-sayfa p-5">
-        <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">İki liste</h2>
+        <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">İki liste</h2>
         <ul class="mt-1 list-disc space-y-1 pl-5">
             <li><span class="font-semibold">İyi yaptıkların:</span> metninden bir alıntı ve neden iyi olduğu.</li>
             <li><span class="font-semibold">Hatalar:</span> yalnızca gerçek hatalar (dilbilgisi, yanlış kelime, anlamı bozan kullanım). Her biri: yazdığın → doğrusu · kısa neden. Üslup tercihi hata sayılmaz.</li>
@@ -31,7 +31,7 @@ Yazıların nasıl değerlendirildiği (ürün raporu 9.1). Eski sayfa 10 kriter
     </section>
 
     <section class="lv-sayfa p-5">
-        <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Puan (5 üzerinden)</h2>
+        <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">Puan (5 üzerinden)</h2>
         <dl class="mt-2 grid grid-cols-[4rem_1fr] gap-y-1">
             <dt class="font-semibold">4,5–5</dt><dd>Çok iyi</dd>
             <dt class="font-semibold">4</dt><dd>İyi</dd>
@@ -43,7 +43,7 @@ Yazıların nasıl değerlendirildiği (ürün raporu 9.1). Eski sayfa 10 kriter
     </section>
 
     <section class="lv-sayfa p-5">
-        <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Geri bildirim sertliği</h2>
+        <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">Geri bildirim sertliği</h2>
         <ul class="mt-1 space-y-1">
             {% for deger, ad, aciklama in sertlikler %}
             <li><span class="font-semibold">{{ ad }}:</span> {{ aciklama }}</li>
@@ -53,7 +53,7 @@ Yazıların nasıl değerlendirildiği (ürün raporu 9.1). Eski sayfa 10 kriter
     </section>
 
     <section class="lv-sayfa p-5">
-        <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Değerlendirmeyi kim yapıyor?</h2>
+        <h2 class="lv-serif text-xl font-bold text-gray-900 dark:text-slate-100">Değerlendirmeyi kim yapıyor?</h2>
         <p class="mt-1">Google'ın Gemini modeli. Servis yoğunsa metnin kaybolmaz: "Henüz değerlendirilmedi" etiketiyle kaydedilir ve biz birazdan kendimiz yeniden deneriz.{% if gunluk_limit %} Günde en çok {{ gunluk_limit }} metin değerlendirilir.{% endif %}</p>
     </section>
 </div>

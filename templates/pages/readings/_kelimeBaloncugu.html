@@ -23,12 +23,11 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
 {% endcomment %}
 
 <style>
-    ::highlight(okuma-kelime) { background-color: rgb(224 231 255); }
-    .dark ::highlight(okuma-kelime) { background-color: rgb(55 48 163); }
+    ::highlight(okuma-kelime) { background-color: var(--kalem); }
 </style>
 
 <div data-kelime-baloncugu hidden aria-live="polite"
-     class="lv-sayfa fixed z-50 w-[min(20rem,calc(100vw-2rem))] p-3 text-sm text-gray-800 dark:text-slate-200 shadow-lg"></div>
+     class="lv-not lv-duz fixed z-50 w-[min(21rem,calc(100vw-2rem))] !p-4 text-base text-gray-900 dark:text-slate-100"></div>
 
 <script>
 (function () {
@@ -144,7 +143,7 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
 
     function listeDugmesi(madde) {
         if (!GIRISLI) { return null; }
-        var d = eleman('button', 'shrink-0 inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors disabled:opacity-60 ' +
+        var d = eleman('button', 'shrink-0 inline-flex items-center justify-center gap-1 whitespace-nowrap rounded px-3 py-1.5 text-sm font-semibold transition-colors disabled:opacity-60 ' +
             "data-[listede='0']:bg-indigo-600 data-[listede='0']:text-white data-[listede='0']:hover:bg-indigo-700 " +
             "data-[listede='1']:bg-emerald-50 data-[listede='1']:text-emerald-700 data-[listede='1']:ring-1 data-[listede='1']:ring-inset data-[listede='1']:ring-emerald-200 " +
             "dark:data-[listede='1']:bg-emerald-950 dark:data-[listede='1']:text-emerald-300 dark:data-[listede='1']:ring-emerald-800");
@@ -172,9 +171,9 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
         var ust = eleman('div', 'flex items-start justify-between gap-2');
         var baslik = eleman('p', 'min-w-0 pt-0.5');
         if (yazim && yazim.toLowerCase() !== madde.kok) {
-            baslik.append(eleman('span', 'text-gray-400 dark:text-slate-500', yazim + ' → '));
+            baslik.append(eleman('span', 'lv-el text-xl text-gray-600 dark:text-slate-300', yazim + ' → '));
         }
-        var kok = eleman('span', 'text-base font-bold text-gray-900 dark:text-slate-100', madde.kok);
+        var kok = eleman('span', 'lv-serif text-[26px] font-black leading-none text-gray-900 dark:text-slate-100', madde.kok);
         kok.lang = 'en';
         baslik.append(kok);
         var dugme = listeDugmesi(madde);
@@ -184,7 +183,7 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
 
         var anlamlar = madde.anlamlar || [];
         var liste = eleman(anlamlar.length > 1 ? 'ol' : 'div',
-            anlamlar.length > 1 ? 'list-decimal space-y-0.5 pl-5 marker:text-gray-400' : '');
+            anlamlar.length > 1 ? 'list-decimal space-y-0.5 pl-5 text-lg font-bold text-indigo-600 dark:text-indigo-400' : 'text-lg font-bold text-indigo-600 dark:text-indigo-400');
         anlamlar.forEach(function (a) {
             var s = eleman(anlamlar.length > 1 ? 'li' : 'p', 'leading-snug', a.tr);
             if (a.tanim) { s.title = a.tanim; }
