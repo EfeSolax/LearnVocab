@@ -17,12 +17,12 @@ Yazıların nasıl değerlendirildiği (ürün raporu 9.1). Eski sayfa 10 kriter
 <h1 class="mt-2 mb-5 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Nasıl değerlendiriliyor?</h1>
 
 <div class="space-y-5 text-sm leading-relaxed text-gray-700 dark:text-slate-300">
-    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+    <section class="lv-sayfa p-5">
         <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Kısa yaz, akademik olması gerekmez</h2>
         <p class="mt-1">3–8 cümle yeterli. Konu cümlesi, paragraf yapısı ya da resmî dil beklemiyoruz. "Kullanmayı dene" kelimeleri öneridir; kullanmamak puanı düşürmez.</p>
     </section>
 
-    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+    <section class="lv-sayfa p-5">
         <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">İki liste</h2>
         <ul class="mt-1 list-disc space-y-1 pl-5">
             <li><span class="font-semibold">İyi yaptıkların:</span> metninden bir alıntı ve neden iyi olduğu.</li>
@@ -30,7 +30,7 @@ Yazıların nasıl değerlendirildiği (ürün raporu 9.1). Eski sayfa 10 kriter
         </ul>
     </section>
 
-    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+    <section class="lv-sayfa p-5">
         <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Puan (5 üzerinden)</h2>
         <dl class="mt-2 grid grid-cols-[4rem_1fr] gap-y-1">
             <dt class="font-semibold">4,5–5</dt><dd>Çok iyi</dd>
@@ -42,7 +42,7 @@ Yazıların nasıl değerlendirildiği (ürün raporu 9.1). Eski sayfa 10 kriter
         </dl>
     </section>
 
-    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+    <section class="lv-sayfa p-5">
         <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Geri bildirim sertliği</h2>
         <ul class="mt-1 space-y-1">
             {% for deger, ad, aciklama in sertlikler %}
@@ -52,7 +52,7 @@ Yazıların nasıl değerlendirildiği (ürün raporu 9.1). Eski sayfa 10 kriter
         <p class="mt-2">Sertlik yalnızca hata listesini değiştirir; puan her sertlikte aynıdır. Yazarken seçersin, seçimin hatırlanır.</p>
     </section>
 
-    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+    <section class="lv-sayfa p-5">
         <h2 class="text-base font-semibold text-gray-900 dark:text-slate-100">Değerlendirmeyi kim yapıyor?</h2>
         <p class="mt-1">Google'ın Gemini modeli. Servis yoğunsa metnin kaybolmaz: "Henüz değerlendirilmedi" etiketiyle kaydedilir ve biz birazdan kendimiz yeniden deneriz.{% if gunluk_limit %} Günde en çok {{ gunluk_limit }} metin değerlendirilir.{% endif %}</p>
     </section>

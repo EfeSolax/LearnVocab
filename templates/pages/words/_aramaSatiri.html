@@ -12,6 +12,6 @@ yoksa (ifade, öneri) kalıcı sayfasına (/sozluk/<metin>/) gidilir.
         <span class="shrink-0 text-xs text-gray-500 dark:text-slate-400">{{ satir.tur }}</span>{% endif %}
         {% if satir.anlam %}<span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>
         <span class="truncate text-gray-700 dark:text-slate-300">{{ satir.anlam }}</span>{% endif %}
-        {% if satir.cefr %}<span class="ml-auto shrink-0 self-center rounded-md bg-indigo-50 dark:bg-indigo-950 px-1.5 py-0.5 text-[11px] font-bold text-indigo-700 dark:text-indigo-300">{{ satir.cefr }}</span>{% endif %}
+        {% if satir.cefr %}<span class="lv-seviye ml-auto shrink-0 self-center">{{ satir.cefr }}</span>{% endif %}
     </a>
 </li>

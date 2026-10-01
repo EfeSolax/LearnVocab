@@ -307,10 +307,12 @@ class DarkThemeTests(TestCase):
         self.assertNotIn("data-tema-sec", self._html("sozluk").split("</header>")[0])
 
     def test_pages_carry_dark_variants(self):
+        # Defter teması (rapor 18.12): .lv-* sınıfları koyu temayı CSS değişkenleriyle
+        # kendisi çözer (static/css/defter.css, html.dark); onlar da sayılır.
         for url_name in ("sozluk", "index", "about", "login", "register"):
             with self.subTest(page=url_name):
                 html = self._html(url_name)
-                self.assertGreater(html.count("dark:"), 20,
+                self.assertGreater(html.count("dark:") + html.count('class="lv-'), 20,
                                    f"{url_name} sayfasında karanlık tema sınıfı yok denecek kadar az")
 
     def test_logged_in_pages_carry_dark_variants(self):

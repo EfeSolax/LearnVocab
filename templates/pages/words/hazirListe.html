@@ -19,7 +19,7 @@ Hazır liste sayfası (rapor 4.1, D7): kelimeler kapalı kartlar, "Bu listeyle �
     {% if liste.aciklama %}<p class="mt-1 text-gray-600 dark:text-slate-400">{{ liste.aciklama }}</p>{% endif %}
     <p class="mt-1 text-sm text-gray-500 dark:text-slate-400">{{ sayfa.paginator.count }} kelime</p>
 
-    <div class="mt-4 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4" data-listeyle-calis>
+    <div class="lv-sayfa mt-4 p-4" data-listeyle-calis>
         {% if calisiliyor %}
         <p class="font-semibold text-emerald-700 dark:text-emerald-300">✓ Bu listeyle çalışıyorsun</p>
         <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Learn &amp; Pass yeni kelimeleri bu listeden getiriyor. Bilmediklerini listene eklemeyi sen seçersin.</p>

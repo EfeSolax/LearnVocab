@@ -45,7 +45,7 @@ havuz boşken cesaretlendirici bir boş hâl görünür.
 <form x-data="diyalogCevabi()" @submit.prevent="gonder()" class="space-y-5"
       data-adres="{% url 'diyalog_cevap' diyalog.id %}">
     {% csrf_token %}
-    <section class="space-y-3 rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+    <section class="lv-sayfa space-y-3 p-4 sm:p-5">
         {% for s in satirlar %}
         <div class="flex gap-3">
             <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full {% cycle 'bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-200' 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200' %} text-xs font-bold">{{ s.kisi|default:"–"|slice:":1" }}</span>

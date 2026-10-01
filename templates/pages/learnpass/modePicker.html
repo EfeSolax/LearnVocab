@@ -31,15 +31,15 @@ Sıra (yukarıdan aşağı):
             <div class="text-lg sm:text-xl font-bold {% if seri.mevcut %}text-orange-600 dark:text-orange-400{% else %}text-gray-400 dark:text-slate-500{% endif %}">{{ seri.mevcut }}</div>
             <div class="mt-0.5 text-[11px] sm:text-xs text-gray-500 dark:text-slate-400">Seri</div>
         </div>
-        <div class="rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 px-2 py-3 text-center">
+        <div class="lv-sayfa px-2 py-3 text-center">
             <div class="text-lg sm:text-xl font-bold text-gray-900 dark:text-slate-100">{{ bugun_gorulen }}</div>
             <div class="mt-0.5 text-[11px] sm:text-xs text-gray-500 dark:text-slate-400">Bugün</div>
         </div>
-        <div class="rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 px-2 py-3 text-center">
+        <div class="lv-sayfa px-2 py-3 text-center">
             <div class="text-lg sm:text-xl font-bold text-gray-900 dark:text-slate-100">{{ bekleyen_tekrar }}</div>
             <div class="mt-0.5 text-[11px] sm:text-xs text-gray-500 dark:text-slate-400">Tekrar</div>
         </div>
-        <div class="rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 px-2 py-3 text-center">
+        <div class="lv-sayfa px-2 py-3 text-center">
             <div class="text-lg sm:text-xl font-bold text-gray-900 dark:text-slate-100">{{ liste_sayisi }}</div>
             <div class="mt-0.5 text-[11px] sm:text-xs text-gray-500 dark:text-slate-400">Listende</div>
         </div>
@@ -77,7 +77,7 @@ Sıra (yukarıdan aşağı):
     {% endif %}
 
     {# ---------------- 3. Slogan + Hemen Başla ---------------- #}
-    <div class="rounded-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 px-5 py-8 sm:px-10 sm:py-10 text-center shadow-sm">
+    <div class="lv-sayfa px-5 py-8 sm:px-10 sm:py-10 text-center">
         <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-100">Learn &amp; Pass</h1>
         <p class="mt-2 text-base text-gray-600 dark:text-slate-400">Kaydır, anlamını gör, geç. Birkaç dakika yeter.</p>
 
@@ -116,7 +116,7 @@ Sıra (yukarıdan aşağı):
     </div>
 
     {# ---------------- 5. Neden işe yarar ---------------- #}
-    <div class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+    <div class="lv-sayfa p-5">
         <h2 class="text-sm font-bold text-gray-900 dark:text-slate-100">Neden işe yarar?</h2>
         <ul class="mt-3 space-y-2.5 text-sm text-gray-600 dark:text-slate-400">
             <li class="flex gap-2.5"><span class="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-950 text-xs font-bold text-indigo-600 dark:text-indigo-300">1</span>Anlamı görmeden karar verirsin; "biliyorum sanıyordum" ile "gerçekten biliyorum" arasındaki farkı görürsün.</li>

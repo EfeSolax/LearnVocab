@@ -37,7 +37,7 @@ Sıra:
         <h2 class="mb-2 text-sm font-semibold text-gray-600 dark:text-slate-400">
             {% if sonuc.bulundu %}Diğer sonuçlar{% else %}“{{ sorgu }}” ile başlayanlar{% endif %}
         </h2>
-        <ul class="divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+        <ul class="lv-sayfa divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden">
             {% for satir in sonuc.digerleri %}{% include 'pages/words/_aramaSatiri.html' %}{% endfor %}
         </ul>
     </section>
@@ -46,7 +46,7 @@ Sıra:
     {% if sonuc.oneriler %}
     <section data-yazim-onerileri>
         <p class="mb-2 text-gray-700 dark:text-slate-300">“{{ sorgu }}” sözlüğümüzde yok. <span class="font-semibold">Bunu mu demek istediniz?</span></p>
-        <ul class="divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+        <ul class="lv-sayfa divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden">
             {% for satir in sonuc.oneriler %}{% include 'pages/words/_aramaSatiri.html' %}{% endfor %}
         </ul>
     </section>

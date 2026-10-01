@@ -17,7 +17,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 {% if misafir %}
 {# Misafir (rapor 18.3): serbest yazma yok; diyalog egzersizi ve tek bir davet. #}
 <div class="space-y-4" data-misafir-yazilar>
-    <div class="flex flex-col rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm">
+    <div class="lv-sayfa flex flex-col p-5">
         <h2 class="text-lg font-semibold text-gray-900 dark:text-slate-100">Diyalogda doğru kelime</h2>
         <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">Kısa bir diyalogdaki boşluğa doğru İngilizce kelimeyi yaz.</p>
         <a href="{% url 'diyalog_page' %}"
@@ -31,7 +31,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 {% else %}
 
 <div class="grid gap-3 sm:grid-cols-2">
-    <div class="flex flex-col rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm">
+    <div class="lv-sayfa flex flex-col p-5">
         <h2 class="text-lg font-semibold text-gray-900 dark:text-slate-100">Serbest yazma</h2>
         <p class="mt-1 flex-1 text-sm text-gray-600 dark:text-slate-400">
             3–8 cümle yaz, Türkçe geri bildirim al: neyi iyi yaptığını ve gerçek hataları.
@@ -51,7 +51,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
         {% endif %}
     </div>
 
-    <div class="flex flex-col rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm">
+    <div class="lv-sayfa flex flex-col p-5">
         <h2 class="text-lg font-semibold text-gray-900 dark:text-slate-100">Diyalogda doğru kelime</h2>
         <p class="mt-1 flex-1 text-sm text-gray-600 dark:text-slate-400">
             Kısa bir diyalogdaki boşluğa listendeki doğru kelimeyi yaz.
@@ -70,7 +70,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
     </div>
 
     {% if yazilar %}
-    <ul class="divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+    <ul class="lv-sayfa divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden">
         {% for yazi in yazilar %}
         <li>
             <a href="{% url 'review_text' yazi.id %}" class="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-slate-700/50">

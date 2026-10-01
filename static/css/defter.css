@@ -30,6 +30,9 @@ html.dark {
 }
 
 /* ---------- Kâğıt ---------- */
+/* Yazılar biraz büyük (rapor 18.12: önemli bilgi küçük yazılmaz): kök 17 px,
+   Tailwind'in rem ölçüleri (text-sm, text-xs, boşluklar) birlikte büyür. */
+html { font-size: 106.25%; }
 html {
   background-color: var(--kagit);
   background-image: linear-gradient(var(--kare) 1px, transparent 1px), linear-gradient(90deg, var(--kare) 1px, transparent 1px);
@@ -197,3 +200,13 @@ html.dark .lv-sekme { filter: brightness(.82); }
 @media (min-width: 700px) { .lv-sss { grid-template-columns: 1fr 1fr; gap: 28px 40px; } }
 .lv-sss dt { font: 700 25px/1.15 var(--el); color: var(--murekkep); }
 .lv-sss dd { margin: 4px 0 0; color: var(--soluk); font-size: 17px; }
+
+/* =====================================================================
+   Defter sekmeleri (Sözlük: Keşfet | Listem; diğer sekmeli sayfalar)
+   ===================================================================== */
+.lv-sekme-cubugu { display: flex; gap: 4px; border-bottom: 2px solid var(--murekkep); }
+.lv-sekme-dugme { flex: 1; text-align: center; padding: 11px 16px 9px; font: 600 16px var(--govde); color: var(--soluk); text-decoration: none;
+  border: 1.5px solid var(--satir); border-bottom: 0; border-radius: 10px 10px 0 0; background: var(--kagit); margin-bottom: -2px; }
+.lv-sekme-dugme:hover { color: var(--yazi); }
+.lv-sekme-dugme.lv-secili { background: var(--kagit-beyaz); color: var(--murekkep); border-color: var(--murekkep); border-bottom: 2px solid var(--kagit-beyaz); }
+@media (min-width: 640px) { .lv-sekme-dugme { flex: 0 0 auto; min-width: 140px; } }

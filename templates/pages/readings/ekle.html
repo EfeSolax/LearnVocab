@@ -21,7 +21,7 @@ v1'de OCR yok: taranmış PDF'te nazik bir hata gösterilir.
 <p class="mb-5 text-sm text-gray-600 dark:text-slate-400">Yalnızca sen görürsün. PDF dosyasını saklamıyoruz, yalnızca içindeki yazıyı alıyoruz.</p>
 
 <form method="post" enctype="multipart/form-data" x-data="{ tur: '{{ tur }}', gonderiliyor: false }" @submit="gonderiliyor = true"
-      class="rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5 space-y-4">
+      class="lv-sayfa p-4 sm:p-5 space-y-4">
     {% csrf_token %}
     <input type="hidden" name="tur" :value="tur" value="{{ tur }}">
 

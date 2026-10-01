@@ -22,7 +22,7 @@ bağlantılarla (?sayfa=2).
 </header>
 
 {% if satirlar %}
-<ul class="divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800" data-gozat-satirlari>
+<ul class="lv-sayfa divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden" data-gozat-satirlari>
     {% for satir in satirlar %}{% include 'pages/words/_aramaSatiri.html' %}{% endfor %}
 </ul>
 {% else %}

@@ -188,7 +188,7 @@ class KartSablonuTests(TestCase):
         cip = 'href="/sozluk/shore/"'
         self.assertIn(cip, kiyi)
         self.assertNotIn(cip, banka)
-        self.assertIn(">Benzer:<", kiyi.replace("\n", ""))
+        self.assertIn(">benzer:<", kiyi.replace("\n", ""))
 
     def test_bos_cip_satiri_gosterilmez(self):
         html = self._sozluk("bank")
@@ -206,7 +206,7 @@ class KartSablonuTests(TestCase):
         self.assertIn("a place for money", html)
         self.assertIn("I went to the bank.", html)            # ilk örnek
         self.assertIn("Daha fazla örnek", html)               # ikinci örnek kapalı
-        self.assertIn(">1.<", html)
+        self.assertIn(">1</span>", html)                    # el yazısı anlam numarası (defter)
 
     def test_duzensiz_fiil_basligi(self):
         make_word("go", pos="verb", v2="went", v3="gone")

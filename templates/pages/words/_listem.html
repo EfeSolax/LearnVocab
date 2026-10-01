@@ -33,7 +33,7 @@ Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
 
     {# ---------- Filtre paneli (tek düğme, açılınca üç satır) ---------- #}
     <div x-show="filtre" x-cloak x-transition.opacity data-filtre-paneli
-         class="mt-2 space-y-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 text-sm">
+         class="lv-sayfa mt-2 space-y-3 p-4 text-sm">
         {% for baslik, secenekler in filtre_satirlari %}
         <div class="flex flex-wrap items-center gap-2">
             <span class="w-14 shrink-0 text-gray-500 dark:text-slate-400">{{ baslik }}</span>
@@ -79,7 +79,7 @@ Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
 
     {# ---------- Satırlar ---------- #}
     {% if satirlar %}
-    <ul class="mt-1 divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800" data-listem-satirlari x-ref="satirlar">
+    <ul class="lv-sayfa mt-1 divide-y divide-gray-100 dark:divide-slate-700 overflow-hidden" data-listem-satirlari x-ref="satirlar">
         {% include 'pages/words/_listemSatirlari.html' %}
     </ul>
     {% endif %}

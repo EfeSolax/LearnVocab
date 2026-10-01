@@ -11,7 +11,7 @@ eklendi; onay yerine "Geri al" (rapor 12.7).
 
 {% block page %}
 <div class="space-y-5" data-seviye-sonuc>
-    <div class="rounded-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 px-5 py-8 sm:px-10 text-center shadow-sm">
+    <div class="lv-sayfa px-5 py-8 sm:px-10 text-center">
         <p class="text-sm font-semibold text-gray-500 dark:text-slate-400">Seviyen</p>
         <p class="mt-1 text-6xl font-extrabold tracking-tight text-indigo-600 dark:text-indigo-400" data-tahmin>{{ son.tahmin }}</p>
         <p class="mx-auto mt-4 max-w-md text-gray-700 dark:text-slate-300">{{ not_metni }}</p>
@@ -48,11 +48,11 @@ eklendi; onay yerine "Geri al" (rapor 12.7).
 
     <div class="grid gap-3 sm:grid-cols-2">
         <a href="{% url 'learn_pass_page' %}" class="rounded-2xl bg-indigo-600 px-5 py-4 text-center text-base font-bold text-white hover:bg-indigo-700 transition">Learn &amp; Pass'e başla</a>
-        <a href="{% url 'sozluk' %}?sekme=listem" class="rounded-2xl bg-white dark:bg-slate-800 px-5 py-4 text-center text-base font-semibold text-gray-800 dark:text-slate-100 ring-1 ring-inset ring-gray-300 dark:ring-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition">Listemi gör</a>
+        <a href="{% url 'sozluk' %}?sekme=listem" class="lv-sayfa px-5 py-4 text-center text-base font-semibold text-gray-800 dark:text-slate-100 ring-gray-300 dark:ring-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 transition">Listemi gör</a>
     </div>
 
     {# ---------------- Nasıl hesaplandı ---------------- #}
-    <details class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-4 text-sm text-gray-600 dark:text-slate-300">
+    <details class="lv-sayfa px-5 py-4 text-sm text-gray-600 dark:text-slate-300">
         <summary class="cursor-pointer font-semibold text-gray-800 dark:text-slate-100">Nasıl hesaplandı?</summary>
         <ul class="mt-3 space-y-1">
             {% for e in ekranlar %}

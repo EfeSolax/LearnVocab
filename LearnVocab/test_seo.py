@@ -121,7 +121,7 @@ class KelimeSayfasiTests(TestCase):
     def test_ornek_cumlede_cift_tiklama_aramasi(self):
         """Örnek cümledeki kelimeye çift tıklanınca o kelime aranır (rapor 4.3)."""
         html = _html(self._sayfa())
-        self.assertRegex(html, r'<p lang="en" data-cift-tikla-ara[^>]*>“I went to the bank\.”</p>')
+        self.assertRegex(html, r'<p lang="en" data-cift-tikla-ara[^>]*>I went to the bank\.</p>')
         self.assertIn("addEventListener('dblclick'", html)
 
     def test_cipler_ve_satirlar_kalici_adrese_baglanir(self):

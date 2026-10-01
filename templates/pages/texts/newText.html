@@ -32,7 +32,7 @@ henüz yok, rapor 16).
     <input type="hidden" name="konu" :value="konu">
 
     {# ---------- Konu ---------- #}
-    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+    <section class="lv-sayfa p-4 sm:p-5">
         <div class="flex items-baseline justify-between gap-3">
             <h2 class="text-sm font-semibold text-gray-900 dark:text-slate-100">Konu</h2>
             <button type="button" @click="baskaKonular()" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 dark:text-indigo-400">Başka öner</button>
@@ -51,7 +51,7 @@ henüz yok, rapor 16).
     </section>
 
     {# ---------- Kullanmayı dene ---------- #}
-    <section class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 sm:p-5">
+    <section class="lv-sayfa p-4 sm:p-5">
         <h2 class="text-sm font-semibold text-gray-900 dark:text-slate-100">Kullanmayı dene <span class="font-normal text-gray-500 dark:text-slate-400">· zorunlu değil</span></h2>
         {% if oneriler %}
         <ul class="mt-3 flex flex-wrap gap-2">
