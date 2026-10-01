@@ -1,0 +1,131 @@
+/* =====================================================================
+   LearnVocab · Defter teması (öneri). Bütün örnek sayfalar bunu kullanır.
+
+   Kurallar:
+   - El yazısı (Caveat) yalnızca süs ve kısa notlar içindir: tarih, kenar
+     notu, "dokun, aç", ok. Asıl bilgi (anlam, tanım, düğme) hep düz yazıdır.
+   - Renkler: kâğıt, mürekkep mavisi, sarı fosforlu kalem, öğretmen kırmızısı.
+   - Ölçüler: gövde 17, Türkçe anlam 20+ kalın, kelime başlığı 34+, en küçük 13.
+   ===================================================================== */
+:root {
+  --kagit: #fbfaf5; --kagit-beyaz: #ffffff; --kare: rgba(66, 110, 190, .13); --satir: rgba(66, 110, 190, .22);
+  --kenar: #e7a3a3; --murekkep: #1d3f8f; --murekkep-acik: #e9eefb; --yazi: #1b1d22; --soluk: #5f6470;
+  --kalem: #ffe46b; --kirmizi: #c73a2b; --yesil: #1f7a4c; --yesil-acik: #e3f3ea; --kirmizi-acik: #fbe7e3;
+  --not: #fff1a8; --not-mavi: #d9ecff; --not-pembe: #ffd9e1; --bant: rgba(255, 255, 255, .6);
+  --golge: 0 1px 1px rgba(0, 0, 0, .06), 0 12px 18px -12px rgba(0, 0, 0, .28);
+  --dalga: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M2 5c15-4 30 2 48-1s32 2 48-1' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  --daire: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30' preserveAspectRatio='none'%3E%3Cpath d='M8 17C5 7 30 2 48 5c12 2 12 15 0 20-14 5-38 4-42-6C4 12 14 6 22 6' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  --el: 'Caveat', cursive; --serif: 'Fraunces', Georgia, serif; --metin: 'Source Serif 4', Georgia, serif; --govde: 'Inter', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --kagit: #16181d; --kagit-beyaz: #1d2027; --kare: rgba(130, 160, 230, .09); --satir: rgba(130, 160, 230, .16);
+  --kenar: #6b3434; --murekkep: #9db8ff; --murekkep-acik: #1f2a44; --yazi: #e9e8e2; --soluk: #a3a7b0;
+  --kalem: #6b5a10; --kirmizi: #ff8a78; --yesil: #6fd6a0; --yesil-acik: #13291f; --kirmizi-acik: #31170f;
+  --not: #4a4314; --not-mavi: #1c3550; --not-pembe: #4a2230; --bant: rgba(255, 255, 255, .12); --golge: 0 12px 18px -12px rgba(0, 0, 0, .7);
+} }
+:root[data-theme="dark"] {
+  --kagit: #16181d; --kagit-beyaz: #1d2027; --kare: rgba(130, 160, 230, .09); --satir: rgba(130, 160, 230, .16);
+  --kenar: #6b3434; --murekkep: #9db8ff; --murekkep-acik: #1f2a44; --yazi: #e9e8e2; --soluk: #a3a7b0;
+  --kalem: #6b5a10; --kirmizi: #ff8a78; --yesil: #6fd6a0; --yesil-acik: #13291f; --kirmizi-acik: #31170f;
+  --not: #4a4314; --not-mavi: #1c3550; --not-pembe: #4a2230; --bant: rgba(255, 255, 255, .12); --golge: 0 12px 18px -12px rgba(0, 0, 0, .7);
+}
+
+* { box-sizing: border-box; }
+html {
+  min-height: 100%; background-color: var(--kagit);
+  background-image: linear-gradient(var(--kare) 1px, transparent 1px), linear-gradient(90deg, var(--kare) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+body { margin: 0; color: var(--yazi); font: 17px/1.55 var(--govde); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; top: 0; bottom: 0; left: 40px; width: 2px; background: var(--kenar); opacity: .7; z-index: 0; pointer-events: none; }
+@media (min-width: 900px) { body::before { left: max(40px, calc(50% - 470px)); } }
+a { color: inherit; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+.sayfa { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 0 18px 120px 58px; }
+@media (min-width: 900px) { .sayfa { padding: 0 32px 60px 90px; } }
+.el { font-family: var(--el); color: var(--murekkep); }
+.soluk { color: var(--soluk); }
+.isaret { background: linear-gradient(104deg, transparent 1%, var(--kalem) 3%, var(--kalem) 95%, transparent 98%) 0 62% / 100% 50% no-repeat; padding: 0 3px; }
+
+/* ---------- Üst çubuk ---------- */
+.ust { display: flex; justify-content: space-between; align-items: center; padding: 18px 0 0; gap: 16px; }
+.logo { font: 900 20px var(--serif); letter-spacing: -.02em; text-decoration: none; }
+.logo span { background: linear-gradient(transparent 55%, var(--kalem) 55%); }
+.ust nav { display: none; gap: 6px; font-size: 15px; font-weight: 600; }
+.ust nav a { text-decoration: none; color: var(--soluk); padding: 6px 8px; position: relative; }
+.ust nav a.secili { color: var(--yazi); }
+.ust nav a.secili::after { content: ""; position: absolute; left: 4px; right: 4px; bottom: -2px; height: 8px; background: var(--murekkep);
+  -webkit-mask: var(--dalga) center/100% 100% no-repeat; mask: var(--dalga) center/100% 100% no-repeat; }
+.ust .sag { display: flex; gap: 10px; align-items: center; }
+.ust .giris { font-weight: 600; font-size: 15px; color: var(--murekkep); text-decoration: none; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--murekkep); display: grid; place-items: center; font: 700 22px var(--el); color: var(--murekkep); background: var(--kagit-beyaz); }
+@media (min-width: 900px) { .ust nav { display: flex; } }
+
+/* ---------- Telefonda alt menü ---------- */
+.alt-menu { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; justify-content: space-around;
+  background: var(--kagit); border-top: 1.5px solid var(--satir); padding: 8px 4px 14px; }
+.alt-menu a { display: flex; flex-direction: column; align-items: center; gap: 1px; min-width: 60px; text-decoration: none; font-size: 12.5px; font-weight: 600; color: var(--soluk); }
+.alt-menu svg { width: 26px; height: 26px; }
+.alt-menu a.secili { color: var(--murekkep); }
+.alt-menu a.secili span { background: linear-gradient(transparent 55%, var(--kalem) 55%); padding: 0 2px; }
+@media (min-width: 900px) { .alt-menu { display: none; } }
+
+/* ---------- Başlıklar ---------- */
+.tarih { font: 600 26px var(--el); color: var(--murekkep); margin: 32px 0 0; transform: rotate(-1.5deg); transform-origin: left; }
+h1.buyuk { font: 900 44px/1.02 var(--serif); letter-spacing: -.035em; margin: 6px 0 0; max-width: 12em; }
+h2.bolum { font: 900 32px/1.05 var(--serif); letter-spacing: -.03em; margin: 84px 0 4px; }
+.bolum-notu { display: inline-block; font: 600 23px var(--el); color: var(--murekkep); transform: rotate(-1deg); margin: 0 0 20px 2px; }
+@media (min-width: 700px) { h1.buyuk { font-size: 76px; } h2.bolum { font-size: 46px; } .tarih { font-size: 30px; } }
+
+/* ---------- Düğmeler ---------- */
+.dugme { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 24px;
+  background: var(--murekkep); color: var(--kagit); font: 600 17px var(--govde); border-radius: 3px; box-shadow: 4px 4px 0 var(--kalem);
+  text-decoration: none; transition: transform .1s, box-shadow .1s; }
+.dugme:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--kalem); }
+.dugme:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--kalem); }
+.dugme.ikincil { background: var(--kagit-beyaz); color: var(--murekkep); border: 1.5px solid var(--murekkep); box-shadow: 4px 4px 0 var(--murekkep-acik); }
+.dugme.tam { width: 100%; }
+.el-bag { font: 700 24px var(--el); color: var(--murekkep); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+
+/* ---------- Kâğıt parçaları ---------- */
+.yapiskan { background: var(--not); padding: 26px 22px 22px; position: relative; transform: rotate(-2deg); box-shadow: var(--golge); }
+.yapiskan.mavi { background: var(--not-mavi); transform: rotate(1.5deg); }
+.yapiskan.pembe { background: var(--not-pembe); transform: rotate(-1deg); }
+.bantli::before { content: ""; position: absolute; top: -12px; left: 50%; width: 90px; height: 24px; margin-left: -45px; background: var(--bant); transform: rotate(3deg); border: 1px solid rgba(0, 0, 0, .05); }
+.kupur { background: var(--kagit-beyaz); padding: 18px 18px 22px; position: relative; box-shadow: var(--golge);
+  clip-path: polygon(0 2%, 6% 0, 14% 2%, 22% 0, 31% 1%, 40% 0, 50% 2%, 60% 0, 70% 1%, 80% 0, 90% 2%, 100% 0, 100% 98%, 93% 100%, 84% 98%, 75% 100%, 65% 98%, 55% 100%, 45% 98%, 35% 100%, 25% 98%, 15% 100%, 6% 98%, 0 100%); }
+.fis { background: var(--kagit-beyaz); border-radius: 6px; box-shadow: var(--golge); position: relative;
+  background-image: linear-gradient(var(--kirmizi), var(--kirmizi)), repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px);
+  background-size: 100% 2px, 100% 100%; background-position: 0 54px, 0 56px; background-repeat: no-repeat, no-repeat; }
+.cizgili { background-image: repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px); line-height: 32px; }
+
+/* ---------- Kenar notu (el yazısı + ok) ---------- */
+.kenar-notu { font: 600 22px/1.15 var(--el); color: var(--murekkep); transform: rotate(-3deg); display: flex; gap: 8px; align-items: flex-start; }
+.kenar-notu svg { flex: none; width: 46px; height: 30px; margin-top: -4px; }
+.kirmizi-not { color: var(--kirmizi); }
+
+/* ---------- Seviye etiketi: el ile çizilmiş daire ---------- */
+.seviye { position: relative; display: inline-grid; place-items: center; min-width: 40px; height: 30px; padding: 0 6px; font: 700 14px var(--govde); color: var(--murekkep); }
+.seviye::before { content: ""; position: absolute; inset: 0; background: var(--murekkep);
+  -webkit-mask: var(--daire) center/100% 100% no-repeat; mask: var(--daire) center/100% 100% no-repeat; }
+
+/* ---------- Sesler ---------- */
+.sesler { display: flex; gap: 10px; flex-wrap: wrap; }
+.ses { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 14px; border: 1.5px solid var(--murekkep); border-radius: 999px; color: var(--murekkep); font-weight: 600; font-size: 15px; background: var(--kagit-beyaz); }
+.ses svg { width: 16px; height: 16px; }
+
+/* ---------- Arama satırı (kâğıttaki çizginin üstüne yazmak) ---------- */
+.arama { display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--murekkep); padding: 6px 0; max-width: 520px; }
+.arama svg { width: 20px; height: 20px; color: var(--murekkep); flex: none; }
+.arama input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font: 600 20px var(--govde); color: var(--yazi); }
+.arama input::placeholder { color: var(--soluk); font-weight: 400; }
+
+/* ---------- Çetele (L&P ilerlemesi) ---------- */
+.cetele { display: flex; gap: 10px; align-items: center; }
+.cetele svg { height: 26px; width: auto; color: var(--murekkep); }
+
+/* ---------- Örnek dosyaya özel ---------- */
+.tema-dugme { position: fixed; right: 12px; top: 64px; z-index: 30; font: 700 16px var(--el); opacity: .85; background: var(--kagit); border: 1.5px solid var(--murekkep); color: var(--murekkep); padding: 4px 12px; }
+.tema-dugme.ust-icinde { position: static; padding: 2px 8px; }
+.sayfa-no { text-align: center; font: 700 22px var(--el); color: var(--soluk); padding: 50px 0 10px; }
+.sayfa-no a { margin: 0 8px; color: var(--soluk); }

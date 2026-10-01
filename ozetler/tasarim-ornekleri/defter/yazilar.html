@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yazılar · LearnVocab (defter)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="defter.css">
+<style>
+h1.baslik { font: 900 44px/1 var(--serif); letter-spacing: -.035em; margin: 30px 0 0; }
+@media (min-width: 700px) { h1.baslik { font-size: 64px; } }
+
+/* Defter sekmeleri: Serbest yaz / Diyalog */
+.sekmeler { display: flex; gap: 4px; margin-top: 22px; border-bottom: 2px solid var(--murekkep); }
+.sekmeler button { font: 600 16px var(--govde); padding: 10px 16px 8px; border: 1.5px solid var(--satir); border-bottom: 0; border-radius: 10px 10px 0 0; background: var(--kagit); color: var(--soluk); margin-bottom: -2px; }
+.sekmeler button[aria-selected="true"] { background: var(--kagit-beyaz); color: var(--murekkep); border-color: var(--murekkep); border-bottom: 2px solid var(--kagit-beyaz); }
+.panel { display: none; } .panel.acik { display: block; }
+
+/* Görev */
+.gorev { display: grid; gap: 22px; margin-top: 26px; }
+@media (min-width: 760px) { .gorev { grid-template-columns: 1.3fr 1fr; align-items: start; } }
+.gorev .konu small { font: 700 21px var(--el); color: var(--murekkep); }
+.gorev .konu p { font: 700 24px/1.25 var(--serif); margin: 2px 0 0; }
+.dene .yapiskan { padding: 22px 20px 18px; }
+.dene .yapiskan .b { font: 700 21px var(--el); color: var(--soluk); }
+.dene ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; }
+.dene li { display: flex; justify-content: space-between; gap: 10px; font-size: 16px; }
+.dene li b { font-family: var(--serif); font-size: 19px; }
+.dene li.kullanildi b { text-decoration: line-through; text-decoration-color: var(--murekkep); text-decoration-thickness: 2.5px; }
+.dene li .tik { font: 700 22px var(--el); color: var(--yesil); visibility: hidden; }
+.dene li.kullanildi .tik { visibility: visible; }
+
+/* Çizgili kâğıt ve öğretmen notu */
+.kagit { position: relative; background-color: var(--kagit-beyaz); box-shadow: var(--golge); margin-top: 30px; padding: 28px 22px 26px 22px; }
+.kagit .icerik { font: 19px/32px var(--metin); background-image: repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px); padding-top: 2px; }
+.kagit .icerik .hata { text-decoration: underline wavy var(--kirmizi); text-decoration-thickness: 1.5px; text-underline-offset: 6px; cursor: pointer; }
+.kagit .icerik .hata.acik { background: var(--kirmizi-acik); }
+.kagit .icerik .iyi { text-decoration: underline var(--yesil); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.puan { position: absolute; top: -18px; right: 14px; width: 92px; height: 74px; display: grid; place-items: center; font: 700 40px var(--el); color: var(--kirmizi); transform: rotate(-8deg); }
+.puan svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.puan small { font-size: 22px; margin-left: 2px; }
+
+.degerlendirme { display: grid; gap: 30px; margin-top: 36px; }
+@media (min-width: 760px) { .degerlendirme { grid-template-columns: 1fr 1fr; } }
+.degerlendirme h2 { font: 700 30px var(--el); margin: 0 0 8px; }
+.degerlendirme .iyiler h2 { color: var(--yesil); }
+.degerlendirme .hatalar h2 { color: var(--kirmizi); }
+.degerlendirme ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.degerlendirme li { padding-left: 14px; border-left: 3px solid; }
+.iyiler li { border-color: var(--yesil); }
+.hatalar li { border-color: var(--kirmizi); transition: background .2s; }
+.hatalar li.vurgu { background: var(--kirmizi-acik); }
+.alinti { font: italic 17px var(--metin); }
+.hatalar .alinti s { text-decoration-color: var(--kirmizi); text-decoration-thickness: 2px; }
+.dogrusu { font-weight: 700; color: var(--yesil); }
+.neden { display: block; color: var(--soluk); font-size: 16px; margin-top: 2px; }
+.sertlik { margin-top: 26px; font-size: 15px; color: var(--soluk); }
+.sertlik b { color: var(--yazi); }
+
+/* Diyalog */
+.diyalog { max-width: 560px; margin-top: 26px; display: grid; gap: 14px; }
+.konusma { display: flex; gap: 10px; align-items: flex-start; }
+.konusma .kim { font: 700 26px var(--el); color: var(--murekkep); width: 30px; flex: none; }
+.konusma .soz { background: var(--kagit-beyaz); box-shadow: var(--golge); padding: 12px 16px; font: 19px/1.5 var(--metin); border-radius: 4px 16px 16px 16px; }
+.bosluk { display: inline-block; min-width: 120px; border-bottom: 2px solid var(--murekkep); text-align: center; color: var(--murekkep); font-weight: 600; }
+.secenekler { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 0 40px; }
+.secenekler button { font: 600 17px var(--govde); padding: 10px 16px; border: 1.5px solid var(--murekkep); background: var(--kagit-beyaz); color: var(--murekkep); border-radius: 3px; box-shadow: 3px 3px 0 var(--murekkep-acik); }
+.secenekler button.dogru { background: var(--yesil-acik); border-color: var(--yesil); color: var(--yesil); }
+.secenekler button.yanlis { background: var(--kirmizi-acik); border-color: var(--kirmizi); color: var(--kirmizi); text-decoration: line-through; }
+.diyalog-notu { font: 600 22px var(--el); color: var(--murekkep); margin: 6px 0 0 40px; min-height: 28px; }
+</style>
+</head>
+<body>
+<div class="sayfa">
+<header class="ust">
+  <a class="logo" href="index.html"><span>learnvocab</span></a>
+  <nav></nav>
+  <div class="sag"><div class="avatar">E</div></div>
+</header>
+
+<p class="tarih" data-bugun>bugün</p>
+<h1 class="baslik">Öğrendiğini kullan.</h1>
+<span class="bolum-notu" style="margin-top:6px">bir kelimeyi gerçekten öğrenmenin tek yolu</span>
+
+<div class="sekmeler" role="tablist">
+  <button role="tab" aria-selected="true" data-panel="serbest">Serbest yaz</button>
+  <button role="tab" aria-selected="false" data-panel="diyalog">Diyalog</button>
+</div>
+
+<section class="panel acik" id="serbest">
+  <div class="gorev">
+    <div class="konu">
+      <small>bugünün konusu</small>
+      <p>Hazırlıkta seni en çok ne zorladı, nasıl baş ettin?</p>
+      <p class="soluk" style="font: 16px var(--govde); margin-top: 8px">3–8 cümle yeter. Akademik olmak zorunda değil.</p>
+    </div>
+    <div class="dene">
+      <div class="yapiskan bantli">
+        <div class="b">kullanmayı dene</div>
+        <ul>
+          <li class="kullanildi"><b lang="en">overwhelm</b><span class="tik">✓</span></li>
+          <li class="kullanildi"><b lang="en">reluctant</b><span class="tik">✓</span></li>
+          <li class="kullanildi"><b lang="en">cope</b><span class="tik">✓</span></li>
+          <li><b lang="en">thrive</b><span class="tik">✓</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="kagit">
+    <div class="puan" aria-label="Puan 4, beş üzerinden">
+      <svg viewBox="0 0 92 74" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 46C8 22 40 6 64 12c22 6 24 34 4 46-20 12-52 8-58-12-3-10 6-22 18-28"/></svg>
+      4<small>/5</small>
+    </div>
+    <div class="icerik" lang="en">
+      When I started prep school, <span class="iyi">I was overwhelmed by the new words</span>.
+      At first I was <span class="hata" data-h="0">reluctant for studying</span> every day.
+      Then my friend told me to write ten words in my notebook <span class="hata" data-h="1">every days</span>.
+      <span class="iyi">Now I can cope with the lessons</span>, and I even help my friends.
+    </div>
+  </div>
+
+  <div class="degerlendirme">
+    <div class="iyiler">
+      <h2>✓ iyi yaptıkların</h2>
+      <ul>
+        <li><span class="alinti" lang="en">“I was overwhelmed by the new words”</span><span class="neden">“overwhelm”ü edilgen yapıda doğru kullandın; ne hissettiğin çok net.</span></li>
+        <li><span class="alinti" lang="en">“Now I can cope with the lessons”</span><span class="neden">“cope” ile doğru edatı (with) seçtin.</span></li>
+      </ul>
+    </div>
+    <div class="hatalar">
+      <h2>✗ düzeltmeler</h2>
+      <ul>
+        <li data-h="0"><span class="alinti" lang="en"><s>reluctant for studying</s></span> → <span class="dogrusu" lang="en">reluctant to study</span><span class="neden">“reluctant” arkasından “to” + fiil gelir.</span></li>
+        <li data-h="1"><span class="alinti" lang="en"><s>every days</s></span> → <span class="dogrusu" lang="en">every day</span><span class="neden">“every” tekil isimle kullanılır.</span></li>
+      </ul>
+    </div>
+  </div>
+  <p class="sertlik">Geri bildirim: <b>Normal</b> · Ayarlar'dan Nazik ya da Titiz yapabilirsin. Kırmızı çizgili yere dokun, açıklaması yanar.</p>
+  <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+    <a class="dugme" href="#">Yeni yazı yaz</a>
+    <a class="el-bag" href="#">yazılarım →</a>
+  </div>
+</section>
+
+<section class="panel" id="diyalog">
+  <div class="diyalog">
+    <div class="konusma"><span class="kim">A</span><div class="soz" lang="en">How was your first month at prep school?</div></div>
+    <div class="konusma"><span class="kim">B</span><div class="soz" lang="en">Honestly? I felt <span class="bosluk" id="bosluk">?</span>. Too many new words!</div></div>
+    <div class="secenekler" id="secenekler">
+      <button data-d="0" lang="en">ambiguous</button>
+      <button data-d="1" lang="en">overwhelmed</button>
+      <button data-d="0" lang="en">genuine</button>
+    </div>
+    <div class="diyalog-notu" id="dNot"></div>
+  </div>
+</section>
+
+<div class="sayfa-no">— s. 3 —</div>
+</div>
+<script src="defter.js"></script>
+<script>
+document.querySelectorAll('.sekmeler button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('.sekmeler button').forEach(function (x) { x.setAttribute('aria-selected', x === b); });
+    document.querySelectorAll('.panel').forEach(function (p) { p.classList.toggle('acik', p.id === b.dataset.panel); });
+  });
+});
+document.querySelectorAll('.icerik .hata').forEach(function (h) {
+  h.addEventListener('click', function () {
+    document.querySelectorAll('.hata, .hatalar li').forEach(function (x) { x.classList.remove('acik', 'vurgu'); });
+    h.classList.add('acik');
+    var li = document.querySelector('.hatalar li[data-h="' + h.dataset.h + '"]');
+    li.classList.add('vurgu'); li.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+});
+document.getElementById('secenekler').addEventListener('click', function (e) {
+  var b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.d === '1') {
+    b.classList.add('dogru');
+    document.getElementById('bosluk').textContent = 'overwhelmed';
+    document.getElementById('dNot').textContent = 'evet! “bunalmış” — tam yerine oturdu.';
+  } else {
+    b.classList.add('yanlis');
+    document.getElementById('dNot').textContent = 'bu cümleye uymuyor, bir daha dene.';
+  }
+});
+</script>
+</body>
+</html>

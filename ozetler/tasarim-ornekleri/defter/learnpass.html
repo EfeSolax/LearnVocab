@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn &amp; Pass · LearnVocab (defter)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Fredoka:wght@500;600&family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="defter.css">
+<style>
+/* L&P oturumu (rapor 18.10): üst çubuk ve alt menü yok; yalnızca kart, ilerleme ve tek çıkış. */
+.oturum { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; padding: 18px 18px 40px 58px; min-height: 100svh; display: flex; flex-direction: column; }
+@media (min-width: 700px) { .oturum { padding-left: 18px; } }
+.ust-satir { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.kapat { font-size: 26px; line-height: 1; color: var(--soluk); width: 40px; height: 40px; display: grid; place-items: center; }
+.sayac { font: 700 24px var(--el); color: var(--murekkep); }
+.cetele svg { height: 28px; }
+
+.alan { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px 0; }
+.fis.kart { min-height: 260px; padding: 70px 22px 28px; text-align: center; touch-action: pan-y; user-select: none; cursor: grab;
+  transition: transform .3s cubic-bezier(.3,.7,.2,1), opacity .3s; transform: rotate(-1deg); }
+.fis.kart.surukle { transition: none; cursor: grabbing; }
+.fis.kart .ust-yazi { position: absolute; top: 16px; left: 22px; font: 700 20px var(--el); color: var(--soluk); }
+.fis.kart .ust-yazi.sag { left: auto; right: 22px; }
+.fis.kart .kelime { font: 600 54px/1.1 'Fredoka', sans-serif; letter-spacing: -.01em; margin-top: 26px; }
+.fis.kart .ipucu { font: 600 22px var(--el); color: var(--soluk); margin-top: 18px; }
+.damga { position: absolute; top: 70px; font: 700 34px var(--el); padding: 0 12px; border: 3px solid currentColor; border-radius: 8px; opacity: 0; transform: rotate(-12deg); pointer-events: none; }
+.damga.evet { left: 18px; color: var(--yesil); }
+.damga.hayir { right: 18px; color: var(--kirmizi); transform: rotate(12deg); }
+
+/* Açılan cevap: kapibara + konuşma balonu (rapor 6.1) */
+.cevap { display: grid; grid-template-columns: 96px 1fr; gap: 10px; align-items: start; margin-top: 22px; opacity: 0; transform: translateY(-10px); transition: opacity .3s, transform .3s; pointer-events: none; }
+.cevap.acik { opacity: 1; transform: none; pointer-events: auto; }
+.cevap svg { width: 96px; color: var(--murekkep); }
+.cevap .goz { transition: d .2s; }
+.balon { position: relative; background: var(--kagit-beyaz); border: 2px solid var(--murekkep); border-radius: 18px 18px 18px 4px; padding: 12px 16px; box-shadow: 3px 3px 0 var(--murekkep-acik); }
+.balon small { display: block; font: 700 20px var(--el); color: var(--soluk); }
+.balon b { font-size: 24px; color: var(--murekkep); line-height: 1.2; }
+.balon p { font: 16px/1.5 var(--metin); color: var(--soluk); margin: 8px 0 0; }
+
+.dugmeler { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.dugmeler button { min-height: 58px; font: 600 18px var(--govde); border-radius: 3px; border: 2px solid; background: var(--kagit-beyaz); }
+.dugmeler .hayir { color: var(--kirmizi); border-color: var(--kirmizi); box-shadow: 4px 4px 0 var(--kirmizi-acik); }
+.dugmeler .evet { color: var(--yesil); border-color: var(--yesil); box-shadow: 4px 4px 0 var(--yesil-acik); }
+.dugmeler .sonraki { grid-column: 1 / -1; background: var(--murekkep); color: var(--kagit); border-color: var(--murekkep); box-shadow: 4px 4px 0 var(--kalem); display: none; }
+.cevaplandi .dugmeler .hayir, .cevaplandi .dugmeler .evet { display: none; }
+.cevaplandi .dugmeler .sonraki { display: block; }
+.alt-satir { display: flex; justify-content: center; margin-top: 14px; }
+.geri-al { font: 700 21px var(--el); color: var(--soluk); }
+
+/* Bitiş */
+.bitis { display: none; flex: 1; flex-direction: column; justify-content: center; }
+.bitti .alan, .bitti .dugmeler, .bitti .alt-satir { display: none; }
+.bitti .bitis { display: flex; }
+.bitis h1 { font: 900 40px/1.05 var(--serif); letter-spacing: -.03em; margin: 0; }
+.bitis .liste { margin: 22px 0; }
+.bitis .liste div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--satir); font-size: 18px; }
+.bitis .liste b { font-family: var(--serif); }
+.bitis .liste span { color: var(--murekkep); font-weight: 600; text-align: right; }
+.bitis .eylem { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; margin-top: 8px; }
+</style>
+</head>
+<body data-menusuz>
+<div class="oturum" id="oturum">
+  <div class="ust-satir">
+    <button class="kapat" aria-label="Oturumu bitir">✕</button>
+    <div class="cetele" id="cetele"></div>
+    <div class="sayac" id="sayac">0/8</div>
+  </div>
+
+  <div class="alan">
+    <div class="fis kart" id="kart">
+      <span class="ust-yazi" id="tur">tekrar</span>
+      <span class="ust-yazi sag" id="kacinci">3. tekrar</span>
+      <span class="damga evet" id="dEvet">biliyorum</span>
+      <span class="damga hayir" id="dHayir">bilmiyorum</span>
+      <div class="kelime" id="kelime" lang="en">trophy</div>
+      <div class="ipucu" id="ipucu">biliyor musun? sağa ya da sola kaydır</div>
+    </div>
+
+    <div class="cevap" id="cevap">
+      <svg viewBox="0 0 170 120" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 76C19 50 46 38 76 40c17 1 26-4 38-8 18-6 38 4 40 22 2 14-6 22-18 24-6 14-24 20-46 20-28 1-64 0-68-22Z"/><path d="M112 33c-2-9 8-11 10-2"/>
+        <path class="goz" id="goz" d="M128 48q5 4 10 0"/><path d="M150 53q2 3 0 6"/><path d="M142 66q5 3 9 0"/><path d="M42 96v14M58 98v12M102 98v12M120 94v14"/><circle cx="124" cy="20" r="8"/><path d="M126 12q6-7 13-3-6 7-13 3"/>
+      </svg>
+      <div class="balon">
+        <small id="soru">düşündüğün bu muydu?</small>
+        <b id="anlam">kupa, ödül</b>
+        <p id="cumle" lang="en">Our team won the trophy three years in a row.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dugmeler">
+    <button class="hayir" id="hayir">← Bilmiyorum</button>
+    <button class="evet" id="evet">Biliyorum →</button>
+    <button class="sonraki" id="sonraki">Sonraki kelime</button>
+  </div>
+  <div class="alt-satir"><button class="geri-al">↶ geri al</button></div>
+
+  <div class="bitis">
+    <p class="tarih" data-bugun style="margin:0 0 6px">bugün</p>
+    <h1 id="bitisBaslik">Bugünlük bu kadar.</h1>
+    <p class="soluk" style="font-size:18px;margin:12px 0 0" id="bitisAlt"></p>
+    <div class="liste" id="liste"></div>
+    <div class="eylem">
+      <a class="dugme" href="kelime.html" id="ekle">Bilmediklerimi listeme ekle</a>
+      <a class="el-bag" href="index.html">ana sayfaya dön</a>
+    </div>
+  </div>
+</div>
+
+<script src="defter.js"></script>
+<script>
+var kartlar = [
+  ['trophy', 'kupa, ödül', 'Our team won the trophy three years in a row.', 'yeni'],
+  ['reluctant', 'isteksiz, gönülsüz', 'She felt reluctant to join the club because she didn\'t know anyone.', '2. tekrar'],
+  ['puddle', 'su birikintisi', 'There is a small puddle near the school entrance.', 'yeni'],
+  ['thrive', 'başarılı olmak, gelişmek', 'The small business began to thrive after the city improved its infrastructure.', '3. tekrar'],
+  ['whisper', 'fısıltı', 'The teacher asked the class to speak in a whisper during the test.', 'yeni'],
+  ['ambiguous', 'belirsiz, çok anlamlı', 'The instructions were ambiguous, so many students made mistakes.', '1. tekrar'],
+  ['stubborn', 'inatçı, dikbaşlı', 'The child was stubborn and refused to eat his vegetables.', 'yeni'],
+  ['cope', 'baş etmek, başa çıkmak', 'She tries to cope with the workload every semester.', '4. tekrar']
+];
+var sira = 0, sonuc = [], $ = function (i) { return document.getElementById(i); }, o = $('oturum');
+
+// Çetele: her cevap bir çentik, beşte bir çapraz çizgi
+function cetele() {
+  var n = sonuc.length, h = '', x = 4;
+  for (var i = 0; i < n; i++) {
+    if (i % 5 === 4) { h += '<path d="M' + (x - 30) + ' 22 L' + (x - 2) + ' 6"/>'; x += 10; }
+    else { h += '<path d="M' + x + ' 4 q1 10 0 20"/>'; x += 7; }
+  }
+  $('cetele').innerHTML = '<svg viewBox="0 0 ' + Math.max(x, 10) + ' 28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">' + h + '</svg>';
+  $('sayac').textContent = n + '/' + kartlar.length;
+}
+function goster() {
+  var k = kartlar[sira];
+  o.classList.remove('cevaplandi');
+  $('kelime').textContent = k[0];
+  $('tur').textContent = k[3] === 'yeni' ? 'yeni kelime' : 'tekrar';
+  $('kacinci').textContent = k[3] === 'yeni' ? '' : k[3];
+  $('ipucu').style.visibility = '';
+  $('kart').style.transform = ''; $('kart').style.opacity = '';
+  $('cevap').classList.remove('acik');
+  cetele();
+}
+function cevapla(b) {
+  if (o.classList.contains('cevaplandi')) return;
+  var k = kartlar[sira];
+  sonuc.push(b);
+  o.classList.add('cevaplandi');
+  $('soru').textContent = b ? 'düşündüğün bu muydu?' : 'anlamı şu:';
+  $('anlam').textContent = k[1];
+  $('cumle').textContent = k[2];
+  $('ipucu').style.visibility = 'hidden';
+  $('cevap').classList.add('acik');
+  // kapibara göz kırpar
+  $('goz').setAttribute('d', 'M128 50 h10');
+  setTimeout(function () { $('goz').setAttribute('d', 'M128 48q5 4 10 0'); }, 220);
+  cetele();
+}
+function sonraki() {
+  if (!o.classList.contains('cevaplandi')) return;
+  sira++;
+  if (sira >= kartlar.length) return bitir();
+  goster();
+}
+function bitir() {
+  o.classList.add('bitti');
+  var bilinmeyen = kartlar.filter(function (_, i) { return !sonuc[i]; });
+  $('bitisAlt').textContent = kartlar.length + ' kelimeden ' + (kartlar.length - bilinmeyen.length) + ' tanesini biliyordun. Bildiklerini birkaç gün sonra yeniden soracağız.';
+  $('liste').innerHTML = bilinmeyen.map(function (k) { return '<div><b lang="en">' + k[0] + '</b><span>' + k[1] + '</span></div>'; }).join('');
+  $('ekle').textContent = 'Bilmediğim ' + bilinmeyen.length + ' kelimeyi listeme ekle';
+  if (!bilinmeyen.length) $('ekle').style.display = 'none';
+}
+$('evet').onclick = function () { cevapla(true); };
+$('hayir').onclick = function () { cevapla(false); };
+$('sonraki').onclick = sonraki;
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowRight') { o.classList.contains('cevaplandi') ? sonraki() : cevapla(true); }
+  if (e.key === 'ArrowLeft' && !o.classList.contains('cevaplandi')) cevapla(false);
+});
+(function () {
+  var el = $('kart'), x0 = null;
+  el.addEventListener('pointerdown', function (e) { x0 = e.clientX; el.classList.add('surukle'); el.setPointerCapture(e.pointerId); });
+  el.addEventListener('pointermove', function (e) {
+    if (x0 === null) return;
+    var dx = e.clientX - x0;
+    el.style.transform = 'translateX(' + dx + 'px) rotate(' + (dx / 22 - 1) + 'deg)';
+    if (!o.classList.contains('cevaplandi')) {
+      $('dEvet').style.opacity = Math.max(0, Math.min(1, dx / 90));
+      $('dHayir').style.opacity = Math.max(0, Math.min(1, -dx / 90));
+    }
+  });
+  function birak(e) {
+    if (x0 === null) return;
+    var dx = e.clientX - x0; x0 = null; el.classList.remove('surukle'); el.style.transform = '';
+    $('dEvet').style.opacity = 0; $('dHayir').style.opacity = 0;
+    if (o.classList.contains('cevaplandi')) { if (Math.abs(dx) > 90) sonraki(); return; }
+    if (dx > 90) cevapla(true); else if (dx < -90) cevapla(false);
+  }
+  el.addEventListener('pointerup', birak); el.addEventListener('pointercancel', birak);
+})();
+goster();
+</script>
+</body>
+</html>

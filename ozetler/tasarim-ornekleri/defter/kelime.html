@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bank ne demek? · LearnVocab Sözlük (defter)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="defter.css">
+<style>
+.ust-arama { margin-top: 26px; }
+.kirinti { font-size: 15px; color: var(--soluk); margin: 14px 0 0; }
+.kirinti a { text-decoration: none; }
+.kirinti a:hover { text-decoration: underline; }
+
+/* Başlık bloğu */
+.madde { margin-top: 30px; }
+.madde-ust { display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap; }
+.madde h1 { font: 900 64px/.95 var(--serif); letter-spacing: -.04em; margin: 0; }
+.madde .tur { font: 700 26px var(--el); color: var(--murekkep); transform: rotate(-3deg); margin-bottom: 6px; }
+.madde-eylem { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 18px; }
+@media (min-width: 700px) { .madde h1 { font-size: 92px; } }
+
+/* Anlamlar: defter maddeleri */
+.anlamlar { margin-top: 34px; border-top: 2px solid var(--murekkep); }
+.anlam-satir { display: grid; grid-template-columns: 38px 1fr; gap: 6px; padding: 22px 0; border-bottom: 1px solid var(--satir); }
+.anlam-satir .no { font: 700 34px/1 var(--el); color: var(--murekkep); }
+.anlam-satir .tr { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.anlam-satir .tr b { font-size: 22px; line-height: 1.25; }
+.anlam-satir .tanim { font-size: 16px; color: var(--soluk); margin: 4px 0 0; }
+.anlam-satir .ornek { font: 19px/1.6 var(--metin); margin: 12px 0 0; }
+.anlam-satir .ornek mark { background: var(--kalem); color: inherit; padding: 0 2px; }
+.anlam-satir .baglar { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 10px; }
+.anlam-satir .baglar a { font: 700 22px var(--el); color: var(--murekkep); }
+.yakin { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline; margin-top: 12px; font-size: 15px; color: var(--soluk); }
+.yakin a { font-weight: 600; color: var(--yazi); text-decoration: underline; text-decoration-color: var(--satir); text-underline-offset: 4px; text-decoration-thickness: 2px; }
+.ikinci-tur { margin-top: 40px; display: flex; align-items: center; gap: 12px; }
+.ikinci-tur h2 { font: 900 40px/1 var(--serif); letter-spacing: -.03em; margin: 0; }
+
+/* Aile ağacı */
+.aile { margin-top: 70px; }
+.aile h2 { font: 900 30px var(--serif); letter-spacing: -.02em; margin: 0; }
+.agac { position: relative; margin-top: 18px; max-width: 520px; }
+.agac svg.dallar { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--murekkep); }
+.agac .kok { position: relative; display: inline-block; font: 900 28px var(--serif); padding: 0 8px; background: var(--kalem); margin-left: 34%; }
+.agac .yapraklar { position: relative; display: flex; justify-content: space-between; margin-top: 58px; }
+.agac .yapraklar a { font: 700 20px var(--serif); text-decoration: none; background: var(--kagit-beyaz); padding: 4px 10px; box-shadow: var(--golge); }
+.agac .yapraklar a small { display: block; font: 500 13px var(--govde); color: var(--soluk); }
+
+/* Kenar notu: liste durumu */
+.liste-notu { margin-top: 50px; }
+</style>
+</head>
+<body>
+<div class="sayfa">
+<header class="ust">
+  <a class="logo" href="index.html"><span>learnvocab</span></a>
+  <nav></nav>
+  <div class="sag"><div class="avatar">E</div></div>
+</header>
+
+<label class="arama ust-arama">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  <input value="bank" aria-label="Sözlükte ara">
+</label>
+<div class="kirinti"><a href="#">Sözlük</a> › <a href="#">A1 kelimeleri</a> › bank</div>
+
+<article class="madde">
+  <div class="madde-ust">
+    <h1 lang="en">bank</h1>
+    <span class="tur">isim</span>
+    <span class="seviye" style="margin-bottom:10px">A1</span>
+  </div>
+  <div class="madde-eylem">
+    <div class="sesler">
+      <button class="ses"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>US</button>
+      <button class="ses"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>UK</button>
+    </div>
+    <button class="dugme" id="ekle">+ Listeme ekle</button>
+  </div>
+
+  <div class="anlamlar">
+    <div class="anlam-satir">
+      <div class="no">1</div>
+      <div>
+        <div class="tr"><b>banka, finans kurumu</b><span class="seviye">A1</span></div>
+        <p class="tanim" lang="en">a financial institution that accepts deposits and provides loans and other financial services</p>
+        <p class="ornek" lang="en">I need to visit the <mark>bank</mark> to withdraw cash.</p>
+        <div class="baglar"><a href="#">+4 örnek daha</a><a href="#">kalıplar</a></div>
+        <div class="yakin">benzer: <a href="#" lang="en">depository</a> &nbsp; zıt: <a href="#" lang="en">borrower</a></div>
+      </div>
+    </div>
+    <div class="anlam-satir">
+      <div class="no">2</div>
+      <div>
+        <div class="tr"><b>nehir kıyısı, sahil</b><span class="seviye">B1</span></div>
+        <p class="tanim" lang="en">the land alongside a river or stream</p>
+        <p class="ornek" lang="en">We set up a tent on the <mark>bank</mark> of the river.</p>
+        <div class="baglar"><a href="#">+4 örnek daha</a></div>
+        <div class="yakin">benzer: <a href="#" lang="en">shore</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ikinci-tur"><h2 lang="en">bank</h2><span class="tur el" style="font-size:24px;transform:rotate(-3deg)">fiil</span></div>
+  <div class="anlamlar" style="margin-top:14px">
+    <div class="anlam-satir">
+      <div class="no">1</div>
+      <div>
+        <div class="tr"><b>para yatırmak, mevduat yapmak</b><span class="seviye">B1</span></div>
+        <p class="tanim" lang="en">to place money into a financial institution for safekeeping or future use</p>
+        <p class="ornek" lang="en">He went to the bank to <mark>bank</mark> his paycheck after work.</p>
+      </div>
+    </div>
+    <div class="anlam-satir">
+      <div class="no">2</div>
+      <div>
+        <div class="tr"><b>güvenmek, dayanmak</b><span class="seviye">B1</span></div>
+        <p class="tanim" lang="en">to rely on or count on something or someone for support or certainty</p>
+        <p class="ornek" lang="en">You can <mark>bank on</mark> his honesty in any situation.</p>
+        <div class="baglar"><a href="#">kalıp: bank on sth</a></div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<section class="aile">
+  <h2>Aynı aileden</h2>
+  <span class="bolum-notu" style="margin-bottom:0">birini biliyorsan diğerleri kolay</span>
+  <div class="agac">
+    <svg class="dallar" viewBox="0 0 520 140" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+      <path d="M232 40c-4 30-150 20-190 62M236 40c2 26 4 40 6 62M240 40c10 30 160 18 230 62"/>
+    </svg>
+    <span class="kok" lang="en">bank</span>
+    <div class="yapraklar">
+      <a href="#" lang="en">banker<small>bankacı</small></a>
+      <a href="#" lang="en">banking<small>bankacılık</small></a>
+      <a href="#" lang="en">bankable<small>kârlı</small></a>
+    </div>
+  </div>
+</section>
+
+<div class="kenar-notu liste-notu">
+  <svg viewBox="0 0 46 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4c12 0 28 6 36 20M40 24l-1-9M40 24l-9-2"/></svg>
+  <span id="listeNotu">listene eklersen 1, 3, 7 ve 21 gün sonra sana yeniden sorarız.</span>
+</div>
+
+<div class="sayfa-no">— s. 1.247 —</div>
+</div>
+<script src="defter.js"></script>
+<script>
+document.getElementById('ekle').addEventListener('click', function () {
+  this.textContent = '✓ Listende';
+  this.classList.add('ikincil');
+  document.getElementById('listeNotu').textContent = 'tamam! yarın ilk tekrarı Learn & Pass\'te yaparsın.';
+});
+</script>
+</body>
+</html>
