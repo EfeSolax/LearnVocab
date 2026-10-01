@@ -1018,7 +1018,8 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **Misafir ana sayfası tanıtım sayfası olur** (Efe'nin kararı, 1 Ekim): ilk kez gelen kişi için daha dolu, görselli.
   - Örnek: `ozetler/tasarim-ornekleri/anasayfa.html`. Görseller sitenin kendi bileşenlerinden çizilmiş ürün görselleri, kapibara geçici taslak.
   - Bölümler: giriş (başlık, "Hemen dene", "Seviyemi öğren", arama) · rakamlar · Sözlük · Learn & Pass · Okumalar · Yazılar · seviye testi · günün kelimesi/ifadesi · hesap çağrısı · alt bilgi.
-  - Henüz uygulanmadı; Efe'nin onayı bekleniyor.
+  - **Beğenilmedi (1 Ekim):** Efe'nin arkadaşları "çok klasik, yapay zekâ ile yapıldığı belli" dedi. Hazır şablon kalıpları (renkli hap etiketler, lekeli kolaj, rakam şeridi, tikli zikzak bölümler) kullanılmaz.
+  - Yerine iki konsept (uygulanmadı, Efe seçecek): `konsept-defter.html` (kareli kelime defteri; katlanan sütunla kendini sınama, el yazısı notlar, çizgi kapibara) ve `konsept-oyna.html` (sayfa ziyaretçiye hemen kelime sorar; site ancak 7 kelimeden sonra kendini anlatır).
 - **Logo:** Şimdilik dokunulmaz, sonra ele alınacak.
 - **Dil:** `<html lang="en">` → **`lang="tr"`**. **YAPILDI (30 Eylül):** `lang` seçili dilden geliyor (`get_current_language`, 18.22'ye hazır). Kelime kartındaki ve okuma baloncuğundaki İngilizce metinler `lang="en"` taşıyor. "BİLMİYORUM" artık doğru görünüyor.
   - Şu an Türkçe büyük harf bozuk: "BİLMİYORUM" ekranda "BILMIYORUM" çıkıyor.
@@ -1614,3 +1615,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-01 (8):** Veri B aşaması için inceleme listesi hazırlandı (`ozetler/b-asamasi-inceleme.md`; değişiklik uygulanmadı). Seviye testi özet soruları tarayıcıda uçtan uca denendi.
 - **2026-10-01 (9):** Telaffuz ses üretimi TAMAMLANDI: sözlükteki her kelime ve ifade için US + UK, 28.372 MP3 (218 MB), 0 hata, eksik yok.
 - **2026-10-01 (10):** Tasarım oturumu başladı. Efe tema A'yı (Mürekkep) seçti. Misafir ana sayfasının görselli bir tanıtım sayfası olmasına karar verdi; örnek `ozetler/tasarim-ornekleri/` altında (uygulanmadı).
+- **2026-10-01 (11):** Tanıtım ana sayfası taslağı "fazla klasik" bulundu; iki farklı konsept hazırlandı (`konsept-defter.html`, `konsept-oyna.html`; uygulanmadı).

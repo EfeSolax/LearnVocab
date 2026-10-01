@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LearnVocab · Defter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Konsept 1 · Defter. Öneri dosyası, sitede hiçbir şey değişmedi.
+   Fikir: hazırlıktaki herkesin bir kelime defteri var, çoğu yarıda kalıyor.
+   Site, defterin yarıda kalmayan hâli. */
+:root {
+  --kagit: #fbfaf5; --kare: rgba(66, 110, 190, .13); --kenar: #e7a3a3;
+  --murekkep: #1d3f8f; --yazi: #1b1d22; --soluk: #5f6470;
+  --kalem: #ffe46b; --kirmizi: #c73a2b; --yesil: #1f7a4c;
+  --not: #fff1a8; --bant: rgba(255,255,255,.55);
+  --el: 'Caveat', cursive; --serif: 'Fraunces', Georgia, serif; --govde: 'Inter', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --kagit: #16181d; --kare: rgba(130, 160, 230, .09); --kenar: #6b3434;
+  --murekkep: #9db8ff; --yazi: #e9e8e2; --soluk: #a3a7b0;
+  --kalem: #6b5a10; --kirmizi: #ff8a78; --yesil: #6fd6a0; --not: #4a4314; --bant: rgba(255,255,255,.12);
+} }
+:root[data-theme="dark"] {
+  --kagit: #16181d; --kare: rgba(130, 160, 230, .09); --kenar: #6b3434;
+  --murekkep: #9db8ff; --yazi: #e9e8e2; --soluk: #a3a7b0;
+  --kalem: #6b5a10; --kirmizi: #ff8a78; --yesil: #6fd6a0; --not: #4a4314; --bant: rgba(255,255,255,.12);
+}
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--yazi); font: 17px/1.55 var(--govde); -webkit-font-smoothing: antialiased; }
+html {
+  min-height: 100%; background-color: var(--kagit);
+  background-image:
+    linear-gradient(var(--kare) 1px, transparent 1px),
+    linear-gradient(90deg, var(--kare) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+/* Kırmızı kenar çizgisi */
+body::before { content: ""; position: fixed; top: 0; bottom: 0; left: 40px; width: 2px; background: var(--kenar); opacity: .7; z-index: 0; }
+@media (min-width: 900px) { body::before { left: max(40px, calc(50% - 470px)); } }
+.sayfa { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 0 18px 0 58px; }
+@media (min-width: 900px) { .sayfa { padding-left: 90px; } }
+a { color: inherit; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+.el { font-family: var(--el); color: var(--murekkep); }
+
+/* Üst */
+.ust { display: flex; justify-content: space-between; align-items: baseline; padding: 20px 0 0; }
+.logo { font: 900 20px var(--serif); letter-spacing: -.02em; text-decoration: none; }
+.logo span { background: linear-gradient(transparent 55%, var(--kalem) 55%); }
+.ust nav { display: flex; gap: 18px; font-size: 15px; font-weight: 600; }
+.ust nav a { text-decoration: none; color: var(--soluk); }
+.ust nav a:last-child { color: var(--murekkep); }
+.ust nav .gizle { display: none; }
+@media (min-width: 700px) { .ust nav .gizle { display: inline; } }
+
+/* Başlık */
+.tarih { font-size: 26px; margin: 36px 0 0; transform: rotate(-1.5deg); transform-origin: left; }
+h1 { font: 900 44px/1.02 var(--serif); letter-spacing: -.035em; margin: 6px 0 0; max-width: 12em; }
+h1 .vurgu { background: linear-gradient(104deg, transparent 2%, var(--kalem) 4%, var(--kalem) 94%, transparent 97%) 0 60% / 100% 46% no-repeat; padding: 0 4px; }
+.altbaslik { font-size: 30px; margin: 4px 0 0 4px; transform: rotate(-1deg); display: inline-block; }
+.giris { font-size: 18px; color: var(--soluk); max-width: 30em; margin: 22px 0 0; }
+@media (min-width: 700px) { h1 { font-size: 76px; } .tarih { font-size: 30px; } .altbaslik { font-size: 36px; } .giris { font-size: 19px; } }
+
+/* Defter tablosu */
+.tablo { margin: 36px 0 0; position: relative; }
+.basliklar { display: grid; grid-template-columns: 38% 1fr; font-family: var(--el); font-size: 24px; color: var(--murekkep); border-bottom: 2px solid var(--murekkep); padding-bottom: 2px; }
+.basliklar span:last-child { padding-left: 14px; }
+.satir { display: grid; grid-template-columns: 38% 1fr; min-height: 72px; border-bottom: 1px solid var(--kare); position: relative; }
+.satir .kelime { font: 700 23px/1.2 var(--serif); padding: 14px 10px 14px 0; letter-spacing: -.01em; position: relative; align-self: start; }
+.satir .kelime small { display: block; font: 500 13px var(--govde); color: var(--soluk); letter-spacing: 0; margin-top: 2px; }
+.satir .sag { position: relative; padding: 12px 0 12px 14px; border-left: 1px dashed var(--kare); }
+.satir .anlam { font: 700 26px var(--el); color: var(--murekkep); line-height: 1.2; }
+.satir .cumle { font-size: 16px; color: var(--soluk); margin-top: 2px; }
+/* Katlanmış kâğıt: anlamı kapatır (öğrencilerin klasik numarası) */
+.kat { position: absolute; inset: 4px -4px 4px 0; background: var(--kagit);
+       background-image: linear-gradient(var(--kare) 1px, transparent 1px), linear-gradient(90deg, var(--kare) 1px, transparent 1px);
+       background-size: 24px 24px; border-left: 1px solid rgba(0,0,0,.08);
+       box-shadow: -6px 0 10px -6px rgba(0,0,0,.25); display: flex; align-items: center; padding-left: 16px;
+       font: 600 21px var(--el); color: var(--soluk); transform-origin: left center; transition: transform .45s cubic-bezier(.3,.7,.2,1), opacity .45s; cursor: pointer; }
+.kat::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: linear-gradient(90deg, rgba(0,0,0,.08), transparent); }
+.satir.acik .kat { transform: perspective(600px) rotateY(-80deg); opacity: 0; pointer-events: none; }
+.karar { display: none; gap: 14px; margin-top: 8px; font: 700 20px var(--el); }
+.satir.acik:not(.bitti) .karar { display: flex; }
+.karar button { padding: 2px 6px; border-radius: 6px; white-space: nowrap; }
+.karar .evet { color: var(--yesil); }
+.karar .hayir { color: var(--kirmizi); }
+.karar button:hover { background: var(--kare); }
+/* Biliyordum: kelimenin üstü mürekkeple çizilir. Bilmiyordum: kırmızı kalemle daire. */
+.w { position: relative; display: inline-block; }
+.cizgi { position: absolute; left: -4px; top: 52%; height: 3px; width: 0; background: var(--murekkep); border-radius: 3px; transform: rotate(-3deg); transition: width .4s ease; }
+.satir.biliyor .kelime .cizgi { width: calc(100% + 8px); }
+.satir.biliyor .kelime { color: var(--soluk); }
+.daire { position: absolute; left: -14px; top: -10px; width: calc(100% + 28px); height: calc(100% + 20px); pointer-events: none; opacity: 0; transition: opacity .3s; }
+.satir.bilmiyor .daire { opacity: 1; }
+.daire path { stroke: var(--kirmizi); stroke-dasharray: 400; stroke-dashoffset: 400; transition: stroke-dashoffset .6s ease; }
+.satir.bilmiyor .daire path { stroke-dashoffset: 0; }
+.kenar-not { position: absolute; right: 0; top: 50%; transform: translateY(-50%) rotate(-4deg); font: 700 19px var(--el); color: var(--kirmizi); opacity: 0; transition: opacity .3s .3s; white-space: nowrap; }
+.satir.bilmiyor .kenar-not { opacity: 1; }
+@media (max-width: 520px) {
+  .satir, .basliklar { grid-template-columns: 42% 1fr; }
+  .satir .kelime { font-size: 20px; }
+  .satir .anlam { font-size: 24px; }
+  .karar { gap: 6px; font-size: 19px; }
+  .kenar-not { display: none; }
+}
+
+/* Kenar notları (el yazısı) */
+.yan-not { font: 600 22px/1.15 var(--el); color: var(--murekkep); transform: rotate(-3deg); margin: 18px 0 0 6px; display: flex; gap: 8px; align-items: flex-start; }
+.yan-not svg { flex: none; width: 46px; height: 30px; margin-top: -4px; }
+
+/* Yapışkan not */
+.notlar { display: grid; gap: 34px; margin: 64px 0 0; }
+@media (min-width: 700px) { .notlar { grid-template-columns: 1fr 1fr; align-items: start; } }
+.yapiskan { background: var(--not); padding: 26px 22px 22px; position: relative; transform: rotate(-2deg);
+            box-shadow: 0 1px 1px rgba(0,0,0,.08), 0 12px 18px -10px rgba(0,0,0,.25); max-width: 340px; }
+.yapiskan::before { content: ""; position: absolute; top: -12px; left: 50%; width: 90px; height: 24px; margin-left: -45px; background: var(--bant); transform: rotate(3deg); border: 1px solid rgba(0,0,0,.05); }
+.yapiskan .baslik { font: 700 20px var(--el); color: var(--soluk); }
+.yapiskan .kelime { font: 900 40px/1 var(--serif); letter-spacing: -.02em; margin: 6px 0 4px; }
+.yapiskan .anlam { font: 700 26px var(--el); color: var(--murekkep); }
+.yapiskan .cumle { font-size: 15px; margin-top: 8px; }
+.sesler { display: flex; gap: 14px; margin-top: 12px; font: 700 19px var(--el); color: var(--murekkep); }
+.sesler button { display: inline-flex; align-items: center; gap: 4px; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.kapibara { width: 210px; color: var(--murekkep); }
+.kapibara-kutu { position: relative; justify-self: center; text-align: center; }
+.kapibara-kutu .el { font-size: 22px; display: block; transform: rotate(3deg); margin-top: -6px; }
+
+/* Defterin yapamadıkları */
+h2 { font: 900 34px/1.05 var(--serif); letter-spacing: -.03em; margin: 80px 0 6px; }
+@media (min-width: 700px) { h2 { font-size: 48px; } }
+.h2-not { font-size: 24px; margin: 0 0 22px 2px; transform: rotate(-1deg); display: inline-block; }
+ol.eksikler { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+ol.eksikler li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 6px; padding: 18px 0; border-bottom: 1px solid var(--kare); }
+ol.eksikler li::before { content: counter(s) "."; font: 700 30px/1 var(--el); color: var(--murekkep); }
+ol.eksikler b { font-size: 19px; display: block; }
+ol.eksikler p { margin: 4px 0 0; color: var(--soluk); }
+ol.eksikler .el { font-size: 21px; }
+.okuma { font: 17px/1.75 var(--serif); margin-top: 10px; padding: 12px 14px; background: color-mix(in srgb, var(--kagit) 70%, transparent); border: 1px solid var(--kare); }
+.okuma .dokun { background: var(--kalem); padding: 0 2px; border-radius: 2px; cursor: pointer; position: relative; }
+.balon { display: none; position: absolute; left: 0; top: calc(100% + 8px); z-index: 5; background: var(--kagit); border: 1.5px solid var(--murekkep); padding: 8px 12px; white-space: nowrap; font: 700 20px var(--el); color: var(--murekkep); box-shadow: 3px 3px 0 var(--murekkep); }
+.dokun.acik .balon { display: block; }
+
+/* Kapanış */
+.kapanis { margin: 80px 0 0; padding-bottom: 40px; }
+.kapanis p.buyuk { font: 900 34px/1.08 var(--serif); letter-spacing: -.03em; margin: 0; max-width: 14em; }
+@media (min-width: 700px) { .kapanis p.buyuk { font-size: 50px; } }
+.dugmeler { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; margin-top: 26px; }
+.murekkep-dugme { background: var(--murekkep); color: var(--kagit); font: 600 17px var(--govde); padding: 15px 24px; border-radius: 3px; box-shadow: 4px 4px 0 var(--kalem); text-decoration: none; }
+.murekkep-dugme:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--kalem); }
+.satir-arama { display: flex; align-items: center; gap: 10px; margin-top: 36px; border-bottom: 2px solid var(--murekkep); max-width: 460px; padding: 6px 0; }
+.satir-arama input { flex: 1; border: 0; background: transparent; font: 600 24px var(--el); color: var(--murekkep); outline: none; min-width: 0; }
+.satir-arama input::placeholder { color: var(--soluk); opacity: .8; }
+.sayfa-no { text-align: center; font: 700 22px var(--el); color: var(--soluk); padding: 40px 0 30px; }
+.sayfa-no a { margin: 0 10px; color: var(--soluk); }
+.tema { position: fixed; right: 12px; bottom: 12px; z-index: 9; font: 700 18px var(--el); background: var(--kagit); border: 1.5px solid var(--murekkep); color: var(--murekkep); padding: 4px 12px; }
+</style>
+</head>
+<body>
+<div class="sayfa">
+
+<header class="ust">
+  <a class="logo" href="#"><span>learnvocab</span></a>
+  <nav><a class="gizle" href="#">Sözlük</a><a class="gizle" href="#">Okumalar</a><a class="gizle" href="#">Yazılar</a><a href="#">Giriş</a></nav>
+</header>
+
+<p class="tarih el" id="tarih">1 Ekim, Çarşamba</p>
+<h1>Kelime defterin, <span class="vurgu">bu sefer</span> yarıda kalmasın.</h1>
+<span class="altbaslik el">(hepimizinki ikinci haftada kaldı)</span>
+<p class="giris">Hazırlıkta herkes bir kelime defteri tutar: solda kelime, sağda anlamı, altında bir cümle. Sonra sayfayı katlar, kendini dener. LearnVocab bunu senin yerine hatırlar.</p>
+
+<div class="tablo" id="tablo">
+  <div class="basliklar"><span>kelime</span><span>anlamı</span></div>
+</div>
+
+<div class="yan-not">
+  <svg viewBox="0 0 46 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M42 26C30 26 14 20 6 6M6 6l1 9M6 6l9 2"/></svg>
+  <span>katlanan yere dokun, kendini dene.<br>bilmediklerin birkaç gün sonra yine karşına çıkar.</span>
+</div>
+
+<div class="notlar">
+  <div class="yapiskan">
+    <div class="baslik">bugünün kelimesi</div>
+    <div class="kelime" lang="en">genuine</div>
+    <div class="anlam">gerçek, sahici</div>
+    <div class="cumle" lang="en">The teacher praised her genuine effort in the assignment.</div>
+    <div class="sesler"><button>▸ US</button><button>▸ UK</button></div>
+  </div>
+  <div class="kapibara-kutu">
+    <svg class="kapibara" viewBox="0 0 170 120" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M22 76C19 50 46 38 76 40c17 1 26-4 38-8 18-6 38 4 40 22 2 14-6 22-18 24-6 14-24 20-46 20-28 1-64 0-68-22Z"/>
+      <path d="M112 33c-2-9 8-11 10-2"/>
+      <path d="M128 48q5 4 10 0"/>
+      <path d="M150 53q2 3 0 6"/>
+      <path d="M142 66q5 3 9 0"/>
+      <path d="M42 96v14M58 98v12M102 98v12M120 94v14"/>
+      <circle cx="124" cy="20" r="8"/>
+      <path d="M126 12q6-7 13-3-6 7-13 3"/>
+      <path d="M34 62q6-4 10 2M60 54q5-3 9 1" opacity=".5"/>
+    </svg>
+    <span class="el">kapibara da seninle tekrar ediyor</span>
+  </div>
+</div>
+
+<h2>Defterin yapamadığı üç şey</h2>
+<span class="h2-not el">(kâğıda bir şey demiyoruz, kâğıdı severiz)</span>
+<ol class="eksikler">
+  <li><div><b>Unutacağın günü bilmez.</b><p>Bildiğin kelimeyi 1, 3, 7 ve 21 gün sonra yeniden sorarız. Unutmaya başladığın an tam o an. <span class="el">(günde birkaç dakika)</span></p></div></li>
+  <li><div><b>Sesli okumaz.</b><p>Her kelimenin Amerikan ve İngiliz telaffuzu var; 16.000'den fazla kelimenin hepsinde.</p></div></li>
+  <li><div><b>Okurken yanında olmaz.</b><p>Bir metin oku ya da kendi PDF'ini yükle. Takıldığın kelimeye dokun:</p>
+    <div class="okuma" lang="en">Most students feel <span class="dokun">overwhelmed<span class="balon">overwhelm · bunaltmak</span></span> in the first month. The <span class="dokun">stubborn<span class="balon">inatçı, dikbaşlı</span></span> ones learn to <span class="dokun">cope<span class="balon">baş etmek, başa çıkmak</span></span>.</div>
+  </div></li>
+</ol>
+
+<section class="kapanis">
+  <p class="buyuk">Defterini aç. İlk sayfası hazır.</p>
+  <div class="dugmeler">
+    <a class="murekkep-dugme" href="#">Hesap açmadan dene</a>
+    <a class="el" href="#" style="font-size:24px">ya da seviyeni öğren →</a>
+  </div>
+  <label class="satir-arama">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--murekkep)"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input placeholder="bir kelime ara…" aria-label="Sözlükte ara">
+  </label>
+</section>
+
+<div class="sayfa-no">— 1 —<br><a href="#">A1 kelimeleri</a><a href="#">B1</a><a href="#">C1</a><a href="#">hakkında</a></div>
+</div>
+
+<button class="tema" id="tema">gece / gündüz</button>
+
+<script>
+var kelimeler = [
+  ['reluctant', 'sıfat · B2', 'isteksiz, gönülsüz', 'She felt reluctant to join the club because she didn\'t know anyone.'],
+  ['thrive', 'fiil · B2', 'başarılı olmak, gelişmek', 'The small business began to thrive after the city improved its infrastructure.'],
+  ['puddle', 'isim · A2', 'su birikintisi', 'There is a small puddle near the school entrance.'],
+  ['ambiguous', 'sıfat · C1', 'belirsiz, çok anlamlı', 'The instructions were ambiguous, so many students made mistakes.'],
+  ['whisper', 'isim · B1', 'fısıltı', 'The teacher asked the class to speak in a whisper during the test.']
+];
+var tablo = document.getElementById('tablo');
+kelimeler.forEach(function (k) {
+  var s = document.createElement('div');
+  s.className = 'satir';
+  s.innerHTML =
+    '<div class="kelime"><span class="w" lang="en">' + k[0] + '<span class="cizgi"></span>' +
+    '<svg class="daire" viewBox="0 0 160 52" preserveAspectRatio="none" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M14 30C8 12 60 4 110 7c40 3 48 20 36 32-14 12-80 12-118 4C10 39 6 28 30 17"/></svg></span><small>' + k[1] + '</small></div>' +
+    '<div class="sag"><div class="anlam">' + k[2] + '</div><div class="cumle" lang="en">' + k[3] + '</div>' +
+    '<div class="karar"><button class="evet">✓ biliyordum</button><button class="hayir">✗ bilmiyordum</button></div>' +
+    '<div class="kat">dokun, aç</div><span class="kenar-not">3 gün sonra!</span></div>';
+  tablo.appendChild(s);
+});
+tablo.addEventListener('click', function (e) {
+  var s = e.target.closest('.satir'); if (!s) return;
+  if (e.target.closest('.kat')) s.classList.add('acik');
+  if (e.target.closest('.evet')) s.classList.add('bitti', 'biliyor');
+  if (e.target.closest('.hayir')) s.classList.add('bitti', 'bilmiyor');
+});
+document.querySelectorAll('.dokun').forEach(function (d) {
+  d.addEventListener('click', function () {
+    document.querySelectorAll('.dokun.acik').forEach(function (o) { if (o !== d) o.classList.remove('acik'); });
+    d.classList.toggle('acik');
+  });
+});
+try { document.getElementById('tarih').textContent = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', weekday: 'long' }); } catch (e) {}
+document.getElementById('tema').addEventListener('click', function () {
+  var r = document.documentElement;
+  var koyu = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme = koyu ? 'light' : 'dark';
+});
+</script>
+</body>
+</html>
