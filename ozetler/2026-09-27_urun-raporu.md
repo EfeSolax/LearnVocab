@@ -1329,6 +1329,11 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - (a) **Diller:** Hedef **tr · en · de · es · fr**. **Şimdilik tr, en ve de.** es ve fr sonra eklenir.
   - (b) **Kapsam:** **Şimdilik yalnızca arayüz** çevrilir. Kelime anlamları Türkçe kalır.
   - (c) **Adres biçimi:** Türkçe öneksiz kalır, diğer diller önekli olur (`/en/…`, `/de/…`). Her sayfada `hreflang` etiketleri bulunur (Efe onayladı: SEO'da yerleşik adresler bozulmaz, ceza riski yok).
+- **Efe'nin kararları (2 Ekim):**
+  - **Dil düğmesi:** sağ üstte profil fotoğrafının yanında (misafirde "Giriş yap"ın yanında) bir düğme; tıklanınca üç satırlık liste açılır (Türkçe · English · Deutsch). Seçince aynı sayfanın o dildeki adresine gidilir; seçim cihazda, girişlide hesapta saklanır.
+  - **Otomatik yönlendirme yok** (Claude'un önerisi, SEO): tarayıcı diline göre yönlendirilmez; en çok küçük bir öneri gösterilir. Bir dil, arayüz metinlerinin hepsi çevrilmeden yayına alınmaz.
+  - **"Türkçe anlamlar" ayarı (arayüz dilinden bağımsız):** Ayarlar'da, hesaba kaydedilen bir seçenek; varsayılan açık. Kapalıysa kartlarda, L&P'de ve egzersizlerde Türkçe anlam gösterilmez ve sorulmaz; her şey İngilizce açıklama üzerinden yürür.
+  - Henüz uygulanmadı. Şablonların hiçbiri çeviriye hazır değil (`{% translate %}` yok); bu iş tasarım işleriyle birlikte yapılır.
 
 ### 18.23 Kayıt formu ve günlük hedef (Efe'nin kararı, 29 Eylül) — **YAPILDI (30 Eylül)**
 - **Kayıt formu:** **ad, soyad, e-posta, kullanıcı adı, şifre**; hepsi zorunlu.
@@ -1655,3 +1660,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-02 (2):** Defter teması siteye uygulandı: ortak katman (`static/css/defter.css`, Tailwind renk eşlemesi, 17 px kök yazı), yeni misafir ana sayfası (`words.gunun.defter_kelimeleri`), Sözlük kartı, Learn & Pass (dikkat dağıtıcısız, 18.10), Okumalar, yazı değerlendirmesi; diğer ekranlar ortak kalıplarla. 942 test geçiyor.
 - **2026-10-02 (3):** Efe: "örneklerdeki sayfaları da yap". Kelime sayfası, Okumalar, okuma ekranı, Yazılar, serbest yazma, Learn & Pass açılışı, Egzersizler, Sözlük ve giriş/kayıt örneklerdeki düzenle baştan kuruldu. Kelime sayfasında bütün türler açık. 942 test geçiyor.
 - **2026-10-02 (4):** Bütün sayfalar defter tasarımıyla sıfırdan kuruldu (ana sayfa girişli de zengin; egzersiz, seviye testi, Hesap, Ayarlar, Listem, göz atma, diyalog, metin ekleme). Egzersiz adları Kısa Sınav / Deneme Sınavı oldu; eş/zıt sorusuna renkli damga eklendi. 945 test geçiyor.
+- **2026-10-02 (5):** Dil seçeneği kararları (düğmenin yeri, otomatik yönlendirme yok, arayüz dilinden bağımsız "Türkçe anlamlar" ayarı). Google ile giriş başladı: Efe OAuth istemcisini oluşturuyor.
