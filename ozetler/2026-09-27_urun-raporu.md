@@ -1515,8 +1515,8 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 9. **PDF yükleme sınırı:** Apache/Passenger'ın 50 MB yüklemeye izin verdiği doğrulanır (gerekirse `LimitRequestBody`).
 10. **Google:** Search Console'da alan adı doğrulaması (Efe, DNS TXT), `sitemap.xml` gönderimi; birkaç gün "Dizine eklenen / taranan ama eklenmeyen" sayılarının izlenmesi; sonra kademeli dizine almanın 2. partisi (B2 Oxford).
 10a. **Google ile giriş:** sunucuda `pip install -r requirements.txt` (django-allauth, PyJWT) ve `migrate` (account, socialaccount tabloları); `.env`'e `GOOGLE_CLIENT_ID` ve `GOOGLE_CLIENT_SECRET`; Google Cloud'da canlı yönlendirme adresinin kayıtlı olduğu doğrulanır; canlıda bir kez Google ile girilir.
-10c. **Statik dosyaların önbelleği (Claude'un önerisi, Efe ile konuşulacak):** CSS/JS dosya adları değişmediği için güncellemeden sonra tarayıcılar eski `defter.css`/`site.css`'i kullanabilir. Çözüm: `ManifestStaticFilesStorage` (dosya adına içerik özeti eklenir; `collectstatic` ile çalışır, ek paket gerekmez).
 10b. **Yeni migration'lar:** `egzersizler/0002` (Kısa Sınav / Deneme Sınavı adları) ve allauth tabloları.
+10c. **Statik dosyaların önbelleği (Claude'un önerisi, Efe ile konuşulacak):** CSS/JS dosya adları değişmediği için güncellemeden sonra tarayıcılar eski `defter.css`/`site.css`'i kullanabilir. Çözüm: `ManifestStaticFilesStorage` (dosya adına içerik özeti eklenir; `collectstatic` ile çalışır, ek paket gerekmez).
 11. **Geçiş günü:** kısa bakım ekranı (Passenger `tmp/restart.txt` ile yeniden başlatma), geçişten sonra ana akışların elle denenmesi (kayıt, L&P, egzersiz, okuma, yazı, bildirim).
 
 
