@@ -97,7 +97,9 @@
         html.ses-uk .telaffuz-dugmesi[data-telaffuz="en-GB"] { display: inline-flex; }
     </style>
 
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {% comment %}Alpine sürümü sabit ve sitenin kendi dosyalarında (rapor 18.17): dışarıdaki bir güncelleme siteyi bozamaz.
+       Güncellemek için: yeni sürümü indir, adı değiştir, bütün etkileşimli ekranları dene.{% endcomment %}
+    <script defer src="{% static 'js/alpine-3.17.4.min.js' %}"></script>
 
     {% block extra_head %}{% endblock %}
 </head>
