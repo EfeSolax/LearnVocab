@@ -65,6 +65,15 @@ class UserSettings(models.Model):
     # Okuyan: egzersizler.sorular.varsayilan_soru_sayisi
     egzersiz_soru_sayisi = models.PositiveSmallIntegerField(default=10)
 
+    # Arayüz dili (rapor 18.22): seçim cihazda çerezde, girişli kullanıcıda burada da
+    # saklanır. Bildirimler ve e-postalar bu dilde gider. Boş = Türkçe.
+    arayuz_dili = models.CharField(max_length=8, blank=True, default="")
+
+    # "Türkçe anlamlar" (rapor 18.22, arayüz dilinden bağımsız). Kapalıysa kartlarda,
+    # Learn & Pass'te ve egzersizlerde Türkçe anlam gösterilmez ve sorulmaz;
+    # her şey İngilizce açıklama üzerinden yürür. Okuyan: usersettings.anlam.turkce_acik
+    turkce_anlamlar = models.BooleanField(default=True)
+
     # Diğer eklenecek seçenekler
     # Tüm verilerimi dışa aktar
     # Tüm kelimelerimi dışa aktar

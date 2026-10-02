@@ -12,6 +12,8 @@ verilir.
 
 import re
 
+from django.utils.translation import gettext as _
+
 # Sınırlar: sunucuyu yormasın, okuma ekranı da makul kalsın.
 # Rapor 18.24: PDF başına en çok 400 sayfa ve 50 MB.
 EN_BUYUK_BOYUT = 50 * 1024 * 1024        # 50 MB
@@ -38,8 +40,8 @@ def _pymupdf():
             import fitz as pymupdf         # eski paket adı
             return pymupdf
         except ImportError as hata:
-            raise PdfOkunamadi("PDF okuyucu şu an kullanılamıyor. Metni kopyalayıp "
-                               "yapıştırmayı dener misin?") from hata
+            raise PdfOkunamadi(_("PDF okuyucu şu an kullanılamıyor. Metni kopyalayıp "
+                                 "yapıştırmayı dener misin?")) from hata
 
 
 def _paragraf(blok):
@@ -61,24 +63,24 @@ def pdf_metni(veri):
     Okunamazsa PdfOkunamadi (mesajı kullanıcıya gösterilebilir).
     """
     if len(veri) > EN_BUYUK_BOYUT:
-        raise PdfOkunamadi(f"Bu PDF çok büyük. En çok {EN_BUYUK_BOYUT_MB} MB'lık dosyaları "
-                           "okuyabiliyoruz.")
+        raise PdfOkunamadi(_("Bu PDF çok büyük. En çok %(mb)s MB'lık dosyaları okuyabiliyoruz.") % {
+            "mb": EN_BUYUK_BOYUT_MB})
     if not veri.startswith(b"%PDF"):
-        raise PdfOkunamadi("Bu dosyayı PDF olarak açamadık. Başka bir dosya dener misin?")
+        raise PdfOkunamadi(_("Bu dosyayı PDF olarak açamadık. Başka bir dosya dener misin?"))
 
     pymupdf = _pymupdf()
     try:
         belge = pymupdf.open(stream=veri, filetype="pdf")
     except Exception as hata:
-        raise PdfOkunamadi("Bu dosyayı PDF olarak açamadık. Başka bir dosya dener misin?") from hata
+        raise PdfOkunamadi(_("Bu dosyayı PDF olarak açamadık. Başka bir dosya dener misin?")) from hata
 
     try:
         if belge.needs_pass:
-            raise PdfOkunamadi("Bu PDF şifreli. Şifresiz bir kopyasını yükleyebilirsin.")
+            raise PdfOkunamadi(_("Bu PDF şifreli. Şifresiz bir kopyasını yükleyebilirsin."))
         if belge.page_count > EN_COK_SAYFA:
-            raise PdfOkunamadi(f"Bu PDF {belge.page_count} sayfa. En çok {EN_COK_SAYFA} "
-                               "sayfalık dosyaları okuyabiliyoruz; istersen bir bölümünü "
-                               "kopyalayıp yapıştırabilirsin.")
+            raise PdfOkunamadi(_("Bu PDF %(sayfa)s sayfa. En çok %(en_cok)s sayfalık dosyaları "
+                                 "okuyabiliyoruz; istersen bir bölümünü kopyalayıp "
+                                 "yapıştırabilirsin.") % {"sayfa": belge.page_count, "en_cok": EN_COK_SAYFA})
         baslik = ((belge.metadata or {}).get("title") or "").strip()
 
         paragraflar = []

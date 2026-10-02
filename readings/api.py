@@ -35,6 +35,7 @@ from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.views.decorators.http import require_GET
 
 from words.extract.function_words import islev_kelimesi_mi
+from usersettings.anlam import turkce_acik
 from words.models import UserWordLink
 
 from .kelime_sorgu import sorgula, tum_word_idleri
@@ -58,7 +59,20 @@ def _listede_ekle(sonuc, user):
     if sonuc.get("phrasal"):
         sonuc["phrasal"] = dict(sonuc["phrasal"],
                                 listede=sonuc["phrasal"]["word_id"] in listedekiler)
+    if not turkce_acik(user):
+        _turkceyi_kaldir(sonuc)
     return sonuc
+
+
+def _turkceyi_kaldir(sonuc):
+    """"Türkçe anlamlar" kapalı (rapor 18.22): anlam satırları İngilizce açıklama olur."""
+    def degistir(madde):
+        madde["anlamlar"] = [dict(a, tr=a.get("tanim") or a.get("tr", "")) for a in madde.get("anlamlar", [])]
+    degistir(sonuc)
+    for m in sonuc.get("digerleri", []):
+        degistir(m)
+    if sonuc.get("phrasal"):
+        degistir(sonuc["phrasal"])
 
 
 def _bulunamayani_kaydet(sonuc, request):

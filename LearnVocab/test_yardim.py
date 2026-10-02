@@ -26,7 +26,7 @@ class YardimSayfasiTests(TestCase):
         self.assertIn("mailto:", html)
         self.assertEqual(html.count('data-soru-tipleri'), 1)
         for t in TIPLER.values():
-            self.assertIn(t["ad"], html)
+            self.assertIn(str(t["ad"]), html)
 
     def test_her_goruntu_iki_temada_da_var(self):
         for dil in yardim.GORUNTU_DILLERI:

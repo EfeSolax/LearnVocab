@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Sözlük (ürün raporu 4 ve 5). Görünüm: words/sozluk_views.py
@@ -13,7 +14,7 @@ Kartlar her yerde aynı bileşen: base/_kelimeKarti.html.
 Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
 {% endcomment %}
 
-{% block title %}{% if sayfa_basligi %}{{ sayfa_basligi }}{% elif sorgu %}“{{ sorgu }}” araması — LearnVocab Sözlük{% elif sekme == "listem" %}Listem — Sözlük{% else %}İngilizce–Türkçe Sözlük — LearnVocab{% endif %}{% endblock %}
+{% block title %}{% if sayfa_basligi %}{{ sayfa_basligi }}{% elif sorgu %}{% blocktranslate %}“{{ sorgu }}” araması — LearnVocab Sözlük{% endblocktranslate %}{% elif sekme == "listem" %}{% translate "Listem — Sözlük" %}{% else %}{% translate "İngilizce–Türkçe Sözlük — LearnVocab" %}{% endif %}{% endblock %}
 
 {# noindex, canonical ve açıklama ortak başlıkta (base/layout.html, LearnVocab/seo.py). #}
 {% block meta_aciklama %}{% if meta_aciklama %}{{ block.super }}{% elif not sorgu and sekme == "kesfet" %}<meta name="description" content="İngilizce–Türkçe sözlük: kelimelerin Türkçe anlamları, örnek cümleleri, eş ve zıt anlamlıları, telaffuzu ve seviyesi (A1–C2).">{% endif %}{% endblock %}
@@ -32,18 +33,18 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
     <div class="lv-sekme-cubugu" role="tablist">
         <a href="{% url 'sozluk' %}" role="tab" {% if sekme == "kesfet" %}aria-current="page" aria-selected="true"{% endif %}
            class="lv-sekme-dugme {% if sekme == 'kesfet' %}lv-secili{% endif %}">
-            Keşfet
+            {% translate "Keşfet" %}
         </a>
         <a href="{% url 'sozluk' %}?sekme=listem" role="tab" {% if sekme == "listem" %}aria-current="page" aria-selected="true"{% endif %}
            class="lv-sekme-dugme {% if sekme == 'listem' %}lv-secili{% endif %}">
-            Listem
+            {% translate "Listem" %}
         </a>
     </div>
 </div>
 {% else %}
 {# Misafir: sekme çubuğu yok, sayfa doğrudan Keşfet; en üstte tek bir davet. #}
 <p class="lv-el mb-5 -rotate-1 text-[23px] leading-tight" data-misafir-daveti>
-    Kelimelerini kaydetmek için <a href="{% url 'login' %}?next={{ request.get_full_path|urlencode:'' }}&neden=liste" class="font-bold underline decoration-1 underline-offset-4">giriş yap</a>.
+    {% url 'login' as giris_adresi %}{% blocktranslate with adres=giris_adresi sonraki=request.get_full_path|urlencode:'' %}Kelimelerini kaydetmek için <a href="{{ adres }}?next={{ sonraki }}&neden=liste" class="font-bold underline decoration-1 underline-offset-4">giriş yap</a>.{% endblocktranslate %}
 </p>
 {% endif %}
 
@@ -53,20 +54,20 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
 
 {% if not sorgu %}
 <header class="mb-6">
-    <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">Sözlük</h1>
-    <p class="lv-alt-baslik mt-1">her kelime, Türkçe anlamı ve gerçek bir cümlesiyle</p>
+    <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">{% translate "Sözlük" %}</h1>
+    <p class="lv-alt-baslik mt-1">{% translate "her kelime, Türkçe anlamı ve gerçek bir cümlesiyle" %}</p>
 </header>
 {% endif %}
 {# ---------- Keşfet: arama ---------- #}
 {% url 'sozluk_oneri' as oneri_adresi %}
 <form method="get" action="{% url 'sozluk' %}" role="search">
-    {% include 'pages/words/_oneriKutusu.html' with girdi_id="sozluk-ara" ad="q" deger=sorgu etiket="İngilizce veya Türkçe ara" adres=oneri_adresi stil="defter" %}
+    {% include 'pages/words/_oneriKutusu.html' with girdi_id="sozluk-ara" ad="q" deger=sorgu etiket=_("İngilizce veya Türkçe ara") adres=oneri_adresi stil="defter" %}
 </form>
 
 {% if sorgu %}
     {% if ekmek_kirintisi %}
     {# Yapılandırılmış verideki (BreadcrumbList) adımların sayfada görünen hâli. #}
-    <nav aria-label="Konum" class="mt-4 flex flex-wrap items-center gap-1.5 text-[15px] text-gray-600 dark:text-slate-300" data-ekmek-kirintisi>
+    <nav aria-label="{% translate "Konum" %}" class="mt-4 flex flex-wrap items-center gap-1.5 text-[15px] text-gray-600 dark:text-slate-300" data-ekmek-kirintisi>
         {% for ad, yol in ekmek_kirintisi %}
             {% if forloop.last %}<span lang="en" class="font-medium text-gray-700 dark:text-slate-300" aria-current="page">{{ ad }}</span>
             {% else %}<a href="{{ yol }}" class="hover:text-indigo-600 dark:hover:text-indigo-400">{{ ad }}</a><span aria-hidden="true">›</span>{% endif %}
@@ -93,7 +94,7 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
         {% endif %}
 
         <section aria-labelledby="hazir-listeler" data-hazir-listeler>
-            <h2 id="hazir-listeler" class="lv-bolum mb-4 !text-3xl">Hazır Listeler</h2>
+            <h2 id="hazir-listeler" class="lv-bolum mb-4 !text-3xl">{% translate "Hazır Listeler" %}</h2>
             {% if hazir_listeler %}
             <ul class="lv-sayfa divide-y divide-[color:var(--satir)]">
                 {% for liste in hazir_listeler %}
@@ -105,7 +106,7 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
                             {% if liste.aciklama %}<span class="block truncate text-[15px] text-gray-600 dark:text-slate-300">{{ liste.aciklama }}</span>{% endif %}
                         </span>
                         {% if aktif_liste and aktif_liste.id == liste.id %}
-                        <span class="shrink-0 rounded-full bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300">Çalışıyorsun</span>
+                        <span class="shrink-0 rounded-full bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300">{% translate "Çalışıyorsun" %}</span>
                         {% endif %}
                     </a>
                 </li>
@@ -113,7 +114,7 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
             </ul>
             {% else %}
             <p class="lv-el text-[22px] leading-snug">
-                ODTÜ, Bilkent ve Cambridge listeleri yakında burada olacak. O zamana kadar aradığın kelimeleri + ile listene ekleyebilirsin.
+                {% translate "ODTÜ, Bilkent ve Cambridge listeleri yakında burada olacak. O zamana kadar aradığın kelimeleri + ile listene ekleyebilirsin." %}
             </p>
             {% endif %}
         </section>

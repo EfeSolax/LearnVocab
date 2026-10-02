@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Kelime sayfasının defter maddesi (rapor 18.12, 18.15). Örnek tasarım:
 ozetler/tasarim-ornekleri/defter/kelime.html. Görünüm: words.sozluk_views.sozluk_kelime
@@ -28,7 +29,7 @@ Kart verisi kelime kartıyla aynıdır (words.kart.Kart); liste düğmesi ve
         {% if kart.cefr %}<span class="lv-seviye mb-2.5">{{ kart.cefr }}</span>{% endif %}
     </header>
     {% if kart.duzensiz %}
-    <p class="mt-2 text-lg text-gray-600 dark:text-slate-300"><span class="lv-el text-[22px]">düzensiz fiil:</span> <span lang="en" class="font-semibold" data-fiil-halleri>{{ kart.v2 }} · {{ kart.v3 }}</span></p>
+    <p class="mt-2 text-lg text-gray-600 dark:text-slate-300"><span class="lv-el text-[22px]">{% translate "düzensiz fiil:" %}</span> <span lang="en" class="font-semibold" data-fiil-halleri>{{ kart.v2 }} · {{ kart.v3 }}</span></p>
     {% endif %}
 
     <div class="mt-5 flex flex-wrap items-center gap-3">
@@ -43,21 +44,21 @@ Kart verisi kelime kartıyla aynıdır (words.kart.Kart); liste düğmesi ve
             <span class="lv-el text-[34px] font-bold leading-none">{{ forloop.counter }}</span>
             <div class="min-w-0">
                 <p class="flex items-start justify-between gap-3">
-                    <span class="text-[22px] font-bold leading-snug">{{ anlam.meaning_tr }}</span>
+                    <span class="text-[22px] font-bold leading-snug" {% if not anlam.meaning_tr %}lang="en"{% endif %}>{% firstof anlam.meaning_tr anlam.definition %}</span>
                     {% if anlam.anlam.cefr and anlam.anlam.cefr != "Belirtilmemiş" and kart.anlamlar|length > 1 %}<span class="lv-seviye">{{ anlam.anlam.cefr }}</span>{% endif %}
                 </p>
-                {% if anlam.definition %}<p lang="en" class="mt-1 text-base text-gray-600 dark:text-slate-300">{{ anlam.definition }}</p>{% endif %}
+                {% if anlam.definition and anlam.meaning_tr %}<p lang="en" class="mt-1 text-base text-gray-600 dark:text-slate-300">{{ anlam.definition }}</p>{% endif %}
                 {% if anlam.ornek %}<p lang="en" data-cift-tikla-ara class="lv-metin mt-3 text-[19px] leading-relaxed">{{ anlam.ornek|isaretle:kart.text }}</p>{% endif %}
 
                 {% if anlam.diger_ornekler or anlam.kaliplar %}
                 <div class="mt-3 flex flex-wrap gap-x-6 gap-y-1">
                     {% if anlam.diger_ornekler %}
                     <button type="button" @click="ornekler = !ornekler" :aria-expanded="ornekler.toString()" class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">
-                        <span x-text="ornekler ? '− örnekleri gizle' : '+{{ anlam.diger_ornekler|length }} örnek daha'">+{{ anlam.diger_ornekler|length }} örnek daha</span><span class="sr-only"> (Daha fazla örnek)</span>
+                        {% blocktranslate count n=anlam.diger_ornekler|length asvar ornek_daha %}+{{ n }} örnek daha{% plural %}+{{ n }} örnek daha{% endblocktranslate %}{% translate "− örnekleri gizle" as ornek_gizle %}<span x-text="ornekler ? '{{ ornek_gizle|escapejs }}' : '{{ ornek_daha|escapejs }}'">{{ ornek_daha }}</span><span class="sr-only"> ({% translate "Daha fazla örnek" %})</span>
                     </button>
                     {% endif %}
                     {% if anlam.kaliplar %}
-                    <button type="button" @click="kaliplar = !kaliplar" :aria-expanded="kaliplar.toString()" class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">Kalıplar</button>
+                    <button type="button" @click="kaliplar = !kaliplar" :aria-expanded="kaliplar.toString()" class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">{% translate "Kalıplar" %}</button>
                     {% endif %}
                 </div>
                 {% endif %}
@@ -94,8 +95,8 @@ Kart verisi kelime kartıyla aynıdır (words.kart.Kart); liste düğmesi ve
 {# ---------- Aynı aileden: ağaç ---------- #}
 {% if aile_satirlari %}
 <section class="mt-16" data-aile aria-labelledby="aile-baslik">
-    <h2 id="aile-baslik" class="lv-bolum !text-3xl">Aynı aileden</h2>
-    <span class="lv-bolum-notu">birini biliyorsan diğerleri kolay</span><span class="sr-only">Aile:</span>
+    <h2 id="aile-baslik" class="lv-bolum !text-3xl">{% translate "Aynı aileden" %}</h2>
+    <span class="lv-bolum-notu">{% translate "birini biliyorsan diğerleri kolay" %}</span><span class="sr-only">{% translate "Aile:" %}</span>
     <div class="relative mt-5 max-w-xl">
         <svg class="absolute inset-x-0 top-9 h-14 w-full text-indigo-600 dark:text-indigo-400" viewBox="0 0 520 56" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
             <path d="M258 2c-4 30-170 22-210 52M260 2c2 24 2 38 2 52M262 2c10 30 180 22 220 52"/>
@@ -105,7 +106,7 @@ Kart verisi kelime kartıyla aynıdır (words.kart.Kart); liste düğmesi ve
             {% for uye in aile_satirlari %}
             <a href="{{ uye.text|kelime_adresi }}" class="lv-sayfa block px-3 py-2 hover:-translate-y-0.5 transition-transform">
                 <span lang="en" class="lv-serif block text-xl font-bold">{{ uye.text }}</span>
-                {% if uye.anlam %}<span class="block text-sm text-gray-600 dark:text-slate-300">{{ uye.anlam }}</span>{% endif %}
+                {% if uye.anlam and turkce_acik %}<span class="block text-sm text-gray-600 dark:text-slate-300">{{ uye.anlam }}</span>{% endif %}
             </a>
             {% endfor %}
         </div>
@@ -114,23 +115,23 @@ Kart verisi kelime kartıyla aynıdır (words.kart.Kart); liste düğmesi ve
 {% endif %}
 
 {# ---------- Bu kelimeyle çalış ---------- #}
-<section class="mt-16 grid gap-8 sm:grid-cols-2" aria-label="Bu kelimeyle çalış">
+<section class="mt-16 grid gap-8 sm:grid-cols-2" aria-label="{% translate "Bu kelimeyle çalış" %}">
     <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
         <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">tekrar</p>
-        <p class="mt-1 text-lg font-semibold">Listene eklediğin kelimeyi 1, 3, 7 ve 21 gün sonra yeniden sorarız.</p>
-        <a href="{% url 'learn_pass_page' %}" class="lv-el-bag mt-3 inline-block">Learn &amp; Pass'e git →</a>
+        <p class="mt-1 text-lg font-semibold">{% translate "Listene eklediğin kelimeyi 1, 3, 7 ve 21 gün sonra yeniden sorarız." %}</p>
+        <a href="{% url 'learn_pass_page' %}" class="lv-el-bag mt-3 inline-block">{% translate "Learn & Pass'e git →" %}</a>
     </div>
     <div class="lv-not lv-pembe lv-bantli text-gray-900 dark:text-slate-100">
         <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">kullan</p>
-        <p class="mt-1 text-lg font-semibold">“<span lang="en">{{ kartlar.0.text }}</span>” ile kısa bir cümle yaz; doğru kullanıp kullanmadığını gösterelim.</p>
-        <a href="{% url 'profile_texts' %}" class="lv-el-bag mt-3 inline-block">Yazılar'a git →</a>
+        <p class="mt-1 text-lg font-semibold">{% blocktranslate with kelime=kartlar.0.text %}“<span lang="en">{{ kelime }}</span>” ile kısa bir cümle yaz; doğru kullanıp kullanmadığını gösterelim.{% endblocktranslate %}</p>
+        <a href="{% url 'profile_texts' %}" class="lv-el-bag mt-3 inline-block">{% translate "Yazılar'a git →" %}</a>
     </div>
 </section>
 
 {# ---------- Sözlükte komşular ---------- #}
 {% if komsular.0 or komsular.1 %}
-<nav class="mt-16" aria-label="Sözlükte yakınındaki kelimeler">
-    <p class="lv-el text-[24px] font-bold">sözlükte bu sayfanın komşuları</p>
+<nav class="mt-16" aria-label="{% translate "Sözlükte yakınındaki kelimeler" %}">
+    <p class="lv-el text-[24px] font-bold">{% translate "sözlükte bu sayfanın komşuları" %}</p>
     <div class="mt-3 flex flex-wrap items-baseline gap-x-5 gap-y-2" lang="en">
         {% for k in komsular.0 %}<a href="{{ k|kelime_adresi }}" class="lv-serif text-lg font-bold text-gray-600 hover:underline dark:text-slate-300">← {{ k }}</a>{% endfor %}
         <span class="lv-serif lv-isaret text-lg font-black">{{ kartlar.0.text }}</span>
@@ -139,5 +140,5 @@ Kart verisi kelime kartıyla aynıdır (words.kart.Kart); liste düğmesi ve
 </nav>
 {% endif %}
 
-{% if sayfa_no %}<p class="lv-el mt-14 text-center text-[22px] !text-gray-500 dark:!text-slate-400">— s. {{ sayfa_no }} —</p>{% endif %}
+{% if sayfa_no %}<p class="lv-el mt-14 text-center text-[22px] !text-gray-500 dark:!text-slate-400">{% blocktranslate %}— s. {{ sayfa_no }} —{% endblocktranslate %}</p>{% endif %}
 </div>

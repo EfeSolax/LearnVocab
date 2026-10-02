@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Ayarlar (rapor 18.26). Hesap sayfasından gelinir.
@@ -12,22 +13,22 @@ Anlık bildirimler cihaza özeldir (bildirimler/_ayar.html).
 Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
 {% endcomment %}
 
-{% block title %}Ayarlar{% endblock %}
+{% block title %}{% translate "Ayarlar" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
 {# Defter teması (rapor 18.12): defterin son sayfası. Seçenekler el yazısı, seçili olan kalemle daire içinde. #}
-<a href="{% url 'user_profile' %}" class="lv-el text-[22px] font-bold hover:underline">← Hesap</a>
-<h1 class="lv-baslik mt-2 !text-[44px] sm:!text-[64px]">Ayarlar</h1>
-<span class="lv-alt-baslik mt-1">defterin son sayfası: nasıl çalışmak istediğin</span>
+<a href="{% url 'user_profile' %}" class="lv-el text-[22px] font-bold hover:underline">← {% translate "Hesap" %}</a>
+<h1 class="lv-baslik mt-2 !text-[44px] sm:!text-[64px]">{% translate "Ayarlar" %}</h1>
+<span class="lv-alt-baslik mt-1">{% translate "defterin son sayfası: nasıl çalışmak istediğin" %}</span>
 
 <div class="mt-10 space-y-12 pb-4">
 
     {# ================= GÖRÜNÜM: üç küçük kâğıt ================= #}
     <section data-tema-ayari>
-        <h2 class="lv-bolum !text-3xl">Görünüm</h2>
-        <p class="lv-el text-[21px]">"sistem" seçiliyken cihazının açık ya da koyu teması kullanılır</p>
-        <div class="mt-5 grid max-w-xl grid-cols-3 gap-4" role="radiogroup" aria-label="Tema">
+        <h2 class="lv-bolum !text-3xl">{% translate "Görünüm" %}</h2>
+        <p class="lv-el text-[21px]">{% translate '"sistem" seçiliyken cihazının açık ya da koyu teması kullanılır' %}</p>
+        <div class="mt-5 grid max-w-xl grid-cols-3 gap-4" role="radiogroup" aria-label="{% translate "Tema" %}">
             {% for deger, etiket in tema_secenekleri %}
             <button type="button" role="radio" aria-checked="false" data-tema-sec="{{ deger }}" class="lv-tema-ornek group text-center">
                 <span class="lv-tema-kagit lv-tema-{{ deger }}" aria-hidden="true"></span>
@@ -37,6 +38,21 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
         </div>
     </section>
 
+    {# ================= DİL (rapor 18.22): üst çubuktaki düğmeyle aynı; yalnızca birden çok dil yayındaysa ================= #}
+    {% if dil_secenekleri %}
+    <section class="mb-12" data-dil-ayari>
+        <h2 class="lv-bolum !text-3xl">{% translate "Dil" %}</h2>
+        <p class="lv-el text-[21px]">{% translate "sitenin dili; kelime anlamları ayrıca aşağıda" %}</p>
+        <form method="post" action="{% url 'dil_degistir' %}" class="mt-4 flex flex-wrap gap-6">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ dil_sonraki }}">
+            {% for d in dil_secenekleri %}
+            <button type="submit" name="dil" value="{{ d.kod }}" lang="{{ d.kod }}" {% if d.secili %}aria-checked="true" aria-current="true"{% endif %}><span class="lv-secim text-[26px]">{{ d.ad }}</span></button>
+            {% endfor %}
+        </form>
+    </section>
+    {% endif %}
+
     {# ================= SEVİYE ================= #}
     <section data-seviye-ayari>
         <a href="{% url 'seviye_testi' %}" class="lv-sayfa lv-bantli flex items-center gap-5 p-5 transition-transform hover:-translate-y-0.5 sm:p-6">
@@ -45,8 +61,8 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
                 <span class="relative">{{ user.cefr|default:"?" }}</span>
             </span>
             <span class="min-w-0 flex-1">
-                <span class="lv-serif block text-lg font-bold leading-tight">{% if user.cefr %}Seviye testini tekrarla{% else %}Seviye testini çöz{% endif %}</span>
-                <span class="block text-base text-gray-600 dark:text-slate-300">{% if user.cefr %}Seviyen: {{ user.cefr }}. Günün kelimesi ve egzersizler buna göre gelir.{% else %}Seviyen henüz belirlenmedi.{% endif %}</span>
+                <span class="lv-serif block text-lg font-bold leading-tight">{% if user.cefr %}{% translate "Seviye testini tekrarla" %}{% else %}{% translate "Seviye testini çöz" %}{% endif %}</span>
+                <span class="block text-base text-gray-600 dark:text-slate-300">{% if user.cefr %}{% blocktranslate with seviye=user.cefr %}Seviyen: {{ seviye }}. Günün kelimesi ve egzersizler buna göre gelir.{% endblocktranslate %}{% else %}{% translate "Seviyen henüz belirlenmedi." %}{% endif %}</span>
             </span>
             <span class="lv-el text-3xl" aria-hidden="true">→</span>
         </a>
@@ -60,26 +76,26 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
 
         {# ---- Çalışma ---- #}
         <section>
-            <h2 class="lv-bolum !text-3xl">Çalışma</h2>
-            <p class="lv-el text-[21px]">çalışırken geçerli olan tercihlerin</p>
+            <h2 class="lv-bolum !text-3xl">{% translate "Çalışma" %}</h2>
+            <p class="lv-el text-[21px]">{% translate "çalışırken geçerli olan tercihlerin" %}</p>
             <div class="lv-sayfa mt-5 divide-y divide-dashed divide-[color:var(--satir)]">
 
                 {# Tekrar / yeni oranı: kaydırma çubuğu, %10'luk adımlar (Efe, 30 Eylül) #}
                 <div class="px-5 py-6 sm:px-6" data-oran-ayari x-data="{ yeni: {{ settings.learnpass_yeni_orani }} }">
-                    <label for="learnpass_yeni_orani" class="block text-base font-bold">Learn &amp; Pass'te tekrar ve yeni kelime oranı</label>
-                    <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">Sola çektikçe listendeki kelimeleri daha çok tekrar edersin, sağa çektikçe daha çok yeni kelime görürsün.</span>
+                    <label for="learnpass_yeni_orani" class="block text-base font-bold">{% translate "Learn & Pass'te tekrar ve yeni kelime oranı" %}</label>
+                    <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">{% translate "Sola çektikçe listendeki kelimeleri daha çok tekrar edersin, sağa çektikçe daha çok yeni kelime görürsün." %}</span>
                     <input type="range" id="learnpass_yeni_orani" name="learnpass_yeni_orani" min="0" max="100" step="10"
                            x-model.number="yeni" value="{{ settings.learnpass_yeni_orani }}" class="lv-aralik mt-5 w-full">
                     <div class="mt-2 flex justify-between">
-                        <span class="lv-el text-[24px] font-bold">← tekrar %<span x-text="100 - yeni">{{ tekrar_orani }}</span></span>
-                        <span class="lv-el text-[24px] font-bold">yeni %<span x-text="yeni">{{ settings.learnpass_yeni_orani }}</span> →</span>
+                        <span class="lv-el text-[24px] font-bold">← {% translate "tekrar" %} %<span x-text="100 - yeni">{{ tekrar_orani }}</span></span>
+                        <span class="lv-el text-[24px] font-bold">{% translate "yeni" %} %<span x-text="yeni">{{ settings.learnpass_yeni_orani }}</span> →</span>
                     </div>
                 </div>
 
                 {# Egzersizde soru sayısı: 5 · 10 · 15 · 20 #}
                 <div class="px-5 py-6 sm:px-6" data-soru-sayisi-ayari>
-                    <span class="block text-base font-bold">Egzersizde soru sayısı</span>
-                    <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">Deneme Sınavı bu sayıyla açılır; başlarken yine değiştirebilirsin.</span>
+                    <span class="block text-base font-bold">{% translate "Egzersizde soru sayısı" %}</span>
+                    <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">{% translate "Deneme Sınavı bu sayıyla açılır; başlarken yine değiştirebilirsin." %}</span>
                     <div class="mt-4 flex flex-wrap gap-6">
                         {% for sayi in soru_sayilari %}
                         <label class="cursor-pointer">
@@ -91,8 +107,8 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
                 </div>
 
                 <div class="px-5 py-6 sm:px-6" data-sertlik-ayari>
-                    <span class="block text-base font-bold">Yazılarda geri bildirim</span>
-                    <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">Yazdığın metinlerde hataların ne kadar ayrıntılı gösterileceği.</span>
+                    <span class="block text-base font-bold">{% translate "Yazılarda geri bildirim" %}</span>
+                    <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">{% translate "Yazdığın metinlerde hataların ne kadar ayrıntılı gösterileceği." %}</span>
                     <div class="mt-4 flex flex-wrap gap-6">
                         {% for deger, etiket in sertlik_secenekleri %}
                         <label class="cursor-pointer">
@@ -103,28 +119,30 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
                     </div>
                 </div>
 
-                {% include 'base/_toggle.html' with name="audio" checked=settings.audio label="Testlerde sesi otomatik oynat" desc="Kelime telaffuzları otomatik olarak başlar." %}
+                {% include 'base/_toggle.html' with name="audio" checked=settings.audio label=_("Testlerde sesi otomatik oynat") desc=_("Kelime telaffuzları otomatik olarak başlar.") %}
+                {# Türkçe anlamlar (rapor 18.22): arayüz dilinden bağımsız; kapalıysa her şey İngilizce açıklamayla yürür. #}
+                {% include 'base/_toggle.html' with name="turkce_anlamlar" checked=settings.turkce_anlamlar label=_("Türkçe anlamlar") desc=_("Kapatırsan kartlarda, Learn & Pass'te, okurken ve egzersizlerde Türkçe anlam gösterilmez ve sorulmaz; her şey İngilizce açıklamalarla yürür.") %}
             </div>
         </section>
 
         {# ---- E-posta bildirimleri ---- #}
         <section>
-            <h2 class="lv-bolum !text-3xl">E-posta Bildirimleri</h2>
-            <p class="lv-el text-[21px]">hangi konularda e-posta almak istersin?</p>
+            <h2 class="lv-bolum !text-3xl">{% translate "E-posta Bildirimleri" %}</h2>
+            <p class="lv-el text-[21px]">{% translate "hangi konularda e-posta almak istersin?" %}</p>
             <div class="lv-sayfa mt-5 divide-y divide-dashed divide-[color:var(--satir)]">
-                {% include 'base/_toggle.html' with name="dailyGoalsMail" checked=settings.dailyGoalsMail label="Günlük hatırlatma e-postası" desc="Pratik yapmayı unuttuğunda hatırlatma göndeririz." %}
-                {% include 'base/_toggle.html' with name="featuresMail" checked=settings.featuresMail label="Yeni özellikler ve duyurular" desc="Siteye eklenen yeni özellikler hakkında bilgi al." %}
-                {% include 'base/_toggle.html' with name="improvementsMail" checked=settings.improvementsMail label="Geliştirme ve ipuçları" desc="Uygulamayı daha verimli kullanman için ipuçları." %}
+                {% include 'base/_toggle.html' with name="dailyGoalsMail" checked=settings.dailyGoalsMail label=_("Günlük hatırlatma e-postası") desc=_("Pratik yapmayı unuttuğunda hatırlatma göndeririz.") %}
+                {% include 'base/_toggle.html' with name="featuresMail" checked=settings.featuresMail label=_("Yeni özellikler ve duyurular") desc=_("Siteye eklenen yeni özellikler hakkında bilgi al.") %}
+                {% include 'base/_toggle.html' with name="improvementsMail" checked=settings.improvementsMail label=_("Geliştirme ve ipuçları") desc=_("Uygulamayı daha verimli kullanman için ipuçları.") %}
             </div>
         </section>
 
-        <button type="submit" class="lv-dugme">Ayarları Kaydet</button>
+        <button type="submit" class="lv-dugme">{% translate "Ayarları Kaydet" %}</button>
     </form>
 
     {# ================= VERİ YÖNETİMİ ================= #}
     <section>
-        <h2 class="lv-bolum !text-3xl">Verilerim</h2>
-        <p class="lv-el text-[21px]">verilerini bir dosya olarak indir</p>
+        <h2 class="lv-bolum !text-3xl">{% translate "Verilerim" %}</h2>
+        <p class="lv-el text-[21px]">{% translate "verilerini bir dosya olarak indir" %}</p>
         <ul class="mt-4 border-t-2 border-indigo-600 dark:border-indigo-400">
             {% for dosya in export_links %}
             <li class="border-b border-dashed border-[color:var(--satir)]">
@@ -150,8 +168,8 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
                 </svg>
             </span>
             <span class="min-w-0 flex-1">
-                <span class="lv-el block text-[26px] font-bold !text-red-700 dark:!text-red-300">Tehlikeli Bölge</span>
-                <span class="block text-sm text-gray-500 dark:text-slate-400">Geri alınamaz işlemler.</span>
+                <span class="lv-el block text-[26px] font-bold !text-red-700 dark:!text-red-300">{% translate "Tehlikeli Bölge" %}</span>
+                <span class="block text-sm text-gray-500 dark:text-slate-400">{% translate "Geri alınamaz işlemler." %}</span>
             </span>
             <svg class="h-5 w-5 shrink-0 text-gray-400 transition-transform group-open:rotate-180 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -164,18 +182,18 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
                   onsubmit="return confirm('Listenizdeki TÜM kelimeleri silmek üzeresiniz. İlerlemeniz kaybolacak. Emin misiniz?');"
                   class="rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900/50 p-4">
                 {% csrf_token %}
-                <h3 class="text-sm font-bold text-gray-900 dark:text-slate-100">Listemdeki Tüm Kelimeleri Kaldır</h3>
-                <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">Öğrenme listendeki tüm kelimeler (öğrendiklerin dahil) silinir.</p>
+                <h3 class="text-sm font-bold text-gray-900 dark:text-slate-100">{% translate "Listemdeki Tüm Kelimeleri Kaldır" %}</h3>
+                <p class="mt-0.5 text-sm text-gray-500 dark:text-slate-400">{% translate "Öğrenme listendeki tüm kelimeler (öğrendiklerin dahil) silinir." %}</p>
 
                 <div class="mt-3 flex flex-col gap-2 sm:flex-row sm:items-end">
                     <div class="flex-1">
-                        <label for="confirm-words" class="mb-1 block text-xs font-semibold text-gray-600 dark:text-slate-400">Onaylamak için parolan</label>
+                        <label for="confirm-words" class="mb-1 block text-xs font-semibold text-gray-600 dark:text-slate-400">{% translate "Onaylamak için parolan" %}</label>
                         <input type="password" name="confirm_password" id="confirm-words" required autocomplete="current-password"
                                class="w-full rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-gray-900 dark:text-slate-100 transition focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/30">
                     </div>
                     <button type="submit"
                             class="shrink-0 rounded-lg bg-rose-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-rose-700">
-                        Kelimeleri Kaldır
+                        {% translate "Kelimeleri Kaldır" %}
                     </button>
                 </div>
             </form>
@@ -190,18 +208,18 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
                   onsubmit="return confirm('HESABINIZI SİLMEK ÜZERESİNİZ!\nTüm verileriniz, kelimeleriniz ve ilerlemeniz kalıcı olarak yok olacak.\n\nBu işlemi yapmak istediğinize emin misiniz?');"
                   class="rounded-xl border border-rose-300 dark:border-rose-800 bg-rose-50 dark:bg-rose-950/40 p-4">
                 {% csrf_token %}
-                <h3 class="text-sm font-bold text-rose-800 dark:text-rose-300">Hesabımı Kalıcı Olarak Sil</h3>
-                <p class="mt-0.5 text-sm text-rose-700 dark:text-rose-400">Tüm verilerin geri alınamaz şekilde silinir.</p>
+                <h3 class="text-sm font-bold text-rose-800 dark:text-rose-300">{% translate "Hesabımı Kalıcı Olarak Sil" %}</h3>
+                <p class="mt-0.5 text-sm text-rose-700 dark:text-rose-400">{% translate "Tüm verilerin geri alınamaz şekilde silinir." %}</p>
 
                 <div class="mt-3 flex flex-col gap-2 sm:flex-row sm:items-end">
                     <div class="flex-1">
-                        <label for="confirm-account" class="mb-1 block text-xs font-semibold text-rose-700 dark:text-rose-300">Onaylamak için parolan</label>
+                        <label for="confirm-account" class="mb-1 block text-xs font-semibold text-rose-700 dark:text-rose-300">{% translate "Onaylamak için parolan" %}</label>
                         <input type="password" name="confirm_password" id="confirm-account" required autocomplete="current-password"
                                class="w-full rounded-lg border border-rose-300 dark:border-rose-800 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-gray-900 dark:text-slate-100 transition focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/30">
                     </div>
                     <button type="submit"
                             class="shrink-0 rounded-lg bg-rose-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-rose-800">
-                        Hesabımı Sil
+                        {% translate "Hesabımı Sil" %}
                     </button>
                 </div>
             </form>

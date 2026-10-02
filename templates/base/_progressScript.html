@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 İlerleme çubuğunu yöneten script.
 
@@ -91,8 +92,8 @@ startProgressJob({
           clearInterval(drift);
           showError(
             error && error.message === "job-missing"
-              ? "İşlem kaydı bulunamadı. Lütfen tekrar deneyin."
-              : "Bağlantı koptu. Lütfen tekrar deneyin."
+              ? "{{ _("İşlem kaydı bulunamadı. Lütfen tekrar deneyin.")|escapejs }}"
+              : "{{ _("Bağlantı koptu. Lütfen tekrar deneyin.")|escapejs }}"
           );
         });
     }
@@ -117,10 +118,10 @@ startProgressJob({
           if (data.redirect) {
             window.location.href = data.redirect;
           } else {
-            showError(data.error || "Sonuç alınamadı.");
+            showError(data.error || "{{ _("Sonuç alınamadı.")|escapejs }}");
           }
         })
-        .catch(function () { showError("Sonuç alınamadı. Lütfen tekrar deneyin."); });
+        .catch(function () { showError("{{ _("Sonuç alınamadı. Lütfen tekrar deneyin.")|escapejs }}"); });
     }
 
     form.addEventListener("submit", function (event) {
@@ -135,7 +136,7 @@ startProgressJob({
       hint.hidden = false;
       bar.classList.remove("bg-red-500", "bg-amber-500");
       bar.classList.add("bg-emerald-500");
-      paint(2, "Hazırlanıyor...");
+      paint(2, "{{ _("Hazırlanıyor...")|escapejs }}");
 
       fetch(form.action, {
         method: "POST",
@@ -149,7 +150,7 @@ startProgressJob({
 
           if (!response.ok || !data.job_id) {
             clearInterval(drift);
-            showError(data.error || "İşlem başlatılamadı.");
+            showError(data.error || "{{ _("İşlem başlatılamadı.")|escapejs }}");
             return;
           }
 
@@ -160,7 +161,7 @@ startProgressJob({
         })
         .catch(function () {
           clearInterval(drift);
-          showError("İşlem başlatılamadı. Bağlantınızı kontrol edin.");
+          showError("{{ _("İşlem başlatılamadı. Bağlantınızı kontrol edin.")|escapejs }}");
         });
     });
   };

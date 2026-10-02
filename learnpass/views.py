@@ -33,6 +33,9 @@ import random
 from datetime import datetime
 
 from django.http import JsonResponse
+
+from usersettings.anlam import turkce_acik
+from django.utils.translation import gettext_lazy as _
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.decorators.http import require_POST
@@ -47,9 +50,9 @@ from .models import EncounterLog, WordEncounter
 
 KARMA = "karma"
 MODES = {
-    KARMA: "Bugünün çalışması",
-    WordEncounter.MODE_MINE: "Kendi Kelimelerim",
-    WordEncounter.MODE_NEW: "Yeni Kelimeler",
+    KARMA: _("Bugünün çalışması"),
+    WordEncounter.MODE_MINE: _("Kendi Kelimelerim"),
+    WordEncounter.MODE_NEW: _("Yeni Kelimeler"),
 }
 KAYNAKLAR = (WordEncounter.MODE_MINE, WordEncounter.MODE_NEW)
 
@@ -92,7 +95,9 @@ def card_payload(word, user=None, kaynak=None):
     kart = {
         "id": word.id,
         "word": word.text,
-        "meanings": [a.meaning_tr for a in anlamlar],
+        # "Türkçe anlamlar" kapalıysa İngilizce açıklama (rapor 18.22).
+        "meanings": ([a.meaning_tr for a in anlamlar] if turkce_acik(user)
+                     else [a.definition or a.meaning_tr for a in anlamlar]),
         # Aynı kelime tekrar geldiğinde farklı bir cümleyle görülsün.
         "example": random.choice(ornekler) if ornekler else "",
         "kaynak": kaynak or WordEncounter.MODE_NEW,

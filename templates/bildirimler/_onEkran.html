@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Bildirim izni ÖN EKRANI (rapor 18.29). Tarayıcının izin penceresinden ÖNCE
 çıkar: bildirimin ne işe yaradığını anlatır, üzerinde kapibara vardır.
@@ -18,17 +19,17 @@ Yardımcılar: bildirimler/_js.html (window.lvBildirim)
         <div class="flex items-start gap-3">
             <span class="shrink-0">{% include 'base/_kapibara.html' with poz="zil" sinif="h-24 w-auto" %}</span>
             <div class="min-w-0">
-                <h2 id="bildirim-on-ekrani-baslik" class="lv-serif text-2xl font-bold">Serin bozulmasın, haber vereyim mi?</h2>
+                <h2 id="bildirim-on-ekrani-baslik" class="lv-serif text-2xl font-bold">{% translate "Serin bozulmasın, haber vereyim mi?" %}</h2>
                 <p class="mt-1 text-base text-gray-700 dark:text-slate-300">
-                    O gün çalışmadıysan öğlen <strong>günün kelimesini</strong> gönderirim, gece yarısına doğru da <strong>serin bitmeden</strong> hatırlatırım. Günde en çok iki bildirim; başka bir şey göndermem.
+                    {% blocktranslate %}O gün çalışmadıysan öğlen <strong>günün kelimesini</strong> gönderirim, gece yarısına doğru da <strong>serin bitmeden</strong> hatırlatırım. Günde en çok iki bildirim; başka bir şey göndermem.{% endblocktranslate %}
                 </p>
             </div>
         </div>
         <div class="mt-4 flex gap-2">
             <button type="button" data-islem="izin-iste"
-                    class="lv-dugme lv-kucuk flex-1 disabled:opacity-60">Evet, hatırlat</button>
+                    class="lv-dugme lv-kucuk flex-1 disabled:opacity-60">{% translate "Evet, hatırlat" %}</button>
             <button type="button" data-islem="sonra"
-                    class="lv-el flex-1 text-[22px] font-bold underline decoration-1 underline-offset-4 dark:hover:bg-slate-700 transition">Şimdi değil</button>
+                    class="lv-el flex-1 text-[22px] font-bold underline decoration-1 underline-offset-4 dark:hover:bg-slate-700 transition">{% translate "Şimdi değil" %}</button>
         </div>
     </div>
 
@@ -37,18 +38,18 @@ Yardımcılar: bildirimler/_js.html (window.lvBildirim)
         <div class="flex items-start gap-3">
             <span class="shrink-0">{% include 'base/_kapibara.html' with poz="zil" sinif="h-24 w-auto" %}</span>
             <div class="min-w-0">
-                <h2 class="lv-serif text-2xl font-bold">Serin bozulmasın, haber vereyim mi?</h2>
-                <p class="mt-1 text-base text-gray-700 dark:text-slate-300">iPhone'da hatırlatma için LearnVocab'ı ana ekrana eklemen gerekiyor:</p>
+                <h2 class="lv-serif text-2xl font-bold">{% translate "Serin bozulmasın, haber vereyim mi?" %}</h2>
+                <p class="mt-1 text-base text-gray-700 dark:text-slate-300">{% translate "iPhone'da hatırlatma için LearnVocab'ı ana ekrana eklemen gerekiyor:" %}</p>
             </div>
         </div>
         <ol class="mt-3 space-y-1 text-base">
-            <li>1. Safari'nin altındaki <strong>Paylaş</strong> simgesine dokun
+            <li>1. {% blocktranslate %}Safari'nin altındaki <strong>Paylaş</strong> simgesine dokun{% endblocktranslate %}
                 <svg class="inline h-4 w-4 -mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
-            <li>2. <strong>Ana Ekrana Ekle</strong>'yi seç.</li>
-            <li>3. Ana ekrandaki LearnVocab'dan aç; hatırlatmayı Ayarlar'dan açabilirsin.</li>
+            <li>2. {% blocktranslate %}<strong>Ana Ekrana Ekle</strong>'yi seç.{% endblocktranslate %}</li>
+            <li>3. {% translate "Ana ekrandaki LearnVocab'dan aç; hatırlatmayı Ayarlar'dan açabilirsin." %}</li>
         </ol>
         <button type="button" data-islem="sonra"
-                class="lv-el mt-4 w-full text-[22px] font-bold underline decoration-1 underline-offset-4 dark:hover:bg-slate-700 transition">Tamam</button>
+                class="lv-el mt-4 w-full text-[22px] font-bold underline decoration-1 underline-offset-4 dark:hover:bg-slate-700 transition">{% translate "Tamam" %}</button>
     </div>
 
     <p data-sonuc hidden class="text-sm font-semibold text-gray-900 dark:text-slate-100"></p>
@@ -99,10 +100,10 @@ Yardımcılar: bildirimler/_js.html (window.lvBildirim)
         dugme.disabled = true;
         window.lvBildirim.ac().then(function (acildi) {
             if (!acildi) { ertele(); }
-            sonuc(acildi ? 'Harika! Çalışmadığın günlerde haber veririm.'
-                         : 'Tamam, bildirim göndermeyeceğim. Fikrin değişirse Ayarlar\'dan açabilirsin.');
+            sonuc(acildi ? '{{ _("Harika! Çalışmadığın günlerde haber veririm.")|escapejs }}'
+                         : '{{ _("Tamam, bildirim göndermeyeceğim. Fikrin değişirse Ayarlar'dan açabilirsin.")|escapejs }}');
         }).catch(function () {
-            sonuc('Şu an bildirimleri açamadım. Ayarlar\'dan yeniden deneyebilirsin.');
+            sonuc('{{ _("Şu an bildirimleri açamadım. Ayarlar'dan yeniden deneyebilirsin.")|escapejs }}');
         });
     });
 })();

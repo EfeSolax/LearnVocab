@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Seviye testi sonucu (rapor 7). Cesaretlendirici: seviye, kısa not, kuralın
@@ -6,7 +7,7 @@ açıklaması (her ekranda kaç kelime bilindi) ve ilk liste. İlk liste zaten
 eklendi; onay yerine "Geri al" (rapor 12.7).
 {% endcomment %}
 
-{% block title %}Seviye testi sonucu{% endblock %}
+{% block title %}{% translate "Seviye testi sonucu" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
@@ -18,7 +19,7 @@ eklendi; onay yerine "Geri al" (rapor 12.7).
             <p class="lv-serif relative text-[64px] font-black leading-none" data-tahmin>{{ son.tahmin }}</p>
         </div>
         <div class="min-w-0 flex-1">
-            <p class="lv-el text-[26px] font-bold">seviyen</p>
+            <p class="lv-el text-[26px] font-bold">{% translate "seviyen" %}</p>
             <p class="mt-1 max-w-md text-lg text-gray-700 dark:text-slate-300">{{ not_metni }}</p>
         </div>
     </div>
@@ -28,47 +29,47 @@ eklendi; onay yerine "Geri al" (rapor 12.7).
          class="lv-not lv-pembe lv-bantli mt-12 text-gray-900 dark:text-slate-100">
         {% if eklenen_sayisi %}
         <div x-show="!geriAlindi">
-            <p class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">ilk listen</p>
-            <h2 class="lv-serif mt-1 text-2xl font-bold" data-eklenen-sayisi="{{ eklenen_sayisi }}">{{ eklenen_sayisi }} kelime listene eklendi</h2>
-            <p class="mt-1 text-base text-gray-700 dark:text-slate-300">Kendi seviyendeki sayfada tik atmadığın kelimeler. Learn &amp; Pass ve egzersizlerde karşına çıkacaklar.</p>
+            <p class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "ilk listen" %}</p>
+            <h2 class="lv-serif mt-1 text-2xl font-bold" data-eklenen-sayisi="{{ eklenen_sayisi }}">{% blocktranslate count n=eklenen_sayisi %}{{ n }} kelime listene eklendi{% plural %}{{ n }} kelime listene eklendi{% endblocktranslate %}</h2>
+            <p class="mt-1 text-base text-gray-700 dark:text-slate-300">{% translate "Kendi seviyendeki sayfada tik atmadığın kelimeler. Learn & Pass ve egzersizlerde karşına çıkacaklar." %}</p>
             <ol class="mt-3 list-decimal pl-6 text-base sm:columns-3" lang="en">
                 {% for k in eklenenler %}<li class="lv-serif break-inside-avoid font-bold">{{ k }}</li>{% endfor %}
             </ol>
-            {% if eklenen_sayisi > eklenenler|length %}<p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">+{{ eklenen_sayisi|add:"-12" }} kelime daha</p>{% endif %}
+            {% if eklenen_sayisi > eklenenler|length %}<p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">{% with kalan=eklenen_sayisi|add:"-12" %}{% blocktranslate count n=kalan %}+{{ n }} kelime daha{% plural %}+{{ n }} kelime daha{% endblocktranslate %}{% endwith %}</p>{% endif %}
             <form method="post" action="{% url 'seviye_geri_al' %}" class="mt-4" @submit.prevent="
                 fetch($el.action, {method: 'POST', credentials: 'same-origin',
                     headers: {'X-CSRFToken': document.querySelector('meta[name=csrf-token]').content, 'X-Requested-With': 'fetch'}})
-                .then((c) => { if (!c.ok) { throw c; } geriAlindi = true; window.geriAl && window.geriAl.bildir('İlk listen geri alındı.'); })
+                .then((c) => { if (!c.ok) { throw c; } geriAlindi = true; window.geriAl && window.geriAl.bildir('{{ _("İlk listen geri alındı.")|escapejs }}'); })
                 .catch(() => $el.submit())">
                 {% csrf_token %}
-                <button type="submit" data-geri-al class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">Geri al</button>
+                <button type="submit" data-geri-al class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">{% translate "Geri al" %}</button>
             </form>
         </div>
-        <p x-show="geriAlindi" x-cloak class="text-base">İlk listen geri alındı. Kelimeleri istediğin zaman Sözlük'ten ekleyebilirsin.</p>
+        <p x-show="geriAlindi" x-cloak class="text-base">{% translate "İlk listen geri alındı. Kelimeleri istediğin zaman Sözlük'ten ekleyebilirsin." %}</p>
         {% elif son.geri_alindi %}
-        <p class="text-base">İlk listen geri alındı. Kelimeleri istediğin zaman Sözlük'ten ekleyebilirsin.</p>
+        <p class="text-base">{% translate "İlk listen geri alındı. Kelimeleri istediğin zaman Sözlük'ten ekleyebilirsin." %}</p>
         {% else %}
-        <h2 class="lv-serif text-2xl font-bold">Bu sayfadaki kelimelerin hepsini biliyorsun!</h2>
-        <p class="mt-1 text-base text-gray-700 dark:text-slate-300">Listene yeni kelime eklemedik. Learn &amp; Pass sana yeni kelimeler gösterecek.</p>
+        <h2 class="lv-serif text-2xl font-bold">{% translate "Bu sayfadaki kelimelerin hepsini biliyorsun!" %}</h2>
+        <p class="mt-1 text-base text-gray-700 dark:text-slate-300">{% translate "Listene yeni kelime eklemedik. Learn & Pass sana yeni kelimeler gösterecek." %}</p>
         {% endif %}
     </div>
 
     <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
-        <a href="{% url 'learn_pass_page' %}" class="lv-dugme">Learn &amp; Pass'e başla →</a>
-        <a href="{% url 'sozluk' %}?sekme=listem" class="lv-el-bag">Listemi gör</a>
+        <a href="{% url 'learn_pass_page' %}" class="lv-dugme">{% translate "Learn & Pass'e başla →" %}</a>
+        <a href="{% url 'sozluk' %}?sekme=listem" class="lv-el-bag">{% translate "Listemi gör" %}</a>
     </div>
 
     {# ---------------- Nasıl hesaplandı ---------------- #}
     <details class="lv-sayfa mt-10 px-5 py-4 text-base text-gray-700 dark:text-slate-300">
-        <summary class="lv-el cursor-pointer text-[24px] font-bold">Nasıl hesaplandı?</summary>
+        <summary class="lv-el cursor-pointer text-[24px] font-bold">{% translate "Nasıl hesaplandı?" %}</summary>
         <ul class="mt-3 space-y-1">
             {% for e in ekranlar %}
-            <li>{{ e.no }}. ekran ({{ e.ad }}): {{ e.gosterilen }} kelimeden {{ e.bilinen }} tanesini bildin (%{{ e.yuzde }}).</li>
+            <li>{% blocktranslate with no=e.no ad=e.ad gosterilen=e.gosterilen bilinen=e.bilinen yuzde=e.yuzde %}{{ no }}. ekran ({{ ad }}): {{ gosterilen }} kelimeden {{ bilinen }} tanesini bildin (%{{ yuzde }}).{% endblocktranslate %}</li>
             {% endfor %}
         </ul>
-        <p class="mt-3">Bir ekrandaki kelimelerin %{{ gecme_yuzdesi }}'ından fazlasını bildiğinde bir sonraki ekrana geçersin.{% if son.okuma %} Ardından okuduğun kısa paragraflar seviyeni netleştirdi.{% endif %}</p>
-        <p class="mt-2">Seviyen, Learn &amp; Pass ve egzersizlerdeki cevaplarına göre zamanla kendiliğinden de güncellenir.</p>
-        <p class="mt-2">Seviyen kesin bir not değil, başlangıç noktası. Testi <a href="{% url 'seviye_testi' %}" class="font-bold underline decoration-1 underline-offset-4">istediğin zaman yeniden çözebilir</a> ya da <a href="{% url 'seviye_sec' %}" class="font-bold underline decoration-1 underline-offset-4">kendin seçebilirsin</a>.</p>
+        <p class="mt-3">{% blocktranslate %}Bir ekrandaki kelimelerin %{{ gecme_yuzdesi }}'ından fazlasını bildiğinde bir sonraki ekrana geçersin.{% endblocktranslate %}{% if son.okuma %} {% translate "Ardından okuduğun kısa paragraflar seviyeni netleştirdi." %}{% endif %}</p>
+        <p class="mt-2">{% translate "Seviyen, Learn & Pass ve egzersizlerdeki cevaplarına göre zamanla kendiliğinden de güncellenir." %}</p>
+        <p class="mt-2">{% url 'seviye_testi' as test_adresi %}{% url 'seviye_sec' as sec_adresi %}{% blocktranslate with test=test_adresi sec=sec_adresi %}Seviyen kesin bir not değil, başlangıç noktası. Testi <a href="{{ test }}" class="font-bold underline decoration-1 underline-offset-4">istediğin zaman yeniden çözebilir</a> ya da <a href="{{ sec }}" class="font-bold underline decoration-1 underline-offset-4">kendin seçebilirsin</a>.{% endblocktranslate %}</p>
     </details>
 </div>
 {% endblock %}

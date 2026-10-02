@@ -1,0 +1,19 @@
+{% comment %}
+Dil önerisi (rapor 18.22): tarayıcı başka bir yayındaki dili istiyorsa ve kullanıcı henüz
+dil seçmediyse küçük bir şerit. Yönlendirme yok. Metin önerilen dilde yazılır
+(LearnVocab/diller.py). "Kapat" bu dili seçilmiş sayar (çerez), şerit bir daha çıkmaz.
+{% endcomment %}
+{% if dil_onerisi %}
+<form method="post" action="{% url 'dil_degistir' %}" lang="{{ dil_onerisi.kod }}" data-dil-onerisi
+      class="mx-auto mt-3 flex max-w-3xl flex-wrap items-center justify-between gap-3 px-4 text-[15px]">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ dil_sonraki }}">
+    <span class="lv-not lv-mavi flex w-full flex-wrap items-center justify-between gap-3 !py-3 text-gray-900 dark:text-slate-100">
+        <span>{{ dil_onerisi.metin }}</span>
+        <span class="flex items-center gap-2">
+            <button type="submit" name="dil" value="{{ dil_onerisi.kod }}" class="lv-dugme lv-kucuk">{{ dil_onerisi.dugme }}</button>
+            <button type="submit" name="dil" value="{{ dil_simdiki }}" class="px-2 text-xl leading-none text-gray-500 dark:text-slate-400" aria-label="{{ dil_onerisi.kapat }}">×</button>
+        </span>
+    </span>
+</form>
+{% endif %}

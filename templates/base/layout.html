@@ -2,7 +2,7 @@
 {% load static i18n %}
 {% get_current_language as DIL %}
 {# Sayfa dili (rapor 18.12): Türkçe büyük harf (İ/I) ve ekran okuyucular için doğru dil. İngilizce içerik lang="en" ile ayrıca işaretlenir. #}
-<html lang="{{ DIL }}">
+<html lang="{{ DIL }}"{% if not turkce_acik %} data-turkce="0"{% endif %}>
 
 <head>
     <meta charset="UTF-8">
@@ -91,6 +91,8 @@
     sayfanın son satırı o çubuğun altında kalmıyor.
     {% endcomment %}
     <main class="min-h-screen pt-16 pb-20 lg:pb-0">
+
+        {% include 'base/_dilOnerisi.html' %}
 
         {% block messages %}
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6"> 

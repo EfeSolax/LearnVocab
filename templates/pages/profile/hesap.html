@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Hesap (rapor 18.26). Sağ üstteki profil fotoğrafına dokununca açılır.
@@ -10,7 +11,7 @@ pages/profile/ayarlar.html (usersettings.views.ayarlarSayfasi).
 Görsel tasarımı tasarım oturumunda yapılacak.
 {% endcomment %}
 
-{% block title %}Hesap{% endblock %}
+{% block title %}{% translate "Hesap" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
@@ -24,68 +25,68 @@ Görsel tasarımı tasarım oturumunda yapılacak.
             <div class="relative mx-auto w-48 -rotate-3 bg-[color:var(--kagit-beyaz)] p-3 pb-10 shadow-[var(--golge)] sm:mx-0">
                 <span class="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-3 border border-black/5 bg-[color:var(--bant)]" aria-hidden="true"></span>
                 <img id="avatar-preview" class="aspect-square w-full object-cover {% if not user.profile_pic %}hidden{% endif %}"
-                     src="{% if user.profile_pic %}{{ user.profile_pic.url }}{% endif %}" alt="Profil fotoğrafı">
+                     src="{% if user.profile_pic %}{{ user.profile_pic.url }}{% endif %}" alt="{% translate "Profil fotoğrafı" %}">
                 <span id="avatar-placeholder" class="grid aspect-square w-full place-items-center bg-[color:var(--kagit)] {% if user.profile_pic %}hidden{% endif %}">
                     {% include 'base/_kapibara.html' with poz='merhaba' sinif='h-32 w-auto' %}
                 </span>
                 <input type="file" name="profile_pic" id="profile_pic" accept="image/*" class="sr-only">
-                <label for="profile_pic" class="lv-el absolute inset-x-0 bottom-2 cursor-pointer text-center text-[21px] font-bold underline decoration-1 underline-offset-4">fotoğrafı değiştir</label>
+                <label for="profile_pic" class="lv-el absolute inset-x-0 bottom-2 cursor-pointer text-center text-[21px] font-bold underline decoration-1 underline-offset-4">{% translate "fotoğrafı değiştir" %}</label>
             </div>
 
             {# ---- Bu defter … aittir ---- #}
             <div>
-                <p class="lv-el text-[26px] font-bold">bu defter</p>
+                <p class="lv-el text-[26px] font-bold">{% translate "bu defter" context "hesap: isimden önce" %}</p>
                 <h1 class="lv-baslik !text-[44px] sm:!text-[56px]">{% if user.first_name or user.last_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.username }}{% endif %}</h1>
-                <p class="lv-el text-[26px] font-bold">'a aittir. <span class="!text-gray-600 dark:!text-slate-300">(@{{ user.username }})</span></p>
+                <p class="lv-el text-[26px] font-bold">{% translate "'a aittir." context "hesap: isimden sonra" %} <span class="!text-gray-600 dark:!text-slate-300">(@{{ user.username }})</span></p>
                 <p id="avatar-filename" class="lv-el mt-2 hidden text-[21px]"></p>
 
                 <dl class="mt-6 grid grid-cols-3 gap-3 text-center">
-                    <div class="lv-sayfa -rotate-1 px-2 py-3"><dt class="lv-el text-[19px]">açılış</dt><dd class="lv-serif text-lg font-black">{{ user.date_joined|date:"M Y" }}</dd></div>
-                    <div class="lv-sayfa rotate-1 px-2 py-3"><dt class="lv-el text-[19px]">listede</dt><dd class="lv-serif text-2xl font-black">{{ liste_sayisi }}</dd></div>
-                    <div class="lv-sayfa -rotate-1 px-2 py-3"><dt class="lv-el text-[19px]">en uzun seri</dt><dd class="lv-serif text-2xl font-black">{{ seri.en_uzun }}</dd></div>
+                    <div class="lv-sayfa -rotate-1 px-2 py-3"><dt class="lv-el text-[19px]">{% translate "açılış" %}</dt><dd class="lv-serif text-lg font-black">{{ user.date_joined|date:"M Y" }}</dd></div>
+                    <div class="lv-sayfa rotate-1 px-2 py-3"><dt class="lv-el text-[19px]">{% translate "listede" %}</dt><dd class="lv-serif text-2xl font-black">{{ liste_sayisi }}</dd></div>
+                    <div class="lv-sayfa -rotate-1 px-2 py-3"><dt class="lv-el text-[19px]">{% translate "en uzun seri" %}</dt><dd class="lv-serif text-2xl font-black">{{ seri.en_uzun }}</dd></div>
                 </dl>
-                <a href="{% url 'logout' %}" class="lv-el-bag mt-6 inline-block">Çıkış Yap</a>
+                <a href="{% url 'logout' %}" class="lv-el-bag mt-6 inline-block">{% translate "Çıkış Yap" %}</a>
             </div>
         </section>
 
         {# ---- Hesap bilgileri: kâğıttaki çizgiler ---- #}
         <section class="lv-sayfa lv-bantli mt-14 px-5 pb-6 pt-8 sm:px-8">
-            <h2 class="lv-bolum !text-3xl">Hesap Bilgileri</h2>
-            <p class="lv-el text-[21px]">platformda nasıl göründüğünü belirler</p>
+            <h2 class="lv-bolum !text-3xl">{% translate "Hesap Bilgileri" %}</h2>
+            <p class="lv-el text-[21px]">{% translate "platformda nasıl göründüğünü belirler" %}</p>
             <div class="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
-                    <label for="first_name" class="lv-el block text-[22px] font-bold">İsim</label>
+                    <label for="first_name" class="lv-el block text-[22px] font-bold">{% translate "İsim" %}</label>
                     <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}" autocomplete="given-name" class="lv-girdi">
                 </div>
                 <div>
-                    <label for="last_name" class="lv-el block text-[22px] font-bold">Soyisim</label>
+                    <label for="last_name" class="lv-el block text-[22px] font-bold">{% translate "Soyisim" %}</label>
                     <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}" autocomplete="family-name" class="lv-girdi">
                 </div>
                 <div class="sm:col-span-2">
-                    <label for="email" class="lv-el block text-[22px] font-bold">E-posta Adresi</label>
+                    <label for="email" class="lv-el block text-[22px] font-bold">{% translate "E-posta Adresi" %}</label>
                     <input type="email" name="email" id="email" value="{{ user.email }}" autocomplete="email" class="lv-girdi">
                 </div>
                 <div class="sm:col-span-2">
-                    <label for="username" class="lv-el block text-[22px] font-bold">Kullanıcı Adı</label>
+                    <label for="username" class="lv-el block text-[22px] font-bold">{% translate "Kullanıcı Adı" %}</label>
                     <input type="text" name="username" id="username" value="{{ user.username }}" readonly class="lv-girdi cursor-not-allowed opacity-70">
-                    <p class="mt-1.5 text-sm text-gray-600 dark:text-slate-300">Kullanıcı adın değiştirilemez.</p>
+                    <p class="mt-1.5 text-sm text-gray-600 dark:text-slate-300">{% translate "Kullanıcı adın değiştirilemez." %}</p>
                 </div>
             </div>
-            <button type="submit" class="lv-dugme mt-8">Değişiklikleri Kaydet</button>
+            <button type="submit" class="lv-dugme mt-8">{% translate "Değişiklikleri Kaydet" %}</button>
         </section>
     </form>
 
     {# ---- Ayarlar ve parola: iki yapışkan not ---- #}
     <section class="mt-12 grid gap-8 sm:grid-cols-2" data-hesap-baglantilari>
         <a href="{% url 'settings_page' %}" class="lv-not lv-bantli block text-gray-900 transition-transform hover:-translate-y-0.5 dark:text-slate-100">
-            <span class="lv-el block text-[24px] font-bold !text-gray-600 dark:!text-slate-300">ayarlar →</span>
-            <span class="lv-serif mt-1 block text-2xl font-bold">Ayarlar</span>
-            <span class="mt-1 block text-base text-gray-700 dark:text-slate-300">Tema, seviye{% if seviye %} ({{ seviye }}){% endif %}, bildirimler, verilerim.</span>
+            <span class="lv-el block text-[24px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "ayarlar →" %}</span>
+            <span class="lv-serif mt-1 block text-2xl font-bold">{% translate "Ayarlar" %}</span>
+            <span class="mt-1 block text-base text-gray-700 dark:text-slate-300">{% if seviye %}{% blocktranslate %}Tema, seviye ({{ seviye }}), dil, bildirimler, verilerim.{% endblocktranslate %}{% else %}{% translate "Tema, seviye, dil, bildirimler, verilerim." %}{% endif %}</span>
         </a>
         <a href="{% url 'change_password_page' %}" class="lv-not lv-mavi lv-bantli block text-gray-900 transition-transform hover:-translate-y-0.5 dark:text-slate-100">
-            <span class="lv-el block text-[24px] font-bold !text-gray-600 dark:!text-slate-300">güvenlik →</span>
-            <span class="lv-serif mt-1 block text-2xl font-bold">Parolamı Değiştir</span>
-            <span class="mt-1 block text-base text-gray-700 dark:text-slate-300">Ayrı bir güvenli sayfada yapılır.</span>
+            <span class="lv-el block text-[24px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "güvenlik →" %}</span>
+            <span class="lv-serif mt-1 block text-2xl font-bold">{% translate "Parolamı Değiştir" %}</span>
+            <span class="mt-1 block text-base text-gray-700 dark:text-slate-300">{% translate "Ayrı bir güvenli sayfada yapılır." %}</span>
         </a>
     </section>
 </div>
@@ -108,7 +109,7 @@ Görsel tasarımı tasarım oturumunda yapılacak.
             onizleme.classList.remove('hidden');
             yertutucu.classList.add('hidden');
 
-            ad.textContent = dosya.name + ' seçildi — kaydetmeyi unutma.';
+            ad.textContent = '{{ _("{dosya} seçildi — kaydetmeyi unutma.")|escapejs }}'.replace('{dosya}', dosya.name);
             ad.classList.remove('hidden');
         });
     })();

@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Misafir ana sayfasının küçük davranışları (rapor 18.12, defter teması):
   - Katlanan defter tablosu: kata dokununca anlam açılır; "biliyordum" kelimenin
@@ -26,12 +27,12 @@ Misafir ana sayfasının küçük davranışları (rapor 18.12, defter teması):
                     headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrf ? csrf.content : '' },
                     body: JSON.stringify({ word_id: parseInt(satir.dataset.kelimeId, 10), verdict: evet ? 'known' : 'unknown',
                                            mode: 'karma', kaynak: tablo.dataset.kaynak })
-                }).catch(function () { window.geriAl && window.geriAl.bildir('Bağlantı kurulamadı; bu cevap kaydedilmedi.'); });
+                }).catch(function () { window.geriAl && window.geriAl.bildir('{{ _("Bağlantı kurulamadı; bu cevap kaydedilmedi.")|escapejs }}'); });
             }
             cevap++; if (evet) { bilinen++; }
             if (cevap === toplam) {
                 document.querySelector('[data-defter-sonuc]').textContent =
-                    toplam + ' kelimeden ' + bilinen + ' tanesini biliyordun. Gerisini biz hatırlatırız.';
+                    '{{ _("{toplam} kelimeden {bilinen} tanesini biliyordun. Gerisini biz hatırlatırız.")|escapejs }}'.replace('{toplam}', toplam).replace('{bilinen}', bilinen);
             }
         });
     }
@@ -47,7 +48,7 @@ Misafir ana sayfasının küçük davranışları (rapor 18.12, defter teması):
     if (takvim) {
         var bugun = new Date(); bugun.setHours(0, 0, 0, 0);
         var bas = new Date(bugun); bas.setDate(bas.getDate() - ((bugun.getDay() + 6) % 7) - 28);
-        var h = ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pz'].map(function (g) { return '<b>' + g + '</b>'; }).join('');
+        var h = '{% filter escapejs %}{% include "base/_haftaGunleri.html" %}{% endfilter %}';
         for (var i = 0; i < 35; i++) {
             var g = new Date(bas); g.setDate(bas.getDate() + i);
             var fark = Math.round((bugun - g) / 864e5);

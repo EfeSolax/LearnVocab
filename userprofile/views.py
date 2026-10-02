@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 
 from LearnVocab.authgate import login_gate
 from users.models import User
@@ -9,7 +11,7 @@ from words.models import Word
 # düzenleme ve toplu ekleme/silme 29 Eylül'de kaldırıldı (rapor 18.13).
 # Kullanıcının listesi artık Sözlük › Listem'de (words/listem.py).
 
-@login_gate("Hesap")
+@login_gate(gettext_lazy("Hesap"))
 def showProfile(request):
     """
     Hesap sayfası (rapor 18.26): sağ üstteki profil fotoğrafından açılır.
@@ -28,7 +30,7 @@ def showProfile(request):
             user.profile_pic = profile_pic_file
 
         user.save()
-        messages.success(request, "Hesap bilgileriniz başarıyla güncellendi.")
+        messages.success(request, _("Hesap bilgileriniz başarıyla güncellendi."))
         return redirect("user_profile")
 
     # Defterin künyesi (defter teması, rapor 18.12): yalnızca var olan sayılar; "öğrenilen kelime" yok (Bölüm 17).

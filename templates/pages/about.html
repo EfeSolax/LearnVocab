@@ -1,4 +1,5 @@
 {% extends 'base/layout.html' %}
+{% load i18n %}
 {% load static l10n %}
 
 {% comment %}
@@ -10,7 +11,7 @@ Yardım ve hakkında (rapor 18.33): tek sayfa. Görünüm ve içerik: LearnVocab
 Ekran görüntüleri her sürümde her dil ve tema için yeniden çekilir (rapor 18.34).
 {% endcomment %}
 
-{% block title %}Yardım ve hakkında — LearnVocab{% endblock %}
+{% block title %}{% translate "Yardım ve hakkında — LearnVocab" %}{% endblock %}
 
 {% block extra_head %}
 <style>
@@ -33,58 +34,57 @@ Ekran görüntüleri her sürümde her dil ve tema için yeniden çekilir (rapor
     {# ---------- Başlık ---------- #}
     <header class="flex items-end justify-between gap-6">
         <div>
-            <span class="lv-tarih">yardım ve hakkında</span>
-            <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">Nasıl kullanılır?</h1>
-            <p class="lv-alt-baslik mt-1">defterin ilk sayfası: her şey burada yazıyor</p>
+            <span class="lv-tarih">{% translate "yardım ve hakkında" %}</span>
+            <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">{% translate "Nasıl kullanılır?" %}</h1>
+            <p class="lv-alt-baslik mt-1">{% translate "defterin ilk sayfası: her şey burada yazıyor" %}</p>
         </div>
         {% include 'base/_kapibara.html' with poz='okuyor' sinif='hidden h-36 w-auto shrink-0 sm:block' %}
     </header>
 
     {# ---------- İçindekiler ---------- #}
-    <nav class="lv-sayfa mt-10 p-5 sm:p-6" aria-label="İçindekiler">
-        <p class="lv-el text-[24px] font-bold">bu sayfada</p>
+    <nav class="lv-sayfa mt-10 p-5 sm:p-6" aria-label="{% translate "İçindekiler" %}">
+        <p class="lv-el text-[24px] font-bold">{% translate "bu sayfada" %}</p>
         <ol class="mt-2 grid gap-x-8 gap-y-1.5 text-[17px] sm:grid-cols-2">
-            <li><a href="#nedir" class="hover:underline"><span class="lv-el mr-2 text-xl font-bold">0</span>LearnVocab nedir?</a></li>
+            <li><a href="#nedir" class="hover:underline"><span class="lv-el mr-2 text-xl font-bold">0</span>{% translate "LearnVocab nedir?" %}</a></li>
             {% for r in rehberler %}
             <li><a href="#{{ r.kimlik }}" class="hover:underline"><span class="lv-el mr-2 text-xl font-bold">{{ forloop.counter }}</span>{{ r.baslik }}</a></li>
             {% endfor %}
-            <li><a href="#hakkinda" class="hover:underline"><span class="lv-el mr-2 text-xl font-bold">✎</span>Siteyi kim yaptı?</a></li>
+            <li><a href="#hakkinda" class="hover:underline"><span class="lv-el mr-2 text-xl font-bold">✎</span>{% translate "Siteyi kim yaptı?" %}</a></li>
         </ol>
     </nav>
 
     {# ---------- Tanıtım ---------- #}
     <section id="nedir" class="mt-16 scroll-mt-24" aria-labelledby="nedir-baslik">
-        <h2 id="nedir-baslik" class="lv-bolum">LearnVocab nedir?</h2>
+        <h2 id="nedir-baslik" class="lv-bolum">{% translate "LearnVocab nedir?" %}</h2>
         <p class="mt-4 max-w-2xl text-lg leading-relaxed">
-            Üniversite hazırlık öğrencileri ve İngilizce öğrenen herkes için bir kelime defteri. Bakıp gidilen bir sözlük değil:
-            kelimeyi bulursun, defterine eklersin, unutmadan önce yeniden karşına çıkar, okurken görürsün ve sonunda kendi cümlende kullanırsın.
+            {% translate "Üniversite hazırlık öğrencileri ve İngilizce öğrenen herkes için bir kelime defteri. Bakıp gidilen bir sözlük değil: kelimeyi bulursun, defterine eklersin, unutmadan önce yeniden karşına çıkar, okurken görürsün ve sonunda kendi cümlende kullanırsın." %}
         </p>
         <div class="mt-8 grid gap-6 sm:grid-cols-3">
             <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
-                <p class="lv-el text-[24px] font-bold">tanı</p>
-                <p class="mt-1 font-semibold">Sözlük ve Çalışmalar</p>
-                <p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">Kelimeyi bul, anlamını öğren, Learn &amp; Pass ve egzersizlerle hatırla.</p>
+                <p class="lv-el text-[24px] font-bold">{% translate "tanı" %}</p>
+                <p class="mt-1 font-semibold">{% translate "Sözlük ve Çalışmalar" %}</p>
+                <p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">{% translate "Kelimeyi bul, anlamını öğren, Learn & Pass ve egzersizlerle hatırla." %}</p>
             </div>
             <div class="lv-not lv-mavi lv-bantli text-gray-900 dark:text-slate-100">
-                <p class="lv-el text-[24px] font-bold">gör</p>
-                <p class="mt-1 font-semibold">Okumalar</p>
-                <p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">Kelimeyi gerçek bir metinde gör; bilmediğine dokun, anlamı hemen çıksın.</p>
+                <p class="lv-el text-[24px] font-bold">{% translate "gör" %}</p>
+                <p class="mt-1 font-semibold">{% translate "Okumalar" %}</p>
+                <p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">{% translate "Kelimeyi gerçek bir metinde gör; bilmediğine dokun, anlamı hemen çıksın." %}</p>
             </div>
             <div class="lv-not lv-pembe lv-bantli text-gray-900 dark:text-slate-100">
-                <p class="lv-el text-[24px] font-bold">kullan</p>
-                <p class="mt-1 font-semibold">Yazılar</p>
-                <p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">Birkaç cümle yaz, neyi doğru neyi yanlış yaptığını gör.</p>
+                <p class="lv-el text-[24px] font-bold">{% translate "kullan" %}</p>
+                <p class="mt-1 font-semibold">{% translate "Yazılar" %}</p>
+                <p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">{% translate "Birkaç cümle yaz, neyi doğru neyi yanlış yaptığını gör." %}</p>
             </div>
         </div>
 
-        <h3 class="lv-alt-baslik mt-12">bir gün nasıl geçer?</h3>
+        <h3 class="lv-alt-baslik mt-12">{% translate "bir gün nasıl geçer?" %}</h3>
         <ol class="mt-4 max-w-2xl space-y-3 text-lg">
-            <li class="flex gap-3"><span class="yardim-no">1</span><span>Ana Sayfa'da günün kelimesine ve bekleyen tekrarlarına bak.</span></li>
-            <li class="flex gap-3"><span class="yardim-no">2</span><span>Learn &amp; Pass'te 10 kart geç; birkaç dakika sürer ve günün serisini tamamlar.</span></li>
-            <li class="flex gap-3"><span class="yardim-no">3</span><span>Vaktin varsa bir Kısa Sınav çöz.</span></li>
-            <li class="flex gap-3"><span class="yardim-no">4</span><span>Bir metin oku ya da birkaç cümle yaz.</span></li>
+            <li class="flex gap-3"><span class="yardim-no">1</span><span>{% translate "Ana Sayfa'da günün kelimesine ve bekleyen tekrarlarına bak." %}</span></li>
+            <li class="flex gap-3"><span class="yardim-no">2</span><span>{% translate "Learn & Pass'te 10 kart geç; birkaç dakika sürer ve günün serisini tamamlar." %}</span></li>
+            <li class="flex gap-3"><span class="yardim-no">3</span><span>{% translate "Vaktin varsa bir Kısa Sınav çöz." %}</span></li>
+            <li class="flex gap-3"><span class="yardim-no">4</span><span>{% translate "Bir metin oku ya da birkaç cümle yaz." %}</span></li>
         </ol>
-        <p class="mt-4 max-w-2xl text-gray-600 dark:text-slate-300">Hiçbiri zorunlu değil; bütün bölümler her zaman açık. İstediğin yerden başla.</p>
+        <p class="mt-4 max-w-2xl text-gray-600 dark:text-slate-300">{% translate "Hiçbiri zorunlu değil; bütün bölümler her zaman açık. İstediğin yerden başla." %}</p>
     </section>
 
     {# ---------- Nasıl yapılır ---------- #}
@@ -98,9 +98,9 @@ Ekran görüntüleri her sürümde her dil ve tema için yeniden çekilir (rapor
             <figure class="yardim-telefon mx-auto w-full max-w-[260px]">
                 <div class="relative">
                     <img src="{% static g.acik %}" width="500" height="{{ g.yukseklik }}" loading="lazy" decoding="async"
-                         class="block h-auto w-full dark:hidden" alt="{{ r.baslik }}: ekran görüntüsü">
+                         class="block h-auto w-full dark:hidden" alt="{% blocktranslate with baslik=r.baslik %}{{ baslik }}: ekran görüntüsü{% endblocktranslate %}">
                     <img src="{% static g.koyu %}" width="500" height="{{ g.yukseklik }}" loading="lazy" decoding="async"
-                         class="hidden h-auto w-full dark:block" alt="{{ r.baslik }}: ekran görüntüsü (koyu tema)">
+                         class="hidden h-auto w-full dark:block" alt="{% blocktranslate with baslik=r.baslik %}{{ baslik }}: ekran görüntüsü (koyu tema){% endblocktranslate %}">
                     {% for i in g.isaretler %}<span class="yardim-isaret" style="left: {{ i.x|unlocalize }}%; top: {{ i.y|unlocalize }}%" aria-hidden="true">{{ i.no }}</span>{% endfor %}
                 </div>
             </figure>
@@ -117,7 +117,7 @@ Ekran görüntüleri her sürümde her dil ve tema için yeniden çekilir (rapor
         {% endif %}
 
         {% if r.tipler %}
-        <h3 class="lv-alt-baslik mt-10">Deneme Sınavı'ndaki soru tipleri</h3>
+        <h3 class="lv-alt-baslik mt-10">{% translate "Deneme Sınavı'ndaki soru tipleri" %}</h3>
         <dl class="lv-sayfa mt-4 divide-y divide-[color:var(--satir)] px-5" data-soru-tipleri>
             {% for t in soru_tipleri %}
             <div class="grid gap-1 py-3 sm:grid-cols-[1fr_1.2fr] sm:gap-4">
@@ -136,17 +136,17 @@ Ekran görüntüleri her sürümde her dil ve tema için yeniden çekilir (rapor
 
     {# ---------- Hakkında ---------- #}
     <section id="hakkinda" class="mt-24 scroll-mt-24" aria-labelledby="hakkinda-baslik">
-        <h2 id="hakkinda-baslik" class="lv-bolum">Siteyi kim yaptı?</h2>
+        <h2 id="hakkinda-baslik" class="lv-bolum">{% translate "Siteyi kim yaptı?" %}</h2>
         <div class="mt-6 grid items-start gap-8 sm:grid-cols-[minmax(0,1fr)_240px]">
             <div class="lv-sayfa p-6 text-lg leading-relaxed sm:p-8">
-                <p>Merhaba, ben <strong>Efe Solmaz</strong>. 2025'te ODTÜ Bilgisayar Mühendisliği'ni kazandım; LearnVocab'i hazırlık yılımda, kendi kelime öğrenme sorunumu çözmek için yazmaya başladım.</p>
-                <p class="mt-4">Telefonun not uygulamasına kelime ve anlam yazmak işe yaramıyordu. Denediğim siteler ve uygulamalar da ya yalnızca sözlüktü ya da herkese aynı kalıbı veriyordu. Benim istediğim üç şeydi: kelimeyi gerçek bir cümlede görmek, unutmadan önce yeniden karşıma çıkması ve onu kendi cümlemde kullanabilmek. Bu site o üç şey için yapıldı.</p>
-                <p class="mt-4">Python ve Java ile uğraşıyorum; siteyi tek başıma geliştiriyorum. Bir hata görürsen ya da bir önerin varsa yaz, hepsini okurum.</p>
+                <p>{% blocktranslate %}Merhaba, ben <strong>Efe Solmaz</strong>. 2025'te ODTÜ Bilgisayar Mühendisliği'ni kazandım; LearnVocab'i hazırlık yılımda, kendi kelime öğrenme sorunumu çözmek için yazmaya başladım.{% endblocktranslate %}</p>
+                <p class="mt-4">{% translate "Telefonun not uygulamasına kelime ve anlam yazmak işe yaramıyordu. Denediğim siteler ve uygulamalar da ya yalnızca sözlüktü ya da herkese aynı kalıbı veriyordu. Benim istediğim üç şeydi: kelimeyi gerçek bir cümlede görmek, unutmadan önce yeniden karşıma çıkması ve onu kendi cümlemde kullanabilmek. Bu site o üç şey için yapıldı." %}</p>
+                <p class="mt-4">{% translate "Python ve Java ile uğraşıyorum; siteyi tek başıma geliştiriyorum. Bir hata görürsen ya da bir önerin varsa yaz, hepsini okurum." %}</p>
                 <p class="lv-el mt-6 text-[26px] font-bold">— Efe</p>
             </div>
             <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100" data-iletisim>
-                <p class="lv-el text-[24px] font-bold">iletişim</p>
-                <p class="mt-2 text-[15px]">E-posta</p>
+                <p class="lv-el text-[24px] font-bold">{% translate "iletişim" %}</p>
+                <p class="mt-2 text-[15px]">{% translate "E-posta" %}</p>
                 <a href="mailto:efe.solmaz@metu.edu.tr" class="break-all font-semibold underline decoration-1 underline-offset-4">efe.solmaz@metu.edu.tr</a>
                 <p class="mt-3 text-[15px]">GitHub</p>
                 <a href="https://github.com/EfeSolax" rel="noopener" class="font-semibold underline decoration-1 underline-offset-4">EfeSolax</a>

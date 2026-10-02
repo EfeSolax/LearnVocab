@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Listem satırları (rapor 5). İlk sayfa _listem.html içinde, sonrakiler
 "Daha fazla göster" ile (?parca=1) bu parça olarak gelir.
@@ -13,7 +14,7 @@ onay yok, "Geri al" var; satır kelime-listesi olayıyla gizlenip geri gelir.
 <li data-listem-satiri data-id="{{ s.id }}" x-data="{ acik: false }" @kart-kapat="acik = false">
     <div x-show="!acik" class="flex items-start gap-3 py-3.5">
         <input type="checkbox" x-show="sec" x-cloak :checked="secili.includes({{ s.id }})" @click="degistir({{ s.id }})"
-               aria-label="{{ s.text }} seç" class="mt-1.5 h-5 w-5 shrink-0 rounded-sm border-2 border-indigo-600 text-indigo-600 focus:ring-indigo-500">
+               aria-label="{% blocktranslate with kelime=s.text %}{{ kelime }} seç{% endblocktranslate %}" class="mt-1.5 h-5 w-5 shrink-0 rounded-sm border-2 border-indigo-600 text-indigo-600 focus:ring-indigo-500">
         <button type="button" @click="dokun({{ s.id }}, $el.closest('[data-listem-satiri]'))"
                 class="grid min-w-0 flex-1 grid-cols-[44%_minmax(0,1fr)] text-left">
             <span class="pr-3">
@@ -32,9 +33,9 @@ onay yok, "Geri al" var; satır kelime-listesi olayıyla gizlenip geri gelir.
                 data-listede="1"
                 data-ekle-url="{% url 'add_to_my_list' s.id %}"
                 data-cikar-url="{% url 'remove_from_my_list' s.id %}"
-                aria-pressed="true" title="Listemden çıkar"
+                aria-pressed="true" title="{% translate "Listemden çıkar" %}"
                 class="lv-el shrink-0 px-1 text-[19px] font-bold !text-gray-500 hover:!text-red-700 disabled:opacity-60 dark:!text-slate-400">
-            <span data-listede-yazi>✗ çıkar</span><span data-ekle-yazi hidden>+ ekle</span>
+            <span data-listede-yazi>✗ {% translate "çıkar" %}</span><span data-ekle-yazi hidden>+ {% translate "ekle" %}</span>
         </button>
     </div>
     <div x-show="acik" x-cloak data-kart-yuva class="p-2"></div>
@@ -43,6 +44,6 @@ onay yok, "Geri al" var; satır kelime-listesi olayıyla gizlenip geri gelir.
 {% if devam_adresi %}
 <li data-listem-devam class="py-4 text-center">
     <button type="button" data-adres="{{ devam_adresi }}" @click="devam($el)"
-            class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4 disabled:opacity-50">Daha fazla göster</button>
+            class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4 disabled:opacity-50">{% translate "Daha fazla göster" %}</button>
 </li>
 {% endif %}

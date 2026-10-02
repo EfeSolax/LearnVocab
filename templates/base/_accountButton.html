@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Sağ üst köşe (ürün raporu 18.26). Giriş yapılmışsa kullanıcının PROFİL
 FOTOĞRAFI; dokununca Hesap sayfası açılır (Ayarlar'a oradan gidilir).
@@ -5,7 +6,7 @@ Girişsizken aynı yerde "Giriş Yap"; girişten sonra bulunulan sayfaya
 dönülür (?next=). Masaüstünde ve mobilde aynı, her sayfada sabit.
 {% endcomment %}
 {% if user.is_authenticated %}
-<a href="{% url 'user_profile' %}" title="Hesap" aria-label="Hesap" data-hesap-dugmesi
+<a href="{% url 'user_profile' %}" title="{% translate "Hesap" %}" aria-label="{% translate "Hesap" %}" data-hesap-dugmesi
    {% if request.resolver_match.url_name == 'user_profile' or request.resolver_match.url_name == 'settings_page' %}aria-current="page"{% endif %}
    class="inline-flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-slate-700 ring-2 ring-transparent hover:ring-indigo-500 aria-[current=page]:ring-indigo-600 transition">
     {% if user.profile_pic %}
@@ -20,6 +21,6 @@ dönülür (?next=). Masaüstünde ve mobilde aynı, her sayfada sabit.
 {# Giriş/kayıt sayfalarının kendisinde ?next= eklenmez: girişten sonra forma geri dönülmesin. #}
 <a href="{% url 'login' %}{% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'register' %}?next={{ request.get_full_path|urlencode:'' }}{% endif %}"
    class="lv-dugme lv-kucuk shrink-0 inline-flex">
-    Giriş Yap
+    {% translate "Giriş Yap" %}
 </a>
 {% endif %}

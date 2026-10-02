@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Günün Kelimesi kartı (rapor 18.8). Ana Sayfa'da ve Sözlük › Keşfet'te AYNI kart.
 Veri: words.gunun.kelime_durumu -> gk = {"kart", "tamam", "cevap"}
@@ -9,12 +10,12 @@ Veri: words.gunun.kelime_durumu -> gk = {"kart", "tamam", "cevap"}
     "Bugünün kelimesi tamam ✓, yarın yenisi gelecek."
 Davranış: pages/gunun/_js.html
 {% endcomment %}
-<section data-gunun-kelimesi="{{ gk.kart.id }}" aria-label="Günün kelimesi"
+<section data-gunun-kelimesi="{{ gk.kart.id }}" aria-label="{% translate "Günün kelimesi" %}"
          class="lv-not lv-bantli min-w-0 text-gray-900 dark:text-slate-100">
-    <p class="lv-el text-[22px] font-bold leading-none !text-gray-600 dark:!text-slate-300">günün kelimesi</p>
+    <p class="lv-el text-[22px] font-bold leading-none !text-gray-600 dark:!text-slate-300">{% translate "günün kelimesi" %}</p>
 
     <p data-gunun-tamam class="mt-3 text-base font-semibold text-emerald-700 dark:text-emerald-300" {% if not gk.tamam %}hidden{% endif %}>
-        Bugünün kelimesi tamam ✓, yarın yenisi gelecek.
+        {% translate "Bugünün kelimesi tamam ✓, yarın yenisi gelecek." %}
     </p>
 
     <div data-gunun-icerik {% if gk.tamam %}hidden{% endif %}>
@@ -24,7 +25,7 @@ Davranış: pages/gunun/_js.html
                class="lv-serif min-w-0 text-[38px] font-black leading-none tracking-tight hover:underline">{{ kart.text }}{% if kart.duzensiz %} <span class="font-sans text-base font-normal italic tracking-normal text-gray-600 dark:text-slate-300">{{ kart.v2 }} · {{ kart.v3 }}</span>{% endif %}</a>
             {% if kart.cefr %}<span class="lv-seviye">{{ kart.cefr }}</span>{% endif %}
         </div>
-        <p class="mt-2 text-xl font-bold text-indigo-600 dark:text-indigo-400">{{ ilk.meaning_tr }}</p>
+        <p class="mt-2 text-xl font-bold text-indigo-600 dark:text-indigo-400">{% firstof ilk.meaning_tr ilk.definition %}</p>
         {% if ilk.ornek %}<p lang="en" data-cift-tikla-ara class="lv-metin mt-2 text-[17px] leading-relaxed">{{ ilk.ornek }}</p>{% endif %}
         <div class="mt-3">{% include 'base/_telaffuz.html' with metin=kart.text %}</div>
 
@@ -34,13 +35,13 @@ Davranış: pages/gunun/_js.html
             {% if not gk.cevap %}
             <span data-gunun-dugmeler class="ml-auto flex gap-2">
                 <button type="button" data-gunun-cevap="unknown"
-                        class="lv-el px-1 text-[22px] font-bold !text-red-700 hover:underline disabled:opacity-60 dark:!text-red-300">✗ bilmiyordum</button>
+                        class="lv-el px-1 text-[22px] font-bold !text-red-700 hover:underline disabled:opacity-60 dark:!text-red-300">✗ {% translate "bilmiyordum" %}</button>
                 <button type="button" data-gunun-cevap="known"
-                        class="lv-el px-1 text-[22px] font-bold !text-emerald-700 hover:underline disabled:opacity-60 dark:!text-emerald-300">✓ biliyordum</button>
+                        class="lv-el px-1 text-[22px] font-bold !text-emerald-700 hover:underline disabled:opacity-60 dark:!text-emerald-300">✓ {% translate "biliyordum" %}</button>
             </span>
             {% endif %}
         </div>
-        <p data-gunun-not class="mt-2 text-sm text-gray-700 dark:text-slate-300" {% if gk.cevap != "unknown" %}hidden{% endif %}>Tekrarlarına eklendi; Learn &amp; Pass'te yeniden karşına çıkacak.</p>
+        <p data-gunun-not class="mt-2 text-sm text-gray-700 dark:text-slate-300" {% if gk.cevap != "unknown" %}hidden{% endif %}>{% translate "Tekrarlarına eklendi; Learn & Pass'te yeniden karşına çıkacak." %}</p>
         {% endif %}
         {% endwith %}
     </div>

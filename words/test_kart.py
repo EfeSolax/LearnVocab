@@ -130,7 +130,7 @@ class KartVerisiTests(TestCase):
         self.assertEqual(kart_verisi([]), [])
 
     def test_sorgu_sayisi_kart_sayisina_bagli_degil(self):
-        """N+1 yok: 1 kart da 12 kart da aynı sayıda sorgu (en çok 8)."""
+        """N+1 yok: 1 kart da 12 kart da aynı sayıda sorgu (en çok 8, ayar okunurken bir kez 9)."""
         kelimeler = []
         aile = WordFamily.objects.create(root="ortak")
         for i in range(12):
@@ -144,7 +144,8 @@ class KartVerisiTests(TestCase):
             kelimeler.append(k)
         UserWordLink.objects.create(user=self.user, word=kelimeler[0])
 
-        with self.assertNumQueries(8):
+        # +1: "Türkçe anlamlar" ayarı ilk kartta bir kez okunur, sonra kullanıcıda saklanır (rapor 18.22).
+        with self.assertNumQueries(9):
             tek = kart_verisi(kelimeler[:1], self.user)
         with self.assertNumQueries(8):
             hepsi = kart_verisi(kelimeler, self.user)

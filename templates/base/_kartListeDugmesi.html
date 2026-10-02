@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Kelime kartının "Listeme ekle +" / "Listemde ✓" düğmesi (rapor 18.5).
 Kelimenin listeye eklendiği her yerde aynı düğme: açık kart, kapalı (tek
@@ -17,12 +18,12 @@ Bağlam: kart (words.kart.Kart), buyuk (isteğe bağlı: kelime sayfasındaki b�
         data-ekle-url="{% url 'add_to_my_list' kart.id %}"
         data-cikar-url="{% url 'remove_from_my_list' kart.id %}"
         aria-pressed="{{ kart.listede|yesno:'true,false' }}"
-        title="{% if kart.listede %}Listemde — çıkarmak için dokun{% else %}Listeme ekle{% endif %}"
+        title="{% if kart.listede %}{% translate "Listemde — çıkarmak için dokun" %}{% else %}{% translate "Listeme ekle" %}{% endif %}"
         class="shrink-0 inline-flex items-center justify-center gap-1 whitespace-nowrap font-semibold transition-colors disabled:opacity-60 {% if buyuk %}min-h-[48px] rounded-[3px] px-6 text-base data-[listede='0']:shadow-[4px_4px_0_var(--kalem)]{% else %}rounded-lg px-3 py-1.5 text-sm{% endif %}
                data-[listede='0']:bg-indigo-600 data-[listede='0']:text-white data-[listede='0']:hover:bg-indigo-700
                data-[listede='1']:bg-emerald-50 data-[listede='1']:text-emerald-700 data-[listede='1']:ring-1 data-[listede='1']:ring-inset data-[listede='1']:ring-emerald-200
                dark:data-[listede='1']:bg-emerald-950 dark:data-[listede='1']:text-emerald-300 dark:data-[listede='1']:ring-emerald-800">
-    <span data-ekle-yazi {% if kart.listede %}hidden{% endif %}>Listeme ekle <span aria-hidden="true">+</span></span>
-    <span data-listede-yazi {% if not kart.listede %}hidden{% endif %}>Listemde <span aria-hidden="true">✓</span></span>
+    <span data-ekle-yazi {% if kart.listede %}hidden{% endif %}>{% translate "Listeme ekle" %} <span aria-hidden="true">+</span></span>
+    <span data-listede-yazi {% if not kart.listede %}hidden{% endif %}>{% translate "Listemde" %} <span aria-hidden="true">✓</span></span>
 </button>
 {% endif %}

@@ -1,33 +1,33 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Girişsiz kullanıcı korumalı bir bölüme geldiğinde gösterilen ekran.
 Giriş formuna fırlatmak yerine nerede olduğunu anlatıp bağlantı veriyoruz.
 {% endcomment %}
 
-{% block title %}{{ gate_area }} — Giriş gerekli{% endblock %}
+{% block title %}{% blocktranslate %}{{ gate_area }} — Giriş gerekli{% endblocktranslate %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
 {# Defter teması (rapor 18.12): kilitli sayfa, defterin arasına sıkışmış bir not gibi. #}
 <div class="mx-auto max-w-xl py-8 sm:py-12">
     <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
-        <p class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">bu sayfa kilitli</p>
+        <p class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "bu sayfa kilitli" %}</p>
         <h1 class="lv-serif mt-1 text-[36px] font-black leading-tight">{{ gate_area }}</h1>
         <p class="mt-3 text-lg">
-            Şu anda giriş yapmadığınız için <b>{{ gate_area }}</b> sayfasına giremezsiniz, önce giriş yapın.
+            {% blocktranslate %}Şu anda giriş yapmadığınız için <b>{{ gate_area }}</b> sayfasına giremezsiniz, önce giriş yapın.{% endblocktranslate %}
         </p>
         {% if gate_description %}<p class="mt-2 text-base text-gray-700 dark:text-slate-300">{{ gate_description }}</p>{% endif %}
     </div>
 
     <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-        <a href="{{ gate_login_url }}" class="lv-dugme">Giriş Yap</a>
-        <a href="{% url 'register' %}" class="lv-el-bag">Kayıt Ol →</a>
+        <a href="{{ gate_login_url }}" class="lv-dugme">{% translate "Giriş Yap" %}</a>
+        <a href="{% url 'register' %}" class="lv-el-bag">{% translate "Kayıt Ol →" %}</a>
     </div>
 
     <p class="lv-el mt-8 text-[22px] leading-snug">
-        giriş yapmadan da <a href="{% url 'sozluk' %}" class="font-bold underline decoration-1 underline-offset-4">Sözlük</a>
-        ve <a href="{% url 'readings' %}" class="font-bold underline decoration-1 underline-offset-4">Okumalar</a> bölümlerini gezebilirsin.
+        {% url 'sozluk' as sozluk_adresi %}{% url 'readings' as okumalar_adresi %}{% blocktranslate with sozluk=sozluk_adresi okumalar=okumalar_adresi %}giriş yapmadan da <a href="{{ sozluk }}" class="font-bold underline decoration-1 underline-offset-4">Sözlük</a> ve <a href="{{ okumalar }}" class="font-bold underline decoration-1 underline-offset-4">Okumalar</a> bölümlerini gezebilirsin.{% endblocktranslate %}
     </p>
 </div>
 {% endblock %}

@@ -1,16 +1,17 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}"Seviyemi kendim seçeyim" (rapor 7): test yerine doğrudan seviye seçimi.{% endcomment %}
 
-{% block title %}Seviyeni seç{% endblock %}
+{% block title %}{% translate "Seviyeni seç" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
 {# Defter teması: seviyeler defterin renkli sekmeleri; seçilen sekme öne çıkar. #}
 <form method="post" data-seviye-sec>
     {% csrf_token %}
-    <h1 class="lv-baslik !text-[44px] sm:!text-[56px]">Seviyeni seç</h1>
-    <p class="lv-alt-baslik mt-1">günün kelimesi ve egzersizler bu seviyeye göre gelir</p>
+    <h1 class="lv-baslik !text-[44px] sm:!text-[56px]">{% translate "Seviyeni seç" %}</h1>
+    <p class="lv-alt-baslik mt-1">{% translate "günün kelimesi ve egzersizler bu seviyeye göre gelir" %}</p>
 
     <div class="mt-8 grid max-w-[640px]">
         {% for kod, aciklama in secenekler %}
@@ -20,10 +21,10 @@
         </label>
         {% endfor %}
     </div>
-    <button type="submit" class="lv-dugme mt-10">Kaydet</button>
-    <p class="mt-5"><a href="{% url 'seviye_testi' %}" class="lv-el-bag">Emin değilim, testi çözeyim</a></p>
+    <button type="submit" class="lv-dugme mt-10">{% translate "Kaydet" %}</button>
+    <p class="mt-5"><a href="{% url 'seviye_testi' %}" class="lv-el-bag">{% translate "Emin değilim, testi çözeyim" %}</a></p>
     {# Rapor 18.27: çok küçük, tek satırlık not; Ayarlar'a bağlanır. #}
-    <p class="mt-4 text-sm text-gray-600 dark:text-slate-300" data-ayarlar-notu>Seviyeni istediğin zaman <a href="{% url 'settings_page' %}" class="underline">Ayarlar</a>'dan değiştirebilirsin.</p>
+    <p class="mt-4 text-sm text-gray-600 dark:text-slate-300" data-ayarlar-notu>{% url 'settings_page' as ayarlar_adresi %}{% blocktranslate with adres=ayarlar_adresi %}Seviyeni istediğin zaman <a href="{{ adres }}" class="underline">Ayarlar</a>'dan değiştirebilirsin.{% endblocktranslate %}</p>
 </form>
 <style>
     .lv-sekme i { opacity: 0; }

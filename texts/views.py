@@ -18,6 +18,9 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
+from django.utils import translation
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 from django.views.decorators.http import require_POST
 
 from LearnVocab import progress
@@ -29,11 +32,12 @@ from texts.konular import konu_basligi, konular_listesi
 from texts.models import (
     Diyalog, DiyalogCevabi, Sertlik, Text, YaziDurumu, YazmaAyari,
 )
+from usersettings.anlam import turkce_acik
 from words.models import UserWordLink
 
 logger = logging.getLogger(__name__)
 
-GIRIS_ACIKLAMASI = "Yazdıkların hesabına kaydedildiği için giriş yapman gerekiyor."
+GIRIS_ACIKLAMASI = gettext_lazy("Yazdıkların hesabına kaydedildiği için giriş yapman gerekiyor.")
 
 # Metin sınırları (karakter). Görev 3–8 cümle; cümle sayısı tarayıcıda
 # yol gösterici olarak sayılıyor, sunucu yalnızca uç değerleri reddediyor.
@@ -44,30 +48,30 @@ ONERI_SAYISI = 5
 YAKIN_ZAMAN = timedelta(days=7)
 
 SERTLIK_ACIKLAMALARI = (
-    (Sertlik.NAZIK, "Nazik", "Yalnızca anlamı bozan hatalar, en çok 3."),
-    (Sertlik.NORMAL, "Normal", "Dilbilgisi ve kelime hataları, en çok 6."),
-    (Sertlik.TITIZ, "Titiz", "Noktalama, büyük harf ve resmiyet de dahil."),
+    (Sertlik.NAZIK, gettext_lazy("Nazik"), gettext_lazy("Yalnızca anlamı bozan hatalar, en çok 3.")),
+    (Sertlik.NORMAL, gettext_lazy("Normal"), gettext_lazy("Dilbilgisi ve kelime hataları, en çok 6.")),
+    (Sertlik.TITIZ, gettext_lazy("Titiz"), gettext_lazy("Noktalama, büyük harf ve resmiyet de dahil.")),
 )
 
 SONUC_MESAJLARI = {
-    dg.TAMAM: (messages.SUCCESS, "Metnin değerlendirildi."),
+    dg.TAMAM: (messages.SUCCESS, gettext_lazy("Metnin değerlendirildi.")),
     dg.UYGUN_DEGIL: (messages.WARNING,
-                     "Bu metni değerlendiremedik. İngilizce, birkaç cümlelik bir metin yazdığından emin ol."),
+                     gettext_lazy("Bu metni değerlendiremedik. İngilizce, birkaç cümlelik bir metin yazdığından emin ol.")),
     dg.KOTA: (messages.WARNING,
-              "Değerlendirme servisinin kotası şu an dolu. Metnin kaydedildi; "
-              "biraz sonra kendimiz yeniden deneyeceğiz."),
+              gettext_lazy("Değerlendirme servisinin kotası şu an dolu. Metnin kaydedildi; "
+                           "biraz sonra kendimiz yeniden deneyeceğiz.")),
     dg.SERVIS: (messages.WARNING,
-                "Değerlendirme servisi şu an cevap veremedi. Metnin kaydedildi; "
-                "biraz sonra kendimiz yeniden deneyeceğiz."),
+                gettext_lazy("Değerlendirme servisi şu an cevap veremedi. Metnin kaydedildi; "
+                             "biraz sonra kendimiz yeniden deneyeceğiz.")),
     dg.YOGUN: (messages.WARNING,
-               "Şu an çok yoğunuz. Metnin kaydedildi; biraz sonra tekrar dene "
-               "ya da değerlendirmeyi bize bırak."),
+               gettext_lazy("Şu an çok yoğunuz. Metnin kaydedildi; biraz sonra tekrar dene "
+                            "ya da değerlendirmeyi bize bırak.")),
     dg.YAPILANDIRMA: (messages.WARNING,
-                      "Değerlendirme servisine şu an ulaşılamıyor. Metnin kaydedildi; "
-                      "sorun giderilince değerlendireceğiz."),
+                      gettext_lazy("Değerlendirme servisine şu an ulaşılamıyor. Metnin kaydedildi; "
+                                   "sorun giderilince değerlendireceğiz.")),
     dg.BOZUK: (messages.WARNING,
-               "Değerlendirme bu sefer düzgün gelmedi. Metnin kaydedildi; "
-               "biraz sonra yeniden deneyeceğiz."),
+               gettext_lazy("Değerlendirme bu sefer düzgün gelmedi. Metnin kaydedildi; "
+                            "biraz sonra yeniden deneyeceğiz.")),
 }
 
 
@@ -120,6 +124,7 @@ def kullanmayi_dene(user, adet=ONERI_SAYISI):
     yetmezse listenin geri kalanından rastgele.
     """
     linkler = UserWordLink.objects.filter(user=user)
+    turkce = turkce_acik(user)
     yakin = list(linkler.filter(dateAdded__gte=timezone.now() - YAKIN_ZAMAN)
                  .order_by("-dateAdded").values_list("word_id", flat=True)[:30])
     secilen = random.sample(yakin, min(adet, len(yakin)))
@@ -135,12 +140,12 @@ def kullanmayi_dene(user, adet=ONERI_SAYISI):
         if kelime is None:
             continue
         anlamlar = sorted(kelime.meanings.all(), key=lambda m: (m.sort_order, m.id))
-        kelime.ilk_anlam = anlamlar[0].meaning_tr if anlamlar else ""
+        kelime.ilk_anlam = (anlamlar[0].meaning_tr if turkce else anlamlar[0].definition) if anlamlar else ""
         sonuc.append(kelime)
     return sonuc
 
 
-@login_gate("Yazılar", GIRIS_ACIKLAMASI)
+@login_gate(gettext_lazy("Yazılar"), GIRIS_ACIKLAMASI)
 def newTextPage(request):
     yazabilir = limits.yazabilir_mi(request.user)
     return render(request, "pages/texts/newText.html", {
@@ -161,9 +166,9 @@ def _girdiyi_dogrula(request):
     metin = (request.POST.get("user_text") or "").strip()
     metin = re.sub(r"\r\n?", "\n", metin)
     if len(metin) < EN_AZ_KARAKTER:
-        return metin, "Birkaç cümlelik İngilizce bir metin yaz (3–8 cümle)."
+        return metin, _("Birkaç cümlelik İngilizce bir metin yaz (3–8 cümle).")
     if len(metin) > EN_COK_KARAKTER:
-        return metin, f"Metin biraz uzun oldu. {EN_COK_KARAKTER} karakteri geçmesin (3–8 cümle yeter)."
+        return metin, _("Metin biraz uzun oldu. %(n)s karakteri geçmesin (3–8 cümle yeter).") % {"n": EN_COK_KARAKTER}
     return metin, None
 
 
@@ -209,27 +214,30 @@ def _olay_isleyici(reporter):
         oran = 0.15 + 0.65 * (bilgi.get("model_index", 0) / model_sayisi)
         if ad == "attempt":
             if bilgi.get("model_index", 0) == 0 and bilgi.get("attempt", 1) == 1:
-                reporter.set(oran, "Metnin okunuyor...")
+                reporter.set(oran, _("Metnin okunuyor..."))
             else:
-                reporter.set(oran, "Servis yoğun, yeniden deneniyor...")
+                reporter.set(oran, _("Servis yoğun, yeniden deneniyor..."))
         elif ad == "success":
-            reporter.set(0.9, "Geri bildirim hazırlanıyor...")
+            reporter.set(0.9, _("Geri bildirim hazırlanıyor..."))
     return isle
 
 
-def _degerlendirme_isi(job_id, yazi_id):
-    """Arka plan iş parçacığı: metni değerlendirir, sonucu işe yazar."""
+def _degerlendirme_isi(job_id, yazi_id, dil=None):
+    """Arka plan iş parçacığı: metni değerlendirir, sonucu işe yazar (isteğin dilinde)."""
     from django.db import connection
 
+    if dil:
+        translation.activate(dil)
     try:
         yazi = Text.objects.get(pk=yazi_id)
         reporter = progress.Reporter(job_id, 5, 97)
         sonuc = dg.degerlendir(yazi, on_event=_olay_isleyici(reporter))
-        progress.finish(job_id, {"text_id": yazi.pk, "sonuc": sonuc}, "Hazır.")
+        progress.finish(job_id, {"text_id": yazi.pk, "sonuc": sonuc}, _("Hazır."))
     except Exception:
         logger.exception("Yazma değerlendirme işi beklenmedik şekilde hata verdi.")
-        progress.finish(job_id, {"text_id": yazi_id, "sonuc": dg.BOZUK}, "Hazır.")
+        progress.finish(job_id, {"text_id": yazi_id, "sonuc": dg.BOZUK}, _("Hazır."))
     finally:
+        translation.deactivate()
         connection.close()
 
 
@@ -264,8 +272,9 @@ def createText(request):
         messages.info(request, seri_notu)
 
     if ajax:
-        job_id = progress.create(request.user.id, message="Metnin gönderiliyor...")
-        threading.Thread(target=_degerlendirme_isi, args=(job_id, yazi.pk), daemon=True).start()
+        job_id = progress.create(request.user.id, message=_("Metnin gönderiliyor..."))
+        threading.Thread(target=_degerlendirme_isi, args=(job_id, yazi.pk, translation.get_language()),
+                         daemon=True).start()
         return JsonResponse({"job_id": job_id})
 
     _mesaj_ekle(request, dg.degerlendir(yazi))
@@ -276,7 +285,7 @@ def createText(request):
 def createTextProgress(request, job_id):
     job = progress.read(job_id)
     if job is None or job.get("owner_id") != request.user.id:
-        return JsonResponse({"error": "İş bulunamadı."}, status=404)
+        return JsonResponse({"error": _("İş bulunamadı.")}, status=404)
     return JsonResponse({
         "state": job.get("state"),
         "percent": job.get("percent", 0),
@@ -289,9 +298,9 @@ def createTextProgress(request, job_id):
 def createTextFinish(request, job_id):
     job = progress.read(job_id)
     if job is None or job.get("owner_id") != request.user.id:
-        return JsonResponse({"error": "İş bulunamadı."}, status=404)
+        return JsonResponse({"error": _("İş bulunamadı.")}, status=404)
     if job.get("state") == progress.STATE_RUNNING:
-        return JsonResponse({"error": "İş hâlâ sürüyor."}, status=409)
+        return JsonResponse({"error": _("İş hâlâ sürüyor.")}, status=409)
 
     sonuc = job.get("result") or {}
     progress.delete(job_id)
@@ -307,7 +316,7 @@ def createTextFinish(request, job_id):
 # Değerlendirme görünümü
 # ---------------------------------------------------------------------------
 
-@login_gate("Yazılar", GIRIS_ACIKLAMASI)
+@login_gate(gettext_lazy("Yazılar"), GIRIS_ACIKLAMASI)
 def reviewText(request, text_id):
     yazi = get_object_or_404(_yazilar(request.user), id=text_id)
     geri = yazi.geri_bildirim or {}
@@ -359,7 +368,7 @@ def restoreText(request, text_id):
     return JsonResponse({"ok": True, "adres": reverse("review_text", args=[yazi.pk])})
 
 
-@login_gate("Yazılar", GIRIS_ACIKLAMASI)
+@login_gate(gettext_lazy("Yazılar"), GIRIS_ACIKLAMASI)
 def aboutGradingPage(request):
     return render(request, "pages/texts/aboutGrading.html", {
         "sertlikler": SERTLIK_ACIKLAMALARI,
@@ -401,7 +410,16 @@ def diyalogSayfasi(request):
         "diyalog": diyalog,
         "satirlar": dy.satirlari_hazirla(diyalog) if diyalog else [],
         "ilk_harf": diyalog.cevap.strip()[:1] if diyalog else "",
+        "ipucu": _diyalog_ipucu(request.user, diyalog) if diyalog else "",
     })
+
+
+def _diyalog_ipucu(user, diyalog):
+    """Boşluğun altındaki ipucu: Türkçe; "Türkçe anlamlar" kapalıysa İngilizce açıklama (rapor 18.22)."""
+    if turkce_acik(user):
+        return diyalog.ipucu
+    anlam = diyalog.meaning or diyalog.word.meanings.exclude(definition="").order_by("sort_order", "id").first()
+    return (anlam.definition if anlam and anlam.definition else "") or diyalog.ipucu
 
 
 @require_POST

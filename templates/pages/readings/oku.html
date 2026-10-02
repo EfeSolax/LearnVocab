@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Okuma ekranı (rapor 8): tek işi odaklanıp okumak. Kütüphane metni ve
@@ -10,13 +11,13 @@ Dokunulan kelimeyi tarayıcı bulur (_kelimeBaloncugu.html).
 Bağlam: baslik, paragraflar, metin (ReadingText ya da UserText), kutuphane (bool)
 {% endcomment %}
 
-{% block title %}{% if kutuphane %}{{ baslik|lower|capfirst }}{% else %}{{ baslik }}{% endif %} — Okumalar{% endblock %}
+{% block title %}{% if kutuphane %}{{ baslik|lower|capfirst }}{% else %}{{ baslik }}{% endif %} — {% translate "Okumalar" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 {% block sayfa_genisligi %}max-w-2xl{% endblock %}
 
 {% block page %}
 
-<a href="{% url 'readings' %}" class="lv-el text-[22px] font-bold no-underline hover:underline">← Okumalar</a>
+<a href="{% url 'readings' %}" class="lv-el text-[22px] font-bold no-underline hover:underline">← {% translate "Okumalar" %}</a>
 
 <header class="mt-3 mb-6">
     <h1 class="lv-sayfa-basligi">
@@ -25,23 +26,23 @@ Bağlam: baslik, paragraflar, metin (ReadingText ya da UserText), kutuphane (boo
     <p class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] text-gray-600 dark:text-slate-300">
         {% if kutuphane %}<span class="lv-el text-[22px] font-bold">{{ metin.topic_label|lower }}</span>{% endif %}
         {% if kutuphane and metin.cefr %}<span class="lv-seviye">{{ metin.cefr }}</span>{% endif %}
-        <span>~{{ metin.reading_minutes }} dk</span>
+        <span>{% blocktranslate with dk=metin.reading_minutes %}~{{ dk }} dk{% endblocktranslate %}</span>
     </p>
     <div class="mt-3 flex flex-wrap items-center justify-between gap-3">
-        <p class="lv-el -rotate-1 text-[22px]">bir kelimeye dokun, anlamı görünsün →</p>
+        <p class="lv-el -rotate-1 text-[22px]">{% translate "bir kelimeye dokun, anlamı görünsün →" %}</p>
         {# Yazı boyutu: bu cihazda hatırlanır (localStorage) #}
         <span class="inline-flex overflow-hidden rounded-full border-[1.5px] border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400" data-yazi-boyutu>
-            <button type="button" data-boyut="-1" class="px-3 py-1 font-bold" aria-label="Yazıyı küçült">A−</button>
-            <button type="button" data-boyut="1" class="border-l-[1.5px] border-indigo-600 px-3 py-1 font-bold dark:border-indigo-400" aria-label="Yazıyı büyüt">A+</button>
+            <button type="button" data-boyut="-1" class="px-3 py-1 font-bold" aria-label="{% translate "Yazıyı küçült" %}">A−</button>
+            <button type="button" data-boyut="1" class="border-l-[1.5px] border-indigo-600 px-3 py-1 font-bold dark:border-indigo-400" aria-label="{% translate "Yazıyı büyüt" %}">A+</button>
         </span>
     </div>
 </header>
 
 {% if bolum_sayisi > 1 %}
-<nav aria-label="Bölümler" class="mb-4 flex items-center justify-between text-sm font-semibold" data-bolumler>
-    {% if onceki_bolum %}<a rel="prev" href="?bolum={{ onceki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">‹ Önceki bölüm</a>{% else %}<span></span>{% endif %}
-    <span class="text-gray-500 dark:text-slate-400">Bölüm {{ bolum }} / {{ bolum_sayisi }}</span>
-    {% if sonraki_bolum %}<a rel="next" href="?bolum={{ sonraki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">Sonraki bölüm ›</a>{% else %}<span></span>{% endif %}
+<nav aria-label="{% translate "Bölümler" %}" class="mb-4 flex items-center justify-between text-sm font-semibold" data-bolumler>
+    {% if onceki_bolum %}<a rel="prev" href="?bolum={{ onceki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">‹ {% translate "Önceki bölüm" %}</a>{% else %}<span></span>{% endif %}
+    <span class="text-gray-500 dark:text-slate-400">{% blocktranslate %}Bölüm {{ bolum }} / {{ bolum_sayisi }}{% endblocktranslate %}</span>
+    {% if sonraki_bolum %}<a rel="next" href="?bolum={{ sonraki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">{% translate "Sonraki bölüm" %} ›</a>{% else %}<span></span>{% endif %}
 </nav>
 {% endif %}
 
@@ -52,34 +53,34 @@ Bağlam: baslik, paragraflar, metin (ReadingText ya da UserText), kutuphane (boo
 </article>
 
 {% if bolum_sayisi > 1 %}
-<nav aria-label="Bölümler" class="mt-6 flex items-center justify-between text-sm font-semibold" data-bolumler>
-    {% if onceki_bolum %}<a rel="prev" href="?bolum={{ onceki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">‹ Önceki bölüm</a>{% else %}<span></span>{% endif %}
-    <span class="text-gray-500 dark:text-slate-400">Bölüm {{ bolum }} / {{ bolum_sayisi }}</span>
-    {% if sonraki_bolum %}<a rel="next" href="?bolum={{ sonraki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">Sonraki bölüm ›</a>{% else %}<span></span>{% endif %}
+<nav aria-label="{% translate "Bölümler" %}" class="mt-6 flex items-center justify-between text-sm font-semibold" data-bolumler>
+    {% if onceki_bolum %}<a rel="prev" href="?bolum={{ onceki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">‹ {% translate "Önceki bölüm" %}</a>{% else %}<span></span>{% endif %}
+    <span class="text-gray-500 dark:text-slate-400">{% blocktranslate %}Bölüm {{ bolum }} / {{ bolum_sayisi }}{% endblocktranslate %}</span>
+    {% if sonraki_bolum %}<a rel="next" href="?bolum={{ sonraki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">{% translate "Sonraki bölüm" %} ›</a>{% else %}<span></span>{% endif %}
 </nav>
 {% endif %}
 
 {% if kutuphane and metin.source %}
-<p class="mt-6 text-sm text-gray-600 dark:text-slate-300">Kaynak: {{ metin.source }}</p>
+<p class="mt-6 text-sm text-gray-600 dark:text-slate-300">{% blocktranslate with kaynak=metin.source %}Kaynak: {{ kaynak }}{% endblocktranslate %}</p>
 {% endif %}
 
 {# ---------- Okuma sonu ---------- #}
-<section class="mt-12 grid gap-8 sm:grid-cols-2" aria-label="Okuma sonu">
+<section class="mt-12 grid gap-8 sm:grid-cols-2" aria-label="{% translate "Okuma sonu" %}">
     <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
-        <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">okudun!</p>
-        <p class="mt-1 text-lg font-semibold">Dokunup listene eklediğin kelimeler Learn &amp; Pass'te karşına çıkacak.</p>
-        <a href="{% url 'learn_pass_page' %}" class="lv-el-bag mt-3 inline-block">çalışmaya geç →</a>
+        <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "okudun!" %}</p>
+        <p class="mt-1 text-lg font-semibold">{% translate "Dokunup listene eklediğin kelimeler Learn & Pass'te karşına çıkacak." %}</p>
+        <a href="{% url 'learn_pass_page' %}" class="lv-el-bag mt-3 inline-block">{% translate "çalışmaya geç →" %}</a>
     </div>
     {% if siradaki %}
     <a href="{% url 'readings_library_text' siradaki.slug %}" class="lv-kupur lv-kupur-2 block text-gray-900 dark:text-slate-100" data-siradaki>
-        <span class="lv-el block text-[22px] font-bold">sıradaki metin →</span>
+        <span class="lv-el block text-[22px] font-bold">{% translate "sıradaki metin →" %}</span>
         <span class="lv-serif mt-1 block text-[22px] font-bold leading-tight" lang="en">{{ siradaki.title|lower|capfirst }}</span>
-        <span class="mt-2 flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">{% if siradaki.cefr %}<span class="lv-seviye">{{ siradaki.cefr }}</span>{% endif %}~{{ siradaki.reading_minutes }} dk</span>
+        <span class="mt-2 flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">{% if siradaki.cefr %}<span class="lv-seviye">{{ siradaki.cefr }}</span>{% endif %}{% blocktranslate with dk=siradaki.reading_minutes %}~{{ dk }} dk{% endblocktranslate %}</span>
     </a>
     {% else %}
     <a href="{% url 'readings' %}" class="lv-kupur lv-kupur-2 block text-gray-900 dark:text-slate-100">
-        <span class="lv-el block text-[22px] font-bold">okumalara dön →</span>
-        <span class="mt-1 block text-base text-gray-600 dark:text-slate-300">Kütüphanedeki diğer metinler ve kendi metinlerin.</span>
+        <span class="lv-el block text-[22px] font-bold">{% translate "okumalara dön →" %}</span>
+        <span class="mt-1 block text-base text-gray-600 dark:text-slate-300">{% translate "Kütüphanedeki diğer metinler ve kendi metinlerin." %}</span>
     </a>
     {% endif %}
 </section>

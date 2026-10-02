@@ -17,7 +17,9 @@ function oneriKutusu(adres) {
         getir(q) {
             if (this.denetim) { this.denetim.abort(); }
             this.denetim = new AbortController();
-            fetch(adres + '?q=' + encodeURIComponent(q), {
+            // "Türkçe anlamlar" kapalıysa (rapor 18.22) sunucu Türkçe anlamı göndermez.
+            var tr = document.documentElement.dataset.turkce === '0' ? '&tr=0' : '';
+            fetch(adres + '?q=' + encodeURIComponent(q) + tr, {
                 signal: this.denetim.signal, credentials: 'same-origin',
                 headers: { 'X-Requested-With': 'fetch' },
             })

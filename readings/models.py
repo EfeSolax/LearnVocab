@@ -9,6 +9,7 @@ değişse bile kayıt aynı kalıyor.
 """
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from users.models import User
 
@@ -16,11 +17,11 @@ from users.models import User
 # Konu anahtarı -> (görünen ad, renk sınıfı kökü)
 # Renkler liste sayfasında konuları birbirinden ayırmak için.
 TOPICS = (
-    ("hukuk", "Hukuk", "indigo"),
-    ("psikoloji", "Psikoloji", "violet"),
-    ("sosyoloji", "Sosyoloji", "emerald"),
-    ("antropoloji", "Antropoloji", "amber"),
-    ("egitim", "Eğitim", "rose"),
+    ("hukuk", _("Hukuk"), "indigo"),
+    ("psikoloji", _("Psikoloji"), "violet"),
+    ("sosyoloji", _("Sosyoloji"), "emerald"),
+    ("antropoloji", _("Antropoloji"), "amber"),
+    ("egitim", _("Eğitim"), "rose"),
 )
 
 TOPIC_CHOICES = [(anahtar, ad) for anahtar, ad, _ in TOPICS]

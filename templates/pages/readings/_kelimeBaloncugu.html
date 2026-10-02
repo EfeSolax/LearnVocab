@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Okuma ekranının dokun-anlamını-gör baloncuğu (rapor 8).
 
@@ -155,11 +156,11 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
         d.dataset.ekleUrl = EKLE.replace('/0/', '/' + madde.word_id + '/');
         d.dataset.cikarUrl = CIKAR.replace('/0/', '/' + madde.word_id + '/');
         d.setAttribute('aria-pressed', madde.listede ? 'true' : 'false');
-        d.title = madde.listede ? 'Listemde — çıkarmak için dokun' : 'Listeme ekle';
-        var ekle = eleman('span', null, 'Listeme ekle +');
+        d.title = madde.listede ? '{{ _("Listemde — çıkarmak için dokun")|escapejs }}' : '{{ _("Listeme ekle")|escapejs }}';
+        var ekle = eleman('span', null, '{{ _("Listeme ekle")|escapejs }}' + ' +');
         ekle.setAttribute('data-ekle-yazi', '');
         ekle.hidden = !!madde.listede;
-        var var_ = eleman('span', null, 'Listemde ✓');
+        var var_ = eleman('span', null, '{{ _("Listemde")|escapejs }}' + ' ✓');
         var_.setAttribute('data-listede-yazi', '');
         var_.hidden = !madde.listede;
         d.append(ekle, var_);
@@ -203,7 +204,7 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
         balon.replaceChildren();
         if (!bloklar.length) {
             balon.append(eleman('p', 'font-semibold text-gray-900 dark:text-slate-100', kelime));
-            balon.append(eleman('p', 'text-gray-500 dark:text-slate-400', 'Henüz sözlüğümüzde yok.'));
+            balon.append(eleman('p', 'text-gray-500 dark:text-slate-400', '{{ _("Henüz sözlüğümüzde yok.")|escapejs }}'));
             return;
         }
         bloklar.forEach(function (b, i) {
@@ -253,7 +254,7 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
                 konumla();
             }).catch(function () {
                 if (no !== istekNo || !etkin) { return; }
-                balon.replaceChildren(eleman('p', 'text-gray-500 dark:text-slate-400', 'Anlamı şu an getiremedik, tekrar dokunur musun?'));
+                balon.replaceChildren(eleman('p', 'text-gray-500 dark:text-slate-400', '{{ _("Anlamı şu an getiremedik, tekrar dokunur musun?")|escapejs }}'));
                 konumla();
             });
         }

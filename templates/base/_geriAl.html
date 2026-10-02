@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 "Geri al" bildirimi (ürün raporu 12.7): onay penceresi yerine birkaç
 saniyelik alt bildirim — "aim listenden çıkarıldı · Geri al".
@@ -70,7 +71,7 @@ JS API (layout.html'de her sayfaya bir kez eklenir):
             var dugme = document.createElement('button');
             dugme.type = 'button';
             dugme.className = 'lv-el shrink-0 px-2 text-[22px] font-bold underline decoration-1 underline-offset-4';
-            dugme.textContent = 'Geri al';
+            dugme.textContent = '{{ _("Geri al")|escapejs }}';
             dugme.addEventListener('click', function () {
                 kapat(kayit, true);
                 geriAlFonksiyonu();

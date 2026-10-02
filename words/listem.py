@@ -24,13 +24,16 @@ from datetime import datetime, timedelta
 from django.db.models import Case, Count, Exists, OuterRef, Prefetch, Q, Value, When
 from django.db.models import DateTimeField
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from .arama import en_normal, gorunur_kelimeler, tr_normal
+from usersettings.anlam import turkce_acik
+
 from .kart import tur_etiketi
 from .models import Meaning, UserWordLink
 
-SIRALAR = {"yeni": "En yeni", "eski": "En eski", "az": "A→Z"}
-ZAMANLAR = {"tumu": "Tümü", "hafta": "Son 1 hafta", "ay": "Son 1 ay"}
+SIRALAR = {"yeni": _("En yeni"), "eski": _("En eski"), "az": "A→Z"}
+ZAMANLAR = {"tumu": _("Tümü"), "hafta": _("Son 1 hafta"), "ay": _("Son 1 ay")}
 _ZAMAN_GUN = {"hafta": 7, "ay": 30}
 SAYFA_BOYU = 50
 TOPLU_EN_COK = 2000
@@ -126,7 +129,8 @@ def satirlar(user, d):
     bas = (d.sayfa - 1) * SAYFA_BOYU
     sayfa = list(qs.select_related("word").prefetch_related(
         Prefetch("word__meanings", queryset=Meaning.objects.order_by("sort_order", "id")
-                 .only("id", "word_id", "meaning_tr", "sort_order")))[bas:bas + SAYFA_BOYU])
+                 .only("id", "word_id", "meaning_tr", "definition", "sort_order")))[bas:bas + SAYFA_BOYU])
+    turkce = turkce_acik(user)
     iki_turlu = set()
     if sayfa:
         iki_turlu = set(UserWordLink.objects.filter(user=user)
@@ -134,9 +138,16 @@ def satirlar(user, d):
                         .values_list("word__text", flat=True))
     sonuc = [ListemSatiri(bag=b, id=b.word_id, text=b.word.text,
                           tur=tur_etiketi(b.word.pos) if b.word.text in iki_turlu else "",
-                          anlamlar=[m.meaning_tr for m in b.word.meanings.all() if m.meaning_tr])
+                          anlamlar=_anlamlar(b.word, turkce))
              for b in sayfa]
     return sonuc, toplam, bas + len(sayfa) < toplam
+
+
+def _anlamlar(word, turkce=True):
+    """Satırdaki numaralı anlamlar: Türkçe; "Türkçe anlamlar" kapalıysa İngilizce açıklama."""
+    if turkce:
+        return [m.meaning_tr for m in word.meanings.all() if m.meaning_tr]
+    return [m.definition for m in word.meanings.all() if m.definition]
 
 
 def tum_kelime_idleri(user, d):
@@ -162,6 +173,9 @@ def oneri(user, sorgu, en_cok=8):
         gorulen.add(w.text.lower())
         anlamlar = [m.meaning_tr for m in w.meanings.all() if m.meaning_tr]
         eslesen = next((a for a in anlamlar if tr in tr_normal(a)), None)
+        if not turkce_acik(user):
+            tanimlar = _anlamlar(w, False)
+            eslesen, anlamlar = None, [t[:60] for t in tanimlar]
         satirlar_.append({"metin": w.text, "anlam": eslesen or (anlamlar[0] if anlamlar else "")})
         if len(satirlar_) >= en_cok:
             break

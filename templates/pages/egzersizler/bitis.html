@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Bitiş ekranı (rapor 6.2): skor (8/10), yanlışların listesi ve üç seçenek:
@@ -6,7 +7,7 @@ Yanlışları tekrar çöz · Yeni tur · Bitir. Cesaretlendirici dil (rapor 12.
 Hızlı Egzersiz'de liste 10 kelimeden kısaysa "Listene kelime ekle" daveti.
 {% endcomment %}
 
-{% block title %}Egzersiz bitti{% endblock %}
+{% block title %}{% translate "Egzersiz bitti" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 {% block sayfa_genisligi %}max-w-2xl{% endblock %}
 
@@ -17,7 +18,7 @@ Hızlı Egzersiz'de liste 10 kelimeden kısaysa "Listene kelime ekle" daveti.
     <div class="lv-sayfa lv-bantli mt-6 px-5 pb-7 pt-8 sm:px-8">
         <div class="flex items-start justify-between gap-4">
             <div>
-                <p class="lv-el text-[24px] font-bold">{{ oturum.get_tur_display|lower }}{% if oturum.kaynak_id %} · yanlışların tekrarı{% endif %}</p>
+                <p class="lv-el text-[24px] font-bold">{{ oturum.get_tur_display|lower }}{% if oturum.kaynak_id %} · {% translate "yanlışların tekrarı" %}{% endif %}</p>
                 <p class="lv-serif mt-2 text-[30px] font-black leading-tight">{{ mesaj }}</p>
             </div>
             <div class="relative grid h-28 w-36 shrink-0 -rotate-6 place-items-center text-red-700 dark:text-red-300" data-skor>
@@ -28,7 +29,7 @@ Hızlı Egzersiz'de liste 10 kelimeden kısaysa "Listene kelime ekle" daveti.
 
         {% if yanlislar %}
         <section class="mt-8">
-            <h2 class="lv-el text-[26px] font-bold !text-red-700 dark:!text-red-300">Yanlışların</h2>
+            <h2 class="lv-el text-[26px] font-bold !text-red-700 dark:!text-red-300">{% translate "Yanlışların" %}</h2>
             <ul class="mt-2 border-t-2 border-red-600 dark:border-red-400">
                 {% for y in yanlislar %}
                 <li class="border-b border-dashed border-[color:var(--satir)] py-4">
@@ -40,14 +41,14 @@ Hızlı Egzersiz'de liste 10 kelimeden kısaysa "Listene kelime ekle" daveti.
             </ul>
         </section>
         {% else %}
-        <p class="lv-el mt-6 text-[26px] font-bold !text-emerald-700 dark:!text-emerald-300">hepsi doğru, tek kırmızı çizgi yok ✓</p>
+        <p class="lv-el mt-6 text-[26px] font-bold !text-emerald-700 dark:!text-emerald-300">{% translate "hepsi doğru, tek kırmızı çizgi yok ✓" %}</p>
         {% endif %}
     </div>
 
     {% if kisa_liste %}
     <div class="lv-not lv-duz mt-8 text-base text-gray-900 dark:text-slate-100">
-        Listen büyüdükçe Kısa Sınav tam 10 soruya çıkar.
-        <a href="{% url 'sozluk' %}" class="font-bold underline decoration-1 underline-offset-4">Listene kelime ekle</a>
+        {% translate "Listen büyüdükçe Kısa Sınav tam 10 soruya çıkar." %}
+        <a href="{% url 'sozluk' %}" class="font-bold underline decoration-1 underline-offset-4">{% translate "Listene kelime ekle" %}</a>
     </div>
     {% endif %}
 
@@ -55,7 +56,7 @@ Hızlı Egzersiz'de liste 10 kelimeden kısaysa "Listene kelime ekle" daveti.
         {% if yanlislar %}
         <form method="post" action="{% url 'egzersiz_tekrar' pk=oturum.pk %}">
             {% csrf_token %}
-            <button type="submit" class="lv-dugme">Yanlışları tekrar çöz</button>
+            <button type="submit" class="lv-dugme">{% translate "Yanlışları tekrar çöz" %}</button>
         </form>
         {% endif %}
         <form method="post" action="{% url 'egzersiz_basla' %}">
@@ -63,9 +64,9 @@ Hızlı Egzersiz'de liste 10 kelimeden kısaysa "Listene kelime ekle" daveti.
             <input type="hidden" name="tur" value="{{ oturum.tur }}">
             <input type="hidden" name="tip" value="{{ oturum.tip }}">
             <input type="hidden" name="sayi" value="{{ oturum.istenen }}">
-            <button type="submit" class="lv-dugme {% if yanlislar %}lv-ikincil{% endif %}">Yeni tur</button>
+            <button type="submit" class="lv-dugme {% if yanlislar %}lv-ikincil{% endif %}">{% translate "Yeni tur" %}</button>
         </form>
-        <a href="{% url 'exercises_page' %}" class="lv-el-bag">Bitir</a>
+        <a href="{% url 'exercises_page' %}" class="lv-el-bag">{% translate "Bitir" %}</a>
     </div>
 </div>
 {% endblock %}

@@ -20,6 +20,9 @@ kelimeler (ilişki çipleri, aile) yalnızca ortak sözlükten gelir.
 from dataclasses import dataclass, field
 
 from django.db.models import Prefetch, Q
+from django.utils.translation import gettext_lazy as _
+
+from usersettings.anlam import turkce_acik
 
 from . import inflect
 from .models import (
@@ -28,9 +31,14 @@ from .models import (
 )
 
 
-# Türkçe tür etiketleri (rapor 12.1: gramer etiketleri YALNIZCA Sözlük
-# kartında ve Türkçe). Kaynak PartOfSpeech'in kendi etiketleri.
-TUR_ETIKETLERI = dict(PartOfSpeech.choices)
+# Tür etiketleri (rapor 12.1: gramer etiketleri YALNIZCA Sözlük kartında).
+# Arayüz diline göre çevrilir (rapor 18.22); PartOfSpeech'in kendi etiketleri
+# yönetim paneli içindir.
+TUR_ETIKETLERI = {
+    PartOfSpeech.NOUN: _("isim"), PartOfSpeech.VERB: _("fiil"), PartOfSpeech.ADJECTIVE: _("sıfat"),
+    PartOfSpeech.ADVERB: _("zarf"), PartOfSpeech.PHRASAL_VERB: _("phrasal verb"),
+    PartOfSpeech.PREPOSITION: _("edat"), PartOfSpeech.CONJUNCTION: _("bağlaç"),
+}
 
 # Kartta seviye rozeti gösterilmeyen değer.
 _SEVIYESIZ = "Belirtilmemiş"
@@ -84,8 +92,8 @@ class Kart:
 
     @property
     def ozet(self):
-        """Kapalı kartın tek satırı için ilk anlam: 'aim · fiil · hedeflemek · B1'."""
-        return self.anlamlar[0].meaning_tr if self.anlamlar else ""
+        """Kapalı kartın tek satırı için ilk anlam: 'aim · fiil · hedeflemek · B1' (Türkçe kapalıysa açıklama)."""
+        return (self.anlamlar[0].meaning_tr or self.anlamlar[0].definition) if self.anlamlar else ""
 
     @property
     def duzensiz(self):
@@ -195,4 +203,12 @@ def kart_verisi(kelimeler, user=None):
             anlamlar=[_kart_anlami(a) for a in kelime.meanings.all()],
             aile=_aile(kelime),
         ))
+    if user is not None and not turkce_acik(user):
+        # "Türkçe anlamlar" kapalı (rapor 18.22): Türkçe boşalır, şablonlar İngilizce açıklamaya düşer.
+        for kart in kartlar:
+            kart.eslesen = ""
+            for a in kart.anlamlar:
+                a.meaning_tr = ""
+                for k in a.kaliplar:
+                    k["anlam"] = ""
     return kartlar

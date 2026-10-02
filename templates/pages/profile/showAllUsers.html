@@ -1,3 +1,4 @@
+{% load i18n %}
 {% if allUsers %}
 
 {% for current_user in allUsers %}
@@ -8,7 +9,7 @@
 <a href = "{% url 'show_user_profile' current_user.id %}" class="mt-2 flex transform items-center rounded-lg px-3 py-2 text-gray-600 dark:text-slate-400 transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-gray-700 dark:hover:text-slate-300" href="#">
 {% endif %}
     {% if current_user.profile_pic %}
-        <img class="h-8 w-8 rounded-full object-cover" src="{{ current_user.profile_pic.url }}" alt="Profil fotoğrafı">
+        <img class="h-8 w-8 rounded-full object-cover" src="{{ current_user.profile_pic.url }}" alt="{% translate "Profil fotoğrafı" %}">
     {% else %}
         <span class="inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-100 dark:bg-slate-700">
             <svg class="h-full w-full text-gray-300 dark:text-slate-600" fill="currentColor" viewBox="0 0 24 24">
@@ -21,5 +22,5 @@
 {% endfor %}
 
 {% else %}
-<p>Kullanıcılar şu anda görüntülenemiyor.</p>
+<p>{% translate "Kullanıcılar şu anda görüntülenemiyor." %}</p>
 {% endif %}

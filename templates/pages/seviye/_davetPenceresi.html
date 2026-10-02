@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Seviye testi daveti (rapor 18.27). Test yapılana ya da seviye seçilene kadar
 her sayfada; L&P / egzersiz oturumlarında ve test sayfalarında çıkmaz
@@ -8,19 +9,19 @@ her sayfada; L&P / egzersiz oturumlarında ve test sayfalarında çıkmaz
          role="dialog" aria-labelledby="seviye-daveti-baslik">
     <div class="flex items-start gap-3">
         <div class="min-w-0 flex-1">
-            <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">defterin ilk sayfası</p>
-            <h2 id="seviye-daveti-baslik" class="lv-serif text-2xl font-bold">Seviyeni birlikte bulalım</h2>
-            <p class="mt-1 text-base text-gray-700 dark:text-slate-300">Birkaç dakikalık kısa bir test: bildiğin kelimelere dokunursun, biz de sana uygun kelimelerle ilk listeni hazırlarız.</p>
+            <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "defterin ilk sayfası" %}</p>
+            <h2 id="seviye-daveti-baslik" class="lv-serif text-2xl font-bold">{% translate "Seviyeni birlikte bulalım" %}</h2>
+            <p class="mt-1 text-base text-gray-700 dark:text-slate-300">{% translate "Birkaç dakikalık kısa bir test: bildiğin kelimelere dokunursun, biz de sana uygun kelimelerle ilk listeni hazırlarız." %}</p>
         </div>
-        <button type="button" @click="acik = false" aria-label="Kapat" title="Kapat"
+        <button type="button" @click="acik = false" aria-label="{% translate "Kapat" %}" title="{% translate "Kapat" %}"
                 class="-mr-1 -mt-1 rounded-lg p-1.5 text-gray-600 hover:bg-black/5 dark:text-slate-300">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
     </div>
     <div class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
         <a href="{% url 'seviye_testi' %}"
-           class="lv-dugme lv-kucuk">Teste başla</a>
+           class="lv-dugme lv-kucuk">{% translate "Teste başla" %}</a>
         <a href="{% url 'seviye_sec' %}"
-           class="lv-el-bag !text-[22px]">Seviyemi kendim seçeyim</a>
+           class="lv-el-bag !text-[22px]">{% translate "Seviyemi kendim seçeyim" %}</a>
     </div>
 </section>

@@ -27,13 +27,13 @@ from django.utils.translation import gettext_lazy as _
 NAV_SECTIONS = (
     {
         "key": "sozluk",
-        "label": "Sözlük",
+        "label": _("Sözlük"),
         "url_name": "sozluk",
         "matches": ("sozluk",),
     },
     {
         "key": "calismalar",
-        "label": "Çalışmalar",
+        "label": _("Çalışmalar"),
         # Bölüm Learn & Pass ile açılıyor; Egzersizler sekmesine oradaki
         # şeritten geçiliyor (bkz. base/_exerciseTabs.html).
         "url_name": "learn_pass_page",
@@ -42,13 +42,13 @@ NAV_SECTIONS = (
     },
     {
         "key": "home",
-        "label": "Ana Sayfa",
+        "label": _("Ana Sayfa"),
         "url_name": "index",
         "matches": ("index",),
     },
     {
         "key": "readings",
-        "label": "Okumalar",
+        "label": _("Okumalar"),
         "url_name": "readings",
         "matches": ("readings", "readings_library_text", "readings_user_text", "readings_add"),
     },

@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Learn & Pass kart akışı (ürün raporu 6.1, 18.1).
@@ -24,7 +25,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
 {% include 'base/_alev.html' %}
 <style>
     /* Oturum dikkat dağıtıcısız (rapor 18.10): üst çubuk ve alt menü gizli, tek çıkış ✕. */
-    #navbar, nav[aria-label="Alt menü"] { display: none !important; }
+    #navbar, nav.lv-alt-menu { display: none !important; }
     main { padding-top: 1.25rem !important; padding-bottom: 1.5rem !important; }
     .lp-kelime { font-family: 'Fredoka', 'Nunito', ui-rounded, system-ui, sans-serif; font-weight: 600;
                  font-size: clamp(2.25rem, 10vw, 3.75rem); line-height: 1.1; letter-spacing: .01em; }
@@ -60,7 +61,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     {# ---------------- Üst şerit: çık, ilerleme, geri al, bitir ---------------- #}
     <div class="flex items-center gap-3">
         {# Tek çıkış (rapor 18.10): hiç kart görülmediyse Learn & Pass'e döner, yoksa oturum özetini açar. #}
-        <button type="button" id="lp-bitir" aria-label="Bitir" title="Bitir" data-cikis="{% url 'learn_pass_page' %}"
+        <button type="button" id="lp-bitir" aria-label="{% translate "Bitir" %}" title="{% translate "Bitir" %}" data-cikis="{% url 'learn_pass_page' %}"
            class="flex h-10 w-10 flex-none items-center justify-center rounded-full text-gray-600 dark:text-slate-300 hover:bg-[color:var(--kare)]">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
@@ -74,17 +75,17 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     </div>
 
     <div class="mt-3 flex items-center justify-between gap-2">
-        <span class="lv-el text-[22px] !text-gray-600 dark:!text-slate-300">{% if misafir %}Deneme turu{% else %}{{ mode_label }}{% endif %}</span>
+        <span class="lv-el text-[22px] !text-gray-600 dark:!text-slate-300">{% if misafir %}{% translate "Deneme turu" %}{% else %}{{ mode_label }}{% endif %}</span>
         <button type="button" id="lp-geri-al" disabled
                 class="lv-el inline-flex items-center gap-1 rounded-lg px-2 py-0.5 text-[22px] font-bold hover:bg-[color:var(--kare)] disabled:opacity-40 disabled:cursor-not-allowed">
-            ↶ Geri al
+            ↶ {% translate "Geri al" %}
         </button>
     </div>
 
     {% if misafir %}
     <p class="mt-2 text-sm text-gray-600 dark:text-slate-300">
-        Misafir olarak kaydırıyorsun, hiçbir şey kaydedilmez.
-        <a href="{% url 'login' %}" data-giris-gerekli="calisma" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Giriş yap</a>
+        {% translate "Misafir olarak kaydırıyorsun, hiçbir şey kaydedilmez." %}
+        <a href="{% url 'login' %}" data-giris-gerekli="calisma" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">{% translate "Giriş yap" %}</a>
     </p>
     {% endif %}
 
@@ -95,9 +96,9 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         <div id="lp-kart" style="touch-action: pan-y;" role="group" aria-live="polite"
              class="lv-fis relative flex min-h-[15rem] sm:min-h-[17rem] cursor-grab select-none items-center justify-center px-6 py-12 -rotate-1">
             <span id="lp-etiket-sol" aria-hidden="true"
-                  class="lp-damga pointer-events-none absolute left-4 top-3 -rotate-6 rounded-lg border-red-700 px-2 text-red-700 opacity-0 dark:border-red-300 dark:text-red-300">Bilmiyorum</span>
+                  class="lp-damga pointer-events-none absolute left-4 top-3 -rotate-6 rounded-lg border-red-700 px-2 text-red-700 opacity-0 dark:border-red-300 dark:text-red-300">{% translate "Bilmiyorum" %}</span>
             <span id="lp-etiket-sag" aria-hidden="true"
-                  class="lp-damga pointer-events-none absolute right-4 top-3 rotate-6 rounded-lg border-emerald-700 px-2 text-emerald-700 opacity-0 dark:border-emerald-300 dark:text-emerald-300">Biliyorum</span>
+                  class="lp-damga pointer-events-none absolute right-4 top-3 rotate-6 rounded-lg border-emerald-700 px-2 text-emerald-700 opacity-0 dark:border-emerald-300 dark:text-emerald-300">{% translate "Biliyorum" %}</span>
             <h1 id="lp-kelime" class="lp-kelime break-words text-center text-gray-900 dark:text-slate-100"></h1>
         </div>
 
@@ -108,7 +109,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
                     {# Kapibara arada göz kırpar (rapor 18.33). #}
                     <div data-kapibara-yeri aria-hidden="true" class="w-20 flex-none pt-2">{% include 'base/_kapibara.html' with poz='kirpar' sinif='h-24 w-auto' %}</div>
                     <div class="lp-balon min-w-0 flex-1 rounded-2xl rounded-tl-sm border-2 border-indigo-600 bg-[color:var(--kagit-beyaz)] px-4 py-3 shadow-[3px_3px_0_var(--murekkep-acik)] dark:border-indigo-400">
-                        <p id="lp-balon-soru" class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">Düşündüğün bu muydu?</p>
+                        <p id="lp-balon-soru" class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "Düşündüğün bu muydu?" %}</p>
                         <ol id="lp-anlamlar" class="mt-1 space-y-0.5 text-xl font-bold text-indigo-600 dark:text-indigo-400"></ol>
                         <p id="lp-ornek" lang="en" class="lv-metin mt-2 text-base text-gray-600 dark:text-slate-300"></p>
                     </div>
@@ -120,37 +121,37 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         <div id="lp-soru-dugmeleri" class="mt-6 grid grid-cols-2 gap-3">
             <button type="button" data-karar="-1"
                     class="lp-hayir">
-                ← Bilmiyorum
+                ← {% translate "Bilmiyorum" %}
             </button>
             <button type="button" data-karar="1"
                     class="lp-evet">
-                Biliyorum →
+                {% translate "Biliyorum" %} →
             </button>
         </div>
         {# "Biliyorum" sonrası: Düşündüğün bu muydu? (18.1) #}
         <div id="lp-dogrula-dugmeleri" class="mt-6 hidden grid-cols-2 gap-3">
             <button type="button" data-dogrula="-1"
                     class="lp-hayir">
-                ← Hayır, yanılmışım
+                ← {% translate "Hayır, yanılmışım" %}
             </button>
             <button type="button" data-dogrula="1"
                     class="lp-evet">
-                Evet, eminim →
+                {% translate "Evet, eminim" %} →
             </button>
         </div>
         {# "Bilmiyorum" sonrası: yalnızca anlam, devam (18.1) #}
         <div id="lp-devam-dugmeleri" class="mt-6 hidden">
             <button type="button" id="lp-devam"
                     class="lv-dugme w-full !min-h-[58px]">
-                Devam
+                {% translate "Devam" %}
             </button>
         </div>
         <p id="lp-ipucu" class="mt-4 text-center text-sm text-gray-600 dark:text-slate-300">
-            Sağa kaydır: biliyorum · Sola kaydır: bilmiyorum
+            {% translate "Sağa kaydır: biliyorum · Sola kaydır: bilmiyorum" %}
         </p>
         <p id="lp-hata" class="mt-3 hidden rounded-xl bg-amber-50 dark:bg-amber-950/40 px-4 py-3 text-center text-sm text-amber-800 dark:text-amber-300">
-            Bağlantı koptu, son kaydırman henüz kaydedilmedi.
-            <button type="button" id="lp-tekrar-dene" class="font-semibold underline">Tekrar dene</button>
+            {% translate "Bağlantı koptu, son kaydırman henüz kaydedilmedi." %}
+            <button type="button" id="lp-tekrar-dene" class="font-semibold underline">{% translate "Tekrar dene" %}</button>
         </p>
     </div>
 
@@ -159,10 +160,10 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         <div class="lv-sayfa px-6 py-8 text-center">
             <div data-kapibara-yeri aria-hidden="true" class="mx-auto w-28">{% if kartlar %}{% include 'base/_kapibara.html' with poz='merhaba' sinif='mx-auto h-32 w-auto' %}{% else %}{% include 'base/_kapibara.html' with poz='uyku' sinif='mx-auto h-32 w-auto' %}{% endif %}</div>
             <h2 id="lp-bitis-baslik" class="lv-sayfa-basligi mt-4">
-                {% if kartlar %}Güzel iş!{% else %}Şu an gösterecek kelime kalmadı{% endif %}
+                {% if kartlar %}{% translate "Güzel iş!" %}{% else %}{% translate "Şu an gösterecek kelime kalmadı" %}{% endif %}
             </h2>
             <p id="lp-bitis-ozet" class="mt-2 text-base text-gray-600 dark:text-slate-300">
-                {% if not kartlar %}{% if misafir %}Birazdan yeni bir tur deneyebilirsin.{% else %}Sözlük'ten listene kelime ekleyebilir ya da başka bir zaman tekrar gelebilirsin.{% endif %}{% endif %}
+                {% if not kartlar %}{% if misafir %}{% translate "Birazdan yeni bir tur deneyebilirsin." %}{% else %}{% translate "Sözlük'ten listene kelime ekleyebilir ya da başka bir zaman tekrar gelebilirsin." %}{% endif %}{% endif %}
             </p>
         </div>
 
@@ -172,15 +173,15 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
                 <h3 class="lv-serif text-2xl font-bold" id="lp-ekle-baslik"></h3>
                 <div id="lp-bilinmeyenler" class="mt-3 flex flex-wrap gap-1.5"></div>
                 {% if misafir %}
-                <p class="mt-3 text-base text-gray-700 dark:text-slate-300">Listene eklemek için giriş yapman gerekiyor.</p>
+                <p class="mt-3 text-base text-gray-700 dark:text-slate-300">{% translate "Listene eklemek için giriş yapman gerekiyor." %}</p>
                 <a href="{% url 'login' %}" data-giris-gerekli="liste"
-                   class="lv-dugme lv-kucuk mt-3 w-full">Giriş yap</a>
+                   class="lv-dugme lv-kucuk mt-3 w-full">{% translate "Giriş yap" %}</a>
                 {% else %}
                 <div class="mt-4 flex gap-2">
                     <button type="button" data-islem="ekle"
-                            class="lv-dugme lv-kucuk flex-1">Evet, ekle</button>
+                            class="lv-dugme lv-kucuk flex-1">{% translate "Evet, ekle" %}</button>
                     <button type="button" data-islem="gec"
-                            class="lv-dugme lv-ikincil lv-kucuk flex-1">Şimdilik hayır</button>
+                            class="lv-dugme lv-ikincil lv-kucuk flex-1">{% translate "Şimdilik hayır" %}</button>
                 </div>
                 {% endif %}
             </div>
@@ -189,13 +190,15 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
 
         <div class="grid grid-cols-2 gap-3">
             <a href="{{ request.get_full_path }}" id="lp-yeni-tur"
-               class="lv-dugme">Yeni tur</a>
+               class="lv-dugme">{% translate "Yeni tur" %}</a>
             <a href="{% url 'learn_pass_page' %}"
-               class="lv-dugme lv-ikincil">Bitir</a>
+               class="lv-dugme lv-ikincil">{% translate "Bitir" %}</a>
         </div>
     </div>
 </div>
 
+{% translate "Bilmediğin {n} kelimeyi listene ekleyelim mi?" context "tekil" as ekle_tekil %}{% translate "Bilmediğin {n} kelimeyi listene ekleyelim mi?" context "çoğul" as ekle_cogul %}
+{% translate "{n} kelime listene eklendi" context "tekil" as eklendi_tekil %}{% translate "{n} kelime listene eklendi" context "çoğul" as eklendi_cogul %}
 <script>
 (function () {
     var kok = document.getElementById('lp');
@@ -317,12 +320,12 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         acilim.setAttribute('aria-hidden', 'true');
         kart.classList.remove('border-emerald-300', 'border-rose-300', 'dark:border-emerald-700', 'dark:border-rose-800');
         kart.classList.add('border-gray-200', 'dark:border-slate-700');
-        etiketSag.textContent = 'Biliyorum';
-        etiketSol.textContent = 'Bilmiyorum';
+        etiketSag.textContent = '{{ _("Biliyorum")|escapejs }}';
+        etiketSol.textContent = '{{ _("Bilmiyorum")|escapejs }}';
         goster('lp-soru-dugmeleri', true);
         goster('lp-dogrula-dugmeleri', false);
         goster('lp-devam-dugmeleri', false);
-        $('lp-ipucu').textContent = 'Sağa kaydır: biliyorum · Sola kaydır: bilmiyorum';
+        $('lp-ipucu').textContent = '{{ _("Sağa kaydır: biliyorum · Sola kaydır: bilmiyorum")|escapejs }}';
         ilerlemeyiGoster();
     }
 
@@ -333,17 +336,17 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         kart.classList.add.apply(kart.classList, yon > 0
             ? ['border-emerald-300', 'dark:border-emerald-700']
             : ['border-rose-300', 'dark:border-rose-800']);
-        $('lp-balon-soru').textContent = yon > 0 ? 'Düşündüğün bu muydu?' : 'Anlamı:';
-        etiketSag.textContent = 'Eminim';
-        etiketSol.textContent = 'Yanılmışım';
+        $('lp-balon-soru').textContent = yon > 0 ? '{{ _("Düşündüğün bu muydu?")|escapejs }}' : '{{ _("Anlamı:")|escapejs }}';
+        etiketSag.textContent = '{{ _("Eminim")|escapejs }}';
+        etiketSol.textContent = '{{ _("Yanılmışım")|escapejs }}';
         acilim.classList.add('acik');
         acilim.setAttribute('aria-hidden', 'false');
         goster('lp-soru-dugmeleri', false);
         goster('lp-dogrula-dugmeleri', yon > 0);
         goster('lp-devam-dugmeleri', yon < 0);
         $('lp-ipucu').textContent = yon > 0
-            ? 'Sağa kaydır: evet, eminim · Sola kaydır: hayır, yanılmışım'
-            : 'Devam etmek için kaydır';
+            ? '{{ _("Sağa kaydır: evet, eminim · Sola kaydır: hayır, yanılmışım")|escapejs }}'
+            : '{{ _("Devam etmek için kaydır")|escapejs }}';
         ilerlemeyiGoster();
         // Küçük ekranda balon görünür olsun
         setTimeout(function () {
@@ -456,14 +459,14 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         $('lp-bitir').classList.add('invisible');
         ilerlemeyiGoster();
         var bilmedigi = bilinmeyenler.length;
-        $('lp-bitis-baslik').textContent = gorulen ? 'Güzel iş!' : 'Bir dahaki sefere!';
+        $('lp-bitis-baslik').textContent = gorulen ? '{{ _("Güzel iş!")|escapejs }}' : '{{ _("Bir dahaki sefere!")|escapejs }}';
         $('lp-bitis-ozet').textContent = gorulen
-            ? gorulen + ' kelimeye baktın: ' + bilinen + ' biliyordun, ' + bilinmeyen + ' tekrar edeceğiz.'
-              + (havuzBitti ? ' Şimdilik gösterecek kelime kalmadı.' : '')
-            : 'Hiç kaydırmadın; istediğin zaman tekrar başlayabilirsin.';
+            ? '{{ _("{gorulen} kelimeye baktın: {bilinen} biliyordun, {bilinmeyen} tekrar edeceğiz.")|escapejs }}'.replace('{gorulen}', gorulen).replace('{bilinen}', bilinen).replace('{bilinmeyen}', bilinmeyen)
+              + (havuzBitti ? ' ' + '{{ _("Şimdilik gösterecek kelime kalmadı.")|escapejs }}' : '')
+            : '{{ _("Hiç kaydırmadın; istediğin zaman tekrar başlayabilirsin.")|escapejs }}';
         if (!bilmedigi) { return; }
 
-        $('lp-ekle-baslik').textContent = 'Bilmediğin ' + bilmedigi + ' kelimeyi listene ekleyelim mi?';
+        $('lp-ekle-baslik').textContent = (bilmedigi === 1 ? '{{ ekle_tekil|escapejs }}' : '{{ ekle_cogul|escapejs }}').replace('{n}', bilmedigi);
         var kutu = $('lp-bilinmeyenler');
         kutu.innerHTML = '';
         bilinmeyenler.forEach(function (b) {
@@ -492,9 +495,9 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
             return denemeli(kok.dataset.bilinmeyenUrl, { islem: islem, word_ids: idler });
         }).then(function (cevap) {
             var eklenenler = cevap.eklenenler || [];
-            var mesaj = islem === 'ekle' ? eklenenler.length + ' kelime listene eklendi' : 'Tamam, şimdilik eklemedik';
+            var mesaj = islem === 'ekle' ? (eklenenler.length === 1 ? '{{ eklendi_tekil|escapejs }}' : '{{ eklendi_cogul|escapejs }}').replace('{n}', eklenenler.length) : '{{ _("Tamam, şimdilik eklemedik")|escapejs }}';
             soru.classList.add('hidden');
-            sonuc.textContent = islem === 'ekle' ? '✓ ' + mesaj + '. Egzersizlerde karşına çıkacaklar.' : mesaj + '.';
+            sonuc.textContent = islem === 'ekle' ? '✓ ' + mesaj + '. ' + '{{ _("Egzersizlerde karşına çıkacaklar.")|escapejs }}' : mesaj + '.';
             sonuc.classList.remove('hidden');
             window.geriAl.goster(mesaj, function () {
                 denemeli(kok.dataset.bilinmeyenUrl, { islem: 'geri_al', word_ids: idler, eklenenler: eklenenler })
@@ -506,7 +509,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
             });
         }).catch(function () {
             dugmeler.forEach(function (d) { d.disabled = false; });
-            window.geriAl.bildir('Bağlantı kurulamadı, birazdan tekrar dene.');
+            window.geriAl.bildir('{{ _("Bağlantı kurulamadı, birazdan tekrar dene.")|escapejs }}');
         });
     });
 

@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Diyalogda doğru kelime (ürün raporu 9.2). 4–6 satırlık hazır diyalog, tek
@@ -7,36 +8,36 @@ sunucuda değerlendirilir (cevap sayfada yazmaz). Diyaloglar havuzdan (D6);
 havuz boşken cesaretlendirici bir boş hâl görünür.
 {% endcomment %}
 
-{% block title %}Diyalogda doğru kelime{% endblock %}
+{% block title %}{% translate "Diyalogda doğru kelime" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
 
-<a href="{% url 'profile_texts' %}" class="lv-el text-[22px] font-bold hover:underline">← Yazılar</a>
-<h1 class="lv-baslik mt-2 !text-[40px] sm:!text-[56px]">Diyalogda doğru kelime</h1>
-<span class="lv-alt-baslik mt-1 mb-8">boşluğa gelen İngilizce kelimeyi yaz</span>
+<a href="{% url 'profile_texts' %}" class="lv-el text-[22px] font-bold hover:underline">← {% translate "Yazılar" %}</a>
+<h1 class="lv-baslik mt-2 !text-[40px] sm:!text-[56px]">{% translate "Diyalogda doğru kelime" %}</h1>
+<span class="lv-alt-baslik mt-1 mb-8">{% translate "boşluğa gelen İngilizce kelimeyi yaz" %}</span>
 
 {% if havuz_bos %}
 <div class="lv-el text-[22px] leading-snug py-2 text-center" data-bos="havuz">
-    <p class="text-lg font-semibold text-indigo-900 dark:text-indigo-200">Diyaloglar hazırlanıyor</p>
+    <p class="text-lg font-semibold text-indigo-900 dark:text-indigo-200">{% translate "Diyaloglar hazırlanıyor" %}</p>
     <p class="mx-auto mt-2 max-w-md text-sm text-indigo-900/80 dark:text-indigo-200/80">
-        {% if misafir %}Çok yakında burada kısa diyaloglar olacak.{% else %}Çok yakında burada listendeki kelimelerle kısa diyaloglar olacak. O zamana kadar serbest yazmayla kelimelerini kullanmayı deneyebilirsin.{% endif %}
+        {% if misafir %}{% translate "Çok yakında burada kısa diyaloglar olacak." %}{% else %}{% translate "Çok yakında burada listendeki kelimelerle kısa diyaloglar olacak. O zamana kadar serbest yazmayla kelimelerini kullanmayı deneyebilirsin." %}{% endif %}
     </p>
-    {% if not misafir %}<a href="{% url 'new_text_page' %}" class="lv-dugme lv-kucuk mt-5 inline-flex">Serbest yazmaya geç</a>{% endif %}
+    {% if not misafir %}<a href="{% url 'new_text_page' %}" class="lv-dugme lv-kucuk mt-5 inline-flex">{% translate "Serbest yazmaya geç" %}</a>{% endif %}
 </div>
 
 {% elif liste_bos %}
 <div class="lv-el text-[22px] leading-snug py-2 text-center" data-bos="liste">
-    <p class="text-lg font-semibold text-gray-900 dark:text-slate-100">Listen henüz boş</p>
-    <p class="mx-auto mt-2 max-w-md text-sm text-gray-600 dark:text-slate-400">Diyaloglar listendeki kelimelerle gelir. Sözlük'te + ile ya da Learn &amp; Pass'te kelime ekleyebilirsin.</p>
-    <a href="{% url 'sozluk' %}" class="lv-dugme lv-kucuk mt-5 inline-flex">Sözlük'e git</a>
+    <p class="text-lg font-semibold text-gray-900 dark:text-slate-100">{% translate "Listen henüz boş" %}</p>
+    <p class="mx-auto mt-2 max-w-md text-sm text-gray-600 dark:text-slate-400">{% translate "Diyaloglar listendeki kelimelerle gelir. Sözlük'te + ile ya da Learn & Pass'te kelime ekleyebilirsin." %}</p>
+    <a href="{% url 'sozluk' %}" class="lv-dugme lv-kucuk mt-5 inline-flex">{% translate "Sözlük'e git" %}</a>
 </div>
 
 {% elif not diyalog %}
 <div class="lv-el text-[22px] leading-snug py-2 text-center" data-bos="kelime">
-    <p class="text-lg font-semibold text-gray-900 dark:text-slate-100">Listendeki kelimeler için henüz diyalog yok</p>
-    <p class="mx-auto mt-2 max-w-md text-sm text-gray-600 dark:text-slate-400">Havuz büyüdükçe listendeki kelimelerle diyaloglar burada görünecek. Bu arada serbest yazmayı deneyebilirsin.</p>
-    <a href="{% url 'new_text_page' %}" class="lv-dugme lv-kucuk mt-5 inline-flex">Serbest yazmaya geç</a>
+    <p class="text-lg font-semibold text-gray-900 dark:text-slate-100">{% translate "Listendeki kelimeler için henüz diyalog yok" %}</p>
+    <p class="mx-auto mt-2 max-w-md text-sm text-gray-600 dark:text-slate-400">{% translate "Havuz büyüdükçe listendeki kelimelerle diyaloglar burada görünecek. Bu arada serbest yazmayı deneyebilirsin." %}</p>
+    <a href="{% url 'new_text_page' %}" class="lv-dugme lv-kucuk mt-5 inline-flex">{% translate "Serbest yazmaya geç" %}</a>
 </div>
 
 {% else %}
@@ -50,10 +51,10 @@ havuz boşken cesaretlendirici bir boş hâl görünür.
             <span class="lv-el w-7 shrink-0 text-[28px] font-bold leading-9">{{ s.kisi|default:"–"|slice:":1" }}</span>
             <p lang="en" class="lv-metin rounded-[4px_16px_16px_16px] bg-[color:var(--kagit-beyaz)] px-4 py-2 text-[18px] leading-9 shadow-sm">
                 {{ s.once }}{% if s.bosluk %}<span class="inline-flex flex-col align-top leading-tight"><input type="text" x-model="girdi" x-ref="girdi" :disabled="sonuc && sonuc.durum !== 'bos'"
-                       autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Boşluğa gelen İngilizce kelime"
+                       autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="{% translate "Boşluğa gelen İngilizce kelime" %}"
                        :placeholder="ipucuAcik ? '{{ ilk_harf|escapejs }}…' : ''"
                        :class="renk()"
-                       class="mx-1 w-36 border-0 border-b-2 bg-transparent px-1 py-0.5 text-center font-sans text-lg font-bold focus:outline-none focus:ring-0"><span class="lv-el mx-1 mt-1 text-[19px]">{{ diyalog.ipucu }}</span></span>{{ s.sonra }}{% endif %}
+                       class="mx-1 w-36 border-0 border-b-2 bg-transparent px-1 py-0.5 text-center font-sans text-lg font-bold focus:outline-none focus:ring-0"><span class="lv-el mx-1 mt-1 text-[19px]">{{ ipucu }}</span></span>{{ s.sonra }}{% endif %}
             </p>
         </div>
         {% endfor %}
@@ -68,13 +69,13 @@ havuz boşken cesaretlendirici bir boş hâl görünür.
     <div class="flex flex-wrap items-center gap-3">
         <template x-if="!sonuc || sonuc.durum === 'bos'">
             <div class="flex flex-wrap items-center gap-3">
-                <button type="submit" :disabled="bekliyor" class="lv-dugme lv-kucuk disabled:opacity-60">Kontrol et</button>
+                <button type="submit" :disabled="bekliyor" class="lv-dugme lv-kucuk disabled:opacity-60">{% translate "Kontrol et" %}</button>
                 <button type="button" @click="ipucuAcik = true; $refs.girdi && $refs.girdi.focus()" x-show="!ipucuAcik"
-                        class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">İlk harfi göster</button>
+                        class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">{% translate "İlk harfi göster" %}</button>
             </div>
         </template>
         <a x-show="sonuc && sonuc.durum !== 'bos'" x-cloak href="{% url 'diyalog_page' %}?onceki={{ diyalog.id }}"
-           class="lv-dugme lv-kucuk">Sonraki</a>
+           class="lv-dugme lv-kucuk">{% translate "Sonraki" %}</a>
     </div>
 </form>
 
@@ -101,7 +102,7 @@ function diyalogCevabi() {
                 body: veri
             }).then(function (r) { return r.json(); })
               .then(function (d) { self.sonuc = d; })
-              .catch(function () { self.sonuc = {durum: 'bos', mesaj: 'Bağlantı koptu, bir daha dener misin?'}; })
+              .catch(function () { self.sonuc = {durum: 'bos', mesaj: '{{ _("Bağlantı koptu, bir daha dener misin?")|escapejs }}'}; })
               .finally(function () { self.bekliyor = false; });
         },
         renk: function () {

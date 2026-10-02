@@ -26,6 +26,7 @@ from datetime import timedelta
 
 from django.db.models import Q
 from django.shortcuts import render
+from django.utils.translation import gettext_lazy as _
 
 from readings.models import ReadingText
 from seri import hesap as seri_hesap
@@ -36,8 +37,8 @@ from words.models import CEFR_LEVELS, HazirListe, UserWordLink
 
 # Seviye sekmeleri: kısa, abartısız tarifler.
 SEVIYE_TARIFLERI = {
-    "A1": "en temel kelimeler", "A2": "günlük hayat", "B1": "hazırlığın ilk dönemi",
-    "B2": "okuma metinleri, sınavlar", "C1": "akademik metinler", "C2": "ince ayrıntılar",
+    "A1": _("en temel kelimeler"), "A2": _("günlük hayat"), "B1": _("hazırlığın ilk dönemi"),
+    "B2": _("okuma metinleri, sınavlar"), "C1": _("akademik metinler"), "C2": _("ince ayrıntılar"),
 }
 TABLO_ADET = 5
 TAKVIM_HAFTA = 5

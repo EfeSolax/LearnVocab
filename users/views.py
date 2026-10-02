@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.core.cache import cache
 from django.utils import timezone
@@ -8,7 +9,9 @@ from users.models import User
 
 # Kullanıcıya çıktı vermek için mesajlar import edelim.
 from django.contrib import messages
+from django.utils.translation import gettext as _
 
+from LearnVocab import diller
 from LearnVocab.authgate import GIRIS_NEDENLERI, giris_adresi, giris_notu, guvenli_sonraki
 import random
 
@@ -66,19 +69,19 @@ def register(request):
 
     hata = None
     if not degerler["first_name"] or not degerler["last_name"]:
-        hata = "Adını ve soyadını yazar mısın?"
+        hata = _("Adını ve soyadını yazar mısın?")
     elif not degerler["email"]:
-        hata = "E-posta boş olamaz."
+        hata = _("E-posta boş olamaz.")
     elif not degerler["username"]:
-        hata = "Kullanıcı adı boş olamaz."
+        hata = _("Kullanıcı adı boş olamaz.")
     elif len(degerler["username"]) > 150:
-        hata = "Kullanıcı adı en çok 150 karakter olabilir."
+        hata = _("Kullanıcı adı en çok 150 karakter olabilir.")
     elif checkThePassword(sifre) != "correct":
         hata = checkThePassword(sifre)
     elif User.objects.filter(username__iexact=degerler["username"]).exists():
-        hata = "Bu kullanıcı adı alınmış."
+        hata = _("Bu kullanıcı adı alınmış.")
     elif User.objects.filter(email__iexact=degerler["email"]).exists():
-        hata = "Bu e-posta adresi ile daha önce kayıt yapılmış."
+        hata = _("Bu e-posta adresi ile daha önce kayıt yapılmış.")
 
     if hata:
         messages.error(request, hata)
@@ -87,13 +90,13 @@ def register(request):
     user = User.objects.create_user(password=sifre, **degerler)
     UserSettings.objects.create(user=user)
 
-    messages.success(request, "Başarılı bir şekilde kaydınız yapıldı. Artık giriş yapabilirsiniz!")
+    messages.success(request, _("Başarılı bir şekilde kaydınız yapıldı. Artık giriş yapabilirsiniz!"))
     return redirect("login")
 
 
 def checkThePassword(s):
     if (len(s) < 8):
-        return "Şifre en az 8 karakterli olmalıdır."
+        return _("Şifre en az 8 karakterli olmalıdır.")
     
     digits = "0123456789"
     lowerCase = "abcçdefgğhıijklmnoöprsştuüvyzxwq"
@@ -111,13 +114,13 @@ def checkThePassword(s):
             containsUpperCase = True
     
     if (not containsDigits):
-        return "Şifre en az bir tane rakam içermelidir."
+        return _("Şifre en az bir tane rakam içermelidir.")
     
     if (not containsLowerCase):
-        return "Şifre en az bir tane küçük harf içermelidir."
+        return _("Şifre en az bir tane küçük harf içermelidir.")
     
     if (not containsUpperCase):
-        return "Şifre en az bir tane büyük harf içermelidir."
+        return _("Şifre en az bir tane büyük harf içermelidir.")
     
     return "correct"
 
@@ -142,10 +145,11 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            messages.success(request, f"Hoş geldin, {username}!")
-            return redirect(sonraki or "index")
+            messages.success(request, _("Hoş geldin, %(ad)s!") % {"ad": username})
+            # Hesapta kayıtlı arayüz dili varsa girişten sonra o dilde devam edilir (rapor 18.22).
+            return diller.hesap_dili_ile_yonlendir(user, sonraki or reverse("index"))
         else:
-            messages.error(request, "Kullanıcı adı veya şifre hatalı!")
+            messages.error(request, _("Kullanıcı adı veya şifre hatalı!"))
             # Hatalı denemede ?next= ve açıklama kaybolmasın.
             return redirect(giris_adresi(sonraki, request.POST.get("neden")))
 
@@ -159,7 +163,7 @@ def login_user(request):
 def logout_user(request):
     
     logout(request)
-    messages.success(request, "Başarıyla çıkış yaptınız.")
+    messages.success(request, _("Başarıyla çıkış yaptınız."))
     return redirect("index")
 
 @login_required
@@ -177,15 +181,15 @@ def changePassword(request):
 
     # Mevcut şifre doğrulaması: oturumu ele geçiren biri şifreyi değiştirememeli
     if not request.user.check_password(oldPassword):
-        messages.error(request, "Mevcut şifrenizi hatalı girdiniz.")
+        messages.error(request, _("Mevcut şifrenizi hatalı girdiniz."))
         return redirect("change_password_page")
 
     if password1 != password2:
-        messages.error(request, "Girdiğiniz şifreler uyuşmuyor.")
+        messages.error(request, _("Girdiğiniz şifreler uyuşmuyor."))
         return redirect("change_password_page")
 
     if oldPassword == password1:
-        messages.error(request, "Yeni şifreniz mevcut şifrenizle aynı olamaz.")
+        messages.error(request, _("Yeni şifreniz mevcut şifrenizle aynı olamaz."))
         return redirect("change_password_page")
 
     result = checkThePassword(password1)
@@ -201,7 +205,7 @@ def changePassword(request):
     # kullanıcı kendi şifresini değiştirdiği anda sistemden atılır.
     update_session_auth_hash(request, current_user)
 
-    messages.success(request, "Şifreniz başarılı bir şekilde değiştirildi.")
+    messages.success(request, _("Şifreniz başarılı bir şekilde değiştirildi."))
     return redirect("index")
 
 def forgotPassword(request):
@@ -228,7 +232,7 @@ def sendVerificationCode(request):
         remaining = int(PASSWORD_RESET_RESEND_SECONDS - (now_ts - float(last_sent_at)))
         messages.error(
             request,
-            f"Çok sık kod talep ettiniz. Lütfen {remaining} saniye sonra tekrar deneyin."
+            _("Çok sık kod talep ettiniz. Lütfen %(n)s saniye sonra tekrar deneyin.") % {"n": remaining}
         )
         return render(request, "pages/users/mailVerification.html")
 
@@ -241,12 +245,12 @@ def sendVerificationCode(request):
     if user and not already_sent:
         code = random.randint(100000, 999999)
 
-        subject = 'LearnVocab Şifre Sıfırlama'
+        subject = _("LearnVocab Şifre Sıfırlama")
         message = (
-            f"Merhaba, {username}\n\n"
-            f"İşte şifreni yenilemek için kodun: {code}\n\n"
-            f"Bu kod {PASSWORD_RESET_CODE_TTL_SECONDS // 60} dakika boyunca geçerlidir.\n\n"
-            "Eğer bu şifre yenileme isteğini siz oluşturmadıysanız bu mail'i görmezden gelebilirsiniz."
+            _("Merhaba, %(ad)s") % {"ad": username} + "\n\n"
+            + _("İşte şifreni yenilemek için kodun: %(kod)s") % {"kod": code} + "\n\n"
+            + _("Bu kod %(dk)s dakika boyunca geçerlidir.") % {"dk": PASSWORD_RESET_CODE_TTL_SECONDS // 60} + "\n\n"
+            + _("Eğer bu şifre yenileme isteğini siz oluşturmadıysanız bu mail'i görmezden gelebilirsiniz.")
         )
 
         try:
@@ -272,7 +276,7 @@ def sendVerificationCode(request):
     # Kullanıcı var da olsa yok da olsa AYNI mesaj verilir.
     messages.success(
         request,
-        "Bu kullanıcı adı kayıtlıysa, hesaba tanımlı e-posta adresine bir doğrulama kodu gönderildi."
+        _("Bu kullanıcı adı kayıtlıysa, hesaba tanımlı e-posta adresine bir doğrulama kodu gönderildi.")
     )
     return render(request, "pages/users/mailVerification.html")
 
@@ -289,7 +293,7 @@ def verifyCode(request):
     # Kod hiç üretilmemişse ya da süresi dolmuşsa akışı bitir
     if not verificationCode or not expires_at or timezone.now().timestamp() > float(expires_at):
         _clear_password_reset_session(request)
-        messages.error(request, "Doğrulama kodunuzun süresi doldu. Lütfen yeniden kod talep edin.")
+        messages.error(request, _("Doğrulama kodunuzun süresi doldu. Lütfen yeniden kod talep edin."))
         return redirect("forgot_password")
 
     # Deneme sayısını sınırla (kaba kuvvet denemesine karşı)
@@ -298,7 +302,7 @@ def verifyCode(request):
 
     if attempts > PASSWORD_RESET_MAX_ATTEMPTS:
         _clear_password_reset_session(request)
-        messages.error(request, "Çok fazla hatalı deneme yaptınız. Lütfen yeniden kod talep edin.")
+        messages.error(request, _("Çok fazla hatalı deneme yaptınız. Lütfen yeniden kod talep edin."))
         return redirect("forgot_password")
 
     if str(verificationCode) == str(enteredCode):
@@ -307,11 +311,11 @@ def verifyCode(request):
         request.session.pop("verification_code_expires_at", None)
         request.session.pop("verification_attempts", None)
         request.session["mail_code_verification"] = True
-        messages.success(request, "Kodu doğru girdiniz. Artık yeni şifrenizi oluşturabilirsiniz.")
+        messages.success(request, _("Kodu doğru girdiniz. Artık yeni şifrenizi oluşturabilirsiniz."))
         return render(request, "pages/users/changePasswordWithMail.html")
 
     kalan = PASSWORD_RESET_MAX_ATTEMPTS - attempts
-    messages.error(request, f"Yanlış kod girildi. Kalan deneme hakkınız: {kalan}")
+    messages.error(request, _("Yanlış kod girildi. Kalan deneme hakkınız: %(n)s") % {"n": kalan})
     return render(request, "pages/users/mailVerification.html")
 
 
@@ -327,14 +331,14 @@ def changePasswordWithMail(request):
         return redirect("login")
 
     if not request.session.get("mail_code_verification"):
-        messages.error(request, "Önce e-posta ile doğrulama yapmalısınız.")
+        messages.error(request, _("Önce e-posta ile doğrulama yapmalısınız."))
         return redirect("forgot_password")
 
     password1 = request.POST.get("password1")
     password2 = request.POST.get("password2")
 
     if password1 != password2:
-        messages.error(request, "Girdiğiniz şifreler uyuşmuyor.")
+        messages.error(request, _("Girdiğiniz şifreler uyuşmuyor."))
         return render(request, "pages/users/changePasswordWithMail.html")
 
     result = checkThePassword(password1)
@@ -347,7 +351,7 @@ def changePasswordWithMail(request):
 
     if not user:
         _clear_password_reset_session(request)
-        messages.error(request, "İşlem tamamlanamadı. Lütfen yeniden kod talep edin.")
+        messages.error(request, _("İşlem tamamlanamadı. Lütfen yeniden kod talep edin."))
         return redirect("forgot_password")
 
     user.set_password(password1)
@@ -356,5 +360,5 @@ def changePasswordWithMail(request):
     # Akış başarıyla bittiği için tüm doğrulama bilgilerini temizle
     _clear_password_reset_session(request)
 
-    messages.success(request, "Şifreniz başarıyla değiştirildi. Artık giriş yapabilirsiniz!")
+    messages.success(request, _("Şifreniz başarıyla değiştirildi. Artık giriş yapabilirsiniz!"))
     return redirect("login")

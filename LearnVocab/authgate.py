@@ -31,15 +31,16 @@ from urllib.parse import urlencode
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils.http import url_has_allowed_host_and_scheme
+from django.utils.translation import gettext_lazy as _
 
 
 # Giriş sayfasında "Önce giriş yapmalısın." cümlesinin altına yazılan kısa açıklama.
 GIRIS_NEDENLERI = {
-    "liste": "Kelimeleri listene ekleyebilmek için bir hesaba ihtiyacın var.",
-    "egzersiz": "Egzersizler kendi listenle çalıştığı için giriş yapman gerekiyor.",
-    "yazma": "Yazdıkların hesabına kaydedildiği için giriş yapman gerekiyor.",
-    "pdf": "Kendi metinlerini yükleyebilmek için giriş yapman gerekiyor.",
-    "calisma": "Çalışmanın kaydedilmesi için giriş yapman gerekiyor.",
+    "liste": _("Kelimeleri listene ekleyebilmek için bir hesaba ihtiyacın var."),
+    "egzersiz": _("Egzersizler kendi listenle çalıştığı için giriş yapman gerekiyor."),
+    "yazma": _("Yazdıkların hesabına kaydedildiği için giriş yapman gerekiyor."),
+    "pdf": _("Kendi metinlerini yükleyebilmek için giriş yapman gerekiyor."),
+    "calisma": _("Çalışmanın kaydedilmesi için giriş yapman gerekiyor."),
 }
 
 
@@ -72,9 +73,9 @@ def giris_notu(request):
     """Giriş sayfasında gösterilecek açıklama: (başlık, ayrıntı) ya da None."""
     neden = request.GET.get("neden") or request.POST.get("neden")
     if neden in GIRIS_NEDENLERI:
-        return {"baslik": "Önce giriş yapmalısın.", "ayrinti": GIRIS_NEDENLERI[neden]}
+        return {"baslik": _("Önce giriş yapmalısın."), "ayrinti": GIRIS_NEDENLERI[neden]}
     if guvenli_sonraki(request):
-        return {"baslik": "Önce giriş yapmalısın.", "ayrinti": ""}
+        return {"baslik": _("Önce giriş yapmalısın."), "ayrinti": ""}
     return None
 
 

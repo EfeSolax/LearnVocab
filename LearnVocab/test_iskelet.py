@@ -32,7 +32,7 @@ class GirisGerekliTests(TestCase):
     def test_giris_sayfasi_nedeni_gosterir(self):
         html = self.client.get(reverse("login"), {"next": "/sozluk/", "neden": "liste"}).content.decode()
         self.assertIn("Önce giriş yapmalısın.", html)
-        self.assertIn(GIRIS_NEDENLERI["liste"], html)
+        self.assertIn(str(GIRIS_NEDENLERI["liste"]), html)
         self.assertIn('name="next" value="/sozluk/"', html)
 
     def test_uydurma_neden_sayfaya_basilmaz(self):

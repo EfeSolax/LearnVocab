@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Mobil alt sekme çubuğu (ürün raporu 2.2).
 
@@ -9,7 +10,7 @@ bölüme (Yazma) dokununca giriş sayfasına yönlendiriliyor
 Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
 {% endcomment %}
 
-<nav aria-label="Alt menü"
+<nav aria-label="{% translate "Alt menü" %}"
      class="lv-alt-menu lg:hidden fixed inset-x-0 bottom-0 z-50 pb-[env(safe-area-inset-bottom)]">
     <ul class="grid grid-cols-5">
         {% for section in nav_sections %}

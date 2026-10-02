@@ -30,6 +30,7 @@ from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.cache import patch_cache_control
+from django.utils.translation import gettext as _
 from django.views.decorators.http import require_GET, require_POST
 
 from LearnVocab.seo import tam_adres
@@ -110,8 +111,8 @@ def sozluk_kelime(request, slug):
 
     baglam.update(_sonuc_baglami(request, sonuc), sorgu=sonuc.sorgu, kelime_sayfasi=True)
     baglam["noindex"] = not dizine_alma.sayfa_acik_mi(sonuc.kelimeler, sonuc.ifadeler)
-    baglam["sayfa_basligi"] = (f"{sonuc.sorgu} ne demek? Türkçe anlamı ve cümle içinde "
-                               f"kullanımı — LearnVocab Sözlük")
+    baglam["sayfa_basligi"] = _("%(kelime)s ne demek? Türkçe anlamı ve cümle içinde kullanımı — LearnVocab Sözlük") % {
+        "kelime": sonuc.sorgu}
     baglam["ekmek_kirintisi"] = _ekmek_kirintisi(sonuc)
     baglam["yapisal_veri"] = _yapisal_veri(sonuc, baglam["kartlar"], baglam["ekmek_kirintisi"])
     if baglam["kartlar"]:
@@ -157,10 +158,10 @@ def _madde_baglami(sonuc, kartlar):
 
 def _ekmek_kirintisi(sonuc):
     """[(ad, yol)] — sayfada görünen satır: Sözlük › B1 kelimeleri › bank"""
-    adimlar = [("Sözlük", reverse("sozluk"))]
+    adimlar = [(_("Sözlük"), reverse("sozluk"))]
     seviye = next((k.cefr for k in sonuc.kelimeler if k.cefr in CEFR_LEVELS), "")
     if seviye:
-        adimlar.append((f"{seviye} kelimeleri", reverse("sozluk_seviye", args=[seviye.lower()])))
+        adimlar.append((_("%(seviye)s kelimeleri") % {"seviye": seviye}, reverse("sozluk_seviye", args=[seviye.lower()])))
     adimlar.append((sonuc.sorgu, kelime_adresi(sonuc.sorgu)))
     return adimlar
 
@@ -180,7 +181,7 @@ def _yapisal_veri(sonuc, kartlar, ekmek_kirintisi):
         "url": adres,
         "inDefinedTermSet": {
             "@type": "DefinedTermSet",
-            "name": "LearnVocab Sözlük",
+            "name": _("LearnVocab Sözlük"),
             "url": tam_adres(reverse("sozluk")),
         },
     }
@@ -229,9 +230,9 @@ def _meta_aciklama(sonuc, kartlar):
     ornekler = [a.ornek for kart in kartlar for a in kart.anlamlar]
     ornekler += [ifade.ilk_ornek for ifade in sonuc.ifadeler]
     ornek = next((o for o in ornekler if o), "")
-    metin = f"{sonuc.sorgu} ne demek? Türkçe anlamı: {', '.join(anlamlar[:4])}."
+    metin = _("%(kelime)s ne demek? Türkçe anlamı: %(anlamlar)s.") % {"kelime": sonuc.sorgu, "anlamlar": ", ".join(anlamlar[:4])}
     if ornek:
-        metin += f" Örnek: “{ornek}”"
+        metin += " " + _("Örnek: “%(ornek)s”") % {"ornek": ornek}
     return metin
 
 
@@ -266,8 +267,8 @@ def _listem_baglami(request):
     if not request.GET.get("parca"):
         baglam.update({
             "filtre_satirlari": [
-                ("Sırala", [(ad, url(sira=kod), d.sira == kod) for kod, ad in listem.SIRALAR.items()]),
-                ("Zaman", [(ad, url(zaman=kod), d.zaman == kod) for kod, ad in listem.ZAMANLAR.items()]),
+                (_("Sırala"), [(ad, url(sira=kod), d.sira == kod) for kod, ad in listem.SIRALAR.items()]),
+                (_("Zaman"), [(ad, url(zaman=kod), d.zaman == kod) for kod, ad in listem.ZAMANLAR.items()]),
             ],
             "zor_adresi": url(zor="" if d.zor else "1"),
             "temizle_adresi": url(sira="yeni", zaman="tumu", zor="", ara=""),
@@ -288,8 +289,11 @@ def sozluk_oneri(request):
     """{"oneriler": [{"metin", "anlam", "cefr", "adres"}]} — kullanıcıdan bağımsız, önbelleklenebilir."""
     sorgu = (request.GET.get("q") or "")[:60]
     satirlar = arama.otomatik_oneri(sorgu)
+    turkcesiz = request.GET.get("tr") == "0"     # "Türkçe anlamlar" kapalı (rapor 18.22)
     for s in satirlar:
         s["adres"] = kelime_adresi(s["metin"])
+        if turkcesiz:
+            s["anlam"] = ""
     cevap = JsonResponse({"oneriler": satirlar})
     patch_cache_control(cevap, public=True, max_age=300)
     return cevap
@@ -381,9 +385,9 @@ def sozluk_seviye(request, seviye):
     if kod not in CEFR_LEVELS:
         raise Http404
     return _gozat(request, gozat.seviye_kelimeleri(kod),
-                  f"{kod} seviyesi İngilizce kelimeler",
-                  f"{kod} seviyesindeki İngilizce kelimeler: Türkçe anlamları, örnek cümleleri "
-                  f"ve telaffuzlarıyla.",
+                  _("%(seviye)s seviyesi İngilizce kelimeler") % {"seviye": kod},
+                  _("%(seviye)s seviyesindeki İngilizce kelimeler: Türkçe anlamları, örnek cümleleri "
+                    "ve telaffuzlarıyla.") % {"seviye": kod},
                   secili_seviye=kod)
 
 
@@ -393,8 +397,8 @@ def sozluk_harf(request, harf):
     if harf not in gozat.HARFLER:
         raise Http404
     return _gozat(request, gozat.harf_kelimeleri(harf),
-                  f"{harf.upper()} harfiyle başlayan İngilizce kelimeler",
-                  f"{harf.upper()} harfiyle başlayan İngilizce kelimeler ve Türkçe anlamları.",
+                  _("%(harf)s harfiyle başlayan İngilizce kelimeler") % {"harf": harf.upper()},
+                  _("%(harf)s harfiyle başlayan İngilizce kelimeler ve Türkçe anlamları.") % {"harf": harf.upper()},
                   secili_harf=harf)
 
 
@@ -433,10 +437,10 @@ def hazir_liste_calis(request, slug):
     liste = get_object_or_404(HazirListe, slug=slug, yayinda=True)
     if request.POST.get("islem") == "birak":
         hazir_liste.seviyeye_don(request.user)
-        mesaj = "Learn & Pass yeni kelimeleri yine seviyene göre seçecek."
+        mesaj = _("Learn & Pass yeni kelimeleri yine seviyene göre seçecek.")
     else:
         hazir_liste.listeyle_calis(request.user, liste)
-        mesaj = f"Learn & Pass artık yeni kelimeleri “{liste.ad}” listesinden getirecek."
+        mesaj = _("Learn & Pass artık yeni kelimeleri “%(liste)s” listesinden getirecek.") % {"liste": liste.ad}
     if _ajax_mi(request):
         return JsonResponse({"ok": True, "mesaj": mesaj,
                              "calisiliyor": request.POST.get("islem") != "birak"})

@@ -9,7 +9,7 @@ yoksa (ifade, öneri) kalıcı sayfasına (/sozluk/<metin>/) gidilir.
        class="flex items-baseline gap-2 px-1 py-2.5 text-base transition-colors hover:bg-[color:var(--kare)]">
         <span lang="en" class="lv-serif text-lg font-bold text-gray-900 dark:text-slate-100">{{ satir.metin }}</span>
         {% if satir.tur %}<span class="lv-el shrink-0 text-[19px]">{{ satir.tur }}</span>{% endif %}
-        {% if satir.anlam %}<span class="truncate font-semibold text-indigo-700 dark:text-indigo-300">{{ satir.anlam }}</span>{% endif %}
+        {% if satir.anlam and turkce_acik %}<span class="truncate font-semibold text-indigo-700 dark:text-indigo-300">{{ satir.anlam }}</span>{% endif %}
         {% if satir.cefr %}<span class="lv-seviye ml-auto shrink-0 self-center">{{ satir.cefr }}</span>{% endif %}
     </a>
 </li>

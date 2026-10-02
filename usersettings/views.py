@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 import datetime
 
 from users.models import User
@@ -15,16 +17,16 @@ from LearnVocab.authgate import login_gate
 
 from django.db.models import Q
 
-TEMA_SECENEKLERI = (("sistem", "Sistem"), ("light", "Açık"), ("dark", "Koyu"))
+TEMA_SECENEKLERI = (("sistem", _("Sistem")), ("light", _("Açık")), ("dark", _("Koyu")))
 
 
-@login_gate("Ayarlar")
+@login_gate(gettext_lazy("Ayarlar"))
 def ayarlarSayfasi(request):
     """
     Ayarlar sayfası (rapor 18.26). Hesap sayfasından gelinir.
     Tema cihazda saklanır (tarayıcı); diğerleri save_settings'e POST eder.
     """
-    ayarlar, _ = UserSettings.objects.get_or_create(user=request.user)
+    ayarlar, _yeni = UserSettings.objects.get_or_create(user=request.user)
     return render(request, "pages/profile/ayarlar.html", {
         "active_page": "Ayarlar",
         "settings": ayarlar,
@@ -34,9 +36,9 @@ def ayarlarSayfasi(request):
         "sertlik_secenekleri": Sertlik.choices,
         "soru_sayilari": SORU_SAYILARI,
         "export_links": [
-            {"url": reverse("export_all"), "label": "Tüm verilerim"},
-            {"url": reverse("export_mywords"), "label": "Kelimelerim"},
-            {"url": reverse("export_mytexts"), "label": "Metinlerim"},
+            {"url": reverse("export_all"), "label": _("Tüm verilerim")},
+            {"url": reverse("export_mywords"), "label": _("Kelimelerim")},
+            {"url": reverse("export_mytexts"), "label": _("Metinlerim")},
         ],
     })
 
@@ -51,7 +53,7 @@ def saveSettings(request):
         featuresMail = request.POST.get("featuresMail")
         improvementsMail  = request.POST.get("improvementsMail")
 
-        settings, _ = UserSettings.objects.get_or_create(user=user)
+        settings, _yeni = UserSettings.objects.get_or_create(user=user)
 
         # Yeni kelime oranı: 0–100, %10'luk adımlar. Geçersiz değer yok sayılır.
         oran = request.POST.get("learnpass_yeni_orani")
@@ -61,6 +63,8 @@ def saveSettings(request):
         sayi = request.POST.get("egzersiz_soru_sayisi")
         if sayi is not None and sayi.isdigit() and int(sayi) in SORU_SAYILARI:
             settings.egzersiz_soru_sayisi = int(sayi)
+
+        settings.turkce_anlamlar = request.POST.get("turkce_anlamlar") is not None
 
         sertlik = request.POST.get("sertlik")
         if sertlik in Sertlik.values:
@@ -82,7 +86,7 @@ def saveSettings(request):
 
         settings.save()
 
-        messages.success(request, "Ayarların kaydedildi.")
+        messages.success(request, _("Ayarların kaydedildi."))
         return redirect("settings_page")
 
 def _confirm_with_password(request):
@@ -92,16 +96,16 @@ def _confirm_with_password(request):
     formdan 'confirm_password' bekler. Onay başarısızsa False döner.
     """
     if request.method != "POST":
-        messages.error(request, "Bu işlem yalnızca form üzerinden yapılabilir.")
+        messages.error(request, _("Bu işlem yalnızca form üzerinden yapılabilir."))
         return False
 
     password = request.POST.get("confirm_password") or ""
     if not password:
-        messages.error(request, "Lütfen onaylamak için parolanızı giriniz.")
+        messages.error(request, _("Lütfen onaylamak için parolanızı giriniz."))
         return False
 
     if not request.user.check_password(password):
-        messages.error(request, "Parola hatalı. İşlem iptal edildi.")
+        messages.error(request, _("Parola hatalı. İşlem iptal edildi."))
         return False
 
     return True
@@ -116,7 +120,7 @@ def removeAllWords(request):
     UserWordLink.objects.filter(user=user).delete()
     Word.objects.filter(owner=user).delete()
 
-    messages.success(request, "Tüm kelimeleriniz listenizden başarıyla silindi.")
+    messages.success(request, _("Tüm kelimeleriniz listenizden başarıyla silindi."))
     return redirect("settings_page")
 
 
@@ -127,7 +131,7 @@ def removeAllComments(request):
 
     Comment.objects.filter(owner=request.user).delete()
 
-    messages.success(request, "Tüm yorumlarınız silindi.")
+    messages.success(request, _("Tüm yorumlarınız silindi."))
     return redirect("settings_page")
 
 
@@ -139,7 +143,7 @@ def deleteMyAccount(request):
     # Doğru objeyi sil — request.user zaten doğru User objesidir
     request.user.delete()
 
-    messages.success(request, "Hesabınız başarılı bir şekilde silindi.")
+    messages.success(request, _("Hesabınız başarılı bir şekilde silindi."))
     return redirect("index")
 
 
@@ -175,8 +179,8 @@ def exportMyWords(request):
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
 
     # 4. Dosyanın içeriğini oluşturun ve response'a yazın
-    response.write(f"LearnVocab Kelime Dökümü\n")
-    response.write(f"Kullanıcı: {user.username}\n")
+    response.write(_("LearnVocab Kelime Dökümü") + "\n")
+    response.write(_("Kullanıcı: %(ad)s") % {"ad": user.username} + "\n")
     response.write(f"Tarih: {datetime.date.today().strftime('%d-%m-%Y')}\n")
     response.write("="*30 + "\n\n")
     
@@ -184,17 +188,17 @@ def exportMyWords(request):
         response.write("Kelime Listeniz:\n\n")
         for word in total_words:
             response.write(f"Kelime: {word.text}\n")
-            response.write(f"Anlamı: {word.meaningTr}\n")
-            response.write(f"Açıklama: {word.explanation}\n")
-            response.write(f"Eş Anlamlılar: {_virgullu(r.to_word.text for r in word.synonyms) or '-'}\n")
-            response.write(f"Zıt Anlamlılar: {_virgullu(r.to_word.text for r in word.antonyms) or '-'}\n")
-            response.write(f"Kullanım Kalıpları: {_virgullu(c.pattern for c in word.collocations) or '-'}\n")
+            response.write(_("Anlamı: %(x)s") % {"x": word.meaningTr} + "\n")
+            response.write(_("Açıklama: %(x)s") % {"x": word.explanation} + "\n")
+            response.write(_("Eş Anlamlılar: %(x)s") % {"x": _virgullu(r.to_word.text for r in word.synonyms) or '-'} + "\n")
+            response.write(_("Zıt Anlamlılar: %(x)s") % {"x": _virgullu(r.to_word.text for r in word.antonyms) or '-'} + "\n")
+            response.write(_("Kullanım Kalıpları: %(x)s") % {"x": _virgullu(c.pattern for c in word.collocations) or '-'} + "\n")
             for index, sentence in enumerate(word.example_sentences, start=1):
-                response.write(f"Örnek Cümle {index}: {sentence}\n")
+                response.write(_("Örnek Cümle %(no)s: %(x)s") % {"no": index, "x": sentence} + "\n")
             response.write(f"Seviye: {word.cefr}\n")
             response.write("--------------------\n")
     else:
-        response.write("Dışa aktarılacak kelime bulunamadı.\n")
+        response.write(_("Dışa aktarılacak kelime bulunamadı.") + "\n")
 
     return response
 
@@ -219,7 +223,7 @@ def exportMyComments(request):
 
     # 4. Dosyanın içeriğini oluşturun
     write_line(f"LearnVocab Yorum Dökümü")
-    write_line(f"Kullanıcı: {user.username}")
+    write_line(_("Kullanıcı: %(ad)s") % {"ad": user.username})
     write_line(f"Tarih: {datetime.date.today().strftime('%d-%m-%Y')}")
     write_line("="*30 + "\n")
     
@@ -253,10 +257,10 @@ def metin_disa_aktarma_satirlari(text):
 
     if text.durum == YaziDurumu.ESKI:
         satirlar += [
-            "--- Değerlendirme (eski sistem) ---",
-            f"Puanınız: {text.score} / 100",
-            f"Kriter Puanları: {text.scores}",
-            f"Açıklama: {text.response}",
+            "--- " + _("Değerlendirme (eski sistem)") + " ---",
+            _("Puanınız: %(x)s / 100") % {"x": text.score},
+            _("Kriter Puanları: %(x)s") % {"x": text.scores},
+            _("Açıklama: %(x)s") % {"x": text.response},
         ]
         return satirlar
 
@@ -264,7 +268,7 @@ def metin_disa_aktarma_satirlari(text):
     if text.durum != YaziDurumu.TAMAM:
         return satirlar
 
-    satirlar.append("--- Değerlendirme ---")
+    satirlar.append("--- " + _("Değerlendirme") + " ---")
     if text.puan is not None:
         satirlar.append(f"Puanınız: {degerlendirme.puan_yazisi(text.puan)} / 5 "
                         f"({degerlendirme.puan_etiketi(text.puan)})")
@@ -272,14 +276,14 @@ def metin_disa_aktarma_satirlari(text):
     iyiler = geri.get("iyi") or []
     hatalar = geri.get("hatalar") or []
     if iyiler:
-        satirlar.append("İyi yapılanlar:")
+        satirlar.append(_("İyi yapılanlar:"))
         satirlar += [f"  + \"{m.get('alinti', '')}\": {m.get('aciklama', '')}" for m in iyiler]
     if hatalar:
         satirlar.append("Hatalar:")
         satirlar += [f"  - {m.get('alinti', '')} → {m.get('dogrusu', '')} · {m.get('neden', '')}"
                      for m in hatalar]
     else:
-        satirlar.append("Hata bulunmadı.")
+        satirlar.append(_("Hata bulunmadı."))
     return satirlar
 
 
@@ -307,8 +311,8 @@ def exportMyTexts(request):
         response.write(text.encode('utf-8') + b"\n")
 
     # 4. Dosyanın içeriğini oluşturun
-    write_line(f"LearnVocab Metin Dökümü")
-    write_line(f"Kullanıcı: {user.username}")
+    write_line(_("LearnVocab Metin Dökümü"))
+    write_line(_("Kullanıcı: %(ad)s") % {"ad": user.username})
     write_line(f"Tarih: {datetime.date.today().strftime('%d-%m-%Y')}")
     write_line("="*30 + "\n")
     
@@ -319,7 +323,7 @@ def exportMyTexts(request):
                 write_line(satir)
             write_line("--------------------")
     else:
-        write_line("Dışa aktarılacak metin bulunamadı.")
+        write_line(_("Dışa aktarılacak metin bulunamadı."))
 
     return response
 
@@ -340,7 +344,7 @@ def exportAll(request):
 
     # 3. ANA BAŞLIK
     write_line(f"LearnVocab Tum Veri Dokumu")
-    write_line(f"Kullanıcı: {user.username}")
+    write_line(_("Kullanıcı: %(ad)s") % {"ad": user.username})
     write_line(f"Tarih: {datetime.date.today().strftime('%d-%m-%Y %H:%M')}")
 
     # ==========================================================
@@ -356,7 +360,7 @@ def exportAll(request):
         write_line(f"Yeni Özellikler Maili: {'İzin Verildi' if settings.featuresMail else 'İzin Verilmedi'}")
         write_line(f"Geliştirmeler Maili: {'İzin Verildi' if settings.improvementsMail else 'İzin Verilmedi'}")
     except UserSettings.DoesNotExist:
-        write_line("Kullanıcı ayar profili bulunamadı.")
+        write_line(_("Kullanıcı ayar profili bulunamadı."))
 
 
     # ==========================================================
@@ -376,12 +380,12 @@ def exportAll(request):
         write_line(f"Toplam {total_words.count()} kelime bulundu:\n")
         for word in total_words:
             write_line(f"Kelime: {word.text}")
-            write_line(f"Anlamı: {word.meaningTr}")
-            write_line(f"Açıklama: {word.explanation or ''}") # None ise hata vermesin
+            write_line(_("Anlamı: %(x)s") % {"x": word.meaningTr})
+            write_line(_("Açıklama: %(x)s") % {"x": word.explanation or ''}) # None ise hata vermesin
             write_line(f"Seviye: {word.cefr}")
             write_line("--------------------")
     else:
-        write_line("Dışa aktarılacak kelime bulunamadı.")
+        write_line(_("Dışa aktarılacak kelime bulunamadı."))
 
     # ==========================================================
     # BÖLÜM 3: YORUMLAR (exportMyComments'ten)
@@ -417,7 +421,7 @@ def exportAll(request):
                 write_line(satir)
             write_line("--------------------")
     else:
-        write_line("Dışa aktarılacak metin bulunamadı.")
+        write_line(_("Dışa aktarılacak metin bulunamadı."))
 
     return response
 

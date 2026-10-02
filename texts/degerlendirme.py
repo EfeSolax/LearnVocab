@@ -25,6 +25,7 @@ import math
 import re
 
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from pydantic import BaseModel
 
 from LearnVocab import gemini
@@ -95,8 +96,19 @@ class DegerlendirmeSemasi(BaseModel):
     kullanilan_kelimeler: list[str]
 
 
-def prompt_olustur(metin, sertlik=Sertlik.NORMAL, kelimeler=(), konu=""):
-    """Değerlendirme prompt'u. Geri bildirim dili Türkçe, çıktı yalnızca JSON."""
+GERI_BILDIRIM_DILLERI = {"tr": "TÜRKÇE", "en": "İNGİLİZCE (English)", "de": "ALMANCA (Deutsch)"}
+
+
+def geri_bildirim_dili(user):
+    """Yazarın arayüz dili (Ayarlar'daki dil seçimi); yoksa Türkçe."""
+    from usersettings.models import UserSettings
+    kod = UserSettings.objects.filter(user=user).values_list("arayuz_dili", flat=True).first() or "tr"
+    return kod if kod in GERI_BILDIRIM_DILLERI else "tr"
+
+
+def prompt_olustur(metin, sertlik=Sertlik.NORMAL, kelimeler=(), konu="", dil="tr"):
+    """Değerlendirme prompt'u. Açıklamalar `dil`de (varsayılan Türkçe), çıktı yalnızca JSON."""
+    dil_adi = GERI_BILDIRIM_DILLERI.get(dil, GERI_BILDIRIM_DILLERI["tr"])
     sertlik = sertlik_gecerli(sertlik)
     kelime_satiri = ", ".join(k for k in kelimeler if k) or "(yok)"
     yonerge = konu_yonergesi(konu) if konu else ""
@@ -117,13 +129,13 @@ GÖREVİN: Metni oku ve YALNIZCA aşağıdaki biçimde bir JSON döndür. JSON d
 }}
 
 KURALLAR:
-1. Bütün açıklamalar TÜRKÇE olsun ("alinti" ve "dogrusu" İngilizce, metindeki gibi).
+1. Bütün açıklamalar {dil_adi} olsun ("alinti" ve "dogrusu" İngilizce, metindeki gibi).
 2. "iyi": 1 ile 4 arası madde. Her madde TEK CÜMLE: neyin iyi olduğunu ve NEDEN iyi olduğunu söyle.
    Her madde metinden somut bir alıntıya dayansın. Boş övgü ("Güzel metin!") yazma.
 3. "hatalar": Her madde TEK BİR hataya değinir.
    - "alinti": hatalı kısım, metinden HARFİ HARFİNE kopyala (en kısa anlamlı parça, en çok 8 kelime).
    - "dogrusu": o parçanın düzeltilmiş hâli.
-   - "neden": tek cümlelik Türkçe açıklama. Örnek:
+   - "neden": tek cümlelik açıklama ({dil_adi}). Türkçe örnek:
      {{"alinti": "he go to school", "dogrusu": "he goes to school", "neden": "Tekil öznede fiile -s eklenir."}}
    - YALNIZCA GERÇEK HATALAR: dilbilgisi, yanlış kelime, anlamı bozan kullanım.
      Üslup tercihi, "daha güzel söylenebilirdi" önerileri ve yeniden yazımlar HATA DEĞİLDİR; yazma.
@@ -322,12 +334,12 @@ def cevabi_coz(ham, metin, sertlik=Sertlik.NORMAL, kelimeler=()):
 # ---------------------------------------------------------------------------
 
 PUAN_BANTLARI = (
-    (4.5, "Çok iyi"),
-    (4.0, "İyi"),
-    (3.5, "Ortalama"),
-    (3.0, "Biraz daha çalışalım"),
-    (2.0, "Zorlanmışsın"),
-    (1.0, "Başlangıç"),
+    (4.5, _("Çok iyi")),
+    (4.0, _("İyi")),
+    (3.5, _("Ortalama")),
+    (3.0, _("Biraz daha çalışalım")),
+    (2.0, _("Zorlanmışsın")),
+    (1.0, _("Başlangıç")),
 )
 
 
@@ -418,7 +430,8 @@ def degerlendir(yazi, on_event=None, arka_planda=False):
         return YOGUN
 
     kelimeler = list(yazi.words.all())
-    prompt = prompt_olustur(yazi.content, yazi.sertlik, [k.text for k in kelimeler], yazi.konu)
+    prompt = prompt_olustur(yazi.content, yazi.sertlik, [k.text for k in kelimeler], yazi.konu,
+                            geri_bildirim_dili(yazi.owner))
 
     yazi.deneme_sayisi += 1
     yazi.son_deneme = timezone.now()

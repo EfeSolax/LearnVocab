@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Kelime kartının "Listeme ekle / Listemde" davranışı (base/_kartListeDugmesi.html).
 
@@ -37,7 +38,7 @@ ulaşmaz (base/_girisGerekli.html yakalar).
         document.querySelectorAll('[data-kelime-liste][data-kelime-id="' + id + '"]').forEach(function (d) {
             d.dataset.listede = listede ? '1' : '0';
             d.setAttribute('aria-pressed', listede ? 'true' : 'false');
-            d.title = listede ? 'Listemde — çıkarmak için dokun' : 'Listeme ekle';
+            d.title = listede ? '{{ _("Listemde — çıkarmak için dokun")|escapejs }}' : '{{ _("Listeme ekle")|escapejs }}';
             var ekle = d.querySelector('[data-ekle-yazi]');
             var var_ = d.querySelector('[data-listede-yazi]');
             if (ekle) { ekle.hidden = listede; }
@@ -53,7 +54,7 @@ ulaşmaz (base/_girisGerekli.html yakalar).
     }
 
     function hata() {
-        window.geriAl.bildir('Bir sorun oldu, tekrar dener misin?');
+        window.geriAl.bildir('{{ _("Bir sorun oldu, tekrar dener misin?")|escapejs }}');
     }
 
     function ekle(dugme, geriVerisi) {
@@ -72,7 +73,7 @@ ulaşmaz (base/_girisGerekli.html yakalar).
         return gonder(dugme.dataset.cikarUrl)
             .then(function (cevap) {
                 durumuYay(id, false);
-                window.geriAl.goster('“' + yazi + '” listenden çıkarıldı', function () {
+                window.geriAl.goster('{{ _("“{kelime}” listenden çıkarıldı")|escapejs }}'.replace('{kelime}', yazi), function () {
                     ekle(dugme, cevap.geri);
                 });
             })

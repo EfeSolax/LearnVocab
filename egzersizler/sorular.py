@@ -28,15 +28,20 @@ Eşleştirmede şıklar yerine `sol` (kelimeler), `sag` (anlamlar, karışık) v
     isim/fiil/sıfat/zarf yazmaz, gramer kuralı anlatılmaz.
 """
 
+import contextvars
 import random
 import re
 
 from django.db.models import Count, Prefetch, Q
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 
 from words import inflect
 from words.models import (
     Collocation, Meaning, PartOfSpeech, RelationType, UserWordLink, Word, WordForm, WordRelation,
 )
+
+from usersettings.anlam import turkce_acik
 
 from . import seviye as seviye_mod
 from .models import BaglacCumlesi
@@ -58,14 +63,14 @@ TIP_ESDIZIM = "esdizim"
 # Deneme Sınavı'nın tip seçiminde görünen sıra, adlar ve açılış ekranındaki
 # minicik örnek (ne tür bir soru olduğu bir bakışta anlaşılsın; defter teması, rapor 18.12).
 TIPLER = {
-    TIP_ANLAM: {"ad": "Kelime ↔ anlam", "not": "Listenden, iki yönlü", "ornek": "reluctant → isteksiz"},
-    TIP_ACIKLAMA: {"ad": "Kelime ↔ İngilizce açıklama", "not": "Listenden", "ornek": "unwilling to do sth → reluctant"},
-    TIP_ESLESTIRME: {"ad": "Eşleştirme", "not": "Listenden, dört kelime bir arada", "ornek": "4 kelime ⇄ 4 anlam"},
-    TIP_FIIL: {"ad": "2. ve 3. hâller", "not": "go · went · gone gibi, listeden bağımsız", "ornek": "go · ___ · gone"},
-    TIP_BICIM: {"ad": "Hangi biçimi gelir?", "not": "Seviyendeki kelime aileleri", "ornek": "She sang ___. (happy / happily)"},
-    TIP_ILISKI: {"ad": "Eş / zıt / daha basit", "not": "Listende olmayan kelimeler", "ornek": "big = large · hot ≠ cold"},
-    TIP_BAGLAC: {"ad": "Bağlaç ve ifadeler", "not": "Seviyene göre cümleler", "ornek": "___, it was cheap. (However)"},
-    TIP_ESDIZIM: {"ad": "Eş dizim", "not": "make, take, do, give, have", "ornek": "___ a decision → make"},
+    TIP_ANLAM: {"ad": gettext_lazy("Kelime ↔ anlam"), "not": gettext_lazy("Listenden, iki yönlü"), "ornek": "reluctant → isteksiz"},
+    TIP_ACIKLAMA: {"ad": gettext_lazy("Kelime ↔ İngilizce açıklama"), "not": gettext_lazy("Listenden"), "ornek": "unwilling to do sth → reluctant"},
+    TIP_ESLESTIRME: {"ad": gettext_lazy("Eşleştirme"), "not": gettext_lazy("Listenden, dört kelime bir arada"), "ornek": gettext_lazy("4 kelime ⇄ 4 anlam")},
+    TIP_FIIL: {"ad": gettext_lazy("2. ve 3. hâller"), "not": gettext_lazy("go · went · gone gibi, listeden bağımsız"), "ornek": "go · ___ · gone"},
+    TIP_BICIM: {"ad": gettext_lazy("Hangi biçimi gelir?"), "not": gettext_lazy("Seviyendeki kelime aileleri"), "ornek": "She sang ___. (happy / happily)"},
+    TIP_ILISKI: {"ad": gettext_lazy("Eş / zıt / daha basit"), "not": gettext_lazy("Listende olmayan kelimeler"), "ornek": "big = large · hot ≠ cold"},
+    TIP_BAGLAC: {"ad": gettext_lazy("Bağlaç ve ifadeler"), "not": gettext_lazy("Seviyene göre cümleler"), "ornek": "___, it was cheap. (However)"},
+    TIP_ESDIZIM: {"ad": gettext_lazy("Eş dizim"), "not": "make, take, do, give, have", "ornek": "___ a decision → make"},
 }
 
 KARISIK = "karisik"
@@ -106,6 +111,17 @@ def kelime_parcalari(word):
     for anlam in word.meanings.all():
         sonuc |= tr_parcalar(anlam.meaning_tr)
     return sonuc
+
+
+# "Türkçe anlamlar" (rapor 18.22): tur kurulurken kullanıcının ayarı buraya yazılır.
+# Kapalıysa anlam metinleri (alt satır, açıklama, biçim anlamları) İngilizce açıklamadır.
+_TURKCE = contextvars.ContextVar("egzersiz_turkce", default=True)
+
+
+def _anlam_metni(anlam):
+    if anlam is None:
+        return ""
+    return anlam.meaning_tr if _TURKCE.get() else (anlam.definition or "")
 
 
 def _ilk_anlam(word):
@@ -172,7 +188,7 @@ def _soru(tip, etiket, soru, dogru_metin, celdiriciler, aciklama, kelimeler, rng
     sira = list(range(len(secenekler)))
     rng.shuffle(sira)
     soru_s = {
-        "tip": tip, "etiket": etiket, "soru": soru, "alt": alt, "cumle": cumle,
+        "tip": tip, "etiket": str(etiket), "soru": soru, "alt": alt, "cumle": cumle,
         "secenekler": [secenekler[i] for i in sira],
         "dogru": sira.index(0),
         "aciklama": aciklama,
@@ -228,7 +244,7 @@ def anlam_sorusu(word, rng, yon=None):
         secilen = _sec(_aday_akisi(_katmanlar(word), haric), uygun)
         if len(secilen) < SECENEK_SAYISI - 1:
             return None
-        return _soru(TIP_ANLAM, "Anlamını seç", word.text, anlam.meaning_tr,
+        return _soru(TIP_ANLAM, _("Anlamını seç"), word.text, anlam.meaning_tr,
                      [_ilk_anlam(s).meaning_tr for s in secilen],
                      f"{word.text} — {anlam.meaning_tr}", [word.id], rng)
 
@@ -242,7 +258,7 @@ def anlam_sorusu(word, rng, yon=None):
     secilen = _sec(_aday_akisi(_katmanlar(word), haric), uygun)
     if len(secilen) < SECENEK_SAYISI - 1:
         return None
-    return _soru(TIP_ANLAM, "Kelimesini seç", anlam.meaning_tr, word.text,
+    return _soru(TIP_ANLAM, _("Kelimesini seç"), anlam.meaning_tr, word.text,
                  [s.text for s in secilen], f"{anlam.meaning_tr} — {word.text}", [word.id], rng)
 
 
@@ -267,7 +283,7 @@ def aciklama_sorusu(word, rng, yon=None):
     metin = word.text.lower()
     maske = _yuzeyler(word)
     tanim = _maskele(anlam.definition.strip(), maske)
-    aciklama = f"{word.text} — {anlam.meaning_tr}"
+    aciklama = f"{word.text} — {_anlam_metni(anlam)}"
 
     def uygun(aday, secilen):
         if aday.text.lower() == metin or any(s.text.lower() == aday.text.lower() for s in secilen):
@@ -280,9 +296,9 @@ def aciklama_sorusu(word, rng, yon=None):
     if len(secilen) < SECENEK_SAYISI - 1:
         return None
     if yon == "tanim_kelime":
-        return _soru(TIP_ACIKLAMA, "Açıklamaya uyan kelimeyi seç", tanim, word.text,
+        return _soru(TIP_ACIKLAMA, _("Açıklamaya uyan kelimeyi seç"), tanim, word.text,
                      [s.text for s in secilen], aciklama, [word.id], rng, cumle=True)
-    return _soru(TIP_ACIKLAMA, "İngilizce açıklamasını seç", word.text, tanim,
+    return _soru(TIP_ACIKLAMA, _("İngilizce açıklamasını seç"), word.text, tanim,
                  [_maskele(_tanimli_anlam(s).definition.strip(), maske) for s in secilen],
                  aciklama, [word.id], rng)
 
@@ -317,8 +333,8 @@ def eslestirme_sorusu(grup, rng):
     sira = list(range(len(grup)))
     rng.shuffle(sira)
     return {
-        "tip": TIP_ESLESTIRME, "etiket": "Eşleştir",
-        "soru": "Kelimeleri anlamlarıyla eşleştir", "alt": "", "cumle": False,
+        "tip": TIP_ESLESTIRME, "etiket": _("Eşleştir"),
+        "soru": _("Kelimeleri anlamlarıyla eşleştir"), "alt": "", "cumle": False,
         "sol": sol,
         "sag": [anlamlar[i] for i in sira],
         "eslesme": [sira.index(i) for i in range(len(grup))],
@@ -424,9 +440,9 @@ def fiil_sorusu(word, rng, hangi=None):
         if len(celdirici) < gereken:
             continue
         return _soru(
-            TIP_FIIL, "2. hâlini seç" if h == "v2" else "3. hâlini seç", word.text, dogru,
+            TIP_FIIL, _("2. hâlini seç") if h == "v2" else _("3. hâlini seç"), word.text, dogru,
             celdirici[:SECENEK_SAYISI - 1], f"{word.text} · {goster['v2']} · {goster['v3']}",
-            [word.id], rng, alt=anlam.meaning_tr if anlam else "",
+            [word.id], rng, alt=_anlam_metni(anlam),
         )
     return None
 
@@ -485,9 +501,9 @@ def bicim_sorusu(word, rng):
         return None
     celdiriciler = list(secilen.values())[:SECENEK_SAYISI - 1]
     anlam = _ilk_anlam(word)
-    bicimler = [{"metin": w.text, "anlam": _ilk_anlam(w).meaning_tr} for w in [word] + celdiriciler]
-    return _soru(TIP_BICIM, "Boşluğa hangisi gelir?", cumle, word.text,
-                 [w.text for w in celdiriciler], f"{word.text} — {anlam.meaning_tr}",
+    bicimler = [{"metin": w.text, "anlam": _anlam_metni(_ilk_anlam(w))} for w in [word] + celdiriciler]
+    return _soru(TIP_BICIM, _("Boşluğa hangisi gelir?"), cumle, word.text,
+                 [w.text for w in celdiriciler], f"{word.text} — {_anlam_metni(anlam)}",
                  [word.id], rng, cumle=True, bicimler=bicimler)
 
 
@@ -496,9 +512,9 @@ def bicim_sorusu(word, rng):
 # ----------------------------------------------------------------------
 
 ILISKI_ETIKETLERI = {
-    RelationType.SYNONYM: ("Eş anlamlısını seç", "≈"),
-    RelationType.ANTONYM: ("Zıt anlamlısını seç", "↔"),
-    RelationType.SIMPLER: ("Daha basit karşılığını seç", "≈"),
+    RelationType.SYNONYM: (gettext_lazy("Eş anlamlısını seç"), "≈"),
+    RelationType.ANTONYM: (gettext_lazy("Zıt anlamlısını seç"), "↔"),
+    RelationType.SIMPLER: (gettext_lazy("Daha basit karşılığını seç"), "≈"),
 }
 # Soru ekranındaki damga: "es" yeşil =, "zit" kırmızı ≠, "basit" mavi ≈ (soru.html).
 ILISKI_TURLERI = {
@@ -530,8 +546,8 @@ def iliski_sorusu(bag, rng):
     if len(secilen) < SECENEK_SAYISI - 1:
         return None
     soru = _soru(TIP_ILISKI, etiket, kaynak.text, dogru.text, [s.text for s in secilen],
-                 f"{kaynak.text} ({anlam.meaning_tr}) {isaret} {dogru.text}: {_ilk_anlam(dogru).meaning_tr}",
-                 [kaynak.id], rng, alt=anlam.meaning_tr)
+                 f"{kaynak.text} ({_anlam_metni(anlam)}) {isaret} {dogru.text}: {_anlam_metni(_ilk_anlam(dogru))}",
+                 [kaynak.id], rng, alt=_anlam_metni(anlam))
     # Ekranda büyük, renkli damga için (Efe, 2 Ekim: "eş mi zıt mı, hemen anlaşılsın").
     soru["iliski"] = ILISKI_TURLERI[bag.type]
     return soru
@@ -594,9 +610,9 @@ def baglac_sorusu(kayit, rng):
         return None
     rng.shuffle(celdiriciler)
     kelimeler = []
-    return _soru(TIP_BAGLAC, "Boşluğa hangisi gelir?",
+    return _soru(TIP_BAGLAC, _("Boşluğa hangisi gelir?"),
                  kayit.cumle.replace(BaglacCumlesi.BOSLUK, BOSLUK, 1), dogru,
-                 celdiriciler[:SECENEK_SAYISI - 1], kayit.aciklama or f"Doğrusu: {dogru}",
+                 celdiriciler[:SECENEK_SAYISI - 1], kayit.aciklama or _("Doğrusu: %(x)s") % {"x": dogru},
                  kelimeler, rng, cumle=True)
 
 
@@ -635,7 +651,7 @@ def esdizim_havuzu():
 
 
 def esdizim_sorusu(esdizim, rng):
-    fiil, _, kalan = esdizim.pattern.strip().partition(" ")
+    fiil, _bosluk, kalan = esdizim.pattern.strip().partition(" ")
     fiil = fiil.lower()
     if fiil not in HAFIF_FIILLER or not kalan:
         return None
@@ -644,8 +660,9 @@ def esdizim_sorusu(esdizim, rng):
     if len(celdiriciler) < SECENEK_SAYISI - 1:
         return None
     rng.shuffle(celdiriciler)
-    turkce = esdizim.meaning_tr or esdizim.meaning.meaning_tr
-    return _soru(TIP_ESDIZIM, "Boşluğa hangisi gelir?", f"{BOSLUK} {kalan}", fiil,
+    turkce = ((esdizim.meaning_tr or esdizim.meaning.meaning_tr) if _TURKCE.get()
+              else (esdizim.meaning.definition or ""))
+    return _soru(TIP_ESDIZIM, _("Boşluğa hangisi gelir?"), f"{BOSLUK} {kalan}", fiil,
                  celdiriciler[:SECENEK_SAYISI - 1], f"{esdizim.pattern} — {turkce}",
                  [esdizim.meaning.word_id], rng, alt=turkce)
 
@@ -709,13 +726,15 @@ def tip_durumlari(user):
     liste_sayisi = UserWordLink.objects.filter(user=user).count()
     tanimli = (UserWordLink.objects.filter(user=user, word__meanings__definition__gt="")
                .values("word_id").distinct().count())
+    turkce_yok = None if turkce_acik(user) else _("Türkçe anlamlar kapalı")
     pasif = {
-        TIP_ANLAM: None if liste_sayisi >= 1 else "Listene kelime ekleyince açılır",
-        TIP_ACIKLAMA: None if tanimli >= 1 else "Listene kelime ekleyince açılır",
-        TIP_ESLESTIRME: None if liste_sayisi >= SECENEK_SAYISI else "Listende en az 4 kelime olunca açılır",
+        TIP_ANLAM: turkce_yok or (None if liste_sayisi >= 1 else _("Listene kelime ekleyince açılır")),
+        TIP_ACIKLAMA: None if tanimli >= 1 else _("Listene kelime ekleyince açılır"),
+        TIP_ESLESTIRME: turkce_yok or (None if liste_sayisi >= SECENEK_SAYISI
+                                       else _("Listende en az 4 kelime olunca açılır")),
         TIP_FIIL: None, TIP_BICIM: None, TIP_ILISKI: None,
-        TIP_BAGLAC: None if baglac_havuzu().exists() else "Yakında",
-        TIP_ESDIZIM: None if esdizim_havuzu().exists() else "Yakında",
+        TIP_BAGLAC: None if baglac_havuzu().exists() else _("Yakında"),
+        TIP_ESDIZIM: None if esdizim_havuzu().exists() else _("Yakında"),
     }
     return [{"anahtar": k, "ad": v["ad"], "not": v["not"], "ornek": v["ornek"], "aktif": pasif[k] is None,
              "pasif_notu": pasif[k] or ""} for k, v in TIPLER.items()]
@@ -790,17 +809,27 @@ def hizli_sorular(user, rng=None):
     """
     rng = rng or random.Random()
     kelimeler = list(liste_kelimeleri(user))   # öncelik sırasında (rapor 18.2)
-    yonler = ["en_tr", "tr_en"] * (HIZLI_SORU_SAYISI // 2)
-    rng.shuffle(yonler)
-    sorular = []
-    for w in kelimeler:
-        if len(sorular) >= HIZLI_SORU_SAYISI:
-            break
-        yon = yonler[len(sorular)]
-        soru = anlam_sorusu(w, rng, yon=yon) or anlam_sorusu(w, rng, yon="tr_en" if yon == "en_tr" else "en_tr")
-        if soru:
-            sorular.append(soru)
-    return sorular
+    turkce = turkce_acik(user)
+    belirtec = _TURKCE.set(turkce)
+    try:
+        if turkce:
+            uret, yonler_ = anlam_sorusu, ["en_tr", "tr_en"]
+        else:   # "Türkçe anlamlar" kapalı: kelime ↔ İngilizce açıklama (rapor 18.22)
+            uret, yonler_ = aciklama_sorusu, ["kelime_tanim", "tanim_kelime"]
+        yonler = yonler_ * (HIZLI_SORU_SAYISI // 2)
+        rng.shuffle(yonler)
+        sorular = []
+        for w in kelimeler:
+            if len(sorular) >= HIZLI_SORU_SAYISI:
+                break
+            yon = yonler[len(sorular)]
+            diger = yonler_[1] if yon == yonler_[0] else yonler_[0]
+            soru = uret(w, rng, yon=yon) or uret(w, rng, yon=diger)
+            if soru:
+                sorular.append(soru)
+        return sorular
+    finally:
+        _TURKCE.reset(belirtec)
 
 
 def tempolu_sorular(user, tip, adet, rng=None):
@@ -810,6 +839,14 @@ def tempolu_sorular(user, tip, adet, rng=None):
     diğerlerinden tamamlanır.
     """
     rng = rng or random.Random()
+    belirtec = _TURKCE.set(turkce_acik(user))
+    try:
+        return _tempolu_sorular(user, tip, adet, rng)
+    finally:
+        _TURKCE.reset(belirtec)
+
+
+def _tempolu_sorular(user, tip, adet, rng):
     seviye = seviye_mod.kullanici_seviyesi(user)
     aktifler = [d["anahtar"] for d in tip_durumlari(user) if d["aktif"]]
     if tip == KARISIK:

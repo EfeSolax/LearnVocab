@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Seviye testi 1. kısım: bir ekran, 40 kelime (rapor 7). Kullanıcı yalnızca
@@ -6,7 +7,7 @@ bildiklerine dokunur. Seçim gizli onay kutularıyla yapılır: JS olmadan da
 çalışır; Alpine yalnızca sayacı günceller. Tür etiketi ve seviye YOK.
 {% endcomment %}
 
-{% block title %}Seviye testi · {{ ekran }}. ekran{% endblock %}
+{% block title %}{% blocktranslate %}Seviye testi · {{ ekran }}. ekran{% endblocktranslate %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
@@ -15,15 +16,15 @@ bildiklerine dokunur. Seçim gizli onay kutularıyla yapılır: JS olmadan da
     {% csrf_token %}
     <div class="flex items-start justify-between gap-3">
         <div>
-            <p class="lv-el text-[24px] font-bold">{{ ekran }}. sayfa</p>
-            <h1 class="lv-serif mt-0.5 text-[34px] font-black leading-tight sm:text-[44px]">Bildiğin kelimelere tik at</h1>
+            <p class="lv-el text-[24px] font-bold">{% blocktranslate %}{{ ekran }}. sayfa{% endblocktranslate %}</p>
+            <h1 class="lv-serif mt-0.5 text-[34px] font-black leading-tight sm:text-[44px]">{% translate "Bildiğin kelimelere tik at" %}</h1>
         </div>
-        <a href="{% url 'index' %}" aria-label="Testten çık" title="Testten çık"
+        <a href="{% url 'index' %}" aria-label="{% translate "Testten çık" %}" title="{% translate "Testten çık" %}"
            class="flex h-10 w-10 flex-none items-center justify-center rounded-full text-gray-600 hover:bg-[color:var(--kare)] dark:text-slate-300">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </a>
     </div>
-    <p class="lv-el mt-2 text-[22px] leading-snug">anlamını bildiğini düşündüklerini seç; emin olmadıklarını boş bırakman en doğru sonucu verir.</p>
+    <p class="lv-el mt-2 text-[22px] leading-snug">{% translate "anlamını bildiğini düşündüklerini seç; emin olmadıklarını boş bırakman en doğru sonucu verir." %}</p>
 
     <ul class="lv-sayfa lv-bantli mt-6 grid grid-cols-2 gap-x-6 px-5 py-6 sm:grid-cols-3 sm:px-8 lg:grid-cols-4">
         {% for k in kelimeler %}
@@ -40,8 +41,8 @@ bildiklerine dokunur. Seçim gizli onay kutularıyla yapılır: JS olmadan da
     </ul>
 
     <div class="lv-not lv-duz sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] mt-6 flex items-center justify-between gap-3 !py-3 lg:bottom-4">
-        <span class="lv-el text-[24px] font-bold"><span x-text="secili">{{ bilinen|length }}</span> / {{ kelimeler|length }} tik</span>
-        <button type="submit" data-seviye-devam class="lv-dugme lv-kucuk">Devam →</button>
+        <span class="lv-el text-[24px] font-bold">{% blocktranslate with secili=bilinen|length toplam=kelimeler|length %}<span x-text="secili">{{ secili }}</span> / {{ toplam }} tik{% endblocktranslate %}</span>
+        <button type="submit" data-seviye-devam class="lv-dugme lv-kucuk">{% translate "Devam →" %}</button>
     </div>
 </form>
 <style>

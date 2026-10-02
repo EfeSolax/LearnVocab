@@ -29,6 +29,7 @@ Yapı beş katmanlı:
 """
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from users.models import User
 
@@ -489,9 +490,9 @@ class Meaning(models.Model):
 
     # Kartta satırların sırası ve etiketleri.
     ILISKI_SATIRLARI = (
-        (RelationType.SYNONYM, "Benzer"),
-        (RelationType.SIMPLER, "Daha basit"),
-        (RelationType.ANTONYM, "Zıt"),
+        (RelationType.SYNONYM, _("Benzer")),
+        (RelationType.SIMPLER, _("Daha basit")),
+        (RelationType.ANTONYM, _("Zıt")),
     )
 
     def iliskiler(self, tur):

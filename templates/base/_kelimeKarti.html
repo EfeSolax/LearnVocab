@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Kelime kartı — ürün raporu 4.3. Sitenin en önemli bileşeni; Sözlük
 (Keşfet), Listem ve günün kelimesi aynı parçayı kullanır. Ayrı kelime
@@ -89,7 +90,7 @@ Kurallar (rapor 4.3):
                 </h3>
                 <div class="flex shrink-0 items-center gap-1">
                     {% include 'base/_kartListeDugmesi.html' with kart=kart %}
-                    <button type="button" @click="{% if kapat_olay %}$dispatch('kart-kapat'){% else %}acik = false{% endif %}" title="Kartı kapat" aria-label="Kartı kapat"
+                    <button type="button" @click="{% if kapat_olay %}$dispatch('kart-kapat'){% else %}acik = false{% endif %}" title="{% translate "Kartı kapat" %}" aria-label="{% translate "Kartı kapat" %}"
                             class="rounded-md p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-700 dark:text-slate-500 dark:hover:bg-slate-700 dark:hover:text-slate-200">
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/></svg>
                     </button>
@@ -109,9 +110,9 @@ Kurallar (rapor 4.3):
             {% for anlam in kart.anlamlar %}
             <section class="px-4 py-4 sm:px-6" x-data="{ ornekler: false, kaliplar: false }" data-anlam="{{ anlam.anlam.id }}">
                 <p class="flex items-baseline gap-2.5 text-xl font-bold leading-snug">
-                    {% if kart.anlamlar|length > 1 %}<span class="lv-el w-5 shrink-0 text-[30px] leading-none">{{ forloop.counter }}</span>{% endif %}<span>{{ anlam.meaning_tr }}</span>
+                    {% if kart.anlamlar|length > 1 %}<span class="lv-el w-5 shrink-0 text-[30px] leading-none">{{ forloop.counter }}</span>{% endif %}<span>{% firstof anlam.meaning_tr anlam.definition %}</span>
                 </p>
-                {% if anlam.definition %}
+                {% if anlam.definition and anlam.meaning_tr %}
                 <p lang="en" class="mt-1 text-base text-gray-600 dark:text-slate-300">{{ anlam.definition }}</p>
                 {% endif %}
                 {% if anlam.ornek %}
@@ -123,13 +124,13 @@ Kurallar (rapor 4.3):
                     {% if anlam.diger_ornekler %}
                     <button type="button" @click="ornekler = !ornekler" :aria-expanded="ornekler.toString()"
                             class="lv-el inline-flex items-center gap-1 text-[22px] font-bold underline decoration-1 underline-offset-4">
-                        <span class="inline-block transition-transform" :class="ornekler && 'rotate-90'" aria-hidden="true">›</span> Daha fazla örnek
+                        <span class="inline-block transition-transform" :class="ornekler && 'rotate-90'" aria-hidden="true">›</span> {% translate "Daha fazla örnek" %}
                     </button>
                     {% endif %}
                     {% if anlam.kaliplar %}
                     <button type="button" @click="kaliplar = !kaliplar" :aria-expanded="kaliplar.toString()"
                             class="lv-el inline-flex items-center gap-1 text-[22px] font-bold underline decoration-1 underline-offset-4">
-                        <span class="inline-block transition-transform" :class="kaliplar && 'rotate-90'" aria-hidden="true">›</span> Kalıplar
+                        <span class="inline-block transition-transform" :class="kaliplar && 'rotate-90'" aria-hidden="true">›</span> {% translate "Kalıplar" %}
                     </button>
                     {% endif %}
                 </div>
@@ -169,7 +170,7 @@ Kurallar (rapor 4.3):
         {# Aile — kartın altında bir kez #}
         {% if kart.aile %}
         <footer class="flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-[color:var(--satir)] px-4 py-4 text-base sm:px-6" data-aile>
-            <span class="lv-el mr-1 text-[22px] font-bold">aynı aileden</span><span class="sr-only">Aile:</span>
+            <span class="lv-el mr-1 text-[22px] font-bold">{% translate "aynı aileden" %}</span><span class="sr-only">{% translate "Aile:" %}</span>
             {% for uye in kart.aile %}
             <a lang="en" href="{{ uye.text|kelime_adresi }}" data-kart-ac="{{ uye.id }}"
                class="lv-serif bg-[color:var(--kagit)] px-2 py-0.5 font-bold shadow-sm hover:underline">{{ uye.text }}</a>{% if not forloop.last %}<span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>{% endif %}

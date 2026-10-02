@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Günün İfadesi kartı (rapor 18.8). Ana Sayfa'da ve Sözlük › Keşfet'te AYNI kart.
 Herkese aynı ifade. Veri: words.gunun.ifade_durumu -> gi = {"ifade", "tamam"}
@@ -6,12 +7,12 @@ Herkese aynı ifade. Veri: words.gunun.ifade_durumu -> gi = {"ifade", "tamam"}
 YOK; giriş yapmış kullanıcıda yalnızca "Listeme ekle". Eklenince kart kapanır:
 "Bugünün ifadesi tamam ✓". Davranış: pages/gunun/_js.html
 {% endcomment %}
-<section data-gunun-ifadesi="{{ gi.ifade.id }}" aria-label="Günün ifadesi"
+<section data-gunun-ifadesi="{{ gi.ifade.id }}" aria-label="{% translate "Günün ifadesi" %}"
          class="lv-not lv-mavi lv-bantli min-w-0 text-gray-900 dark:text-slate-100">
-    <p class="lv-el text-[22px] font-bold leading-none !text-gray-600 dark:!text-slate-300">günün ifadesi</p>
+    <p class="lv-el text-[22px] font-bold leading-none !text-gray-600 dark:!text-slate-300">{% translate "günün ifadesi" %}</p>
 
     <p data-gunun-tamam class="mt-3 text-base font-semibold text-emerald-700 dark:text-emerald-300" {% if not gi.tamam %}hidden{% endif %}>
-        Bugünün ifadesi tamam ✓, yarın yenisi gelecek.
+        {% translate "Bugünün ifadesi tamam ✓, yarın yenisi gelecek." %}
     </p>
 
     <div data-gunun-icerik {% if gi.tamam %}hidden{% endif %}>
@@ -21,13 +22,13 @@ YOK; giriş yapmış kullanıcıda yalnızca "Listeme ekle". Eklenince kart kapa
                class="lv-serif min-w-0 text-[32px] font-black leading-[1.05] tracking-tight hover:underline">{{ ifade.text }}</a>
             {% if ifade.cefr and ifade.cefr != "Belirtilmemiş" %}<span class="lv-seviye">{{ ifade.cefr }}</span>{% endif %}
         </div>
-        <p class="mt-2 text-xl font-bold text-indigo-600 dark:text-indigo-400">{{ ifade.meaning_tr }}</p>
+        <p class="mt-2 text-xl font-bold text-indigo-600 dark:text-indigo-400">{% if turkce_acik or not ifade.definition %}{{ ifade.meaning_tr }}{% else %}{{ ifade.definition }}{% endif %}</p>
         {% if ifade.ilk_ornek %}<p lang="en" data-cift-tikla-ara class="lv-metin mt-2 text-[17px] leading-relaxed">{{ ifade.ilk_ornek }}</p>{% endif %}
 
         {% if user.is_authenticated %}
         <div class="mt-4">
             <button type="button" data-ifade-ekle="{% url 'add_expression_to_my_list' ifade.id %}"
-                    class="lv-dugme lv-kucuk disabled:opacity-60">Listeme ekle <span aria-hidden="true">+</span></button>
+                    class="lv-dugme lv-kucuk disabled:opacity-60">{% translate "Listeme ekle" %} <span aria-hidden="true">+</span></button>
         </div>
         {% endif %}
         {% endwith %}

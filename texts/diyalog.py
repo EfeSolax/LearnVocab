@@ -18,6 +18,8 @@ from dataclasses import dataclass
 from datetime import timedelta
 
 from django.utils import timezone
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 
 from texts.models import Diyalog, DiyalogCevabi
 from words import inflect
@@ -92,21 +94,32 @@ def cevabi_degerlendir(diyalog, girdi):
     cevap = diyalog.cevap.strip()
     yazilan = normalle(girdi)
     if not yazilan:
-        return Sonuc(BOS, cevap, "Boşluğa bir kelime yaz.")
+        return Sonuc(BOS, cevap, _("Boşluğa bir kelime yaz."))
 
     hedef = normalle(cevap)
     if yazilan == hedef:
-        return Sonuc(DOGRU, cevap, "Doğru!")
+        return Sonuc(DOGRU, cevap, _("Doğru!"))
 
     bicimler = kabul_edilen_bicimler(diyalog)
     if yazilan in bicimler:
-        return Sonuc(DOGRU, cevap, f"Doğru! Bu cümlede: {cevap}")
+        return Sonuc(DOGRU, cevap, _("Doğru! Bu cümlede: %(x)s") % {"x": cevap})
 
     if len(hedef) >= NEREDEYSE_EN_KISA and any(
             tek_harf_farki_mi(yazilan, b) for b in bicimler if len(b) >= NEREDEYSE_EN_KISA):
-        return Sonuc(NEREDEYSE, cevap, f"Neredeyse! Doğrusu: {cevap}")
+        return Sonuc(NEREDEYSE, cevap, _("Neredeyse! Doğrusu: %(x)s") % {"x": cevap})
 
-    return Sonuc(YANLIS, cevap, f"Bu sefer olmadı. Doğrusu: {cevap}")
+    return Sonuc(YANLIS, cevap, _("Bu sefer olmadı. Doğrusu: %(x)s") % {"x": cevap})
+
+
+# Üslup ve ton adları arayüz diline göre (rapor 18.22); modeldeki etiketler yönetim paneli içindir.
+USLUP_ADLARI = {
+    Register.FORMAL: gettext_lazy("resmî"), Register.ACADEMIC: gettext_lazy("akademik"),
+    Register.INFORMAL: gettext_lazy("gündelik"), Register.SLANG: gettext_lazy("argo"),
+    Register.LITERARY: gettext_lazy("edebî"),
+}
+TON_ADLARI = {
+    Sentiment.POSITIVE: gettext_lazy("olumlu"), Sentiment.NEGATIVE: gettext_lazy("olumsuz"),
+}
 
 
 def register_notu(diyalog):
@@ -115,9 +128,9 @@ def register_notu(diyalog):
         return diyalog.not_metni
     parcalar = []
     if diyalog.register and diyalog.register != Register.NEUTRAL:
-        parcalar.append(f"Üslup: {Register(diyalog.register).label}")
+        parcalar.append(_("Üslup: %(x)s") % {"x": USLUP_ADLARI.get(diyalog.register, Register(diyalog.register).label)})
     if diyalog.sentiment and diyalog.sentiment != Sentiment.NEUTRAL:
-        parcalar.append(f"Ton: {Sentiment(diyalog.sentiment).label}")
+        parcalar.append(_("Ton: %(x)s") % {"x": TON_ADLARI.get(diyalog.sentiment, Sentiment(diyalog.sentiment).label)})
     return " · ".join(parcalar)
 
 
@@ -191,7 +204,7 @@ def satirlari_hazirla(diyalog):
     for satir in diyalog.satirlar:
         metin = satir.get("metin", "")
         if Diyalog.BOSLUK in metin:
-            once, _, sonra = metin.partition(Diyalog.BOSLUK)
+            once, _bosluk, sonra = metin.partition(Diyalog.BOSLUK)
             satirlar.append({"kisi": satir.get("kisi", ""), "once": once, "sonra": sonra, "bosluk": True})
         else:
             satirlar.append({"kisi": satir.get("kisi", ""), "once": metin, "sonra": "", "bosluk": False})

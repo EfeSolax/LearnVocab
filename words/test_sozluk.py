@@ -9,6 +9,7 @@ import os
 import re
 import tempfile
 from datetime import date, timedelta
+from html import unescape
 from io import StringIO
 
 from django.core.management import call_command
@@ -500,7 +501,7 @@ class ListemSatirTests(ListemTemeli):
     def test_bos_liste_metni(self):
         UserWordLink.objects.all().delete()
         html = _html(self.listem())
-        self.assertIn("Listen boş. Sözlük'te + ile ya da Learn &amp; Pass'te kelime ekleyebilirsin.", html)
+        self.assertIn("Listen boş. Sözlük'te + ile ya da Learn & Pass'te kelime ekleyebilirsin.", unescape(html))
 
     def test_filtre_bos_ama_liste_dolu(self):
         html = _html(self.listem(ara="qqq"))

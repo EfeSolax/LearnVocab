@@ -1,4 +1,5 @@
 {% extends 'base/layout.html' %}
+{% load i18n %}
 
 {% comment %}
 Giriş yapmış kullanıcının iç sayfaları için tam genişlik yerleşimi.
@@ -18,7 +19,7 @@ Alt şablonların sözleşmesi değişmedi:
                                max-w-7xl ile eski genişliklerini koruyor.
 {% endcomment %}
 
-{% block title %}{% if active_page %}{{ active_page }}{% else %}LearnVocab{% endif %}{% endblock %}
+{% block title %}{% if active_page %}{% translate active_page %}{% else %}LearnVocab{% endif %}{% endblock %}
 
 {% block messages %}{% endblock %}
 
@@ -30,7 +31,7 @@ Alt şablonların sözleşmesi değişmedi:
         {% block page_heading %}
             {% if active_page %}
             <h1 class="lv-sayfa-basligi mb-6">
-                {{ active_page }}
+                {% translate active_page %}
             </h1>
             {% endif %}
         {% endblock %}

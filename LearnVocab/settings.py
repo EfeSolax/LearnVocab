@@ -115,6 +115,10 @@ TEMPLATES = [
                 'bildirimler.baglam.on_ekran',
                 # canonical, noindex, hreflang (rapor 18.15)
                 'LearnVocab.seo.seo',
+                # Dil düğmesi ve dil önerisi (rapor 18.22)
+                'LearnVocab.diller.diller',
+                # "Türkçe anlamlar" ayarı (rapor 18.22)
+                'usersettings.anlam.baglam',
             ],
         },
     },
@@ -168,9 +172,9 @@ LANGUAGE_CODE = 'tr'
 # Bir dil, arayüz çevirisi BİTMEDEN buraya eklenmez: çevirisiz /en/ sayfaları
 # Türkçe sayfaların kopyası olur (SEO'da kopya içerik, rapor 18.15).
 # Hedef sıra: en, de; sonra es, fr.
-LANGUAGES = [
-    ('tr', 'Türkçe'),
-]
+DIL_ADLARI = {'tr': 'Türkçe', 'en': 'English', 'de': 'Deutsch'}
+YAYIN_DILLERI = [d for d in os.environ.get('YAYIN_DILLERI', 'tr').split(',') if d in DIL_ADLARI]
+LANGUAGES = [(d, DIL_ADLARI[d]) for d in YAYIN_DILLERI]
 LOCALE_PATHS = [BASE_DIR / 'locale']
 
 # Web'den SUNULMAYAN özel depo (rapor 18.24): kullanıcıların okuma metinleri
@@ -247,6 +251,8 @@ SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
 SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
 SOCIALACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_QUERY_EMAIL = True
+# Google ile girişten sonra hesaptaki arayüz diline geçilir (rapor 18.22).
+ACCOUNT_ADAPTER = 'LearnVocab.diller.HesapAdaptoru'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*']

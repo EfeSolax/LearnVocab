@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Serbest yazma (ürün raporu 9.1). Görev kısa: 3–8 cümle. Konu önerilerinden
@@ -7,19 +8,19 @@ biri seçilir ya da serbest yazılır; listeden 3–5 "kullanmayı dene" kelimes
 henüz yok, rapor 16).
 {% endcomment %}
 
-{% block title %}Serbest yazma{% endblock %}
+{% block title %}{% translate "Serbest yazma" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
 
-<a href="{% url 'profile_texts' %}" class="lv-el text-[22px] font-bold hover:underline">← Yazılar</a>
-<h1 class="lv-baslik mt-2 !text-[40px] sm:!text-[56px]">Serbest yazma</h1>
-<span class="lv-alt-baslik mt-1 mb-8">3–8 cümle yeter; akademik olmak zorunda değil</span>
+<a href="{% url 'profile_texts' %}" class="lv-el text-[22px] font-bold hover:underline">← {% translate "Yazılar" %}</a>
+<h1 class="lv-baslik mt-2 !text-[40px] sm:!text-[56px]">{% translate "Serbest yazma" %}</h1>
+<span class="lv-alt-baslik mt-1 mb-8">{% translate "3–8 cümle yeter; akademik olmak zorunda değil" %}</span>
 
 {% if not yazabilir %}
 <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
     <p class="font-semibold">{{ sinir_mesaji }}</p>
-    <p class="mt-1 text-sm">O zamana kadar <a class="font-semibold underline" href="{% url 'diyalog_page' %}">Diyalogda doğru kelime</a> ile devam edebilirsin.</p>
+    <p class="mt-1 text-sm">{% url 'diyalog_page' as diyalog_adresi %}{% blocktranslate with adres=diyalog_adresi %}O zamana kadar <a class="font-semibold underline" href="{{ adres }}">Diyalogda doğru kelime</a> ile devam edebilirsin.{% endblocktranslate %}</p>
 </div>
 {% else %}
 
@@ -33,13 +34,13 @@ henüz yok, rapor 16).
     <div class="grid items-start gap-8 sm:grid-cols-[1.3fr_1fr]">
     <section>
         <div class="flex items-baseline justify-between gap-3">
-            <h2 class="lv-el text-[24px] font-bold">bugünün konusu</h2>
-            <button type="button" @click="baskaKonular()" class="lv-el-bag !text-[21px]">başka öner</button>
+            <h2 class="lv-el text-[24px] font-bold">{% translate "bugünün konusu" %}</h2>
+            <button type="button" @click="baskaKonular()" class="lv-el-bag !text-[21px]">{% translate "başka öner" %}</button>
         </div>
         <div class="mt-3 flex flex-wrap gap-2">
             <button type="button" @click="konu = ''"
                     :class="konu === '' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-200 border-gray-300 dark:border-slate-600'"
-                    class="rounded-full border px-3 py-1.5 text-sm font-medium">Serbest</button>
+                    class="rounded-full border px-3 py-1.5 text-sm font-medium">{% translate "Serbest" %}</button>
             <template x-for="k in gorunen" :key="k.anahtar">
                 <button type="button" @click="konu = k.anahtar" x-text="k.baslik"
                         :class="konu === k.anahtar ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-200 border-gray-300 dark:border-slate-600'"
@@ -52,14 +53,14 @@ henüz yok, rapor 16).
     {# ---------- Kullanmayı dene ---------- #}
     {# Kullanmayı dene: yapışkan not; metinde geçen kelimenin üstü canlı olarak çizilir. #}
     <section class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
-        <h2 class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">Kullanmayı dene <span class="text-[20px]">· zorunlu değil</span></h2>
+        <h2 class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "Kullanmayı dene" %} <span class="text-[20px]">· {% translate "zorunlu değil" %}</span></h2>
         {% if oneriler %}
         <ul class="mt-2 space-y-1.5">
             {% for kelime in oneriler %}
             <li class="flex items-baseline justify-between gap-3">
                 <span>
                     <span lang="en" class="lv-serif text-[19px] font-bold decoration-indigo-600 decoration-[2.5px]" :class="kullanildi('{{ kelime.text|escapejs }}') ? 'line-through' : ''">{{ kelime.text }}</span>
-                    {% if kelime.ilk_anlam %}<span class="text-[15px] text-gray-700 dark:text-slate-300"> · {{ kelime.ilk_anlam }}</span>{% endif %}
+                    {% if kelime.ilk_anlam %}<span class="text-[15px] text-gray-700 dark:text-slate-300"> · {{ kelime.ilk_anlam|truncatechars:70 }}</span>{% endif %}
                 </span>
                 <span class="lv-el text-[22px] font-bold !text-emerald-700 dark:!text-emerald-300" x-show="kullanildi('{{ kelime.text|escapejs }}')" x-cloak>✓</span>
                 <input type="hidden" name="kelimeler" value="{{ kelime.id }}">
@@ -67,7 +68,7 @@ henüz yok, rapor 16).
             {% endfor %}
         </ul>
         {% else %}
-        <p class="mt-2 text-base text-gray-700 dark:text-slate-300">Listende henüz kelime yok; istediğin gibi yazabilirsin. Sözlük'te + ile eklediğin kelimeler burada önerilir.</p>
+        <p class="mt-2 text-base text-gray-700 dark:text-slate-300">{% translate "Listende henüz kelime yok; istediğin gibi yazabilirsin. Sözlük'te + ile eklediğin kelimeler burada önerilir." %}</p>
         {% endif %}
     </section>
 
@@ -75,22 +76,22 @@ henüz yok, rapor 16).
 
     {# ---------- Metin: çizgili kâğıt ---------- #}
     <section>
-        <label for="user_text" class="lv-el text-[24px] font-bold">Metnin</label>
+        <label for="user_text" class="lv-el text-[24px] font-bold">{% translate "Metnin" %}</label>
         <textarea id="user_text" name="user_text" rows="8" required minlength="{{ en_az }}" maxlength="{{ en_cok }}"
                   x-model="metin" spellcheck="false" autocapitalize="sentences"
-                  placeholder="3–8 cümle yaz. Akademik olması gerekmiyor."
+                  placeholder="{% translate "3–8 cümle yaz. Akademik olması gerekmiyor." %}"
                   style="background-image: repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px); background-attachment: local; line-height: 32px;"
                   class="lv-metin lv-sayfa mt-2 block w-full border-0 bg-[color:var(--kagit-beyaz)] px-5 py-[14px] text-[19px] text-gray-900 placeholder:italic placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 dark:text-slate-100 dark:placeholder:text-slate-500"></textarea>
         <p class="lv-el mt-2 text-[21px]" :class="cumle > 8 ? '!text-amber-700 dark:!text-amber-300' : ''">
-            <span x-text="cumle"></span> cümle
-            <span x-show="cumle > 0 && cumle < 3" x-cloak> · birkaç cümle daha yazabilirsin</span>
-            <span x-show="cumle > 8" x-cloak> · kısa tutmak yeterli, 8 cümle idealdir</span>
+            <span x-text="cumle"></span> {% translate "cümle" %}
+            <span x-show="cumle > 0 && cumle < 3" x-cloak> · {% translate "birkaç cümle daha yazabilirsin" %}</span>
+            <span x-show="cumle > 8" x-cloak> · {% translate "kısa tutmak yeterli, 8 cümle idealdir" %}</span>
         </p>
     </section>
 
     {# ---------- Sertlik ---------- #}
     <fieldset>
-        <legend class="lv-el text-[24px] font-bold">Geri bildirim</legend>
+        <legend class="lv-el text-[24px] font-bold">{% translate "Geri bildirim" %}</legend>
         <div class="mt-2 grid grid-cols-3 gap-2">
             {% for deger, ad, aciklama in sertlikler %}
             <label class="cursor-pointer">
@@ -100,17 +101,17 @@ henüz yok, rapor 16).
             {% endfor %}
         </div>
         <p class="mt-2 text-[15px] text-gray-600 dark:text-slate-300">
-            {% for deger, ad, aciklama in sertlikler %}<span x-show="sertlik === '{{ deger }}'" {% if deger != sertlik %}x-cloak{% endif %}>{{ aciklama }} Puanı etkilemez.</span>{% endfor %}
+            {% for deger, ad, aciklama in sertlikler %}<span x-show="sertlik === '{{ deger }}'" {% if deger != sertlik %}x-cloak{% endif %}>{{ aciklama }} {% translate "Puanı etkilemez." %}</span>{% endfor %}
         </p>
     </fieldset>
 
     <div>
         <button type="submit" id="gonderDugmesi"
                 class="lv-dugme w-full disabled:opacity-60 sm:w-auto">
-            Değerlendir
+            {% translate "Değerlendir" %}
         </button>
         {% if kalan_hak is not None %}
-        <p class="lv-el mt-3 text-[21px]">bugün {{ kalan_hak }} metin daha değerlendirebilirsin</p>
+        <p class="lv-el mt-3 text-[21px]">{% blocktranslate count n=kalan_hak %}bugün {{ n }} metin daha değerlendirebilirsin{% plural %}bugün {{ n }} metin daha değerlendirebilirsin{% endblocktranslate %}</p>
         {% endif %}
     </div>
 

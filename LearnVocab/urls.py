@@ -25,7 +25,7 @@ from django.utils.translation import gettext_lazy as _
 
 from bildirimler.urls import kok_urlpatterns as pwa_urlpatterns
 from learnpass.urls import api_urlpatterns as learnpass_api
-from LearnVocab import eski_adresler, istatistik, seo_views, yardim
+from LearnVocab import diller, eski_adresler, istatistik, seo_views, yardim
 from LearnVocab.anasayfa import ana_sayfa
 from readings import api as readings_api
 from words.sozluk_urls import liste_urlpatterns
@@ -39,6 +39,8 @@ urlpatterns = [
     path("admin/istatistik/", istatistik.istatistik, name="admin_istatistik"),
     path("admin/", admin.site.urls),
     path("robots.txt", seo_views.robots_txt, name="robots_txt"),
+    # Dil düğmesi (rapor 18.22): seçilen dildeki aynı sayfaya gider; öneksiz.
+    path("dil/", diller.dil_degistir, name="dil_degistir"),
     path("sitemap.xml", seo_views.sitemap_xml, name="sitemap_xml"),
     # PWA (rapor 10): /manifest.webmanifest, /sw.js
     *pwa_urlpatterns,

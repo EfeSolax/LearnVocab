@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 Günün kelimesi / ifadesi kartlarının davranışı (rapor 18.8).
   - "Biliyordum" / "Bilmiyordum" -> /api/gunun-kelimesi/cevap/ (L&P verisine yazılır).
@@ -26,7 +27,7 @@ Günün kelimesi / ifadesi kartlarının davranışı (rapor 18.8).
         kart.querySelector('[data-gunun-tamam]').hidden = false;
     }
     function hata() {
-        if (window.geriAl) { window.geriAl.bildir('Bir sorun oldu, tekrar dener misin?'); }
+        if (window.geriAl) { window.geriAl.bildir('{{ _("Bir sorun oldu, tekrar dener misin?")|escapejs }}'); }
     }
 
     document.addEventListener('click', function (olay) {

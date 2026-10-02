@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Soru ekranı (rapor 6.2):
@@ -14,13 +15,13 @@ Doğru şık tarayıcıya cevaptan ÖNCE gitmez (config.soru'da yok); cevap
 sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
 {% endcomment %}
 
-{% block title %}Egzersiz · {{ sira_no }}/{{ oturum.soru_sayisi }}{% endblock %}
+{% block title %}{% blocktranslate with no=sira_no toplam=oturum.soru_sayisi %}Egzersiz · {{ no }}/{{ toplam }}{% endblocktranslate %}{% endblock %}
 {% block page_heading %}{% endblock %}
 {% block sayfa_genisligi %}max-w-2xl{% endblock %}
 
 {% block extra_head %}
 <style>
-    #navbar, nav[aria-label="Alt menü"] { display: none !important; }
+    #navbar, nav.lv-alt-menu { display: none !important; }
     main { padding-top: 1.25rem !important; padding-bottom: 1.5rem !important; }
     .egz-sik { display: flex; width: 100%; align-items: center; gap: 14px; padding: 14px 10px; text-align: left;
                border-bottom: 1px dashed var(--satir); font-size: 18px; color: var(--yazi); transition: background .15s, opacity .2s; }
@@ -43,14 +44,14 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
 
     {# --- Çık + ilerleme + sayaç --- #}
     <div class="flex items-center gap-3">
-        <a href="{% url 'exercises_page' %}" aria-label="Egzersizden çık" title="Çık (tur kaydedildi, sonra devam edebilirsin)"
+        <a href="{% url 'exercises_page' %}" aria-label="{% translate "Egzersizden çık" %}" title="{% translate "Çık (tur kaydedildi, sonra devam edebilirsin)" %}"
            class="flex h-10 w-10 flex-none items-center justify-center rounded-full text-gray-600 dark:text-slate-300 hover:bg-[color:var(--kare)]">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
         </a>
         <div id="egz-alev" class="relative flex-1">
             <div class="h-2.5 overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700"
                  role="progressbar" aria-valuemin="0" aria-valuemax="{{ oturum.soru_sayisi }}" aria-valuenow="{{ oturum.sira }}"
-                 aria-label="İlerleme">
+                 aria-label="{% translate "İlerleme" %}">
                 <div class="alev-cubuk h-full rounded-full transition-all duration-500"
                      style="width: {{ ilerleme }}%" :style="'width: ' + (sonuc ? '{% widthratio sira_no oturum.soru_sayisi 100 %}' : '{{ ilerleme }}') + '%'"></div>
             </div>
@@ -64,7 +65,7 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
 
     {# --- Soru --- #}
     <div>
-        <p class="lv-el text-[24px] font-bold"><span class="!text-gray-600 dark:!text-slate-300">soru {{ sira_no }} ·</span> <span data-soru-etiketi>{{ soru.etiket }}</span></p>
+        <p class="lv-el text-[24px] font-bold"><span class="!text-gray-600 dark:!text-slate-300">{% blocktranslate with no=sira_no %}soru {{ no }} ·{% endblocktranslate %}</span> <span data-soru-etiketi>{{ soru.etiket }}</span></p>
         {% if soru.iliski %}
         {# Eş / zıt / daha basit: ne istendiği bir bakışta anlaşılsın (Efe, 2 Ekim). Büyük, renkli damga. #}
         <p data-iliski="{{ soru.iliski }}"
@@ -73,7 +74,7 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
                   {% elif soru.iliski == 'es' %}border-emerald-600 bg-emerald-50 text-emerald-700 dark:border-emerald-400 dark:bg-emerald-950/50 dark:text-emerald-300
                   {% else %}border-sky-600 bg-sky-50 text-sky-700 dark:border-sky-400 dark:bg-sky-950/50 dark:text-sky-300{% endif %}">
             <span class="text-4xl leading-none" aria-hidden="true">{% if soru.iliski == 'zit' %}≠{% elif soru.iliski == 'es' %}={% else %}≈{% endif %}</span>
-            {% if soru.iliski == 'zit' %}ZIT ANLAMLISI{% elif soru.iliski == 'es' %}EŞ ANLAMLISI{% else %}DAHA BASİT KARŞILIĞI{% endif %}
+            {% if soru.iliski == 'zit' %}{% translate "ZIT ANLAMLISI" %}{% elif soru.iliski == 'es' %}{% translate "EŞ ANLAMLISI" %}{% else %}{% translate "DAHA BASİT KARŞILIĞI" %}{% endif %}
         </p>
         {% endif %}
         <h1 class="mt-3 break-words text-gray-900 dark:text-slate-100
@@ -83,16 +84,16 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
         {% endif %}
         {% if soru.iliski %}
         <p class="mt-4 text-xl font-bold">
-            “<span lang="en">{{ soru.soru }}</span>” kelimesinin
-            <span class="rounded px-1.5 {% if soru.iliski == 'zit' %}bg-red-600 text-white{% elif soru.iliski == 'es' %}bg-emerald-600 text-white{% else %}bg-sky-600 text-white{% endif %}">{% if soru.iliski == 'zit' %}zıt anlamlısı{% elif soru.iliski == 'es' %}eş anlamlısı{% else %}daha basit karşılığı{% endif %}</span>
-            hangisi?
+            {% if soru.iliski == 'zit' %}{% blocktranslate with kelime=soru.soru renk="rounded px-1.5 bg-red-600 text-white" %}“<span lang="en">{{ kelime }}</span>” kelimesinin <span class="{{ renk }}">zıt anlamlısı</span> hangisi?{% endblocktranslate %}
+            {% elif soru.iliski == 'es' %}{% blocktranslate with kelime=soru.soru renk="rounded px-1.5 bg-emerald-600 text-white" %}“<span lang="en">{{ kelime }}</span>” kelimesinin <span class="{{ renk }}">eş anlamlısı</span> hangisi?{% endblocktranslate %}
+            {% else %}{% blocktranslate with kelime=soru.soru renk="rounded px-1.5 bg-sky-600 text-white" %}“<span lang="en">{{ kelime }}</span>” kelimesinin <span class="{{ renk }}">daha basit karşılığı</span> hangisi?{% endblocktranslate %}{% endif %}
         </p>
         {% endif %}
     </div>
 
     {% if soru.tip == "eslestirme" %}
     {# --- Eşleştirme: soldan kelime, sağdan anlam --- #}
-    <p class="mt-4 text-sm text-gray-500 dark:text-slate-400" x-show="!sonuc">Bir kelimeye, sonra anlamına dokun.</p>
+    <p class="mt-4 text-sm text-gray-500 dark:text-slate-400" x-show="!sonuc">{% translate "Bir kelimeye, sonra anlamına dokun." %}</p>
     <div class="mt-4 grid grid-cols-2 gap-3">
         <div class="space-y-3">
             {% for w in soru.sol %}
@@ -118,7 +119,7 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
     </div>
     <button type="button" x-show="!sonuc" @click="eslesmeGonder()" :disabled="!eslesmeTamam() || gonderiliyor"
             class="lv-dugme mt-6 w-full disabled:cursor-not-allowed disabled:opacity-40">
-        Kontrol et
+        {% translate "Kontrol et" %}
     </button>
 
     {% else %}
@@ -155,13 +156,13 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
             {% csrf_token %}
             <button type="submit" x-ref="devamDugmesi"
                     class="lv-dugme w-full">
-                {% if sira_no == oturum.soru_sayisi %}Sonucu gör{% else %}Devam{% endif %}
+                {% if sira_no == oturum.soru_sayisi %}{% translate "Sonucu gör" %}{% else %}{% translate "Devam" %}{% endif %}
             </button>
         </form>
     </div>
 
     <p class="lv-el mt-6 hidden text-center text-[20px] !text-gray-500 dark:!text-slate-400 sm:block">
-        {% if soru.tip != "eslestirme" %}1–4 tuşlarıyla seçebilirsin · {% endif %}Enter ile devam
+        {% if soru.tip != "eslestirme" %}{% translate "1–4 tuşlarıyla seçebilirsin ·" %} {% endif %}{% translate "Enter ile devam" %}
     </p>
 </div>
 
@@ -208,7 +209,7 @@ document.addEventListener("alpine:init", () => {
                     if (this.sonuc.seri) { window.alev.guncelle(document.getElementById('egz-alev'), this.sonuc.seri.tamamlandi); }
                     this.$nextTick(() => this.$refs.devamDugmesi?.focus());
                 } catch (e) {
-                    window.geriAl?.bildir?.("Bağlantı koptu. Tekrar dener misin?");
+                    window.geriAl?.bildir?.('{{ _("Bağlantı koptu. Tekrar dener misin?")|escapejs }}');
                 } finally {
                     this.gonderiliyor = false;
                 }

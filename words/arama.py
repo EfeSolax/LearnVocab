@@ -34,6 +34,8 @@ from django.db.models import (
 from django.db.models.functions import Length
 from django.db.models.signals import post_delete, post_save
 from django.utils import timezone
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 
 from users.seviye import kullanici_seviyesi  # noqa: F401  (arama.kullanici_seviyesi)
 
@@ -313,14 +315,14 @@ def otomatik_oneri(sorgu, en_cok=8):
 
 # "went, go kelimesinin geçmiş hâli" — çekim türüne göre
 CEKIM_ADLARI = {
-    FormKind.PAST: "geçmiş hâli",
-    FormKind.PAST_PARTICIPLE: "3. hâli",
-    FormKind.PRESENT_PARTICIPLE: "-ing hâli",
-    FormKind.PLURAL: "çoğulu",
-    FormKind.THIRD_PERSON: "-s almış hâli",
-    FormKind.COMPARATIVE: "karşılaştırma hâli (-er)",
-    FormKind.SUPERLATIVE: "en üstünlük hâli (-est)",
-    FormKind.OTHER: "bir biçimi",
+    FormKind.PAST: gettext_lazy("geçmiş hâli"),
+    FormKind.PAST_PARTICIPLE: gettext_lazy("3. hâli"),
+    FormKind.PRESENT_PARTICIPLE: gettext_lazy("-ing hâli"),
+    FormKind.PLURAL: gettext_lazy("çoğulu"),
+    FormKind.THIRD_PERSON: gettext_lazy("-s almış hâli"),
+    FormKind.COMPARATIVE: gettext_lazy("karşılaştırma hâli (-er)"),
+    FormKind.SUPERLATIVE: gettext_lazy("en üstünlük hâli (-est)"),
+    FormKind.OTHER: gettext_lazy("bir biçimi"),
 }
 
 DIGER_EN_COK = 8
@@ -422,7 +424,8 @@ def ara(user, sorgu):
             if ad not in turler[b.word.text]:
                 turler[b.word.text].append(ad)
         yazim = sorgu.strip()
-        sonuc.cekim_notlari = [f"{yazim}, {kok} kelimesinin {' / '.join(adlar)}"
+        sonuc.cekim_notlari = [_("%(yazim)s, %(kok)s kelimesinin %(adlar)s") % {
+                                   "yazim": yazim, "kok": kok, "adlar": " / ".join(str(a) for a in adlar)}
                                for kok, adlar in turler.items()]
 
     # 3) Türkçe sorgu: bu anlama sahip kelimeler

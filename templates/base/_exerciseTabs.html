@@ -1,3 +1,4 @@
+{% load i18n %}
 {% comment %}
 "Çalışmalar" bölümünün iki sekmesi arasındaki geçiş şeridi:
 Learn & Pass (varsayılan) | Egzersizler (rapor 6). Misafirde şerit HİÇ
@@ -19,7 +20,7 @@ Kullanımı:  {% include 'base/_exerciseTabs.html' with exercise_tab="learn" %}
         <a href="{% url 'exercises_page' %}"
            {% if exercise_tab == "exercises" %}aria-current="page"{% endif %}
            class="lv-sekme-dugme whitespace-nowrap {% if exercise_tab == 'exercises' %}lv-secili{% endif %}">
-            Egzersizler
+            {% translate "Egzersizler" %}
         </a>
     </div>
 </div>

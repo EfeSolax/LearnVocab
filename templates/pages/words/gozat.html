@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Göz atma sayfası (rapor 18.15): /sozluk/seviye/b1/ ve /sozluk/harf/a/
@@ -8,20 +9,20 @@ yerinde açılır (JS yoksa kelimenin kalıcı sayfasına gidilir). Sayfalama ge
 bağlantılarla (?sayfa=2).
 {% endcomment %}
 
-{% block title %}{{ baslik }} — LearnVocab Sözlük{% endblock %}
+{% block title %}{% blocktranslate %}{{ baslik }} — LearnVocab Sözlük{% endblocktranslate %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
 {# Defter teması (rapor 18.12): basılı sözlük sayfası. Üstte kılavuz kelimeler (sayfanın ilk ve son maddesi), iki sütun madde, el yazısı sayfa numarası. #}
-<a href="{% url 'sozluk' %}" class="lv-el text-[22px] font-bold hover:underline">← Sözlük</a>
+<a href="{% url 'sozluk' %}" class="lv-el text-[22px] font-bold hover:underline">← {% translate "Sözlük" %}</a>
 
 <header class="mt-3 mb-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
     <div>
         <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">{{ baslik }}</h1>
-        <span class="lv-alt-baslik">{{ sayfa.paginator.count }} kelime</span>
+        <span class="lv-alt-baslik">{% blocktranslate count n=sayfa.paginator.count %}{{ n }} kelime{% plural %}{{ n }} kelime{% endblocktranslate %}</span>
     </div>
     {% if satirlar %}
-    <p class="lv-serif text-lg font-bold text-gray-600 dark:text-slate-300" lang="en" aria-label="Bu sayfadaki kelimeler">{{ satirlar.0.metin }} — {% with son=satirlar|last %}{{ son.metin }}{% endwith %}</p>
+    <p class="lv-serif text-lg font-bold text-gray-600 dark:text-slate-300" lang="en" aria-label="{% translate "Bu sayfadaki kelimeler" %}">{{ satirlar.0.metin }} — {% with son=satirlar|last %}{{ son.metin }}{% endwith %}</p>
     {% endif %}
 </header>
 
@@ -30,17 +31,17 @@ bağlantılarla (?sayfa=2).
     {% for satir in satirlar %}{% include 'pages/words/_aramaSatiri.html' %}{% endfor %}
 </ul>
 {% else %}
-<p class="lv-el text-[22px] leading-snug py-2 text-center">Burada henüz kelime yok.</p>
+<p class="lv-el text-[22px] leading-snug py-2 text-center">{% translate "Burada henüz kelime yok." %}</p>
 {% endif %}
 
 {% if sayfa.has_other_pages %}
-<nav aria-label="Sayfalar" class="mt-6 flex items-center justify-between" data-sayfalama>
+<nav aria-label="{% translate "Sayfalar" %}" class="mt-6 flex items-center justify-between" data-sayfalama>
     {% if sayfa.has_previous %}
-    <a rel="prev" href="{{ request.path }}{% if sayfa.previous_page_number > 1 %}?sayfa={{ sayfa.previous_page_number }}{% endif %}" class="lv-el-bag">← önceki sayfa</a>
+    <a rel="prev" href="{{ request.path }}{% if sayfa.previous_page_number > 1 %}?sayfa={{ sayfa.previous_page_number }}{% endif %}" class="lv-el-bag">{% translate "← önceki sayfa" %}</a>
     {% else %}<span></span>{% endif %}
-    <span class="lv-el text-[22px] !text-gray-500 dark:!text-slate-400">— s. {{ sayfa.number }} / {{ sayfa.paginator.num_pages }} —</span>
+    <span class="lv-el text-[22px] !text-gray-500 dark:!text-slate-400">{% blocktranslate with no=sayfa.number toplam=sayfa.paginator.num_pages %}— s. {{ no }} / {{ toplam }} —{% endblocktranslate %}</span>
     {% if sayfa.has_next %}
-    <a rel="next" href="{{ request.path }}?sayfa={{ sayfa.next_page_number }}" class="lv-el-bag">sonraki sayfa →</a>
+    <a rel="next" href="{{ request.path }}?sayfa={{ sayfa.next_page_number }}" class="lv-el-bag">{% translate "sonraki sayfa →" %}</a>
     {% else %}<span></span>{% endif %}
 </nav>
 {% endif %}

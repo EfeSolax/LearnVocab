@@ -16,6 +16,7 @@ Egzersiz modelleri.
 """
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from users.models import User
 from words.models import CEFR_CHOICES, Collocation, Expression, Word
@@ -24,7 +25,7 @@ from words.models import CEFR_CHOICES, Collocation, Expression, Word
 class EgzersizOturumu(models.Model):
     TUR_HIZLI = "hizli"
     TUR_TEMPOLU = "tempolu"
-    TURLER = [(TUR_HIZLI, "Kısa Sınav"), (TUR_TEMPOLU, "Deneme Sınavı")]   # adlar: Efe, 2 Ekim
+    TURLER = [(TUR_HIZLI, _("Kısa Sınav")), (TUR_TEMPOLU, _("Deneme Sınavı"))]   # adlar: Efe, 2 Ekim
 
     DURUM_DEVAM = "devam"
     DURUM_BITTI = "bitti"

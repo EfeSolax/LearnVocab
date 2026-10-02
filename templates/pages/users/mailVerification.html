@@ -1,7 +1,8 @@
 <!-- Temel olarak layout.html'i extend ediyoruz. -->
 {% extends 'base/layout.html' %}  
+{% load i18n %}
 
-{% block title %}Giriş Yap{% endblock %}
+{% block title %}{% translate "Doğrulama Kodu" %}{% endblock %}
 
 {% block messages %}{% endblock %}
 
@@ -10,7 +11,7 @@
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="lv-baslik mt-6 text-center !text-[40px] sm:!text-[52px]">Giriş Yapın!</h2>
+    <h2 class="lv-baslik mt-6 text-center !text-[40px] sm:!text-[52px]">{% translate "Kodu girin" %}</h2>
   </div>
 
   <div class="mt-4 lv-sayfa lv-bantli sm:mx-auto sm:w-full sm:max-w-md p-7 sm:p-8">
@@ -20,15 +21,15 @@
     <form action="{% url 'verify_code' %}" method="POST" class="space-y-6">
       {% csrf_token %}
       <div>
-        <p class = "text-gray-500">Mail'inize göndermiş olduğumuz doğrulama kodunuzu giriniz.<br><br>Mail'in gelmesi 30 saniyeye kadar sürebilir. Eğer 2 dakika içinde gelmezse tekrar deneyiniz.</p>
-        <label for="username" class="lv-el block text-[22px] font-bold">Doğrulama Kodu</label>
+        <p class = "text-gray-500">{% blocktranslate %}Mail'inize göndermiş olduğumuz doğrulama kodunuzu giriniz.<br><br>Mail'in gelmesi 30 saniyeye kadar sürebilir. Eğer 2 dakika içinde gelmezse tekrar deneyiniz.{% endblocktranslate %}</p>
+        <label for="username" class="lv-el block text-[22px] font-bold">{% translate "Doğrulama Kodu" %}</label>
         <div class="mt-2">
-          <input id="verification_code" type="text" name="verification_code" autocomplete="off" placeholder="Doğrulama Kodu"
+          <input id="verification_code" type="text" name="verification_code" autocomplete="off" placeholder="{% translate "Doğrulama Kodu" %}"
           class="lv-girdi" />
         </div>
       </div>
       <div>
-        <button type="submit" class="lv-dugme lv-kucuk flex w-full">Kodu Doğrula</button>
+        <button type="submit" class="lv-dugme lv-kucuk flex w-full">{% translate "Kodu Doğrula" %}</button>
       </div>
     </form>
 

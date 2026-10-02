@@ -29,6 +29,7 @@ from datetime import datetime, time as dtime
 from django.conf import settings
 from django.core.cache import cache
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 VARSAYILAN_GUNLUK = 3
 VARSAYILAN_DAKIKALIK = 4
@@ -76,7 +77,7 @@ def yazabilir_mi(user):
 
 
 def sinir_mesaji():
-    return "Bugünkü yazma hakkın doldu. Yarın yeni bir metinle devam edebilirsin."
+    return _("Bugünkü yazma hakkın doldu. Yarın yeni bir metinle devam edebilirsin.")
 
 
 # ---------------------------------------------------------------------------

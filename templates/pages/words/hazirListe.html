@@ -1,15 +1,16 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Hazır liste sayfası (rapor 4.1, D7): kelimeler kapalı kartlar, "Bu listeyle çalış".
 "Listenin hepsini ekle" YOK (rapor 17). Görünüm: words.sozluk_views.hazir_liste_sayfasi
 {% endcomment %}
 
-{% block title %}{{ liste.ad }} kelime listesi — LearnVocab Sözlük{% endblock %}
+{% block title %}{% blocktranslate with ad=liste.ad %}{{ ad }} kelime listesi — LearnVocab Sözlük{% endblocktranslate %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
-<a href="{% url 'sozluk' %}" class="lv-el text-[22px] font-bold hover:underline">← Sözlük</a>
+<a href="{% url 'sozluk' %}" class="lv-el text-[22px] font-bold hover:underline">← {% translate "Sözlük" %}</a>
 
 {# Defter teması (rapor 18.12): liste deftere yapıştırılmış pembe bir not; "bu listeyle çalış" yanında. #}
 <header class="mt-4 mb-10 grid items-start gap-8 sm:grid-cols-[1.2fr_1fr]">
@@ -17,28 +18,28 @@ Hazır liste sayfası (rapor 4.1, D7): kelimeler kapalı kartlar, "Bu listeyle �
     {% if liste.kurum %}<p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">{{ liste.kurum }}</p>{% endif %}
     <h1 class="lv-serif text-[34px] font-black leading-tight">{{ liste.ad }}</h1>
     {% if liste.aciklama %}<p class="mt-1 text-base text-gray-700 dark:text-slate-300">{{ liste.aciklama }}</p>{% endif %}
-    <p class="lv-el mt-2 text-[22px] font-bold">{{ sayfa.paginator.count }} kelime</p>
+    <p class="lv-el mt-2 text-[22px] font-bold">{% blocktranslate count n=sayfa.paginator.count %}{{ n }} kelime{% plural %}{{ n }} kelime{% endblocktranslate %}</p>
     </div>
 
     <div class="lv-sayfa p-5" data-listeyle-calis>
         {% if calisiliyor %}
-        <p class="lv-el text-[26px] font-bold !text-emerald-700 dark:!text-emerald-300">✓ Bu listeyle çalışıyorsun</p>
-        <p class="mt-1 text-base text-gray-600 dark:text-slate-300">Learn &amp; Pass yeni kelimeleri bu listeden getiriyor. Bilmediklerini listene eklemeyi sen seçersin.</p>
+        <p class="lv-el text-[26px] font-bold !text-emerald-700 dark:!text-emerald-300">✓ {% translate "Bu listeyle çalışıyorsun" %}</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-slate-300">{% translate "Learn & Pass yeni kelimeleri bu listeden getiriyor. Bilmediklerini listene eklemeyi sen seçersin." %}</p>
         <div class="mt-3 flex flex-wrap items-center gap-2">
-            <a href="{% url 'learn_pass_page' %}" class="lv-dugme lv-kucuk">Learn &amp; Pass'e git</a>
+            <a href="{% url 'learn_pass_page' %}" class="lv-dugme lv-kucuk">{% translate "Learn & Pass'e git" %}</a>
             <form method="post" action="{% url 'hazir_liste_calis' liste.slug %}">
                 {% csrf_token %}
                 <input type="hidden" name="islem" value="birak">
-                <button type="submit" class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">Seviyeme dön</button>
+                <button type="submit" class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4">{% translate "Seviyeme dön" %}</button>
             </form>
         </div>
         {% else %}
-        <p class="lv-el text-[24px] font-bold">bu listeyle çalış</p>
-        <p class="mt-1 text-base text-gray-600 dark:text-slate-300">Learn &amp; Pass yeni kelimeleri seviyen yerine bu listeden getirsin. Bilmediklerini listene eklemeyi sen seçersin.</p>
+        <p class="lv-el text-[24px] font-bold">{% translate "bu listeyle çalış" %}</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-slate-300">{% translate "Learn & Pass yeni kelimeleri seviyen yerine bu listeden getirsin. Bilmediklerini listene eklemeyi sen seçersin." %}</p>
         <form method="post" action="{% url 'hazir_liste_calis' liste.slug %}" class="mt-3">
             {% csrf_token %}
             <button type="submit" {% if not user.is_authenticated %}data-giris-gerekli="calisma"{% endif %}
-                    class="lv-dugme">Bu listeyle çalış</button>
+                    class="lv-dugme">{% translate "Bu listeyle çalış" %}</button>
         </form>
         {% endif %}
     </div>
@@ -49,7 +50,7 @@ Hazır liste sayfası (rapor 4.1, D7): kelimeler kapalı kartlar, "Bu listeyle �
     {% include 'pages/words/_hazirListeKartlari.html' %}
 </div>
 {% else %}
-<p class="lv-el text-[22px] leading-snug py-2 text-center">Bu listeye henüz kelime eklenmedi.</p>
+<p class="lv-el text-[22px] leading-snug py-2 text-center">{% translate "Bu listeye henüz kelime eklenmedi." %}</p>
 {% endif %}
 
 <script>

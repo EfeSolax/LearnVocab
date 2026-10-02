@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Yazma (ürün raporu 9): iki çalışma (Serbest yazma · Diyalogda doğru kelime)
@@ -7,25 +8,25 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 "Eski değerlendirme" etiketiyle.
 {% endcomment %}
 
-{% block title %}Yazılar{% endblock %}
+{% block title %}{% translate "Yazılar" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
 
 {# Defter teması (rapor 18.12; örnek ozetler/tasarim-ornekleri/defter/yazilar.html) #}
 <time class="lv-tarih">{% now "j F, l" %}</time>
-<h1 class="lv-baslik mt-1 !text-[44px] sm:!text-[64px]">Yazılar</h1>
-<span class="lv-alt-baslik mt-1">bir kelimeyi gerçekten bilmenin yolu: kullanmak</span>
+<h1 class="lv-baslik mt-1 !text-[44px] sm:!text-[64px]">{% translate "Yazılar" %}</h1>
+<span class="lv-alt-baslik mt-1">{% translate "bir kelimeyi gerçekten bilmenin yolu: kullanmak" %}</span>
 
 {% if misafir %}
 {# Misafir (rapor 18.3): serbest yazma yok; diyalog egzersizi ve tek bir davet. #}
 <div class="mt-10 grid items-start gap-9 sm:grid-cols-2" data-misafir-yazilar>
     {% include 'pages/texts/_diyalogNotu.html' %}
     <div class="lv-sayfa lv-bantli p-6">
-        <p class="lv-el text-[24px] font-bold">serbest yazma</p>
+        <p class="lv-el text-[24px] font-bold">{% translate "serbest yazma" %}</p>
         <p class="mt-2 text-lg text-gray-700 dark:text-slate-300" data-misafir-daveti>
-            Metin yazıp yapay zekâ ile değerlendirilmesini istiyorsan hemen şimdi
-            <a href="{% url 'login' %}?next={% url 'profile_texts' %}&neden=yazma" class="font-bold underline decoration-1 underline-offset-4">giriş yapabilirsin</a>.
+            {% url 'login' as giris_adresi %}{% url 'profile_texts' as yazilar_adresi %}{% blocktranslate with giris=giris_adresi sonraki=yazilar_adresi %}Metin yazıp yapay zekâ ile değerlendirilmesini istiyorsan hemen şimdi <a href="{{ giris }}?next={{ sonraki }}&neden=yazma" class="font-bold underline decoration-1 underline-offset-4">giriş yapabilirsin</a>.{% endblocktranslate %}
+            
         </p>
     </div>
 </div>
@@ -35,13 +36,13 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
     {# ---------- Serbest yazma: çizgili kâğıt ---------- #}
     <div class="lv-sayfa lv-bantli overflow-hidden">
         <div class="bg-[repeating-linear-gradient(transparent_0_31px,var(--satir)_31px_32px)] px-6 pb-6 pt-7">
-            <p class="lv-el text-[24px] font-bold leading-8">serbest yazma</p>
-            <p class="text-lg leading-8 text-gray-800 dark:text-slate-200">3–8 cümle yaz, Türkçe geri bildirim al: neyi iyi yaptığını ve gerçek hataları.</p>
+            <p class="lv-el text-[24px] font-bold leading-8">{% translate "serbest yazma" %}</p>
+            <p class="text-lg leading-8 text-gray-800 dark:text-slate-200">{% translate "3–8 cümle yaz, Türkçe geri bildirim al: neyi iyi yaptığını ve gerçek hataları." %}</p>
             <p class="lv-metin text-lg italic leading-8 text-gray-500 dark:text-slate-400" lang="en">Last week I finally…</p>
             {% if yazabilir %}
-                <a href="{% url 'new_text_page' %}" class="lv-dugme mt-5">Yazmaya başla</a>
+                <a href="{% url 'new_text_page' %}" class="lv-dugme mt-5">{% translate "Yazmaya başla" %}</a>
                 {% if kalan_hak is not None %}
-                <p class="lv-el mt-3 text-[21px]">bugün {{ kalan_hak }} metin daha yazabilirsin</p>
+                <p class="lv-el mt-3 text-[21px]">{% blocktranslate count n=kalan_hak %}bugün {{ n }} metin daha yazabilirsin{% plural %}bugün {{ n }} metin daha yazabilirsin{% endblocktranslate %}</p>
                 {% endif %}
             {% else %}
                 <p class="lv-el mt-4 text-[22px] leading-snug">{{ sinir_mesaji }}</p>
@@ -56,8 +57,8 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 {# ---------- Yazılarım ---------- #}
 <section class="mt-16" aria-labelledby="yazilarim-baslik">
     <div class="flex flex-wrap items-baseline justify-between gap-3">
-        <h2 id="yazilarim-baslik" class="lv-bolum !text-3xl">Yazılarım</h2>
-        <a href="{% url 'about_grading_page' %}" class="lv-el-bag !text-[22px]">nasıl değerlendiriliyor?</a>
+        <h2 id="yazilarim-baslik" class="lv-bolum !text-3xl">{% translate "Yazılarım" %}</h2>
+        <a href="{% url 'about_grading_page' %}" class="lv-el-bag !text-[22px]">{% translate "nasıl değerlendiriliyor?" %}</a>
     </div>
 
     {% if yazilar %}
@@ -79,11 +80,11 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
                             <span class="lv-el relative text-[24px] font-bold !text-red-700 dark:!text-red-300">{{ yazi.puan_yazisi }}<span class="text-base">/5</span></span>
                         </span>
                     {% elif yazi.durum == "bekliyor" %}
-                        <span class="lv-el inline-flex bg-[color:var(--not)] px-2 text-[20px] font-bold !text-gray-800 dark:!text-slate-100" data-etiket="bekliyor">Henüz değerlendirilmedi</span>
+                        <span class="lv-el inline-flex bg-[color:var(--not)] px-2 text-[20px] font-bold !text-gray-800 dark:!text-slate-100" data-etiket="bekliyor">{% translate "Henüz değerlendirilmedi" %}</span>
                     {% elif yazi.durum == "eski" %}
-                        <span class="text-sm text-gray-600 dark:text-slate-300">Eski değerlendirme · {{ yazi.score }}/100</span>
+                        <span class="text-sm text-gray-600 dark:text-slate-300">{% translate "Eski değerlendirme" %} · {{ yazi.score }}/100</span>
                     {% else %}
-                        <span class="text-sm text-gray-600 dark:text-slate-300">Değerlendirilemedi</span>
+                        <span class="text-sm text-gray-600 dark:text-slate-300">{% translate "Değerlendirilemedi" %}</span>
                     {% endif %}
                 </div>
             </a>
@@ -92,7 +93,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
     </ul>
     {% else %}
     <p class="lv-el mt-4 text-[22px] leading-snug">
-        Henüz bir şey yazmadın. İlk metnin birkaç cümle olsa yeter.
+        {% translate "Henüz bir şey yazmadın. İlk metnin birkaç cümle olsa yeter." %}
     </p>
     {% endif %}
 </section>
@@ -103,7 +104,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     var csrf = document.querySelector('meta[name="csrf-token"]').content;
-    window.geriAl.goster('Yazı silindi', function () {
+    window.geriAl.goster('{{ _("Yazı silindi")|escapejs }}', function () {
         fetch("{% url 'restore_text' silinen %}", {
             method: 'POST',
             headers: {'X-CSRFToken': csrf, 'X-Requested-With': 'XMLHttpRequest'}

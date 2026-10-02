@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Kendi metnini ekle (rapor 8): PDF yükle ya da yapıştır. Görünüm: readings.views.metin_ekle
@@ -6,16 +7,16 @@ Metin yalnızca sahibine görünür. PDF dosyası saklanmaz, yalnızca içindeki
 v1'de OCR yok: taranmış PDF'te nazik bir hata gösterilir.
 {% endcomment %}
 
-{% block title %}Metin ekle — Okumalar{% endblock %}
+{% block title %}{% translate "Metin ekle — Okumalar" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 {% block sayfa_genisligi %}max-w-2xl{% endblock %}
 
 {% block page %}
 
 {# Defter teması (rapor 18.12): deftere bir sayfa ekle; iki sekme (PDF / yapıştır), çizgili kâğıt alanı. #}
-<a href="{% url 'readings' %}" class="lv-el text-[22px] font-bold hover:underline">← Okumalar</a>
-<h1 class="lv-baslik mt-2 !text-[40px] sm:!text-[56px]">Kendi metnini ekle</h1>
-<span class="lv-alt-baslik mt-1 mb-8">yalnızca sen görürsün; PDF dosyasını saklamıyoruz, yalnızca içindeki yazıyı alıyoruz</span>
+<a href="{% url 'readings' %}" class="lv-el text-[22px] font-bold hover:underline">← {% translate "Okumalar" %}</a>
+<h1 class="lv-baslik mt-2 !text-[40px] sm:!text-[56px]">{% translate "Kendi metnini ekle" %}</h1>
+<span class="lv-alt-baslik mt-1 mb-8">{% translate "yalnızca sen görürsün; PDF dosyasını saklamıyoruz, yalnızca içindeki yazıyı alıyoruz" %}</span>
 
 <form method="post" enctype="multipart/form-data" x-data="{ tur: '{{ tur }}', gonderiliyor: false }" @submit="gonderiliyor = true"
       class="space-y-6">
@@ -24,9 +25,9 @@ v1'de OCR yok: taranmış PDF'te nazik bir hata gösterilir.
 
     <div class="lv-sekme-cubugu" role="tablist">
         <button type="button" role="tab" @click="tur = 'pdf'" :aria-selected="(tur === 'pdf').toString()"
-                :class="tur === 'pdf' ? 'lv-secili' : ''" class="lv-sekme-dugme">PDF yükle</button>
+                :class="tur === 'pdf' ? 'lv-secili' : ''" class="lv-sekme-dugme">{% translate "PDF yükle" %}</button>
         <button type="button" role="tab" @click="tur = 'yapistir'" :aria-selected="(tur === 'yapistir').toString()"
-                :class="tur === 'yapistir' ? 'lv-secili' : ''" class="lv-sekme-dugme">Metin yapıştır</button>
+                :class="tur === 'yapistir' ? 'lv-secili' : ''" class="lv-sekme-dugme">{% translate "Metin yapıştır" %}</button>
     </div>
 
     {% if hata %}
@@ -34,28 +35,28 @@ v1'de OCR yok: taranmış PDF'te nazik bir hata gösterilir.
     {% endif %}
 
     <div>
-        <label for="baslik" class="lv-el block text-[22px] font-bold">Başlık <span class="text-[19px] !text-gray-500">(isteğe bağlı)</span></label>
+        <label for="baslik" class="lv-el block text-[22px] font-bold">{% translate "Başlık" %} <span class="text-[19px] !text-gray-500">{% translate "(isteğe bağlı)" %}</span></label>
         <input id="baslik" name="baslik" type="text" maxlength="200" value="{{ baslik }}" class="lv-girdi">
     </div>
 
     <div x-show="tur === 'pdf'" {% if tur != 'pdf' %}x-cloak{% endif %}>
-        <label for="dosya" class="lv-el block text-[22px] font-bold">PDF dosyası</label>
+        <label for="dosya" class="lv-el block text-[22px] font-bold">{% translate "PDF dosyası" %}</label>
         <input id="dosya" name="dosya" type="file" accept=".pdf,application/pdf"
                class="lv-sayfa mt-2 block w-full p-4 text-base text-gray-700 file:mr-3 file:rounded-[3px] file:border-0 file:bg-[color:var(--murekkep)] file:px-4 file:py-2 file:font-semibold file:text-[color:var(--kagit)] dark:text-slate-300">
-        <p class="mt-2 text-sm text-gray-600 dark:text-slate-300">En çok {{ en_buyuk_mb }} MB ve {{ en_cok_sayfa }} sayfa. Taranmış (fotoğraf) PDF'ler şimdilik okunamıyor.</p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-slate-300">{% blocktranslate %}En çok {{ en_buyuk_mb }} MB ve {{ en_cok_sayfa }} sayfa. Taranmış (fotoğraf) PDF'ler şimdilik okunamıyor.{% endblocktranslate %}</p>
     </div>
 
     <div x-show="tur === 'yapistir'" {% if tur != 'yapistir' %}x-cloak{% endif %}>
-        <label for="metin" class="lv-el block text-[22px] font-bold">Metin</label>
-        <textarea id="metin" name="metin" rows="10" lang="en" placeholder="Okumak istediğin İngilizce metni buraya yapıştır."
+        <label for="metin" class="lv-el block text-[22px] font-bold">{% translate "Metin" %}</label>
+        <textarea id="metin" name="metin" rows="10" lang="en" placeholder="{% translate "Okumak istediğin İngilizce metni buraya yapıştır." %}"
                   style="background-image: repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px); background-attachment: local; line-height: 32px;"
                   class="lv-metin lv-sayfa mt-2 block w-full border-0 bg-[color:var(--kagit-beyaz)] px-5 py-[14px] text-lg text-gray-900 placeholder:italic focus:outline-none focus:ring-2 focus:ring-indigo-500/30 dark:text-slate-100">{{ yapistirilan }}</textarea>
     </div>
 
     <button type="submit" :disabled="gonderiliyor"
             class="lv-dugme w-full disabled:opacity-60 sm:w-auto">
-        <span x-show="!gonderiliyor">Okumaya başla</span>
-        <span x-show="gonderiliyor" x-cloak>Hazırlanıyor…</span>
+        <span x-show="!gonderiliyor">{% translate "Okumaya başla" %}</span>
+        <span x-show="gonderiliyor" x-cloak>{% translate "Hazırlanıyor…" %}</span>
     </button>
 </form>
 

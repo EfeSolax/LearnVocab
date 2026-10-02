@@ -1,13 +1,14 @@
+{% load i18n %}
 {% comment %}
 Yazılar ekranındaki "Diyalogda doğru kelime" kartı (rapor 9.2): mavi yapışkan not,
 içinde küçük bir diyalog önizlemesi (sabit örnek; asıl diyaloglar havuzdan gelir).
 {% endcomment %}
 <div class="lv-not lv-mavi lv-bantli text-gray-900 dark:text-slate-100">
-    <p class="lv-el text-[24px] font-bold">diyalogda doğru kelime</p>
+    <p class="lv-el text-[24px] font-bold">{% translate "diyalogda doğru kelime" %}</p>
     <div class="mt-3 space-y-2" aria-hidden="true">
         <p class="flex gap-2"><span class="lv-el text-[24px] font-bold leading-none">A</span><span class="lv-metin rounded-[4px_14px_14px_14px] bg-[color:var(--kagit-beyaz)] px-3 py-1.5 text-base shadow-sm" lang="en">How was your first week?</span></p>
         <p class="flex gap-2"><span class="lv-el text-[24px] font-bold leading-none">B</span><span class="lv-metin rounded-[4px_14px_14px_14px] bg-[color:var(--kagit-beyaz)] px-3 py-1.5 text-base shadow-sm" lang="en">Honestly? I felt <span class="inline-block min-w-[4.5rem] border-b-2 border-indigo-600 text-center dark:border-indigo-400">?</span></span></p>
     </div>
-    <p class="mt-3 text-base text-gray-700 dark:text-slate-300">Kısa bir diyalogdaki boşluğa {% if user.is_authenticated %}listendeki {% endif %}doğru kelimeyi yaz.</p>
-    <a href="{% url 'diyalog_page' %}" class="lv-dugme lv-ikincil mt-4">Başla</a>
+    <p class="mt-3 text-base text-gray-700 dark:text-slate-300">{% if user.is_authenticated %}{% translate "Kısa bir diyalogdaki boşluğa listendeki doğru kelimeyi yaz." %}{% else %}{% translate "Kısa bir diyalogdaki boşluğa doğru kelimeyi yaz." %}{% endif %}</p>
+    <a href="{% url 'diyalog_page' %}" class="lv-dugme lv-ikincil mt-4">{% translate "Başla" %}</a>
 </div>

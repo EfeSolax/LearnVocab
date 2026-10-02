@@ -22,6 +22,8 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 from django.views.decorators.http import require_POST
 
 from LearnVocab.authgate import login_gate
@@ -34,22 +36,22 @@ from .models import Ekran, OkumaSorusu, SeviyeTestiSonucu
 OTURUM_ANAHTARI = "seviye_testi"
 
 SECILEBILIR_SEVIYELER = (
-    ("A1", "Yeni başlıyorum"),
+    ("A1", gettext_lazy("Yeni başlıyorum")),
     ("A2", "Temel kelimeleri biliyorum"),
-    ("B1", "Günlük konuları anlıyorum"),
+    ("B1", gettext_lazy("Günlük konuları anlıyorum")),
     ("B2", "Akademik metinleri takip edebiliyorum"),
-    ("C1", "İleri düzeydeyim"),
-    ("C2", "Neredeyse anadil düzeyindeyim"),
+    ("C1", gettext_lazy("İleri düzeydeyim")),
+    ("C2", gettext_lazy("Neredeyse anadil düzeyindeyim")),
 )
 
 # Sonuç ekranındaki kısa, cesaretlendirici açıklama.
 SEVIYE_NOTLARI = {
-    "A1": "Harika bir başlangıç noktası. En sık kullanılan kelimelerle başlayıp hızla ilerleyeceksin.",
-    "A2": "Temelin sağlam. Günlük hayatın kelimelerini oturtup bir üst basamağa geçmeye hazırsın.",
-    "B1": "Günlük konularda rahatsın. Şimdi okumaları ve yazmayı güçlendirecek kelimelerin zamanı.",
-    "B2": "Güçlü bir kelime bilgin var. Akademik ve daha ince anlamlı kelimelerle devam edebilirsin.",
-    "C1": "Çok iyi! İleri düzey kelimelerle kelime hazneni daha da zenginleştirebilirsin.",
-    "C2": "Harika! Çok ileri bir düzeydesin; nadir ve incelikli kelimelerle devam edebilirsin.",
+    "A1": gettext_lazy("Harika bir başlangıç noktası. En sık kullanılan kelimelerle başlayıp hızla ilerleyeceksin."),
+    "A2": gettext_lazy("Temelin sağlam. Günlük hayatın kelimelerini oturtup bir üst basamağa geçmeye hazırsın."),
+    "B1": gettext_lazy("Günlük konularda rahatsın. Şimdi okumaları ve yazmayı güçlendirecek kelimelerin zamanı."),
+    "B2": gettext_lazy("Güçlü bir kelime bilgin var. Akademik ve daha ince anlamlı kelimelerle devam edebilirsin."),
+    "C1": gettext_lazy("Çok iyi! İleri düzey kelimelerle kelime hazneni daha da zenginleştirebilirsin."),
+    "C2": gettext_lazy("Harika! Çok ileri bir düzeydesin; nadir ve incelikli kelimelerle devam edebilirsin."),
 }
 
 
@@ -80,7 +82,7 @@ def _ekran_hazirla(durum, ekran):
 # Giriş, başla
 # ----------------------------------------------------------------------
 
-@login_gate("Seviye testi", "Seviyeni kaydedip ilk listeni hazırlayabilmek için bir hesaba ihtiyacın var.")
+@login_gate(gettext_lazy("Seviye testi"), gettext_lazy("Seviyeni kaydedip ilk listeni hazırlayabilmek için bir hesaba ihtiyacın var."))
 def giris(request):
     return render(request, "pages/seviye/giris.html", {
         "active_page": "Seviye testi",
@@ -95,7 +97,7 @@ def giris(request):
 def basla(request):
     durum = {"gosterilen": {}, "bilinen": {}, "okuma": None}
     if not _ekran_hazirla(durum, 1):
-        messages.info(request, "Seviye testi şu an hazır değil. Seviyeni kendin seçebilirsin.")
+        messages.info(request, _("Seviye testi şu an hazır değil. Seviyeni kendin seçebilirsin."))
         return redirect("seviye_sec")
     _kaydet(request, durum)
     return redirect("seviye_ekran", ekran=1)
@@ -245,13 +247,13 @@ def geri_al(request):
     son = SeviyeTestiSonucu.objects.filter(user=request.user).first()
     cikarilan = 0
     if son is not None and not son.geri_alindi:
-        cikarilan, _ = UserWordLink.objects.filter(user=request.user,
+        cikarilan, _ayrinti = UserWordLink.objects.filter(user=request.user,
                                                    word_id__in=son.eklenen).delete()
         son.geri_alindi = True
         son.save(update_fields=["geri_alindi"])
     if request.headers.get("X-Requested-With") == "fetch":
         return JsonResponse({"ok": True, "cikarilan": cikarilan})
-    messages.success(request, "İlk listen geri alındı.")
+    messages.success(request, _("İlk listen geri alındı."))
     return redirect("seviye_sonuc")
 
 
@@ -259,7 +261,7 @@ def geri_al(request):
 # Kaçış yolları
 # ----------------------------------------------------------------------
 
-@login_gate("Seviye testi")
+@login_gate(gettext_lazy("Seviye testi"))
 def sec(request):
     """Seviyemi kendim seçeyim (rapor 7)."""
     if request.method == "POST":
@@ -270,9 +272,9 @@ def sec(request):
             messages.success(request, f"Seviyen {seviye} olarak kaydedildi. "
                                       "Seviyeni istediğin zaman Ayarlar'dan değiştirebilirsin.")
             return redirect("index")
-        messages.error(request, "Lütfen bir seviye seç.")
+        messages.error(request, _("Lütfen bir seviye seç."))
     return render(request, "pages/seviye/sec.html", {
-        "active_page": "Seviyemi seçeyim",
+        "active_page": _("Seviyemi seçeyim"),
         "secenekler": SECILEBILIR_SEVIYELER,
         "mevcut": kullanici_seviyesi(request.user) if seviyesi_belli_mi(request.user) else "",
     })

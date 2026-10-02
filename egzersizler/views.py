@@ -20,6 +20,8 @@ import random
 from functools import wraps
 
 from django.contrib import messages
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.templatetags.static import static
@@ -35,8 +37,8 @@ from .kayit import cevaplari_kaydet
 from .models import EgzersizOturumu
 
 
-GATE_LABEL = "Egzersizler"
-GATE_NOTE = "Egzersizler kendi listenle çalıştığı için giriş yapman gerekiyor."
+GATE_LABEL = gettext_lazy("Egzersizler")
+GATE_NOTE = gettext_lazy("Egzersizler kendi listenle çalıştığı için giriş yapman gerekiyor.")
 
 
 def login_required(view):
@@ -99,8 +101,8 @@ def basla(request):
     if tur == EgzersizOturumu.TUR_HIZLI:
         sorular = S.hizli_sorular(user)
         if not sorular:
-            messages.info(request, "Kısa Sınav listendeki kelimelerle çalışıyor. "
-                                   "Sözlük'te + ile birkaç kelime ekle, hemen başlayalım.")
+            messages.info(request, _("Kısa Sınav listendeki kelimelerle çalışıyor. "
+                                     "Sözlük'te + ile birkaç kelime ekle, hemen başlayalım."))
             return redirect("exercises_page")
         oturum = _yeni_oturum(user, tur, S.TIP_ANLAM, S.HIZLI_SORU_SAYISI, sorular)
         return redirect("egzersiz_oturum", pk=oturum.pk)
@@ -118,8 +120,8 @@ def basla(request):
             sayi = varsayilan
         sorular = S.tempolu_sorular(user, tip, sayi)
         if not sorular:
-            messages.info(request, "Bu tip için şu an soru hazırlayamadık. "
-                                   "Başka bir tip ya da Karışık ile devam edebilirsin.")
+            messages.info(request, _("Bu tip için şu an soru hazırlayamadık. "
+                                     "Başka bir tip ya da Karışık ile devam edebilirsin."))
             return redirect("exercises_page")
         oturum = _yeni_oturum(user, tur, tip, sayi, sorular)
         return redirect("egzersiz_oturum", pk=oturum.pk)
@@ -191,13 +193,13 @@ def _bitis(request, o):
         liste_sayisi = UserWordLink.objects.filter(user=request.user).count()
     oran = o.dogru_sayisi / o.soru_sayisi if o.soru_sayisi else 0
     if oran == 1:
-        mesaj = "Hepsi doğru! Harika gidiyorsun."
+        mesaj = _("Hepsi doğru! Harika gidiyorsun.")
     elif oran >= 0.7:
-        mesaj = "Çok iyi! Yanlışlar da öğrenmenin parçası."
+        mesaj = _("Çok iyi! Yanlışlar da öğrenmenin parçası.")
     elif oran >= 0.4:
-        mesaj = "Güzel bir tur. Yanlışlarına bir kez daha bakmak iyi gelir."
+        mesaj = _("Güzel bir tur. Yanlışlarına bir kez daha bakmak iyi gelir.")
     else:
-        mesaj = "Her tur bir adım. Yanlışları tekrar çözünce fark edeceksin."
+        mesaj = _("Her tur bir adım. Yanlışları tekrar çözünce fark edeceksin.")
     context = {
         "active_page": "Egzersizler",
         "exercise_tab": "exercises",

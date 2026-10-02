@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Egzersizler açılışı (rapor 6.2): iki büyük seçenek.
@@ -7,7 +8,7 @@ Egzersizler açılışı (rapor 6.2): iki büyük seçenek.
 Verisi olmayan tip pasif görünür ("Yakında" / "Listende en az 4 kelime olunca açılır").
 {% endcomment %}
 
-{% block title %}Egzersizler{% endblock %}
+{% block title %}{% translate "Egzersizler" %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
@@ -18,46 +19,46 @@ Verisi olmayan tip pasif görünür ("Yakında" / "Listende en az 4 kelime olunc
 <div class="mx-auto max-w-3xl">
 
     <header class="mb-8">
-        <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">Egzersizler</h1>
-        <p class="lv-alt-baslik mt-1">listendeki kelimelerle küçük sınavlar; not yok, sadece sen</p>
+        <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">{% translate "Egzersizler" %}</h1>
+        <p class="lv-alt-baslik mt-1">{% translate "listendeki kelimelerle küçük sınavlar; not yok, sadece sen" %}</p>
     </header>
 
     {% if yarim %}
     <a href="{% url 'egzersiz_oturum' pk=yarim.pk %}"
        class="lv-not lv-pembe lv-bantli mb-12 flex items-center justify-between gap-4 text-gray-900 dark:text-slate-100">
         <span class="text-base">
-            <span class="lv-el block text-[24px] font-bold">Yarım kalan bir turun var.</span>
+            <span class="lv-el block text-[24px] font-bold">{% translate "Yarım kalan bir turun var." %}</span>
             <span class="font-semibold">{{ yarim.get_tur_display }} · {{ yarim.sira }}/{{ yarim.soru_sayisi }}</span>
         </span>
-        <span class="lv-dugme lv-kucuk shrink-0">Devam et</span>
+        <span class="lv-dugme lv-kucuk shrink-0">{% translate "Devam et" %}</span>
     </a>
     {% endif %}
 
     {# ================= Kısa Sınav: yoklama notu ================= #}
     <section class="lv-not lv-bantli grid items-center gap-6 text-gray-900 dark:text-slate-100 sm:grid-cols-[1.3fr_1fr]" aria-labelledby="kisa-sinav">
         <div>
-            <p class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">çoğu gün bu yeter</p>
-            <h2 id="kisa-sinav" class="lv-serif text-[36px] font-black leading-tight">Kısa Sınav</h2>
-            <p class="mt-2 text-lg text-gray-800 dark:text-slate-200">Listendeki kelimelerin anlamları, iki yönlü. Ayar yok: bas ve başla.</p>
+            <p class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "çoğu gün bu yeter" %}</p>
+            <h2 id="kisa-sinav" class="lv-serif text-[36px] font-black leading-tight">{% translate "Kısa Sınav" %}</h2>
+            <p class="mt-2 text-lg text-gray-800 dark:text-slate-200">{% translate "Listendeki kelimelerin anlamları, iki yönlü. Ayar yok: bas ve başla." %}</p>
             <p class="lv-metin mt-3 text-[17px] italic text-gray-600 dark:text-slate-300" lang="en" aria-hidden="true">reluctant → a) isteksiz &nbsp; b) dikkatli &nbsp; c) yorgun …</p>
         </div>
         <div class="text-center sm:text-right">
             {% if liste_sayisi == 0 %}
             <div class="text-left text-base">
-                <p class="font-bold">Listen seni bekliyor.</p>
-                <p class="mt-1">Sözlük'te <span class="font-bold">+</span> ile ya da Learn &amp; Pass'te birkaç kelime ekle; Kısa Sınav onlarla hazır olacak.</p>
-                <a href="{% url 'sozluk' %}" class="lv-dugme lv-ikincil lv-kucuk mt-3">Sözlük'e git</a>
+                <p class="font-bold">{% translate "Listen seni bekliyor." %}</p>
+                <p class="mt-1">{% blocktranslate %}Sözlük'te <span class="font-bold">+</span> ile ya da Learn &amp; Pass'te birkaç kelime ekle; Kısa Sınav onlarla hazır olacak.{% endblocktranslate %}</p>
+                <a href="{% url 'sozluk' %}" class="lv-dugme lv-ikincil lv-kucuk mt-3">{% translate "Sözlük'e git" %}</a>
             </div>
             {% else %}
             <p class="lv-el text-[44px] font-bold leading-none">{{ hizli_soru_sayisi }} soru</p>
             {% if liste_sayisi < hizli_tam %}
-            <p class="mt-1 text-base">Listende {{ liste_sayisi }} kelime var, kısa bir tur olacak.
-                <a href="{% url 'sozluk' %}" class="font-bold underline decoration-1 underline-offset-4">Listene kelime ekle</a></p>
+            <p class="mt-1 text-base">{% blocktranslate count n=liste_sayisi %}Listende {{ n }} kelime var, kısa bir tur olacak.{% plural %}Listende {{ n }} kelime var, kısa bir tur olacak.{% endblocktranslate %}
+                <a href="{% url 'sozluk' %}" class="font-bold underline decoration-1 underline-offset-4">{% translate "Listene kelime ekle" %}</a></p>
             {% endif %}
             <form method="post" action="{% url 'egzersiz_basla' %}" class="mt-4">
                 {% csrf_token %}
                 <input type="hidden" name="tur" value="hizli">
-                <button type="submit" class="lv-dugme !min-h-[58px] w-full !text-lg sm:w-auto">Başla →</button>
+                <button type="submit" class="lv-dugme !min-h-[58px] w-full !text-lg sm:w-auto">{% translate "Başla →" %}</button>
             </form>
             {% endif %}
         </div>
@@ -67,19 +68,19 @@ Verisi olmayan tip pasif görünür ("Yakında" / "Listende en az 4 kelime olunc
     <section x-data="{ sayi: {{ varsayilan_sayi }}, tip: 'karisik' }" class="lv-sayfa lv-bantli mt-14 px-5 pb-7 pt-8 sm:px-9" aria-labelledby="deneme-sinavi">
         <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 border-b-2 border-indigo-600 pb-4 dark:border-indigo-400">
             <div>
-                <p class="lv-el text-[24px] font-bold">daha çok çalışmak istersen</p>
-                <h2 id="deneme-sinavi" class="lv-serif text-[36px] font-black leading-tight">Deneme Sınavı</h2>
+                <p class="lv-el text-[24px] font-bold">{% translate "daha çok çalışmak istersen" %}</p>
+                <h2 id="deneme-sinavi" class="lv-serif text-[36px] font-black leading-tight">{% translate "Deneme Sınavı" %}</h2>
             </div>
-            <p class="lv-el text-[22px] !text-gray-600 dark:!text-slate-300">adı: <span class="border-b-2 border-dotted border-[color:var(--satir)] px-2 !text-[color:var(--murekkep)]">{{ user.first_name|default:user.username }}</span></p>
+            <p class="lv-el text-[22px] !text-gray-600 dark:!text-slate-300">{% translate "adı:" %} <span class="border-b-2 border-dotted border-[color:var(--satir)] px-2 !text-[color:var(--murekkep)]">{{ user.first_name|default:user.username }}</span></p>
         </div>
-        <p class="mt-4 text-lg text-gray-700 dark:text-slate-300">Bütün soru tipleri, karışık ya da tek tipe odaklı. Önce kaç soru, sonra hangi tip.</p>
+        <p class="mt-4 text-lg text-gray-700 dark:text-slate-300">{% translate "Bütün soru tipleri, karışık ya da tek tipe odaklı. Önce kaç soru, sonra hangi tip." %}</p>
 
         <form method="post" action="{% url 'egzersiz_basla' %}" class="mt-6">
             {% csrf_token %}
             <input type="hidden" name="tur" value="tempolu">
 
             <fieldset>
-                <legend class="text-lg font-bold"><span class="lv-el mr-2 text-[28px]">1.</span>Kaç soru?</legend>
+                <legend class="text-lg font-bold"><span class="lv-el mr-2 text-[28px]">1.</span>{% translate "Kaç soru?" %}</legend>
                 <div class="mt-3 flex flex-wrap gap-6 pl-9">
                     {% for n in soru_sayilari %}
                     <label class="cursor-pointer">
@@ -91,14 +92,14 @@ Verisi olmayan tip pasif görünür ("Yakında" / "Listende en az 4 kelime olunc
             </fieldset>
 
             <fieldset class="mt-8">
-                <legend class="text-lg font-bold"><span class="lv-el mr-2 text-[28px]">2.</span>Soru tipi</legend>
+                <legend class="text-lg font-bold"><span class="lv-el mr-2 text-[28px]">2.</span>{% translate "Soru tipi" %}</legend>
                 <div class="mt-3 divide-y divide-dashed divide-[color:var(--satir)] border-y border-dashed border-[color:var(--satir)]">
                     <label class="flex cursor-pointer items-center gap-4 py-3.5 hover:bg-[color:var(--kare)]" :class="tip === 'karisik' && 'bg-[color:var(--kare)]'">
                         <input type="radio" name="tip" value="karisik" x-model="tip" checked class="peer sr-only">
                         <span class="lv-kutu shrink-0" aria-hidden="true"></span>
                         <span class="min-w-0 flex-1">
-                            <span class="block text-lg font-bold">Karışık</span>
-                            <span class="block text-[15px] text-gray-600 dark:text-slate-300">Açık olan bütün tiplerden, sırası karışık</span>
+                            <span class="block text-lg font-bold">{% translate "Karışık" %}</span>
+                            <span class="block text-[15px] text-gray-600 dark:text-slate-300">{% translate "Açık olan bütün tiplerden, sırası karışık" %}</span>
                         </span>
                     </label>
                     {% for t in tipler %}
@@ -118,7 +119,7 @@ Verisi olmayan tip pasif görünür ("Yakında" / "Listende en az 4 kelime olunc
             </fieldset>
 
             <button type="submit" class="lv-dugme mt-8 !min-h-[58px] w-full !text-lg sm:w-auto">
-                <span x-text="sayi + ' soruyla başla →'">Başla</span>
+                {% translate "{n} soruyla başla →" as soruyla_basla %}<span x-text="'{{ soruyla_basla|escapejs }}'.replace('{n}', sayi)">{% translate "Başla" %}</span>
             </button>
         </form>
     </section>

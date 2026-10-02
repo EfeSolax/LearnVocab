@@ -22,8 +22,11 @@ from django.core.management.base import BaseCommand
 from django.db import IntegrityError, transaction
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext as _
+from django.utils.translation import ngettext
 
 from bildirimler import ayar, gonder
+from LearnVocab.diller import kullanici_dilinde
 from bildirimler.models import GunlukHatirlatma, PushAboneligi
 from seri import hesap as seri_hesap
 from seri.zaman import yerel_simdi
@@ -48,11 +51,13 @@ def mesaj(user, tur, durum):
     if tur == GunlukHatirlatma.OGLE:
         from words.gunun import gunun_kelimesi
         kelime = gunun_kelimesi(user)
-        on = f"Günün kelimesi: {kelime.text} · " if kelime else ""
-        return f"{on}Bugünün çalışması seni bekliyor."
+        on = _("Günün kelimesi: %(kelime)s · ") % {"kelime": kelime.text} if kelime else ""
+        return on + _("Bugünün çalışması seni bekliyor.")
     if durum["hak"] > 0:
-        return "Bugün çalışmazsan 1 dondurma hakkın kullanılacak."
-    return f"{durum['mevcut']} günlük serin gece yarısı bitiyor. Kısa bir tur yeter!"
+        return _("Bugün çalışmazsan 1 dondurma hakkın kullanılacak.")
+    return ngettext("%(n)s günlük serin gece yarısı bitiyor. Kısa bir tur yeter!",
+                    "%(n)s günlük serin gece yarısı bitiyor. Kısa bir tur yeter!",
+                    durum["mevcut"]) % {"n": durum["mevcut"]}
 
 
 def gonderilecekler(simdi=None):
@@ -71,7 +76,8 @@ def gonderilecekler(simdi=None):
             continue
         if GunlukHatirlatma.objects.filter(user=user, gun=yerel.date(), tur=tur).exists():
             continue
-        sonuc.append((user, tur, yerel.date(), mesaj(user, tur, durum)))
+        with kullanici_dilinde(user):   # bildirim alıcının arayüz dilinde (rapor 18.22)
+            sonuc.append((user, tur, yerel.date(), mesaj(user, tur, durum)))
     return sonuc
 
 
@@ -88,11 +94,10 @@ class Command(BaseCommand):
             return
         liste = gonderilecekler()
         if opts["dry_run"]:
-            for user, tur, _, govde in liste:
+            for user, tur, _gun, govde in liste:
                 self.stdout.write(f"{user} [{tur}]: {govde}")
             self.stdout.write(f"{len(liste)} bildirim gidecekti (dry-run).")
             return
-        url = reverse("learn_pass_page")
         ulasan = 0
         for user, tur, gun, govde in liste:
             # Önce kayıt: iki çalıştırma üst üste binse bile ikinci bildirim gitmez.
@@ -101,6 +106,8 @@ class Command(BaseCommand):
                     kayit = GunlukHatirlatma.objects.create(user=user, gun=gun, tur=tur)
             except IntegrityError:
                 continue
+            with kullanici_dilinde(user):
+                url = reverse("learn_pass_page")
             kayit.gonderilen = gonder.kullaniciya(user, BASLIK, govde, url)
             kayit.save(update_fields=["gonderilen"])
             ulasan += bool(kayit.gonderilen)

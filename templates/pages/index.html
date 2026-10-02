@@ -1,4 +1,5 @@
 {% extends 'base/appLayout.html' %}
+{% load i18n %}
 
 {% comment %}
 Ana Sayfa (ürün raporu 3, 2.3; defter teması 18.12). Görünüm ve bölüm listesi:
@@ -7,8 +8,8 @@ Misafir ve girişli kullanıcı aynı sayfayı görür; girişlide bölümler ke
 Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
 {% endcomment %}
 
-{% block title %}LearnVocab{% if user.is_authenticated %} — Ana Sayfa{% else %} — İngilizce kelime öğren{% endif %}{% endblock %}
-{% block meta_aciklama %}<meta name="description" content="LearnVocab ile İngilizce kelime öğren: Türkçe anlamlı sözlük, kaydırarak kelime çalışması, egzersizler, okuma metinleri ve yazma alıştırmaları. Ücretsiz.">{% endblock %}
+{% block title %}LearnVocab{% if user.is_authenticated %} — {% translate "Ana Sayfa" %}{% else %} — {% translate "İngilizce kelime öğren" %}{% endif %}{% endblock %}
+{% block meta_aciklama %}<meta name="description" content="{% translate 'LearnVocab ile İngilizce kelime öğren: Türkçe anlamlı sözlük, kaydırarak kelime çalışması, egzersizler, okuma metinleri ve yazma alıştırmaları. Ücretsiz.' %}">{% endblock %}
 {% block page_heading %}{% endblock %}
 {% block sayfa_genisligi %}max-w-4xl{% endblock %}
 
@@ -18,46 +19,46 @@ Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
 {# ======================= 1. Giriş ======================= #}
 <time class="lv-tarih">{% now "j F, l" %}</time>
 {% if user.is_authenticated %}
-    <h1 class="lv-baslik mt-1">Merhaba, {{ user.first_name|default:user.username }}.</h1>
+    <h1 class="lv-baslik mt-1">{% blocktranslate with ad=user.first_name|default:user.username %}Merhaba, {{ ad }}.{% endblocktranslate %}</h1>
     <p class="lv-serif mt-3 max-w-[22em] text-[26px] font-bold leading-tight sm:text-[34px]">
-        {% if bekleyen_tekrar %}Defterinde bugün <span class="lv-isaret">{{ bekleyen_tekrar }} kelime</span> seni bekliyor.
-        {% else %}Bugün defterine <span class="lv-isaret">yeni bir sayfa</span> açalım.{% endif %}
+        {% if bekleyen_tekrar %}{% blocktranslate count n=bekleyen_tekrar %}Defterinde bugün <span class="lv-isaret">{{ n }} kelime</span> seni bekliyor.{% plural %}Defterinde bugün <span class="lv-isaret">{{ n }} kelime</span> seni bekliyor.{% endblocktranslate %}
+        {% else %}{% blocktranslate %}Bugün defterine <span class="lv-isaret">yeni bir sayfa</span> açalım.{% endblocktranslate %}{% endif %}
     </p>
-    <span class="lv-alt-baslik mt-2">{% if seri.mevcut %}({{ seri.mevcut }} gündür aralıksız; bugün de tikini at){% else %}(bugünün ilk tiki seni bekliyor){% endif %}</span>
+    <span class="lv-alt-baslik mt-2">{% if seri.mevcut %}{% blocktranslate count n=seri.mevcut %}({{ n }} gündür aralıksız; bugün de tikini at){% plural %}({{ n }} gündür aralıksız; bugün de tikini at){% endblocktranslate %}{% else %}{% translate "(bugünün ilk tiki seni bekliyor)" %}{% endif %}</span>
     <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
-        <a href="{% url 'learn_pass_page' %}" data-bugunun-calismasi class="lv-dugme !min-h-[60px] !text-lg">Bugünün çalışmasına başla →</a>
-        <a href="{% url 'sozluk' %}?sekme=listem" data-liste-sayisi class="lv-el-bag">listem: <span>{{ liste_sayisi }}</span> kelime<span class="sr-only"> (Listemdeki kelime)</span></a>
+        <a href="{% url 'learn_pass_page' %}" data-bugunun-calismasi class="lv-dugme !min-h-[60px] !text-lg">{% translate "Bugünün çalışmasına başla →" %}</a>
+        <a href="{% url 'sozluk' %}?sekme=listem" data-liste-sayisi class="lv-el-bag">{% blocktranslate count n=liste_sayisi %}listem: <span>{{ n }}</span> kelime{% plural %}listem: <span>{{ n }}</span> kelime{% endblocktranslate %}<span class="sr-only"> ({% translate "Listemdeki kelime" %})</span></a>
     </div>
 {% else %}
-    <h1 class="lv-baslik mt-1">Kelime defterin, <span class="lv-isaret">bu sefer</span> yarıda kalmasın.</h1>
-    <span class="lv-alt-baslik mt-1 ml-1">(hepimizinki ikinci haftada kaldı)</span>
+    <h1 class="lv-baslik mt-1">{% blocktranslate %}Kelime defterin, <span class="lv-isaret">bu sefer</span> yarıda kalmasın.{% endblocktranslate %}</h1>
+    <span class="lv-alt-baslik mt-1 ml-1">{% translate "(hepimizinki ikinci haftada kaldı)" %}</span>
     <p class="mt-5 max-w-[30em] text-lg text-gray-600 dark:text-slate-300 sm:text-[19px]">
-        Hazırlıkta herkes bir kelime defteri tutar: solda kelime, sağda anlamı, altında bir cümle.
-        Sonra sayfayı katlar, kendini dener. LearnVocab bunu senin yerine hatırlar.
+        {% translate "Hazırlıkta herkes bir kelime defteri tutar: solda kelime, sağda anlamı, altında bir cümle. Sonra sayfayı katlar, kendini dener. LearnVocab bunu senin yerine hatırlar." %}
     </p>
     <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
-        <a href="{% url 'learn_pass_page' %}" data-misafir-basla class="lv-dugme">Hesap açmadan dene</a>
-        <a href="#seviye" class="lv-el-bag">ya da seviyeni öğren →</a>
+        <a href="{% url 'learn_pass_page' %}" data-misafir-basla class="lv-dugme">{% translate "Hesap açmadan dene" %}</a>
+        <a href="#seviye" class="lv-el-bag">{% translate "ya da seviyeni öğren →" %}</a>
     </div>
 {% endif %}
 
 {% url 'sozluk_oneri' as oneri_adresi %}
+{% translate "Bir kelime ara…" as ara_etiketi %}
 <section aria-labelledby="sozlukte-ara" class="mt-8 max-w-[520px]">
-    <h2 id="sozlukte-ara" class="sr-only">Sözlük'te ara</h2>
+    <h2 id="sozlukte-ara" class="sr-only">{% translate "Sözlük'te ara" %}</h2>
     <form method="get" action="{% url 'sozluk' %}" role="search">
-        {% include 'pages/words/_oneriKutusu.html' with girdi_id="ana-ara" ad="q" deger="" etiket="Bir kelime ara…" adres=oneri_adresi stil="defter" %}
+        {% include 'pages/words/_oneriKutusu.html' with girdi_id="ana-ara" ad="q" deger="" etiket=ara_etiketi adres=oneri_adresi stil="defter" %}
     </form>
 </section>
 
 {# ======================= 2. Defter tablosu ======================= #}
 {% if defter_kartlari %}
 {% if user.is_authenticated %}
-<h2 class="lv-bolum mt-16">{% if defter_kaynak == "mine" %}Bugünün tekrarı{% else %}Bugünün beş kelimesi{% endif %}</h2>
-<span class="lv-bolum-notu mt-1">{% if defter_kaynak == "mine" %}listenden, unutmaya başladıkların{% else %}listen boşken, herkese bugün aynı beş kelime{% endif %}</span>
+<h2 class="lv-bolum mt-16">{% if defter_kaynak == "mine" %}{% translate "Bugünün tekrarı" %}{% else %}{% translate "Bugünün beş kelimesi" %}{% endif %}</h2>
+<span class="lv-bolum-notu mt-1">{% if defter_kaynak == "mine" %}{% translate "listenden, unutmaya başladıkların" %}{% else %}{% translate "listen boşken, herkese bugün aynı beş kelime" %}{% endif %}</span>
 {% endif %}
-<section class="lv-tablo {% if user.is_authenticated %}mt-6{% else %}mt-14{% endif %}" data-defter-tablosu aria-label="Kendini dene"
+<section class="lv-tablo {% if user.is_authenticated %}mt-6{% else %}mt-14{% endif %}" data-defter-tablosu aria-label="{% translate 'Kendini dene' %}"
          {% if user.is_authenticated %}data-kayit-url="{% url 'learn_pass_verdict' %}" data-kaynak="{{ defter_kaynak }}"{% endif %}>
-    <div class="lv-tablo-basliklar"><span>kelime</span><span>anlamı</span></div>
+    <div class="lv-tablo-basliklar"><span>{% translate "kelime" %}</span><span>{% translate "anlamı" %}</span></div>
     {% for k in defter_kartlari %}{% with ilk=k.anlamlar.0 %}
     <div class="lv-satir" data-satir data-kelime-id="{{ k.id }}">
         <div class="lv-satir-kelime">
@@ -65,56 +66,56 @@ Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
             <small>{{ k.tur }}{% if k.cefr %} · {{ k.cefr }}{% endif %}</small>
         </div>
         <div class="lv-satir-sag">
-            <div class="lv-satir-anlam">{{ ilk.meaning_tr }}</div>
+            <div class="lv-satir-anlam">{% firstof ilk.meaning_tr ilk.definition %}</div>
             {% if ilk.ornek %}<div class="lv-satir-cumle" lang="en">{{ ilk.ornek }}</div>{% endif %}
-            <div class="lv-karar"><button type="button" data-evet>✓ biliyordum</button><button type="button" data-hayir>✗ bilmiyordum</button></div>
-            <button type="button" class="lv-kat" data-kat aria-label="{{ k.text }}: anlamını aç">dokun, aç</button>
-            <span class="lv-tekrar-notu" aria-hidden="true">yine soracağız!</span>
+            <div class="lv-karar"><button type="button" data-evet>✓ {% translate "biliyordum" %}</button><button type="button" data-hayir>✗ {% translate "bilmiyordum" %}</button></div>
+            <button type="button" class="lv-kat" data-kat aria-label="{% blocktranslate with kelime=k.text %}{{ kelime }}: anlamını aç{% endblocktranslate %}">{% translate "dokun, aç" %}</button>
+            <span class="lv-tekrar-notu" aria-hidden="true">{% translate "yine soracağız!" %}</span>
         </div>
     </div>
     {% endwith %}{% endfor %}
 </section>
 <div class="lv-kenar-notu mt-5 ml-1">
     <svg viewBox="0 0 46 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M42 26C30 26 14 20 6 6M6 6l1 9M6 6l9 2"/></svg>
-    <span>katlanan yere dokun, kendini dene.<br>{% if user.is_authenticated %}cevapların kaydedilir; bilmediklerin birkaç gün sonra yine gelir.{% else %}bilmediklerin birkaç gün sonra yine karşına çıkar.{% endif %}</span>
+    <span>{% translate "katlanan yere dokun, kendini dene." %}<br>{% if user.is_authenticated %}{% translate "cevapların kaydedilir; bilmediklerin birkaç gün sonra yine gelir." %}{% else %}{% translate "bilmediklerin birkaç gün sonra yine karşına çıkar." %}{% endif %}</span>
 </div>
 <p class="lv-el mt-3 ml-1 min-h-[30px] text-2xl font-bold" data-defter-sonuc aria-live="polite"></p>
 {% endif %}
 
 {# ======================= 3. Bugünün sayfası ======================= #}
 {% if gunun_kelimesi or gunun_ifadesi %}
-<h2 class="lv-bolum mt-20">Bugünün sayfası</h2>
-<span class="lv-bolum-notu mt-1">her gün yeni bir kelime, yeni bir ifade</span>
+<h2 class="lv-bolum mt-20">{% translate "Bugünün sayfası" %}</h2>
+<span class="lv-bolum-notu mt-1">{% translate "her gün yeni bir kelime, yeni bir ifade" %}</span>
 <div class="mt-8 grid items-start gap-9 sm:grid-cols-2">
     {% if gunun_kelimesi %}{% include 'pages/gunun/_kelime.html' with gk=gunun_kelimesi %}{% endif %}
     {% if gunun_ifadesi %}{% include 'pages/gunun/_ifade.html' with gi=gunun_ifadesi %}{% endif %}
 </div>
 <div class="mt-7 flex items-center gap-3">
     {% include 'base/_kapibara.html' with poz='okuyor' sinif='h-28 w-auto shrink-0' %}
-    <span class="lv-el -rotate-2 text-2xl leading-tight">ikisini de biliyorsan<br>bugünlük benden iyisin.</span>
+    <span class="lv-el -rotate-2 text-2xl leading-tight">{% blocktranslate %}ikisini de biliyorsan<br>bugünlük benden iyisin.{% endblocktranslate %}</span>
 </div>
 {% if user.is_authenticated %}{% include 'pages/gunun/_js.html' %}{% endif %}
 {% endif %}
 
 {# ======================= 4. Seri ======================= #}
-<h2 class="lv-bolum mt-20">Her gün bir tik</h2>
-<span class="lv-bolum-notu mt-1">defterde tutulmayan tek şey: düzen</span>
+<h2 class="lv-bolum mt-20" id="seri">{% translate "Her gün bir tik" %}</h2>
+<span class="lv-bolum-notu mt-1">{% translate "defterde tutulmayan tek şey: düzen" %}</span>
 <div class="mt-6 grid items-start gap-8 md:grid-cols-[1fr_1.1fr]">
     <div class="text-lg text-gray-600 dark:text-slate-300">
         {% if user.is_authenticated %}
-        <p class="lv-serif text-[64px] font-black leading-none text-gray-900 dark:text-slate-100">{{ seri.mevcut }}<span class="lv-el ml-2 text-[26px] font-bold tracking-normal">{% if seri.mevcut %}gündür aralıksız{% else %}gün; bugün başlayalım{% endif %}</span></p>
-        <p class="mt-4">En uzun serin: <b class="text-gray-900 dark:text-slate-100">{{ seri.en_uzun }} gün</b>. Günde birkaç dakika çalıştığın her gün takvimine bir tik düşer; gün, senin saatinle gece yarısı biter.</p>
+        <p class="lv-serif text-[64px] font-black leading-none text-gray-900 dark:text-slate-100">{{ seri.mevcut }}<span class="lv-el ml-2 text-[26px] font-bold tracking-normal">{% if seri.mevcut %}{% blocktranslate count n=seri.mevcut %}gündür aralıksız{% plural %}gündür aralıksız{% endblocktranslate %}{% else %}{% translate "gün; bugün başlayalım" %}{% endif %}</span></p>
+        <p class="mt-4">{% blocktranslate count n=seri.en_uzun %}En uzun serin: <b class="text-gray-900 dark:text-slate-100">{{ n }} gün</b>.{% plural %}En uzun serin: <b class="text-gray-900 dark:text-slate-100">{{ n }} gün</b>.{% endblocktranslate %} {% translate "Günde birkaç dakika çalıştığın her gün takvimine bir tik düşer; gün, senin saatinle gece yarısı biter." %}</p>
         <div class="mt-5 max-w-[260px]">{% include 'pages/anasayfa/_seriKutusu.html' %}</div>
         {% else %}
-        <p>Günde birkaç dakika çalıştığın her gün takvimine bir tik düşer. Gün, senin saatinle gece yarısı biter.</p>
-        <p class="mt-4">İstersen tekrar zamanı geldiğinde telefonuna küçük bir hatırlatma gelir. Siteyi ana ekrana eklersen bir uygulama gibi açılır.</p>
+        <p>{% translate "Günde birkaç dakika çalıştığın her gün takvimine bir tik düşer. Gün, senin saatinle gece yarısı biter." %}</p>
+        <p class="mt-4">{% translate "İstersen tekrar zamanı geldiğinde telefonuna küçük bir hatırlatma gelir. Siteyi ana ekrana eklersen bir uygulama gibi açılır." %}</p>
         {% endif %}
     </div>
     <div class="lv-sayfa lv-bantli rotate-1 p-5" {% if not user.is_authenticated %}aria-hidden="true"{% endif %}>
-        <div class="lv-el text-[26px] font-bold">{% if user.is_authenticated %}son beş haftan{% else %}örnek: son beş hafta{% endif %}</div>
+        <div class="lv-el text-[26px] font-bold">{% if user.is_authenticated %}{% translate "son beş haftan" %}{% else %}{% translate "örnek: son beş hafta" %}{% endif %}</div>
         <div class="lv-takvim mt-2" {% if not user.is_authenticated %}data-ornek-takvim{% endif %}>
             {% if user.is_authenticated %}
-            <b>Pt</b><b>Sa</b><b>Ça</b><b>Pe</b><b>Cu</b><b>Ct</b><b>Pz</b>
+            {% include 'base/_haftaGunleri.html' %}
             {% for g in takvim %}<span class="{% if g.bugun %}lv-bugun{% elif g.durum == 'tamam' %}lv-tik{% elif g.durum == 'dondurulan' %}lv-buz{% elif g.gelecek %}lv-gelecek{% endif %}">{{ g.gun }}</span>{% endfor %}
             {% endif %}
         </div>
@@ -123,103 +124,103 @@ Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
 
 {# ======================= 5. Misafir: defterin yapamadıkları / Girişli: bugün başka ne yapsan ======================= #}
 {% if user.is_authenticated %}
-<h2 class="lv-bolum mt-20">Bugün başka ne yapsan?</h2>
-<span class="lv-bolum-notu mt-1">hepsi birkaç dakika</span>
+<h2 class="lv-bolum mt-20">{% translate "Bugün başka ne yapsan?" %}</h2>
+<span class="lv-bolum-notu mt-1">{% translate "hepsi birkaç dakika" %}</span>
 <div class="mt-8 grid gap-7 sm:grid-cols-3">
     <a href="{% url 'readings' %}" class="lv-sayfa lv-bantli block p-5 transition-transform hover:-translate-y-0.5">
-        <span class="lv-el block text-[24px] font-bold">oku</span>
-        <span class="lv-serif mt-1 block text-xl font-bold leading-tight">Kısa bir metin, takıldığın kelimeye dokun</span>
-        <span class="mt-2 block text-base text-gray-600 dark:text-slate-300">Ya da kendi PDF'ini yükle.</span>
+        <span class="lv-el block text-[24px] font-bold">{% translate "oku" %}</span>
+        <span class="lv-serif mt-1 block text-xl font-bold leading-tight">{% translate "Kısa bir metin, takıldığın kelimeye dokun" %}</span>
+        <span class="mt-2 block text-base text-gray-600 dark:text-slate-300">{% translate "Ya da kendi PDF'ini yükle." %}</span>
     </a>
     <a href="{% url 'profile_texts' %}" class="lv-not lv-pembe lv-bantli block transition-transform hover:-translate-y-0.5 text-gray-900 dark:text-slate-100">
-        <span class="lv-el block text-[24px] font-bold">yaz</span>
-        <span class="lv-serif mt-1 block text-xl font-bold leading-tight">Listendeki kelimelerle 3–8 cümle</span>
-        <span class="mt-2 block text-base text-gray-700 dark:text-slate-300">Kırmızı kalemle geri bildirim al.</span>
+        <span class="lv-el block text-[24px] font-bold">{% translate "yaz" %}</span>
+        <span class="lv-serif mt-1 block text-xl font-bold leading-tight">{% translate "Listendeki kelimelerle 3–8 cümle" %}</span>
+        <span class="mt-2 block text-base text-gray-700 dark:text-slate-300">{% translate "Kırmızı kalemle geri bildirim al." %}</span>
     </a>
     <a href="{% url 'exercises_page' %}" class="lv-not lv-mavi lv-bantli block transition-transform hover:-translate-y-0.5 text-gray-900 dark:text-slate-100">
-        <span class="lv-el block text-[24px] font-bold">sına</span>
-        <span class="lv-serif mt-1 block text-xl font-bold leading-tight">Kısa Sınav: listenden 10 soru</span>
-        <span class="mt-2 block text-base text-gray-700 dark:text-slate-300">Ayar yok, bas ve başla.</span>
+        <span class="lv-el block text-[24px] font-bold">{% translate "sına" %}</span>
+        <span class="lv-serif mt-1 block text-xl font-bold leading-tight">{% translate "Kısa Sınav: listenden 10 soru" %}</span>
+        <span class="mt-2 block text-base text-gray-700 dark:text-slate-300">{% translate "Ayar yok, bas ve başla." %}</span>
     </a>
 </div>
 {% else %}
-<h2 class="lv-bolum mt-20">Defterin yapamadığı dört şey</h2>
-<span class="lv-bolum-notu mt-1">(kâğıda bir şey demiyoruz, kâğıdı severiz)</span>
+<h2 class="lv-bolum mt-20">{% translate "Defterin yapamadığı dört şey" %}</h2>
+<span class="lv-bolum-notu mt-1">{% translate "(kâğıda bir şey demiyoruz, kâğıdı severiz)" %}</span>
 <ol class="lv-eksikler mt-4">
-    <li><div><b>Unutacağın günü bilmez.</b><p>Bildiğin kelimeyi 1, 3, 7 ve 21 gün sonra yeniden sorarız; tam unutmaya başladığın an.</p></div></li>
-    <li><div><b>Sesli okumaz.</b><p>Sözlükteki her kelimenin Amerikan ve İngiliz telaffuzu var.</p>
-        {% if defter_kartlari %}<div class="mt-3 flex flex-wrap items-center gap-3"><span class="lv-el text-[22px]">dinle: <span lang="en">{{ defter_kartlari.0.text }}</span> →</span>{% include 'base/_telaffuz.html' with metin=defter_kartlari.0.text %}</div>{% endif %}</div></li>
-    <li><div><b>Okurken yanında olmaz.</b><p>Bir metin oku ya da kendi PDF'ini yükle. Takıldığın kelimeye dokun:</p>
+    <li><div><b>{% translate "Unutacağın günü bilmez." %}</b><p>{% translate "Bildiğin kelimeyi 1, 3, 7 ve 21 gün sonra yeniden sorarız; tam unutmaya başladığın an." %}</p></div></li>
+    <li><div><b>{% translate "Sesli okumaz." %}</b><p>{% translate "Sözlükteki her kelimenin Amerikan ve İngiliz telaffuzu var." %}</p>
+        {% if defter_kartlari %}<div class="mt-3 flex flex-wrap items-center gap-3"><span class="lv-el text-[22px]">{% translate "dinle:" %} <span lang="en">{{ defter_kartlari.0.text }}</span> →</span>{% include 'base/_telaffuz.html' with metin=defter_kartlari.0.text %}</div>{% endif %}</div></li>
+    <li><div><b>{% translate "Okurken yanında olmaz." %}</b><p>{% translate "Bir metin oku ya da kendi PDF'ini yükle. Takıldığın kelimeye dokun:" %}</p>
         <div class="lv-sayfa lv-metin mt-3 px-4 py-3 text-lg leading-[1.75]" lang="en">Most people have had this experience: you meet someone at a party, and ten seconds later the name has
-            <button type="button" class="lv-dokun" data-dokun>completely<span class="lv-balon">tamamen</span></button>
-            <button type="button" class="lv-dokun" data-dokun>disappeared<span class="lv-balon">disappear · kaybolmak</span></button> from your mind.</div></div></li>
-    <li><div><b>Yazdığını düzeltmez.</b><p>Listendeki kelimelerle kısa bir metin yaz; öğretmenin kırmızı kalemi gibi, nerede yanıldığını açıklamasıyla gösterir.</p>
+            <button type="button" class="lv-dokun" data-dokun>completely<span class="lv-balon" lang="tr">tamamen</span></button>
+            <button type="button" class="lv-dokun" data-dokun>disappeared<span class="lv-balon" lang="tr">disappear · kaybolmak</span></button> from your mind.</div></div></li>
+    <li><div><b>{% translate "Yazdığını düzeltmez." %}</b><p>{% translate "Listendeki kelimelerle kısa bir metin yaz; öğretmenin kırmızı kalemi gibi, nerede yanıldığını açıklamasıyla gösterir." %}</p>
         <div class="lv-sayfa lv-metin mt-3 px-4 py-2 text-lg leading-[2]" lang="en">Our team finally won the <span class="lv-iyi">trophy</span>. At first I was reluctant <s class="lv-sil">for joining</s> <span class="lv-ust-not"><i>to join</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> the club.</div>
-        <p class="lv-el mt-2 -rotate-1 text-[21px] !text-red-700 dark:!text-red-300">“reluctant” arkasından “to” + fiil gelir.</p></div></li>
+        <p class="lv-el mt-2 -rotate-1 text-[21px] !text-red-700 dark:!text-red-300">{% translate "“reluctant” arkasından “to” + fiil gelir." %}</p></div></li>
 </ol>
 {% endif %}
 
 {# ======================= 6. Okumalar ======================= #}
 {% if okumalar %}
-<h2 class="lv-bolum mt-20">Defterin arasındaki okumalar</h2>
-<span class="lv-bolum-notu mt-1">kısa, seviyene göre, her biri birkaç dakika</span>
+<h2 class="lv-bolum mt-20">{% translate "Defterin arasındaki okumalar" %}</h2>
+<span class="lv-bolum-notu mt-1">{% translate "kısa, seviyene göre, her biri birkaç dakika" %}</span>
 <div class="mt-8 grid gap-7 md:grid-cols-3">
     {% for m in okumalar %}
     <a href="{% url 'readings_library_text' m.slug %}" class="lv-kupur lv-kupur-{{ forloop.counter }} block text-gray-900 dark:text-slate-100">
         <div class="lv-el text-xl font-bold">{{ m.get_topic_display|lower }}</div>
         <h3 class="lv-serif mt-0.5 text-[22px] font-bold leading-tight" lang="en">{{ m.title }}</h3>
         <p class="lv-metin mt-2 text-base leading-relaxed text-gray-600 dark:text-slate-300" lang="en">{{ m.body|truncatewords:16 }}</p>
-        <div class="mt-3 flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">{% if m.cefr %}<span class="lv-seviye">{{ m.cefr }}</span>{% endif %}~{{ m.reading_minutes }} dk</div>
+        <div class="mt-3 flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">{% if m.cefr %}<span class="lv-seviye">{{ m.cefr }}</span>{% endif %}{% blocktranslate with dk=m.reading_minutes %}~{{ dk }} dk{% endblocktranslate %}</div>
     </a>
     {% endfor %}
 </div>
-<a href="{% url 'readings' %}" class="lv-el-bag mt-6 inline-block">bütün okumalar →</a>
+<a href="{% url 'readings' %}" class="lv-el-bag mt-6 inline-block">{% translate "bütün okumalar →" %}</a>
 {% endif %}
 
 {# ======================= 7. Seviye sekmeleri ======================= #}
-<h2 class="lv-bolum mt-20" id="seviye">{% if user.is_authenticated %}Defterinin sekmeleri{% else %}Hangi sayfadan başlamalısın?{% endif %}</h2>
-<span class="lv-bolum-notu mt-1">{% if user.is_authenticated %}seviyelere göz at; senin sayfan işaretli{% else %}defterin sekmeleri: istediğine atla{% endif %}</span>
+<h2 class="lv-bolum mt-20" id="seviye">{% if user.is_authenticated %}{% translate "Defterinin sekmeleri" %}{% else %}{% translate "Hangi sayfadan başlamalısın?" %}{% endif %}</h2>
+<span class="lv-bolum-notu mt-1">{% if user.is_authenticated %}{% translate "seviyelere göz at; senin sayfan işaretli" %}{% else %}{% translate "defterin sekmeleri: istediğine atla" %}{% endif %}</span>
 <div class="lv-sekmeler mt-6">
     {% for s, tarif in seviyeler %}
-    <a href="{% url 'sozluk_seviye' s|lower %}" class="lv-sekme lv-sekme-{{ forloop.counter }}" style="--i: {{ forloop.counter0 }}"><b>{{ s }}</b><span>{{ tarif }}{% if s == kullanici_seviyesi %} <em class="lv-el not-italic text-[20px] font-bold text-[#c73a2b]">← sen buradasın</em>{% endif %}</span><i aria-hidden="true">→</i></a>
+    <a href="{% url 'sozluk_seviye' s|lower %}" class="lv-sekme lv-sekme-{{ forloop.counter }}" style="--i: {{ forloop.counter0 }}"><b>{{ s }}</b><span>{{ tarif }}{% if s == kullanici_seviyesi %} <em class="lv-el not-italic text-[20px] font-bold text-[#c73a2b]">{% translate "← sen buradasın" %}</em>{% endif %}</span><i aria-hidden="true">→</i></a>
     {% endfor %}
 </div>
 <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-    <a href="{% url 'seviye_testi' %}" class="lv-dugme lv-ikincil">{% if user.is_authenticated %}Seviye testini tekrarla{% else %}Seviyemi öğren{% endif %}</a>
-    <span class="lv-el text-[22px] leading-tight">bildiğin kelimelere dokun, birkaç kısa metin oku; gerisini biz söyleriz.</span>
+    <a href="{% url 'seviye_testi' %}" class="lv-dugme lv-ikincil">{% if user.is_authenticated %}{% translate "Seviye testini tekrarla" %}{% else %}{% translate "Seviyemi öğren" %}{% endif %}</a>
+    <span class="lv-el text-[22px] leading-tight">{% translate "bildiğin kelimelere dokun, birkaç kısa metin oku; gerisini biz söyleriz." %}</span>
 </div>
 
 {# ======================= 8. Hazır liste ======================= #}
 {% if hazir_liste %}
-<h2 class="lv-bolum mt-20">Hazır listeler</h2>
-<span class="lv-bolum-notu mt-1">başkası senin için yazmış; sen sadece başla</span>
+<h2 class="lv-bolum mt-20">{% translate "Hazır listeler" %}</h2>
+<span class="lv-bolum-notu mt-1">{% translate "başkası senin için yazmış; sen sadece başla" %}</span>
 <div class="lv-not lv-pembe lv-bantli mt-8 max-w-[420px] text-gray-900 dark:text-slate-100">
     <h3 class="lv-serif text-2xl font-bold leading-tight">{{ hazir_liste.ad }}</h3>
     {% if hazir_liste.aciklama %}<p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">{{ hazir_liste.aciklama }}</p>{% endif %}
     <ol class="mt-3 list-decimal pl-6 text-base sm:columns-2" lang="en">
         {% for w in hazir_liste_kelimeleri %}<li class="break-inside-avoid">{{ w.text }}</li>{% endfor %}
     </ol>
-    {% if hazir_liste_sayisi > hazir_liste_kelimeleri|length %}<p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">+{{ hazir_liste_sayisi|add:"-8" }} kelime daha</p>{% endif %}
-    <a href="{% url 'hazir_liste' hazir_liste.slug %}" class="lv-el-bag mt-3 inline-block">listeyi aç →</a>
+    {% if hazir_liste_sayisi > hazir_liste_kelimeleri|length %}{% with kalan=hazir_liste_sayisi|add:"-8" %}<p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">{% blocktranslate count n=kalan %}+{{ n }} kelime daha{% plural %}+{{ n }} kelime daha{% endblocktranslate %}</p>{% endwith %}{% endif %}
+    <a href="{% url 'hazir_liste' hazir_liste.slug %}" class="lv-el-bag mt-3 inline-block">{% translate "listeyi aç →" %}</a>
 </div>
 {% endif %}
 
 {# ======================= 9. Misafir: sık sorulanlar + kapanış ======================= #}
 {% if not user.is_authenticated %}
-<h2 class="lv-bolum mt-20">Aklına takılanlar</h2>
-<span class="lv-bolum-notu mt-1">kenara not düştük</span>
+<h2 class="lv-bolum mt-20">{% translate "Aklına takılanlar" %}</h2>
+<span class="lv-bolum-notu mt-1">{% translate "kenara not düştük" %}</span>
 <dl class="lv-sss mt-6">
-    <div><dt>Ücretli mi?</dt><dd>Hayır. Sözlük, tekrar, okuma ve yazma ücretsiz.</dd></div>
-    <div><dt>Hesap açmam gerekiyor mu?</dt><dd>Denemek için hayır. Kelimelerini ve serini saklamak istersen bir hesap yeter.</dd></div>
-    <div><dt>Telefonda çalışır mı?</dt><dd>Evet. Ana ekrana eklersen bir uygulama gibi açılır, istersen hatırlatma da gönderir.</dd></div>
-    <div><dt>Hangi seviyeler var?</dt><dd>A1'den C2'ye. Nereden başlayacağını bilmiyorsan seviye testi söyler.</dd></div>
+    <div><dt>{% translate "Ücretli mi?" %}</dt><dd>{% translate "Hayır. Sözlük, tekrar, okuma ve yazma ücretsiz." %}</dd></div>
+    <div><dt>{% translate "Hesap açmam gerekiyor mu?" %}</dt><dd>{% translate "Denemek için hayır. Kelimelerini ve serini saklamak istersen bir hesap yeter." %}</dd></div>
+    <div><dt>{% translate "Telefonda çalışır mı?" %}</dt><dd>{% translate "Evet. Ana ekrana eklersen bir uygulama gibi açılır, istersen hatırlatma da gönderir." %}</dd></div>
+    <div><dt>{% translate "Hangi seviyeler var?" %}</dt><dd>{% translate "A1'den C2'ye. Nereden başlayacağını bilmiyorsan seviye testi söyler." %}</dd></div>
 </dl>
 
 <section class="mt-24">
-    <p class="lv-serif max-w-[14em] text-[34px] font-black leading-[1.08] tracking-tight sm:text-5xl">Defterini aç. İlk sayfası hazır.</p>
+    <p class="lv-serif max-w-[14em] text-[34px] font-black leading-[1.08] tracking-tight sm:text-5xl">{% translate "Defterini aç. İlk sayfası hazır." %}</p>
     <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
-        <a href="{% url 'register' %}" class="lv-dugme">Ücretsiz hesap aç</a>
-        <a href="{% url 'login' %}" class="lv-el-bag">zaten hesabım var →</a>
+        <a href="{% url 'register' %}" class="lv-dugme">{% translate "Ücretsiz hesap aç" %}</a>
+        <a href="{% url 'login' %}" class="lv-el-bag">{% translate "zaten hesabım var →" %}</a>
     </div>
 </section>
 {% endif %}
@@ -227,9 +228,9 @@ Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
 {# ======================= Sayfa sonu ======================= #}
 <p class="lv-el mt-16 text-center text-[22px] !text-gray-500 dark:!text-slate-400">— 1 —</p>
 <p class="mt-1 flex flex-wrap justify-center gap-x-4 gap-y-1 text-[15px]">
-    {% for s, tarif in seviyeler %}<a href="{% url 'sozluk_seviye' s|lower %}" class="text-gray-600 hover:underline dark:text-slate-300">{{ s }} kelimeleri</a>{% endfor %}
-    <a href="{% url 'hazir_listeler' %}" class="text-gray-600 hover:underline dark:text-slate-300">Hazır listeler</a>
-    <a href="{% url 'about' %}" data-yardim class="text-gray-600 hover:underline dark:text-slate-300">Yardım ve hakkında</a>
+    {% for s, tarif in seviyeler %}<a href="{% url 'sozluk_seviye' s|lower %}" class="text-gray-600 hover:underline dark:text-slate-300">{% blocktranslate %}{{ s }} kelimeleri{% endblocktranslate %}</a>{% endfor %}
+    <a href="{% url 'hazir_listeler' %}" class="text-gray-600 hover:underline dark:text-slate-300">{% translate "Hazır listeler" %}</a>
+    <a href="{% url 'about' %}" data-yardim class="text-gray-600 hover:underline dark:text-slate-300">{% translate "Yardım ve hakkında" %}</a>
 </p>
 
 {% include 'pages/words/_oneriKutusuJs.html' %}

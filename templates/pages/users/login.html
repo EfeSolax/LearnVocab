@@ -1,7 +1,8 @@
 <!-- Temel olarak layout.html'i extend ediyoruz. -->
 {% extends 'base/layout.html' %}  
+{% load i18n %}
 
-{% block title %}Giriş Yap{% endblock %}
+{% block title %}{% translate "Giriş Yap" %}{% endblock %}
 
 {% block messages %}{% endblock %}
 
@@ -10,8 +11,8 @@
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="lv-baslik mt-6 text-center !text-[40px] sm:!text-[52px]">Defterine dön</h2>
-    <p class="lv-alt-baslik mt-1 block text-center">kaldığın sayfa seni bekliyor</p>
+    <h2 class="lv-baslik mt-6 text-center !text-[40px] sm:!text-[52px]">{% translate "Defterine dön" %}</h2>
+    <p class="lv-alt-baslik mt-1 block text-center">{% translate "kaldığın sayfa seni bekliyor" %}</p>
   </div>
 
   <div class="mt-8 lv-sayfa lv-bantli sm:mx-auto sm:w-full sm:max-w-md p-7 sm:p-8">
@@ -33,36 +34,36 @@
       {% if sonraki %}<input type="hidden" name="next" value="{{ sonraki }}">{% endif %}
       {% if neden %}<input type="hidden" name="neden" value="{{ neden }}">{% endif %}
       <div>
-        <label for="username" class="lv-el block text-[22px] font-bold">Kullanıcı Adı</label>
+        <label for="username" class="lv-el block text-[22px] font-bold">{% translate "Kullanıcı Adı" %}</label>
         <div class="mt-2">
-          <input id="username" type="text" name="username" required autocomplete="off" placeholder="Kullanıcı Adı"
+          <input id="username" type="text" name="username" required autocomplete="off" placeholder="{% translate "Kullanıcı Adı" %}"
           class="lv-girdi" />
         </div>
       </div>
 
       <div>
         <div class="flex items-center justify-between">
-          <label for="password" class="lv-el block text-[22px] font-bold">Şifre</label>
+          <label for="password" class="lv-el block text-[22px] font-bold">{% translate "Şifre" %}</label>
           <div class="text-sm">
-            <a href="{% url 'forgot_password' %}" class="lv-el text-[21px] font-bold underline decoration-1 underline-offset-4">Şifrenizi mi unuttunuz?</a>
+            <a href="{% url 'forgot_password' %}" class="lv-el text-[21px] font-bold underline decoration-1 underline-offset-4">{% translate "Şifrenizi mi unuttunuz?" %}</a>
           </div>
         </div>
         <div class="mt-2">
-          <input id="password" type="password" name="password" autocomplete="current-password" placeholder="Şifre"
+          <input id="password" type="password" name="password" autocomplete="current-password" placeholder="{% translate "Şifre" %}"
           class="lv-girdi" />
         </div>
       </div>
 
       <div>
-        <button type="submit" class="lv-dugme flex w-full">Giriş yap</button>
+        <button type="submit" class="lv-dugme flex w-full">{% translate "Giriş yap" %}</button>
       </div>
     </form>
 
     <p class="mt-7 text-center text-base text-gray-600 dark:text-slate-300">
-      Henüz defterin yok mu?
+      {% translate "Henüz defterin yok mu?" %}
     </p>
     <p class="text-center text-sm/6 text-gray-500 dark:text-slate-400">
-      <a href="{% url 'register' %}" class="lv-el text-[21px] font-bold underline decoration-1 underline-offset-4">ücretsiz hesap aç →</a>
+      <a href="{% url 'register' %}" class="lv-el text-[21px] font-bold underline decoration-1 underline-offset-4">{% translate "ücretsiz hesap aç →" %}</a>
     </p>
   </div>
 </div>

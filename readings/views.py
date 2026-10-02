@@ -26,6 +26,8 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 from django.views.decorators.http import require_POST
 
 from LearnVocab.authgate import login_gate
@@ -143,7 +145,7 @@ def kutuphane_metni(request, slug):
     })
 
 
-@login_gate("Okumalar", "Kendi metinlerin yalnızca sana özel; görmek için giriş yapmalısın.")
+@login_gate(gettext_lazy("Okumalar"), gettext_lazy("Kendi metinlerin yalnızca sana özel; görmek için giriş yapmalısın."))
 def kendi_metnim(request, pk):
     # Başkasının metni ve çöpteki metin: 404 (varlığı bile belli olmasın).
     metin = get_object_or_404(UserText.objects.gorunen(), pk=pk, owner=request.user)
@@ -179,7 +181,7 @@ def _varsayilan_baslik(metin):
     return (baslik + "…") if len(kelimeler) > 8 else baslik
 
 
-@login_gate("Okumalar", "Kendi metinlerini yükleyebilmek için giriş yapman gerekiyor.")
+@login_gate(gettext_lazy("Okumalar"), gettext_lazy("Kendi metinlerini yükleyebilmek için giriş yapman gerekiyor."))
 def metin_ekle(request):
     tur = request.POST.get("tur") or request.GET.get("tur") or "pdf"
     if tur not in ("pdf", "yapistir"):
@@ -192,18 +194,18 @@ def metin_ekle(request):
 
         mevcut = UserText.objects.gorunen().filter(owner=request.user)
         if mevcut.count() >= EN_COK_METIN:
-            hata = (f"En çok {EN_COK_METIN} metin saklayabiliyorsun. Yenisini eklemek için "
-                    "eskilerden birini silebilirsin.")
+            hata = _("En çok %(n)s metin saklayabiliyorsun. Yenisini eklemek için "
+                     "eskilerden birini silebilirsin.") % {"n": EN_COK_METIN}
         elif tur == "pdf" and mevcut.filter(source_kind=UserText.SOURCE_PDF).count() >= EN_COK_PDF:
-            hata = (f"En çok {EN_COK_PDF} PDF saklayabiliyorsun. Yenisini eklemek için eski "
-                    "PDF'lerden birini silebilir ya da metni yapıştırabilirsin.")
+            hata = _("En çok %(n)s PDF saklayabiliyorsun. Yenisini eklemek için eski "
+                     "PDF'lerden birini silebilir ya da metni yapıştırabilirsin.") % {"n": EN_COK_PDF}
         elif tur == "pdf":
             dosya = request.FILES.get("dosya")
             if not dosya:
-                hata = "Bir PDF dosyası seçer misin?"
+                hata = _("Bir PDF dosyası seçer misin?")
             elif dosya.size > pdf_okuyucu.EN_BUYUK_BOYUT:
-                hata = (f"Bu PDF çok büyük. En çok {pdf_okuyucu.EN_BUYUK_BOYUT_MB} MB'lık "
-                        "dosyaları okuyabiliyoruz.")
+                hata = _("Bu PDF çok büyük. En çok %(mb)s MB'lık dosyaları okuyabiliyoruz.") % {
+                    "mb": pdf_okuyucu.EN_BUYUK_BOYUT_MB}
             else:
                 try:
                     # Dosya yalnızca bellekte okunur, saklanmaz.
@@ -217,15 +219,15 @@ def metin_ekle(request):
                         title=baslik or bilgi["baslik"] or ad[:200] or _varsayilan_baslik(metin),
                         word_count=len(metin.split()))
                     if bilgi["kesildi"]:
-                        messages.info(request, "PDF çok uzun olduğu için yalnızca ilk kısmını aldık.")
+                        messages.info(request, _("PDF çok uzun olduğu için yalnızca ilk kısmını aldık."))
                     return redirect("readings_user_text", pk=kayit.pk)
         else:
             metin = _yapistirilani_duzenle(yapistirilan)
             if len(re.findall(r"[A-Za-z]", metin)) < EN_AZ_KARAKTER:
-                hata = "Okumak için biraz daha uzun bir metin yapıştırır mısın?"
+                hata = _("Okumak için biraz daha uzun bir metin yapıştırır mısın?")
             elif len(metin) > EN_COK_KARAKTER:
-                hata = (f"Bu metin çok uzun (en çok {EN_COK_KARAKTER:,} karakter). "
-                        "Bir bölümünü yapıştırabilirsin.").replace(",", ".")
+                hata = _("Bu metin çok uzun (en çok %(n)s karakter). Bir bölümünü yapıştırabilirsin.") % {
+                    "n": f"{EN_COK_KARAKTER:,}".replace(",", ".")}
             else:
                 kayit = UserText.objects.create(
                     owner=request.user, source_kind=UserText.SOURCE_PASTE, body=metin,
@@ -281,5 +283,5 @@ def metnim_kalici_sil(request, pk):
     metin.delete()
     if _ajax_mi(request):
         return JsonResponse({"ok": True})
-    messages.info(request, f"“{baslik}” kalıcı olarak silindi.")
+    messages.info(request, _("“%(baslik)s” kalıcı olarak silindi.") % {"baslik": baslik})
     return redirect("readings")
