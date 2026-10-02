@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kapibara taslakları</title>
+<link rel="stylesheet" href="../../../static/css/fontlar.css">
+<style>
+  :root {
+    --kagit: #fbfaf5; --kagit-beyaz: #fff; --kare: rgba(66,110,190,.12); --satir: rgba(66,110,190,.22);
+    --kenar: #e7a3a3; --murekkep: #1d3f8f; --yazi: #1b1d22; --soluk: #5f6470; --kalem: #ffe46b;
+    --kahve: #c08a57; --kahve-koyu: #8d5a33; --kahve-cizgi: #4a3324; --yanak: #f2a7a0; --portakal: #f39a2b;
+    --el: 'Caveat', cursive;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--yazi); font: 17px/1.55 Inter, system-ui, sans-serif;
+    background-color: var(--kagit);
+    background-image: linear-gradient(var(--kare) 1px, transparent 1px), linear-gradient(90deg, var(--kare) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  main { max-width: 1080px; margin: 0 auto; padding: 40px 16px 80px; }
+  h1 { font: 900 52px/1 Fraunces, Georgia, serif; letter-spacing: -.03em; margin: 0; }
+  h2 { font: 700 34px/1.1 var(--el); color: var(--murekkep); margin: 56px 0 4px; transform: rotate(-1deg); }
+  .el { font-family: var(--el); color: var(--murekkep); }
+  .giris { max-width: 720px; color: var(--soluk); }
+  .izgara { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: 18px; }
+  .kart {
+    position: relative; background: var(--kagit-beyaz); padding: 18px 18px 16px; border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 6px 18px -10px rgba(30,40,80,.35);
+    background-image: repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px);
+  }
+  .kart::before { content: ""; position: absolute; top: 0; bottom: 0; left: 30px; border-left: 2px solid var(--kenar); opacity: .55; }
+  .kart:nth-child(odd) { transform: rotate(-.6deg); } .kart:nth-child(even) { transform: rotate(.5deg); }
+  .kart svg { display: block; width: 100%; height: auto; position: relative; }
+  .kart h3 { position: relative; font: 700 27px/1 var(--el); color: var(--murekkep); margin: 6px 0 2px 22px; }
+  .kart p { position: relative; margin: 0 0 0 22px; font-size: 15px; color: var(--soluk); }
+  .harf { position: absolute; top: -12px; right: 14px; font: 700 34px var(--el); color: #fff; background: var(--murekkep);
+          width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; transform: rotate(-6deg); }
+  .bant { position: absolute; top: -10px; left: 50%; width: 92px; height: 22px; margin-left: -46px; background: rgba(255,228,107,.75); transform: rotate(-3deg); }
+
+  /* Göz kırpma (L&P): açık göz kısa süre kapanır. */
+  .kirpar .goz-acik { animation: kirp 4.2s infinite; }
+  .kirpar .goz-kapali { animation: kirp-tersi 4.2s infinite; }
+  @keyframes kirp { 0%, 92%, 100% { opacity: 1; } 94%, 97% { opacity: 0; } }
+  @keyframes kirp-tersi { 0%, 92%, 100% { opacity: 0; } 94%, 97% { opacity: 1; } }
+  .zzz text { animation: suzul 3s ease-in-out infinite; }
+  .zzz text:nth-child(2) { animation-delay: .6s; } .zzz text:nth-child(3) { animation-delay: 1.2s; }
+  @keyframes suzul { 0%, 100% { opacity: .25; transform: translateY(2px); } 50% { opacity: 1; transform: translateY(-3px); } }
+  .zil { transform-origin: 222px 28px; animation: salla 2.4s ease-in-out infinite; }
+  @keyframes salla { 0%, 60%, 100% { transform: rotate(0); } 68% { transform: rotate(12deg); } 76% { transform: rotate(-10deg); } 84% { transform: rotate(6deg); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+  .seri { display: flex; align-items: center; gap: 12px; position: relative; margin: 6px 0 6px 22px; }
+  .seri b { font: 900 30px Fraunces, Georgia, serif; }
+  .seri span { font: 600 22px var(--el); color: var(--murekkep); }
+  .koyu { background-color: #16181d !important; background-image: repeating-linear-gradient(transparent 0 31px, rgba(130,160,230,.16) 31px 32px) !important; --murekkep: #9db8ff; }
+  .koyu h3, .koyu .seri span { color: #9db8ff; } .koyu p { color: #a3a7b0; } .koyu .seri b { color: #e9e8e2; }
+  .not { margin-top: 48px; padding: 18px 22px; background: #fff7c2; transform: rotate(-.6deg); max-width: 760px; box-shadow: 0 6px 16px -10px rgba(0,0,0,.4); }
+  .not li { margin: 4px 0; }
+</style>
+</head>
+<body>
+
+<!-- Ortak çizim parçaları. Kapibara sağa bakar; gövde, kulak, göz ve aksesuarlar ayrı parçalar. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Elle çizilmiş titreklik: çizgi cetvelle çekilmiş gibi durmasın. -->
+    <filter id="titrek" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <!-- Boya kalemi dokusu: dolgu kâğıdın pürüzüyle yer yer boş kalır. -->
+    <filter id="boya" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="9" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.2 0 0 0 -0.42" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="c"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="2" result="t"/>
+      <feDisplacementMap in="c" in2="t" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <pattern id="tarama" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(32)">
+      <path d="M0 3.5h7" stroke="var(--kahve-koyu)" stroke-width="1.8" opacity=".5"/>
+    </pattern>
+
+    <!-- Gövde ve baş tek çizgi: sırt, alnın düzlüğü, küt burun, çene, karın. -->
+    <path id="k-sil" d="M30 108C16 92 18 62 44 52C70 42 100 46 116 50C122 42 132 36 146 35C168 34 190 38 202 48C210 56 211 78 204 86C196 94 178 96 166 92C160 102 150 110 136 112C108 118 58 120 30 108Z"/>
+    <clipPath id="k-kirp"><use href="#k-sil"/></clipPath>
+
+    <g id="k-bacak">
+      <g opacity=".55"><path d="M44 104c-3 9-4 17-2 25h11c0-6 1-12 4-18"/><path d="M130 110c0 7 0 13 1 19h10c0-6 0-11-1-17"/></g>
+      <path d="M62 113c-1 6-1 11 0 17h12c0-5 1-10 3-15"/><path d="M75 130v-3M69 130v-3" stroke-width="1.8"/>
+      <path d="M146 107c1 8 2 15 2 23h12c0-8-1-15-3-22"/><path d="M160 130v-3M154 130v-3" stroke-width="1.8"/>
+    </g>
+
+    <!-- Boya kalemi dolgusu: çizgiden biraz taşar, çocuk boyaması gibi. -->
+    <g id="k-boya">
+      <g filter="url(#boya)" transform="translate(3 2)">
+        <use href="#k-sil" fill="var(--kahve)"/>
+        <use href="#k-sil" fill="url(#tarama)"/>
+        <g clip-path="url(#k-kirp)">
+          <path d="M20 100C60 122 120 122 170 96V130H20Z" fill="var(--kahve-koyu)" opacity=".45"/>
+          <path d="M150 30C176 34 200 44 206 70L206 40Z" fill="var(--kahve-koyu)" opacity=".35"/>
+        </g>
+        <g fill="var(--kahve-koyu)" stroke="none">
+          <path d="M44 104c-3 9-4 17-2 25h11c0-6 1-12 4-18Z" opacity=".7"/><path d="M130 110c0 7 0 13 1 19h10c0-6 0-11-1-17Z" opacity=".7"/>
+          <path d="M62 113c-1 6-1 11 0 17h12c0-5 1-10 3-15Z"/><path d="M146 107c1 8 2 15 2 23h12c0-8-1-15-3-22Z"/>
+        </g>
+        <path d="M140 38C137 27 151 24 153 35Z" fill="var(--kahve-koyu)"/>
+      </g>
+      <ellipse cx="184" cy="70" rx="9" ry="5" fill="var(--yanak)" opacity=".75" filter="url(#boya)"/>
+    </g>
+
+    <g id="k-cizgi" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#k-sil"/>
+      <path d="M140 38c-3-10 10-13 12-3"/>
+      <path d="M202 55q3 3 0 6"/>
+      <path d="M203 82q-7 5-15 1"/>
+      <use href="#k-bacak"/>
+      <path d="M56 60q6-4 12 0M84 55q6-4 12 0M110 56q5-3 10 0" stroke-width="2" opacity=".45"/>
+    </g>
+
+    <g id="k-goz-acik"><ellipse cx="166" cy="49" rx="3.3" ry="3.9" fill="currentColor"/><circle cx="167.2" cy="47.4" r="1.1" fill="#fff"/></g>
+    <path id="k-goz-kapali" d="M161 50q5 4 10 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Önden baş: küçük yerler için (seri kutusu, sekme simgesi). -->
+    <g id="bas-boya" filter="url(#boya)">
+      <circle cx="33" cy="31" r="9" fill="var(--kahve-koyu)"/><circle cx="87" cy="31" r="9" fill="var(--kahve-koyu)"/>
+      <path d="M30 42C30 22 90 22 90 42L95 88C95 106 25 106 25 88Z" fill="var(--kahve)" transform="translate(2 2)"/>
+      <ellipse cx="60" cy="85" rx="24" ry="15" fill="var(--kahve-koyu)" opacity=".55"/>
+      <ellipse cx="36" cy="72" rx="7" ry="4.5" fill="var(--yanak)"/><ellipse cx="84" cy="72" rx="7" ry="4.5" fill="var(--yanak)"/>
+    </g>
+    <g id="bas-cizgi" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M27 36a8 8 0 0 1 13-9M80 27a8 8 0 0 1 13 9"/>
+      <path d="M30 42C30 22 90 22 90 42L95 88C95 106 25 106 25 88Z"/>
+      <path d="M52 79q-3 3 0 5M68 79q3 3 0 5"/>
+      <path d="M54 93q6 4 12 0"/>
+    </g>
+    <g id="bas-goz" fill="currentColor"><circle cx="45" cy="55" r="3.6"/><circle cx="75" cy="55" r="3.6"/></g>
+  </defs>
+</svg>
+
+<main>
+  <span class="el" style="font-size:26px">2 Ekim · taslak</span>
+  <h1>Kapibara taslakları</h1>
+  <p class="giris">Defter temasının maskotu. Defterin kenarına karalanmış gibi durur; çizim tarzı elle çizgi + boya kalemi dolgusu. Önce <b>çizgi tarzını</b> seç, sonra aşağıdaki <b>pozlar</b> o tarzla tamamlanır. Hepsi SVG: her boyutta keskin, koyu temada renk değiştirir, birkaç KB.</p>
+
+  <h2>1 · Üç çizgi tarzı (aynı poz)</h2>
+  <div class="izgara">
+    <figure class="kart" style="margin:0"><span class="harf">A</span>
+      <svg viewBox="0 0 220 145" style="color:var(--murekkep)" role="img" aria-label="Kapibara, mürekkep çizgi">
+        <g filter="url(#titrek)"><use href="#k-cizgi"/><use href="#k-goz-acik"/></g>
+      </svg>
+      <h3>Kenar karalaması</h3>
+      <p>Yalnızca mavi mürekkep. En sade; defterin kenarına not alırken çizilmiş gibi.</p>
+    </figure>
+    <figure class="kart" style="margin:0"><span class="harf">B</span>
+      <svg viewBox="0 0 220 145" style="color:var(--murekkep)" role="img" aria-label="Kapibara, mürekkep çizgi ve boya kalemi">
+        <use href="#k-boya"/><g filter="url(#titrek)"><use href="#k-cizgi"/><use href="#k-goz-acik"/></g>
+      </svg>
+      <h3>Mürekkep + boya kalemi</h3>
+      <p>Mavi tükenmez çizgi, üstüne kahverengi boya kalemi. Sitenin mürekkep rengiyle bağlı. <b>Önerim bu.</b></p>
+    </figure>
+    <figure class="kart" style="margin:0"><span class="harf">C</span>
+      <svg viewBox="0 0 220 145" style="color:var(--kahve-cizgi)" role="img" aria-label="Kapibara, kahverengi kalem ve boya kalemi">
+        <use href="#k-boya"/><g filter="url(#titrek)"><use href="#k-cizgi"/><use href="#k-goz-acik"/></g>
+      </svg>
+      <h3>Kahve kalem + boya</h3>
+      <p>Çizgi de kahverengi; daha sıcak, resimli kitap gibi. Sayfadaki mavi yazılardan biraz ayrı durur.</p>
+    </figure>
+  </div>
+
+  <h2>2 · Sitede gerekecek pozlar (B tarzıyla)</h2>
+  <div class="izgara">
+    <figure class="kart kirpar" style="margin:0"><span class="bant"></span>
+      <svg viewBox="0 0 260 150" style="color:var(--murekkep)" role="img" aria-label="Göz kırpan kapibara ve konuşma balonu">
+        <g transform="translate(0 6)"><use href="#k-boya"/><g filter="url(#titrek)"><use href="#k-cizgi"/><use href="#k-goz-acik" class="goz-acik"/><use href="#k-goz-kapali" class="goz-kapali"/></g></g>
+        <g filter="url(#titrek)"><path d="M188 8h64q6 0 6 6v26q0 6-6 6h-38l-12 12 2-12h-16q-6 0-6-6V14q0-6 6-6Z" fill="#fff" stroke="currentColor" stroke-width="2.4"/></g>
+        <text x="220" y="32" text-anchor="middle" font-family="Caveat" font-weight="700" font-size="17" fill="currentColor">bu muydu?</text>
+      </svg>
+      <h3>Learn &amp; Pass</h3>
+      <p>Kartın köşesinde, konuşma balonuyla. Arada bir göz kırpar.</p>
+    </figure>
+
+    <figure class="kart" style="margin:0"><span class="bant"></span>
+      <svg viewBox="0 0 260 150" style="color:var(--murekkep)" role="img" aria-label="Kafasında portakal olan kapibara">
+        <g transform="translate(0 10)"><use href="#k-boya"/><g filter="url(#titrek)"><use href="#k-cizgi"/><path d="M160 51q5-5 11 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></g></g>
+        <g filter="url(#boya)"><circle cx="158" cy="24" r="13" fill="var(--portakal)"/></g>
+        <g filter="url(#titrek)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+          <circle cx="158" cy="24" r="13"/><path d="M158 11q4-8 12-6-4 8-12 6"/>
+          <path d="M206 30l6-8M214 44l10-2M200 18l1-10" stroke-width="2"/>
+        </g>
+        <text x="224" y="86" text-anchor="middle" font-family="Caveat" font-weight="700" font-size="24" fill="currentColor" transform="rotate(-8 224 86)">12 gün!</text>
+      </svg>
+      <h3>Seri kutlaması</h3>
+      <p>Kafasında portakal (bilinen kapibara hâli), mutlu kapalı gözler. Seri günlerinde.</p>
+    </figure>
+
+    <figure class="kart" style="margin:0"><span class="bant"></span>
+      <svg viewBox="0 0 260 150" style="color:var(--murekkep)" role="img" aria-label="Zilin yanında kapibara">
+        <g transform="translate(-10 10)"><use href="#k-boya"/><g filter="url(#titrek)"><use href="#k-cizgi"/><use href="#k-goz-acik"/></g></g>
+        <g class="zil">
+          <g filter="url(#boya)"><path d="M222 30c-11 0-15 9-15 19v10l-5 7h40l-5-7V49c0-10-4-19-15-19Z" fill="var(--kalem)"/></g>
+          <g filter="url(#titrek)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M222 30c-11 0-15 9-15 19v10l-5 7h40l-5-7V49c0-10-4-19-15-19Z"/><path d="M222 24v6"/><circle cx="222" cy="71" r="4"/>
+          </g>
+        </g>
+        <g filter="url(#titrek)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M248 38q6 8 0 18M196 38q-6 8 0 18"/></g>
+      </svg>
+      <h3>Bildirim izni</h3>
+      <p>Ön ekranda, zilin yanında; zil ara ara sallanır.</p>
+    </figure>
+
+    <figure class="kart" style="margin:0"><span class="bant"></span>
+      <svg viewBox="0 0 260 150" style="color:var(--murekkep)" role="img" aria-label="Uyuyan kapibara">
+        <g transform="translate(0 10)"><use href="#k-boya"/><g filter="url(#titrek)"><use href="#k-cizgi"/><use href="#k-goz-kapali"/></g></g>
+        <g class="zzz" font-family="Caveat" font-weight="700" fill="currentColor">
+          <text x="206" y="44" font-size="20">z</text><text x="220" y="30" font-size="26">z</text><text x="238" y="16" font-size="32">z</text>
+        </g>
+      </svg>
+      <h3>Uyuyor</h3>
+      <p>Boş durumlar: bugün tekrar yok, liste boş, seri donduruldu.</p>
+    </figure>
+
+    <figure class="kart" style="margin:0"><span class="bant"></span>
+      <svg viewBox="0 0 260 150" style="color:var(--murekkep)" role="img" aria-label="Kitap okuyan kapibara">
+        <g transform="translate(-14 4)"><use href="#k-boya"/><g filter="url(#titrek)"><use href="#k-cizgi"/><path d="M161 52q5 2 10 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></g></g>
+        <g filter="url(#boya)"><path d="M190 100q22-9 28 4 6-13 28-4v34q-22-9-28 4-6-13-28-4Z" fill="#fff"/></g>
+        <g filter="url(#titrek)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M190 100q22-9 28 4 6-13 28-4v34q-22-9-28 4-6-13-28-4Z" fill="#fff"/><path d="M218 104v34"/>
+          <path d="M196 110q8-3 16 0M196 118q8-3 16 0M224 110q8-3 16 0M224 118q8-3 16 0" stroke-width="1.6" opacity=".6"/>
+        </g>
+      </svg>
+      <h3>Okuyor</h3>
+      <p>Okumalar ve yardım sayfası; tanıtım videosunun açılışı.</p>
+    </figure>
+
+    <figure class="kart" style="margin:0"><span class="bant"></span>
+      <svg viewBox="0 0 260 150" style="color:var(--murekkep)" role="img" aria-label="Kalemle yazan kapibara">
+        <g transform="translate(-6 6)"><use href="#k-boya"/><g filter="url(#titrek)"><use href="#k-cizgi"/><use href="#k-goz-acik"/></g></g>
+        <g filter="url(#titrek)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <g transform="rotate(38 214 108)"><rect x="186" y="102" width="52" height="11" rx="2" fill="var(--kalem)" stroke-width="2.4"/><path d="M238 102l12 5.5-12 5.5" fill="#f6dfb8" stroke-width="2.4"/><path d="M186 102h-6v11h6" fill="var(--yanak)" stroke-width="2.4"/></g>
+          <path d="M196 140q10-6 18 0t18 0q8-6 16 0" stroke-width="2.2"/>
+        </g>
+      </svg>
+      <h3>Yazıyor</h3>
+      <p>Yazılar ekranı ve "kullan" notları.</p>
+    </figure>
+  </div>
+
+  <h2>3 · Küçük yerler için önden baş</h2>
+  <div class="izgara">
+    <figure class="kart" style="margin:0">
+      <div class="seri"><svg viewBox="0 0 120 120" style="width:40px;color:var(--murekkep)" aria-hidden="true"><use href="#bas-boya"/><g filter="url(#titrek)"><use href="#bas-cizgi"/><use href="#bas-goz"/></g></svg><b>12</b><span>günlük seri</span></div>
+      <div class="seri"><svg viewBox="0 0 120 120" style="width:28px;color:var(--murekkep)" aria-hidden="true"><use href="#bas-boya"/><g filter="url(#titrek)"><use href="#bas-cizgi"/><use href="#bas-goz"/></g></svg><span>28 px: üst çubuk</span></div>
+      <div class="seri"><svg viewBox="0 0 120 120" style="width:96px;color:var(--murekkep)" aria-hidden="true"><use href="#bas-boya"/><g filter="url(#titrek)"><use href="#bas-cizgi"/><use href="#bas-goz"/></g></svg><span>96 px</span></div>
+      <h3>Seri kutusu</h3>
+      <p>Yandan çizim küçükte okunmuyor; seri kutusu ve sekme simgesi için önden baş.</p>
+    </figure>
+    <figure class="kart koyu" style="margin:0">
+      <svg viewBox="0 0 220 145" style="color:var(--murekkep)" role="img" aria-label="Koyu temada kapibara">
+        <use href="#k-boya"/><g filter="url(#titrek)"><use href="#k-cizgi"/><use href="#k-goz-acik"/></g>
+      </svg>
+      <div class="seri"><svg viewBox="0 0 120 120" style="width:40px;color:var(--murekkep)" aria-hidden="true"><use href="#bas-boya"/><g filter="url(#titrek)"><use href="#bas-cizgi"/><use href="#bas-goz"/></g></svg><b>12</b><span>günlük seri</span></div>
+      <h3>Koyu tema</h3>
+      <p>Çizgi açık mürekkebe döner; boya aynı kalır.</p>
+    </figure>
+  </div>
+
+  <div class="not">
+    <p class="el" style="font-size:26px;margin:0">Senden istediklerim</p>
+    <ol>
+      <li>Çizgi tarzı: <b>A</b>, <b>B</b> ya da <b>C</b>?</li>
+      <li>Yüz: gözler bu kadar küçük mü kalsın (gerçek kapibara gibi), yoksa biraz daha büyük ve sevimli mi?</li>
+      <li>Kafadaki portakal kutlamada kalsın mı?</li>
+      <li>Eksik poz var mı? (ör. üzgün / yanlış cevap, el sallayan / hoş geldin)</li>
+    </ol>
+    <p style="margin:0">Seçtiğin tarzla sitedeki geçici kapibaranın (<code>base/_kapibara.html</code>) yerine bunlar konur; videonun karakteri de bu olur.</p>
+  </div>
+</main>
+</body>
+</html>

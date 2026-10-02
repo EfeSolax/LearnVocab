@@ -1304,7 +1304,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 ### 18.19 KVKK
 - Efe ayarlayacak. Bölüm 16'daki not geçerli.
 
-### 18.21 Google ile giriş (Efe'nin kararı, 29 Eylül) — **YAPILDI (2 Ekim; Efe'nin yerelde denemesi bekleniyor)**
+### 18.21 Google ile giriş (Efe'nin kararı, 29 Eylül) — **YAPILDI (2 Ekim; Efe yerelde denedi, çalışıyor)**
 - Giriş ve kayıt sayfalarına **"Google ile giriş yap"** eklenir. Mevcut e-posta/şifre girişi kalır.
 - **Altyapı (Claude'un önerisi):** `django-allauth` (Google sağlayıcısı).
   - Aynı e-postayla kayıtlı hesap varsa Google girişi o hesaba bağlanır.
@@ -1319,6 +1319,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - "Google ile devam et" düğmesi giriş ve kayıt sayfalarında (`pages/users/_googleGiris.html`); POST ile başlar.
   - Aynı e-postalı hesap varsa ona bağlanır; yoksa hesap kendiliğinden açılır (kullanıcı adı e-postadan, ad/soyad Google'dan) ve ayar satırı eklenir (`users/sinyaller.py`).
   - allauth'un kendi giriş/kayıt/çıkış sayfaları bizimkilere yönlenir (`/accounts/login/` → `/giris/` …).
+  - Yerel sunucu sanal ortamla başlatılır: `.venv/bin/python manage.py runserver` (yeni paketler yalnızca `.venv`'de kurulu).
 
 ### 18.22 Dil seçeneği (Efe'nin kararı, 29 Eylül)
 - Siteye **dil seçeneği** eklenecek.
@@ -1692,3 +1693,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-02 (6):** Alpine 3.17.4 sabitlendi (`static/js/`). Google ile giriş eklendi (django-allauth; yerelde Efe'nin denemesi bekleniyor). 948 test geçiyor.
 - **2026-10-02 (7):** Yardım sayfası ve tanıtım videosu kararları (18.33: defter teması, her dile ayrı video, kapibara taslağıyla devam, yardım konuları). "Her yeni sürümde yapılacaklar" listesi açıldı (18.34): ekran görüntüleri her sürümde her dil ve görünüm için baştan hazırlanır.
 - **2026-10-02 (8):** Tailwind derlemeye geçti (18.17 YAPILDI): Play CDN kalktı, `static/css/site.css` Standalone CLI ile derleniyor; derleme testi eklendi. 950 test geçiyor.
+- **2026-10-02 (9):** Efe Google ile girişi yerelde denedi, çalışıyor (18.21). Kapibara taslaklarına başlandı.
