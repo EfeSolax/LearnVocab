@@ -261,6 +261,7 @@ class IliskiSorusuTests(Kurulum):
         for tohum in range(20):
             soru = S.iliski_sorusu(bag, random.Random(tohum))
             self.assertEqual(soru["etiket"], "Eş anlamlısını seç")
+            self.assertEqual(soru["iliski"], "es")              # ekrandaki yeşil damga
             self.assertEqual(soru["soru"], "bank")
             self.assertEqual(soru["alt"], "nehir kıyısı")
             self.assertEqual(soru["secenekler"][soru["dogru"]], "shore")
@@ -281,7 +282,21 @@ class IliskiSorusuTests(Kurulum):
                                           meaning=cold.meanings.first())
         soru = S.iliski_sorusu(bag, random.Random(0))
         self.assertEqual(soru["etiket"], "Zıt anlamlısını seç")
+        self.assertEqual(soru["iliski"], "zit")                 # ekrandaki kırmızı damga
         self.assertEqual(soru["secenekler"][soru["dogru"]], "hot")
+
+    def test_soru_ekraninda_buyuk_renkli_damga(self):
+        """Efe, 2 Ekim: eş mi zıt mı istendiği hemen görülsün."""
+        from django.template.loader import render_to_string
+        bag = WordRelation.objects.get(from_word=self.bank, to_word=self.shore)
+        soru = S.iliski_sorusu(bag, random.Random(0))
+        html = render_to_string("pages/egzersizler/soru.html", {
+            "soru": soru, "config": {}, "alev": {}, "sira_no": 1, "ilerleme": 0,
+            "oturum": type("O", (), {"pk": 1, "soru_sayisi": 10, "sira": 0})(),
+        })
+        self.assertIn('data-iliski="es"', html)
+        self.assertIn("EŞ ANLAMLISI", html)
+        self.assertIn("eş anlamlısı</span>", html)
 
 
 class BaglacVeEsdizimHavuzuTests(Kurulum):

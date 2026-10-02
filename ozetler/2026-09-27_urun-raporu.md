@@ -55,7 +55,7 @@
 - **Net görsel hiyerarşi.** En önemli şey en büyük ve en üstte, detay bir dokunuş uzakta.
 - **Cesaretlendirici.** Hiçbir ekran cezalandırıcı hissettirmez. Yanlış cevap öğretir, puan kırmaz.
 - **Serbestlik.** Tek zorunlu akış yok. Bütün bölümler her zaman açık, isteyen istediği kadar çalışır. Ana Sayfa bir merkezdir, kapı değildir.
-- **Çoğu kullanıcı özelliklerin çoğunu kullanmaz.** Bu yüzden en çok kullanılacak yollar (Learn & Pass, Hızlı Egzersiz, okurken dokun-anlamını-gör) kusursuz olmalı.
+- **Çoğu kullanıcı özelliklerin çoğunu kullanmaz.** Bu yüzden en çok kullanılacak yollar (Learn & Pass, Kısa Sınav, okurken dokun-anlamını-gör) kusursuz olmalı.
 
 ---
 
@@ -233,7 +233,7 @@ Aynı bileşen **her yerde** kullanılır: Keşfet, Listem, günün kelimesi. **
   - Satırlarda onay kutuları belirir. Üstte çubuk: `N seçili · Tümünü seç · Çıkar · İptal`.
   - "Tümünü seç" **o anki filtreye** uygulanır. Örnek: Son 1 hafta → Tümünü seç → Çıkar.
   - Toplu çıkarmada da "12 kelime çıkarıldı · Geri al" bildirimi çıkar.
-  - Sonraki sürüm için: seçilenlerle **"Bunlarla çalış"** (Hızlı Egzersiz başlatır).
+  - Sonraki sürüm için: seçilenlerle **"Bunlarla çalış"** (Kısa Sınav başlatır).
 
 ---
 
@@ -279,7 +279,7 @@ Aynı bileşen **her yerde** kullanılır: Keşfet, Listem, günün kelimesi. **
 ### 6.2 Egzersizler
 Açılışta **iki büyük seçenek** vardır:
 
-| | **Hızlı Egzersiz** | **Tempolu Egzersiz** |
+| | **Kısa Sınav** | **Deneme Sınavı** |
 |---|---|---|
 | Kime | Çoğu kullanıcı | Daha çok çalışmak isteyen |
 | Soru sayısı | **Tam 10**, sorulmaz | "Kaç soru?" 5 / 10 / 15 / 20 / 25 (varsayılan 10, ayarlardan değişir) |
@@ -287,7 +287,7 @@ Açılışta **iki büyük seçenek** vardır:
 | Kaynak | **Yalnızca kullanıcının listesi** | Tipe göre (tabloya bak) |
 | Ayar | Yok, bas ve başla | Tip seçimi ve soru sayısı |
 
-- Liste 10 kelimeden kısaysa Hızlı Egzersiz listedeki kadar soru sorar ve "Listene kelime ekle" daveti gösterir.
+- Liste 10 kelimeden kısaysa Kısa Sınav listedeki kadar soru sorar ve "Listene kelime ekle" daveti gösterir.
 
 **Soru tipleri ve kelime kaynakları (Tempolu):**
 | Soru tipi | Kaynak | Not |
@@ -603,7 +603,7 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
    - Kaydırmalı kart akışı (kapibara yeri boş kutu).
    - Oturum sonu ekleme ve "geçen sefer" kartı.
    - Tekrar algoritması konuşulana kadar mevcut seçim mantığı (`learnpass/selection.py`) korunur.
-7. **Egzersizler:** Hızlı Egzersiz, ardından Tempolu Egzersiz (tipler; D2, D3).
+7. **Egzersizler:** Kısa Sınav, ardından Deneme Sınavı (tipler; D2, D3).
 8. **Okumalar:** kütüphane (D5), kendi metinlerim (PDF ve yapıştır), dokun-anlam baloncuğu, kelime sorgulama API'si.
 9. **Yazma:**
    - Yeni prompt ve JSON çıktısı.
@@ -1051,6 +1051,9 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - **Learn & Pass açılışı:** büyük başlık, dört küçük kâğıtta bugünün sayıları, fiş destesi görseli, "Hemen Başla", **"Nasıl oynanır?" üç adım (18.11 açıklama kutusu)**, "Neden işe yarar?" yapışkan notta.
   - **Egzersizler, Sözlük (Keşfet), göz atma:** büyük başlıklar; seviyeler renkli defter ayraçları, harfler sözlük kenarı dizini.
   - **Giriş / kayıt:** "Defterine dön" / "Defterini aç" başlıkları, bantlı kâğıt form, kâğıttaki çizgi gibi girdiler (`.lv-girdi`).
+- **Egzersiz adları ve açılışı (Efe'nin kararı, 2 Ekim):** "Hızlı Egzersiz" → **Kısa Sınav**, "Tempolu Egzersiz" → **Deneme Sınavı** (kodda `hizli` / `tempolu` değerleri aynı). Açılış: Kısa Sınav sarı yoklama notu; Deneme Sınavı gerçek bir deneme kâğıdı (soru sayısı daire içine alınır, soru tipleri tikli liste, her tipin yanında minicik örnek: `egzersizler.sorular.TIPLER["ornek"]`).
+- **Eş / zıt / daha basit sorusu (Efe, 2 Ekim):** ne istendiği büyük ve renkli bir damgayla gösterilir: yeşil "= EŞ ANLAMLISI", kırmızı "≠ ZIT ANLAMLISI", mavi "≈ DAHA BASİT KARŞILIĞI"; altında "“cube” kelimesinin **zıt anlamlısı** hangisi?" (soru verisinde `iliski`: es / zit / basit).
+  - Not: zıt anlam bağlarının bir kısmı zayıf (ör. cube ↔ slice, sphere). Veri B aşamasında gözden geçirilecek; dokunulmadı.
 - **Kalanlar (tasarım):** egzersiz soru ve bitiş ekranları, seviye testi ekranları, Hesap / Ayarlar için sayfaya özel düzen; logo; Tailwind derlemesi (18.17, Standalone CLI indirmek için Efe'nin izni gerekir).
 - **Logo:** Şimdilik dokunulmaz, sonra ele alınacak.
 - **Dil:** `<html lang="en">` → **`lang="tr"`**. **YAPILDI (30 Eylül):** `lang` seçili dilden geliyor (`get_current_language`, 18.22'ye hazır). Kelime kartındaki ve okuma baloncuğundaki İngilizce metinler `lang="en"` taşıyor. "BİLMİYORUM" artık doğru görünüyor.
@@ -1371,7 +1374,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   2. **Seviye:** seviyeyi gösterir, seviye testini tekrarlatır.
   3. **Çalışma:**
      - **Learn & Pass tekrar/yeni oranı: kaydırma çubuğu** (Efe'nin kararı, 1 Ekim). Sola çektikçe tekrar, sağa çektikçe yeni kelime artar; yalnızca **%10'luk adımlar** (%0–%100). Altında "Tekrar %70 · Yeni %30" yazar. Varsayılan %30 yeni.
-     - **Egzersizde soru sayısı: 5 · 10 · 15 · 20** (Efe'nin kararı). Tempolu Egzersiz bu sayıyla açılır; açılış ekranındaki seçenekler de aynı dört sayı (25 kalktı).
+     - **Egzersizde soru sayısı: 5 · 10 · 15 · 20** (Efe'nin kararı). Deneme Sınavı bu sayıyla açılır; açılış ekranındaki seçenekler de aynı dört sayı (25 kalktı).
      - Yazılarda geri bildirim sertliği (Nazik · Normal · Titiz), sesi otomatik oynatma.
   4. **Bildirimler (anlık):** bu cihazda aç / kapat (18.29).
   5. **E-posta bildirimleri.**
@@ -1651,3 +1654,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-02 (1):** Efe defter yönünü seçti. Defter teması beş sayfaya uygulanmış örneklerle geliştirildi, ana sayfa zenginleştirildi (`ozetler/tasarim-ornekleri/defter/`; uygulanmadı).
 - **2026-10-02 (2):** Defter teması siteye uygulandı: ortak katman (`static/css/defter.css`, Tailwind renk eşlemesi, 17 px kök yazı), yeni misafir ana sayfası (`words.gunun.defter_kelimeleri`), Sözlük kartı, Learn & Pass (dikkat dağıtıcısız, 18.10), Okumalar, yazı değerlendirmesi; diğer ekranlar ortak kalıplarla. 942 test geçiyor.
 - **2026-10-02 (3):** Efe: "örneklerdeki sayfaları da yap". Kelime sayfası, Okumalar, okuma ekranı, Yazılar, serbest yazma, Learn & Pass açılışı, Egzersizler, Sözlük ve giriş/kayıt örneklerdeki düzenle baştan kuruldu. Kelime sayfasında bütün türler açık. 942 test geçiyor.
+- **2026-10-02 (4):** Bütün sayfalar defter tasarımıyla sıfırdan kuruldu (ana sayfa girişli de zengin; egzersiz, seviye testi, Hesap, Ayarlar, Listem, göz atma, diyalog, metin ekleme). Egzersiz adları Kısa Sınav / Deneme Sınavı oldu; eş/zıt sorusuna renkli damga eklendi. 945 test geçiyor.

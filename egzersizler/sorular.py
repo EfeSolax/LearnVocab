@@ -55,16 +55,17 @@ TIP_ILISKI = "iliski"
 TIP_BAGLAC = "baglac"
 TIP_ESDIZIM = "esdizim"
 
-# Tempolu Egzersiz'in tip seçiminde görünen sıra ve adlar.
+# Deneme Sınavı'nın tip seçiminde görünen sıra, adlar ve açılış ekranındaki
+# minicik örnek (ne tür bir soru olduğu bir bakışta anlaşılsın; defter teması, rapor 18.12).
 TIPLER = {
-    TIP_ANLAM: {"ad": "Kelime ↔ anlam", "not": "Listenden, iki yönlü"},
-    TIP_ACIKLAMA: {"ad": "Kelime ↔ İngilizce açıklama", "not": "Listenden"},
-    TIP_ESLESTIRME: {"ad": "Eşleştirme", "not": "Listenden, dört kelime bir arada"},
-    TIP_FIIL: {"ad": "2. ve 3. hâller", "not": "go · went · gone gibi, listeden bağımsız"},
-    TIP_BICIM: {"ad": "Hangi biçimi gelir?", "not": "Seviyendeki kelime aileleri"},
-    TIP_ILISKI: {"ad": "Eş / zıt / daha basit", "not": "Listende olmayan kelimeler"},
-    TIP_BAGLAC: {"ad": "Bağlaç ve ifadeler", "not": "Seviyene göre cümleler"},
-    TIP_ESDIZIM: {"ad": "Eş dizim", "not": "make, take, do, give, have"},
+    TIP_ANLAM: {"ad": "Kelime ↔ anlam", "not": "Listenden, iki yönlü", "ornek": "reluctant → isteksiz"},
+    TIP_ACIKLAMA: {"ad": "Kelime ↔ İngilizce açıklama", "not": "Listenden", "ornek": "unwilling to do sth → reluctant"},
+    TIP_ESLESTIRME: {"ad": "Eşleştirme", "not": "Listenden, dört kelime bir arada", "ornek": "4 kelime ⇄ 4 anlam"},
+    TIP_FIIL: {"ad": "2. ve 3. hâller", "not": "go · went · gone gibi, listeden bağımsız", "ornek": "go · ___ · gone"},
+    TIP_BICIM: {"ad": "Hangi biçimi gelir?", "not": "Seviyendeki kelime aileleri", "ornek": "She sang ___. (happy / happily)"},
+    TIP_ILISKI: {"ad": "Eş / zıt / daha basit", "not": "Listende olmayan kelimeler", "ornek": "big = large · hot ≠ cold"},
+    TIP_BAGLAC: {"ad": "Bağlaç ve ifadeler", "not": "Seviyene göre cümleler", "ornek": "___, it was cheap. (However)"},
+    TIP_ESDIZIM: {"ad": "Eş dizim", "not": "make, take, do, give, have", "ornek": "___ a decision → make"},
 }
 
 KARISIK = "karisik"
@@ -499,6 +500,12 @@ ILISKI_ETIKETLERI = {
     RelationType.ANTONYM: ("Zıt anlamlısını seç", "↔"),
     RelationType.SIMPLER: ("Daha basit karşılığını seç", "≈"),
 }
+# Soru ekranındaki damga: "es" yeşil =, "zit" kırmızı ≠, "basit" mavi ≈ (soru.html).
+ILISKI_TURLERI = {
+    RelationType.SYNONYM: "es",
+    RelationType.ANTONYM: "zit",
+    RelationType.SIMPLER: "basit",
+}
 UST_SEVIYE_ORANI = 0.2      # ~%20 bir üst seviye, ~%80 kendi seviyesi
 
 
@@ -522,9 +529,12 @@ def iliski_sorusu(bag, rng):
     secilen = _sec(akis, uygun)
     if len(secilen) < SECENEK_SAYISI - 1:
         return None
-    return _soru(TIP_ILISKI, etiket, kaynak.text, dogru.text, [s.text for s in secilen],
+    soru = _soru(TIP_ILISKI, etiket, kaynak.text, dogru.text, [s.text for s in secilen],
                  f"{kaynak.text} ({anlam.meaning_tr}) {isaret} {dogru.text}: {_ilk_anlam(dogru).meaning_tr}",
                  [kaynak.id], rng, alt=anlam.meaning_tr)
+    # Ekranda büyük, renkli damga için (Efe, 2 Ekim: "eş mi zıt mı, hemen anlaşılsın").
+    soru["iliski"] = ILISKI_TURLERI[bag.type]
+    return soru
 
 
 def iliski_sorulari(user, seviye, rng, adet, haric_kaynaklar=()):
@@ -670,7 +680,7 @@ VARSAYILAN_SORU_SAYISI = 10
 
 
 def varsayilan_soru_sayisi(user):
-    """Tempolu Egzersiz'in açılışta seçili gelen soru sayısı: Ayarlar'dan (rapor 18.26)."""
+    """Deneme Sınavı'nın açılışta seçili gelen soru sayısı: Ayarlar'dan (rapor 18.26)."""
     try:
         sayi = user.mysettings.egzersiz_soru_sayisi
     except Exception:   # ayar satırı olmayan eski kullanıcılar
@@ -692,7 +702,7 @@ def liste_kelimeleri(user):
 
 def tip_durumlari(user):
     """
-    Tempolu Egzersiz'in tip seçimi için her tipin durumu:
+    Deneme Sınavı'nın tip seçimi için her tipin durumu:
     [{"anahtar", "ad", "not", "aktif", "pasif_notu"}]
     Veri yoksa tip pasif görünür ve karışık turda atlanır.
     """
@@ -707,7 +717,7 @@ def tip_durumlari(user):
         TIP_BAGLAC: None if baglac_havuzu().exists() else "Yakında",
         TIP_ESDIZIM: None if esdizim_havuzu().exists() else "Yakında",
     }
-    return [{"anahtar": k, "ad": v["ad"], "not": v["not"], "aktif": pasif[k] is None,
+    return [{"anahtar": k, "ad": v["ad"], "not": v["not"], "ornek": v["ornek"], "aktif": pasif[k] is None,
              "pasif_notu": pasif[k] or ""} for k, v in TIPLER.items()]
 
 
@@ -775,7 +785,7 @@ def tip_sorulari(tip, user, seviye, rng, adet, haric=()):
 
 def hizli_sorular(user, rng=None):
     """
-    Hızlı Egzersiz: tam 10 soru (liste kısaysa listedeki kadar), yalnızca
+    Kısa Sınav (eski adıyla Hızlı Egzersiz): tam 10 soru (liste kısaysa listedeki kadar), yalnızca
     anlam, TR→EN ve EN→TR karışık, yalnızca kullanıcının listesinden.
     """
     rng = rng or random.Random()
@@ -795,7 +805,7 @@ def hizli_sorular(user, rng=None):
 
 def tempolu_sorular(user, tip, adet, rng=None):
     """
-    Tempolu Egzersiz. tip: KARISIK ya da tek bir tip. Karışıkta pasif
+    Deneme Sınavı (eski adıyla Tempolu Egzersiz). tip: KARISIK ya da tek bir tip. Karışıkta pasif
     tipler (boş havuz, kısa liste) atlanır; bir tip yetmezse kalan soru
     diğerlerinden tamamlanır.
     """

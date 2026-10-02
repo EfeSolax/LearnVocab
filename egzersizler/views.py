@@ -66,7 +66,7 @@ def _yarim_oturum(user):
 
 @login_gate(GATE_LABEL, GATE_NOTE)
 def exercises_page(request):
-    """Açılış: iki büyük seçenek — Hızlı Egzersiz ve Tempolu Egzersiz."""
+    """Açılış: iki seçenek — Kısa Sınav ve Deneme Sınavı (eski adlarıyla Hızlı / Tempolu Egzersiz)."""
     liste_sayisi = UserWordLink.objects.filter(user=request.user).count()
     yarim = _yarim_oturum(request.user)
     context = {
@@ -99,7 +99,7 @@ def basla(request):
     if tur == EgzersizOturumu.TUR_HIZLI:
         sorular = S.hizli_sorular(user)
         if not sorular:
-            messages.info(request, "Hızlı Egzersiz listendeki kelimelerle çalışıyor. "
+            messages.info(request, "Kısa Sınav listendeki kelimelerle çalışıyor. "
                                    "Sözlük'te + ile birkaç kelime ekle, hemen başlayalım.")
             return redirect("exercises_page")
         oturum = _yeni_oturum(user, tur, S.TIP_ANLAM, S.HIZLI_SORU_SAYISI, sorular)

@@ -1,5 +1,5 @@
 """
-Egzersizler (ürün raporu 6.2): Hızlı Egzersiz ve Tempolu Egzersiz.
+Egzersizler (ürün raporu 6.2): Kısa Sınav ve Deneme Sınavı (eski adları: Hızlı / Tempolu Egzersiz).
 
 Başka uygulamaların kullanacağı tek kapı:
 

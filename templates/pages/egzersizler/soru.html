@@ -65,10 +65,28 @@ sunucuda değerlendirilir. Yenilenirse cevaplanmış soru sonucuyla gelir.
     {# --- Soru --- #}
     <div>
         <p class="lv-el text-[24px] font-bold"><span class="!text-gray-600 dark:!text-slate-300">soru {{ sira_no }} ·</span> <span data-soru-etiketi>{{ soru.etiket }}</span></p>
+        {% if soru.iliski %}
+        {# Eş / zıt / daha basit: ne istendiği bir bakışta anlaşılsın (Efe, 2 Ekim). Büyük, renkli damga. #}
+        <p data-iliski="{{ soru.iliski }}"
+           class="mt-3 inline-flex -rotate-2 items-center gap-3 rounded-md border-[3px] px-4 py-1.5 text-2xl font-black tracking-wide sm:text-3xl
+                  {% if soru.iliski == 'zit' %}border-red-600 bg-red-50 text-red-700 dark:border-red-400 dark:bg-red-950/50 dark:text-red-300
+                  {% elif soru.iliski == 'es' %}border-emerald-600 bg-emerald-50 text-emerald-700 dark:border-emerald-400 dark:bg-emerald-950/50 dark:text-emerald-300
+                  {% else %}border-sky-600 bg-sky-50 text-sky-700 dark:border-sky-400 dark:bg-sky-950/50 dark:text-sky-300{% endif %}">
+            <span class="text-4xl leading-none" aria-hidden="true">{% if soru.iliski == 'zit' %}≠{% elif soru.iliski == 'es' %}={% else %}≈{% endif %}</span>
+            {% if soru.iliski == 'zit' %}ZIT ANLAMLISI{% elif soru.iliski == 'es' %}EŞ ANLAMLISI{% else %}DAHA BASİT KARŞILIĞI{% endif %}
+        </p>
+        {% endif %}
         <h1 class="mt-3 break-words text-gray-900 dark:text-slate-100
                    {% if soru.cumle %}lv-metin text-[22px] leading-relaxed sm:text-2xl{% else %}lv-serif text-[40px] font-black leading-[1.05] tracking-tight sm:text-5xl{% endif %}">{{ soru.soru }}</h1>
         {% if soru.alt %}
         <p class="mt-2 text-lg text-gray-600 dark:text-slate-300">{{ soru.alt }}</p>
+        {% endif %}
+        {% if soru.iliski %}
+        <p class="mt-4 text-xl font-bold">
+            “<span lang="en">{{ soru.soru }}</span>” kelimesinin
+            <span class="rounded px-1.5 {% if soru.iliski == 'zit' %}bg-red-600 text-white{% elif soru.iliski == 'es' %}bg-emerald-600 text-white{% else %}bg-sky-600 text-white{% endif %}">{% if soru.iliski == 'zit' %}zıt anlamlısı{% elif soru.iliski == 'es' %}eş anlamlısı{% else %}daha basit karşılığı{% endif %}</span>
+            hangisi?
+        </p>
         {% endif %}
     </div>
 

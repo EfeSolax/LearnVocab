@@ -14,122 +14,113 @@ Verisi olmayan tip pasif görünür ("Yakında" / "Listende en az 4 kelime olunc
 
 {% include 'base/_exerciseTabs.html' with exercise_tab="exercises" %}
 
+{# Defter teması (rapor 18.12): iki sınav kâğıdı. Kısa Sınav sarı bir yoklama notu, Deneme Sınavı gerçek bir deneme kâğıdı. #}
 <div class="mx-auto max-w-3xl">
 
     <header class="mb-8">
         <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">Egzersizler</h1>
-        <p class="lv-alt-baslik mt-1">listendeki kelimelerle kısa sınavlar</p>
+        <p class="lv-alt-baslik mt-1">listendeki kelimelerle küçük sınavlar; not yok, sadece sen</p>
     </header>
 
     {% if yarim %}
     <a href="{% url 'egzersiz_oturum' pk=yarim.pk %}"
-       class="lv-not lv-bantli mb-10 flex items-center justify-between gap-4 text-gray-900 dark:text-slate-100">
+       class="lv-not lv-pembe lv-bantli mb-12 flex items-center justify-between gap-4 text-gray-900 dark:text-slate-100">
         <span class="text-base">
             <span class="lv-el block text-[24px] font-bold">Yarım kalan bir turun var.</span>
-            <span>{{ yarim.get_tur_display }} · {{ yarim.sira }}/{{ yarim.soru_sayisi }}</span>
+            <span class="font-semibold">{{ yarim.get_tur_display }} · {{ yarim.sira }}/{{ yarim.soru_sayisi }}</span>
         </span>
         <span class="lv-dugme lv-kucuk shrink-0">Devam et</span>
     </a>
     {% endif %}
 
-    <div class="grid gap-8 sm:grid-cols-2 sm:items-start">
-
-        {# --- Hızlı Egzersiz --- #}
-        <section class="lv-sayfa flex flex-col p-6">
-            <span class="lv-el text-[24px] font-bold">çoğu zaman bu yeter</span>
-            <h2 class="lv-serif mt-1 text-3xl font-black text-gray-900 dark:text-slate-100">Hızlı Egzersiz</h2>
-            <p class="mt-2 text-base text-gray-600 dark:text-slate-300">
-                Listendeki kelimelerin anlamları, iki yönlü. Ayar yok: bas ve başla.
-            </p>
-
+    {# ================= Kısa Sınav: yoklama notu ================= #}
+    <section class="lv-not lv-bantli grid items-center gap-6 text-gray-900 dark:text-slate-100 sm:grid-cols-[1.3fr_1fr]" aria-labelledby="kisa-sinav">
+        <div>
+            <p class="lv-el text-[24px] font-bold !text-gray-600 dark:!text-slate-300">çoğu gün bu yeter</p>
+            <h2 id="kisa-sinav" class="lv-serif text-[36px] font-black leading-tight">Kısa Sınav</h2>
+            <p class="mt-2 text-lg text-gray-800 dark:text-slate-200">Listendeki kelimelerin anlamları, iki yönlü. Ayar yok: bas ve başla.</p>
+            <p class="lv-metin mt-3 text-[17px] italic text-gray-600 dark:text-slate-300" lang="en" aria-hidden="true">reluctant → a) isteksiz &nbsp; b) dikkatli &nbsp; c) yorgun …</p>
+        </div>
+        <div class="text-center sm:text-right">
             {% if liste_sayisi == 0 %}
-            <div class="lv-not lv-duz mt-5 text-base text-gray-800 dark:text-slate-200">
-                <p class="font-semibold text-gray-900 dark:text-slate-100">Listen seni bekliyor.</p>
-                <p class="mt-1">Sözlük'te <span class="font-semibold">+</span> ile ya da Learn &amp; Pass'te birkaç kelime ekle; Hızlı Egzersiz onlarla hazır olacak.</p>
-                <a href="{% url 'sozluk' %}" class="lv-dugme lv-ikincil lv-kucuk mt-3">
-                    Sözlük'e git
-                </a>
+            <div class="text-left text-base">
+                <p class="font-bold">Listen seni bekliyor.</p>
+                <p class="mt-1">Sözlük'te <span class="font-bold">+</span> ile ya da Learn &amp; Pass'te birkaç kelime ekle; Kısa Sınav onlarla hazır olacak.</p>
+                <a href="{% url 'sozluk' %}" class="lv-dugme lv-ikincil lv-kucuk mt-3">Sözlük'e git</a>
             </div>
             {% else %}
-            <p class="lv-el mt-5 text-[24px] font-bold">
-                {{ hizli_soru_sayisi }} soru
-            </p>
+            <p class="lv-el text-[44px] font-bold leading-none">{{ hizli_soru_sayisi }} soru</p>
             {% if liste_sayisi < hizli_tam %}
-            <p class="mt-1 text-sm text-gray-600 dark:text-slate-400">
-                Listende {{ liste_sayisi }} kelime var, kısa bir tur olacak.
-                <a href="{% url 'sozluk' %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Listene kelime ekle</a>
-            </p>
+            <p class="mt-1 text-base">Listende {{ liste_sayisi }} kelime var, kısa bir tur olacak.
+                <a href="{% url 'sozluk' %}" class="font-bold underline decoration-1 underline-offset-4">Listene kelime ekle</a></p>
             {% endif %}
-            <form method="post" action="{% url 'egzersiz_basla' %}" class="mt-5">
+            <form method="post" action="{% url 'egzersiz_basla' %}" class="mt-4">
                 {% csrf_token %}
                 <input type="hidden" name="tur" value="hizli">
-                <button type="submit"
-                        class="lv-dugme lv-kucuk w-full">
-                    Başla
-                </button>
+                <button type="submit" class="lv-dugme !min-h-[58px] w-full !text-lg sm:w-auto">Başla →</button>
             </form>
             {% endif %}
-        </section>
+        </div>
+    </section>
 
-        {# --- Tempolu Egzersiz --- #}
-        <section x-data="{ sayi: {{ varsayilan_sayi }}, tip: 'karisik' }"
-                 class="lv-sayfa flex flex-col p-6">
-            <span class="lv-el text-[24px] font-bold">daha çok çalışmak istersen</span>
-            <h2 class="lv-serif mt-1 text-3xl font-black text-gray-900 dark:text-slate-100">Tempolu Egzersiz</h2>
-            <p class="mt-2 text-base text-gray-600 dark:text-slate-300">
-                Daha çok çalışmak istersen: bütün soru tipleri, karışık ya da tek tipe odaklı.
-            </p>
+    {# ================= Deneme Sınavı: deneme kâğıdı ================= #}
+    <section x-data="{ sayi: {{ varsayilan_sayi }}, tip: 'karisik' }" class="lv-sayfa lv-bantli mt-14 px-5 pb-7 pt-8 sm:px-9" aria-labelledby="deneme-sinavi">
+        <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 border-b-2 border-indigo-600 pb-4 dark:border-indigo-400">
+            <div>
+                <p class="lv-el text-[24px] font-bold">daha çok çalışmak istersen</p>
+                <h2 id="deneme-sinavi" class="lv-serif text-[36px] font-black leading-tight">Deneme Sınavı</h2>
+            </div>
+            <p class="lv-el text-[22px] !text-gray-600 dark:!text-slate-300">adı: <span class="border-b-2 border-dotted border-[color:var(--satir)] px-2 !text-[color:var(--murekkep)]">{{ user.first_name|default:user.username }}</span></p>
+        </div>
+        <p class="mt-4 text-lg text-gray-700 dark:text-slate-300">Bütün soru tipleri, karışık ya da tek tipe odaklı. Önce kaç soru, sonra hangi tip.</p>
 
-            <form method="post" action="{% url 'egzersiz_basla' %}" class="mt-5">
-                {% csrf_token %}
-                <input type="hidden" name="tur" value="tempolu">
+        <form method="post" action="{% url 'egzersiz_basla' %}" class="mt-6">
+            {% csrf_token %}
+            <input type="hidden" name="tur" value="tempolu">
 
-                <fieldset>
-                    <legend class="text-sm font-semibold text-gray-700 dark:text-slate-300">Kaç soru?</legend>
-                    <div class="mt-2 grid grid-cols-5 gap-2">
-                        {% for n in soru_sayilari %}
-                        <label class="cursor-pointer">
-                            <input type="radio" name="sayi" value="{{ n }}" class="peer sr-only" x-model.number="sayi" {% if n == varsayilan_sayi %}checked{% endif %}>
-                            <span class="block rounded-lg border border-gray-200 dark:border-slate-600 py-2 text-center text-sm font-semibold text-gray-700 dark:text-slate-300
-                                         peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-700
-                                         dark:peer-checked:border-emerald-400 dark:peer-checked:bg-emerald-950 dark:peer-checked:text-emerald-300
-                                         peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-400">{{ n }}</span>
-                        </label>
-                        {% endfor %}
-                    </div>
-                </fieldset>
+            <fieldset>
+                <legend class="text-lg font-bold"><span class="lv-el mr-2 text-[28px]">1.</span>Kaç soru?</legend>
+                <div class="mt-3 flex flex-wrap gap-6 pl-9">
+                    {% for n in soru_sayilari %}
+                    <label class="cursor-pointer">
+                        <input type="radio" name="sayi" value="{{ n }}" class="peer sr-only" x-model.number="sayi" {% if n == varsayilan_sayi %}checked{% endif %}>
+                        <span class="lv-secim text-[34px]">{{ n }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </fieldset>
 
-                <fieldset class="mt-5">
-                    <legend class="text-sm font-semibold text-gray-700 dark:text-slate-300">Soru tipi</legend>
-                    <div class="mt-2 space-y-2">
-                        <label class="flex cursor-pointer items-center gap-3 rounded-lg border px-3 py-2.5 transition"
-                               :class="tip === 'karisik' ? 'border-emerald-500 bg-emerald-50 dark:border-emerald-400 dark:bg-emerald-950' : 'border-gray-200 dark:border-slate-600'">
-                            <input type="radio" name="tip" value="karisik" x-model="tip" checked class="h-4 w-4 text-emerald-600 focus:ring-emerald-500">
-                            <span class="text-sm font-semibold text-gray-900 dark:text-slate-100">Karışık</span>
-                        </label>
-                        {% for t in tipler %}
-                        <label class="flex items-center gap-3 rounded-lg border px-3 py-2.5 transition {% if t.aktif %}cursor-pointer{% else %}cursor-not-allowed opacity-60 border-gray-200 dark:border-slate-700{% endif %}"
-                               {% if t.aktif %}:class="tip === '{{ t.anahtar }}' ? 'border-emerald-500 bg-emerald-50 dark:border-emerald-400 dark:bg-emerald-950' : 'border-gray-200 dark:border-slate-600'"{% else %}data-pasif-tip="{{ t.anahtar }}"{% endif %}>
-                            <input type="radio" name="tip" value="{{ t.anahtar }}" x-model="tip" {% if not t.aktif %}disabled{% endif %}
-                                   class="h-4 w-4 text-emerald-600 focus:ring-emerald-500">
-                            <span class="min-w-0 flex-1">
-                                <span class="block text-sm font-semibold text-gray-900 dark:text-slate-100">{{ t.ad }}</span>
-                                <span class="block text-xs text-gray-500 dark:text-slate-400">{{ t.not }}</span>
-                            </span>
-                            {% if not t.aktif %}
-                            <span class="shrink-0 rounded-full bg-gray-100 dark:bg-slate-700 px-2 py-0.5 text-xs font-medium text-gray-600 dark:text-slate-300">{{ t.pasif_notu }}</span>
-                            {% endif %}
-                        </label>
-                        {% endfor %}
-                    </div>
-                </fieldset>
+            <fieldset class="mt-8">
+                <legend class="text-lg font-bold"><span class="lv-el mr-2 text-[28px]">2.</span>Soru tipi</legend>
+                <div class="mt-3 divide-y divide-dashed divide-[color:var(--satir)] border-y border-dashed border-[color:var(--satir)]">
+                    <label class="flex cursor-pointer items-center gap-4 py-3.5 hover:bg-[color:var(--kare)]" :class="tip === 'karisik' && 'bg-[color:var(--kare)]'">
+                        <input type="radio" name="tip" value="karisik" x-model="tip" checked class="peer sr-only">
+                        <span class="lv-kutu shrink-0" aria-hidden="true"></span>
+                        <span class="min-w-0 flex-1">
+                            <span class="block text-lg font-bold">Karışık</span>
+                            <span class="block text-[15px] text-gray-600 dark:text-slate-300">Açık olan bütün tiplerden, sırası karışık</span>
+                        </span>
+                    </label>
+                    {% for t in tipler %}
+                    <label class="flex items-center gap-4 py-3.5 {% if t.aktif %}cursor-pointer hover:bg-[color:var(--kare)]{% else %}cursor-not-allowed opacity-50{% endif %}"
+                           {% if t.aktif %}:class="tip === '{{ t.anahtar }}' && 'bg-[color:var(--kare)]'"{% else %}data-pasif-tip="{{ t.anahtar }}"{% endif %}>
+                        <input type="radio" name="tip" value="{{ t.anahtar }}" x-model="tip" {% if not t.aktif %}disabled{% endif %} class="peer sr-only">
+                        <span class="lv-kutu shrink-0" aria-hidden="true"></span>
+                        <span class="min-w-0 flex-1">
+                            <span class="block text-lg font-bold">{{ t.ad }}</span>
+                            <span class="block text-[15px] text-gray-600 dark:text-slate-300">{{ t.not }}</span>
+                            <span class="lv-metin mt-0.5 block text-[16px] italic text-indigo-700 dark:text-indigo-300" lang="en">{{ t.ornek }}</span>
+                        </span>
+                        {% if not t.aktif %}<span class="lv-el shrink-0 text-right text-[19px] leading-tight">{{ t.pasif_notu }}</span>{% endif %}
+                    </label>
+                    {% endfor %}
+                </div>
+            </fieldset>
 
-                <button type="submit"
-                        class="mt-5 w-full rounded-xl bg-emerald-600 px-5 py-3 text-base font-semibold text-white shadow-sm hover:bg-emerald-700 transition-colors">
-                    <span x-text="sayi + ' soruyla başla'">Başla</span>
-                </button>
-            </form>
-        </section>
-    </div>
+            <button type="submit" class="lv-dugme mt-8 !min-h-[58px] w-full !text-lg sm:w-auto">
+                <span x-text="sayi + ' soruyla başla →'">Başla</span>
+            </button>
+        </form>
+    </section>
 </div>
 {% endblock %}

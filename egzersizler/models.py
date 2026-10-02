@@ -24,7 +24,7 @@ from words.models import CEFR_CHOICES, Collocation, Expression, Word
 class EgzersizOturumu(models.Model):
     TUR_HIZLI = "hizli"
     TUR_TEMPOLU = "tempolu"
-    TURLER = [(TUR_HIZLI, "Hızlı Egzersiz"), (TUR_TEMPOLU, "Tempolu Egzersiz")]
+    TURLER = [(TUR_HIZLI, "Kısa Sınav"), (TUR_TEMPOLU, "Deneme Sınavı")]   # adlar: Efe, 2 Ekim
 
     DURUM_DEVAM = "devam"
     DURUM_BITTI = "bitti"
