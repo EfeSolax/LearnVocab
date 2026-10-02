@@ -19,6 +19,7 @@
   <div class="mt-8 lv-sayfa lv-bantli sm:mx-auto sm:w-full sm:max-w-md p-7 sm:p-8">
     
     {% include 'base/messages.html' with margin_class="" %}
+    {% include 'pages/users/_googleGiris.html' %}
     <form action="{% url 'register' %}" method="POST" class="space-y-6">
       {% csrf_token %}
       

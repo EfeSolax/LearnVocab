@@ -5,7 +5,8 @@ Her uygulama kendi urls.py dosyasında adreslerini tanımlar; bu dosya onları
 bağlar. Adresler küçük harf, ASCII ve Türkçedir; sonda "/" olur.
 
 İki grup var:
-  1) Dil öneki ALMAYANLAR: admin, robots.txt, sitemap.xml, PWA dosyaları ve
+  1) Dil öneki ALMAYANLAR: admin, robots.txt, sitemap.xml, PWA dosyaları,
+     Google ile giriş (/accounts/…, Google'daki yönlendirme adresi sabit kalsın) ve
      eski adreslerin 301 yönlendirmeleri.
   2) Dil öneki ALANLAR (i18n_patterns): bütün sayfalar ve /api/. Türkçe
      öneksizdir (/sozluk/bank/); başka bir dil yayına alınınca aynı sayfa
@@ -16,6 +17,7 @@ Arama motoru kuralları (hangi sayfa dizine açık, canonical): LearnVocab/seo.p
 
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
+from django.views.generic import RedirectView
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.shortcuts import render
@@ -45,6 +47,13 @@ urlpatterns = [
     path("sitemap.xml", seo_views.sitemap_xml, name="sitemap_xml"),
     # PWA (rapor 10): /manifest.webmanifest, /sw.js
     *pwa_urlpatterns,
+    # Google ile giriş (rapor 18.21, django-allauth). allauth'un kendi giriş/kayıt/çıkış
+    # sayfaları kullanılmaz: bizimkilere yönlenir. Kalan uçlar (Google dönüşü,
+    # nadir durumlar için sosyal kayıt formu) allauth'tan gelir.
+    path("accounts/login/", RedirectView.as_view(pattern_name="login", query_string=True)),
+    path("accounts/signup/", RedirectView.as_view(pattern_name="register", query_string=True)),
+    path("accounts/logout/", RedirectView.as_view(pattern_name="logout")),
+    path("accounts/", include("allauth.urls")),
 ]
 
 # /api/…: JSON ve HTML parçası dönen uçlar. robots.txt ile taramaya kapalı.

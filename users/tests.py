@@ -228,3 +228,30 @@ class LoginTests(TestCase):
         )
         self.assertEqual(wrong_password, unknown_user)
         self.assertNotIn("_auth_user_id", self.client.session)
+
+
+class GoogleGirisTests(TestCase):
+    """Google ile giriş (rapor 18.21): düğme, adresler ve ilk girişte ayar satırı."""
+
+    def test_dugme_anahtar_varsa_giris_ve_kayit_sayfasinda(self):
+        from django.test import override_settings
+        with override_settings(GOOGLE_GIRIS_ACIK=True):
+            for ad in ("login", "register"):
+                html = self.client.get(reverse(ad)).content.decode()
+                self.assertIn("data-google-giris", html)
+                self.assertIn('action="/accounts/google/login/', html)
+                self.assertIn('method="post"', html)
+        with override_settings(GOOGLE_GIRIS_ACIK=False):
+            self.assertNotIn("data-google-giris", self.client.get(reverse("login")).content.decode())
+
+    def test_allauth_kendi_sayfalari_bizimkilere_yonlenir(self):
+        self.assertRedirects(self.client.get("/accounts/login/"), reverse("login"), fetch_redirect_response=False)
+        self.assertRedirects(self.client.get("/accounts/signup/"), reverse("register"), fetch_redirect_response=False)
+
+    def test_google_ile_ilk_giriste_ayar_satiri(self):
+        from allauth.account.signals import user_signed_up
+        from django.test import RequestFactory
+        from usersettings.models import UserSettings
+        u = User.objects.create_user(username="googleci", email="g@example.com", password="Sifre1234")
+        user_signed_up.send(sender=User, request=RequestFactory().get("/"), user=u)
+        self.assertTrue(UserSettings.objects.filter(user=u).exists())

@@ -26,6 +26,8 @@
     </div>
     {% endif %}
 
+    {% include 'pages/users/_googleGiris.html' with sonraki=sonraki %}
+
     <form method="POST" class="space-y-6">
       {% csrf_token %}
       {% if sonraki %}<input type="hidden" name="next" value="{{ sonraki }}">{% endif %}

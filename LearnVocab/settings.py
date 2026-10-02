@@ -68,6 +68,13 @@ INSTALLED_APPS = [
 
     # Kullanılmayan dosyaları (profile_pic) otomatik olarak temizleyecek bir eklenti
     'django_cleanup',
+
+    # Google ile giriş (rapor 18.21). Yalnızca Google sağlayıcısı kullanılıyor;
+    # e-posta/şifre girişi ve kayıt bizim kendi sayfalarımızda (users/views.py).
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +86,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Dizine açık olmayan her cevaba X-Robots-Tag: noindex (LearnVocab/seo.py)
     'LearnVocab.seo.SeoMiddleware',
@@ -205,6 +213,45 @@ AUTH_USER_MODEL = 'users.User'
 
 # @login_required uçları /accounts/login/ yerine bizim giriş sayfamıza gitsin.
 LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "index"
+
+# ---------------------------------------------------------------------
+# Google ile giriş (rapor 18.21): django-allauth, yalnızca Google.
+#   - Anahtarlar .env'de: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET (sohbete yazılmaz).
+#   - Google'daki yönlendirme adresi: <site>/accounts/google/login/callback/
+#   - Aynı e-postayla kayıtlı hesap varsa Google girişi o hesaba bağlanır
+#     (Google e-postayı doğrulanmış verir). Yoksa hesap kendiliğinden açılır,
+#     kullanıcı adı e-postadan üretilir; ad ve soyad Google'dan gelir.
+#   - Giriş düğmesi POST ile çalışır (GET ile başlatılmaz: CSRF'e karşı).
+# ---------------------------------------------------------------------
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': os.environ.get('GOOGLE_CLIENT_ID', ''),
+            'secret': os.environ.get('GOOGLE_CLIENT_SECRET', ''),
+            'key': '',
+        },
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online', 'prompt': 'select_account'},
+        'EMAIL_AUTHENTICATION': True,
+    },
+}
+GOOGLE_GIRIS_ACIK = bool(os.environ.get('GOOGLE_CLIENT_ID') and os.environ.get('GOOGLE_CLIENT_SECRET'))
+SOCIALACCOUNT_LOGIN_ON_GET = False
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*']
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http' if DEBUG else 'https'
 
 
 # Static dosyalar için ayarlarınız zaten burada olmalı (STATIC_URL vb.)

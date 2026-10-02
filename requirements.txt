@@ -22,6 +22,9 @@
 # --- Çekirdek ---
 Django==5.2.17
 django-cleanup==9.0.0
+# Google ile giriş (rapor 18.21)
+django-allauth==65.19.7
+PyJWT==2.15.1
 
 # --- Görsel işleme (profil fotoğrafı) ---
 pillow==12.3.0

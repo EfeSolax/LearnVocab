@@ -1307,7 +1307,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 ### 18.19 KVKK
 - Efe ayarlayacak. Bölüm 16'daki not geçerli.
 
-### 18.21 Google ile giriş (Efe'nin kararı, 29 Eylül)
+### 18.21 Google ile giriş (Efe'nin kararı, 29 Eylül) — **YAPILDI (2 Ekim; Efe'nin yerelde denemesi bekleniyor)**
 - Giriş ve kayıt sayfalarına **"Google ile giriş yap"** eklenir. Mevcut e-posta/şifre girişi kalır.
 - **Altyapı (Claude'un önerisi):** `django-allauth` (Google sağlayıcısı).
   - Aynı e-postayla kayıtlı hesap varsa Google girişi o hesaba bağlanır.
@@ -1315,6 +1315,13 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Kayıt formundaki zorunlu "kur" seçimi Google girişinde sorulmaz (Bölüm 16'daki açık soruyla birlikte ele alınır).
 - **Efe'nin yapması gereken:** Google Cloud Console'da OAuth istemcisi oluşturmak. Yönlendirme adresi `https://www.learnvocab.com.tr/…` olur. İstemci kimliği ve gizli anahtar `.env`'e yazılır, sohbete yazılmaz.
 - KVKK metninde Google girişi belirtilir (18.19).
+- **Uygulama (2 Ekim):** `django-allauth 65.19.7` (yalnızca Google sağlayıcısı); ayarlar `LearnVocab/settings.py` ("Google ile giriş" bölümü).
+  - Anahtarlar `.env`'de: `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`. Yoksa düğme hiç görünmez.
+  - Google projesi "LearnVocab" (Efe'nin hesabı); onay ekranı External, yayında; izinler yalnızca email/profile/openid.
+  - Yönlendirme adresleri: `http://localhost:8000/…`, `http://127.0.0.1:8000/…`, `https://www.learnvocab.com.tr/accounts/google/login/callback/`.
+  - "Google ile devam et" düğmesi giriş ve kayıt sayfalarında (`pages/users/_googleGiris.html`); POST ile başlar.
+  - Aynı e-postalı hesap varsa ona bağlanır; yoksa hesap kendiliğinden açılır (kullanıcı adı e-postadan, ad/soyad Google'dan) ve ayar satırı eklenir (`users/sinyaller.py`).
+  - allauth'un kendi giriş/kayıt/çıkış sayfaları bizimkilere yönlenir (`/accounts/login/` → `/giris/` …).
 
 ### 18.22 Dil seçeneği (Efe'nin kararı, 29 Eylül)
 - Siteye **dil seçeneği** eklenecek.
@@ -1509,6 +1516,8 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 8. **Cron** (`bildirimler/CRON.md`): `yazilari_yeniden_dene` 30 dk, `bildirim_gonder_hatirlatma` 15 dk, `karsilasma_ozetle` her gece, `clearsessions` isteğe bağlı.
 9. **PDF yükleme sınırı:** Apache/Passenger'ın 50 MB yüklemeye izin verdiği doğrulanır (gerekirse `LimitRequestBody`).
 10. **Google:** Search Console'da alan adı doğrulaması (Efe, DNS TXT), `sitemap.xml` gönderimi; birkaç gün "Dizine eklenen / taranan ama eklenmeyen" sayılarının izlenmesi; sonra kademeli dizine almanın 2. partisi (B2 Oxford).
+10a. **Google ile giriş:** sunucuda `pip install -r requirements.txt` (django-allauth, PyJWT) ve `migrate` (account, socialaccount tabloları); `.env`'e `GOOGLE_CLIENT_ID` ve `GOOGLE_CLIENT_SECRET`; Google Cloud'da canlı yönlendirme adresinin kayıtlı olduğu doğrulanır; canlıda bir kez Google ile girilir.
+10b. **Yeni migration'lar:** `egzersizler/0002` (Kısa Sınav / Deneme Sınavı adları) ve allauth tabloları.
 11. **Geçiş günü:** kısa bakım ekranı (Passenger `tmp/restart.txt` ile yeniden başlatma), geçişten sonra ana akışların elle denenmesi (kayıt, L&P, egzersiz, okuma, yazı, bildirim).
 
 
@@ -1661,3 +1670,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-02 (3):** Efe: "örneklerdeki sayfaları da yap". Kelime sayfası, Okumalar, okuma ekranı, Yazılar, serbest yazma, Learn & Pass açılışı, Egzersizler, Sözlük ve giriş/kayıt örneklerdeki düzenle baştan kuruldu. Kelime sayfasında bütün türler açık. 942 test geçiyor.
 - **2026-10-02 (4):** Bütün sayfalar defter tasarımıyla sıfırdan kuruldu (ana sayfa girişli de zengin; egzersiz, seviye testi, Hesap, Ayarlar, Listem, göz atma, diyalog, metin ekleme). Egzersiz adları Kısa Sınav / Deneme Sınavı oldu; eş/zıt sorusuna renkli damga eklendi. 945 test geçiyor.
 - **2026-10-02 (5):** Dil seçeneği kararları (düğmenin yeri, otomatik yönlendirme yok, arayüz dilinden bağımsız "Türkçe anlamlar" ayarı). Google ile giriş başladı: Efe OAuth istemcisini oluşturuyor.
+- **2026-10-02 (6):** Alpine 3.17.4 sabitlendi (`static/js/`). Google ile giriş eklendi (django-allauth; yerelde Efe'nin denemesi bekleniyor). 948 test geçiyor.
