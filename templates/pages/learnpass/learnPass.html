@@ -105,8 +105,8 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         <div id="lp-acilim" class="lp-acilim" aria-hidden="true">
             <div>
                 <div class="flex items-start gap-3 pt-5">
-                    {# Kapibara: geçici çizgi çizim (asıl çizim Bölüm 16). #}
-                    <div data-kapibara-yeri aria-hidden="true" class="w-20 flex-none pt-2">{% include 'base/_kapibara.html' with sinif='h-14 w-20' %}</div>
+                    {# Kapibara arada göz kırpar (rapor 18.33). #}
+                    <div data-kapibara-yeri aria-hidden="true" class="w-20 flex-none pt-2">{% include 'base/_kapibara.html' with poz='kirpar' sinif='h-24 w-auto' %}</div>
                     <div class="lp-balon min-w-0 flex-1 rounded-2xl rounded-tl-sm border-2 border-indigo-600 bg-[color:var(--kagit-beyaz)] px-4 py-3 shadow-[3px_3px_0_var(--murekkep-acik)] dark:border-indigo-400">
                         <p id="lp-balon-soru" class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">Düşündüğün bu muydu?</p>
                         <ol id="lp-anlamlar" class="mt-1 space-y-0.5 text-xl font-bold text-indigo-600 dark:text-indigo-400"></ol>
@@ -157,7 +157,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     {# ---------------- Oturum sonu ---------------- #}
     <div id="lp-bitis" class="mt-6 {% if kartlar %}hidden{% endif %} space-y-4">
         <div class="lv-sayfa px-6 py-8 text-center">
-            <div data-kapibara-yeri aria-hidden="true" class="mx-auto w-28">{% include 'base/_kapibara.html' with sinif='h-20 w-28' %}</div>
+            <div data-kapibara-yeri aria-hidden="true" class="mx-auto w-28">{% if kartlar %}{% include 'base/_kapibara.html' with poz='merhaba' sinif='mx-auto h-32 w-auto' %}{% else %}{% include 'base/_kapibara.html' with poz='uyku' sinif='mx-auto h-32 w-auto' %}{% endif %}</div>
             <h2 id="lp-bitis-baslik" class="lv-sayfa-basligi mt-4">
                 {% if kartlar %}Güzel iş!{% else %}Şu an gösterecek kelime kalmadı{% endif %}
             </h2>

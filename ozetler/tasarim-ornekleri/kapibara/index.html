@@ -53,6 +53,8 @@
   .simge-satiri svg { width: auto; }
   .simge-satiri b { font: 900 30px Fraunces, Georgia, serif; } .simge-satiri span { font: 600 22px var(--el); color: var(--murekkep); }
   .koyu { background-color: #16181d !important; background-image: repeating-linear-gradient(transparent 0 31px, rgba(130,160,230,.16) 31px 32px) !important; --murekkep: #9db8ff; }
+  /* Koyu tema: çizgi koyu kahve kalem; karakter kâğıttan kesilmiş çıkartma gibi açık bir kenarla zeminden ayrılır. */
+  .kart.koyu svg { color: #3b2519; filter: drop-shadow(2.5px 0 0 #efe5d2) drop-shadow(-2.5px 0 0 #efe5d2) drop-shadow(0 2.5px 0 #efe5d2) drop-shadow(0 -2.5px 0 #efe5d2) drop-shadow(0 10px 12px rgba(0,0,0,.55)); }
   .koyu p { color: #a3a7b0; } .koyu .simge-satiri b { color: #e9e8e2; }
   .not { margin-top: 48px; padding: 18px 22px; background: #fff7c2; transform: rotate(-.6deg); max-width: 760px; box-shadow: 0 6px 16px -10px rgba(0,0,0,.4); }
   .not li { margin: 4px 0; }
@@ -77,8 +79,10 @@
 
     <g id="k-arka" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
       <!-- kulaklar -->
+      <g id="k-kulak" stroke="currentColor" stroke-width="3">
       <ellipse cx="70" cy="36" rx="6.5" ry="5.5" fill="var(--govde)"/><ellipse cx="130" cy="36" rx="6.5" ry="5.5" fill="var(--govde)"/>
       <ellipse cx="70.5" cy="36.5" rx="2.6" ry="2.2" fill="var(--burun)" stroke="none"/><ellipse cx="129.5" cy="36.5" rx="2.6" ry="2.2" fill="var(--burun)" stroke="none"/>
+      </g>
       <!-- gövde: armut gibi, altı geniş -->
       <path d="M66 110C46 130 40 176 47 202C52 220 148 220 153 202C160 176 154 130 134 110Z" fill="var(--govde)"/>
       <path d="M79 138C70 158 70 194 80 208C92 214 108 214 120 208C130 194 130 158 121 138C111 131 89 131 79 138Z" fill="var(--karin)" stroke="none"/>
@@ -255,12 +259,12 @@
   <div class="izgara" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr))">
     <figure class="kart">
       <div class="simge-satiri">
-        <svg viewBox="48 22 104 108" style="width:44px" aria-hidden="true"><g filter="url(#kalem)"><use href="#k-arka"/><use href="#k-bas"/><use href="#g-acik"/><use href="#a-acik"/></g></svg>
+        <svg viewBox="48 22 104 108" style="width:44px" aria-hidden="true"><g filter="url(#kalem)"><use href="#k-kulak"/><use href="#k-bas"/><use href="#g-acik"/><use href="#a-acik"/></g></svg>
         <b>12</b><span>günlük seri</span>
       </div>
       <div class="simge-satiri">
-        <svg viewBox="48 22 104 108" style="width:28px" aria-hidden="true"><g filter="url(#kalem)"><use href="#k-arka"/><use href="#k-bas"/><use href="#g-acik"/><use href="#a-acik"/></g></svg><span>28 px</span>
-        <svg viewBox="48 22 104 108" style="width:96px" aria-hidden="true"><g filter="url(#kalem)"><use href="#k-arka"/><use href="#k-bas"/><use href="#g-acik"/><use href="#a-acik"/></g></svg><span>96 px</span>
+        <svg viewBox="48 22 104 108" style="width:28px" aria-hidden="true"><g filter="url(#kalem)"><use href="#k-kulak"/><use href="#k-bas"/><use href="#g-acik"/><use href="#a-acik"/></g></svg><span>28 px</span>
+        <svg viewBox="48 22 104 108" style="width:96px" aria-hidden="true"><g filter="url(#kalem)"><use href="#k-kulak"/><use href="#k-bas"/><use href="#g-acik"/><use href="#a-acik"/></g></svg><span>96 px</span>
       </div>
       <h3>Seri kutusu, sekme simgesi</h3><p>Aynı çizimin başı; ayrı bir çizim gerekmez.</p>
     </figure>
@@ -268,7 +272,11 @@
       <svg viewBox="20 18 160 220" style="max-width:220px;margin:0 auto" role="img" aria-label="Koyu temada kapibara">
         <g filter="url(#kalem)"><use href="#k-arka"/><use href="#k-bas"/><use href="#g-acik"/><use href="#a-acik"/><use href="#kol-sol"/><use href="#kol-sag"/></g>
       </svg>
-      <h3>Koyu tema</h3><p>Çizgi açık mürekkebe döner; boya aynı kalır.</p>
+      <div class="simge-satiri">
+        <svg viewBox="48 22 104 108" style="width:44px" aria-hidden="true"><g filter="url(#kalem)"><use href="#k-kulak"/><use href="#k-bas"/><use href="#g-acik"/><use href="#a-acik"/></g></svg>
+        <b>12</b><span>günlük seri</span>
+      </div>
+      <h3>Koyu tema</h3><p>Çizgi koyu kahve kalem; karakter defterden kesilmiş bir çıkartma gibi açık kenarla durur.</p>
     </figure>
   </div>
 

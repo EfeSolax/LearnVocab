@@ -259,3 +259,24 @@ mark.lv-vurgu { background: var(--kalem); color: inherit; padding: 0 2px; border
 .lv-secim-bag[aria-current]::before { content: ""; position: absolute; inset: -6px -4px; background: var(--murekkep);
   -webkit-mask: var(--daire) center/100% 100% no-repeat; mask: var(--daire) center/100% 100% no-repeat; }
 .lv-secim-bag[aria-current] { color: var(--murekkep); }
+
+/* ---------- Kapibara (rapor 18.33; çizim: base/_kapibaraTanim.html) ---------- */
+/* Açıkta çizgi defterin mavi mürekkebi. Koyuda koyu kahve kalem; karakter
+   defterden kesilmiş çıkartma gibi açık bir kenarla zeminden ayrılır. */
+:root {
+  --kapi-cizgi: var(--murekkep); --kapi-govde: #c98a55; --kapi-karin: #e6bd8f; --kapi-burun: #8f5636;
+  --kapi-agiz: #4a2219; --kapi-dil: #e88b86; --kapi-yanak: #f0a49b; --kapi-dis: #fffdf6;
+  --kapi-portakal: #f39a2b; --kapi-yaprak: #6dbb5b; --kapi-sari: #ffe46b; --kapi-sayfa: #ffffff;
+}
+html.dark { --kapi-cizgi: #3b2519; }
+.lv-kapibara { color: var(--kapi-cizgi); overflow: visible; }
+html.dark .lv-kapibara {
+  filter: drop-shadow(2px 0 0 #efe5d2) drop-shadow(-2px 0 0 #efe5d2) drop-shadow(0 2px 0 #efe5d2)
+          drop-shadow(0 -2px 0 #efe5d2) drop-shadow(0 8px 10px rgba(0, 0, 0, .5));
+}
+.lv-kapi-goz-kapali { opacity: 0; }
+.lv-kapibara-kirpar .lv-kapi-goz-acik { animation: lv-kapi-kirp 4.2s infinite; }
+.lv-kapibara-kirpar .lv-kapi-goz-kapali { animation: lv-kapi-kirp-tersi 4.2s infinite; }
+@keyframes lv-kapi-kirp { 0%, 92%, 100% { opacity: 1; } 94%, 97% { opacity: 0; } }
+@keyframes lv-kapi-kirp-tersi { 0%, 92%, 100% { opacity: 0; } 94%, 97% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .lv-kapibara * { animation: none !important; } }

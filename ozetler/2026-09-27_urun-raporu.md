@@ -267,7 +267,7 @@ Aynı bileşen **her yerde** kullanılır: Keşfet, Listem, günün kelimesi. **
    - **Kapibara maskotu** göz kırpar.
    - Konuşma balonunda anlam yazar ("Düşündüğün bu muydu?").
    - Altında küçük ve silik bir İngilizce örnek cümle olur.
-   - **Kapibara şimdilik boş bir yer tutucu kutudur.** Çizimi ve animasyonu sonra Claude ile birlikte yapılacak.
+   - Kapibara balonun yanında durur, arada bir göz kırpar (18.33).
 4. Bir kaydırma daha yapılınca sonraki kelimeye geçilir.
 
 **Kurallar:**
@@ -624,7 +624,7 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 - **Tekrar algoritması (L&P):** (→ 18.2: 29 Eylül'de karar verildi: Efe'nin 1-3-7-21 kuralı) "biliyorum" ve "bilmiyorum" denen kelimeler ne zaman tekrar gelir, birikme nasıl yönetilir.
 - **Seri (streak):** → 18.9'da 29 Eylül'de kararlaştırıldı.
 - **Ayarlar sayfası:** raporda ayarlara yapılan bütün göndermeler (oran kaydırıcısı, varsayılan soru sayısı, yazma sertliği, seviye, bildirimler, hesap) geçerli ama sayfa henüz tasarlanmadı. Mevcut kullanıcı verisinin taşınması da bu sırada ele alınacak.
-- **Kapibara:** çizim ve animasyon Claude tarafından yapılacak, Efe ile birlikte. Şimdilik boş yer tutucu.
+- **Kapibara:** çizim tamam (18.33). Video için hareketli hâlleri sonra.
 - **Hakkında / yardım içeriği:** kararlar 18.33'te; konuların geri kalanını Efe açıklayacak.
 - **KVKK / gizlilik metni:** işler geliştikçe. Not: PDF yüklemeleri ve Gemini'nin ücretsiz katmanı (gönderilen metinler Google'ın ürün geliştirmesinde kullanılabilir) bu metinde belirtilmeli.
 
@@ -911,7 +911,7 @@ Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
 ### 18.9 Seri (streak) (Efe'nin kararı, 29 Eylül) — **YAPILDI (30 Eylül)**
 > **Kod:**
 > - `seri` uygulaması: `GunlukCalisma`, `SeriDurumu`; kural `seri/hesap.py`; yerel saat `seri/zaman.py`; uçlar `/seri/durum/` ve `/seri/saat-dilimi/`.
-> - Ana Sayfa kutusu ve takvim: `pages/anasayfa/_seriKutusu.html`. Kapibara simgesi geçici (`base/_kapibara.html`).
+> - Ana Sayfa kutusu ve takvim: `pages/anasayfa/_seriKutusu.html`. Kapibara simgesi yalnızca baş (`base/_kapibara.html`, `poz='bas'`).
 > - Alevli çubuk: `base/_alev.html` (L&P ve egzersiz).
 > - Metin kontrolü: `texts/gecerlilik.py`.
 > - Bildirimler: `bildirim_gonder_hatirlatma` 15 dakikada bir (`bildirimler/CRON.md`).
@@ -953,7 +953,7 @@ Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
 **Seri bozulunca:** "Yeni seri başlatmak için hemen alıştırma yap" gibi cesaretlendirici bir dil kullanılır. "Serini kaybettin" denmez.
 
 **Ana Sayfa'daki seri:**
-- Seri kutusunda gün sayısı ve yanında **kapibara simgesi** durur. Kapibara çizimi gelene kadar geçici bir simge kullanılır (Bölüm 16).
+- Seri kutusunda gün sayısı ve yanında **kapibara simgesi** durur. Simge kapibaranın başıdır (18.33).
 - **Seriye dokununca** küçük bir **açılır kutu** çıkar. Diğer içeriğin **üzerine biner**; aşağı doğru genişleyen bir alan **değildir**. Kutuda:
   - **Mevcut seri** (gün sayısı)
   - **Dondurma hakkı** sayısı (bu bilgi yalnızca burada görünür)
@@ -1000,7 +1000,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Tek çıkış ✕ olur.
   - "Geri al" küçük ve ikincil kalır.
   - Seviye seçici oturum ekranından çıkar.
-  - Kapibara yer tutucusu çizim gelene kadar gösterilmez.
+  - Kapibara balonun yanında göz kırpar; oturum sonunda el sallar (kart yoksa uyur).
 - Ayrıntılar tasarım oturumunda netleşir.
 
 ### 18.11 L&P açıklama kutusu (Efe'nin kararı)
@@ -1043,7 +1043,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - **Okumalar:** metin deftere bantlanmış beyaz sayfa, Source Serif ile; dokunulan kelime sarı kalemle işaretlenir, anlamı sarı not baloncuğunda.
   - **Yazılar:** değerlendirmede puan öğretmenin kırmızı daireli notu; hatalar kırmızı dalgalı çizgi, "İyi yaptıkların" yeşil, "Hatalar" kırmızı kalem.
   - **Bütün diğer ekranlar** (egzersizler, hesap, ayarlar, giriş/kayıt, seviye testi, bildirim ön ekranı): kartlar kâğıt sayfası (`.lv-sayfa`), ana düğmeler mürekkep düğmesi (`.lv-dugme`), sayfa başlıkları Fraunces, boş durumlar el yazısı notu, seviye rozetleri el çizimi daire.
-  - Kapibara (`base/_kapibara.html`) artık çizgi çizim; asıl çizim yine Efe ile (Bölüm 16).
+  - Kapibara: 18.33.
 - **Sayfalar örneklerdeki gibi baştan kuruldu (2 Ekim, Efe'nin isteği: yalnızca renk değil, düzen de):**
   - **Kelime sayfası** (`pages/words/_madde.html`, görünüm `_madde_baglami`): dev başlık, her tür açık bir defter maddesi (rapor 4.2'deki "ilki açık, diğerleri kapalı" kuralı arama sonuçlarında sürüyor; kelime sayfasında bütün türler açık), örnek cümlede kelime sarı kalemle (`|isaretle` süzgeci), aile ağacı (üyelerin ilk Türkçe anlamıyla), "tekrar" ve "kullan" notları, sözlükte alfabetik komşular (yalnızca dizine açık kelimeler) ve sayfa numarası.
   - **Okumalar:** kütüphane kupür kartları; okuma ekranında A−/A+ yazı boyutu (cihazda saklanır) ve okuma sonu (Learn & Pass'e geçiş, sıradaki metin).
@@ -1472,7 +1472,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - 2. ve 3. hâli kendisiyle aynı olan fiiller (cut, put, hit…) **da sorulur.**
 - Bu fiillerde gerçek çeldirici yalnızca -ing ve -s hâlidir; soru **3 şıkla** gelir (cut · cutting · cuts). "cutted" gibi uydurma biçim yine kullanılmaz (12.3). Kod: `egzersizler/sorular.fiil_sorusu`.
 
-### 18.29 Bildirim izni akışı (Efe'nin kararı, 29 Eylül) — **YAPILDI (1 Ekim; kapibara çizimi geçici)**
+### 18.29 Bildirim izni akışı (Efe'nin kararı, 29 Eylül) — **YAPILDI (1 Ekim)**
 **Uygulama (1 Ekim):**
 - Ön ekran `templates/bildirimler/_onEkran.html` (kapibaralı, sayfanın altında küçük pencere). Ölçüt `bildirimler/baglam.py`: en az 3 **bitmiş** egzersiz oturumu ve en az 20 L&P kartı. Ölçüt bir kez sağlanınca oturumda işaretlenir.
 - Çıkmadığı yerler: L&P ve egzersiz oturumları, seviye testi, giriş/kayıt sayfaları. Seviye testi daveti gösterilirken de çıkmaz (iki pencere üst üste binmesin).
@@ -1515,6 +1515,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 9. **PDF yükleme sınırı:** Apache/Passenger'ın 50 MB yüklemeye izin verdiği doğrulanır (gerekirse `LimitRequestBody`).
 10. **Google:** Search Console'da alan adı doğrulaması (Efe, DNS TXT), `sitemap.xml` gönderimi; birkaç gün "Dizine eklenen / taranan ama eklenmeyen" sayılarının izlenmesi; sonra kademeli dizine almanın 2. partisi (B2 Oxford).
 10a. **Google ile giriş:** sunucuda `pip install -r requirements.txt` (django-allauth, PyJWT) ve `migrate` (account, socialaccount tabloları); `.env`'e `GOOGLE_CLIENT_ID` ve `GOOGLE_CLIENT_SECRET`; Google Cloud'da canlı yönlendirme adresinin kayıtlı olduğu doğrulanır; canlıda bir kez Google ile girilir.
+10c. **Statik dosyaların önbelleği (Claude'un önerisi, Efe ile konuşulacak):** CSS/JS dosya adları değişmediği için güncellemeden sonra tarayıcılar eski `defter.css`/`site.css`'i kullanabilir. Çözüm: `ManifestStaticFilesStorage` (dosya adına içerik özeti eklenir; `collectstatic` ile çalışır, ek paket gerekmez).
 10b. **Yeni migration'lar:** `egzersizler/0002` (Kısa Sınav / Deneme Sınavı adları) ve allauth tabloları.
 11. **Geçiş günü:** kısa bakım ekranı (Passenger `tmp/restart.txt` ile yeniden başlatma), geçişten sonra ana akışların elle denenmesi (kayıt, L&P, egzersiz, okuma, yazı, bildirim).
 
@@ -1554,7 +1555,11 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **Tanıtım videosu:** yaklaşık 1 dakika ya da daha kısa.
   - Defter sayfası sahneleri, boya kalemi dolgusu, sayfa çevirme geçişleri, kenarda karalama gibi duran kapibara (~50 sn senaryo).
   - **Her dil için ayrı video** (kendi altyazısıyla). Sayfa hangi dildeyse o dilin videosu oynar.
-- **Kapibara:** taslak çizimlerle devam edilir (Efe onayı, 2 Ekim).
+- **Kapibara (Efe onayladı, 2 Ekim):** önden bakan, ayakta duran **yetişkin** kapibara; düz tepeli uzun baş, küçük kulaklar, burun ucunda koyu leke, **ağzı açık, iki ön dişi dışarıda** (kunduz gibi), armut gövde. Çizgi defterin mavi mürekkebi, dolgu boya kalemi dokulu.
+  - **Koyu tema:** çizgi koyu kahve kalem; karakter açık kenarlı bir çıkartma gibi zeminden ayrılır.
+  - Parçalar `templates/base/_kapibaraTanim.html` (layout her sayfada bir kez ekler); çizim `base/_kapibara.html` ile `poz` seçilerek konur: duruyor, merhaba, kirpar, seri (kafasında portakal), uyku, okuyor, yaziyor, zil, uzgun, bas. Renkler `defter.css` (`--kapi-*`).
+  - Sitedeki yerleri: ana sayfa "Bugünün sayfası" (okuyor), seri kutusu (baş), L&P balonu (göz kırpar), L&P oturum sonu (merhaba / kart yoksa uyku), bildirim ön ekranı (zil), Hesap fotoğrafsız (merhaba).
+  - Örnek sayfa: `ozetler/tasarim-ornekleri/kapibara/index.html`.
 - **Yardım sayfası:** kısa genel tanıtım yazısı + işaretli ekran görüntüleriyle "nasıl yapılır" yönergeleri. Konular en az şunlar:
   - Ayarlardan siteyi nasıl özelleştirirsin.
   - Sözlük ve hazır listelerin kullanımı.
@@ -1694,3 +1699,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-02 (7):** Yardım sayfası ve tanıtım videosu kararları (18.33: defter teması, her dile ayrı video, kapibara taslağıyla devam, yardım konuları). "Her yeni sürümde yapılacaklar" listesi açıldı (18.34): ekran görüntüleri her sürümde her dil ve görünüm için baştan hazırlanır.
 - **2026-10-02 (8):** Tailwind derlemeye geçti (18.17 YAPILDI): Play CDN kalktı, `static/css/site.css` Standalone CLI ile derleniyor; derleme testi eklendi. 950 test geçiyor.
 - **2026-10-02 (9):** Efe Google ile girişi yerelde denedi, çalışıyor (18.21). Kapibara taslaklarına başlandı.
+- **2026-10-02 (10):** Kapibara çizimi Efe'nin örneklerine göre baştan yapıldı ve onaylandı (18.33): önden, ayakta, yetişkin, ağzı açık, iki diş; koyu temada çıkartma görünümü. Sitedeki geçici çizimin yerine kondu (9 poz). 950 test geçiyor.

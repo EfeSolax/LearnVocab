@@ -1,13 +1,19 @@
-{# Kapibara: defter kenarına karalanmış çizgi çizim (rapor 18.12). GEÇİCİ: asıl çizim ve animasyon sonra Efe ile (Bölüm 16). #}
-<svg viewBox="0 0 170 120" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
-     class="{{ sinif|default:'h-7 w-7' }}" style="color: var(--murekkep)">
-    <path d="M22 76C19 50 46 38 76 40c17 1 26-4 38-8 18-6 38 4 40 22 2 14-6 22-18 24-6 14-24 20-46 20-28 1-64 0-68-22Z"/>
-    <path d="M112 33c-2-9 8-11 10-2"/>
-    <path d="M128 48q5 4 10 0" data-kapibara-goz/>
-    <path d="M150 53q2 3 0 6"/>
-    <path d="M142 66q5 3 9 0"/>
-    <path d="M42 96v14M58 98v12M102 98v12M120 94v14"/>
-    <circle cx="124" cy="20" r="8"/>
-    <path d="M126 12q6-7 13-3-6 7-13 3"/>
-    <path d="M34 62q6-4 10 2M60 54q5-3 9 1" opacity=".5"/>
+{% comment %}
+Kapibara (rapor 18.33). Parçalar base/_kapibaraTanim.html'de; layout her sayfada bir kez ekler.
+  poz:   duruyor (varsayılan) · merhaba (el sallar) · kirpar (L&P, arada göz kırpar) · seri (kafasında portakal)
+         uyku (boş durum) · okuyor · yaziyor · zil (bildirim izni) · uzgun · bas (yalnızca baş, küçük yerler)
+  sinif: boyut sınıfları; tam boy çizim dikeydir (en/boy ≈ 0,73), baş karedir.
+{% endcomment %}
+<svg viewBox="{% if poz == 'bas' %}48 22 104 108{% elif poz == 'seri' %}20 0 160 238{% elif poz == 'merhaba' %}20 18 170 220{% else %}20 18 160 220{% endif %}"
+     class="lv-kapibara{% if poz == 'kirpar' %} lv-kapibara-kirpar{% endif %} {{ sinif|default:'h-24 w-auto' }}" aria-hidden="true" focusable="false" data-kapibara="{{ poz|default:'duruyor' }}">
+  <g filter="url(#lv-kapi-kalem)">
+    {% if poz != 'bas' %}<use href="#lv-kapi-govde"/>{% endif %}
+    <use href="#lv-kapi-kulak"/><use href="#lv-kapi-bas"/>
+    {% if poz == 'seri' %}<use href="#lv-kapi-g-mutlu"/>{% elif poz == 'uyku' %}<use href="#lv-kapi-g-uyku"/>{% elif poz == 'uzgun' %}<use href="#lv-kapi-g-uzgun"/>{% elif poz == 'kirpar' %}<g class="lv-kapi-goz-acik"><use href="#lv-kapi-g-acik"/></g><g class="lv-kapi-goz-kapali"><use href="#lv-kapi-g-kirp"/></g>{% else %}<use href="#lv-kapi-g-acik"/>{% endif %}
+    {% if poz == 'uyku' or poz == 'okuyor' %}<use href="#lv-kapi-a-kapali"/>{% elif poz == 'uzgun' %}<use href="#lv-kapi-a-uzgun"/>{% else %}<use href="#lv-kapi-a-acik"/>{% endif %}
+    {% if poz == 'merhaba' %}<use href="#lv-kapi-kol-salla"/>
+    {% elif poz == 'okuyor' or poz == 'yaziyor' or poz == 'zil' %}<use href="#lv-kapi-kol-tut"/>{% if poz == 'okuyor' %}<use href="#lv-kapi-kitap"/>{% elif poz == 'yaziyor' %}<use href="#lv-kapi-kalem-esya"/>{% else %}<use href="#lv-kapi-zil"/>{% endif %}<use href="#lv-kapi-pence"/>
+    {% elif poz != 'bas' %}<use href="#lv-kapi-kollar"/>{% endif %}
+    {% if poz == 'seri' %}<use href="#lv-kapi-portakal"/>{% endif %}
+  </g>
 </svg>

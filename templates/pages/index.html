@@ -90,7 +90,7 @@ Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
     {% if gunun_ifadesi %}{% include 'pages/gunun/_ifade.html' with gi=gunun_ifadesi %}{% endif %}
 </div>
 <div class="mt-7 flex items-center gap-3">
-    {% include 'base/_kapibara.html' with sinif='h-20 w-28 shrink-0' %}
+    {% include 'base/_kapibara.html' with poz='okuyor' sinif='h-28 w-auto shrink-0' %}
     <span class="lv-el -rotate-2 text-2xl leading-tight">ikisini de biliyorsan<br>bugünlük benden iyisin.</span>
 </div>
 {% if user.is_authenticated %}{% include 'pages/gunun/_js.html' %}{% endif %}

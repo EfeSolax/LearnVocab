@@ -26,7 +26,7 @@ Görsel tasarımı tasarım oturumunda yapılacak.
                 <img id="avatar-preview" class="aspect-square w-full object-cover {% if not user.profile_pic %}hidden{% endif %}"
                      src="{% if user.profile_pic %}{{ user.profile_pic.url }}{% endif %}" alt="Profil fotoğrafı">
                 <span id="avatar-placeholder" class="grid aspect-square w-full place-items-center bg-[color:var(--kagit)] {% if user.profile_pic %}hidden{% endif %}">
-                    {% include 'base/_kapibara.html' with sinif='w-32 h-24' %}
+                    {% include 'base/_kapibara.html' with poz='merhaba' sinif='h-32 w-auto' %}
                 </span>
                 <input type="file" name="profile_pic" id="profile_pic" accept="image/*" class="sr-only">
                 <label for="profile_pic" class="lv-el absolute inset-x-0 bottom-2 cursor-pointer text-center text-[21px] font-bold underline decoration-1 underline-offset-4">fotoğrafı değiştir</label>

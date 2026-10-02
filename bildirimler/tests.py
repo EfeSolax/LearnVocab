@@ -317,7 +317,7 @@ class OnEkranTest(TestCase):
         self.assertIn("günün kelimesini", html)
         self.assertIn("Ana Ekrana Ekle", html)
         on_ekran = html[html.index('id="bildirim-on-ekrani"'):]
-        self.assertIn('viewBox="0 0 170 120"', on_ekran)               # kapibara (çizgi çizim)
+        self.assertIn('data-kapibara="zil"', on_ekran)                # kapibara zil tutar (rapor 18.33)
         # Tarayıcının izin penceresi yalnızca ac() içinde, o da tıklamayla çağrılır.
         self.assertEqual(html.count("Notification.requestPermission()"), 1)
         self.assertGreater(on_ekran.index("window.lvBildirim.ac()"), on_ekran.index("addEventListener('click'"))
