@@ -282,8 +282,12 @@ class DarkThemeTests(TestCase):
         return response.content.decode("utf-8")
 
     def test_tailwind_is_configured_for_class_strategy(self):
-        html = self._html("sozluk")
-        self.assertIn("darkMode: 'class'", html)
+        # Tailwind artık derleniyor (rapor 18.17): ayar tailwind.config.js'te, sayfa site.css'i yükler.
+        from pathlib import Path
+        from django.conf import settings
+        ayar = (Path(settings.BASE_DIR) / "tailwind.config.js").read_text()
+        self.assertIn("darkMode: 'class'", ayar)
+        self.assertIn("css/site.css", self._html("sozluk"))
 
     def test_theme_script_runs_before_the_body(self):
         html = self._html("sozluk")

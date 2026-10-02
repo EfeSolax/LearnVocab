@@ -1,0 +1,4 @@
+/* Tailwind girişi: tailwind.config.js başındaki komutla static/css/site.css olarak derlenir. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

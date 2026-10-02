@@ -625,7 +625,7 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 - **Seri (streak):** → 18.9'da 29 Eylül'de kararlaştırıldı.
 - **Ayarlar sayfası:** raporda ayarlara yapılan bütün göndermeler (oran kaydırıcısı, varsayılan soru sayısı, yazma sertliği, seviye, bildirimler, hesap) geçerli ama sayfa henüz tasarlanmadı. Mevcut kullanıcı verisinin taşınması da bu sırada ele alınacak.
 - **Kapibara:** çizim ve animasyon Claude tarafından yapılacak, Efe ile birlikte. Şimdilik boş yer tutucu.
-- **Hakkında / yardım içeriği:** her şey bittikten sonra.
+- **Hakkında / yardım içeriği:** kararlar 18.33'te; konuların geri kalanını Efe açıklayacak.
 - **KVKK / gizlilik metni:** işler geliştikçe. Not: PDF yüklemeleri ve Gemini'nin ücretsiz katmanı (gönderilen metinler Google'ın ürün geliştirmesinde kullanılabilir) bu metinde belirtilmeli.
 
 **Claude'un varsayımları** (Efe itiraz etmedi, değişebilir):
@@ -1288,17 +1288,14 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   3. **Sıklık tutarsızlık bulucu olarak kullanılır:** çok sık ama C1 etiketli, ya da çok seyrek ama A1–B1 etiketli kelimeler listelenir ve 18.7'deki denetimle düzeltilir.
 - Şu anki dağılım şüpheli: C2 yalnızca 84, B2 7.120. Kalibrasyon için kamuya açık kaynaklarla karşılaştırma yapılabilir.
 
-### 18.17 Tailwind (Efe'nin kararı, 29 Eylül: A, Standalone CLI)
-- **Sorun Tailwind'in kendisi değil, Play CDN** (`cdn.tailwindcss.com`, `templates/base/layout.html`).
-  - Bu betik her sayfa açılışında telefonda sayfayı tarayıp CSS'i **tarayıcıda** üretiyor. Tailwind bunu canlıda kullanılmamak üzere işaretliyor.
-  - Büyük bir JavaScript indiriliyor; ilk açılışta stil gecikebiliyor. Bu hem kullanıcıya hem Google'ın hız ölçümüne yansıyor.
-  - Başka birinin sunucusuna bağımlılık yaratıyor.
-- **Seçenekler:**
-  - (A) **Tailwind Standalone CLI** (Node gerekmez, tek dosya). CSS yerelde derlenir; `static/css/site.css` (~15–30 KB) üretilir ve depoya konur. Sunucuda hiçbir şey çalışmaz.
-  - (B) `django-tailwind` paketi. Node gerektirir.
-  - (C) Tailwind'i bırakıp düz CSS yazmak. ~8.600 satırlık şablonun baştan yazılması demek.
-- **Öneri: A.** Beyaz tema (18.12) de aynı derleme adımında kurulur.
-- **Alpine:** `unpkg …@3.x.x` sürümü sabitlenmeden çekiliyor. Sürüm sabitlenip dosya `static/` altından sunulur.
+### 18.17 Tailwind (Efe'nin kararı, 29 Eylül: A, Standalone CLI) — **YAPILDI (2 Ekim)**
+- Play CDN kaldırıldı. CSS yerelde **Tailwind Standalone CLI v3.4.19** ile derlenir; Node gerekmez, sunucuda hiçbir şey çalışmaz.
+  - Ayar: `tailwind.config.js` (renk eşlemesi, `darkMode: 'class'`, okuma konularının dinamik renkleri için safelist). Giriş: `static/css/tailwind-giris.css`. Çıktı: `static/css/site.css` (~80 KB, depoda).
+  - Derleme: `.venv/bin/tailwindcss -c tailwind.config.js -i static/css/tailwind-giris.css -o static/css/site.css --minify`. CLI dosyası `.venv/bin/` altında, depoya konmaz (resmî SHA256 ile doğrulandı).
+  - `site.css` `<head>`'in sonunda yüklenir (eski CDN sırası korunur). Derlenmiş CSS ile CDN on ekranda karşılaştırıldı: fark yok.
+  - `LearnVocab/test_tailwind.py`: sayfalardaki her Tailwind sınıfı `site.css`'te olmalı; şablona yeni sınıf eklenip derleme unutulursa test düşer.
+- **Alpine:** 3.17.4 sabitlendi, `static/js/alpine-3.17.4.min.js` dosyasından sunulur.
+- **Yazı tipleri:** Google Fonts yerine sitenin kendi dosyaları (`static/fonts/`, `static/css/fontlar.css`).
 
 ### 18.18 Rapor yalnızca mevcut durumu yazar (Efe'nin kararı)
 - Rapor ürünün **şu anki** hâlini anlatır. Kodla ya da kendi içinde çelişen yerler düzeltilir.
@@ -1551,6 +1548,28 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Ses dosyaları (18.4, seçilirse) sunucuda durabilir: ~28 bin dosya (~70–110 MB) inode sınırının %7'si.
 - **Maliyet ilkesi (Efe):** Bu süreçte ek masraf çıkmamalı. Ücretli servis, API ya da hesap gerektiren çözümler önerilmez; ücretsiz ve yerel çözümler tercih edilir.
 
+### 18.33 Yardım sayfası ve tanıtım videosu (Efe'nin kararları, 2 Ekim)
+- **Tema:** asıl tema **defter**. Video da defter sayfalarında geçer; elle çizilmiş, boya kalemi dokulu çizim yalnızca **çizim şekli** olarak kullanılır.
+- **Tanıtım videosu:** yaklaşık 1 dakika ya da daha kısa.
+  - Defter sayfası sahneleri, boya kalemi dolgusu, sayfa çevirme geçişleri, kenarda karalama gibi duran kapibara (~50 sn senaryo).
+  - **Her dil için ayrı video** (kendi altyazısıyla). Sayfa hangi dildeyse o dilin videosu oynar.
+- **Kapibara:** taslak çizimlerle devam edilir (Efe onayı, 2 Ekim).
+- **Yardım sayfası:** kısa genel tanıtım yazısı + işaretli ekran görüntüleriyle "nasıl yapılır" yönergeleri. Konular en az şunlar:
+  - Ayarlardan siteyi nasıl özelleştirirsin.
+  - Sözlük ve hazır listelerin kullanımı.
+  - Egzersiz çeşitleri (Kısa Sınav, Deneme Sınavı ve soru türleri) ve nasıl kullanılacakları.
+  - (Learn & Pass, Okumalar, Yazılar, seri gibi diğer konular Efe'nin açıklamasıyla eklenecek.)
+- **Ekran görüntüleri elle değil, her sürümde baştan hazırlanır:** her dil ve her görünüm (açık/koyu, telefon/masaüstü) için. Bu iş 18.34'teki listededir; otomasyon aracı kurulmaz.
+
+### 18.34 Her yeni sürümde yapılacaklar (Efe'nin kararı, 2 Ekim)
+Yeni sürüm yayına çıkmadan önce bu liste baştan sona yapılır. Yeni sürekli iş çıkarsa buraya eklenir.
+1. Testler: `.venv/bin/python manage.py test --parallel 4 --noinput`.
+2. Tailwind yeniden derlenir (komut `tailwind.config.js` başında); `LearnVocab.test_tailwind` geçmeli.
+3. Yardım sayfasının ekran görüntüleri **her dil ve her görünüm** (açık/koyu, telefon/masaüstü) için baştan çekilir ve işaretlenir (18.33).
+4. Tanıtım videosu tasarım ya da metin değiştiyse **her dil için** yeniden hazırlanır; altyazılar güncellenir (18.33).
+5. Yeni ya da değişen arayüz metinlerinin çevirileri tamamlanır (18.22).
+6. Rapor güncellenir, "Değişiklik kaydı"na sürüm notu eklenir.
+
 ### 18.20 Önerilen uygulama sırası (Claude'un önerisi)
 Her adım ayrı commit, her adımdan sonra testler.
 
@@ -1671,3 +1690,5 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-02 (4):** Bütün sayfalar defter tasarımıyla sıfırdan kuruldu (ana sayfa girişli de zengin; egzersiz, seviye testi, Hesap, Ayarlar, Listem, göz atma, diyalog, metin ekleme). Egzersiz adları Kısa Sınav / Deneme Sınavı oldu; eş/zıt sorusuna renkli damga eklendi. 945 test geçiyor.
 - **2026-10-02 (5):** Dil seçeneği kararları (düğmenin yeri, otomatik yönlendirme yok, arayüz dilinden bağımsız "Türkçe anlamlar" ayarı). Google ile giriş başladı: Efe OAuth istemcisini oluşturuyor.
 - **2026-10-02 (6):** Alpine 3.17.4 sabitlendi (`static/js/`). Google ile giriş eklendi (django-allauth; yerelde Efe'nin denemesi bekleniyor). 948 test geçiyor.
+- **2026-10-02 (7):** Yardım sayfası ve tanıtım videosu kararları (18.33: defter teması, her dile ayrı video, kapibara taslağıyla devam, yardım konuları). "Her yeni sürümde yapılacaklar" listesi açıldı (18.34): ekran görüntüleri her sürümde her dil ve görünüm için baştan hazırlanır.
+- **2026-10-02 (8):** Tailwind derlemeye geçti (18.17 YAPILDI): Play CDN kalktı, `static/css/site.css` Standalone CLI ile derleniyor; derleme testi eklendi. 950 test geçiyor.

@@ -30,38 +30,6 @@
     <meta name="apple-mobile-web-app-title" content="LearnVocab">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="apple-touch-icon" href="{% static 'pwa/apple-touch-icon.png' %}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Karanlık tema "class" stratejisiyle çalışıyor: <html class="dark">
-        //
-        // hoverOnlyWhenSupported: dokunmatik cihazlarda hover: stilleri ilk
-        // dokunuşla tetiklenip o dokunuşu yutuyordu ("ilkte algılamıyor,
-        // ikinciye basmak gerekiyor"). Bu bayrak hover: sınıflarını yalnızca
-        // gerçekten hover destekleyen cihazlarda uygular.
-        //
-        // Defter teması (rapor 18.12, static/css/defter.css): indigo/violet/purple
-        // mürekkep mavisine, gray kâğıt-mürekkep nötrlerine, slate (koyu tema)
-        // gece defterinin tonlarına bağlı. Eski sınıflar da böylece defter renginde.
-        var murekkep = { 50: '#eef2fb', 100: '#dde5f7', 200: '#bccbee', 300: '#92aae0', 400: '#9db8ff', 500: '#3a5fbf',
-                         600: '#1d3f8f', 700: '#17337a', 800: '#132a63', 900: '#10224f', 950: '#0c1a3d' };
-        tailwind.config = {
-            darkMode: 'class',
-            future: { hoverOnlyWhenSupported: true },
-            theme: { extend: {
-                colors: {
-                    indigo: murekkep, violet: murekkep, purple: murekkep,
-                    gray: { 50: '#f7f6f1', 100: '#efede6', 200: '#e3e1d8', 300: '#cfccc1', 400: '#a19f97', 500: '#6f6e6a',
-                            600: '#55565b', 700: '#3c3e44', 800: '#26282d', 900: '#1b1d22', 950: '#111215' },
-                    slate: { 50: '#f4f3ee', 100: '#e9e8e2', 200: '#d6d5cf', 300: '#bdbcb6', 400: '#a3a7b0', 500: '#7b808b',
-                             600: '#4c515c', 700: '#2e323b', 800: '#1d2027', 900: '#16181d', 950: '#0f1013' },
-                },
-                fontFamily: {
-                    sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                    serif: ['Fraunces', 'Georgia', 'serif'],
-                },
-            } },
-        };
-    </script>
     {# Yazı tipleri sitenin kendi dosyalarından (static/fonts, static/css/fontlar.css): Google'a bağlanılmaz. #}
     <link rel="preload" href="{% static 'fonts/Inter-latin-1ab1ad.woff2' %}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{% static 'css/fontlar.css' %}">
@@ -102,6 +70,15 @@
     <script defer src="{% static 'js/alpine-3.17.4.min.js' %}"></script>
 
     {% block extra_head %}{% endblock %}
+
+    {% comment %}
+    Tailwind derlenmiş hâliyle (rapor 18.17): static/css/site.css. Ayarlar ve derleme
+    komutu tailwind.config.js'te (renkler defter teması, darkMode: 'class',
+    hoverOnlyWhenSupported). Şablona yeni sınıf ekleyince yeniden derle;
+    LearnVocab/test_tailwind.py unutulan derlemeyi yakalar.
+    En sonda durur: eski Play CDN de stilini <head>'in sonuna ekliyordu, sıra aynı kalsın.
+    {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
 </head>
 
 <body class="lv-kagit text-gray-900 dark:text-slate-100 min-h-screen">
