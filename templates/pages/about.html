@@ -1,135 +1,157 @@
-<!-- Burada layout.html'i extend ederek temel görünümü alıyoruz. -->
 {% extends 'base/layout.html' %}
+{% load static l10n %}
 
-<!-- Burada da title bloğunun alında bu sayfayı özelleştiriyoruz. -->
-{% block title %}Hakkında{% endblock %}
+{% comment %}
+Yardım ve hakkında (rapor 18.33): tek sayfa. Görünüm ve içerik: LearnVocab/yardim.py
+  - Kısa tanıtım ve "bir gün nasıl geçer"
+  - Nasıl yapılır: her rehberde telefon çerçevesinde ekran görüntüsü (açık / koyu temaya göre),
+    üstünde numaralı işaretler; yanında aynı numaralı adımlar
+  - Hakkında: siteyi kim, neden yaptı; iletişim
+Ekran görüntüleri her sürümde her dil ve tema için yeniden çekilir (rapor 18.34).
+{% endcomment %}
 
-<!-- Burada içerik kısmına erişip içeriği yazmamız lazım. -->
+{% block title %}Yardım ve hakkında — LearnVocab{% endblock %}
+
+{% block extra_head %}
+<style>
+  .yardim-telefon { padding: 7px; border-radius: 30px; background: #1b1d22; box-shadow: var(--golge); }
+  html.dark .yardim-telefon { background: #3a3f4a; }
+  .yardim-telefon img { border-radius: 23px; }
+  .yardim-isaret, .yardim-no {
+    display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--kirmizi); color: #fff; font: 700 15px/1 var(--govde); flex: none;
+  }
+  html.dark .yardim-isaret, html.dark .yardim-no { color: #16181d; }
+  .yardim-isaret { position: absolute; transform: translate(-50%, -50%); box-shadow: 0 0 0 3px var(--kagit-beyaz), 0 3px 8px rgba(0, 0, 0, .3); }
+  .yardim-no { margin-top: 2px; }
+</style>
+{% endblock %}
+
 {% block content %}
+<div class="mx-auto max-w-4xl px-4 pb-20 sm:px-6 lg:px-8">
 
+    {# ---------- Başlık ---------- #}
+    <header class="flex items-end justify-between gap-6">
+        <div>
+            <span class="lv-tarih">yardım ve hakkında</span>
+            <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">Nasıl kullanılır?</h1>
+            <p class="lv-alt-baslik mt-1">defterin ilk sayfası: her şey burada yazıyor</p>
+        </div>
+        {% include 'base/_kapibara.html' with poz='okuyor' sinif='hidden h-36 w-auto shrink-0 sm:block' %}
+    </header>
 
-<div class="py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl lg:text-center">
-      <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 dark:text-slate-100 sm:text-5xl lg:text-balance">Learn Vocab'de ne amaçlıyoruz?</p>
-      <p class="mt-6 text-lg/8 text-gray-700 dark:text-slate-300">İlk başta bu proje tamamen benim kelime öğrenmekte zorlanmam üzerine çıktı diyebilirim. Çünkü piyasada bulduğum hiçbir kelime öğrenme sitesi insanlara kendi örnekleri ve açıklamalarıyla kelime öğrenme deneyimini sunmuyordu. Sadece kelimeler, kullanımları, anlamları... Fakat bu projede siz kendi kelimelerinizi kendiniz ekleyip kendinize göre bir not alma serüvenine atılacaksınız</p>
-      <p class="mt-6 text-lg/8 text-gray-700 dark:text-slate-300">Kelimelerinizi kendi örnek cümleleriniz, notlarınız ve kullanım kalıplarınızla birlikte saklayabilir; ardından bunları quizlerle tekrar ederek kalıcı hâle getirebilirsiniz.</p>
-    </div>
-    <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-      <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-        <div class="relative pl-16">
-          <dt class="text-base/7 font-semibold text-gray-900 dark:text-slate-100">
-            <div class="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-indigo-600">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 text-white">
-                <path d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </div>
-            Kendi Kelimeleriniz
-          </dt>
-          <dd class="mt-2 text-base/7 text-gray-600 dark:text-slate-400">Profilinizden kelimelerinizi inceleyebilir, yenilerini ekleyebilir, fiiller için 2 ve 3. hallerini girebilir, isimler ve sıfatlar için ön ekleri (dis,un,in,etc.) ekleyebilirsiniz.</dd>
-        </div>
-        <div class="relative pl-16">
-          <dt class="text-base/7 font-semibold text-gray-900 dark:text-slate-100">
-            <div class="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-indigo-600">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 text-white">
-                <path d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </div>
-            Listeniz Tamamen Sizin Kontrolünüzde
-          </dt>
-          <dd class="mt-2 text-base/7 text-gray-600 dark:text-slate-400">Kelimelerinizi isterseniz herkese açık, sadece arkadaşlarınıza açık veya tamamen gizli yapabilirsiniz. İnsanların paylaştığı kelimeleri kendi listenize alabilirsiniz.</dd>
-        </div>
-        <div class="relative pl-16">
-          <dt class="text-base/7 font-semibold text-gray-900 dark:text-slate-100">
-            <div class="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-indigo-600">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 text-white">
-                <path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </div>
-            Basit Tekrarlar ve Quizler
-          </dt>
-          <dd class="mt-2 text-base/7 text-gray-600 dark:text-slate-400">Öğrenmenin en iyi yollarından biri de tekrar etmektir. Biz size bunu sunuyoruz. Profilinizden Quizler'inize tıklayarak size öğrenmek istediğiniz kelimelerden rastgele bir quiz hazırlanmasını sağlayabilirsiniz.</dd>
-        </div>
-        <div class="relative pl-16">
-          <dt class="text-base/7 font-semibold text-gray-900 dark:text-slate-100">
-            <div class="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-indigo-600 text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-              </svg>
+    {# ---------- İçindekiler ---------- #}
+    <nav class="lv-sayfa mt-10 p-5 sm:p-6" aria-label="İçindekiler">
+        <p class="lv-el text-[24px] font-bold">bu sayfada</p>
+        <ol class="mt-2 grid gap-x-8 gap-y-1.5 text-[17px] sm:grid-cols-2">
+            <li><a href="#nedir" class="hover:underline"><span class="lv-el mr-2 text-xl font-bold">0</span>LearnVocab nedir?</a></li>
+            {% for r in rehberler %}
+            <li><a href="#{{ r.kimlik }}" class="hover:underline"><span class="lv-el mr-2 text-xl font-bold">{{ forloop.counter }}</span>{{ r.baslik }}</a></li>
+            {% endfor %}
+            <li><a href="#hakkinda" class="hover:underline"><span class="lv-el mr-2 text-xl font-bold">✎</span>Siteyi kim yaptı?</a></li>
+        </ol>
+    </nav>
 
-            </div>
-            Metinler ve Haftalık Çalışmalar
-          </dt>
-          <dd class="mt-2 text-base/7 text-gray-600 dark:text-slate-400">O hafta öğrendiğiniz kelimelerin maksimum miktarını içerecek bir metin yazabilirsiniz. Bu metinde öncelik olarak bu kelimeleri kullanırsınız ve yapay zekamız da metinde kelimelerin yazımını doğrulayarak size o metin için bir skor verir.</dd>
-        </div>
-      </dl>
-    </div>
-  </div>
-</div>
-
-<div class="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-      <div class="max-w-xl lg:max-w-lg">
-        <h2 class="text-4xl font-semibold tracking-tight text-white">Site ve Geliştirici Hakkında</h2>
-        <p class="mt-4 text-lg text-gray-300 dark:text-slate-600">
-            Merhaba sevgili kullanıcı. Bu siteyi geliştirmemdeki tüm amaç kendi kelime öğrenme problemimi çözmekti. Fakat bunu sadece telefonda notlarıma kelimeleri ve anlamlarını yazarak yapmak istemiyordum. Aynı zamanda bazı websiteleri de uygulamalar da sözlükler de istediğimi tam olarak karşılayamamıştı. Çünkü hiçbiri insanların kendi tarzınca öğrenmesi için tasarlanmamıştı. Fakat bu site onun için tasarlandı. Bu sitenin bilgisayardan aynı zamanda mobilden de erişilebilir olması en dikkat ettiğim şeylerden biri oldu. Her aklınıza geldiğinde kullanabileceğiniz bu site umarım işinize yarar.
+    {# ---------- Tanıtım ---------- #}
+    <section id="nedir" class="mt-16 scroll-mt-24" aria-labelledby="nedir-baslik">
+        <h2 id="nedir-baslik" class="lv-bolum">LearnVocab nedir?</h2>
+        <p class="mt-4 max-w-2xl text-lg leading-relaxed">
+            Üniversite hazırlık öğrencileri ve İngilizce öğrenen herkes için bir kelime defteri. Bakıp gidilen bir sözlük değil:
+            kelimeyi bulursun, defterine eklersin, unutmadan önce yeniden karşına çıkar, okurken görürsün ve sonunda kendi cümlende kullanırsın.
         </p>
-      </div>
-      <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
-        <div class="flex flex-col items-start">
-          <div class="rounded-md bg-white/5 dark:bg-slate-800/5 p-2 ring-1 ring-white/10 dark:ring-slate-700/10">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 text-white">
-              <path d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789a3.376 3.376 0 0 1 6.338 0Z" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
-          <dt class="mt-4 text-base font-semibold text-white">Kendim Hakkında</dt>
-          <dd class="mt-2 text-base/7 text-gray-400 dark:text-slate-500">Adım Efe Solmaz. 2025 yılında ODTÜ Bilgisayar Mühendisliği kazandım ve şu anda hazırlıktayım. Malum bolca boş zamanımın olması nedeniyle bu siteyi geliştirebilecek imkanım oldu. Yaklaşık 5-6 yıldır python ve 2-3 yıldır da Java kullanıyorum. Daha önce masaüstü uygulaması geliştirmeyle ve web sitesi geliştirmeyle ilgili işler yapmaya çalıştım. </dd>
+        <div class="mt-8 grid gap-6 sm:grid-cols-3">
+            <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
+                <p class="lv-el text-[24px] font-bold">tanı</p>
+                <p class="mt-1 font-semibold">Sözlük ve Çalışmalar</p>
+                <p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">Kelimeyi bul, anlamını öğren, Learn &amp; Pass ve egzersizlerle hatırla.</p>
+            </div>
+            <div class="lv-not lv-mavi lv-bantli text-gray-900 dark:text-slate-100">
+                <p class="lv-el text-[24px] font-bold">gör</p>
+                <p class="mt-1 font-semibold">Okumalar</p>
+                <p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">Kelimeyi gerçek bir metinde gör; bilmediğine dokun, anlamı hemen çıksın.</p>
+            </div>
+            <div class="lv-not lv-pembe lv-bantli text-gray-900 dark:text-slate-100">
+                <p class="lv-el text-[24px] font-bold">kullan</p>
+                <p class="mt-1 font-semibold">Yazılar</p>
+                <p class="mt-1 text-[15px] text-gray-700 dark:text-slate-300">Birkaç cümle yaz, neyi doğru neyi yanlış yaptığını gör.</p>
+            </div>
         </div>
-        <div class="flex flex-col items-start">
-          <div class="rounded-md bg-white/5 dark:bg-slate-800/5 p-2 ring-1 ring-white/10 dark:ring-slate-700/10">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 text-white">
-              <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 6.75Z" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
-          <dt class="mt-4 text-base font-semibold text-white">İletişim Bilgilerim</dt>
-          <dd class="mt-2 text-base/7 text-gray-400 dark:text-slate-500">
-            <p>Aşağıya Instagram, Twitter, Github hesabımı ve mailimi bıraktım.</p>
 
-            <br>
-            <!--<p>Gmail: <p class = "text-blue-500">efe.smz7061@gmail.com</p></p>-->
-            <p>METU Mail: <p class = "text-blue-500">efe.solmaz@metu.edu.tr</p></p>
+        <h3 class="lv-alt-baslik mt-12">bir gün nasıl geçer?</h3>
+        <ol class="mt-4 max-w-2xl space-y-3 text-lg">
+            <li class="flex gap-3"><span class="yardim-no">1</span><span>Ana Sayfa'da günün kelimesine ve bekleyen tekrarlarına bak.</span></li>
+            <li class="flex gap-3"><span class="yardim-no">2</span><span>Learn &amp; Pass'te 10 kart geç; birkaç dakika sürer ve günün serisini tamamlar.</span></li>
+            <li class="flex gap-3"><span class="yardim-no">3</span><span>Vaktin varsa bir Kısa Sınav çöz.</span></li>
+            <li class="flex gap-3"><span class="yardim-no">4</span><span>Bir metin oku ya da birkaç cümle yaz.</span></li>
+        </ol>
+        <p class="mt-4 max-w-2xl text-gray-600 dark:text-slate-300">Hiçbiri zorunlu değil; bütün bölümler her zaman açık. İstediğin yerden başla.</p>
+    </section>
 
-            <!--<a href="https://www.instagram.com/efeslmz.developer/" class="text-gray-400 dark:text-slate-500 hover:text-white inline-flex items-center gap-x-2">
-              <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 0 1 1.772 1.153 4.902 4.902 0 0 1 1.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 0 1-1.153 1.772 4.902 4.902 0 0 1-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 0 1-1.772-1.153 4.902 4.902 0 0 1-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 0 1 1.153-1.772A4.902 4.902 0 0 1 6.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2ZM12 7.025a4.975 4.975 0 1 0 0 9.95 4.975 4.975 0 0 0 0-9.95Zm0 8.05a3.075 3.075 0 1 1 0-6.15 3.075 3.075 0 0 1 0 6.15ZM16.95 6.05a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z" clip-rule="evenodd"></path>
-              </svg>
-              <span class = "text-pink-500">Instagram</span>
-            </a><br>
-            <a href="https://x.com/efe_solaax" class="text-gray-400 dark:text-slate-500 hover:text-white inline-flex items-center gap-x-2">
-              <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231L18.244 2.25ZM17.06 19.75h1.696L6.853 4.25H5.063l12 15.5Z"></path>
-              </svg>
-              <span class = "text-blue-900">Twitter</span>
-            </a><br>-->
-            <a href="https://github.com/EfeSolax" class="text-gray-400 dark:text-slate-500 hover:text-white inline-flex items-center gap-x-2">
-              <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.482A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z" clip-rule="evenodd"></path>
-              </svg>
-              <span class = "text-gray-100">GitHub</span>
-            </a>
-            
+    {# ---------- Nasıl yapılır ---------- #}
+    {% for r in rehberler %}
+    <section id="{{ r.kimlik }}" class="mt-20 scroll-mt-24" aria-labelledby="{{ r.kimlik }}-baslik" data-rehber="{{ r.kimlik }}">
+        <h2 id="{{ r.kimlik }}-baslik" class="lv-bolum"><span class="lv-el mr-2">{{ forloop.counter }}.</span>{{ r.baslik }}</h2>
+        <p class="mt-4 max-w-2xl text-lg leading-relaxed">{{ r.giris }}</p>
 
-
-          </dd>
+        {% for g in r.goruntuler %}
+        <div class="mt-8 grid items-start gap-8 md:grid-cols-[260px_minmax(0,1fr)]">
+            <figure class="yardim-telefon mx-auto w-full max-w-[260px]">
+                <div class="relative">
+                    <img src="{% static g.acik %}" width="500" height="{{ g.yukseklik }}" loading="lazy" decoding="async"
+                         class="block h-auto w-full dark:hidden" alt="{{ r.baslik }}: ekran görüntüsü">
+                    <img src="{% static g.koyu %}" width="500" height="{{ g.yukseklik }}" loading="lazy" decoding="async"
+                         class="hidden h-auto w-full dark:block" alt="{{ r.baslik }}: ekran görüntüsü (koyu tema)">
+                    {% for i in g.isaretler %}<span class="yardim-isaret" style="left: {{ i.x|unlocalize }}%; top: {{ i.y|unlocalize }}%" aria-hidden="true">{{ i.no }}</span>{% endfor %}
+                </div>
+            </figure>
+            <ol class="space-y-4 md:pt-4">
+                {% for a in g.adimlar %}
+                <li class="flex gap-3"><span class="yardim-no">{{ a.no }}</span><span class="text-[17px] leading-relaxed">{{ a.metin }}</span></li>
+                {% endfor %}
+            </ol>
         </div>
-        
-      </dl>
-    </div>
-  </div>
-  <div aria-hidden="true" class="absolute top-0 left-1/2 -z-10 -translate-x-1/2 blur-3xl xl:-top-6">
-    <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="aspect-1155/678 w-288.75 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"></div>
-  </div>
+        {% endfor %}
+
+        {% if r.kalan_adimlar %}
+        <ul class="mt-6 max-w-2xl list-disc space-y-2 pl-6 text-[17px]">{% for a in r.kalan_adimlar %}<li>{{ a }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        {% if r.tipler %}
+        <h3 class="lv-alt-baslik mt-10">Deneme Sınavı'ndaki soru tipleri</h3>
+        <dl class="lv-sayfa mt-4 divide-y divide-[color:var(--satir)] px-5" data-soru-tipleri>
+            {% for t in soru_tipleri %}
+            <div class="grid gap-1 py-3 sm:grid-cols-[1fr_1.2fr] sm:gap-4">
+                <dt class="font-bold">{{ t.ad }} <span class="block text-sm font-normal text-gray-600 dark:text-slate-300">{{ t.not }}</span></dt>
+                <dd lang="en" class="lv-metin text-indigo-600 dark:text-indigo-400">{{ t.ornek }}</dd>
+            </div>
+            {% endfor %}
+        </dl>
+        {% endif %}
+
+        {% if r.not %}<p class="lv-not lv-duz mt-8 max-w-2xl text-[16px] text-gray-800 dark:text-slate-200">{{ r.not }}</p>{% endif %}
+
+        <a href="{% url r.adres %}{{ r.sorgu }}" class="lv-el-bag mt-6 inline-block">{{ r.git }} →</a>
+    </section>
+    {% endfor %}
+
+    {# ---------- Hakkında ---------- #}
+    <section id="hakkinda" class="mt-24 scroll-mt-24" aria-labelledby="hakkinda-baslik">
+        <h2 id="hakkinda-baslik" class="lv-bolum">Siteyi kim yaptı?</h2>
+        <div class="mt-6 grid items-start gap-8 sm:grid-cols-[minmax(0,1fr)_240px]">
+            <div class="lv-sayfa p-6 text-lg leading-relaxed sm:p-8">
+                <p>Merhaba, ben <strong>Efe Solmaz</strong>. 2025'te ODTÜ Bilgisayar Mühendisliği'ni kazandım; LearnVocab'i hazırlık yılımda, kendi kelime öğrenme sorunumu çözmek için yazmaya başladım.</p>
+                <p class="mt-4">Telefonun not uygulamasına kelime ve anlam yazmak işe yaramıyordu. Denediğim siteler ve uygulamalar da ya yalnızca sözlüktü ya da herkese aynı kalıbı veriyordu. Benim istediğim üç şeydi: kelimeyi gerçek bir cümlede görmek, unutmadan önce yeniden karşıma çıkması ve onu kendi cümlemde kullanabilmek. Bu site o üç şey için yapıldı.</p>
+                <p class="mt-4">Python ve Java ile uğraşıyorum; siteyi tek başıma geliştiriyorum. Bir hata görürsen ya da bir önerin varsa yaz, hepsini okurum.</p>
+                <p class="lv-el mt-6 text-[26px] font-bold">— Efe</p>
+            </div>
+            <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100" data-iletisim>
+                <p class="lv-el text-[24px] font-bold">iletişim</p>
+                <p class="mt-2 text-[15px]">E-posta</p>
+                <a href="mailto:efe.solmaz@metu.edu.tr" class="break-all font-semibold underline decoration-1 underline-offset-4">efe.solmaz@metu.edu.tr</a>
+                <p class="mt-3 text-[15px]">GitHub</p>
+                <a href="https://github.com/EfeSolax" rel="noopener" class="font-semibold underline decoration-1 underline-offset-4">EfeSolax</a>
+            </div>
+        </div>
+    </section>
 </div>
-
 {% endblock %}

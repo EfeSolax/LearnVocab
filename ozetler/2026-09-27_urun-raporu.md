@@ -97,7 +97,7 @@ Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazılar
 - **Listemdeki kelime sayısı:** tek sayısal gösterge budur. "Öğrenilen kelime" kavramı yoktur (bkz. Bölüm 17).
 - **"Bugünün çalışmasına başla":** büyük düğme, Learn & Pass'e gider.
 - **Günün kelimesi ve günün ifadesi:** iki ayrı kart, Sözlük › Keşfet'tekilerle aynı (18.8).
-- **Yardım bağlantısı:** içeriği en son yazılacak.
+- **Yardım bağlantısı:** "Yardım ve hakkında" sayfasına gider (`/hakkinda/`, 18.33).
 
 ---
 
@@ -625,7 +625,7 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 - **Seri (streak):** → 18.9'da 29 Eylül'de kararlaştırıldı.
 - **Ayarlar sayfası:** raporda ayarlara yapılan bütün göndermeler (oran kaydırıcısı, varsayılan soru sayısı, yazma sertliği, seviye, bildirimler, hesap) geçerli ama sayfa henüz tasarlanmadı. Mevcut kullanıcı verisinin taşınması da bu sırada ele alınacak.
 - **Kapibara:** çizim tamam (18.33). Video için hareketli hâlleri sonra.
-- **Hakkında / yardım içeriği:** kararlar 18.33'te; konuların geri kalanını Efe açıklayacak.
+- **Hakkında / yardım içeriği:** ilk sürüm yazıldı (18.33); Efe okuyup düzeltecek.
 - **KVKK / gizlilik metni:** işler geliştikçe. Not: PDF yüklemeleri ve Gemini'nin ücretsiz katmanı (gönderilen metinler Google'ın ürün geliştirmesinde kullanılabilir) bu metinde belirtilmeli.
 
 **Claude'un varsayımları** (Efe itiraz etmedi, değişebilir):
@@ -1565,13 +1565,19 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Sözlük ve hazır listelerin kullanımı.
   - Egzersiz çeşitleri (Kısa Sınav, Deneme Sınavı ve soru türleri) ve nasıl kullanılacakları.
   - (Learn & Pass, Okumalar, Yazılar, seri gibi diğer konular Efe'nin açıklamasıyla eklenecek.)
-- **Ekran görüntüleri elle değil, her sürümde baştan hazırlanır:** her dil ve her görünüm (açık/koyu, telefon/masaüstü) için. Bu iş 18.34'teki listededir; otomasyon aracı kurulmaz.
+- **Ekran görüntüleri elle değil, her sürümde baştan hazırlanır:** her dil ve her tema (açık/koyu) için. Bu iş 18.34'teki listededir; otomasyon aracı kurulmaz.
+- **Yardım ve hakkında sayfası — YAPILDI (2 Ekim; Efe okuyup düzeltecek).** Tek sayfa, adres `/hakkinda/` (eski adres korundu; `/about/` buraya yönlenir, site haritasında).
+  - İçerik `LearnVocab/yardim.py`, şablon `templates/pages/about.html`, testler `LearnVocab/test_yardim.py`.
+  - Bölümler: içindekiler · "LearnVocab nedir?" (tanı / gör / kullan, bir gün nasıl geçer) · 9 rehber: Sözlük, hazır listeler, Listem, Learn & Pass, Egzersizler (soru tipleri tablosu `egzersizler.sorular.TIPLER`'den gelir, kendiliğinden güncel kalır), Okumalar, Yazılar, seri, Ayarlar · "Siteyi kim yaptı?" (Efe'nin eski hakkında yazısından; iletişim: ODTÜ e-postası ve GitHub, Efe gerekirse kaldırır).
+  - Her rehberde telefon çerçevesinde ekran görüntüsü, üstünde kırmızı numaralı işaretler; yanında aynı numaralı adımlar. Görüntü temaya göre değişir.
+  - **Görüntüler telefon görünümünde (375 px) çekilir**, masaüstünde de telefon çerçevesinde gösterilir; ayrı masaüstü görüntüsü yoktur. 13 ekran × 2 tema = 26 WebP, toplam ~800 KB, ekrana gelince yüklenir. Yer: `static/img/yardim/<dil>/<ad>-<acik|koyu>.webp`.
+  - Görüntüler deneme veritabanındaki örnek hesapla çekilir (gerçek kullanıcı verisi görünmez).
 
 ### 18.34 Her yeni sürümde yapılacaklar (Efe'nin kararı, 2 Ekim)
 Yeni sürüm yayına çıkmadan önce bu liste baştan sona yapılır. Yeni sürekli iş çıkarsa buraya eklenir.
 1. Testler: `.venv/bin/python manage.py test --parallel 4 --noinput`.
 2. Tailwind yeniden derlenir (komut `tailwind.config.js` başında); `LearnVocab.test_tailwind` geçmeli.
-3. Yardım sayfasının ekran görüntüleri **her dil ve her görünüm** (açık/koyu, telefon/masaüstü) için baştan çekilir ve işaretlenir (18.33).
+3. Yardım sayfasının ekran görüntüleri **her dil ve her tema** (açık/koyu) için telefon görünümünde (375 px) baştan çekilir; deneme veritabanındaki örnek hesapla. Görüntü değiştiyse `LearnVocab/yardim.py`'deki işaret konumları güncellenir; `LearnVocab.test_yardim` eksik görüntüyü yakalar (18.33).
 4. Tanıtım videosu tasarım ya da metin değiştiyse **her dil için** yeniden hazırlanır; altyazılar güncellenir (18.33).
 5. Yeni ya da değişen arayüz metinlerinin çevirileri tamamlanır (18.22).
 6. Rapor güncellenir, "Değişiklik kaydı"na sürüm notu eklenir.
@@ -1700,3 +1706,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-02 (8):** Tailwind derlemeye geçti (18.17 YAPILDI): Play CDN kalktı, `static/css/site.css` Standalone CLI ile derleniyor; derleme testi eklendi. 950 test geçiyor.
 - **2026-10-02 (9):** Efe Google ile girişi yerelde denedi, çalışıyor (18.21). Kapibara taslaklarına başlandı.
 - **2026-10-02 (10):** Kapibara çizimi Efe'nin örneklerine göre baştan yapıldı ve onaylandı (18.33): önden, ayakta, yetişkin, ağzı açık, iki diş; koyu temada çıkartma görünümü. Sitedeki geçici çizimin yerine kondu (9 poz). 950 test geçiyor.
+- **2026-10-02 (11):** Yardım ve hakkında sayfası yazıldı (18.33): 9 rehber, 26 ekran görüntüsü (telefon, açık/koyu), Efe hakkında bölümü ve iletişim. Görüntüler yalnızca telefon görünümünde çekilir (18.34 güncellendi). 955 test geçiyor.

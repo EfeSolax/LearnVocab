@@ -70,7 +70,7 @@ class TailwindDerlemesiTests(TestCase):
     def test_misafir_sayfalari(self):
         adresler = [reverse("index"), reverse("sozluk"), "/sozluk/bank/", reverse("login"), reverse("register"),
                     reverse("readings"), "/okumalar/why/", reverse("learn_pass_page"), reverse("profile_texts"),
-                    reverse("seviye_testi"), "/sozluk/seviye/b1/"]
+                    reverse("seviye_testi"), "/sozluk/seviye/b1/", reverse("about")]
         self.assertEqual(self._eksikler(adresler), [], "site.css yeniden derlenmeli")
 
     def test_girisli_sayfalar(self):

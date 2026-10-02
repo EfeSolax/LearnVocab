@@ -20,20 +20,15 @@ from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import RedirectView
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.shortcuts import render
 from django.urls import include, path
 from django.utils.translation import gettext_lazy as _
 
 from bildirimler.urls import kok_urlpatterns as pwa_urlpatterns
 from learnpass.urls import api_urlpatterns as learnpass_api
-from LearnVocab import eski_adresler, istatistik, seo_views
+from LearnVocab import eski_adresler, istatistik, seo_views, yardim
 from LearnVocab.anasayfa import ana_sayfa
 from readings import api as readings_api
 from words.sozluk_urls import liste_urlpatterns
-
-
-def showAbout(request):
-    return render(request, "pages/about.html")
 
 
 # Admin ana sayfasına "İstatistikler" bağlantısı (rapor 18.31)
@@ -69,7 +64,8 @@ api_urlpatterns = [
 urlpatterns += i18n_patterns(
     # Ana Sayfa (rapor 3)
     path("", ana_sayfa, name="index"),
-    path("hakkinda/", showAbout, name="about"),
+    # Yardım ve hakkında (rapor 18.33)
+    path("hakkinda/", yardim.yardim_sayfasi, name="about"),
     # Sözlük (rapor 4): /sozluk/, /sozluk/bank/, /sozluk/seviye/b1/, /sozluk/harf/a/
     path("sozluk/", include("words.sozluk_urls")),
     path("listeler/", include(liste_urlpatterns)),
