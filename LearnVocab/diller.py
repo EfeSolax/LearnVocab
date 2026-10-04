@@ -46,7 +46,7 @@ def hesap_dili(user):
 def hesap_dili_ile_yonlendir(user, adres):
     """Girişten sonraki yönlendirme: hesap dili varsa adres o dile çevrilir, çerez de yazılır."""
     kod = hesap_dili(user)
-    cevap = HttpResponseRedirect(translate_url(adres, kod) if kod else adres)
+    cevap = HttpResponseRedirect(_dile_cevir(adres, kod) if kod else adres)
     if kod:
         _cerez_yaz(cevap, kod)
     return cevap
@@ -57,13 +57,22 @@ def kullanici_dilinde(user):
     return translation.override(hesap_dili(user) or settings.LANGUAGE_CODE)
 
 
+def _dile_cevir(adres, kod):
+    """
+    /dil/ öneksiz olduğu için bu istekte etkin dil hep Türkçedir; translate_url ise adresi
+    ETKİN dille çözer. /en/… gibi önekli bir adres ancak kendi dili etkinken çözülür.
+    """
+    with translation.override(translation.get_language_from_path(adres) or settings.LANGUAGE_CODE):
+        return translate_url(adres, kod)
+
+
 @require_POST
 def dil_degistir(request):
     kod = request.POST.get("dil", "")
     sonraki = _guvenli(request, request.POST.get("next", ""))
     if kod not in yayindaki_diller():
         return HttpResponseRedirect(sonraki)
-    cevap = HttpResponseRedirect(translate_url(sonraki, kod))
+    cevap = HttpResponseRedirect(_dile_cevir(sonraki, kod))
     _cerez_yaz(cevap, kod)
     if request.user.is_authenticated:
         from usersettings.models import UserSettings
@@ -114,4 +123,4 @@ class HesapAdaptoru(DefaultAccountAdapter):
     def get_login_redirect_url(self, request):
         adres = super().get_login_redirect_url(request)
         kod = hesap_dili(request.user)
-        return translate_url(adres, kod) if kod else adres
+        return _dile_cevir(adres, kod) if kod else adres

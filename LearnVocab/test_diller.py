@@ -48,6 +48,15 @@ class DilDugmesiTests(TestCase):
         self.assertRedirects(cevap, "/de/sozluk/", fetch_redirect_response=False)
         self.assertEqual(cevap.cookies["django_language"].value, "de")
 
+    def test_onekli_sayfadan_her_dile_gecilir(self):
+        # /dil/ öneksizdir; önekli sayfadan gelindiğinde adres yine de çevrilmeli (Efe, 5 Ekim).
+        for sonraki, dil, beklenen in (("/en/sozluk/", "de", "/de/sozluk/"), ("/en/sozluk/", "tr", "/sozluk/"),
+                                       ("/de/schreiben/", "en", "/en/writings/"), ("/de/", "tr", "/"),
+                                       ("/en/sozluk/bank/", "de", "/de/sozluk/bank/")):
+            with self.subTest(sonraki=sonraki, dil=dil):
+                cevap = self.client.post(reverse("dil_degistir"), {"dil": dil, "next": sonraki})
+                self.assertRedirects(cevap, beklenen, fetch_redirect_response=False)
+
     def test_yazilar_adresi_de_cevrilir(self):
         cevap = self.client.post(reverse("dil_degistir"), {"dil": "en", "next": "/yazilar/"})
         self.assertRedirects(cevap, "/en/writings/", fetch_redirect_response=False)
