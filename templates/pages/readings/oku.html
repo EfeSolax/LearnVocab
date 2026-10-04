@@ -61,7 +61,7 @@ Bağlam: baslik, paragraflar, metin (ReadingText ya da UserText), kutuphane (boo
 {% endif %}
 
 {% if kutuphane and metin.source %}
-<p class="mt-6 text-sm text-gray-600 dark:text-slate-300">{% blocktranslate with kaynak=metin.source %}Kaynak: {{ kaynak }}{% endblocktranslate %}</p>
+<p class="mt-6 text-sm text-gray-600 dark:text-slate-300">{% blocktranslate with kaynak=metin.yerel_kaynak %}Kaynak: {{ kaynak }}{% endblocktranslate %}</p>
 {% endif %}
 
 {# ---------- Okuma sonu ---------- #}

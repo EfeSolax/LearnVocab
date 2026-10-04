@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LearnVocab\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-05 01:02+0300\n"
+"POT-Creation-Date: 2026-10-05 01:12+0300\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -348,8 +348,6 @@ msgid "Ayarlar: siteyi kendine göre ayarla"
 msgstr "Settings: make the site yours"
 
 #: LearnVocab/yardim.py:128
-#| msgid ""
-#| "Sağ üstteki profil fotoğrafına dokun, Hesap açılır; Ayarlar oradadır."
 msgid "Sağ üstteki profil fotoğrafına dokun, Hesap açılır; Ayarlar oradadır. Yaptığın her değişiklik hemen kaydedilir; kaydet düğmesi yok."
 msgstr "Tap your profile photo at the top right to open your Account; Settings is there. Every change you make is saved right away; there's no save button."
 
@@ -620,6 +618,10 @@ msgstr "Anthropology"
 #: readings/models.py:24
 msgid "Eğitim"
 msgstr "Education"
+
+#: readings/models.py:38
+msgid "Örnek metin (LearnVocab, Claude tarafından yazıldı)"
+msgstr "Sample text (LearnVocab, written by Claude)"
 
 #: readings/pdf.py:43
 msgid "PDF okuyucu şu an kullanılamıyor. Metni kopyalayıp yapıştırmayı dener misin?"

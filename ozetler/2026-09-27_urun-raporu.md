@@ -1348,7 +1348,8 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - **Bildirimler** (hatırlatma, seri) alıcının hesap dilinde yazılır (`diller.kullanici_dilinde`).
   - **Yüzdeler** sayfanın diline göre yazılır (Türkçe %70, İngilizce 70%, Almanca 70 %; `Intl.NumberFormat`).
   - **Hazır listelerin adı ve açıklaması** sayfanın dilinde gösterilir: `HazirListe.ad_en/ad_de/aciklama_en/aciklama_de` (admin'de doldurulur; boşsa Türkçesi). Yeni liste eklenirken bu dört alan da doldurulmalı.
-  - **Veritabanı içeriği Türkçe kalır:** kelime anlamları (karar b), okuma metinlerinin "kaynak" satırı.
+  - Okuma metinlerinin **kaynak satırı**: bilinen kaynaklar (şimdilik "Örnek metin (LearnVocab, Claude tarafından yazıldı)") `readings.models.KAYNAK_CEVIRILERI` ile sayfanın dilinde yazılır; yeni bir kaynak metni eklenirse buraya da eklenir.
+  - **Veritabanı içeriği Türkçe kalır:** kelime anlamları (karar b).
   - Testler: `LearnVocab/test_diller.py`.
 
 ### 18.23 Kayıt formu ve günlük hedef (Efe'nin kararı, 29 Eylül) — **YAPILDI (30 Eylül)**
@@ -1726,3 +1727,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-03:** Dil seçeneğinin altyapısı (18.22): şablonlar ve kod çeviriye hazır, dil düğmesi, hesap dili, "Türkçe anlamlar" ayarı, seri penceresi defter temasında. `usersettings/0006` migration'ı ana veritabanına uygulandı (yedek migration'dan sonra alındı: `~/LearnVocab-yedekler/db.sqlite3.yedek-20261003-arayuz-dili-sonrasi`).
 - **2026-10-05:** Dil seçeneği bitti, **tr, en ve de yayında** (18.22 YAPILDI). İngilizce ve Almanca çeviriler tamam; site haritası her dilin adresini `hreflang` karşılıklarıyla yazıyor. Yardım sayfasının görüntüleri üç dilde, iki temada yeniden çekildi (90 görüntü; Türkçe olanlar da dil düğmesiyle yenilendi); Ayarlar rehberine "Dil" ve "Türkçe anlamlar" adımları eklendi, seri görüntüsü yeni pencereyle değişti (18.33). Yüzdeler dile göre yazılıyor. 18.34'e çeviri komutları eklendi, 18.30'a dil maddeleri. 975 test geçiyor.
 - **2026-10-05 (2):** Dil düğmesi `/en/` ve `/de/` sayfalarından başka dile geçemiyordu; düzeltildi. Hazır listelerin adı ve açıklaması dile göre (`words/0026`, ana veritabanına yedekten sonra uygulandı: `~/LearnVocab-yedekler/db.sqlite3.yedek-20261005-hazir-liste-cevirileri`; örnek listenin çevirileri yazıldı). Ayarlar'da kaydet düğmesi kalktı, her değişiklik anında kaydediliyor; "Türkçe anlamlar" Dil'in hemen altına taşındı (Efe'nin kararları, 18.26). Yardım sayfasının Ayarlar görüntüleri üç dilde yeniden çekildi. 978 test geçiyor.
+- **2026-10-05 (3):** Okuma metinlerinin kaynak satırı İngilizce ve Almanca sayfalarda kendi dilinde (Efe'nin isteği). 979 test geçiyor.

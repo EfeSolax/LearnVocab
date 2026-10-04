@@ -103,6 +103,19 @@ class HazirListeDiliTests(TestCase):
 
 
 @override_settings(LANGUAGES=UC_DIL)
+class OkumaKaynagiDiliTests(TestCase):
+    def test_ornek_metin_kaynagi_sayfanin_dilinde(self):
+        from readings.models import ReadingText
+        ReadingText.objects.create(number=1, topic="bilim", title="Names", body="Text.",
+                                   source="Örnek metin (LearnVocab, Claude tarafından yazıldı)")
+        with translation.override("en"):
+            self.assertEqual(str(ReadingText.objects.get().yerel_kaynak), "Sample text (LearnVocab, written by Claude)")
+        with translation.override("tr"):
+            self.assertIn("Claude tarafından", str(ReadingText.objects.get().yerel_kaynak))
+        self.assertEqual(ReadingText(source="BBC").yerel_kaynak, "BBC")
+
+
+@override_settings(LANGUAGES=UC_DIL)
 class SiteHaritasiTests(TestCase):
     def test_her_dil_adresi_ve_hreflang(self):
         xml = self.client.get("/sitemap.xml").content.decode()

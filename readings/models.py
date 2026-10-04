@@ -33,6 +33,11 @@ TOPIC_COLORS = {anahtar: renk for anahtar, _, renk in TOPICS}
 # 150 gerçekçi bir tahmin.
 WORDS_PER_MINUTE = 150
 
+# Kaynak satırı veritabanında Türkçe yazılı; bilinen kaynaklar sayfanın dilinde gösterilir (rapor 18.22).
+KAYNAK_CEVIRILERI = {
+    "Örnek metin (LearnVocab, Claude tarafından yazıldı)": _("Örnek metin (LearnVocab, Claude tarafından yazıldı)"),
+}
+
 
 class ReadingText(models.Model):
     """Tek bir okuma parçası."""
@@ -66,6 +71,10 @@ class ReadingText(models.Model):
     class Meta:
         ordering = ("number",)
         indexes = [models.Index(fields=["topic", "number"])]
+
+    @property
+    def yerel_kaynak(self):
+        return KAYNAK_CEVIRILERI.get(self.source, self.source)
 
     def __str__(self):
         return f"{self.number} {self.title}"
