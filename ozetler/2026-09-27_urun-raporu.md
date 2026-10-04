@@ -1599,6 +1599,18 @@ Yeni sürüm yayına çıkmadan önce bu liste baştan sona yapılır. Yeni sür
 5. Yeni ya da değişen arayüz metinlerinin çevirileri tamamlanır (18.22): `.venv/bin/python manage.py makemessages -l en -l de --ignore=.venv --ignore=node_modules`, `locale/*/LC_MESSAGES/django.po`'daki boş ve `fuzzy` satırlar çevrilir, `.venv/bin/python manage.py compilemessages -l en -l de --ignore=.venv`. Sonra `/en/` ve `/de/` sayfaları çevrilmemiş Türkçe için taranır (özellikle `{{ sayı }} kelime` gibi değişkene yapışık sözcükler).
 6. Rapor güncellenir, "Değişiklik kaydı"na sürüm notu eklenir.
 
+### 18.35 Sözlüğü genişletme: wordfreq'ten yeni kelimeler (Efe'nin kararı, 5 Ekim) — **liste hazır, Efe'nin onayı bekleniyor**
+- **Amaç:** sözlükte olmayan, sık kullanılan ~3.500 kelimeyi eklemek.
+- **Hat:** 25 Eylül'deki hat aynen kullanılır (`ozetler/2026-09-24_0918_kelime-hatti-durum.txt`, `2026-09-25_kelime-hatti-bitti.txt`): `aile_uret --file …` → `aile_birlestir` → `aile_doldur` (üretici `openai/gpt-oss-120b`, kontrolcü `google/gemini-3.8-flash` düşünme low, OpenRouter). Ardından Claude yeni kelimeleri okur ve hataları `words/duzeltmeler/` altında düzeltir.
+- **Harcama (Efe, 5 Ekim):** ücretli Gemini kullanılır; üst sınır **5–10 $**. Eski hatta maliyet ~2,1 $ / 1.000 kelimeydi; aile genişletmesi listedeki kelime sayısından fazla kelime getirir. Önce küçük bir parti çalıştırılıp gerçek maliyet ölçülür, sonra kesme eşiği seçilir.
+- **Aday listesi:** `listeler/2026-10-05-wordfreq-adaylar.txt` (kelime, zipf). Üretim: wordfreq'in ilk 80.000 kelimesinden zipf ≥ 3; kendisi, kökü ya da çekimli biçimi sözlükte olanlar, özel adlar, sayılar (18.16), İngiliz yazımları (colour; sözlük Amerikan yazımını tutar), argo ve kesme işaretsiz kısaltmalar, müstehcen ve hassas kelimeler ayıklandı; kalan liste Claude tarafından baştan sona okunup elle temizlendi. Sayılar: zipf ≥ 3,0 → 4.026 · ≥ 3,1 → 3.252 · ≥ 3,2 → 2.566 · ≥ 3,5 → 1.124.
+- **Akademik liste:** NAWL (New Academic Word List, açık lisans) gibi bir listenin indirilip aynı süzgeçten geçirilmesi önerildi; indirme Efe'nin onayıyla yapılır.
+
+### 18.36 En temel kelimeler elle eklenecek (Efe'nin kararı, 5 Ekim) — **sonra yapılacak**
+- Sözlükte bazı en temel kelimeler yok: the, a, an, I, he, we, my, your, they, which, because, although, however, instead, though, would, could, myself, everyone… (tam liste `listeler/2026-10-05-temel-eksikler.txt`, 54 kelime).
+- Bunlar çoğunlukla dilbilgisi kelimeleri (zamir, belirteç, bağlaç, kip). Model hattı bunlarda zayıf kalır; **Claude elle yazar** (API yok, eksik Oxford kelimeleri gibi `veri/…/*.jsonl` + `manage.py elle_kelime_yukle`). Anlam ve örnekler öğrencinin gerçekten kullanacağı biçimde (ör. "although = -e rağmen, -diği hâlde").
+- Bu kelimelerin kartı ve L&P'deki yeri ayrıca düşünülür (çok sık oldukları için L&P'de ağırlık formülü onları baskın çıkarabilir; 18.16).
+
 ### 18.20 Önerilen uygulama sırası (Claude'un önerisi)
 Her adım ayrı commit, her adımdan sonra testler.
 
@@ -1728,3 +1740,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-05:** Dil seçeneği bitti, **tr, en ve de yayında** (18.22 YAPILDI). İngilizce ve Almanca çeviriler tamam; site haritası her dilin adresini `hreflang` karşılıklarıyla yazıyor. Yardım sayfasının görüntüleri üç dilde, iki temada yeniden çekildi (90 görüntü; Türkçe olanlar da dil düğmesiyle yenilendi); Ayarlar rehberine "Dil" ve "Türkçe anlamlar" adımları eklendi, seri görüntüsü yeni pencereyle değişti (18.33). Yüzdeler dile göre yazılıyor. 18.34'e çeviri komutları eklendi, 18.30'a dil maddeleri. 975 test geçiyor.
 - **2026-10-05 (2):** Dil düğmesi `/en/` ve `/de/` sayfalarından başka dile geçemiyordu; düzeltildi. Hazır listelerin adı ve açıklaması dile göre (`words/0026`, ana veritabanına yedekten sonra uygulandı: `~/LearnVocab-yedekler/db.sqlite3.yedek-20261005-hazir-liste-cevirileri`; örnek listenin çevirileri yazıldı). Ayarlar'da kaydet düğmesi kalktı, her değişiklik anında kaydediliyor; "Türkçe anlamlar" Dil'in hemen altına taşındı (Efe'nin kararları, 18.26). Yardım sayfasının Ayarlar görüntüleri üç dilde yeniden çekildi. 978 test geçiyor.
 - **2026-10-05 (3):** Okuma metinlerinin kaynak satırı İngilizce ve Almanca sayfalarda kendi dilinde (Efe'nin isteği). 979 test geçiyor.
+- **2026-10-05 (4):** Sözlüğü genişletme kararı (18.35): wordfreq'ten aday listesi çıkarıldı (4.026 kelime, zipf ≥ 3); hat 25 Eylül'deki gibi, ücretli Gemini, bütçe 5–10 $. En temel kelimeler (the, because, although…) elle eklenecek (18.36, sonra).
