@@ -917,6 +917,11 @@ class HazirListe(models.Model):
     slug = models.SlugField(max_length=80, unique=True)         # adres: /listeler/odtu-101/
     kurum = models.CharField(max_length=80, blank=True)         # "ODTÜ"
     aciklama = models.CharField(max_length=300, blank=True)
+    # Arayüz diline göre ad ve açıklama (rapor 18.22). Boşsa Türkçesi gösterilir.
+    ad_en = models.CharField("ad (İngilizce)", max_length=80, blank=True)
+    ad_de = models.CharField("ad (Almanca)", max_length=80, blank=True)
+    aciklama_en = models.CharField("açıklama (İngilizce)", max_length=300, blank=True)
+    aciklama_de = models.CharField("açıklama (Almanca)", max_length=300, blank=True)
     sira = models.PositiveIntegerField(default=0)
     # Yüklenip gözden geçirilene kadar Keşfet'te görünmesin.
     yayinda = models.BooleanField(default=True)
@@ -931,6 +936,19 @@ class HazirListe(models.Model):
 
     def __str__(self):
         return self.ad
+
+    def _yerel(self, alan):
+        from django.utils.translation import get_language
+        dil = (get_language() or "tr")[:2]
+        return (getattr(self, f"{alan}_{dil}", "") if dil != "tr" else "") or getattr(self, alan)
+
+    @property
+    def yerel_ad(self):
+        return self._yerel("ad")
+
+    @property
+    def yerel_aciklama(self):
+        return self._yerel("aciklama")
 
     def sirali_kelimeler(self):
         """Listedeki kelimeler, listedeki sırasıyla (L&P de bu sırayı kullanabilir)."""

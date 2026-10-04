@@ -87,6 +87,22 @@ class DilDugmesiTests(TestCase):
 
 
 @override_settings(LANGUAGES=UC_DIL)
+class HazirListeDiliTests(TestCase):
+    def test_liste_adi_ve_aciklamasi_sayfanin_dilinde(self):
+        from words.models import HazirListe
+        HazirListe.objects.create(ad="Örnek", slug="ornek", aciklama="Türkçe açıklama", ad_en="Sample",
+                                  aciklama_en="English description", yayinda=True)
+        tr = self.client.get("/listeler/ornek/").content.decode()
+        self.assertIn("Türkçe açıklama", tr)
+        en = self.client.get("/en/listeler/ornek/").content.decode()
+        self.assertIn(">Sample<", en)
+        self.assertIn("English description", en)
+        self.assertNotIn("Türkçe açıklama", en)
+        de = self.client.get("/de/listeler/ornek/").content.decode()   # Almancası yok: Türkçesi
+        self.assertIn(">Örnek<", de)
+
+
+@override_settings(LANGUAGES=UC_DIL)
 class SiteHaritasiTests(TestCase):
     def test_her_dil_adresi_ve_hreflang(self):
         xml = self.client.get("/sitemap.xml").content.decode()
@@ -124,6 +140,22 @@ class TurkceAnlamlarTests(TestCase):
         self.assertFalse(UserSettings.objects.get(user=self.user).turkce_anlamlar)
         self.client.post(reverse("save_settings"), {"turkce_anlamlar": "on"})
         self.assertTrue(UserSettings.objects.get(user=self.user).turkce_anlamlar)
+
+    def test_ayarlar_kendiliginden_kaydedilir_ve_turkce_anlamlar_dilin_altinda(self):
+        # Efe, 5 Ekim: kaydet düğmesi yok; "Türkçe anlamlar" görülsün diye Dil'in hemen altında.
+        self.client.login(username="tr", password=SIFRE)
+        html = self.client.get(reverse("settings_page")).content.decode()
+        self.assertIn("data-otomatik-kayit", html)
+        self.assertNotIn('<button type="submit" class="lv-dugme">', html.split("<noscript>")[0].split('id="ayarlar-formu"')[1])
+        turkce = html.index("data-turkce-anlamlar-ayari")
+        self.assertLess(turkce, html.index("data-seviye-ayari"))
+        self.assertIn('name="turkce_anlamlar" class="peer sr-only" checked form="ayarlar-formu"', html)
+        cevap = self.client.post(reverse("save_settings"), {"learnpass_yeni_orani": "40"},
+                                 HTTP_X_REQUESTED_WITH="fetch")
+        self.assertEqual(cevap.json(), {"tamam": True})
+        ayar = UserSettings.objects.get(user=self.user)
+        self.assertEqual(ayar.learnpass_yeni_orani, 40)
+        self.assertFalse(ayar.turkce_anlamlar)
 
     def test_kelime_sayfasinda_turkce_yok_aciklama_var(self):
         self.client.login(username="tr", password=SIFRE)

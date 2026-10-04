@@ -425,7 +425,7 @@ def hazir_liste_sayfasi(request, slug):
         "liste": liste,
         "kartlar": kartlar,
         "sayfa": sayfa,
-        "meta_aciklama": liste.aciklama,
+        "meta_aciklama": liste.yerel_aciklama,
         "calisiliyor": hazir_liste.aktif_liste(request.user) == liste,
     }
     if request.GET.get("parca"):
@@ -443,7 +443,7 @@ def hazir_liste_calis(request, slug):
         mesaj = _("Learn & Pass yeni kelimeleri yine seviyene göre seçecek.")
     else:
         hazir_liste.listeyle_calis(request.user, liste)
-        mesaj = _("Learn & Pass artık yeni kelimeleri “%(liste)s” listesinden getirecek.") % {"liste": liste.ad}
+        mesaj = _("Learn & Pass artık yeni kelimeleri “%(liste)s” listesinden getirecek.") % {"liste": liste.yerel_ad}
     if _ajax_mi(request):
         return JsonResponse({"ok": True, "mesaj": mesaj,
                              "calisiliyor": request.POST.get("islem") != "birak"})

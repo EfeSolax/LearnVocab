@@ -6,7 +6,7 @@ Hazır liste sayfası (rapor 4.1, D7): kelimeler kapalı kartlar, "Bu listeyle �
 "Listenin hepsini ekle" YOK (rapor 17). Görünüm: words.sozluk_views.hazir_liste_sayfasi
 {% endcomment %}
 
-{% block title %}{% blocktranslate with ad=liste.ad %}{{ ad }} kelime listesi — LearnVocab Sözlük{% endblocktranslate %}{% endblock %}
+{% block title %}{% blocktranslate with ad=liste.yerel_ad %}{{ ad }} kelime listesi — LearnVocab Sözlük{% endblocktranslate %}{% endblock %}
 {% block page_heading %}{% endblock %}
 
 {% block page %}
@@ -16,8 +16,8 @@ Hazır liste sayfası (rapor 4.1, D7): kelimeler kapalı kartlar, "Bu listeyle �
 <header class="mt-4 mb-10 grid items-start gap-8 sm:grid-cols-[1.2fr_1fr]">
     <div class="lv-not lv-pembe lv-bantli text-gray-900 dark:text-slate-100">
     {% if liste.kurum %}<p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">{{ liste.kurum }}</p>{% endif %}
-    <h1 class="lv-serif text-[34px] font-black leading-tight">{{ liste.ad }}</h1>
-    {% if liste.aciklama %}<p class="mt-1 text-base text-gray-700 dark:text-slate-300">{{ liste.aciklama }}</p>{% endif %}
+    <h1 class="lv-serif text-[34px] font-black leading-tight">{{ liste.yerel_ad }}</h1>
+    {% if liste.yerel_aciklama %}<p class="mt-1 text-base text-gray-700 dark:text-slate-300">{{ liste.yerel_aciklama }}</p>{% endif %}
     <p class="lv-el mt-2 text-[22px] font-bold">{% blocktranslate count n=sayfa.paginator.count %}{{ n }} kelime{% plural %}{{ n }} kelime{% endblocktranslate %}</p>
     </div>
 

@@ -1347,7 +1347,8 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - **Yazılarda geri bildirim arayüz dilinde gelir** (Gemini isteminde dil verilir; `texts/degerlendirme.py`).
   - **Bildirimler** (hatırlatma, seri) alıcının hesap dilinde yazılır (`diller.kullanici_dilinde`).
   - **Yüzdeler** sayfanın diline göre yazılır (Türkçe %70, İngilizce 70%, Almanca 70 %; `Intl.NumberFormat`).
-  - **Veritabanı içeriği Türkçe kalır:** kelime anlamları (karar b), hazır liste açıklamaları, okuma metinlerinin "kaynak" satırı.
+  - **Hazır listelerin adı ve açıklaması** sayfanın dilinde gösterilir: `HazirListe.ad_en/ad_de/aciklama_en/aciklama_de` (admin'de doldurulur; boşsa Türkçesi). Yeni liste eklenirken bu dört alan da doldurulmalı.
+  - **Veritabanı içeriği Türkçe kalır:** kelime anlamları (karar b), okuma metinlerinin "kaynak" satırı.
   - Testler: `LearnVocab/test_diller.py`.
 
 ### 18.23 Kayıt formu ve günlük hedef (Efe'nin kararı, 29 Eylül) — **YAPILDI (30 Eylül)**
@@ -1391,6 +1392,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **Hesap sayfası:** fotoğraf, ad, çıkış; hesap bilgileri formu; **Ayarlar** bağlantısı; parola değiştirme.
 - **Ayarlar sayfası** (`/ayarlar/`), Hesap'tan gidilir. Sırasıyla:
   1. **Görünüm (tema):** Sistem · Açık · Koyu. En üstte, kolayca görülür.
+  1a. **Dil** (18.22) ve hemen altında **Türkçe anlamlar** anahtarı (Efe, 5 Ekim: insanlar görsün diye dilin hemen altında).
   2. **Seviye:** seviyeyi gösterir, seviye testini tekrarlatır.
   3. **Çalışma:**
      - **Learn & Pass tekrar/yeni oranı: kaydırma çubuğu** (Efe'nin kararı, 1 Ekim). Sola çektikçe tekrar, sağa çektikçe yeni kelime artar; yalnızca **%10'luk adımlar** (%0–%100). Altında "Tekrar %70 · Yeni %30" yazar. Varsayılan %30 yeni.
@@ -1403,7 +1405,8 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **Alttaki menü ve sağ üstteki profil fotoğrafı her sayfada sabittir** (Hesap ve Ayarlar dahil).
 - Misafirde profil fotoğrafının yerinde "Giriş Yap" durur.
 - **Tema:** Üst çubuktaki tema düğmesi kalktı. **Varsayılan tema cihazın sistem temasıdır**; kullanıcı Ayarlar'dan Açık ya da Koyu seçerse onun seçimi geçerli olur ("Sistem"e dönebilir). Seçim cihazda saklanır.
-- Ayarlar'da **Dil** (Görünüm'ün altında) ve Çalışma bölümünde **Türkçe anlamlar** anahtarı var (18.22). Beyaz tema (18.12) açık temanın yeni hâli olacak.
+- Ayarlar'da **Dil** (Görünüm'ün altında) ve hemen altında **Türkçe anlamlar** anahtarı var (18.22). Beyaz tema (18.12) açık temanın yeni hâli olacak.
+- **Kaydet düğmesi yok (Efe, 5 Ekim):** her değişiklik o an arka planda kaydedilir (`keepalive` ile; sayfadan nasıl çıkılırsa çıkılsın ayarlar son hâlindedir), altta kısa bir "kaydedildi ✓" görünür. Tema cihazda, dil `/dil/` ile zaten anında kaydedilir.
 
 ### 18.27 Seviye testi değişiklikleri (Efe'nin kararları, 29–30 Eylül) — **YAPILDI (30 Eylül; özet soruları 1 Ekim'de yüklendi)**
 > **Kod:**
@@ -1582,7 +1585,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - Bölümler: içindekiler · "LearnVocab nedir?" (tanı / gör / kullan, bir gün nasıl geçer) · 9 rehber: Sözlük, hazır listeler, Listem, Learn & Pass, Egzersizler (soru tipleri tablosu `egzersizler.sorular.TIPLER`'den gelir, kendiliğinden güncel kalır), Okumalar, Yazılar, seri, Ayarlar · "Siteyi kim yaptı?" (Efe'nin eski hakkında yazısından; iletişim: ODTÜ e-postası ve GitHub, Efe gerekirse kaldırır).
   - Her rehberde telefon çerçevesinde ekran görüntüsü, üstünde kırmızı numaralı işaretler; yanında aynı numaralı adımlar. Görüntü temaya göre değişir.
   - **Görüntüler telefon görünümünde (375 px) çekilir**, masaüstünde de telefon çerçevesinde gösterilir; ayrı masaüstü görüntüsü yoktur. 15 ekran × 2 tema × 3 dil = 90 WebP (dil başına ~900 KB), ekrana gelince yüklenir. Yer: `static/img/yardim/<dil>/<ad>-<acik|koyu>.webp`. Sayfa hangi dildeyse o dilin görüntüleri gelir.
-  - İşaret konumları `REHBERLER`'de (Türkçe görüntüye göre); yazılar uzayıp düzen kayan dillerin konumları `ISARET_DILLERI`'nde. Ayarlar rehberi üç görüntü: Görünüm + Dil · Seviye + L&P oranı · soru sayısı, geri bildirim, Türkçe anlamlar.
+  - İşaret konumları `REHBERLER`'de (Türkçe görüntüye göre); yazılar uzayıp düzen kayan dillerin konumları `ISARET_DILLERI`'nde. Ayarlar rehberi üç görüntü: Görünüm + Dil · Türkçe anlamlar + Seviye · L&P oranı, soru sayısı, geri bildirim.
   - Örnek hesapta 13 günlük seri (bir gün dondurulmuş) var; seri penceresi görüntüsü bu yüzden dolu takvim gösterir.
   - Görüntüler deneme veritabanındaki örnek hesapla çekilir (gerçek kullanıcı verisi görünmez).
 
@@ -1722,3 +1725,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-02 (11):** Yardım ve hakkında sayfası yazıldı (18.33): 9 rehber, 26 ekran görüntüsü (telefon, açık/koyu), Efe hakkında bölümü ve iletişim. Görüntüler yalnızca telefon görünümünde çekilir (18.34 güncellendi). 955 test geçiyor.
 - **2026-10-03:** Dil seçeneğinin altyapısı (18.22): şablonlar ve kod çeviriye hazır, dil düğmesi, hesap dili, "Türkçe anlamlar" ayarı, seri penceresi defter temasında. `usersettings/0006` migration'ı ana veritabanına uygulandı (yedek migration'dan sonra alındı: `~/LearnVocab-yedekler/db.sqlite3.yedek-20261003-arayuz-dili-sonrasi`).
 - **2026-10-05:** Dil seçeneği bitti, **tr, en ve de yayında** (18.22 YAPILDI). İngilizce ve Almanca çeviriler tamam; site haritası her dilin adresini `hreflang` karşılıklarıyla yazıyor. Yardım sayfasının görüntüleri üç dilde, iki temada yeniden çekildi (90 görüntü; Türkçe olanlar da dil düğmesiyle yenilendi); Ayarlar rehberine "Dil" ve "Türkçe anlamlar" adımları eklendi, seri görüntüsü yeni pencereyle değişti (18.33). Yüzdeler dile göre yazılıyor. 18.34'e çeviri komutları eklendi, 18.30'a dil maddeleri. 975 test geçiyor.
+- **2026-10-05 (2):** Dil düğmesi `/en/` ve `/de/` sayfalarından başka dile geçemiyordu; düzeltildi. Hazır listelerin adı ve açıklaması dile göre (`words/0026`, ana veritabanına yedekten sonra uygulandı: `~/LearnVocab-yedekler/db.sqlite3.yedek-20261005-hazir-liste-cevirileri`; örnek listenin çevirileri yazıldı). Ayarlar'da kaydet düğmesi kalktı, her değişiklik anında kaydediliyor; "Türkçe anlamlar" Dil'in hemen altına taşındı (Efe'nin kararları, 18.26). Yardım sayfasının Ayarlar görüntüleri üç dilde yeniden çekildi. 978 test geçiyor.

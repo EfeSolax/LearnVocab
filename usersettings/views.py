@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import gettext as _
@@ -86,6 +87,8 @@ def saveSettings(request):
 
         settings.save()
 
+        if request.headers.get("X-Requested-With") == "fetch":   # Ayarlar sayfası her değişiklikte kaydeder
+            return JsonResponse({"tamam": True})
         messages.success(request, _("Ayarların kaydedildi."))
         return redirect("settings_page")
 

@@ -10,7 +10,10 @@ tercihleri, e-posta bildirimleri, verilerim, tehlikeli bölge.
 Tema cihazda saklanır (localStorage "theme"); kayıt yoksa cihazın sistem
 teması geçerlidir (base/layout.html).
 Anlık bildirimler cihaza özeldir (bildirimler/_ayar.html).
-Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
+Kaydet düğmesi yok (Efe, 5 Ekim): formdaki her değişiklik o an arka planda
+kaydedilir; sayfadan nasıl çıkılırsa çıkılsın ayarlar son hâlindedir.
+"Türkçe anlamlar" görülsün diye Dil'in hemen altında; kutusu form="ayarlar-formu"
+ile aşağıdaki forma bağlıdır.
 {% endcomment %}
 
 {% block title %}{% translate "Ayarlar" %}{% endblock %}
@@ -53,6 +56,13 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
     </section>
     {% endif %}
 
+    {# ================= TÜRKÇE ANLAMLAR (rapor 18.22): arayüz dilinden bağımsız; kapalıysa her şey İngilizce açıklamayla yürür ================= #}
+    <section data-turkce-anlamlar-ayari>
+        <div class="lv-sayfa">
+            {% include 'base/_toggle.html' with name="turkce_anlamlar" form="ayarlar-formu" checked=settings.turkce_anlamlar label=_("Türkçe anlamlar") desc=_("Kapatırsan kartlarda, Learn & Pass'te, okurken ve egzersizlerde Türkçe anlam gösterilmez ve sorulmaz; her şey İngilizce açıklamalarla yürür.") %}
+        </div>
+    </section>
+
     {# ================= SEVİYE ================= #}
     <section data-seviye-ayari>
         <a href="{% url 'seviye_testi' %}" class="lv-sayfa lv-bantli flex items-center gap-5 p-5 transition-transform hover:-translate-y-0.5 sm:p-6">
@@ -71,7 +81,7 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
     {# ================= BİLDİRİMLER (anlık) ================= #}
     {% include 'bildirimler/_ayar.html' %}
 
-    <form method="POST" action="{% url 'save_settings' %}" class="space-y-12">
+    <form method="POST" action="{% url 'save_settings' %}" id="ayarlar-formu" class="space-y-12" data-otomatik-kayit>
         {% csrf_token %}
 
         {# ---- Çalışma ---- #}
@@ -120,8 +130,6 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
                 </div>
 
                 {% include 'base/_toggle.html' with name="audio" checked=settings.audio label=_("Testlerde sesi otomatik oynat") desc=_("Kelime telaffuzları otomatik olarak başlar.") %}
-                {# Türkçe anlamlar (rapor 18.22): arayüz dilinden bağımsız; kapalıysa her şey İngilizce açıklamayla yürür. #}
-                {% include 'base/_toggle.html' with name="turkce_anlamlar" checked=settings.turkce_anlamlar label=_("Türkçe anlamlar") desc=_("Kapatırsan kartlarda, Learn & Pass'te, okurken ve egzersizlerde Türkçe anlam gösterilmez ve sorulmaz; her şey İngilizce açıklamalarla yürür.") %}
             </div>
         </section>
 
@@ -136,8 +144,32 @@ Henüz olmayan ayarlar (dil) ve görsel tasarım tasarım oturumunda eklenecek.
             </div>
         </section>
 
-        <button type="submit" class="lv-dugme">{% translate "Ayarları Kaydet" %}</button>
+        <noscript><button type="submit" class="lv-dugme">{% translate "Ayarları Kaydet" %}</button></noscript>
     </form>
+    <p class="lv-el pointer-events-none fixed bottom-24 left-1/2 z-40 -translate-x-1/2 rounded-full border border-[color:var(--satir)] bg-[color:var(--kagit)] px-4 py-1 text-[20px] font-bold opacity-0 shadow transition-opacity duration-300 lg:bottom-8"
+       role="status" aria-live="polite" data-kayit-durumu>{% translate "kaydedildi ✓" %}</p>
+    <script>
+    (function () {
+        // Her değişiklik o an kaydedilir; keepalive: sayfadan çıkılırken de istek yarıda kalmaz.
+        const form = document.getElementById("ayarlar-formu");
+        const durum = document.querySelector("[data-kayit-durumu]");
+        let zaman;
+        function kaydet() {
+            fetch(form.action, {method: "POST", body: new FormData(form), keepalive: true,
+                                headers: {"X-Requested-With": "fetch"}})
+                .then(function (c) {
+                    if (!c.ok) return;
+                    durum.classList.remove("opacity-0");
+                    clearTimeout(zaman);
+                    zaman = setTimeout(function () { durum.classList.add("opacity-0"); }, 1500);
+                });
+        }
+        document.addEventListener("change", function (e) {
+            if (e.target.form === form) kaydet();
+        });
+        form.addEventListener("submit", function (e) { e.preventDefault(); kaydet(); });
+    })();
+    </script>
 
     {# ================= VERİ YÖNETİMİ ================= #}
     <section>

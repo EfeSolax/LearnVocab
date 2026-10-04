@@ -152,6 +152,7 @@ class HazirListeAdmin(admin.ModelAdmin):
     list_editable = ("sira", "yayinda")
     prepopulated_fields = {"slug": ("ad",)}
     search_fields = ("ad", "kurum")
+    fields = ("ad", "ad_en", "ad_de", "slug", "kurum", "aciklama", "aciklama_en", "aciklama_de", "sira", "yayinda")
     inlines = (HazirListeKelimesiInline,)
 
     @admin.display(description="kelime")

@@ -8,12 +8,13 @@ değilse hiç gitmiyor.
 Kullanımı:
   {% include 'base/_toggle.html' with name="audio" checked=settings.audio
        label="Testlerde sesi otomatik oynat" desc="Kelime telaffuzları otomatik başlar." %}
+  form="…" verilirse kutu, dışında durduğu formun alanı olur (HTML form özniteliği).
 {% endcomment %}
 
 {# Defter teması (rapor 18.12): anahtar yerine kalemle çizilmiş kutucuk; işaretlenince mürekkep tiki. #}
 <label for="{{ name }}" class="flex cursor-pointer items-start gap-4 px-5 py-4 transition-colors hover:bg-[color:var(--kare)] sm:px-6">
     <span class="relative mt-1 shrink-0">
-        <input type="checkbox" id="{{ name }}" name="{{ name }}" class="peer sr-only" {% if checked %}checked{% endif %}>
+        <input type="checkbox" id="{{ name }}" name="{{ name }}" class="peer sr-only" {% if checked %}checked{% endif %}{% if form %} form="{{ form }}"{% endif %}>
         <span class="lv-kutu block peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500"></span>
     </span>
     <span class="min-w-0">

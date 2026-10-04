@@ -125,20 +125,20 @@ REHBERLER = [
     },
     {
         "kimlik": "ayarlar", "git": _("Ayarlar'a git"), "adres": "settings_page", "sorgu": "", "baslik": _("Ayarlar: siteyi kendine göre ayarla"),
-        "giris": _("Sağ üstteki profil fotoğrafına dokun, Hesap açılır; Ayarlar oradadır."),
+        "giris": _("Sağ üstteki profil fotoğrafına dokun, Hesap açılır; Ayarlar oradadır. Yaptığın her değişiklik hemen kaydedilir; kaydet düğmesi yok."),
         "goruntuler": [
             ("ayarlar-gorunum", 1000, [(49.4, 41.3), (21.6, 80.2)]),
-            ("ayarlar-calisma", 1000, [(3, 24.2), (5, 78.5)]),
-            ("ayarlar-tercihler", 1000, [(5, 28.5), (5, 53), (3, 77.9)]),
+            ("ayarlar-calisma", 1000, [(3, 15.8), (3, 54.2)]),
+            ("ayarlar-tercihler", 1000, [(5, 32.6), (5, 61.5), (5, 86)]),
         ],
         "adimlar": [
             _("Görünüm: açık, koyu ya da \"sistem\" (cihazının teması). Bu seçim cihazında saklanır."),
             _("Dil: sitenin dili (Türkçe, English, Deutsch). Üstteki küre düğmesinden de değiştirebilirsin; giriş yaptıysan seçimin hesabında saklanır."),
+            _("Türkçe anlamlar: kapatırsan Türkçe anlamlar ne gösterilir ne sorulur; kartlarda, okurken ve egzersizlerde İngilizce açıklamalar kullanılır. Sitenin dilinden bağımsızdır."),
             _("Seviye: seviye testini yeniden çözebilirsin. Günün kelimesi ve egzersizler seviyene göre gelir; çalıştıkça seviyen kendiliğinden düzeltilir."),
             _("Learn & Pass'te tekrar ve yeni kelime oranı: sola çektikçe listendeki kelimeleri daha çok tekrar edersin, sağa çektikçe daha çok yeni kelime görürsün."),
             _("Egzersizde soru sayısı: Deneme Sınavı bu sayıyla açılır."),
             _("Yazılarda geri bildirim: hataların ne kadar ayrıntılı gösterileceği (nazik, normal, titiz)."),
-            _("Türkçe anlamlar: kapatırsan Türkçe anlamlar ne gösterilir ne sorulur; kartlarda, okurken ve egzersizlerde İngilizce açıklamalar kullanılır. Sitenin dilinden bağımsızdır."),
         ],
         "not": _("Aşağıda testlerde sesin kendiliğinden çalması, bildirim tercihleri, verilerini dosya olarak indirme ve geri alınamaz işlemler (listeyi boşaltma, hesabı silme) de vardır."),
     },
@@ -155,7 +155,8 @@ ISARET_DILLERI = {
         "okuma": [(3, 60.3), (3, 71), (48, 67.1)],
         "yazilar": [(57, 46), (7, 52.8), (6, 68)],
         "ayarlar-gorunum": [(58.8, 41.3), (49.5, 80.2)],
-        "ayarlar-calisma": [(3, 25.9), (5, 78.9)],
+        "ayarlar-calisma": [(3, 15.8), (3, 55.9)],
+        "ayarlar-tercihler": [(5, 29.6), (5, 58.5), (5, 83)],
     },
     "de": {
         "kelime": [(3, 65), (3, 47), (60, 53.3), (10, 90)],
@@ -166,8 +167,7 @@ ISARET_DILLERI = {
         "okuma": [(3, 60.3), (3, 71), (45.5, 67.1)],
         "yazilar": [(93, 50.2), (7, 57), (6, 72.3)],
         "ayarlar-gorunum": [(58.3, 41.3), (43.2, 80.2)],
-        "ayarlar-calisma": [(3, 25.9), (5, 81.9)],
-        "ayarlar-tercihler": [(5, 24.8), (5, 49.3), (3, 77.6)],
+        "ayarlar-calisma": [(3, 15.8), (3, 58.9)],
     },
 }
 
