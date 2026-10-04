@@ -171,9 +171,10 @@ LANGUAGE_CODE = 'tr'
 # önekiyle gelir (/en/…, /de/…) ve her sayfada hreflang basılır.
 # Bir dil, arayüz çevirisi BİTMEDEN buraya eklenmez: çevirisiz /en/ sayfaları
 # Türkçe sayfaların kopyası olur (SEO'da kopya içerik, rapor 18.15).
-# Hedef sıra: en, de; sonra es, fr.
+# en ve de çevirisi tamam (Ekim 2026); sonra es, fr. Bir dili geçici olarak
+# kapatmak için ortamda YAYIN_DILLERI=tr gibi verilir.
 DIL_ADLARI = {'tr': 'Türkçe', 'en': 'English', 'de': 'Deutsch'}
-YAYIN_DILLERI = [d for d in os.environ.get('YAYIN_DILLERI', 'tr').split(',') if d in DIL_ADLARI]
+YAYIN_DILLERI = [d for d in os.environ.get('YAYIN_DILLERI', 'tr,en,de').split(',') if d in DIL_ADLARI]
 LANGUAGES = [(d, DIL_ADLARI[d]) for d in YAYIN_DILLERI]
 LOCALE_PATHS = [BASE_DIR / 'locale']
 

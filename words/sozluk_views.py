@@ -36,6 +36,8 @@ from django.views.decorators.http import require_GET, require_POST
 from LearnVocab.seo import tam_adres
 
 from . import arama, dizine_alma, gozat, gunun, hazir_liste, listem
+from usersettings.anlam import turkce_acik
+
 from .adres import kelime_adresi, slug_yap
 from .kart import kart_verisi
 from .models import CEFR_LEVELS, HazirListe
@@ -205,7 +207,8 @@ def _sonuc_baglami(request, sonuc):
         eslesen = dict(sonuc.turkce)
         turkce_kartlar = kart_verisi([wid for wid, _ in sonuc.turkce], request.user)
         for kart in turkce_kartlar:
-            kart.eslesen = eslesen.get(kart.id, "")
+            # "Türkçe anlamlar" kapalıysa eşleşen Türkçe anlam da gösterilmez (rapor 18.22).
+            kart.eslesen = eslesen.get(kart.id, "") if turkce_acik(request.user) else ""
 
     return {
         "sonuc": sonuc,

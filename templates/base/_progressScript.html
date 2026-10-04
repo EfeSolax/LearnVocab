@@ -40,7 +40,7 @@ startProgressJob({
     function paint(percent, message) {
       shownPercent = Math.max(shownPercent, Math.min(100, percent));
       bar.style.width = shownPercent + "%";
-      percentLabel.textContent = "%" + Math.round(shownPercent);
+      percentLabel.textContent = new Intl.NumberFormat(document.documentElement.lang, { style: "percent" }).format(Math.round(shownPercent) / 100);
       track.setAttribute("aria-valuenow", Math.round(shownPercent));
       if (message) { label.textContent = message; }
     }

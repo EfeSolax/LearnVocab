@@ -17,7 +17,7 @@ from LearnVocab.authgate import login_gate
 
 from django.db.models import Q
 
-TEMA_SECENEKLERI = (("sistem", _("Sistem")), ("light", _("Açık")), ("dark", _("Koyu")))
+TEMA_SECENEKLERI = (("sistem", gettext_lazy("Sistem")), ("light", gettext_lazy("Açık")), ("dark", gettext_lazy("Koyu")))
 
 
 @login_gate(gettext_lazy("Ayarlar"))

@@ -50,7 +50,7 @@ Verisi olmayan tip pasif görünür ("Yakında" / "Listende en az 4 kelime olunc
                 <a href="{% url 'sozluk' %}" class="lv-dugme lv-ikincil lv-kucuk mt-3">{% translate "Sözlük'e git" %}</a>
             </div>
             {% else %}
-            <p class="lv-el text-[44px] font-bold leading-none">{{ hizli_soru_sayisi }} soru</p>
+            <p class="lv-el text-[44px] font-bold leading-none">{% blocktranslate count n=hizli_soru_sayisi %}{{ n }} soru{% plural %}{{ n }} soru{% endblocktranslate %}</p>
             {% if liste_sayisi < hizli_tam %}
             <p class="mt-1 text-base">{% blocktranslate count n=liste_sayisi %}Listende {{ n }} kelime var, kısa bir tur olacak.{% plural %}Listende {{ n }} kelime var, kısa bir tur olacak.{% endblocktranslate %}
                 <a href="{% url 'sozluk' %}" class="font-bold underline decoration-1 underline-offset-4">{% translate "Listene kelime ekle" %}</a></p>

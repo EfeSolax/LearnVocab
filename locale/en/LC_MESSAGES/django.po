@@ -1,22 +1,5017 @@
 # LearnVocab — İngilizce arayüz çevirisi (rapor 18.22).
-# Şimdilik yalnızca "Yazılar" bölümünün adı ve adresi çevrildi; geri kalan
-# arayüz çeviri adımında eklenecek. İngilizce, settings.LANGUAGES'a
-# eklenene kadar YAYINDA DEĞİLDİR.
-#
-# Derleme (django.mo): .venv/bin/python manage.py compilemessages -l en --ignore .venv
+# Kaynak dil Türkçedir (msgid). Kelime anlamları çevrilmez; yalnızca arayüz.
+# Güncelleme: .venv/bin/python manage.py makemessages -l en -l de --ignore=.venv --ignore=_arsiv --ignore=ozetler --ignore=veri --no-obsolete
+# Derleme:    .venv/bin/python manage.py compilemessages --ignore=.venv
 msgid ""
 msgstr ""
 "Project-Id-Version: LearnVocab\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-05 00:27+0300\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: LearnVocab/urls.py
+#: LearnVocab/anasayfa.py:40
+msgid "en temel kelimeler"
+msgstr "the most basic words"
+
+#: LearnVocab/anasayfa.py:40
+msgid "günlük hayat"
+msgstr "everyday life"
+
+#: LearnVocab/anasayfa.py:40
+msgid "hazırlığın ilk dönemi"
+msgstr "first term of prep school"
+
+#: LearnVocab/anasayfa.py:41
+msgid "okuma metinleri, sınavlar"
+msgstr "reading texts, exams"
+
+#: LearnVocab/anasayfa.py:41
+msgid "akademik metinler"
+msgstr "academic texts"
+
+#: LearnVocab/anasayfa.py:41
+msgid "ince ayrıntılar"
+msgstr "fine details"
+
+#: LearnVocab/authgate.py:39
+msgid "Kelimeleri listene ekleyebilmek için bir hesaba ihtiyacın var."
+msgstr "You need an account to add words to your list."
+
+#: LearnVocab/authgate.py:40 egzersizler/views.py:41
+msgid "Egzersizler kendi listenle çalıştığı için giriş yapman gerekiyor."
+msgstr "Exercises work with your own list, so you need to sign in."
+
+#: LearnVocab/authgate.py:41 texts/views.py:40
+msgid "Yazdıkların hesabına kaydedildiği için giriş yapman gerekiyor."
+msgstr "What you write is saved to your account, so you need to sign in."
+
+#: LearnVocab/authgate.py:42 readings/views.py:184
+msgid "Kendi metinlerini yükleyebilmek için giriş yapman gerekiyor."
+msgstr "You need to sign in to upload your own texts."
+
+#: LearnVocab/authgate.py:43
+msgid "Çalışmanın kaydedilmesi için giriş yapman gerekiyor."
+msgstr "You need to sign in so your practice is saved."
+
+#: LearnVocab/authgate.py:76 LearnVocab/authgate.py:78
+msgid "Önce giriş yapmalısın."
+msgstr "Please sign in first."
+
+#: LearnVocab/diller.py:101
+msgid "Bu sayfanın Türkçesi de var."
+msgstr "This page is also available in English."
+
+#: LearnVocab/diller.py:102
+msgid "Türkçeye geç"
+msgstr "Switch to English"
+
+#: LearnVocab/diller.py:103 templates/base/messages.html:25
+#: templates/bildirimler/_ayar.html:39
+#: templates/pages/seviye/_davetPenceresi.html:16
+msgid "Kapat"
+msgstr "Close"
+
+#: LearnVocab/navigation.py:30 LearnVocab/test_diller.py:30
+#: LearnVocab/test_diller.py:32 templates/pages/sozluk.html:57
+#: templates/pages/words/gozat.html:17 templates/pages/words/hazirListe.html:13
+#: words/sozluk_views.py:163
+msgid "Sözlük"
+msgstr "Dictionary"
+
+#: LearnVocab/navigation.py:36
+msgid "Çalışmalar"
+msgstr "Practice"
+
+#: LearnVocab/navigation.py:45 templates/pages/index.html:11
+msgid "Ana Sayfa"
+msgstr "Home"
+
+#: LearnVocab/navigation.py:51 LearnVocab/yardim.py:97 readings/views.py:148
+#: readings/views.py:184 templates/pages/about.html:70
+#: templates/pages/readings.html:21 templates/pages/readings/ekle.html:17
+#: templates/pages/readings/oku.html:14 templates/pages/readings/oku.html:20
+msgid "Okumalar"
+msgstr "Reading"
+
+#: LearnVocab/navigation.py:59 LearnVocab/yardim.py:107
+#: templates/pages/about.html:75 templates/pages/texts/aboutGrading.html:16
+#: templates/pages/texts/diyalog.html:16 templates/pages/texts/newText.html:16
+#: templates/pages/texts/yazma.html:11 templates/pages/texts/yazma.html:18
+#: texts/views.py:148 texts/views.py:319 texts/views.py:371
+msgid "Yazılar"
+msgstr "Writings"
+
+#: LearnVocab/urls.py:81
 msgid "yazilar/"
 msgstr "writings/"
 
-#: LearnVocab/navigation.py
-msgid "Yazılar"
-msgstr "Writings"
+#: LearnVocab/yardim.py:26 templates/pages/egzersizler/acilis.html:50
+#: templates/pages/texts/diyalog.html:33
+msgid "Sözlük'e git"
+msgstr "Go to the Dictionary"
+
+#: LearnVocab/yardim.py:26
+msgid "Sözlük'te kelime aramak"
+msgstr "Looking up words in the Dictionary"
+
+#: LearnVocab/yardim.py:27
+msgid "Sözlük, kelimelerin durduğu yer. İngilizce de Türkçe de arayabilirsin."
+msgstr ""
+"The Dictionary is where the words live. You can search in English or in "
+"Turkish."
+
+#: LearnVocab/yardim.py:33
+msgid ""
+"Arama kutusuna İngilizce bir kelime ya da Türkçe bir anlam yaz (\"karar\" "
+"yazınca decide, decision gelir)."
+msgstr ""
+"Type an English word or a Turkish meaning into the search box (typing "
+"\"karar\" brings up decide, decision)."
+
+#: LearnVocab/yardim.py:34
+msgid ""
+"Yazarken açılan önerilerden birine dokun; kelimeyi sonuna kadar yazman "
+"gerekmez. Yanlış yazdıysan \"Bunu mu demek istediniz?\" çıkar; \"went\" "
+"yazarsan go'ya gider."
+msgstr ""
+"Tap one of the suggestions that appear as you type; you don't have to type "
+"the whole word. If you made a typo, you'll see \"Did you mean?\"; typing "
+"\"went\" takes you to go."
+
+#: LearnVocab/yardim.py:35
+msgid ""
+"Kelime sayfasında her anlam ayrı: kalın Türkçe anlam, gri İngilizce tanım ve "
+"kelimenin sarıyla işaretlendiği bir örnek cümle."
+msgstr ""
+"On a word page every meaning stands on its own: the Turkish meaning in bold, "
+"the English definition in grey and an example sentence with the word "
+"highlighted in yellow."
+
+#: LearnVocab/yardim.py:36
+msgid "US ve UK düğmeleri Amerikan ve İngiliz telaffuzunu çalar."
+msgstr "The US and UK buttons play the American and British pronunciation."
+
+#: LearnVocab/yardim.py:37
+msgid ""
+"\"Listeme ekle\" kelimeyi listene koyar; Learn & Pass onu sana belli "
+"aralıklarla yeniden sorar."
+msgstr ""
+"\"Add to my list\" puts the word on your list; Learn & Pass will ask you "
+"about it again at set intervals."
+
+#: LearnVocab/yardim.py:38
+msgid ""
+"\"örnek daha\" ve \"Kalıplar\" yerinde açılır. Örnek cümledeki bir kelimeye "
+"çift dokunursan o kelimenin sayfasına gidersin."
+msgstr ""
+"\"more examples\" and \"Patterns\" open in place. Double-tap a word in an "
+"example sentence to go to that word's page."
+
+#: LearnVocab/yardim.py:42
+msgid "Hazır listelere git"
+msgstr "Go to ready-made lists"
+
+#: LearnVocab/yardim.py:42
+msgid "Hazır listelerle çalışmak"
+msgstr "Working with ready-made lists"
+
+#: LearnVocab/yardim.py:43
+msgid ""
+"Hazır listeler bir sınava ya da kuruma göre derlenmiş kelime listeleridir. "
+"Sözlük'ün ilk sayfasında dururlar."
+msgstr ""
+"Ready-made lists are word lists put together for an exam or an institution. "
+"They sit on the first page of the Dictionary."
+
+#: LearnVocab/yardim.py:46
+msgid ""
+"Bir listeye girince kelimelerini anlamlarıyla birlikte görürsün; tek tek "
+"\"Listeme ekle\" diyebilirsin. Hepsini birden ekleme yoktur: yüzlerce "
+"kelimeyle boğulma diye."
+msgstr ""
+"Open a list to see its words with their meanings; you can tap \"Add to my "
+"list\" one by one. There's no add-all button, so you won't drown in hundreds "
+"of words."
+
+#: LearnVocab/yardim.py:47
+msgid ""
+"\"Bu listeyle çalış\" dersen Learn & Pass yeni kelimeleri seviyenden değil "
+"bu listeden getirir. Bilmediklerini listene ekleyip eklememeyi oturum "
+"sonunda sen seçersin."
+msgstr ""
+"Tap \"Study with this list\" and Learn & Pass will bring new words from this "
+"list instead of your level. At the end of a session you decide whether to "
+"add the ones you didn't know to your list."
+
+#: LearnVocab/yardim.py:51
+msgid "Listem'e git"
+msgstr "Go to My List"
+
+#: LearnVocab/yardim.py:51 templates/pages/sozluk.html:40
+#: templates/pages/words/_listem.html:17
+msgid "Listem"
+msgstr "My List"
+
+#: LearnVocab/yardim.py:52
+msgid "Listem, eklediğin kelimelerin cep defteri. Sözlük'ün ikinci sekmesi."
+msgstr ""
+"My List is the pocket notebook of the words you've added. It's the second "
+"tab of the Dictionary."
+
+#: LearnVocab/yardim.py:55
+msgid "Listende İngilizce ya da Türkçe ara (\"hedef\" yazınca aim çıkar)."
+msgstr ""
+"Search your list in English or in Turkish (typing \"hedef\" finds aim)."
+
+#: LearnVocab/yardim.py:56
+msgid ""
+"Filtre: en yeni, en eski ya da A→Z sırala; son bir hafta ya da ay; "
+"\"Zorlandıklarım\" bilmediğin ya da egzersizde yanlış yaptığın kelimeleri "
+"gösterir."
+msgstr ""
+"Filter: sort by newest, oldest or A→Z; the last week or month; \"Struggled "
+"with\" shows the words you didn't know or got wrong in exercises."
+
+#: LearnVocab/yardim.py:57
+msgid "\"Seç\" ile birden çok kelimeyi işaretleyip birlikte çıkarabilirsin."
+msgstr "With \"Select\" you can tick several words and remove them together."
+
+#: LearnVocab/yardim.py:58
+msgid ""
+"\"çıkar\" kelimeyi listeden alır. Yanlışlıkla çıkardıysan birkaç saniye "
+"\"Geri al\" görünür."
+msgstr ""
+"\"remove\" takes the word off your list. If you removed it by mistake, "
+"\"Undo\" shows up for a few seconds."
+
+#: LearnVocab/yardim.py:62 templates/pages/words/hazirListe.html:29
+msgid "Learn & Pass'e git"
+msgstr "Go to Learn & Pass"
+
+#: LearnVocab/yardim.py:62
+msgid "Learn & Pass"
+msgstr "Learn & Pass"
+
+#: LearnVocab/yardim.py:63
+msgid ""
+"Sitenin kalbi: kelimeyi görürsün, bilip bilmediğine karar verirsin. Birkaç "
+"dakika yeter, istediğin an bırakabilirsin; her cevap anında kaydedilir."
+msgstr ""
+"The heart of the site: you see a word and decide whether you know it. A few "
+"minutes are enough, you can stop any time, and every answer is saved "
+"instantly."
+
+#: LearnVocab/yardim.py:69
+msgid "Kartta yalnızca kelime var. Anlamını aklından geçir."
+msgstr "The card only shows the word. Think of its meaning."
+
+#: LearnVocab/yardim.py:70
+msgid "Bilmiyorsan sola kaydır ya da \"Bilmiyorum\"a bas; anlamı görünür."
+msgstr ""
+"If you don't know it, swipe left or tap \"I don't know\"; the meaning "
+"appears."
+
+#: LearnVocab/yardim.py:71
+msgid "Biliyorsan sağa kaydır ya da \"Biliyorum\"a bas."
+msgstr "If you know it, swipe right or tap \"I know\"."
+
+#: LearnVocab/yardim.py:72
+msgid ""
+"Üstteki çubukta alev var: o gün 10 karta ulaşınca yanar ve günün serisi "
+"tamamlanır."
+msgstr ""
+"There's a flame on the bar at the top: it lights up when you reach 10 cards "
+"that day and the day's streak is complete."
+
+#: LearnVocab/yardim.py:73
+msgid ""
+"\"Biliyorum\" dedikten sonra kapibara anlamı gösterir: \"Düşündüğün bu muydu?"
+"\""
+msgstr ""
+"After \"I know\" the capybara shows the meaning: \"Is this what you thought?"
+"\""
+
+#: LearnVocab/yardim.py:74
+msgid ""
+"Düşündüğün değilse \"Hayır, yanılmışım\" de; kelime tekrar sırasına girer."
+msgstr ""
+"If it isn't, say \"No, I was wrong\"; the word goes back into your review "
+"queue."
+
+#: LearnVocab/yardim.py:75
+msgid "Doğruysa \"Evet, eminim\". Kimse seni sınamaz; dürüst olman yeter."
+msgstr "If it is, \"Yes, I'm sure\". Nobody tests you; being honest is enough."
+
+#: LearnVocab/yardim.py:76
+msgid "Yanlış bir şeye bastıysan \"Geri al\"."
+msgstr "Tapped the wrong thing? \"Undo\"."
+
+#: LearnVocab/yardim.py:78
+msgid ""
+"Listene eklediğin kelimeleri 1, 3, 7 ve 21 gün sonra yeniden sorarız. Tekrar "
+"ile yeni kelime oranını Ayarlar'dan değiştirebilirsin."
+msgstr ""
+"We ask you again about the words you've added 1, 3, 7 and 21 days later. You "
+"can change the ratio of reviews to new words in Settings."
+
+#: LearnVocab/yardim.py:81
+msgid "Egzersizlere git"
+msgstr "Go to Exercises"
+
+#: LearnVocab/yardim.py:81
+msgid "Egzersizler: Kısa Sınav ve Deneme Sınavı"
+msgstr "Exercises: Quick Quiz and Practice Test"
+
+#: LearnVocab/yardim.py:82
+msgid ""
+"Çalışmalar'ın ikinci sekmesi. İki çeşit var; puan ya da not yok, yanlış "
+"cevap yalnızca öğretir."
+msgstr ""
+"The second tab of Practice. There are two kinds; no points or grades, a "
+"wrong answer only teaches."
+
+#: LearnVocab/yardim.py:88
+msgid ""
+"Kısa Sınav çoğu gün yeter: listendeki kelimelerin anlamları, iki yönlü "
+"(İngilizce→Türkçe ve tersi). Ayar yok."
+msgstr ""
+"The Quick Quiz is enough most days: the meanings of the words on your list, "
+"both ways (English→Turkish and back). No settings."
+
+#: LearnVocab/yardim.py:89
+msgid "10 soru sorar; listende daha az kelime varsa o kadar."
+msgstr "It asks 10 questions; fewer if your list has fewer words."
+
+#: LearnVocab/yardim.py:90
+msgid ""
+"\"Başla\"ya bas. Her sorudan sonra doğrusu tek satırla görünür; sonunda "
+"yanlışlarını yeniden çözebilirsin."
+msgstr ""
+"Tap \"Start\". After each question the answer appears in a single line; at "
+"the end you can redo the ones you got wrong."
+
+#: LearnVocab/yardim.py:91
+msgid ""
+"Deneme Sınavı daha çok çalışmak istediğin günler için: önce kaç soru (5, 10, "
+"15, 20) seç."
+msgstr ""
+"The Practice Test is for days when you want to do more: first choose how "
+"many questions (5, 10, 15, 20)."
+
+#: LearnVocab/yardim.py:92
+msgid ""
+"Sonra soru tipini seç: \"Karışık\" hepsinden sorar, istersen tek bir tipe "
+"odaklanırsın. Tipler aşağıda."
+msgstr ""
+"Then choose the question type: \"Mixed\" asks from all of them, or you can "
+"focus on a single type. The types are below."
+
+#: LearnVocab/yardim.py:97
+msgid "Okumalar'a git"
+msgstr "Go to Reading"
+
+#: LearnVocab/yardim.py:98
+msgid ""
+"Kelimeyi metnin içinde görmek için. Kütüphanedeki metinleri okuyabilir ya da "
+"kendi metnini (PDF ya da yapıştırarak) ekleyebilirsin; kendi metinlerini "
+"yalnızca sen görürsün."
+msgstr ""
+"To see words inside a text. You can read the texts in the library or add "
+"your own (as a PDF or by pasting); only you can see your own texts."
+
+#: LearnVocab/yardim.py:101
+msgid ""
+"Bilmediğin kelimeye dokun; anlamı hemen bir baloncukta çıkar. \"decided\" "
+"gibi çekimli hâller köküne bağlanır, \"give up\" gibi öbekler tanınır."
+msgstr ""
+"Tap a word you don't know; its meaning pops up in a bubble right away. "
+"Inflected forms like \"decided\" lead to their root, and phrases like \"give "
+"up\" are recognised."
+
+#: LearnVocab/yardim.py:102
+msgid ""
+"Birden çok anlamı varsa hepsi numaralı ve kısa; en yaygın olan en üstte."
+msgstr ""
+"If it has several meanings, they're all numbered and short; the most common "
+"one comes first."
+
+#: LearnVocab/yardim.py:103
+msgid "\"Listeme ekle\" ile kelimeyi okurken listene al."
+msgstr "Use \"Add to my list\" to save the word while you read."
+
+#: LearnVocab/yardim.py:107
+msgid "Yazılar'a git"
+msgstr "Go to Writings"
+
+#: LearnVocab/yardim.py:108
+msgid ""
+"Bir kelimeyi gerçekten bilmenin yolu onu kullanmak. Burada iki şey "
+"yapabilirsin."
+msgstr ""
+"The way to really know a word is to use it. You can do two things here."
+
+#: LearnVocab/yardim.py:111
+msgid ""
+"Serbest yazma: 3–8 cümle yaz. Türkçe geri bildirim gelir: neyi iyi yaptığın "
+"ve gerçek hataların (alıntı → doğrusu → kısa neden), 5 üzerinden bir puanla. "
+"Üslup tercihi hata sayılmaz."
+msgstr ""
+"Free writing: write 3–8 sentences. You get feedback in your language: what "
+"you did well and your real mistakes (quote → correct form → short reason), "
+"with a score out of 5. Style choices don't count as mistakes."
+
+#: LearnVocab/yardim.py:112
+msgid ""
+"Günde yazabileceğin metin sayısı sınırlı; kalan hakkın burada yazar. "
+"Değerlendirme o an yapılamazsa metnin kaybolmaz, sonra kendiliğinden "
+"değerlendirilir."
+msgstr ""
+"The number of texts you can write per day is limited; your remaining count "
+"is shown here. If the evaluation can't be done right away, your text isn't "
+"lost; it gets evaluated later on its own."
+
+#: LearnVocab/yardim.py:113
+msgid ""
+"Diyalogda doğru kelime: kısa bir diyalogdaki boşluğa, Türkçe ipucuna bakarak "
+"listendeki doğru kelimeyi yaz."
+msgstr ""
+"Right word in a dialogue: fill the gap in a short dialogue with the right "
+"word from your list, using the Turkish hint."
+
+#: LearnVocab/yardim.py:117
+msgid "Ana Sayfa'ya git"
+msgstr "Go to Home"
+
+#: LearnVocab/yardim.py:117
+msgid "Seri"
+msgstr "Streak"
+
+#: LearnVocab/yardim.py:118
+msgid "Her gün biraz çalışınca takviminde bir gün daha işaretlenir."
+msgstr ""
+"When you study a little every day, one more day gets ticked on your calendar."
+
+#: LearnVocab/yardim.py:121
+msgid ""
+"Ana Sayfa'daki seri kutusuna dokun. Bir günü tamamlamak için şunlardan biri "
+"yeter: 10 Learn & Pass kartı, 10 egzersiz sorusu, 1 metin ya da 1 diyalog."
+msgstr ""
+"Tap the streak box on Home. One of these completes a day: 10 Learn & Pass "
+"cards, 10 exercise questions, 1 text or 1 dialogue."
+
+#: LearnVocab/yardim.py:122
+msgid ""
+"Dondurma hakkı: bir günü kaçırırsan hak varsa o gün otomatik dondurulur ve "
+"serin bozulmaz. 1 hakla başlarsın, art arda 5 gün çalışınca bir hak daha "
+"kazanırsın; en çok 3 hak birikir."
+msgstr ""
+"Streak freeze: if you miss a day and have a freeze left, that day is frozen "
+"automatically and your streak survives. You start with 1 freeze and earn "
+"another after 5 days in a row; you can save up to 3."
+
+#: LearnVocab/yardim.py:123
+msgid ""
+"Takvimde çalıştığın günler turuncu, dondurulan günler mavi görünür. Gün "
+"senin saatinle gece 00.00'da biter."
+msgstr ""
+"On the calendar the days you studied are orange and frozen days are blue. A "
+"day ends at 00:00 your time."
+
+#: LearnVocab/yardim.py:127
+msgid "Ayarlar'a git"
+msgstr "Go to Settings"
+
+#: LearnVocab/yardim.py:127
+msgid "Ayarlar: siteyi kendine göre ayarla"
+msgstr "Settings: make the site yours"
+
+#: LearnVocab/yardim.py:128
+msgid "Sağ üstteki profil fotoğrafına dokun, Hesap açılır; Ayarlar oradadır."
+msgstr ""
+"Tap your profile photo in the top right to open Account; Settings is there."
+
+#: LearnVocab/yardim.py:135
+msgid ""
+"Görünüm: açık, koyu ya da \"sistem\" (cihazının teması). Bu seçim cihazında "
+"saklanır."
+msgstr ""
+"Appearance: light, dark or \"system\" (your device's theme). This choice is "
+"stored on your device."
+
+#: LearnVocab/yardim.py:136
+msgid ""
+"Dil: sitenin dili (Türkçe, English, Deutsch). Üstteki küre düğmesinden de "
+"değiştirebilirsin; giriş yaptıysan seçimin hesabında saklanır."
+msgstr ""
+"Language: the site's language (Türkçe, English, Deutsch). You can also "
+"change it with the globe button at the top; if you're logged in, your choice "
+"is saved to your account."
+
+#: LearnVocab/yardim.py:137
+msgid ""
+"Seviye: seviye testini yeniden çözebilirsin. Günün kelimesi ve egzersizler "
+"seviyene göre gelir; çalıştıkça seviyen kendiliğinden düzeltilir."
+msgstr ""
+"Level: you can take the level test again. The word of the day and the "
+"exercises match your level; it also adjusts itself as you study."
+
+#: LearnVocab/yardim.py:138
+msgid ""
+"Learn & Pass'te tekrar ve yeni kelime oranı: sola çektikçe listendeki "
+"kelimeleri daha çok tekrar edersin, sağa çektikçe daha çok yeni kelime "
+"görürsün."
+msgstr ""
+"Review / new word ratio in Learn & Pass: slide left to review the words on "
+"your list more, slide right to see more new words."
+
+#: LearnVocab/yardim.py:139
+msgid "Egzersizde soru sayısı: Deneme Sınavı bu sayıyla açılır."
+msgstr "Questions per exercise: the Practice Test starts with this number."
+
+#: LearnVocab/yardim.py:140
+msgid ""
+"Yazılarda geri bildirim: hataların ne kadar ayrıntılı gösterileceği (nazik, "
+"normal, titiz)."
+msgstr ""
+"Feedback on writings: how detailed your mistakes are shown (gentle, normal, "
+"strict)."
+
+#: LearnVocab/yardim.py:141
+msgid ""
+"Türkçe anlamlar: kapatırsan Türkçe anlamlar ne gösterilir ne sorulur; "
+"kartlarda, okurken ve egzersizlerde İngilizce açıklamalar kullanılır. "
+"Sitenin dilinden bağımsızdır."
+msgstr ""
+"Turkish meanings: if you turn this off, Turkish meanings are neither shown "
+"nor asked; cards, reading and exercises use English definitions instead. "
+"This is independent of the site's language."
+
+#: LearnVocab/yardim.py:143
+msgid ""
+"Aşağıda testlerde sesin kendiliğinden çalması, bildirim tercihleri, "
+"verilerini dosya olarak indirme ve geri alınamaz işlemler (listeyi boşaltma, "
+"hesabı silme) de vardır."
+msgstr ""
+"Further down you'll also find autoplaying audio in tests, notification "
+"preferences, downloading your data as a file and irreversible actions "
+"(clearing your list, deleting your account)."
+
+#: LearnVocab/yardim.py:199
+msgid ""
+"LearnVocab nasıl kullanılır: Sözlük, hazır listeler, Learn & Pass, "
+"egzersizler, okumalar, yazılar, seri ve ayarlar. Siteyi kim yaptı, nasıl "
+"ulaşılır."
+msgstr ""
+"How to use LearnVocab: Dictionary, ready-made lists, Learn & Pass, "
+"exercises, reading, writing, streak and settings. Who made the site and how "
+"to get in touch."
+
+#: bildirimler/alicilar.py:18
+msgid "Yazın değerlendirildi"
+msgstr "Your text has been evaluated"
+
+#: bildirimler/alicilar.py:19
+msgid "Geri bildirimin hazır. Neleri iyi yaptığına bir bak!"
+msgstr "Your feedback is ready. Have a look at what you did well!"
+
+#: bildirimler/management/commands/bildirim_gonder_hatirlatma.py:54
+#, python-format
+msgid "Günün kelimesi: %(kelime)s · "
+msgstr "Word of the day: %(kelime)s · "
+
+#: bildirimler/management/commands/bildirim_gonder_hatirlatma.py:55
+msgid "Bugünün çalışması seni bekliyor."
+msgstr "Today's practice is waiting for you."
+
+#: bildirimler/management/commands/bildirim_gonder_hatirlatma.py:57
+msgid "Bugün çalışmazsan 1 dondurma hakkın kullanılacak."
+msgstr "If you don't study today, 1 streak freeze will be used."
+
+#: bildirimler/management/commands/bildirim_gonder_hatirlatma.py:58
+#, python-format
+msgid "%(n)s günlük serin gece yarısı bitiyor. Kısa bir tur yeter!"
+msgid_plural "%(n)s günlük serin gece yarısı bitiyor. Kısa bir tur yeter!"
+msgstr[0] "Your %(n)s-day streak ends at midnight. A quick round is enough!"
+msgstr[1] "Your %(n)s-day streak ends at midnight. A quick round is enough!"
+
+#: egzersizler/models.py:28 templates/pages/egzersizler/acilis.html:41
+msgid "Kısa Sınav"
+msgstr "Quick Quiz"
+
+#: egzersizler/models.py:28 templates/pages/egzersizler/acilis.html:72
+msgid "Deneme Sınavı"
+msgstr "Practice Test"
+
+#: egzersizler/sorular.py:66
+msgid "Kelime ↔ anlam"
+msgstr "Word ↔ meaning"
+
+#: egzersizler/sorular.py:66
+msgid "Listenden, iki yönlü"
+msgstr "From your list, both ways"
+
+#: egzersizler/sorular.py:67
+msgid "Kelime ↔ İngilizce açıklama"
+msgstr "Word ↔ English definition"
+
+#: egzersizler/sorular.py:67
+msgid "Listenden"
+msgstr "From your list"
+
+#: egzersizler/sorular.py:68
+msgid "Eşleştirme"
+msgstr "Matching"
+
+#: egzersizler/sorular.py:68
+msgid "Listenden, dört kelime bir arada"
+msgstr "From your list, four words at a time"
+
+#: egzersizler/sorular.py:68
+msgid "4 kelime ⇄ 4 anlam"
+msgstr "4 words ⇄ 4 meanings"
+
+#: egzersizler/sorular.py:69
+msgid "2. ve 3. hâller"
+msgstr "Past and past participle"
+
+#: egzersizler/sorular.py:69
+msgid "go · went · gone gibi, listeden bağımsız"
+msgstr "like go · went · gone, independent of your list"
+
+#: egzersizler/sorular.py:70
+msgid "Hangi biçimi gelir?"
+msgstr "Which form fits?"
+
+#: egzersizler/sorular.py:70
+msgid "Seviyendeki kelime aileleri"
+msgstr "Word families at your level"
+
+#: egzersizler/sorular.py:71
+msgid "Eş / zıt / daha basit"
+msgstr "Synonym / opposite / simpler"
+
+#: egzersizler/sorular.py:71
+msgid "Listende olmayan kelimeler"
+msgstr "Words that aren't on your list"
+
+#: egzersizler/sorular.py:72
+msgid "Bağlaç ve ifadeler"
+msgstr "Linkers and expressions"
+
+#: egzersizler/sorular.py:72
+msgid "Seviyene göre cümleler"
+msgstr "Sentences at your level"
+
+#: egzersizler/sorular.py:73
+msgid "Eş dizim"
+msgstr "Collocations"
+
+#: egzersizler/sorular.py:247
+msgid "Anlamını seç"
+msgstr "Choose the meaning"
+
+#: egzersizler/sorular.py:261
+msgid "Kelimesini seç"
+msgstr "Choose the word"
+
+#: egzersizler/sorular.py:299
+msgid "Açıklamaya uyan kelimeyi seç"
+msgstr "Choose the word that fits the definition"
+
+#: egzersizler/sorular.py:301
+msgid "İngilizce açıklamasını seç"
+msgstr "Choose the English definition"
+
+#: egzersizler/sorular.py:336
+msgid "Eşleştir"
+msgstr "Match"
+
+#: egzersizler/sorular.py:337
+msgid "Kelimeleri anlamlarıyla eşleştir"
+msgstr "Match the words with their meanings"
+
+#: egzersizler/sorular.py:443
+msgid "2. hâlini seç"
+msgstr "Choose the past form"
+
+#: egzersizler/sorular.py:443
+msgid "3. hâlini seç"
+msgstr "Choose the past participle"
+
+#: egzersizler/sorular.py:505 egzersizler/sorular.py:613
+#: egzersizler/sorular.py:665
+msgid "Boşluğa hangisi gelir?"
+msgstr "Which one fills the gap?"
+
+#: egzersizler/sorular.py:515
+msgid "Eş anlamlısını seç"
+msgstr "Choose the synonym"
+
+#: egzersizler/sorular.py:516
+msgid "Zıt anlamlısını seç"
+msgstr "Choose the opposite"
+
+#: egzersizler/sorular.py:517
+msgid "Daha basit karşılığını seç"
+msgstr "Choose the simpler word"
+
+#: egzersizler/sorular.py:615
+#, python-format
+msgid "Doğrusu: %(x)s"
+msgstr "Correct answer: %(x)s"
+
+#: egzersizler/sorular.py:729
+msgid "Türkçe anlamlar kapalı"
+msgstr "Turkish meanings are off"
+
+#: egzersizler/sorular.py:731 egzersizler/sorular.py:732
+msgid "Listene kelime ekleyince açılır"
+msgstr "Unlocks when you add words to your list"
+
+#: egzersizler/sorular.py:734
+msgid "Listende en az 4 kelime olunca açılır"
+msgstr "Unlocks when your list has at least 4 words"
+
+#: egzersizler/sorular.py:736 egzersizler/sorular.py:737
+msgid "Yakında"
+msgstr "Coming soon"
+
+#: egzersizler/views.py:40 templates/base/_exerciseTabs.html:23
+#: templates/pages/egzersizler/acilis.html:11
+#: templates/pages/egzersizler/acilis.html:22
+msgid "Egzersizler"
+msgstr "Exercises"
+
+#: egzersizler/views.py:104
+msgid ""
+"Kısa Sınav listendeki kelimelerle çalışıyor. Sözlük'te + ile birkaç kelime "
+"ekle, hemen başlayalım."
+msgstr ""
+"The Quick Quiz works with the words on your list. Add a few words with + in "
+"the Dictionary and let's get started."
+
+#: egzersizler/views.py:123
+msgid ""
+"Bu tip için şu an soru hazırlayamadık. Başka bir tip ya da Karışık ile devam "
+"edebilirsin."
+msgstr ""
+"We couldn't prepare questions for this type right now. You can continue with "
+"another type or with Mixed."
+
+#: egzersizler/views.py:196
+msgid "Hepsi doğru! Harika gidiyorsun."
+msgstr "All correct! You're doing great."
+
+#: egzersizler/views.py:198
+msgid "Çok iyi! Yanlışlar da öğrenmenin parçası."
+msgstr "Very good! Mistakes are part of learning too."
+
+#: egzersizler/views.py:200
+msgid "Güzel bir tur. Yanlışlarına bir kez daha bakmak iyi gelir."
+msgstr "A good round. Another look at your mistakes will help."
+
+#: egzersizler/views.py:202
+msgid "Her tur bir adım. Yanlışları tekrar çözünce fark edeceksin."
+msgstr ""
+"Every round is a step. You'll notice the difference when you redo your "
+"mistakes."
+
+#: learnpass/views.py:53
+msgid "Bugünün çalışması"
+msgstr "Today's practice"
+
+#: learnpass/views.py:54
+msgid "Kendi Kelimelerim"
+msgstr "My Words"
+
+#: learnpass/views.py:55
+msgid "Yeni Kelimeler"
+msgstr "New Words"
+
+#: readings/models.py:20
+msgid "Hukuk"
+msgstr "Law"
+
+#: readings/models.py:21
+msgid "Psikoloji"
+msgstr "Psychology"
+
+#: readings/models.py:22
+msgid "Sosyoloji"
+msgstr "Sociology"
+
+#: readings/models.py:23
+msgid "Antropoloji"
+msgstr "Anthropology"
+
+#: readings/models.py:24
+msgid "Eğitim"
+msgstr "Education"
+
+#: readings/pdf.py:43
+msgid ""
+"PDF okuyucu şu an kullanılamıyor. Metni kopyalayıp yapıştırmayı dener misin?"
+msgstr ""
+"The PDF reader isn't available right now. Could you try copying and pasting "
+"the text?"
+
+#: readings/pdf.py:66 readings/views.py:207
+#, python-format
+msgid "Bu PDF çok büyük. En çok %(mb)s MB'lık dosyaları okuyabiliyoruz."
+msgstr "This PDF is too large. We can read files of up to %(mb)s MB."
+
+#: readings/pdf.py:69 readings/pdf.py:75
+msgid "Bu dosyayı PDF olarak açamadık. Başka bir dosya dener misin?"
+msgstr "We couldn't open this file as a PDF. Could you try another file?"
+
+#: readings/pdf.py:79
+msgid "Bu PDF şifreli. Şifresiz bir kopyasını yükleyebilirsin."
+msgstr "This PDF is password-protected. You can upload an unprotected copy."
+
+#: readings/pdf.py:81
+#, python-format
+msgid ""
+"Bu PDF %(sayfa)s sayfa. En çok %(en_cok)s sayfalık dosyaları okuyabiliyoruz; "
+"istersen bir bölümünü kopyalayıp yapıştırabilirsin."
+msgstr ""
+"This PDF has %(sayfa)s pages. We can read files of up to %(en_cok)s pages; "
+"you can copy and paste a part of it if you like."
+
+#: readings/views.py:148
+msgid "Kendi metinlerin yalnızca sana özel; görmek için giriş yapmalısın."
+msgstr "Your own texts are private to you; please sign in to see them."
+
+#: readings/views.py:197
+#, python-format
+msgid ""
+"En çok %(n)s metin saklayabiliyorsun. Yenisini eklemek için eskilerden "
+"birini silebilirsin."
+msgstr ""
+"You can keep up to %(n)s texts. To add a new one, you can delete one of the "
+"older ones."
+
+#: readings/views.py:200
+#, python-format
+msgid ""
+"En çok %(n)s PDF saklayabiliyorsun. Yenisini eklemek için eski PDF'lerden "
+"birini silebilir ya da metni yapıştırabilirsin."
+msgstr ""
+"You can keep up to %(n)s PDFs. To add a new one, delete one of the older "
+"PDFs or paste the text instead."
+
+#: readings/views.py:205
+msgid "Bir PDF dosyası seçer misin?"
+msgstr "Could you choose a PDF file?"
+
+#: readings/views.py:222
+msgid "PDF çok uzun olduğu için yalnızca ilk kısmını aldık."
+msgstr "The PDF was very long, so we only took the first part."
+
+#: readings/views.py:227
+msgid "Okumak için biraz daha uzun bir metin yapıştırır mısın?"
+msgstr "Could you paste a slightly longer text to read?"
+
+#: readings/views.py:229
+#, python-format
+msgid ""
+"Bu metin çok uzun (en çok %(n)s karakter). Bir bölümünü yapıştırabilirsin."
+msgstr ""
+"This text is too long (at most %(n)s characters). You can paste a part of it."
+
+#: readings/views.py:286
+#, python-format
+msgid "“%(baslik)s” kalıcı olarak silindi."
+msgstr "“%(baslik)s” was deleted for good."
+
+#: seviye/views.py:39
+msgid "Yeni başlıyorum"
+msgstr "I'm just starting"
+
+#: seviye/views.py:41
+msgid "Günlük konuları anlıyorum"
+msgstr "I understand everyday topics"
+
+#: seviye/views.py:43
+msgid "İleri düzeydeyim"
+msgstr "I'm at an advanced level"
+
+#: seviye/views.py:44
+msgid "Neredeyse anadil düzeyindeyim"
+msgstr "I'm almost at native level"
+
+#: seviye/views.py:49
+msgid ""
+"Harika bir başlangıç noktası. En sık kullanılan kelimelerle başlayıp hızla "
+"ilerleyeceksin."
+msgstr ""
+"A great starting point. You'll begin with the most common words and progress "
+"quickly."
+
+#: seviye/views.py:50
+msgid ""
+"Temelin sağlam. Günlük hayatın kelimelerini oturtup bir üst basamağa geçmeye "
+"hazırsın."
+msgstr ""
+"Your basics are solid. You're ready to settle the words of everyday life and "
+"move up a step."
+
+#: seviye/views.py:51
+msgid ""
+"Günlük konularda rahatsın. Şimdi okumaları ve yazmayı güçlendirecek "
+"kelimelerin zamanı."
+msgstr ""
+"You're comfortable with everyday topics. Now it's time for words that "
+"strengthen your reading and writing."
+
+#: seviye/views.py:52
+msgid ""
+"Güçlü bir kelime bilgin var. Akademik ve daha ince anlamlı kelimelerle devam "
+"edebilirsin."
+msgstr ""
+"You have a strong vocabulary. You can continue with academic words and words "
+"with finer shades of meaning."
+
+#: seviye/views.py:53
+msgid ""
+"Çok iyi! İleri düzey kelimelerle kelime hazneni daha da "
+"zenginleştirebilirsin."
+msgstr ""
+"Very good! You can enrich your vocabulary even more with advanced words."
+
+#: seviye/views.py:54
+msgid ""
+"Harika! Çok ileri bir düzeydesin; nadir ve incelikli kelimelerle devam "
+"edebilirsin."
+msgstr ""
+"Excellent! You're at a very advanced level; you can continue with rare and "
+"subtle words."
+
+#: seviye/views.py:85 seviye/views.py:264
+msgid "Seviye testi"
+msgstr "Level test"
+
+#: seviye/views.py:85
+msgid ""
+"Seviyeni kaydedip ilk listeni hazırlayabilmek için bir hesaba ihtiyacın var."
+msgstr "You need an account to save your level and prepare your first list."
+
+#: seviye/views.py:100
+msgid "Seviye testi şu an hazır değil. Seviyeni kendin seçebilirsin."
+msgstr ""
+"The level test isn't ready right now. You can choose your level yourself."
+
+#: seviye/views.py:256 templates/pages/seviye/sonuc.html:42
+msgid "İlk listen geri alındı."
+msgstr "Your first list was undone."
+
+#: seviye/views.py:275
+msgid "Lütfen bir seviye seç."
+msgstr "Please choose a level."
+
+#: seviye/views.py:277
+msgid "Seviyemi seçeyim"
+msgstr "Choose my level"
+
+#: templates/base/_accountButton.html:9 templates/pages/profile/ayarlar.html:21
+#: templates/pages/profile/hesap.html:14 userprofile/views.py:14
+msgid "Hesap"
+msgstr "Account"
+
+#: templates/base/_accountButton.html:24 templates/pages/loginRequired.html:25
+#: templates/pages/users/login.html:5
+msgid "Giriş Yap"
+msgstr "Sign in"
+
+#: templates/base/_dilDugmesi.html:15
+msgid "Dil seç"
+msgstr "Choose language"
+
+#: templates/base/_geriAl.html:74 templates/pages/learnpass/learnPass.html:81
+#: templates/pages/readings.html:85 templates/pages/seviye/sonuc.html:45
+msgid "Geri al"
+msgstr "Undo"
+
+#: templates/base/_haftaGunleri.html:1
+msgctxt "pazartesi kısaltması"
+msgid "Pt"
+msgstr "Mo"
+
+#: templates/base/_haftaGunleri.html:1
+msgctxt "salı kısaltması"
+msgid "Sa"
+msgstr "Tu"
+
+#: templates/base/_haftaGunleri.html:1
+msgctxt "çarşamba kısaltması"
+msgid "Ça"
+msgstr "We"
+
+#: templates/base/_haftaGunleri.html:1
+msgctxt "perşembe kısaltması"
+msgid "Pe"
+msgstr "Th"
+
+#: templates/base/_haftaGunleri.html:1
+msgctxt "cuma kısaltması"
+msgid "Cu"
+msgstr "Fr"
+
+#: templates/base/_haftaGunleri.html:1
+msgctxt "cumartesi kısaltması"
+msgid "Ct"
+msgstr "Sa"
+
+#: templates/base/_haftaGunleri.html:1
+msgctxt "pazar kısaltması"
+msgid "Pz"
+msgstr "Su"
+
+#: templates/base/_kartListeDugmesi.html:21
+#: templates/base/_kelimeKartiJs.html:41
+#: templates/pages/readings/_kelimeBaloncugu.html:159
+msgid "Listemde — çıkarmak için dokun"
+msgstr "On my list — tap to remove"
+
+#: templates/base/_kartListeDugmesi.html:21
+#: templates/base/_kartListeDugmesi.html:26
+#: templates/base/_kelimeKartiJs.html:41 templates/pages/gunun/_ifade.html:31
+#: templates/pages/learnpass/modePicker.html:74
+#: templates/pages/readings/_kelimeBaloncugu.html:159
+#: templates/pages/readings/_kelimeBaloncugu.html:160
+msgid "Listeme ekle"
+msgstr "Add to my list"
+
+#: templates/base/_kartListeDugmesi.html:27
+#: templates/pages/readings/_kelimeBaloncugu.html:163
+msgid "Listemde"
+msgstr "On my list"
+
+#: templates/base/_kelimeKarti.html:93
+msgid "Kartı kapat"
+msgstr "Close card"
+
+#: templates/base/_kelimeKarti.html:127 templates/pages/words/_madde.html:57
+msgid "Daha fazla örnek"
+msgstr "More examples"
+
+#: templates/base/_kelimeKarti.html:133 templates/pages/words/_madde.html:61
+msgid "Kalıplar"
+msgstr "Patterns"
+
+#: templates/base/_kelimeKarti.html:173
+msgid "aynı aileden"
+msgstr "same family"
+
+#: templates/base/_kelimeKarti.html:173 templates/pages/words/_madde.html:99
+msgid "Aile:"
+msgstr "Family:"
+
+#: templates/base/_kelimeKartiJs.html:57 templates/bildirimler/_ayar.html:49
+#: templates/pages/gunun/_js.html:30 templates/pages/readings.html:192
+#: templates/pages/words/_listem.html:186
+msgid "Bir sorun oldu, tekrar dener misin?"
+msgstr "Something went wrong, could you try again?"
+
+#: templates/base/_kelimeKartiJs.html:76
+#, python-brace-format
+msgid "“{kelime}” listenden çıkarıldı"
+msgstr "“{kelime}” was removed from your list"
+
+#: templates/base/_mobileTabBar.html:13
+msgid "Alt menü"
+msgstr "Bottom menu"
+
+#: templates/base/_progressBar.html:12 templates/base/_progressScript.html:139
+msgid "Hazırlanıyor..."
+msgstr "Preparing..."
+
+#: templates/base/_progressBar.html:25
+msgid "Bu işlem yarım dakika kadar sürebilir. Sayfayı kapatmayın."
+msgstr "This can take about half a minute. Please don't close the page."
+
+#: templates/base/_progressScript.html:95
+msgid "İşlem kaydı bulunamadı. Lütfen tekrar deneyin."
+msgstr "The job couldn't be found. Please try again."
+
+#: templates/base/_progressScript.html:96
+msgid "Bağlantı koptu. Lütfen tekrar deneyin."
+msgstr "The connection was lost. Please try again."
+
+#: templates/base/_progressScript.html:121
+msgid "Sonuç alınamadı."
+msgstr "No result came back."
+
+#: templates/base/_progressScript.html:124
+msgid "Sonuç alınamadı. Lütfen tekrar deneyin."
+msgstr "No result came back. Please try again."
+
+#: templates/base/_progressScript.html:153
+msgid "İşlem başlatılamadı."
+msgstr "Couldn't start."
+
+#: templates/base/_progressScript.html:164
+msgid "İşlem başlatılamadı. Bağlantınızı kontrol edin."
+msgstr "Couldn't start. Please check your connection."
+
+#: templates/base/_telaffuz.html:16
+msgid "Amerikan aksanıyla dinle"
+msgstr "Listen with an American accent"
+
+#: templates/base/_telaffuz.html:21
+msgid "İngiliz aksanıyla dinle"
+msgstr "Listen with a British accent"
+
+#: templates/base/navbar.html:20
+msgid "Ana menü"
+msgstr "Main menu"
+
+#: templates/bildirimler/_ayar.html:11
+msgid "Bildirimler"
+msgstr "Notifications"
+
+#: templates/bildirimler/_ayar.html:12
+msgid ""
+"Çalışmadığın günlerde öğlen günün kelimesi, gece yarısına doğru seri "
+"hatırlatması. Günde en çok iki bildirim."
+msgstr ""
+"On days you haven't studied: the word of the day at noon and a streak "
+"reminder near midnight. At most two notifications a day."
+
+#: templates/bildirimler/_ayar.html:15
+msgid "Kontrol ediliyor…"
+msgstr "Checking…"
+
+#: templates/bildirimler/_ayar.html:27
+msgid "Bu tarayıcı bildirimleri desteklemiyor."
+msgstr "This browser doesn't support notifications."
+
+#: templates/bildirimler/_ayar.html:28
+msgid ""
+"iPhone'da bildirim için LearnVocab'ı önce ana ekrana eklemelisin (Paylaş › "
+"Ana Ekrana Ekle)."
+msgstr ""
+"For notifications on iPhone, add LearnVocab to your home screen first "
+"(Share › Add to Home Screen)."
+
+#: templates/bildirimler/_ayar.html:29
+msgid ""
+"Bildirim izni tarayıcıda engellenmiş. Tarayıcının site ayarlarından izin "
+"verebilirsin."
+msgstr ""
+"Notifications are blocked in your browser. You can allow them in the "
+"browser's site settings."
+
+#: templates/bildirimler/_ayar.html:30
+msgid "Bu cihazda bildirimler açık."
+msgstr "Notifications are on for this device."
+
+#: templates/bildirimler/_ayar.html:31
+msgid "Bu cihazda bildirimler kapalı."
+msgstr "Notifications are off for this device."
+
+#: templates/bildirimler/_ayar.html:39
+msgid "Aç"
+msgstr "Turn on"
+
+#: templates/bildirimler/_onEkran.html:22
+#: templates/bildirimler/_onEkran.html:41
+msgid "Serin bozulmasın, haber vereyim mi?"
+msgstr "Keep your streak alive — shall I remind you?"
+
+#: templates/bildirimler/_onEkran.html:24
+msgid ""
+"O gün çalışmadıysan öğlen <strong>günün kelimesini</strong> gönderirim, gece "
+"yarısına doğru da <strong>serin bitmeden</strong> hatırlatırım. Günde en çok "
+"iki bildirim; başka bir şey göndermem."
+msgstr ""
+"If you haven't studied that day, I'll send you the <strong>word of the day</"
+"strong> at noon and remind you near midnight <strong>before your streak "
+"ends</strong>. At most two notifications a day; nothing else."
+
+#: templates/bildirimler/_onEkran.html:30
+msgid "Evet, hatırlat"
+msgstr "Yes, remind me"
+
+#: templates/bildirimler/_onEkran.html:32 templates/pages/seviye/giris.html:53
+msgid "Şimdi değil"
+msgstr "Not now"
+
+#: templates/bildirimler/_onEkran.html:42
+msgid "iPhone'da hatırlatma için LearnVocab'ı ana ekrana eklemen gerekiyor:"
+msgstr ""
+"To get reminders on iPhone, you need to add LearnVocab to your home screen:"
+
+#: templates/bildirimler/_onEkran.html:46
+msgid "Safari'nin altındaki <strong>Paylaş</strong> simgesine dokun"
+msgstr "Tap the <strong>Share</strong> icon at the bottom of Safari"
+
+#: templates/bildirimler/_onEkran.html:48
+msgid "<strong>Ana Ekrana Ekle</strong>'yi seç."
+msgstr "Choose <strong>Add to Home Screen</strong>."
+
+#: templates/bildirimler/_onEkran.html:49
+msgid "Ana ekrandaki LearnVocab'dan aç; hatırlatmayı Ayarlar'dan açabilirsin."
+msgstr ""
+"Open LearnVocab from your home screen; you can turn on reminders in Settings."
+
+#: templates/bildirimler/_onEkran.html:52
+msgid "Tamam"
+msgstr "OK"
+
+#: templates/bildirimler/_onEkran.html:103
+msgid "Harika! Çalışmadığın günlerde haber veririm."
+msgstr "Great! I'll let you know on days you haven't studied."
+
+#: templates/bildirimler/_onEkran.html:104
+msgid ""
+"Tamam, bildirim göndermeyeceğim. Fikrin değişirse Ayarlar'dan açabilirsin."
+msgstr ""
+"Okay, I won't send notifications. If you change your mind, you can turn them "
+"on in Settings."
+
+#: templates/bildirimler/_onEkran.html:106
+msgid "Şu an bildirimleri açamadım. Ayarlar'dan yeniden deneyebilirsin."
+msgstr ""
+"I couldn't turn on notifications right now. You can try again in Settings."
+
+#: templates/pages/about.html:14
+msgid "Yardım ve hakkında — LearnVocab"
+msgstr "Help and about — LearnVocab"
+
+#: templates/pages/about.html:37
+msgid "yardım ve hakkında"
+msgstr "help and about"
+
+#: templates/pages/about.html:38
+msgid "Nasıl kullanılır?"
+msgstr "How does it work?"
+
+#: templates/pages/about.html:39
+msgid "defterin ilk sayfası: her şey burada yazıyor"
+msgstr "the first page of the notebook: it's all written here"
+
+#: templates/pages/about.html:45
+msgid "İçindekiler"
+msgstr "Contents"
+
+#: templates/pages/about.html:46
+msgid "bu sayfada"
+msgstr "on this page"
+
+#: templates/pages/about.html:48 templates/pages/about.html:58
+msgid "LearnVocab nedir?"
+msgstr "What is LearnVocab?"
+
+#: templates/pages/about.html:52 templates/pages/about.html:139
+msgid "Siteyi kim yaptı?"
+msgstr "Who made this site?"
+
+#: templates/pages/about.html:60
+msgid ""
+"Üniversite hazırlık öğrencileri ve İngilizce öğrenen herkes için bir kelime "
+"defteri. Bakıp gidilen bir sözlük değil: kelimeyi bulursun, defterine "
+"eklersin, unutmadan önce yeniden karşına çıkar, okurken görürsün ve sonunda "
+"kendi cümlende kullanırsın."
+msgstr ""
+"A vocabulary notebook for university prep students and anyone learning "
+"English. Not a dictionary you glance at and leave: you find a word, add it "
+"to your notebook, it comes back before you forget it, you see it while "
+"reading and in the end you use it in your own sentence."
+
+#: templates/pages/about.html:64
+msgid "tanı"
+msgstr "recognise"
+
+#: templates/pages/about.html:65
+msgid "Sözlük ve Çalışmalar"
+msgstr "Dictionary and Practice"
+
+#: templates/pages/about.html:66
+msgid "Kelimeyi bul, anlamını öğren, Learn & Pass ve egzersizlerle hatırla."
+msgstr ""
+"Find the word, learn its meaning, remember it with Learn & Pass and "
+"exercises."
+
+#: templates/pages/about.html:69
+msgid "gör"
+msgstr "see"
+
+#: templates/pages/about.html:71
+msgid ""
+"Kelimeyi gerçek bir metinde gör; bilmediğine dokun, anlamı hemen çıksın."
+msgstr ""
+"See the word in a real text; tap the one you don't know and its meaning "
+"appears."
+
+#: templates/pages/about.html:74 templates/pages/words/_madde.html:125
+msgid "kullan"
+msgstr "use"
+
+#: templates/pages/about.html:76
+msgid "Birkaç cümle yaz, neyi doğru neyi yanlış yaptığını gör."
+msgstr "Write a few sentences and see what you got right and wrong."
+
+#: templates/pages/about.html:80
+msgid "bir gün nasıl geçer?"
+msgstr "how does a day go?"
+
+#: templates/pages/about.html:82
+msgid "Ana Sayfa'da günün kelimesine ve bekleyen tekrarlarına bak."
+msgstr "Check the word of the day and your waiting reviews on Home."
+
+#: templates/pages/about.html:83
+msgid ""
+"Learn & Pass'te 10 kart geç; birkaç dakika sürer ve günün serisini tamamlar."
+msgstr ""
+"Go through 10 cards in Learn & Pass; it takes a few minutes and completes "
+"the day's streak."
+
+#: templates/pages/about.html:84
+msgid "Vaktin varsa bir Kısa Sınav çöz."
+msgstr "If you have time, take a Quick Quiz."
+
+#: templates/pages/about.html:85
+msgid "Bir metin oku ya da birkaç cümle yaz."
+msgstr "Read a text or write a few sentences."
+
+#: templates/pages/about.html:87
+msgid ""
+"Hiçbiri zorunlu değil; bütün bölümler her zaman açık. İstediğin yerden başla."
+msgstr ""
+"None of it is required; every section is always open. Start wherever you "
+"like."
+
+#: templates/pages/about.html:101
+#, python-format
+msgid "%(baslik)s: ekran görüntüsü"
+msgstr "%(baslik)s: screenshot"
+
+#: templates/pages/about.html:103
+#, python-format
+msgid "%(baslik)s: ekran görüntüsü (koyu tema)"
+msgstr "%(baslik)s: screenshot (dark theme)"
+
+#: templates/pages/about.html:120
+msgid "Deneme Sınavı'ndaki soru tipleri"
+msgstr "Question types in the Practice Test"
+
+#: templates/pages/about.html:142
+msgid ""
+"Merhaba, ben <strong>Efe Solmaz</strong>. 2025'te ODTÜ Bilgisayar "
+"Mühendisliği'ni kazandım; LearnVocab'i hazırlık yılımda, kendi kelime "
+"öğrenme sorunumu çözmek için yazmaya başladım."
+msgstr ""
+"Hi, I'm <strong>Efe Solmaz</strong>. In 2025 I got into Computer Engineering "
+"at METU (ODTÜ); I started writing LearnVocab during my prep year to solve my "
+"own problem with learning vocabulary."
+
+#: templates/pages/about.html:143
+msgid ""
+"Telefonun not uygulamasına kelime ve anlam yazmak işe yaramıyordu. Denediğim "
+"siteler ve uygulamalar da ya yalnızca sözlüktü ya da herkese aynı kalıbı "
+"veriyordu. Benim istediğim üç şeydi: kelimeyi gerçek bir cümlede görmek, "
+"unutmadan önce yeniden karşıma çıkması ve onu kendi cümlemde kullanabilmek. "
+"Bu site o üç şey için yapıldı."
+msgstr ""
+"Writing words and meanings into my phone's notes app didn't work. The sites "
+"and apps I tried were either just dictionaries or gave everyone the same "
+"template. I wanted three things: to see a word in a real sentence, to have "
+"it come back before I forget it, and to be able to use it in my own "
+"sentence. This site was made for those three things."
+
+#: templates/pages/about.html:144
+msgid ""
+"Python ve Java ile uğraşıyorum; siteyi tek başıma geliştiriyorum. Bir hata "
+"görürsen ya da bir önerin varsa yaz, hepsini okurum."
+msgstr ""
+"I work with Python and Java; I'm building the site on my own. If you see a "
+"bug or have a suggestion, write to me — I read everything."
+
+#: templates/pages/about.html:148
+msgid "iletişim"
+msgstr "contact"
+
+#: templates/pages/about.html:149 templates/pages/users/register.html:45
+msgid "E-posta"
+msgstr "Email"
+
+#: templates/pages/anasayfa/_defterJs.html:30
+msgid "Bağlantı kurulamadı; bu cevap kaydedilmedi."
+msgstr "Couldn't connect; this answer wasn't saved."
+
+#: templates/pages/anasayfa/_defterJs.html:35
+#, python-brace-format
+msgid ""
+"{toplam} kelimeden {bilinen} tanesini biliyordun. Gerisini biz hatırlatırız."
+msgstr "You knew {bilinen} of {toplam} words. We'll remind you of the rest."
+
+#: templates/pages/anasayfa/_seriKutusu.html:19
+msgid "günlük seri"
+msgid_plural "günlük seri"
+msgstr[0] "day streak"
+msgstr[1] "day streak"
+
+#: templates/pages/anasayfa/_seriKutusu.html:25
+msgid "Seri takvimi"
+msgstr "Streak calendar"
+
+#: templates/pages/anasayfa/_seriKutusu.html:35
+msgid "dondurma hakkı:"
+msgstr "streak freezes:"
+
+#: templates/pages/anasayfa/_seriKutusu.html:44
+msgid "Yeni seri başlatmak için hemen alıştırma yap →"
+msgstr "Practice now to start a new streak →"
+
+#: templates/pages/anasayfa/_seriKutusu.html:49
+msgid "Önceki ay"
+msgstr "Previous month"
+
+#: templates/pages/anasayfa/_seriKutusu.html:51
+msgid "Sonraki ay"
+msgstr "Next month"
+
+#: templates/pages/anasayfa/_seriKutusu.html:63
+msgid "Yapıldı"
+msgstr "Done"
+
+#: templates/pages/anasayfa/_seriKutusu.html:64
+msgid "Donduruldu"
+msgstr "Frozen"
+
+#: templates/pages/anasayfa/_seriKutusu.html:65
+msgid "Yapılmadı"
+msgstr "Missed"
+
+#: templates/pages/anasayfa/_seriKutusu.html:70
+#, python-brace-format
+msgctxt "tekil"
+msgid "{n} günlük seri"
+msgstr "{n}-day streak"
+
+#: templates/pages/anasayfa/_seriKutusu.html:70
+#, python-brace-format
+msgctxt "çoğul"
+msgid "{n} günlük seri"
+msgstr "{n}-day streak"
+
+#: templates/pages/anasayfa/_seriKutusu.html:71
+#, python-brace-format
+msgctxt "tekil"
+msgid "En uzun seri: {n} gün"
+msgstr "Longest streak: {n} day"
+
+#: templates/pages/anasayfa/_seriKutusu.html:71
+#, python-brace-format
+msgctxt "çoğul"
+msgid "En uzun seri: {n} gün"
+msgstr "Longest streak: {n} days"
+
+#: templates/pages/egzersizler/acilis.html:23
+msgid "listendeki kelimelerle küçük sınavlar; not yok, sadece sen"
+msgstr "small quizzes with the words on your list; no grades, just you"
+
+#: templates/pages/egzersizler/acilis.html:30
+msgid "Yarım kalan bir turun var."
+msgstr "You have an unfinished round."
+
+#: templates/pages/egzersizler/acilis.html:33
+msgid "Devam et"
+msgstr "Continue"
+
+#: templates/pages/egzersizler/acilis.html:40
+msgid "çoğu gün bu yeter"
+msgstr "enough for most days"
+
+#: templates/pages/egzersizler/acilis.html:42
+msgid "Listendeki kelimelerin anlamları, iki yönlü. Ayar yok: bas ve başla."
+msgstr ""
+"The meanings of the words on your list, both ways. No settings: just tap and "
+"go."
+
+#: templates/pages/egzersizler/acilis.html:48
+msgid "Listen seni bekliyor."
+msgstr "Your list is waiting for you."
+
+#: templates/pages/egzersizler/acilis.html:49
+msgid ""
+"Sözlük'te <span class=\"font-bold\">+</span> ile ya da Learn &amp; Pass'te "
+"birkaç kelime ekle; Kısa Sınav onlarla hazır olacak."
+msgstr ""
+"Add a few words with <span class=\"font-bold\">+</span> in the Dictionary or "
+"in Learn &amp; Pass; the Quick Quiz will be ready with them."
+
+#: templates/pages/egzersizler/acilis.html:53
+#, python-format
+msgid "%(n)s soru"
+msgid_plural "%(n)s soru"
+msgstr[0] "%(n)s question"
+msgstr[1] "%(n)s questions"
+
+#: templates/pages/egzersizler/acilis.html:55
+#, python-format
+msgid "Listende %(n)s kelime var, kısa bir tur olacak."
+msgid_plural "Listende %(n)s kelime var, kısa bir tur olacak."
+msgstr[0] "There is %(n)s word on your list, so it'll be a short round."
+msgstr[1] "There are %(n)s words on your list, so it'll be a short round."
+
+#: templates/pages/egzersizler/acilis.html:56
+#: templates/pages/egzersizler/bitis.html:51
+msgid "Listene kelime ekle"
+msgstr "Add words to your list"
+
+#: templates/pages/egzersizler/acilis.html:61
+msgid "Başla →"
+msgstr "Start →"
+
+#: templates/pages/egzersizler/acilis.html:71
+msgid "daha çok çalışmak istersen"
+msgstr "if you want to do more"
+
+#: templates/pages/egzersizler/acilis.html:74
+msgid "adı:"
+msgstr "name:"
+
+#: templates/pages/egzersizler/acilis.html:76
+msgid ""
+"Bütün soru tipleri, karışık ya da tek tipe odaklı. Önce kaç soru, sonra "
+"hangi tip."
+msgstr ""
+"All question types, mixed or focused on one type. First how many questions, "
+"then which type."
+
+#: templates/pages/egzersizler/acilis.html:83
+msgid "Kaç soru?"
+msgstr "How many questions?"
+
+#: templates/pages/egzersizler/acilis.html:95
+msgid "Soru tipi"
+msgstr "Question type"
+
+#: templates/pages/egzersizler/acilis.html:101
+msgid "Karışık"
+msgstr "Mixed"
+
+#: templates/pages/egzersizler/acilis.html:102
+msgid "Açık olan bütün tiplerden, sırası karışık"
+msgstr "From all available types, in random order"
+
+#: templates/pages/egzersizler/acilis.html:122
+#, python-brace-format
+msgid "{n} soruyla başla →"
+msgstr "Start with {n} questions →"
+
+#: templates/pages/egzersizler/acilis.html:122
+#: templates/pages/texts/_diyalogNotu.html:13
+msgid "Başla"
+msgstr "Start"
+
+#: templates/pages/egzersizler/bitis.html:10
+msgid "Egzersiz bitti"
+msgstr "Exercise finished"
+
+#: templates/pages/egzersizler/bitis.html:21
+msgid "yanlışların tekrarı"
+msgstr "redoing your mistakes"
+
+#: templates/pages/egzersizler/bitis.html:32
+msgid "Yanlışların"
+msgstr "Your mistakes"
+
+#: templates/pages/egzersizler/bitis.html:44
+msgid "hepsi doğru, tek kırmızı çizgi yok ✓"
+msgstr "all correct, not a single red line ✓"
+
+#: templates/pages/egzersizler/bitis.html:50
+msgid "Listen büyüdükçe Kısa Sınav tam 10 soruya çıkar."
+msgstr "As your list grows, the Quick Quiz goes up to a full 10 questions."
+
+#: templates/pages/egzersizler/bitis.html:59
+msgid "Yanlışları tekrar çöz"
+msgstr "Redo my mistakes"
+
+#: templates/pages/egzersizler/bitis.html:67
+#: templates/pages/learnpass/learnPass.html:193
+msgid "Yeni tur"
+msgstr "New round"
+
+#: templates/pages/egzersizler/bitis.html:69
+#: templates/pages/learnpass/learnPass.html:64
+#: templates/pages/learnpass/learnPass.html:195
+msgid "Bitir"
+msgstr "Finish"
+
+#: templates/pages/egzersizler/soru.html:18
+#, python-format
+msgid "Egzersiz · %(no)s/%(toplam)s"
+msgstr "Exercise · %(no)s/%(toplam)s"
+
+#: templates/pages/egzersizler/soru.html:47
+msgid "Egzersizden çık"
+msgstr "Leave the exercise"
+
+#: templates/pages/egzersizler/soru.html:47
+msgid "Çık (tur kaydedildi, sonra devam edebilirsin)"
+msgstr "Leave (your round is saved, you can continue later)"
+
+#: templates/pages/egzersizler/soru.html:54
+msgid "İlerleme"
+msgstr "Progress"
+
+#: templates/pages/egzersizler/soru.html:68
+#, python-format
+msgid "soru %(no)s ·"
+msgstr "question %(no)s ·"
+
+#: templates/pages/egzersizler/soru.html:77
+msgid "ZIT ANLAMLISI"
+msgstr "OPPOSITE"
+
+#: templates/pages/egzersizler/soru.html:77
+msgid "EŞ ANLAMLISI"
+msgstr "SYNONYM"
+
+#: templates/pages/egzersizler/soru.html:77
+msgid "DAHA BASİT KARŞILIĞI"
+msgstr "SIMPLER WORD"
+
+#: templates/pages/egzersizler/soru.html:87
+#, python-format
+msgid ""
+"“<span lang=\"en\">%(kelime)s</span>” kelimesinin <span "
+"class=\"%(renk)s\">zıt anlamlısı</span> hangisi?"
+msgstr ""
+"Which one is the <span class=\"%(renk)s\">opposite</span> of “<span "
+"lang=\"en\">%(kelime)s</span>”?"
+
+#: templates/pages/egzersizler/soru.html:88
+#, python-format
+msgid ""
+"“<span lang=\"en\">%(kelime)s</span>” kelimesinin <span "
+"class=\"%(renk)s\">eş anlamlısı</span> hangisi?"
+msgstr ""
+"Which one is a <span class=\"%(renk)s\">synonym</span> of “<span "
+"lang=\"en\">%(kelime)s</span>”?"
+
+#: templates/pages/egzersizler/soru.html:89
+#, python-format
+msgid ""
+"“<span lang=\"en\">%(kelime)s</span>” kelimesinin <span "
+"class=\"%(renk)s\">daha basit karşılığı</span> hangisi?"
+msgstr ""
+"Which one is a <span class=\"%(renk)s\">simpler word</span> for “<span "
+"lang=\"en\">%(kelime)s</span>”?"
+
+#: templates/pages/egzersizler/soru.html:96
+msgid "Bir kelimeye, sonra anlamına dokun."
+msgstr "Tap a word, then its meaning."
+
+#: templates/pages/egzersizler/soru.html:122
+#: templates/pages/texts/diyalog.html:72
+msgid "Kontrol et"
+msgstr "Check"
+
+#: templates/pages/egzersizler/soru.html:159
+msgid "Sonucu gör"
+msgstr "See results"
+
+#: templates/pages/egzersizler/soru.html:159
+#: templates/pages/learnpass/learnPass.html:146
+msgid "Devam"
+msgstr "Continue"
+
+#: templates/pages/egzersizler/soru.html:165
+msgid "1–4 tuşlarıyla seçebilirsin ·"
+msgstr "choose with keys 1–4 ·"
+
+#: templates/pages/egzersizler/soru.html:165
+msgid "Enter ile devam"
+msgstr "Enter to continue"
+
+#: templates/pages/egzersizler/soru.html:212
+msgid "Bağlantı koptu. Tekrar dener misin?"
+msgstr "The connection was lost. Could you try again?"
+
+#: templates/pages/gunun/_ifade.html:10
+msgid "Günün ifadesi"
+msgstr "Phrase of the day"
+
+#: templates/pages/gunun/_ifade.html:12
+msgid "günün ifadesi"
+msgstr "phrase of the day"
+
+#: templates/pages/gunun/_ifade.html:15
+msgid "Bugünün ifadesi tamam ✓, yarın yenisi gelecek."
+msgstr "Today's phrase is done ✓, a new one comes tomorrow."
+
+#: templates/pages/gunun/_kelime.html:13
+msgid "Günün kelimesi"
+msgstr "Word of the day"
+
+#: templates/pages/gunun/_kelime.html:15
+msgid "günün kelimesi"
+msgstr "word of the day"
+
+#: templates/pages/gunun/_kelime.html:18
+msgid "Bugünün kelimesi tamam ✓, yarın yenisi gelecek."
+msgstr "Today's word is done ✓, a new one comes tomorrow."
+
+#: templates/pages/gunun/_kelime.html:38 templates/pages/index.html:71
+msgid "bilmiyordum"
+msgstr "didn't know"
+
+#: templates/pages/gunun/_kelime.html:40 templates/pages/index.html:71
+msgid "biliyordum"
+msgstr "knew it"
+
+#: templates/pages/gunun/_kelime.html:44
+msgid "Tekrarlarına eklendi; Learn & Pass'te yeniden karşına çıkacak."
+msgstr "Added to your reviews; it'll come up again in Learn & Pass."
+
+#: templates/pages/index.html:11
+msgid "İngilizce kelime öğren"
+msgstr "Learn English vocabulary"
+
+#: templates/pages/index.html:12
+msgid ""
+"LearnVocab ile İngilizce kelime öğren: Türkçe anlamlı sözlük, kaydırarak "
+"kelime çalışması, egzersizler, okuma metinleri ve yazma alıştırmaları. "
+"Ücretsiz."
+msgstr ""
+"Learn English vocabulary with LearnVocab: a dictionary with Turkish "
+"meanings, swipe-to-learn word practice, exercises, reading texts and writing "
+"practice. Free."
+
+#: templates/pages/index.html:22
+#, python-format
+msgid "Merhaba, %(ad)s."
+msgstr "Hi, %(ad)s."
+
+#: templates/pages/index.html:24
+#, python-format
+msgid ""
+"Defterinde bugün <span class=\"lv-isaret\">%(n)s kelime</span> seni bekliyor."
+msgid_plural ""
+"Defterinde bugün <span class=\"lv-isaret\">%(n)s kelime</span> seni bekliyor."
+msgstr[0] ""
+"<span class=\"lv-isaret\">%(n)s word</span> is waiting in your notebook "
+"today."
+msgstr[1] ""
+"<span class=\"lv-isaret\">%(n)s words</span> are waiting in your notebook "
+"today."
+
+#: templates/pages/index.html:25
+msgid "Bugün defterine <span class=\"lv-isaret\">yeni bir sayfa</span> açalım."
+msgstr ""
+"Let's open <span class=\"lv-isaret\">a new page</span> in your notebook "
+"today."
+
+#: templates/pages/index.html:27
+#, python-format
+msgid "(%(n)s gündür aralıksız; bugün de tikini at)"
+msgid_plural "(%(n)s gündür aralıksız; bugün de tikini at)"
+msgstr[0] "(%(n)s day in a row; tick today off too)"
+msgstr[1] "(%(n)s days in a row; tick today off too)"
+
+#: templates/pages/index.html:27
+msgid "(bugünün ilk tiki seni bekliyor)"
+msgstr "(today's first tick is waiting for you)"
+
+#: templates/pages/index.html:29
+msgid "Bugünün çalışmasına başla →"
+msgstr "Start today's practice →"
+
+#: templates/pages/index.html:30
+#, python-format
+msgid "listem: <span>%(n)s</span> kelime"
+msgid_plural "listem: <span>%(n)s</span> kelime"
+msgstr[0] "my list: <span>%(n)s</span> word"
+msgstr[1] "my list: <span>%(n)s</span> words"
+
+#: templates/pages/index.html:30
+msgid "Listemdeki kelime"
+msgstr "Words on my list"
+
+#: templates/pages/index.html:33
+msgid ""
+"Kelime defterin, <span class=\"lv-isaret\">bu sefer</span> yarıda kalmasın."
+msgstr ""
+"Your vocabulary notebook — <span class=\"lv-isaret\">this time</span>, don't "
+"let it stop halfway."
+
+#: templates/pages/index.html:34
+msgid "(hepimizinki ikinci haftada kaldı)"
+msgstr "(everyone's stopped in week two)"
+
+#: templates/pages/index.html:36
+msgid ""
+"Hazırlıkta herkes bir kelime defteri tutar: solda kelime, sağda anlamı, "
+"altında bir cümle. Sonra sayfayı katlar, kendini dener. LearnVocab bunu "
+"senin yerine hatırlar."
+msgstr ""
+"In prep school everyone keeps a vocabulary notebook: the word on the left, "
+"its meaning on the right, a sentence underneath. Then you fold the page and "
+"test yourself. LearnVocab remembers it for you."
+
+#: templates/pages/index.html:39
+msgid "Hesap açmadan dene"
+msgstr "Try it without an account"
+
+#: templates/pages/index.html:40
+msgid "ya da seviyeni öğren →"
+msgstr "or find your level →"
+
+#: templates/pages/index.html:45
+msgid "Bir kelime ara…"
+msgstr "Search for a word…"
+
+#: templates/pages/index.html:47
+msgid "Sözlük'te ara"
+msgstr "Search the Dictionary"
+
+#: templates/pages/index.html:56
+msgid "Bugünün tekrarı"
+msgstr "Today's review"
+
+#: templates/pages/index.html:56
+msgid "Bugünün beş kelimesi"
+msgstr "Today's five words"
+
+#: templates/pages/index.html:57
+msgid "listenden, unutmaya başladıkların"
+msgstr "from your list, the ones you're starting to forget"
+
+#: templates/pages/index.html:57
+msgid "listen boşken, herkese bugün aynı beş kelime"
+msgstr "while your list is empty, the same five words for everyone today"
+
+#: templates/pages/index.html:59
+msgid "Kendini dene"
+msgstr "Test yourself"
+
+#: templates/pages/index.html:61 templates/pages/words/_listem.html:89
+msgid "kelime"
+msgstr "word"
+
+#: templates/pages/index.html:61 templates/pages/words/_listem.html:89
+msgid "anlamı"
+msgstr "meaning"
+
+#: templates/pages/index.html:72
+#, python-format
+msgid "%(kelime)s: anlamını aç"
+msgstr "%(kelime)s: show meaning"
+
+#: templates/pages/index.html:72
+msgid "dokun, aç"
+msgstr "tap to open"
+
+#: templates/pages/index.html:73
+msgid "yine soracağız!"
+msgstr "we'll ask again!"
+
+#: templates/pages/index.html:80
+msgid "katlanan yere dokun, kendini dene."
+msgstr "tap the folded part and test yourself."
+
+#: templates/pages/index.html:80
+msgid "cevapların kaydedilir; bilmediklerin birkaç gün sonra yine gelir."
+msgstr ""
+"your answers are saved; the ones you didn't know come back in a few days."
+
+#: templates/pages/index.html:80
+msgid "bilmediklerin birkaç gün sonra yine karşına çıkar."
+msgstr "the ones you didn't know come back in a few days."
+
+#: templates/pages/index.html:87
+msgid "Bugünün sayfası"
+msgstr "Today's page"
+
+#: templates/pages/index.html:88
+msgid "her gün yeni bir kelime, yeni bir ifade"
+msgstr "a new word and a new phrase every day"
+
+#: templates/pages/index.html:95
+msgid "ikisini de biliyorsan<br>bugünlük benden iyisin."
+msgstr "if you know both,<br>you beat me today."
+
+#: templates/pages/index.html:101
+msgid "Her gün bir tik"
+msgstr "A tick every day"
+
+#: templates/pages/index.html:102
+msgid "defterde tutulmayan tek şey: düzen"
+msgstr "the one thing a notebook never keeps: routine"
+
+#: templates/pages/index.html:106
+msgid "gündür aralıksız"
+msgid_plural "gündür aralıksız"
+msgstr[0] "day in a row"
+msgstr[1] "days in a row"
+
+#: templates/pages/index.html:106
+msgid "gün; bugün başlayalım"
+msgstr "days; let's start today"
+
+#: templates/pages/index.html:107
+#, python-format
+msgid ""
+"En uzun serin: <b class=\"text-gray-900 dark:text-slate-100\">%(n)s gün</b>."
+msgid_plural ""
+"En uzun serin: <b class=\"text-gray-900 dark:text-slate-100\">%(n)s gün</b>."
+msgstr[0] ""
+"Your longest streak: <b class=\"text-gray-900 dark:text-slate-100\">%(n)s "
+"day</b>."
+msgstr[1] ""
+"Your longest streak: <b class=\"text-gray-900 dark:text-slate-100\">%(n)s "
+"days</b>."
+
+#: templates/pages/index.html:107
+msgid ""
+"Günde birkaç dakika çalıştığın her gün takvimine bir tik düşer; gün, senin "
+"saatinle gece yarısı biter."
+msgstr ""
+"Every day you study for a few minutes, your calendar gets a tick; a day ends "
+"at midnight your time."
+
+#: templates/pages/index.html:110
+msgid ""
+"Günde birkaç dakika çalıştığın her gün takvimine bir tik düşer. Gün, senin "
+"saatinle gece yarısı biter."
+msgstr ""
+"Every day you study for a few minutes, your calendar gets a tick. A day ends "
+"at midnight your time."
+
+#: templates/pages/index.html:111
+msgid ""
+"İstersen tekrar zamanı geldiğinde telefonuna küçük bir hatırlatma gelir. "
+"Siteyi ana ekrana eklersen bir uygulama gibi açılır."
+msgstr ""
+"If you like, a small reminder comes to your phone when it's time to review. "
+"Add the site to your home screen and it opens like an app."
+
+#: templates/pages/index.html:115
+msgid "son beş haftan"
+msgstr "your last five weeks"
+
+#: templates/pages/index.html:115
+msgid "örnek: son beş hafta"
+msgstr "example: the last five weeks"
+
+#: templates/pages/index.html:127
+msgid "Bugün başka ne yapsan?"
+msgstr "What else today?"
+
+#: templates/pages/index.html:128
+msgid "hepsi birkaç dakika"
+msgstr "each takes a few minutes"
+
+#: templates/pages/index.html:131
+msgid "oku"
+msgstr "read"
+
+#: templates/pages/index.html:132
+msgid "Kısa bir metin, takıldığın kelimeye dokun"
+msgstr "A short text; tap the word you're stuck on"
+
+#: templates/pages/index.html:133
+msgid "Ya da kendi PDF'ini yükle."
+msgstr "Or upload your own PDF."
+
+#: templates/pages/index.html:136
+msgid "yaz"
+msgstr "write"
+
+#: templates/pages/index.html:137
+msgid "Listendeki kelimelerle 3–8 cümle"
+msgstr "3–8 sentences with the words on your list"
+
+#: templates/pages/index.html:138
+msgid "Kırmızı kalemle geri bildirim al."
+msgstr "Get feedback in red pen."
+
+#: templates/pages/index.html:141
+msgid "sına"
+msgstr "quiz"
+
+#: templates/pages/index.html:142
+msgid "Kısa Sınav: listenden 10 soru"
+msgstr "Quick Quiz: 10 questions from your list"
+
+#: templates/pages/index.html:143
+msgid "Ayar yok, bas ve başla."
+msgstr "No settings, just tap and go."
+
+#: templates/pages/index.html:147
+msgid "Defterin yapamadığı dört şey"
+msgstr "Four things a notebook can't do"
+
+#: templates/pages/index.html:148
+msgid "(kâğıda bir şey demiyoruz, kâğıdı severiz)"
+msgstr "(nothing against paper, we love paper)"
+
+#: templates/pages/index.html:150
+msgid "Unutacağın günü bilmez."
+msgstr "It doesn't know the day you'll forget."
+
+#: templates/pages/index.html:150
+msgid ""
+"Bildiğin kelimeyi 1, 3, 7 ve 21 gün sonra yeniden sorarız; tam unutmaya "
+"başladığın an."
+msgstr ""
+"We ask you again about a word you know 1, 3, 7 and 21 days later; right when "
+"you start to forget it."
+
+#: templates/pages/index.html:151
+msgid "Sesli okumaz."
+msgstr "It can't read aloud."
+
+#: templates/pages/index.html:151
+msgid "Sözlükteki her kelimenin Amerikan ve İngiliz telaffuzu var."
+msgstr ""
+"Every word in the dictionary has an American and a British pronunciation."
+
+#: templates/pages/index.html:152
+msgid "dinle:"
+msgstr "listen:"
+
+#: templates/pages/index.html:153
+msgid "Okurken yanında olmaz."
+msgstr "It isn't with you while you read."
+
+#: templates/pages/index.html:153
+msgid "Bir metin oku ya da kendi PDF'ini yükle. Takıldığın kelimeye dokun:"
+msgstr "Read a text or upload your own PDF. Tap the word you're stuck on:"
+
+#: templates/pages/index.html:157
+msgid "Yazdığını düzeltmez."
+msgstr "It doesn't correct what you write."
+
+#: templates/pages/index.html:157
+msgid ""
+"Listendeki kelimelerle kısa bir metin yaz; öğretmenin kırmızı kalemi gibi, "
+"nerede yanıldığını açıklamasıyla gösterir."
+msgstr ""
+"Write a short text with the words on your list; like a teacher's red pen, it "
+"shows where you went wrong and explains why."
+
+#: templates/pages/index.html:159
+msgid "“reluctant” arkasından “to” + fiil gelir."
+msgstr "“reluctant” is followed by “to” + verb."
+
+#: templates/pages/index.html:165
+msgid "Defterin arasındaki okumalar"
+msgstr "Readings tucked into the notebook"
+
+#: templates/pages/index.html:166
+msgid "kısa, seviyene göre, her biri birkaç dakika"
+msgstr "short, at your level, a few minutes each"
+
+#: templates/pages/index.html:173 templates/pages/readings.html:53
+#: templates/pages/readings.html:138 templates/pages/readings/oku.html:29
+#: templates/pages/readings/oku.html:78
+#, python-format
+msgid "~%(dk)s dk"
+msgstr "~%(dk)s min"
+
+#: templates/pages/index.html:177
+msgid "bütün okumalar →"
+msgstr "all readings →"
+
+#: templates/pages/index.html:181
+msgid "Defterinin sekmeleri"
+msgstr "Your notebook's tabs"
+
+#: templates/pages/index.html:181
+msgid "Hangi sayfadan başlamalısın?"
+msgstr "Which page should you start on?"
+
+#: templates/pages/index.html:182
+msgid "seviyelere göz at; senin sayfan işaretli"
+msgstr "browse the levels; your page is marked"
+
+#: templates/pages/index.html:182
+msgid "defterin sekmeleri: istediğine atla"
+msgstr "the notebook's tabs: jump to any of them"
+
+#: templates/pages/index.html:185
+msgid "← sen buradasın"
+msgstr "← you are here"
+
+#: templates/pages/index.html:189 templates/pages/profile/ayarlar.html:64
+msgid "Seviye testini tekrarla"
+msgstr "Retake the level test"
+
+#: templates/pages/index.html:189
+msgid "Seviyemi öğren"
+msgstr "Find my level"
+
+#: templates/pages/index.html:190
+msgid ""
+"bildiğin kelimelere dokun, birkaç kısa metin oku; gerisini biz söyleriz."
+msgstr ""
+"tap the words you know, read a few short texts; we'll tell you the rest."
+
+#: templates/pages/index.html:195 templates/pages/index.html:232
+msgid "Hazır listeler"
+msgstr "Ready-made lists"
+
+#: templates/pages/index.html:196
+msgid "başkası senin için yazmış; sen sadece başla"
+msgstr "someone else wrote it for you; you just start"
+
+#: templates/pages/index.html:203 templates/pages/seviye/sonuc.html:38
+#, python-format
+msgid "+%(n)s kelime daha"
+msgid_plural "+%(n)s kelime daha"
+msgstr[0] "+%(n)s more word"
+msgstr[1] "+%(n)s more words"
+
+#: templates/pages/index.html:204
+msgid "listeyi aç →"
+msgstr "open the list →"
+
+#: templates/pages/index.html:210
+msgid "Aklına takılanlar"
+msgstr "Things you might wonder"
+
+#: templates/pages/index.html:211
+msgid "kenara not düştük"
+msgstr "we jotted them in the margin"
+
+#: templates/pages/index.html:213
+msgid "Ücretli mi?"
+msgstr "Does it cost anything?"
+
+#: templates/pages/index.html:213
+msgid "Hayır. Sözlük, tekrar, okuma ve yazma ücretsiz."
+msgstr "No. The dictionary, reviews, reading and writing are free."
+
+#: templates/pages/index.html:214
+msgid "Hesap açmam gerekiyor mu?"
+msgstr "Do I need an account?"
+
+#: templates/pages/index.html:214
+msgid ""
+"Denemek için hayır. Kelimelerini ve serini saklamak istersen bir hesap yeter."
+msgstr ""
+"Not to try it out. If you want to keep your words and your streak, an "
+"account is all it takes."
+
+#: templates/pages/index.html:215
+msgid "Telefonda çalışır mı?"
+msgstr "Does it work on a phone?"
+
+#: templates/pages/index.html:215
+msgid ""
+"Evet. Ana ekrana eklersen bir uygulama gibi açılır, istersen hatırlatma da "
+"gönderir."
+msgstr ""
+"Yes. Add it to your home screen and it opens like an app; it can also send "
+"you reminders if you want."
+
+#: templates/pages/index.html:216
+msgid "Hangi seviyeler var?"
+msgstr "Which levels are there?"
+
+#: templates/pages/index.html:216
+msgid "A1'den C2'ye. Nereden başlayacağını bilmiyorsan seviye testi söyler."
+msgstr ""
+"From A1 to C2. If you don't know where to start, the level test will tell "
+"you."
+
+#: templates/pages/index.html:220
+msgid "Defterini aç. İlk sayfası hazır."
+msgstr "Open your notebook. The first page is ready."
+
+#: templates/pages/index.html:222
+msgid "Ücretsiz hesap aç"
+msgstr "Create a free account"
+
+#: templates/pages/index.html:223
+msgid "zaten hesabım var →"
+msgstr "I already have an account →"
+
+#: templates/pages/index.html:231
+#, python-format
+msgid "%(s)s kelimeleri"
+msgstr "%(s)s words"
+
+#: templates/pages/index.html:233
+msgid "Yardım ve hakkında"
+msgstr "Help and about"
+
+#: templates/pages/learnpass/learnPass.html:78
+msgid "Deneme turu"
+msgstr "Trial round"
+
+#: templates/pages/learnpass/learnPass.html:87
+msgid "Misafir olarak kaydırıyorsun, hiçbir şey kaydedilmez."
+msgstr "You're swiping as a guest; nothing is saved."
+
+#: templates/pages/learnpass/learnPass.html:88
+#: templates/pages/learnpass/learnPass.html:178
+#: templates/pages/users/login.html:58
+msgid "Giriş yap"
+msgstr "Sign in"
+
+#: templates/pages/learnpass/learnPass.html:99
+#: templates/pages/learnpass/learnPass.html:124
+#: templates/pages/learnpass/learnPass.html:324
+msgid "Bilmiyorum"
+msgstr "I don't know"
+
+#: templates/pages/learnpass/learnPass.html:101
+#: templates/pages/learnpass/learnPass.html:128
+#: templates/pages/learnpass/learnPass.html:323
+msgid "Biliyorum"
+msgstr "I know"
+
+#: templates/pages/learnpass/learnPass.html:112
+#: templates/pages/learnpass/learnPass.html:339
+msgid "Düşündüğün bu muydu?"
+msgstr "Is this what you thought?"
+
+#: templates/pages/learnpass/learnPass.html:135
+msgid "Hayır, yanılmışım"
+msgstr "No, I was wrong"
+
+#: templates/pages/learnpass/learnPass.html:139
+msgid "Evet, eminim"
+msgstr "Yes, I'm sure"
+
+#: templates/pages/learnpass/learnPass.html:150
+#: templates/pages/learnpass/learnPass.html:328
+msgid "Sağa kaydır: biliyorum · Sola kaydır: bilmiyorum"
+msgstr "Swipe right: I know · Swipe left: I don't know"
+
+#: templates/pages/learnpass/learnPass.html:153
+msgid "Bağlantı koptu, son kaydırman henüz kaydedilmedi."
+msgstr "The connection was lost; your last swipe hasn't been saved yet."
+
+#: templates/pages/learnpass/learnPass.html:154
+msgid "Tekrar dene"
+msgstr "Try again"
+
+#: templates/pages/learnpass/learnPass.html:163
+#: templates/pages/learnpass/learnPass.html:462
+msgid "Güzel iş!"
+msgstr "Nice work!"
+
+#: templates/pages/learnpass/learnPass.html:163
+msgid "Şu an gösterecek kelime kalmadı"
+msgstr "No words left to show right now"
+
+#: templates/pages/learnpass/learnPass.html:166
+msgid "Birazdan yeni bir tur deneyebilirsin."
+msgstr "You can try a new round in a moment."
+
+#: templates/pages/learnpass/learnPass.html:166
+msgid ""
+"Sözlük'ten listene kelime ekleyebilir ya da başka bir zaman tekrar "
+"gelebilirsin."
+msgstr ""
+"You can add words to your list from the Dictionary, or come back another "
+"time."
+
+#: templates/pages/learnpass/learnPass.html:176
+msgid "Listene eklemek için giriş yapman gerekiyor."
+msgstr "You need to sign in to add them to your list."
+
+#: templates/pages/learnpass/learnPass.html:182
+msgid "Evet, ekle"
+msgstr "Yes, add them"
+
+#: templates/pages/learnpass/learnPass.html:184
+msgid "Şimdilik hayır"
+msgstr "Not now"
+
+#: templates/pages/learnpass/learnPass.html:200
+#, python-brace-format
+msgctxt "tekil"
+msgid "Bilmediğin {n} kelimeyi listene ekleyelim mi?"
+msgstr "Shall we add the {n} word you didn't know to your list?"
+
+#: templates/pages/learnpass/learnPass.html:200
+#, python-brace-format
+msgctxt "çoğul"
+msgid "Bilmediğin {n} kelimeyi listene ekleyelim mi?"
+msgstr "Shall we add the {n} words you didn't know to your list?"
+
+#: templates/pages/learnpass/learnPass.html:201
+#: templates/pages/learnpass/modePicker.html:154
+#, python-brace-format
+msgctxt "tekil"
+msgid "{n} kelime listene eklendi"
+msgstr "{n} word added to your list"
+
+#: templates/pages/learnpass/learnPass.html:201
+#: templates/pages/learnpass/modePicker.html:154
+#, python-brace-format
+msgctxt "çoğul"
+msgid "{n} kelime listene eklendi"
+msgstr "{n} words added to your list"
+
+#: templates/pages/learnpass/learnPass.html:339
+msgid "Anlamı:"
+msgstr "Meaning:"
+
+#: templates/pages/learnpass/learnPass.html:340
+msgid "Eminim"
+msgstr "Sure"
+
+#: templates/pages/learnpass/learnPass.html:341
+msgid "Yanılmışım"
+msgstr "Wrong"
+
+#: templates/pages/learnpass/learnPass.html:348
+msgid "Sağa kaydır: evet, eminim · Sola kaydır: hayır, yanılmışım"
+msgstr "Swipe right: yes, I'm sure · Swipe left: no, I was wrong"
+
+#: templates/pages/learnpass/learnPass.html:349
+msgid "Devam etmek için kaydır"
+msgstr "Swipe to continue"
+
+#: templates/pages/learnpass/learnPass.html:462
+msgid "Bir dahaki sefere!"
+msgstr "Next time!"
+
+#: templates/pages/learnpass/learnPass.html:464
+#, python-brace-format
+msgid ""
+"{gorulen} kelimeye baktın: {bilinen} biliyordun, {bilinmeyen} tekrar "
+"edeceğiz."
+msgstr ""
+"You looked at {gorulen} words: you knew {bilinen}, we'll review {bilinmeyen}."
+
+#: templates/pages/learnpass/learnPass.html:465
+msgid "Şimdilik gösterecek kelime kalmadı."
+msgstr "No more words to show for now."
+
+#: templates/pages/learnpass/learnPass.html:466
+msgid "Hiç kaydırmadın; istediğin zaman tekrar başlayabilirsin."
+msgstr "You didn't swipe at all; you can start again whenever you like."
+
+#: templates/pages/learnpass/learnPass.html:498
+#: templates/pages/learnpass/modePicker.html:180
+msgid "Tamam, şimdilik eklemedik"
+msgstr "Okay, we didn't add them for now"
+
+#: templates/pages/learnpass/learnPass.html:500
+msgid "Egzersizlerde karşına çıkacaklar."
+msgstr "They'll come up in your exercises."
+
+#: templates/pages/learnpass/learnPass.html:512
+#: templates/pages/learnpass/modePicker.html:189
+msgid "Bağlantı kurulamadı, birazdan tekrar dene."
+msgstr "Couldn't connect, try again in a moment."
+
+#: templates/pages/learnpass/modePicker.html:28
+msgid "Kaydır, anlamını gör, geç. Birkaç dakika yeter."
+msgstr "Swipe, see the meaning, move on. A few minutes are enough."
+
+#: templates/pages/learnpass/modePicker.html:39
+msgid "seri"
+msgstr "streak"
+
+#: templates/pages/learnpass/modePicker.html:43
+msgid "bugün"
+msgstr "today"
+
+#: templates/pages/learnpass/modePicker.html:47
+#: templates/pages/profile/ayarlar.html:90
+#: templates/pages/words/_madde.html:120
+msgid "tekrar"
+msgstr "review"
+
+#: templates/pages/learnpass/modePicker.html:51
+msgid "listende"
+msgstr "on your list"
+
+#: templates/pages/learnpass/modePicker.html:61
+#, python-format
+msgid "Geçen sefer bilmediğin %(n)s kelime"
+msgid_plural "Geçen sefer bilmediğin %(n)s kelime"
+msgstr[0] "%(n)s word you didn't know last time"
+msgstr[1] "%(n)s words you didn't know last time"
+
+#: templates/pages/learnpass/modePicker.html:62
+msgid "Listene ekleyelim mi? Egzersizlerde karşına çıkarlar."
+msgstr "Shall we add them to your list? They'll come up in your exercises."
+
+#: templates/pages/learnpass/modePicker.html:78
+msgid "Şimdilik geç"
+msgstr "Skip for now"
+
+#: templates/pages/learnpass/modePicker.html:94
+msgid "bilmiyorum"
+msgstr "don't know"
+
+#: templates/pages/learnpass/modePicker.html:95
+msgid "biliyorum"
+msgstr "know"
+
+#: templates/pages/learnpass/modePicker.html:99
+msgid "Hemen Başla"
+msgstr "Start now"
+
+#: templates/pages/learnpass/modePicker.html:103
+#, python-format
+msgid "Karışım: yaklaşık %%%(tekrar)s tekrar · %%%(yeni)s yeni kelime."
+msgstr "Mix: about %(tekrar)s%% review · %(yeni)s%% new words."
+
+#: templates/pages/learnpass/modePicker.html:104
+msgid ""
+"Listende tekrar bekleyen kelime yok; şimdilik yeni kelimeler keşfedeceksin."
+msgstr ""
+"No words on your list are waiting for review; you'll discover new words for "
+"now."
+
+#: templates/pages/learnpass/modePicker.html:105
+msgid "Tekrar bekleyen kelimelerin birikti; bugün önce onları pekiştirelim."
+msgstr "Your reviews have piled up; let's reinforce them first today."
+
+#: templates/pages/learnpass/modePicker.html:105
+msgid "Dengeli bir karışım, böyle devam!"
+msgstr "A balanced mix, keep it up!"
+
+#: templates/pages/learnpass/modePicker.html:106
+msgid "oranı ayarla"
+msgstr "adjust the ratio"
+
+#: templates/pages/learnpass/modePicker.html:110
+msgid "Giriş yapmadan da kaydırabilirsin; yalnızca hiçbir şey kaydedilmez."
+msgstr "You can swipe without signing in too; just nothing gets saved."
+
+#: templates/pages/learnpass/modePicker.html:113
+msgid "Kişisel egzersiz çözebilmek için giriş yap"
+msgstr "Sign in to do personal exercises"
+
+#: templates/pages/learnpass/modePicker.html:121
+msgid "Nasıl oynanır?"
+msgstr "How does it work?"
+
+#: templates/pages/learnpass/modePicker.html:122
+msgid "üç adım, hepsi bu"
+msgstr "three steps, that's all"
+
+#: templates/pages/learnpass/modePicker.html:126
+msgid "Kelimeyi gör"
+msgstr "See the word"
+
+#: templates/pages/learnpass/modePicker.html:127
+msgid "Kartta yalnızca İngilizce kelime yazar. Anlamına bakmadan karar ver."
+msgstr ""
+"The card only shows the English word. Decide without looking at the meaning."
+
+#: templates/pages/learnpass/modePicker.html:131
+msgid "Kaydır"
+msgstr "Swipe"
+
+#: templates/pages/learnpass/modePicker.html:132
+msgid "Biliyorsan sağa, bilmiyorsan sola. Düğmeler ve ok tuşları da olur."
+msgstr ""
+"Right if you know it, left if you don't. Buttons and arrow keys work too."
+
+#: templates/pages/learnpass/modePicker.html:136
+msgid "Anlamı gör, geç"
+msgstr "See the meaning, move on"
+
+#: templates/pages/learnpass/modePicker.html:137
+msgid ""
+"Anlam ve bir örnek açılır. Bilmediklerin birkaç gün sonra yeniden gelir."
+msgstr ""
+"The meaning and an example open up. The ones you didn't know come back in a "
+"few days."
+
+#: templates/pages/learnpass/modePicker.html:144
+msgid "Neden işe yarar?"
+msgstr "Why does it work?"
+
+#: templates/pages/learnpass/modePicker.html:146
+msgid ""
+"Anlamı görmeden karar verirsin; \"biliyorum sanıyordum\" ile \"gerçekten "
+"biliyorum\" arasındaki farkı görürsün."
+msgstr ""
+"You decide before seeing the meaning, so you notice the difference between "
+"\"I thought I knew it\" and \"I really know it\"."
+
+#: templates/pages/learnpass/modePicker.html:147
+msgid "Bildiklerini hatırlatır, bilmediğin yeni kelimeleri keşfettirir."
+msgstr ""
+"It reminds you of what you know and helps you discover new words you don't."
+
+#: templates/pages/learnpass/modePicker.html:148
+msgid ""
+"Hızlıdır ve istediğin an bırakabilirsin; her kaydırma anında kaydedilir."
+msgstr "It's quick and you can stop any time; every swipe is saved instantly."
+
+#: templates/pages/learnpass/modePicker.html:148
+msgid "Hızlıdır ve istediğin an bırakabilirsin."
+msgstr "It's quick and you can stop any time."
+
+#: templates/pages/loginRequired.html:9
+#, python-format
+msgid "%(gate_area)s — Giriş gerekli"
+msgstr "%(gate_area)s — Sign-in required"
+
+#: templates/pages/loginRequired.html:16
+msgid "bu sayfa kilitli"
+msgstr "this page is locked"
+
+#: templates/pages/loginRequired.html:19
+#, python-format
+msgid ""
+"Şu anda giriş yapmadığınız için <b>%(gate_area)s</b> sayfasına giremezsiniz, "
+"önce giriş yapın."
+msgstr ""
+"You aren't signed in, so you can't open the <b>%(gate_area)s</b> page. "
+"Please sign in first."
+
+#: templates/pages/loginRequired.html:26
+msgid "Kayıt Ol →"
+msgstr "Sign up →"
+
+#: templates/pages/loginRequired.html:30
+#, python-format
+msgid ""
+"giriş yapmadan da <a href=\"%(sozluk)s\" class=\"font-bold underline "
+"decoration-1 underline-offset-4\">Sözlük</a> ve <a href=\"%(okumalar)s\" "
+"class=\"font-bold underline decoration-1 underline-offset-4\">Okumalar</a> "
+"bölümlerini gezebilirsin."
+msgstr ""
+"you can browse the <a href=\"%(sozluk)s\" class=\"font-bold underline "
+"decoration-1 underline-offset-4\">Dictionary</a> and <a "
+"href=\"%(okumalar)s\" class=\"font-bold underline decoration-1 underline-"
+"offset-4\">Reading</a> without signing in."
+
+#: templates/pages/profile/ayarlar.html:16
+#: templates/pages/profile/ayarlar.html:22
+#: templates/pages/profile/hesap.html:83 usersettings/views.py:23
+msgid "Ayarlar"
+msgstr "Settings"
+
+#: templates/pages/profile/ayarlar.html:23
+msgid "defterin son sayfası: nasıl çalışmak istediğin"
+msgstr "the last page of the notebook: how you want to study"
+
+#: templates/pages/profile/ayarlar.html:29
+msgid "Görünüm"
+msgstr "Appearance"
+
+#: templates/pages/profile/ayarlar.html:30
+msgid "\"sistem\" seçiliyken cihazının açık ya da koyu teması kullanılır"
+msgstr "with \"system\" selected, your device's light or dark theme is used"
+
+#: templates/pages/profile/ayarlar.html:31
+msgid "Tema"
+msgstr "Theme"
+
+#: templates/pages/profile/ayarlar.html:44
+msgid "Dil"
+msgstr "Language"
+
+#: templates/pages/profile/ayarlar.html:45
+msgid "sitenin dili; kelime anlamları ayrıca aşağıda"
+msgstr "the site's language; word meanings are set separately below"
+
+#: templates/pages/profile/ayarlar.html:64
+msgid "Seviye testini çöz"
+msgstr "Take the level test"
+
+#: templates/pages/profile/ayarlar.html:65
+#, python-format
+msgid "Seviyen: %(seviye)s. Günün kelimesi ve egzersizler buna göre gelir."
+msgstr "Your level: %(seviye)s. The word of the day and exercises match it."
+
+#: templates/pages/profile/ayarlar.html:65
+msgid "Seviyen henüz belirlenmedi."
+msgstr "Your level hasn't been set yet."
+
+#: templates/pages/profile/ayarlar.html:79
+msgid "Çalışma"
+msgstr "Studying"
+
+#: templates/pages/profile/ayarlar.html:80
+msgid "çalışırken geçerli olan tercihlerin"
+msgstr "your preferences while studying"
+
+#: templates/pages/profile/ayarlar.html:85
+msgid "Learn & Pass'te tekrar ve yeni kelime oranı"
+msgstr "Review / new word ratio in Learn & Pass"
+
+#: templates/pages/profile/ayarlar.html:86
+msgid ""
+"Sola çektikçe listendeki kelimeleri daha çok tekrar edersin, sağa çektikçe "
+"daha çok yeni kelime görürsün."
+msgstr ""
+"Slide left to review the words on your list more, slide right to see more "
+"new words."
+
+#: templates/pages/profile/ayarlar.html:91
+msgid "yeni"
+msgstr "new"
+
+#: templates/pages/profile/ayarlar.html:97
+msgid "Egzersizde soru sayısı"
+msgstr "Questions per exercise"
+
+#: templates/pages/profile/ayarlar.html:98
+msgid "Deneme Sınavı bu sayıyla açılır; başlarken yine değiştirebilirsin."
+msgstr ""
+"The Practice Test starts with this number; you can still change it when you "
+"start."
+
+#: templates/pages/profile/ayarlar.html:110
+msgid "Yazılarda geri bildirim"
+msgstr "Feedback on writings"
+
+#: templates/pages/profile/ayarlar.html:111
+msgid "Yazdığın metinlerde hataların ne kadar ayrıntılı gösterileceği."
+msgstr "How detailed your mistakes are shown in your texts."
+
+#: templates/pages/profile/ayarlar.html:122
+msgid "Testlerde sesi otomatik oynat"
+msgstr "Autoplay audio in tests"
+
+#: templates/pages/profile/ayarlar.html:122
+msgid "Kelime telaffuzları otomatik olarak başlar."
+msgstr "Word pronunciations start playing automatically."
+
+#: templates/pages/profile/ayarlar.html:124
+msgid "Türkçe anlamlar"
+msgstr "Turkish meanings"
+
+#: templates/pages/profile/ayarlar.html:124
+msgid ""
+"Kapatırsan kartlarda, Learn & Pass'te, okurken ve egzersizlerde Türkçe anlam "
+"gösterilmez ve sorulmaz; her şey İngilizce açıklamalarla yürür."
+msgstr ""
+"If you turn this off, Turkish meanings aren't shown or asked on cards, in "
+"Learn & Pass, while reading or in exercises; everything works with English "
+"definitions."
+
+#: templates/pages/profile/ayarlar.html:130
+msgid "E-posta Bildirimleri"
+msgstr "Email notifications"
+
+#: templates/pages/profile/ayarlar.html:131
+msgid "hangi konularda e-posta almak istersin?"
+msgstr "what would you like emails about?"
+
+#: templates/pages/profile/ayarlar.html:133
+msgid "Günlük hatırlatma e-postası"
+msgstr "Daily reminder email"
+
+#: templates/pages/profile/ayarlar.html:133
+msgid "Pratik yapmayı unuttuğunda hatırlatma göndeririz."
+msgstr "We send a reminder when you forget to practise."
+
+#: templates/pages/profile/ayarlar.html:134
+msgid "Yeni özellikler ve duyurular"
+msgstr "New features and announcements"
+
+#: templates/pages/profile/ayarlar.html:134
+msgid "Siteye eklenen yeni özellikler hakkında bilgi al."
+msgstr "Hear about new features added to the site."
+
+#: templates/pages/profile/ayarlar.html:135
+msgid "Geliştirme ve ipuçları"
+msgstr "Improvements and tips"
+
+#: templates/pages/profile/ayarlar.html:135
+msgid "Uygulamayı daha verimli kullanman için ipuçları."
+msgstr "Tips to use the app more effectively."
+
+#: templates/pages/profile/ayarlar.html:139
+msgid "Ayarları Kaydet"
+msgstr "Save settings"
+
+#: templates/pages/profile/ayarlar.html:144
+msgid "Verilerim"
+msgstr "My data"
+
+#: templates/pages/profile/ayarlar.html:145
+msgid "verilerini bir dosya olarak indir"
+msgstr "download your data as a file"
+
+#: templates/pages/profile/ayarlar.html:172
+msgid "Tehlikeli Bölge"
+msgstr "Danger zone"
+
+#: templates/pages/profile/ayarlar.html:173
+msgid "Geri alınamaz işlemler."
+msgstr "Actions that can't be undone."
+
+#: templates/pages/profile/ayarlar.html:186
+msgid "Listemdeki Tüm Kelimeleri Kaldır"
+msgstr "Remove all words from my list"
+
+#: templates/pages/profile/ayarlar.html:187
+msgid "Öğrenme listendeki tüm kelimeler (öğrendiklerin dahil) silinir."
+msgstr ""
+"Every word on your learning list (including the ones you've learned) will be "
+"deleted."
+
+#: templates/pages/profile/ayarlar.html:191
+#: templates/pages/profile/ayarlar.html:218
+msgid "Onaylamak için parolan"
+msgstr "Your password to confirm"
+
+#: templates/pages/profile/ayarlar.html:197
+msgid "Kelimeleri Kaldır"
+msgstr "Remove words"
+
+#: templates/pages/profile/ayarlar.html:213
+msgid "Hesabımı Kalıcı Olarak Sil"
+msgstr "Delete my account permanently"
+
+#: templates/pages/profile/ayarlar.html:214
+msgid "Tüm verilerin geri alınamaz şekilde silinir."
+msgstr "All your data will be deleted and can't be recovered."
+
+#: templates/pages/profile/ayarlar.html:224
+msgid "Hesabımı Sil"
+msgstr "Delete my account"
+
+#: templates/pages/profile/hesap.html:28
+#: templates/pages/profile/showAllUsers.html:12
+#: templates/pages/profile/showUserProfileWithAuthentication.html:25
+#: templates/pages/profile/showUserProfileWithoutAuthentication.html:25
+msgid "Profil fotoğrafı"
+msgstr "Profile photo"
+
+#: templates/pages/profile/hesap.html:33
+msgid "fotoğrafı değiştir"
+msgstr "change photo"
+
+#: templates/pages/profile/hesap.html:38
+msgctxt "hesap: isimden önce"
+msgid "bu defter"
+msgstr "this is"
+
+#: templates/pages/profile/hesap.html:40
+msgctxt "hesap: isimden sonra"
+msgid "'a aittir."
+msgstr "'s notebook."
+
+#: templates/pages/profile/hesap.html:44
+msgid "açılış"
+msgstr "started"
+
+#: templates/pages/profile/hesap.html:45
+msgid "listede"
+msgstr "on the list"
+
+#: templates/pages/profile/hesap.html:46
+msgid "en uzun seri"
+msgstr "longest streak"
+
+#: templates/pages/profile/hesap.html:48
+msgid "Çıkış Yap"
+msgstr "Sign out"
+
+#: templates/pages/profile/hesap.html:54
+msgid "Hesap Bilgileri"
+msgstr "Account details"
+
+#: templates/pages/profile/hesap.html:55
+msgid "platformda nasıl göründüğünü belirler"
+msgstr "how you appear on the platform"
+
+#: templates/pages/profile/hesap.html:58
+msgid "İsim"
+msgstr "First name"
+
+#: templates/pages/profile/hesap.html:62
+msgid "Soyisim"
+msgstr "Last name"
+
+#: templates/pages/profile/hesap.html:66
+msgid "E-posta Adresi"
+msgstr "Email address"
+
+#: templates/pages/profile/hesap.html:70
+#: templates/pages/users/forgotPassword1.html:25
+#: templates/pages/users/forgotPassword1.html:27
+#: templates/pages/users/login.html:37 templates/pages/users/login.html:39
+msgid "Kullanıcı Adı"
+msgstr "Username"
+
+#: templates/pages/profile/hesap.html:72
+msgid "Kullanıcı adın değiştirilemez."
+msgstr "Your username can't be changed."
+
+#: templates/pages/profile/hesap.html:75
+msgid "Değişiklikleri Kaydet"
+msgstr "Save changes"
+
+#: templates/pages/profile/hesap.html:82
+msgid "ayarlar →"
+msgstr "settings →"
+
+#: templates/pages/profile/hesap.html:84
+#, python-format
+msgid "Tema, seviye (%(seviye)s), dil, bildirimler, verilerim."
+msgstr "Theme, level (%(seviye)s), language, notifications, my data."
+
+#: templates/pages/profile/hesap.html:84
+msgid "Tema, seviye, dil, bildirimler, verilerim."
+msgstr "Theme, level, language, notifications, my data."
+
+#: templates/pages/profile/hesap.html:87
+msgid "güvenlik →"
+msgstr "security →"
+
+#: templates/pages/profile/hesap.html:88
+msgid "Parolamı Değiştir"
+msgstr "Change my password"
+
+#: templates/pages/profile/hesap.html:89
+msgid "Ayrı bir güvenli sayfada yapılır."
+msgstr "Done on a separate, secure page."
+
+#: templates/pages/profile/hesap.html:112
+#, python-brace-format
+msgid "{dosya} seçildi — kaydetmeyi unutma."
+msgstr "{dosya} selected — don't forget to save."
+
+#: templates/pages/profile/showAllUsers.html:25
+msgid "Kullanıcılar şu anda görüntülenemiyor."
+msgstr "Users can't be shown right now."
+
+#: templates/pages/profile/showUserProfileWithAuthentication.html:6
+#: templates/pages/profile/showUserProfileWithoutAuthentication.html:6
+msgid "Kullanıcı Profili"
+msgstr "User profile"
+
+#: templates/pages/profile/showUserProfileWithAuthentication.html:47
+#: templates/pages/profile/showUserProfileWithoutAuthentication.html:47
+msgid "Admin yetkisi:"
+msgstr "Admin rights:"
+
+#: templates/pages/profile/showUserProfileWithAuthentication.html:47
+#: templates/pages/profile/showUserProfileWithoutAuthentication.html:47
+msgid "var"
+msgstr "yes"
+
+#: templates/pages/profile/showUserProfileWithAuthentication.html:57
+#: templates/pages/profile/showUserProfileWithoutAuthentication.html:57
+msgid "Eklenen Kelime:"
+msgstr "Words added:"
+
+#: templates/pages/profile/showUserProfileWithAuthentication.html:64
+#: templates/pages/profile/showUserProfileWithoutAuthentication.html:64
+msgid "Listeye Dahil Edilen Kelime:"
+msgstr "Words included in the list:"
+
+#: templates/pages/profile/showUserProfileWithAuthentication.html:71
+#: templates/pages/profile/showUserProfileWithoutAuthentication.html:71
+msgid "Arkadaş Sayısı:"
+msgstr "Friends:"
+
+#: templates/pages/profile/showUserProfileWithAuthentication.html:82
+#: templates/pages/profile/showUserProfileWithAuthentication.html:86
+#: templates/pages/profile/showUserProfileWithoutAuthentication.html:83
+#: templates/pages/profile/showUserProfileWithoutAuthentication.html:87
+msgid "Biyografi"
+msgstr "Bio"
+
+#: templates/pages/readings.html:14
+msgid "İngilizce okuma metinleri — LearnVocab"
+msgstr "English reading texts — LearnVocab"
+
+#: templates/pages/readings.html:22
+msgid "oku, takıldığın kelimeye dokun: anlamı hemen yanında"
+msgstr ""
+"read and tap the word you're stuck on: its meaning appears right next to it"
+
+#: templates/pages/readings.html:29
+msgid "Kendi metinlerim"
+msgstr "My own texts"
+
+#: templates/pages/readings.html:30
+msgid "yalnızca sen görürsün"
+msgstr "only you can see them"
+
+#: templates/pages/readings.html:36 templates/pages/readings/ekle.html:30
+msgid "Metin yapıştır"
+msgstr "Paste text"
+
+#: templates/pages/readings.html:42 templates/pages/readings/ekle.html:28
+msgid "PDF yükle"
+msgstr "Upload PDF"
+
+#: templates/pages/readings.html:53
+msgid "Yapıştırılan metin"
+msgstr "Pasted text"
+
+#: templates/pages/readings.html:59
+msgid "Sil"
+msgstr "Delete"
+
+#: templates/pages/readings.html:59
+#, python-format
+msgid "“%(baslik)s” metnini sil"
+msgstr "Delete the text “%(baslik)s”"
+
+#: templates/pages/readings.html:66
+msgid ""
+"Henüz metin eklemedin. Derste okuduğun bir PDF'i yükle ya da bir yazıyı "
+"yapıştır; kelimelerine dokunarak oku."
+msgstr ""
+"You haven't added any texts yet. Upload a PDF you read in class or paste an "
+"article; read it by tapping its words."
+
+#: templates/pages/readings.html:73
+#, python-format
+msgid "Çöp kutusu (%(n)s)"
+msgstr "Trash (%(n)s)"
+
+#: templates/pages/readings.html:74
+#, python-format
+msgid "silinenler %(n)s gün sonra kalıcı olarak silinir"
+msgid_plural "silinenler %(n)s gün sonra kalıcı olarak silinir"
+msgstr[0] "deleted items are removed for good after %(n)s day"
+msgstr[1] "deleted items are removed for good after %(n)s days"
+
+#: templates/pages/readings.html:81
+#, python-format
+msgid "%(n)s gün kaldı"
+msgid_plural "%(n)s gün kaldı"
+msgstr[0] "%(n)s day left"
+msgstr[1] "%(n)s days left"
+
+#: templates/pages/readings.html:90
+msgid "Kalıcı sil"
+msgstr "Delete permanently"
+
+#: templates/pages/readings.html:99
+msgid ""
+"PDF'lerini ve kopyaladığın yazıları burada, kelimelerine dokunarak "
+"okuyabilirsin."
+msgstr "Read your PDFs and the articles you copy here, by tapping their words."
+
+#: templates/pages/readings.html:106
+msgid "Kütüphane"
+msgstr "Library"
+
+#: templates/pages/readings.html:107
+msgid "defterin arasına sıkıştırılmış kısa yazılar"
+msgstr "short pieces tucked into the notebook"
+
+#: templates/pages/readings.html:111
+msgid "Kütüphane hazırlanıyor."
+msgstr "The library is being prepared."
+
+#: templates/pages/readings.html:113
+msgid ""
+"Yakında burada kısa hikâyeler ve yazılar olacak. O zamana kadar kendi "
+"metinlerini ekleyip okuyabilirsin."
+msgstr ""
+"Short stories and articles will be here soon. Until then, you can add your "
+"own texts and read them."
+
+#: templates/pages/readings.html:119
+msgid "Konular"
+msgstr "Topics"
+
+#: templates/pages/readings.html:121 words/listem.py:36
+msgid "Tümü"
+msgstr "All"
+
+#: templates/pages/readings.html:143
+msgid "Bu konuda henüz metin yok."
+msgstr "No texts on this topic yet."
+
+#: templates/pages/readings.html:143
+msgid "Tümüne bak"
+msgstr "See all"
+
+#: templates/pages/readings.html:182
+#, python-brace-format
+msgid "“{baslik}” silindi"
+msgstr "“{baslik}” deleted"
+
+#: templates/pages/readings.html:188 templates/pages/words/_listem.html:183
+msgid "Geri alınamadı, sayfayı yenileyip tekrar dener misin?"
+msgstr "Couldn't undo; could you refresh the page and try again?"
+
+#: templates/pages/readings/_kelimeBaloncugu.html:207
+#: templates/pages/words/_sozlukSonuclari.html:60
+msgid "Henüz sözlüğümüzde yok."
+msgstr "Not in our dictionary yet."
+
+#: templates/pages/readings/_kelimeBaloncugu.html:257
+msgid "Anlamı şu an getiremedik, tekrar dokunur musun?"
+msgstr "We couldn't fetch the meaning right now; could you tap again?"
+
+#: templates/pages/readings/ekle.html:10
+msgid "Metin ekle — Okumalar"
+msgstr "Add a text — Reading"
+
+#: templates/pages/readings/ekle.html:18
+msgid "Kendi metnini ekle"
+msgstr "Add your own text"
+
+#: templates/pages/readings/ekle.html:19
+msgid ""
+"yalnızca sen görürsün; PDF dosyasını saklamıyoruz, yalnızca içindeki yazıyı "
+"alıyoruz"
+msgstr ""
+"only you can see it; we don't keep the PDF file, we only take the text "
+"inside it"
+
+#: templates/pages/readings/ekle.html:38
+msgid "Başlık"
+msgstr "Title"
+
+#: templates/pages/readings/ekle.html:38
+msgid "(isteğe bağlı)"
+msgstr "(optional)"
+
+#: templates/pages/readings/ekle.html:43
+msgid "PDF dosyası"
+msgstr "PDF file"
+
+#: templates/pages/readings/ekle.html:46
+#, python-format
+msgid ""
+"En çok %(en_buyuk_mb)s MB ve %(en_cok_sayfa)s sayfa. Taranmış (fotoğraf) "
+"PDF'ler şimdilik okunamıyor."
+msgstr ""
+"At most %(en_buyuk_mb)s MB and %(en_cok_sayfa)s pages. Scanned (photo) PDFs "
+"can't be read yet."
+
+#: templates/pages/readings/ekle.html:50
+msgid "Metin"
+msgstr "Text"
+
+#: templates/pages/readings/ekle.html:51
+msgid "Okumak istediğin İngilizce metni buraya yapıştır."
+msgstr "Paste the English text you want to read here."
+
+#: templates/pages/readings/ekle.html:58
+msgid "Okumaya başla"
+msgstr "Start reading"
+
+#: templates/pages/readings/ekle.html:59
+msgid "Hazırlanıyor…"
+msgstr "Preparing…"
+
+#: templates/pages/readings/oku.html:32
+msgid "bir kelimeye dokun, anlamı görünsün →"
+msgstr "tap a word to see its meaning →"
+
+#: templates/pages/readings/oku.html:35
+msgid "Yazıyı küçült"
+msgstr "Smaller text"
+
+#: templates/pages/readings/oku.html:36
+msgid "Yazıyı büyüt"
+msgstr "Larger text"
+
+#: templates/pages/readings/oku.html:42 templates/pages/readings/oku.html:56
+msgid "Bölümler"
+msgstr "Sections"
+
+#: templates/pages/readings/oku.html:43 templates/pages/readings/oku.html:57
+msgid "Önceki bölüm"
+msgstr "Previous section"
+
+#: templates/pages/readings/oku.html:44 templates/pages/readings/oku.html:58
+#, python-format
+msgid "Bölüm %(bolum)s / %(bolum_sayisi)s"
+msgstr "Section %(bolum)s / %(bolum_sayisi)s"
+
+#: templates/pages/readings/oku.html:45 templates/pages/readings/oku.html:59
+msgid "Sonraki bölüm"
+msgstr "Next section"
+
+#: templates/pages/readings/oku.html:64
+#, python-format
+msgid "Kaynak: %(kaynak)s"
+msgstr "Source: %(kaynak)s"
+
+#: templates/pages/readings/oku.html:68
+msgid "Okuma sonu"
+msgstr "End of reading"
+
+#: templates/pages/readings/oku.html:70
+msgid "okudun!"
+msgstr "you read it!"
+
+#: templates/pages/readings/oku.html:71
+msgid "Dokunup listene eklediğin kelimeler Learn & Pass'te karşına çıkacak."
+msgstr ""
+"The words you tapped and added to your list will come up in Learn & Pass."
+
+#: templates/pages/readings/oku.html:72
+msgid "çalışmaya geç →"
+msgstr "go practise →"
+
+#: templates/pages/readings/oku.html:76
+msgid "sıradaki metin →"
+msgstr "next text →"
+
+#: templates/pages/readings/oku.html:82
+msgid "okumalara dön →"
+msgstr "back to reading →"
+
+#: templates/pages/readings/oku.html:83
+msgid "Kütüphanedeki diğer metinler ve kendi metinlerin."
+msgstr "Other texts in the library and your own texts."
+
+#: templates/pages/seviye/_davetPenceresi.html:12
+#: templates/pages/seviye/giris.html:16
+msgid "defterin ilk sayfası"
+msgstr "the first page of the notebook"
+
+#: templates/pages/seviye/_davetPenceresi.html:13
+msgid "Seviyeni birlikte bulalım"
+msgstr "Let's find your level together"
+
+#: templates/pages/seviye/_davetPenceresi.html:14
+msgid ""
+"Birkaç dakikalık kısa bir test: bildiğin kelimelere dokunursun, biz de sana "
+"uygun kelimelerle ilk listeni hazırlarız."
+msgstr ""
+"A short test of a few minutes: you tap the words you know and we prepare "
+"your first list with words that suit you."
+
+#: templates/pages/seviye/_davetPenceresi.html:23
+#: templates/pages/seviye/giris.html:48
+msgid "Teste başla"
+msgstr "Start the test"
+
+#: templates/pages/seviye/_davetPenceresi.html:25
+#: templates/pages/seviye/giris.html:52
+msgid "Seviyemi kendim seçeyim"
+msgstr "I'll choose my level myself"
+
+#: templates/pages/seviye/ekran.html:10
+#, python-format
+msgid "Seviye testi · %(ekran)s. ekran"
+msgstr "Level test · page %(ekran)s"
+
+#: templates/pages/seviye/ekran.html:19
+#, python-format
+msgid "%(ekran)s. sayfa"
+msgstr "page %(ekran)s"
+
+#: templates/pages/seviye/ekran.html:20
+msgid "Bildiğin kelimelere tik at"
+msgstr "Tick the words you know"
+
+#: templates/pages/seviye/ekran.html:22
+msgid "Testten çık"
+msgstr "Leave the test"
+
+#: templates/pages/seviye/ekran.html:27
+msgid ""
+"anlamını bildiğini düşündüklerini seç; emin olmadıklarını boş bırakman en "
+"doğru sonucu verir."
+msgstr ""
+"select the ones you think you know the meaning of; leaving the ones you're "
+"unsure about blank gives the most accurate result."
+
+#: templates/pages/seviye/ekran.html:44
+#, python-format
+msgid "<span x-text=\"secili\">%(secili)s</span> / %(toplam)s tik"
+msgstr "<span x-text=\"secili\">%(secili)s</span> / %(toplam)s ticked"
+
+#: templates/pages/seviye/ekran.html:45
+msgid "Devam →"
+msgstr "Continue →"
+
+#: templates/pages/seviye/giris.html:9
+msgid "İngilizce kelime seviye testi — LearnVocab"
+msgstr "English vocabulary level test — LearnVocab"
+
+#: templates/pages/seviye/giris.html:17
+msgid "Seviyeni birlikte bulalım."
+msgstr "Let's find your level together."
+
+#: templates/pages/seviye/giris.html:18
+msgid "(birkaç dakika; not yok, sınav kaygısı yok)"
+msgstr "(a few minutes; no grades, no exam stress)"
+
+#: templates/pages/seviye/giris.html:21
+msgid ""
+"Ekranda kelimeler göreceksin. Yalnızca <span class=\"lv-isaret font-semibold "
+"text-gray-900 dark:text-slate-100\">bildiklerine tik at</span>; emin "
+"olmadıklarını boş bırak. Uydurma kelime yok, hepsi gerçek."
+msgstr ""
+"You'll see words on the screen. Only <span class=\"lv-isaret font-semibold "
+"text-gray-900 dark:text-slate-100\">tick the ones you know</span>; leave the "
+"ones you're unsure about blank. No made-up words, they're all real."
+
+#: templates/pages/seviye/giris.html:28
+msgid "Kelimelere tik at"
+msgstr "Tick the words"
+
+#: templates/pages/seviye/giris.html:29
+msgid "En çok 3 sayfa, her sayfada 40 kelime: A1–A2, B1–B2, C1–C2."
+msgstr "Up to 3 pages, 40 words on each: A1–A2, B1–B2, C1–C2."
+
+#: templates/pages/seviye/giris.html:34 templates/pages/seviye/okuma.html:18
+msgid "Kısa metinler"
+msgstr "Short texts"
+
+#: templates/pages/seviye/giris.html:35
+msgid "Ardından en çok 3 kısa paragraf ve birer soru."
+msgstr "Then up to 3 short paragraphs with one question each."
+
+#: templates/pages/seviye/giris.html:40
+msgid "Seviyen ve ilk listen"
+msgstr "Your level and first list"
+
+#: templates/pages/seviye/giris.html:41
+msgid "Sonunda seviyeni ve sana özel ilk listeni görürsün."
+msgstr "At the end you'll see your level and a first list made for you."
+
+#: templates/pages/seviye/giris.html:48
+msgid "Testi yeniden çöz"
+msgstr "Retake the test"
+
+#: templates/pages/seviye/giris.html:58
+#, python-format
+msgid "son testin: <b class=\"lv-isaret\">%(seviye)s</b>"
+msgstr "your last test: <b class=\"lv-isaret\">%(seviye)s</b>"
+
+#: templates/pages/seviye/giris.html:59
+msgid "sonucu gör"
+msgstr "see the result"
+
+#: templates/pages/seviye/okuma.html:10
+msgid "Seviye testi · Okuma"
+msgstr "Level test · Reading"
+
+#: templates/pages/seviye/okuma.html:17
+msgid "son adım"
+msgstr "last step"
+
+#: templates/pages/seviye/okuma.html:19
+msgid "her metni oku ve onu en iyi özetleyen cümleyi seç."
+msgstr "read each text and choose the sentence that sums it up best."
+
+#: templates/pages/seviye/okuma.html:24
+#, python-format
+msgid "%(no)s. metin"
+msgstr "text %(no)s"
+
+#: templates/pages/seviye/okuma.html:25
+#, python-format
+msgid "metin %(no)s / %(toplam)s"
+msgstr "text %(no)s / %(toplam)s"
+
+#: templates/pages/seviye/okuma.html:27
+msgid "Metni en iyi özetleyen cümle hangisi?"
+msgstr "Which sentence sums up the text best?"
+
+#: templates/pages/seviye/okuma.html:41
+msgid "Sonucumu gör →"
+msgstr "See my result →"
+
+#: templates/pages/seviye/sec.html:7 templates/pages/seviye/sec.html:14
+msgid "Seviyeni seç"
+msgstr "Choose your level"
+
+#: templates/pages/seviye/sec.html:15
+msgid "günün kelimesi ve egzersizler bu seviyeye göre gelir"
+msgstr "the word of the day and exercises match this level"
+
+#: templates/pages/seviye/sec.html:25
+msgid "Kaydet"
+msgstr "Save"
+
+#: templates/pages/seviye/sec.html:26
+msgid "Emin değilim, testi çözeyim"
+msgstr "I'm not sure, let me take the test"
+
+#: templates/pages/seviye/sec.html:28
+#, python-format
+msgid ""
+"Seviyeni istediğin zaman <a href=\"%(adres)s\" class=\"underline\">Ayarlar</"
+"a>'dan değiştirebilirsin."
+msgstr ""
+"You can change your level any time in <a href=\"%(adres)s\" "
+"class=\"underline\">Settings</a>."
+
+#: templates/pages/seviye/sonuc.html:10
+msgid "Seviye testi sonucu"
+msgstr "Level test result"
+
+#: templates/pages/seviye/sonuc.html:22
+msgid "seviyen"
+msgstr "your level"
+
+#: templates/pages/seviye/sonuc.html:32
+msgid "ilk listen"
+msgstr "your first list"
+
+#: templates/pages/seviye/sonuc.html:33
+#, python-format
+msgid "%(n)s kelime listene eklendi"
+msgid_plural "%(n)s kelime listene eklendi"
+msgstr[0] "%(n)s word added to your list"
+msgstr[1] "%(n)s words added to your list"
+
+#: templates/pages/seviye/sonuc.html:34
+msgid ""
+"Kendi seviyendeki sayfada tik atmadığın kelimeler. Learn & Pass ve "
+"egzersizlerde karşına çıkacaklar."
+msgstr ""
+"The words you didn't tick on the page at your level. They'll come up in "
+"Learn & Pass and in exercises."
+
+#: templates/pages/seviye/sonuc.html:48 templates/pages/seviye/sonuc.html:50
+msgid ""
+"İlk listen geri alındı. Kelimeleri istediğin zaman Sözlük'ten ekleyebilirsin."
+msgstr ""
+"Your first list was undone. You can add words from the Dictionary any time."
+
+#: templates/pages/seviye/sonuc.html:52
+msgid "Bu sayfadaki kelimelerin hepsini biliyorsun!"
+msgstr "You know every word on this page!"
+
+#: templates/pages/seviye/sonuc.html:53
+msgid ""
+"Listene yeni kelime eklemedik. Learn & Pass sana yeni kelimeler gösterecek."
+msgstr ""
+"We didn't add any new words to your list. Learn & Pass will show you new "
+"words."
+
+#: templates/pages/seviye/sonuc.html:58
+msgid "Learn & Pass'e başla →"
+msgstr "Start Learn & Pass →"
+
+#: templates/pages/seviye/sonuc.html:59
+msgid "Listemi gör"
+msgstr "See my list"
+
+#: templates/pages/seviye/sonuc.html:64
+msgid "Nasıl hesaplandı?"
+msgstr "How was it calculated?"
+
+#: templates/pages/seviye/sonuc.html:67
+#, python-format
+msgid ""
+"%(no)s. ekran (%(ad)s): %(gosterilen)s kelimeden %(bilinen)s tanesini bildin "
+"(%%%(yuzde)s)."
+msgstr ""
+"Page %(no)s (%(ad)s): you knew %(bilinen)s of %(gosterilen)s words "
+"(%(yuzde)s%%)."
+
+#: templates/pages/seviye/sonuc.html:70
+#, python-format
+msgid ""
+"Bir ekrandaki kelimelerin %%%(gecme_yuzdesi)s'ından fazlasını bildiğinde bir "
+"sonraki ekrana geçersin."
+msgstr ""
+"When you know more than %(gecme_yuzdesi)s%% of the words on a page, you move "
+"on to the next page."
+
+#: templates/pages/seviye/sonuc.html:70
+msgid "Ardından okuduğun kısa paragraflar seviyeni netleştirdi."
+msgstr "Then the short paragraphs you read refined your level."
+
+#: templates/pages/seviye/sonuc.html:71
+msgid ""
+"Seviyen, Learn & Pass ve egzersizlerdeki cevaplarına göre zamanla "
+"kendiliğinden de güncellenir."
+msgstr ""
+"Your level also updates itself over time based on your answers in Learn & "
+"Pass and exercises."
+
+#: templates/pages/seviye/sonuc.html:72
+#, python-format
+msgid ""
+"Seviyen kesin bir not değil, başlangıç noktası. Testi <a href=\"%(test)s\" "
+"class=\"font-bold underline decoration-1 underline-offset-4\">istediğin "
+"zaman yeniden çözebilir</a> ya da <a href=\"%(sec)s\" class=\"font-bold "
+"underline decoration-1 underline-offset-4\">kendin seçebilirsin</a>."
+msgstr ""
+"Your level isn't a final grade, it's a starting point. You can <a "
+"href=\"%(test)s\" class=\"font-bold underline decoration-1 underline-"
+"offset-4\">retake the test any time</a> or <a href=\"%(sec)s\" class=\"font-"
+"bold underline decoration-1 underline-offset-4\">choose it yourself</a>."
+
+#: templates/pages/sozluk.html:17
+#, python-format
+msgid "“%(sorgu)s” araması — LearnVocab Sözlük"
+msgstr "Search for “%(sorgu)s” — LearnVocab Dictionary"
+
+#: templates/pages/sozluk.html:17
+msgid "Listem — Sözlük"
+msgstr "My List — Dictionary"
+
+#: templates/pages/sozluk.html:17
+msgid "İngilizce–Türkçe Sözlük — LearnVocab"
+msgstr "English–Turkish Dictionary — LearnVocab"
+
+#: templates/pages/sozluk.html:36
+msgid "Keşfet"
+msgstr "Explore"
+
+#: templates/pages/sozluk.html:47
+#, python-format
+msgid ""
+"Kelimelerini kaydetmek için <a href=\"%(adres)s?"
+"next=%(sonraki)s&neden=liste\" class=\"font-bold underline decoration-1 "
+"underline-offset-4\">giriş yap</a>."
+msgstr ""
+"<a href=\"%(adres)s?next=%(sonraki)s&neden=liste\" class=\"font-bold "
+"underline decoration-1 underline-offset-4\">Sign in</a> to save your words."
+
+#: templates/pages/sozluk.html:58
+msgid "her kelime, Türkçe anlamı ve gerçek bir cümlesiyle"
+msgstr "every word, with its Turkish meaning and a real sentence"
+
+#: templates/pages/sozluk.html:64
+msgid "İngilizce veya Türkçe ara"
+msgstr "Search in English or Turkish"
+
+#: templates/pages/sozluk.html:70
+msgid "Konum"
+msgstr "Location"
+
+#: templates/pages/sozluk.html:97
+msgid "Hazır Listeler"
+msgstr "Ready-made lists"
+
+#: templates/pages/sozluk.html:109
+msgid "Çalışıyorsun"
+msgstr "Studying"
+
+#: templates/pages/sozluk.html:117
+msgid ""
+"ODTÜ, Bilkent ve Cambridge listeleri yakında burada olacak. O zamana kadar "
+"aradığın kelimeleri + ile listene ekleyebilirsin."
+msgstr ""
+"METU, Bilkent and Cambridge lists are coming here soon. Until then, you can "
+"add the words you look up to your list with +."
+
+#: templates/pages/texts/_diyalogNotu.html:7
+msgid "diyalogda doğru kelime"
+msgstr "right word in a dialogue"
+
+#: templates/pages/texts/_diyalogNotu.html:12
+msgid "Kısa bir diyalogdaki boşluğa listendeki doğru kelimeyi yaz."
+msgstr "Fill the gap in a short dialogue with the right word from your list."
+
+#: templates/pages/texts/_diyalogNotu.html:12
+msgid "Kısa bir diyalogdaki boşluğa doğru kelimeyi yaz."
+msgstr "Fill the gap in a short dialogue with the right word."
+
+#: templates/pages/texts/aboutGrading.html:9
+#: templates/pages/texts/aboutGrading.html:18
+msgid "Nasıl değerlendiriliyor?"
+msgstr "How is it evaluated?"
+
+#: templates/pages/texts/aboutGrading.html:22
+msgid "Kısa yaz, akademik olması gerekmez"
+msgstr "Write short, it doesn't have to be academic"
+
+#: templates/pages/texts/aboutGrading.html:23
+msgid ""
+"3–8 cümle yeterli. Konu cümlesi, paragraf yapısı ya da resmî dil "
+"beklemiyoruz. \"Kullanmayı dene\" kelimeleri öneridir; kullanmamak puanı "
+"düşürmez."
+msgstr ""
+"3–8 sentences are enough. We don't expect a topic sentence, paragraph "
+"structure or formal language. The \"Try using\" words are suggestions; not "
+"using them doesn't lower your score."
+
+#: templates/pages/texts/aboutGrading.html:27
+msgid "İki liste"
+msgstr "Two lists"
+
+#: templates/pages/texts/aboutGrading.html:29
+msgid "İyi yaptıkların:"
+msgstr "What you did well:"
+
+#: templates/pages/texts/aboutGrading.html:29
+msgid "metninden bir alıntı ve neden iyi olduğu."
+msgstr "a quote from your text and why it's good."
+
+#: templates/pages/texts/aboutGrading.html:30
+msgid "Hatalar:"
+msgstr "Mistakes:"
+
+#: templates/pages/texts/aboutGrading.html:30
+msgid ""
+"yalnızca gerçek hatalar (dilbilgisi, yanlış kelime, anlamı bozan kullanım). "
+"Her biri: yazdığın → doğrusu · kısa neden. Üslup tercihi hata sayılmaz."
+msgstr ""
+"only real mistakes (grammar, wrong word, usage that breaks the meaning). "
+"Each one: what you wrote → the correct form · a short reason. Style choices "
+"don't count as mistakes."
+
+#: templates/pages/texts/aboutGrading.html:35
+msgid "Puan (5 üzerinden)"
+msgstr "Score (out of 5)"
+
+#: templates/pages/texts/aboutGrading.html:37
+msgid "4,5–5"
+msgstr "4.5–5"
+
+#: templates/pages/texts/aboutGrading.html:37 texts/degerlendirme.py:337
+msgid "Çok iyi"
+msgstr "Very good"
+
+#: templates/pages/texts/aboutGrading.html:38 texts/degerlendirme.py:338
+msgid "İyi"
+msgstr "Good"
+
+#: templates/pages/texts/aboutGrading.html:39
+msgid "3,5"
+msgstr "3.5"
+
+#: templates/pages/texts/aboutGrading.html:39 texts/degerlendirme.py:339
+msgid "Ortalama"
+msgstr "Average"
+
+#: templates/pages/texts/aboutGrading.html:40 texts/degerlendirme.py:340
+msgid "Biraz daha çalışalım"
+msgstr "Let's practise a bit more"
+
+#: templates/pages/texts/aboutGrading.html:41 texts/degerlendirme.py:341
+msgid "Zorlanmışsın"
+msgstr "You struggled"
+
+#: templates/pages/texts/aboutGrading.html:42
+msgid "Metin neredeyse anlaşılmıyor"
+msgstr "The text is hard to understand"
+
+#: templates/pages/texts/aboutGrading.html:47
+msgid "Geri bildirim sertliği"
+msgstr "Feedback strictness"
+
+#: templates/pages/texts/aboutGrading.html:53
+msgid ""
+"Sertlik yalnızca hata listesini değiştirir; puan her sertlikte aynıdır. "
+"Yazarken seçersin, seçimin hatırlanır."
+msgstr ""
+"Strictness only changes the list of mistakes; the score is the same at every "
+"level. You choose it when writing and your choice is remembered."
+
+#: templates/pages/texts/aboutGrading.html:57
+msgid "Değerlendirmeyi kim yapıyor?"
+msgstr "Who does the evaluating?"
+
+#: templates/pages/texts/aboutGrading.html:58
+msgid ""
+"Google'ın Gemini modeli. Servis yoğunsa metnin kaybolmaz: \"Henüz "
+"değerlendirilmedi\" etiketiyle kaydedilir ve biz birazdan kendimiz yeniden "
+"deneriz."
+msgstr ""
+"Google's Gemini model. If the service is busy, your text isn't lost: it's "
+"saved with the \"Not evaluated yet\" label and we retry shortly on our own."
+
+#: templates/pages/texts/aboutGrading.html:58
+#, python-format
+msgid "Günde en çok %(n)s metin değerlendirilir."
+msgid_plural "Günde en çok %(n)s metin değerlendirilir."
+msgstr[0] "At most %(n)s text is evaluated per day."
+msgstr[1] "At most %(n)s texts are evaluated per day."
+
+#: templates/pages/texts/diyalog.html:11 templates/pages/texts/diyalog.html:17
+msgid "Diyalogda doğru kelime"
+msgstr "Right word in a dialogue"
+
+#: templates/pages/texts/diyalog.html:18
+msgid "boşluğa gelen İngilizce kelimeyi yaz"
+msgstr "type the English word that fills the gap"
+
+#: templates/pages/texts/diyalog.html:22
+msgid "Diyaloglar hazırlanıyor"
+msgstr "Dialogues are being prepared"
+
+#: templates/pages/texts/diyalog.html:24
+msgid "Çok yakında burada kısa diyaloglar olacak."
+msgstr "Short dialogues are coming here very soon."
+
+#: templates/pages/texts/diyalog.html:24
+msgid ""
+"Çok yakında burada listendeki kelimelerle kısa diyaloglar olacak. O zamana "
+"kadar serbest yazmayla kelimelerini kullanmayı deneyebilirsin."
+msgstr ""
+"Short dialogues with the words on your list are coming here very soon. Until "
+"then, try using your words in free writing."
+
+#: templates/pages/texts/diyalog.html:26 templates/pages/texts/diyalog.html:40
+msgid "Serbest yazmaya geç"
+msgstr "Go to free writing"
+
+#: templates/pages/texts/diyalog.html:31
+msgid "Listen henüz boş"
+msgstr "Your list is still empty"
+
+#: templates/pages/texts/diyalog.html:32
+msgid ""
+"Diyaloglar listendeki kelimelerle gelir. Sözlük'te + ile ya da Learn & "
+"Pass'te kelime ekleyebilirsin."
+msgstr ""
+"Dialogues use the words on your list. You can add words with + in the "
+"Dictionary or in Learn & Pass."
+
+#: templates/pages/texts/diyalog.html:38
+msgid "Listendeki kelimeler için henüz diyalog yok"
+msgstr "No dialogues for the words on your list yet"
+
+#: templates/pages/texts/diyalog.html:39
+msgid ""
+"Havuz büyüdükçe listendeki kelimelerle diyaloglar burada görünecek. Bu arada "
+"serbest yazmayı deneyebilirsin."
+msgstr ""
+"As the pool grows, dialogues with your words will appear here. Meanwhile, "
+"you can try free writing."
+
+#: templates/pages/texts/diyalog.html:54
+msgid "Boşluğa gelen İngilizce kelime"
+msgstr "The English word that fills the gap"
+
+#: templates/pages/texts/diyalog.html:74
+msgid "İlk harfi göster"
+msgstr "Show the first letter"
+
+#: templates/pages/texts/diyalog.html:78
+msgid "Sonraki"
+msgstr "Next"
+
+#: templates/pages/texts/diyalog.html:105
+msgid "Bağlantı koptu, bir daha dener misin?"
+msgstr "The connection was lost, could you try again?"
+
+#: templates/pages/texts/newText.html:11 templates/pages/texts/newText.html:17
+msgid "Serbest yazma"
+msgstr "Free writing"
+
+#: templates/pages/texts/newText.html:18
+msgid "3–8 cümle yeter; akademik olmak zorunda değil"
+msgstr "3–8 sentences are enough; it doesn't have to be academic"
+
+#: templates/pages/texts/newText.html:23
+#, python-format
+msgid ""
+"O zamana kadar <a class=\"font-semibold underline\" "
+"href=\"%(adres)s\">Diyalogda doğru kelime</a> ile devam edebilirsin."
+msgstr ""
+"Until then you can continue with <a class=\"font-semibold underline\" "
+"href=\"%(adres)s\">Right word in a dialogue</a>."
+
+#: templates/pages/texts/newText.html:37
+msgid "bugünün konusu"
+msgstr "today's topic"
+
+#: templates/pages/texts/newText.html:38
+msgid "başka öner"
+msgstr "suggest another"
+
+#: templates/pages/texts/newText.html:43
+msgid "Serbest"
+msgstr "Free"
+
+#: templates/pages/texts/newText.html:56
+msgid "Kullanmayı dene"
+msgstr "Try using"
+
+#: templates/pages/texts/newText.html:56
+msgid "zorunlu değil"
+msgstr "optional"
+
+#: templates/pages/texts/newText.html:71
+msgid ""
+"Listende henüz kelime yok; istediğin gibi yazabilirsin. Sözlük'te + ile "
+"eklediğin kelimeler burada önerilir."
+msgstr ""
+"There are no words on your list yet; write whatever you like. Words you add "
+"with + in the Dictionary are suggested here."
+
+#: templates/pages/texts/newText.html:79
+#: templates/pages/texts/textReview.html:40
+msgid "Metnin"
+msgstr "Your text"
+
+#: templates/pages/texts/newText.html:82
+msgid "3–8 cümle yaz. Akademik olması gerekmiyor."
+msgstr "Write 3–8 sentences. It doesn't need to be academic."
+
+#: templates/pages/texts/newText.html:86
+msgid "cümle"
+msgstr "sentences"
+
+#: templates/pages/texts/newText.html:87
+msgid "birkaç cümle daha yazabilirsin"
+msgstr "you could write a few more sentences"
+
+#: templates/pages/texts/newText.html:88
+msgid "kısa tutmak yeterli, 8 cümle idealdir"
+msgstr "keeping it short is fine, 8 sentences is ideal"
+
+#: templates/pages/texts/newText.html:94
+msgid "Geri bildirim"
+msgstr "Feedback"
+
+#: templates/pages/texts/newText.html:104
+msgid "Puanı etkilemez."
+msgstr "Doesn't affect the score."
+
+#: templates/pages/texts/newText.html:111
+msgid "Değerlendir"
+msgstr "Evaluate"
+
+#: templates/pages/texts/newText.html:114
+#, python-format
+msgid "bugün %(n)s metin daha değerlendirebilirsin"
+msgid_plural "bugün %(n)s metin daha değerlendirebilirsin"
+msgstr[0] "you can have %(n)s more text evaluated today"
+msgstr[1] "you can have %(n)s more texts evaluated today"
+
+#: templates/pages/texts/textReview.html:15
+msgid "Yazın"
+msgstr "Your text"
+
+#: templates/pages/texts/textReview.html:20 templates/pages/texts/yazma.html:60
+msgid "Yazılarım"
+msgstr "My writings"
+
+#: templates/pages/texts/textReview.html:22
+#, python-format
+msgid "%(sertlik_adi)s geri bildirim"
+msgstr "%(sertlik_adi)s feedback"
+
+#: templates/pages/texts/textReview.html:34
+msgid "Puanın"
+msgstr "Your score"
+
+#: templates/pages/texts/textReview.html:54
+msgid "Altı çizili yerlere dokun."
+msgstr "Tap the underlined parts."
+
+#: templates/pages/texts/textReview.html:60
+msgid "kullanmayı dene:"
+msgstr "try using:"
+
+#: templates/pages/texts/textReview.html:63
+msgid "kullandın"
+msgstr "you used it"
+
+#: templates/pages/texts/textReview.html:74
+msgid "İyi yaptıkların"
+msgstr "What you did well"
+
+#: templates/pages/texts/textReview.html:88
+msgid "Hatalar"
+msgstr "Mistakes"
+
+#: templates/pages/texts/textReview.html:106
+msgid "Gerçek bir hata bulamadık. Harika iş!"
+msgstr "We couldn't find a real mistake. Great work!"
+
+#: templates/pages/texts/textReview.html:115
+#: templates/pages/texts/yazma.html:83
+msgid "Henüz değerlendirilmedi"
+msgstr "Not evaluated yet"
+
+#: templates/pages/texts/textReview.html:116
+msgid ""
+"Metnin kayıtlı, kaybolmadı. Değerlendirme servisi şu an cevap veremedi; "
+"biraz sonra kendimiz yeniden deneyeceğiz. Hazır olunca burada görürsün."
+msgstr ""
+"Your text is saved, it isn't lost. The evaluation service couldn't respond "
+"right now; we'll retry shortly on our own. You'll see the result here when "
+"it's ready."
+
+#: templates/pages/texts/textReview.html:119
+msgid "Şimdi tekrar dene"
+msgstr "Try again now"
+
+#: templates/pages/texts/textReview.html:120
+msgid "Şu an yoğunuz; biraz sonra tekrar dene."
+msgstr "We're busy right now; try again in a moment."
+
+#: templates/pages/texts/textReview.html:131
+msgid "Eski değerlendirme."
+msgstr "Old evaluation."
+
+#: templates/pages/texts/textReview.html:131
+msgid "Bu metin önceki puanlama sistemiyle (100 üzerinden) değerlendirildi:"
+msgstr "This text was evaluated with the previous scoring system (out of 100):"
+
+#: templates/pages/texts/textReview.html:132
+msgid "Yeni sistemde puan 5 üzerinden ve yalnızca gerçek hatalar yazılıyor."
+msgstr ""
+"In the new system the score is out of 5 and only real mistakes are listed."
+
+#: templates/pages/texts/textReview.html:139
+msgid "Eski değerlendirmeyi göster"
+msgstr "Show the old evaluation"
+
+#: templates/pages/texts/textReview.html:148
+msgid "Bu metni değerlendiremedik."
+msgstr "We couldn't evaluate this text."
+
+#: templates/pages/texts/textReview.html:149
+msgid ""
+"İngilizce, 3–8 cümlelik bir metin yazdığından emin olup yeniden "
+"deneyebilirsin."
+msgstr ""
+"Make sure you've written an English text of 3–8 sentences and try again."
+
+#: templates/pages/texts/textReview.html:159
+msgid "Bu yazıyı sil"
+msgstr "Delete this text"
+
+#: templates/pages/texts/yazma.html:19
+msgid "bir kelimeyi gerçekten bilmenin yolu: kullanmak"
+msgstr "the way to really know a word: use it"
+
+#: templates/pages/texts/yazma.html:26 templates/pages/texts/yazma.html:39
+msgid "serbest yazma"
+msgstr "free writing"
+
+#: templates/pages/texts/yazma.html:28
+#, python-format
+msgid ""
+"Metin yazıp yapay zekâ ile değerlendirilmesini istiyorsan hemen şimdi <a "
+"href=\"%(giris)s?next=%(sonraki)s&neden=yazma\" class=\"font-bold underline "
+"decoration-1 underline-offset-4\">giriş yapabilirsin</a>."
+msgstr ""
+"If you'd like to write texts and have them evaluated by AI, you can <a "
+"href=\"%(giris)s?next=%(sonraki)s&neden=yazma\" class=\"font-bold underline "
+"decoration-1 underline-offset-4\">sign in</a> right now."
+
+#: templates/pages/texts/yazma.html:40
+msgid ""
+"3–8 cümle yaz, Türkçe geri bildirim al: neyi iyi yaptığını ve gerçek "
+"hataları."
+msgstr ""
+"Write 3–8 sentences and get feedback in English: what you did well and your "
+"real mistakes."
+
+#: templates/pages/texts/yazma.html:43
+msgid "Yazmaya başla"
+msgstr "Start writing"
+
+#: templates/pages/texts/yazma.html:45
+#, python-format
+msgid "bugün %(n)s metin daha yazabilirsin"
+msgid_plural "bugün %(n)s metin daha yazabilirsin"
+msgstr[0] "you can write %(n)s more text today"
+msgstr[1] "you can write %(n)s more texts today"
+
+#: templates/pages/texts/yazma.html:61
+msgid "nasıl değerlendiriliyor?"
+msgstr "how is it evaluated?"
+
+#: templates/pages/texts/yazma.html:85
+msgid "Eski değerlendirme"
+msgstr "Old evaluation"
+
+#: templates/pages/texts/yazma.html:87
+msgid "Değerlendirilemedi"
+msgstr "Couldn't be evaluated"
+
+#: templates/pages/texts/yazma.html:96
+msgid "Henüz bir şey yazmadın. İlk metnin birkaç cümle olsa yeter."
+msgstr ""
+"You haven't written anything yet. A few sentences are enough for your first "
+"text."
+
+#: templates/pages/texts/yazma.html:107
+msgid "Yazı silindi"
+msgstr "Text deleted"
+
+#: templates/pages/users/_googleGiris.html:16
+msgid "Google ile devam et"
+msgstr "Continue with Google"
+
+#: templates/pages/users/_googleGiris.html:21
+msgid "ya da"
+msgstr "or"
+
+#: templates/pages/users/changePasswordWithMail.html:5
+#: templates/pages/users/changePasswordWithoutMail.html:5
+msgid "Şifre Değiştir"
+msgstr "Change password"
+
+#: templates/pages/users/changePasswordWithMail.html:14
+#: templates/pages/users/changePasswordWithoutMail.html:14
+msgid "Yeni Şifrenizi Oluşturun"
+msgstr "Create your new password"
+
+#: templates/pages/users/changePasswordWithMail.html:28
+#: templates/pages/users/changePasswordWithoutMail.html:40
+msgid "Şifreniz en az 8 karakterli olmalıdır."
+msgstr "Your password must be at least 8 characters long."
+
+#: templates/pages/users/changePasswordWithMail.html:35
+#: templates/pages/users/changePasswordWithoutMail.html:47
+msgid "Şifrenizde en az 1 tane büyük harf (A-Z) olmalıdır."
+msgstr "Your password must contain at least 1 uppercase letter (A-Z)."
+
+#: templates/pages/users/changePasswordWithMail.html:42
+#: templates/pages/users/changePasswordWithoutMail.html:54
+msgid "Şifrenizde en az 1 tane küçük harf (a-z) olmalıdır."
+msgstr "Your password must contain at least 1 lowercase letter (a-z)."
+
+#: templates/pages/users/changePasswordWithMail.html:49
+#: templates/pages/users/changePasswordWithoutMail.html:61
+msgid "Şifrenizde en az 1 tane rakam (0-9) olmalıdır."
+msgstr "Your password must contain at least 1 digit (0-9)."
+
+#: templates/pages/users/changePasswordWithMail.html:53
+#: templates/pages/users/changePasswordWithMail.html:56
+#: templates/pages/users/changePasswordWithoutMail.html:65
+#: templates/pages/users/changePasswordWithoutMail.html:68
+#: templates/pages/users/login.html:46 templates/pages/users/login.html:52
+#: templates/pages/users/register.html:61
+msgid "Şifre"
+msgstr "Password"
+
+#: templates/pages/users/changePasswordWithMail.html:63
+#: templates/pages/users/changePasswordWithMail.html:66
+#: templates/pages/users/changePasswordWithoutMail.html:75
+#: templates/pages/users/changePasswordWithoutMail.html:78
+msgid "Şifre (Yeniden)"
+msgstr "Password (again)"
+
+#: templates/pages/users/changePasswordWithMail.html:72
+#: templates/pages/users/changePasswordWithoutMail.html:84
+msgid "Yeni Şifre Oluştur"
+msgstr "Create new password"
+
+#: templates/pages/users/changePasswordWithoutMail.html:27
+#: templates/pages/users/changePasswordWithoutMail.html:30
+msgid "Mevcut Şifreniz"
+msgstr "Your current password"
+
+#: templates/pages/users/forgotPassword1.html:5
+msgid "Şifremi unuttum"
+msgstr "Forgot my password"
+
+#: templates/pages/users/forgotPassword1.html:14
+msgid "Kullanıcı Adınız"
+msgstr "Your username"
+
+#: templates/pages/users/forgotPassword1.html:24
+msgid "Lütfen kullanıcı adınızı giriniz."
+msgstr "Please enter your username."
+
+#: templates/pages/users/forgotPassword1.html:32
+msgid "Mail Gönder"
+msgstr "Send email"
+
+#: templates/pages/users/login.html:14
+msgid "Defterine dön"
+msgstr "Back to your notebook"
+
+#: templates/pages/users/login.html:15
+msgid "kaldığın sayfa seni bekliyor"
+msgstr "the page you left off on is waiting for you"
+
+#: templates/pages/users/login.html:48
+msgid "Şifrenizi mi unuttunuz?"
+msgstr "Forgot your password?"
+
+#: templates/pages/users/login.html:63
+msgid "Henüz defterin yok mu?"
+msgstr "Don't have a notebook yet?"
+
+#: templates/pages/users/login.html:66
+msgid "ücretsiz hesap aç →"
+msgstr "create a free account →"
+
+#: templates/pages/users/mailVerification.html:5
+#: templates/pages/users/mailVerification.html:25
+#: templates/pages/users/mailVerification.html:27
+msgid "Doğrulama Kodu"
+msgstr "Verification code"
+
+#: templates/pages/users/mailVerification.html:14
+msgid "Kodu girin"
+msgstr "Enter the code"
+
+#: templates/pages/users/mailVerification.html:24
+msgid ""
+"Mail'inize göndermiş olduğumuz doğrulama kodunuzu giriniz.<br><br>Mail'in "
+"gelmesi 30 saniyeye kadar sürebilir. Eğer 2 dakika içinde gelmezse tekrar "
+"deneyiniz."
+msgstr ""
+"Enter the verification code we sent to your email.<br><br>The email can take "
+"up to 30 seconds to arrive. If it doesn't arrive within 2 minutes, please "
+"try again."
+
+#: templates/pages/users/mailVerification.html:32
+msgid "Kodu Doğrula"
+msgstr "Verify code"
+
+#: templates/pages/users/register.html:5
+msgid "Kayıt Ol"
+msgstr "Sign up"
+
+#: templates/pages/users/register.html:16
+msgid "Defterini aç"
+msgstr "Open your notebook"
+
+#: templates/pages/users/register.html:17
+msgid "ilk sayfası hazır, bir dakika sürer"
+msgstr "the first page is ready, it takes a minute"
+
+#: templates/pages/users/register.html:29
+msgid "Ad"
+msgstr "First name"
+
+#: templates/pages/users/register.html:37
+msgid "Soyad"
+msgstr "Last name"
+
+#: templates/pages/users/register.html:53
+msgid "Kullanıcı adı"
+msgstr "Username"
+
+#: templates/pages/users/register.html:67
+msgid "Gizle"
+msgstr "Hide"
+
+#: templates/pages/users/register.html:67
+msgid "Göster"
+msgstr "Show"
+
+#: templates/pages/users/register.html:69
+msgid "En az 8 karakter; bir büyük harf, bir küçük harf ve bir rakam."
+msgstr ""
+"At least 8 characters; one uppercase letter, one lowercase letter and one "
+"digit."
+
+#: templates/pages/users/register.html:73
+msgid "Hesabımı aç"
+msgstr "Open my account"
+
+#: templates/pages/users/register.html:78
+msgid "Zaten bir hesabınız var mı?"
+msgstr "Already have an account?"
+
+#: templates/pages/users/register.html:83
+msgid "Hesabınıza giriş yapın!"
+msgstr "Sign in to your account!"
+
+#: templates/pages/words/_gozatBaglantilari.html:10
+msgid "Kelimelere göz at"
+msgstr "Browse words"
+
+#: templates/pages/words/_gozatBaglantilari.html:11
+msgid "sözlüğün sekmeleri: seviyeye ya da harfe göre"
+msgstr "the dictionary's tabs: by level or by letter"
+
+#: templates/pages/words/_gozatBaglantilari.html:15
+msgid "Seviye:"
+msgstr "Level:"
+
+#: templates/pages/words/_gozatBaglantilari.html:25
+msgid "Harf:"
+msgstr "Letter:"
+
+#: templates/pages/words/_hazirListeKartlari.html:10
+#: templates/pages/words/_listemSatirlari.html:47
+msgid "Daha fazla göster"
+msgstr "Show more"
+
+#: templates/pages/words/_ifadeKarti.html:20
+msgid "Kalıp:"
+msgstr "Pattern:"
+
+#: templates/pages/words/_ifadeKarti.html:25
+msgid "Noktalama"
+msgstr "Punctuation"
+
+#: templates/pages/words/_listem.html:18
+#, python-format
+msgid "senin kelime defterin: %(n)s kelime"
+msgid_plural "senin kelime defterin: %(n)s kelime"
+msgstr[0] "your vocabulary notebook: %(n)s word"
+msgstr[1] "your vocabulary notebook: %(n)s words"
+
+#: templates/pages/words/_listem.html:18
+msgid "senin kelime defterin"
+msgstr "your vocabulary notebook"
+
+#: templates/pages/words/_listem.html:29
+msgid "Listende ara"
+msgstr "Search your list"
+
+#: templates/pages/words/_listem.html:35
+msgid "Filtre"
+msgstr "Filter"
+
+#: templates/pages/words/_listem.html:36
+msgid "Filtre açık"
+msgstr "Filter on"
+
+#: templates/pages/words/_listem.html:56
+msgid "Zorlandıklarım"
+msgstr "Struggled with"
+
+#: templates/pages/words/_listem.html:58
+msgid "L&P'de bilmediğin ya da egzersizde yanlış yaptığın kelimeler"
+msgstr "Words you didn't know in L&P or got wrong in exercises"
+
+#: templates/pages/words/_listem.html:66 templates/pages/words/gozat.html:22
+#: templates/pages/words/hazirListe.html:21
+#, python-format
+msgid "%(n)s kelime"
+msgid_plural "%(n)s kelime"
+msgstr[0] "%(n)s word"
+msgstr[1] "%(n)s words"
+
+#: templates/pages/words/_listem.html:69
+msgid "Seç"
+msgstr "Select"
+
+#: templates/pages/words/_listem.html:75
+msgid "<span x-text=\"secili.length\"></span> seçili"
+msgstr "<span x-text=\"secili.length\"></span> selected"
+
+#: templates/pages/words/_listem.html:77
+msgid "Tümünü seç"
+msgstr "Select all"
+
+#: templates/pages/words/_listem.html:80
+msgid "Çıkar"
+msgstr "Remove"
+
+#: templates/pages/words/_listem.html:82
+msgid "İptal"
+msgstr "Cancel"
+
+#: templates/pages/words/_listem.html:96
+msgid "Bu görünümde kelime kalmadı."
+msgstr "No words left in this view."
+
+#: templates/pages/words/_listem.html:101
+msgid ""
+"Listen boş. Sözlük'te + ile ya da Learn & Pass'te kelime ekleyebilirsin."
+msgstr ""
+"Your list is empty. You can add words with + in the Dictionary or in Learn & "
+"Pass."
+
+#: templates/pages/words/_listem.html:105
+#, python-format
+msgid "Listende “%(ara)s” ile eşleşen kelime yok."
+msgstr "No words on your list match “%(ara)s”."
+
+#: templates/pages/words/_listem.html:105
+msgid "Bu seçimde kelime yok."
+msgstr "No words in this selection."
+
+#: templates/pages/words/_listem.html:106
+msgid "Bütün listeyi göster"
+msgstr "Show the whole list"
+
+#: templates/pages/words/_listem.html:111
+#, python-brace-format
+msgctxt "tekil"
+msgid "{n} kelime"
+msgstr "{n} word"
+
+#: templates/pages/words/_listem.html:111
+#, python-brace-format
+msgctxt "çoğul"
+msgid "{n} kelime"
+msgstr "{n} words"
+
+#: templates/pages/words/_listem.html:112
+#, python-brace-format
+msgctxt "tekil"
+msgid "{n} kelime çıkarıldı"
+msgstr "{n} word removed"
+
+#: templates/pages/words/_listem.html:112
+#, python-brace-format
+msgctxt "çoğul"
+msgid "{n} kelime çıkarıldı"
+msgstr "{n} words removed"
+
+#: templates/pages/words/_listem.html:163
+msgid "Kart açılamadı, tekrar dener misin?"
+msgstr "Couldn't open the card, could you try again?"
+
+#: templates/pages/words/_listem.html:196
+msgid "Yüklenemedi, tekrar dener misin?"
+msgstr "Couldn't load, could you try again?"
+
+#: templates/pages/words/_listemSatirlari.html:17
+#, python-format
+msgid "%(kelime)s seç"
+msgstr "select %(kelime)s"
+
+#: templates/pages/words/_listemSatirlari.html:36
+msgid "Listemden çıkar"
+msgstr "Remove from my list"
+
+#: templates/pages/words/_listemSatirlari.html:38
+msgid "çıkar"
+msgstr "remove"
+
+#: templates/pages/words/_listemSatirlari.html:38
+msgid "ekle"
+msgstr "add"
+
+#: templates/pages/words/_madde.html:32
+msgid "düzensiz fiil:"
+msgstr "irregular verb:"
+
+#: templates/pages/words/_madde.html:57
+#, python-format
+msgid "+%(n)s örnek daha"
+msgid_plural "+%(n)s örnek daha"
+msgstr[0] "+%(n)s more example"
+msgstr[1] "+%(n)s more examples"
+
+#: templates/pages/words/_madde.html:57
+msgid "− örnekleri gizle"
+msgstr "− hide examples"
+
+#: templates/pages/words/_madde.html:98
+msgid "Aynı aileden"
+msgstr "Same family"
+
+#: templates/pages/words/_madde.html:99
+msgid "birini biliyorsan diğerleri kolay"
+msgstr "know one and the others are easy"
+
+#: templates/pages/words/_madde.html:118
+msgid "Bu kelimeyle çalış"
+msgstr "Study this word"
+
+#: templates/pages/words/_madde.html:121
+msgid "Listene eklediğin kelimeyi 1, 3, 7 ve 21 gün sonra yeniden sorarız."
+msgstr "We ask you again about a word on your list 1, 3, 7 and 21 days later."
+
+#: templates/pages/words/_madde.html:122
+msgid "Learn & Pass'e git →"
+msgstr "Go to Learn & Pass →"
+
+#: templates/pages/words/_madde.html:126
+#, python-format
+msgid ""
+"“<span lang=\"en\">%(kelime)s</span>” ile kısa bir cümle yaz; doğru kullanıp "
+"kullanmadığını gösterelim."
+msgstr ""
+"Write a short sentence with “<span lang=\"en\">%(kelime)s</span>”; we'll "
+"show you whether you used it correctly."
+
+#: templates/pages/words/_madde.html:127
+msgid "Yazılar'a git →"
+msgstr "Go to Writings →"
+
+#: templates/pages/words/_madde.html:133
+msgid "Sözlükte yakınındaki kelimeler"
+msgstr "Nearby words in the dictionary"
+
+#: templates/pages/words/_madde.html:134
+msgid "sözlükte bu sayfanın komşuları"
+msgstr "this page's neighbours in the dictionary"
+
+#: templates/pages/words/_madde.html:143
+#, python-format
+msgid "— s. %(sayfa_no)s —"
+msgstr "— p. %(sayfa_no)s —"
+
+#: templates/pages/words/_oneriKutusu.html:22
+msgid "Ara"
+msgstr "Search"
+
+#: templates/pages/words/_sozlukSonuclari.html:31
+#, python-format
+msgid "“%(sorgu)s” anlamındaki kelimeler"
+msgstr "Words meaning “%(sorgu)s”"
+
+#: templates/pages/words/_sozlukSonuclari.html:41
+msgid "Diğer sonuçlar"
+msgstr "Other results"
+
+#: templates/pages/words/_sozlukSonuclari.html:41
+#, python-format
+msgid "“%(sorgu)s” ile başlayanlar"
+msgstr "Starting with “%(sorgu)s”"
+
+#: templates/pages/words/_sozlukSonuclari.html:51
+#, python-format
+msgid "“%(sorgu)s” sözlüğümüzde yok."
+msgstr "“%(sorgu)s” isn't in our dictionary."
+
+#: templates/pages/words/_sozlukSonuclari.html:51
+msgid "Bunu mu demek istediniz?"
+msgstr "Did you mean?"
+
+#: templates/pages/words/_sozlukSonuclari.html:61
+msgid ""
+"Aramanı not ettik; sözlüğe eklenecek kelimeleri seçerken bu kayıtlara "
+"bakıyoruz."
+msgstr ""
+"We've noted your search; we look at these records when choosing which words "
+"to add to the dictionary."
+
+#: templates/pages/words/gozat.html:12
+#, python-format
+msgid "%(baslik)s — LearnVocab Sözlük"
+msgstr "%(baslik)s — LearnVocab Dictionary"
+
+#: templates/pages/words/gozat.html:25
+msgid "Bu sayfadaki kelimeler"
+msgstr "Words on this page"
+
+#: templates/pages/words/gozat.html:34
+msgid "Burada henüz kelime yok."
+msgstr "No words here yet."
+
+#: templates/pages/words/gozat.html:38
+msgid "Sayfalar"
+msgstr "Pages"
+
+#: templates/pages/words/gozat.html:40
+msgid "← önceki sayfa"
+msgstr "← previous page"
+
+#: templates/pages/words/gozat.html:42
+#, python-format
+msgid "— s. %(no)s / %(toplam)s —"
+msgstr "— p. %(no)s / %(toplam)s —"
+
+#: templates/pages/words/gozat.html:44
+msgid "sonraki sayfa →"
+msgstr "next page →"
+
+#: templates/pages/words/hazirListe.html:9
+#, python-format
+msgid "%(ad)s kelime listesi — LearnVocab Sözlük"
+msgstr "%(ad)s word list — LearnVocab Dictionary"
+
+#: templates/pages/words/hazirListe.html:26
+msgid "Bu listeyle çalışıyorsun"
+msgstr "You're studying with this list"
+
+#: templates/pages/words/hazirListe.html:27
+msgid ""
+"Learn & Pass yeni kelimeleri bu listeden getiriyor. Bilmediklerini listene "
+"eklemeyi sen seçersin."
+msgstr ""
+"Learn & Pass brings new words from this list. You decide whether to add the "
+"ones you didn't know to your list."
+
+#: templates/pages/words/hazirListe.html:33
+msgid "Seviyeme dön"
+msgstr "Back to my level"
+
+#: templates/pages/words/hazirListe.html:37
+msgid "bu listeyle çalış"
+msgstr "study with this list"
+
+#: templates/pages/words/hazirListe.html:38
+msgid ""
+"Learn & Pass yeni kelimeleri seviyen yerine bu listeden getirsin. "
+"Bilmediklerini listene eklemeyi sen seçersin."
+msgstr ""
+"Let Learn & Pass bring new words from this list instead of your level. You "
+"decide whether to add the ones you didn't know to your list."
+
+#: templates/pages/words/hazirListe.html:42
+msgid "Bu listeyle çalış"
+msgstr "Study with this list"
+
+#: templates/pages/words/hazirListe.html:53
+msgid "Bu listeye henüz kelime eklenmedi."
+msgstr "No words have been added to this list yet."
+
+#: texts/degerlendirme.py:342
+msgid "Başlangıç"
+msgstr "Beginning"
+
+#: texts/diyalog.py:97
+msgid "Boşluğa bir kelime yaz."
+msgstr "Type a word in the gap."
+
+#: texts/diyalog.py:101
+msgid "Doğru!"
+msgstr "Correct!"
+
+#: texts/diyalog.py:105
+#, python-format
+msgid "Doğru! Bu cümlede: %(x)s"
+msgstr "Correct! In this sentence: %(x)s"
+
+#: texts/diyalog.py:109
+#, python-format
+msgid "Neredeyse! Doğrusu: %(x)s"
+msgstr "Almost! The correct answer: %(x)s"
+
+#: texts/diyalog.py:111
+#, python-format
+msgid "Bu sefer olmadı. Doğrusu: %(x)s"
+msgstr "Not this time. The correct answer: %(x)s"
+
+#: texts/diyalog.py:116
+msgid "resmî"
+msgstr "formal"
+
+#: texts/diyalog.py:116
+msgid "akademik"
+msgstr "academic"
+
+#: texts/diyalog.py:117
+msgid "gündelik"
+msgstr "informal"
+
+#: texts/diyalog.py:117
+msgid "argo"
+msgstr "slang"
+
+#: texts/diyalog.py:118
+msgid "edebî"
+msgstr "literary"
+
+#: texts/diyalog.py:121
+msgid "olumlu"
+msgstr "positive"
+
+#: texts/diyalog.py:121
+msgid "olumsuz"
+msgstr "negative"
+
+#: texts/diyalog.py:131
+#, python-format
+msgid "Üslup: %(x)s"
+msgstr "Register: %(x)s"
+
+#: texts/diyalog.py:133
+#, python-format
+msgid "Ton: %(x)s"
+msgstr "Tone: %(x)s"
+
+#: texts/limits.py:80
+msgid "Bugünkü yazma hakkın doldu. Yarın yeni bir metinle devam edebilirsin."
+msgstr ""
+"You've used today's writing allowance. You can continue with a new text "
+"tomorrow."
+
+#: texts/models.py:33 texts/views.py:51
+msgid "Nazik"
+msgstr "Gentle"
+
+#: texts/models.py:34 texts/views.py:52
+msgid "Normal"
+msgstr "Normal"
+
+#: texts/models.py:35 texts/views.py:53
+msgid "Titiz"
+msgstr "Strict"
+
+#: texts/views.py:51
+msgid "Yalnızca anlamı bozan hatalar, en çok 3."
+msgstr "Only mistakes that break the meaning, at most 3."
+
+#: texts/views.py:52
+msgid "Dilbilgisi ve kelime hataları, en çok 6."
+msgstr "Grammar and word mistakes, at most 6."
+
+#: texts/views.py:53
+msgid "Noktalama, büyük harf ve resmiyet de dahil."
+msgstr "Punctuation, capitalisation and formality included."
+
+#: texts/views.py:57
+msgid "Metnin değerlendirildi."
+msgstr "Your text has been evaluated."
+
+#: texts/views.py:59
+msgid ""
+"Bu metni değerlendiremedik. İngilizce, birkaç cümlelik bir metin yazdığından "
+"emin ol."
+msgstr ""
+"We couldn't evaluate this text. Make sure you've written an English text of "
+"a few sentences."
+
+#: texts/views.py:61
+msgid ""
+"Değerlendirme servisinin kotası şu an dolu. Metnin kaydedildi; biraz sonra "
+"kendimiz yeniden deneyeceğiz."
+msgstr ""
+"The evaluation service's quota is full right now. Your text is saved; we'll "
+"retry shortly on our own."
+
+#: texts/views.py:64
+msgid ""
+"Değerlendirme servisi şu an cevap veremedi. Metnin kaydedildi; biraz sonra "
+"kendimiz yeniden deneyeceğiz."
+msgstr ""
+"The evaluation service couldn't respond right now. Your text is saved; we'll "
+"retry shortly on our own."
+
+#: texts/views.py:67
+msgid ""
+"Şu an çok yoğunuz. Metnin kaydedildi; biraz sonra tekrar dene ya da "
+"değerlendirmeyi bize bırak."
+msgstr ""
+"We're very busy right now. Your text is saved; try again in a moment or "
+"leave the evaluation to us."
+
+#: texts/views.py:70
+msgid ""
+"Değerlendirme servisine şu an ulaşılamıyor. Metnin kaydedildi; sorun "
+"giderilince değerlendireceğiz."
+msgstr ""
+"The evaluation service can't be reached right now. Your text is saved; we'll "
+"evaluate it once the problem is fixed."
+
+#: texts/views.py:73
+msgid ""
+"Değerlendirme bu sefer düzgün gelmedi. Metnin kaydedildi; biraz sonra "
+"yeniden deneyeceğiz."
+msgstr ""
+"The evaluation didn't come back properly this time. Your text is saved; "
+"we'll retry shortly."
+
+#: texts/views.py:169
+msgid "Birkaç cümlelik İngilizce bir metin yaz (3–8 cümle)."
+msgstr "Write an English text of a few sentences (3–8 sentences)."
+
+#: texts/views.py:171
+#, python-format
+msgid "Metin biraz uzun oldu. %(n)s karakteri geçmesin (3–8 cümle yeter)."
+msgstr ""
+"The text is a bit long. Keep it under %(n)s characters (3–8 sentences are "
+"enough)."
+
+#: texts/views.py:217
+msgid "Metnin okunuyor..."
+msgstr "Reading your text..."
+
+#: texts/views.py:219
+msgid "Servis yoğun, yeniden deneniyor..."
+msgstr "The service is busy, retrying..."
+
+#: texts/views.py:221
+msgid "Geri bildirim hazırlanıyor..."
+msgstr "Preparing feedback..."
+
+#: texts/views.py:235 texts/views.py:238
+msgid "Hazır."
+msgstr "Ready."
+
+#: texts/views.py:275
+msgid "Metnin gönderiliyor..."
+msgstr "Sending your text..."
+
+#: texts/views.py:288 texts/views.py:301
+msgid "İş bulunamadı."
+msgstr "Job not found."
+
+#: texts/views.py:303
+msgid "İş hâlâ sürüyor."
+msgstr "The job is still running."
+
+#: userprofile/views.py:33
+msgid "Hesap bilgileriniz başarıyla güncellendi."
+msgstr "Your account details have been updated."
+
+#: users/views.py:72
+msgid "Adını ve soyadını yazar mısın?"
+msgstr "Could you enter your first and last name?"
+
+#: users/views.py:74
+msgid "E-posta boş olamaz."
+msgstr "Email can't be empty."
+
+#: users/views.py:76
+msgid "Kullanıcı adı boş olamaz."
+msgstr "Username can't be empty."
+
+#: users/views.py:78
+msgid "Kullanıcı adı en çok 150 karakter olabilir."
+msgstr "The username can be at most 150 characters."
+
+#: users/views.py:82
+msgid "Bu kullanıcı adı alınmış."
+msgstr "This username is taken."
+
+#: users/views.py:84
+msgid "Bu e-posta adresi ile daha önce kayıt yapılmış."
+msgstr "An account with this email address already exists."
+
+#: users/views.py:93
+msgid "Başarılı bir şekilde kaydınız yapıldı. Artık giriş yapabilirsiniz!"
+msgstr "Your account was created. You can sign in now!"
+
+#: users/views.py:99
+msgid "Şifre en az 8 karakterli olmalıdır."
+msgstr "The password must be at least 8 characters long."
+
+#: users/views.py:117
+msgid "Şifre en az bir tane rakam içermelidir."
+msgstr "The password must contain at least one digit."
+
+#: users/views.py:120
+msgid "Şifre en az bir tane küçük harf içermelidir."
+msgstr "The password must contain at least one lowercase letter."
+
+#: users/views.py:123
+msgid "Şifre en az bir tane büyük harf içermelidir."
+msgstr "The password must contain at least one uppercase letter."
+
+#: users/views.py:148
+#, python-format
+msgid "Hoş geldin, %(ad)s!"
+msgstr "Welcome, %(ad)s!"
+
+#: users/views.py:152
+msgid "Kullanıcı adı veya şifre hatalı!"
+msgstr "Wrong username or password!"
+
+#: users/views.py:166
+msgid "Başarıyla çıkış yaptınız."
+msgstr "You've signed out."
+
+#: users/views.py:184
+msgid "Mevcut şifrenizi hatalı girdiniz."
+msgstr "Your current password is wrong."
+
+#: users/views.py:188 users/views.py:341
+msgid "Girdiğiniz şifreler uyuşmuyor."
+msgstr "The passwords don't match."
+
+#: users/views.py:192
+msgid "Yeni şifreniz mevcut şifrenizle aynı olamaz."
+msgstr "Your new password can't be the same as your current one."
+
+#: users/views.py:208
+msgid "Şifreniz başarılı bir şekilde değiştirildi."
+msgstr "Your password has been changed."
+
+#: users/views.py:235
+#, python-format
+msgid "Çok sık kod talep ettiniz. Lütfen %(n)s saniye sonra tekrar deneyin."
+msgstr "You've requested codes too often. Please try again in %(n)s seconds."
+
+#: users/views.py:248
+msgid "LearnVocab Şifre Sıfırlama"
+msgstr "LearnVocab password reset"
+
+#: users/views.py:250
+#, python-format
+msgid "Merhaba, %(ad)s"
+msgstr "Hi, %(ad)s"
+
+#: users/views.py:251
+#, python-format
+msgid "İşte şifreni yenilemek için kodun: %(kod)s"
+msgstr "Here's your code to reset your password: %(kod)s"
+
+#: users/views.py:252
+#, python-format
+msgid "Bu kod %(dk)s dakika boyunca geçerlidir."
+msgstr "This code is valid for %(dk)s minutes."
+
+#: users/views.py:253
+msgid ""
+"Eğer bu şifre yenileme isteğini siz oluşturmadıysanız bu mail'i görmezden "
+"gelebilirsiniz."
+msgstr "If you didn't request this password reset, you can ignore this email."
+
+#: users/views.py:279
+msgid ""
+"Bu kullanıcı adı kayıtlıysa, hesaba tanımlı e-posta adresine bir doğrulama "
+"kodu gönderildi."
+msgstr ""
+"If this username is registered, a verification code has been sent to the "
+"account's email address."
+
+#: users/views.py:296
+msgid "Doğrulama kodunuzun süresi doldu. Lütfen yeniden kod talep edin."
+msgstr "Your verification code has expired. Please request a new code."
+
+#: users/views.py:305
+msgid "Çok fazla hatalı deneme yaptınız. Lütfen yeniden kod talep edin."
+msgstr "Too many wrong attempts. Please request a new code."
+
+#: users/views.py:314
+msgid "Kodu doğru girdiniz. Artık yeni şifrenizi oluşturabilirsiniz."
+msgstr "The code is correct. You can create your new password now."
+
+#: users/views.py:318
+#, python-format
+msgid "Yanlış kod girildi. Kalan deneme hakkınız: %(n)s"
+msgstr "Wrong code. Attempts left: %(n)s"
+
+#: users/views.py:334
+msgid "Önce e-posta ile doğrulama yapmalısınız."
+msgstr "You need to verify by email first."
+
+#: users/views.py:354
+msgid "İşlem tamamlanamadı. Lütfen yeniden kod talep edin."
+msgstr "The process couldn't be completed. Please request a new code."
+
+#: users/views.py:363
+msgid "Şifreniz başarıyla değiştirildi. Artık giriş yapabilirsiniz!"
+msgstr "Your password has been changed. You can sign in now!"
+
+#: usersettings/views.py:20
+msgid "Sistem"
+msgstr "System"
+
+#: usersettings/views.py:20
+msgid "Açık"
+msgstr "Light"
+
+#: usersettings/views.py:20
+msgid "Koyu"
+msgstr "Dark"
+
+#: usersettings/views.py:39
+msgid "Tüm verilerim"
+msgstr "All my data"
+
+#: usersettings/views.py:40
+msgid "Kelimelerim"
+msgstr "My words"
+
+#: usersettings/views.py:41
+msgid "Metinlerim"
+msgstr "My texts"
+
+#: usersettings/views.py:89
+msgid "Ayarların kaydedildi."
+msgstr "Your settings have been saved."
+
+#: usersettings/views.py:99
+msgid "Bu işlem yalnızca form üzerinden yapılabilir."
+msgstr "This can only be done through the form."
+
+#: usersettings/views.py:104
+msgid "Lütfen onaylamak için parolanızı giriniz."
+msgstr "Please enter your password to confirm."
+
+#: usersettings/views.py:108
+msgid "Parola hatalı. İşlem iptal edildi."
+msgstr "Wrong password. Nothing was changed."
+
+#: usersettings/views.py:123
+msgid "Tüm kelimeleriniz listenizden başarıyla silindi."
+msgstr "All words were removed from your list."
+
+#: usersettings/views.py:134
+msgid "Tüm yorumlarınız silindi."
+msgstr "All your comments were deleted."
+
+#: usersettings/views.py:146
+msgid "Hesabınız başarılı bir şekilde silindi."
+msgstr "Your account has been deleted."
+
+#: usersettings/views.py:182
+msgid "LearnVocab Kelime Dökümü"
+msgstr "LearnVocab word export"
+
+#: usersettings/views.py:183 usersettings/views.py:226
+#: usersettings/views.py:315 usersettings/views.py:347
+#, python-format
+msgid "Kullanıcı: %(ad)s"
+msgstr "User: %(ad)s"
+
+#: usersettings/views.py:191 usersettings/views.py:383
+#, python-format
+msgid "Anlamı: %(x)s"
+msgstr "Meaning: %(x)s"
+
+#: usersettings/views.py:192 usersettings/views.py:263
+#: usersettings/views.py:384
+#, python-format
+msgid "Açıklama: %(x)s"
+msgstr "Explanation: %(x)s"
+
+#: usersettings/views.py:193
+#, python-format
+msgid "Eş Anlamlılar: %(x)s"
+msgstr "Synonyms: %(x)s"
+
+#: usersettings/views.py:194
+#, python-format
+msgid "Zıt Anlamlılar: %(x)s"
+msgstr "Opposites: %(x)s"
+
+#: usersettings/views.py:195
+#, python-format
+msgid "Kullanım Kalıpları: %(x)s"
+msgstr "Usage patterns: %(x)s"
+
+#: usersettings/views.py:197
+#, python-format
+msgid "Örnek Cümle %(no)s: %(x)s"
+msgstr "Example sentence %(no)s: %(x)s"
+
+#: usersettings/views.py:201 usersettings/views.py:388
+msgid "Dışa aktarılacak kelime bulunamadı."
+msgstr "No words to export."
+
+#: usersettings/views.py:260
+msgid "Değerlendirme (eski sistem)"
+msgstr "Evaluation (old system)"
+
+#: usersettings/views.py:261
+#, python-format
+msgid "Puanınız: %(x)s / 100"
+msgstr "Your score: %(x)s / 100"
+
+#: usersettings/views.py:262
+#, python-format
+msgid "Kriter Puanları: %(x)s"
+msgstr "Criterion scores: %(x)s"
+
+#: usersettings/views.py:271
+msgid "Değerlendirme"
+msgstr "Evaluation"
+
+#: usersettings/views.py:279
+msgid "İyi yapılanlar:"
+msgstr "What went well:"
+
+#: usersettings/views.py:286
+msgid "Hata bulunmadı."
+msgstr "No mistakes found."
+
+#: usersettings/views.py:314
+msgid "LearnVocab Metin Dökümü"
+msgstr "LearnVocab text export"
+
+#: usersettings/views.py:326 usersettings/views.py:424
+msgid "Dışa aktarılacak metin bulunamadı."
+msgstr "No texts to export."
+
+#: usersettings/views.py:363
+msgid "Kullanıcı ayar profili bulunamadı."
+msgstr "No settings profile found for the user."
+
+#: words/arama.py:318
+msgid "geçmiş hâli"
+msgstr "past form"
+
+#: words/arama.py:319
+msgid "3. hâli"
+msgstr "past participle"
+
+#: words/arama.py:320
+msgid "-ing hâli"
+msgstr "-ing form"
+
+#: words/arama.py:321
+msgid "çoğulu"
+msgstr "plural"
+
+#: words/arama.py:322
+msgid "-s almış hâli"
+msgstr "-s form"
+
+#: words/arama.py:323
+msgid "karşılaştırma hâli (-er)"
+msgstr "comparative (-er)"
+
+#: words/arama.py:324
+msgid "en üstünlük hâli (-est)"
+msgstr "superlative (-est)"
+
+#: words/arama.py:325
+msgid "bir biçimi"
+msgstr "a form"
+
+#: words/arama.py:427
+#, python-format
+msgid "%(yazim)s, %(kok)s kelimesinin %(adlar)s"
+msgstr "%(yazim)s: %(adlar)s of %(kok)s"
+
+#: words/kart.py:38
+msgid "isim"
+msgstr "noun"
+
+#: words/kart.py:38
+msgid "fiil"
+msgstr "verb"
+
+#: words/kart.py:38
+msgid "sıfat"
+msgstr "adjective"
+
+#: words/kart.py:39
+msgid "zarf"
+msgstr "adverb"
+
+#: words/kart.py:39
+msgid "phrasal verb"
+msgstr "phrasal verb"
+
+#: words/kart.py:40
+msgid "edat"
+msgstr "preposition"
+
+#: words/kart.py:40
+msgid "bağlaç"
+msgstr "conjunction"
+
+#: words/listem.py:35
+msgid "En yeni"
+msgstr "Newest"
+
+#: words/listem.py:35
+msgid "En eski"
+msgstr "Oldest"
+
+#: words/listem.py:36
+msgid "Son 1 hafta"
+msgstr "Last week"
+
+#: words/listem.py:36
+msgid "Son 1 ay"
+msgstr "Last month"
+
+#: words/models.py:493
+msgid "Benzer"
+msgstr "Similar"
+
+#: words/models.py:494
+msgid "Daha basit"
+msgstr "Simpler"
+
+#: words/models.py:495
+msgid "Zıt"
+msgstr "Opposite"
+
+#: words/sozluk_views.py:116
+#, python-format
+msgid ""
+"%(kelime)s ne demek? Türkçe anlamı ve cümle içinde kullanımı — LearnVocab "
+"Sözlük"
+msgstr ""
+"%(kelime)s in Turkish: meaning and example sentences — LearnVocab Dictionary"
+
+#: words/sozluk_views.py:166
+#, python-format
+msgid "%(seviye)s kelimeleri"
+msgstr "%(seviye)s words"
+
+#: words/sozluk_views.py:186
+msgid "LearnVocab Sözlük"
+msgstr "LearnVocab Dictionary"
+
+#: words/sozluk_views.py:236
+#, python-format
+msgid "%(kelime)s ne demek? Türkçe anlamı: %(anlamlar)s."
+msgstr "%(kelime)s in Turkish: %(anlamlar)s."
+
+#: words/sozluk_views.py:238
+#, python-format
+msgid "Örnek: “%(ornek)s”"
+msgstr "Example: “%(ornek)s”"
+
+#: words/sozluk_views.py:273
+msgid "Sırala"
+msgstr "Sort"
+
+#: words/sozluk_views.py:274
+msgid "Zaman"
+msgstr "Time"
+
+#: words/sozluk_views.py:391
+#, python-format
+msgid "%(seviye)s seviyesi İngilizce kelimeler"
+msgstr "%(seviye)s level English words"
+
+#: words/sozluk_views.py:392
+#, python-format
+msgid ""
+"%(seviye)s seviyesindeki İngilizce kelimeler: Türkçe anlamları, örnek "
+"cümleleri ve telaffuzlarıyla."
+msgstr ""
+"English words at %(seviye)s level: with their Turkish meanings, example "
+"sentences and pronunciations."
+
+#: words/sozluk_views.py:403
+#, python-format
+msgid "%(harf)s harfiyle başlayan İngilizce kelimeler"
+msgstr "English words starting with %(harf)s"
+
+#: words/sozluk_views.py:404
+#, python-format
+msgid "%(harf)s harfiyle başlayan İngilizce kelimeler ve Türkçe anlamları."
+msgstr "English words starting with %(harf)s and their Turkish meanings."
+
+#: words/sozluk_views.py:443
+msgid "Learn & Pass yeni kelimeleri yine seviyene göre seçecek."
+msgstr "Learn & Pass will pick new words based on your level again."
+
+#: words/sozluk_views.py:446
+#, python-format
+msgid "Learn & Pass artık yeni kelimeleri “%(liste)s” listesinden getirecek."
+msgstr "Learn & Pass will now bring new words from the “%(liste)s” list."

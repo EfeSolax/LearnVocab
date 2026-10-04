@@ -5,6 +5,7 @@ Ekran görüntüleri static/img/yardim/<dil>/<ad>-<acik|koyu>.webp. Telefon gör
 (375 px) çekilir, 500 px genişliğe küçültülür; her sürümde her dil ve tema için
 baştan çekilir (rapor 18.34). Görüntü değişince yalnızca aşağıdaki işaret
 konumları (x, y: görüntünün yüzdesi) güncellenir; yazılar sayfada HTML'dir.
+Bir dilde yazılar uzayıp düzen kayınca o dilin konumları ISARET_DILLERI'ne yazılır.
 
 İşaret numarası, rehberdeki adımın sırasıdır.
 """
@@ -15,7 +16,7 @@ from django.utils.translation import gettext_lazy as _
 
 from egzersizler.sorular import TIPLER
 
-GORUNTU_DILLERI = {"tr"}   # görüntüsü çekilmiş diller; diğerleri Türkçeyi gösterir
+GORUNTU_DILLERI = {"tr", "en", "de"}   # görüntüsü çekilmiş diller; diğerleri Türkçeyi gösterir
 
 # kimlik, adres (url adı + sorgu), başlık, giriş, görüntüler [(ad, yükseklik, [(x, y), ...])], adımlar.
 # Yükseklik 500 px genişlikteki görüntünün yüksekliğidir (sayfa yüklenirken kaymasın diye).
@@ -115,7 +116,7 @@ REHBERLER = [
     {
         "kimlik": "seri", "git": _("Ana Sayfa'ya git"), "adres": "index", "sorgu": "#seri", "baslik": _("Seri"),
         "giris": _("Her gün biraz çalışınca takviminde bir gün daha işaretlenir."),
-        "goruntuler": [("seri", 1000, [(80, 18.7), (76, 38.8), (3, 65)])],
+        "goruntuler": [("seri", 1000, [(80, 18.7), (76, 42.3), (3, 60.5)])],
         "adimlar": [
             _("Ana Sayfa'daki seri kutusuna dokun. Bir günü tamamlamak için şunlardan biri yeter: 10 Learn & Pass kartı, 10 egzersiz sorusu, 1 metin ya da 1 diyalog."),
             _("Dondurma hakkı: bir günü kaçırırsan hak varsa o gün otomatik dondurulur ve serin bozulmaz. 1 hakla başlarsın, art arda 5 gün çalışınca bir hak daha kazanırsın; en çok 3 hak birikir."),
@@ -126,28 +127,60 @@ REHBERLER = [
         "kimlik": "ayarlar", "git": _("Ayarlar'a git"), "adres": "settings_page", "sorgu": "", "baslik": _("Ayarlar: siteyi kendine göre ayarla"),
         "giris": _("Sağ üstteki profil fotoğrafına dokun, Hesap açılır; Ayarlar oradadır."),
         "goruntuler": [
-            ("ayarlar-gorunum", 1000, [(50, 53.5), (5, 90.3)]),
-            ("ayarlar-calisma", 1000, [(5, 49.3), (5, 78.5), (5, 90)]),
+            ("ayarlar-gorunum", 1000, [(49.4, 41.3), (21.6, 80.2)]),
+            ("ayarlar-calisma", 1000, [(3, 24.2), (5, 78.5)]),
+            ("ayarlar-tercihler", 1000, [(5, 28.5), (5, 53), (3, 77.9)]),
         ],
         "adimlar": [
             _("Görünüm: açık, koyu ya da \"sistem\" (cihazının teması). Bu seçim cihazında saklanır."),
+            _("Dil: sitenin dili (Türkçe, English, Deutsch). Üstteki küre düğmesinden de değiştirebilirsin; giriş yaptıysan seçimin hesabında saklanır."),
             _("Seviye: seviye testini yeniden çözebilirsin. Günün kelimesi ve egzersizler seviyene göre gelir; çalıştıkça seviyen kendiliğinden düzeltilir."),
             _("Learn & Pass'te tekrar ve yeni kelime oranı: sola çektikçe listendeki kelimeleri daha çok tekrar edersin, sağa çektikçe daha çok yeni kelime görürsün."),
             _("Egzersizde soru sayısı: Deneme Sınavı bu sayıyla açılır."),
             _("Yazılarda geri bildirim: hataların ne kadar ayrıntılı gösterileceği (nazik, normal, titiz)."),
+            _("Türkçe anlamlar: kapatırsan Türkçe anlamlar ne gösterilir ne sorulur; kartlarda, okurken ve egzersizlerde İngilizce açıklamalar kullanılır. Sitenin dilinden bağımsızdır."),
         ],
         "not": _("Aşağıda testlerde sesin kendiliğinden çalması, bildirim tercihleri, verilerini dosya olarak indirme ve geri alınamaz işlemler (listeyi boşaltma, hesabı silme) de vardır."),
     },
 ]
 
 
+# Dile özgü işaret konumları (görüntü adı → konumlar); yazılmayanlar REHBERLER'dekini kullanır.
+ISARET_DILLERI = {
+    "en": {
+        "liste": [(3, 24), (69, 78.2)],
+        "lp-balon": [(97, 60), (4.5, 87.4), (96, 87.4), (71, 15.5)],
+        "kisa-sinav": [(6, 25.6), (23, 63.2), (8, 86.9)],
+        "deneme-sinavi": [(5, 47.1), (95, 85)],
+        "okuma": [(3, 60.3), (3, 71), (48, 67.1)],
+        "yazilar": [(57, 46), (7, 52.8), (6, 68)],
+        "ayarlar-gorunum": [(58.8, 41.3), (49.5, 80.2)],
+        "ayarlar-calisma": [(3, 25.9), (5, 78.9)],
+    },
+    "de": {
+        "kelime": [(3, 65), (3, 47), (60, 53.3), (10, 90)],
+        "liste": [(3, 24), (76, 78.2)],
+        "lp-balon": [(97, 60), (4.5, 90.6), (96, 90.6), (61, 15.5)],
+        "kisa-sinav": [(6, 21.2), (28, 63.3), (8, 86.9)],
+        "deneme-sinavi": [(5, 47.1), (95, 85)],
+        "okuma": [(3, 60.3), (3, 71), (45.5, 67.1)],
+        "yazilar": [(93, 50.2), (7, 57), (6, 72.3)],
+        "ayarlar-gorunum": [(58.3, 41.3), (43.2, 80.2)],
+        "ayarlar-calisma": [(3, 25.9), (5, 81.9)],
+        "ayarlar-tercihler": [(5, 24.8), (5, 49.3), (3, 77.6)],
+    },
+}
+
+
 def _rehberler(dil):
     """Görüntülere işaret numaralarını ve adres önekini ekler."""
     klasor = f"img/yardim/{dil}/"
+    dile_ozgu = ISARET_DILLERI.get(dil, {})
     sonuc = []
     for r in REHBERLER:
         sira, goruntuler = 0, []
         for ad, yukseklik, isaretler in r["goruntuler"]:
+            isaretler = dile_ozgu.get(ad, isaretler)
             goruntuler.append({"yukseklik": yukseklik,
                 "acik": f"{klasor}{ad}-acik.webp", "koyu": f"{klasor}{ad}-koyu.webp",
                 "isaretler": [{"no": sira + i + 1, "x": x, "y": y} for i, (x, y) in enumerate(isaretler)],

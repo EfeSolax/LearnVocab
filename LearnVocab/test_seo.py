@@ -163,6 +163,7 @@ class NoindexVeCanonicalTests(TestCase):
         html = _html(self.client.get(reverse("sozluk"), {"sekme": "listem"}))
         self.assertIn('content="noindex"', html)
 
+    @override_settings(LANGUAGES=[("tr", "Türkçe")])
     def test_tek_dilde_hreflang_yok(self):
         self.assertNotIn("hreflang", _html(self.client.get(reverse("sozluk"))))
 
@@ -193,6 +194,7 @@ class NoindexVeCanonicalTests(TestCase):
         self.assertEqual(self.client.get("/en/yazilar/").status_code, 404)
         self.assertEqual(self.client.get("/writings/")["Location"], "/en/writings/")
 
+    @override_settings(LANGUAGES=[("tr", "Türkçe")])
     def test_yayinda_olmayan_dil_oneki_404(self):
         self.assertEqual(self.client.get("/en/sozluk/").status_code, 404)
 
@@ -299,6 +301,7 @@ class DizineAcTests(TestCase):
 
 
 class EskiAdresTests(TestCase):
+    @override_settings(LANGUAGES=[("tr", "Türkçe")])   # çok dilde /writings/ → /en/writings/ (test_yazilar_ingilizcede_writings)
     def test_eski_sayfalar_yenisine_301(self):
         ReadingText.objects.create(number=7, topic="hukuk", title="Siblings", body="Text.")
         HazirListe.objects.create(ad="ODTÜ 101", slug="odtu-101", yayinda=True)

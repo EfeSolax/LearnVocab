@@ -1180,7 +1180,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **`sitemap.xml`** (`LearnVocab/seo_views.py`): sabit sayfalar, göz atma sayfaları, **açılmış** kelime ve ifade sayfaları, yayındaki hazır listeler, kütüphane metinleri.
 - **Eski adresler** (`LearnVocab/eski_adresler.py`): v1.0'ın ve geliştirme sırasındaki İngilizce sayfa adresleri yenilerine 301 ile gider (`/users/login/` → `/giris/`, `/exercises/learn/` → `/calismalar/`, `/texts/` → `/yazilar/`, `/readings/` → `/okumalar/` …). v1.0'daki `/words/word-detail/<id>/` adresleri Sözlük'e gider; o kimlikler yeni veritabanında geçerli değil. POST ile çalışan eski uçlar yönlenmez.
 - **`www` ve `https`:** Canlıda `PREPEND_WWW` ve `SECURE_SSL_REDIRECT` açık; `learnvocab.com.tr` ve `http` istekleri asıl adrese 301 ile gider.
-- **Diller (18.22):** Bütün sayfalar dil önekine hazır (`i18n_patterns`; Türkçe öneksiz). Şu an yalnızca Türkçe yayında. Bir dil `settings.LANGUAGES`'a eklenince `/en/…` adresleri ve `hreflang` etiketleri kendiliğinden gelir. **Çevirisi bitmemiş dil eklenmez**: çevirisiz `/en/` sayfaları Türkçe sayfaların kopyası olur.
+- **Diller (18.22):** Bütün sayfalar dil önekli (`i18n_patterns`; Türkçe öneksiz). **Türkçe, İngilizce ve Almanca yayında** (`/en/…`, `/de/…`); her sayfada `hreflang` (tr, en, de, x-default = Türkçe) var. `sitemap.xml` her dilin adresini ayrı yazar ve her birine `xhtml:link` ile diğer dillerin karşılığını ekler. **Çevirisi bitmemiş dil eklenmez**: çevirisiz `/es/` sayfaları Türkçe sayfaların kopyası olur. Bir dil geçici olarak kapatılacaksa `.env`'de `YAYIN_DILLERI=tr` gibi verilir.
 
 **Kademeli dizine alma (uygulandı):**
 - Alan: `Word.dizinde` ve `Expression.dizinde` (admin'de "Google'a açık"). Kurallar `words/dizine_alma.py`, komut `manage.py dizine_ac`.
@@ -1321,7 +1321,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - allauth'un kendi giriş/kayıt/çıkış sayfaları bizimkilere yönlenir (`/accounts/login/` → `/giris/` …).
   - Yerel sunucu sanal ortamla başlatılır: `.venv/bin/python manage.py runserver` (yeni paketler yalnızca `.venv`'de kurulu).
 
-### 18.22 Dil seçeneği (Efe'nin kararı, 29 Eylül)
+### 18.22 Dil seçeneği (Efe'nin kararı, 29 Eylül) — **YAPILDI (5 Ekim; tr, en, de yayında)**
 - Siteye **dil seçeneği** eklenecek.
 - Bu yüzden arayüz metinleri şablonlara ve koda gömülü kalmaz. Seçili dile göre metinlerin çekileceği **dil dosyaları** hazırlanır.
   - **Claude'un önerisi:** Django'nun kendi çeviri sistemi (`gettext`: `{% translate %}`, `.po`/`.mo` dosyaları, `LocaleMiddleware`).
@@ -1338,7 +1338,17 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - **Dil düğmesi:** sağ üstte profil fotoğrafının yanında (misafirde "Giriş yap"ın yanında) bir düğme; tıklanınca üç satırlık liste açılır (Türkçe · English · Deutsch). Seçince aynı sayfanın o dildeki adresine gidilir; seçim cihazda, girişlide hesapta saklanır.
   - **Otomatik yönlendirme yok** (Claude'un önerisi, SEO): tarayıcı diline göre yönlendirilmez; en çok küçük bir öneri gösterilir. Bir dil, arayüz metinlerinin hepsi çevrilmeden yayına alınmaz.
   - **"Türkçe anlamlar" ayarı (arayüz dilinden bağımsız):** Ayarlar'da, hesaba kaydedilen bir seçenek; varsayılan açık. Kapalıysa kartlarda, L&P'de ve egzersizlerde Türkçe anlam gösterilmez ve sorulmaz; her şey İngilizce açıklama üzerinden yürür.
-  - Henüz uygulanmadı. Şablonların hiçbiri çeviriye hazır değil (`{% translate %}` yok); bu iş tasarım işleriyle birlikte yapılır.
+- **Uygulama (3–5 Ekim):**
+  - **Çeviri dosyaları:** `locale/en/` ve `locale/de/` (`django.po` + derlenmiş `django.mo`, ~1.020 metin, hepsi çevrili). Bütün canlı şablonlar ve Python metinleri (`gettext`/`gettext_lazy`, şablonda `{% translate %}`/`{% blocktranslate %}`) çeviriye hazır. Çevrilmeyenler: kullanılmayan `comments.html`, `friends.html` ve admin.
+  - **Terimler:** Kısa Sınav = Quick Quiz / Kurztest · Deneme Sınavı = Practice Test / Probetest · Listem = My List / Meine Liste · Yazılar = Writings / Schreiben (adres `/en/writings/`, `/de/schreiben/`) · seri = streak / Serie · dondurma hakkı = streak freeze / Serienschutz.
+  - **Dil düğmesi** (`base/_dilDugmesi.html`): üst çubukta profil fotoğrafının yanında küre ve dil kodu (TR/EN/DE); açılan listede üç dil. Seçince `POST /dil/` (`LearnVocab/diller.py`) aynı sayfanın o dildeki adresine gider; seçim çerezde, girişliyse hesapta (`UserSettings.arayuz_dili`) saklanır. Girişte (Google ile giriş dahil) hesap dili varsa o dile geçilir. Yayında tek dil kalırsa düğme görünmez.
+  - **Öneri şeridi** (`base/_dilOnerisi.html`): kullanıcı hiç dil seçmemişse ve tarayıcısı yayındaki başka bir dili istiyorsa sayfanın üstünde o dilde küçük bir öneri ("Diese Seite gibt es auch auf Deutsch."). Yönlendirme yok.
+  - **Ayarlar'da "Dil"** bölümü (aynı üç seçenek) ve **"Türkçe anlamlar"** anahtarı (`UserSettings.turkce_anlamlar`, varsayılan açık; `usersettings/anlam.py`). Kapalıyken kartlarda, Listem'de, L&P'de, okuma baloncuğunda, arama önerilerinde, günün kelimesinde ve diyalog ipucunda Türkçe anlam yerine İngilizce açıklama görünür; Kısa Sınav açıklama sorar; Deneme Sınavı'nda Türkçe isteyen tipler (anlam, eşleştirme) "Türkçe anlamlar kapalı" notuyla pasif olur. Misafirde her zaman açık.
+  - **Yazılarda geri bildirim arayüz dilinde gelir** (Gemini isteminde dil verilir; `texts/degerlendirme.py`).
+  - **Bildirimler** (hatırlatma, seri) alıcının hesap dilinde yazılır (`diller.kullanici_dilinde`).
+  - **Yüzdeler** sayfanın diline göre yazılır (Türkçe %70, İngilizce 70%, Almanca 70 %; `Intl.NumberFormat`).
+  - **Veritabanı içeriği Türkçe kalır:** kelime anlamları (karar b), hazır liste açıklamaları, okuma metinlerinin "kaynak" satırı.
+  - Testler: `LearnVocab/test_diller.py`.
 
 ### 18.23 Kayıt formu ve günlük hedef (Efe'nin kararı, 29 Eylül) — **YAPILDI (30 Eylül)**
 - **Kayıt formu:** **ad, soyad, e-posta, kullanıcı adı, şifre**; hepsi zorunlu.
@@ -1393,7 +1403,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - **Alttaki menü ve sağ üstteki profil fotoğrafı her sayfada sabittir** (Hesap ve Ayarlar dahil).
 - Misafirde profil fotoğrafının yerinde "Giriş Yap" durur.
 - **Tema:** Üst çubuktaki tema düğmesi kalktı. **Varsayılan tema cihazın sistem temasıdır**; kullanıcı Ayarlar'dan Açık ya da Koyu seçerse onun seçimi geçerli olur ("Sistem"e dönebilir). Seçim cihazda saklanır.
-- **Henüz Ayarlar'da olmayan:** dil (çeviriyle birlikte, 18.22). Beyaz tema (18.12) açık temanın yeni hâli olacak.
+- Ayarlar'da **Dil** (Görünüm'ün altında) ve Çalışma bölümünde **Türkçe anlamlar** anahtarı var (18.22). Beyaz tema (18.12) açık temanın yeni hâli olacak.
 
 ### 18.27 Seviye testi değişiklikleri (Efe'nin kararları, 29–30 Eylül) — **YAPILDI (30 Eylül; özet soruları 1 Ekim'de yüklendi)**
 > **Kod:**
@@ -1515,7 +1525,8 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 9. **PDF yükleme sınırı:** Apache/Passenger'ın 50 MB yüklemeye izin verdiği doğrulanır (gerekirse `LimitRequestBody`).
 10. **Google:** Search Console'da alan adı doğrulaması (Efe, DNS TXT), `sitemap.xml` gönderimi; birkaç gün "Dizine eklenen / taranan ama eklenmeyen" sayılarının izlenmesi; sonra kademeli dizine almanın 2. partisi (B2 Oxford).
 10a. **Google ile giriş:** sunucuda `pip install -r requirements.txt` (django-allauth, PyJWT) ve `migrate` (account, socialaccount tabloları); `.env`'e `GOOGLE_CLIENT_ID` ve `GOOGLE_CLIENT_SECRET`; Google Cloud'da canlı yönlendirme adresinin kayıtlı olduğu doğrulanır; canlıda bir kez Google ile girilir.
-10b. **Yeni migration'lar:** `egzersizler/0002` (Kısa Sınav / Deneme Sınavı adları) ve allauth tabloları.
+10b. **Yeni migration'lar:** `egzersizler/0002` (Kısa Sınav / Deneme Sınavı adları), allauth tabloları ve `usersettings/0006` (arayüz dili, Türkçe anlamlar).
+10d. **Diller (18.22):** `.mo` dosyaları depoda olduğu için sunucuda `compilemessages` (gettext) gerekmez. `YAYIN_DILLERI` varsayılanı `tr,en,de`. Search Console'da `/en/` ve `/de/` adreslerinin `hreflang` ile tanındığı izlenir. Site haritası artık her adresi üç kez yazıyor; 50.000 adrese yaklaşınca site haritası dizinine (parçalara) bölünür.
 10c. **Statik dosyaların önbelleği (Claude'un önerisi, Efe ile konuşulacak):** CSS/JS dosya adları değişmediği için güncellemeden sonra tarayıcılar eski `defter.css`/`site.css`'i kullanabilir. Çözüm: `ManifestStaticFilesStorage` (dosya adına içerik özeti eklenir; `collectstatic` ile çalışır, ek paket gerekmez).
 11. **Geçiş günü:** kısa bakım ekranı (Passenger `tmp/restart.txt` ile yeniden başlatma), geçişten sonra ana akışların elle denenmesi (kayıt, L&P, egzersiz, okuma, yazı, bildirim).
 
@@ -1570,16 +1581,18 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - İçerik `LearnVocab/yardim.py`, şablon `templates/pages/about.html`, testler `LearnVocab/test_yardim.py`.
   - Bölümler: içindekiler · "LearnVocab nedir?" (tanı / gör / kullan, bir gün nasıl geçer) · 9 rehber: Sözlük, hazır listeler, Listem, Learn & Pass, Egzersizler (soru tipleri tablosu `egzersizler.sorular.TIPLER`'den gelir, kendiliğinden güncel kalır), Okumalar, Yazılar, seri, Ayarlar · "Siteyi kim yaptı?" (Efe'nin eski hakkında yazısından; iletişim: ODTÜ e-postası ve GitHub, Efe gerekirse kaldırır).
   - Her rehberde telefon çerçevesinde ekran görüntüsü, üstünde kırmızı numaralı işaretler; yanında aynı numaralı adımlar. Görüntü temaya göre değişir.
-  - **Görüntüler telefon görünümünde (375 px) çekilir**, masaüstünde de telefon çerçevesinde gösterilir; ayrı masaüstü görüntüsü yoktur. 13 ekran × 2 tema = 26 WebP, toplam ~800 KB, ekrana gelince yüklenir. Yer: `static/img/yardim/<dil>/<ad>-<acik|koyu>.webp`.
+  - **Görüntüler telefon görünümünde (375 px) çekilir**, masaüstünde de telefon çerçevesinde gösterilir; ayrı masaüstü görüntüsü yoktur. 15 ekran × 2 tema × 3 dil = 90 WebP (dil başına ~900 KB), ekrana gelince yüklenir. Yer: `static/img/yardim/<dil>/<ad>-<acik|koyu>.webp`. Sayfa hangi dildeyse o dilin görüntüleri gelir.
+  - İşaret konumları `REHBERLER`'de (Türkçe görüntüye göre); yazılar uzayıp düzen kayan dillerin konumları `ISARET_DILLERI`'nde. Ayarlar rehberi üç görüntü: Görünüm + Dil · Seviye + L&P oranı · soru sayısı, geri bildirim, Türkçe anlamlar.
+  - Örnek hesapta 13 günlük seri (bir gün dondurulmuş) var; seri penceresi görüntüsü bu yüzden dolu takvim gösterir.
   - Görüntüler deneme veritabanındaki örnek hesapla çekilir (gerçek kullanıcı verisi görünmez).
 
 ### 18.34 Her yeni sürümde yapılacaklar (Efe'nin kararı, 2 Ekim)
 Yeni sürüm yayına çıkmadan önce bu liste baştan sona yapılır. Yeni sürekli iş çıkarsa buraya eklenir.
 1. Testler: `.venv/bin/python manage.py test --parallel 4 --noinput`.
 2. Tailwind yeniden derlenir (komut `tailwind.config.js` başında); `LearnVocab.test_tailwind` geçmeli.
-3. Yardım sayfasının ekran görüntüleri **her dil ve her tema** (açık/koyu) için telefon görünümünde (375 px) baştan çekilir; deneme veritabanındaki örnek hesapla. Görüntü değiştiyse `LearnVocab/yardim.py`'deki işaret konumları güncellenir; `LearnVocab.test_yardim` eksik görüntüyü yakalar (18.33).
+3. Yardım sayfasının ekran görüntüleri **her dil ve her tema** (açık/koyu) için telefon görünümünde (375 px) baştan çekilir; deneme veritabanındaki örnek hesapla, varsayılan ayarlarla (Türkçe anlamlar açık). Koyu temada üst çubuktaki renk geçişi bitmeden çekilmez. Görüntü değiştiyse `LearnVocab/yardim.py`'deki işaret konumları (`REHBERLER`, dile özgü olanlar `ISARET_DILLERI`) güncellenir; `LearnVocab.test_yardim` eksik görüntüyü ve yanlış boyu yakalar (18.33).
 4. Tanıtım videosu tasarım ya da metin değiştiyse **her dil için** yeniden hazırlanır; altyazılar güncellenir (18.33).
-5. Yeni ya da değişen arayüz metinlerinin çevirileri tamamlanır (18.22).
+5. Yeni ya da değişen arayüz metinlerinin çevirileri tamamlanır (18.22): `.venv/bin/python manage.py makemessages -l en -l de --ignore=.venv --ignore=node_modules`, `locale/*/LC_MESSAGES/django.po`'daki boş ve `fuzzy` satırlar çevrilir, `.venv/bin/python manage.py compilemessages -l en -l de --ignore=.venv`. Sonra `/en/` ve `/de/` sayfaları çevrilmemiş Türkçe için taranır (özellikle `{{ sayı }} kelime` gibi değişkene yapışık sözcükler).
 6. Rapor güncellenir, "Değişiklik kaydı"na sürüm notu eklenir.
 
 ### 18.20 Önerilen uygulama sırası (Claude'un önerisi)
@@ -1707,3 +1720,5 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-02 (9):** Efe Google ile girişi yerelde denedi, çalışıyor (18.21). Kapibara taslaklarına başlandı.
 - **2026-10-02 (10):** Kapibara çizimi Efe'nin örneklerine göre baştan yapıldı ve onaylandı (18.33): önden, ayakta, yetişkin, ağzı açık, iki diş; koyu temada çıkartma görünümü. Sitedeki geçici çizimin yerine kondu (9 poz). 950 test geçiyor.
 - **2026-10-02 (11):** Yardım ve hakkında sayfası yazıldı (18.33): 9 rehber, 26 ekran görüntüsü (telefon, açık/koyu), Efe hakkında bölümü ve iletişim. Görüntüler yalnızca telefon görünümünde çekilir (18.34 güncellendi). 955 test geçiyor.
+- **2026-10-03:** Dil seçeneğinin altyapısı (18.22): şablonlar ve kod çeviriye hazır, dil düğmesi, hesap dili, "Türkçe anlamlar" ayarı, seri penceresi defter temasında. `usersettings/0006` migration'ı ana veritabanına uygulandı (yedek migration'dan sonra alındı: `~/LearnVocab-yedekler/db.sqlite3.yedek-20261003-arayuz-dili-sonrasi`).
+- **2026-10-05:** Dil seçeneği bitti, **tr, en ve de yayında** (18.22 YAPILDI). İngilizce ve Almanca çeviriler tamam; site haritası her dilin adresini `hreflang` karşılıklarıyla yazıyor. Yardım sayfasının görüntüleri üç dilde, iki temada yeniden çekildi (90 görüntü; Türkçe olanlar da dil düğmesiyle yenilendi); Ayarlar rehberine "Dil" ve "Türkçe anlamlar" adımları eklendi, seri görüntüsü yeni pencereyle değişti (18.33). Yüzdeler dile göre yazılıyor. 18.34'e çeviri komutları eklendi, 18.30'a dil maddeleri. 975 test geçiyor.

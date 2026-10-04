@@ -12,8 +12,9 @@ Sitemap'e yalnızca DİZİNE AÇIK sayfalar girer:
 
 from xml.sax.saxutils import escape
 
+from django.conf import settings
 from django.http import HttpResponse
-from django.urls import reverse
+from django.urls import reverse, translate_url
 from django.views.decorators.cache import cache_control
 from django.views.decorators.http import require_GET
 
@@ -64,10 +65,27 @@ def sitemap_yollari():
 @require_GET
 @cache_control(public=True, max_age=3600)
 def sitemap_xml(request):
+    """
+    Birden çok dil yayındaysa (rapor 18.22) her sayfanın her dildeki adresi ayrı <url> olur ve
+    hepsi birbirini xhtml:link hreflang ile gösterir (Google'ın önerdiği biçim). Türkçe x-default.
+    Not: 50.000 adres sınırına yaklaşılırsa site haritası dizinine (sitemap index) bölünmeli.
+    """
+    diller = [kod for kod, _ad in settings.LANGUAGES]
+    cok_dil = len(diller) > 1
     parcalar = ['<?xml version="1.0" encoding="UTF-8"?>\n'
-                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n']
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'
+                + (' xmlns:xhtml="http://www.w3.org/1999/xhtml"' if cok_dil else "") + '>\n']
     for yol, degisti in sitemap_yollari():
         son = f"<lastmod>{degisti.date().isoformat()}</lastmod>" if degisti else ""
-        parcalar.append(f"<url><loc>{escape(tam_adres(yol))}</loc>{son}</url>\n")
+        if not cok_dil:
+            parcalar.append(f"<url><loc>{escape(tam_adres(yol))}</loc>{son}</url>\n")
+            continue
+        adresler = [(kod, tam_adres(translate_url(yol, kod))) for kod in diller]
+        baglar = "".join(f'<xhtml:link rel="alternate" hreflang="{kod}" href="{escape(adres)}"/>'
+                         for kod, adres in adresler)
+        baglar += (f'<xhtml:link rel="alternate" hreflang="x-default" '
+                   f'href="{escape(tam_adres(translate_url(yol, settings.LANGUAGE_CODE)))}"/>')
+        for _kod, adres in adresler:
+            parcalar.append(f"<url><loc>{escape(adres)}</loc>{son}{baglar}</url>\n")
     parcalar.append("</urlset>\n")
     return HttpResponse("".join(parcalar), content_type="application/xml; charset=utf-8")

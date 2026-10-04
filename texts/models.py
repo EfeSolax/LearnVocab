@@ -10,6 +10,7 @@ Yazma bölümü (ürün raporu 9).
 """
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from users.models import User
 from words.models import Meaning, Register, Sentiment, Word
@@ -29,9 +30,9 @@ class YaziDurumu(models.TextChoices):
 
 class Sertlik(models.TextChoices):
     """Geri bildirimin sertliği (rapor 9.1). Yalnızca hata listesini etkiler."""
-    NAZIK = "nazik", "Nazik"
-    NORMAL = "normal", "Normal"
-    TITIZ = "titiz", "Titiz"
+    NAZIK = "nazik", _("Nazik")
+    NORMAL = "normal", _("Normal")
+    TITIZ = "titiz", _("Titiz")
 
 
 class Text(models.Model):

@@ -117,12 +117,12 @@ Kart verisi kelime kartıyla aynıdır (words.kart.Kart); liste düğmesi ve
 {# ---------- Bu kelimeyle çalış ---------- #}
 <section class="mt-16 grid gap-8 sm:grid-cols-2" aria-label="{% translate "Bu kelimeyle çalış" %}">
     <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
-        <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">tekrar</p>
+        <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "tekrar" %}</p>
         <p class="mt-1 text-lg font-semibold">{% translate "Listene eklediğin kelimeyi 1, 3, 7 ve 21 gün sonra yeniden sorarız." %}</p>
         <a href="{% url 'learn_pass_page' %}" class="lv-el-bag mt-3 inline-block">{% translate "Learn & Pass'e git →" %}</a>
     </div>
     <div class="lv-not lv-pembe lv-bantli text-gray-900 dark:text-slate-100">
-        <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">kullan</p>
+        <p class="lv-el text-[22px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "kullan" %}</p>
         <p class="mt-1 text-lg font-semibold">{% blocktranslate with kelime=kartlar.0.text %}“<span lang="en">{{ kelime }}</span>” ile kısa bir cümle yaz; doğru kullanıp kullanmadığını gösterelim.{% endblocktranslate %}</p>
         <a href="{% url 'profile_texts' %}" class="lv-el-bag mt-3 inline-block">{% translate "Yazılar'a git →" %}</a>
     </div>
