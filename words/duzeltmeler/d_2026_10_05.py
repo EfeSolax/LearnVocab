@@ -203,3 +203,57 @@ def uygula_2():
         silinen = kopyalari_sil()
         uygula_1()
     return silinen
+
+
+# ---------------------------------------------------------------------------
+# Parti 3 (769 tohum, 1.006 yeni kelime). 1.096 anlamın hepsi okundu.
+
+BUYUK_HARFLI_3 = ("Satan", "Moorish")
+
+KARSILIK_3 = {
+    ("satan", "noun", "şeytan"): "Şeytan",
+    ("moorish", "adjective", "Mağribi Müslümanlara ait"): "Mağribi, Mağriplilere ait",
+    ("kosher", "adjective", "yahudi dinine uygun"): "koşer, Yahudi dinine uygun",
+    ("quid", "noun", "ingiliz sterlini"): "İngiliz sterlini (gündelik dil)",
+}
+
+ANLAM_SIL_3 = [
+    ("beater", "döven kimse, saldırgan"), ("domino", "kapüşonlu pelerin"), ("gage", "rehin, teminat, güvence"),
+    ("kinky", "cinsel açıdan alışılmadık, fetişist"), ("moor", "mağribi"),
+    ("slug", "kafaya dikmek, bir dikişte içmek"), ("snowflake", "aşırı alıngan kimse, çıtkırıldım kimse"),
+    ("withholding", "esirgeyen, sakınan, ketum"),
+]
+
+KELIME_SIL_3 = [
+    ("thirteen", None), ("thirteenth", None), ("fourteen", None), ("fourteenth", None),
+    ("fifteen", None), ("fifteenth", None), ("seventeen", None), ("seventeenth", None),
+    ("autistic", "noun"), ("norm", "verb"), ("replicant", None), ("airforce", None), ("brownie", None),
+    ("circumcise", None), ("uncircumcised", None), ("semen", None), ("midget", None), ("wack", None),
+]
+
+CUMLE_3 = {
+    ("estrogen", "Estrogen helps girls develop"):
+        "Estrogen is one of the hormones that control growth in the human body.",
+}
+
+
+def uygula_3():
+    with transaction.atomic():
+        for (kelime, tur, eski), yeni in KARSILIK_3.items():
+            Meaning.objects.filter(word__text__iexact=kelime, word__pos=tur, meaning_tr=eski) \
+                .update(meaning_tr=yeni)
+        for kelime, karsilik in ANLAM_SIL_3:
+            Meaning.objects.filter(word__text__iexact=kelime, meaning_tr=karsilik).delete()
+        for kelime, tur in KELIME_SIL_3:
+            qs = Word.objects.filter(text__iexact=kelime)
+            (qs.filter(pos=tur) if tur else qs).delete()
+        for (kelime, bas), yeni in CUMLE_3.items():
+            ExampleSentence.objects.filter(meaning__word__text__iexact=kelime, text__startswith=bas) \
+                .update(text=yeni)
+        for yazim in BUYUK_HARFLI_3:
+            for w in Word.objects.filter(text__iexact=yazim).exclude(text=yazim):
+                w.text = yazim
+                w.save(update_fields=["text"])
+        silinen = kopyalari_sil()
+        uygula_2()
+    return silinen
