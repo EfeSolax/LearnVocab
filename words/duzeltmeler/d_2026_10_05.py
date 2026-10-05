@@ -257,3 +257,62 @@ def uygula_3():
         silinen = kopyalari_sil()
         uygula_2()
     return silinen
+
+
+# ---------------------------------------------------------------------------
+# Parti 4 (766 tohum, 916 yeni kelime). 998 anlamın hepsi okundu.
+
+BUYUK_HARFLI_4 = ("Passover",)
+
+KARSILIK_4 = {
+    ("passover", "noun", "hamursuz bayramı, yahudi kutsal bayramı"): "Hamursuz Bayramı (Yahudi bayramı)",
+    ("halal", "adjective", "islami kurallara uygun, helal"): "helal, İslami kurallara uygun",
+    ("crofting", "noun", "iskoçya'da küçük çiftlikçilik"): "küçük çiftlikçilik (İskoçya)",
+    ("greyhound", "noun", "tazı, ingiliz tazısı"): "tazı, İngiliz tazısı",
+    ("laird", "noun", "soylu toprak sahibi, iskoç derebeyi"): "soylu toprak sahibi (İskoçya)",
+    ("theta", "noun", "yunan alfabesinin sekizinci harfi"): "theta (Yunan alfabesinin sekizinci harfi)",
+    ("yak", "noun", "yak, tibet öküzü"): "yak, Tibet öküzü",
+    ("vendetta", "noun", "kan davası, intikal eden düşmanlık"): "kan davası, uzun süren düşmanlık",
+    ("chaste", "adjective", "namuslu, cinsel açıdan temiz"): "iffetli, namuslu",
+    ("chastity", "noun", "iffet, namus, cinsel perhiz"): "iffet, namus",
+}
+
+ANLAM_SIL_4 = [
+    ("bombshell", "çok çekici, göz alıcı kadın"), ("mow", "yok etmek, sürükleyerek öldürmek"),
+    ("nominal", "adıl, isim soylu sözcük, ad öbeği"), ("solicitation", "azmettirme, suça teşvik, fuhşa teşvik"),
+    ("swag", "kibirli bir şekilde yürümek, kendinden emin adımlarla dolaşmak"), ("thrashing", "vurma, dövme"),
+]
+
+KELIME_SIL_4 = [
+    ("anorexic", "noun"), ("brain", "verb"), ("merchandising", "verb"), ("re-choreograph", None),
+    ("non-nomadic", None),
+]
+
+CUMLE_4 = {
+    ("contraceptive", "Many teenagers rely on a contraceptive pill"):
+        "The doctor explained the different contraceptive methods during the health class.",
+    ("mutilate", "The police found a man who had mutilated"):
+        "Vandals mutilated the statue in the park last night.",
+}
+
+
+def uygula_4():
+    with transaction.atomic():
+        for (kelime, tur, eski), yeni in KARSILIK_4.items():
+            Meaning.objects.filter(word__text__iexact=kelime, word__pos=tur, meaning_tr=eski) \
+                .update(meaning_tr=yeni)
+        for kelime, karsilik in ANLAM_SIL_4:
+            Meaning.objects.filter(word__text__iexact=kelime, meaning_tr=karsilik).delete()
+        for kelime, tur in KELIME_SIL_4:
+            qs = Word.objects.filter(text__iexact=kelime)
+            (qs.filter(pos=tur) if tur else qs).delete()
+        for (kelime, bas), yeni in CUMLE_4.items():
+            ExampleSentence.objects.filter(meaning__word__text__iexact=kelime, text__startswith=bas) \
+                .update(text=yeni)
+        for yazim in BUYUK_HARFLI_4:
+            for w in Word.objects.filter(text__iexact=yazim).exclude(text=yazim):
+                w.text = yazim
+                w.save(update_fields=["text"])
+        silinen = kopyalari_sil()
+        uygula_3()
+    return silinen

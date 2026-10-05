@@ -1599,7 +1599,7 @@ Yeni sürüm yayına çıkmadan önce bu liste baştan sona yapılır. Yeni sür
 5. Yeni ya da değişen arayüz metinlerinin çevirileri tamamlanır (18.22): `.venv/bin/python manage.py makemessages -l en -l de --ignore=.venv --ignore=node_modules`, `locale/*/LC_MESSAGES/django.po`'daki boş ve `fuzzy` satırlar çevrilir, `.venv/bin/python manage.py compilemessages -l en -l de --ignore=.venv`. Sonra `/en/` ve `/de/` sayfaları çevrilmemiş Türkçe için taranır (özellikle `{{ sayı }} kelime` gibi değişkene yapışık sözcükler).
 6. Rapor güncellenir, "Değişiklik kaydı"na sürüm notu eklenir.
 
-### 18.35 Sözlüğü genişletme: wordfreq'ten yeni kelimeler (Efe'nin kararı, 5 Ekim) — **parti 0–3 yapıldı (3.682 kelime), parti 4 Efe'yi bekliyor**
+### 18.35 Sözlüğü genişletme: wordfreq'ten yeni kelimeler (Efe'nin kararı, 5 Ekim) — **parti 0–4 yapıldı (4.598 kelime)**
 - **Amaç:** sözlükte olmayan, sık kullanılan ~3.500 kelimeyi eklemek.
 - **Hat:** 25 Eylül'deki hat aynen kullanılır (`ozetler/2026-09-24_0918_kelime-hatti-durum.txt`, `2026-09-25_kelime-hatti-bitti.txt`): `aile_uret --file …` → `aile_birlestir` → `aile_doldur` (üretici `openai/gpt-oss-120b`, kontrolcü `google/gemini-3.8-flash` düşünme low, OpenRouter). Ardından Claude yeni kelimeleri okur ve hataları `words/duzeltmeler/` altında düzeltir.
 - **Harcama (Efe, 5 Ekim):** ücretli Gemini kullanılır; üst sınır **5–10 $**. Eski hatta maliyet ~2,1 $ / 1.000 kelimeydi; aile genişletmesi listedeki kelime sayısından fazla kelime getirir. Önce küçük bir parti çalıştırılıp gerçek maliyet ölçülür, sonra kesme eşiği seçilir.
@@ -1609,6 +1609,7 @@ Yeni sürüm yayına çıkmadan önce bu liste baştan sona yapılır. Yeni sür
 - **Parti 0 (deneme, 5 Ekim):** 200 tohum → 184 aile → **310 yeni kelime**, 342 anlam (48 kelime reddedildi, 110'u zaten vardı). Gemini 393 anlamdan 46 karşılığı düzeltti, 39 anlamı sildi. **Gerçek maliyet ~0,54 $ (≈ 1,75 $ / 1.000 yeni kelime).** Claude denetimi `words/duzeltmeler/d_2026_10_05.py`: özel adların büyük harfi, 13 zayıf karşılık, 3 silme (argo/aşağılayıcı/gereksiz), 2 uygunsuz örnek cümle (~%5 anlamda düzeltme).
 - **Parti 1–3 (5 Ekim, 769'ar tohum):** 1.254 + 1.112 + 1.006 yeni kelime; maliyet ~2,11 + 1,99 + 1,81 $. Dört partinin toplamı **3.682 kelime, ~6,45 $**. Claude denetimi aynı dosyada (`uygula_1/2/3`): sayı kelimeleri (18.16), argo, aşağılayıcı ve cinsel anlamlar, özel adların büyük harfi, zayıf karşılıklar. Kalan: parti 4 (766 tohum) ve "incelenecek" aileler; Efe ile konuşulduktan sonra.
 - **Hattın tuzağı:** hat kelimenin sözlükte olup olmadığına büyük-küçük harfe duyarlı bakar; silinen ya da büyük harfe çevrilen kelimeler sonraki partide yeniden üretilir. Çare: `kopyalari_sil()` ve ara deponun `kararlar.json`'ına `cikar`. `cikar` **taslağın kendi kökünde** uygulanır (ailenin son kökünde değil), bu yüzden kelimeyi içeren her taslağın köküne yazılmalı (replicant, "replica" taslağından sızmıştı).
+- **Parti 4 (5 Ekim, 766 tohum):** 916 yeni kelime, ~1,7 $ (tahmini; doldurma bilgisayar uykuya geçince takıldı, süreç durdurulup yeniden başlatıldı, yazılmış aileler atlandığı için kayıp olmadı). Beş partinin toplamı **4.598 kelime, ~8,1 $**. Claude denetimi `uygula_4`. Kalan: "incelenecek" aileler (Efe ile).
 
 ### 18.36 En temel kelimeler elle eklenecek (Efe'nin kararı, 5 Ekim) — **sonra yapılacak**
 - Sözlükte bazı en temel kelimeler yok: the, a, an, I, he, we, my, your, they, which, because, although, however, instead, though, would, could, myself, everyone… (tam liste `listeler/2026-10-05-temel-eksikler.txt`, 54 kelime).
@@ -1747,3 +1748,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-05 (4):** Sözlüğü genişletme kararı (18.35): wordfreq'ten aday listesi çıkarıldı (4.026 kelime, zipf ≥ 3); hat 25 Eylül'deki gibi, ücretli Gemini, bütçe 5–10 $. En temel kelimeler (the, because, although…) elle eklenecek (18.36, sonra).
 - **2026-10-05 (5):** NAWL indirildi ve listeye eklendi; genişletmenin deneme partisi çalıştırıldı: 310 yeni kelime, ~0,54 $; Claude denetimi `d_2026_10_05.py` (18.35).
 - **2026-10-05 (6):** Genişletme parti 1–3: 3.372 yeni kelime (toplam 3.682, ~6,45 $), Claude denetimi `uygula_1/2/3`; `cikar` kararının taslak kökünde uygulandığı not edildi (18.35). Parti 4 Efe'yi bekliyor.
+- **2026-10-05 (7):** Genişletme parti 4: 916 yeni kelime (toplam 4.598, ~8,1 $), Claude denetimi `uygula_4` (18.35).
