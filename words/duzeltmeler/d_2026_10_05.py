@@ -157,3 +157,49 @@ def uygula_1():
         # Önceki partinin karşılık düzeltmelerini yeniden üretilen kopyalara da uygula.
         uygula()
     return silinen
+
+
+# ---------------------------------------------------------------------------
+# Parti 2 (769 tohum, 1.112 yeni kelime). 1.234 anlamın hepsi okundu.
+
+BUYUK_HARFLI_2 = ("Torah",)
+
+KARSILIK_2 = {
+    ("fraternal", "adjective", "çift yumurta"): "çift yumurta (ikizler için)",
+    ("torah", "noun", "tevrat"): "Tevrat",
+}
+
+ANLAM_SIL_2 = [
+    ("cougar", "genç erkeklerle çıkan olgun kadın"), ("posterior", "arka bölüm, arka kısmı, kalça bölgesi"),
+    ("rad", "havalı, süper"), ("mule", "uyuşturucu kaçakçısı, kontraband taşıyıcısı"),
+    ("vat", "katma değer vergisi"), ("kite", "karşılıksız çekle dolandırmak"),
+    ("birch", "huşla dövmek"), ("gutter", "oluk içine yönlendirmek, akıtmak"),
+    ("legate", "vasiyet etmek, miras bırakmak"), ("legate", "görevli olarak göndermek, temsilci olarak atamak"),
+]
+
+KELIME_SIL_2 = [
+    ("eighteen", None), ("eighteenth", None), ("six", None), ("sixth", None), ("sixteen", None),
+    ("sixteenth", None), ("sixfold", None), ("bong", None), ("busty", None), ("butch", None),
+    ("adulterer", None), ("adulterous", None), ("autistic", "noun"), ("norm", "verb"), ("mashable", None),
+    ("buster", None), ("annal", None), ("ulster", None), ("non-diabetic", None), ("non-narcotic", None),
+    ("replicant", None),
+]
+
+
+def uygula_2():
+    with transaction.atomic():
+        for (kelime, tur, eski), yeni in KARSILIK_2.items():
+            Meaning.objects.filter(word__text__iexact=kelime, word__pos=tur, meaning_tr=eski) \
+                .update(meaning_tr=yeni)
+        for kelime, karsilik in ANLAM_SIL_2:
+            Meaning.objects.filter(word__text__iexact=kelime, meaning_tr=karsilik).delete()
+        for kelime, tur in KELIME_SIL_2:
+            qs = Word.objects.filter(text__iexact=kelime)
+            (qs.filter(pos=tur) if tur else qs).delete()
+        for yazim in BUYUK_HARFLI_2:
+            for w in Word.objects.filter(text__iexact=yazim).exclude(text=yazim):
+                w.text = yazim
+                w.save(update_fields=["text"])
+        silinen = kopyalari_sil()
+        uygula_1()
+    return silinen
