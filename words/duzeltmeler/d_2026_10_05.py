@@ -73,3 +73,87 @@ def uygula():
         Meaning.objects.filter(word__text="fin", meaning_tr="beş dolar").delete()
         Word.objects.filter(text="welsh", pos="verb").delete()
         Word.objects.filter(text="replicant").delete()
+
+
+# ---------------------------------------------------------------------------
+# Parti 1 (769 tohum, 1.254 yeni kelime). 1.407 anlamın hepsi okundu.
+# Not: hat kelimenin sözlükte olup olmadığına büyük-küçük harfe duyarlı baktığı
+# için büyük harfe çevrilen kelimelerin (Dutch…) küçük harfli kopyaları ve
+# silinen kelimeler yeniden üretildi. kopyalari_sil() bunları temizler; silinen
+# kelimeler ara deponun kararlar.json'ına "cikar" olarak da yazılır.
+
+BUYUK_HARFLI_1 = ("Protestant", "Protestantism", "Thanksgiving")
+
+KARSILIK_1 = {
+    ("antarctic", "adjective", "antarktika'ya ait"): "Antarktika'ya ait",
+    ("antarctic", "noun", "antarktika, güney kutbu bölgesi"): "Antarktika, Güney Kutbu bölgesi",
+    ("atheism", "noun", "tanrıya inanmama"): "ateizm, tanrıtanımazlık",
+    ("avatar", "noun", "sanaldaki temsilci, karakter"): "avatar, sanal karakter",
+    ("bachelor", "noun", "evli olmayan erkek"): "bekâr erkek",
+    ("curry", "noun", "baharatlı yemek"): "köri",
+    ("ditch", "verb", "havuz kazmak, hendek açmak"): "hendek kazmak",
+    ("handicap", "noun", "engel, sakatlık, özür"): "engel, engellilik",
+    ("hash", "noun", "diyez, kare simgesi"): "kare işareti (#)",
+    ("lynching", "noun", "kamu dışı infaz, linç"): "linç",
+    ("manga", "noun", "japon çizgi romanı, manga"): "manga, Japon çizgi romanı",
+    ("omega", "noun", "yunan alfabesinin son harfi, ω"): "omega (Yunan alfabesinin son harfi)",
+    ("protestant", "adjective", "protestan, protestanlıkla ilgili"): "Protestan",
+    ("protestant", "noun", "protestan, protestanlık mezhebine mensup kişi"): "Protestan (kişi)",
+    ("protestantism", "noun", "protestanlık"): "Protestanlık",
+    ("python", "noun", "programlama dili"): "Python (programlama dili)",
+    ("rabbi", "noun", "din adamı, haham"): "haham",
+    ("scotch", "noun", "iskoç viskisi"): "İskoç viskisi",
+    ("unanimous", "adjective", "hemfikir"): "oybirliğiyle alınan, hemfikir",
+    ("valentine", "noun", "sevgili, aşkı"): "sevgili",
+    ("yen", "noun", "japon yeni"): "Japon yeni",
+    ("whiskey", "noun", "viski, alkolik içki"): "viski",
+}
+
+# Silinen anlamlar: (kelime, Türkçe karşılık)
+ANLAM_SIL_1 = [
+    ("fuzz", "polis"), ("chick", "fıstık, hatun, kız"), ("pea", "küçük yuvarlak nesne"),
+    ("puck", "yaramaz peri, muzip cin"), ("panama", "panama"),
+    ("crab", "yan yan gitmek, yanlamasına hareket etmek"),
+]
+
+# Silinen kelimeler: (kelime, tür ya da None = bütün türler)
+KELIME_SIL_1 = [
+    ("million", None), ("millionth", None), ("nineteen", None), ("nineteenth", None),
+    ("psycho", "adjective"), ("rapist", None), ("prostitute", "verb"), ("reps", None),
+    ("non-profit", None), ("ruth", None), ("replicant", None), ("welsh", "verb"),
+]
+
+
+def kopyalari_sil():
+    """Aynı türde büyük harfli kaydı olan küçük harfli kopyaları siler."""
+    silinen = []
+    for w in Word.objects.exclude(text=models_lower("text")):
+        for kopya in Word.objects.filter(text=w.text.lower(), pos=w.pos):
+            silinen.append((kopya.text, kopya.pos))
+            kopya.delete()
+    return silinen
+
+
+def models_lower(alan):
+    from django.db.models.functions import Lower
+    return Lower(alan)
+
+
+def uygula_1():
+    with transaction.atomic():
+        for (kelime, tur, eski), yeni in KARSILIK_1.items():
+            Meaning.objects.filter(word__text__iexact=kelime, word__pos=tur, meaning_tr=eski) \
+                .update(meaning_tr=yeni)
+        for kelime, karsilik in ANLAM_SIL_1:
+            Meaning.objects.filter(word__text__iexact=kelime, meaning_tr=karsilik).delete()
+        for kelime, tur in KELIME_SIL_1:
+            qs = Word.objects.filter(text__iexact=kelime)
+            (qs.filter(pos=tur) if tur else qs).delete()
+        silinen = kopyalari_sil()
+        for yazim in BUYUK_HARFLI_1:
+            for w in Word.objects.filter(text__iexact=yazim).exclude(text=yazim):
+                w.text = yazim
+                w.save(update_fields=["text"])
+        # Önceki partinin karşılık düzeltmelerini yeniden üretilen kopyalara da uygula.
+        uygula()
+    return silinen
