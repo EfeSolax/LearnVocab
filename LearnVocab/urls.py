@@ -25,7 +25,7 @@ from django.utils.translation import gettext_lazy as _
 
 from bildirimler.urls import kok_urlpatterns as pwa_urlpatterns
 from learnpass.urls import api_urlpatterns as learnpass_api
-from LearnVocab import diller, eski_adresler, istatistik, seo_views, yardim
+from LearnVocab import diller, eski_adresler, istatistik, seo_views, yardim, yasal
 from LearnVocab.anasayfa import ana_sayfa
 from readings import api as readings_api
 from words.sozluk_urls import liste_urlpatterns
@@ -68,6 +68,8 @@ urlpatterns += i18n_patterns(
     path("", ana_sayfa, name="index"),
     # Yardım ve hakkında (rapor 18.33)
     path("hakkinda/", yardim.yardim_sayfasi, name="about"),
+    # KVKK aydınlatma metni ve gizlilik (rapor 18.19)
+    path("gizlilik/", yasal.aydinlatma, name="gizlilik"),
     # Sözlük (rapor 4): /sozluk/, /sozluk/bank/, /sozluk/seviye/b1/, /sozluk/harf/a/
     path("sozluk/", include("words.sozluk_urls")),
     path("listeler/", include(liste_urlpatterns)),

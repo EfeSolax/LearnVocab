@@ -176,6 +176,10 @@ LANGUAGE_CODE = 'tr'
 # kararı: Türkçe anlamlı sözlükte Almanca arayüz kopya sayfa üretiyordu); çevirisi
 # locale/de'de duruyor, eski /de/ adresleri Türkçesine 301 verir (diller.py).
 # Bir dili geçici olarak kapatmak için ortamda YAYIN_DILLERI=tr gibi verilir.
+# KVKK aydınlatma metni (rapor 18.19, /gizlilik/): veri sorumlusu ve başvuru adresi.
+KVKK_VERI_SORUMLUSU = os.environ.get('KVKK_VERI_SORUMLUSU', 'Efe Solmaz')
+KVKK_ILETISIM_EPOSTASI = os.environ.get('KVKK_ILETISIM_EPOSTASI', '')
+
 DIL_ADLARI = {'tr': 'Türkçe', 'en': 'English', 'de': 'Deutsch'}
 YAYIN_DILLERI = [d for d in os.environ.get('YAYIN_DILLERI', 'tr,en').split(',') if d in DIL_ADLARI]
 LANGUAGES = [(d, DIL_ADLARI[d]) for d in YAYIN_DILLERI]

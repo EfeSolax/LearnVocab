@@ -4393,3 +4393,31 @@ msgstr "Learn & Pass will pick new words based on your level again."
 #, python-format
 msgid "Learn & Pass artık yeni kelimeleri “%(liste)s” listesinden getirecek."
 msgstr "Learn & Pass will now bring new words from the “%(liste)s” list."
+
+#: readings/views.py
+msgid "Bir saatte en çok %(n)s PDF yükleyebilirsin. Biraz sonra tekrar dener misin?"
+msgstr "You can upload at most %(n)s PDFs an hour. Could you try again a bit later?"
+
+#: readings/views.py
+msgid "Şu an çok yoğunuz. Birkaç saniye sonra yeniden dener misin?"
+msgstr "We're very busy right now. Could you try again in a few seconds?"
+
+#: templates/pages/users/_googleGiris.html
+msgid ""
+"Google ile devam edersen <a href=\"%(gizlilik_adresi)s\" target=\"_blank\" "
+"rel=\"noopener\" class=\"underline\">Aydınlatma Metni</a>'ni okumuş olursun."
+msgstr ""
+"By continuing with Google, you confirm you have read the <a href=\"%(gizlilik_adresi)s\" "
+"target=\"_blank\" rel=\"noopener\" class=\"underline\">Privacy Notice</a>."
+
+#: templates/pages/users/register.html
+msgid ""
+"<a href=\"%(gizlilik_adresi)s\" target=\"_blank\" rel=\"noopener\" "
+"class=\"underline\">Aydınlatma Metni</a>'ni okudum."
+msgstr ""
+"I have read the <a href=\"%(gizlilik_adresi)s\" target=\"_blank\" rel=\"noopener\" "
+"class=\"underline\">Privacy Notice</a>."
+
+#: users/views.py
+msgid "Hesap açmak için Aydınlatma Metni'ni okuduğunu onaylaman gerekiyor."
+msgstr "To create an account, please confirm that you have read the Privacy Notice."

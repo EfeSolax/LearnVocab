@@ -627,7 +627,7 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 - **Ayarlar sayfası:** raporda ayarlara yapılan bütün göndermeler (oran kaydırıcısı, varsayılan soru sayısı, yazma sertliği, seviye, bildirimler, hesap) geçerli ama sayfa henüz tasarlanmadı. Mevcut kullanıcı verisinin taşınması da bu sırada ele alınacak.
 - **Kapibara:** çizim tamam (18.33). Video için hareketli hâlleri sonra.
 - **Hakkında / yardım içeriği:** ilk sürüm yazıldı (18.33); Efe okuyup düzeltecek.
-- **KVKK / gizlilik metni:** işler geliştikçe. Not: PDF yüklemeleri ve Gemini'nin ücretsiz katmanı (gönderilen metinler Google'ın ürün geliştirmesinde kullanılabilir) bu metinde belirtilmeli.
+- **KVKK / gizlilik metni:** ilk sürüm yazıldı (10 Ekim, 18.19). Açık kalanlar orada.
 
 **Claude'un varsayımları** (Efe itiraz etmedi, değişebilir):
 - Giriş yapmamış biri "+" düğmesine basarsa girişe yönlendirilir.
@@ -1326,8 +1326,17 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - Rapor ürünün **şu anki** hâlini anlatır. Kodla ya da kendi içinde çelişen yerler düzeltilir.
 - Bölüm 18'deki işler uygulandıkça ilgili bölümler güncellenir, "→ 18.x" notları kaldırılır, madde buradan silinip Değişiklik kaydına yazılır.
 
-### 18.19 KVKK
-- Efe ayarlayacak. Bölüm 16'daki not geçerli.
+### 18.19 KVKK — **ilk sürüm yapıldı (10 Ekim; Efe'nin isteği)**
+- **Aydınlatma metni:** `/gizlilik/` (url adı `gizlilik`), `LearnVocab/yasal.py`; metin `templates/pages/yasal/aydinlatma_tr.html` (asıl) ve `aydinlatma_en.html` (çevirisi; biri değişince öteki de, `GUNCELLEME` tarihi de). Hukuki metin olduğu için django.po'ya bölünmedi. Almanca yok (de kapalı).
+  - İçerik (KVKK m. 10): veri sorumlusu, işlenen veriler, amaç ve hukuki sebep (m. 5/2-c, ç, f), aktarımlar (Google Gemini API, Gmail, Google ile giriş, Türkiye'deki barındırma), toplama yöntemi, saklama süreleri, çerezler (yalnızca zorunlu), m. 11 hakları ve başvuru.
+  - Gemini'nin ücretsiz katmanı açıkça yazıyor: gönderilen metni Google ürün geliştirmede kullanabilir, insanlar inceleyebilir; yazılara kişisel bilgi yazılmaması öneriliyor. PDF dosyasının saklanmadığı, yalnızca metninin kaldığı yazıyor.
+  - Veri sorumlusu ve başvuru e-postası `.env`'den: `KVKK_VERI_SORUMLUSU` (varsayılan "Efe Solmaz"), `KVKK_ILETISIM_EPOSTASI` (boşsa `DEFAULT_FROM_EMAIL`).
+- **Kayıt:** formda zorunlu "Aydınlatma Metni'ni okudum" kutusu (bağlantı yeni sekmede açılır). Bu açık rıza değil, bilgilendirmenin kaydı: an `User.aydinlatma_okundu`'ya yazılır (`users/0007`). Google düğmesinin altında "Google ile devam edersen Aydınlatma Metni'ni okumuş olursun" notu; Google ile ilk girişte an `users/sinyaller.py`'de yazılır. Eski hesaplarda boş.
+- **Efe'nin kararı / kontrolü gereken (Claude avukat değil; metin bir hukukçuya okutulmalı):**
+  - Yurt dışına aktarım (Google): metin "m. 9'a uygun olarak" diyor. 2024 değişikliğinden sonra dayanak ya standart sözleşme (imzalandıktan sonra 5 iş günü içinde Kurum'a bildirilir) ya da arızi aktarımda açık rıza. Hangisi kullanılacak, Efe karar verecek; açık rıza seçilirse yazma değerlendirmesinden önce ayrı bir onay gerekir.
+  - Duyuru e-postaları (`featuresMail`, `improvementsMail`) varsayılan açık. Ticari ileti sayılırlarsa önceden onay ve İYS kaydı gerekir; varsayılanın kapalı yapılması önerilir.
+  - VERBİS: kişi sayısı ve ciro eşiklerinin altında olunduğu sürece kayıt zorunlu görünmüyor; kontrol edilmeli.
+  - Barındırma şirketinin sunucularının Türkiye'de olduğu varsayıldı.
 
 ### 18.21 Google ile giriş (Efe'nin kararı, 29 Eylül) — **YAPILDI (2 Ekim; Efe yerelde denedi, çalışıyor)**
 - Giriş ve kayıt sayfalarına **"Google ile giriş yap"** eklenir. Mevcut e-posta/şifre girişi kalır.
@@ -1675,6 +1684,15 @@ Her adım ayrı commit, her adımdan sonra testler.
 
 ---
 
+### 18.37 Ağır işler istekten ayrıldı (Efe'nin isteği, 10 Ekim) — **YAPILDI**
+- **Kuyruk zaten vardı:** değerlendirilemeyen yazı `bekliyor` durumunda kalır ve `yazilari_yeniden_dene` onu yeniden dener. Yeni bir kuyruk tablosu ya da iş parçacığı havuzu eklenmedi; bu yapı ana yol olarak sağlamlaştırıldı.
+- **Cron:** `*/15 * * * *  cd <proje> && <python> manage.py yazilari_yeniden_dene` (barındırmanın izin verdiği en sık aralık). Bir çalıştırmada en çok 5 metin; son 10 dakikada denenmiş metin atlanır; önceki çalıştırma sürüyorsa yenisi çıkar (kilit `sinir` önbelleğinde, 20 dk).
+- **Metin değerlendirme** (`texts/views.py`): aynı anda en çok 4 değerlendirme (`ESZAMANLI_DEGERLENDIRME`); fazlası Gemini'ye gitmeden "yoğun" der, metin kaydedilir, cron dener. İş parçacığı 180 sn ses vermezse (süreç öldü) ilerleme çubuğu takılı kalmaz: "servis cevap vermedi" der, metin `bekliyor` kalır.
+- **`sleep(13)`:** kullanıcının beklediği değerlendirmede artık uyunmaz (`gemini.generate(bekle=False)`); onların sınırı `texts/limits.py`'deki dakikalık sayaç. Cron ve toplu komutlar eskisi gibi bekler.
+- **PDF** (`readings/views.py`): aynı anda en çok 2 PDF okunur (`ESZAMANLI_PDF`), kullanıcı başına saatte 20 PDF (`PDF_SAATTE`). PDF isteğin içinde okunmaya devam ediyor (400 sayfa birkaç saniye); kuyruğa almak kullanıcıyı 15 dakika bekletirdi.
+- **"Yer" sınırı** `LearnVocab/sinir.py`'de (`yer_al` / `yer_birak`): her iş zaman damgalı yer alır; süreç ölürse yer süre sonunda kendiliğinden boşalır.
+- **Düzeltme:** sabit pencereli sayaçlar dosya önbelleğinde her artışta 1 saate uzuyordu (Django'nun `incr`'i süreyi sıfırlıyor). Sayaç artık pencerenin bitişini kendisi tutuyor.
+
 ## Değişiklik kaydı
 - **2026-09-27:** İlk sürüm. Kaynak: `ozetler/2026-09-26_urun-kararlari.md` (26–27 Eylül konuşmaları).
 - **2026-09-28:** D1 yapıldı (migration `words/0020_iliski_anlam`, komut `iliskileri_anlama_bagla`). 56.187 bağ anlama atandı, 512'si birden çok anlamda geçtiği için çoğaltıldı. Silinmiş anlamlardan gelen 44 bağ boş kaldı (kartta görünmez). `confused_with` kelime düzeyinde kaldı. `aile_doldur` artık bağları doğrudan anlama yazıyor; silinmiş anlamın bağını geri kurmuyor.
@@ -1778,3 +1796,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-06:** 18.7 B aşamasının ilişki kısmı yapıldı: eş/zıt/daha basit bağları Claude tarafından elle okundu (API yok). 18.6 yeniden uygulandı (genişletmenin eklediği 1.601 bağ), tür uyuşmazlığı temizlendi, elle okumayla kalanlar ayıklandı: 65.932 bağdan 14.390'ı silindi, 230'u taşındı. Efe'nin kararı: zayıf bağlar silinmez, `ozetler/zayif-baglar.tsv`'ye yazılır (11.820 bağ, Efe inceleyecek). Okurken görülen 10 anlam hatası düzeltildi. Kod `words/duzeltmeler/d_2026_10_06.py`, kararlar `veri/iliski_denetimi/`. 979 test geçiyor.
 - **2026-10-07:** 18.7 B aşamasının tanım, kalıp ve örnek kısmı yapıldı (API yok). Efe'nin kararı: kalıp gösterimi `sb` / `sth` / `doing sth` / `to do sth` / `that …`; "+" ve "noun" gibi terimler yok; arayüzde "sb: birisi · sth: bir şey" açıklaması (Bölüm 4). 667 tanım düzeltildi; 44.537 kalıptan 24.399'u silindi (7.577 mekanik, 16.822 elle), 21.337'si mekanik olarak biçimlendi, 9.888'i elle düzeltildi, 20.138 kaldı; 430 zayıf kalıp `ozetler/zayif-kaliplar.tsv`'ye yazıldı; 101 örnek yeniden yazıldı. Bağlayıcı ifade kalıpları (`veri.py`, 293 ifade) çevrildi. Zenginleştirme hattı kalıpları `bicimle()` ile denetliyor. Kod `words/duzeltmeler/d_2026_10_07.py`, kararlar `veri/kalip_denetimi/`, `veri/tanim_denetimi/`. 980 test geçiyor.
 - **2026-10-08:** Almanca arayüz yayından kaldırıldı (Efe'nin kararı; 18.22): yayında tr ve en, eski `/de/` adresleri Türkçesine 301. Güvenlik ve yük: (1) önceden açılmış hesapla ele geçirme incelendi; allauth 65, e-postası doğrulanmamış hesaba Google ile girilince şifreyi siliyor ve saldırganın oturumu düşüyor; kayıt formu e-postayı doğrulanmış saymadığı için korunuyoruz, `users/test_hesap_guvenligi.py` bunu kanıtlıyor. (2) İstek sınırları (`LearnVocab/sinir.py`, ayrı `sinir` önbelleği): `/api/kelime/` adres başına dakikada 120; `BulunamayanArama` yeni satırı adres başına saatte 30, günde 2.000, toplam 50.000 sınırlı; giriş adres başına 15 dakikada 20, hesap başına 10 hatalı deneme; kayıt adres başına saatte 10; şifre sıfırlama kodu adres başına saatte 10. (3) Misafir L&P aday havuzları bir saat önbellekte (açılış 6 → 3 sorgu). 987 test geçiyor.
+- **2026-10-10:** 7–8 Ekim işleri commit edildi. Ağır işler (18.37): değerlendirme ve PDF için eşzamanlı iş sınırı, takılan iş çubuğu, kullanıcı beklerken `sleep` yok, cron 15 dakikada bir ve kilitli; istek sınırı sayaçlarının pencere hatası düzeltildi. KVKK aydınlatma metni (18.19): `/gizlilik/` tr ve en, kayıtta zorunlu "okudum" kutusu, Google düğmesinin altında not; `users/0007` ana veritabanına yedekten sonra uygulandı (`~/LearnVocab-yedekler/db.sqlite3.yedek-20261010-aydinlatma-oncesi`). 1000 test geçiyor.

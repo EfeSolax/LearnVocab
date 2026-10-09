@@ -74,6 +74,7 @@ def register(request):
         "last_name": (request.POST.get("last_name") or "").strip()[:150],
         "username": (request.POST.get("username") or "").strip(),
         "email": (request.POST.get("email") or "").strip().lower(),
+        "aydinlatma": bool(request.POST.get("aydinlatma")),
     }
     sifre = request.POST.get("password") or ""
 
@@ -86,6 +87,8 @@ def register(request):
         hata = _("Kullanıcı adı boş olamaz.")
     elif len(degerler["username"]) > 150:
         hata = _("Kullanıcı adı en çok 150 karakter olabilir.")
+    elif not degerler["aydinlatma"]:
+        hata = _("Hesap açmak için Aydınlatma Metni'ni okuduğunu onaylaman gerekiyor.")
     elif checkThePassword(sifre) != "correct":
         hata = checkThePassword(sifre)
     elif User.objects.filter(username__iexact=degerler["username"]).exists():
@@ -97,7 +100,8 @@ def register(request):
         messages.error(request, hata)
         return render(request, "pages/users/register.html", {"degerler": degerler}, status=400)
 
-    user = User.objects.create_user(password=sifre, **degerler)
+    degerler.pop("aydinlatma")
+    user = User.objects.create_user(password=sifre, aydinlatma_okundu=timezone.now(), **degerler)
     UserSettings.objects.create(user=user)
 
     messages.success(request, _("Başarılı bir şekilde kaydınız yapıldı. Artık giriş yapabilirsiniz!"))

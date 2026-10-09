@@ -1,0 +1,139 @@
+{% extends 'base/layout.html' %}
+{% comment %}
+KVKK aydınlatma metni (rapor 18.19). Görünüm: LearnVocab/yasal.py. Türkçe metin asıldır;
+aydinlatma_en.html bunun çevirisidir, biri değişince öteki de değişir.
+{% endcomment %}
+
+{% block title %}Aydınlatma Metni ve Gizlilik — LearnVocab{% endblock %}
+{% block meta_aciklama %}<meta name="description" content="LearnVocab'ın hangi kişisel verileri, hangi amaçla işlediği ve KVKK kapsamındaki hakların.">{% endblock %}
+
+{% block extra_head %}{% include 'pages/yasal/_stil.html' %}{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-3xl px-4 pb-20 sm:px-6 lg:px-8">
+  <header>
+    <span class="lv-tarih">son güncelleme: {{ guncelleme }}</span>
+    <h1 class="lv-baslik !text-[40px] sm:!text-[52px]">Aydınlatma Metni</h1>
+    <p class="lv-alt-baslik mt-1">kişisel verilerin ve gizlilik</p>
+  </header>
+
+  <article class="yasal mt-8 lv-sayfa p-7 sm:p-8 text-base">
+    <p>
+      Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun (KVKK) 10. maddesi uyarınca,
+      LearnVocab'ı kullanırken hangi kişisel verilerinin, hangi amaçla ve hangi hukuki sebeple
+      işlendiğini, kimlere aktarıldığını ve hangi haklara sahip olduğunu anlatır.
+    </p>
+
+    <h2>1. Veri sorumlusu</h2>
+    <p>
+      Veri sorumlusu <strong>{{ veri_sorumlusu }}</strong>'dur (learnvocab.com.tr).
+      {% if eposta %}Her türlü soru ve başvuru için: <a href="mailto:{{ eposta }}">{{ eposta }}</a>.{% endif %}
+    </p>
+
+    <h2>2. Hangi verileri işliyoruz?</h2>
+    <ul>
+      <li><strong>Hesap bilgileri:</strong> ad, soyad, e-posta adresi, kullanıcı adı ve şifre.
+        Şifren geri çevrilemeyen bir özet (hash) olarak saklanır; biz de göremeyiz. İstersen eklediğin
+        profil fotoğrafı ve hakkında yazısı.</li>
+      <li><strong>Google ile girişte:</strong> Google'ın bizimle paylaştığı ad, soyad, e-posta adresi,
+        Google hesap kimliği ve profil bilgileri. Google şifreni hiçbir zaman görmeyiz.</li>
+      <li><strong>Öğrenme verileri:</strong> listene eklediğin kelimeler, Learn &amp; Pass ve egzersiz
+        sonuçların, seviye testi sonucun, serin ve ayarların (arayüz dili, saat dilimi, e-posta ve ses
+        tercihleri).</li>
+      <li><strong>Yazdıkların:</strong> Yazılar bölümünde yazdığın metinler, aldıkları değerlendirmeler ve
+        diyalog cevapların.</li>
+      <li><strong>Kendi metinlerin:</strong> Okumalar'a yapıştırdığın ya da PDF'ten aldığımız metin.
+        PDF dosyasının kendisi saklanmaz; yalnızca içindeki metin hesabına kaydedilir.</li>
+      <li><strong>Teknik veriler:</strong> oturum çerezleri, IP adresin (güvenlik ve istek sınırı için
+        kısa süreli; ayrıca barındırma sunucusunun erişim kayıtları), sözlükte aranıp bulunamayan
+        kelimeler (kimin aradığı kaydedilmeden).</li>
+    </ul>
+    <p>
+      Lütfen yazılarına ve metinlerine sağlık, din, siyasi görüş gibi özel nitelikli kişisel veriler ya da
+      başkalarına ait kişisel bilgiler yazma. Bu tür verileri bilerek işlemiyoruz.
+    </p>
+
+    <h2>3. Hangi amaçla ve hangi hukuki sebeple?</h2>
+    <ul>
+      <li><strong>Hesabını açmak, giriş yapmanı sağlamak ve LearnVocab'ı sunmak</strong> (sözlük, listeler,
+        tekrar, egzersizler, okuma, yazma değerlendirmesi): bir sözleşmenin kurulması ve ifası için
+        gerekli olması (KVKK m. 5/2-c).</li>
+      <li><strong>Şifre sıfırlama ve hesapla ilgili e-postalar:</strong> sözleşmenin ifası (m. 5/2-c).</li>
+      <li><strong>Hatırlatma ve duyuru e-postaları:</strong> Ayarlar'dan açıp kapatabildiğin tercihlerine
+        göre; sözleşmenin ifası ve meşru menfaat (m. 5/2-c, f).</li>
+      <li><strong>Güvenlik, kötüye kullanımı ve aşırı yüklenmeyi önlemek</strong> (giriş denemesi ve istek
+        sınırları): meşru menfaat (m. 5/2-f) ve veri güvenliğine ilişkin yükümlülüklerimiz (m. 5/2-ç, m. 12).</li>
+      <li><strong>Sözlüğü geliştirmek</strong> (bulunamayan aramalar, kimliksiz): meşru menfaat (m. 5/2-f).</li>
+      <li><strong>Yasal yükümlülükler ve yetkili makamların talepleri:</strong> m. 5/2-ç.</li>
+    </ul>
+
+    <h2>4. Verilerin kime aktarılıyor?</h2>
+    <ul>
+      <li><strong>Google (Gemini API):</strong> Yazılar bölümünde bir metni değerlendirmeye gönderdiğinde
+        metnin, seçtiğin kelimeler ve konu, değerlendirme için Google'ın yapay zekâ servisine gönderilir.
+        Adın, e-postan ya da kullanıcı adın gönderilmez. Bu servisin ücretsiz katmanında Google, gönderilen
+        içeriği kendi ürünlerini geliştirmek için kullanabilir ve içerik insanlar tarafından incelenebilir.
+        Bu yüzden yazılarına kişisel bilgi yazmamanı öneririz.</li>
+      <li><strong>Google (Gmail):</strong> şifre sıfırlama kodu ve tercih ettiğin e-postalar Google'ın
+        e-posta servisiyle gönderilir; bunun için e-posta adresin ve e-postanın içeriği Google'a iletilir.</li>
+      <li><strong>Google ile giriş:</strong> bu yolu seçersen kimliğin Google tarafından doğrulanır.</li>
+      <li><strong>Barındırma:</strong> site ve veritabanı, Türkiye'deki bir barındırma şirketinin
+        sunucularında çalışır.</li>
+      <li><strong>Yetkili kamu kurumları:</strong> yalnızca kanunen zorunlu olduğunda.</li>
+    </ul>
+    <p>
+      Google'ın sunucuları yurt dışında bulunduğundan, Google'a yapılan aktarımlar yurt dışına aktarım
+      sayılır ve KVKK'nın 9. maddesine uygun olarak yapılır. Verilerin reklam amacıyla kimseyle
+      paylaşılmaz, satılmaz.
+    </p>
+
+    <h2>5. Verileri nasıl topluyoruz?</h2>
+    <p>
+      Kayıt, giriş ve diğer formlara yazdıklarından; Google ile girişte Google'dan; siteyi kullanırken
+      otomatik olarak (çerezler, sunucu kayıtları) elektronik ortamda toplanır.
+    </p>
+
+    <h2>6. Ne kadar süre saklıyoruz?</h2>
+    <ul>
+      <li>Hesap ve öğrenme verilerin hesabın açık kaldıkça saklanır. Hesabını Ayarlar'dan sildiğinde
+        silinir; yedeklerden en geç birkaç hafta içinde çıkar.</li>
+      <li>Sildiğin yazılar bir gün "Geri al" için bekletilir, sonra kalıcı olarak silinir.</li>
+      <li>Giriş denemesi ve istek sınırı kayıtları en çok 24 saat tutulur.</li>
+      <li>Sunucu erişim kayıtları barındırma şirketinin ve mevzuatın öngördüğü süre kadar tutulur.</li>
+    </ul>
+
+    <h2>7. Çerezler</h2>
+    <p>
+      Yalnızca sitenin çalışması için zorunlu çerezler kullanılır: oturum çerezi (girişli kalman için),
+      güvenlik çerezi (CSRF) ve dil tercihi. Tema, okuma yazı boyutu gibi küçük tercihler yalnızca kendi
+      tarayıcında saklanır. Reklam ya da ziyaretçi analizi çerezi kullanmıyoruz.
+    </p>
+
+    <h2>8. Hakların (KVKK m. 11)</h2>
+    <p>Veri sorumlusuna başvurarak:</p>
+    <ul>
+      <li>kişisel verilerinin işlenip işlenmediğini öğrenme ve işlenmişse bilgi isteme,</li>
+      <li>işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme,</li>
+      <li>yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme,</li>
+      <li>eksik veya yanlış işlenmişse düzeltilmesini isteme,</li>
+      <li>KVKK m. 7'deki şartlar çerçevesinde silinmesini veya yok edilmesini isteme,</li>
+      <li>düzeltme ve silme işlemlerinin, verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme,</li>
+      <li>işlenen verilerin yalnızca otomatik sistemlerle analiz edilmesi sonucu aleyhine bir sonuç
+        çıkmasına itiraz etme,</li>
+      <li>kanuna aykırı işleme nedeniyle zarara uğrarsan zararın giderilmesini talep etme</li>
+    </ul>
+    <p>haklarına sahipsin.</p>
+    <p>
+      Verilerinin bir kopyasını Ayarlar'daki "Verilerim" bölümünden alabilir, hesabını aynı yerden
+      silebilirsin. Diğer talepler için {% if eposta %}<a href="mailto:{{ eposta }}">{{ eposta }}</a>
+      adresine{% else %}bize{% endif %} yazabilirsin; başvurun en geç 30 gün içinde ücretsiz olarak
+      cevaplanır. Cevabı yeterli bulmazsan Kişisel Verileri Koruma Kurulu'na şikâyette bulunabilirsin.
+    </p>
+
+    <h2>9. Değişiklikler</h2>
+    <p>
+      Bu metin değişirse güncel hâli bu sayfada yayımlanır ve yukarıdaki tarih değişir.
+    </p>
+  </article>
+</div>
+{% endblock %}

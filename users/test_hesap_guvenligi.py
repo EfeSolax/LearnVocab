@@ -28,7 +28,7 @@ class OncedenAcilmisHesapTests(TestCase):
     def setUp(self):
         self.client.post(reverse("register"), {
             "first_name": "S", "last_name": "A", "username": "saldirgan",
-            "email": "kurban@example.com", "password": SIFRE})
+            "email": "kurban@example.com", "password": SIFRE, "aydinlatma": "1"})
         self.user = User.objects.get(username="saldirgan")
         self.assertTrue(self.client.login(username="saldirgan", password=SIFRE))
 

@@ -69,6 +69,15 @@
         <p class="mt-1.5 text-xs text-gray-500 dark:text-slate-400">{% translate "En az 8 karakter; bir büyük harf, bir küçük harf ve bir rakam." %}</p>
       </div>
 
+      {# Rapor 18.19: aydınlatma metninin okunduğu onayı (açık rıza değil; kayıt bunsuz açılmaz). #}
+      <label class="flex items-start gap-2 text-sm/6 text-gray-500 dark:text-slate-400">
+        <input type="checkbox" name="aydinlatma" value="1" required {% if degerler.aydinlatma %}checked{% endif %}
+               class="mt-1 h-4 w-4" data-aydinlatma />
+        <span>{% url 'gizlilik' as gizlilik_adresi %}{% blocktranslate trimmed %}
+          <a href="{{ gizlilik_adresi }}" target="_blank" rel="noopener" class="underline">Aydınlatma Metni</a>'ni okudum.
+        {% endblocktranslate %}</span>
+      </label>
+
       <div>
         <button type="submit" class="lv-dugme flex w-full">{% translate "Hesabımı aç" %}</button>
       </div>

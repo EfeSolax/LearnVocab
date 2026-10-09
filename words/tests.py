@@ -791,7 +791,7 @@ class KayitFormuTests(TestCase):
     """Rapor 18.23: ad, soyad, e-posta, kullanıcı adı, şifre (tek kez, göster/gizle)."""
 
     VERI = {"first_name": "Efe", "last_name": "Solmaz", "email": "Efe@Example.com",
-            "username": "efes", "password": "Sifre1234"}
+            "username": "efes", "password": "Sifre1234", "aydinlatma": "1"}
 
     def test_form_alanlari(self):
         html = self.client.get(reverse("register")).content.decode()

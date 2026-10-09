@@ -22,6 +22,12 @@ class User(AbstractUser):
         default='profile_pics/default.png' # Opsiyonel: Varsayılan bir resim atar
     )
 
+    # KVKK aydınlatma metninin okunduğu an (rapor 18.19). Kayıt formunda kutu
+    # işaretlenince ya da Google ile ilk girişte (düğmenin altında not var) yazılır.
+    # Eski hesaplarda boş.
+    aydinlatma_okundu = models.DateTimeField(null=True, blank=True,
+                                             verbose_name="Aydınlatma metni okundu")
+
     # Kullanıcının biyografisi
     bio = models.CharField(max_length=500, blank = True, null = True)
 

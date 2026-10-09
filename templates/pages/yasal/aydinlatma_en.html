@@ -1,0 +1,135 @@
+{% extends 'base/layout.html' %}
+{% comment %}
+Privacy notice (English translation of aydinlatma_tr.html; the Turkish text prevails).
+{% endcomment %}
+
+{% block title %}Privacy Notice — LearnVocab{% endblock %}
+{% block meta_aciklama %}<meta name="description" content="Which personal data LearnVocab processes, why, and your rights under Turkish data protection law (KVKK).">{% endblock %}
+
+{% block extra_head %}{% include 'pages/yasal/_stil.html' %}{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-3xl px-4 pb-20 sm:px-6 lg:px-8">
+  <header>
+    <span class="lv-tarih">last updated: {{ guncelleme }}</span>
+    <h1 class="lv-baslik !text-[40px] sm:!text-[52px]">Privacy Notice</h1>
+    <p class="lv-alt-baslik mt-1">your personal data and privacy</p>
+  </header>
+
+  <article class="yasal mt-8 lv-sayfa p-7 sm:p-8 text-base">
+    <p>
+      This notice is given under Article 10 of the Turkish Personal Data Protection Law No. 6698 (KVKK).
+      It explains which personal data is processed when you use LearnVocab, why and on what legal basis,
+      who it is shared with and what your rights are. This is a translation; the
+      <a href="/gizlilik/">Turkish text</a> prevails.
+    </p>
+
+    <h2>1. Data controller</h2>
+    <p>
+      The data controller is <strong>{{ veri_sorumlusu }}</strong> (learnvocab.com.tr).
+      {% if eposta %}For any question or request: <a href="mailto:{{ eposta }}">{{ eposta }}</a>.{% endif %}
+    </p>
+
+    <h2>2. What data do we process?</h2>
+    <ul>
+      <li><strong>Account data:</strong> first and last name, email address, username and password.
+        Your password is stored as a one-way hash; we cannot see it. Optionally, a profile photo and bio.</li>
+      <li><strong>Google sign-in:</strong> the name, email address, Google account ID and profile data
+        that Google shares with us. We never see your Google password.</li>
+      <li><strong>Learning data:</strong> the words in your list, your Learn &amp; Pass and exercise results,
+        your placement test result, your streak and your settings (interface language, time zone, email
+        and sound preferences).</li>
+      <li><strong>Your writing:</strong> texts you write in the Writing section, their feedback and your
+        dialogue answers.</li>
+      <li><strong>Your own texts:</strong> text you paste into Reading or that we take from a PDF. The PDF
+        file itself is not stored; only its text is saved to your account.</li>
+      <li><strong>Technical data:</strong> session cookies, your IP address (briefly, for security and rate
+        limiting; also in the hosting server's access logs), and words searched for in the dictionary but
+        not found (without recording who searched).</li>
+    </ul>
+    <p>
+      Please do not include sensitive personal data (such as health, religion or political opinions) or
+      other people's personal information in your writing. We do not knowingly process such data.
+    </p>
+
+    <h2>3. Purposes and legal bases</h2>
+    <ul>
+      <li><strong>Creating your account, signing you in and providing LearnVocab</strong> (dictionary, lists,
+        review, exercises, reading, writing feedback): necessary for entering into and performing a
+        contract (KVKK Art. 5/2-c).</li>
+      <li><strong>Password reset and account emails:</strong> performance of a contract (Art. 5/2-c).</li>
+      <li><strong>Reminder and announcement emails:</strong> according to the preferences you can switch on
+        and off in Settings; performance of a contract and legitimate interest (Art. 5/2-c, f).</li>
+      <li><strong>Security and preventing abuse and overload</strong> (sign-in attempt and request limits):
+        legitimate interest (Art. 5/2-f) and our data security obligations (Art. 5/2-ç, Art. 12).</li>
+      <li><strong>Improving the dictionary</strong> (anonymous not-found searches): legitimate interest
+        (Art. 5/2-f).</li>
+      <li><strong>Legal obligations and requests from competent authorities:</strong> Art. 5/2-ç.</li>
+    </ul>
+
+    <h2>4. Who is your data shared with?</h2>
+    <ul>
+      <li><strong>Google (Gemini API):</strong> when you submit a text for feedback in the Writing section,
+        the text, the words you chose and the topic are sent to Google's AI service. Your name, email and
+        username are not sent. On this service's free tier, Google may use submitted content to improve its
+        products, and it may be reviewed by humans. We therefore recommend not writing personal
+        information in your texts.</li>
+      <li><strong>Google (Gmail):</strong> password reset codes and the emails you opt into are sent through
+        Google's email service, so your email address and the email content are passed to Google.</li>
+      <li><strong>Google sign-in:</strong> if you choose it, Google verifies your identity.</li>
+      <li><strong>Hosting:</strong> the site and its database run on servers of a hosting company in Turkey.</li>
+      <li><strong>Public authorities:</strong> only when required by law.</li>
+    </ul>
+    <p>
+      Google's servers are located outside Turkey, so transfers to Google are transfers abroad and are made
+      in accordance with Article 9 of the KVKK. Your data is never sold or shared for advertising.
+    </p>
+
+    <h2>5. How do we collect data?</h2>
+    <p>
+      Electronically: from what you enter in the sign-up, sign-in and other forms; from Google when you sign
+      in with Google; and automatically while you use the site (cookies, server logs).
+    </p>
+
+    <h2>6. How long do we keep it?</h2>
+    <ul>
+      <li>Account and learning data is kept while your account is open. It is deleted when you delete your
+        account in Settings, and disappears from backups within a few weeks at most.</li>
+      <li>Texts you delete are kept for one day so you can undo, then permanently deleted.</li>
+      <li>Sign-in attempt and rate-limit records are kept for at most 24 hours.</li>
+      <li>Server access logs are kept for as long as the hosting company and the law require.</li>
+    </ul>
+
+    <h2>7. Cookies</h2>
+    <p>
+      We only use cookies that the site needs to work: the session cookie (to keep you signed in), the
+      security cookie (CSRF) and your language choice. Small preferences such as theme and reading font
+      size are stored only in your own browser. We do not use advertising or analytics cookies.
+    </p>
+
+    <h2>8. Your rights (KVKK Art. 11)</h2>
+    <p>By applying to the data controller, you have the right to:</p>
+    <ul>
+      <li>learn whether your personal data is processed and, if so, request information about it,</li>
+      <li>learn the purpose of processing and whether it is used accordingly,</li>
+      <li>know the third parties in Turkey or abroad to whom it is transferred,</li>
+      <li>request correction if it is incomplete or inaccurate,</li>
+      <li>request deletion or destruction under the conditions of KVKK Art. 7,</li>
+      <li>request that corrections and deletions be notified to third parties it was transferred to,</li>
+      <li>object to a result against you arising solely from automated analysis of your data,</li>
+      <li>claim compensation if you suffer damage from unlawful processing.</li>
+    </ul>
+    <p>
+      You can download a copy of your data in the "My data" section of Settings and delete your account in
+      the same place. For other requests, write to {% if eposta %}<a href="mailto:{{ eposta }}">{{ eposta }}</a>{% else %}us{% endif %};
+      we answer free of charge within 30 days at the latest. If you are not satisfied with the answer, you
+      can complain to the Turkish Personal Data Protection Board.
+    </p>
+
+    <h2>9. Changes</h2>
+    <p>
+      If this notice changes, the current version is published on this page and the date above changes.
+    </p>
+  </article>
+</div>
+{% endblock %}
