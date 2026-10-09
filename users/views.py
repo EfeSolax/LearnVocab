@@ -11,7 +11,7 @@ from users.models import User
 from django.contrib import messages
 from django.utils.translation import gettext as _
 
-from LearnVocab import diller
+from LearnVocab import diller, sinir
 from LearnVocab.authgate import GIRIS_NEDENLERI, giris_adresi, giris_notu, guvenli_sonraki
 import random
 
@@ -24,6 +24,13 @@ from django.contrib.auth.decorators import login_required
 PASSWORD_RESET_CODE_TTL_SECONDS = 10 * 60   # kod 10 dakika geçerli
 PASSWORD_RESET_RESEND_SECONDS = 60          # aynı kişiye en fazla 60 sn'de bir mail
 PASSWORD_RESET_MAX_ATTEMPTS = 5             # en fazla 5 yanlış kod denemesi
+
+# Giriş ve kayıt denemeleri (8 Ekim): şifre tahmini ve toplu hesap açma.
+GIRIS_ADRES_SINIRI = 20       # bir adresten 15 dakikada en çok giriş denemesi
+GIRIS_HESAP_SINIRI = 10       # bir kullanıcı adına 15 dakikada en çok HATALI deneme
+GIRIS_SURE = 15 * 60
+KAYIT_ADRES_SINIRI = 10       # bir adresten saatte en çok kayıt denemesi
+KAYIT_SURE = 60 * 60
 
 
 def _clear_password_reset_session(request):
@@ -58,6 +65,9 @@ def register(request):
     """
     if request.method != "POST":
         return render(request, "pages/users/register.html", {"degerler": {}})
+    if sinir.asildi(f"kayit:{sinir.istemci(request)}", KAYIT_ADRES_SINIRI, KAYIT_SURE):
+        messages.error(request, _("Çok fazla deneme yapıldı. Lütfen biraz sonra tekrar dene."))
+        return render(request, "pages/users/register.html", {"degerler": {}}, status=429)
 
     degerler = {
         "first_name": (request.POST.get("first_name") or "").strip()[:150],
@@ -133,22 +143,31 @@ def login_user(request):
         username = (request.POST.get("username") or "").strip()
         password = request.POST.get("password") or ""
 
+        # Giriş gerektiren bir düğmeden gelindiyse (?next=) oraya dönülür.
+        # Yalnızca bu sitenin adresleri kabul ediliyor (bkz. authgate).
+        sonraki = guvenli_sonraki(request)
+
+        # Şifre tahminine karşı: adres başına toplam, hesap başına hatalı deneme sınırı.
+        hesap_anahtari = f"giris-hesap:{username.lower()}"
+        if (sinir.asildi(f"giris:{sinir.istemci(request)}", GIRIS_ADRES_SINIRI, GIRIS_SURE)
+                or sinir.oku(hesap_anahtari) >= GIRIS_HESAP_SINIRI):
+            messages.error(request, _("Çok fazla deneme yapıldı. Lütfen birkaç dakika sonra tekrar dene."))
+            return redirect(giris_adresi(sonraki, request.POST.get("neden")))
+
         # Kullanıcı doğrulama.
         # NOT: Burada önceden "bu kullanıcı adı var mı" diye ayrı bir sorgu yapılıyordu;
         # bu, kayıtlı kullanıcı adlarının tek tek denenerek tespit edilmesine
         # (user enumeration) izin veriyordu. Artık tek ve genel bir mesaj veriyoruz.
         user = authenticate(request, username=username, password=password)
 
-        # Giriş gerektiren bir düğmeden gelindiyse (?next=) oraya dönülür.
-        # Yalnızca bu sitenin adresleri kabul ediliyor (bkz. authgate).
-        sonraki = guvenli_sonraki(request)
-
         if user is not None:
+            sinir.sifirla(hesap_anahtari)
             login(request, user)
             messages.success(request, _("Hoş geldin, %(ad)s!") % {"ad": username})
             # Hesapta kayıtlı arayüz dili varsa girişten sonra o dilde devam edilir (rapor 18.22).
             return diller.hesap_dili_ile_yonlendir(user, sonraki or reverse("index"))
         else:
+            sinir.say(hesap_anahtari, GIRIS_SURE)
             messages.error(request, _("Kullanıcı adı veya şifre hatalı!"))
             # Hatalı denemede ?next= ve açıklama kaybolmasın.
             return redirect(giris_adresi(sonraki, request.POST.get("neden")))
@@ -235,6 +254,11 @@ def sendVerificationCode(request):
             _("Çok sık kod talep ettiniz. Lütfen %(n)s saniye sonra tekrar deneyin.") % {"n": remaining}
         )
         return render(request, "pages/users/mailVerification.html")
+
+    # Bir adres saatte en çok 10 kod istesin (oturum değiştirerek aşılamasın).
+    if sinir.asildi(f"sifre-kodu:{sinir.istemci(request)}", 10, 3600):
+        messages.error(request, _("Çok fazla deneme yapıldı. Lütfen biraz sonra tekrar dene."))
+        return render(request, "pages/users/mailVerification.html", status=429)
 
     user = User.objects.filter(username=username).first()
 

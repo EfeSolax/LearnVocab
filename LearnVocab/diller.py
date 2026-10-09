@@ -12,7 +12,7 @@ Arayüz dili (rapor 18.22).
 """
 
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.urls import translate_url
 from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
@@ -78,6 +78,41 @@ def dil_degistir(request):
         from usersettings.models import UserSettings
         UserSettings.objects.update_or_create(user=request.user, defaults={"arayuz_dili": kod})
     return cevap
+
+
+# Yayından kaldırılan diller (rapor 18.22): eski /de/… adresleri 404 vermesin,
+# aynı sayfanın Türkçesine kalıcı yönlensin. Dil yeniden açılırsa kendiliğinden durur.
+KAPATILAN_DILLER = ("de",)
+
+
+def _turkce_karsiligi(adres, kod):
+    from django.urls import Resolver404, resolve, reverse, NoReverseMatch
+    with translation.override(kod):
+        try:
+            eslesme = resolve(adres)
+        except Resolver404:
+            return "/"
+    with translation.override(settings.LANGUAGE_CODE):
+        try:
+            return reverse(eslesme.view_name, args=eslesme.args, kwargs=eslesme.kwargs)
+        except NoReverseMatch:
+            return "/"
+
+
+class KapaliDilYonlendirme:
+    """settings.MIDDLEWARE: LocaleMiddleware'den önce."""
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        kod = request.path.split("/")[1] if request.path.count("/") >= 2 else ""
+        if kod in KAPATILAN_DILLER and kod not in yayindaki_diller():
+            hedef = _turkce_karsiligi(request.path, kod)
+            if request.META.get("QUERY_STRING"):
+                hedef += "?" + request.META["QUERY_STRING"]
+            return HttpResponsePermanentRedirect(hedef)
+        return self.get_response(request)
 
 
 def _tarayici_dili(request):

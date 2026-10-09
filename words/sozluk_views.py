@@ -33,6 +33,7 @@ from django.utils.cache import patch_cache_control
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_GET, require_POST
 
+from LearnVocab import sinir
 from LearnVocab.seo import tam_adres
 
 from . import arama, dizine_alma, gozat, gunun, hazir_liste, listem
@@ -85,7 +86,8 @@ def sozluk(request):
                 return redirect("sozluk_kelime", slug=slug, permanent=True)
             baglam.update(_sonuc_baglami(request, sonuc))
             if not sonuc.bulundu:
-                arama.bulunamayan_kaydet(sorgu, oneri_vardi=bool(sonuc.oneriler or sonuc.digerleri))
+                arama.bulunamayan_kaydet(sorgu, oneri_vardi=bool(sonuc.oneriler or sonuc.digerleri),
+                                         istemci=sinir.istemci(request))
         else:
             baglam.update(_kesfet_baglami(request))
     # Arama sonucu ve Listem kişiye/sorguya özel: dizine girmez.

@@ -361,6 +361,8 @@ class MisafirTests(TestCase):
     """Girişsiz ziyaretçi: yalnızca kaydırır, hiçbir şey kaydedilmez (rapor 2.3)."""
 
     def setUp(self):
+        from django.core.cache import cache
+        cache.clear()   # misafir havuzu önbellekte (tekrar._misafir_havuzu)
         for seviye in ("A2", "B1", "B2", "C1"):
             for i in range(25):
                 kelime_yap(f"g{seviye}{i}", level=seviye)
@@ -410,6 +412,8 @@ class MisafirTests(TestCase):
 
     def test_misafir_sayfasi_az_sorguyla_acilir(self):
         with self.assertNumQueries(6):   # 3 seviyenin aday listesi + kelimeler + anlamlar + örnekler
+            self.client.get(reverse("learn_pass_run", kwargs={"mode": "karma"}))
+        with self.assertNumQueries(3):   # aday listeleri önbellekten: yalnızca seçilen kelimeler
             self.client.get(reverse("learn_pass_run", kwargs={"mode": "karma"}))
 
     def test_misafirin_kendi_listesi_yok(self):

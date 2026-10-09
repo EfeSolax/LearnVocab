@@ -217,3 +217,21 @@ class BildirimDiliTests(TestCase):
         with kullanici_dilinde(user):
             metin = mesaj(user, GunlukHatirlatma.GECE, {"hak": 0, "mevcut": 4})
         self.assertIn("Mitternacht", metin)
+
+
+class KapatilanDilTests(TestCase):
+    """Almanca yayından kalktı (8 Ekim): eski /de/ adresleri Türkçesine 301 verir."""
+
+    @override_settings(LANGUAGES=[("tr", "Türkçe"), ("en", "English")])
+    def test_eski_almanca_adres_turkcesine_yonlenir(self):
+        for eski, yeni in (("/de/sozluk/", "/sozluk/"), ("/de/schreiben/", "/yazilar/"),
+                           ("/de/", "/"), ("/de/olmayan/", "/"), ("/de/sozluk/?q=bank", "/sozluk/?q=bank")):
+            cevap = self.client.get(eski)
+            self.assertEqual(cevap.status_code, 301, eski)
+            self.assertEqual(cevap["Location"], yeni, eski)
+
+    @override_settings(LANGUAGES=[("tr", "Türkçe"), ("en", "English")])
+    def test_site_haritasinda_almanca_yok(self):
+        xml = self.client.get("/sitemap.xml").content.decode()
+        self.assertNotIn('hreflang="de"', xml)
+        self.assertNotIn("/de/", xml)

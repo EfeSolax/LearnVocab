@@ -34,6 +34,7 @@ from django.http import JsonResponse
 from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.views.decorators.http import require_GET
 
+from LearnVocab import sinir
 from words.extract.function_words import islev_kelimesi_mi
 from usersettings.anlam import turkce_acik
 from words.models import UserWordLink
@@ -94,7 +95,7 @@ def _bulunamayani_kaydet(sonuc, request):
     except ImportError:
         return
     try:
-        bulunamayan_kaydet(q, kaynak="okuma")
+        bulunamayan_kaydet(q, kaynak="okuma", istemci=sinir.istemci(request))
     except Exception:          # kayıt yan iş; asla cevabı bozmasın
         logging.getLogger(__name__).exception("Bulunamayan arama kaydedilemedi: %s", q)
 
@@ -110,8 +111,14 @@ def _cors(response, request):
     return response
 
 
+# Girişsiz çalışan uç (okuma baloncuğu, Chrome eklentisi): adres başına dakikada.
+KELIME_SINIRI = 120
+
+
 @require_GET
 def kelime(request):
+    if sinir.asildi(f"kelime:{sinir.istemci(request)}", KELIME_SINIRI, 60):
+        return _cors(sinir.cok_istek(), request)
     sonuc = sorgula(request.GET.get("q", ""),
                     once=request.GET.get("once", ""),
                     sonra=request.GET.get("sonra", ""))

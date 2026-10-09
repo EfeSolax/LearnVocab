@@ -80,6 +80,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'LearnVocab.diller.KapaliDilYonlendirme',   # eski /de/ adresleri -> Türkçesi (301)
     # Adres önekinden dili seçer (/en/…); öneksiz adres Türkçedir.
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -171,10 +172,12 @@ LANGUAGE_CODE = 'tr'
 # önekiyle gelir (/en/…, /de/…) ve her sayfada hreflang basılır.
 # Bir dil, arayüz çevirisi BİTMEDEN buraya eklenmez: çevirisiz /en/ sayfaları
 # Türkçe sayfaların kopyası olur (SEO'da kopya içerik, rapor 18.15).
-# en ve de çevirisi tamam (Ekim 2026); sonra es, fr. Bir dili geçici olarak
-# kapatmak için ortamda YAYIN_DILLERI=tr gibi verilir.
+# en çevirisi tamam (Ekim 2026). Almanca 8 Ekim'de yayından kaldırıldı (Efe'nin
+# kararı: Türkçe anlamlı sözlükte Almanca arayüz kopya sayfa üretiyordu); çevirisi
+# locale/de'de duruyor, eski /de/ adresleri Türkçesine 301 verir (diller.py).
+# Bir dili geçici olarak kapatmak için ortamda YAYIN_DILLERI=tr gibi verilir.
 DIL_ADLARI = {'tr': 'Türkçe', 'en': 'English', 'de': 'Deutsch'}
-YAYIN_DILLERI = [d for d in os.environ.get('YAYIN_DILLERI', 'tr,en,de').split(',') if d in DIL_ADLARI]
+YAYIN_DILLERI = [d for d in os.environ.get('YAYIN_DILLERI', 'tr,en').split(',') if d in DIL_ADLARI]
 LANGUAGES = [(d, DIL_ADLARI[d]) for d in YAYIN_DILLERI]
 LOCALE_PATHS = [BASE_DIR / 'locale']
 
@@ -250,6 +253,11 @@ SOCIALACCOUNT_LOGIN_ON_GET = False
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
 SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+# Önceden açılmış hesapla ele geçirme (8 Ekim): kayıt formumuz e-postayı doğrulanmış
+# saymaz (EmailAddress kaydı açmaz). Google ile e-postası eşleşen hesaba girilince
+# allauth şifreyi siler; şifre özeti değiştiği için saldırganın açık oturumu da düşer.
+# Kayıt bir gün EmailAddress(verified=True) yazarsa bu koruma kalkar.
+# Test: users/test_hesap_guvenligi.py.
 SOCIALACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_QUERY_EMAIL = True
 # Google ile girişten sonra hesaptaki arayüz diline geçilir (rapor 18.22).
@@ -452,13 +460,26 @@ CACHES = {
         ),
         'TIMEOUT': 1800,
         'OPTIONS': {'MAX_ENTRIES': 2000},
-    }
+    },
+    # İstek sınırı sayaçları (LearnVocab/sinir.py). Ayrı klasör: adres başına
+    # açılan çok sayıda sayaç, dolunca ilerleme kayıtlarını silip atmasın.
+    'sinir': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.environ.get(
+            'SINIR_CACHE_DIR', str(BASE_DIR / 'tmp' / 'django-sinir')
+        ),
+        'TIMEOUT': 3600,
+        'OPTIONS': {'MAX_ENTRIES': 20000},
+    },
 }
 
 # Testler gerçek önbellek klasörüne yazmasın (test veritabanının kimlikleri
 # geliştirme sunucusuna sızıyordu).
 if 'test' in sys.argv:
-    CACHES = {'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}}
+    CACHES = {'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'},
+              # Sınır sayaçları testler arasında birikmesin; sınır testleri kendi
+              # önbelleğini override_settings ile verir (LearnVocab/test_sinir.py).
+              'sinir': {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}}
 
 
 # Loglama

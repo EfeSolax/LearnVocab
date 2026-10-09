@@ -490,10 +490,29 @@ def yazim_onerileri(sorgu, en_cok=5):
 # Bulunamayan aramaların kaydı
 # ----------------------------------------------------------------------
 
-def bulunamayan_kaydet(sorgu, kaynak=BulunamayanArama.KAYNAK_SOZLUK, oneri_vardi=False):
+# Tablo sınırsız büyümesin (8 Ekim): girişsiz bir döngü her yeni sorguda satır açabiliyordu.
+BULUNAMAYAN_ADRES_SAATTE = 30      # bir adresin saatte açabileceği YENİ satır
+BULUNAMAYAN_GUNDE = 2000           # bütün site, günde yeni satır
+BULUNAMAYAN_EN_COK = 50000         # tablo bu boyutu geçince yeni satır açılmaz
+
+
+def _yeni_satir_acilabilir(istemci):
+    from django.core.cache import cache
+    from LearnVocab import sinir
+    toplam = cache.get_or_set("bulunamayan:toplam", BulunamayanArama.objects.count, 600)
+    if toplam >= BULUNAMAYAN_EN_COK:
+        return False
+    if istemci and sinir.asildi(f"bulunamayan:{istemci}", BULUNAMAYAN_ADRES_SAATTE, 3600):
+        return False
+    return not sinir.asildi("bulunamayan:gun", BULUNAMAYAN_GUNDE, 24 * 3600)
+
+
+def bulunamayan_kaydet(sorgu, kaynak=BulunamayanArama.KAYNAK_SOZLUK, oneri_vardi=False, istemci=None):
     """
     Aynı sorgu (küçük harf) tek satır, sayaç artar. Harf içermeyen ya da çok
     uzun sorgular yazılmaz. Okumalar da kullanabilir: kaynak="okuma".
+    YENİ satır adres başına, günlük ve toplam sınırla açılır (yukarıdaki sabitler);
+    var olan satırın sayacı her zaman artar.
     """
     from django.db.models import F
     anahtar = tr_normal(sorgu) if turkce_harfli(sorgu) else en_normal(sorgu)
@@ -501,7 +520,7 @@ def bulunamayan_kaydet(sorgu, kaynak=BulunamayanArama.KAYNAK_SOZLUK, oneri_vardi
         return
     guncellenen = (BulunamayanArama.objects.filter(sorgu=anahtar, kaynak=kaynak)
                    .update(sayi=F("sayi") + 1, son=timezone.now(), oneri_vardi=oneri_vardi))
-    if not guncellenen:
+    if not guncellenen and _yeni_satir_acilabilir(istemci):
         BulunamayanArama.objects.get_or_create(sorgu=anahtar, kaynak=kaynak,
                                                defaults={"oneri_vardi": oneri_vardi})
 

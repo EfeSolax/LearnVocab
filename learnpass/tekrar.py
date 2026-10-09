@@ -272,6 +272,21 @@ def yeni_kelime(user, rng=None, haric=()):
     return None
 
 
+# Misafir havuzu herkes için aynı: her açılışta binlerce satırı yeniden çekmek
+# yerine (id, sıklık) listesi bir saat önbellekte durur. Örnekleme yine her
+# istekte yapılır, yani misafire her seferinde farklı kartlar gelir.
+MISAFIR_HAVUZ_SURESI = 3600
+
+
+def _misafir_havuzu(seviye):
+    from django.core.cache import cache
+    return cache.get_or_set(
+        f"lp-misafir-havuz:{seviye or 'hepsi'}",
+        lambda: list(_yeni_havuz(None, seviye).values_list("id", "siklik")
+                     if seviye else _yeni_havuz(None).values_list("id", "siklik")),
+        MISAFIR_HAVUZ_SURESI)
+
+
 def misafir_kelimeleri(adet, rng=None):
     """Misafir turu: %60 B1 · %20 B2 · %20 C1, sıklık ağırlıklı, nadir tür yok (rapor 18.3)."""
     rng = rng or random
@@ -280,10 +295,10 @@ def misafir_kelimeleri(adet, rng=None):
     paylar[0] = (paylar[0][0], adet - sum(p for _, p in paylar[1:]))
     secilen = []
     for seviye, pay in paylar:
-        adaylar = list(_yeni_havuz(None, seviye).values_list("id", "siklik"))
-        secilen += _agirlikli_orneklem(adaylar, pay, rng)
+        secilen += _agirlikli_orneklem(_misafir_havuzu(seviye), pay, rng)
     if len(secilen) < adet:   # bir seviye boşsa diğerleriyle tamamla
-        adaylar = list(_yeni_havuz(None).exclude(id__in=secilen).values_list("id", "siklik"))
+        alinan = set(secilen)
+        adaylar = [a for a in _misafir_havuzu(None) if a[0] not in alinan]
         secilen += _agirlikli_orneklem(adaylar, adet - len(secilen), rng)
     rng.shuffle(secilen)
     kelimeler = {k.id: k for k in Word.objects.filter(id__in=secilen)
