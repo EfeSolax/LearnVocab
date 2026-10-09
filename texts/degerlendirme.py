@@ -443,6 +443,7 @@ def degerlendir(yazi, on_event=None, arka_planda=False):
             response_schema=DegerlendirmeSemasi,
             temperature=0.2,
             on_event=on_event,
+            bekle=arka_planda,     # kullanıcı beklerken uyunmaz (rapor 18.37)
         )
     except gemini.GeminiRateLimit:
         return KOTA

@@ -45,9 +45,9 @@ class SinirTests(TestCase):
     def test_kayit_adres_sinir(self):
         with patch("users.views.KAYIT_ADRES_SINIRI", 1):
             self.client.post(reverse("register"), {"first_name": "a", "last_name": "b", "username": "u1",
-                                                   "email": "u1@example.com", "password": "Sifre1234"})
+                                                   "email": "u1@example.com", "password": "Sifre1234", "aydinlatma": "1"})
             cevap = self.client.post(reverse("register"), {"first_name": "a", "last_name": "b",
                                                            "username": "u2", "email": "u2@example.com",
-                                                           "password": "Sifre1234"})
+                                                           "password": "Sifre1234", "aydinlatma": "1"})
         self.assertEqual(cevap.status_code, 429)
         self.assertFalse(User.objects.filter(username="u2").exists())

@@ -19,6 +19,7 @@ Durumlar:
 """
 
 import logging
+import time
 import uuid
 
 from django.core.cache import cache
@@ -49,6 +50,7 @@ def create(owner_id, message="Hazırlanıyor...", percent=1):
             "percent": percent,
             "message": message,
             "result": None,
+            "baslangic": time.time(),
         },
     )
     return job_id

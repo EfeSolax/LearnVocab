@@ -236,7 +236,7 @@ def _build_config(response_schema, temperature, timeout=None):
 
 
 def generate(prompt, *, response_schema=None, temperature=None, max_retries=None,
-             timeout=None, on_event=None):
+             timeout=None, on_event=None, bekle=True):
     """
     Gemini'ye bir istek atar ve cevap nesnesini döner.
 
@@ -256,6 +256,10 @@ def generate(prompt, *, response_schema=None, temperature=None, max_retries=None
 
     `timeout` (saniye) bu istek için zaman aşımını değiştirir. Büyük çıktı
     üreten istekler varsayılan süreye sığmayıp 504 alabiliyor.
+
+    `bekle=False` istek aralığı sınırlayıcısını (_throttle) atlar. Kullanıcının
+    beklediği istekler (metin değerlendirme) için: onların sınırı
+    texts/limits.py'deki dakikalık sayaç; uyumak yerine "yoğun" denir.
 
     `on_event(ad, bilgi)` verilirse her deneme, hata ve başarıda çağrılır.
     Kullanıcıya gösterilen ilerleme çubuğu bunu kullanıyor: ikinci istek
@@ -301,7 +305,8 @@ def generate(prompt, *, response_schema=None, temperature=None, max_retries=None
                 attempts=attempts,
             )
 
-            _throttle()
+            if bekle:
+                _throttle()
 
             try:
                 if config is not None:

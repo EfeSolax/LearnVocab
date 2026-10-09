@@ -5,6 +5,9 @@ Sayaçlar ayrı bir önbellekte tutulur (settings.CACHES["sinir"], dosya tabanl�
 Passenger'ın bütün süreçleri aynı sayacı görür; ana önbelleği doldurmaz). Sabit pencere: ilk istekte pencere açılır, süresi
 dolunca sayaç sıfırlanır. Önbellek bozulursa istek geri çevrilmez.
 """
+import time
+import uuid
+
 from django.core.cache import caches
 from django.http import JsonResponse
 
@@ -19,15 +22,23 @@ def istemci(request):
 
 
 def say(anahtar, sure):
-    """Penceredeki istek sayısını bir artırır ve yeni değeri döner."""
+    """
+    Penceredeki istek sayısını bir artırır ve yeni değeri döner.
+
+    Kayıt (sayı, pencerenin bitişi) olarak tutulur. Django'nun incr()'i dosya
+    önbelleğinde süreyi varsayılana (1 saat) sıfırlıyordu; burada her yazışta
+    kalan süre verilir, pencere uzamaz.
+    """
     anahtar = f"sinir:{anahtar}"
     try:
-        if _onbellek().add(anahtar, 1, sure):
+        simdi = time.time()
+        kayit = _onbellek().get(anahtar)
+        if not isinstance(kayit, tuple) or kayit[1] <= simdi:
+            _onbellek().set(anahtar, (1, simdi + sure), sure)
             return 1
-        return _onbellek().incr(anahtar)
-    except ValueError:            # anahtar arada süresi dolup silindi
-        _onbellek().set(anahtar, 1, sure)
-        return 1
+        sayi, bitis = kayit[0] + 1, kayit[1]
+        _onbellek().set(anahtar, (sayi, bitis), max(1, int(bitis - simdi) + 1))
+        return sayi
     except Exception:
         return 0
 
@@ -39,14 +50,53 @@ def asildi(anahtar, sinir, sure):
 
 def oku(anahtar):
     try:
-        return _onbellek().get(f"sinir:{anahtar}", 0)
+        kayit = _onbellek().get(f"sinir:{anahtar}")
     except Exception:
         return 0
+    if not isinstance(kayit, tuple) or kayit[1] <= time.time():
+        return 0
+    return kayit[0]
 
 
 def sifirla(anahtar):
     try:
         _onbellek().delete(f"sinir:{anahtar}")
+    except Exception:
+        pass
+
+
+# ---------------------------------------------------------------------------
+# Aynı anda en çok N iş (ağır işler: PDF okuma, metin değerlendirme)
+# ---------------------------------------------------------------------------
+# Her iş kendi "yer"ini zaman damgasıyla yazar; süresi geçen yer sayılmaz.
+# Süreç iş ortasında ölürse (Passenger) yeri en geç `sure` saniye sonra boşalır.
+
+def _yerler(anahtar):
+    simdi = time.time()
+    return {k: t for k, t in (_onbellek().get(anahtar) or {}).items() if t > simdi}
+
+
+def yer_al(ad, en_cok, sure):
+    """Boş yer varsa ayırır ve yer kimliğini döner; yoksa None. Önbellek bozuksa iş geri çevrilmez."""
+    anahtar = f"yer:{ad}"
+    try:
+        yerler = _yerler(anahtar)
+        if len(yerler) >= en_cok:
+            return None
+        kimlik = uuid.uuid4().hex
+        yerler[kimlik] = time.time() + sure
+        _onbellek().set(anahtar, yerler, sure)
+        return kimlik
+    except Exception:
+        return "bilinmiyor"
+
+
+def yer_birak(ad, kimlik):
+    anahtar = f"yer:{ad}"
+    try:
+        yerler = _yerler(anahtar)
+        if yerler.pop(kimlik, None) is not None:
+            _onbellek().set(anahtar, yerler, max([int(t - time.time()) + 1 for t in yerler.values()] or [1]))
     except Exception:
         pass
 

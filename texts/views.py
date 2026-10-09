@@ -10,6 +10,7 @@ import logging
 import random
 import re
 import threading
+import time
 from datetime import timedelta
 
 from django.contrib import messages
@@ -23,7 +24,7 @@ from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
 from django.views.decorators.http import require_POST
 
-from LearnVocab import progress
+from LearnVocab import progress, sinir
 from LearnVocab.authgate import login_gate
 from texts import degerlendirme as dg
 from texts import diyalog as dy
@@ -45,6 +46,13 @@ EN_AZ_KARAKTER = 20
 EN_COK_KARAKTER = 1500
 
 ONERI_SAYISI = 5
+
+# Ağır iş sınırı (rapor 18.37): aynı anda en çok bu kadar değerlendirme sürer;
+# fazlası "yoğun" der, metin kaydedilir ve cron (yazilari_yeniden_dene) dener.
+# Bir değerlendirme en uzun EN_UZUN_IS saniye sürer (zaman aşımı x denemeler);
+# iş parçacığı bundan uzun ses vermezse (süreç öldü) çubuk takılı kalmaz.
+ESZAMANLI_DEGERLENDIRME = 4
+EN_UZUN_IS = 180
 YAKIN_ZAMAN = timedelta(days=7)
 
 SERTLIK_ACIKLAMALARI = (
@@ -222,7 +230,22 @@ def _olay_isleyici(reporter):
     return isle
 
 
-def _degerlendirme_isi(job_id, yazi_id, dil=None):
+def _yer_al():
+    return sinir.yer_al("degerlendirme", ESZAMANLI_DEGERLENDIRME, EN_UZUN_IS)
+
+
+def _yerinde_degerlendir(yazi, on_event=None):
+    """Boş yer varsa değerlendirir; yoksa YOGUN (metin bekliyor durumunda kalır)."""
+    yer = _yer_al()
+    if yer is None:
+        return dg.YOGUN
+    try:
+        return dg.degerlendir(yazi, on_event=on_event)
+    finally:
+        sinir.yer_birak("degerlendirme", yer)
+
+
+def _degerlendirme_isi(job_id, yazi_id, dil=None, yer=None):
     """Arka plan iş parçacığı: metni değerlendirir, sonucu işe yazar (isteğin dilinde)."""
     from django.db import connection
 
@@ -237,6 +260,8 @@ def _degerlendirme_isi(job_id, yazi_id, dil=None):
         logger.exception("Yazma değerlendirme işi beklenmedik şekilde hata verdi.")
         progress.finish(job_id, {"text_id": yazi_id, "sonuc": dg.BOZUK}, _("Hazır."))
     finally:
+        if yer:
+            sinir.yer_birak("degerlendirme", yer)
         translation.deactivate()
         connection.close()
 
@@ -273,11 +298,17 @@ def createText(request):
 
     if ajax:
         job_id = progress.create(request.user.id, message=_("Metnin gönderiliyor..."))
-        threading.Thread(target=_degerlendirme_isi, args=(job_id, yazi.pk, translation.get_language()),
-                         daemon=True).start()
+        progress.update(job_id, result={"text_id": yazi.pk})
+        yer = _yer_al()
+        if yer is None:
+            progress.finish(job_id, {"text_id": yazi.pk, "sonuc": dg.YOGUN}, _("Hazır."))
+        else:
+            threading.Thread(target=_degerlendirme_isi,
+                             args=(job_id, yazi.pk, translation.get_language(), yer),
+                             daemon=True).start()
         return JsonResponse({"job_id": job_id})
 
-    _mesaj_ekle(request, dg.degerlendir(yazi))
+    _mesaj_ekle(request, _yerinde_degerlendir(yazi))
     return redirect("review_text", text_id=yazi.pk)
 
 
@@ -286,6 +317,12 @@ def createTextProgress(request, job_id):
     job = progress.read(job_id)
     if job is None or job.get("owner_id") != request.user.id:
         return JsonResponse({"error": _("İş bulunamadı.")}, status=404)
+    if (job.get("state") == progress.STATE_RUNNING
+            and time.time() - job.get("baslangic", time.time()) > EN_UZUN_IS):
+        # İş parçacığı sustu (süreç yeniden başlamış olabilir). Metin bekliyor
+        # durumunda; cron yeniden dener.
+        yazi_id = (job.get("result") or {}).get("text_id")
+        job = progress.finish(job_id, {"text_id": yazi_id, "sonuc": dg.SERVIS}, _("Hazır.")) or job
     return JsonResponse({
         "state": job.get("state"),
         "percent": job.get("percent", 0),
@@ -342,7 +379,7 @@ def retryText(request, text_id):
     """"Şimdi tekrar dene": bekleyen bir metni hemen değerlendirmeyi dener."""
     yazi = get_object_or_404(_yazilar(request.user), id=text_id)
     if yazi.durum == YaziDurumu.BEKLIYOR:
-        _mesaj_ekle(request, dg.degerlendir(yazi))
+        _mesaj_ekle(request, _yerinde_degerlendir(yazi))
     return redirect("review_text", text_id=yazi.pk)
 
 

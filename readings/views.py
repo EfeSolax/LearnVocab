@@ -30,6 +30,7 @@ from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
 from django.views.decorators.http import require_POST
 
+from LearnVocab import sinir
 from LearnVocab.authgate import login_gate
 
 from . import pdf as pdf_okuyucu
@@ -39,6 +40,13 @@ from .models import TOPICS, ReadingText, UserText
 # Kullanıcı başına en çok kaç metin ve bunların en çok kaçı PDF (çöptekiler hariç).
 EN_COK_METIN = 100
 EN_COK_PDF = 15
+
+# Ağır iş sınırı (rapor 18.37): PDF isteğin içinde okunur (en çok 400 sayfa,
+# birkaç saniye). Aynı anda en çok ESZAMANLI_PDF dosya okunur; kullanıcı başına
+# saatte PDF_SAATTE yükleme. Süreç okurken ölürse yer PDF_EN_UZUN sn sonra boşalır.
+ESZAMANLI_PDF = 2
+PDF_SAATTE = 20
+PDF_EN_UZUN = 60
 # Yapıştırılan metin sınırları.
 EN_AZ_KARAKTER = 20
 EN_COK_KARAKTER = 150_000
@@ -206,13 +214,20 @@ def metin_ekle(request):
             elif dosya.size > pdf_okuyucu.EN_BUYUK_BOYUT:
                 hata = _("Bu PDF çok büyük. En çok %(mb)s MB'lık dosyaları okuyabiliyoruz.") % {
                     "mb": pdf_okuyucu.EN_BUYUK_BOYUT_MB}
+            elif sinir.asildi(f"pdf:{request.user.pk}", PDF_SAATTE, 3600):
+                hata = _("Bir saatte en çok %(n)s PDF yükleyebilirsin. Biraz sonra tekrar dener misin?") % {
+                    "n": PDF_SAATTE}
+            elif (yer := sinir.yer_al("pdf", ESZAMANLI_PDF, PDF_EN_UZUN)) is None:
+                hata = _("Şu an çok yoğunuz. Birkaç saniye sonra yeniden dener misin?")
             else:
                 try:
                     # Dosya yalnızca bellekte okunur, saklanmaz.
                     metin, bilgi = pdf_okuyucu.pdf_metni(dosya.read())
                 except pdf_okuyucu.PdfOkunamadi as e:
                     hata = str(e)
-                else:
+                finally:
+                    sinir.yer_birak("pdf", yer)
+                if not hata:
                     ad = re.sub(r"\.pdf$", "", dosya.name or "", flags=re.IGNORECASE)
                     kayit = UserText.objects.create(
                         owner=request.user, source_kind=UserText.SOURCE_PDF, body=metin,
