@@ -190,6 +190,7 @@ Aynı bileşen **her yerde** kullanılır: Keşfet, Listem, günün kelimesi. **
   2. İngilizce açıklama (gri)
   3. **1 örnek cümle**. Diğerleri "› Daha fazla örnek" altında kapalıdır.
   4. **"› Kalıplar"** (kapalı): collocation'lar ve kalıplar birlikte, her biri Türkçe anlamı ve örneğiyle.
+     - **Kalıp gösterimi (Efe'nin kararı, 7 Ekim):** öğrenci sözlüklerindeki gibi `depend on sb/sth`, `suggest doing sth`, `decide to do sth`, `insist that …`. "+" işareti ve "noun", "gerund" gibi dilbilgisi terimleri kullanılmaz. Listenin altında küçük bir açıklama satırı durur: **"sb: birisi · sth: bir şey"** (`data-kalip-aciklamasi`, İngilizce ve Almanca çevirisiyle). Kural `words/kalip_bicimi.py`'de.
   5. **O anlama özel** eş, zıt ve basit anlamlılar çip satırları olarak: `Benzer: … · Daha basit: … · Zıt: …`
      - Her satırda en fazla 3–4 çip olur. Boş satır hiç gösterilmez.
      - Çipe dokununca o kelimenin kartı açılır.
@@ -823,7 +824,7 @@ Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
 - **Varsayım (Claude):** Kaynağın seviyesi ilişkinin bağlı olduğu **anlamın** CEFR'idir (anlamda yoksa kelimenin). Hedefin seviyesi hedef kelimenin CEFR'idir.
 - **Sıra:** Kural CEFR etiketlerine dayanıyor. Bu yüzden 18.16 (CEFR doğrulaması) **bittikten sonra** uygulanır. Etiketler sonradan değişirse silinen ilişkiler ancak yedekten ya da ham önbellekten (`ara-depo-tam`) geri gelir.
 
-### 18.7 Veritabanı taraması: yanlışlar silinir ya da düzeltilir (Efe'nin kararı) — **A aşaması YAPILDI (30 Eylül)**
+### 18.7 Veritabanı taraması: yanlışlar silinir ya da düzeltilir (Efe'nin kararı) — **A aşaması YAPILDI (30 Eylül); B aşamasının ilişki kısmı YAPILDI (6 Ekim); tanım, kalıp ve örnek kısmı YAPILDI (7 Ekim)**
 > **Sonuçlar:**
 > - Kendine bağlanan ilişki, aynı yazımın başka türüne ilişki, yinelenen ilişki / anlam / örnek / eş dizim, boş anlam ya da tanım, anlamsız kelime, örneksiz anlam: **hiç yok (0)**.
 > - Kelimesi geçmeyen örnek cümle: 91.106 cümlede **0**. Bulunan 23 şüphelinin hepsi iyelik ekli ("owl's") çıktı.
@@ -834,6 +835,30 @@ Koşullardan biri sağlanmazsa ilişki **veritabanından tamamen silinir.**
 > - Türkçe yazım denetimi (spylls) bu turda çalıştırılmadı; sözlük dosyası kurulu değil, B aşamasına bırakıldı.
 >
 > **Sıradaki:** B aşaması (Claude + Efe, elle). Öncelik: ilişkiler ve `learnvocab` etiketli seviyeler.
+>
+> **B aşaması — eş / zıt / daha basit bağları: YAPILDI (6 Ekim).** Claude bütün bağları elle okudu (API yok). Efe'nin kararı: zayıf ama savunulabilir bağ **silinmez**, `ozetler/zayif-baglar.tsv`'ye yazılır; Efe sonra inceler ya da siler.
+> - Kod ve kararlar: `words/duzeltmeler/d_2026_10_06.py`, `veri/iliski_denetimi/*.tsv`. Kararlar kimlikle değil kalıcı anahtarla (tür, kaynak, anlam, hedef) tutulur; `uygula()` hepsini baştan uygular, tekrar çalıştırmak güvenli.
+> - **18.6 yeniden uygulandı:** genişletme partileri (18.35) kuralı uygulamadan "daha basit" bağı eklemişti; 1.601 bağ silindi (`kural-1-daha-basit.tsv`).
+> - **Tür uyuşmazlığı** (`kural-2-tur.tsv`): kaynakla hedefin türü farklı olan 5.088 bağ silindi (wasteful → spend, thankful → thank), 230'u hedefin aynı yazımlı doğru türüne taşındı.
+> - **Elle okuma:** önce öncelikli 24 parti (A1–B1 ve sık kelimeler), sonra kalan 48 parti (~16.800 anlam, B2–C2). Silinenler: eş diye bağlanmış kardeş kavramlar (coffee/tea, sherry/port), üst kavram (sculptor = artist), başka anlama ait bağ, anlamsız zıtlar (viola ≠ …, sermon ≠ silence), "= karşıtı" hataları (unsatisfied = content, unreliable = dependable), aynı kelimenin hem = hem ≈ satırında tekrarı. Cinsiyet çiftleri (stallion ≠ mare) kaldı.
+> - **Toplam:** 65.932 bağdan **14.390 silindi**, 51.542 kaldı. Eş 30.358 → 27.108, zıt 20.973 → 15.393, daha basit 14.469 → 8.903. **Zayıf olarak işaretlenen 11.820 bağ** (tekilleştirilmiş) dokunulmadan duruyor.
+> - Doğrulama: yedeğe baştan uygulanınca çalışma kopyasıyla birebir aynı sonuç; ana veritabanında ilişki dışında hiçbir tablo değişmedi. 979 test geçiyor.
+> - **Okurken görülen anlam hataları** (`anlamlari_duzelt()`): interpret ve occur'da asıl anlam başa alındı; load (fiil), junior, conductor, staggered tanımları düzeltildi; küçük harfli china "Çin" ve guinea "Gine" anlamları ile cheese "para", skinny "parasız" silindi (china B2'ye, guinea B2'ye indi).
+> - Yedek: `~/LearnVocab-yedekler/db.sqlite3.yedek-20261006-iliski-temizligi-oncesi`.
+>
+> **Sıradaki:** Efe `zayif-baglar.tsv`'yi inceler. B aşamasının geri kalanı (seviye etiketleri) açık.
+>
+> **B aşaması — tanımlar, kalıplar ve kalıp örnekleri: YAPILDI (7 Ekim).** Claude bütün kalıpları anlam anlam elle okudu (API yok). Kod `words/duzeltmeler/d_2026_10_07.py`, gösterim kuralı `words/kalip_bicimi.py`.
+> - **Tür hataları (tanım):** sıfat tanımı "to be X", zarf tanımı "to do something in a X manner", isim tanımı fiil gibi yazılmıştı. 840 aday okundu, **667 tanım** düzeltildi (`veri/tanim_denetimi/tur-hatalari.tsv`).
+> - **Mekanik biçimleme:** 44.537 kalıbın **21.337'si** yeni gösterime çevrildi (`+ noun` → `sth`, `verb-ing` → `doing sth`); bilgi taşımayan ya da sb/sth ile yazılamayan **7.577 kalıp** silindi (`veri/kalip_denetimi/mekanik-silinen.tsv`).
+> - **Elle okuma:** 84 parti (`veri/kalip_denetimi/elle-001…084.tsv`). Silinenler: isim/sıfat anlamına yazılmış fiil kalıbı, başka anlamın kalıbı, yalnızca "nesne alır" diyen kalıp ("repair sth"), bozuk dilbilgisi, şiddet / uyuşturucu / cinsel içerikli kalıp ve örnekler. Düzeltilenler: doğal eş dizime çevrildi ("a horde of sth", "be in limbo", "take sth up a notch"), çoğuna yeni kısa örnek yazıldı. **16.822 kalıp silindi, 9.888 kalıp düzeltildi**; 101 örnek cümle yeniden yazıldı (10'u `**` yıldız temizliği, `elle-ornek-yildiz.tsv`).
+> - **Toplam:** 44.537 kalıptan **20.138** kaldı (17.037 anlamda). Efe'nin kararı: zayıf ama doğru kalıp silinmez; **430 kalıp** `ozetler/zayif-kaliplar.tsv`'ye yazıldı.
+> - **Bağlayıcı ifadeler:** `Expression.pattern` (293 ifade) yeni gösterime çevrildi: "Cümle. However, cümle." → "… However, …", "despite + isim / -ing" → "despite sth/doing sth". Kaynak `words/ifadeler/veri.py` de güncellendi; yükleyici aynı sonucu üretir.
+> - **Hat:** yeni kelimelerin kalıpları `words/enrich/checks.py`'de `bicimle()` ile denetlenir (aile hattı da bundan geçer); uymayan biçimlenir, yazılamayan atılır. Prompt'a gösterim kuralı yazıldı.
+> - **Hassas anlamlar:** kalıbı silinen ama anlamı duran hassas kelimeler `ozetler/hassas-anlamlar.txt`'de (Efe karar verecek: kalsın / "kaba" işaretlensin / silinsin).
+> - Doğrulama: yedeğe (`~/LearnVocab-yedekler/db.sqlite3.yedek-20261007-tanim-kalip-oncesi`) baştan uygulanınca çalışma kopyasıyla birebir aynı sonuç; ana veritabanında kalıp, örnek, anlam ve ifade dışında hiçbir tablo değişmedi. 980 test geçiyor.
+>
+> **Sıradaki:** Efe `zayif-kaliplar.tsv` ve `hassas-anlamlar.txt`'yi inceler. Eş dizimler (Collocation) aynı gözle henüz okunmadı.
 
 **Yöntem (Efe'nin kararı, 29 Eylül):**
 1. Önce **A**: kural tabanlı kontrollerle mevcut veritabanı ayıklanır.
@@ -1321,7 +1346,8 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
   - allauth'un kendi giriş/kayıt/çıkış sayfaları bizimkilere yönlenir (`/accounts/login/` → `/giris/` …).
   - Yerel sunucu sanal ortamla başlatılır: `.venv/bin/python manage.py runserver` (yeni paketler yalnızca `.venv`'de kurulu).
 
-### 18.22 Dil seçeneği (Efe'nin kararı, 29 Eylül) — **YAPILDI (5 Ekim; tr, en, de yayında)**
+### 18.22 Dil seçeneği (Efe'nin kararı, 29 Eylül) — **YAPILDI (5 Ekim); Almanca 8 Ekim'de kapatıldı, yayında tr ve en**
+> **Almanca kapatıldı (Efe'nin kararı, 8 Ekim):** kelime anlamları Türkçe; Almanca arayüzle Türkçe anlam okuyan bir kitle yok. `/de/` sayfaları ana içeriği aynı kopya sayfalar üretiyor, tarama bütçesini harcıyor ve bakım yükünü artırıyordu. `YAYIN_DILLERI` varsayılanı `tr,en`; site haritası ve hreflang Almancayı yazmaz. Eski `/de/…` adresleri aynı sayfanın Türkçesine **301** verir (`LearnVocab.diller.KapaliDilYonlendirme`). Çeviri dosyası `locale/de/` duruyor; açmak için `YAYIN_DILLERI=tr,en,de`. 18.34'teki Almanca görsel ve videolar artık gerekmez. **Sunucuda ortam değişkeni `YAYIN_DILLERI` tanımlıysa oradan da `de` çıkarılmalı.**
 - Siteye **dil seçeneği** eklenecek.
 - Bu yüzden arayüz metinleri şablonlara ve koda gömülü kalmaz. Seçili dile göre metinlerin çekileceği **dil dosyaları** hazırlanır.
   - **Claude'un önerisi:** Django'nun kendi çeviri sistemi (`gettext`: `{% translate %}`, `.po`/`.mo` dosyaları, `LocaleMiddleware`).
@@ -1749,3 +1775,6 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-05 (5):** NAWL indirildi ve listeye eklendi; genişletmenin deneme partisi çalıştırıldı: 310 yeni kelime, ~0,54 $; Claude denetimi `d_2026_10_05.py` (18.35).
 - **2026-10-05 (6):** Genişletme parti 1–3: 3.372 yeni kelime (toplam 3.682, ~6,45 $), Claude denetimi `uygula_1/2/3`; `cikar` kararının taslak kökünde uygulandığı not edildi (18.35). Parti 4 Efe'yi bekliyor.
 - **2026-10-05 (7):** Genişletme parti 4: 916 yeni kelime (toplam 4.598, ~8,1 $), Claude denetimi `uygula_4` (18.35).
+- **2026-10-06:** 18.7 B aşamasının ilişki kısmı yapıldı: eş/zıt/daha basit bağları Claude tarafından elle okundu (API yok). 18.6 yeniden uygulandı (genişletmenin eklediği 1.601 bağ), tür uyuşmazlığı temizlendi, elle okumayla kalanlar ayıklandı: 65.932 bağdan 14.390'ı silindi, 230'u taşındı. Efe'nin kararı: zayıf bağlar silinmez, `ozetler/zayif-baglar.tsv`'ye yazılır (11.820 bağ, Efe inceleyecek). Okurken görülen 10 anlam hatası düzeltildi. Kod `words/duzeltmeler/d_2026_10_06.py`, kararlar `veri/iliski_denetimi/`. 979 test geçiyor.
+- **2026-10-07:** 18.7 B aşamasının tanım, kalıp ve örnek kısmı yapıldı (API yok). Efe'nin kararı: kalıp gösterimi `sb` / `sth` / `doing sth` / `to do sth` / `that …`; "+" ve "noun" gibi terimler yok; arayüzde "sb: birisi · sth: bir şey" açıklaması (Bölüm 4). 667 tanım düzeltildi; 44.537 kalıptan 24.399'u silindi (7.577 mekanik, 16.822 elle), 21.337'si mekanik olarak biçimlendi, 9.888'i elle düzeltildi, 20.138 kaldı; 430 zayıf kalıp `ozetler/zayif-kaliplar.tsv`'ye yazıldı; 101 örnek yeniden yazıldı. Bağlayıcı ifade kalıpları (`veri.py`, 293 ifade) çevrildi. Zenginleştirme hattı kalıpları `bicimle()` ile denetliyor. Kod `words/duzeltmeler/d_2026_10_07.py`, kararlar `veri/kalip_denetimi/`, `veri/tanim_denetimi/`. 980 test geçiyor.
+- **2026-10-08:** Almanca arayüz yayından kaldırıldı (Efe'nin kararı; 18.22): yayında tr ve en, eski `/de/` adresleri Türkçesine 301. Güvenlik ve yük: (1) önceden açılmış hesapla ele geçirme incelendi; allauth 65, e-postası doğrulanmamış hesaba Google ile girilince şifreyi siliyor ve saldırganın oturumu düşüyor; kayıt formu e-postayı doğrulanmış saymadığı için korunuyoruz, `users/test_hesap_guvenligi.py` bunu kanıtlıyor. (2) İstek sınırları (`LearnVocab/sinir.py`, ayrı `sinir` önbelleği): `/api/kelime/` adres başına dakikada 120; `BulunamayanArama` yeni satırı adres başına saatte 30, günde 2.000, toplam 50.000 sınırlı; giriş adres başına 15 dakikada 20, hesap başına 10 hatalı deneme; kayıt adres başına saatte 10; şifre sıfırlama kodu adres başına saatte 10. (3) Misafir L&P aday havuzları bir saat önbellekte (açılış 6 → 3 sorgu). 987 test geçiyor.
