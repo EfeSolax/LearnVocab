@@ -1,0 +1,165 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+antonym	ranch	verb	çiftlik işletmek, hayvan yetiştirmek	graze	verb	sil	
+antonym	rancher	noun	çiftlik sahibi, büyükbaş hayvan yetiştiricisi	cowboy	noun	sil	
+synonym	ransom	verb	fidye ödemek, fidye talep etmek	secure	verb	sil	
+antonym	ransom	verb	fidye ödemek, fidye talep etmek	release	verb	sil	
+antonym	rap	verb	rap yapmak	criticize	verb	sil	
+synonym	rapid	noun	akarsu bölümü, hızlı akıntı	swift	noun	sil	
+simpler	rapid	noun	akarsu bölümü, hızlı akıntı	fast	noun	sil	
+simpler	ratchet	noun	dişli mandal, çark	clamp	noun	sil	
+simpler	rattle	noun	takırtı, tıkırtı	hum	noun	sil	
+antonym	ravine	noun	dar vadi, kanyon	cliff	noun	sil	
+synonym	reacher	noun	uzanma aleti, tutacak, kavrama aleti	reach	noun	sil	
+antonym	realty	noun	emlak, gayrimenkul	rent	noun	sil	
+synonym	receivable	noun	alacak, tahsil edilecek tutar	debt	noun	sil	
+simpler	reckoning	noun	hesap, hesaplaşma	judge	noun	sil	
+antonym	redeem	verb	kullanmak, bozdurmak, paraya çevirmek	spend	verb	sil	
+simpler	redwood	noun	sekoya, mamut ağacı	tree	noun	sil	
+antonym	redwood	noun	sekoya, mamut ağacı	pine	noun	sil	
+antonym	reevaluation	noun	yeniden değerlendirme	approval	noun	sil	
+antonym	refinery	noun	rafineri	source	noun	sil	
+synonym	reflexive	adjective	dönüşlü	reciprocal	adjective	sil	
+simpler	refreshingly	adverb	ferahlatıcı bir şekilde	clearly	adverb	sil	
+antonym	refreshment	noun	yenileme, tazeleme, canlandırma	exhaust	noun	sil	
+simpler	registrar	noun	kayıt memuru, sicil memuru	record	noun	sil	
+antonym	registry	noun	kayıt defteri, resmi liste	anarchy	noun	sil	
+simpler	regression	noun	gerileme, geriye dönüş	analysis	noun	sil	
+simpler	rehearsal	noun	prova, alıştırma	practice	noun	sil	
+synonym	reliever	noun	rahatlatıcı, hafifletici, yardım eden	relief	noun	sil	
+antonym	remedial	adjective	düzeltici, iyileştirici	basic	adjective	sil	
+antonym	renegade	noun	hain, isyancı	traitor	noun	sil	
+simpler	renegade	noun	hain, isyancı	turn	noun	sil	
+simpler	repeal	noun	yürürlükten kaldırma, fesih	law	noun	sil	
+antonym	repertoire	noun	repertuvar	scarcity	noun	sil	
+simpler	ranch	verb	çiftlik işletmek, hayvan yetiştirmek	manage	verb	zayif	
+simpler	rancher	noun	çiftlik sahibi, büyükbaş hayvan yetiştiricisi	owner	noun	zayif	
+simpler	randomness	noun	rastlantısallık	chance	noun	zayif	
+synonym	ransom	noun	fidye	extortion	noun	zayif	
+antonym	ransom	noun	fidye	release	noun	zayif	
+simpler	rant	noun	bağırarak eleştiri, öfkeli konuşma	talk	noun	zayif	
+simpler	rap	verb	rap yapmak	sing	verb	zayif	
+antonym	rapper	noun	rap yapan şarkıcı	instrumentalist	noun	zayif	
+antonym	rapping	noun	rap müziği, rap yapma	singing	noun	zayif	
+antonym	raptor	noun	yırtıcı kuş	prey	noun	zayif	
+antonym	ratchet	noun	dişli mandal, çark	release	noun	zayif	
+antonym	ration	verb	karneye bağlamak, kısıtlamak, ölçülü vermek	exhaust	verb	zayif	
+antonym	rationale	noun	gerekçe, mantık, akıl yürütme	excuse	noun	zayif	
+simpler	rationale	noun	gerekçe, mantık, akıl yürütme	cause	noun	zayif	
+simpler	rationally	adverb	mantıklı bir şekilde	clearly	adverb	zayif	
+simpler	raver	noun	gece kulübü meraklısı	fan	noun	zayif	
+synonym	re-adoption	noun	yeniden evlat edinme	adoption	noun	zayif	
+antonym	re-etch	verb	yeniden kazımak, yeniden asitle işlemek, yeniden aşındırmak	smooth	verb	zayif	
+antonym	re-present	verb	tekrar sunmak, yeniden sunmak	withdraw	verb	zayif	
+antonym	re-presentation	noun	yeniden sunum	omission	noun	zayif	
+simpler	re-presentation	noun	yeniden sunum	show	noun	zayif	
+simpler	reacher	noun	uzanma aleti, tutacak, kavrama aleti	grab	noun	zayif	
+simpler	reacher	noun	uzanma aleti, tutacak, kavrama aleti	pull	noun	zayif	
+simpler	reactant	noun	tepkimeye giren madde	substance	noun	zayif	
+simpler	readership	noun	okur kitlesi	reader	noun	zayif	
+antonym	readjustment	noun	yeniden ayarlama	stability	noun	zayif	
+simpler	realistically	adverb	gerçekçi bir şekilde	actually	adverb	zayif	
+antonym	reallocate	verb	yeniden tahsis etmek	retain	verb	zayif	
+simpler	realty	noun	emlak, gayrimenkul	land	noun	zayif	
+synonym	reapply	verb	yeniden başvurmak	submit	verb	zayif	
+antonym	reapply	verb	yeniden başvurmak	withdraw	verb	zayif	
+simpler	reason	verb	düşünmek, akıl yürütmek	conclude	verb	zayif	
+simpler	reassembly	noun	yeniden birleştirme, yeniden montaj	repair	noun	zayif	
+antonym	reassign	verb	yeniden atamak	remove	verb	zayif	
+antonym	reassignment	noun	yeniden atama, yeni göreve yerleştirme	retention	noun	zayif	
+simpler	reassignment	noun	yeniden atama, yeni göreve yerleştirme	move	noun	zayif	
+simpler	reassurance	noun	teselli, güvence	help	noun	zayif	
+simpler	reassuring	adjective	teselli verici, güven verici	calm	adjective	zayif	
+antonym	reboot	noun	yeniden başlatma	shutdown	noun	zayif	
+simpler	reboot	verb	yeniden başlatmak	boot	verb	zayif	
+simpler	reborn	adjective	yeniden doğmuş	new	adjective	zayif	
+antonym	rebrand	verb	yeniden markalaştırmak	maintain	verb	zayif	
+antonym	recalculate	verb	yeniden hesaplamak	estimate	verb	zayif	
+simpler	recalibrate	verb	yeniden ayarlamak	change	verb	zayif	
+antonym	receptacle	noun	konteyner, saklama kabı	source	noun	zayif	
+simpler	receptacle	noun	konteyner, saklama kabı	box	noun	zayif	
+antonym	recess	verb	geriye çekmek, içeriye gömmek	project	verb	zayif	
+antonym	reciprocation	noun	karşılıklılık, karşılık verme	selfishness	noun	zayif	
+antonym	recital	noun	konser, müzik gösterisi	rehearsal	noun	zayif	
+antonym	recitation	noun	ezbere okuma, ezberden okuma	silence	noun	zayif	
+antonym	reclassify	verb	yeniden sınıflandırmak	maintain	verb	zayif	
+simpler	recoil	noun	geri tepme, geri çekilme	impact	noun	zayif	
+simpler	recollect	verb	hatırlamak, anımsamak	know	verb	zayif	
+synonym	recombine	verb	tekrar birleştirmek, yeniden birleştirmek	merge	verb	zayif	
+simpler	recon	verb	keşif yapmak	look	verb	zayif	
+simpler	reconcile	verb	uzlaştırmak, barıştırmak	balance	verb	zayif	
+antonym	recruiter	noun	işe alım uzmanı	candidate	noun	zayif	
+simpler	rectifier	noun	doğrultucu, akım dönüştürücü	device	noun	zayif	
+antonym	rectify	verb	düzeltmek, iyileştirmek	mistake	verb	zayif	
+antonym	rectory	noun	papaz evi, papaz lojmanı	mansion	noun	zayif	
+antonym	redirect	verb	yönlendirmek, yeniden yönlendirmek	keep	verb	zayif	
+synonym	reducer	noun	azaltıcı	decrease	noun	zayif	
+antonym	reducer	noun	azaltıcı	amplifier	noun	zayif	
+antonym	redundancy	noun	işten çıkarma	hire	noun	zayif	
+synonym	reed	noun	kamış, dil	mouthpiece	noun	zayif	
+simpler	reed	noun	kamış, dil	cane	noun	zayif	
+antonym	reedy	adjective	ince, hırıltılı	rich	adjective	zayif	
+antonym	reel	verb	sallanmak, sersemlemek	balance	verb	zayif	
+synonym	reelection	noun	yeniden seçilme	election	noun	zayif	
+antonym	reelection	noun	yeniden seçilme	defeat	noun	zayif	
+antonym	refine	verb	iyileştirmek, arıtmak, geliştirmek	simplify	verb	zayif	
+synonym	reflector	noun	yansıtıcı	mirror	noun	zayif	
+simpler	reflector	noun	yansıtıcı	light	noun	zayif	
+simpler	reforestation	noun	yeniden ağaçlandırma	planting	noun	zayif	
+antonym	reformat	verb	yeniden biçimlendirmek	erase	verb	zayif	
+antonym	reformation	noun	düzeltme, reform	conservatism	noun	zayif	
+antonym	reformer	noun	reformcu, ıslahatçı	conservative	noun	zayif	
+antonym	reformist	noun	reformcu	conservative	noun	zayif	
+antonym	reformulate	verb	yeniden formüle etmek, yeniden düzenlemek	distort	verb	zayif	
+simpler	refrigerant	noun	soğutucu, soğuklaştırıcı madde	cool	noun	zayif	
+synonym	regardless	adjective	bağımsız, kayıtsız	independent	adjective	zayif	
+antonym	regardless	adjective	bağımsız, kayıtsız	biased	adjective	zayif	
+antonym	regency	noun	naiplik, naiplik dönemi	republic	noun	zayif	
+synonym	regent	noun	naip, taht vekili	governor	noun	zayif	
+antonym	regent	noun	naip, taht vekili	monarch	noun	zayif	
+simpler	regent	noun	naip, taht vekili	caretaker	noun	zayif	
+antonym	regiment	noun	alay	platoon	noun	zayif	
+synonym	registered	adjective	kayıtlı, resmi olarak kaydedilmiş	official	adjective	zayif	
+synonym	regression	noun	gerileme, geriye dönüş	relapse	noun	zayif	
+simpler	rehydrate	verb	yeniden su almak	drink	verb	zayif	
+simpler	rehydration	noun	sıvı takviyesi, yeniden su kazandırma	drink	noun	zayif	
+antonym	reimagine	verb	yeniden hayal etmek	ignore	verb	zayif	
+simpler	reimagine	verb	yeniden hayal etmek	think	verb	zayif	
+antonym	rein	noun	kontrol, yönlendirme	release	noun	zayif	
+antonym	reincarnation	noun	yeniden doğma, reenkarnasyon	mortality	noun	zayif	
+synonym	reinvest	verb	yeniden yatırım yapmak	reallocate	verb	zayif	
+simpler	rekindle	verb	yeniden alevlendirmek, yeniden canlandırmak	light	verb	zayif	
+simpler	relapse	verb	nüksetmek	return	verb	zayif	
+antonym	relational	adjective	ilişkisel, bağa dayalı	independent	adjective	zayif	
+synonym	relay	noun	röle	switch	noun	zayif	
+synonym	relearn	verb	tekrar öğrenmek, yeniden öğrenmek	study	verb	zayif	
+simpler	relegation	noun	düşürülme, alt lige geçiş	drop	noun	zayif	
+simpler	relevancy	noun	ilişkililik, alaka düzeyi	importance	noun	zayif	
+simpler	reliably	adverb	güvenilir bir şekilde	well	adverb	zayif	
+synonym	reliance	noun	bağımlılık	trust	noun	zayif	
+antonym	relish	noun	çeşni, garnitür sos	plain	noun	zayif	
+synonym	reload	verb	yeniden yüklemek	replenish	verb	zayif	
+antonym	relocation	noun	yer değiştirme, taşınma	stay	noun	zayif	
+synonym	remake	noun	yeniden yapım, yeni versiyon	revision	noun	zayif	
+synonym	remedial	adjective	düzeltici, iyileştirici	correct	adjective	zayif	
+antonym	remedial	adjective	düzeltici, iyileştirici	deficient	adjective	zayif	
+synonym	remediate	verb	iyileştirmek, düzeltmek, sorunları gidermek	address	verb	zayif	
+antonym	remittance	noun	para gönderimi, havale	receipt	noun	zayif	
+antonym	remodel	verb	yeniden düzenlemek, yeniden tasarlamak	restore	verb	zayif	
+antonym	remodeling	noun	yeniden düzenleme, tadilat	preservation	noun	zayif	
+antonym	remotely	adverb	uzaktan	directly	adverb	zayif	
+synonym	remount	verb	yeniden binmek, tekrar monte etmek	reinstall	verb	zayif	
+antonym	remuneration	noun	ücret, maaş, ödeme	deduction	noun	zayif	
+simpler	renewable	adjective	yenilenebilir	new	adjective	zayif	
+simpler	renown	noun	ünlü olma, tanınmışlık, şöhret	celebrity	noun	zayif	
+antonym	reorder	verb	yeniden düzenlemek, yeniden sıralamak	shuffle	verb	zayif	
+antonym	reorient	verb	yeniden yönlendirmek, yeniden konumlandırmak	confuse	verb	zayif	
+antonym	rep	verb	temsil etmek	oppose	verb	zayif	
+antonym	reparations	noun	tazminat, tazminatlar	penalty	noun	zayif	
+simpler	repeater	noun	tekrarlayıcı, yineleyici	device	noun	zayif	
+simpler	repel	verb	geri itmek, uzaklaştırmak	push	verb	zayif	
+antonym	repent	verb	pişman olmak, tövbe etmek	rejoice	verb	zayif	
+simpler	repertoire	noun	repertuvar	list	noun	zayif	
+simpler	repetition	noun	tekrarlama	repeat	noun	zayif	
+antonym	replay	noun	tekrar maç, tekrar oyun	draw	noun	zayif	
+simpler	replenishment	noun	yeniden doldurma, tazeleme	supply	noun	zayif	
+antonym	replicate	verb	kopyasını oluşturmak, çoğaltmak	alter	verb	zayif	

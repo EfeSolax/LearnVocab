@@ -1,0 +1,301 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+antonym	cloth	noun	kumaş	metal	noun	sil	
+antonym	clue	noun	ipucu	obstacle	noun	sil	
+antonym	code	noun	bilgisayar programı, yazılım	bug	noun	sil	
+antonym	colleague	noun	meslektaş	supervisor	noun	sil	
+simpler	colleague	noun	meslektaş	friend	noun	sil	
+antonym	collision	noun	çarpışma, çarpma	separation	noun	sil	
+antonym	colony	noun	koloni	solitary	noun	sil	
+antonym	column	noun	sütun, dikey destek	beam	noun	sil	
+simpler	comedy	noun	komedi	fun	noun	sil	
+antonym	comic	noun	çizgi roman	documentary	noun	sil	
+simpler	comic	noun	çizgi roman	book	noun	sil	
+antonym	comment	noun	yorum	criticism	noun	sil	
+antonym	comment	verb	yorum yapmak	silence	verb	sil	
+antonym	commercial	noun	reklam, tanıtım filmi	propaganda	noun	sil	
+synonym	company	noun	arkadaşlık, beraberlik, konuklar	friend	noun	sil	
+simpler	compare	verb	karşılaştırmak	look	verb	sil	
+antonym	competition	noun	yarışma, müsabaka	rivalry	noun	sil	
+synonym	competition	noun	rekabet, kıyasıya mücadele	rival	noun	sil	
+antonym	complete	verb	tamamlamak, bitirmek	end	verb	sil	
+simpler	concern	verb	endişe ettirmek, kaygı vermek	affect	verb	sil	
+simpler	concerned	adjective	endişeli, kaygılı	careful	adjective	sil	
+synonym	concrete	adjective	betondan yapılmış, beton	solid	adjective	sil	
+antonym	concrete	adjective	betondan yapılmış, beton	fragile	adjective	sil	
+antonym	concrete	noun	beton	metal	noun	sil	
+simpler	concrete	noun	beton	stone	noun	sil	
+antonym	condition	noun	durum, hâl	problem	noun	sil	
+antonym	conduct	verb	yönetmek	ignore	verb	sil	
+antonym	confer	verb	danışmak, görüşmek, müzakere etmek	ignore	verb	sil	
+simpler	confess	verb	itiraf etmek	say	verb	sil	
+simpler	consider	verb	kabul etmek, saymak	accept	verb	sil	
+synonym	consult	verb	danışmak, tavsiye almak	advise	verb	sil	
+antonym	contribution	noun	katkı, sağlanan fayda	obstacle	noun	sil	
+synonym	control	noun	denetim cihazı, kontrol mekanizması	regulation	noun	sil	
+simpler	convenience	noun	kolaylık, rahatlık	help	noun	sil	
+antonym	convince	verb	ikna etmek	doubt	verb	sil	
+simpler	convince	verb	ikna etmek	make	verb	sil	
+antonym	cop	noun	polis memuru	lawyer	noun	sil	
+antonym	correct	verb	düzeltmek, doğru hâle getirmek	mistake	verb	sil	
+synonym	correspond	verb	karşılıklı yazışmak, mektuplaşmak	match	verb	sil	
+antonym	correspond	verb	karşılıklı yazışmak, mektuplaşmak	differ	verb	sil	
+antonym	cotton	noun	pamuk, pamuk bitkisi	wool	noun	sil	
+simpler	cotton	noun	pamuk, pamuk bitkisi	plant	noun	sil	
+antonym	counter	noun	tezgahtaki satış bölümü, tezgah	window	noun	sil	
+simpler	country	noun	kırsal bölge, kırsal alan	village	noun	sil	
+antonym	county	noun	il, bölge	state	noun	sil	
+antonym	court	noun	spor sahası, oyun alanı	courtroom	noun	sil	
+simpler	covered	adjective	kapalı, örtülmüş	closed	adjective	sil	
+antonym	crack	noun	kırılma sesi, çatırdama	silence	noun	sil	
+antonym	crack	verb	espri yapmak, şaka atmak	insult	verb	sil	
+simpler	crack	verb	espri yapmak, şaka atmak	laugh	verb	sil	
+synonym	craft	noun	araç, gemi, tekne	airplane	noun	sil	
+antonym	crash	verb	çarpışmak, çöküşe neden olmak	recover	verb	sil	
+antonym	creature	noun	canlı, varlık	object	noun	sil	
+synonym	creep	verb	yavaşça sürünmek, gizlice yaklaşmak	slide	verb	sil	
+antonym	crew	noun	personel, ekip, çalışanlar	leader	noun	sil	
+antonym	cruise	noun	deniz yolculuğu, gemi gezisi	sail	noun	sil	
+antonym	cruise	verb	gemiyle seyahat etmek	stop	verb	sil	
+simpler	cruise	verb	gemiyle seyahat etmek	go	verb	sil	
+antonym	crush	verb	ezmek, sıkıştırmak	break	verb	sil	
+synonym	cultural	adjective	kültürel	ethnic	adjective	sil	
+antonym	cultural	adjective	kültürel	uncultured	adjective	sil	
+antonym	cup	noun	kupa	medal	noun	sil	
+antonym	currency	noun	para birimi, döviz	debt	noun	sil	
+simpler	curve	noun	eğri	shape	noun	sil	
+simpler	curved	adjective	eğri, kıvrımlı	simple	adjective	sil	
+antonym	dare	verb	cesaret etmek, göze almak	shy	verb	sil	
+synonym	date	noun	hurma	nut	noun	sil	
+antonym	date	noun	hurma	vegetable	noun	sil	
+simpler	date	noun	hurma	fruit	noun	sil	
+simpler	debt	noun	borç	credit	noun	sil	
+simpler	decision	noun	karar	option	noun	sil	
+antonym	deck	noun	gemi güvertesi	bridge	noun	sil	
+simpler	deck	noun	gemi güvertesi	ship	noun	sil	
+antonym	deck	noun	teras, veranda	basement	noun	sil	
+simpler	deck	noun	teras, veranda	outside	noun	sil	
+simpler	deck	noun	kart destesi	hand	noun	sil	
+simpler	deep	adjective	yoğun, şiddetli	hard	adjective	sil	
+antonym	define	verb	sınırlandırmak, bir şeyin kapsamını belirlemek	expand	verb	sil	
+simpler	delay	verb	gecikmek, oyalanmak	wait	verb	sil	
+synonym	delivery	noun	teslimat, sevk	ship	noun	sil	
+synonym	democracy	noun	demokrasi	republic	noun	sil	
+simpler	democracy	noun	demokrasi	government	noun	sil	
+antonym	demonstration	noun	gösteri, protesto yürüyüşü	riot	noun	sil	
+antonym	dentist	noun	diş hekimi	patient	noun	sil	
+synonym	deposit	noun	depozito, teminat, ön ödeme	pay	noun	sil	
+antonym	description	noun	tarif, betimleme, tasvir	omission	noun	sil	
+antonym	desire	noun	arzu, istek	need	noun	sil	
+simpler	desire	verb	istemek, arzu etmek	prefer	verb	sil	
+simpler	detail	noun	ayrıntı, detay	information	noun	sil	
+antonym	determine	verb	belirlemek, tayin etmek	ignore	verb	sil	
+antonym	diagram	noun	grafik, görsel temsil	table	noun	sil	
+antonym	dictate	verb	sesli olarak söyleyip yazdırmak	write	verb	sil	
+simpler	dictate	verb	sesli olarak söyleyip yazdırmak	record	verb	sil	
+antonym	dimension	noun	ölçü, ebat	volume	noun	sil	
+antonym	document	noun	belge, resmi evrak	certificate	noun	sil	
+simpler	document	noun	belge, resmi evrak	form	noun	sil	
+simpler	donation	noun	bağış	charity	noun	sil	
+simpler	double	verb	iki katına çıkarmak	grow	verb	sil	
+simpler	doubt	verb	şüphe duymak, kuşkuya düşmek	think	verb	sil	
+antonym	dream	verb	hayal kurmak, arzu etmek	despair	verb	sil	
+simpler	drift	verb	sürüklenmek, kaymak	move	verb	sil	
+antonym	drive	noun	sürücü	failure	noun	sil	
+simpler	drive	noun	sürücü	memory	noun	sil	
+antonym	due	adjective	beklenen, vadesi gelen	overdue	adjective	sil	
+simpler	dumb	adjective	akılsız, aptal	simple	adjective	sil	
+antonym	earth	noun	toprak, yer	rock	noun	sil	
+synonym	dislike	noun	hoşlanmama, beğenmeme	hate	noun	sil	
+simpler	dislike	verb	hoşlanmamak, beğenmemek	prefer	verb	sil	
+synonym	dissolve	verb	çözmek, erimek	combine	verb	sil	
+antonym	district	noun	bölge, ilçe	province	noun	sil	
+antonym	dive	noun	dalma, dalış	rise	noun	sil	
+antonym	divert	verb	yönlendirmek, başka yöne çevirmek	obstruct	verb	sil	
+antonym	dig	verb	kazmak	bury	verb	sil	
+antonym	display	noun	sergi, sergileme, gösteri	hide	noun	sil	
+antonym	detect	verb	fark etmek, algılamak	overlook	verb	sil	
+synonym	clue	noun	ipucu	evidence	noun	zayif	
+simpler	coast	noun	kıyı	beach	noun	zayif	
+synonym	code	noun	bilgisayar programı, yazılım	program	noun	zayif	
+antonym	collapse	verb	çökmek, yıkılmak	stabilize	verb	zayif	
+simpler	collapse	verb	çökmek, yıkılmak	fail	verb	zayif	
+synonym	colleague	noun	meslektaş	partner	noun	zayif	
+synonym	collection	noun	koleksiyon	assembly	noun	zayif	
+synonym	collection	noun	koleksiyon	group	noun	zayif	
+antonym	collection	noun	koleksiyon	dispersal	noun	zayif	
+simpler	collision	noun	çarpışma, çarpma	hit	noun	zayif	
+synonym	colony	noun	koloni	group	noun	zayif	
+simpler	colony	noun	koloni	population	noun	zayif	
+simpler	column	noun	sütun, dikey destek	support	noun	zayif	
+antonym	combination	noun	karışım, bileşim	separation	noun	zayif	
+synonym	comedy	noun	komedi	humor	noun	zayif	
+synonym	comfort	noun	teselli, avuntu	support	noun	zayif	
+simpler	comfort	verb	teselli etmek, rahatlatmak	help	verb	zayif	
+antonym	command	verb	emir vermek, talimat vermek	refuse	verb	zayif	
+simpler	comment	noun	yorum	note	noun	zayif	
+synonym	comment	verb	yorum yapmak	note	verb	zayif	
+synonym	commercial	noun	reklam, tanıtım filmi	publicity	noun	zayif	
+antonym	commitment	noun	bağlılık, adanmışlık, kararlılık	indifference	noun	zayif	
+synonym	communicate	verb	iletişim kurmak, haberleşmek	convey	verb	zayif	
+simpler	communicate	verb	iletişim kurmak, haberleşmek	talk	verb	zayif	
+antonym	community	noun	toplum, topluluk	isolation	noun	zayif	
+simpler	community	noun	toplum, topluluk	group	noun	zayif	
+antonym	companion	noun	arkadaş, yoldaş	enemy	noun	zayif	
+simpler	companion	noun	arkadaş, yoldaş	partner	noun	zayif	
+antonym	compare	verb	karşılaştırmak	contrast	verb	zayif	
+synonym	complain	verb	şikayet etmek, memnuniyetsizliğini dile getirmek	object	verb	zayif	
+simpler	complain	verb	şikayet etmek, memnuniyetsizliğini dile getirmek	report	verb	zayif	
+simpler	complaint	noun	şikayet, şikâyet	report	noun	zayif	
+synonym	complex	noun	bina kompleksi	facility	noun	zayif	
+simpler	complex	noun	bina kompleksi	building	noun	zayif	
+synonym	compose	verb	oluşturmak, bestelemek, yazmak	create	verb	zayif	
+synonym	composition	noun	kompozisyon, beste, yapıt	piece	noun	zayif	
+simpler	compound	noun	bina kompleksi	site	noun	zayif	
+simpler	concern	noun	endişe, kaygı	care	noun	zayif	
+antonym	concerned	adjective	ilgili, alâkadar	indifferent	adjective	zayif	
+synonym	concerned	adjective	ilgili, alâkadar	interested	adjective	zayif	
+antonym	conclude	verb	sonuç çıkarmak, hüküm vermek	assume	verb	zayif	
+simpler	conclude	verb	sonuç çıkarmak, hüküm vermek	decide	verb	zayif	
+synonym	concrete	noun	beton	cement	noun	zayif	
+antonym	confused	adjective	kafası karışmış, şaşkın	clear	adjective	zayif	
+synonym	conscious	adjective	uyanık, bilinç hâlinde	alert	adjective	zayif	
+antonym	conserve	verb	tasarruf etmek, saklamak	spend	verb	zayif	
+antonym	consider	verb	kabul etmek, saymak	dismiss	verb	zayif	
+simpler	constitution	noun	anayasa	law	noun	zayif	
+antonym	construction	noun	yapı, bina	demolition	noun	zayif	
+simpler	consult	verb	danışmak, tavsiye almak	ask	verb	zayif	
+antonym	consume	verb	kullanmak, tüketmek	preserve	verb	zayif	
+antonym	contact	verb	iletişime geçmek	ignore	verb	zayif	
+synonym	container	noun	kap, saklama kabı	box	noun	zayif	
+synonym	contest	noun	yarışma, rekabet	tournament	noun	zayif	
+simpler	control	noun	denetim cihazı, kontrol mekanizması	device	noun	zayif	
+antonym	control	verb	kontrol etmek, idare etmek, yönetmek	release	verb	zayif	
+antonym	convention	noun	gelenek, adet	innovation	noun	zayif	
+antonym	convert	verb	dönüştürmek, değiştirmek	preserve	verb	zayif	
+synonym	cool	verb	sakinleşmek, yatışmak	settle	verb	zayif	
+antonym	cool	verb	sakinleşmek, yatışmak	heat up	phrasal_verb	zayif	
+antonym	cooperate	verb	birlikte çalışmak, iş birliği yapmak	oppose	verb	zayif	
+synonym	correspond	verb	karşılıklı yazışmak, mektuplaşmak	communicate	verb	zayif	
+synonym	county	noun	il, bölge	province	noun	zayif	
+synonym	county	noun	il, bölge	region	noun	zayif	
+synonym	court	noun	spor sahası, oyun alanı	arena	noun	zayif	
+synonym	court	noun	spor sahası, oyun alanı	field	noun	zayif	
+synonym	coverage	noun	kapsama alanı	area	noun	zayif	
+antonym	coverage	noun	kapsama alanı	gap	noun	zayif	
+synonym	crack	verb	kırmak, çatlatmak	shatter	verb	zayif	
+antonym	craft	verb	el işiyle üretmek, ustalıkla yapmak	destroy	verb	zayif	
+simpler	crash	noun	çarpışma, kaza	hit	noun	zayif	
+simpler	crash	verb	çarpışmak, çöküşe neden olmak	break	verb	zayif	
+simpler	creep	verb	yavaşça sürünmek, gizlice yaklaşmak	move	verb	zayif	
+antonym	criticism	noun	kınama, olumsuz yorum	support	noun	zayif	
+synonym	crush	verb	ezmek, sıkıştırmak	press	verb	zayif	
+synonym	crystal	noun	şeffaf cam, kristal	glass	noun	zayif	
+simpler	cultural	adjective	kültürel	social	adjective	zayif	
+simpler	currency	noun	para birimi, döviz	cash	noun	zayif	
+antonym	curve	noun	eğri	line	noun	zayif	
+synonym	curve	verb	eğri çizmek, bükmek	warp	verb	zayif	
+antonym	curved	adjective	eğri, kıvrımlı	flat	adjective	zayif	
+synonym	cutting	noun	kesme	trimming	noun	zayif	
+antonym	daily	adverb	her gün, günlük olarak	rarely	adverb	zayif	
+synonym	damage	noun	hasar, zarar	injury	noun	zayif	
+simpler	dare	verb	cesaret etmek, göze almak	try	verb	zayif	
+synonym	dark	noun	karanlık, karanlık zaman	night	noun	zayif	
+antonym	dawn	noun	şafak, gün doğumu	twilight	noun	zayif	
+simpler	dawn	noun	şafak, gün doğumu	morning	noun	zayif	
+antonym	deal	noun	işlem, anlaşma	dispute	noun	zayif	
+synonym	date	noun	romantik buluşma, randevu	meeting	noun	zayif	
+synonym	date	verb	biriyle çıkmak, flört etmek	meet	verb	zayif	
+simpler	death	noun	ölüm	end	noun	zayif	
+synonym	debt	noun	borç	loan	noun	zayif	
+synonym	declare	verb	ilan etmek, duyurmak	proclaim	verb	zayif	
+synonym	declare	verb	ilan etmek, duyurmak	reveal	verb	zayif	
+simpler	decline	verb	azalmak, düşmek	reduce	verb	zayif	
+antonym	decorate	verb	süslemek, dekore etmek	strip	verb	zayif	
+antonym	dedicated	adjective	tahsis edilmiş, özel	general	adjective	zayif	
+simpler	defect	noun	kusur, hata, eksiklik	problem	noun	zayif	
+synonym	defender	noun	savunma oyuncusu	protector	noun	zayif	
+synonym	define	verb	sınırlandırmak, bir şeyin kapsamını belirlemek	limit	verb	zayif	
+simpler	delay	noun	gecikme	wait	noun	zayif	
+antonym	delay	verb	ertelemek, geciktirmek	accelerate	verb	zayif	
+simpler	delay	verb	ertelemek, geciktirmek	hold	verb	zayif	
+antonym	delay	verb	gecikmek, oyalanmak	hurry	verb	zayif	
+simpler	demand	noun	talep, istek	need	noun	zayif	
+synonym	demand	verb	talep etmek	request	verb	zayif	
+antonym	demand	verb	talep etmek	grant	verb	zayif	
+antonym	demonstrate	verb	göstermek, açıklamak	conceal	verb	zayif	
+simpler	dialogue	noun	konuşma, diyalog	talk	noun	zayif	
+simpler	dentist	noun	diş hekimi	doctor	noun	zayif	
+synonym	department	noun	bakanlık, daire	office	noun	zayif	
+synonym	departure	noun	ayrılış, kalkış, çıkış	exit	noun	zayif	
+synonym	descent	noun	iniş, düşüş, alçalma	decline	noun	zayif	
+synonym	detect	verb	fark etmek, algılamak	discover	verb	zayif	
+simpler	desire	noun	arzu, istek	hope	noun	zayif	
+antonym	desire	verb	istemek, arzu etmek	reject	verb	zayif	
+synonym	destination	noun	varış yeri	goal	noun	zayif	
+simpler	destination	noun	varış yeri	place	noun	zayif	
+synonym	detail	noun	ayrıntı, detay	particular	noun	zayif	
+antonym	detail	noun	ayrıntı, detay	general	noun	zayif	
+synonym	determine	verb	belirlemek, tayin etmek	control	verb	zayif	
+synonym	determine	verb	belirlemek, tayin etmek	influence	verb	zayif	
+antonym	development	noun	inşaat projesi, yapı	demolition	noun	zayif	
+simpler	device	noun	araç, cihaz	machine	noun	zayif	
+synonym	diagram	noun	grafik, görsel temsil	graph	noun	zayif	
+simpler	diagram	noun	grafik, görsel temsil	figure	noun	zayif	
+antonym	dialogue	noun	konuşma, diyalog	silence	noun	zayif	
+synonym	differ	verb	aynı fikirde olmamak, uyuşmamak	vary	verb	zayif	
+antonym	dip	verb	daldırmak, batırmak	raise	verb	zayif	
+simpler	direct	verb	yönlendirmek, talimat vermek	manage	verb	zayif	
+simpler	disadvantage	noun	dezavantaj, sakınca	problem	noun	zayif	
+simpler	disappear	verb	kaybolmak, ortadan kaybolmak	go	verb	zayif	
+simpler	disappoint	verb	hayal kırıklığına uğratmak	fail	verb	zayif	
+simpler	disc	noun	disk, yuvarlak plak	record	noun	zayif	
+simpler	discharge	verb	taburcu etmek	send	verb	zayif	
+synonym	discipline	noun	eğitim, terbiye, disiplin	order	noun	zayif	
+antonym	discipline	noun	eğitim, terbiye, disiplin	chaos	noun	zayif	
+antonym	discount	noun	indirim	increase	noun	zayif	
+simpler	discount	noun	indirim	sale	noun	zayif	
+antonym	discount	verb	fiyatı düşürmek, indirim yapmak	increase	verb	zayif	
+synonym	discuss	verb	tartışmak, görüşmek, ele almak	debate	verb	zayif	
+antonym	discuss	verb	tartışmak, görüşmek, ele almak	ignore	verb	zayif	
+synonym	dislike	verb	hoşlanmamak, beğenmemek	hate	verb	zayif	
+antonym	dismiss	verb	göndermek, dağıtmak, salıvermek	call	verb	zayif	
+simpler	disorder	noun	düzensizlik, kaos	problem	noun	zayif	
+simpler	display	noun	sergi, sergileme, gösteri	present	noun	zayif	
+simpler	display	verb	göstermek, sergilemek	present	verb	zayif	
+synonym	dissolve	verb	çözmek, erimek	mix	verb	zayif	
+synonym	distribute	verb	dağıtmak, paylaştırmak	give	verb	zayif	
+simpler	district	noun	bölge, ilçe	neighborhood	noun	zayif	
+antonym	disturb	verb	rahatsız etmek, bölmek	calm	verb	zayif	
+simpler	dive	noun	dalma, dalış	jump	noun	zayif	
+simpler	divide	verb	bölmek, ayırmak	share	verb	zayif	
+synonym	divorced	adjective	boşanmış	separate	adjective	zayif	
+simpler	divorced	adjective	boşanmış	single	adjective	zayif	
+simpler	domestic	adjective	evcil, ailevi, eve ait	local	adjective	zayif	
+synonym	donation	noun	bağış	grant	noun	zayif	
+synonym	dose	noun	ilaç dozu, belirli miktarda ilaç	portion	noun	zayif	
+synonym	double	verb	iki katına çıkarmak	increase	verb	zayif	
+synonym	double	verb	iki katına çıkarmak	multiply	verb	zayif	
+simpler	download	verb	indirmek, veri almak	save	verb	zayif	
+antonym	draft	noun	askere alma, zorunlu askerlik	volunteer	noun	zayif	
+simpler	drain	verb	suyunu çekmek, boşaltmak	remove	verb	zayif	
+antonym	drama	noun	tiyatro oyunu, sahne eseri	comedy	noun	zayif	
+simpler	drama	noun	tiyatro oyunu, sahne eseri	theater	noun	zayif	
+synonym	dramatic	adjective	çarpıcı, etkileyici, ani	significant	adjective	zayif	
+synonym	drift	verb	sürüklenmek, kaymak	glide	verb	zayif	
+synonym	drift	verb	sürüklenmek, kaymak	wander	verb	zayif	
+antonym	drift	verb	sürüklenmek, kaymak	sink	verb	zayif	
+synonym	drop	noun	bırakma, düşürme	fall	noun	zayif	
+antonym	drop	noun	bırakma, düşürme	raise	noun	zayif	
+synonym	drown	verb	boğmak, suda boğulmak	sink	verb	zayif	
+synonym	drown	verb	boğmak, suda boğulmak	submerge	verb	zayif	
+antonym	drown	verb	boğmak, suda boğulmak	save	verb	zayif	
+antonym	drug	noun	ilaç, tıbbi madde	poison	noun	zayif	
+synonym	dull	adjective	mat, donuk	flat	adjective	zayif	
+antonym	dump	verb	boşaltmak, atmak	store	verb	zayif	
+antonym	duty	noun	görev, sorumluluk	right	noun	zayif	
+antonym	earn	verb	kazanmak, elde etmek	lose	verb	zayif	
+simpler	earn	verb	kazanmak, elde etmek	receive	verb	zayif	
+synonym	deposit	verb	para yatırmak, mevduat yapmak	save	verb	zayif	
+synonym	descend	verb	inmek, aşağı doğru hareket etmek	fall	verb	zayif	
+antonym	descend	verb	inmek, aşağı doğru hareket etmek	rise	verb	zayif	
+synonym	curve	noun	eğri	bend	noun	zayif	

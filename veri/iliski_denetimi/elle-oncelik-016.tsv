@@ -1,0 +1,238 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+simpler	compound	noun	kimyasal bileşik	mixture	noun	sil	
+antonym	compute	verb	hesaplamak, işlemek	approximate	verb	sil	
+antonym	conceive	verb	tasarlamak, bir fikir ortaya koymak	misunderstand	verb	sil	
+simpler	concentrate	verb	konsantre etmek, yoğunlaştırmak	purify	verb	sil	
+antonym	concept	noun	kavram	fact	noun	sil	
+antonym	concern	noun	mesele, konu, dert	indifference	noun	sil	
+simpler	conduct	verb	iletmek	manage	verb	sil	
+antonym	congregation	noun	cemaat, topluluk	individual	noun	sil	
+antonym	conscience	noun	vicdan	indifference	noun	sil	
+simpler	conscience	noun	vicdan	mind	noun	sil	
+antonym	consist	verb	oluşmak, meydana gelmek, içermek	exclude	verb	sil	
+simpler	consistency	noun	tutarlılık, istikrar	stable	noun	sil	
+antonym	constitute	verb	oluşturmak, meydana getirmek	dissolve	verb	sil	
+antonym	consult	verb	danışmanlık yapmak, tavsiye vermek	ignore	verb	sil	
+antonym	consultation	noun	danışma, istişare	ignorance	noun	sil	
+antonym	consumption	noun	tüketim	waste	noun	sil	
+synonym	container	noun	kargo konteyneri	crate	noun	sil	
+simpler	container	noun	kargo konteyneri	package	noun	sil	
+antonym	contender	noun	yarışmacı, aday	rival	noun	sil	
+simpler	context	noun	bağlam	detail	noun	sil	
+antonym	contribution	noun	bağış, bağışlama	withdrawal	noun	sil	
+simpler	contribution	noun	bağış, bağışlama	pay	noun	sil	
+simpler	convict	verb	suçlu bulmak, mahkum etmek	judge	verb	sil	
+simpler	cool	adjective	sakin, rahat	composed	adjective	sil	
+antonym	correlation	noun	ilişki, bağ, korelasyon	causation	noun	sil	
+antonym	correspondence	noun	mektup, yazışma, haberleşme	silence	noun	sil	
+antonym	correspondent	noun	muhabir, haberci	observer	noun	sil	
+simpler	correspondent	noun	muhabir, haberci	editor	noun	sil	
+simpler	cost	noun	bedel	pay	noun	sil	
+antonym	cost	verb	mal olmak, gerektirmek	save	verb	sil	
+simpler	cost	verb	mal olmak, gerektirmek	spend	verb	sil	
+antonym	council	noun	konsey, meclis	individual	noun	sil	
+antonym	counter	noun	karşı hamle, karşı tedbir, itiraz	supporter	noun	sil	
+antonym	counterpart	noun	karşılık, muadil	opposite	noun	sil	
+synonym	court	noun	mahkeme, yargı yeri	verdict	noun	sil	
+simpler	court	noun	mahkeme, yargı yeri	judge	noun	sil	
+simpler	court	noun	mahkeme, yargı yeri	lawyer	noun	sil	
+simpler	coverage	noun	sigorta kapsamı	policy	noun	sil	
+antonym	crack	verb	çözmek	break	verb	sil	
+synonym	crawl	verb	yavaş ilerlemek	progress	verb	sil	
+simpler	creativity	noun	yaratıcılık	idea	noun	sil	
+antonym	criterion	noun	ölçüt, kriter	exception	noun	sil	
+antonym	critic	noun	eleştirmen, muhalif, karşı çıkan kimse	praise	noun	sil	
+synonym	critically	adverb	eleştirel olarak	seriously	adverb	sil	
+synonym	crown	noun	diş kapağı, diş kronu	bridge	noun	sil	
+antonym	crown	noun	diş kapağı, diş kronu	extraction	noun	sil	
+simpler	crown	noun	diş kapağı, diş kronu	filling	noun	sil	
+antonym	crush	verb	yıkmak, mağlup etmek	support	verb	sil	
+simpler	cultivate	verb	toprak işlemek, ekin yetiştirmek	till	verb	sil	
+synonym	cure	noun	tedavi, iyileşme	treat	noun	sil	
+simpler	cure	noun	tedavi, iyileşme	disease	noun	sil	
+antonym	curriculum	noun	müfredat	flexibility	noun	sil	
+simpler	curriculum	noun	müfredat	content	noun	sil	
+antonym	custom	noun	gelenek, alışkanlık	norm	noun	sil	
+antonym	debris	noun	hurda, enkaz	structure	noun	sil	
+antonym	decade	noun	on yıl	century	noun	sil	
+antonym	define	verb	tanımlamak, bir kavramın anlamını belirtmek	interpret	verb	sil	
+antonym	deliver	verb	söylemek, sunmak	listen	verb	sil	
+antonym	demand	verb	gerektirmek	refuse	verb	sil	
+antonym	demonstrate	verb	protesto etmek, gösteri yapmak	support	verb	sil	
+simpler	deputy	noun	yardımcı şerif, polis memuru	lawyer	noun	sil	
+antonym	derive	verb	türetilmek, elde etmek	originate	verb	sil	
+synonym	descent	noun	soy, nesil, atalar	ancestor	noun	sil	
+antonym	desperately	adverb	çaresiz bir şekilde, umutsuzca	eagerly	adverb	sil	
+antonym	deprive	verb	mahrum etmek, yoksun bırakmak	grant	verb	sil	
+antonym	deputy	noun	vekil, temsilci	supervisor	noun	sil	
+simpler	diagnosis	noun	tanı	treatment	noun	sil	
+antonym	dimension	noun	boyut, yön	depth	noun	sil	
+antonym	diplomat	noun	diplomat	spy	noun	sil	
+antonym	direct	verb	yönetmek, bir şeyi yönetmek	act	verb	sil	
+antonym	direction	noun	talimat, yönlendirme	confusion	noun	sil	
+antonym	display	noun	ekran, gösterge paneli	hide	noun	sil	
+simpler	display	noun	ekran, gösterge paneli	show	noun	sil	
+synonym	disposal	noun	atık bertarafı, imha	discard	noun	sil	
+synonym	compose	verb	sakinleşmek, kendini toparlamak	settle	verb	zayif	
+synonym	compose	verb	bir araya getirmek, birleştirmek	construct	verb	zayif	
+antonym	composition	noun	bileşim, yapı	decomposition	noun	zayif	
+synonym	compound	noun	kimyasal bileşik	substance	noun	zayif	
+antonym	comprise	verb	-den oluşmak, içermek, kapsamak	exclude	verb	zayif	
+antonym	compromise	noun	uzlaşma, taviz	conflict	noun	zayif	
+antonym	compromise	verb	uzlaşmak, ödün vermek	refuse	verb	zayif	
+simpler	compromise	verb	uzlaşmak, ödün vermek	agree	verb	zayif	
+synonym	compute	verb	hesaplamak, işlemek	calculate	verb	zayif	
+synonym	compute	verb	hesaplamak, işlemek	process	verb	zayif	
+synonym	concentrate	verb	konsantre etmek, yoğunlaştırmak	strengthen	verb	zayif	
+simpler	concept	noun	kavram	thought	noun	zayif	
+simpler	conception	noun	kavram, anlayış	understanding	noun	zayif	
+synonym	concern	noun	mesele, konu, dert	interest	noun	zayif	
+antonym	concern	verb	ilgilendirmek, kapsamak	exclude	verb	zayif	
+simpler	concern	verb	ilgilendirmek, kapsamak	include	verb	zayif	
+synonym	conclusion	noun	sonuç, netice	result	noun	zayif	
+antonym	conclusion	noun	sonuç, netice	premise	noun	zayif	
+antonym	condition	noun	şart, koşul	exception	noun	zayif	
+simpler	condition	noun	şart, koşul	rule	noun	zayif	
+antonym	conduct	verb	iletmek	obstruct	verb	zayif	
+antonym	confer	verb	bahşetmek, vermek, tanımak	deny	verb	zayif	
+simpler	confident	adjective	kendine güvenen, emin	positive	adjective	zayif	
+simpler	confirm	verb	doğrulamak, teyit etmek	prove	verb	zayif	
+simpler	confront	verb	yüzleşmek, karşı karşıya gelmek	meet	verb	zayif	
+synonym	confrontation	noun	yüzleşme	encounter	noun	zayif	
+antonym	confrontation	noun	yüzleşme	agreement	noun	zayif	
+synonym	confuse	verb	karıştırmak, şaşırtmak	mislead	verb	zayif	
+simpler	confusing	adjective	kafa karıştırıcı, anlaşılması zor	hard	adjective	zayif	
+antonym	confusion	noun	kafa karışıklığı, şaşkınlık	certainty	noun	zayif	
+antonym	connect	verb	iletişim kurmak, bağlanmak	separate	verb	zayif	
+simpler	connect	verb	iletişim kurmak, bağlanmak	reach	verb	zayif	
+synonym	conscience	noun	vicdan	morality	noun	zayif	
+antonym	conservation	noun	koruma, muhafaza	degradation	noun	zayif	
+antonym	consideration	noun	düşünme, dikkat, özen	neglect	noun	zayif	
+simpler	consist	verb	oluşmak, meydana gelmek, içermek	contain	verb	zayif	
+synonym	consistently	adverb	sürekli, tutarlı bir şekilde	repeatedly	adverb	zayif	
+antonym	constitution	noun	bünye	fragility	noun	zayif	
+simpler	constitution	noun	bünye	health	noun	zayif	
+synonym	constitutional	adjective	anayasal	legal	adjective	zayif	
+synonym	consult	verb	danışmanlık yapmak, tavsiye vermek	guide	verb	zayif	
+synonym	consultation	noun	danışma, istişare	advice	noun	zayif	
+antonym	contemplate	verb	düşünmek, derinlemesine düşünmek	ignore	verb	zayif	
+antonym	contemporary	adjective	çağdaş, modern	traditional	adjective	zayif	
+antonym	contend	verb	iddia etmek, savunmak	agree	verb	zayif	
+antonym	contend	verb	mücadele etmek, rekabet etmek	yield	verb	zayif	
+antonym	contest	verb	yarışmak, rekabet etmek	cooperate	verb	zayif	
+simpler	contest	verb	yarışmak, rekabet etmek	play	verb	zayif	
+antonym	contract	noun	sözleşme, anlaşma	breach	noun	zayif	
+synonym	contract	verb	anlaşma yapmak	agree	verb	zayif	
+antonym	contract	verb	anlaşma yapmak	break	verb	zayif	
+simpler	contract	verb	anlaşma yapmak	deal	verb	zayif	
+synonym	contractor	noun	yüklenici, müteahhit	builder	noun	zayif	
+antonym	contrary	adjective	zıt, karşıt, ters	consistent	adjective	zayif	
+antonym	contrast	verb	zıtlaştırmak, karşılaştırmak	match	verb	zayif	
+antonym	contribute	verb	katkı sağlamak, yol açmak, payı olmak	impede	verb	zayif	
+simpler	contribute	verb	katkı sağlamak, yol açmak, payı olmak	support	verb	zayif	
+simpler	control	verb	sınırlamak, engellemek	stop	verb	zayif	
+synonym	convict	verb	suçlu bulmak, mahkum etmek	sentence	verb	zayif	
+simpler	convincing	adjective	ikna edici	clear	adjective	zayif	
+antonym	cooperate	verb	iş birliği yapmak, yardımcı olmak, zorluk çıkarmamak	resist	verb	zayif	
+antonym	coordination	noun	koordinasyon, uyum, düzenleme	disorder	noun	zayif	
+synonym	coordinator	noun	koordinatör	manager	noun	zayif	
+synonym	copyright	noun	telif hakkı	license	noun	zayif	
+simpler	copyright	noun	telif hakkı	right	noun	zayif	
+antonym	corporate	adjective	kurumsal, şirketle ilgili	individual	adjective	zayif	
+antonym	correction	noun	düzeltme, hata giderme	error	noun	zayif	
+antonym	correlate	verb	ilişkilendirmek, karşılıklı ilişki kurmak	disconnect	verb	zayif	
+simpler	correspond	verb	eşleşmek, uyum sağlamak	relate	verb	zayif	
+synonym	correspondence	noun	mektup, yazışma, haberleşme	letter	noun	zayif	
+simpler	correspondence	noun	mektup, yazışma, haberleşme	communication	noun	zayif	
+antonym	corresponding	adjective	karşılık gelen, ilgili	different	adjective	zayif	
+simpler	corruption	noun	yolsuzluk, yozlaşma	crime	noun	zayif	
+synonym	cost	verb	mal olmak, gerektirmek	require	verb	zayif	
+synonym	counter	noun	sayaç, sayma cihazı	meter	noun	zayif	
+synonym	counter	noun	karşı hamle, karşı tedbir, itiraz	opponent	noun	zayif	
+simpler	counter	verb	karşı koymak, karşıtlık göstermek	respond	verb	zayif	
+synonym	counterpart	noun	karşılık, muadil	match	noun	zayif	
+simpler	counterpart	noun	karşılık, muadil	partner	noun	zayif	
+synonym	cover	verb	kapsamak, içermek	contain	verb	zayif	
+simpler	coverage	noun	medyada yer alma, haber yapma	article	noun	zayif	
+antonym	crack	noun	zayıf nokta, kusur	strength	noun	zayif	
+simpler	critic	noun	eleştirmen, muhalif, karşı çıkan kimse	judge	noun	zayif	
+synonym	critical	adjective	olumsuz, eleştirel	harsh	adjective	zayif	
+synonym	criticism	noun	eleştiri, değerlendirme	review	noun	zayif	
+antonym	critique	noun	eleştiri, değerlendirme	praise	noun	zayif	
+antonym	crop	noun	hasat	loss	noun	zayif	
+simpler	criminal	adjective	suçla ilgili, suçlu	bad	adjective	zayif	
+synonym	crisis	noun	kriz	disaster	noun	zayif	
+antonym	crisis	noun	kriz	stability	noun	zayif	
+antonym	cure	verb	iyileştirmek	worsen	verb	zayif	
+simpler	cure	verb	iyileştirmek	treat	verb	zayif	
+synonym	curriculum	noun	müfredat	framework	noun	zayif	
+antonym	cute	adjective	kurnaz, akıllı, becerikli	dull	adjective	zayif	
+synonym	cycle	noun	dönüş, döngü, periyot	period	noun	zayif	
+synonym	cycle	noun	dönüş, döngü, periyot	phase	noun	zayif	
+antonym	cycle	verb	döngüsel olarak gerçekleşmek, tekrarlamak	stop	verb	zayif	
+simpler	database	noun	veri tabanı	data	noun	zayif	
+antonym	debate	noun	tartışma, münazara	agreement	noun	zayif	
+antonym	debate	verb	tartışmak	agree	verb	zayif	
+simpler	debris	noun	hurda, enkaz	waste	noun	zayif	
+antonym	declare	verb	gümrükte beyan etmek	hide	verb	zayif	
+simpler	declare	verb	gümrükte beyan etmek	list	verb	zayif	
+antonym	deem	verb	kabul etmek, saymak	reject	verb	zayif	
+simpler	deep	adverb	derinlemesine, çok	far	adverb	zayif	
+antonym	defend	verb	savunmak, arka çıkmak	refute	verb	zayif	
+simpler	defend	verb	savunmak, arka çıkmak	argue	verb	zayif	
+antonym	definition	noun	tanım, açıklama	ambiguity	noun	zayif	
+simpler	defy	verb	karşı gelmek, meydan okumak, boyun eğmemek	ignore	verb	zayif	
+synonym	defy	verb	boşa çıkarmak, aşmak, hiçe saymak	contradict	verb	zayif	
+antonym	defy	verb	boşa çıkarmak, aşmak, hiçe saymak	confirm	verb	zayif	
+synonym	degree	noun	seviye, derece, ölçü	magnitude	noun	zayif	
+simpler	deliver	verb	söylemek, sunmak	announce	verb	zayif	
+simpler	delivery	noun	doğum, doğum süreci	labor	noun	zayif	
+synonym	demon	noun	şeytan, cin	spirit	noun	zayif	
+synonym	demonstrate	verb	protesto etmek, gösteri yapmak	oppose	verb	zayif	
+synonym	demonstration	noun	gösterim, kanıtlama	exhibit	noun	zayif	
+simpler	demonstration	noun	gösterim, kanıtlama	example	noun	zayif	
+simpler	dependence	noun	bağımlılık, muhtaçlık	need	noun	zayif	
+antonym	depict	verb	tasvir etmek, betimlemek	conceal	verb	zayif	
+antonym	deposit	noun	yatak, tortu, birikinti	erosion	noun	zayif	
+simpler	deposit	noun	yatak, tortu, birikinti	layer	noun	zayif	
+synonym	depression	noun	depresyon, ruhsal bozukluk	sadness	noun	zayif	
+synonym	depression	noun	depresyon, ruhsal bozukluk	anxiety	noun	zayif	
+antonym	depression	noun	depresyon, ruhsal bozukluk	happiness	noun	zayif	
+simpler	depression	noun	depresyon, ruhsal bozukluk	illness	noun	zayif	
+simpler	depression	noun	çöküntü, alçak bölge	valley	noun	zayif	
+simpler	derive	verb	türetilmek, elde etmek	produce	verb	zayif	
+antonym	deteriorate	verb	kötüleşmek, bozulmak	heal	verb	zayif	
+antonym	determine	verb	belirlemek, karar vermek	guess	verb	zayif	
+simpler	determine	verb	belirlemek, karar vermek	choose	verb	zayif	
+synonym	develop	verb	geliştirmek, ilerletmek	create	verb	zayif	
+antonym	devote	verb	adamak, kendini bir şeye adamak	abandon	verb	zayif	
+synonym	diagnose	verb	tanı koymak	detect	verb	zayif	
+simpler	diagnose	verb	tanı koymak	determine	verb	zayif	
+simpler	diagram	noun	çizim, şema	graph	noun	zayif	
+synonym	dictate	verb	emrederek söylemek, zorlamak	prescribe	verb	zayif	
+antonym	dictate	verb	emrederek söylemek, zorlamak	allow	verb	zayif	
+simpler	dictate	verb	emrederek söylemek, zorlamak	require	verb	zayif	
+antonym	differ	verb	değişmek, farklı olmak	remain	verb	zayif	
+simpler	differ	verb	değişmek, farklı olmak	change	verb	zayif	
+simpler	differentiate	verb	ayırt etmek, farklılaştırmak	identify	verb	zayif	
+simpler	dimension	noun	boyut, yön	size	noun	zayif	
+synonym	diplomat	noun	diplomat	negotiator	noun	zayif	
+simpler	diplomat	noun	diplomat	politician	noun	zayif	
+synonym	direct	verb	yönetmek, bir şeyi yönetmek	manage	verb	zayif	
+synonym	direct	verb	yönetmek, bir şeyi yönetmek	produce	verb	zayif	
+simpler	direct	verb	yönetmek, bir şeyi yönetmek	lead	verb	zayif	
+synonym	direction	noun	talimat, yönlendirme	order	noun	zayif	
+synonym	directly	adverb	doğrudan	immediately	adverb	zayif	
+antonym	disability	noun	engellilik, sakatlık	ability	noun	zayif	
+synonym	disadvantage	noun	dezavantaj, aleyhte durum	harm	noun	zayif	
+simpler	disadvantage	noun	dezavantaj, aleyhte durum	loss	noun	zayif	
+simpler	disastrous	adjective	felaket getiren, yıkıcı, feci	dangerous	adjective	zayif	
+simpler	discharge	verb	boşaltmak, dışarı atmak	emit	verb	zayif	
+simpler	discourage	verb	cesaretini kırmak, vazgeçirmek	stop	verb	zayif	
+simpler	discretion	noun	tedbirlilik, basiret, sağduyu	authority	noun	zayif	
+antonym	discrimination	noun	ayırım, fark, ayrım	similarity	noun	zayif	
+antonym	displace	verb	yerinden çıkarmak, konumunu değiştirmek	retain	verb	zayif	
+simpler	disrupt	verb	bozmak, aksatmak	break	verb	zayif	
+simpler	disruption	noun	kesinti, bozulma, aksama	break	noun	zayif	
+antonym	distinction	noun	fark, ayrım	confusion	noun	zayif	
+simpler	dismissal	noun	işten çıkarma, kovma, fesih	fire	noun	zayif	

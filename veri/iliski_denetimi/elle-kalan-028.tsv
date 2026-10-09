@@ -1,0 +1,171 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+simpler	naivety	noun	naiflik, saflık	experience	noun	sil	
+antonym	narrate	verb	anlatmak, hikâye etmek	silence	verb	sil	
+synonym	nay	noun	ret oyu, aleyhte oy	reject	noun	sil	
+antonym	nebula	noun	bulutsu	galaxy	noun	sil	
+simpler	nebula	noun	bulutsu	star	noun	sil	
+synonym	nectar	noun	nektar, çiçek özü	honey	noun	sil	
+antonym	nectar	noun	nektar, çiçek özü	sugar	noun	sil	
+simpler	nectar	noun	nektar, çiçek özü	pollen	noun	sil	
+antonym	negotiator	noun	müzakereci	obstacle	noun	sil	
+simpler	negotiator	noun	müzakereci	buyer	noun	sil	
+antonym	newsroom	noun	haber odası	studio	noun	sil	
+antonym	nick	noun	küçük kesik, çentik	scar	noun	sil	
+antonym	nickel	noun	nikel, beş sentlik madeni para	copper	noun	sil	
+antonym	nip	noun	küçük ısırık, çimdik	sting	noun	sil	
+antonym	nipper	noun	kesme aleti, pense	hammer	noun	sil	
+synonym	nitrogen	noun	azot	air	noun	sil	
+antonym	nitrogen	noun	azot	oxygen	noun	sil	
+simpler	nocturnal	adjective	geceyle ilgili, geceye özgü	active	adjective	sil	
+antonym	node	noun	düğüm, yumru, şişlik	tumor	noun	sil	
+simpler	nomad	noun	göçebe	travel	noun	sil	
+synonym	nonhuman	adjective	insan olmayan	inhuman	adjective	sil	
+simpler	nonverbal	adjective	sözsüz	express	adjective	sil	
+simpler	normalcy	noun	normal durum, olağan hâl	normal	noun	sil	
+simpler	normality	noun	olağanlık, normal olma durumu	normal	noun	sil	
+antonym	northwestern	adjective	kuzeybatı yönünde, kuzeybatıya ait	southwestern	adjective	sil	
+simpler	northwestward	adverb	kuzeybatıya doğru	northwest	adverb	sil	
+simpler	nude	noun	çıplak figür, çıplak resim	portrait	noun	sil	
+synonym	nugget	noun	küçük altın parçası, külçe	flake	noun	sil	
+simpler	nun	noun	rahibe	priest	noun	sil	
+antonym	nursing	noun	hemşirelik	illness	noun	sil	
+simpler	observational	adjective	gözlemsel	watchful	adjective	sil	
+antonym	occupational	adjective	mesleki, iş ile ilgili	unemployed	adjective	sil	
+simpler	occupier	noun	kiracı, bir mülkü kullanan kişi	rent	noun	sil	
+antonym	offense	noun	suç, yasa dışı eylem	innocent	noun	sil	
+antonym	oilfield	noun	petrol sahası	pollution	noun	sil	
+antonym	ooze	noun	sızıntı, akıntı, çamur	drain	noun	sil	
+simpler	opaque	adjective	şeffaf olmayan	clear	adjective	sil	
+simpler	orbit	verb	dönmek, yörüngede dolaşmak	go	verb	sil	
+antonym	orchestrator	noun	orkestra aranjörü	conductor	noun	sil	
+antonym	orchid	noun	orkide	bloom	noun	sil	
+synonym	ore	noun	cevher, maden filizi	metal	noun	sil	
+synonym	outfield	noun	dış saha	outfielder	noun	sil	
+synonym	outpatient	noun	ayaktan hasta	clinic	noun	sil	
+simpler	overblown	adjective	abartılmış, aşırı şişirilmiş	big	adjective	sil	
+synonym	overcharge	verb	aşırı ücret almak	charge	verb	sil	
+simpler	overdo	verb	aşırı yapmak, gereğinden fazla yapmak	do	verb	sil	
+antonym	overhang	noun	çatı çıkıntısı, sarkma	support	noun	sil	
+simpler	overpayment	noun	fazla ödeme	pay	noun	sil	
+simpler	overreach	verb	haddini aşmak, sınırını aşmak, yetkisini aşmak	limit	verb	sil	
+synonym	overripe	adjective	çok olgun, çürümeye yakın	ripe	adjective	sil	
+antonym	overripe	adjective	çok olgun, çürümeye yakın	unripe	adjective	sil	
+antonym	narration	noun	anlatım, hikâye anlatımı	silence	noun	zayif	
+antonym	narrator	noun	anlatıcı	listener	noun	zayif	
+simpler	narrowly	adverb	kıl payı, az farkla	just	adverb	zayif	
+antonym	nasal	noun	nazal ünsüz, burun sesi	oral	noun	zayif	
+simpler	nationalist	adjective	milliyetçi, ulusalcı	national	adjective	zayif	
+simpler	nationalistic	adjective	ulusalcı, milliyetçi	national	adjective	zayif	
+synonym	nativity	noun	doğum, doğuş	origin	noun	zayif	
+synonym	naturalist	noun	doğa bilimci, doğa araştırmacısı	biologist	noun	zayif	
+antonym	naturalist	noun	doğa bilimci, doğa araştırmacısı	layperson	noun	zayif	
+simpler	naturalist	noun	doğa bilimci, doğa araştırmacısı	scientist	noun	zayif	
+simpler	nauseous	adjective	midesi bulanan, mide bulantısı hissi veren	dizzy	adjective	zayif	
+simpler	navigable	adjective	gemi işletilebilir, seyrüsefere elverişli, ulaşıma elverişli	usable	adjective	zayif	
+antonym	navigate	verb	yolunu bulmak, yönünü bulmak, seyrüsefer etmek	lose	verb	zayif	
+simpler	navigate	verb	yolunu bulmak, yönünü bulmak, seyrüsefer etmek	pilot	verb	zayif	
+synonym	navigator	noun	seyrüseferci, rotacı, navigatör	pilot	noun	zayif	
+synonym	navy	noun	deniz kuvvetleri	fleet	noun	zayif	
+antonym	navy	noun	deniz kuvvetleri	army	noun	zayif	
+simpler	near	verb	yaklaşmak	come	verb	zayif	
+synonym	nebula	noun	bulutsu	cloud	noun	zayif	
+simpler	neediness	noun	muhtaçlık, ihtiyaç duyma durumu	need	noun	zayif	
+antonym	neonatal	adjective	yenidoğan, yeni doğmuş	adult	adjective	zayif	
+antonym	nerdy	adjective	teknik/akademik konulara aşırı düşkün, sosyal açıdan garip	social	adjective	zayif	
+antonym	nest	verb	iç içe yerleştirmek	unpack	verb	zayif	
+simpler	networking	noun	ağ kurma, iletişim ağı oluşturma	relationship	noun	zayif	
+simpler	newsroom	noun	haber odası	office	noun	zayif	
+antonym	nickel	verb	nikel ile kaplamak	strip	verb	zayif	
+simpler	nifty	adjective	kullanışlı, şık, akıllıca	simple	adjective	zayif	
+antonym	nightlife	noun	gece hayatı	daytime	noun	zayif	
+simpler	nightlife	noun	gece hayatı	night	noun	zayif	
+synonym	nirvana	noun	kusursuz hâl, ideal durum	utopia	noun	zayif	
+simpler	nobly	adverb	asilce	well	adverb	zayif	
+antonym	nodal	adjective	düğümle ilgili, düğümsel	linear	adjective	zayif	
+synonym	node	noun	düğüm, yumru, şişlik	mass	noun	zayif	
+simpler	nomadic	adjective	göçebe, sürekli yer değiştiren	mobile	adjective	zayif	
+simpler	non-delinquent	adjective	suç işlemeyen, kural dışı davranmayan	respectful	adjective	zayif	
+antonym	noose	noun	yağlı urgan, ilmik, kement	freedom	noun	zayif	
+simpler	northeastern	adjective	kuzeydoğuya ait, kuzeydoğu bölgesinde bulunan	eastern	adjective	zayif	
+simpler	nose	verb	burnunu sokmak	ask	verb	zayif	
+simpler	notable	noun	önemli kişi, dikkate değer kişi	person	noun	zayif	
+antonym	notarized	adjective	noter tasdikli, noter onaylı	invalid	adjective	zayif	
+antonym	notation	noun	yazım şekli, sembol sistemi	ambiguity	noun	zayif	
+simpler	notation	noun	yazım şekli, sembol sistemi	code	noun	zayif	
+antonym	notch	noun	derece, seviye	drop	noun	zayif	
+simpler	noticeably	adverb	gözle görülür şekilde	easily	adverb	zayif	
+simpler	notification	noun	bildirim, bildiri, ihbar	message	noun	zayif	
+simpler	notoriously	adverb	kötü şöhretle, adı çıkmış derecede	badly	adverb	zayif	
+synonym	nova	noun	yeni yıldız, parlak yıldız patlaması	explosion	noun	zayif	
+antonym	nozzle	noun	püskürtme ucu, meme, ağızlık	blockage	noun	zayif	
+simpler	nozzle	noun	püskürtme ucu, meme, ağızlık	tip	noun	zayif	
+synonym	nude	noun	çıplak figür, çıplak resim	figure	noun	zayif	
+simpler	numbness	noun	uyuşukluk, his kaybı	loss	noun	zayif	
+antonym	numeral	noun	sayı işareti, rakam	letter	noun	zayif	
+antonym	numeric	adjective	sayısal	qualitative	adjective	zayif	
+antonym	numerical	adjective	sayısal	qualitative	adjective	zayif	
+simpler	objectify	verb	nesne hâline getirmek	treat	verb	zayif	
+antonym	oblong	adjective	dikdörtgen biçiminde, dikdörtgensi	square	adjective	zayif	
+simpler	obscene	adjective	müstehcen, edepsiz, ahlaksızca	bad	adjective	zayif	
+simpler	obsessed	adjective	takıntılı, kafayı takmış	interested	adjective	zayif	
+simpler	obsolescence	noun	kullanım dışı kalma	old	noun	zayif	
+simpler	occupancy	noun	doluluk, yer kaplama	use	noun	zayif	
+simpler	offense	noun	suç, yasa dışı eylem	law	noun	zayif	
+antonym	offset	verb	telafi etmek, dengelemek	increase	verb	zayif	
+simpler	offset	verb	telafi etmek, dengelemek	reduce	verb	zayif	
+simpler	offshore	adjective	denizaşırı, kıyı dışı	far	adjective	zayif	
+antonym	ogre	noun	dev	angel	noun	zayif	
+simpler	ogre	noun	dev	giant	noun	zayif	
+synonym	oilfield	noun	petrol sahası	oil	noun	zayif	
+synonym	oilfield	noun	petrol sahası	reserve	noun	zayif	
+antonym	oilseed	noun	yağ tohumu	grain	noun	zayif	
+synonym	omega	noun	omega (Yunan alfabesinin son harfi)	final	noun	zayif	
+antonym	omen	noun	alamet, işaret, kehanet	blessing	noun	zayif	
+simpler	omit	verb	atlamak, göz ardı etmek	leave	verb	zayif	
+simpler	onboard	verb	katmak, işe alıştırmak, oryantasyon sağlamak	train	verb	zayif	
+synonym	ooze	noun	sızıntı, akıntı, çamur	leak	noun	zayif	
+antonym	ooze	verb	sızmak, akmak	stop	verb	zayif	
+antonym	operative	noun	görevli, ajan	civilian	noun	zayif	
+simpler	operative	noun	görevli, ajan	worker	noun	zayif	
+synonym	opinionated	adjective	sabit fikirli, dik kafalı, dogmatik	biased	adjective	zayif	
+synonym	opposable	adjective	karşı karşıya gelebilen, karşılıklı kapanabilen	counter	adjective	zayif	
+simpler	oppression	noun	baskı, zulüm	control	noun	zayif	
+antonym	optic	adjective	gözle ilgili, optik	blind	adjective	zayif	
+synonym	optics	noun	optik	light	noun	zayif	
+synonym	optics	noun	optik aksam, mercekler, optik parçalar	microscope	noun	zayif	
+simpler	optics	noun	optik aksam, mercekler, optik parçalar	instrument	noun	zayif	
+antonym	orb	noun	küre, top	flat	noun	zayif	
+antonym	orbit	noun	yörünge	escape	noun	zayif	
+synonym	orbital	adjective	yörünge ile ilgili	celestial	adjective	zayif	
+antonym	orbital	adjective	yörünge ile ilgili	stationary	adjective	zayif	
+antonym	orchestral	adjective	orkestra ile ilgili, orkestraya ait	solo	adjective	zayif	
+antonym	ordinance	noun	yönetmelik, kanun	exception	noun	zayif	
+simpler	organism	noun	canlı, organizma	life	noun	zayif	
+simpler	orient	verb	yönlendirmek, konumlandırmak	guide	verb	zayif	
+antonym	ornamentation	noun	süsleme, süsleme sanatı	plain	noun	zayif	
+antonym	ostensible	adjective	görünür, iddia edilen	covert	adjective	zayif	
+antonym	outfielder	noun	dış saha oyuncusu	catcher	noun	zayif	
+simpler	outgoing	noun	giden ödeme, harcama	spending	noun	zayif	
+synonym	outnumbered	adjective	sayıca azınlıkta, sayıca az, sayıca geride	dominant	adjective	zayif	
+simpler	outnumbered	adjective	sayıca azınlıkta, sayıca az, sayıca geride	more	adjective	zayif	
+simpler	output	verb	çıktı üretmek, sonuç vermek	make	verb	zayif	
+simpler	outreach	noun	ulaşma, topluma hizmet, yardım çalışması	help	noun	zayif	
+simpler	outsource	verb	başka bir firmaya iş yaptırmak	hire	verb	zayif	
+simpler	overboard	adverb	gemiden dışarı, suya doğru	off	adverb	zayif	
+synonym	overconsumption	noun	aşırı tüketim	consumption	noun	zayif	
+synonym	overdose	verb	aşırı doz almak, aşırı doz vermek	exceed	verb	zayif	
+simpler	overdose	verb	aşırı doz almak, aşırı doz vermek	take	verb	zayif	
+simpler	overhang	verb	sarkmak, uzanmak	hang	verb	zayif	
+antonym	overhead	noun	genel gider, işletme maliyeti	profit	noun	zayif	
+synonym	overheat	verb	aşırı ısınmak	warm	verb	zayif	
+simpler	overheating	noun	aşırı ısınma, çok ısınma durumu	temperature	noun	zayif	
+antonym	overland	adjective	kara, kara yolu, karadan yapılan	airborne	adjective	zayif	
+antonym	overlap	noun	örtüşme, çakışma	gap	noun	zayif	
+simpler	overlap	noun	örtüşme, çakışma	share	noun	zayif	
+simpler	overloaded	adjective	aşırı yüklü	heavy	adjective	zayif	
+antonym	override	verb	geçersiz kılmak, üstün gelmek	support	verb	zayif	
+antonym	overshoot	verb	aşmak, hedefi/limitleri geçmek	underestimate	verb	zayif	
+simpler	overstate	verb	abartmak	say	verb	zayif	
+antonym	overtake	verb	geçmek, sollamak	follow	verb	zayif	
+antonym	overtime	adverb	fazla mesaiyle, ek saatlerde	regularly	adverb	zayif	
+simpler	overtime	noun	fazla mesai	shift	noun	zayif	

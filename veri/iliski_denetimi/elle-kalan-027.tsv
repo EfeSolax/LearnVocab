@@ -1,0 +1,190 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+antonym	mantis	noun	peygamberdevesi	prey	noun	sil	
+antonym	mantle	noun	yetki, sorumluluk, görev	power	noun	sil	
+antonym	mantra	noun	tekrarlanan söz, ruhsal ibare	silence	noun	sil	
+antonym	mapper	noun	harita yapıcı, haritalayıcı	navigator	noun	sil	
+simpler	mapper	noun	harita yapıcı, haritalayıcı	translator	noun	sil	
+antonym	marijuana	noun	esrar	alcohol	noun	sil	
+simpler	marine	noun	deniz piyadesi	army	noun	sil	
+simpler	mariner	noun	denizci	captain	noun	sil	
+antonym	marking	noun	notlandırma, puanlama, değerlendirme	fail	noun	sil	
+antonym	marrow	noun	kemik iliği	fat	noun	sil	
+antonym	marrow	noun	kabak	pumpkin	noun	sil	
+antonym	martini	noun	kokteyl, martini	wine	noun	sil	
+antonym	mason	noun	taş ustası, duvarcı	client	noun	sil	
+simpler	masonry	noun	taş işçiliği, duvar örme işi	builder	noun	sil	
+simpler	materialism	noun	maddi değerleri ön planda tutma, maddi şeylere aşırı önem verme	material	noun	sil	
+simpler	materialistic	adjective	maddi şeylere aşırı önem veren	rich	adjective	sil	
+synonym	mead	noun	bal şarabı	ale	noun	sil	
+synonym	mead	noun	bal şarabı	beer	noun	sil	
+antonym	mechanics	noun	işleyiş, teknik detaylar	complexity	noun	sil	
+simpler	mechanization	noun	mekanizasyon	machine	noun	sil	
+antonym	medallion	noun	madalyon, madalya kolye ucu, büyük madalya	strip	noun	sil	
+simpler	meddle	verb	karışmak, müdahale etmek	assist	verb	sil	
+antonym	median	adjective	ortanca, orta	average	adjective	sil	
+antonym	median	noun	ortanca, medyan	average	noun	sil	
+simpler	medically	adverb	tıbben	healthily	adverb	sil	
+synonym	melt	noun	eriyik	solution	noun	sil	
+antonym	memorabilia	noun	hatıra eşyaları	discard	noun	sil	
+simpler	memorabilia	noun	hatıra eşyaları	preserve	noun	sil	
+antonym	memorandum	noun	resmi yazı, not	directive	noun	sil	
+antonym	menace	noun	tehdit, tehlike	risk	noun	sil	
+antonym	menstruation	noun	adet	fertility	noun	sil	
+antonym	mentality	noun	zihniyet, düşünce yapısı	rigidity	noun	sil	
+antonym	merch	noun	satışa sunulan ürün, mal	sale	noun	sil	
+synonym	mercury	noun	cıva	lead	noun	sil	
+antonym	meteor	noun	meteor	comet	noun	sil	
+antonym	meteorological	adjective	meteorolojiyle ilgili, hava bilimlerine ait	stable	adjective	sil	
+simpler	middleman	noun	aracı, vasıta, aracılık yapan kişi	buyer	noun	sil	
+simpler	middleman	noun	aracı, vasıta, aracılık yapan kişi	client	noun	sil	
+simpler	middleman	noun	aracı, vasıta, aracılık yapan kişi	seller	noun	sil	
+simpler	miler	noun	bir mil koşucusu	sprinter	noun	sil	
+antonym	markup	noun	fiyat artışı, kar payı	discount	noun	sil	
+synonym	mint	noun	para basım yeri, darphane	currency	noun	sil	
+antonym	miraculously	adverb	mucizevi bir şekilde	impossibly	adverb	sil	
+synonym	mirrorless	adjective	aynasız	digital	adjective	sil	
+simpler	misalignment	noun	uyumsuzluk, hizalanmama	gap	noun	sil	
+synonym	miscarriage	noun	gebelik kaybı, düşük	abortion	noun	sil	
+synonym	misdirect	verb	yanlış yönlendirmek, hatalı yön vermek	guide	verb	sil	
+simpler	misinterpret	verb	yanlış yorumlamak	understand	verb	sil	
+antonym	misjudge	verb	yanlış değerlendirmek, hatalı yargılamak	overestimate	verb	sil	
+simpler	mismatch	verb	uyuşmamak, birbirine uymamak, yanlış eşleştirmek	fit	verb	sil	
+simpler	misrule	noun	kötü yönetim, yönetimsizlik	rule	noun	sil	
+synonym	misrule	verb	kötü yönetmek	administer	verb	sil	
+simpler	modeling	noun	mankenlik	model	noun	sil	
+synonym	modernist	noun	modernist, modernizmi savunan kişi	modernism	noun	sil	
+synonym	molecule	noun	molekül	atom	noun	sil	
+simpler	molest	verb	cinsel tacizde bulunmak, istismar etmek, sarkıntılık etmek	bother	verb	sil	
+antonym	momentarily	adverb	kısa bir süre içinde, yakında	immediately	adverb	sil	
+simpler	monarchist	noun	monarşi yanlısı, monarşi savunucusu	support	noun	sil	
+antonym	moonlight	verb	ikincil işte çalışmak	quit	verb	sil	
+antonym	morph	noun	biçim, şekil, dönüşüm	static	noun	sil	
+simpler	mortality	noun	ölümlülük	die	noun	sil	
+simpler	mortar	noun	havan	grind	noun	sil	
+antonym	motto	noun	özdeyiş, slogan	principle	noun	sil	
+simpler	mountaineer	noun	dağcı	guide	noun	sil	
+antonym	mountaineering	noun	dağcılık	descent	noun	sil	
+simpler	mournful	adjective	hüzünlü, yas tutan	sad	adjective	sil	
+simpler	mournfully	adverb	hüzünle	sadly	adverb	sil	
+antonym	mouthpiece	noun	sözcü, maşa, borazan	silencer	noun	sil	
+simpler	muffler	noun	susturucu, egzoz susturucusu	exhaust	noun	sil	
+antonym	mug	noun	yüz, surat	expression	noun	sil	
+synonym	multiplayer	adjective	çok oyunculu	online	adjective	sil	
+synonym	multiple	noun	kat	factor	noun	sil	
+simpler	multiple	noun	kat	product	noun	sil	
+synonym	mummy	noun	mumya	preserve	noun	sil	
+antonym	myrtle	noun	mersin, mersin ağacı	thorn	noun	sil	
+simpler	myrtle	noun	mersin, mersin ağacı	olive	noun	sil	
+simpler	nag	noun	dırdırcı kimse, başının etini yiyen kimse	bother	noun	sil	
+antonym	mannerism	noun	davranış biçimi, üslup, alışkanlık	uniformity	noun	zayif	
+simpler	mannerism	noun	davranış biçimi, üslup, alışkanlık	custom	noun	zayif	
+antonym	manor	noun	konak, malikane	cottage	noun	zayif	
+synonym	mantis	noun	peygamberdevesi	predator	noun	zayif	
+synonym	mantra	noun	tekrarlanan söz, ruhsal ibare	affirmation	noun	zayif	
+synonym	mapper	noun	harita yapıcı, haritalayıcı	chart	noun	zayif	
+antonym	marble	verb	mermerle kaplamak	strip	verb	zayif	
+synonym	markup	noun	fiyat artışı, kar payı	increase	noun	zayif	
+simpler	markup	noun	fiyat artışı, kar payı	price	noun	zayif	
+antonym	marquee	noun	büyük çadır	building	noun	zayif	
+simpler	marshal	noun	yangın denetçisi	officer	noun	zayif	
+simpler	martini	noun	kokteyl, martini	gin	noun	zayif	
+simpler	materialist	noun	maddeci, materyalist	person	noun	zayif	
+simpler	maternity	noun	doğum, hamilelik dönemi	mother	noun	zayif	
+simpler	meaningfully	adverb	anlamlı bir şekilde	well	adverb	zayif	
+antonym	meaty	adjective	etli, bol, yoğun	light	adjective	zayif	
+synonym	mechanically	adverb	mekanik olarak	rigidly	adverb	zayif	
+antonym	mechanically	adverb	mekanik olarak	thoughtfully	adverb	zayif	
+simpler	medalist	noun	madalya kazanan	champion	noun	zayif	
+simpler	medallion	noun	madalyon, madalya kolye ucu, büyük madalya	award	noun	zayif	
+synonym	median	adjective	ortanca, orta	mean	adjective	zayif	
+synonym	median	noun	ortanca, medyan	mean	noun	zayif	
+simpler	mediation	noun	arabuluculuk	help	noun	zayif	
+simpler	medicate	verb	tedavi etmek, ilaç vermek	give	verb	zayif	
+simpler	mediocre	adjective	vasat, ortalama	fair	adjective	zayif	
+simpler	meekness	noun	alçakgönüllülük, uysallık	softness	noun	zayif	
+antonym	melodrama	noun	melodram	realism	noun	zayif	
+synonym	membrane	noun	zar	barrier	noun	zayif	
+simpler	membrane	noun	zar	skin	noun	zayif	
+synonym	meme	noun	internet fenomeni	joke	noun	zayif	
+antonym	meme	noun	internet fenomeni	original	noun	zayif	
+simpler	meme	noun	internet fenomeni	trend	noun	zayif	
+synonym	memorabilia	noun	hatıra eşyaları	artifact	noun	zayif	
+simpler	memorandum	noun	resmi yazı, not	letter	noun	zayif	
+antonym	memorial	adjective	anı, hatıra ile ilgili	trivial	adjective	zayif	
+simpler	memorialize	verb	anısını yaşatmak, ölümsüzleştirmek, anmak	record	verb	zayif	
+simpler	menace	noun	tehdit, tehlike	problem	noun	zayif	
+antonym	menopause	noun	menopoz	fertility	noun	zayif	
+simpler	merchandise	verb	satmak, ticaretini yapmak	trade	verb	zayif	
+antonym	meridian	noun	boylam	latitude	noun	zayif	
+simpler	merit	verb	hak etmek, layık olmak, değmek	qualify	verb	zayif	
+antonym	mesa	noun	yayla, tepe, düz üstlü tepe	valley	noun	zayif	
+simpler	metallic	adjective	metalik	shiny	adjective	zayif	
+simpler	microbe	noun	mikrop	virus	noun	zayif	
+simpler	midwife	noun	ebe	nurse	noun	zayif	
+simpler	migrant	adjective	göçmen	foreign	adjective	zayif	
+antonym	milestone	noun	dönüm noktası, kilometre taşı	setback	noun	zayif	
+simpler	milestone	noun	dönüm noktası, kilometre taşı	point	noun	zayif	
+synonym	militarily	adverb	askeri olarak	forcefully	adverb	zayif	
+antonym	militarily	adverb	askeri olarak	peacefully	adverb	zayif	
+antonym	milk	verb	sömürmek	support	verb	zayif	
+antonym	mill	verb	dolanmak, etrafta dolaşmak	stay	verb	zayif	
+antonym	mineral	adjective	mineralli, mineral içeren	organic	adjective	zayif	
+simpler	misconception	noun	yanlış kanı, hatalı kanaat	idea	noun	zayif	
+simpler	misdirect	verb	yanlış yönlendirmek, hatalı yön vermek	lead	verb	zayif	
+simpler	miserably	adverb	sefilce, perişanca	poorly	adverb	zayif	
+simpler	misguide	verb	yanlış yönlendirmek	lead	verb	zayif	
+synonym	misjudge	verb	yanlış değerlendirmek, hatalı yargılamak	underestimate	verb	zayif	
+simpler	misjudge	verb	yanlış değerlendirmek, hatalı yargılamak	judge	verb	zayif	
+simpler	misrepresent	verb	yanlış temsil etmek, çarpıtmak	lie	verb	zayif	
+antonym	mist	verb	püskürtmek	dry	verb	zayif	
+antonym	mistress	noun	metres	wife	noun	zayif	
+simpler	mistress	noun	metres	girlfriend	noun	zayif	
+simpler	misuse	verb	kötüye kullanmak, suistimal etmek	use	verb	zayif	
+antonym	moan	verb	inlemek, hafif sesle ağlamak	scream	verb	zayif	
+antonym	moan	verb	inlemek, hafif sesle ağlamak	whisper	verb	zayif	
+antonym	moat	noun	hendek, kale hendeği	wall	noun	zayif	
+simpler	moderator	noun	oturum başkanı, denetleyici	host	noun	zayif	
+simpler	modernist	noun	modernist, modernizmi savunan kişi	artist	noun	zayif	
+synonym	modernization	noun	modernleşme, çağdaşlaştırma	reform	noun	zayif	
+simpler	modesty	noun	tevazu	shyness	noun	zayif	
+antonym	mold	noun	kalıp	original	noun	zayif	
+synonym	molecule	noun	molekül	compound	noun	zayif	
+antonym	monarch	noun	hükümdar, monarşi başı	president	noun	zayif	
+simpler	monastery	noun	manastır	church	noun	zayif	
+simpler	monsoon	noun	muson, muson yağmurları	storm	noun	zayif	
+simpler	montage	verb	montaj yapmak, birleştirmek	cut	verb	zayif	
+simpler	moodiness	noun	huysuzluk, dalgalı ruh hali	temper	noun	zayif	
+simpler	moonlighting	noun	ikincil iş, ek iş	job	noun	zayif	
+antonym	moonrise	noun	ay doğuşu	sunrise	noun	zayif	
+synonym	moonwalk	verb	ay yürüyüşü yapmak	glide	verb	zayif	
+antonym	moonwalk	verb	ay yürüyüşü yapmak	stumble	verb	zayif	
+synonym	moor	noun	fundalık, çalılık arazi, kır	bog	noun	zayif	
+antonym	moor	noun	fundalık, çalılık arazi, kır	desert	noun	zayif	
+antonym	moorland	noun	fundalık, çalılık arazi, çorak arazi	garden	noun	zayif	
+synonym	mortar	noun	harç	concrete	noun	zayif	
+antonym	motif	noun	motif, ana tema, izlek	variation	noun	zayif	
+synonym	motto	noun	özdeyiş, slogan	proverb	noun	zayif	
+simpler	mound	noun	tepe, höyük	rise	noun	zayif	
+synonym	mountaineer	noun	dağcı	adventurer	noun	zayif	
+simpler	mountaineer	noun	dağcı	hiker	noun	zayif	
+antonym	mourner	noun	yas tutan kişi	celebrant	noun	zayif	
+simpler	mourner	noun	yas tutan kişi	person	noun	zayif	
+simpler	mug	noun	yüz, surat	head	noun	zayif	
+simpler	munition	noun	silah, cephane	supply	noun	zayif	
+antonym	mural	noun	duvar resmi	graffiti	noun	zayif	
+antonym	muscled	adjective	kaslı, kasları gelişmiş	lean	adjective	zayif	
+antonym	muscular	adjective	güçlü, iyi kaslı, kuvvetli	lean	adjective	zayif	
+simpler	muse	noun	ilham perisi, düşünce kaynağı	source	noun	zayif	
+antonym	musically	adverb	müzikal olarak	awkwardly	adverb	zayif	
+synonym	musky	adjective	misk kokulu	earthy	adjective	zayif	
+antonym	musky	adjective	misk kokulu	fresh	adjective	zayif	
+synonym	muzzle	noun	namlu ağzı	barrel	noun	zayif	
+simpler	muzzle	noun	namlu ağzı	tip	noun	zayif	
+synonym	muzzle	noun	ağızlık	cage	noun	zayif	
+antonym	muzzle	noun	ağızlık	freedom	noun	zayif	
+synonym	myrtle	noun	mersin, mersin ağacı	bush	noun	zayif	
+simpler	mysteriously	adverb	gizemli bir şekilde	oddly	adverb	zayif	
+simpler	mystic	adjective	gizemli, mistik	religious	adjective	zayif	
+simpler	naively	adverb	naifçe, safça	simply	adverb	zayif	
+simpler	multiplier	noun	çarpan	increase	noun	zayif	
+synonym	multiplication	noun	çarpma	product	noun	zayif	

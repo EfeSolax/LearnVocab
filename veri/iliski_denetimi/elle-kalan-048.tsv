@@ -1,0 +1,174 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+simpler	valve	noun	kapakçık, kapak	heart	noun	sil	
+synonym	vampirism	noun	vampirlik, kan emme alışkanlığı	vampire	noun	sil	
+antonym	vampirism	noun	vampirlik, kan emme alışkanlığı	addiction	noun	sil	
+antonym	vasculature	noun	kan damarları sistemi	obstruction	noun	sil	
+synonym	veil	noun	perde, örtü	hide	noun	sil	
+simpler	vertiginous	adjective	baş dönmesi yaratan, sarp, dik	dizzy	adjective	sil	
+synonym	veto	noun	veto, reddetme yetkisi	reject	noun	sil	
+antonym	vicarage	noun	papaz evi, rahip konutu	manor	noun	sil	
+synonym	vice-chancellor	noun	üniversite rektörü, başkan yardımcısı	chancellor	noun	sil	
+antonym	vice-chancellor	noun	üniversite rektörü, başkan yardımcısı	principal	noun	sil	
+simpler	victimization	noun	mağdur etme, kurban edilme	victim	noun	sil	
+antonym	virology	noun	virüs bilimi	bacteriology	noun	sil	
+synonym	visceral	adjective	iç organlarla ilgili, içsel	instinctive	adjective	sil	
+simpler	viscosity	noun	viskozite, akışkanlığın direnci	measure	noun	sil	
+synonym	volumetric	adjective	hacimle ilgili, hacimsel	voluminous	adjective	sil	
+antonym	wafer	noun	yarı iletken levha	defect	noun	sil	
+simpler	warrantless	adjective	arama kararı olmaksızın yapılan, mahkeme kararsız, emirsiz	illegal	adjective	sil	
+antonym	whack	noun	deneme, girişim	fail	noun	sil	
+antonym	wheelwright	noun	tekerlek yapımcısı	mechanic	noun	sil	
+antonym	wizardry	noun	büyücülük, sihir	trickery	noun	sil	
+simpler	woeful	adjective	kederli, üzücü	sad	adjective	sil	
+simpler	workability	noun	uygulanabilirlik, işlenebilirlik	work	noun	sil	
+simpler	wretch	noun	sefil, zavallı kişi	poor	noun	sil	
+synonym	wringer	noun	sıkma makinesi, merdaneli sıkma aleti	squeeze	noun	sil	
+simpler	wringer	noun	sıkma makinesi, merdaneli sıkma aleti	drain	noun	sil	
+antonym	yak	verb	çene çalmak, gevezelik etmek	silence	verb	sil	
+simpler	bell	verb	çan takmak	hang	verb	sil	
+simpler	betroth	verb	nişanlamak	marry	verb	sil	
+antonym	birdy	adjective	kuşu andıran	clumsy	adjective	sil	
+antonym	bottom	verb	alt kısmını oluşturmak	remove	verb	sil	
+simpler	bower	noun	gölgelik, çardak	shed	noun	sil	
+antonym	brain	verb	kafasına vurmak	ignore	verb	sil	
+antonym	bucket	verb	kova ile taşımak	dump	verb	sil	
+synonym	chandler	noun	mumcu, mum üreticisi	candle	noun	sil	
+antonym	chin	verb	çenesine vurmak, çenesine yumruk atmak	kiss	verb	sil	
+synonym	corolla	noun	çiçeğin taç yaprağı takımı	petal	noun	sil	
+synonym	croaker	noun	gürültücü balık, kötek balığı	bass	noun	sil	
+antonym	croaker	noun	gürültücü balık, kötek balığı	shark	noun	sil	
+antonym	devourer	noun	yiyen, tüketen	preserver	noun	sil	
+antonym	divine	verb	kehanet etmek, önceden tahmin etmek	ignore	verb	sil	
+simpler	fathom	noun	derinlik ölçüsü, deniz ölçü birimi	meter	noun	sil	
+synonym	fluke	noun	pisi balığı, yassı balık	sole	noun	sil	
+antonym	fluke	noun	pisi balığı, yassı balık	shark	noun	sil	
+antonym	flute	verb	flüt çalmak	silence	verb	sil	
+antonym	goldenrod	noun	altınbaşak, altınçubuk	weed	noun	sil	
+simpler	jag	verb	ani yön değiştirmek, keskin bir şekilde sapmak	sharpen	verb	sil	
+antonym	legate	verb	temsilci olarak atamak	revoke	verb	sil	
+antonym	low	verb	böğürmek	silence	verb	sil	
+antonym	mast	noun	orman yemişi, ağaç yemişi	seed	noun	sil	
+antonym	nickelodeon	noun	beş sentlik sinema salonu, eski sinema	studio	noun	sil	
+simpler	nickelodeon	noun	beş sentlik sinema salonu, eski sinema	movie	noun	sil	
+antonym	nigh	adverb	neredeyse, çok az bir farkla	hardly	adverb	sil	
+simpler	oculus	noun	kubbe tepe penceresi, yuvarlak tepe penceresi	roof	noun	sil	
+simpler	oft	adverb	sık sık	sometimes	adverb	sil	
+antonym	privateer	noun	lisanslı korsan	pirate	noun	sil	
+simpler	privateer	noun	lisanslı korsan	navy	noun	sil	
+synonym	roc	noun	ruh kuşu, efsanevi dev kuş	eagle	noun	sil	
+antonym	roc	noun	ruh kuşu, efsanevi dev kuş	mouse	noun	sil	
+antonym	rookery	noun	kargaların yuvası, karga kolonisi	desertion	noun	sil	
+antonym	screamer	noun	çığlık kuşu	silence	noun	sil	
+antonym	seine	noun	gırgır ağı, ığrıp, balık ağı	release	noun	sil	
+antonym	shiv	noun	hapishane bıçağı	peace	noun	sil	
+antonym	spar	noun	seren, gemi direği, seren çubuğu	beam	noun	sil	
+antonym	sprite	noun	peri, cin	ghost	noun	sil	
+synonym	summoner	noun	çağıran, davet eden kişi	call	noun	sil	
+antonym	torus	noun	halka	sphere	noun	sil	
+simpler	wayfarer	noun	yolcu, gezgin	guide	noun	sil	
+antonym	window	verb	pencere takmak, zaman aralığı tanımak	delay	verb	sil	
+antonym	valve	noun	kapakçık, kapak	leakage	noun	zayif	
+antonym	vampiric	adjective	vampirimsi, vampire özgü	benign	adjective	zayif	
+simpler	vanishing	noun	yok olma	loss	noun	zayif	
+simpler	vantage	noun	avantaj, üstün konum	benefit	noun	zayif	
+simpler	vastness	noun	enginlik, büyüklük, uçsuz bucaksızlık	size	noun	zayif	
+simpler	vehemence	noun	şiddet, coşku, ateş	force	noun	zayif	
+synonym	venous	adjective	toplardamar ile ilgili	vascular	adjective	zayif	
+simpler	versed	adjective	konusunda bilgili	aware	adjective	zayif	
+simpler	vertebral	adjective	omurgaya ait, omurga ile ilgili	back	adjective	zayif	
+synonym	vertiginous	adjective	baş dönmesi yaratan, sarp, dik	dizzy	adjective	zayif	
+simpler	vest	verb	hak tanımak, yetki vermek	give	verb	zayif	
+antonym	vibrator	noun	titreşim üreten cihaz	stabilizer	noun	zayif	
+simpler	vibrator	noun	titreşim üreten cihaz	machine	noun	zayif	
+synonym	vice-chancellor	noun	üniversite rektörü, başkan yardımcısı	president	noun	zayif	
+synonym	vice-chancellor	noun	üniversite rektörü, başkan yardımcısı	rector	noun	zayif	
+simpler	vigilante	noun	kanun dışı adalet savunucusu	criminal	noun	zayif	
+simpler	virology	noun	virüs bilimi	study	noun	zayif	
+antonym	virtually	adverb	neredeyse, adeta	completely	adverb	zayif	
+antonym	viscera	noun	iç organlar, iç organlar bütünü	exterior	noun	zayif	
+synonym	vita	noun	özgeçmiş	biography	noun	zayif	
+synonym	volatile	adjective	uçucu, buharlaşabilir	flammable	adjective	zayif	
+simpler	volatility	noun	dalgalanma, istikrarsızlık	risk	noun	zayif	
+antonym	volley	noun	mermi yağmuru, toplu atış	silence	noun	zayif	
+antonym	volumetric	adjective	hacimle ilgili, hacimsel	linear	adjective	zayif	
+synonym	wafer	noun	yarı iletken levha	chip	noun	zayif	
+antonym	wagoner	noun	arabacı, at arabası sürücüsü	passenger	noun	zayif	
+synonym	wasting	adjective	zayıflamaya neden olan, eriten	degenerate	adjective	zayif	
+synonym	westernization	noun	batılaşma	modernization	noun	zayif	
+simpler	whimsy	noun	kapris, hayal gücü, eğlenceli tuhaflık	play	noun	zayif	
+antonym	whip	noun	grup denetçisi	leader	noun	zayif	
+antonym	whisk	noun	hızlı hareket, savuruş	glide	noun	zayif	
+simpler	whisk	noun	hızlı hareket, savuruş	move	noun	zayif	
+antonym	wield	verb	kullanmak, idare etmek, elinde tutmak	neglect	verb	zayif	
+antonym	wing	verb	uçmak, kanat çırpmak	fall	verb	zayif	
+antonym	wire	verb	gizli dinlemek, dinleme cihazı takmak	protect	verb	zayif	
+simpler	wire	verb	gizli dinlemek, dinleme cihazı takmak	listen	verb	zayif	
+antonym	wisp	noun	ince, hafif parça	mass	noun	zayif	
+antonym	woefully	adverb	acı bir şekilde, çok kötü	well	adverb	zayif	
+simpler	worshipful	adjective	saygılı, hürmetli, ibadet eden	religious	adjective	zayif	
+simpler	worthiness	noun	değerli olma, layık olma	value	noun	zayif	
+simpler	wrath	noun	öfke, kızgınlık, gazap	irritation	noun	zayif	
+synonym	wretch	noun	sefil, zavallı kişi	pauper	noun	zayif	
+antonym	wretch	noun	sefil, zavallı kişi	benefactor	noun	zayif	
+synonym	wringer	noun	sıkma makinesi, merdaneli sıkma aleti	press	noun	zayif	
+antonym	wrinkle	noun	pürüz, aksaklık, ufak sorun	strength	noun	zayif	
+simpler	writ	noun	mahkeme emri, yazılı emir, müzekkere	notice	noun	zayif	
+antonym	wrought	adjective	dövme, işlenmiş	raw	adjective	zayif	
+antonym	affect	noun	duygulanım	detachment	noun	zayif	
+antonym	ash	verb	kül haline getirmek	preserve	verb	zayif	
+antonym	barker	noun	çığırtkan	listener	noun	zayif	
+synonym	bell	verb	çan takmak	attach	verb	zayif	
+simpler	belle	noun	güzel kadın, güzel kız	girl	noun	zayif	
+synonym	betroth	verb	nişanlamak	marry	verb	zayif	
+antonym	betroth	verb	nişanlamak	divorce	verb	zayif	
+synonym	birdy	adjective	kuşu andıran	feathered	adjective	zayif	
+synonym	bottom	verb	alt kısmını oluşturmak	form	verb	zayif	
+simpler	bottom	verb	alt kısmını oluşturmak	make	verb	zayif	
+simpler	cad	noun	alçak, terbiyesiz adam, namussuz	jerk	noun	zayif	
+simpler	condole	verb	başsağlığı dilemek, taziyede bulunmak	express	verb	zayif	
+antonym	constabulary	noun	polis teşkilatı, kolluk kuvvetleri	civilian	noun	zayif	
+simpler	corolla	noun	çiçeğin taç yaprağı takımı	flower	noun	zayif	
+antonym	croft	noun	küçük çiftlik, tarım arazisi	estate	noun	zayif	
+antonym	cropper	noun	düşüş, çöküş	rise	noun	zayif	
+simpler	cyanogen	noun	siyanojen	gas	noun	zayif	
+antonym	declarer	noun	ilan eden, beyan eden	listener	noun	zayif	
+synonym	devourer	noun	yiyen, tüketen	consumer	noun	zayif	
+simpler	divine	verb	kehanet etmek, önceden tahmin etmek	guess	verb	zayif	
+simpler	dun	noun	koyu gri-kahverengi renk, kum rengi	color	noun	zayif	
+synonym	fathom	noun	derinlik ölçüsü, deniz ölçü birimi	depth	noun	zayif	
+synonym	firth	noun	dar kıyı girintisi, deniz körfezi	bay	noun	zayif	
+simpler	firth	noun	dar kıyı girintisi, deniz körfezi	coast	noun	zayif	
+simpler	gallant	noun	centilmen, görgülü erkek	hero	noun	zayif	
+synonym	goodly	adjective	hatırı sayılır, epey büyük, oldukça çok	good	adjective	zayif	
+antonym	gutter	verb	titreyerek sönmeye yüz tutmak	extinguish	verb	zayif	
+synonym	incense	verb	koku yaymak, tütsülemek	smell	verb	zayif	
+simpler	jag	noun	sivri çıkıntı, çentik, nöbet	point	noun	zayif	
+antonym	jaw	verb	lafı uzatmak, gevezelik etmek	listen	verb	zayif	
+simpler	lark	verb	şakalaşmak, eğlenmek, boşça vakit geçirmek	mess	verb	zayif	
+antonym	lay	noun	kısa şarkı	prose	noun	zayif	
+antonym	leaguer	noun	bir lig üyesi, lig üyesi	opponent	noun	zayif	
+simpler	nerve	verb	cesaret vermek, korkusuzlaştırmak	help	verb	zayif	
+synonym	nitrate	verb	nitratlamak	fertilize	verb	zayif	
+antonym	nitrate	verb	nitratlamak	deplete	verb	zayif	
+simpler	nitrate	verb	nitratlamak	add	verb	zayif	
+antonym	penitence	noun	pişmanlık, tövbe	pride	noun	zayif	
+synonym	posture	verb	vücudu bir pozisyona sokmak, duruş almak	align	verb	zayif	
+synonym	pouch	verb	keseye koymak, torbaya koymak	bag	verb	zayif	
+antonym	pouch	verb	keseye koymak, torbaya koymak	unpack	verb	zayif	
+simpler	psalmist	noun	ilâhî yazarı	singer	noun	zayif	
+antonym	quail	verb	korkmak, çekingen davranmak, geri çekilmek	brave	verb	zayif	
+synonym	rammer	noun	tokmak, kompaktör, sıkıştırıcı	hammer	noun	zayif	
+simpler	rammer	noun	tokmak, kompaktör, sıkıştırıcı	push	noun	zayif	
+synonym	scuttle	noun	kapaklı lomboz, küçük ambar kapağı, kapakçık	vent	noun	zayif	
+simpler	spar	noun	seren, gemi direği, seren çubuğu	mast	noun	zayif	
+synonym	stale	verb	bayatlaşmak	expire	verb	zayif	
+simpler	stale	verb	bayatlaşmak	go	verb	zayif	
+antonym	substantive	noun	isim, ad	adjective	noun	zayif	
+simpler	substantive	noun	isim, ad	term	noun	zayif	
+simpler	swag	verb	kibirli bir şekilde yürümek, kendinden emin adımlarla dolaşmak	stroll	verb	zayif	
+synonym	thwart	noun	kürek oturağı, kürek çubuğu	brace	noun	zayif	
+synonym	tickler	noun	gıdıklayan nesne, gıdıklama aracı	feather	noun	zayif	
+simpler	tongue	verb	dilini çıkarmak, yalamak	taste	verb	zayif	
+simpler	wan	adjective	soluk, zayıf	thin	adjective	zayif	
+synonym	window	verb	pencere takmak, zaman aralığı tanımak	install	verb	zayif	
+simpler	window	verb	pencere takmak, zaman aralığı tanımak	provide	verb	zayif	

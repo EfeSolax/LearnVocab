@@ -1,0 +1,186 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+simpler	embarkation	noun	yolculuğa başlama, gemiye binme	boarding	noun	sil	
+synonym	emerald	noun	zümrüt	jade	noun	sil	
+antonym	emerald	noun	zümrüt	ruby	noun	sil	
+antonym	empress	noun	imparatoriçe	queen	noun	sil	
+simpler	enactment	noun	yasalaştırma, yürürlüğe koyma, kanunlaşma	pass	noun	sil	
+synonym	encyclopedia	noun	ansiklopedi	dictionary	noun	sil	
+antonym	encyclopedia	noun	ansiklopedi	novel	noun	sil	
+antonym	ensign	noun	asteğmen, teğmen, sancak subayı	captain	noun	sil	
+antonym	epilepsy	noun	epilepsi, nöbet hastalığı	stability	noun	sil	
+simpler	epilepsy	noun	epilepsi, nöbet hastalığı	health	noun	sil	
+antonym	equator	noun	ekvator	pole	noun	sil	
+simpler	equitable	adjective	adil, hakkaniyetli	fair	adjective	sil	
+antonym	erosion	noun	erozyon, aşınma, yıpranma	build	noun	sil	
+simpler	eruption	noun	patlama, püskürme	volcano	noun	sil	
+antonym	estuary	noun	nehir ağzı, haliç	delta	noun	sil	
+antonym	ethnically	adverb	etnik olarak	nationally	adverb	sil	
+simpler	ethnically	adverb	etnik olarak	traditionally	adverb	sil	
+synonym	evaporative	adjective	buharlaşma, buharlaştırıcı, buharlaşmalı	dry	adjective	sil	
+antonym	eviction	noun	tahliye, zorla çıkarma	accommodation	noun	sil	
+synonym	examiner	noun	sınav görevlisi, denetçi	exam	noun	sil	
+antonym	examiner	noun	sınav görevlisi, denetçi	supervisor	noun	sil	
+simpler	examiner	noun	sınav görevlisi, denetçi	candidate	noun	sil	
+antonym	excavator	noun	kazıcı, kepçe	drill	noun	sil	
+antonym	exempt	verb	muaf tutmak, serbest bırakmak	exclude	verb	sil	
+simpler	exhausted	adjective	çok yorgun, bitkin	tired	adjective	sil	
+simpler	exhaustion	noun	yorgunluk, tükenmişlik	rest	noun	sil	
+antonym	exposition	noun	tanıtım, sergi, açıklama	interpretation	noun	sil	
+synonym	express	noun	hızlı tren, hızlı hizmet	fast	noun	sil	
+simpler	exterminator	noun	haşere kontrol uzmanı, yok edici	pest	noun	sil	
+antonym	facial	adjective	yüzle ilgili, yüze ait	expressionless	adjective	sil	
+synonym	falcon	noun	doğan	hawk	noun	sil	
+antonym	falcon	noun	doğan	prey	noun	sil	
+simpler	falcon	noun	doğan	bird	noun	sil	
+synonym	familiarization	noun	tanıdık hâle getirme, alışma	acquaintance	noun	sil	
+simpler	famously	adverb	meşhur bir şekilde	well	adverb	sil	
+antonym	fanclub	noun	hayran kulübü	membership	noun	sil	
+synonym	fastening	noun	bağlama, tutturma	bind	noun	sil	
+simpler	fatality	noun	ölüm, can kaybı	die	noun	sil	
+antonym	fearful	adjective	korkutucu, ürkütücü	calm	adjective	sil	
+synonym	feather	verb	tüylerle süslemek, tüyle kaplamak	soften	verb	sil	
+antonym	featureless	adjective	özelliği olmayan, belirgin özelliği bulunmayan	featured	adjective	sil	
+antonym	federation	noun	federasyon	confederation	noun	sil	
+synonym	femininity	noun	kadınsı özellik, dişilik	feminine	noun	sil	
+synonym	feminized	adjective	kadınlaştırılmış, dişil hâle getirilmiş	gendered	adjective	sil	
+antonym	fence	verb	eskrim yapmak	avoid	verb	sil	
+antonym	fencing	noun	kılıç sporu, eskrim	boxing	noun	sil	
+synonym	endear	verb	sevdirmek, kendini sevdirmek	cherish	verb	sil	
+antonym	emblematic	adjective	sembolik, simgesel, simgeleyen	literal	adjective	zayif	
+simpler	emergent	adjective	gelişmekte olan, ortaya çıkan	new	adjective	zayif	
+simpler	emitter	noun	yayıcı, ışık kaynağı	device	noun	zayif	
+simpler	empathic	adjective	empatik	kind	adjective	zayif	
+simpler	empathize	verb	empati kurmak, halinden anlamak	relate	verb	zayif	
+simpler	emphatic	adjective	vurgulu, kesin	clear	adjective	zayif	
+simpler	employable	adjective	istihdam edilebilir	qualified	adjective	zayif	
+antonym	emulate	verb	taklit etmek, örnek alarak benzemeye çalışmak	differ	verb	zayif	
+simpler	enabler	noun	olanak sağlayan, destekleyici	help	noun	zayif	
+synonym	encode	verb	kodlamak	cipher	verb	zayif	
+synonym	encoder	noun	kodlayıcı	coder	noun	zayif	
+antonym	encore	noun	tekrar, ek performans	finale	noun	zayif	
+simpler	encore	noun	tekrar, ek performans	performance	noun	zayif	
+antonym	encore	verb	tekrar sahneye çıkmak, tekrar çalmak	stop	verb	zayif	
+simpler	encore	verb	tekrar sahneye çıkmak, tekrar çalmak	continue	verb	zayif	
+simpler	encrypt	verb	şifrelemek	protect	verb	zayif	
+simpler	encryption	noun	şifreleme	security	noun	zayif	
+simpler	endanger	verb	tehlikeye sokmak	risk	verb	zayif	
+antonym	endow	verb	maddi bağış yapmak	withdraw	verb	zayif	
+simpler	enforceable	adjective	uygulanabilir, icra edilebilir, yürütülebilir	legal	adjective	zayif	
+synonym	engraver	noun	oyma ustası, kazı ustası	sculptor	noun	zayif	
+simpler	engraver	noun	oyma ustası, kazı ustası	artist	noun	zayif	
+synonym	enhancer	noun	arttırıcı, güçlendirici	amplifier	noun	zayif	
+antonym	endeavor	verb	çabalamak, gayret göstermek	neglect	verb	zayif	
+simpler	endeavor	verb	çabalamak, gayret göstermek	work	verb	zayif	
+simpler	endlessly	adverb	sonsuzca, durmaksızın	always	adverb	zayif	
+synonym	energetically	adverb	enerjik bir şekilde	actively	adverb	zayif	
+simpler	engrave	verb	kazımak, oyuk açmak	cut	verb	zayif	
+synonym	enlist	verb	sağlamak, desteğini almak	obtain	verb	zayif	
+simpler	enriching	adjective	zenginleştirici, faydalı	good	adjective	zayif	
+simpler	ensemble	noun	topluluk, grup, toplu grup	team	noun	zayif	
+simpler	entitled	adjective	hak sahibi, hakkı olan	right	adjective	zayif	
+simpler	entitlement	noun	hak, ayrıcalık hakkı, yetki	claim	noun	zayif	
+synonym	entrant	noun	giriş yapan, yeni katılan	candidate	noun	zayif	
+antonym	environmentalism	noun	çevrecilik	pollution	noun	zayif	
+synonym	enzymatic	adjective	enzimle ilgili, enzimsel	catalytic	adjective	zayif	
+synonym	enzyme	noun	enzim	catalyst	noun	zayif	
+antonym	epic	adjective	destansı, kahramanca	simple	adjective	zayif	
+simpler	epic	adjective	destansı, kahramanca	large	adjective	zayif	
+synonym	epic	adjective	destansı, kahramanca	grand	adjective	zayif	
+synonym	epilepsy	noun	epilepsi, nöbet hastalığı	illness	noun	zayif	
+synonym	epilepsy	noun	epilepsi, nöbet hastalığı	seizure	noun	zayif	
+synonym	equalizer	noun	ses dengeleyicisi, frekans ayarlama cihazı	filter	noun	zayif	
+antonym	equalizer	noun	ses dengeleyicisi, frekans ayarlama cihazı	distortion	noun	zayif	
+synonym	equate	verb	eşitlemek, denk kılmak	compare	verb	zayif	
+simpler	equatorial	adjective	ekvatoral, ekvatora yakın	hot	adjective	zayif	
+simpler	erector	noun	montajcı, montaj aygıtı, kurucu	maker	noun	zayif	
+simpler	eruptive	adjective	püskürmeli, patlamalı, volkanik	active	adjective	zayif	
+antonym	escapee	noun	kaçak	captor	noun	zayif	
+synonym	escapism	noun	kaçışçılık, gerçeklikten kaçma	avoidance	noun	zayif	
+antonym	escapism	noun	kaçışçılık, gerçeklikten kaçma	engagement	noun	zayif	
+antonym	estrogen	noun	östrojen hormonu	testosterone	noun	zayif	
+antonym	estuarine	adjective	haliçle ilgili, haliç özellikli	marine	adjective	zayif	
+synonym	estuary	noun	nehir ağzı, haliç	bay	noun	zayif	
+simpler	estuary	noun	nehir ağzı, haliç	river	noun	zayif	
+synonym	ethnicity	noun	etnik köken	heritage	noun	zayif	
+antonym	evacuation	noun	tahliye	stay	noun	zayif	
+antonym	evangelist	noun	vaiz, din öğretmeni	skeptic	noun	zayif	
+simpler	evangelist	noun	vaiz, din öğretmeni	speaker	noun	zayif	
+synonym	eventful	adjective	olaylarla dolu, hareketli	dramatic	adjective	zayif	
+synonym	evergreen	adjective	her dem yeşil, yaz kış yeşil	perennial	adjective	zayif	
+synonym	evocation	noun	anımsama, hatırlatma, çağrışım	trigger	noun	zayif	
+antonym	excavation	noun	kazı, kazı çalışması	fill	noun	zayif	
+simpler	exchanger	noun	değiştirici, takas makinesi	exchange	noun	zayif	
+synonym	excitable	adjective	hızlıca heyecanlanan, çabuk sinirlenen	irritable	adjective	zayif	
+synonym	exemption	noun	muafiyet	exception	noun	zayif	
+simpler	exertion	noun	çaba, gayret	use	noun	zayif	
+synonym	exhibitor	noun	sergi katılımcısı, sergileyen	presenter	noun	zayif	
+antonym	exhibitor	noun	sergi katılımcısı, sergileyen	buyer	noun	zayif	
+simpler	exodus	noun	göç, kitlesel çıkış	flight	noun	zayif	
+antonym	expander	noun	genişletici, genişletme cihazı	compressor	noun	zayif	
+simpler	expander	noun	genişletici, genişletme cihazı	tool	noun	zayif	
+synonym	expeditionary	adjective	seferî, keşif amaçlı	exploratory	adjective	zayif	
+antonym	expeditionary	adjective	seferî, keşif amaçlı	defensive	adjective	zayif	
+antonym	experimentation	noun	deney yapma, deneysel çalışma	theory	noun	zayif	
+antonym	experimenter	noun	deney yapan kişi	observer	noun	zayif	
+antonym	exploit	noun	gösterişli başarı, kahramanca bir hareket	failure	noun	zayif	
+simpler	expo	noun	fuar, sergi	showcase	noun	zayif	
+simpler	exportation	noun	ihracat	ship	noun	zayif	
+antonym	extender	noun	uzatma cihazı, genişletici	reducer	noun	zayif	
+antonym	extractor	noun	aspiratör, davlumbaz	obstruction	noun	zayif	
+antonym	eyewitness	noun	görgü tanığı	suspect	noun	zayif	
+simpler	fabricator	noun	üretici, imalatçı	builder	noun	zayif	
+simpler	facade	noun	dış görünüm, dış cephe	look	noun	zayif	
+synonym	facilitation	noun	kolaylaştırma, kolaylaştırıcı süreç	help	noun	zayif	
+synonym	facilitator	noun	kolaylaştırıcı	guide	noun	zayif	
+simpler	facilitator	noun	kolaylaştırıcı	assistant	noun	zayif	
+antonym	fader	noun	ses seviyesini ayarlayan düğme, kaydırak	gain	noun	zayif	
+synonym	fading	noun	solma, renk kaybı, azalma	decline	noun	zayif	
+simpler	fail	noun	başarısızlık	mistake	noun	zayif	
+antonym	faint	adjective	baygın, sersemlemiş	steady	adjective	zayif	
+synonym	faint	noun	bayılma, baygınlık	collapse	noun	zayif	
+simpler	fakery	noun	sahtecilik	cheat	noun	zayif	
+synonym	familiarity	noun	aşinalık, tanıdıklık	acquaintance	noun	zayif	
+simpler	familiarization	noun	tanıdık hâle getirme, alışma	introduction	noun	zayif	
+simpler	fanbase	noun	hayran kitlesi	fan	noun	zayif	
+antonym	fanbase	noun	hayran kitlesi	critic	noun	zayif	
+simpler	fanclub	noun	hayran kulübü	supporter	noun	zayif	
+simpler	fandom	noun	hayran topluluğu, taraftar kitlesi	fan	noun	zayif	
+antonym	fandom	noun	hayran topluluğu, taraftar kitlesi	antagonism	noun	zayif	
+synonym	fanfare	noun	fanfar, boru sesi, tantana	celebration	noun	zayif	
+antonym	fanfare	noun	fanfar, boru sesi, tantana	silence	noun	zayif	
+simpler	fanfare	noun	fanfar, boru sesi, tantana	announcement	noun	zayif	
+synonym	farce	noun	absürt komedi, saçma oyun	satire	noun	zayif	
+simpler	farce	noun	absürt komedi, saçma oyun	play	noun	zayif	
+antonym	farmhand	noun	çiftlik işçisi	owner	noun	zayif	
+antonym	fastening	noun	bağlama, tutturma	release	noun	zayif	
+simpler	fathom	verb	anlamak, kavramak	get	verb	zayif	
+simpler	fault	verb	suçlamak, hatalı olduğunu söylemek	charge	verb	zayif	
+simpler	fearful	adjective	korkutucu, ürkütücü	dangerous	adjective	zayif	
+synonym	feast	verb	ziyafet çekmek	celebrate	verb	zayif	
+synonym	feast	verb	ziyafet çekmek	enjoy	verb	zayif	
+antonym	feather	verb	tüylerle süslemek, tüyle kaplamak	strip	verb	zayif	
+simpler	feathering	noun	tüy örtüsü, pervane açısını ayarlama	cover	noun	zayif	
+antonym	featured	adjective	öne çıkan, vurgulanan	minor	adjective	zayif	
+simpler	featureless	adjective	özelliği olmayan, belirgin özelliği bulunmayan	simple	adjective	zayif	
+synonym	federalist	noun	federalist, federalizmi savunan kişi	supporter	noun	zayif	
+synonym	federally	adverb	federal olarak	nationally	adverb	zayif	
+simpler	federation	noun	federasyon	state	noun	zayif	
+antonym	feign	verb	numara yapmak, yalandan yapmak	reveal	verb	zayif	
+simpler	feign	verb	numara yapmak, yalandan yapmak	act	verb	zayif	
+simpler	feline	noun	kedi	animal	noun	zayif	
+simpler	femininity	noun	kadınsı özellik, dişilik	woman	noun	zayif	
+synonym	feminism	noun	feminizm, kadın hakları hareketi	equality	noun	zayif	
+synonym	fence	verb	eskrim yapmak	duel	verb	zayif	
+simpler	erratic	adjective	düzensiz, değişken, istikrarsız	odd	adjective	zayif	
+simpler	erratically	adverb	düzensiz bir şekilde, rastgele	oddly	adverb	zayif	
+simpler	eternally	adverb	sonsuz olarak, daima	always	adverb	zayif	
+simpler	euphoric	adjective	coşkulu, çok mutlu	happy	adjective	zayif	
+simpler	expanse	noun	geniş alan, yayılım	region	noun	zayif	
+simpler	expendable	adjective	feda edilebilir, gözden çıkarılabilir, harcanabilir	disposable	adjective	zayif	
+simpler	expulsion	noun	okuldan atma, dışarı çıkarma, sürgün	ban	noun	zayif	
+simpler	extended	adjective	uzun, ayrıntılı	long	adjective	zayif	
+simpler	familiarize	verb	tanıdık hâle getirmek, aşina kılmak	know	verb	zayif	
+simpler	fatherhood	noun	babalık	father	noun	zayif	
+simpler	fatness	noun	yağlılık, şişmanlık	weight	noun	zayif	
+simpler	fencer	noun	eskrimci	athlete	noun	zayif	
+antonym	enumeration	noun	sayım, numaralandırma	omission	noun	zayif	

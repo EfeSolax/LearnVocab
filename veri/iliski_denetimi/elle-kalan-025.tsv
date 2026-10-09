@@ -1,0 +1,170 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+synonym	incubation	noun	kuluçka	incubator	noun	sil	
+antonym	incubation	noun	kuluçka	hatch	noun	sil	
+antonym	incubator	noun	kuvöz	cool	noun	sil	
+simpler	indecision	noun	kararsızlık	decision	noun	sil	
+antonym	indexer	noun	dizinleyici	searcher	noun	sil	
+simpler	indicative	noun	haber kipi, bildirme kipi	verb	noun	sil	
+simpler	inedible	adjective	yenilemez	safe	adjective	sil	
+synonym	ineligible	adjective	şartları taşımayan, ehliyetsiz, hak sahibi olmayan	qualified	adjective	sil	
+synonym	infancy	noun	bebeklik, çocukluk dönemi	baby	noun	sil	
+antonym	infirmary	noun	revir	illness	noun	sil	
+simpler	infirmary	noun	revir	nurse	noun	sil	
+simpler	infirmary	noun	revir	treatment	noun	sil	
+synonym	influencer	noun	etkileyen kişi, sosyal medya fenomeni	influence	noun	sil	
+simpler	influenza	noun	grip	flu	noun	sil	
+antonym	influenza	noun	grip	health	noun	sil	
+antonym	informant	noun	bilgi sağlayan kişi, ihbarcı	suspect	noun	sil	
+antonym	informer	noun	bilgi veren, ihbarcı	silencer	noun	sil	
+simpler	infringing	adjective	ihlal eden	legal	adjective	sil	
+simpler	inhibitor	noun	engelleyici, baskılayıcı	stopper	noun	sil	
+synonym	injector	noun	enjektör, püskürteç	injection	noun	sil	
+synonym	inning	noun	devre	run	noun	sil	
+simpler	inpatient	noun	yatarak tedavi gören hasta	hospital	noun	sil	
+antonym	inquisitive	adjective	meraklı, sorgulayan	nosy	adjective	sil	
+antonym	insomnia	noun	uykusuzluk	restlessness	noun	sil	
+simpler	insomnia	noun	uykusuzluk	sleep	noun	sil	
+simpler	insomniac	noun	uykusuz kişi	sleeper	noun	sil	
+simpler	instability	noun	istikrarsızlık, kararsızlık	balance	noun	sil	
+antonym	instructional	adjective	öğretici, eğitici	directive	adjective	sil	
+synonym	insured	noun	sigortalı	coverage	noun	sil	
+simpler	insured	noun	sigortalı	policy	noun	sil	
+antonym	interchange	verb	değiş tokuş etmek, takas etmek	replace	verb	sil	
+simpler	intermingle	verb	karıştırmak, birbirine karışmak	mix	verb	sil	
+simpler	intersect	verb	kesişmek	meet	verb	sil	
+simpler	intervening	adjective	araya giren, müdahale eden	helpful	adjective	sil	
+synonym	interviewer	noun	görüşme yapan kişi, mülakatı yapan	interview	noun	sil	
+simpler	intestine	noun	bağırsak	stomach	noun	sil	
+synonym	intoxication	noun	sarhoşluk	drunk	noun	sil	
+simpler	intoxication	noun	sarhoşluk	alcohol	noun	sil	
+simpler	invalid	adjective	geçersiz, hukuki olarak bağlayıcı olmayan	legal	adjective	sil	
+synonym	invitational	adjective	yalnızca davetle girilen, özel davetli, davetli	inviting	adjective	sil	
+antonym	iodide	noun	iyodür	chloride	noun	sil	
+synonym	iodine	noun	iyot	iodide	noun	sil	
+antonym	iodine	noun	iyot	deficiency	noun	sil	
+antonym	iris	noun	iris çiçeği	daisy	noun	sil	
+simpler	iris	noun	iris çiçeği	tulip	noun	sil	
+simpler	irresponsibility	noun	sorumluluk eksikliği, sorumsuzluk	duty	noun	sil	
+simpler	irritant	noun	tahriş edici madde	cause	noun	sil	
+antonym	ivory	noun	fildişi	plastic	noun	sil	
+synonym	jade	noun	yeşim taşı	emerald	noun	sil	
+simpler	jagged	adjective	girintili çıkıntılı, çentikli, sivri uçlu	rough	adjective	sil	
+synonym	jaguar	noun	jaguar	leopard	noun	sil	
+antonym	jaguar	noun	jaguar	prey	noun	sil	
+simpler	jaguar	noun	jaguar	lion	noun	sil	
+simpler	jawbone	noun	çene kemiği	fracture	noun	sil	
+antonym	jockey	noun	jokey	driver	noun	sil	
+simpler	jockey	noun	jokey	trainer	noun	sil	
+antonym	judgment	noun	hukuki karar, mahkeme kararı	bias	noun	sil	
+simpler	judgment	noun	hukuki karar, mahkeme kararı	judge	noun	sil	
+simpler	juggler	noun	hokkabaz, jonglör	manager	noun	sil	
+synonym	jumper	noun	atlayıcı	sprinter	noun	sil	
+antonym	jumper	noun	atlayıcı	runner	noun	sil	
+synonym	juniper	noun	ardıç	cypress	noun	sil	
+synonym	juniper	noun	ardıç	pine	noun	sil	
+antonym	juniper	noun	ardıç	oak	noun	sil	
+antonym	keeper	noun	görevli, bakıcı, bekçi	manager	noun	sil	
+simpler	increasing	adjective	artan, giderek artan	more	adjective	zayif	
+simpler	incredulity	noun	inanamama, hayret, şaşkınlık	question	noun	zayif	
+simpler	incrementally	adverb	kademeli olarak	slowly	adverb	zayif	
+antonym	indexation	noun	endeksleme, fiyatların enflasyona göre ayarlanması	devaluation	noun	zayif	
+simpler	indexer	noun	dizinleyici	organizer	noun	zayif	
+antonym	indicative	adjective	işaret edici, belirleyici	unrelated	adjective	zayif	
+antonym	indigo	noun	çivit mavisi	yellow	noun	zayif	
+simpler	inducement	noun	teşvik, ikna, yönlendirme	offer	noun	zayif	
+simpler	indulgent	adjective	hoşgörülü, şımartan	kind	adjective	zayif	
+simpler	inefficiency	noun	verimsizlik	waste	noun	zayif	
+simpler	infest	verb	istila etmek, bulaşmak	fill	verb	zayif	
+synonym	infestation	noun	böcek istilası	plague	noun	zayif	
+antonym	infestation	noun	böcek istilası	absence	noun	zayif	
+simpler	infestation	noun	böcek istilası	pest	noun	zayif	
+simpler	infested	adjective	böceklerle kaplı, haşere bulaşmış	full	adjective	zayif	
+simpler	infidelity	noun	sadakatsizlik, aldatma	cheat	noun	zayif	
+simpler	inflamed	adjective	iltihaplı, iltihaplanmış	red	adjective	zayif	
+synonym	inflammation	noun	iltihap	pain	noun	zayif	
+simpler	inflammatory	adjective	iltihap yapan, kışkırtıcı	hot	adjective	zayif	
+simpler	infliction	noun	acı verme, zarar verme	cause	noun	zayif	
+synonym	influencer	noun	etkileyen kişi, sosyal medya fenomeni	celebrity	noun	zayif	
+simpler	informant	noun	bilgi sağlayan kişi, ihbarcı	person	noun	zayif	
+simpler	informer	noun	bilgi veren, ihbarcı	reporter	noun	zayif	
+synonym	infrared	adjective	kızılötesi	thermal	adjective	zayif	
+simpler	inherited	adjective	kalıtsal, miras kalan	born	adjective	zayif	
+antonym	injector	noun	enjektör, püskürteç	extractor	noun	zayif	
+simpler	ink	verb	mürekkep ile yazmak, boyamak	draw	verb	zayif	
+synonym	inline	adjective	satır içinde, yan yana	adjacent	adjective	zayif	
+synonym	inline	adjective	satır içinde, yan yana	consecutive	adjective	zayif	
+antonym	inline	adjective	satır içinde, yan yana	separate	adjective	zayif	
+simpler	innocent	noun	suçsuz kişi, masum	person	noun	zayif	
+antonym	innovator	noun	yenilikçi, icat eden kişi	conservative	noun	zayif	
+synonym	inorganic	adjective	organik olmayan	synthetic	adjective	zayif	
+simpler	inorganic	adjective	organik olmayan	chemical	adjective	zayif	
+antonym	insistence	noun	ısrar	compliance	noun	zayif	
+simpler	inspiring	adjective	ilham verici, etkileyici	good	adjective	zayif	
+antonym	institutionalization	noun	kuruma yatırma, kuruma yerleştirme	release	noun	zayif	
+simpler	institutionalization	noun	kuruma yatırma, kuruma yerleştirme	care	noun	zayif	
+antonym	instructive	adjective	bilgilendirici, öğretici	misleading	adjective	zayif	
+antonym	instrumentalist	noun	çalgı çalan kişi	composer	noun	zayif	
+simpler	insurer	noun	sigorta şirketi	company	noun	zayif	
+synonym	intensively	adverb	yoğun bir şekilde	deeply	adverb	zayif	
+simpler	intensively	adverb	yoğun bir şekilde	hard	adverb	zayif	
+simpler	interchange	verb	değiş tokuş etmek, takas etmek	share	verb	zayif	
+synonym	interestingly	adverb	ilginç bir şekilde	oddly	adverb	zayif	
+antonym	interestingly	adverb	ilginç bir şekilde	clearly	adverb	zayif	
+antonym	interestingly	adverb	ilginç bir şekilde	normally	adverb	zayif	
+simpler	intermediary	noun	aracı, vasıta	agent	noun	zayif	
+simpler	intern	noun	stajyer, çırak	employee	noun	zayif	
+antonym	intern	verb	staj yapmak	supervise	verb	zayif	
+simpler	internship	noun	staj	experience	noun	zayif	
+simpler	internship	noun	staj	job	noun	zayif	
+antonym	interplay	noun	etkileşim, karşılıklı etki	conflict	noun	zayif	
+antonym	interrogation	noun	sorgulama, sorgulama süreci	answer	noun	zayif	
+synonym	intersection	noun	kesişim	overlap	noun	zayif	
+synonym	interstate	adjective	eyaletlerarası, iki eyalet arasında	national	adjective	zayif	
+antonym	interstate	adjective	eyaletlerarası, iki eyalet arasında	regional	adjective	zayif	
+simpler	interstate	adjective	eyaletlerarası, iki eyalet arasında	state	adjective	zayif	
+simpler	interviewee	noun	röportaj yapılan kişi, mülakat edilen	candidate	noun	zayif	
+simpler	interviewer	noun	görüşme yapan kişi, mülakatı yapan	host	noun	zayif	
+synonym	intestine	noun	bağırsak	gut	noun	zayif	
+simpler	intoxicated	adjective	sarhoş, etkilenmiş	high	adjective	zayif	
+synonym	intoxicating	adjective	baş döndürücü, sarhoş edici	bewitching	adjective	zayif	
+simpler	intoxicating	adjective	baş döndürücü, sarhoş edici	strong	adjective	zayif	
+simpler	intruder	noun	izinsiz giren, davetsiz misafir	visitor	noun	zayif	
+simpler	intrusion	noun	izinsiz giriş, müdahale	entry	noun	zayif	
+synonym	intuit	verb	sezmek, içgüdüyle anlamak	guess	verb	zayif	
+antonym	inventory	noun	envanter, stok	shortage	noun	zayif	
+antonym	inversion	noun	tersine çevirme	normality	noun	zayif	
+simpler	inversion	noun	tersine çevirme	turn	noun	zayif	
+antonym	invert	verb	tersine çevirmek, baş aşağı döndürmek	restore	verb	zayif	
+simpler	invoice	verb	fatura kesmek	record	verb	zayif	
+simpler	iodide	noun	iyodür	salt	noun	zayif	
+synonym	irrigate	verb	sulamak	hydrate	verb	zayif	
+antonym	isle	noun	ada	peninsula	noun	zayif	
+synonym	isolate	noun	izole edilmiş örnek	strain	noun	zayif	
+antonym	isolate	noun	izole edilmiş örnek	mixture	noun	zayif	
+simpler	itinerant	noun	gezici, seyyar kişi	worker	noun	zayif	
+simpler	ivory	noun	fildişi	bone	noun	zayif	
+simpler	jailbreak	noun	hapishane kaçışı	prison	noun	zayif	
+antonym	jam	verb	doğaçlama müzik çalmak	rehearse	verb	zayif	
+simpler	jammy	adjective	reçelli, yapışkan, yoğun kıvamlı	sweet	adjective	zayif	
+antonym	janitorial	adjective	temizlikle ilgili, temizlik hizmetiyle ilgili	dirty	adjective	zayif	
+synonym	jawline	noun	çene hattı	chin	noun	zayif	
+simpler	jawline	noun	çene hattı	face	noun	zayif	
+antonym	jealously	adverb	kıskançça	generously	adverb	zayif	
+antonym	jealousy	noun	kıskançlık, haset	trust	noun	zayif	
+simpler	jeer	verb	alay etmek, alaycı söz söylemek	laugh	verb	zayif	
+antonym	jeweler	noun	kuyumcu	buyer	noun	zayif	
+simpler	jihad	noun	kutsal savaş, dinî mücadele	war	noun	zayif	
+antonym	jihad	noun	kutsal savaş, dinî mücadele	peace	noun	zayif	
+antonym	jobber	noun	aracı, komisyoncu	producer	noun	zayif	
+antonym	jockey	verb	manevra yapmak, çekişmek, yarışmak	stagnate	verb	zayif	
+antonym	joinery	noun	ahşap işçiliği, marangozluk	demolition	noun	zayif	
+simpler	joinery	noun	ahşap işçiliği, marangozluk	work	noun	zayif	
+simpler	jolting	adjective	sarsıcı, ani	sudden	adjective	zayif	
+antonym	jubilee	noun	kutlama, yıldönümü	mourning	noun	zayif	
+simpler	jubilee	noun	kutlama, yıldönümü	festival	noun	zayif	
+synonym	junior	noun	küçük, daha genç kişi	assistant	noun	zayif	
+simpler	junior	noun	küçük, daha genç kişi	employee	noun	zayif	
+simpler	junkie	noun	bağımlı, uyuşturucu bağımlısı	user	noun	zayif	
+antonym	karma	noun	karma	luck	noun	zayif	
+simpler	karma	noun	karma	cause	noun	zayif	
+synonym	keel	noun	omurga	hull	noun	zayif	

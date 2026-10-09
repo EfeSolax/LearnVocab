@@ -1,0 +1,1602 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+simpler	abortive	adjective	başarısız, yarım kalan	incomplete	adjective	sil	hedef B2 ya da üstü
+simpler	algebraic	adjective	cebirsel	numeric	adjective	sil	hedef B2 ya da üstü
+simpler	amplitude	noun	genlik	magnitude	noun	sil	hedef B2 ya da üstü
+simpler	antibiotic	noun	antibiyotik	infection	noun	sil	hedef B2 ya da üstü
+simpler	antibody	noun	antikor	protein	noun	sil	hedef B2 ya da üstü
+simpler	biodiversity	noun	biyolojik çeşitlilik	species	noun	sil	hedef B2 ya da üstü
+simpler	capillary	adjective	kılcal	vascular	adjective	sil	hedef B2 ya da üstü
+simpler	censor	verb	sansürlemek, kısıtlamak	edit	verb	sil	hedef B2 ya da üstü
+simpler	censorship	noun	sansür uygulaması, denetleme süreci	edit	verb	sil	hedef B2 ya da üstü
+simpler	chancellery	noun	başbakanlık dairesi, bakanlık ofisi	ministry	noun	sil	hedef B2 ya da üstü
+simpler	chancellor	noun	başbakan (Almanya, Avusturya)	minister	noun	sil	hedef B2 ya da üstü
+simpler	coefficient	noun	katsayı	variable	noun	sil	hedef B2 ya da üstü
+simpler	comma	noun	virgül	pause	noun	sil	hedef B2 ya da üstü
+simpler	congressman	noun	milletvekili	legislator	noun	sil	hedef B2 ya da üstü
+simpler	congresswoman	noun	milletvekili	senator	noun	sil	hedef B2 ya da üstü
+simpler	congress	noun	yasama organı, meclis	senate	noun	sil	hedef B2 ya da üstü
+simpler	convergence	noun	birleşme, yakınsama	unite	verb	sil	hedef B2 ya da üstü
+simpler	corps	noun	askerî birlik, kolordu, grup	division	noun	sil	hedef B2 ya da üstü
+simpler	convergent	adjective	yakınsayan, birleşen, örtüşen	align	verb	sil	hedef B2 ya da üstü
+simpler	diabetic	adjective	şeker hastalığına ait, diyabetli	patient	adjective	sil	hedef B2 ya da üstü
+simpler	descendent	noun	soyundan gelen, torun	heritage	noun	sil	hedef B2 ya da üstü
+simpler	dilute	verb	seyreltmek, sulandırmak	weaken	verb	sil	hedef B2 ya da üstü
+simpler	enzyme	noun	enzim	protein	noun	sil	hedef B2 ya da üstü
+simpler	federalist	noun	federalist, federalizmi savunan kişi	advocate	noun	sil	hedef B2 ya da üstü
+simpler	fin	noun	yüzgeç	appendage	noun	sil	hedef B2 ya da üstü
+simpler	frictional	adjective	sürtünmeye ait, sürtünmeli	friction	noun	sil	hedef B2 ya da üstü
+simpler	gauge	noun	ölçüm aleti, gösterge	measure	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	gradient	noun	eğim, artış oranı	derivative	noun	sil	hedef B2 ya da üstü
+simpler	German	noun	Almanca	language	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hawk	noun	şahin, yırtıcı kuş	prey	noun	sil	hedef B2 ya da üstü
+simpler	hawk	noun	şahin, yırtıcı kuş	hunt	noun	sil	hedef B2 ya da üstü
+simpler	haven	noun	sığınak, güvenli liman	shelter	noun	sil	hedef B2 ya da üstü
+simpler	hawkish	adjective	saldırgan, şahin	militant	adjective	sil	hedef B2 ya da üstü
+simpler	hawker	noun	satıcı, sokak satıcısı	merchant	noun	sil	hedef B2 ya da üstü
+simpler	helical	adjective	spiral	curved	adjective	sil	hedef B2 ya da üstü
+simpler	incumbent	adjective	(birine) düşen, görevi olan	required	adjective	sil	hedef B2 ya da üstü
+simpler	ion	noun	iyon, yüklü atom	atom	noun	sil	hedef B2 ya da üstü
+simpler	irrigated	adjective	sulanan, sulanmış	irrigate	verb	sil	hedef B2 ya da üstü
+simpler	leasehold	noun	kira hakkı, uzun süreli kiralama hakkı	tenant	noun	sil	hedef B2 ya da üstü
+simpler	lessor	noun	kiraya veren	landlord	noun	sil	hedef B2 ya da üstü
+simpler	lever	noun	kol, kaldıraç	push	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bilingual	adjective	iki dili bilen, iki dilli	fluent	adjective	sil	hedef B2 ya da üstü
+simpler	multilingual	adjective	çok dilli	bilingual	adjective	sil	hedef B2 ya da üstü
+simpler	mercury	noun	Merkür (gezegen)	planet	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	mole	noun	casus	informant	noun	sil	hedef B2 ya da üstü
+simpler	northwest	adjective	kuzeybatı, kuzeybatıdaki	direction	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	northwest	adverb	kuzeybatıya, kuzeybatıya doğru	direction	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	null	adjective	geçersiz, etkisiz	cancel	verb	sil	hedef B2 ya da üstü
+simpler	novice	noun	yeni başlayan, acemi	newcomer	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	null	noun	geçersizlik, boşluk, hiçbir şey	invalid	adjective	sil	hedef B2 ya da üstü
+simpler	nullify	verb	geçersiz kılmak, iptal etmek	cancel	verb	sil	hedef B2 ya da üstü
+simpler	oxidative	adjective	oksidatif	oxidize	verb	sil	hedef B2 ya da üstü
+simpler	oxidation	noun	oksidasyon	oxidize	verb	sil	hedef B2 ya da üstü
+simpler	parenthetical	adjective	parantez içi, parantez içindeki	explanatory	adjective	sil	hedef B2 ya da üstü
+simpler	pluralistic	adjective	çoklu, çoğulcu, çoklu görüşlü	varied	adjective	sil	hedef B2 ya da üstü
+simpler	pragmatism	noun	pragmatik yaklaşım, faydacı felsefe	pragmatic	adjective	sil	hedef B2 ya da üstü
+simpler	precipitate	adjective	aceleci, düşünmeden yapılan	impulsive	adjective	sil	hedef B2 ya da üstü
+simpler	precipitate	noun	çökelti	filter	noun	sil	hedef B2 ya da üstü
+simpler	pragmatist	noun	pragmatik kişi	realist	noun	sil	hedef B2 ya da üstü
+simpler	precipitate	verb	çökelti oluşturmak, çökeltmek	filter	verb	sil	hedef B2 ya da üstü
+simpler	quiz	noun	kısa sınav	questionnaire	noun	sil	hedef B2 ya da üstü
+simpler	quantum	noun	kuantum	atom	noun	sil	hedef B2 ya da üstü
+simpler	primer	noun	başlangıç kitabı, temel ders kitabı	textbook	noun	sil	hedef B2 ya da üstü
+simpler	randomization	noun	rastgeleleştirme	random	adjective	sil	hedef B2 ya da üstü
+simpler	receptor	noun	alıcı, reseptör	stimulus	noun	sil	hedef B2 ya da üstü
+simpler	regress	verb	gerilemek, geri dönmek	decline	verb	sil	hedef B2 ya da üstü
+simpler	regressive	adjective	gerileyen, gerici, ters oranlı	regress	verb	sil	hedef B2 ya da üstü
+simpler	replicate	verb	tekrarlamak, yeniden üretmek	verify	verb	sil	hedef B2 ya da üstü
+simpler	rookie	noun	yeni başlayan, acemi	newcomer	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	sedimentation	noun	çökeltme, birikme	settle	verb	sil	hedef B2 ya da üstü
+simpler	semantics	noun	anlambilim	interpretation	noun	sil	hedef B2 ya da üstü
+simpler	solute	noun	çözünen madde	dissolve	verb	sil	hedef B2 ya da üstü
+simpler	solubility	noun	çözünürlük	dissolve	verb	sil	hedef B2 ya da üstü
+simpler	splice	verb	genetik materyal eklemek	engineer	verb	sil	hedef B2 ya da üstü
+simpler	substrate	noun	alt tabaka, taban, yüzey	foundation	noun	sil	hedef B2 ya da üstü
+simpler	swap	verb	değiş tokuş etmek, takas yapmak	switch	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	Swiss	noun	İsviçreli	citizen	noun	sil	hedef B2 ya da üstü
+simpler	Swiss	adjective	İsviçre'ye ait, İsviçreli	neutral	adjective	sil	hedef B2 ya da üstü
+simpler	swap	noun	değiş tokuş, takas	trade	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	transcription	noun	yazıya dökme, kopya	transcribe	verb	sil	hedef B2 ya da üstü
+simpler	treasurer	noun	sayman, hazinedar, mali işler sorumlusu	budget	noun	sil	hedef B2 ya da üstü
+simpler	treasury	noun	hazine, maliye bakanlığı	budget	noun	sil	hedef B2 ya da üstü
+simpler	valve	noun	vana, valf	stopper	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	vector	noun	yönlü büyüklük	arrow	noun	sil	hedef B2 ya da üstü
+simpler	watershed	noun	akarsu bölgesi, akarsu havzası	divide	noun	sil	hedef B2 ya da üstü
+simpler	yoga	noun	yoga	stretching	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	capillary	noun	kılcal damar	vessel	noun	sil	hedef B2 ya da üstü
+simpler	diabetes	noun	şeker hastalığı, diyabet	insulin	noun	sil	hedef B2 ya da üstü
+simpler	metabolism	noun	metabolizma	digest	noun	sil	hedef B2 ya da üstü
+simpler	nullification	noun	iptal, geçersiz kılma	repeal	noun	sil	hedef B2 ya da üstü
+simpler	replicable	adjective	tekrarlanabilir, yeniden üretilebilir	duplicate	adjective	sil	hedef B2 ya da üstü
+simpler	acclaim	noun	övgü, takdir	praise	noun	sil	hedef B2 ya da üstü
+simpler	acclamation	noun	alkış, coşkulu tezahürat	commend	verb	sil	hedef B2 ya da üstü
+simpler	accredit	verb	yetkilendirmek	grant	verb	sil	hedef B2 ya da üstü
+simpler	accreditation	noun	akreditasyon, resmi onay	approval	noun	sil	hedef B2 ya da üstü
+simpler	accredited	adjective	onaylı	certify	verb	sil	hedef B2 ya da üstü
+simpler	adapter	noun	bağlayıcı, dönüştürücü	convert	noun	sil	hedef B2 ya da üstü
+simpler	acoustic	adjective	akustik	sound	adjective	sil	hedef B2 ya da üstü
+simpler	acne	noun	sivilce	rash	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	admiral	noun	deniz amirali	commander	noun	sil	hedef B2 ya da üstü
+simpler	admiralty	noun	deniz kuvvetleri yönetimi, denizcilik idaresi	maritime	adjective	sil	hedef B2 ya da üstü
+simpler	allergy	noun	alerji	reaction	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	ale	noun	bira, maltlı içecek	brew	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	allegiance	noun	sadakat, bağlılık	commitment	noun	sil	hedef B2 ya da üstü
+simpler	allergic	adjective	alerjik, duyarlılık gösteren	sensitive	adjective	sil	hedef B2 ya da üstü
+simpler	subalpine	adjective	alp bölgesinin altındaki	highland	adjective	sil	hedef B2 ya da üstü
+simpler	amen	noun	âmin	confirm	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	amnesty	noun	af, genel bağışlama	forgive	verb	sil	hedef B2 ya da üstü
+simpler	ant	noun	karınca	insect	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	anthemic	adjective	coşkulu	stirring	adjective	sil	hedef B2 ya da üstü
+simpler	apprentice	verb	çıraklık yapmak	mentor	noun	sil	hedef B2 ya da üstü
+simpler	apprentice	noun	çırak	mentor	noun	sil	hedef B2 ya da üstü
+simpler	apocalypse	noun	kıyamet, kıyamet günü	prophecy	noun	sil	hedef B2 ya da üstü
+simpler	apocalypse	noun	felaket, büyük yıkım	crisis	noun	sil	hedef B2 ya da üstü
+simpler	arbitrate	verb	hakemlik yapmak	settle	verb	sil	hedef B2 ya da üstü
+simpler	arbitration	noun	tahkim, hakemlik	settle	verb	sil	hedef B2 ya da üstü
+simpler	aquarium	noun	akvaryum	tank	noun	sil	hedef B2 ya da üstü
+simpler	archer	noun	okçu	shoot	noun	sil	hedef B2 ya da üstü
+simpler	archbishop	noun	başpiskopos	bishop	noun	sil	hedef B2 ya da üstü
+simpler	rearmament	noun	yeniden silahlandırma	military	noun	sil	hedef B2 ya da üstü
+simpler	unarmed	adjective	silahsız	disarm	verb	sil	hedef B2 ya da üstü
+simpler	rearm	verb	yeniden silahlandırmak, silahlandırmak	equip	verb	sil	hedef B2 ya da üstü
+simpler	arthritis	noun	eklem iltihabı	joint	noun	sil	hedef B2 ya da üstü
+simpler	arthritic	adjective	artritli, artrit hastalığına ait	joint	adjective	sil	hedef B2 ya da üstü
+simpler	atlas	noun	harita kitabı, atlas	globe	noun	sil	hedef B2 ya da üstü
+simpler	auroral	adjective	kuzey ışıklarıyla ilgili	magnetic	adjective	sil	hedef B2 ya da üstü
+simpler	authenticity	noun	gerçeklik, özgünlük	real	noun	sil	hedef B2 ya da üstü
+simpler	autistic	adjective	otistik	autism	noun	sil	hedef B2 ya da üstü
+simpler	autism	noun	otizm	diagnose	verb	sil	hedef B2 ya da üstü
+simpler	backlash	noun	olumsuz tepki, karşı tepki	criticism	noun	sil	hedef B2 ya da üstü
+simpler	barber	noun	berber	client	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	barber	verb	kesmek, tıraş etmek	style	verb	sil	hedef B2 ya da üstü
+simpler	basil	noun	fesleğen	herb	noun	sil	hedef B2 ya da üstü
+simpler	baton	noun	orkestra şefi çubuğu, baget	conduct	noun	sil	hedef B2 ya da üstü
+simpler	baton	noun	bayrak, bayrak sopası	relay	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	beaver	noun	kunduz	dam	noun	sil	hedef B2 ya da üstü
+simpler	blackberry	noun	böğürtlen	berry	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	binge	noun	aşırı tüketim	excess	noun	sil	hedef B2 ya da üstü
+simpler	billboard	noun	reklam panosu, billboard	ad	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bladder	noun	mesane	kidney	noun	sil	hedef B2 ya da üstü
+simpler	blitz	noun	yoğun saldırı, ani saldırı	rush	noun	sil	hedef B2 ya da üstü
+simpler	boo	noun	yuhalama, yuh sesi	disapprove	verb	sil	hedef B2 ya da üstü
+simpler	chatbot	noun	sohbet botu	bot	noun	sil	hedef B2 ya da üstü
+simpler	bra	noun	sütyen	support	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bra	noun	sütyen	strap	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bravo	noun	alkış, takdir ifadesi	praise	noun	sil	hedef B2 ya da üstü
+simpler	breakup	noun	ayrılık, ilişki sonu	split	noun	sil	hedef B2 ya da üstü
+simpler	bracelet	noun	bilezik	jewelry	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	brewer	noun	bira üreticisi, bira yapan kişi	brewery	noun	sil	hedef B2 ya da üstü
+simpler	brigade	noun	tugay	battalion	noun	sil	hedef B2 ya da üstü
+simpler	brokerage	noun	aracılık, komisyon hizmeti	broker	noun	sil	hedef B2 ya da üstü
+simpler	brook	noun	dere, küçük akarsu	creek	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bumper	noun	ön tampon, koruyucu kenar	crash	noun	sil	hedef B2 ya da üstü
+simpler	butterfly	noun	kelebek	insect	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cache	verb	önbelleğe almak, geçici olarak depolamak	buffer	noun	sil	hedef B2 ya da üstü
+simpler	capsule	noun	kapsül	dose	noun	sil	hedef B2 ya da üstü
+simpler	capsule	noun	küçük kap, kapsül	module	noun	sil	hedef B2 ya da üstü
+simpler	carpenter	noun	marangoz	laborer	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	carpentry	noun	marangozluk	build	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cartridge	noun	fişek, mermi	ammunition	noun	sil	hedef B2 ya da üstü
+simpler	catalysis	noun	kataliz, tepkimeyi hızlandırma	catalyst	noun	sil	hedef B2 ya da üstü
+simpler	catalyst	noun	katalizör, hızlandırıcı, etken madde	enzyme	noun	sil	hedef B2 ya da üstü
+simpler	catalytic	adjective	katalitik	catalyst	noun	sil	hedef B2 ya da üstü
+simpler	cavalryman	noun	süvari, atlı asker	horseman	noun	sil	hedef B2 ya da üstü
+simpler	champ	noun	şampiyon, galip	competitor	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cereal	noun	tahıl	wheat	noun	sil	hedef B2 ya da üstü
+simpler	chandler	noun	mumcu, mum üreticisi	merchant	noun	sil	hedef B2 ya da üstü
+simpler	chandler	noun	tedarikçi, erzak satıcısı	merchant	noun	sil	hedef B2 ya da üstü
+simpler	chamberlain	noun	saray kahyası, mabeyinci, mabeyin görevlisi	official	noun	sil	hedef B2 ya da üstü
+simpler	checkout	noun	ödeme işlemi, kasa	cashier	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cinnamon	noun	tarçın	spice	noun	sil	hedef B2 ya da üstü
+simpler	chromed	adjective	krom kaplı, kromla kaplanmış	coated	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	clad	adjective	giyinmiş, kaplı	wear	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cladding	noun	kaplama, dış kaplama	insulate	verb	sil	hedef B2 ya da üstü
+simpler	clip	verb	kesmek, kırpmak, tutturmak	attach	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	clown	noun	palyaço, komik gösteri yapan kişi	performer	noun	sil	hedef B2 ya da üstü
+simpler	clipper	noun	saç kesme makinesi	blade	noun	sil	hedef B2 ya da üstü
+simpler	clipping	noun	kesme, kırpma	cut	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	collateral	adjective	teminat niteliğinde, teminata dayalı	asset	noun	sil	hedef B2 ya da üstü
+simpler	coconut	noun	hindistancevizi	nut	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	collaborative	adjective	ortak çalışmaya dayalı	teamwork	noun	sil	hedef B2 ya da üstü
+simpler	collateral	noun	teminat, rehin, ipotek	guarantee	noun	sil	hedef B2 ya da üstü
+simpler	come back	phrasal_verb	geri dönmek, tekrar ortaya çıkmak	go	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	comeback	noun	geri dönüş, yeniden popüler olma	recovery	noun	sil	hedef B2 ya da üstü
+simpler	comforting	adjective	teselli veren, rahatlatıcı	comfort	noun	sil	hedef B2 ya da üstü
+simpler	compilation	noun	derleme	compile	verb	sil	hedef B2 ya da üstü
+simpler	condolence	noun	başsağlığı	condole	verb	sil	hedef B2 ya da üstü
+simpler	consolidation	noun	birleştirme, güçlendirme	combine	noun	sil	hedef B2 ya da üstü
+simpler	contagion	noun	bulaşma, hastalığın yayılması	spread	noun	sil	hedef B2 ya da üstü
+simpler	contagious	adjective	bulaşıcı	transmit	verb	sil	hedef B2 ya da üstü
+simpler	contingent	noun	grup, temsilci heyeti	representative	noun	sil	hedef B2 ya da üstü
+simpler	corporal	adjective	bedensel, fiziksel	tangible	adjective	sil	hedef B2 ya da üstü
+simpler	councillor	noun	konsey üyesi, belediye meclis üyesi	official	noun	sil	hedef B2 ya da üstü
+simpler	cove	noun	koy, küçük liman	harbor	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	covid	noun	koronavirüs hastalığı	pandemic	noun	sil	hedef B2 ya da üstü
+simpler	crabby	adjective	huysuz, sinirli	cross	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	crab	noun	yengeç	shrimp	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	credentialed	adjective	belgelendirilmiş, yetkilendirilmiş	certified	adjective	sil	hedef B2 ya da üstü
+simpler	credentialing	noun	yetkilendirme, yeterlilik doğrulama, akreditasyon	verification	noun	sil	hedef B2 ya da üstü
+simpler	crank	verb	çevirmek, krank çevirmek	rotate	verb	sil	hedef B2 ya da üstü
+simpler	crank	noun	kol, döndürme kolu	handle	noun	sil	hedef B2 ya da üstü
+simpler	creed	noun	inanç, ilkeler bütünü	faith	noun	sil	hedef B2 ya da üstü
+simpler	crescent	adjective	hilal şeklinde	curved	adjective	sil	hedef B2 ya da üstü
+simpler	crispness	noun	gevreklik	texture	noun	sil	hedef B2 ya da üstü
+simpler	crosswalk	noun	yaya geçidi	sidewalk	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	crossbreed	noun	melez hayvan, melez bitki	breed	noun	sil	hedef B2 ya da üstü
+simpler	crossover	noun	kesişim, geçiş, çapraz geçiş	combine	noun	sil	hedef B2 ya da üstü
+simpler	crossbreed	verb	iki farklı türü/çeşidi birleştirerek çiftleştirmek	breed	verb	sil	hedef B2 ya da üstü
+simpler	cub	noun	yavru, genç hayvan	offspring	noun	sil	hedef B2 ya da üstü
+simpler	curb	noun	kaldırım kenarı, yol kenarı	sidewalk	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	crusade	noun	dinî sefer, haçlı seferi	pilgrimage	noun	sil	hedef B2 ya da üstü
+simpler	defendant	noun	davalı	defend	verb	sil	hedef B2 ya da üstü
+simpler	demography	noun	nüfus bilimi, demografi	migration	noun	sil	hedef B2 ya da üstü
+simpler	demise	noun	çöküş, sona erme	failure	noun	sil	hedef B2 ya da üstü
+simpler	den	noun	in, çalışma odası, sığınak	shelter	noun	sil	hedef B2 ya da üstü
+simpler	deportation	noun	sınır dışı etme, sürgün	removal	noun	sil	hedef B2 ya da üstü
+simpler	designation	noun	atanma, tayin	appoint	verb	sil	hedef B2 ya da üstü
+simpler	dice	noun	zar	chance	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	dictatorship	noun	diktatörlük	regime	noun	sil	hedef B2 ya da üstü
+simpler	digestive	adjective	sindirimle ilgili, sindirime yardımcı	digest	noun	sil	hedef B2 ya da üstü
+simpler	indigestion	noun	hazımsızlık, sindirim bozukluğu	digest	noun	sil	hedef B2 ya da üstü
+simpler	disco	noun	disko, disko müziği	genre	noun	sil	hedef B2 ya da üstü
+simpler	dime	noun	on sent	coin	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	dispatcher	noun	sevk memuru, hareket memuru, yönlendirme görevlisi	operator	noun	sil	hedef B2 ya da üstü
+simpler	divisive	adjective	bölücü, ayrıştırıcı, kışkırtıcı	split	adjective	sil	hedef B2 ya da üstü
+simpler	dispatch	verb	göndermek, sevk etmek	deliver	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	duchess	noun	düşes	noblewoman	noun	sil	hedef B2 ya da üstü
+simpler	duplication	noun	kopya, çoğaltma	duplicate	noun	sil	hedef B2 ya da üstü
+simpler	duplicate	noun	kopya, ikiz	replicate	verb	sil	hedef B2 ya da üstü
+simpler	efficacy	noun	etkililik, etkinlik	effectiveness	noun	sil	hedef B2 ya da üstü
+simpler	earring	noun	küpe	jewelry	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	ineligible	adjective	şartları taşımayan, ehliyetsiz, hak sahibi olmayan	eligible	adjective	sil	hedef B2 ya da üstü
+simpler	entrepreneurial	adjective	girişimci, girişimcilik ile ilgili	entrepreneur	noun	sil	hedef B2 ya da üstü
+simpler	entrepreneurship	noun	girişimcilik	entrepreneur	noun	sil	hedef B2 ya da üstü
+simpler	fairy	noun	peri, cin, periler	myth	noun	sil	hedef B2 ya da üstü
+simpler	feasible	adjective	uygulanabilir, mümkün	achievable	adjective	sil	hedef B2 ya da üstü
+simpler	fascist	adjective	faşist, otoriter	strict	adjective	sil	hedef B2 ya da üstü
+simpler	fascism	noun	faşizm	dictatorship	noun	sil	hedef B2 ya da üstü
+simpler	felon	noun	ağır suçlu	offender	noun	sil	hedef B2 ya da üstü
+simpler	ferryman	noun	kayıkçı, feribotçu	operator	noun	sil	hedef B2 ya da üstü
+simpler	feud	noun	uzun süren düşmanlık, kan davası	settle	verb	sil	hedef B2 ya da üstü
+simpler	filing	noun	dosyalama, dosya düzenleme	file	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	feudal	adjective	feodal	feudalism	noun	sil	hedef B2 ya da üstü
+simpler	flagship	noun	başlıca ürün, amiral gemisi	main	noun	sil	hedef B2 ya da üstü
+simpler	flirt	verb	romantik ilgi göstermek, flört etmek	court	verb	sil	hedef B2 ya da üstü
+simpler	flirt	noun	flörtçü kimse, çapkın, işveli kimse	flirtation	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	flirtation	noun	flört, çekicilik gösterisi	tease	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	flirty	adjective	cilveli	playful	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	fluffy	adjective	yumuşak, tüylü, kabarık	smooth	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	unfocused	adjective	odaklanmamış	absent	adjective	sil	hedef B2 ya da üstü
+simpler	foil	noun	alüminyum folyo, ince metal levha	wrap	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	folder	noun	dosya	document	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	freeman	noun	özgür kişi, serbest vatandaş	citizen	noun	sil	hedef B2 ya da üstü
+simpler	freelance	noun	serbest çalışan	contractor	noun	sil	hedef B2 ya da üstü
+simpler	funky	adjective	alışılmadık, tuhaf, havalı	stylish	adjective	sil	hedef B2 ya da üstü
+simpler	fuzziness	noun	bulanıklık, belirsizlik	blur	noun	sil	hedef B2 ya da üstü
+simpler	gala	noun	büyük kutlama, resmi parti	banquet	noun	sil	hedef B2 ya da üstü
+simpler	garlic	noun	sarımsak	spice	noun	sil	hedef B2 ya da üstü
+simpler	garrison	verb	askeri birlik yerleştirmek	occupy	verb	sil	hedef B2 ya da üstü
+simpler	geek	noun	teknoloji meraklısı, bilgisayar uzmanı	enthusiast	noun	sil	hedef B2 ya da üstü
+simpler	gasoline	noun	benzin, motor yakıtı	petrol	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	geek out	phrasal_verb	çok heyecanlanmak, tutkulu hâle gelmek	enthuse	verb	sil	hedef B2 ya da üstü
+simpler	glucose	noun	glikoz, basit şeker	insulin	noun	sil	hedef B2 ya da üstü
+simpler	goodwill	noun	iyi niyet, dostane tutum	cooperation	noun	sil	hedef B2 ya da üstü
+simpler	goodwill	noun	şerefiye, maddi olmayan varlık	asset	noun	sil	hedef B2 ya da üstü
+simpler	gluten	noun	glüten	protein	noun	sil	hedef B2 ya da üstü
+simpler	gore	noun	kan, kan dökülmesi	fluid	noun	sil	hedef B2 ya da üstü
+simpler	goofball	noun	şakacı, saf kişi	fool	noun	sil	hedef B2 ya da üstü
+simpler	goof	verb	hata yapmak, gaf yapmak	err	verb	sil	hedef B2 ya da üstü
+simpler	grenade	noun	el bombası, patlayıcı	explosive	noun	sil	hedef B2 ya da üstü
+simpler	grooming	noun	kişisel bakım, temizlik	maintain	verb	sil	hedef B2 ya da üstü
+simpler	groom	noun	damat	marry	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	groom	noun	at bakıcısı, tımarcı	stable	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hack	verb	izinsiz bir sisteme girmek, bilgisayar korsanlığı yapmak	access	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	hairball	noun	tüy topu	digestion	noun	sil	hedef B2 ya da üstü
+simpler	hairdo	noun	saç modeli	cut	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hairdresser	noun	kuaför	client	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hairdresser	noun	kuaför	cut	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hairpin	noun	saç tokası	pin	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hairline	noun	saç çizgisi	scalp	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	halftime	noun	devre arası, yarı zaman	pause	noun	sil	hedef B2 ya da üstü
+simpler	haircut	noun	saç kesimi	cut	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	halo	noun	parıltı, ışık halkası	glow	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	handicap	noun	dezavantaj, engel	obstacle	noun	sil	hedef B2 ya da üstü
+simpler	handmade	adjective	el yapımı	make	noun	sil	hedef B2 ya da üstü
+simpler	handicapped	adjective	engelli	impair	verb	sil	hedef B2 ya da üstü
+simpler	head	adjective	baş, ana, birincil	principal	adjective	sil	hedef B2 ya da üstü
+simpler	hash	verb	doğramak, parçalamak, karıştırmak	slice	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	hassle	verb	rahatsız etmek, sıkıntı çıkarmak	trouble	verb	sil	hedef B2 ya da üstü
+simpler	header	noun	başlık, üst bilgi	heading	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	homemade	adjective	ev yapımı	make	noun	sil	hedef B2 ya da üstü
+simpler	holocaust	noun	soykırım, toplu imha	survivor	noun	sil	hedef B2 ya da üstü
+simpler	hub	noun	merkez, ana nokta	node	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	humidity	noun	nem	wetness	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hybridization	noun	melezleştirme, karışım	crossbreed	noun	sil	hedef B2 ya da üstü
+simpler	hybrid	adjective	karma	combined	adjective	sil	hedef B2 ya da üstü
+simpler	hydraulic	adjective	hidrolik	pump	noun	sil	hedef B2 ya da üstü
+simpler	hydraulics	noun	hidrolik, sıvı basıncıyla çalışan sistem	fluid	noun	sil	hedef B2 ya da üstü
+simpler	hype	noun	abartı, tanıtım, heyecan	promotion	noun	sil	hedef B2 ya da üstü
+simpler	hypocrisy	noun	ikiyüzlülük, sahte tutum	insincere	adjective	sil	hedef B2 ya da üstü
+simpler	unidentified	adjective	kimliği belirsiz, tespit edilememiş, teşhis edilmemiş	detect	verb	sil	hedef B2 ya da üstü
+simpler	impeach	verb	görevden alma sürecini başlatmak	dismiss	verb	sil	hedef B2 ya da üstü
+simpler	infringer	noun	ihlal eden	pirate	noun	sil	hedef B2 ya da üstü
+simpler	insulin	noun	insülin	hormone	noun	sil	hedef B2 ya da üstü
+simpler	installment	noun	taksit	loan	noun	sil	hedef B2 ya da üstü
+simpler	intersection	noun	kesişim	subset	noun	sil	hedef B2 ya da üstü
+simpler	joker	noun	şaka yapan kişi	comedian	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	joker	noun	joker kartı	trump	noun	sil	hedef B2 ya da üstü
+simpler	lading	noun	yük, taşıma malzemesi	load	noun	sil	hedef B2 ya da üstü
+simpler	larval	adjective	larva ile ilgili	juvenile	adjective	sil	hedef B2 ya da üstü
+simpler	lawmaker	noun	yasa yapıcı, yasama organı üyesi	senator	noun	sil	hedef B2 ya da üstü
+simpler	unlawfully	adverb	yasa dışı olarak	violate	verb	sil	hedef B2 ya da üstü
+simpler	leftist	adjective	sol görüşlü, solcu	radical	adjective	sil	hedef B2 ya da üstü
+simpler	legionnaire	noun	lejyon üyesi	recruit	noun	sil	hedef B2 ya da üstü
+simpler	lime	noun	yeşil limon, misket limonu	citrus	noun	sil	hedef B2 ya da üstü
+simpler	libertarian	noun	özgürlükçü, bireysel özgürlükleri savunan kişi	individualist	noun	sil	hedef B2 ya da üstü
+simpler	libertarianism	noun	özgürlükçülük, bireysel özgürlükçü ideoloji	liberalism	noun	sil	hedef B2 ya da üstü
+simpler	libertarian	adjective	özgürlükçü, bireysel özgürlükleri savunan	individualist	noun	sil	hedef B2 ya da üstü
+simpler	litigant	noun	davanın tarafı, dava tarafı	plaintiff	noun	sil	hedef B2 ya da üstü
+simpler	line up	phrasal_verb	sıralamak, hizaya getirmek	queue	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	litigate	verb	dava açmak, hukuki süreç yürütmek	sue	verb	sil	hedef B2 ya da üstü
+simpler	liquor	noun	alkollü içki	alcohol	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	litigious	adjective	dava açmaya meyilli, dava meraklısı	argumentative	adjective	sil	hedef B2 ya da üstü
+simpler	livestock	noun	çiftlik hayvanları, besi hayvanları, canlı hayvan	cattle	noun	sil	hedef B2 ya da üstü
+simpler	lobster	noun	ıstakoz	shrimp	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	logistics	noun	lojistik, taşımacılık, tedarik zinciri yönetimi	shipping	noun	sil	hedef B2 ya da üstü
+simpler	manga	noun	manga, Japon çizgi romanı	anime	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	manga	noun	manga, Japon çizgi romanı	illustration	noun	sil	hedef B2 ya da üstü
+simpler	manorial	adjective	malikane ile ilgili, malikaneye ait	estate	noun	sil	hedef B2 ya da üstü
+simpler	marina	noun	tekne limanı, yat limanı	dock	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	massage	noun	masaj	rub	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	mascot	noun	sembol hayvanı, maskot	represent	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	median	noun	orta refüj, refüj	lane	noun	sil	hedef B2 ya da üstü
+simpler	mesh	verb	ağ oluşturmak	network	verb	sil	hedef B2 ya da üstü
+simpler	mesh	noun	ağ, örgü, tel örgüsü	netting	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	metropolis	noun	büyük şehir, metropol	urban	adjective	sil	hedef B2 ya da üstü
+simpler	minty	adjective	naneli, nane tadında	flavor	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	mosquito	noun	sivrisinek	fly	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	mint	noun	nane, nane bitkisi	herb	noun	sil	hedef B2 ya da üstü
+simpler	unnamed	adjective	adı belirtilmemiş, isimsiz	unknown	adjective	sil	hedef B2 ya da üstü
+simpler	nanny	noun	bakıcı	caretaker	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	nerdy	adjective	teknik/akademik konulara aşırı düşkün, sosyal açıdan garip	enthusiastic	adjective	sil	hedef B2 ya da üstü
+simpler	niece	noun	kız yeğen	relative	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	nerd	noun	kitap kurdu, bilgisayar meraklısı	enthusiast	noun	sil	hedef B2 ya da üstü
+simpler	northeast	adverb	kuzeydoğuya	direction	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	northeast	noun	kuzeydoğu	direction	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	northeast	adjective	kuzeydoğu, kuzeydoğudaki	direction	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	noodle	noun	erişte, makarna	food	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	northwestward	adjective	kuzeybatıya doğru olan, kuzeybatı yönündeki	westward	adjective	sil	hedef B2 ya da üstü
+simpler	notch	noun	çentik, oyuk	cut	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	observable	adjective	gözlemlenebilir	visible	adjective	sil	hedef B2 ya da üstü
+simpler	optimizer	noun	iyileştirici	optimize	verb	sil	hedef B2 ya da üstü
+simpler	ore	noun	cevher, maden filizi	mineral	noun	sil	hedef B2 ya da üstü
+simpler	oxide	noun	oksit	compound	noun	sil	hedef B2 ya da üstü
+simpler	panda	noun	panda	endangered	adjective	sil	hedef B2 ya da üstü
+simpler	panda	noun	panda	conservation	noun	sil	hedef B2 ya da üstü
+simpler	pancake	noun	krep	syrup	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	pal	noun	arkadaş, dost	companion	noun	sil	hedef B2 ya da üstü
+simpler	panama	noun	şapka, panama şapkası	cap	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	palette	noun	boya paleti, renk karıştırma tahtası	canvas	noun	sil	hedef B2 ya da üstü
+simpler	pandemic	adjective	küresel yaygın, salgın	epidemic	adjective	sil	hedef B2 ya da üstü
+simpler	pandemic	noun	küresel salgın	outbreak	noun	sil	hedef B2 ya da üstü
+simpler	paranoia	noun	aşırı şüphecilik, paranoya	delusion	noun	sil	hedef B2 ya da üstü
+simpler	parole	noun	şartlı tahliye	freedom	noun	sil	hedef B2 ya da üstü
+simpler	parole	verb	şartlı tahliye etmek	free	verb	sil	hedef B2 ya da üstü
+simpler	partisan	adjective	taraf tutan, partizan	supportive	adjective	sil	hedef B2 ya da üstü
+simpler	pasta	noun	makarna	cook	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	partisanship	noun	tarafgirlik, partizanlık	prejudice	noun	sil	hedef B2 ya da üstü
+simpler	partisan	noun	destekçi, taraftar	advocate	noun	sil	hedef B2 ya da üstü
+simpler	partisan	noun	silahlı militan, gerilla	rebel	noun	sil	hedef B2 ya da üstü
+simpler	paste	noun	macun, yapıştırıcı	adhesive	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	paste	verb	yapıştırmak	glue	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	patriot	noun	vatansever	citizen	noun	sil	hedef B2 ya da üstü
+simpler	patriotism	noun	vatanseverlik	pride	noun	sil	hedef B2 ya da üstü
+simpler	pathology	noun	patoloji, hastalık bilimi	diagnosis	noun	sil	hedef B2 ya da üstü
+simpler	patriotic	adjective	vatansever	loyal	adjective	sil	hedef B2 ya da üstü
+simpler	pathologist	noun	patolog	surgeon	noun	sil	hedef B2 ya da üstü
+simpler	peachy	adjective	şeftali rengi	pale	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	perk	verb	canlandırmak, neşelendirmek	boost	verb	sil	hedef B2 ya da üstü
+simpler	perk	noun	ek fayda, ayrıcalık	bonus	noun	sil	hedef B2 ya da üstü
+simpler	perk up	phrasal_verb	canlanmak, neşelenmek	brighten	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	pertain	verb	ilgili olmak, ait olmak, ilişkin olmak	concern	verb	sil	hedef B2 ya da üstü
+simpler	persona	noun	kimlik, karakter, rol	self	noun	sil	hedef B2 ya da üstü
+simpler	pharmacy	noun	eczane	prescription	noun	sil	hedef B2 ya da üstü
+simpler	pharmacist	noun	eczacı	prescribe	verb	sil	hedef B2 ya da üstü
+simpler	pick up	phrasal_verb	almak, toplamak	retrieve	verb	sil	hedef B2 ya da üstü
+simpler	pick up	phrasal_verb	öğrenmek, kavramak	acquire	verb	sil	hedef B2 ya da üstü
+simpler	picky	adjective	seçici, titiz	selective	adjective	sil	hedef B2 ya da üstü
+simpler	pickup	noun	küçük kamyon, kamyonet	load	noun	sil	hedef B2 ya da üstü
+simpler	pickup	noun	toplama, alım, alınma eylemi	gather	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	pike	noun	turna balığı	trout	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	pixel	noun	piksel	resolution	noun	sil	hedef B2 ya da üstü
+simpler	pitcher	noun	sıvı sürahisi, sürahi	container	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	pint	noun	yarım litre, ölçü birimi	measure	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	plaintiff	noun	davacı	sue	verb	sil	hedef B2 ya da üstü
+simpler	overplay	verb	abartmak, fazla kullanmak	emphasize	verb	sil	hedef B2 ya da üstü
+simpler	plasma	noun	kan plazması	cell	noun	sil	hedef B2 ya da üstü
+simpler	plasma	noun	iyonlaşmış gaz	ion	noun	sil	hedef B2 ya da üstü
+simpler	playtime	noun	oyun zamanı, boş zaman	recess	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	plaza	noun	meydan, alışveriş merkezi	mall	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	plumber	noun	sıhhi tesisatçı	repair	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	plumber	noun	sıhhi tesisatçı	install	verb	sil	hedef B2 ya da üstü
+simpler	plumb	verb	derinlik ölçmek	estimate	verb	sil	hedef B2 ya da üstü
+simpler	pneumonic	adjective	zatürreyle ilgili	lung	noun	sil	hedef B2 ya da üstü
+simpler	pony	noun	küçük at, minyatür at	mount	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	popcorn	noun	patlamış mısır	snack	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	postcard	noun	posta kartı	mail	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	postage	noun	posta ücreti	fee	noun	sil	hedef B2 ya da üstü
+simpler	postman	noun	posta memuru, postacı	receive	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	prom	noun	mezuniyet balosu, lise dansı	graduation	noun	sil	hedef B2 ya da üstü
+simpler	prolific	adjective	çok üretken, verimli	produce	noun	sil	hedef B2 ya da üstü
+simpler	prostatic	adjective	prostatla ilgili, prostatla alakalı	prostate	noun	sil	hedef B2 ya da üstü
+simpler	proximal	adjective	yakın, yakın konumdaki	adjacent	adjective	sil	hedef B2 ya da üstü
+simpler	psychic	adjective	paranormal, psişik	supernatural	adjective	sil	hedef B2 ya da üstü
+simpler	proximate	adjective	en yakın, doğrudan, dolaysız	adjacent	adjective	sil	hedef B2 ya da üstü
+simpler	pseudo	adjective	gerçek olmayan, sahte	fake	adjective	sil	hedef B2 ya da üstü
+simpler	psychic	noun	medyum	psychology	noun	sil	hedef B2 ya da üstü
+simpler	psycho	noun	psikopat	madman	noun	sil	hedef B2 ya da üstü
+simpler	pulp	verb	ezmek, posalaştırmak	blend	verb	sil	hedef B2 ya da üstü
+simpler	puppeteer	noun	kukla ustası	performer	noun	sil	hedef B2 ya da üstü
+simpler	python	noun	Python (programlama dili)	programming	noun	sil	hedef B2 ya da üstü
+simpler	quartz	noun	kuvars	silicon	noun	sil	hedef B2 ya da üstü
+simpler	quarantine	noun	karantina, izolasyon	containment	noun	sil	hedef B2 ya da üstü
+simpler	rabbinical	adjective	hahamla ilgili, hahamsal, hahamlık	priestly	adjective	sil	hedef B2 ya da üstü
+simpler	ramp	noun	eğimli yol, rampa	incline	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	ranch	noun	çiftlik, büyük hayvan çiftliği	estate	noun	sil	hedef B2 ya da üstü
+simpler	redundant	adjective	işten çıkarılmış, işsiz	dismiss	verb	sil	hedef B2 ya da üstü
+simpler	reef	noun	mercan kayalığı	hazard	noun	sil	hedef B2 ya da üstü
+simpler	regiment	noun	alay	battalion	noun	sil	hedef B2 ya da üstü
+simpler	regimental	adjective	alaya ait, alayla ilgili	military	adjective	sil	hedef B2 ya da üstü
+simpler	renaissance	noun	rönesans, yeniden doğuş, uyanış	revival	noun	sil	hedef B2 ya da üstü
+simpler	relay	noun	röle	controller	noun	sil	hedef B2 ya da üstü
+simpler	renovation	noun	yenileme, tadilat	upgrade	noun	sil	hedef B2 ya da üstü
+simpler	rep	noun	tekrar	repetition	noun	sil	hedef B2 ya da üstü
+simpler	rep	noun	tekrar	set	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	rep	noun	temsilci	delegate	noun	sil	hedef B2 ya da üstü
+simpler	repeal	verb	yürürlükten kaldırmak, feshetmek, iptal etmek	cancel	verb	sil	hedef B2 ya da üstü
+simpler	resilience	noun	dayanıklılık, esneklik	recover	verb	sil	hedef B2 ya da üstü
+simpler	resonance	noun	rezonans, titreşim	echo	noun	sil	hedef B2 ya da üstü
+simpler	resonance	noun	etki, yankı	echo	noun	sil	hedef B2 ya da üstü
+simpler	rhino	noun	gergedan	mammal	noun	sil	hedef B2 ya da üstü
+simpler	resurrection	noun	diriliş, yeniden canlanma	restore	verb	sil	hedef B2 ya da üstü
+simpler	rigor	noun	katılık, sıkılık, titizlik	precision	noun	sil	hedef B2 ya da üstü
+simpler	rift	noun	anlaşmazlık, bölünme	dispute	noun	sil	hedef B2 ya da üstü
+simpler	rosemary	noun	biberiye	herb	noun	sil	hedef B2 ya da üstü
+simpler	rover	noun	araştırma aracı, keşif aracı	drone	noun	sil	hedef B2 ya da üstü
+simpler	saddle	noun	eyer	mount	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	ruthlessly	adverb	acımasızca	harshly	adverb	sil	hedef B2 ya da üstü
+simpler	ruthless	adjective	acımasız, merhametsiz	harsh	adjective	sil	hedef B2 ya da üstü
+simpler	ruthlessness	noun	acımasızlık	harshness	noun	sil	hedef B2 ya da üstü
+simpler	saddle	verb	eyerlemek, eyer vurmak, yüklemek	equip	verb	sil	hedef B2 ya da üstü
+simpler	samurai	noun	samuray	honor	noun	sil	hedef B2 ya da üstü
+simpler	salvageable	adjective	kurtarılabilir, kurtarılmaya uygun	repairable	adjective	sil	hedef B2 ya da üstü
+simpler	salvage	noun	kurtarılmış malzeme	auction	noun	sil	hedef B2 ya da üstü
+simpler	satirical	adjective	iğneleyici, alaycı	humorous	adjective	sil	hedef B2 ya da üstü
+simpler	saturate	verb	doyurmak, sırılsıklam etmek, iyice ıslatmak	soak	verb	sil	hedef B2 ya da üstü
+simpler	saturation	noun	doygunluk, doygunluk seviyesi	concentration	noun	sil	hedef B2 ya da üstü
+simpler	scissors	noun	makas	blade	noun	sil	hedef B2 ya da üstü
+simpler	scotch	noun	seloteyp, yapışkan bant	adhesive	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	scam	verb	dolandırmak	con	verb	sil	hedef B2 ya da üstü
+simpler	unseasoned	adjective	baharatsız, çeşnisiz, tecrübesiz	raw	adjective	sil	hedef B2 ya da üstü
+simpler	segregation	noun	ayırma, ayrımcılık	discriminate	verb	sil	hedef B2 ya da üstü
+simpler	selfish	adjective	bencil	selfishness	noun	sil	hedef B2 ya da üstü
+simpler	selfishly	adverb	bencilce	selfish	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	selfishness	noun	bencillik	self	noun	sil	hedef B2 ya da üstü
+simpler	serous	adjective	sıvı, berrak, serum benzeri	fluid	adjective	sil	hedef B2 ya da üstü
+simpler	set up	phrasal_verb	kurmak, düzenlemek, hazırlamak	install	verb	sil	hedef B2 ya da üstü
+simpler	shampoo	noun	şampuan, saç temizleme ürünü	soap	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	sidewalk	noun	kaldırım	path	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	skateboarder	noun	kaykaycı	rider	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	skater	noun	patenci, buz patencisi, kaykaycı	rider	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	slate	verb	eleştirmek, kınamak	condemn	verb	sil	hedef B2 ya da üstü
+simpler	slop	verb	dökmek, sıçratmak	pour	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	sniper	noun	keskin nişancı	shooter	noun	sil	hedef B2 ya da üstü
+simpler	snipe	noun	kısa alaycı eleştiri, iğneleme	remark	noun	sil	hedef B2 ya da üstü
+simpler	sociology	noun	sosyoloji	social	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	sonic	adjective	sesle ilgili, akustik	sound	adjective	sil	hedef B2 ya da üstü
+simpler	southwestern	adjective	güneybatı yönündeki, güneybatıya ait	western	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	spa	noun	kaplıca, sağlık merkezi	clinic	noun	sil	hedef B2 ya da üstü
+simpler	sponge	noun	sünger	cloth	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	sponge	verb	emmek	soak	verb	sil	hedef B2 ya da üstü
+simpler	staple	verb	zımba ile tutturmak	pin	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	stapler	noun	zımba	bind	noun	sil	hedef B2 ya da üstü
+simpler	understate	verb	olduğundan az göstermek, küçümsemek	simplify	verb	sil	hedef B2 ya da üstü
+simpler	statutory	adjective	yasal, kanunla ilgili	regulatory	adjective	sil	hedef B2 ya da üstü
+simpler	stereoscopic	adjective	üç boyutlu, derinlikli	depth	noun	sil	hedef B2 ya da üstü
+simpler	sticker	noun	etiket, yapışkan etiket	adhesive	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	streaming	noun	akış, yayın	stream	noun	sil	hedef B2 ya da üstü
+simpler	stripey	adjective	çizgili	patterned	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	submarine	adjective	su altı	submersible	adjective	sil	hedef B2 ya da üstü
+simpler	subsidize	verb	desteklemek, mali yardım sağlamak	grant	verb	sil	hedef B2 ya da üstü
+simpler	subsidized	adjective	sübvansiyonlu, desteklenmiş	subsidize	verb	sil	hedef B2 ya da üstü
+simpler	sushi	noun	suşi	fish	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	surrealism	noun	gerçeküstücülük	modernism	noun	sil	hedef B2 ya da üstü
+simpler	surrealistic	adjective	gerçeküstü, hayal gücüne dayalı	bizarre	adjective	sil	hedef B2 ya da üstü
+simpler	swipe	verb	hızlıca kaydırmak, süpürmek	tap	verb	sil	hedef B2 ya da üstü
+simpler	synchronization	noun	eşzamanlama	sync	noun	sil	hedef B2 ya da üstü
+simpler	synchronous	adjective	aynı anda gerçekleşen	parallel	adjective	sil	hedef B2 ya da üstü
+simpler	tee	verb	topu çubuğa yerleştirmek	place	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	tempo	noun	hız, tempo	accelerate	verb	sil	hedef B2 ya da üstü
+simpler	testosterone	noun	testosteron	hormone	noun	sil	hedef B2 ya da üstü
+simpler	theologian	noun	teolog	religious	noun	sil	hedef B2 ya da üstü
+simpler	theological	adjective	teolojik	spiritual	adjective	sil	hedef B2 ya da üstü
+simpler	tinder	noun	kav, tutuşturucu malzeme, çıra	fuel	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	tile	noun	kiremit	brick	noun	sil	hedef B2 ya da üstü
+simpler	tile	noun	fayans, karo	slab	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	tokenism	noun	sembolik davranış	diversity	noun	sil	hedef B2 ya da üstü
+simpler	torque	noun	dönme momenti	rotate	verb	sil	hedef B2 ya da üstü
+simpler	torque	verb	dönme kuvveti uygulamak	rotate	verb	sil	hedef B2 ya da üstü
+simpler	touchdown	noun	iniş	arrival	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	treasonous	adjective	hain, ihanetle ilgili	evil	adjective	sil	hedef B2 ya da üstü
+simpler	trench	verb	hendek kazmak, siper açmak	dig	verb	sil	hedef B2 ya da üstü
+simpler	trench	noun	siper, hendek	pit	noun	sil	hedef B2 ya da üstü
+simpler	trout	noun	alabalık	salmon	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	tuberculosis	noun	verem	infection	noun	sil	hedef B2 ya da üstü
+simpler	tribune	noun	konuşma platformu, kürsü	stand	noun	sil	hedef B2 ya da üstü
+simpler	turtle	noun	kaplumbağa	reptile	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	turf	noun	çim, çimlik, saha	soil	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	turbo	adjective	yüksek hızlı, turboşarjlı	accelerate	verb	sil	hedef B2 ya da üstü
+simpler	undercover	adjective	gizli, kimliği gizlenmiş	hidden	adjective	sil	hedef B2 ya da üstü
+simpler	vaccinate	verb	aşılamak	inject	verb	sil	hedef B2 ya da üstü
+simpler	vampirism	noun	vampirlik, kan emme alışkanlığı	myth	noun	sil	hedef B2 ya da üstü
+simpler	vampirism	noun	vampirlik, kan emme alışkanlığı	folklore	noun	sil	hedef B2 ya da üstü
+simpler	vanilla	noun	vanilya	flavor	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	vampire	noun	vampir	monster	noun	sil	hedef B2 ya da üstü
+simpler	unverified	adjective	doğrulanmamış	unknown	adjective	sil	hedef B2 ya da üstü
+simpler	vendor	noun	satıcı	supplier	noun	sil	hedef B2 ya da üstü
+simpler	wagon	noun	vagon, çekme arabası	load	noun	sil	hedef B2 ya da üstü
+simpler	wagoner	noun	arabacı, at arabası sürücüsü	operator	noun	sil	hedef B2 ya da üstü
+simpler	wilderness	noun	vahşi doğa, çorak alan	wild	noun	sil	hedef B2 ya da üstü
+simpler	wicket	noun	kriket topunun vurulduğu alan, kale	dismiss	verb	sil	hedef B2 ya da üstü
+simpler	wizard	noun	usta, uzman	master	noun	sil	hedef B2 ya da üstü
+simpler	yen	noun	Japon yeni	currency	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	yogurt	noun	yoğurt	milk	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	enzymatic	adjective	enzimle ilgili, enzimsel	biochemical	adjective	sil	hedef B2 ya da üstü
+simpler	oscillation	noun	salınım, dalgalanma	fluctuate	verb	sil	hedef B2 ya da üstü
+simpler	variance	noun	farklılık, ayrılık	divergence	noun	sil	hedef B2 ya da üstü
+simpler	autobiographical	adjective	otobiyografik	biographical	adjective	sil	hedef B2 ya da üstü
+simpler	cereal	noun	kahvaltılık gevrek	oatmeal	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	debit	verb	borçlandırmak, bir hesaptan para çıkarmak	deduct	verb	sil	hedef B2 ya da üstü
+simpler	dough	noun	hamur	pastry	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	headphone	noun	kulaklık	headset	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	moose	noun	sığın, amerikan geyiği	elk	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	offset	noun	ofset baskı	print	noun	sil	hedef B2 ya da üstü
+simpler	pneumonia	noun	zatürre	influenza	noun	sil	hedef B2 ya da üstü
+simpler	prostate	noun	prostat	gland	noun	sil	hedef B2 ya da üstü
+simpler	pulp	noun	meyve posası, lifli kütle	mash	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	subsidiary	adjective	ikincil, yan, bağlı	minor	adjective	sil	hedef B2 ya da üstü
+simpler	tango	noun	tango, tango dansı	ballroom	noun	sil	hedef B2 ya da üstü
+simpler	theist	noun	tanrıya inanan kişi	faithful	noun	sil	hedef B2 ya da üstü
+simpler	volatile	adjective	kararsız, değişken	fluctuate	verb	sil	hedef B2 ya da üstü
+simpler	accession	noun	katılım, üye olma	join	noun	sil	hedef B2 ya da üstü
+simpler	adjoin	verb	bitişik olmak, komşu olmak, bitişmek	border	verb	sil	hedef B2 ya da üstü
+simpler	acrylic	noun	akrilik, akrilik boya	polymer	noun	sil	hedef B2 ya da üstü
+simpler	adultery	noun	zina	cheating	noun	sil	hedef B2 ya da üstü
+simpler	adobe	noun	kerpiç, çamur tuğlası	brick	noun	sil	hedef B2 ya da üstü
+simpler	affidavit	noun	yeminli beyan	testimony	noun	sil	hedef B2 ya da üstü
+simpler	affluent	adjective	zengin, varlıklı	affluence	noun	sil	hedef B2 ya da üstü
+simpler	alleviation	noun	azaltma, hafifletme	reduction	noun	sil	hedef B2 ya da üstü
+simpler	ambush	verb	pusu kurmak, tuzak kurmak	capture	verb	sil	hedef B2 ya da üstü
+simpler	ammonia	noun	amonyak	hydrogen	noun	sil	hedef B2 ya da üstü
+simpler	ammonium	noun	amonyum	nitrogen	noun	sil	hedef B2 ya da üstü
+simpler	anecdote	noun	anekdot, fıkra, kısa olay anlatımı	tale	noun	sil	hedef B2 ya da üstü
+simpler	anesthesia	noun	anestezi	numb	adjective	sil	hedef B2 ya da üstü
+simpler	anesthetist	noun	anestezi uzmanı	surgeon	noun	sil	hedef B2 ya da üstü
+simpler	annexation	noun	ilhak	acquisition	noun	sil	hedef B2 ya da üstü
+simpler	anomaly	noun	anormallik, aykırı durum	deviation	noun	sil	hedef B2 ya da üstü
+simpler	anthology	noun	seçme eserler derlemesi, antoloji	volume	noun	sil	hedef B2 ya da üstü
+simpler	appraise	verb	değerini belirlemek, değerlendirmek	value	verb	sil	hedef B2 ya da üstü
+simpler	reappraisal	noun	yeniden değerlendirme	appraisal	noun	sil	hedef B2 ya da üstü
+simpler	astrological	adjective	astrolojik, burçlarla ilgili	celestial	adjective	sil	hedef B2 ya da üstü
+simpler	astrologer	noun	astrolog	consult	verb	sil	hedef B2 ya da üstü
+simpler	aural	adjective	işitsel, kulakla ilgili	hearing	noun	sil	hedef B2 ya da üstü
+simpler	austerity	noun	kemer sıkma, sıkı maliye politikası, tasarruf	budget	noun	sil	hedef B2 ya da üstü
+simpler	aura	noun	hava, atmosfer	presence	noun	sil	hedef B2 ya da üstü
+simpler	axle	noun	dingil, aks	rod	noun	sil	hedef B2 ya da üstü
+simpler	ballad	noun	destan, halk şarkısı	tale	noun	sil	hedef B2 ya da üstü
+simpler	ballistics	noun	balistik	trajectory	noun	sil	hedef B2 ya da üstü
+simpler	ballistic	adjective	balistik	rocket	noun	sil	hedef B2 ya da üstü
+simpler	baptism	noun	vaftiz	initiate	verb	sil	hedef B2 ya da üstü
+simpler	baptismal	adjective	vaftizle ilgili, vaftizle ilgili olan	baptize	verb	sil	hedef B2 ya da üstü
+simpler	barony	noun	baronluk	estate	noun	sil	hedef B2 ya da üstü
+simpler	barrister	noun	duruşma avukatı, dava vekili, avukat	attorney	noun	sil	hedef B2 ya da üstü
+simpler	barrow	noun	höyük, gömü yeri	grave	noun	sil	hedef B2 ya da üstü
+simpler	bathtub	noun	küvet	tub	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bigot	noun	dar görüşlü kimse	racist	noun	sil	hedef B2 ya da üstü
+simpler	bigoted	adjective	bağnaz, yobaz, hoşgörüsüz	biased	adjective	sil	hedef B2 ya da üstü
+simpler	bigotry	noun	bağnazlık, yobazlık	intolerance	noun	sil	hedef B2 ya da üstü
+simpler	biographer	noun	biyografi yazarı	historian	noun	sil	hedef B2 ya da üstü
+simpler	biochemist	noun	biyokimyacı	biologist	noun	sil	hedef B2 ya da üstü
+simpler	childbirth	noun	doğum	pregnancy	noun	sil	hedef B2 ya da üstü
+simpler	blandness	noun	tatsızlık, lezzetsizlik, sönüklük	spice	noun	sil	hedef B2 ya da üstü
+simpler	bland	adjective	tatsız, lezzetsiz	plain	adjective	sil	hedef B2 ya da üstü
+simpler	bland	adjective	sıkıcı, renksiz	plain	adjective	sil	hedef B2 ya da üstü
+simpler	unbleached	adjective	beyazlatılmamış	plain	adjective	sil	hedef B2 ya da üstü
+simpler	bleakness	noun	kötümserlik, umutsuzluk	gloom	noun	sil	hedef B2 ya da üstü
+simpler	blouse	noun	gömlek, bluz	top	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bodyguard	noun	koruma görevlisi, güvenlik görevlisi	guard	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	blueprint	noun	mimari çizim, teknik plan	draft	noun	sil	hedef B2 ya da üstü
+simpler	blueprint	noun	detaylı plan, strateji	outline	noun	sil	hedef B2 ya da üstü
+simpler	booklet	noun	küçük kitap, broşür	manual	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bookcase	noun	kitaplık	shelf	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bookstore	noun	kitapçı	store	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bookshop	noun	kitapçı	shop	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bourgeois	adjective	burjuva sınıfına özgü	conventional	adjective	sil	hedef B2 ya da üstü
+simpler	bouquet	noun	çiçek buketi	bunch	noun	sil	hedef B2 ya da üstü
+simpler	bourgeois	noun	burjuva, orta sınıf	capitalist	noun	sil	hedef B2 ya da üstü
+simpler	broccoli	noun	brokoli, lahana türü	cabbage	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	brochure	noun	tanıtım broşürü, katalog	leaflet	noun	sil	hedef B2 ya da üstü
+simpler	buffet	verb	vurmak, çarpmak, darbeye maruz bırakmak	expose	verb	sil	hedef B2 ya da üstü
+simpler	buffet	noun	büfe, konsol	cabinet	noun	sil	hedef B2 ya da üstü
+simpler	buzzer	noun	uyarı cihazı, ses çıkaran düğme	signal	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	camouflage	verb	gizlemek, kamufle etmek	disguise	verb	sil	hedef B2 ya da üstü
+simpler	cameo	noun	oyma süs, kabartmalı mücevher	relief	noun	sil	hedef B2 ya da üstü
+simpler	caterpillar	noun	tırtıl	larva	noun	sil	hedef B2 ya da üstü
+simpler	cervix	noun	rahim ağzı	screening	noun	sil	hedef B2 ya da üstü
+simpler	cervical	adjective	rahim ağzı ile ilgili	cervix	noun	sil	hedef B2 ya da üstü
+simpler	chaplaincy	noun	rahiplik, din görevlisi hizmeti	chaplain	noun	sil	hedef B2 ya da üstü
+simpler	charisma	noun	karizma	charm	noun	sil	hedef B2 ya da üstü
+simpler	charismatic	adjective	karizmatik	charming	adjective	sil	hedef B2 ya da üstü
+simpler	checker	noun	denetçi, kontrolör	monitor	noun	sil	hedef B2 ya da üstü
+simpler	clean up	phrasal_verb	temizlemek, düzenlemek	mess	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cloverleaf	noun	yonca kavşak	junction	noun	sil	hedef B2 ya da üstü
+simpler	colliery	noun	kömür madeni	pit	noun	sil	hedef B2 ya da üstü
+simpler	commutative	adjective	değişmeli, değişme özelliği olan	associative	adjective	sil	hedef B2 ya da üstü
+simpler	commemorative	adjective	anma, hatıra	honor	noun	sil	hedef B2 ya da üstü
+simpler	subconscious	adjective	bilinçaltı	hidden	adjective	sil	hedef B2 ya da üstü
+simpler	cookbook	noun	yemek kitabı	manual	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	coroner	noun	adli tabip, adli tıp yetkilisi	investigator	noun	sil	hedef B2 ya da üstü
+simpler	corrector	noun	düzeltici	edit	verb	sil	hedef B2 ya da üstü
+simpler	corrosive	adjective	aşındırıcı, erozyon yapan, yakıcı	harmful	adjective	sil	hedef B2 ya da üstü
+simpler	correctional	adjective	cezaeviyle ilgili	jail	noun	sil	hedef B2 ya da üstü
+simpler	countess	noun	kontes	duchess	noun	sil	hedef B2 ya da üstü
+simpler	cosmopolitan	noun	dünya vatandaşı, kozmopolit	globalist	noun	sil	hedef B2 ya da üstü
+simpler	covertly	adverb	gizlice, örtülü bir şekilde	hidden	adjective	sil	hedef B2 ya da üstü
+simpler	covert	adjective	gizli, örtülü	discreet	adjective	sil	hedef B2 ya da üstü
+simpler	cracker	noun	bisküvi, kraker	snack	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cracker	noun	havai fişek, patlayıcı	explosive	noun	sil	hedef B2 ya da üstü
+simpler	crispy	adjective	kıtır, çıtır	crisp	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	cringe	verb	utanmak, yerin dibine geçmek, irkilmek	shrink	verb	sil	hedef B2 ya da üstü
+simpler	cuddle	noun	sarılma, kucaklaşma	touch	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	curfew	noun	sokağa çıkma yasağı	restriction	noun	sil	hedef B2 ya da üstü
+simpler	dagger	noun	hançer	blade	noun	sil	hedef B2 ya da üstü
+simpler	dauntless	adjective	cesur, korkusuz	bold	adjective	sil	hedef B2 ya da üstü
+simpler	deacon	noun	diyakoz	minister	noun	sil	hedef B2 ya da üstü
+simpler	deaconess	noun	kadın diyakoz	deacon	noun	sil	hedef B2 ya da üstü
+simpler	deductive	adjective	tümdengelimsel, tümdengelimli	reasonable	adjective	sil	hedef B2 ya da üstü
+simpler	non-deductible	adjective	vergi indirimi yapılamayan, kesinti yapılmayan	expense	noun	sil	hedef B2 ya da üstü
+simpler	deduction	noun	vergi indirimi, kesinti	expense	noun	sil	hedef B2 ya da üstü
+simpler	defamation	noun	iftira, karalama	reputation	noun	sil	hedef B2 ya da üstü
+simpler	defer	verb	ertelemek, geciktirmek	grant	verb	sil	hedef B2 ya da üstü
+simpler	defamatory	adjective	iftira içeren, karalayıcı	defame	verb	sil	hedef B2 ya da üstü
+simpler	deferment	noun	erteleme, geciktirme	delay	noun	sil	hedef B2 ya da üstü
+simpler	deferral	noun	erteleme	defer	verb	sil	hedef B2 ya da üstü
+simpler	denim	noun	kot kumaşı	cloth	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	depreciation	noun	değer kaybı, azalma	asset	noun	sil	hedef B2 ya da üstü
+simpler	detriment	noun	zarar, olumsuz etki	hurt	noun	sil	hedef B2 ya da üstü
+simpler	deterrence	noun	caydırma, önleyici etki	deter	verb	sil	hedef B2 ya da üstü
+simpler	diarrhea	noun	ishal	vomiting	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	interdisciplinary	adjective	disiplinlerarası	combined	adjective	sil	hedef B2 ya da üstü
+simpler	disparate	adjective	farklı, birbirinden ayrı, uyumsuz	distinct	adjective	sil	hedef B2 ya da üstü
+simpler	dissenter	noun	muhalif, itirazcı	protester	noun	sil	hedef B2 ya da üstü
+simpler	diverge	verb	ayrılmak, farklı yönlere gitmek	branch	verb	sil	hedef B2 ya da üstü
+simpler	diverge	verb	farklı düşünmek, ayrışmak	vary	verb	sil	hedef B2 ya da üstü
+simpler	divergent	adjective	farklı yönlere giden, ayrışan	varied	adjective	sil	hedef B2 ya da üstü
+simpler	donut	noun	halka şekilli tatlı	pastry	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	dorsum	noun	sırt, arka yüz	spine	noun	sil	hedef B2 ya da üstü
+simpler	dune	noun	kum tepesi	sand	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	dunk	verb	batırmak, bandırmak, smaç basmak	dip	verb	sil	hedef B2 ya da üstü
+simpler	dubious	adjective	şüpheli, kuşku verici	skeptical	adjective	sil	hedef B2 ya da üstü
+simpler	eclectic	adjective	çeşitli, seçici, farklı kaynaklardan derlenmiş	mixed	adjective	sil	hedef B2 ya da üstü
+simpler	empress	noun	imparatoriçe	monarch	noun	sil	hedef B2 ya da üstü
+simpler	unencrypted	adjective	şifrelenmemiş	secure	adjective	sil	hedef B2 ya da üstü
+simpler	encyclopedic	adjective	ansiklopedik	detailed	adjective	sil	hedef B2 ya da üstü
+simpler	epileptic	adjective	epilepsiyle ilgili, epilepsi hastası	disorder	noun	sil	hedef B2 ya da üstü
+simpler	epilepsy	noun	epilepsi, nöbet hastalığı	disorder	noun	sil	hedef B2 ya da üstü
+simpler	espionage	noun	casusluk	spy	noun	sil	hedef B2 ya da üstü
+simpler	ethanol	noun	alkol, etanol	solvent	noun	sil	hedef B2 ya da üstü
+simpler	faithful	noun	inananlar, dindarlar	religious	noun	sil	hedef B2 ya da üstü
+simpler	fidelity	noun	doğruluk, gerçeğe uygunluk	precision	noun	sil	hedef B2 ya da üstü
+simpler	fiancee	noun	nişanlı kadın	engaged	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	fiddle	verb	oynamak, kurcalamak	adjust	verb	sil	hedef B2 ya da üstü
+simpler	flake	noun	tutarsız, güvenilmez kişi	absent	adjective	sil	hedef B2 ya da üstü
+simpler	flashback	noun	anıların aniden hatırlanması	recollection	noun	sil	hedef B2 ya da üstü
+simpler	flashlight	noun	el feneri	battery	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	flop	verb	başarısız olmak	collapse	verb	sil	hedef B2 ya da üstü
+simpler	fluted	adjective	oluklu, yivli	ribbed	adjective	sil	hedef B2 ya da üstü
+simpler	footwear	noun	ayakkabı, ayak giysisi	wear	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	franc	noun	frank	currency	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	freshwater	adjective	tatlı su	plain	adjective	sil	hedef B2 ya da üstü
+simpler	futility	noun	boşuna çıkma, faydasızlık	useless	adjective	sil	hedef B2 ya da üstü
+simpler	glandular	adjective	bezle ilgili, bezsel	organ	noun	sil	hedef B2 ya da üstü
+simpler	glitch	noun	kısa süreli hata, aksaklık	bug	noun	sil	hedef B2 ya da üstü
+simpler	glitchy	adjective	hata veren, aksak, bozuk	faulty	adjective	sil	hedef B2 ya da üstü
+simpler	gloss	noun	parıltı, parlaklık	polish	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	goo	noun	yapışkan madde	stuff	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	godfather	noun	vaftiz babası	mentor	noun	sil	hedef B2 ya da üstü
+simpler	grail	noun	kutsal kase	myth	noun	sil	hedef B2 ya da üstü
+simpler	gravy	noun	et suyu, sos	broth	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	groundbreaking	adjective	çığır açan, devrim niteliğinde	novel	adjective	sil	hedef B2 ya da üstü
+simpler	grump	noun	huysuz, somurtkan kişi	grumpy	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	gutter	noun	yağmur oluğu, oluk	drain	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	gutter	noun	sütunlar arası boşluk	spacing	noun	sil	hedef B2 ya da üstü
+simpler	harasser	noun	rahatsız eden, tacizci	abuser	noun	sil	hedef B2 ya da üstü
+simpler	heater	noun	ısıtıcı, ısı veren cihaz	radiator	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hen	noun	tavuk	bird	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	helping	noun	porsiyon	serving	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	helper	noun	yardımcı	aid	noun	sil	hedef B2 ya da üstü
+simpler	herring	noun	ringa, ringa balığı	catch	noun	sil	hedef B2 ya da üstü
+simpler	hive	noun	arı kovanı	colony	noun	sil	hedef B2 ya da üstü
+simpler	homecoming	noun	yurda dönüş, eve dönüş	arrival	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hubby	noun	koca, kocam	spouse	noun	sil	hedef B2 ya da üstü
+simpler	hurdle	verb	engelin üzerinden atlamak	overcome	verb	sil	hedef B2 ya da üstü
+simpler	hurdle	verb	bir engeli aşmak, üstesinden gelmek	obstacle	noun	sil	hedef B2 ya da üstü
+simpler	implicate	verb	ilişkilendirmek, suça bulaştırmak, dahil etmek	accuse	verb	sil	hedef B2 ya da üstü
+simpler	impend	verb	yakında olmak, eşiğinde olmak	approach	verb	sil	hedef B2 ya da üstü
+simpler	improvisational	adjective	doğaçlama, anlık yaratıcı	improvise	verb	sil	hedef B2 ya da üstü
+simpler	improvise	verb	kendiliğinden yapmak, doğaçlama yapmak	spontaneous	adjective	sil	hedef B2 ya da üstü
+simpler	improvisation	noun	doğaçlama, anlık yaratma	spontaneity	noun	sil	hedef B2 ya da üstü
+simpler	incarnation	noun	tezahür, bedenlenme, vücut bulma	embody	verb	sil	hedef B2 ya da üstü
+simpler	incremental	adjective	kademeli, artan	progressive	adjective	sil	hedef B2 ya da üstü
+simpler	indict	verb	suçlamak, dava açmak	prosecute	verb	sil	hedef B2 ya da üstü
+simpler	indictable	adjective	iddianameyle kovuşturulabilir, dava açılabilir, ağır	chargeable	adjective	sil	hedef B2 ya da üstü
+simpler	infuser	noun	demleme aparatı, çay süzgeci	brew	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	infusion	noun	sermaye enjeksiyonu, kaynak aktarımı	fund	noun	sil	hedef B2 ya da üstü
+simpler	inlet	noun	körfez, dar su yolu, girinti	harbor	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	invincibility	noun	yenilmezlik	resilience	noun	sil	hedef B2 ya da üstü
+simpler	intrinsically	adverb	özünde, doğası gereği	basically	adverb	sil	hedef B2 ya da üstü
+simpler	itch	noun	kaşıntı	scratch	noun	sil	hedef B2 ya da üstü
+simpler	itching	adjective	kaşıntılı, kaşınan	scratch	noun	sil	hedef B2 ya da üstü
+simpler	itching	noun	kaşıntı	itch	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	itchiness	noun	kaşıntı	itch	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	itchy	adjective	kaşıntılı, kaşıntı yapan	irritated	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	itchy	adjective	sabırsız, huzursuz, canı sıkılan	restless	adjective	sil	hedef B2 ya da üstü
+simpler	iterator	noun	yineleyici	loop	noun	sil	hedef B2 ya da üstü
+simpler	jeopardy	noun	tehlike, risk	threat	noun	sil	hedef B2 ya da üstü
+simpler	keystone	noun	kilit taşı	arch	noun	sil	hedef B2 ya da üstü
+simpler	keystone	noun	kritik unsur	core	noun	sil	hedef B2 ya da üstü
+simpler	kinetic	adjective	hareketle ilgili, kinetik	motion	noun	sil	hedef B2 ya da üstü
+simpler	kinetics	noun	kinetik, hareket bilimi	mechanics	noun	sil	hedef B2 ya da üstü
+simpler	kite	noun	uçurtma	fly	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	lagoon	noun	lagün	pond	noun	sil	hedef B2 ya da üstü
+simpler	landslide	noun	ezici zafer, ezici çoğunluk	victory	noun	sil	hedef B2 ya da üstü
+simpler	laxity	noun	gevşeklik, kayıtsızlık	looseness	noun	sil	hedef B2 ya da üstü
+simpler	latex	noun	lateks, doğal kauçuk	rubber	noun	sil	hedef B2 ya da üstü
+simpler	leash	noun	tasma	rope	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	unleash	verb	köpeği serbest bırakmak, bağını çözmek	free	verb	sil	hedef B2 ya da üstü
+simpler	legate	noun	temsilci, elçi	delegate	noun	sil	hedef B2 ya da üstü
+simpler	legation	noun	diplomatik temsilcilik, elçilik	delegate	noun	sil	hedef B2 ya da üstü
+simpler	leukemia	noun	lösemi, kan kanseri	tumor	noun	sil	hedef B2 ya da üstü
+simpler	lesion	noun	hasar, lezyon	wound	noun	sil	hedef B2 ya da üstü
+simpler	liter	noun	litre	unit	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	logon	noun	giriş, oturum açma	authenticate	verb	sil	hedef B2 ya da üstü
+simpler	loch	noun	göl	pond	noun	sil	hedef B2 ya da üstü
+simpler	logging	noun	kayıt tutma, veri kaydetme işlemi	monitor	noun	sil	hedef B2 ya da üstü
+simpler	loot	noun	ganimet, yağma	steal	noun	sil	hedef B2 ya da üstü
+simpler	lyrically	adverb	şiirsel olarak	musically	adverb	sil	hedef B2 ya da üstü
+simpler	mash	noun	ezme, püre	crush	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	mayhem	noun	kaos, kargaşa, anarşi	conflict	noun	sil	hedef B2 ya da üstü
+simpler	meltdown	noun	çöküş, felaket, erime	failure	noun	sil	hedef B2 ya da üstü
+simpler	meteorologist	noun	meteorolog, hava tahmincisi	forecaster	noun	sil	hedef B2 ya da üstü
+simpler	mixer	noun	karıştırıcı, mikser	stirrer	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	mitigation	noun	azaltma, hafifletme	lessening	noun	sil	hedef B2 ya da üstü
+simpler	narcotic	adjective	uyuşturucu etkisi olan, bağımlılık yapıcı	addictive	adjective	sil	hedef B2 ya da üstü
+simpler	nauseating	adjective	bulantı verici, mide bulandırıcı	gross	adjective	sil	hedef B2 ya da üstü
+simpler	nauseous	adjective	bulantı verici, iğrenç	gross	adjective	sil	hedef B2 ya da üstü
+simpler	nasal	noun	nazal ünsüz, burun sesi	consonant	noun	sil	hedef B2 ya da üstü
+simpler	negligible	adjective	önemsiz, ihmal edilebilir	minor	adjective	sil	hedef B2 ya da üstü
+simpler	nicotinic	adjective	nikotinle ilgili	nicotine	noun	sil	hedef B2 ya da üstü
+simpler	nirvana	noun	kusursuz hâl, ideal durum	bliss	noun	sil	hedef B2 ya da üstü
+simpler	nugget	noun	küçük tavuk köftesi	snack	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	ordeal	noun	tanrı buyruğu sınavı, çile sınavı	justice	noun	sil	hedef B2 ya da üstü
+simpler	otter	noun	su samuru	mammal	noun	sil	hedef B2 ya da üstü
+simpler	outlaw	verb	yasaklamak, kanun dışı ilan etmek	prohibit	verb	sil	hedef B2 ya da üstü
+simpler	ovarian	adjective	yumurtalıkla ilgili	reproductive	adjective	sil	hedef B2 ya da üstü
+simpler	ovary	noun	yumurtalık	organ	noun	sil	hedef B2 ya da üstü
+simpler	oxidant	noun	oksitleyici madde	oxidize	verb	sil	hedef B2 ya da üstü
+simpler	ozone	noun	ozon	oxygen	noun	sil	hedef B2 ya da üstü
+simpler	parasite	noun	parazit	infect	verb	sil	hedef B2 ya da üstü
+simpler	nonpartisan	adjective	tarafsız, parti tutmayan	neutral	adjective	sil	hedef B2 ya da üstü
+simpler	bipartisan	adjective	iki partiye ait, iki taraflı	neutral	adjective	sil	hedef B2 ya da üstü
+simpler	patio	noun	veranda, avlu, teras	yard	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	pendant	noun	kolye ucu, asma süs	jewelry	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	pep	noun	canlılık, enerji	vigor	noun	sil	hedef B2 ya da üstü
+simpler	pep	verb	canlandırmak, enerji vermek	boost	verb	sil	hedef B2 ya da üstü
+simpler	pervasiveness	noun	yaygınlık, genellik	spread	noun	sil	hedef B2 ya da üstü
+simpler	petal	noun	taç yaprağı	leaf	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	pianist	noun	piyanist	performer	noun	sil	hedef B2 ya da üstü
+simpler	pivot	noun	dönme noktası, eksen	hinge	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	platoon	noun	takım, müfreze	squad	noun	sil	hedef B2 ya da üstü
+simpler	pluralism	noun	çoğulculuk	tolerance	noun	sil	hedef B2 ya da üstü
+simpler	pollen	noun	polen	dust	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	porosity	noun	gözeneklilik	pore	noun	sil	hedef B2 ya da üstü
+simpler	powerhouse	noun	enerji üreten tesis, güç santrali	generator	noun	sil	hedef B2 ya da üstü
+simpler	precursor	noun	öncül, öncüsü, habercisi	origin	noun	sil	hedef B2 ya da üstü
+simpler	proponent	noun	savunucu, destekleyici, öneren	propose	verb	sil	hedef B2 ya da üstü
+simpler	pulmonary	adjective	akciğerle ilgili, solunumla ilgili	lung	noun	sil	hedef B2 ya da üstü
+simpler	punt	noun	havada vuruş, degaj	drop	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	pun	noun	kelime oyunu, espri	humor	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	quirkiness	noun	tuhaflık, gariplik	uniqueness	noun	sil	hedef B2 ya da üstü
+simpler	quirky	adjective	tuhaf, kendine has	weird	adjective	sil	hedef B2 ya da üstü
+simpler	rad	noun	radyan	angle	noun	sil	hedef B2 ya da üstü
+simpler	rampage	verb	ortalığı birbirine katmak, yakıp yıkmak, terör estirmek	storm	verb	sil	hedef B2 ya da üstü
+simpler	ratify	verb	onaylamak, tasdik etmek	authorize	verb	sil	hedef B2 ya da üstü
+simpler	raspberry	noun	ahududu, ağaç çileği	berry	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	regal	adjective	kralî, asil	noble	adjective	sil	hedef B2 ya da üstü
+simpler	renal	adjective	böbrekle ilgili	kidney	noun	sil	hedef B2 ya da üstü
+simpler	revocable	adjective	geri alınabilir, iptal edilebilir	revoke	verb	sil	hedef B2 ya da üstü
+simpler	revocation	noun	iptal, fesih	revoke	verb	sil	hedef B2 ya da üstü
+simpler	rink	noun	buz pisti, kayma pisti	arena	noun	sil	hedef B2 ya da üstü
+simpler	roe	noun	karaca	buck	noun	sil	hedef B2 ya da üstü
+simpler	roulette	noun	rulet, şans oyunu	bet	noun	sil	hedef B2 ya da üstü
+simpler	royalist	adjective	monarşiyi destekleyen, krala/kraliçeye bağlı	loyal	adjective	sil	hedef B2 ya da üstü
+simpler	rotor	noun	rotor, fırdöndü, pervane	blade	noun	sil	hedef B2 ya da üstü
+simpler	rerun	noun	tekrar gösterim, yeniden yayın	broadcast	noun	sil	hedef B2 ya da üstü
+simpler	rye	noun	çavdar	grain	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	satin	noun	saten	fabric	noun	sil	hedef B2 ya da üstü
+simpler	screenplay	noun	senaryo	draft	noun	sil	hedef B2 ya da üstü
+simpler	sectarianism	noun	mezhepçilik, ayrımcılık	prejudice	noun	sil	hedef B2 ya da üstü
+simpler	sedan	noun	binek otomobil, sedan	auto	noun	sil	hedef B2 ya da üstü
+simpler	semiconducting	adjective	yarı iletken	conductive	adjective	sil	hedef B2 ya da üstü
+simpler	sesame	noun	susam tohumu	seed	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	shack	noun	kulübe, baraka	cabin	noun	sil	hedef B2 ya da üstü
+simpler	shire	noun	il, bölge, kırsal bölge	district	noun	sil	hedef B2 ya da üstü
+simpler	shovel	noun	kürek	dig	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	shovel	verb	küremek, kürekle atmak	dig	verb	sil	hedef B2 ya da üstü
+simpler	shutter	verb	kapatmak	suspend	verb	sil	hedef B2 ya da üstü
+simpler	shortcoming	noun	eksiklik, yetersizlik	weakness	noun	sil	hedef B2 ya da üstü
+simpler	shutter	noun	deklanşör	exposure	noun	sil	hedef B2 ya da üstü
+simpler	silicone	noun	silikon	rubber	noun	sil	hedef B2 ya da üstü
+simpler	sire	verb	babası olmak, yavrulatmak	beget	verb	sil	hedef B2 ya da üstü
+simpler	sizing	noun	boyutlandırma, ölçülendirme	adjust	verb	sil	hedef B2 ya da üstü
+simpler	skipper	noun	gemi kaptanı	crew	noun	sil	hedef B2 ya da üstü
+simpler	slime	noun	balçık, sümük, kaygan madde	mud	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	snoopy	adjective	burnunu her şeye sokan, meraklı, gözetlemeyi seven	curious	adjective	sil	hedef B2 ya da üstü
+simpler	snoop	noun	meraklı, gizlice araştıran kişi	intruder	noun	sil	hedef B2 ya da üstü
+simpler	specs	noun	gözlük, gözlük çerçevesi	lens	noun	sil	hedef B2 ya da üstü
+simpler	spook	noun	ajan, casus	informant	noun	sil	hedef B2 ya da üstü
+simpler	spook	verb	korkutmak	scare	verb	sil	hedef B2 ya da üstü
+simpler	spruce	adjective	şık, düzenli, bakımlı	presentable	adjective	sil	hedef B2 ya da üstü
+simpler	nonstop	adjective	kesintisiz, durmaksızın devam eden, aktarmasız	steady	adjective	sil	hedef B2 ya da üstü
+simpler	suffragette	noun	kadın oy hakkı savunucusu	activist	noun	sil	hedef B2 ya da üstü
+simpler	surrogacy	noun	taşıyıcı annelik, vekil doğum	infertility	noun	sil	hedef B2 ya da üstü
+simpler	swat	noun	vuruş, şaplak	tap	noun	sil	hedef B2 ya da üstü
+simpler	swat	verb	sertçe vurmak, sinek vurmak, savuşturmak	strike	verb	sil	hedef B2 ya da üstü
+simpler	syndicate	verb	birlik kurmak, ortaklık oluşturmak	collaborate	verb	sil	hedef B2 ya da üstü
+simpler	syndicate	noun	suç örgütü	gang	noun	sil	hedef B2 ya da üstü
+simpler	synoptic	adjective	özet, kapsamlı, bütünsel	overview	noun	sil	hedef B2 ya da üstü
+simpler	taboo	noun	yasak, tabu	forbidden	adjective	sil	hedef B2 ya da üstü
+simpler	synopsis	noun	özet	outline	noun	sil	hedef B2 ya da üstü
+simpler	taint	verb	kirletmek, leke sürmek	spoil	verb	sil	hedef B2 ya da üstü
+simpler	tart	noun	küçük tatlı, turta	pastry	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	tart	adjective	iğneleyici, alaycı	cutting	adjective	sil	hedef B2 ya da üstü
+simpler	tart	adjective	ekşi	acidic	adjective	sil	hedef B2 ya da üstü
+simpler	tandem	noun	tandem bisiklet, iki kişilik bisiklet, iş birliği	cooperate	verb	sil	hedef B2 ya da üstü
+simpler	telegram	noun	telgraf mesajı	dispatch	noun	sil	hedef B2 ya da üstü
+simpler	throttling	noun	kısıtlama, sınırlama	restrict	verb	sil	hedef B2 ya da üstü
+simpler	throttle	verb	gazı kontrol etmek, hızını ayarlamak	regulate	verb	sil	hedef B2 ya da üstü
+simpler	thyroid	noun	tiroid bezi	gland	noun	sil	hedef B2 ya da üstü
+simpler	thyroid	noun	tiroid bezi	hormone	noun	sil	hedef B2 ya da üstü
+simpler	thug	noun	zorba, çete üyesi	bully	noun	sil	hedef B2 ya da üstü
+simpler	titanium	noun	titanyum	alloy	noun	sil	hedef B2 ya da üstü
+simpler	toothpaste	noun	diş macunu	brush	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	toothbrush	noun	diş fırçası	brush	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	topping	noun	üst malzemesi, süsleme	sprinkle	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	transience	noun	geçicilik	temporary	adjective	sil	hedef B2 ya da üstü
+simpler	transient	noun	geçici kalan kimse, geçici işçi, göçebe kimse	migrant	noun	sil	hedef B2 ya da üstü
+simpler	trough	noun	yemlik, su kabı	container	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	trough	noun	düşüş, dip nokta	minimum	noun	sil	hedef B2 ya da üstü
+simpler	trolley	noun	alışveriş arabası, el arabası, servis arabası	wheel	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	tummy	noun	karın	pain	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	ubiquity	noun	her yerde bulunma, yaygınlık	presence	noun	sil	hedef B2 ya da üstü
+simpler	unicorn	noun	tek boynuzlu at	myth	noun	sil	hedef B2 ya da üstü
+simpler	ultrasound	noun	ultrason	scan	noun	sil	hedef B2 ya da üstü
+simpler	umpire	noun	hakem	judge	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	upfront	adjective	açık, dürüst, doğrudan	transparent	adjective	sil	hedef B2 ya da üstü
+simpler	upfront	adjective	önceden ödenen, peşin	prepay	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	uterine	adjective	rahimle ilgili, rahime ait	uterus	noun	sil	hedef B2 ya da üstü
+simpler	uterus	noun	rahim	womb	noun	sil	hedef B2 ya da üstü
+simpler	vocalist	noun	şarkıcı, vokalist	performer	noun	sil	hedef B2 ya da üstü
+simpler	vocalize	verb	ses çıkarmak, seslendirmek	utter	verb	sil	hedef B2 ya da üstü
+simpler	vita	noun	özgeçmiş	resume	noun	sil	hedef B2 ya da üstü
+simpler	vortex	noun	girdap	spin	noun	sil	hedef B2 ya da üstü
+simpler	walnut	noun	ceviz	nut	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	wager	verb	bahis yapmak	bet	verb	sil	hedef B2 ya da üstü
+simpler	wager	noun	bahis	bet	noun	sil	hedef B2 ya da üstü
+simpler	waltz	verb	vals yapmak	step	verb	sil	hedef B2 ya da üstü
+simpler	wetland	noun	sulak alan	habitat	noun	sil	hedef B2 ya da üstü
+simpler	whack	noun	deneme, girişim	attempt	noun	sil	hedef B2 ya da üstü
+simpler	whack	noun	güçlü darbe, şiddetli vuruş	strike	noun	sil	hedef B2 ya da üstü
+simpler	wildcat	noun	korsan girişim, izinsiz eylem	strike	noun	sil	hedef B2 ya da üstü
+simpler	zebra	noun	zebra	donkey	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	zodiacal	adjective	burçlarla ilgili, astrolojik	celestial	adjective	sil	hedef B2 ya da üstü
+simpler	metrology	noun	ölçüm bilimi	calibration	noun	sil	hedef B2 ya da üstü
+simpler	climax	noun	doruk, zirve, en yüksek nokta	culminate	verb	sil	hedef B2 ya da üstü
+simpler	colon	noun	iki nokta, iki nokta üst üste	punctuation	noun	sil	hedef B2 ya da üstü
+simpler	coupon	noun	indirim kuponu, promosyon kuponu	rebate	noun	sil	hedef B2 ya da üstü
+simpler	glucose	noun	glikoz, basit şeker	carbohydrate	noun	sil	hedef B2 ya da üstü
+simpler	mustang	noun	vahşi at	stallion	noun	sil	hedef B2 ya da üstü
+simpler	pancake	noun	krep	waffle	noun	sil	hedef B2 ya da üstü
+simpler	paste	noun	macun, yapıştırıcı	adhesive	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	scotch	noun	seloteyp, yapışkan bant	adhesive	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	sticker	noun	etiket, yapışkan etiket	adhesive	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	aggravation	noun	kötüleşme, şiddetlenme	exacerbate	verb	sil	hedef B2 ya da üstü
+simpler	clean up	phrasal_verb	temizlemek, düzenlemek	clutter	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	deduct	verb	kesmek, düşmek, mahsup etmek	withhold	verb	sil	hedef B2 ya da üstü
+simpler	gutter	verb	titreyerek sönmeye yüz tutmak	waver	verb	sil	hedef B2 ya da üstü
+simpler	kite	verb	uçurtma uçurmak	launch	verb	sil	hedef B2 ya da üstü
+simpler	sham	verb	numara yapmak, yalandan yapmak, sahte bir şey ortaya koymak	deceive	verb	sil	hedef B2 ya da üstü
+simpler	slang	noun	argo, gündelik konuşma dili	jargon	noun	sil	hedef B2 ya da üstü
+simpler	abrade	verb	sürtmek, aşındırmak	rub	verb	sil	hedef B2 ya da üstü
+simpler	abrasive	adjective	sert, kırıcı, kırıcı tavır gösteren	critical	adjective	sil	hedef B2 ya da üstü
+simpler	adamantly	adverb	kararlı bir şekilde, inatla	firmly	adverb	sil	hedef B2 ya da üstü
+simpler	adherence	noun	bağlılık, sadakat, bağlı kalma	obey	verb	sil	hedef B2 ya da üstü
+simpler	affliction	noun	sıkıntı	hardship	noun	sil	hedef B2 ya da üstü
+simpler	alchemical	adjective	simya ile ilgili, simyasal	alchemy	noun	sil	hedef B2 ya da üstü
+simpler	alchemist	noun	simyacı	wizard	noun	sil	hedef B2 ya da üstü
+simpler	alum	noun	mezun	grad	noun	sil	hedef B2 ya da üstü
+simpler	analytic	adjective	analitik	methodical	adjective	sil	hedef B2 ya da üstü
+simpler	antagonistic	adjective	zıt, karşıt, düşmanca	conflict	noun	sil	hedef B2 ya da üstü
+simpler	antagonism	noun	düşmanlık, çekişme	opposition	noun	sil	hedef B2 ya da üstü
+simpler	antagonism	noun	karşıt etki	inhibition	noun	sil	hedef B2 ya da üstü
+simpler	antigen	noun	antijen	protein	noun	sil	hedef B2 ya da üstü
+simpler	antigenic	adjective	antijenle ilgili	reactive	adjective	sil	hedef B2 ya da üstü
+simpler	armistice	noun	ateşkes, silahlı çatışmaların geçici durması	truce	noun	sil	hedef B2 ya da üstü
+simpler	assorted	adjective	çeşitli	mixed	adjective	sil	hedef B2 ya da üstü
+simpler	assay	verb	denemek, analiz etmek, ölçmek	evaluate	verb	sil	hedef B2 ya da üstü
+simpler	assortment	noun	çeşitlilik, karışım	mix	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	audacity	noun	gözü peklik, cesaret, cüret	courage	noun	sil	hedef B2 ya da üstü
+simpler	authenticator	noun	kimlik doğrulama aracı, doğrulayıcı	authenticate	verb	sil	hedef B2 ya da üstü
+simpler	babysitting	noun	çocuk bakımı	care	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	babysitter	noun	bebek bakıcısı	guardian	noun	sil	hedef B2 ya da üstü
+simpler	bandwagon	noun	popüler akım, moda	fad	noun	sil	hedef B2 ya da üstü
+simpler	bather	noun	yüzen kimse	dipper	noun	sil	hedef B2 ya da üstü
+simpler	unbeaten	adjective	yenilmemiş	victorious	adjective	sil	hedef B2 ya da üstü
+simpler	beater	noun	çırpıcı, çırpma aleti	stir	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	birdie	noun	küçük kuş	sparrow	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	bittersweet	adjective	acı-tatlı	mixed	adjective	sil	hedef B2 ya da üstü
+simpler	blasphemous	adjective	kutsala saygısız, küfür niteliğinde	offensive	adjective	sil	hedef B2 ya da üstü
+simpler	blight	verb	mahvetmek, zarar vermek	harm	verb	sil	hedef B2 ya da üstü
+simpler	blight	noun	bitki hastalığı, külleme	infection	noun	sil	hedef B2 ya da üstü
+simpler	bombard	verb	bombalamak, yoğun bir şekilde saldırmak	criticize	verb	sil	hedef B2 ya da üstü
+simpler	bombardier	noun	bombardıman nişancısı, bombardıman subayı	aircraft	noun	sil	hedef B2 ya da üstü
+simpler	brittle	adjective	kırılgan, çabuk sinirlenen	temperamental	adjective	sil	hedef B2 ya da üstü
+simpler	brig	noun	gemi hapishanesi, hücre, askeri cezaevi	jail	noun	sil	hedef B2 ya da üstü
+simpler	calibrated	adjective	ölçülere uygun, hassas ayarlanmış	set	adjective	sil	hedef B2 ya da üstü
+simpler	canny	adjective	kurnaz, akıllı, uyanık	wise	adjective	sil	hedef B2 ya da üstü
+simpler	carbonate	noun	karbonat	compound	noun	sil	hedef B2 ya da üstü
+simpler	carousel	noun	bagaj bandı	conveyor	noun	sil	hedef B2 ya da üstü
+simpler	carousel	noun	atlıkarınca	fair	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cartilaginous	adjective	kıkırdağa ait, kıkırdaklı	cartilage	noun	sil	hedef B2 ya da üstü
+simpler	cartilage	noun	kıkırdak	tissue	noun	sil	hedef B2 ya da üstü
+simpler	chai	noun	baharatlı çay	brew	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cheerleading	noun	amigoluk, ponpon kızlık, amigo gösterisi	cheer	noun	sil	hedef B2 ya da üstü
+simpler	cheerlead	verb	tezahürat yapmak, desteklemek	motivate	verb	sil	hedef B2 ya da üstü
+simpler	clandestine	adjective	gizli, saklı	hidden	adjective	sil	hedef B2 ya da üstü
+simpler	clinch	noun	kenetlenme, sarılma, kucaklaşma	secure	adjective	sil	hedef B2 ya da üstü
+simpler	clog	noun	tıkanıklık, engel	block	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	clinch	verb	kazanmak, bir anlaşmayı kesinleştirmek	obtain	verb	sil	hedef B2 ya da üstü
+simpler	clinch	verb	sonuçlandırmak, kesin bir sonuca bağlamak	finalize	verb	sil	hedef B2 ya da üstü
+simpler	clincher	noun	belirleyici etken, son darbe, kesin sonuç	proof	noun	sil	hedef B2 ya da üstü
+simpler	clout	noun	sert darbe, yumruk	punch	noun	sil	hedef B2 ya da üstü
+simpler	coherency	noun	tutarlılık, bütünlük	clarity	noun	sil	hedef B2 ya da üstü
+simpler	coercion	noun	zorlama, baskı	make	noun	sil	hedef B2 ya da üstü
+simpler	cohesion	noun	bütünlük, tutarlılık, bir arada kalma	integrity	noun	sil	hedef B2 ya da üstü
+simpler	conduit	noun	kanal, boru, iletim aracı	transmit	verb	sil	hedef B2 ya da üstü
+simpler	configurable	adjective	ayar yapılabilir, yapılandırılabilir	configure	verb	sil	hedef B2 ya da üstü
+simpler	configure	verb	ayarları belirlemek, yapılandırmak	install	verb	sil	hedef B2 ya da üstü
+simpler	misconstrue	verb	yanlış yorumlamak, yanlış anlamak	interpret	verb	sil	hedef B2 ya da üstü
+simpler	convex	adjective	dışbükey	curved	adjective	sil	hedef B2 ya da üstü
+simpler	coo	verb	mırıldanmak	whisper	verb	sil	hedef B2 ya da üstü
+simpler	crack down	phrasal_verb	baskı uygulamak, sert önlem almak	tighten	verb	sil	hedef B2 ya da üstü
+simpler	cricketer	noun	kriket oyuncusu	bat	noun	sil	hedef B2 ya da üstü
+simpler	crumb	noun	ufak ekmek kırıntısı	bite	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cyanide	noun	siyanür, zehirli kimyasal	toxic	adjective	sil	hedef B2 ya da üstü
+simpler	daredevil	noun	cesur, risk alan kişi	adventurer	noun	sil	hedef B2 ya da üstü
+simpler	dashboard	noun	gösterge paneli	interface	noun	sil	hedef B2 ya da üstü
+simpler	debacle	noun	büyük başarısızlık, felaket	failure	noun	sil	hedef B2 ya da üstü
+simpler	decimal	adjective	ondalık	numeric	adjective	sil	hedef B2 ya da üstü
+simpler	deceitful	adjective	aldatıcı	untruthful	adjective	sil	hedef B2 ya da üstü
+simpler	depose	verb	görevden almak, azletmek	dismiss	verb	sil	hedef B2 ya da üstü
+simpler	derogation	noun	muafiyet, askıya alma, istisna	suspend	verb	sil	hedef B2 ya da üstü
+simpler	detox	verb	detoks yapmak	recover	verb	sil	hedef B2 ya da üstü
+simpler	dharma	noun	doğru yol, görev, ahlaki yasa	morality	noun	sil	hedef B2 ya da üstü
+simpler	distill	verb	damıtmak, özünü ayırmak	condense	verb	sil	hedef B2 ya da üstü
+simpler	distal	adjective	merkezden uzak, uzakta bulunan	outer	adjective	sil	hedef B2 ya da üstü
+simpler	distiller	noun	damıtma cihazı	apparatus	noun	sil	hedef B2 ya da üstü
+simpler	divisiveness	noun	bölücülük, ayrıştırıcılık	split	noun	sil	hedef B2 ya da üstü
+simpler	dole	noun	refah yardımı, işsizlik ödeneği	aid	noun	sil	hedef B2 ya da üstü
+simpler	dogmatic	adjective	katı, inatçı, öğretiye bağlı	strict	adjective	sil	hedef B2 ya da üstü
+simpler	downgrade	verb	düşürmek, seviyesini aşağıya çekmek	simplify	verb	sil	hedef B2 ya da üstü
+simpler	reelection	noun	yeniden seçilme	incumbent	noun	sil	hedef B2 ya da üstü
+simpler	elongation	noun	uzama, uzunlaştırma	stretch	noun	sil	hedef B2 ya da üstü
+simpler	emancipate	verb	özgür kılmak, serbest bırakmak	free	verb	sil	hedef B2 ya da üstü
+simpler	embargo	verb	ticaret yasaklamak, ambargo uygulamak	prohibit	verb	sil	hedef B2 ya da üstü
+simpler	enigmatic	adjective	gizemli, esrarengiz	obscure	adjective	sil	hedef B2 ya da üstü
+simpler	ensign	noun	bayrak	banner	noun	sil	hedef B2 ya da üstü
+simpler	entrenchment	noun	köklenme, sağlam yer edinme	root	noun	sil	hedef B2 ya da üstü
+simpler	estrogenic	adjective	östrojen benzeri, östrojen etkili	hormonal	adjective	sil	hedef B2 ya da üstü
+simpler	estrogen	noun	östrojen hormonu	hormone	noun	sil	hedef B2 ya da üstü
+simpler	estuarine	adjective	haliçle ilgili, haliç özellikli	wetland	noun	sil	hedef B2 ya da üstü
+simpler	unexplainable	adjective	açıklanamaz, anlaşılmaz	mysterious	adjective	sil	hedef B2 ya da üstü
+simpler	extradition	noun	sınır dışına gönderme, iade	detain	verb	sil	hedef B2 ya da üstü
+simpler	extortion	noun	haraç alma, şantajla para alma, irtikap	coercion	noun	sil	hedef B2 ya da üstü
+simpler	extort	verb	zorla para almak, şantaj yapmak	coerce	verb	sil	hedef B2 ya da üstü
+simpler	farcical	adjective	gülünç, saçma, komik	humorous	adjective	sil	hedef B2 ya da üstü
+simpler	fallacious	adjective	yanıltıcı, hatalı	incorrect	adjective	sil	hedef B2 ya da üstü
+simpler	felicitate	verb	kutlamak, tebrik etmek	honor	verb	sil	hedef B2 ya da üstü
+simpler	feces	noun	dışkı	waste	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	ferment	verb	mayalanmak, fermantasyon yapmak	cultivate	verb	sil	hedef B2 ya da üstü
+simpler	fiasco	noun	başarısızlık, felaket	failure	noun	sil	hedef B2 ya da üstü
+simpler	nonfiction	noun	kurgu dışı edebiyat, kurgu dışı yazın	real	noun	sil	hedef B2 ya da üstü
+simpler	firsthand	adverb	ilk elden	obtain	verb	sil	hedef B2 ya da üstü
+simpler	fluoridation	noun	florür ekleme, suya florür ilavesi	fluoride	noun	sil	hedef B2 ya da üstü
+simpler	foundry	noun	dökümhane	cast	noun	sil	hedef B2 ya da üstü
+simpler	unfounded	adjective	temelsiz, asılsız	valid	adjective	sil	hedef B2 ya da üstü
+simpler	fruiting	noun	meyve verme, meyve üretme süreci	produce	noun	sil	hedef B2 ya da üstü
+simpler	fruity	adjective	meyvemsi, meyve aromalı	aromatic	adjective	sil	hedef B2 ya da üstü
+simpler	furnishings	noun	mobilya, eşya, döşeme	equip	verb	sil	hedef B2 ya da üstü
+simpler	gallant	adjective	cesur, kahraman, mert	courteous	adjective	sil	hedef B2 ya da üstü
+simpler	gallantry	noun	cesaret, kahramanlık, şövalyelik	courage	noun	sil	hedef B2 ya da üstü
+simpler	gall	noun	safra, öd	liver	noun	sil	hedef B2 ya da üstü
+simpler	gall	noun	cüret, yüzsüzlük, küstahlık	boldness	noun	sil	hedef B2 ya da üstü
+simpler	gastric	adjective	mideye ait, mideyle ilgili	digestive	adjective	sil	hedef B2 ya da üstü
+simpler	gubernatorial	adjective	valilikle ilgili, valilikle bağlantılı	governor	noun	sil	hedef B2 ya da üstü
+simpler	graphite	noun	grafit, kurşun kalem çekirdeği	carbon	noun	sil	hedef B2 ya da üstü
+simpler	grappler	noun	kavrama aparatı, tutucu	hook	noun	sil	hedef B2 ya da üstü
+simpler	grime	noun	kir, pislik	soil	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	handgun	noun	tabanca	firearm	noun	sil	hedef B2 ya da üstü
+simpler	handcuff	verb	kelepçelemek, kelepçe takmak	detain	verb	sil	hedef B2 ya da üstü
+simpler	handheld	adjective	elde taşınabilir, el tipi	lightweight	noun	sil	hedef B2 ya da üstü
+simpler	heartland	noun	iç bölge, merkez bölge, can damarı	core	noun	sil	hedef B2 ya da üstü
+simpler	herbalist	noun	bitki uzmanı, şifalı ot uzmanı	herb	noun	sil	hedef B2 ya da üstü
+simpler	herbivore	noun	otobur	graze	noun	sil	hedef B2 ya da üstü
+simpler	herbarium	noun	bitki koleksiyonu, kurutulmuş bitkiler arşivi	botany	noun	sil	hedef B2 ya da üstü
+simpler	herbivorous	adjective	bitkiyle beslenen, otçul	herbivore	noun	sil	hedef B2 ya da üstü
+simpler	hermitage	noun	keşiş evi, inziva yeri	retreat	noun	sil	hedef B2 ya da üstü
+simpler	hermit	noun	münzevi, keşiş	monk	noun	sil	hedef B2 ya da üstü
+simpler	hex	noun	büyü, lanet	charm	noun	sil	hedef B2 ya da üstü
+simpler	homogenization	noun	homojenleştirme, tekdüze hâle getirme	homogenize	verb	sil	hedef B2 ya da üstü
+simpler	imp	noun	küçük şeytan, cin, afacan	devil	noun	sil	hedef B2 ya da üstü
+simpler	impoverish	verb	yoksullaştırmak	deprive	verb	sil	hedef B2 ya da üstü
+simpler	inquest	noun	ölüm tahkikatı, adli soruşturma	probe	noun	sil	hedef B2 ya da üstü
+simpler	insidious	adjective	sinsi, aldatıcı, gizlice zarar veren	sly	adjective	sil	hedef B2 ya da üstü
+simpler	inquisition	noun	soruşturma, araştırma	examination	noun	sil	hedef B2 ya da üstü
+simpler	insurgency	noun	isyan, ayaklanma	conflict	noun	sil	hedef B2 ya da üstü
+simpler	insurgent	adjective	isyan eden, ayaklanan	uprising	noun	sil	hedef B2 ya da üstü
+simpler	intestine	noun	bağırsak	digest	noun	sil	hedef B2 ya da üstü
+simpler	intestinal	adjective	bağırsakla ilgili	bowel	noun	sil	hedef B2 ya da üstü
+simpler	ire	noun	öfke, kızgınlık	displeasure	noun	sil	hedef B2 ya da üstü
+simpler	invoice	noun	fatura	charge	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	kinky	adjective	kıvrımlı, buruşuk, kıvrık	twist	noun	sil	hedef B2 ya da üstü
+simpler	kiwi	noun	kivi kuşu	flightless	adjective	sil	hedef B2 ya da üstü
+simpler	kink	noun	bükülme, kıvrım	curve	noun	sil	hedef B2 ya da üstü
+simpler	lac	noun	böcek reçinesi	resin	noun	sil	hedef B2 ya da üstü
+simpler	laurel	noun	defne	herb	noun	sil	hedef B2 ya da üstü
+simpler	lattice	noun	kafes, kafes örgü, parmaklık	framework	noun	sil	hedef B2 ya da üstü
+simpler	leach	verb	süzülmek, bir ortamdan diğerine geçmek	dissolve	verb	sil	hedef B2 ya da üstü
+simpler	lefty	noun	solcu	progressive	noun	sil	hedef B2 ya da üstü
+simpler	libel	noun	yazılı hakaret, iftira	accuse	verb	sil	hedef B2 ya da üstü
+simpler	libel	verb	iftira atmak, karalamak	accuse	verb	sil	hedef B2 ya da üstü
+simpler	limbo	noun	belirsizlik, kararsızlık durumu	delay	noun	sil	hedef B2 ya da üstü
+simpler	longitude	noun	boylam	coordinate	noun	sil	hedef B2 ya da üstü
+simpler	loophole	noun	yasal boşluk, açık, gedik	exploit	noun	sil	hedef B2 ya da üstü
+simpler	lotto	noun	piyango	prize	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	loo	noun	tuvalet, tuvalet odası	facility	noun	sil	hedef B2 ya da üstü
+simpler	lucid	adjective	akıcı, anlaşılır, berrak	transparent	adjective	sil	hedef B2 ya da üstü
+simpler	lucidity	noun	akıl açıklığı, berraklık	clearness	noun	sil	hedef B2 ya da üstü
+simpler	mailbox	noun	posta kutusu	receive	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	maize	noun	mısır	grain	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	maroon	noun	ıssız adada bırakılmış kimse, kazazede	abandoned	adjective	sil	hedef B2 ya da üstü
+simpler	mascara	noun	rimel	makeup	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	mayonnaise	noun	mayonez	sauce	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	measles	noun	kızamık	infection	noun	sil	hedef B2 ya da üstü
+simpler	meticulous	adjective	titiz, ayrıntılı, dikkatli	precise	adjective	sil	hedef B2 ya da üstü
+simpler	methylated	adjective	metillenmiş, metil grubu içeren	added	adjective	sil	hedef B2 ya da üstü
+simpler	microbe	noun	mikrop	bacterium	noun	sil	hedef B2 ya da üstü
+simpler	microbiologist	noun	mikrobiyolog	biologist	noun	sil	hedef B2 ya da üstü
+simpler	microbiological	adjective	mikrobiyolojik	biological	adjective	sil	hedef B2 ya da üstü
+simpler	mirage	noun	serap	vision	noun	sil	hedef B2 ya da üstü
+simpler	montage	noun	montaj, kurgu	edit	verb	sil	hedef B2 ya da üstü
+simpler	moor	noun	fundalık, çalılık arazi, kır	wetland	noun	sil	hedef B2 ya da üstü
+simpler	mutinous	adjective	isyan eden, başkaldıran	disobedient	adjective	sil	hedef B2 ya da üstü
+simpler	mutiny	verb	isyan etmek, ayaklanmak	defy	verb	sil	hedef B2 ya da üstü
+simpler	mutiny	noun	isyan, ayaklanma	rebel	noun	sil	hedef B2 ya da üstü
+simpler	nitrate	noun	nitrat	fertilizer	noun	sil	hedef B2 ya da üstü
+simpler	malnourishment	noun	yetersiz beslenme, beslenme eksikliği	starvation	noun	sil	hedef B2 ya da üstü
+simpler	malnutrition	noun	beslenme yetersizliği	nutrition	noun	sil	hedef B2 ya da üstü
+simpler	occultism	noun	gizli ilimler, okültizm	mysticism	noun	sil	hedef B2 ya da üstü
+simpler	orchestration	noun	düzenleme	compose	verb	sil	hedef B2 ya da üstü
+simpler	orchestrate	verb	bir müzik eserini orkestraya uyarlamak	compose	verb	sil	hedef B2 ya da üstü
+simpler	orchestrator	noun	orkestra aranjörü	composer	noun	sil	hedef B2 ya da üstü
+simpler	ostensibly	adverb	görünüşte, dışarıdan bakıldığında, sözde	seemingly	adverb	sil	hedef B2 ya da üstü
+simpler	outsourced	adjective	dış kaynaklı, dışarıdan temin edilmiş	delegate	noun	sil	hedef B2 ya da üstü
+simpler	outsourcing	noun	dış kaynak kullanımı	hire	noun	sil	hedef B2 ya da üstü
+simpler	pajamas	noun	pijama, gecelik	robe	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	pancreas	noun	pankreas	organ	noun	sil	hedef B2 ya da üstü
+simpler	pancreatic	adjective	pankreasla ilgili	organ	noun	sil	hedef B2 ya da üstü
+simpler	parsley	noun	maydanoz	herb	noun	sil	hedef B2 ya da üstü
+simpler	pathogenic	adjective	hastalık yapıcı, patojen	harmful	adjective	sil	hedef B2 ya da üstü
+simpler	payoff	noun	rüşvet	corruption	noun	sil	hedef B2 ya da üstü
+simpler	pay off	phrasal_verb	borçları tamamen ödemek, kapatmak	repay	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	pay off	phrasal_verb	başarılı olmak, sonuç vermek	reward	noun	sil	hedef B2 ya da üstü
+simpler	payload	noun	taşıma yükü	load	noun	sil	hedef B2 ya da üstü
+simpler	pedestal	noun	kaide, destek, taban	elevate	verb	sil	hedef B2 ya da üstü
+simpler	pebble	noun	küçük taş, çakıl	grain	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	perjure	verb	yalan yere yemin etmek	falsehood	noun	sil	hedef B2 ya da üstü
+simpler	perseverance	noun	azim, sebat	persist	verb	sil	hedef B2 ya da üstü
+simpler	philanthropy	noun	yardımseverlik, hayırseverlik	donation	noun	sil	hedef B2 ya da üstü
+simpler	picket	verb	grev gözcülüğü yapmak, önünde nöbet tutarak protesto etmek	strike	verb	sil	hedef B2 ya da üstü
+simpler	picket	noun	çit kazığı, sivri kazık	barrier	noun	sil	hedef B2 ya da üstü
+simpler	pinpoint	verb	tam olarak belirlemek, tespit etmek	estimate	verb	sil	hedef B2 ya da üstü
+simpler	plagiarism	noun	intihal	steal	noun	sil	hedef B2 ya da üstü
+simpler	deployable	adjective	yerleştirilebilir, konuşlandırılabilir	deploy	verb	sil	hedef B2 ya da üstü
+simpler	polio	noun	çocuk felci	vaccine	noun	sil	hedef B2 ya da üstü
+simpler	poliomyelitis	noun	çocuk felci	vaccine	noun	sil	hedef B2 ya da üstü
+simpler	potty	noun	çocuk tuvaleti	lavatory	noun	sil	hedef B2 ya da üstü
+simpler	prognosis	noun	tahmin, öngörü	estimate	noun	sil	hedef B2 ya da üstü
+simpler	prognostic	adjective	öngörücü, tahmini	estimate	noun	sil	hedef B2 ya da üstü
+simpler	proctor	noun	sınav gözetmeni, denetleyici	monitor	noun	sil	hedef B2 ya da üstü
+simpler	propagation	noun	yayılma, çoğaltma	multiply	verb	sil	hedef B2 ya da üstü
+simpler	prosthesis	noun	yapay uzuv, protez	implant	verb	sil	hedef B2 ya da üstü
+simpler	prosthetic	adjective	protez, yapay	fake	adjective	sil	hedef B2 ya da üstü
+simpler	psychopathy	noun	psikopati	disorder	noun	sil	hedef B2 ya da üstü
+simpler	psychopath	noun	psikopat	monster	noun	sil	hedef B2 ya da üstü
+simpler	puncture	noun	patlak, delik	repair	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	puncture	verb	delmek, delik açmak	hole	verb	sil	hedef B2 ya da üstü
+simpler	pundit	noun	uzman, görüş sahibi	analyst	noun	sil	hedef B2 ya da üstü
+simpler	rabies	noun	kuduz	vaccine	noun	sil	hedef B2 ya da üstü
+simpler	reindeer	noun	ren geyiği	elk	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	roost	verb	konmak, dinlenmek	settle	verb	sil	hedef B2 ya da üstü
+simpler	rooster	noun	horoz	cock	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	roost	noun	tünek, tüneme yeri	nest	noun	sil	hedef B2 ya da üstü
+simpler	roundup	noun	özet, toplama	compile	verb	sil	hedef B2 ya da üstü
+simpler	roundabout	adjective	dolambaçlı, dolaylı	indirectly	adverb	sil	hedef B2 ya da üstü
+simpler	saliva	noun	tükürük	spit	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	satanic	adjective	şeytani, şeytanla ilgili	evil	adjective	sil	hedef B2 ya da üstü
+simpler	Satan	noun	Şeytan	evil	noun	sil	hedef B2 ya da üstü
+simpler	sclerotic	adjective	sertleşmiş, katılaşmış	hardening	noun	sil	hedef B2 ya da üstü
+simpler	sclerosis	noun	skleroz, sertleşme	stiffness	noun	sil	hedef B2 ya da üstü
+simpler	scrum	noun	çevik geliştirme çerçevesi	iteration	noun	sil	hedef B2 ya da üstü
+simpler	secession	noun	ayrılık, bağımsızlık	secede	verb	sil	hedef B2 ya da üstü
+simpler	serviceman	noun	asker, er	military	noun	sil	hedef B2 ya da üstü
+simpler	overshadow	verb	gölgelemek, önüne geçmek	diminish	verb	sil	hedef B2 ya da üstü
+simpler	shamanic	adjective	şamanlarla ilgili	ritual	adjective	sil	hedef B2 ya da üstü
+simpler	shaman	noun	şaman	healer	noun	sil	hedef B2 ya da üstü
+simpler	silky	adjective	ipeksi	silk	noun	sil	hedef B2 ya da üstü
+simpler	simmering	adjective	gizliden süren	resent	verb	sil	hedef B2 ya da üstü
+simpler	sinusitis	noun	sinüzit	infection	noun	sil	hedef B2 ya da üstü
+simpler	sled	noun	kızak	slide	noun	sil	hedef B2 ya da üstü
+simpler	slug	noun	sümüklüböcek	worm	noun	sil	hedef B2 ya da üstü
+simpler	slug	noun	kurşun, mermi	projectile	noun	sil	hedef B2 ya da üstü
+simpler	slug	noun	kurşun, mermi	shot	noun	sil	hedef B2 ya da üstü
+simpler	slug	verb	vurmak, sertçe darbe indirmek	punch	verb	sil	hedef B2 ya da üstü
+simpler	sluggishness	noun	yavaşlık, halsizlik	laziness	noun	sil	hedef B2 ya da üstü
+simpler	smugness	noun	kendini beğenmişlik, kendinden emin tavır	pride	noun	sil	hedef B2 ya da üstü
+simpler	snare	noun	tuzak	capture	noun	sil	hedef B2 ya da üstü
+simpler	socioeconomic	adjective	sosyoekonomik	wealthy	adjective	sil	hedef B2 ya da üstü
+simpler	snowflake	noun	kar tanesi	crystal	noun	sil	hedef B2 ya da üstü
+simpler	speedometer	noun	hız göstergesi	gauge	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	squirt	verb	sıçratmak, püskürtmek	sprinkle	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	stagnant	adjective	hareketsiz, durgun	stagnate	verb	sil	hedef B2 ya da üstü
+simpler	standout	adjective	göze çarpan, dikkat çeken	notable	adjective	sil	hedef B2 ya da üstü
+simpler	starch	noun	nişasta	carbohydrate	noun	sil	hedef B2 ya da üstü
+simpler	starchy	adjective	nişastalı, nişasta içeren	starch	noun	sil	hedef B2 ya da üstü
+simpler	steamer	noun	buharlı tencere, buharlı pişirici	pot	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	streamlining	noun	verimlilik artırma, sadeleştirme	efficiency	noun	sil	hedef B2 ya da üstü
+simpler	streamlined	adjective	verimli, sadeleştirilmiş	simplify	verb	sil	hedef B2 ya da üstü
+simpler	subpoena	noun	mahkeme celbi, duruşma çağrısı	witness	noun	sil	hedef B2 ya da üstü
+simpler	subpoena	noun	mahkeme celbi, duruşma çağrısı	comply	verb	sil	hedef B2 ya da üstü
+simpler	suede	noun	süet	fabric	noun	sil	hedef B2 ya da üstü
+simpler	supremacist	noun	üstünlük yanlısı	bigot	noun	sil	hedef B2 ya da üstü
+simpler	swimsuit	noun	mayo	clothing	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	synergistic	adjective	birlikte çalışan, etkileşimli, sinerjik	combined	adjective	sil	hedef B2 ya da üstü
+simpler	syringe	noun	enjeksiyon cihazı, şırınga	injection	noun	sil	hedef B2 ya da üstü
+simpler	retake	verb	yeniden ele geçirmek	seize	verb	sil	hedef B2 ya da üstü
+simpler	takeoff	noun	kalkış	launch	noun	sil	hedef B2 ya da üstü
+simpler	take off	phrasal_verb	kıyafet çıkarmak, soyunmak	remove	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	take off	phrasal_verb	havalanmak, kalkmak	launch	noun	sil	hedef B2 ya da üstü
+simpler	teaspoon	noun	çay kaşığı	spoon	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	attestation	noun	tasdik, onay, doğrulama	declare	verb	sil	hedef B2 ya da üstü
+simpler	thermometer	noun	sıcaklık ölçer, termometre	temperature	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	thermometer	noun	sıcaklık ölçer, termometre	measure	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	throwback	noun	geçmişe dönüş, eskiye ait şey, nostalji	classic	noun	sil	hedef B2 ya da üstü
+simpler	thumbnail	noun	küçük resim	icon	noun	sil	hedef B2 ya da üstü
+simpler	tickling	noun	gıdıklama	tickle	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	tickler	noun	gıdıklayan nesne, gıdıklama aracı	stimulus	noun	sil	hedef B2 ya da üstü
+simpler	tickle	verb	gıdıklamak, kıkırdatarak güldürmek	stimulate	verb	sil	hedef B2 ya da üstü
+simpler	toaster	noun	ekmek kızartma makinesi	heater	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	topography	noun	yer şekilleri	landscape	noun	sil	hedef B2 ya da üstü
+simpler	topographic	adjective	topografik, yer şekillerine ait	terrain	noun	sil	hedef B2 ya da üstü
+simpler	transversal	adjective	enine, çapraz, kesişen	intersect	verb	sil	hedef B2 ya da üstü
+simpler	triad	noun	üçlü, üçlü grup	trio	noun	sil	hedef B2 ya da üstü
+simpler	truss	noun	çatı makası, kafes kiriş, makas	beam	noun	sil	hedef B2 ya da üstü
+simpler	tubing	noun	boru tesisatı, borular, boru sistemi	conduit	noun	sil	hedef B2 ya da üstü
+simpler	ultraviolet	adjective	görünür ışığın ötesinde, morötesi	radiation	noun	sil	hedef B2 ya da üstü
+simpler	urn	noun	vazo, dekoratif vazo	container	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	urn	noun	kül vazosu, kül kabı	ash	noun	sil	hedef B2 ya da üstü
+simpler	valorous	adjective	cesur, kahraman	bold	adjective	sil	hedef B2 ya da üstü
+simpler	vie	verb	rekabet etmek, yarışmak	contest	verb	sil	hedef B2 ya da üstü
+simpler	volley	noun	vole, havada vuruş	strike	noun	sil	hedef B2 ya da üstü
+simpler	wasp	noun	eşek arısı	sting	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	whaling	noun	balina avcılığı	hunt	noun	sil	hedef B2 ya da üstü
+simpler	whim	noun	ani istek, heves, kapris	desire	noun	sil	hedef B2 ya da üstü
+simpler	whirlwind	noun	baş döndürücü yoğunluk, hengâme, fırtına	rush	noun	sil	hedef B2 ya da üstü
+simpler	wick	noun	fitil	candle	noun	sil	hedef B2 ya da üstü
+simpler	whopper	noun	büyük yalan, aldatma	fabricate	verb	sil	hedef B2 ya da üstü
+simpler	wiggle	noun	kıvrılma, sallanma	move	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	wiggly	adjective	dalgalı, kıvrımlı, sallanan	bendy	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	withholding	noun	kesinti, alıkoyma	deduct	verb	sil	hedef B2 ya da üstü
+simpler	yeast	noun	maya	microorganism	noun	sil	hedef B2 ya da üstü
+simpler	parson	noun	rahip, din görevlisi	clergyman	noun	sil	hedef B2 ya da üstü
+simpler	resinous	adjective	reçine içeren, reçineli	viscous	adjective	sil	hedef B2 ya da üstü
+simpler	telescope	noun	teleskop	binoculars	noun	sil	hedef B2 ya da üstü
+simpler	cafeteria	noun	yemekhane	canteen	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	thrift	noun	tasarruf, tutumluluk	frugal	adjective	sil	hedef B2 ya da üstü
+simpler	forfeit	noun	ceza, kayıp, el konulan mal	fine	noun	sil	hedef B2 ya da üstü
+simpler	turquoise	noun	firuze, turkuaz taşı	gem	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	abbreviation	noun	kısaltma	concise	adjective	sil	hedef B2 ya da üstü
+simpler	absentee	noun	devamsız, yokluğunda olan kişi	absence	noun	sil	hedef B2 ya da üstü
+simpler	absentia	noun	yokluk, devamsızlık	absent	adjective	sil	hedef B2 ya da üstü
+simpler	accrual	noun	tahakkuk, birikim	expense	noun	sil	hedef B2 ya da üstü
+simpler	accrue	verb	birikmek, artmak	gain	verb	sil	hedef B2 ya da üstü
+simpler	acoustics	noun	akustik, ses bilimi	audio	adjective	sil	hedef B2 ya da üstü
+simpler	acoustical	adjective	akustik, sesle ilgili	sound	adjective	sil	hedef B2 ya da üstü
+simpler	anointing	noun	kutsama, yağ sürme	blessing	noun	sil	hedef B2 ya da üstü
+simpler	anoint	verb	meshetmek, kutsamak	bless	verb	sil	hedef B2 ya da üstü
+simpler	appeasement	noun	yatıştırma, memnun etme	pacify	verb	sil	hedef B2 ya da üstü
+simpler	appease	verb	memnun etmek, yatıştırmak, sakinleştirmek	satisfy	verb	sil	hedef B2 ya da üstü
+simpler	assimilation	noun	özümseme, entegrasyon, asimilasyon	absorb	verb	sil	hedef B2 ya da üstü
+simpler	assimilate	verb	benimsemek, uyum sağlamak	adapt	verb	sil	hedef B2 ya da üstü
+simpler	assimilate	verb	sindirmek, sindirilebilir hâle getirmek	process	verb	sil	hedef B2 ya da üstü
+simpler	astral	adjective	göksel, yıldızlarla ilgili	starry	adjective	sil	hedef B2 ya da üstü
+simpler	astute	adjective	zeki, kurnaz, keskin	wise	adjective	sil	hedef B2 ya da üstü
+simpler	attrition	noun	azalma, erozyon, aşınma	decrease	noun	sil	hedef B2 ya da üstü
+simpler	aviary	noun	kuş barınağı, kuş kafesi	habitat	noun	sil	hedef B2 ya da üstü
+simpler	ballast	verb	ağırlık vermek, dengelemek	weight	verb	sil	hedef B2 ya da üstü
+simpler	ballast	noun	dengeleyici ağırlık, balast	stability	noun	sil	hedef B2 ya da üstü
+simpler	ballerina	noun	balerin	performer	noun	sil	hedef B2 ya da üstü
+simpler	bail out	phrasal_verb	kurtulmak, bir durumdan çıkmak	leave	noun	sil	hedef B2 ya da üstü
+simpler	bayou	noun	bataklık, sığ su kanalı	wetland	noun	sil	hedef B2 ya da üstü
+simpler	binoculars	noun	çift gözlü dürbün, dürbün	lens	noun	sil	hedef B2 ya da üstü
+simpler	blacklist	verb	kara listeye almak	exclude	verb	sil	hedef B2 ya da üstü
+simpler	boa	noun	tüy atkı, kürk atkı, boa şal	accessory	adjective	sil	hedef B2 ya da üstü
+simpler	cadence	noun	ritim, akıcılık	beat	noun	sil	hedef B2 ya da üstü
+simpler	cadence	noun	adım temposu, yürüyüş ritmi	beat	noun	sil	hedef B2 ya da üstü
+simpler	campfire	noun	kamp ateşi	extinguish	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	campfire	noun	kamp ateşi	ignite	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	carcinogen	noun	kanserojen	toxin	noun	sil	hedef B2 ya da üstü
+simpler	carcinoma	noun	kanser	malignancy	noun	sil	hedef B2 ya da üstü
+simpler	carcinogenesis	noun	kanser oluşumu	cancer	noun	sil	hedef B2 ya da üstü
+simpler	carcinogenic	adjective	kanser yapıcı, kanser oluşturan	harmful	adjective	sil	hedef B2 ya da üstü
+simpler	carton	noun	karton, kağıt kutu	container	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cashmere	noun	kaşmir	fabric	noun	sil	hedef B2 ya da üstü
+simpler	centerpiece	noun	odak noktası, en önemli parça, orta süsü	main	noun	sil	hedef B2 ya da üstü
+simpler	chameleon	noun	bukalemun	reptile	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	chameleon	noun	bukalemun, nabza göre şerbet veren kimse, dönek	flexible	adjective	sil	hedef B2 ya da üstü
+simpler	chaste	adjective	iffetli, namuslu	modest	adjective	sil	hedef B2 ya da üstü
+simpler	chastity	noun	iffet, namus	abstinence	noun	sil	hedef B2 ya da üstü
+simpler	chute	noun	çamaşır kanalı, düşey geçit	slide	noun	sil	hedef B2 ya da üstü
+simpler	chute	noun	paraşüt	glider	noun	sil	hedef B2 ya da üstü
+simpler	clergyman	noun	rahip, din görevlisi	pastor	noun	sil	hedef B2 ya da üstü
+simpler	complacent	adjective	rehavete kapılmış, halinden gereğinden fazla memnun	satisfied	adjective	sil	hedef B2 ya da üstü
+simpler	complacency	noun	rehavet, kayıtsızlık, aşırı özgüven	contentment	noun	sil	hedef B2 ya da üstü
+simpler	computerize	verb	bilgisayarlı hâle getirmek, bilgisayara dönüştürmek	process	verb	sil	hedef B2 ya da üstü
+simpler	computerized	adjective	bilgisayarlı, bilgisayar destekli, otomatikleştirilmiş	computerize	verb	sil	hedef B2 ya da üstü
+simpler	condescension	noun	küçümseyici tavır, aşağılayıcı davranış	arrogance	noun	sil	hedef B2 ya da üstü
+simpler	condescending	adjective	küçümseyen, aşağılayıcı	arrogant	adjective	sil	hedef B2 ya da üstü
+simpler	congestive	adjective	tıkanıklığa bağlı, sıkışık	fluid	adjective	sil	hedef B2 ya da üstü
+simpler	confluence	noun	kesişme, birleşme	merge	verb	sil	hedef B2 ya da üstü
+simpler	congestion	noun	burun tıkanıklığı, akciğerlerde sıvı birikimi	mucus	noun	sil	hedef B2 ya da üstü
+simpler	consecration	noun	kutsama, kutsanma	holy	adjective	sil	hedef B2 ya da üstü
+simpler	consecrate	verb	kutsamak, kutsal kılmak	bless	verb	sil	hedef B2 ya da üstü
+simpler	cordon	noun	bariyer, sınır çizgisi	restrict	verb	sil	hedef B2 ya da üstü
+simpler	coolant	noun	soğutma sıvısı, soğutucu	fluid	noun	sil	hedef B2 ya da üstü
+simpler	encumbrance	noun	yük, engel, kısıtlama	load	noun	sil	hedef B2 ya da üstü
+simpler	cystic	adjective	kistli, kist oluşumlu	cyst	noun	sil	hedef B2 ya da üstü
+simpler	debatable	adjective	tartışmaya açık	arguable	adjective	sil	hedef B2 ya da üstü
+simpler	debilitate	verb	zayıflatmak, güçsüzleştirmek	hinder	verb	sil	hedef B2 ya da üstü
+simpler	debilitating	adjective	zayıflatıcı, güçsüzleştirici	weakening	noun	sil	hedef B2 ya da üstü
+simpler	demeanor	noun	davranış, tutum	conduct	noun	sil	hedef B2 ya da üstü
+simpler	deplore	verb	kınamak, eleştirmek	disapprove	verb	sil	hedef B2 ya da üstü
+simpler	derailment	noun	raydan çıkma	crash	noun	sil	hedef B2 ya da üstü
+simpler	derangement	noun	akıl sağlığının bozulması, delilik	disorder	noun	sil	hedef B2 ya da üstü
+simpler	detonate	verb	patlatmak, havaya uçurmak	trigger	verb	sil	hedef B2 ya da üstü
+simpler	detonator	noun	fünye, kapsül, ateşleyici	explosive	noun	sil	hedef B2 ya da üstü
+simpler	dill	noun	dereotu	herb	noun	sil	hedef B2 ya da üstü
+simpler	diss	verb	hakaret etmek, küçümsemek	criticize	verb	sil	hedef B2 ya da üstü
+simpler	diss	noun	hakaret, aşağılayıcı söz	insult	noun	sil	hedef B2 ya da üstü
+simpler	distraught	adjective	perişan, çok üzgün	concerned	adjective	sil	hedef B2 ya da üstü
+simpler	domesticate	verb	evcilleştirmek, evcil hâle getirmek	cultivate	verb	sil	hedef B2 ya da üstü
+simpler	domestication	noun	evcilleştirme	breeding	noun	sil	hedef B2 ya da üstü
+simpler	downtime	noun	ara, kesinti süresi, hizmet dışı kalma	maintenance	noun	sil	hedef B2 ya da üstü
+simpler	downturn	noun	ekonomik durgunluk	slowdown	noun	sil	hedef B2 ya da üstü
+simpler	dredge	noun	tarak gemisi, tarak makinesi, tarama dubası	pump	noun	sil	hedef B2 ya da üstü
+simpler	dredge	verb	dip taramak, taramak, çamurunu temizlemek	dig	verb	sil	hedef B2 ya da üstü
+simpler	dredge	verb	ortaya çıkarmak, gün yüzüne çıkarmak	uncover	verb	sil	hedef B2 ya da üstü
+simpler	dualism	noun	ikicilik, ikiye bölünmüşlük	philosophy	noun	sil	hedef B2 ya da üstü
+simpler	elixir	noun	şifa verici içecek, iksir	cure	noun	sil	hedef B2 ya da üstü
+simpler	entangle	verb	dolaştırmak, iç içe geçmek	complicate	verb	sil	hedef B2 ya da üstü
+simpler	entangle	verb	karışık bir duruma sürüklemek	trap	verb	sil	hedef B2 ya da üstü
+simpler	esoteric	adjective	özel, sınırlı çevreye özgü	obscure	adjective	sil	hedef B2 ya da üstü
+simpler	exchequer	noun	hazine	treasury	noun	sil	hedef B2 ya da üstü
+simpler	exhilaration	noun	coşku, heyecan	exhilarate	verb	sil	hedef B2 ya da üstü
+simpler	eyelash	noun	kirpik	lash	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	eyeliner	noun	göz kalemi	makeup	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	fickle	adjective	değişken, kararsız	changeable	adjective	sil	hedef B2 ya da üstü
+simpler	fielder	noun	saha oyuncusu	catcher	noun	sil	hedef B2 ya da üstü
+simpler	fiend	noun	şeytan, kötü insan	evil	noun	sil	hedef B2 ya da üstü
+simpler	firewood	noun	odun, yakacak odun	wood	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	infirmity	noun	zayıflık, sakatlık, hastalık	weakness	noun	sil	hedef B2 ya da üstü
+simpler	flannel	noun	flanel	fabric	noun	sil	hedef B2 ya da üstü
+simpler	floss	noun	diş ipi	brush	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	floaty	adjective	hafif	lightweight	noun	sil	hedef B2 ya da üstü
+simpler	flurry	noun	telaş, yoğunluk dalgası	hurry	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	forage	noun	yem, ot, hayvan yemi	supply	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	forage	verb	yiyecek aramak, otlamak	hunt	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	forager	noun	yiyecek arayan, toplayıcı	collector	noun	sil	hedef B2 ya da üstü
+simpler	frugality	noun	tasarruf, tutumluluk	saving	noun	sil	hedef B2 ya da üstü
+simpler	fundamentalist	noun	köktendinci, köktenlikçi, fundamentalist	radical	noun	sil	hedef B2 ya da üstü
+simpler	fundamental	noun	temel, esas	principle	noun	sil	hedef B2 ya da üstü
+simpler	gape	noun	geniş açıklık, boşluk	crack	noun	sil	hedef B2 ya da üstü
+simpler	gearbox	noun	vites kutusu	gear	noun	sil	hedef B2 ya da üstü
+simpler	gauntlet	noun	eldiven, koruyucu eldiven	armor	noun	sil	hedef B2 ya da üstü
+simpler	gent	noun	beyefendi, kibar adam	lad	noun	sil	hedef B2 ya da üstü
+simpler	genteel	adjective	kibar, nazik, görgülü	courteous	adjective	sil	hedef B2 ya da üstü
+simpler	gentry	noun	soylular sınıfı, asil sınıf	landowner	noun	sil	hedef B2 ya da üstü
+simpler	gimmick	noun	göz alıcı numara, hile	gadget	noun	sil	hedef B2 ya da üstü
+simpler	gladiator	noun	gladyatör, arenada dövüşen savaşçı	combatant	noun	sil	hedef B2 ya da üstü
+simpler	gladiatorial	adjective	gladyatöre özgü	warlike	adjective	sil	hedef B2 ya da üstü
+simpler	gnome	noun	cüce, doğa ruhu	myth	noun	sil	hedef B2 ya da üstü
+simpler	gullibility	noun	kandırılganlık, saflık	trust	noun	sil	hedef B2 ya da üstü
+simpler	halal	adjective	helal, İslami kurallara uygun	lawful	adjective	sil	hedef B2 ya da üstü
+simpler	hangout	noun	buluşma yeri, takılma yeri	spot	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hang out	phrasal_verb	takılmak, vakit geçirmek	meet	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	holographic	adjective	holografik	visual	adjective	sil	hedef B2 ya da üstü
+simpler	horoscope	noun	burç yorumu, yıldız haritası	astrology	noun	sil	hedef B2 ya da üstü
+simpler	humanly	adverb	insan gücüyle, insanca	humane	adjective	sil	hedef B2 ya da üstü
+simpler	huff	verb	öfkeyle nefes almak, hiddetli solumak	breathe	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	huff	noun	öfke patlaması, sinirli hâl	temper	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	hyperbolic	adjective	abartılı, aşırı	dramatic	adjective	sil	hedef B2 ya da üstü
+simpler	disillusion	verb	gözünü açmak, yanılgıdan kurtarmak, hayallerini yıkmak	reveal	verb	sil	hedef B2 ya da üstü
+simpler	disillusionment	noun	hayal kırıklığı, düş kırıklığı	disappointment	noun	sil	hedef B2 ya da üstü
+simpler	impunity	noun	cezadan kaçınma, dokunulmazlık	exemption	noun	sil	hedef B2 ya da üstü
+simpler	impromptu	adjective	plansız, anlık	unplanned	adjective	sil	hedef B2 ya da üstü
+simpler	incise	verb	kazımak, oymak	carve	verb	sil	hedef B2 ya da üstü
+simpler	incitement	noun	kışkırtma, tahrik	urge	noun	sil	hedef B2 ya da üstü
+simpler	incite	verb	kışkırtmak, teşvik etmek	stimulate	verb	sil	hedef B2 ya da üstü
+simpler	inertial	adjective	ataletle ilgili, atalete ait	mass	adjective	sil	hedef B2 ya da üstü
+simpler	inertia	noun	atalet, hareketsizlik	mass	noun	sil	hedef B2 ya da üstü
+simpler	inertia	noun	eylemsizlik momenti, dönme eylemsizliği	torque	noun	sil	hedef B2 ya da üstü
+simpler	insignia	noun	amblem, rozet, işaret	badge	noun	sil	hedef B2 ya da üstü
+simpler	intersperse	verb	araya serpmek, dağıtmak	insert	verb	sil	hedef B2 ya da üstü
+simpler	iodine	noun	iyot	thyroid	noun	sil	hedef B2 ya da üstü
+simpler	italic	adjective	italik	oblique	adjective	sil	hedef B2 ya da üstü
+simpler	italics	noun	italik yazı	font	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	jeopardize	verb	tehlikeye atmak, riske sokmak	harm	verb	sil	hedef B2 ya da üstü
+simpler	jig	verb	jig dansı yapmak, hızlı sallanmak	skip	verb	sil	hedef B2 ya da üstü
+simpler	joking	adjective	şaka yollu, şaka niteliğinde	silly	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	kennel	noun	köpek kulübesi	shelter	noun	sil	hedef B2 ya da üstü
+simpler	laird	noun	soylu toprak sahibi (İskoçya)	noble	noun	sil	hedef B2 ya da üstü
+simpler	lakeside	noun	göl kenarı	shore	noun	sil	hedef B2 ya da üstü
+simpler	lasagna	noun	katmanlı makarna yemeği, lazanya	bake	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	laudable	adjective	övgüye değer, takdire değer	worthy	adjective	sil	hedef B2 ya da üstü
+simpler	laud	verb	övmek, takdir etmek	commend	verb	sil	hedef B2 ya da üstü
+simpler	lien	noun	haciz, rehin	mortgage	noun	sil	hedef B2 ya da üstü
+simpler	livery	noun	iş kıyafeti	outfit	noun	sil	hedef B2 ya da üstü
+simpler	livery	noun	boya şeması, özel renk düzeni	logo	noun	sil	hedef B2 ya da üstü
+simpler	liturgy	noun	ibadet, ayin	worship	noun	sil	hedef B2 ya da üstü
+simpler	lollipop	noun	saplı şeker	sweet	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	lymphoid	adjective	lenf sistemiyle ilgili	immune	adjective	sil	hedef B2 ya da üstü
+simpler	lymph	noun	lenf	fluid	noun	sil	hedef B2 ya da üstü
+simpler	lymphatic	adjective	lenfatik	bodily	adjective	sil	hedef B2 ya da üstü
+simpler	macaroni	noun	makarna, makarna çeşidi	spaghetti	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	manure	verb	gübrelemek	enrich	verb	sil	hedef B2 ya da üstü
+simpler	manure	noun	gübre	soil	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	marquee	noun	büyük çadır	shelter	noun	sil	hedef B2 ya da üstü
+simpler	marquee	noun	afiş, tabela	banner	noun	sil	hedef B2 ya da üstü
+simpler	menopausal	adjective	menopozla ilgili, menopoz dönemine ait	menopause	noun	sil	hedef B2 ya da üstü
+simpler	menopause	noun	menopoz	hormone	noun	sil	hedef B2 ya da üstü
+simpler	mink	noun	vizon	otter	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	milligram	noun	miligram	dose	noun	sil	hedef B2 ya da üstü
+simpler	misogyny	noun	kadın düşmanlığı, kadınlara duyulan nefret	patriarchy	noun	sil	hedef B2 ya da üstü
+simpler	misogynistic	adjective	kadın düşmanı, kadınlara karşı düşmanca	biased	adjective	sil	hedef B2 ya da üstü
+simpler	mower	noun	çim biçme makinesi	cut	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	mow	verb	çim biçmek	grass	verb	sil	hedef B2 ya da üstü
+simpler	muck	verb	kirletmek, çamurlamak	dirty	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	multilateralism	noun	çok taraflılık	collaboration	noun	sil	hedef B2 ya da üstü
+simpler	multilateral	adjective	çok taraflı, çok uluslu	cooperative	adjective	sil	hedef B2 ya da üstü
+simpler	nab	verb	yakalamak, tutuklamak	grab	verb	sil	hedef B2 ya da üstü
+simpler	nook	noun	köşe, köşecik, saklanma yeri	spot	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	notarized	adjective	noter tasdikli, noter onaylı	legalize	verb	sil	hedef B2 ya da üstü
+simpler	notary	noun	noter	official	noun	sil	hedef B2 ya da üstü
+simpler	obliquely	adverb	dolaylı olarak, eğik bir şekilde	hint	noun	sil	hedef B2 ya da üstü
+simpler	officiate	verb	hakemlik yapmak	supervise	verb	sil	hedef B2 ya da üstü
+simpler	ombudsman	noun	ombudsman, kamu denetçisi	representative	noun	sil	hedef B2 ya da üstü
+simpler	ouster	noun	görevden alma, dışarı çıkarma	eviction	noun	sil	hedef B2 ya da üstü
+simpler	outback	noun	iç kesim, kırsal bölge	interior	noun	sil	hedef B2 ya da üstü
+simpler	palsy	noun	felç	weakness	noun	sil	hedef B2 ya da üstü
+simpler	paramilitary	adjective	yarı askeri, silahlı	militia	noun	sil	hedef B2 ya da üstü
+simpler	pasha	noun	paşa	governor	noun	sil	hedef B2 ya da üstü
+simpler	perm	verb	saçını perma yapmak	style	verb	sil	hedef B2 ya da üstü
+simpler	pesky	adjective	rahatsız edici, can sıkıcı	annoying	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	plenary	adjective	tam, bütün, eksiksiz	overall	adjective	sil	hedef B2 ya da üstü
+simpler	plunder	noun	yağma	steal	noun	sil	hedef B2 ya da üstü
+simpler	ply	noun	katman, tabaka	strip	noun	sil	hedef B2 ya da üstü
+simpler	poaching	noun	kaçak avcılık, yasa dışı avcılık	conservation	noun	sil	hedef B2 ya da üstü
+simpler	polynomial	noun	çok terimli ifade	equation	noun	sil	hedef B2 ya da üstü
+simpler	polyester	noun	sentetik elyaf, polyester	fabric	noun	sil	hedef B2 ya da üstü
+simpler	polynomial	adjective	polinomla ilgili	mathematical	adjective	sil	hedef B2 ya da üstü
+simpler	prefect	noun	okul mümessili, vali, kıdemli öğrenci	appoint	verb	sil	hedef B2 ya da üstü
+simpler	primate	noun	primat	mammal	noun	sil	hedef B2 ya da üstü
+simpler	probate	noun	vasiyetin tasdiki, mirasın mahkeme onayı	inherit	verb	sil	hedef B2 ya da üstü
+simpler	probate	verb	vasiyetnameyi onaylamak, mirası tasfiye etmek	settle	verb	sil	hedef B2 ya da üstü
+simpler	provost	noun	rektör yardımcısı, yükseköğretim yöneticisi	administrator	noun	sil	hedef B2 ya da üstü
+simpler	pseudonymous	adjective	takma adlı, takma ad kullanan	anonymous	adjective	sil	hedef B2 ya da üstü
+simpler	purgatory	noun	araf	afterlife	noun	sil	hedef B2 ya da üstü
+simpler	quail	verb	korkmak, çekingen davranmak, geri çekilmek	hesitate	verb	sil	hedef B2 ya da üstü
+simpler	unqualified	adjective	niteliksiz, yeterli/uygun olmayan	ineligible	adjective	sil	hedef B2 ya da üstü
+simpler	raffle	noun	çekiliş, piyango	draw	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	radiologist	noun	radyolog	surgeon	noun	sil	hedef B2 ya da üstü
+simpler	radiologist	noun	radyolog	diagnose	verb	sil	hedef B2 ya da üstü
+simpler	radiology	noun	radyoloji	imaging	noun	sil	hedef B2 ya da üstü
+simpler	ramble	verb	dolaşmak, gezinmek	stroll	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	rambler	noun	gezgin, dolaşan kişi	traveler	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	rambler	noun	sarmaşık gül, tırmanıcı gül	rose	noun	sil	hedef B2 ya da üstü
+simpler	rapport	noun	uyum, bağ, ilişki	bond	noun	sil	hedef B2 ya da üstü
+simpler	unravel	verb	çözmek, ortaya çıkarmak, çözülmek	simplify	verb	sil	hedef B2 ya da üstü
+simpler	deregulate	verb	düzenlemeyi kaldırmak, serbest bırakmak	simplify	verb	sil	hedef B2 ya da üstü
+simpler	deregulation	noun	düzenlemeyi kaldırma, serbestleştirme	simplify	verb	sil	hedef B2 ya da üstü
+simpler	respite	noun	ara, mola, rahatlama	relief	noun	sil	hedef B2 ya da üstü
+simpler	retainer	noun	diş teli sonrası kullanılan tutucu	fee	noun	sil	hedef B2 ya da üstü
+simpler	retainer	noun	ön ödeme	deposit	noun	sil	hedef B2 ya da üstü
+simpler	rookery	noun	kargaların yuvası, karga kolonisi	habitat	noun	sil	hedef B2 ya da üstü
+simpler	rookery	noun	fokların üreme alanı, fok yuvası	habitat	noun	sil	hedef B2 ya da üstü
+simpler	rook	noun	satrançta kale	bishop	noun	sil	hedef B2 ya da üstü
+simpler	saber	noun	kılıç	blade	noun	sil	hedef B2 ya da üstü
+simpler	sadist	noun	sadist	abuser	noun	sil	hedef B2 ya da üstü
+simpler	sacramental	adjective	kutsal ayinle ilgili	holy	adjective	sil	hedef B2 ya da üstü
+simpler	saffron	noun	safran	spice	noun	sil	hedef B2 ya da üstü
+simpler	sadism	noun	sadizm, sadistlik	evil	noun	sil	hedef B2 ya da üstü
+simpler	sassy	adjective	şımarık, hazırcevap, cüretkâr	impudent	adjective	sil	hedef B2 ya da üstü
+simpler	scant	adjective	az, yetersiz	insufficient	adjective	sil	hedef B2 ya da üstü
+simpler	scapegoat	noun	günah keçisi, suçlu bulunan kişi	blame	noun	sil	hedef B2 ya da üstü
+simpler	scourge	noun	felaket, bela	curse	noun	sil	hedef B2 ya da üstü
+simpler	scourge	verb	kasıp kavurmak, perişan etmek, felaket getirmek	harm	verb	sil	hedef B2 ya da üstü
+simpler	seine	noun	gırgır ağı, ığrıp, balık ağı	trap	noun	sil	hedef B2 ya da üstü
+simpler	separatism	noun	ayrılıkçılık, bölücülük	independence	noun	sil	hedef B2 ya da üstü
+simpler	separatist	noun	ayrılıkçı	rebel	noun	sil	hedef B2 ya da üstü
+simpler	sentience	noun	bilinç, duyarlılık	awareness	noun	sil	hedef B2 ya da üstü
+simpler	sepsis	noun	kan zehirlenmesi	infection	noun	sil	hedef B2 ya da üstü
+simpler	resettle	verb	yeniden yerleşmek, iskân etmek, yerleştirmek	settle	verb	sil	hedef B2 ya da üstü
+simpler	resettlement	noun	yeniden yerleşim, yer değiştirme	settle	verb	sil	hedef B2 ya da üstü
+simpler	shenanigan	noun	hile, yaramazlık, hileli davranış	deceive	verb	sil	hedef B2 ya da üstü
+simpler	shortlist	noun	kısa liste, aday listesi	select	verb	sil	hedef B2 ya da üstü
+simpler	shorthand	noun	kısaltma, kısaltılmış ifade	shorten	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	sickle	noun	orak	cut	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	sine	noun	sinüs	ratio	noun	sil	hedef B2 ya da üstü
+simpler	sizzling	adjective	çok sıcak, kızgın	burn	noun	sil	hedef B2 ya da üstü
+simpler	sizzling	adjective	heyecan verici, çarpıcı	lively	adjective	sil	hedef B2 ya da üstü
+simpler	skunk	noun	kokarca	badger	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	skimmer	noun	sıyırıcı, yağ sıyırıcı, yüzey temizleyici	pump	noun	sil	hedef B2 ya da üstü
+simpler	skim	verb	yüzeyde hafifçe kaymak, süzülmek	float	verb	sil	hedef B2 ya da üstü
+simpler	slalom	verb	slalom yapmak	navigate	verb	sil	hedef B2 ya da üstü
+simpler	sloth	noun	tembel hayvan	mammal	noun	sil	hedef B2 ya da üstü
+simpler	snip	verb	kesmek, kırpmak	trim	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	snippet	noun	küçük alıntı, kısa pasaj	portion	noun	sil	hedef B2 ya da üstü
+simpler	snippet	noun	kod parçası, kısa program bölümü	segment	noun	sil	hedef B2 ya da üstü
+simpler	snowman	noun	kardan adam	figure	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	soggy	adjective	sırılsıklam, vıcık vıcık	moist	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	soldering	noun	lehimleme	welding	noun	sil	hedef B2 ya da üstü
+simpler	solicitous	adjective	alakadar, ilgili, üzerine titreyen	concerned	adjective	sil	hedef B2 ya da üstü
+simpler	spoof	noun	taklit, alaycı taklit	mock	adjective	sil	hedef B2 ya da üstü
+simpler	spleen	noun	dalak	liver	noun	sil	hedef B2 ya da üstü
+simpler	spotless	adjective	lekesiz, hiç lekesiz, tertemiz	pure	adjective	sil	hedef B2 ya da üstü
+simpler	spotting	noun	gözlem, fark etme	observe	verb	sil	hedef B2 ya da üstü
+simpler	stampede	verb	koşarak kaçmak, panikle akın etmek	flee	verb	sil	hedef B2 ya da üstü
+simpler	standoff	noun	çıkmaz, çıkmaz durum	conflict	noun	sil	hedef B2 ya da üstü
+simpler	standoff	noun	gergin bekleyiş, kriz durumu, kuşatma	tension	noun	sil	hedef B2 ya da üstü
+simpler	stead	noun	yer, konum, yerine	substitute	noun	sil	hedef B2 ya da üstü
+simpler	sterilization	noun	sterilizasyon	sanitize	verb	sil	hedef B2 ya da üstü
+simpler	stutter	noun	kekeleme	hesitate	verb	sil	hedef B2 ya da üstü
+simpler	succumb	verb	boyun eğmek, teslim olmak, yenilmek	submit	verb	sil	hedef B2 ya da üstü
+simpler	surcharge	noun	ek ücret, ilave ücret	charge	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	swagger	noun	kibirli yürüyüş, kendinden emin duruş	pride	noun	sil	hedef B2 ya da üstü
+simpler	asymmetric	adjective	asimetrik, dengesiz	balanced	adjective	sil	hedef B2 ya da üstü
+simpler	symmetric	adjective	simetrik, eşit, karşılıklı	even	adjective	sil	hedef B2 ya da üstü
+simpler	tablespoon	noun	yemek kaşığı	measure	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	tantrum	noun	öfke patlaması, sinir krizi	fit	noun	sil	hedef B2 ya da üstü
+simpler	tangent	noun	konudan sapma, lafı dağıtma	aside	noun	sil	hedef B2 ya da üstü
+simpler	tamper	verb	karıştırmak, müdahale etmek	interfere	verb	sil	hedef B2 ya da üstü
+simpler	tectonics	noun	tektonik, yer kabuğu hareketleri bilimi	geology	noun	sil	hedef B2 ya da üstü
+simpler	tenacious	adjective	ısrarcı, azimli	hold	noun	sil	hedef B2 ya da üstü
+simpler	thaw	verb	eritmek, çözülmek	warm	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	theta	noun	theta (Yunan alfabesinin sekizinci harfi)	angle	noun	sil	hedef B2 ya da üstü
+simpler	throughput	noun	işlem hacmi, veri akışı	output	noun	sil	hedef B2 ya da üstü
+simpler	totalitarianism	noun	totaliterlik	dictatorship	noun	sil	hedef B2 ya da üstü
+simpler	tort	noun	hukuki haksızlık, haksız fiil	wrong	noun	sil	hedef B2 ya da üstü
+simpler	tout	noun	karaborsacı, çığırtkan, müşteri avcısı	promoter	noun	sil	hedef B2 ya da üstü
+simpler	transistor	noun	transistör	amplifier	noun	sil	hedef B2 ya da üstü
+simpler	tripod	noun	üçayak	stand	noun	sil	hedef B2 ya da üstü
+simpler	tsarist	adjective	çarlara ait, çar yönetimine özgü	monarch	noun	sil	hedef B2 ya da üstü
+simpler	tuft	noun	tutam, demet, perçem	strand	noun	sil	hedef B2 ya da üstü
+simpler	tycoon	noun	büyük iş adamı, sanayici	investor	noun	sil	hedef B2 ya da üstü
+simpler	twine	noun	sicim, ince urgan	rope	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	twine	verb	örmek, bükmek, birbirine sarmak	intertwine	verb	sil	hedef B2 ya da üstü
+simpler	undercut	noun	alttan kesim, alt kesim	shave	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	utensil	noun	araç, gereç	gadget	noun	sil	hedef B2 ya da üstü
+simpler	vendetta	noun	kan davası, uzun süren düşmanlık	revenge	noun	sil	hedef B2 ya da üstü
+simpler	veneer	noun	yüzeysel görünüm, dış kabuk	mask	noun	sil	hedef B2 ya da üstü
+simpler	viscount	noun	vikont	lord	noun	sil	hedef B2 ya da üstü
+simpler	viscous	adjective	ağdalı, koyu kıvamlı, yapışkan	sticky	adjective	sil	hedef B2 ya da üstü
+simpler	wafer	noun	gofret, ince bisküvi	crisp	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	wafer	noun	yarı iletken levha	substrate	noun	sil	hedef B2 ya da üstü
+simpler	wasting	adjective	zayıflamaya neden olan, eriten	malnutrition	noun	sil	hedef B2 ya da üstü
+simpler	unwell	adjective	hasta, iyi hissetmeyen	sickly	adjective	sil	hedef B2 ya da üstü
+simpler	weasel	noun	gelincik	predator	noun	sil	hedef B2 ya da üstü
+simpler	whitehead	noun	beyaz nokta, sivilce	spot	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	norm	verb	standartlaştırmak, ölçüt koymak	regulate	verb	sil	hedef B2 ya da üstü
+simpler	reactance	noun	tepkisellik	motivation	noun	sil	hedef B2 ya da üstü
+simpler	satan	noun	şeytan	evil	noun	sil	hedef B2 ya da üstü
+simpler	ticklish	adjective	gıdıklanan	touchy	adjective	sil	hedef B2 ya da üstü
+simpler	thrash	verb	vurmak, çırpmak	defeat	verb	sil	hedef B2 ya da üstü
+simpler	animosity	noun	düşmanlık, kin, nefret	resentment	noun	sil	hedef B2 ya da üstü
+simpler	artifice	noun	hile, aldatma, kurnazlık	craft	noun	sil	hedef B2 ya da üstü
+simpler	back up	phrasal_verb	desteklemek, yardım etmek	assist	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	back up	phrasal_verb	kopyasını almak, yedeklemek	save	noun	sil	hedef B2 ya da üstü
+simpler	blockade	noun	abluka, kuşatma	restriction	noun	sil	hedef B2 ya da üstü
+simpler	break out	phrasal_verb	aniden ortaya çıkmak, patlak vermek	escape	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	breakout	adjective	büyük çıkış yakalayan, çıkış yapan	emerge	verb	sil	hedef B2 ya da üstü
+simpler	brazen	adjective	küstah, cüretkar	courageous	adjective	sil	hedef B2 ya da üstü
+simpler	brazing	noun	sert lehimleme, sert lehim	join	noun	sil	hedef B2 ya da üstü
+simpler	braze	verb	lehimle birleştirmek	weld	verb	sil	hedef B2 ya da üstü
+simpler	brazenly	adverb	yüzsüzce, utanmazca, arsızca	fearlessly	adverb	sil	hedef B2 ya da üstü
+simpler	breakout	noun	ani çıkış, kaçış	flee	verb	sil	hedef B2 ya da üstü
+simpler	centrality	noun	merkez olma, merkezi konum	core	noun	sil	hedef B2 ya da üstü
+simpler	centralization	noun	merkezileşme	centralize	verb	sil	hedef B2 ya da üstü
+simpler	centrist	adjective	merkezci, ortacı	conservative	adjective	sil	hedef B2 ya da üstü
+simpler	classy	adjective	şık, zarif, seçkin	stylish	adjective	sil	hedef B2 ya da üstü
+simpler	subcommittee	noun	alt komite	panel	noun	sil	hedef B2 ya da üstü
+simpler	conjunct	adjective	birlikte, bağlantılı, ortak	linked	adjective	sil	hedef B2 ya da üstü
+simpler	conjunct	noun	bağlaç	join	noun	sil	hedef B2 ya da üstü
+simpler	cosmology	noun	kozmoloji, evrenbilimi	universe	noun	sil	hedef B2 ya da üstü
+simpler	cosmological	adjective	evrenle ilgili, kozmolojiyle ilgili	universal	adjective	sil	hedef B2 ya da üstü
+simpler	crypt	noun	yeraltı mezarı, mezar odası, mahzen mezar	tomb	noun	sil	hedef B2 ya da üstü
+simpler	cryptographic	adjective	şifreleme ile ilgili	secure	adjective	sil	hedef B2 ya da üstü
+simpler	shortcut	noun	kısa yol	path	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cutaway	noun	kesit, kesit modeli, iç kesit	expose	verb	sil	hedef B2 ya da üstü
+simpler	cutaway	noun	kırpma çekimi, ara sahne	insert	verb	sil	hedef B2 ya da üstü
+simpler	cut off	phrasal_verb	kesmek, bağını koparmak, izole etmek	supply	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	redirection	noun	yönlendirme, yeniden yönlendirme	redirect	verb	sil	hedef B2 ya da üstü
+simpler	misdirect	verb	yanıltmak, aldatmak	inform	verb	sil	hedef B2 ya da üstü
+simpler	directional	adjective	yönlü, yön gösteren	pointed	adjective	sil	hedef B2 ya da üstü
+simpler	dissident	noun	muhalif, aykırı görüşe sahip kişi	rebel	noun	sil	hedef B2 ya da üstü
+simpler	dissident	adjective	muhalif, isyancı	critical	adjective	sil	hedef B2 ya da üstü
+simpler	duct	noun	kanal, boru, havalandırma kanalı	tube	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	edible	adjective	yenilebilir	consume	verb	sil	hedef kaynaktan alt seviyede değil
+simpler	evangelism	noun	misyonerlik	mission	noun	sil	hedef B2 ya da üstü
+simpler	fender	noun	çamurluk	repair	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	flammability	noun	yanıcılık	burn	noun	sil	hedef B2 ya da üstü
+simpler	goalie	noun	kaleci	defender	noun	sil	hedef B2 ya da üstü
+simpler	hairdressing	noun	kuaförlük, saç şekillendirme	beauty	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	superhero	noun	süper kahraman	character	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	cohost	noun	ortak sunucu	presenter	noun	sil	hedef B2 ya da üstü
+simpler	hostel	noun	yurt, pansiyon, öğrenci yurdu	accommodation	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	keyring	noun	anahtarlık	ring	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	lander	noun	iniş aracı	craft	noun	sil	hedef B2 ya da üstü
+simpler	layover	noun	ara durak, aktarma	transfer	noun	sil	hedef B2 ya da üstü
+simpler	overlying	adjective	üstte bulunan	above	adjective	sil	hedef B2 ya da üstü
+simpler	biomedicine	noun	biyomedikal bilim	clinical	adjective	sil	hedef B2 ya da üstü
+simpler	natal	adjective	doğumla ilgili	postnatal	adjective	sil	hedef B2 ya da üstü
+simpler	natal	adjective	doğumla ilgili	prenatal	adjective	sil	hedef B2 ya da üstü
+simpler	impartiality	noun	tarafsızlık	fairness	noun	sil	hedef B2 ya da üstü
+simpler	paternal	adjective	baba tarafı, babadan gelen, babacan, koruyucu	authoritative	adjective	sil	hedef B2 ya da üstü
+simpler	penance	noun	kefaret, tövbe	apology	noun	sil	hedef B2 ya da üstü
+simpler	penitence	noun	pişmanlık, tövbe	apology	noun	sil	hedef B2 ya da üstü
+simpler	penitentiary	noun	hapishane	jail	noun	sil	hedef B2 ya da üstü
+simpler	psyche	noun	zihin, ruh	consciousness	noun	sil	hedef B2 ya da üstü
+simpler	rabid	adjective	aşırı, tutkulu, çılgın	enthusiastic	adjective	sil	hedef B2 ya da üstü
+simpler	remission	noun	hafifleme, iyileşme	recover	verb	sil	hedef B2 ya da üstü
+simpler	remit	verb	havale etmek, sevk etmek, devretmek	delegate	noun	sil	hedef B2 ya da üstü
+simpler	salesman	noun	satıcı, satış görevlisi	salesperson	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	salesperson	noun	satış görevlisi	seller	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	saleswoman	noun	satış temsilcisi	seller	noun	sil	hedef kaynaktan alt seviyede değil
+simpler	selflessly	adverb	özverili bir şekilde	selfless	adjective	sil	hedef B2 ya da üstü
+simpler	unsigned	adjective	işaretsiz, negatif işaretsiz	integer	noun	sil	hedef B2 ya da üstü
+simpler	skinny	adjective	zayıf, ince	lean	adjective	sil	hedef kaynaktan alt seviyede değil
+simpler	insolvency	noun	iflas	debt	noun	sil	hedef B2 ya da üstü
+simpler	sorcery	noun	büyücülük, sihir	spell	noun	sil	hedef B2 ya da üstü
+simpler	sorceress	noun	büyücü	magician	noun	sil	hedef B2 ya da üstü
+simpler	sportsmanship	noun	adil oyun, sportmenlik	fairness	noun	sil	hedef B2 ya da üstü
+simpler	sporty	adjective	spor tarzı, sportif	casual	adjective	sil	hedef B2 ya da üstü
+simpler	reinstatement	noun	yeniden atama, eski durumuna döndürme	rehire	verb	sil	hedef B2 ya da üstü
+simpler	understated	adjective	abartısız, sade, hafifçe ifade edilmiş	plain	adjective	sil	hedef B2 ya da üstü
+simpler	tact	noun	incelik, diplomasi, duyarlılık	sensitivity	noun	sil	hedef B2 ya da üstü
+simpler	touchy	adjective	hassas, çabuk alınan	delicate	adjective	sil	hedef B2 ya da üstü
+simpler	touchy	adjective	nazik, özenle ele alınması gereken	sensitive	adjective	sil	hedef B2 ya da üstü
+simpler	reusability	noun	yeniden kullanılabilirlik	reuse	noun	sil	hedef B2 ya da üstü
+simpler	wholesaler	noun	toptancı	retailer	noun	sil	hedef B2 ya da üstü
+simpler	wholesale	adjective	toptan	large-scale	adjective	sil	hedef B2 ya da üstü
+simpler	wholesale	verb	toptan satmak	distribute	verb	sil	hedef B2 ya da üstü

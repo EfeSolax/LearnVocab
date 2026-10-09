@@ -1,0 +1,210 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+antonym	gear	verb	bir dişli takmak, vites değiştirmek	slow	verb	sil	
+synonym	generality	noun	genellik, genel olma durumu	general	noun	sil	
+antonym	generator	noun	jeneratör, üreteç	consumer	noun	sil	
+simpler	generator	noun	jeneratör, üreteç	engine	noun	sil	
+simpler	generically	adverb	genel olarak, genel bir şekilde	generally	adverb	sil	
+antonym	genie	noun	cin, peri	ghost	noun	sil	
+simpler	genie	noun	cin, peri	wish	noun	sil	
+synonym	genus	noun	cins	species	noun	sil	
+simpler	genus	noun	cins	family	noun	sil	
+antonym	geographically	adverb	coğrafi olarak	locally	adverb	sil	
+simpler	geologist	noun	yer bilimci, jeoloji uzmanı	engineer	noun	sil	
+antonym	gilding	noun	altın kaplama	strip	noun	sil	
+simpler	gimmicky	adjective	göz boyamaya yönelik, numara içeren, hileli	simple	adjective	sil	
+simpler	ginger	noun	kızıl saçlı, kızıl tenli kişi	hair	noun	sil	
+simpler	glacier	noun	buzul	mountain	noun	sil	
+simpler	glassware	noun	cam eşyaları, cam ürünleri	cup	noun	sil	
+antonym	glazing	noun	cam kaplama, pencere camı	insulation	noun	sil	
+antonym	glider	noun	planör	engine	noun	sil	
+simpler	glider	noun	planör	pilot	noun	sil	
+synonym	glider	noun	uçan kuskus, uçar kuskus	glide	noun	sil	
+antonym	glider	noun	uçan kuskus, uçar kuskus	bat	noun	sil	
+synonym	gluten	noun	glüten	wheat	noun	sil	
+simpler	goalkeeping	noun	kalecilik	goalkeeper	noun	sil	
+simpler	goodie	noun	iyi karakter	kind	noun	sil	
+antonym	goon	noun	kabadayı, zorba, kiralık adam	lawyer	noun	sil	
+antonym	gospel	noun	öğreti, temel ilke, felsefe	prophecy	noun	sil	
+antonym	grader	noun	greyder	level	noun	sil	
+antonym	gradual	adjective	kademeli, yavaş yavaş gerçekleşen	abrupt	adjective	sil	
+simpler	gradual	adjective	kademeli, yavaş yavaş gerçekleşen	slow	adjective	sil	
+antonym	grand	noun	bin	penny	noun	sil	
+antonym	granite	noun	granit	marble	noun	sil	
+synonym	grantee	noun	hak sahibi, bağış alan kişi	grant	noun	sil	
+synonym	granulation	noun	tanecik haline gelme	particle	noun	sil	
+antonym	graph	verb	grafik çizmek, veri grafiği oluşturmak	interpret	verb	sil	
+antonym	graphite	noun	grafit, kurşun kalem çekirdeği	plastic	noun	sil	
+antonym	grate	noun	ızgara, ızgara kapağı	obstacle	noun	sil	
+antonym	graze	verb	hafifçe dokunmak, sürtmek	injure	verb	sil	
+antonym	greedy	adjective	açgözlü, obur	stingy	adjective	sil	
+antonym	grenadier	noun	el bombacısı, bombacı asker	medic	noun	sil	
+antonym	grind	noun	öğütme işlemi, kırma eylemi	crush	noun	sil	
+antonym	grinding	noun	öğütme, öğütülme süreci	polish	noun	sil	
+simpler	grizzly	adjective	kırçıl, kırlaşmış	rough	adjective	sil	
+antonym	groomer	noun	bakıcı, tımarcı	neglect	noun	sil	
+antonym	grotto	noun	küçük mağara, kaya oyuğu, yapay mağara	open	noun	sil	
+antonym	groundwork	noun	temel hazırlık, altyapı, ön çalışma	aftermath	noun	sil	
+antonym	grouse	noun	orman tavuğu, çil keklik	predator	noun	sil	
+simpler	grouse	noun	orman tavuğu, çil keklik	quail	noun	sil	
+antonym	gulf	noun	büyük körfez, deniz girintisi	bridge	noun	sil	
+simpler	gulf	noun	büyük körfez, deniz girintisi	harbor	noun	sil	
+antonym	gully	noun	derin oluk	erosion	noun	sil	
+antonym	gum	noun	diş eti	plaque	noun	sil	
+simpler	gum	noun	diş eti	tooth	noun	sil	
+simpler	gunfire	noun	silah ateşi, ateşleme	weapon	noun	sil	
+synonym	gunmetal	noun	koyu mavi-gri metal alaşım	steel	noun	sil	
+antonym	gunmetal	noun	koyu mavi-gri metal alaşım	bronze	noun	sil	
+simpler	gymnasium	noun	lise	college	noun	sil	
+simpler	habitable	adjective	yaşanabilir	live	adjective	sil	
+simpler	hacking	noun	bilgisayar korsanlığı, izinsiz erişim	security	noun	sil	
+synonym	hairball	noun	tüy topu	vomit	noun	sil	
+antonym	hairball	noun	tüy topu	blockage	noun	sil	
+antonym	ham	noun	amatör radyo operatörü	broadcast	noun	sil	
+antonym	handbook	noun	rehber, el kitabı	catalog	noun	sil	
+antonym	handler	noun	işleyici, sorumlu kişi, yöneticisi	neglect	noun	sil	
+simpler	handler	noun	işleyici, sorumlu kişi, yöneticisi	assistant	noun	sil	
+antonym	handout	noun	maddi yardım, bağış, sadaka	tax	noun	sil	
+synonym	hardwood	noun	sert ağaç, sert odun	oak	noun	sil	
+synonym	harem	noun	kadınların yaşadığı yer, harem	palace	noun	sil	
+antonym	harem	noun	kadınların yaşadığı yer, harem	court	noun	sil	
+synonym	harness	noun	emniyet kemeri, koruyucu kemer	rope	noun	sil	
+synonym	harvester	noun	hasat makinesi, biçerdöver	harvest	noun	sil	
+simpler	harvester	noun	hasat makinesi, biçerdöver	tractor	noun	sil	
+antonym	hatch	noun	kapak, ambar kapağı, servis kapağı	window	noun	sil	
+simpler	hater	noun	nefret eden kişi, düşman	dislike	noun	sil	
+antonym	haulage	noun	nakliye, taşımacılık	cost	noun	sil	
+simpler	hawthorn	noun	alıç, akdiken	thorn	noun	sil	
+antonym	header	noun	kafa vuruşu	kick	noun	sil	
+simpler	header	noun	kafa vuruşu	goal	noun	sil	
+simpler	gear	verb	bir dişli takmak, vites değiştirmek	change	verb	zayif	
+synonym	gearing	noun	dişli takımı	gear	noun	zayif	
+antonym	geeky	adjective	bilim meraklısı	unfashionable	adjective	zayif	
+simpler	geeky	adjective	bilim meraklısı	odd	adjective	zayif	
+antonym	genealogy	noun	şecere	origin	noun	zayif	
+synonym	generalize	verb	genelleme yapmak, genellemek	summarize	verb	zayif	
+simpler	generalize	verb	genelleme yapmak, genellemek	apply	verb	zayif	
+synonym	generational	adjective	nesillerle ilgili, nesiller arası	hereditary	adjective	zayif	
+antonym	generational	adjective	nesillerle ilgili, nesiller arası	individual	adjective	zayif	
+synonym	generator	noun	jeneratör, üreteç	producer	noun	zayif	
+simpler	generic	noun	jenerik ilaç, muadil ilaç	drug	noun	zayif	
+simpler	generously	adverb	cömertçe	kindly	adverb	zayif	
+antonym	geologic	adjective	jeolojik	biologic	adjective	zayif	
+antonym	geological	adjective	jeolojik	artificial	adjective	zayif	
+synonym	geometric	adjective	geometrik	regular	adjective	zayif	
+antonym	geothermal	adjective	jeotermal	cold	adjective	zayif	
+synonym	giantess	noun	dev kadın, dev kız	colossus	noun	zayif	
+simpler	giantess	noun	dev kadın, dev kız	woman	noun	zayif	
+simpler	gild	verb	altınla kaplamak	apply	verb	zayif	
+simpler	gilded	adjective	altın kaplı, altınla süslenmiş	gold	adjective	zayif	
+antonym	gimmick	noun	göz alıcı numara, hile	substance	noun	zayif	
+antonym	ginger	adjective	kızıl kahverengi, kızılımsı sarı	pale	adjective	zayif	
+simpler	gingerly	adverb	dikkatlice, özenle	slowly	adverb	zayif	
+synonym	girlhood	noun	kızlık dönemi	youth	noun	zayif	
+antonym	giveaway	noun	ücretsiz dağıtım, çekiliş	purchase	noun	zayif	
+antonym	giveaway	noun	hediye, promosyon ürünü	sale	noun	zayif	
+synonym	given	adjective	belirli, söz konusu	certain	adjective	zayif	
+antonym	given	adjective	belirli, söz konusu	unknown	adjective	zayif	
+synonym	glacial	adjective	buzul, buzullara ait	icy	adjective	zayif	
+synonym	gladiatorial	adjective	gladyatöre özgü	martial	adjective	zayif	
+antonym	gladiatorial	adjective	gladyatöre özgü	peaceful	adjective	zayif	
+simpler	glamorous	adjective	çekici, göz alıcı, cazibeli	pretty	adjective	zayif	
+simpler	gland	noun	bez	part	noun	zayif	
+synonym	glass	verb	camla kaplamak, camla donatmak	enclose	verb	zayif	
+antonym	glaze	verb	gözleri donuk, şaşkın hâle gelmek	focus	verb	zayif	
+simpler	glazier	noun	camcı, cam ustası	worker	noun	zayif	
+antonym	gleam	noun	belirti, ipucu	obscurity	noun	zayif	
+simpler	globalize	verb	küreselleştirmek, evrenselleştirmek	expand	verb	zayif	
+antonym	gloss	verb	kısa açıklama yapmak, özetlemek	obscure	verb	zayif	
+simpler	gloss	verb	kısa açıklama yapmak, özetlemek	define	verb	zayif	
+synonym	gnome	noun	cüce, doğa ruhu	dwarf	noun	zayif	
+synonym	gnome	noun	cüce, doğa ruhu	fairy	noun	zayif	
+antonym	gnome	noun	cüce, doğa ruhu	giant	noun	zayif	
+synonym	goalkeeping	noun	kalecilik	save	noun	zayif	
+synonym	goddess	noun	tanrıça	god	noun	zayif	
+antonym	goddess	noun	tanrıça	human	noun	zayif	
+antonym	goldsmith	noun	kuyumcu, sarraf	buyer	noun	zayif	
+simpler	golfer	noun	golfçu, golf oynayan kişi	athlete	noun	zayif	
+antonym	goon	noun	kabadayı, zorba, kiralık adam	hero	noun	zayif	
+simpler	gore	verb	boynuzlamak, delmek	hit	verb	zayif	
+antonym	gory	adjective	kanlı, vahşet dolu	clean	adjective	zayif	
+simpler	gospel	noun	öğreti, temel ilke, felsefe	news	noun	zayif	
+antonym	grabber	noun	yakalama aygıtı, tutucu	release	noun	zayif	
+antonym	graduation	noun	mezuniyet	entrance	noun	zayif	
+simpler	graduation	noun	mezuniyet	finish	noun	zayif	
+simpler	grafting	noun	aşılama	planting	noun	zayif	
+simpler	grammatically	adverb	dilbilgisel olarak	properly	adverb	zayif	
+antonym	graphically	adverb	grafiksel olarak, görsel olarak	plainly	adverb	zayif	
+antonym	grappler	noun	güreşçi, mücadeleci	striker	noun	zayif	
+simpler	graze	noun	cilt tahrişi, hafif çizik	injury	noun	zayif	
+simpler	grazer	noun	ot yiyen hayvan	animal	noun	zayif	
+synonym	great	noun	büyük kimse, usta, dev isim	hero	noun	zayif	
+synonym	green	verb	çevre dostu hâle getirmek	sustain	verb	zayif	
+antonym	grieve	verb	üzülmek, yas tutmak	comfort	verb	zayif	
+simpler	grimly	adverb	kasvetli bir şekilde	sadly	adverb	zayif	
+simpler	grind	noun	öğütme işlemi, kırma eylemi	process	noun	zayif	
+synonym	grinding	noun	öğütme, öğütülme süreci	crush	noun	zayif	
+antonym	gripper	noun	tutucu, kavrama aparatı	release	noun	zayif	
+synonym	groomer	noun	bakıcı, tımarcı	stylist	noun	zayif	
+simpler	groomer	noun	bakıcı, tımarcı	cleaner	noun	zayif	
+synonym	grooming	noun	hayvan bakımı, tımar	trim	noun	zayif	
+antonym	groove	verb	ritme kapılmak, ritme ayak uydurmak, dans etmek	stagnate	verb	zayif	
+simpler	gross	verb	brüt olarak kazanmak	make	verb	zayif	
+simpler	grotto	noun	küçük mağara, kaya oyuğu, yapay mağara	rock	noun	zayif	
+simpler	grounded	adjective	gerçekçi, sağlam temelli	solid	adjective	zayif	
+antonym	grounding	noun	topraklama, elektrik yalıtımı	insulation	noun	zayif	
+synonym	grouse	noun	orman tavuğu, çil keklik	bird	noun	zayif	
+synonym	growler	noun	bira kabı, hırlayan şey	bellow	noun	zayif	
+antonym	growler	noun	bira kabı, hırlayan şey	silence	noun	zayif	
+simpler	growler	noun	bira kabı, hırlayan şey	container	noun	zayif	
+simpler	grub	noun	larva, kurtçuk	caterpillar	noun	zayif	
+antonym	grub	noun	yemek, yiyecek	snack	noun	zayif	
+simpler	grumbling	noun	mızmızlanma, şikayet	talk	noun	zayif	
+synonym	grunt	noun	kısa, boğuk ses	moan	noun	zayif	
+antonym	grunt	noun	kısa, boğuk ses	silence	noun	zayif	
+antonym	grunt	verb	kısa, boğuk ses çıkarmak	scream	verb	zayif	
+antonym	guild	noun	lonca, meslek birliği	individual	noun	zayif	
+synonym	guinea	noun	bir İngiliz altını	pound	noun	zayif	
+antonym	gulp	verb	yutkunmak, derin bir soluk çekmek	relax	verb	zayif	
+simpler	gulp	verb	yutkunmak, derin bir soluk çekmek	breathe	verb	zayif	
+synonym	gunfire	noun	silah ateşi, ateşleme	shoot	noun	zayif	
+antonym	gunfire	noun	silah ateşi, ateşleme	silence	noun	zayif	
+antonym	gunshot	noun	silah sesi, ateş sesi	silence	noun	zayif	
+simpler	gunshot	noun	silah sesi, ateş sesi	fire	noun	zayif	
+antonym	gust	noun	ani patlama, ani artış	silence	noun	zayif	
+synonym	gut	verb	iç organlarını çıkarmak, içini boşaltmak	extract	verb	zayif	
+simpler	gymnastic	adjective	jimnastikle ilgili, jimnastiksel, çevik	fit	adjective	zayif	
+antonym	hack	noun	kestirme, pratik çözüm	failure	noun	zayif	
+antonym	hack	noun	kötü kalitede yazar, gazeteci	professional	noun	zayif	
+simpler	hack	noun	kötü kalitede yazar, gazeteci	writer	noun	zayif	
+antonym	hack	verb	geçici bir çözüm bulmak, bir sorunu pratik bir yolla çözmek	plan	verb	zayif	
+simpler	hacker	noun	bilgisayar korsanı	programmer	noun	zayif	
+antonym	hag	noun	cadı, kocakarı	angel	noun	zayif	
+simpler	hairball	noun	tüy topu	fur	noun	zayif	
+antonym	hallelujah	noun	şükür sözü, hamd	lament	noun	zayif	
+simpler	hallelujah	noun	şükür sözü, hamd	hymn	noun	zayif	
+simpler	ham	noun	amatör radyo operatörü	radio	noun	zayif	
+simpler	hamstring	noun	arka bacak kası, arka uyluk kası	leg	noun	zayif	
+antonym	harbor	verb	barındırmak, saklamak, beslemek	ignore	verb	zayif	
+simpler	harmonic	adjective	uyumlu, ahenkli, armonik	smooth	adjective	zayif	
+synonym	harmonics	noun	üst tonlar	tone	noun	zayif	
+antonym	harmonics	noun	üst tonlar	distortion	noun	zayif	
+synonym	harness	noun	emniyet kemeri, koruyucu kemer	gear	noun	zayif	
+antonym	harvester	noun	hasat makinesi, biçerdöver	sow	noun	zayif	
+simpler	hatchery	noun	kuluçka yeri	farm	noun	zayif	
+synonym	hater	noun	nefret eden kişi, düşman	critic	noun	zayif	
+synonym	hatter	noun	şapka yapımcısı, şapka satıcısı	artisan	noun	zayif	
+antonym	hatter	noun	şapka yapımcısı, şapka satıcısı	buyer	noun	zayif	
+synonym	haul	noun	ganimet, ele geçirilen miktar	seizure	noun	zayif	
+antonym	haul	noun	ganimet, ele geçirilen miktar	loss	noun	zayif	
+antonym	hauler	noun	taşıyıcı, nakliyeci, taşıma aracı	receiver	noun	zayif	
+synonym	haze	verb	çömezlik eziyeti yapmak, eziyet etmek	initiate	verb	zayif	
+antonym	hazing	noun	çaylaklara eziyet etme, eziyet ritüeli, zorbalık	support	noun	zayif	
+antonym	head	adjective	baş, ana, birincil	assistant	adjective	zayif	
+antonym	heading	noun	yön	reverse	noun	zayif	
+antonym	headless	adjective	başı olmayan, başı kesik	intact	adjective	zayif	
+simpler	headline	verb	başlık vermek	name	verb	zayif	
+simpler	headliner	noun	baş sanatçı, ana gösteri sanatçısı	artist	noun	zayif	
+antonym	headmaster	noun	okul müdürü	student	noun	zayif	
+simpler	headmaster	noun	okul müdürü	leader	noun	zayif	
+antonym	headquarter	verb	merkez ofisini kurmak	relocate	verb	zayif	
+simpler	headquarter	verb	merkez ofisini kurmak	place	verb	zayif	

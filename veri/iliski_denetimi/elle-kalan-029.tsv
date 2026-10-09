@@ -1,0 +1,219 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+simpler	overwork	verb	aşırı çalışmak, fazla çalıştırmak	manage	verb	sil	
+antonym	oxide	noun	oksit	reduction	noun	sil	
+synonym	oxidizer	noun	oksitleyici madde	oxidation	noun	sil	
+simpler	oxidizer	noun	oksitleyici madde	fuel	noun	sil	
+antonym	ozone	noun	ozon	pollution	noun	sil	
+synonym	paddock	noun	padok, çitle çevrili çayır, otlak	stable	noun	sil	
+synonym	pagination	noun	sayfalama	page	noun	sil	
+synonym	painfully	adverb	acı bir şekilde, çok zor	hardly	adverb	sil	
+antonym	palate	noun	damak tadı, damak zevki	dislike	noun	sil	
+antonym	pancreas	noun	pankreas	liver	noun	sil	
+antonym	parachutist	noun	paraşütle atlayan, paraşütçü	pilot	noun	sil	
+antonym	paramedic	noun	acil tıp görevlisi, ambulans çalışanı	doctor	noun	sil	
+simpler	paramedic	noun	acil tıp görevlisi, ambulans çalışanı	emergency	noun	sil	
+antonym	parentage	noun	soy, nesep, köken	origin	noun	sil	
+antonym	parenthesis	noun	parantez	comma	noun	sil	
+simpler	parenthesis	noun	parantez	note	noun	sil	
+antonym	parkway	noun	geniş, ağaçlık yol	bypass	noun	sil	
+antonym	particulate	noun	katı parçacık, ince toz	gas	noun	sil	
+antonym	partition	noun	bölme, bölücü duvar	open	noun	sil	
+simpler	passively	adverb	pasif bir şekilde	still	adverb	sil	
+antonym	passover	noun	hamursuz bayramı, yahudi kutsal bayramı	sacrifice	noun	sil	
+antonym	pastorate	noun	papazlık görevi	ordination	noun	sil	
+simpler	pauper	noun	yoksul kişi	poor	noun	sil	
+antonym	payback	noun	intikam, karşılık	justice	noun	sil	
+antonym	payload	noun	taşıma yükü	burden	noun	sil	
+antonym	payoff	noun	rüşvet	reward	noun	sil	
+antonym	pediatrician	noun	çocuk doktoru	surgeon	noun	sil	
+simpler	pediatrics	noun	çocuk sağlığı bilimi, pediatri	child	noun	sil	
+simpler	penal	adjective	cezai	legal	adjective	sil	
+simpler	perfumer	noun	parfüm yapan kişi	fragrance	noun	sil	
+synonym	perfumery	noun	parfümeri, koku yapma sanatı	fragrance	noun	sil	
+antonym	periodically	adverb	aralıklarla, periyodik olarak	occasionally	adverb	sil	
+antonym	perk	verb	canlandırmak, neşelendirmek	relax	verb	sil	
+simpler	perplex	verb	şaşırtmak, kafasını karıştırmak	confuse	verb	sil	
+antonym	pew	noun	kilise bankı, oturma yeri	chair	noun	sil	
+antonym	physicist	noun	fizikçi	artist	noun	sil	
+simpler	physiologic	adjective	fizyolojik	normal	adjective	sil	
+antonym	picket	noun	grev gözcüsü, protesto nöbetçisi, grev nöbeti	strike	noun	sil	
+antonym	pike	noun	mızrak, uzun sivri silah	shield	noun	sil	
+synonym	piston	noun	piston	cylinder	noun	sil	
+antonym	piston	noun	piston	valve	noun	sil	
+simpler	pit	verb	çekirdeğini çıkarmak, içini boşaltmak	seed	verb	sil	
+antonym	plaintiff	noun	davacı	defendant	noun	sil	
+antonym	plantation	noun	plantasyon, büyük tarım işletmesi	harvest	noun	sil	
+antonym	plaque	noun	anı levhası	sign	noun	sil	
+antonym	plastering	noun	sıva uygulaması, sıva işi	painting	noun	sil	
+antonym	platformer	noun	platform oyunu, platform türü	puzzle	noun	sil	
+synonym	platinum	noun	platin	gold	noun	sil	
+antonym	platinum	noun	platin	copper	noun	sil	
+simpler	platinum	noun	platin	silver	noun	sil	
+antonym	platoon	noun	takım, müfreze	company	noun	sil	
+antonym	playback	noun	oynatma, geri çalma	pause	noun	sil	
+antonym	playhouse	noun	tiyatro binası	cinema	noun	sil	
+synonym	plaything	noun	oyuncak, alet	instrument	noun	sil	
+antonym	plaything	noun	oyuncak, alet	victim	noun	sil	
+antonym	plaything	noun	oyuncak, kukla	tool	noun	sil	
+simpler	playwright	noun	oyun yazarı	actor	noun	sil	
+simpler	playwright	noun	oyun yazarı	director	noun	sil	
+antonym	plotter	noun	çizim cihazı, büyük ölçekli yazıcı	scanner	noun	sil	
+antonym	plumbing	noun	tesisat, borulama sistemi	drain	noun	sil	
+simpler	plumbing	noun	tesisat, borulama sistemi	plumber	noun	sil	
+antonym	poach	verb	suda hafif kaynatmak, haşlamak	fry	verb	sil	
+synonym	podium	noun	madalya kürsüsü	award	noun	sil	
+antonym	poker	noun	poker, kart oyunu	fold	noun	sil	
+antonym	polio	noun	çocuk felci	paralysis	noun	sil	
+synonym	politic	adjective	basiretli, tedbirli, akıllıca	political	adjective	sil	
+synonym	polo	noun	polo	horseback	noun	sil	
+antonym	polo	noun	polo	soccer	noun	sil	
+simpler	overwork	noun	aşırı çalışma, fazla iş yükü	work	noun	zayif	
+synonym	overwork	verb	aşırı çalışmak, fazla çalıştırmak	stress	verb	zayif	
+synonym	oxidation	noun	oksidasyon	corrosion	noun	zayif	
+simpler	oxidize	verb	oksitlenmek, oksitlemek	combine	verb	zayif	
+synonym	ozone	noun	ozon	oxidant	noun	zayif	
+synonym	packaging	noun	paketleme, ambalaj	package	noun	zayif	
+antonym	pagan	adjective	pagan, putperest	religious	adjective	zayif	
+simpler	pagination	noun	sayfalama	section	noun	zayif	
+simpler	painfully	adverb	acı bir şekilde, çok zor	hard	adverb	zayif	
+synonym	painterly	adjective	ressamane	illustrative	adjective	zayif	
+antonym	painterly	adjective	ressamane	flat	adjective	zayif	
+antonym	pairwise	adjective	çiftler halinde, ikili	collective	adjective	zayif	
+simpler	palate	noun	damak tadı, damak zevki	flavor	noun	zayif	
+synonym	pancreatic	adjective	pankreasla ilgili	digestive	adjective	zayif	
+synonym	pandemic	noun	küresel salgın	epidemic	noun	zayif	
+simpler	panelist	noun	panel üyesi	expert	noun	zayif	
+simpler	panther	noun	panter	cat	noun	zayif	
+simpler	papal	adjective	papa ile ilgili, papalıkla ilgili	religious	adjective	zayif	
+simpler	parachutist	noun	paraşütle atlayan, paraşütçü	jumper	noun	zayif	
+simpler	paradise	noun	cennet	place	noun	zayif	
+synonym	paralysis	noun	felç	freeze	noun	zayif	
+simpler	paralyze	verb	hareketini durdurmak, felç etmek	affect	verb	zayif	
+synonym	pardon	noun	özür, af	apology	noun	zayif	
+simpler	parentage	noun	soy, nesep, köken	parent	noun	zayif	
+simpler	parenthood	noun	ebeveynlik	parent	noun	zayif	
+antonym	parliamentarian	noun	parlamento üyesi, milletvekili	opponent	noun	zayif	
+antonym	parody	verb	parodisini yapmak, alaylı taklidini yapmak	respect	verb	zayif	
+synonym	parolee	noun	koşullu tahliye edilen kişi	offender	noun	zayif	
+simpler	parolee	noun	koşullu tahliye edilen kişi	prisoner	noun	zayif	
+antonym	parry	noun	savuşturma, çelme	hit	noun	zayif	
+antonym	parry	verb	savuşturmak, bertaraf etmek, defetmek	succumb	verb	zayif	
+antonym	participative	adjective	katılımcı	authoritarian	adjective	zayif	
+antonym	particular	noun	belirli bir şey, detay	general	noun	zayif	
+simpler	particular	noun	belirli bir şey, detay	item	noun	zayif	
+synonym	particulate	adjective	parçacıklı, tozlu	dusty	adjective	zayif	
+antonym	particulate	adjective	parçacıklı, tozlu	clear	adjective	zayif	
+antonym	partner	verb	ortaklık kurmak, iş birliği yapmak	compete	verb	zayif	
+antonym	pasha	noun	paşa	subordinate	noun	zayif	
+simpler	pastorate	noun	papazlık görevi	job	noun	zayif	
+antonym	pat	verb	üstünü aramak	ignore	verb	zayif	
+antonym	patchwork	noun	yama işi, parçalı çalışma	uniform	noun	zayif	
+simpler	patchwork	noun	yama işi, parçalı çalışma	quilt	noun	zayif	
+synonym	patent	verb	patentini almak, patentlemek	protect	verb	zayif	
+antonym	pathetically	adverb	acıklı bir şekilde, zavallıca	proudly	adverb	zayif	
+simpler	patriarch	noun	aile ya da kabile reisi	elder	noun	zayif	
+antonym	patriotism	noun	vatanseverlik	apathy	noun	zayif	
+simpler	patronize	verb	küçümseyerek davranmak	treat	verb	zayif	
+antonym	pattern	verb	düzenlemek, bir desen oluşturmak	simplify	verb	zayif	
+synonym	pauper	noun	yoksul kişi	beggar	noun	zayif	
+synonym	pavilion	noun	pavyon, fuar standı/binası	tent	noun	zayif	
+simpler	pavilion	noun	pavyon, fuar standı/binası	booth	noun	zayif	
+simpler	paving	noun	yol kaplaması, asfalt, döşeme	road	noun	zayif	
+synonym	payroll	noun	bordro, maaş listesi	salary	noun	zayif	
+synonym	payroll	noun	bordro, maaş listesi	wage	noun	zayif	
+simpler	payroll	noun	bordro, maaş listesi	payment	noun	zayif	
+simpler	peacekeeper	noun	barış koruyucu, barış görevlisi	guard	noun	zayif	
+antonym	peach	noun	harika biri, çok tatlı kimse	jerk	noun	zayif	
+antonym	pearl	noun	değerli şey	triviality	noun	zayif	
+antonym	peasantry	noun	köylüler, köylü sınıfı	landowner	noun	zayif	
+synonym	peat	noun	turba, turba kömürü	bog	noun	zayif	
+synonym	peaty	adjective	turba benzeri, turbalı	boggy	adjective	zayif	
+antonym	peaty	adjective	turba benzeri, turbalı	dry	adjective	zayif	
+synonym	peck	noun	gagalama	bite	noun	zayif	
+synonym	pediatric	adjective	çocuklarla ilgili, çocuk hastalıklarıyla ilgili	juvenile	adjective	zayif	
+antonym	peep	noun	cıvıltı, cik sesi	silence	noun	zayif	
+antonym	penance	noun	kefaret, tövbe	sin	noun	zayif	
+simpler	penetrate	verb	geçmek, nüfuz etmek	break	verb	zayif	
+simpler	penetration	noun	giriş, nüfuz, delme	access	noun	zayif	
+simpler	peninsula	noun	yarımada	land	noun	zayif	
+synonym	peninsular	adjective	yarımadaya ait, yarımada ile ilgili	coastal	adjective	zayif	
+synonym	perfect	noun	tamamlanmış zaman	aspect	noun	zayif	
+synonym	performative	adjective	göstermelik	showy	adjective	zayif	
+simpler	performer	noun	sanatçı, gösteri yapan kişi	singer	noun	zayif	
+simpler	perfumery	noun	parfümeri, koku yapma sanatı	scent	noun	zayif	
+simpler	periodical	noun	süreli yayın, süreli dergi, dergi	newspaper	noun	zayif	
+simpler	periodically	adverb	aralıklarla, periyodik olarak	frequently	adverb	zayif	
+simpler	perish	verb	ölmek, yok olmak	destroy	verb	zayif	
+synonym	peroxide	noun	peroksit	oxidizer	noun	zayif	
+antonym	peroxide	noun	peroksit	reducer	noun	zayif	
+synonym	persona	noun	kimlik, karakter, rol	mask	noun	zayif	
+antonym	persona	noun	kimlik, karakter, rol	authenticity	noun	zayif	
+synonym	personification	noun	kişileştirme, teşhis	metaphor	noun	zayif	
+synonym	personification	noun	kişileştirme, teşhis	symbol	noun	zayif	
+antonym	personify	verb	insanlaştırmak	abstract	verb	zayif	
+simpler	personify	verb	insanlaştırmak	show	verb	zayif	
+simpler	pettiness	noun	küçüklük, dar görüşlülük, önemsizlik	smallness	noun	zayif	
+antonym	pharmacist	noun	eczacı	doctor	noun	zayif	
+antonym	phase	verb	aşamalara bölmek, kademeli olarak uygulamak	accelerate	verb	zayif	
+simpler	phosphate	noun	fosfat	salt	noun	zayif	
+simpler	photogenic	adjective	fotojenik, fotoğrafta güzel çıkan	pretty	adjective	zayif	
+synonym	photographic	adjective	fotoğrafla ilgili	visual	adjective	zayif	
+antonym	pillar	noun	sütun, destek	weakness	noun	zayif	
+antonym	pilot	verb	bir projeyi deneme amaçlı yürütmek	implement	verb	zayif	
+simpler	piney	adjective	çam kokulu	fragrant	adjective	zayif	
+antonym	pipe	verb	boru ile taşımak, iletmek	block	verb	zayif	
+antonym	piping	noun	boru tesisatı, boru sistemi, borulama	leak	noun	zayif	
+simpler	piracy	noun	korsanlık, telif hakkı ihlali	copy	noun	zayif	
+simpler	pit	verb	karşı karşıya getirmek, yarıştırmak	compare	verb	zayif	
+antonym	pitiful	adjective	acıklı, zavallı	strong	adjective	zayif	
+antonym	pivot	verb	dönmek, eksen alarak çevirmek	stagnate	verb	zayif	
+simpler	pixelated	adjective	pikselleşmiş	blurry	adjective	zayif	
+simpler	plainly	adverb	açıkça, net bir şekilde	simply	adverb	zayif	
+synonym	planetarium	noun	planetaryum, gökevi	theater	noun	zayif	
+simpler	planetarium	noun	planetaryum, gökevi	museum	noun	zayif	
+synonym	planetary	adjective	gezegensel, gezegenle ilgili	orbital	adjective	zayif	
+simpler	planner	noun	plan yapan kişi, düzenleyici	manager	noun	zayif	
+simpler	plantation	noun	plantasyon, büyük tarım işletmesi	field	noun	zayif	
+synonym	plaque	noun	anı levhası	memorial	noun	zayif	
+simpler	plaque	noun	anı levhası	award	noun	zayif	
+synonym	plasma	noun	kan plazması	blood	noun	zayif	
+synonym	plate	verb	servis tabağına koymak	present	verb	zayif	
+synonym	platformer	noun	platform oyunu, platform türü	adventure	noun	zayif	
+simpler	playoff	noun	eleme turu	game	noun	zayif	
+synonym	playfulness	noun	muziplik, şakacılık, neşelilik	fun	noun	zayif	
+simpler	playhouse	noun	tiyatro binası	stage	noun	zayif	
+synonym	plaything	noun	oyuncak, alet	tool	noun	zayif	
+simpler	plaything	noun	oyuncak, alet	object	noun	zayif	
+simpler	plaything	noun	oyuncak, kukla	victim	noun	zayif	
+antonym	playwright	noun	oyun yazarı	novelist	noun	zayif	
+antonym	pleading	noun	yalvarış, içten istek	demand	noun	zayif	
+synonym	plowman	noun	pulluk sürücüsü, çiftçi	farmer	noun	zayif	
+synonym	pluck	verb	cesaretini toplamak	encourage	verb	zayif	
+synonym	plumb	noun	çekül	vertical	noun	zayif	
+antonym	plumb	noun	çekül	tilt	noun	zayif	
+simpler	plumb	noun	çekül	level	noun	zayif	
+antonym	plumb	verb	derinlik ölçmek	guess	verb	zayif	
+synonym	plumbing	noun	tesisat, borulama sistemi	pipe	noun	zayif	
+synonym	plume	noun	su akıntısı, su sütunu	spray	noun	zayif	
+antonym	ply	noun	katman, tabaka	single	noun	zayif	
+simpler	ply	verb	icra etmek, yürütmek	perform	verb	zayif	
+synonym	pneumonia	noun	zatürre	infection	noun	zayif	
+synonym	poach	verb	suda hafif kaynatmak, haşlamak	boil	verb	zayif	
+simpler	poacher	noun	kaçak avcı	hunter	noun	zayif	
+synonym	poaching	noun	kaçak avcılık, yasa dışı avcılık	hunting	noun	zayif	
+simpler	podium	noun	madalya kürsüsü	stage	noun	zayif	
+simpler	poetess	noun	kadın şair	writer	noun	zayif	
+synonym	poetic	adjective	şiirsel	metaphorical	adjective	zayif	
+synonym	poker	noun	poker, kart oyunu	gamble	noun	zayif	
+synonym	polar	adjective	kutup, kutba ait	magnetic	adjective	zayif	
+simpler	polar	adjective	kutup, kutba ait	north	adjective	zayif	
+antonym	politico	noun	siyasetçi	bureaucrat	noun	zayif	
+simpler	politico	noun	siyasetçi	leader	noun	zayif	
+antonym	pollster	noun	anketör, kamuoyu araştırmacısı	politician	noun	zayif	
+synonym	polluter	noun	kirletici, çevreyi kirleten kimse/kurum, kirleten	emitter	noun	zayif	
+antonym	polluter	noun	kirletici, çevreyi kirleten kimse/kurum, kirleten	cleaner	noun	zayif	
+simpler	polluter	noun	kirletici, çevreyi kirleten kimse/kurum, kirleten	source	noun	zayif	
+simpler	polo	noun	polo	game	noun	zayif	
+antonym	polyester	noun	sentetik elyaf, polyester	cotton	noun	zayif	
+synonym	polymer	noun	polimer	plastic	noun	zayif	
+simpler	polytechnic	adjective	teknik yükseköğretimle ilgili	academic	adjective	zayif	

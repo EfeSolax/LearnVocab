@@ -77,6 +77,7 @@ Kart verisi kelime kartıyla aynıdır (words.kart.Kart); liste düğmesi ve
                     </li>
                     {% endfor %}
                 </ul>
+                <p x-show="kaliplar" x-cloak data-kalip-aciklamasi class="mt-2 pl-3 text-sm text-gray-500 dark:text-slate-400">{% translate "sb: birisi · sth: bir şey" %}</p>
                 {% endif %}
 
                 {% for etiket, kelimeler in anlam.iliski_satirlari %}

@@ -316,3 +316,20 @@ def uygula_4():
         silinen = kopyalari_sil()
         uygula_3()
     return silinen
+
+
+# ---------------------------------------------------------------------------
+# "İncelenecek" aileler (Claude kararlarıyla onaylandı; 206 yeni kelime, 224 anlam
+# okundu). Önceki partilerin türe özgü silmeleri yeniden üretilmişti; uygula_4 temizler.
+
+KARSILIK_5 = {
+    ("evangel", "noun", "incil, kutsal metin"): "İncil, müjde",
+}
+
+
+def uygula_5():
+    with transaction.atomic():
+        for (kelime, tur, eski), yeni in KARSILIK_5.items():
+            Meaning.objects.filter(word__text__iexact=kelime, word__pos=tur, meaning_tr=eski) \
+                .update(meaning_tr=yeni)
+        return uygula_4()

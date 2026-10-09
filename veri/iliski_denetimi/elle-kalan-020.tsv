@@ -1,0 +1,126 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+antonym	diploma	noun	akademik belge, diploma	degree	noun	sil	
+simpler	diploma	noun	akademik belge, diploma	graduate	noun	sil	
+simpler	disable	verb	sakat bırakmak, işlevsiz kılmak	help	verb	sil	
+synonym	discipleship	noun	müritlik, öğrencilik, havarilik	follower	noun	sil	
+simpler	discipleship	noun	müritlik, öğrencilik, havarilik	disciple	noun	sil	
+antonym	disco	noun	disko, disko müziği	rock	noun	sil	
+simpler	discoloration	noun	renk değişimi, renk bozulması	color	noun	sil	
+simpler	discouragement	noun	cesaret kırma, umutsuzluk	support	noun	sil	
+antonym	discoverer	noun	keşfeden, buluş yapan kişi	hider	noun	sil	
+synonym	dishonesty	noun	dürüst olmama, sahtecilik	lie	noun	sil	
+synonym	dislocation	noun	eklem çıkığı, yerinden çıkma	fracture	noun	sil	
+antonym	dislocation	noun	eklem çıkığı, yerinden çıkma	relocation	noun	sil	
+simpler	disorder	verb	bozmak, karıştırmak	cause	verb	sil	
+simpler	dispensary	noun	eczane, ilaç dağıtım yeri	store	noun	sil	
+antonym	disposition	noun	tutum, eğilim, karakter	indifference	noun	sil	
+antonym	distiller	noun	damıtma cihazı	mixer	noun	sil	
+synonym	distillery	noun	damıtma tesisi, içki üretim yeri	brewery	noun	sil	
+synonym	distributor	noun	dağıtıcı, dağıtımcı	supply	noun	sil	
+synonym	dolly	noun	taşıma arabası, platform	track	noun	sil	
+simpler	dolly	noun	taşıma arabası, platform	move	noun	sil	
+antonym	don	noun	suç lideri	criminal	noun	sil	
+simpler	doom	verb	kaderine mahkum etmek, lanetlemek	cause	verb	sil	
+simpler	downloader	noun	indirme programı	client	noun	sil	
+simpler	drain	noun	külfet, yük, tükenme	use	noun	sil	
+antonym	drake	noun	erkek ördek	hen	noun	sil	
+antonym	dramatize	verb	oyunlaştırmak, sahneye uyarlamak	exaggerate	verb	sil	
+antonym	drawer	noun	çizer, ressam	painter	noun	sil	
+simpler	dread	verb	korkmak, dehşet duymak	fear	verb	sil	
+antonym	drill	noun	askeri tatbikat, eğitim	disorder	noun	sil	
+antonym	driller	noun	delici, matkap operatörü	engineer	noun	sil	
+synonym	duchess	noun	düşes	princess	noun	sil	
+antonym	duke	noun	dük, soylu bir unvan	prince	noun	sil	
+antonym	dumper	noun	damperli kamyon, damper	loader	noun	sil	
+antonym	dynamo	noun	elektrik üreten makine, jeneratör	motor	noun	sil	
+simpler	dynamo	noun	elektrik üreten makine, jeneratör	engine	noun	sil	
+simpler	earnest	adjective	ciddi, samimi	serious	adjective	sil	
+synonym	earthy	adjective	topraksı, kaba saba	plain	adjective	sil	
+simpler	eccentric	noun	garip, tuhaf kişi	person	noun	sil	
+synonym	edginess	noun	gerginlik, sinirlilik	tense	noun	sil	
+antonym	editorial	noun	başyazı	report	noun	sil	
+simpler	electable	adjective	seçilebilir	able	adjective	sil	
+synonym	diplomatic	adjective	diplomatik, dış ilişkilerle ilgili	political	adjective	zayif	
+simpler	dipper	noun	kaşık, kepçe	spoon	noun	zayif	
+simpler	disadvantage	verb	dezavantajlı duruma sokmak, zarara uğratmak	affect	verb	zayif	
+simpler	disassemble	verb	parçalarına ayırmak	break	verb	zayif	
+antonym	discipleship	noun	müritlik, öğrencilik, havarilik	leader	noun	zayif	
+simpler	disciplinary	adjective	disiplinle ilgili, disiplinle bağlantılı	orderly	adjective	zayif	
+synonym	disco	noun	disko, disko müziği	dance	noun	zayif	
+antonym	discriminate	verb	farklı muamele yapmak, ayrımcılık yapmak	accept	verb	zayif	
+simpler	discriminate	verb	farklı muamele yapmak, ayrımcılık yapmak	treat	verb	zayif	
+simpler	disentangle	verb	dolaşık bir şeyi çözmek, ayırmak	solve	verb	zayif	
+synonym	dislocate	verb	yerinden çıkarmak, kaydırmak	relocate	verb	zayif	
+synonym	dislocate	verb	yerinden çıkarmak, kaydırmak	reposition	verb	zayif	
+antonym	dislocate	verb	yerinden çıkarmak, kaydırmak	stabilize	verb	zayif	
+synonym	dispatcher	noun	sevk memuru, hareket memuru, yönlendirme görevlisi	coordinator	noun	zayif	
+antonym	dispatcher	noun	sevk memuru, hareket memuru, yönlendirme görevlisi	receiver	noun	zayif	
+synonym	dispensary	noun	eczane, ilaç dağıtım yeri	clinic	noun	zayif	
+simpler	displeased	adjective	hoşnutsuz, memnun olmayan	sad	adjective	zayif	
+simpler	disproportionate	adjective	orantısız, dengesiz, ölçüsüz	uneven	adjective	zayif	
+simpler	disqualify	verb	diskalifiye etmek, hak kaybına uğratmak	ban	verb	zayif	
+simpler	disrespect	verb	saygısızlık yapmak, hor görmek	ignore	verb	zayif	
+simpler	distillery	noun	damıtma tesisi, içki üretim yeri	factory	noun	zayif	
+simpler	distortion	noun	bozulma, çarpıtma	change	noun	zayif	
+antonym	distressed	adjective	yırtık, aşınmış	new	adjective	zayif	
+antonym	distributor	noun	dağıtıcı, dağıtımcı	buyer	noun	zayif	
+simpler	diversion	noun	eğlence, şenlik	turn	noun	zayif	
+antonym	diviner	noun	kehanetçi, falcı	skeptic	noun	zayif	
+simpler	dock	noun	bağlantı yuvası, istasyon	charger	noun	zayif	
+antonym	dock	verb	maaşından kesmek	increase	verb	zayif	
+synonym	dodger	noun	kaçak, vergi kaçıran, kaçınan	cheater	noun	zayif	
+antonym	dole	noun	refah yardımı, işsizlik ödeneği	employment	noun	zayif	
+antonym	dolly	noun	taşıma arabası, platform	crane	noun	zayif	
+antonym	domestic	noun	ev işçisi	employer	noun	zayif	
+synonym	dosage	noun	doz	prescription	noun	zayif	
+antonym	dosage	noun	doz	overdose	noun	zayif	
+synonym	dove	noun	barış sembolü	peace	noun	zayif	
+antonym	dove	noun	barış sembolü	war	noun	zayif	
+simpler	downgrade	noun	düşürme, gerileme, alt seviyeye indirme	cut	noun	zayif	
+synonym	downtime	noun	ara, kesinti süresi, hizmet dışı kalma	failure	noun	zayif	
+simpler	drafter	noun	taslak hazırlayan, taslakçı	writer	noun	zayif	
+synonym	draftsman	noun	teknik ressam, ressam	designer	noun	zayif	
+synonym	draftsman	noun	teknik ressam, ressam	illustrator	noun	zayif	
+antonym	draftsman	noun	teknik ressam, ressam	builder	noun	zayif	
+simpler	draftsman	noun	teknik ressam, ressam	architect	noun	zayif	
+antonym	draper	noun	kumaş satıcısı, perdelikçi	buyer	noun	zayif	
+antonym	drapery	noun	perde	exposure	noun	zayif	
+simpler	drawer	noun	çizer, ressam	designer	noun	zayif	
+simpler	dreamy	adjective	hayalperest, düşsel, dalgın	soft	adjective	zayif	
+antonym	dredge	verb	dip taramak, taramak, çamurunu temizlemek	cover	verb	zayif	
+antonym	dredger	noun	tarak gemisi, dip tarama gemisi	fill	noun	zayif	
+simpler	dredger	noun	tarak gemisi, dip tarama gemisi	boat	noun	zayif	
+simpler	drinkable	adjective	içilebilir	safe	adjective	zayif	
+antonym	drone	noun	insansız hava aracı	pilot	noun	zayif	
+synonym	droplet	noun	damla	particle	noun	zayif	
+antonym	droplet	noun	damla	bulk	noun	zayif	
+antonym	drug	verb	uyuşturmak, etkisi altına almak	protect	verb	zayif	
+synonym	duchy	noun	düklük	province	noun	zayif	
+antonym	dukedom	noun	dük unvanı, düklük	commoner	noun	zayif	
+antonym	dunk	verb	batırmak, bandırmak, smaç basmak	withdraw	verb	zayif	
+synonym	duplex	noun	çift katlı ev	apartment	noun	zayif	
+synonym	dynamics	noun	dinamikler	interaction	noun	zayif	
+antonym	dynamics	noun	dinamikler	stability	noun	zayif	
+simpler	dynamics	noun	dinamikler	change	noun	zayif	
+simpler	dynamite	noun	dinamit	bomb	noun	zayif	
+antonym	dynasty	noun	hanedan	republic	noun	zayif	
+antonym	earner	noun	kazanan, gelir elde eden kişi	spender	noun	zayif	
+simpler	earner	noun	kazanan, gelir elde eden kişi	worker	noun	zayif	
+antonym	eccentric	noun	garip, tuhaf kişi	normal	noun	zayif	
+synonym	economically	adverb	ekonomik olarak	efficiently	adverb	zayif	
+synonym	economically	adverb	ekonomik olarak	profitably	adverb	zayif	
+antonym	edginess	noun	gerginlik, sinirlilik	calm	noun	zayif	
+simpler	edginess	noun	gerginlik, sinirlilik	stress	noun	zayif	
+antonym	eerily	adverb	ürkütücü bir biçimde	comfortably	adverb	zayif	
+antonym	ejection	noun	dışarı atılma, oyundan/maçtan atılma	admission	noun	zayif	
+antonym	electronically	adverb	elektronik olarak	manually	adverb	zayif	
+antonym	electronically	adverb	elektronik olarak	physically	adverb	zayif	
+synonym	elegantly	adverb	zarif bir şekilde	smoothly	adverb	zayif	
+antonym	elegantly	adverb	zarif bir şekilde	plainly	adverb	zayif	
+antonym	elevation	noun	yükseklik, yükselme	depth	noun	zayif	
+synonym	eliminator	noun	eleme maçı	tournament	noun	zayif	
+antonym	eliminator	noun	eleme maçı	final	noun	zayif	
+antonym	ellipse	noun	elips	circle	noun	zayif	
+antonym	elliptical	adjective	oval, eliptik	circular	adjective	zayif	
+simpler	eloquently	adverb	etkileyici bir şekilde	well	adverb	zayif	
+antonym	embankment	noun	set, dolgu, toprak set	ditch	noun	zayif	

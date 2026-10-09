@@ -1,0 +1,282 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+antonym	perceptual	adjective	algısal, algıya dayalı	intuitive	adjective	sil	
+synonym	perfectionism	noun	kusursuzluk takıntısı, mükemmeliyetçilik	perfection	noun	sil	
+antonym	perfectionism	noun	kusursuzluk takıntısı, mükemmeliyetçilik	imperfection	noun	sil	
+synonym	perpetuation	noun	sürdürme, devam ettirme	preserve	noun	sil	
+simpler	personhood	noun	insan olma hâli, kişilik	person	noun	sil	
+antonym	pervade	verb	her yere yayılmak, nüfuz etmek	recede	verb	sil	
+antonym	pharmacology	noun	ilaç bilimi, farmakoloji	toxicology	noun	sil	
+simpler	pharmacology	noun	ilaç bilimi, farmakoloji	biology	noun	sil	
+synonym	phenomenological	adjective	fenomenolojik, olayları deneyimsel olarak inceleyen	phenomenal	adjective	sil	
+synonym	physicality	noun	bedensellik, fiziksel özellik	body	noun	sil	
+antonym	physiologist	noun	fizyolog	clinician	noun	sil	
+synonym	physiology	noun	fizyoloji	biology	noun	sil	
+antonym	physiology	noun	fizyoloji	anatomy	noun	sil	
+simpler	physiology	noun	fizyoloji	science	noun	sil	
+synonym	piecewise	adjective	parçalı, bölümlere ayrılmış	partial	adjective	sil	
+simpler	piecewise	adjective	parçalı, bölümlere ayrılmış	simple	adjective	sil	
+synonym	plasma	noun	iyonlaşmış gaz	electricity	noun	sil	
+antonym	platter	noun	plak	disk	noun	sil	
+antonym	playbook	noun	rehber, plan, strateji kitabı	chaos	noun	sil	
+synonym	pleading	noun	dava dilekçesi, savunma belgesi	document	noun	sil	
+synonym	plutonium	noun	plütonyum	uranium	noun	sil	
+antonym	poliomyelitis	noun	çocuk felci	immunity	noun	sil	
+antonym	poliovirus	noun	çocuk felci virüsü	immunity	noun	sil	
+antonym	polynomial	noun	çok terimli ifade	exponential	noun	sil	
+antonym	poppy	noun	haşhaş	heroin	noun	sil	
+synonym	portraiture	noun	portre sanatı	portrait	noun	sil	
+antonym	portraiture	noun	portre sanatı	abstract	noun	sil	
+simpler	portraiture	noun	portre sanatı	photography	noun	sil	
+simpler	portraiture	noun	portre sanatı	sculpture	noun	sil	
+simpler	positivist	noun	pozitivist	scientist	noun	sil	
+antonym	predation	noun	avlanma	prey	noun	sil	
+antonym	preferential	adjective	tercihe dayalı, ayrıcalıklı	unfair	adjective	sil	
+antonym	printmaking	noun	baskı yapma sanatı, gravür	drawing	noun	sil	
+synonym	probate	noun	vasiyetin tasdiki, mirasın mahkeme onayı	estate	noun	sil	
+synonym	probate	noun	vasiyetin tasdiki, mirasın mahkeme onayı	will	noun	sil	
+simpler	proceeding	noun	hukuki dava, yargı süreci	file	noun	sil	
+antonym	prodigy	noun	olağanüstü yetenekli çocuk, dâhi	average	noun	sil	
+antonym	professorship	noun	profesörlük	student	noun	sil	
+antonym	projective	adjective	izdüşümsel, yansıtmalı, izdüşümle ilgili	abstract	adjective	sil	
+antonym	promenade	verb	yürüyüş yapmak, gezmek	wander	verb	sil	
+antonym	promontory	noun	burun, sarp burun, dağ burnu	valley	noun	sil	
+antonym	prophesy	verb	kehanet etmek, önceden söylemek	ignore	verb	sil	
+synonym	prosecutorial	adjective	savcıyla ilgili, kovuşturmayla ilgili	judicial	adjective	sil	
+antonym	prostate	noun	prostat	bladder	noun	sil	
+antonym	provost	noun	rektör yardımcısı, yükseköğretim yöneticisi	chancellor	noun	sil	
+synonym	psychiatrist	noun	psikiyatrist	psychologist	noun	sil	
+synonym	psychiatry	noun	psikiyatri	psychology	noun	sil	
+synonym	psychosis	noun	psikoz	schizophrenia	noun	sil	
+antonym	psychotherapist	noun	psikoterapist	psychiatrist	noun	sil	
+antonym	psychotherapy	noun	psikoterapi	neglect	noun	sil	
+synonym	punditry	noun	uzmanlık, yorumlama	commentator	noun	sil	
+synonym	punditry	noun	uzmanlık, yorumlama	expert	noun	sil	
+antonym	punditry	noun	uzmanlık, yorumlama	bias	noun	sil	
+antonym	qualifier	noun	nitelik belirten sözcük, koşul	limit	noun	sil	
+synonym	qualitatively	adverb	niteliksel olarak, kalitatif olarak	significantly	adverb	sil	
+synonym	qualitatively	adverb	niteliksel olarak, kalitatif olarak	substantially	adverb	sil	
+antonym	rabies	noun	kuduz	health	noun	sil	
+antonym	radiology	noun	radyoloji	surgery	noun	sil	
+synonym	rationalism	noun	akılcılık, rasyonalizm	logic	noun	sil	
+synonym	rationalist	noun	akılcı, akla dayalı düşünür	intellectual	noun	sil	
+antonym	re-evaluation	noun	yeniden değerlendirme	approval	noun	sil	
+antonym	reactor	noun	reaktör	insulator	noun	sil	
+simpler	reactor	noun	reaktör	device	noun	sil	
+antonym	reappraisal	noun	yeniden değerlendirme	overlook	noun	sil	
+antonym	receptor	noun	alıcı, reseptör	inhibitor	noun	sil	
+antonym	reconfigure	verb	yeniden yapılandırmak	disable	verb	sil	
+simpler	rector	noun	rektör	professor	noun	sil	
+simpler	redeemer	noun	kurtarıcı, kurtaran	help	noun	sil	
+synonym	redundancy	noun	gereksiz tekrar, fazlalık	duplicate	noun	sil	
+antonym	reexamination	noun	yeniden inceleme	approval	noun	sil	
+synonym	referent	noun	gönderge, atıfta bulunulan şey	signifier	noun	sil	
+simpler	reflectance	noun	yansıtma oranı, yansıtma katsayısı, yansıtırlık	measure	noun	sil	
+simpler	reflectivity	noun	yansıtıcılık, yansıtma gücü	mirror	noun	sil	
+simpler	refute	verb	çürütmek, reddetmek	prove	verb	sil	
+simpler	regionalism	noun	bölgeselcilik, bölgesel özellik	local	noun	sil	
+antonym	registry	noun	kayıt tutma bölümü, kayıt birimi	chaos	noun	sil	
+antonym	penthouse	noun	üst kat lüks daire	basement	noun	zayif	
+simpler	periodicity	noun	periyodiklik, düzenli aralıklarla tekrar etme	cycle	noun	zayif	
+synonym	perjure	verb	yalan yere yemin etmek	fabricate	verb	zayif	
+simpler	perpetrate	verb	suç işlemek, kötülük yapmak	do	verb	zayif	
+antonym	perpetuity	noun	ebedilik, sürekli ödeme	termination	noun	zayif	
+antonym	persecution	noun	zulüm, baskı, eziyet	tolerance	noun	zayif	
+synonym	personhood	noun	insan olma hâli, kişilik	identity	noun	zayif	
+antonym	personification	noun	timsal, somut örnek, simge	abstract	noun	zayif	
+simpler	pervasive	adjective	yaygın, her yerde bulunan	common	adjective	zayif	
+simpler	perverse	adjective	sapkın, ters, alışılmadık	odd	adjective	zayif	
+simpler	petrify	verb	taş haline getirmek	turn	verb	zayif	
+synonym	pharmacology	noun	ilaç bilimi, farmakoloji	medicine	noun	zayif	
+simpler	phenomenology	noun	fenomenoloji, görüngübilim	study	noun	zayif	
+simpler	philharmonic	adjective	filarmonik	musical	adjective	zayif	
+antonym	philosophically	adverb	olgunlukla, tevekkülle	recklessly	adverb	zayif	
+antonym	philosophically	adverb	felsefi olarak	practically	adverb	zayif	
+synonym	phoenix	noun	anka kuşu, zümrüdüanka	rebirth	noun	zayif	
+synonym	phoenix	noun	anka kuşu, zümrüdüanka	renewal	noun	zayif	
+antonym	phoenix	noun	anka kuşu, zümrüdüanka	destruction	noun	zayif	
+synonym	phonological	adjective	fonolojik	linguistic	adjective	zayif	
+synonym	photon	noun	foton, ışık parçacığı	particle	noun	zayif	
+synonym	photon	noun	foton, ışık parçacığı	quantum	noun	zayif	
+simpler	photon	noun	foton, ışık parçacığı	light	noun	zayif	
+synonym	phraseology	noun	ifade tarzı, deyimsel yapı	expression	noun	zayif	
+antonym	physic	noun	ilaç, şifa	poison	noun	zayif	
+simpler	physicality	noun	bedensellik, fiziksel özellik	strength	noun	zayif	
+synonym	physiological	adjective	biyolojik, fizyolojik	biological	adjective	zayif	
+antonym	physiological	adjective	biyolojik, fizyolojik	psychological	adjective	zayif	
+synonym	physiologically	adverb	fizyolojik olarak	biologically	adverb	zayif	
+antonym	physiologically	adverb	fizyolojik olarak	psychologically	adverb	zayif	
+synonym	physiologist	noun	fizyolog	biologist	noun	zayif	
+simpler	physiologist	noun	fizyolog	researcher	noun	zayif	
+synonym	piecewise	adjective	parçalı, bölümlere ayrılmış	segmental	adjective	zayif	
+antonym	piecewise	adjective	parçalı, bölümlere ayrılmış	continuous	adjective	zayif	
+antonym	piecewise	adverb	parçalı olarak, bölümler halinde	continuously	adverb	zayif	
+simpler	placebo	noun	etkisi olmayan ilaç, sahte ilaç	control	noun	zayif	
+antonym	plagiarize	verb	intihal etmek	cite	verb	zayif	
+antonym	plaint	noun	şikayet, dava dilekçesi	approval	noun	zayif	
+simpler	plasma	noun	iyonlaşmış gaz	gas	noun	zayif	
+simpler	pleading	noun	dava dilekçesi, savunma belgesi	complaint	noun	zayif	
+antonym	plenary	noun	genel kurul, genel oturum	subcommittee	noun	zayif	
+antonym	plotter	noun	komplocu, kumpasçı	victim	noun	zayif	
+simpler	plotter	noun	komplocu, kumpasçı	organizer	noun	zayif	
+simpler	plume	noun	tüy, süs tüyü	ornament	noun	zayif	
+antonym	plurality	noun	nispi çoğunluk, oy çokluğu, en çok oy	majority	noun	zayif	
+simpler	plutonium	noun	plütonyum	element	noun	zayif	
+synonym	pneumonic	adjective	zatürreyle ilgili	pulmonary	adjective	zayif	
+synonym	pneumonic	adjective	zatürreyle ilgili	respiratory	adjective	zayif	
+simpler	poach	verb	ayartmak, eleman kapmak, transfer etmek	hire	verb	zayif	
+antonym	polarity	noun	kutupsallık, yön, zıtlık	neutrality	noun	zayif	
+simpler	polarity	noun	kutupsallık, yön, zıtlık	direction	noun	zayif	
+synonym	polarize	verb	kutuplara ayırmak	separate	verb	zayif	
+simpler	polarize	verb	kutuplara ayırmak	divide	verb	zayif	
+synonym	poliomyelitis	noun	çocuk felci	infection	noun	zayif	
+synonym	poliovirus	noun	çocuk felci virüsü	pathogen	noun	zayif	
+simpler	politicization	noun	siyasetleştirme	politics	noun	zayif	
+simpler	polymerization	noun	polimerleşme	reaction	noun	zayif	
+simpler	populist	adjective	popülist	political	adjective	zayif	
+simpler	populist	noun	popülist	leader	noun	zayif	
+synonym	poppy	noun	haşhaş	opium	noun	zayif	
+simpler	poppy	noun	haşhaş	drug	noun	zayif	
+synonym	posit	verb	öneri sunmak, ileri sürmek	suggest	verb	zayif	
+antonym	positivism	noun	pozitivizm	idealism	noun	zayif	
+simpler	positivism	noun	pozitivizm	theory	noun	zayif	
+antonym	positivist	adjective	pozitivist	idealistic	adjective	zayif	
+simpler	positivist	adjective	pozitivist	scientific	adjective	zayif	
+antonym	positivist	noun	pozitivist	idealist	noun	zayif	
+antonym	possessed	adjective	sahip olan, -e sahip	deprived	adjective	zayif	
+simpler	posterity	noun	gelecek nesil	future	noun	zayif	
+synonym	potentiality	noun	olası durum, potansiyel	potential	noun	zayif	
+synonym	potentiation	noun	güçlendirme, etki artışı	increase	noun	zayif	
+synonym	pragmatism	noun	pragmatik yaklaşım, faydacı felsefe	realism	noun	zayif	
+simpler	precautionary	adjective	tedbir amaçlı, önleyici	safe	adjective	zayif	
+synonym	precinct	noun	polis karakolu, polis mıntıkası	jurisdiction	noun	zayif	
+simpler	precinct	noun	polis karakolu, polis mıntıkası	office	noun	zayif	
+synonym	precipice	noun	uçurum	edge	noun	zayif	
+antonym	precipice	noun	uçurum	plain	noun	zayif	
+synonym	precipitate	verb	çökelti oluşturmak, çökeltmek	settle	verb	zayif	
+simpler	predation	noun	avlanma	eating	noun	zayif	
+antonym	predetermine	verb	önceden belirlemek	randomize	verb	zayif	
+simpler	predetermine	verb	önceden belirlemek	set	verb	zayif	
+antonym	predictive	adjective	öngörücü, tahmin edici	unpredictable	adjective	zayif	
+simpler	predominance	noun	baskınlık, üstünlük	control	noun	zayif	
+synonym	predominate	verb	hakim olmak, baskın çıkmak	overwhelm	verb	zayif	
+antonym	predominate	verb	hakim olmak, baskın çıkmak	recede	verb	zayif	
+simpler	predominate	verb	hakim olmak, baskın çıkmak	lead	verb	zayif	
+synonym	preferentially	adverb	öncelikli olarak, ayrıcalıklı biçimde, tercihli olarak	preferably	adverb	zayif	
+antonym	preferentially	adverb	öncelikli olarak, ayrıcalıklı biçimde, tercihli olarak	indifferently	adverb	zayif	
+synonym	pressurize	verb	basınçlandırmak	compress	verb	zayif	
+simpler	pressurize	verb	basınçlandırmak	inflate	verb	zayif	
+simpler	presumption	noun	varsayım, tahmin	guess	noun	zayif	
+antonym	presuppose	verb	önceden varsaymak, gerektirmek, farz etmek	question	verb	zayif	
+simpler	presuppose	verb	önceden varsaymak, gerektirmek, farz etmek	require	verb	zayif	
+simpler	pretense	noun	kibirli tavır, gösteriş	show	noun	zayif	
+simpler	principled	adjective	ilkesel, prensipli	honest	adjective	zayif	
+synonym	printmaking	noun	baskı yapma sanatı, gravür	printing	noun	zayif	
+antonym	privilege	verb	özel hak tanımak, ayrıcalık sağlamak	discriminate	verb	zayif	
+simpler	privilege	verb	özel hak tanımak, ayrıcalık sağlamak	allow	verb	zayif	
+synonym	probate	verb	vasiyetnameyi onaylamak, mirası tasfiye etmek	administer	verb	zayif	
+synonym	probative	adjective	kanıtlayıcı, delil niteliğinde	demonstrative	adjective	zayif	
+synonym	proceeding	noun	hukuki dava, yargı süreci	trial	noun	zayif	
+antonym	proceeding	noun	hukuki dava, yargı süreci	settlement	noun	zayif	
+antonym	procurement	noun	tedarik, satın alma	sale	noun	zayif	
+simpler	professionally	adverb	mesleki olarak, profesyonel bir şekilde	well	adverb	zayif	
+synonym	professorial	adjective	profesöre özgü	academic	adjective	zayif	
+simpler	professorship	noun	profesörlük	job	noun	zayif	
+synonym	profitability	noun	kârlılık	profit	noun	zayif	
+simpler	profiteering	noun	vurgunculuk, fahiş kazanç sağlama	profit	noun	zayif	
+antonym	prognostic	adjective	öngörücü, tahmini	retrospective	adjective	zayif	
+synonym	programmatic	adjective	program temelli, sistematik	systematic	adjective	zayif	
+synonym	progressive	noun	ilerlemeci, yenilikçi kişi	radical	noun	zayif	
+synonym	prohibitive	adjective	yüksek maliyetli, caydırıcı	expensive	adjective	zayif	
+simpler	prominently	adverb	göze çarpan şekilde, belirgin olarak	clearly	adverb	zayif	
+synonym	prone	adjective	yüzüstü, uzanmış	flat	adjective	zayif	
+synonym	propellant	noun	itici madde	fuel	noun	zayif	
+simpler	propensity	noun	eğilim, yatkınlık	habit	noun	zayif	
+simpler	prophesy	verb	kehanet etmek, önceden söylemek	guess	verb	zayif	
+synonym	propositional	adjective	önermeye ilişkin, öneriyle ilgili	declarative	adjective	zayif	
+antonym	prosecutorial	adjective	savcıyla ilgili, kovuşturmayla ilgili	defensive	adjective	zayif	
+simpler	prosecutorial	adjective	savcıyla ilgili, kovuşturmayla ilgili	legal	adjective	zayif	
+synonym	prostatic	adjective	prostatla ilgili, prostatla alakalı	glandular	adjective	zayif	
+antonym	provenance	noun	köken, menşe, kaynak	destination	noun	zayif	
+antonym	proverbial	adjective	atasözüne özgü, deyimsel	literal	adjective	zayif	
+simpler	proverbial	adjective	atasözüne özgü, deyimsel	common	adjective	zayif	
+synonym	providence	noun	kader, ilahi yönlendirme	destiny	noun	zayif	
+synonym	providence	noun	kader, ilahi yönlendirme	fate	noun	zayif	
+antonym	providence	noun	kader, ilahi yönlendirme	misfortune	noun	zayif	
+simpler	providence	noun	kader, ilahi yönlendirme	care	noun	zayif	
+synonym	provocative	adjective	kışkırtıcı, tahrik edici	aggressive	adjective	zayif	
+antonym	provocative	adjective	kışkırtıcı, tahrik edici	calm	adjective	zayif	
+synonym	psyche	noun	zihin, ruh	soul	noun	zayif	
+antonym	psyche	noun	zihin, ruh	body	noun	zayif	
+antonym	psychedelic	adjective	halüsinasyon yaratan	mundane	adjective	zayif	
+antonym	psychiatrist	noun	psikiyatrist	patient	noun	zayif	
+synonym	psychiatry	noun	psikiyatri	therapy	noun	zayif	
+simpler	psychiatry	noun	psikiyatri	medicine	noun	zayif	
+synonym	psychical	adjective	psişik, ruhsal	psychic	adjective	zayif	
+synonym	psycho	noun	psikopat	psychopath	noun	zayif	
+synonym	psychologically	adverb	psikolojik olarak	emotionally	adverb	zayif	
+antonym	psychopathic	adjective	psikopatik	empathetic	adjective	zayif	
+simpler	psychopathic	adjective	psikopatik	dangerous	adjective	zayif	
+antonym	psychosis	noun	psikoz	sanity	noun	zayif	
+synonym	psychotherapist	noun	psikoterapist	counselor	noun	zayif	
+synonym	purgatory	noun	araf	limbo	noun	zayif	
+antonym	purgatory	noun	araf	heaven	noun	zayif	
+synonym	purge	noun	tasfiye, ihraç	massacre	noun	zayif	
+antonym	purge	noun	tasfiye, ihraç	reconciliation	noun	zayif	
+synonym	purist	noun	saflık savunucusu	traditionalist	noun	zayif	
+antonym	purport	noun	anlam, içerik, iddia, amaç	misinterpretation	noun	zayif	
+simpler	purport	noun	anlam, içerik, iddia, amaç	claim	noun	zayif	
+synonym	pursuant	adjective	uyarınca, gereğince, uygun	compliant	adjective	zayif	
+antonym	pursuant	adjective	uyarınca, gereğince, uygun	contrary	adjective	zayif	
+synonym	quake	noun	sarsıntı, titreme	shiver	noun	zayif	
+synonym	qualifier	noun	nitelik belirten sözcük, koşul	restriction	noun	zayif	
+synonym	quantification	noun	nicelleştirme, miktarın belirlenmesi	assessment	noun	zayif	
+antonym	quantifier	noun	nicelik belirteci, miktar gösteren sözcük	qualifier	noun	zayif	
+simpler	quantifier	noun	nicelik belirteci, miktar gösteren sözcük	measure	noun	zayif	
+antonym	quantify	verb	miktarını belirlemek, ölçmek	approximate	verb	zayif	
+synonym	quantum	adjective	kuantum	discrete	adjective	zayif	
+antonym	quantum	adjective	kuantum	continuous	adjective	zayif	
+simpler	quantum	adjective	kuantum	small	adjective	zayif	
+simpler	quantum	noun	kuantum	particle	noun	zayif	
+synonym	quickening	noun	gebelikte fetüsün hareket etmeye başlaması	flutter	noun	zayif	
+antonym	quickening	noun	gebelikte fetüsün hareket etmeye başlaması	stillness	noun	zayif	
+simpler	quickening	noun	gebelikte fetüsün hareket etmeye başlaması	movement	noun	zayif	
+antonym	rack	noun	işkence aleti, çekiştirme cihazı	release	noun	zayif	
+simpler	radicalize	verb	radikalleştirmek, aşırılığa itmek	influence	verb	zayif	
+antonym	radioactivity	noun	radyoaktivite	stability	noun	zayif	
+synonym	radiologist	noun	radyolog	doctor	noun	zayif	
+synonym	radiologist	noun	radyolog	physician	noun	zayif	
+antonym	railroad	verb	hızla ve tartışmadan geçirmek	delay	verb	zayif	
+antonym	ramble	noun	gezinti, dolaşma, uzun konuşma	stay	noun	zayif	
+simpler	rationalism	noun	akılcılık, rasyonalizm	reason	noun	zayif	
+antonym	re-negotiate	verb	yeniden müzakere etmek	terminate	verb	zayif	
+synonym	reactor	noun	reaktör	generator	noun	zayif	
+synonym	rearmament	noun	yeniden silahlandırma	armament	noun	zayif	
+simpler	reasonableness	noun	makullük, akla yatkınlık, mantıklılık	sense	noun	zayif	
+synonym	receivable	adjective	tahsil edilebilir, tahsili kabil	collectible	adjective	zayif	
+synonym	receptive	adjective	duyarlı, alıcı	sensitive	adjective	zayif	
+antonym	reciprocity	noun	karşılıklılık	selfishness	noun	zayif	
+antonym	reclaim	verb	yeniden kullanılabilir hâle getirmek, iyileştirmek	damage	verb	zayif	
+simpler	reclaim	verb	yeniden kullanılabilir hâle getirmek, iyileştirmek	reuse	verb	zayif	
+synonym	reconquest	noun	yeniden fetih	recovery	noun	zayif	
+antonym	reconsideration	noun	yeniden değerlendirme	finality	noun	zayif	
+simpler	reconstitute	verb	yeniden kurmak, eski hâline getirmek	make	verb	zayif	
+synonym	reconstitution	noun	yeniden oluşturma, yeniden kurma	reform	noun	zayif	
+antonym	rectification	noun	düzeltme, iyileştirme	error	noun	zayif	
+synonym	rector	noun	rektör	chancellor	noun	zayif	
+synonym	rector	noun	rektör	president	noun	zayif	
+antonym	rector	noun	rektör	student	noun	zayif	
+simpler	redeem	verb	kurtarmak, bağışlamak	deliver	verb	zayif	
+antonym	redeemer	noun	kurtarıcı, kurtaran	sinner	noun	zayif	
+simpler	redefinition	noun	yeniden tanımlama	definition	noun	zayif	
+synonym	rediscovery	noun	yeniden keşif	discovery	noun	zayif	
+antonym	rediscovery	noun	yeniden keşif	loss	noun	zayif	
+synonym	redistributive	adjective	yeniden dağıtıcı, dağıtım amaçlı	progressive	adjective	zayif	
+antonym	reeducation	noun	yeniden eğitim	ignorance	noun	zayif	
+synonym	referent	noun	gönderge, atıfta bulunulan şey	reference	noun	zayif	
+simpler	referent	noun	gönderge, atıfta bulunulan şey	term	noun	zayif	
+synonym	reflectance	noun	yansıtma oranı, yansıtma katsayısı, yansıtırlık	reflection	noun	zayif	
+synonym	reflectivity	noun	yansıtıcılık, yansıtma gücü	reflection	noun	zayif	
+antonym	refutation	noun	çürütme, itiraz	proof	noun	zayif	
+antonym	regenerative	adjective	yenileyici, kendini yenileyebilen	degrading	adjective	zayif	
+synonym	registry	noun	kayıt tutma bölümü, kayıt birimi	department	noun	zayif	
+simpler	regrettable	adjective	üzücü, pişmanlık verici	sad	adjective	zayif	

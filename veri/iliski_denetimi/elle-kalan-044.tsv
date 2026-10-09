@@ -1,0 +1,262 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+simpler	manslaughter	noun	kasıtsız öldürme, kasten olmayan cinayet	kill	noun	sil	
+antonym	mantle	noun	pelerin	burden	noun	sil	
+synonym	mantle	noun	manto	crust	noun	sil	
+antonym	mantle	noun	manto	core	noun	sil	
+synonym	mare	noun	ay denizi	basalt	noun	sil	
+antonym	marquee	noun	afiş, tabela	subtitle	noun	sil	
+simpler	marquis	noun	marki	count	noun	sil	
+synonym	martyr	noun	şehit, fedakâr	sacrifice	noun	sil	
+antonym	martyrdom	noun	şehitlik, fedakarlık	victim	noun	sil	
+antonym	maxim	noun	atasözü, özdeyiş	exception	noun	sil	
+synonym	mechanics	noun	mekanik	dynamics	noun	sil	
+antonym	mechanics	noun	mekanik	statics	noun	sil	
+antonym	meningitis	noun	menenjit	health	noun	sil	
+simpler	meridian	noun	öğle	time	noun	sil	
+synonym	meritocracy	noun	hak temelli yönetim, liyakat sistemi	merit	noun	sil	
+antonym	meritocratic	adjective	liyakat temelli, yetenek esaslı	authoritarian	adjective	sil	
+antonym	meta	noun	üst veri	context	noun	sil	
+antonym	metadata	noun	üst veri, veri üst bilgisi	noise	noun	sil	
+synonym	meteorology	noun	meteoroloji, atmosfer bilimi	climatology	noun	sil	
+synonym	meteorology	noun	meteoroloji, atmosfer bilimi	meteorologist	noun	sil	
+antonym	meteorology	noun	meteoroloji, atmosfer bilimi	uncertainty	noun	sil	
+synonym	methyl	noun	metil	methane	noun	sil	
+antonym	microbiologist	noun	mikrobiyolog	pathogen	noun	sil	
+simpler	microscopy	noun	mikroskopla inceleme	microscope	noun	sil	
+simpler	militarism	noun	militarizm, orduculuk, askeriyetçilik	army	noun	sil	
+synonym	millennium	noun	bin yıl	century	noun	sil	
+antonym	millennium	noun	bin yıl	year	noun	sil	
+simpler	millennium	noun	bin yıl	decade	noun	sil	
+synonym	mineralogy	noun	mineraloji, mineral bilimi	geology	noun	sil	
+simpler	mineralogy	noun	mineraloji, mineral bilimi	chemistry	noun	sil	
+synonym	miscarry	verb	düşük yapmak	abort	verb	sil	
+antonym	miscarry	verb	düşük yapmak	carry	verb	sil	
+antonym	mitochondrial	adjective	mitokondriyle ilgili	nuclear	adjective	sil	
+antonym	modality	noun	yöntem, biçim, tarz	restriction	noun	sil	
+synonym	modernity	noun	çağdaşlık, modern olma durumu	contemporary	noun	sil	
+antonym	monetize	verb	paraya çevirmek, gelire dönüştürmek, kazanca dönüştürmek	spend	verb	sil	
+antonym	montage	noun	montaj, kurgu	cut	noun	sil	
+antonym	moot	adjective	tartışmaya açık, pratikte önemsiz	trivial	adjective	sil	
+synonym	morbidity	noun	hastalık oranı, hastalık yükü	prevalence	noun	sil	
+antonym	morphine	noun	morfin	placebo	noun	sil	
+simpler	morphology	noun	biçimbilim, kelime yapısı bilimi	study	noun	sil	
+antonym	mortar	noun	havan topu, havan	peace	noun	sil	
+simpler	multidimensional	adjective	çok boyutlu	complex	adjective	sil	
+synonym	multiplicity	noun	çokluk, çeşitlilik	multiple	noun	sil	
+synonym	mummification	noun	mumyalama	preserve	noun	sil	
+antonym	musculature	noun	kas yapısı, kas sistemi	fat	noun	sil	
+simpler	navigator	noun	yön bulma cihazı	map	noun	sil	
+antonym	neurologist	noun	nörolog, sinir sistemi uzmanı	psychiatrist	noun	sil	
+antonym	neurology	noun	nöroloji, asabiye	psychiatry	noun	sil	
+simpler	neurology	noun	nöroloji, asabiye	brain	noun	sil	
+antonym	neuronal	adjective	nöronla ilgili	muscular	adjective	sil	
+synonym	neuroscience	noun	sinirbilim	psychology	noun	sil	
+antonym	neuroscientist	noun	sinirbilimci	clinician	noun	sil	
+antonym	neutron	noun	nötron	proton	noun	sil	
+synonym	nicotine	noun	nikotin	tobacco	noun	sil	
+antonym	nightcap	noun	gece içkisi	sobriety	noun	sil	
+simpler	noir	adjective	karanlık, kasvetli, kara film tarzı	dark	adjective	sil	
+synonym	noir	noun	kara film, suç temalı film	detective	noun	sil	
+antonym	noir	noun	kara film, suç temalı film	light	noun	sil	
+synonym	nonlinearity	noun	doğrusallıktan sapma, doğrusal olmayanlık	complex	noun	sil	
+simpler	nonlinearity	noun	doğrusallıktan sapma, doğrusal olmayanlık	model	noun	sil	
+synonym	notability	noun	önemlilik, dikkate değer olma	notable	noun	sil	
+antonym	nudity	noun	çıplaklık	clothing	noun	sil	
+synonym	obscurity	noun	bilinmezlik, tanınmama durumu	unknown	noun	sil	
+synonym	observatory	noun	gözlemevi	planetarium	noun	sil	
+antonym	observatory	noun	gözlemevi	laboratory	noun	sil	
+simpler	observatory	noun	gözlemevi	telescope	noun	sil	
+simpler	ominously	adverb	uğursuz bir şekilde	badly	adverb	sil	
+antonym	omnibus	noun	toplu taşıma aracı, otobüs	car	noun	sil	
+synonym	oncology	noun	kanser bilimi	cancer	noun	sil	
+synonym	oncology	noun	kanser bilimi	oncologist	noun	sil	
+synonym	opium	noun	afyon	poppy	noun	sil	
+antonym	opium	noun	afyon	sobriety	noun	sil	
+simpler	oppressed	adjective	baskı altında olan, ezilmiş	sad	adjective	sil	
+antonym	orbit	noun	etki alanı, çevresi	detachment	noun	sil	
+antonym	orchestrate	verb	bir müzik eserini orkestraya uyarlamak	simplify	verb	sil	
+synonym	orthodox	adjective	ortodoks	religious	adjective	sil	
+synonym	ovarian	adjective	yumurtalıkla ilgili	uterine	adjective	sil	
+antonym	ovarian	adjective	yumurtalıkla ilgili	male	adjective	sil	
+synonym	overburden	noun	örtü tabakası, örtü katmanı, hafriyat örtüsü	burden	noun	sil	
+antonym	overburden	noun	örtü tabakası, örtü katmanı, hafriyat örtüsü	cover	noun	sil	
+antonym	overhead	adjective	genel, genel yönetim	saving	adjective	sil	
+antonym	palate	noun	damak	cavity	noun	sil	
+antonym	palpation	noun	elle muayene, dokunarak inceleme	inspection	noun	sil	
+synonym	pantheon	noun	tanrıların topluluğu, tanrılar mabedi	deity	noun	sil	
+antonym	pantheon	noun	tanrıların topluluğu, tanrılar mabedi	idol	noun	sil	
+simpler	paradoxical	adjective	çelişkili, paradoksal	complex	adjective	sil	
+simpler	parasitism	noun	parazitlik	host	noun	sil	
+simpler	partition	noun	disk bölümü	disk	noun	sil	
+simpler	patently	adverb	açıkça, bariz bir şekilde	obviously	adverb	sil	
+simpler	paternity	noun	babalık	father	noun	sil	
+antonym	pathogenesis	noun	hastalığın gelişim süreci	cure	noun	sil	
+synonym	pathologist	noun	patolog	biopsy	noun	sil	
+antonym	pathologist	noun	patolog	autopsy	noun	sil	
+simpler	patriarchal	adjective	ataerkil	male	adjective	sil	
+antonym	oriole	noun	sarıasma, sarıasma kuşu	sparrow	noun	sil	
+synonym	manslaughter	noun	kasıtsız öldürme, kasten olmayan cinayet	homicide	noun	zayif	
+simpler	mare	noun	ay denizi	moon	noun	zayif	
+simpler	markedly	adverb	belirgin şekilde	clearly	adverb	zayif	
+synonym	marshal	noun	mareşal	general	noun	zayif	
+antonym	marshal	noun	mareşal	soldier	noun	zayif	
+synonym	martyr	noun	şehit, fedakâr	hero	noun	zayif	
+antonym	martyr	noun	şehit, fedakâr	persecutor	noun	zayif	
+simpler	martyr	noun	şehit, fedakâr	victim	noun	zayif	
+antonym	massless	adjective	kütlesiz	massive	adjective	zayif	
+simpler	massless	adjective	kütlesiz	light	adjective	zayif	
+simpler	mat	verb	karışmak, düğümlenmek	cover	verb	zayif	
+synonym	matchless	adjective	eşsiz, benzersiz	unique	adjective	zayif	
+simpler	matchless	adjective	eşsiz, benzersiz	rare	adjective	zayif	
+synonym	mathematically	adverb	matematiksel olarak	quantitatively	adverb	zayif	
+simpler	maverick	adjective	bağımsız, kurallara uymayan	different	adjective	zayif	
+simpler	maximal	adjective	azami, en yüksek	great	adjective	zayif	
+simpler	mechanics	noun	mekanik	physics	noun	zayif	
+synonym	meningitis	noun	menenjit	infection	noun	zayif	
+simpler	mercantilism	noun	merkantilizm, devletçi ticaret politikası	trade	noun	zayif	
+antonym	meritocracy	noun	hak temelli yönetim, liyakat sistemi	elitism	noun	zayif	
+simpler	meritocratic	adjective	liyakat temelli, yetenek esaslı	fair	adjective	zayif	
+simpler	meta	noun	üst veri	information	noun	zayif	
+simpler	methyl	noun	metil	group	noun	zayif	
+antonym	microbiological	adjective	mikrobiyolojik	sterile	adjective	zayif	
+synonym	microbiologist	noun	mikrobiyolog	researcher	noun	zayif	
+synonym	microbiologist	noun	mikrobiyolog	scientist	noun	zayif	
+simpler	microbiology	noun	mikrobiyoloji	biology	noun	zayif	
+synonym	microscopy	noun	mikroskopla inceleme	observation	noun	zayif	
+synonym	militarism	noun	militarizm, orduculuk, askeriyetçilik	militarization	noun	zayif	
+synonym	militarization	noun	askerileştirme, askerileşme	armament	noun	zayif	
+synonym	millennium	noun	bin yıl	age	noun	zayif	
+synonym	millennium	noun	bin yıl	era	noun	zayif	
+antonym	mineralization	noun	mineralleşme	dissolution	noun	zayif	
+simpler	minimization	noun	asgari seviyeye indirme, küçültme	cut	noun	zayif	
+antonym	mint	verb	yeni bir sözcük/ifade oluşturmak, icat etmek	borrow	verb	zayif	
+simpler	miscarry	verb	düşük yapmak	lose	verb	zayif	
+antonym	misdemeanor	noun	küçük suç, hafif suç	felony	noun	zayif	
+synonym	minion	noun	uşak, yardakçı, emir kulu	assistant	noun	zayif	
+synonym	mismanagement	noun	kötü yönetim	misrule	noun	zayif	
+synonym	mistress	noun	kadın yönetici, müdire, kadın öğretmen	principal	noun	zayif	
+antonym	mistress	noun	kadın yönetici, müdire, kadın öğretmen	master	noun	zayif	
+simpler	mistress	noun	kadın yönetici, müdire, kadın öğretmen	director	noun	zayif	
+synonym	mitochondrial	adjective	mitokondriyle ilgili	cellular	adjective	zayif	
+simpler	modality	noun	yöntem, biçim, tarz	option	noun	zayif	
+simpler	modeling	noun	model oluşturma, modelleme	design	noun	zayif	
+synonym	modernism	noun	modernist akım, modernizm	innovation	noun	zayif	
+simpler	modernism	noun	modernist akım, modernizm	art	noun	zayif	
+synonym	modernity	noun	çağdaşlık, modern olma durumu	modernism	noun	zayif	
+simpler	modular	adjective	bölümlere ayrılmış, modüler	separate	adjective	zayif	
+antonym	modulate	verb	ayarlamak, dengelemek, derecesini değiştirmek	suppress	verb	zayif	
+synonym	molecular	adjective	moleküler	chemical	adjective	zayif	
+simpler	molecular	adjective	moleküler	small	adjective	zayif	
+antonym	molestation	noun	cinsel taciz, istismar	protection	noun	zayif	
+synonym	monarchy	noun	monarşi	kingdom	noun	zayif	
+simpler	monarchy	noun	monarşi	rule	noun	zayif	
+simpler	monasticism	noun	manastır yaşamı, keşişlik	religion	noun	zayif	
+synonym	monetization	noun	para kazanma, gelir elde etme	profit	noun	zayif	
+antonym	monetization	noun	para kazanma, gelir elde etme	loss	noun	zayif	
+antonym	monograph	noun	tek konu üzerine ayrıntılı çalışma	article	noun	zayif	
+antonym	monolith	noun	tek parça taş yapı	fragment	noun	zayif	
+antonym	morphological	adjective	biçimsel, morfolojik	functional	adjective	zayif	
+synonym	morphologically	adverb	morfolojik olarak	physically	adverb	zayif	
+antonym	morphology	noun	biçimbilim, kelime yapısı bilimi	syntax	noun	zayif	
+simpler	mortality	noun	ölüm oranı	rate	noun	zayif	
+simpler	mortar	verb	bağlamak, harçlamak	glue	verb	zayif	
+synonym	multilateral	adjective	çok taraflı, çok uluslu	multinational	adjective	zayif	
+antonym	multiplicative	adjective	çarpan, çarpma ile ilgili	additive	adjective	zayif	
+simpler	musicianship	noun	müzikal yetenek, müzisyenlik	skill	noun	zayif	
+simpler	mutagen	noun	mutasyon yapıcı madde	agent	noun	zayif	
+antonym	mutant	noun	mutasyona uğramış organizma	normal	noun	zayif	
+simpler	mysticism	noun	mistisizm	religion	noun	zayif	
+simpler	narcissistic	adjective	kendine hayran, benmerkezci	selfish	adjective	zayif	
+antonym	narcotic	noun	uyuşturucu, afyon	stimulant	noun	zayif	
+antonym	nationhood	noun	ulus olma, millet olma	colonialism	noun	zayif	
+simpler	nationhood	noun	ulus olma, millet olma	nation	noun	zayif	
+antonym	naturalism	noun	doğalcılık	idealism	noun	zayif	
+antonym	nesting	noun	iç içe yerleştirme	flattening	noun	zayif	
+synonym	neural	adjective	sinirsel, sinir sistemiyle ilgili	nervous	adjective	zayif	
+synonym	neurological	adjective	nörolojik	nervous	adjective	zayif	
+synonym	neurologist	noun	nörolog, sinir sistemi uzmanı	physician	noun	zayif	
+synonym	neurology	noun	nöroloji, asabiye	neuroscience	noun	zayif	
+simpler	neuroscience	noun	sinirbilim	science	noun	zayif	
+simpler	neutralization	noun	nötrleştirme	balance	noun	zayif	
+antonym	nevertheless	adverb	yine de, buna rağmen	therefore	adverb	zayif	
+simpler	nipper	noun	küçük çocuk, yumurcak	baby	noun	zayif	
+synonym	nomenclature	noun	isimlendirme, adlandırma	classification	noun	zayif	
+simpler	nomenclature	noun	isimlendirme, adlandırma	label	noun	zayif	
+synonym	nominal	noun	adıl, isim soylu sözcük, ad öbeği	label	noun	zayif	
+synonym	nominal	noun	adıl, isim soylu sözcük, ad öbeği	title	noun	zayif	
+synonym	non-deductible	adjective	vergi indirimi yapılamayan, kesinti yapılmayan	taxable	adjective	zayif	
+simpler	non-disruptive	adjective	kesintisiz, bozulmaya yol açmayan	quiet	adjective	zayif	
+simpler	nonconformist	noun	uyumsuzluk gösteren kişi	individual	noun	zayif	
+synonym	nonexistent	adjective	var olmayan	absent	adjective	zayif	
+synonym	nonlinear	adjective	doğrusal olmayan	curvilinear	adjective	zayif	
+simpler	nonlinear	adjective	doğrusal olmayan	complex	adjective	zayif	
+simpler	normative	adjective	normatif	standard	adjective	zayif	
+synonym	nucleation	noun	çekirdek oluşumu, çekirdeklenme	crystallization	noun	zayif	
+antonym	nucleation	noun	çekirdek oluşumu, çekirdeklenme	dissolution	noun	zayif	
+simpler	nucleation	noun	çekirdek oluşumu, çekirdeklenme	growth	noun	zayif	
+synonym	nucleic	adjective	nükleik	genetic	adjective	zayif	
+antonym	nymph	noun	peri, doğa ruhu	human	noun	zayif	
+simpler	objectively	adverb	nesnel olarak	fairly	adverb	zayif	
+antonym	obsessively	adverb	takıntılı bir şekilde	casually	adverb	zayif	
+simpler	occultation	noun	göksel örtülme	cover	noun	zayif	
+antonym	occultism	noun	gizli ilimler, okültizm	rationalism	noun	zayif	
+antonym	occupier	noun	işgalci, işgal eden kişi	defender	noun	zayif	
+simpler	ode	noun	övgü şiiri, kaside, od	song	noun	zayif	
+antonym	officialdom	noun	resmi makamlar, bürokrasi	anarchy	noun	zayif	
+antonym	officious	adjective	gereksiz müdahaleci	helpful	adjective	zayif	
+synonym	ombudsman	noun	ombudsman, kamu denetçisi	mediator	noun	zayif	
+antonym	ombudsman	noun	ombudsman, kamu denetçisi	adversary	noun	zayif	
+simpler	ominous	adjective	kötüye işaret eden, uğursuz	dangerous	adjective	zayif	
+antonym	ominously	adverb	uğursuz bir şekilde	brightly	adverb	zayif	
+simpler	omnipotent	adjective	sınırsız güç sahibi	strong	adjective	zayif	
+simpler	oncology	noun	kanser bilimi	medicine	noun	zayif	
+simpler	onslaught	noun	büyük saldırı, hücum	offense	noun	zayif	
+synonym	operable	adjective	ameliyat edilebilir, cerrahi müdahale yapılabilir	surgical	adjective	zayif	
+synonym	operative	adjective	etkili, yürürlükte	binding	adjective	zayif	
+synonym	ordnance	noun	silah, mühimmat	weapon	noun	zayif	
+synonym	organically	adverb	organik olarak, organik yöntemlerle	sustainably	adverb	zayif	
+synonym	orientalism	noun	oryantalizm, şarkiyatçılık	exoticism	noun	zayif	
+antonym	orientalism	noun	oryantalizm, şarkiyatçılık	objectivity	noun	zayif	
+simpler	orientalism	noun	oryantalizm, şarkiyatçılık	study	noun	zayif	
+simpler	ornament	noun	gösteriş, süsleme	detail	noun	zayif	
+antonym	outburst	noun	ani patlama, ani çıkış	silence	noun	zayif	
+antonym	ovation	noun	alkış, coşkulu takdir	silence	noun	zayif	
+simpler	ovation	noun	alkış, coşkulu takdir	clap	noun	zayif	
+simpler	overgrazing	noun	aşırı otlatma	damage	noun	zayif	
+antonym	overrun	verb	ele geçirmek	reclaim	verb	zayif	
+simpler	overshadowing	noun	gölge düşürme, gölgede bırakma	cover	noun	zayif	
+synonym	pad	verb	sessizce yürümek	sneak	verb	zayif	
+antonym	paddling	noun	kürekle dayak, disiplin cezası	reward	noun	zayif	
+simpler	paganism	noun	paganlık	religion	noun	zayif	
+synonym	palatal	adjective	damakla ilgili	oral	adjective	zayif	
+simpler	palate	noun	damak	mouth	noun	zayif	
+simpler	papacy	noun	papalık	pope	noun	zayif	
+antonym	paralytic	adjective	felç edici	stimulating	adjective	zayif	
+synonym	paramilitary	adjective	yarı askeri, silahlı	military	adjective	zayif	
+simpler	partake	verb	tüketmek, yemek içmek	drink	verb	zayif	
+simpler	participatory	adjective	katılımcı	involved	adjective	zayif	
+antonym	partisan	noun	silahlı militan, gerilla	peacekeeper	noun	zayif	
+synonym	pastoral	adjective	ruhani	spiritual	adjective	zayif	
+simpler	pastoral	noun	kırsal yaşam, kırsal temalı eser	countryside	noun	zayif	
+synonym	paternalism	noun	paternalizm, babacılık, vesayetçilik	intervention	noun	zayif	
+antonym	paternalism	noun	paternalizm, babacılık, vesayetçilik	libertarianism	noun	zayif	
+synonym	pathogenesis	noun	hastalığın gelişim süreci	development	noun	zayif	
+simpler	pathogenesis	noun	hastalığın gelişim süreci	cause	noun	zayif	
+simpler	pathogenicity	noun	hastalık yapma gücü	danger	noun	zayif	
+synonym	pathology	noun	patoloji, hastalık bilimi	disease	noun	zayif	
+antonym	pathology	noun	patoloji, hastalık bilimi	health	noun	zayif	
+synonym	patriarch	noun	patrik	bishop	noun	zayif	
+simpler	patriarchate	noun	patriklik, patrikhane	church	noun	zayif	
+simpler	patriarchy	noun	erkek egemenliği, ataerkil düzen	rule	noun	zayif	
+antonym	pedagogical	adjective	öğretimle ilgili, eğitimle ilgili	practical	adjective	zayif	
+simpler	pedagogy	noun	öğretim yöntemi, eğitim bilimi	learning	noun	zayif	
+simpler	pedagogy	noun	öğretim yöntemi, eğitim bilimi	method	noun	zayif	
+simpler	pendulous	adjective	sarkık, asılı	swinging	adjective	zayif	
+simpler	penetrative	adjective	derinlemesine, nüfuz edici	deep	adjective	zayif	
+simpler	pantheon	noun	tanrıların topluluğu, tanrılar mabedi	god	noun	zayif	
+antonym	orchestrator	noun	planlayıcı, mimar	disruptor	noun	zayif	
+simpler	orchestrator	noun	planlayıcı, mimar	manager	noun	zayif	
+simpler	ordain	verb	takdis etmek, dinî göreve atamak	choose	verb	zayif	
+synonym	ordain	verb	takdis etmek, dinî göreve atamak	install	verb	zayif	
+synonym	ordeal	noun	tanrı buyruğu sınavı, çile sınavı	judgment	noun	zayif	
+antonym	ordeal	noun	tanrı buyruğu sınavı, çile sınavı	fairness	noun	zayif	

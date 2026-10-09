@@ -1,0 +1,38 @@
+# Kalıbı silinen ama anlamı duran hassas kelimeler (7 Ekim, rapor 18.7)
+# Efe karar verecek: anlam kalsın / "kaba" ya da "eskimiş" diye işaretlensin / silinsin.
+# M… = anlam kimliği, K… = silinen kalıp kimliği (yedekteki kimlikler).
+
+- M17238 bitch/noun «dişi köpek»: anlam teknik olarak doğru ama kelime kaba; kalıbı silindi (K30663). Anlamın kalıp kalmayacağına Efe karar versin.
+- M17803 suicide/noun: "commit suicide" kalıbı ve ağır örnek cümlesi silindi (K31660); "suicide prevention" kaldı. Anlamın kendisi kalsın mı, Efe'ye sor.
+- M7084 virgin/adjective: tanımdaki cinsel kısım çıkarıldı (yalnızca "el değmemiş, doğal hâlinde"); kalıp "virgin forest" yapıldı.
+- M13802 sexy/adjective: kalıplar ("look sexy", "feel sexy") silindi; anlam duruyor. Kalsın mı, Efe karar versin.
+- M18184 affair, M4233 lover: romantik/cinsel ilişki anlamları; lover kalıbı silindi, affair için nötr örnek yazıldı.
+- M8935 cock/noun (vana): teknik anlam; kalıbı silindi. Kelime kaba anlamıyla karışabilir, Efe karar versin.
+- M1383 savage/noun («vahşi, barbar» kişi): aşağılayıcı bir kullanım; kalıpları silindi. M15758 shooter: kalıpları silindi. Anlamlar kalsın mı, Efe karar versin.
+- M13799 sexuality, M9859 nude/noun: kalıpları silindi; anlamlar kalsın mı, Efe karar versin.
+- M11943 bastard/noun, M6461 mistress («metres»), M14245 bomber («bombacı», terör): kalıpları silindi. Anlamlar kalsın mı, Efe karar versin.
+- M10368 oriental/adjective: günümüzde rahatsız edici sayılabilir; kalıbı silindi. M7966 mug/verb (gasp) ve M14256-57 "hit sb in the mug" (kavga) kalıpları silindi.
+- suicidal/adjective (M17804): hassas konu; "feel suicidal" kalıbı zayıf olarak işaretlendi, silinmedi. Anlam kalsın mı?
+- vibration/noun (M7209) «atmosfer»: anlam şüpheli (aslında "vibe"); bozuk kalıp silindi, anlamın kendisi Efe'ye.
+- cripple/noun (M9398) «engelli, sakat kişi»: bugün aşağılayıcı sayılıyor; kalıbı silindi, anlamın kendisi Efe'ye (kaba/eski diye işaretlensin mi?).
+- stag/noun (M12128) «bekârlığa veda partisi»: tek başına "stag" pek kullanılmaz (stag party/night); kalıp "a stag party" yapıldı.
+- lunatic/adjective, madman, maniac: akıl hastalığını aşağılayıcı kullanımlar; kalıplar temizlendi, anlamlar duruyor.
+- shag/noun (M12969): İngilizcede argo cinsel anlamı var; "have a shag" kalıbı silindi, "a shag carpet" yapıldı. Anlamın kendisi Efe'ye.
+- hag/noun: kadınlara hakaret; kalıp silindi. noose/noun: idam örneği silindi.
+- molest/verb (M13351) ve molester/noun (M13353): cinsel istismar anlamı; örnekler (yeğen, reşit olmayan) silindi, kalıp kalmadı. Anlamlar Efe'ye (B2 listesinde kalsın mı?).
+- sexualized/adjective (M13801): örnekte reşit olmayanlar geçiyordu, kalıp silindi. Anlam Efe'ye. nakedness, leer, looker, shapely kalıpları da silindi.
+- harem, heathen, handicapped, ghetto, gore, grenade, handgun, contraceptive: kalıplar temizlendi (hassas/eskimiş). Anlamlar duruyor; Efe'ye.
+- jihad, junkie, mafia, marijuana, infidelity, mace: kalıplar silindi (hassas). Anlamlar Efe'ye.
+- prostitution: kalıplar silindi (hassas); anlam Efe'ye.
+- gas/verb «zehirli gazla öldürmek», hanging «idam», execution «idam», shooting, shell/verb: kalıplar silindi (şiddet). Anlamlar Efe'ye.
+- torture/verb, execute/verb, massacre/verb, assassination, slaughter, cocaine, heroin, bomber: kalıplar silindi (şiddet/uyuşturucu). Anlamlar Efe'ye.
+- overdose, poppy «haşhaş/afyon», purge, intercourse: kalıplar silindi (hassas). Anlamlar Efe'ye.
+- opium, nudity, barren «kısır», illegitimate: kalıplar silindi (hassas). Anlamlar Efe'ye.
+- tong «Çin suç örgütü» (etnik çağrışım), vibrator (cinsel çağrışım), martyrdom, scaffold «idam sehpası»: kalıplar silindi. Anlamlar Efe'ye.
+- molestation, paddling «kürekle dayak», warhead, savagery, wedlock: kalıplar silindi (hassas/şiddet). Anlamlar Efe'ye.
+- 077: strangulation, trafficker, weaponized, sensuality, victimization: kalıplar silindi. Anlamlar Efe'ye.
+- 080: abduct/abduction, abortion, adultery, chaste/chastity, behead/beheading, caliphate: kalıplar silindi (hassas). Anlamlar Efe'ye.
+- 081: crucifixion, cyanide, euthanasia, fascism/fascist, homicidal, dispatch «öldürmek»: kalıplar silindi. Anlamlar Efe'ye.
+- 082: lynching, mutilation, narcotic, nuke, misogynistic, pestilence: kalıplar silindi. Anlamlar Efe'ye.
+- 083: psycho/psychopath, sadism/sadist, satan/satanism, sorcery, shrapnel, supremacist, separatist: kalıplar silindi. Anlamlar Efe'ye.
+- 084: treason/treasonous, vampiric/vampirism, shiv «hapishane bıçağı», volley «mermi yağmuru»: kalıplar silindi. Anlamlar Efe'ye.

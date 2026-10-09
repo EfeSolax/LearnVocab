@@ -427,7 +427,7 @@ ve araya kelime girebilir: "sustain injuries" için "He sustained serious
 injuries" geçerlidir. Ama kalıp cümlede hiç geçmiyorsa cümle yanlıştır.
 
 DOĞRU:  pattern "make a decision", example "They made a difficult decision quickly."
-YANLIŞ: pattern "be ambiguous about + noun"  (yer tutuculu -> PATTERNS bölümüne)
+YANLIŞ: pattern "be ambiguous about sth"  (yer tutuculu -> PATTERNS bölümüne)
 YANLIŞ: pattern "remain ambiguous", example "The results were unclear."
         (kalıp cümlede collocation YOK, YANLIŞ ÖRNEK)
 Örneği yazdıktan sonra kalıbın kelimelerini cümlede TEK TEK ARA.
@@ -437,7 +437,11 @@ kalıplarıdır. Collocation'dan farkı içinde yer tutucular vardır. Sık sık
 (to, with, for, ...) içerir. Bunlardan her anlam için 0-3 tane yapmanı istiyorum.
 Bunlar kelime seçimi değil GRAMER'dir. Bağımlı edatlar (depend on sth), fiil kalıpları
 (suggest doing sth, decide to do sth), yan cümle yapıları. Yer tutucular BURADA 
-kullanılır. Aynı ifadeyi hem collocations hem patterns içine KOYMA. Kelimenin bağlayıcı
+kullanılır. Yer tutucu olarak YALNIZCA sb (kişi), sth (şey), sb/sth, doing sth, to do sth,
+do sth, one's ve "that …" yaz. "+" işareti, "noun", "verb", "gerund", "adjective",
+"clause" gibi dilbilgisi terimleri YASAK: "interested in + noun" değil "interested in sth".
+Kelimenin nesne aldığını söylemekten öte bilgi taşımayan kalıp ("repair sth") YAZMA.
+Aynı ifadeyi hem collocations hem patterns içine KOYMA. Kelimenin bağlayıcı
 bir kalıbı yoksa listeyi boş bırak. Burada pattern'in doldurman gereken 3 alanı var:
 
 pattern, example, note. Eğer pattern varsa kendisini pattern kısmına yaz. Daha sonra bu

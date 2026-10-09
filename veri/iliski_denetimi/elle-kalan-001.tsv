@@ -1,0 +1,481 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+antonym	Dutch	adjective	Hollanda'ya ait, Hollandalı	foreign	adjective	sil	
+antonym	German	adjective	Alman, Almanya'ya ait	foreign	adjective	sil	
+synonym	German	noun	Almanca	dialect	noun	sil	
+antonym	bookshop	noun	kitapçı	library	noun	sil	
+synonym	china	noun	Çin	country	noun	sil	
+synonym	china	noun	Çin	nation	noun	sil	
+synonym	coffeeshop	noun	kahve dükkanı	restaurant	noun	sil	
+antonym	do	verb	yapmak, gerçekleştirmek	avoid	verb	sil	
+antonym	eyebrow	noun	kaş	frown	noun	sil	
+antonym	garlic	noun	sarımsak	pepper	noun	sil	
+antonym	grammar	noun	dilbilgisi	mistake	noun	sil	
+antonym	gramme	noun	gram	kilogram	noun	sil	
+antonym	light	noun	lamba, fener, ışık kaynağı	darkness	noun	sil	
+antonym	math	noun	matematik	art	noun	sil	
+synonym	meter	noun	metre	kilometer	noun	sil	
+antonym	meter	noun	metre	centimeter	noun	sil	
+synonym	minute	noun	dakika	second	noun	sil	
+antonym	minute	noun	dakika	hour	noun	sil	
+antonym	mug	noun	kupa, fincan	glass	noun	sil	
+antonym	neighborhood	noun	mahalle	suburb	noun	sil	
+antonym	ring	verb	ses çıkarmak, çalmak	silence	verb	sil	
+synonym	second	noun	saniye	minute	noun	sil	
+antonym	second	noun	saniye	hour	noun	sil	
+antonym	stairs	noun	merdiven	elevator	noun	sil	
+antonym	subway	noun	metro	bus	noun	sil	
+synonym	tiger	noun	kaplan	lion	noun	sil	
+synonym	toothbrush	noun	diş fırçası	toothpaste	noun	sil	
+antonym	toothbrush	noun	diş fırçası	floss	noun	sil	
+synonym	verb	noun	fiil	action	noun	sil	
+antonym	verb	noun	fiil	adjective	noun	sil	
+antonym	verb	noun	fiil	noun	noun	sil	
+antonym	vocabulary	noun	kelime hazinesi	phraseology	noun	sil	
+synonym	waitress	noun	kadın garson	hostess	noun	sil	
+antonym	will	verb	niyet etmek, bir şeyi yapmaya karar vermek	refuse	verb	sil	
+antonym	yogurt	noun	yoğurt	cheese	noun	sil	
+simpler	Arabic	noun	Arapça	language	noun	sil	
+antonym	Chinese	adjective	Çin, Çinli	foreign	adjective	sil	
+synonym	German	noun	Alman (kişi)	citizen	noun	sil	
+antonym	German	noun	Alman (kişi)	foreigner	noun	sil	
+simpler	German	noun	Alman (kişi)	person	noun	sil	
+antonym	adjective	noun	sıfat	noun	noun	sil	
+simpler	adjective	noun	sıfat	word	noun	sil	
+simpler	aerobics	noun	aerobik egzersiz	exercise	noun	sil	
+antonym	airplane	noun	uçak	helicopter	noun	sil	
+synonym	alphabet	noun	alfabe	letter	noun	sil	
+synonym	alphabet	noun	alfabe	symbol	noun	sil	
+synonym	ant	noun	karınca	bug	noun	sil	
+antonym	ant	noun	karınca	spider	noun	sil	
+simpler	anybody	noun	herhangi bir kişi	person	noun	sil	
+simpler	apron	noun	önlük	coat	noun	sil	
+simpler	athletics	noun	atletizm	exercise	noun	sil	
+synonym	atlas	noun	harita kitabı, atlas	chart	noun	sil	
+antonym	baggage	noun	bagaj, eşya	freight	noun	sil	
+antonym	baker	noun	fırıncı	customer	noun	sil	
+synonym	bakery	noun	fırın	baker	noun	sil	
+antonym	bakery	noun	fırın	supermarket	noun	sil	
+synonym	ballpoint	noun	tükenmez kalem	ink	noun	sil	
+antonym	bandage	noun	sargı bezi, sargı, yara bandı	exposure	noun	sil	
+antonym	bang	noun	patlama, yüksek ses	silence	noun	sil	
+synonym	bark	noun	havlama sesi	howl	noun	sil	
+antonym	bark	noun	havlama sesi	silence	noun	sil	
+synonym	bark	verb	havlamak	howl	verb	sil	
+antonym	bark	verb	havlamak	growl	verb	sil	
+antonym	bark	verb	havlamak	silence	verb	sil	
+antonym	bead	noun	boncuk	button	noun	sil	
+simpler	beak	noun	gaga	mouth	noun	sil	
+synonym	beard	noun	sakal	mustache	noun	sil	
+antonym	bedsheet	noun	çarşaf	blanket	noun	sil	
+antonym	beep	noun	ses sinyali, bip sesi	silence	noun	sil	
+antonym	beep	verb	korna çalmak	silence	verb	sil	
+antonym	beige	noun	bej	black	noun	sil	
+antonym	belonging	noun	eşya, kişisel eşyalar, eşyalar	loss	noun	sil	
+synonym	berry	noun	dutsu meyve, üzümsü meyve, tane meyve	fruit	noun	sil	
+antonym	berry	noun	dutsu meyve, üzümsü meyve, tane meyve	vegetable	noun	sil	
+simpler	berry	noun	dutsu meyve, üzümsü meyve, tane meyve	fruit	noun	sil	
+antonym	bike	verb	bisiklet sürmek	walk	verb	sil	
+synonym	bingo	noun	tombala	lottery	noun	sil	
+simpler	bingo	noun	tombala	game	noun	sil	
+antonym	birdhouse	noun	kuş evi	cage	noun	sil	
+antonym	birdie	noun	küçük kuş	eagle	noun	sil	
+synonym	birthdate	noun	doğum tarihi	birthday	noun	sil	
+synonym	blueberry	noun	yaban mersini	blackberry	noun	sil	
+synonym	blueberry	noun	yaban mersini	raspberry	noun	sil	
+synonym	blueberry	noun	yaban mersini	strawberry	noun	sil	
+simpler	blackberry	noun	böğürtlen	fruit	noun	sil	
+simpler	blink	verb	göz kırpmak	look	verb	sil	
+antonym	blouse	noun	gömlek, bluz	dress	noun	sil	
+antonym	blueberry	noun	yaban mersini	sugar	noun	sil	
+simpler	blueberry	noun	yaban mersini	fruit	noun	sil	
+antonym	bookstore	noun	kitapçı	library	noun	sil	
+antonym	bow	verb	başını eğmek	stand	verb	sil	
+antonym	boxer	noun	boksör	defeat	noun	sil	
+antonym	bracelet	noun	bilezik	necklace	noun	sil	
+synonym	broccoli	noun	brokoli, lahana türü	vegetable	noun	sil	
+antonym	broccoli	noun	brokoli, lahana türü	spinach	noun	sil	
+synonym	broom	noun	süpürge	mop	noun	sil	
+antonym	broom	noun	süpürge	vacuum	noun	sil	
+antonym	bulb	noun	ampul, ışık kaynağı	darkness	noun	sil	
+synonym	bull	noun	boğa	cow	noun	sil	
+synonym	bull	noun	boğa	steer	noun	sil	
+synonym	butterfly	noun	kelebek	moth	noun	sil	
+antonym	butterfly	noun	kelebek	caterpillar	noun	sil	
+synonym	cabbage	noun	lahana	lettuce	noun	sil	
+simpler	cabbage	noun	lahana	vegetable	noun	sil	
+antonym	cage	noun	kafes	freedom	noun	sil	
+synonym	calculator	noun	hesap makinesi	computer	noun	sil	
+simpler	calendar	noun	takvim	date	noun	sil	
+synonym	calf	noun	buzağı, dana	bull	noun	sil	
+synonym	calf	noun	buzağı, dana	cow	noun	sil	
+simpler	calf	noun	buzağı, dana	leg	noun	sil	
+antonym	can	noun	kutu, teneke kutu	bottle	noun	sil	
+antonym	catalog	noun	katalog	disorder	noun	sil	
+synonym	cauliflower	noun	karnabahar	broccoli	noun	sil	
+antonym	cauliflower	noun	karnabahar	meat	noun	sil	
+simpler	cauliflower	noun	karnabahar	vegetable	noun	sil	
+synonym	centimeter	noun	santimetre	meter	noun	sil	
+synonym	cereal	noun	kahvaltılık gevrek	breakfast	noun	sil	
+antonym	chalk	noun	tebeşir	eraser	noun	sil	
+simpler	cheeseburger	noun	peynirli hamburger	sandwich	noun	sil	
+synonym	cheesy	adjective	peynirli	creamy	adjective	sil	
+synonym	cherry	noun	kiraz	berry	noun	sil	
+simpler	cherry	noun	kiraz	fruit	noun	sil	
+antonym	chew	verb	çiğnemek	swallow	verb	sil	
+simpler	chick	noun	civciv, yavru kuş	bird	noun	sil	
+antonym	clap	noun	alkış	silence	noun	sil	
+antonym	clipboard	noun	kıskaçlı dosya, kıskaçlı altlık, sekreterlik	tablet	noun	sil	
+simpler	clipboard	noun	kıskaçlı dosya, kıskaçlı altlık, sekreterlik	paper	noun	sil	
+antonym	closet	noun	dolap, gardırop	room	noun	sil	
+simpler	cock	noun	horoz	bird	noun	sil	
+antonym	collar	noun	gömlek yakası	open	noun	sil	
+simpler	color	noun	renk	paint	noun	sil	
+synonym	comb	noun	tarak	brush	noun	sil	
+synonym	comma	noun	virgül	period	noun	sil	
+antonym	comma	noun	virgül	break	noun	sil	
+synonym	cone	noun	dondurma külahı	treat	noun	sil	
+antonym	cone	noun	dondurma külahı	cup	noun	sil	
+synonym	cookie	noun	kurabiye, bisküvi	dessert	noun	sil	
+antonym	corn	noun	mısır	wheat	noun	sil	
+antonym	cot	noun	çocuk yatağı, beşik	sofa	noun	sil	
+antonym	couch	noun	kanepe, oturma odası mobilyası	bench	noun	sil	
+simpler	couch	noun	kanepe, oturma odası mobilyası	chair	noun	sil	
+antonym	cough	verb	öksürmek	sneeze	verb	sil	
+antonym	coughing	noun	öksürük	silence	noun	sil	
+synonym	crab	noun	yengeç	lobster	noun	sil	
+synonym	cracker	noun	bisküvi, kraker	crisp	noun	sil	
+synonym	cricket	noun	kriket	baseball	noun	sil	
+antonym	cricket	noun	kriket	football	noun	sil	
+simpler	cricket	noun	kriket	sport	noun	sil	
+synonym	crosswalk	noun	yaya geçidi	pedestrian	noun	sil	
+antonym	cube	noun	küp	sphere	noun	sil	
+simpler	cube	noun	küp	box	noun	sil	
+synonym	cucumber	noun	salatalık	tomato	noun	sil	
+simpler	cucumber	noun	salatalık	vegetable	noun	sil	
+synonym	daisy	noun	papatya	poppy	noun	sil	
+antonym	daisy	noun	papatya	weed	noun	sil	
+simpler	daisy	noun	papatya	flower	noun	sil	
+antonym	dart	noun	dart oku, küçük ok	miss	noun	sil	
+simpler	deer	noun	geyik	animal	noun	sil	
+antonym	denim	noun	kot kumaşı	silk	noun	sil	
+synonym	dice	noun	zar	cube	noun	sil	
+synonym	dice	noun	zar	risk	noun	sil	
+antonym	dice	noun	zar	certainty	noun	sil	
+antonym	disk	noun	disk, kurs	cylinder	noun	sil	
+antonym	disk	noun	disk	memory	noun	sil	
+simpler	dolly	noun	oyuncak bebek, bebek	play	noun	sil	
+synonym	donkey	noun	eşek	horse	noun	sil	
+antonym	doughnut	noun	kızarmış hamur tatlısı	bread	noun	sil	
+simpler	doughnut	noun	kızarmış hamur tatlısı	cake	noun	sil	
+antonym	dove	noun	güvercin	peace	noun	sil	
+simpler	dove	noun	güvercin	bird	noun	sil	
+antonym	dragon	noun	ejderha	hero	noun	sil	
+synonym	drawer	noun	çekmece	store	noun	sil	
+antonym	dressing	noun	salata sosu, sos	spice	noun	sil	
+synonym	drill	noun	matkap, delgi aleti	screwdriver	noun	sil	
+antonym	drill	noun	matkap, delgi aleti	hammer	noun	sil	
+antonym	drum	verb	davul çalmak, trampet çalmak, tıkırdatmak	silence	verb	sil	
+synonym	duck	noun	ördek	bird	noun	sil	
+synonym	duck	noun	ördek	goose	noun	sil	
+antonym	duck	noun	ördek	swan	noun	sil	
+synonym	earring	noun	küpe	piercing	noun	sil	
+antonym	eraser	noun	silgi	pen	noun	sil	
+synonym	espresso	noun	espresso kahvesi	latte	noun	sil	
+simpler	espresso	noun	espresso kahvesi	coffee	noun	sil	
+antonym	explorer	noun	kaşif	settler	noun	sil	
+antonym	eyelash	noun	kirpik	blink	noun	sil	
+simpler	eyelash	noun	kirpik	eyebrow	noun	sil	
+synonym	fig	noun	incir	fruit	noun	sil	
+antonym	fig	noun	incir	berry	noun	sil	
+simpler	fig	noun	incir	date	noun	sil	
+antonym	firewood	noun	odun, yakacak odun	charcoal	noun	sil	
+antonym	flashlight	noun	el feneri	darkness	noun	sil	
+synonym	floss	noun	diş ipi	string	noun	sil	
+antonym	floss	noun	diş ipi	neglect	noun	sil	
+antonym	folder	noun	dosya	binder	noun	sil	
+antonym	footballer	noun	futbolcu	coach	noun	sil	
+antonym	forehead	noun	alın	temple	noun	sil	
+simpler	forehead	noun	alın	head	noun	sil	
+synonym	fountain	noun	fıskiye, çeşme	well	noun	sil	
+antonym	fountain	noun	fıskiye, çeşme	drain	noun	sil	
+synonym	fox	noun	tilki	cunning	noun	sil	
+antonym	fox	noun	tilki	dog	noun	sil	
+simpler	fox	noun	tilki	animal	noun	sil	
+antonym	gasoline	noun	benzin, motor yakıtı	diesel	noun	sil	
+synonym	giraffe	noun	zürafa	camel	noun	sil	
+synonym	giraffe	noun	zürafa	elephant	noun	sil	
+antonym	giraffe	noun	zürafa	lion	noun	sil	
+simpler	giraffe	noun	zürafa	animal	noun	sil	
+simpler	gladly	adverb	memnuniyetle, seve seve	yes	adverb	sil	
+synonym	goat	noun	keçi	sheep	noun	sil	
+antonym	goat	noun	keçi	bull	noun	sil	
+antonym	goldfish	noun	japon balığı, altın balık	shark	noun	sil	
+simpler	goldfish	noun	japon balığı, altın balık	fish	noun	sil	
+synonym	goose	noun	kaz	duck	noun	sil	
+antonym	goose	noun	kaz	swan	noun	sil	
+simpler	goose	noun	kaz	bird	noun	sil	
+antonym	gram	noun	gram	kilogram	noun	sil	
+simpler	grandchild	noun	torun	child	noun	sil	
+synonym	granddaughter	noun	kız torun	descendant	noun	sil	
+simpler	granddaughter	noun	kız torun	daughter	noun	sil	
+simpler	grandson	noun	erkek torun	child	noun	sil	
+synonym	grape	noun	üzüm	fruit	noun	sil	
+antonym	grape	noun	üzüm	seed	noun	sil	
+simpler	gray	adjective	gri	dark	adjective	sil	
+synonym	gray	noun	gri renk	silver	noun	sil	
+antonym	gray	noun	gri renk	black	noun	sil	
+synonym	greatest	adjective	en büyük, en üstün	big	adjective	sil	
+antonym	grill	noun	ızgara	roast	noun	sil	
+synonym	gum	noun	sakız	candy	noun	sil	
+antonym	gum	noun	sakız	tobacco	noun	sil	
+synonym	hairbrush	noun	saç fırçası	comb	noun	sil	
+antonym	hairbrush	noun	saç fırçası	tangle	noun	sil	
+antonym	hallway	noun	koridor, geçit	room	noun	sil	
+simpler	hallway	noun	koridor, geçit	walk	noun	sil	
+synonym	ham	noun	jambon, domuz pastırması	bacon	noun	sil	
+synonym	ham	noun	jambon, domuz pastırması	meat	noun	sil	
+simpler	hamburger	noun	hamburger	sandwich	noun	sil	
+synonym	handkerchief	noun	mendil	napkin	noun	sil	
+antonym	handshake	noun	el sıkışma	bow	noun	sil	
+antonym	hanger	noun	askı, asma aparatı	support	noun	sil	
+antonym	hike	noun	yürüyüş, uzun yürüyüş	climb	noun	sil	
+simpler	hometown	noun	doğum yeri, memleket	city	noun	sil	
+antonym	honey	noun	sevgili, canım	enemy	noun	sil	
+synonym	hood	noun	kapüşon	cap	noun	sil	
+antonym	hop	noun	küçük sıçrama, zıplama	fall	noun	sil	
+antonym	hop	verb	zıplamak, sıçramak	stay	verb	sil	
+simpler	hop	verb	zıplamak, sıçramak	move	verb	sil	
+simpler	houseplant	noun	ev bitkisi	plant	noun	sil	
+antonym	hug	noun	sarılma	push	noun	sil	
+antonym	hug	verb	kucaklamak	push	verb	sil	
+antonym	jar	noun	kavanoz, kap	vase	noun	sil	
+simpler	jar	noun	kavanoz, kap	bottle	noun	sil	
+antonym	jelly	noun	jöle, meyve jölesi	solid	noun	sil	
+antonym	jug	noun	sıvı tutan kap, sürahi	bottle	noun	sil	
+simpler	jumper	noun	kazak, süveter	coat	noun	sil	
+antonym	ketchup	noun	ketçap, domates sosu	mustard	noun	sil	
+synonym	kilogram	noun	kilogram	pound	noun	sil	
+antonym	kilogram	noun	kilogram	ounce	noun	sil	
+synonym	kilometer	noun	kilometre, kilometre birimi	distance	noun	sil	
+antonym	kilometer	noun	kilometre, kilometre birimi	mile	noun	sil	
+simpler	kilometer	noun	kilometre, kilometre birimi	meter	noun	sil	
+synonym	kite	noun	uçurtma	balloon	noun	sil	
+antonym	kite	noun	uçurtma	drone	noun	sil	
+synonym	kitten	noun	yavru kedi	pup	noun	sil	
+antonym	lamb	noun	kuzu	goat	noun	sil	
+synonym	lemonade	noun	limonata	soda	noun	sil	
+antonym	lemonade	noun	limonata	water	noun	sil	
+simpler	lemonade	noun	limonata	drink	noun	sil	
+antonym	lettuce	noun	marul	cabbage	noun	sil	
+simpler	lettuce	noun	marul	green	noun	sil	
+antonym	librarian	noun	kütüphaneci	patron	noun	sil	
+simpler	librarian	noun	kütüphaneci	library	noun	sil	
+synonym	lick	verb	yalamak	taste	verb	sil	
+simpler	lick	verb	yalamak	clean	verb	sil	
+antonym	lid	noun	kapak	base	noun	sil	
+simpler	light	noun	trafik ışığı	stop	noun	sil	
+synonym	lighter	noun	çakmak	match	noun	sil	
+synonym	lightning	noun	elektrik boşalması, yıldırım	thunder	noun	sil	
+synonym	lime	noun	yeşil limon, misket limonu	lemon	noun	sil	
+antonym	lime	noun	yeşil limon, misket limonu	sweet	noun	sil	
+synonym	lizard	noun	kertenkele	reptile	noun	sil	
+antonym	lizard	noun	kertenkele	snake	noun	sil	
+simpler	lizard	noun	kertenkele	animal	noun	sil	
+antonym	loaf	noun	ekmek, somun	crust	noun	sil	
+antonym	locker	noun	kilitli bölme, dolap	open	noun	sil	
+antonym	lotto	noun	piyango	gamble	noun	sil	
+simpler	lotto	noun	piyango	ticket	noun	sil	
+synonym	lunchbox	noun	öğle yemeği kutusu	bag	noun	sil	
+antonym	lunchbox	noun	öğle yemeği kutusu	trash	noun	sil	
+synonym	macaroni	noun	makarna, makarna çeşidi	noodle	noun	sil	
+antonym	macaroni	noun	makarna, makarna çeşidi	rice	noun	sil	
+synonym	mandarin	noun	mandalina	orange	noun	sil	
+antonym	mandarin	noun	mandalina	lemon	noun	sil	
+simpler	mandarin	noun	mandalina	fruit	noun	sil	
+antonym	mango	noun	mango	pineapple	noun	sil	
+simpler	mango	noun	mango	fruit	noun	sil	
+antonym	mash	verb	ezmek, püre haline getirmek	preserve	verb	sil	
+antonym	mat	noun	paspas, kilim	slip	noun	sil	
+simpler	mat	noun	paspas, kilim	floor	noun	sil	
+antonym	mayonnaise	noun	mayonez	mustard	noun	sil	
+simpler	meatball	noun	köfte	meat	noun	sil	
+antonym	mercury	noun	Merkür (gezegen)	sun	noun	sil	
+antonym	messaging	noun	mesajlaşma	silence	noun	sil	
+antonym	microscope	noun	mikroskop	blur	noun	sil	
+simpler	midday	noun	öğle	lunch	noun	sil	
+antonym	might	verb	olabilir, -e bilmek	cannot	verb	sil	
+simpler	milk	verb	süt sağmak	draw	verb	sil	
+synonym	mint	noun	nane, nane bitkisi	basil	noun	sil	
+synonym	mint	noun	nane, nane bitkisi	spice	noun	sil	
+synonym	miss	noun	hanımefendi, genç kız, öğretmen	woman	noun	sil	
+antonym	mosquito	noun	sivrisinek	repellent	noun	sil	
+simpler	motorbike	noun	motosiklet	bike	noun	sil	
+antonym	motorway	noun	otoyol	bypass	noun	sil	
+antonym	mow	verb	çim biçmek	grow	verb	sil	
+simpler	mummy	noun	anne	parent	noun	sil	
+simpler	mustache	noun	bıyık	hair	noun	sil	
+synonym	mustard	noun	hardal	sauce	noun	sil	
+simpler	nationality	noun	uyruk	country	noun	sil	
+synonym	neighbor	noun	komşu	resident	noun	sil	
+simpler	neighbor	noun	komşu	friend	noun	sil	
+simpler	nephew	noun	yeğen	cousin	noun	sil	
+simpler	nighttime	noun	gece vakti	evening	noun	sil	
+synonym	northeast	adjective	kuzeydoğu, kuzeydoğudaki	east	adjective	sil	
+synonym	northeast	adjective	kuzeydoğu, kuzeydoğudaki	north	adjective	sil	
+antonym	northeast	adverb	kuzeydoğuya	east	adverb	sil	
+antonym	northeast	adverb	kuzeydoğuya	north	adverb	sil	
+synonym	northeast	noun	kuzeydoğu	east	noun	sil	
+synonym	northeast	noun	kuzeydoğu	north	noun	sil	
+antonym	northwest	adjective	kuzeybatı, kuzeybatıdaki	southwest	adjective	sil	
+synonym	northwest	adverb	kuzeybatıya, kuzeybatıya doğru	northward	adverb	sil	
+antonym	northwest	adverb	kuzeybatıya, kuzeybatıya doğru	north	adverb	sil	
+antonym	northwest	adverb	kuzeybatıya, kuzeybatıya doğru	west	adverb	sil	
+simpler	northwest	noun	kuzeybatı	north	noun	sil	
+synonym	noun	noun	isim	name	noun	sil	
+antonym	noun	noun	isim	verb	noun	sil	
+simpler	noun	noun	isim	word	noun	sil	
+antonym	can	verb	yapabilmek	cannot	verb	zayif	
+synonym	chin	noun	çene	jaw	noun	zayif	
+synonym	do	verb	yapmak, gerçekleştirmek	perform	verb	zayif	
+synonym	hen	noun	tavuk	chicken	noun	zayif	
+synonym	long	adjective	uzun süren, uzun zamanlı	extended	adjective	zayif	
+synonym	more	adjective	daha fazla	greater	adjective	zayif	
+antonym	most	adjective	çoğu, en çok	few	adjective	zayif	
+synonym	neighborhood	noun	mahalle	area	noun	zayif	
+synonym	nicest	adjective	en güzel, en nazik	pleasant	adjective	zayif	
+antonym	nicest	adjective	en güzel, en nazik	mean	adjective	zayif	
+synonym	noodle	noun	erişte, makarna	pasta	noun	zayif	
+synonym	pillow	noun	yastık	cushion	noun	zayif	
+antonym	practice	verb	uygulamak, alıştırma yapmak	neglect	verb	zayif	
+synonym	ring	verb	ses çıkarmak, çalmak	sound	verb	zayif	
+synonym	smallest	adjective	en küçük	tiny	adjective	zayif	
+synonym	something	noun	bir şey	thing	noun	zayif	
+synonym	will	verb	niyet etmek, bir şeyi yapmaya karar vermek	plan	verb	zayif	
+antonym	ache	verb	ağrımak, sızlamak	relieve	verb	zayif	
+synonym	adjective	noun	sıfat	modifier	noun	zayif	
+antonym	adorable	adjective	sevimli, çok tatlı	unpleasant	adjective	zayif	
+simpler	adorable	adjective	sevimli, çok tatlı	nice	adjective	zayif	
+synonym	athletics	noun	atletizm	sport	noun	zayif	
+synonym	atlas	noun	harita kitabı, atlas	map	noun	zayif	
+antonym	auntie	noun	teyze, hala	uncle	noun	zayif	
+antonym	babysit	verb	çocuğa bakmak	neglect	verb	zayif	
+simpler	babysit	verb	çocuğa bakmak	watch	verb	zayif	
+antonym	babysitting	noun	çocuk bakımı	neglect	noun	zayif	
+synonym	backyard	noun	arka bahçe	garden	noun	zayif	
+synonym	barber	noun	berber	stylist	noun	zayif	
+synonym	bark	noun	havlama sesi	yelp	noun	zayif	
+synonym	bark	verb	havlamak	yelp	verb	zayif	
+antonym	bathe	verb	yıkanmak, duş almak	dry	verb	zayif	
+simpler	bathe	verb	yıkanmak, duş almak	clean	verb	zayif	
+synonym	bead	noun	boncuk	ornament	noun	zayif	
+synonym	beep	noun	ses sinyali, bip sesi	tone	noun	zayif	
+synonym	beginner	noun	yeni başlayan, acemi	amateur	noun	zayif	
+antonym	bicyclist	noun	bisiklet sürücüsü	driver	noun	zayif	
+synonym	birdhouse	noun	kuş evi	nest	noun	zayif	
+synonym	birdie	noun	küçük kuş	bird	noun	zayif	
+simpler	birthdate	noun	doğum tarihi	date	noun	zayif	
+synonym	blink	verb	göz kırpmak	wink	verb	zayif	
+antonym	blink	verb	göz kırpmak	stare	verb	zayif	
+synonym	blouse	noun	gömlek, bluz	shirt	noun	zayif	
+synonym	bookstore	noun	kitapçı	shop	noun	zayif	
+synonym	bow	noun	fiyonk, kurdele	knot	noun	zayif	
+synonym	bra	noun	sütyen	underwear	noun	zayif	
+synonym	bulb	noun	ampul, ışık kaynağı	lamp	noun	zayif	
+simpler	bulb	noun	ampul, ışık kaynağı	light	noun	zayif	
+simpler	bun	noun	çörek, küçük yuvarlak ekmek	bread	noun	zayif	
+synonym	cage	noun	kafes	enclosure	noun	zayif	
+synonym	cage	noun	kafes	pen	noun	zayif	
+synonym	calendar	noun	takvim	schedule	noun	zayif	
+antonym	calf	noun	buzağı, dana	adult	noun	zayif	
+synonym	can	noun	kutu, teneke kutu	container	noun	zayif	
+antonym	canned	adjective	konserve	fresh	adjective	zayif	
+antonym	cannot	verb	yapamamak	can	verb	zayif	
+synonym	catalog	noun	katalog	index	noun	zayif	
+synonym	cheeseburger	noun	peynirli hamburger	hamburger	noun	zayif	
+antonym	chick	noun	civciv, yavru kuş	adult	noun	zayif	
+synonym	clap	noun	alkış	cheer	noun	zayif	
+synonym	cleaner	noun	temizlikçi	maid	noun	zayif	
+synonym	climbing	noun	tırmanma, dağcılık	climb	noun	zayif	
+synonym	closet	noun	dolap, gardırop	cabinet	noun	zayif	
+synonym	coconut	noun	hindistancevizi	nut	noun	zayif	
+synonym	color	noun	renk	tone	noun	zayif	
+antonym	comb	noun	tarak	tangle	noun	zayif	
+synonym	comb	verb	taramak	brush	verb	zayif	
+synonym	cooler	noun	soğutucu, buzdolabı	refrigerator	noun	zayif	
+antonym	cracked	adjective	çatlak, çatlamış	smooth	adjective	zayif	
+synonym	cracker	noun	bisküvi, kraker	biscuit	noun	zayif	
+synonym	cube	noun	küp	square	noun	zayif	
+synonym	cushion	noun	yastık, minder	pillow	noun	zayif	
+synonym	doll	noun	oyuncak bebek	figurine	noun	zayif	
+synonym	dolly	noun	oyuncak bebek, bebek	toy	noun	zayif	
+synonym	doorbell	noun	kapı zili	bell	noun	zayif	
+synonym	doughnut	noun	kızarmış hamur tatlısı	pastry	noun	zayif	
+synonym	drawer	noun	çekmece	compartment	noun	zayif	
+antonym	dust	verb	toz almak, temizlemek	soil	verb	zayif	
+synonym	eater	noun	yiyen	consumer	noun	zayif	
+synonym	espresso	noun	espresso kahvesi	coffee	noun	zayif	
+synonym	explorer	noun	kaşif	traveler	noun	zayif	
+synonym	eyelash	noun	kirpik	hair	noun	zayif	
+synonym	firewood	noun	odun, yakacak odun	fuel	noun	zayif	
+synonym	first	adjective	ilk, birincil	primary	adjective	zayif	
+synonym	flashlight	noun	el feneri	lamp	noun	zayif	
+synonym	footballer	noun	futbolcu	player	noun	zayif	
+synonym	garbage	noun	çöp, atık	trash	noun	zayif	
+antonym	garbage	noun	çöp, atık	treasure	noun	zayif	
+synonym	gasoline	noun	benzin, motor yakıtı	fuel	noun	zayif	
+synonym	grandchild	noun	torun	descendant	noun	zayif	
+antonym	grandchild	noun	torun	ancestor	noun	zayif	
+synonym	grandson	noun	erkek torun	grandchild	noun	zayif	
+synonym	gray	adjective	gri	ashen	adjective	zayif	
+synonym	gray	adjective	gri	dull	adjective	zayif	
+antonym	gray	adjective	gri	colorful	adjective	zayif	
+simpler	greatest	adjective	en büyük, en üstün	great	adjective	zayif	
+synonym	groom	noun	damat	husband	noun	zayif	
+synonym	haircut	noun	saç kesimi	trim	noun	zayif	
+synonym	handkerchief	noun	mendil	tissue	noun	zayif	
+synonym	hanger	noun	askı, asma aparatı	hook	noun	zayif	
+synonym	hanger	noun	askı, asma aparatı	peg	noun	zayif	
+synonym	heat up	phrasal_verb	ısıtmak	increase	verb	zayif	
+antonym	heater	noun	ısıtıcı, ısı veren cihaz	cooler	noun	zayif	
+synonym	hop	noun	küçük sıçrama, zıplama	skip	noun	zayif	
+synonym	hop	verb	zıplamak, sıçramak	leap	verb	zayif	
+synonym	jar	noun	kavanoz, kap	container	noun	zayif	
+synonym	jelly	noun	jöle, meyve jölesi	jam	noun	zayif	
+synonym	jug	noun	sıvı tutan kap, sürahi	container	noun	zayif	
+antonym	keeper	noun	kaleci	striker	noun	zayif	
+synonym	ketchup	noun	ketçap, domates sosu	sauce	noun	zayif	
+synonym	knight	noun	şövalye	warrior	noun	zayif	
+antonym	knight	noun	şövalye	peasant	noun	zayif	
+synonym	lace	noun	ayakkabı bağı	string	noun	zayif	
+synonym	lamb	noun	kuzu	sheep	noun	zayif	
+antonym	last	adjective	son, en son, final	previous	adjective	zayif	
+synonym	lid	noun	kapak	seal	noun	zayif	
+synonym	lightning	noun	elektrik boşalması, yıldırım	spark	noun	zayif	
+synonym	lined	adjective	çizgili	striped	adjective	zayif	
+antonym	lined	adjective	çizgili	plain	adjective	zayif	
+antonym	live	verb	ikamet etmek, oturmak	move	verb	zayif	
+synonym	loaf	noun	ekmek, somun	bread	noun	zayif	
+synonym	locker	noun	kilitli bölme, dolap	cabinet	noun	zayif	
+synonym	lollipop	noun	saplı şeker	candy	noun	zayif	
+synonym	macaroni	noun	makarna, makarna çeşidi	pasta	noun	zayif	
+synonym	mash	verb	ezmek, püre haline getirmek	flatten	verb	zayif	
+synonym	mat	noun	paspas, kilim	carpet	noun	zayif	
+simpler	mattress	noun	yatak	bed	noun	zayif	
+synonym	messaging	noun	mesajlaşma	communication	noun	zayif	
+simpler	moonlight	noun	ay ışığı	light	noun	zayif	
+antonym	moonlight	noun	ay ışığı	darkness	noun	zayif	
+synonym	miss	noun	hanımefendi, genç kız, öğretmen	lady	noun	zayif	
+synonym	mosquito	noun	sivrisinek	bug	noun	zayif	
+synonym	mosquito	noun	sivrisinek	insect	noun	zayif	
+synonym	mosquito	noun	sivrisinek	pest	noun	zayif	
+simpler	motorway	noun	otoyol	road	noun	zayif	
+simpler	muffin	noun	küçük kek	cake	noun	zayif	
+antonym	murderer	noun	katil, cani	victim	noun	zayif	
+antonym	nap	noun	kısa uyku	wakefulness	noun	zayif	
+synonym	navy	noun	lacivert	blue	noun	zayif	
+antonym	neighbor	noun	komşu	stranger	noun	zayif	
+synonym	nicely	adverb	güzel bir şekilde, nazikçe	smoothly	adverb	zayif	
+simpler	nightstand	noun	komodin, başucu sehpası	table	noun	zayif	
+synonym	nugget	noun	küçük tavuk köftesi	bite	noun	zayif	
+simpler	nugget	noun	küçük tavuk köftesi	piece	noun	zayif	
+synonym	minus	noun	eksi işareti	negative	noun	zayif	

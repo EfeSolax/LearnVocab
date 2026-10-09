@@ -21,6 +21,7 @@ import re
 from dataclasses import dataclass, field
 
 from words import inflect
+from words.kalip_bicimi import bicimle
 
 # İngilizce cümlede Türkçe metin var mı? Yalnızca İngilizcede HİÇ geçmeyen
 # harfler sayılır. "ç", "ö", "ü" alıntı kelimelerde geçebiliyor ("façade",
@@ -999,7 +1000,15 @@ def _anlami_denetle(anlam, etiket, bicimler, alanlar, rapor, kelime_pos, kelime_
     saglam_kalip, gorulen_kalip = [], set()
     for kalip in anlam.patterns:
         desen = kalip.pattern.strip()
-        if not desen or _normalize(desen) in gorulen_kalip:
+        if not desen:
+            continue
+        # Kalıp gösterimi (rapor 18.7): "+", "noun" yok; sb / sth / doing sth.
+        yeni, sebep = bicimle(desen, kelime_metni, kalip.example or "", kelime_pos)
+        if sebep:
+            rapor.ekle("uyari", "kalip_bicimi", f"{etiket}: '{desen}' atıldı ({sebep}).")
+            continue
+        desen = yeni
+        if _normalize(desen) in gorulen_kalip:
             continue
         if _normalize(desen) in coll_desenleri:
             rapor.ekle("uyari", "kalip_collocation_ayni",

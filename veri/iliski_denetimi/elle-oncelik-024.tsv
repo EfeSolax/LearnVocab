@@ -1,0 +1,76 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+antonym	qualify	verb	şart eklemek, sınırlamak	exclude	verb	sil	
+antonym	range	noun	dağ sırası, dağ silsilesi	valley	noun	sil	
+simpler	range	noun	dağ sırası, dağ silsilesi	mountain	noun	sil	
+synonym	rational	adjective	rasyonel	real	adjective	sil	
+simpler	react	verb	kimyasal reaksiyona girmek, etkileşime girmek	mix	verb	sil	
+simpler	regulate	verb	düzenlemek, kurallara bağlamak	set	verb	sil	
+antonym	require	verb	talep etmek, istemek	allow	verb	sil	
+antonym	resort	noun	başvuru, çare, sığınak	problem	noun	sil	
+antonym	rest	verb	dayanmak, temellendirmek	ignore	verb	sil	
+simpler	revelation	noun	vahiy	secret	noun	sil	
+antonym	scheme	noun	entrika	plan	noun	sil	
+antonym	segment	noun	ses birimi	silence	noun	sil	
+synonym	sequence	noun	DNA dizisi, genetik dizi	mutation	noun	sil	
+simpler	significant	adjective	istatistiksel olarak anlamlı	large	adjective	sil	
+antonym	situation	noun	yer, konum	absence	noun	sil	
+synonym	slave	noun	bağlı aygıt, ikincil cihaz	controller	noun	sil	
+antonym	strain	noun	tür, varyant, suş	mutation	noun	sil	
+simpler	succession	noun	haleflik, taht devri	heir	noun	sil	
+antonym	surgery	noun	cerrahi dalı, cerrahi bilimi	conservatism	noun	sil	
+synonym	synthesis	noun	bütünleme, sentez	combine	noun	sil	
+antonym	texture	noun	doku, yapı	smoothness	noun	sil	
+antonym	thesis	noun	tez, yüksek lisans/doktora çalışması	proposal	noun	sil	
+synonym	tissue	noun	biyolojik doku, hücre topluluğu	organ	noun	sil	
+antonym	tissue	noun	biyolojik doku, hücre topluluğu	damage	noun	sil	
+antonym	trust	noun	yedieminlik, tröst, emanet fonu	mismanagement	noun	sil	
+synonym	vehicle	noun	hukuki araç, finansal araç	company	noun	sil	
+simpler	cheese	noun	para	profit	noun	sil	
+simpler	rent	noun	yırtık, delik	repair	noun	sil	
+simpler	radiation	noun	ışınım, radyasyon	energy	noun	zayif	
+synonym	rally	noun	finansal yükseliş, piyasa toparlanması	boom	noun	zayif	
+synonym	range	noun	dağ sırası, dağ silsilesi	ridge	noun	zayif	
+antonym	rank	verb	sıralamak, sınıflandırmak	shuffle	verb	zayif	
+antonym	ray	noun	yarı doğru	segment	noun	zayif	
+simpler	ray	noun	yarı doğru	line	noun	zayif	
+synonym	react	verb	kimyasal reaksiyona girmek, etkileşime girmek	combine	verb	zayif	
+antonym	recall	verb	geri çağırmak, iade ettirmek	release	verb	zayif	
+simpler	recall	verb	geri çağırmak, iade ettirmek	return	verb	zayif	
+antonym	refuge	noun	sığınma	expulsion	noun	zayif	
+antonym	regime	noun	siyasal sistem, yönetim biçimi	democracy	noun	zayif	
+antonym	regulate	verb	düzenlemek, kurallara bağlamak	allow	verb	zayif	
+synonym	relief	noun	kabartma, rölyef	sculpture	noun	zayif	
+simpler	remote	adjective	az, zayıf, uzak	rare	adjective	zayif	
+antonym	render	verb	çevirmek, tasvir etmek	obscure	verb	zayif	
+antonym	represent	verb	simgelemek, temsil etmek, göstermek	misrepresent	verb	zayif	
+synonym	require	verb	talep etmek, istemek	ask	verb	zayif	
+synonym	resignation	noun	kabullenme, tevekkül, boyun eğme	compliance	noun	zayif	
+synonym	resort	noun	başvuru, çare, sığınak	solution	noun	zayif	
+antonym	respective	adjective	her birine ait, ayrı ayrı	common	adjective	zayif	
+synonym	revelation	noun	vahiy	insight	noun	zayif	
+synonym	romantic	adjective	romantik, romantizm akımına ait	emotional	adjective	zayif	
+simpler	robust	adjective	sağlam, güçlü, dayanıklı	hard	adjective	zayif	
+simpler	scholar	noun	akademisyen, bilim insanı, araştırmacı	student	noun	zayif	
+antonym	senator	noun	senatör	executive	noun	zayif	
+antonym	sequence	noun	DNA dizisi, genetik dizi	randomness	noun	zayif	
+simpler	slave	noun	bağlı aygıt, ikincil cihaz	device	noun	zayif	
+simpler	soak	verb	emmek, nüfuz etmek	learn	verb	zayif	
+synonym	spectrum	noun	elektromanyetik spektrum	band	noun	zayif	
+antonym	speculate	verb	riskli yatırım yapmak	save	verb	zayif	
+antonym	stress	noun	fiziksel gerilim, basınç	relaxation	noun	zayif	
+synonym	style	noun	edebi üslup, tarz	tone	noun	zayif	
+simpler	style	noun	edebi üslup, tarz	voice	noun	zayif	
+antonym	suggestion	noun	ipucu, ima	statement	noun	zayif	
+synonym	surgery	noun	cerrahi dalı, cerrahi bilimi	medicine	noun	zayif	
+antonym	tap	verb	gizlice dinlemek, dinlemeye almak	disconnect	verb	zayif	
+simpler	tap	verb	gizlice dinlemek, dinlemeye almak	use	verb	zayif	
+synonym	texture	noun	doku, yapı	image	noun	zayif	
+simpler	texture	noun	doku, yapı	pattern	noun	zayif	
+antonym	theme	noun	müzikal tema, melodi	variation	noun	zayif	
+synonym	trust	noun	yedieminlik, tröst, emanet fonu	estate	noun	zayif	
+antonym	vehicle	noun	hukuki araç, finansal araç	obstacle	noun	zayif	
+synonym	verse	noun	ayet, bölüm	scripture	noun	zayif	
+antonym	verse	noun	ayet, bölüm	chapter	noun	zayif	
+simpler	verse	noun	ayet, bölüm	quote	noun	zayif	
+synonym	war	noun	mücadele, çekişme	competition	noun	zayif	
+synonym	warehouse	noun	veri ambarı	database	noun	zayif	

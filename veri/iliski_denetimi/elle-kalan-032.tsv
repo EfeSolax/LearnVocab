@@ -1,0 +1,223 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+antonym	repository	noun	depo, arşiv	source	noun	sil	
+antonym	repost	noun	yeniden gönderme, tekrar paylaşım	duplicate	noun	sil	
+antonym	repost	verb	yeniden paylaşmak	duplicate	verb	sil	
+antonym	reprogramming	noun	yeniden programlama	modification	noun	sil	
+simpler	requester	noun	talep eden kişi	request	noun	sil	
+simpler	resent	verb	kızmak, hoşnutsuzluk duymak	feel	verb	sil	
+antonym	reservoir	noun	su deposu, rezervuar	source	noun	sil	
+simpler	residency	noun	ikamet, ikametgah	address	noun	sil	
+simpler	residual	adjective	kalan, artakalan, artık	remaining	adjective	sil	
+synonym	resin	noun	reçine	adhesive	noun	sil	
+antonym	resin	noun	reçine	oil	noun	sil	
+synonym	resourcefulness	noun	kaynak bulma yeteneği, pratik zekâ	creative	noun	sil	
+simpler	resourcefulness	noun	kaynak bulma yeteneği, pratik zekâ	resource	noun	sil	
+synonym	respondent	noun	yanıtlayan, cevap veren kişi	answer	noun	sil	
+simpler	restlessness	noun	huzursuzluk, yerinde duramama, kıpırdanma	rest	noun	sil	
+antonym	retainer	noun	diş teli sonrası kullanılan tutucu	brace	noun	sil	
+antonym	retake	noun	yeniden sınav, tekrar sınav	pass	noun	sil	
+antonym	retest	verb	yeniden test etmek	accept	verb	sil	
+antonym	retweet	verb	yeniden paylaşmak	like	verb	sil	
+antonym	reusability	noun	yeniden kullanılabilirlik	complexity	noun	sil	
+antonym	rework	verb	yeniden çalışmak, tekrar düzenlemek	keep	verb	sil	
+synonym	rhino	noun	gergedan	elephant	noun	sil	
+antonym	rhino	noun	gergedan	poaching	noun	sil	
+antonym	rhyme	verb	kafiye yapmak	repeat	verb	sil	
+antonym	ribbon	noun	şerit, madalya şeridi	penalty	noun	sil	
+simpler	riddle	noun	bilmece, muamma	answer	noun	sil	
+synonym	riddler	noun	bilmece soran kişi	puzzle	noun	sil	
+antonym	riddler	noun	bilmece soran kişi	answer	noun	sil	
+synonym	ridership	noun	yolcu sayısı, taşıma kullanıcı sayısı	passenger	noun	sil	
+antonym	ridership	noun	yolcu sayısı, taşıma kullanıcı sayısı	decline	noun	sil	
+simpler	rigging	noun	donanım, arma, halat takımı	mast	noun	sil	
+simpler	rigging	noun	donanım, arma, halat takımı	sail	noun	sil	
+antonym	right	verb	doğrultmak, dikeltmek	misplace	verb	sil	
+synonym	rioter	noun	kargaşa çıkaran, ayaklanmacı	mobster	noun	sil	
+synonym	ripper	noun	karındeşen, parçalayıcı, yırtıcı alet	tear	noun	sil	
+antonym	ripple	noun	dalgalanma, yankı, zincirleme etki	cause	noun	sil	
+antonym	rivalry	noun	rekabet, çekişme	conflict	noun	sil	
+antonym	rivet	noun	perçin	bolt	noun	sil	
+synonym	riveter	noun	perçin işçisi	rivet	noun	sil	
+antonym	riveter	noun	perçin işçisi	welder	noun	sil	
+antonym	roadkill	noun	ezilmiş hayvan leşi, araba çarpmış hayvan, yol leşi	survival	noun	sil	
+synonym	roaster	noun	kavuran kişi, espri yapan kişi	joke	noun	sil	
+antonym	robe	noun	akademik cübbe, mezuniyet kıyafeti	uniform	noun	sil	
+simpler	robe	noun	akademik cübbe, mezuniyet kıyafeti	cap	noun	sil	
+antonym	robotics	noun	robotik	mechanics	noun	sil	
+simpler	robotics	noun	robotik	robot	noun	sil	
+simpler	robustness	noun	sağlamlık, dayanıklılık, güçlü olma	stable	noun	sil	
+simpler	romantically	adverb	romantik bir şekilde	lovingly	adverb	sil	
+simpler	roofing	noun	çatı kaplama, çatı örtüsü	roof	noun	sil	
+synonym	rotator	noun	dönme organı, döndürücü	turn	noun	sil	
+antonym	roulette	noun	rulet, şans oyunu	risk	noun	sil	
+antonym	rowing	noun	kürek çekme sporu	sailing	noun	sil	
+antonym	runaway	noun	kaçak çocuk, kaçak genç	stay	noun	sil	
+antonym	runoff	noun	akış, yüzey akıntısı	erosion	noun	sil	
+antonym	runway	noun	moda gösterisi platformu	stage	noun	sil	
+simpler	runway	noun	moda gösterisi platformu	model	noun	sil	
+simpler	rusher	noun	aceleci, aceleyle hareket eden kişi	fast	noun	sil	
+antonym	saber	noun	kılıç	shield	noun	sil	
+antonym	safari	noun	yaban hayvanları gezisi, safari	hunt	noun	sil	
+antonym	saffron	noun	safran	salt	noun	sil	
+antonym	saga	noun	destan, epik öykü	fiction	noun	sil	
+antonym	saloon	noun	bar, içki salonu	nightclub	noun	sil	
+simpler	saloon	noun	bar, içki salonu	restaurant	noun	sil	
+antonym	sampler	noun	örnek toplama cihazı, örnekleyici	extractor	noun	sil	
+antonym	sampling	noun	örnekleme	census	noun	sil	
+simpler	sand	verb	kumla kaplamak, kumlamak	lay	verb	sil	
+simpler	sanitation	noun	temizlik, hijyen	waste	noun	sil	
+simpler	sanitize	verb	temizlemek, dezenfekte etmek	clean	verb	sil	
+antonym	sapphire	noun	safir	ruby	noun	sil	
+antonym	scaffold	noun	iskele, inşaat iskelesi	collapse	noun	sil	
+antonym	scaffolding	noun	geçici yapı, iskele	collapse	noun	sil	
+antonym	representational	adjective	temsilî, temsili	symbolic	adjective	zayif	
+antonym	reprint	verb	yeniden basmak, tekrar yayınlamak	withdraw	verb	zayif	
+simpler	reprint	verb	yeniden basmak, tekrar yayınlamak	print	verb	zayif	
+antonym	reprogram	verb	yeniden programlamak	disable	verb	zayif	
+simpler	reprogramming	noun	yeniden programlama	update	noun	zayif	
+synonym	republican	adjective	cumhuriyetçi	conservative	adjective	zayif	
+antonym	republican	adjective	cumhuriyetçi	democratic	adjective	zayif	
+simpler	republican	adjective	cumhuriyetçi	political	adjective	zayif	
+synonym	republican	noun	cumhuriyetçi	supporter	noun	zayif	
+antonym	republish	verb	yeniden yayınlamak	withdraw	verb	zayif	
+synonym	repulsion	noun	itme, tiksinme, iğrenme	push	noun	zayif	
+antonym	repurchase	verb	yeniden satın almak	sell	verb	zayif	
+antonym	resale	noun	yeniden satış	purchase	noun	zayif	
+synonym	reservist	noun	yedek asker	reserve	noun	zayif	
+simpler	reservist	noun	yedek asker	soldier	noun	zayif	
+synonym	reservoir	noun	su deposu, rezervuar	tank	noun	zayif	
+synonym	resin	noun	reçine	plastic	noun	zayif	
+antonym	resonance	noun	etki, yankı	silence	noun	zayif	
+antonym	resonate	verb	titreşmek, yankı yapmak	dampen	verb	zayif	
+simpler	resonate	verb	titreşmek, yankı yapmak	affect	verb	zayif	
+simpler	resort	verb	başvurmak, sığınmak	use	verb	zayif	
+synonym	respiration	noun	solunum	breath	noun	zayif	
+simpler	responsiveness	noun	yanıt verme hızı, duyarlılık	response	noun	zayif	
+simpler	responsibly	adverb	sorumlu bir şekilde	well	adverb	zayif	
+simpler	restless	adjective	yerinde duramayan, kıpır kıpır, dur durak bilmeyen	busy	adjective	zayif	
+simpler	restorer	noun	onarıcı, restorasyon yapan kişi	repairer	noun	zayif	
+synonym	restrictor	noun	kısıtlayıcı, sınırlayıcı	control	noun	zayif	
+synonym	restrictor	noun	kısıtlayıcı, sınırlayıcı	limit	noun	zayif	
+antonym	resultant	adjective	sonuç olarak ortaya çıkan	initial	adjective	zayif	
+simpler	resume	noun	özgeçmiş	application	noun	zayif	
+simpler	resume	noun	özgeçmiş	profile	noun	zayif	
+simpler	retail	verb	perakende satmak	market	verb	zayif	
+simpler	retailer	noun	perakendeci	shop	noun	zayif	
+synonym	retinal	adjective	retinayla ilgili	visual	adjective	zayif	
+antonym	retrospect	noun	geriye bakış, geçmişe bakma	forecast	noun	zayif	
+simpler	retrospect	noun	geriye bakış, geçmişe bakma	look	noun	zayif	
+synonym	reupload	noun	yeniden yükleme	upload	noun	zayif	
+synonym	reupload	verb	yeniden yüklemek	repost	verb	zayif	
+antonym	revelry	noun	coşku, eğlence, şamata	silence	noun	zayif	
+synonym	reversal	noun	tersine dönüş, değişim	change	noun	zayif	
+antonym	reviewer	noun	eleştirmen, inceleyen, gözden geçiren kişi	author	noun	zayif	
+simpler	reviewer	noun	eleştirmen, inceleyen, gözden geçiren kişi	judge	noun	zayif	
+synonym	revisit	verb	yeniden ziyaret etmek	review	verb	zayif	
+antonym	revolver	noun	silindirli tabanca, revolver	rifle	noun	zayif	
+simpler	rewarding	adjective	ödüllendirici, tatmin edici	good	adjective	zayif	
+synonym	rhyme	noun	kafiye	verse	noun	zayif	
+simpler	rhyme	noun	kafiye	poem	noun	zayif	
+synonym	rhyme	verb	kafiye yapmak	match	verb	zayif	
+synonym	rhythmically	adverb	ritmik olarak	consistently	adverb	zayif	
+synonym	rhythmically	adverb	ritmik olarak	regularly	adverb	zayif	
+simpler	rhythmically	adverb	ritmik olarak	smoothly	adverb	zayif	
+synonym	ribbing	noun	fitil, nervür, fitilli örgü	rib	noun	zayif	
+synonym	ribbon	noun	şerit, madalya şeridi	medal	noun	zayif	
+simpler	ribbon	noun	şerit, madalya şeridi	prize	noun	zayif	
+simpler	riches	noun	zenginlik, servet, bolluk	money	noun	zayif	
+synonym	richly	adverb	fazlasıyla, bolca, çok	excessively	adverb	zayif	
+simpler	riddled	adjective	deliklerle dolu, deliklerle kaplı	full	adjective	zayif	
+simpler	riddler	noun	bilmece soran kişi	question	noun	zayif	
+synonym	ridge	noun	sırt, sırtlık, tepe kenarı	peak	noun	zayif	
+synonym	ridge	verb	sırt yapmak, çıkıntılar oluşturmak, yivlemek	raise	verb	zayif	
+antonym	ridge	verb	sırt yapmak, çıkıntılar oluşturmak, yivlemek	flatten	verb	zayif	
+simpler	ridiculously	adverb	gülünç bir şekilde, aşırı derecede	very	adverb	zayif	
+simpler	riff	noun	kısa müzikal motif	theme	noun	zayif	
+antonym	riff	verb	doğaçlamak	rehearse	verb	zayif	
+antonym	rifle	verb	hızlıca karıştırmak, yağmalamak	organize	verb	zayif	
+simpler	rifle	verb	hızlıca karıştırmak, yağmalamak	scan	verb	zayif	
+simpler	rig	noun	teçhizat, ekipman	tool	noun	zayif	
+simpler	rig	verb	hile karıştırmak, şike yapmak, hile ile ayarlamak	set	verb	zayif	
+synonym	rigging	noun	donanım, arma, halat takımı	rope	noun	zayif	
+synonym	rightness	noun	doğruluk, haklılık	correctness	noun	zayif	
+simpler	rightness	noun	doğruluk, haklılık	right	noun	zayif	
+simpler	rigid	adjective	sert, katı, esnemez	hard	adjective	zayif	
+synonym	ringed	adjective	halka şeklinde, halkalı	circular	adjective	zayif	
+antonym	ringed	adjective	halka şeklinde, halkalı	plain	adjective	zayif	
+simpler	riot	verb	kargaşa çıkarmak, ayaklanma başlatmak	protest	verb	zayif	
+synonym	rioter	noun	kargaşa çıkaran, ayaklanmacı	agitator	noun	zayif	
+antonym	rioter	noun	kargaşa çıkaran, ayaklanmacı	peacekeeper	noun	zayif	
+simpler	ripe	adjective	tam gelişmiş, olgunlaşmış	full	adjective	zayif	
+simpler	ripped	adjective	kaslı, çok fit	fit	adjective	zayif	
+antonym	ripper	noun	karındeşen, parçalayıcı, yırtıcı alet	repair	noun	zayif	
+antonym	riverine	adjective	nehirle ilgili, nehirsel	terrestrial	adjective	zayif	
+simpler	rivet	noun	perçin	pin	noun	zayif	
+simpler	riveter	noun	perçin işçisi	technician	noun	zayif	
+synonym	roadster	noun	açık üstlü spor araba	convertible	noun	zayif	
+simpler	roaring	adjective	büyük, müthiş	big	adjective	zayif	
+antonym	roaster	noun	kavuran kişi, espri yapan kişi	praise	noun	zayif	
+simpler	roaster	noun	kavuran kişi, espri yapan kişi	comedian	noun	zayif	
+antonym	robotic	adjective	robotik, mekanik, duygusuz	manual	adjective	zayif	
+synonym	robotics	noun	robotik	automation	noun	zayif	
+simpler	rocket	verb	hızla yükselmek, fırlatmak	increase	verb	zayif	
+synonym	rocketry	noun	roket bilimi, roket teknolojisi	propulsion	noun	zayif	
+simpler	rodeo	noun	kovboy gösterisi	show	noun	zayif	
+simpler	roofed	adjective	üstü kapalı, çatılı	sheltered	adjective	zayif	
+synonym	roofing	noun	çatı kaplama, çatı örtüsü	cover	noun	zayif	
+synonym	rooter	noun	gider açıcı alet, kanal açma makinesi	extractor	noun	zayif	
+simpler	rooter	noun	gider açıcı alet, kanal açma makinesi	tool	noun	zayif	
+simpler	roster	noun	personel listesi, kadro listesi	schedule	noun	zayif	
+antonym	rotational	adjective	dönme ile ilgili, döndürmeye ilişkin	linear	adjective	zayif	
+antonym	rotator	noun	dönme organı, döndürücü	static	noun	zayif	
+synonym	roulette	noun	rulet, şans oyunu	gamble	noun	zayif	
+synonym	router	noun	yönlendirici, ağ geçidi	switch	noun	zayif	
+simpler	router	noun	yönlendirici, ağ geçidi	modem	noun	zayif	
+simpler	rove	verb	dolaşmak, gezinmek	explore	verb	zayif	
+synonym	rover	noun	araştırma aracı, keşif aracı	explorer	noun	zayif	
+simpler	roving	adjective	dolaşan, gezinen, devriye yapan	mobile	adjective	zayif	
+simpler	rowdy	noun	gürültülü, haşarı kişi	person	noun	zayif	
+simpler	rowing	noun	kürek çekme sporu	boat	noun	zayif	
+synonym	royal	noun	kraliyet üyesi	monarch	noun	zayif	
+simpler	royal	noun	kraliyet üyesi	king	noun	zayif	
+synonym	rudder	noun	dümen	helm	noun	zayif	
+antonym	rudder	noun	dümen	drift	noun	zayif	
+simpler	rue	verb	pişman olmak, esef etmek	feel	verb	zayif	
+simpler	runaway	noun	kaçak çocuk, kaçak genç	youth	noun	zayif	
+simpler	rundown	adjective	bakımsız, harap	old	adjective	zayif	
+simpler	runoff	noun	ikinci tur	election	noun	zayif	
+synonym	runoff	noun	akış, yüzey akıntısı	drainage	noun	zayif	
+synonym	rustler	noun	hayvan hırsızı, sığır hırsızı	thief	noun	zayif	
+antonym	rustler	noun	hayvan hırsızı, sığır hırsızı	protector	noun	zayif	
+antonym	rut	noun	monotonluk, tekdüzelik, kısırdöngü	progress	noun	zayif	
+simpler	rut	verb	iz açmak, yol çukuru oluşturmak	make	verb	zayif	
+synonym	sabbath	noun	dinî dinlenme günü, kutsal gün	holiday	noun	zayif	
+synonym	sacral	adjective	kuyruk sokumuna ait	spinal	adjective	zayif	
+simpler	saddler	noun	sele yapımcısı, eyerci	maker	noun	zayif	
+simpler	safari	noun	yaban hayvanları gezisi, safari	tour	noun	zayif	
+antonym	safeguard	noun	koruma, önlem	risk	noun	zayif	
+synonym	saga	noun	destan, epik öykü	chronicle	noun	zayif	
+synonym	saga	noun	destan, epik öykü	myth	noun	zayif	
+simpler	saline	adjective	tuzlu, tuz içeren	salted	adjective	zayif	
+antonym	salinity	noun	tuzluluk, tuzluluk derecesi	freshness	noun	zayif	
+antonym	salivary	adjective	tükürükle ilgili, tükürük salgısına ait	dry	adjective	zayif	
+simpler	salivary	adjective	tükürükle ilgili, tükürük salgısına ait	wet	adjective	zayif	
+antonym	saltiness	noun	tuzlu olma durumu, tuzluluk	sweetness	noun	zayif	
+simpler	salutation	noun	selamlama	address	noun	zayif	
+simpler	sampler	noun	örnek toplama cihazı, örnekleyici	device	noun	zayif	
+simpler	sampler	noun	örnek seti, deneme paketi	package	noun	zayif	
+synonym	samurai	noun	samuray	knight	noun	zayif	
+antonym	samurai	noun	samuray	peasant	noun	zayif	
+simpler	sapphire	noun	safir	blue	noun	zayif	
+antonym	sappy	adjective	aşırı duygusal, şirin, duygusallığa kapılmış	stoic	adjective	zayif	
+simpler	sappy	adjective	aşırı duygusal, şirin, duygusallığa kapılmış	sweet	adjective	zayif	
+simpler	satiate	verb	tatmin etmek, doyurmak	fill	verb	zayif	
+synonym	satin	noun	saten	silk	noun	zayif	
+antonym	saving	adjective	kurtarıcı	damaging	adjective	zayif	
+antonym	savior	noun	kurtarıcı	victim	noun	zayif	
+antonym	savory	noun	tuzlu yiyecek, atıştırmalık	sweet	noun	zayif	
+simpler	savory	noun	tuzlu yiyecek, atıştırmalık	snack	noun	zayif	
+simpler	scaffold	verb	iskele kurmak, iskeleyle donatmak	build	verb	zayif	
+antonym	scalp	verb	karaborsada bilet satmak	buy	verb	zayif	
+antonym	scam	noun	dolandırıcılık	legitimacy	noun	zayif	
+antonym	scam	verb	dolandırmak	help	verb	zayif	
+simpler	scan	noun	tarama	image	noun	zayif	

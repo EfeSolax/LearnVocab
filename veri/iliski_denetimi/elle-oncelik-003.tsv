@@ -1,0 +1,333 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+synonym	camera	noun	fotoğraf makinesi	lens	noun	sil	
+synonym	camera	noun	fotoğraf makinesi	photograph	noun	sil	
+simpler	camera	noun	fotoğraf makinesi	photo	noun	sil	
+synonym	camp	noun	geçici konaklama yeri, çadır kampı	tent	noun	sil	
+synonym	camp	verb	kamp yapmak, çadır kurmak	settle	verb	sil	
+antonym	camp	verb	kamp yapmak, çadır kurmak	evacuate	verb	sil	
+antonym	cap	noun	şapka	helmet	noun	sil	
+simpler	capital	adjective	büyük, büyük harfli	big	adjective	sil	
+synonym	card	noun	kart, tebrik kartı	greeting	noun	sil	
+simpler	card	noun	kart, tebrik kartı	message	noun	sil	
+simpler	care	noun	özen, dikkat	watch	noun	sil	
+simpler	carpet	noun	halı	floor	noun	sil	
+antonym	case	noun	kutu, kap	open	noun	sil	
+synonym	cat	noun	kedi	kitten	noun	sil	
+antonym	cat	noun	kedi	dog	noun	sil	
+synonym	ceiling	noun	tavan	roof	noun	sil	
+antonym	cent	noun	kuruş	dollar	noun	sil	
+synonym	chain	noun	zincir	rope	noun	sil	
+antonym	chance	noun	fırsat, imkan	risk	noun	sil	
+antonym	change	noun	bozuk para, para üstü	payment	noun	sil	
+antonym	charge	noun	ücret, fiyat	discount	noun	sil	
+antonym	charity	noun	hayır kurumu, bağış kuruluşu	profit	noun	sil	
+antonym	chart	noun	grafik, tablo	list	noun	sil	
+antonym	chat	verb	sohbet etmek	silence	verb	sil	
+simpler	cheese	noun	peynir	milk	noun	sil	
+synonym	chemistry	noun	kimya	chemical	noun	sil	
+simpler	chemistry	noun	kimya	science	noun	sil	
+simpler	chicken	noun	tavuk	bird	noun	sil	
+simpler	child	noun	evlat, soy	son	noun	sil	
+synonym	church	noun	ibadet yeri, kilise binası	cathedral	noun	sil	
+antonym	church	noun	ibadet yeri, kilise binası	temple	noun	sil	
+synonym	cinema	noun	sinema, film salonu	film	noun	sil	
+synonym	cinema	noun	sinema, film salonu	movie	noun	sil	
+antonym	cinema	noun	sinema, film salonu	studio	noun	sil	
+simpler	cinema	noun	sinema, film salonu	watch	noun	sil	
+antonym	circle	noun	daire, çember	ellipse	noun	sil	
+antonym	circle	verb	dönmek, daire çizmek	wander	verb	sil	
+synonym	circuit	noun	elektrik devresi	network	noun	sil	
+antonym	circuit	noun	elektrik devresi	break	noun	sil	
+antonym	class	noun	ders, ders saati	skip	noun	sil	
+antonym	class	noun	sınıf, öğrenci grubu	individual	noun	sil	
+simpler	class	noun	sınıf, öğrenci grubu	team	noun	sil	
+synonym	click	verb	tıklamak, fare tuşuna basmak	select	verb	sil	
+antonym	climate	noun	iklim	stability	noun	sil	
+simpler	climb	verb	tırmanmak, yükselmek	go	verb	sil	
+antonym	clock	noun	saat, zaman ölçme aleti	alarm	noun	sil	
+antonym	cloth	noun	temizlik bezi	paper	noun	sil	
+synonym	cloud	noun	bulut	mist	noun	sil	
+synonym	cloud	noun	bulut	fog	noun	sil	
+antonym	coach	noun	otobüs, uzun mesafe taşıma aracı	train	noun	sil	
+simpler	coach	noun	otobüs, uzun mesafe taşıma aracı	ticket	noun	sil	
+antonym	coin	noun	madeni para	bill	noun	sil	
+synonym	composer	noun	besteci	musician	noun	sil	
+antonym	composer	noun	besteci	performer	noun	sil	
+antonym	concert	noun	konser	silence	noun	sil	
+synonym	connection	noun	elektrik, veri bağlantısı	network	noun	sil	
+antonym	cook	noun	aşçı, yemek hazırlayan kişi	serve	noun	sil	
+antonym	copy	verb	kopyalamak	erase	verb	sil	
+antonym	costume	noun	kıyafet, kostüm	disguise	noun	sil	
+synonym	cotton	noun	pamuk lifi, pamuk kumaşı	linen	noun	sil	
+antonym	cotton	noun	pamuk lifi, pamuk kumaşı	synthetic	noun	sil	
+antonym	count	verb	saymak, numaraları belirtmek	exclude	verb	sil	
+synonym	cousin	noun	kuzen	relative	noun	sil	
+antonym	cousin	noun	kuzen	sibling	noun	sil	
+simpler	cousin	noun	kuzen	family	noun	sil	
+antonym	crack	noun	çatlak, yarık	hole	noun	sil	
+simpler	crawl	verb	emeklemek	move	verb	sil	
+antonym	create	verb	düzenlemek, oluşturmak	erase	verb	sil	
+antonym	crime	noun	suç, yasa dışı eylem	legality	noun	sil	
+synonym	crop	noun	ekin	plant	noun	sil	
+simpler	crop	noun	ekin	farm	noun	sil	
+antonym	cross	noun	haç	idol	noun	sil	
+antonym	cross	verb	geçmek, karşıya geçmek	stay	verb	sil	
+simpler	cross	verb	geçmek, karşıya geçmek	go	verb	sil	
+antonym	crown	noun	taç	cap	noun	sil	
+synonym	cry	noun	ağlama	tear	noun	sil	
+antonym	culture	noun	kültür	ignorance	noun	sil	
+antonym	cycle	noun	bisiklet	car	noun	sil	
+antonym	cycle	verb	bisiklet sürmek	walk	verb	sil	
+synonym	dance	noun	dans, dans etkinliği	ball	noun	sil	
+antonym	dance	noun	dans, dans etkinliği	silence	noun	sil	
+antonym	dance	verb	dans etmek	stumble	verb	sil	
+antonym	dancing	noun	dans, dans etkinliği	silence	noun	sil	
+simpler	dark	adjective	koyu	black	adjective	sil	
+antonym	data	noun	veri	noise	noun	sil	
+synonym	day	noun	gün	date	noun	sil	
+antonym	day	noun	gün	night	noun	sil	
+simpler	day	noun	gün	week	noun	sil	
+antonym	dear	adjective	sevgili, değerli	expensive	adjective	sil	
+synonym	designer	noun	tasarımcı	artist	noun	sil	
+antonym	designer	noun	tasarımcı	consumer	noun	sil	
+antonym	detective	noun	dedektif	criminal	noun	sil	
+antonym	diamond	noun	elmas, mücevher taşı	ruby	noun	sil	
+antonym	dinner	noun	akşam yemeği	breakfast	noun	sil	
+synonym	direction	noun	yön, istikamet	guide	noun	sil	
+antonym	discover	verb	keşfetmek, bulmak	ignore	verb	sil	
+antonym	discovery	noun	keşif	invention	noun	sil	
+antonym	discussion	noun	tartışma, görüşme	agreement	noun	sil	
+antonym	document	noun	dosya, elektronik belge	archive	noun	sil	
+simpler	document	noun	dosya, elektronik belge	report	noun	sil	
+synonym	dog	noun	köpek	puppy	noun	sil	
+antonym	dog	noun	köpek	cat	noun	sil	
+antonym	dot	noun	nokta, işaret	line	noun	sil	
+synonym	draw	verb	çizmek, resim yapmak	paint	verb	sil	
+simpler	dream	verb	rüya görmek	sleep	verb	sil	
+antonym	dress	noun	giysi, elbise	uniform	noun	sil	
+antonym	drive	noun	araba yolculuğu, sürüş	walk	noun	sil	
+antonym	drive	verb	araç kullanmak	walk	verb	sil	
+simpler	drive	verb	araç kullanmak	travel	verb	sil	
+synonym	driver	noun	sürücü	pilot	noun	sil	
+synonym	drop	verb	bırakmak, düşürmek	let	verb	sil	
+antonym	drum	noun	davul	silence	noun	sil	
+antonym	during	preposition	süreçte, ... sırasında	after	preposition	sil	
+antonym	dust	noun	toz	cleanliness	noun	sil	
+antonym	earthquake	noun	deprem	stability	noun	sil	
+antonym	edit	verb	düzenlemek, metni/film/ ses kaydını iyileştirmek	write	verb	sil	
+synonym	elbow	noun	dirsek	arm	noun	sil	
+antonym	elbow	noun	dirsek	wrist	noun	sil	
+simpler	employ	verb	istihdam etmek, işe almak	use	verb	sil	
+synonym	employer	noun	işveren	manager	noun	sil	
+antonym	end	noun	uç	beginning	noun	sil	
+antonym	energy	noun	elektrik enerjisi	waste	noun	sil	
+synonym	engineer	noun	mühendis	architect	noun	sil	
+synonym	engineer	noun	mühendis	designer	noun	sil	
+antonym	engineer	noun	mühendis	manager	noun	sil	
+simpler	engineer	noun	mühendis	worker	noun	sil	
+synonym	enter	verb	girmek, içeriye geçmek	go	verb	sil	
+simpler	enter	verb	girmek, içeriye geçmek	join	verb	sil	
+synonym	envelope	noun	zarf	letter	noun	sil	
+antonym	envelope	noun	zarf	open	noun	sil	
+simpler	essay	noun	deneme, akademik yazı	report	noun	sil	
+synonym	even	adjective	çift	balanced	adjective	sil	
+antonym	event	noun	olay	peace	noun	sil	
+antonym	ever	adverb	hiç	always	adverb	sil	
+simpler	exhibition	noun	sergi, sergileme etkinliği	event	noun	sil	
+synonym	exit	noun	çıkış	door	noun	sil	
+antonym	experiment	noun	deney, sınama	theory	noun	sil	
+simpler	face	verb	bakmak, yönelmek	turn	verb	sil	
+antonym	fall	noun	sonbahar	winter	noun	sil	
+antonym	family	noun	aile, akraba topluluğu	individual	noun	sil	
+synonym	far	adverb	uzak, çok	distant	adjective	sil	
+antonym	farm	noun	tarım arazisi, çiftlik	city	noun	sil	
+antonym	farming	noun	tarım, çiftçilik	industrialization	noun	sil	
+simpler	fat	adjective	kalın, dolgun	large	adjective	sil	
+synonym	father	noun	baba	parent	noun	sil	
+antonym	feather	noun	tüy	scale	noun	sil	
+simpler	feather	noun	tüy	hair	noun	sil	
+simpler	feed	verb	beslemek, yiyecek vermek	give	verb	sil	
+antonym	feel	verb	hissetmek, duyu organlarıyla algılamak	ignore	verb	sil	
+antonym	feeling	noun	hissetme, algı	pain	noun	sil	
+synonym	few	adjective	az sayıdaki	some	adjective	sil	
+antonym	field	noun	tarla, arazi	meadow	noun	sil	
+simpler	figure	noun	şekil, form	person	noun	sil	
+antonym	figure	noun	sayı, rakam	estimate	noun	sil	
+antonym	file	noun	dosya, evrak	archive	noun	sil	
+synonym	film	noun	film, sinema yapımı, hareketli görüntü	documentary	noun	sil	
+antonym	film	noun	film, sinema yapımı, hareketli görüntü	short	noun	sil	
+simpler	film	noun	film, sinema yapımı, hareketli görüntü	cinema	noun	sil	
+synonym	fire	noun	ateş	heat	noun	sil	
+antonym	fire	noun	ateş	cold	noun	sil	
+antonym	fire	verb	ateş etmek, silah kullanmak	reload	verb	sil	
+antonym	firm	noun	şirket, işletme	startup	noun	sil	
+synonym	first	adverb	ilk olarak	previously	adverb	sil	
+antonym	fit	verb	uymak, sığmak	contain	verb	sil	
+synonym	flash	noun	kısa, ani ışık patlaması	glow	noun	sil	
+antonym	flash	noun	kısa, ani ışık patlaması	darkness	noun	sil	
+antonym	floor	noun	kat, seviye	ceiling	noun	sil	
+antonym	fly	verb	uçakla seyahat etmek	stay	verb	sil	
+simpler	fly	verb	uçakla seyahat etmek	go	verb	sil	
+antonym	food	noun	yemek, yemekler	drink	noun	sil	
+simpler	food	noun	yemek, yemekler	dish	noun	sil	
+synonym	foot	noun	fit	inch	noun	sil	
+antonym	foot	noun	fit	meter	noun	sil	
+antonym	football	noun	futbol, ayak topu	basketball	noun	sil	
+simpler	football	noun	futbol, ayak topu	team	noun	sil	
+synonym	frog	noun	kurbağa	toad	noun	sil	
+antonym	frog	noun	kurbağa	lizard	noun	sil	
+synonym	front	noun	ön, ön taraf	side	noun	sil	
+simpler	front	noun	ön, ön taraf	face	noun	sil	
+antonym	fruit	noun	meyve	vegetable	noun	sil	
+simpler	fruit	noun	meyve	food	noun	sil	
+antonym	fry	verb	kızartmak	boil	verb	sil	
+simpler	fry	verb	kızartmak	cook	verb	sil	
+antonym	funeral	noun	cenaze, defin	celebration	noun	sil	
+antonym	gap	noun	boşluk, açıklık	bridge	noun	sil	
+synonym	garden	noun	bahçe	park	noun	sil	
+antonym	garden	noun	bahçe	field	noun	sil	
+simpler	garden	noun	bahçe	plant	noun	sil	
+antonym	gas	noun	benzin	oil	noun	sil	
+antonym	gas	noun	gaz	air	noun	sil	
+antonym	gas	noun	gaz	liquid	noun	sil	
+antonym	gate	noun	kapı, geçit	barrier	noun	sil	
+synonym	camp	verb	kamp yapmak, çadır kurmak	stay	verb	zayif	
+synonym	cap	noun	şapka	hat	noun	zayif	
+synonym	captain	noun	gemi kaptanı, denizci lideri	leader	noun	zayif	
+antonym	captain	noun	gemi kaptanı, denizci lideri	subordinate	noun	zayif	
+antonym	carry	verb	taşımak, götürmek	drop	verb	zayif	
+synonym	case	noun	kutu, kap	box	noun	zayif	
+synonym	cash	noun	nakit para	money	noun	zayif	
+antonym	cash	noun	nakit para	credit	noun	zayif	
+antonym	celebrity	noun	ünlü, tanınmış kişi	unknown	noun	zayif	
+simpler	certainly	adverb	kesinlikle	yes	adverb	zayif	
+synonym	change	noun	bozuk para, para üstü	money	noun	zayif	
+synonym	chart	noun	grafik, tablo	table	noun	zayif	
+simpler	chat	verb	sohbet etmek	speak	verb	zayif	
+synonym	check	noun	çek, banka senedi	draft	noun	zayif	
+antonym	check	noun	çek, banka senedi	cash	noun	zayif	
+synonym	chest	noun	göğüs	torso	noun	zayif	
+simpler	choose	verb	seçmek	decide	verb	zayif	
+synonym	circle	verb	dönmek, daire çizmek	rotate	verb	zayif	
+simpler	circle	verb	dönmek, daire çizmek	turn	verb	zayif	
+synonym	class	noun	sınıf, öğrenci grubu	group	noun	zayif	
+antonym	clear	adjective	şeffaf, net, görülebilir	obscure	adjective	zayif	
+synonym	climb	verb	tırmanmak, yükselmek	rise	verb	zayif	
+synonym	clock	noun	saat, zaman ölçme aleti	watch	noun	zayif	
+synonym	cloth	noun	temizlik bezi	towel	noun	zayif	
+simpler	clothes	noun	giysi, kıyafet, elbise	dress	noun	zayif	
+antonym	coach	noun	antrenör, koç	player	noun	zayif	
+synonym	coat	noun	palto, kaban, mont	jacket	noun	zayif	
+synonym	coin	noun	madeni para	money	noun	zayif	
+synonym	column	noun	veri sütunu, tablo sütunu	field	noun	zayif	
+synonym	combination	noun	birleşim, kombinasyon	union	noun	zayif	
+antonym	common	adjective	paylaşılan, ortak	unique	adjective	zayif	
+synonym	communication	noun	iletişim	interaction	noun	zayif	
+simpler	complicated	adjective	karmaşık, çetrefilli	hard	adjective	zayif	
+synonym	concert	noun	konser	show	noun	zayif	
+synonym	conference	noun	toplantı, konferans	summit	noun	zayif	
+synonym	construction	noun	inşa süreci, yapım	assembly	noun	zayif	
+antonym	control	noun	yetki, otorite, yönlendirme gücü	chaos	noun	zayif	
+synonym	cool	adjective	serin, soğuk	cold	adjective	zayif	
+synonym	corner	noun	köşe	edge	noun	zayif	
+antonym	corner	noun	köşe	center	noun	zayif	
+synonym	costume	noun	kıyafet, kostüm	attire	noun	zayif	
+antonym	count	noun	sayım, sayma eylemi	estimate	noun	zayif	
+simpler	count	verb	saymak, numaraları belirtmek	add	verb	zayif	
+antonym	country	noun	ülke, devlet	province	noun	zayif	
+synonym	cover	verb	örtmek, kaplamak	protect	verb	zayif	
+antonym	crawl	verb	emeklemek	walk	verb	zayif	
+synonym	create	verb	düzenlemek, oluşturmak	compose	verb	zayif	
+antonym	credit	noun	kredi, borç	debt	noun	zayif	
+synonym	crop	noun	ekin	grain	noun	zayif	
+antonym	crop	noun	ekin	weed	noun	zayif	
+synonym	cross	noun	çarpı işareti	mark	noun	zayif	
+synonym	culture	noun	kültür	tradition	noun	zayif	
+synonym	culture	noun	kültür	civilization	noun	zayif	
+antonym	cut	verb	kesmek, doğramak	join	verb	zayif	
+synonym	cute	adjective	sevimli, şirin	charming	adjective	zayif	
+synonym	cycle	verb	bisiklet sürmek	ride	verb	zayif	
+synonym	daily	adjective	günlük	regular	adjective	zayif	
+antonym	daily	adjective	günlük	occasional	adjective	zayif	
+synonym	dance	verb	dans etmek	perform	verb	zayif	
+synonym	dance	verb	dans etmek	move	verb	zayif	
+synonym	deep	adjective	derin	profound	adjective	zayif	
+synonym	deliver	verb	teslim etmek, ulaştırmak	hand	verb	zayif	
+simpler	deliver	verb	teslim etmek, ulaştırmak	send	verb	zayif	
+synonym	department	noun	bölüm	unit	noun	zayif	
+synonym	design	noun	görünüm, stil	appearance	noun	zayif	
+synonym	design	verb	planlamak, tasarlamak	create	verb	zayif	
+simpler	design	verb	planlamak, tasarlamak	make	verb	zayif	
+synonym	designer	noun	tasarımcı	creator	noun	zayif	
+synonym	die	verb	ölmek	expire	verb	zayif	
+simpler	die	verb	ölmek	end	verb	zayif	
+synonym	digital	adjective	sayısal, dijital	electronic	adjective	zayif	
+synonym	direction	noun	yön, istikamet	orientation	noun	zayif	
+synonym	director	noun	yönetmen, yönetici	leader	noun	zayif	
+antonym	director	noun	yönetmen, yönetici	assistant	noun	zayif	
+synonym	dirt	noun	toprak, kir	mud	noun	zayif	
+synonym	dirt	noun	toprak, kir	soil	noun	zayif	
+simpler	disaster	noun	felaket, büyük yıkım	problem	noun	zayif	
+antonym	discover	verb	keşfetmek, bulmak	hide	verb	zayif	
+synonym	distance	noun	uzaklık, mesafe	space	noun	zayif	
+synonym	dive	verb	dalmak, suya atlamak	jump	verb	zayif	
+antonym	dive	verb	dalmak, suya atlamak	rise	verb	zayif	
+synonym	dot	noun	nokta, işaret	mark	noun	zayif	
+synonym	downstairs	adverb	alt katta	below	adverb	zayif	
+antonym	draw	verb	çizmek, resim yapmak	erase	verb	zayif	
+synonym	dream	noun	rüya	vision	noun	zayif	
+antonym	dream	noun	rüya	nightmare	noun	zayif	
+synonym	dream	verb	rüya görmek	imagine	verb	zayif	
+simpler	dress	verb	giydirmek, giyinmek	wear	verb	zayif	
+synonym	drive	noun	araba yolculuğu, sürüş	journey	noun	zayif	
+antonym	drop	verb	bırakmak, düşürmek	raise	verb	zayif	
+synonym	drug	noun	uyuşturucu, yasa dışı madde	substance	noun	zayif	
+antonym	drug	noun	uyuşturucu, yasa dışı madde	medicine	noun	zayif	
+synonym	dust	noun	toz	powder	noun	zayif	
+synonym	early	adverb	erken	promptly	adverb	zayif	
+simpler	early	adverb	erken	soon	adverb	zayif	
+synonym	economy	noun	ekonomi	market	noun	zayif	
+synonym	edit	verb	düzenlemek, metni/film/ ses kaydını iyileştirmek	correct	verb	zayif	
+antonym	election	noun	seçim, oy verme süreci	appointment	noun	zayif	
+antonym	electric	adjective	elektrikli, elektrik enerjisiyle çalışan	manual	adjective	zayif	
+synonym	electronic	adjective	elektronik	digital	adjective	zayif	
+synonym	empty	adjective	boş, içi olmayan	blank	adjective	zayif	
+antonym	ever	adverb	hiç	never	adverb	zayif	
+synonym	example	noun	örnek, örnek olay	model	noun	zayif	
+simpler	exercise	noun	egzersiz, alıştırma	activity	noun	zayif	
+antonym	face	verb	bakmak, yönelmek	avoid	verb	zayif	
+synonym	face	verb	bakmak, yönelmek	look	verb	zayif	
+antonym	far	adverb	uzak, çok	near	adverb	zayif	
+synonym	farm	noun	tarım arazisi, çiftlik	field	noun	zayif	
+synonym	farm	noun	tarım arazisi, çiftlik	plantation	noun	zayif	
+synonym	feather	noun	tüy	down	noun	zayif	
+simpler	few	adjective	az sayıdaki	little	adjective	zayif	
+synonym	field	noun	tarla, arazi	farm	noun	zayif	
+synonym	fill	verb	doldurmak, içini doldurmak	load	verb	zayif	
+simpler	fill	verb	doldurmak, içini doldurmak	complete	verb	zayif	
+synonym	filter	noun	süzgeç, filtre	screen	noun	zayif	
+synonym	flag	noun	bayrak, amblem	standard	noun	zayif	
+synonym	flame	noun	alev, yanma	fire	noun	zayif	
+synonym	flash	noun	kısa, ani ışık patlaması	spark	noun	zayif	
+synonym	flight	noun	uçuş	journey	noun	zayif	
+synonym	fly	noun	sinek	bug	noun	zayif	
+synonym	follow	verb	takip etmek	chase	verb	zayif	
+synonym	form	noun	form, başvuru belgesi	document	noun	zayif	
+simpler	form	noun	form, başvuru belgesi	paper	noun	zayif	
+synonym	frame	noun	çerçeve	border	noun	zayif	
+synonym	frame	verb	çerçevelemek	enclose	verb	zayif	
+synonym	fresh	adjective	taze, yeni, henüz bozulmamış	new	adjective	zayif	
+synonym	fruit	noun	meyve	produce	noun	zayif	
+synonym	fun	adjective	eğlenceli	enjoyable	adjective	zayif	
+synonym	fun	adjective	eğlenceli	playful	adjective	zayif	
+synonym	funny	adjective	komik, güldürücü	laughable	adjective	zayif	
+synonym	game	noun	oyun, eğlence	competition	noun	zayif	
+synonym	game	noun	oyun, eğlence	sport	noun	zayif	
+antonym	game	noun	oyun, eğlence	work	noun	zayif	
+simpler	game	noun	oyun, eğlence	play	noun	zayif	
+synonym	gap	noun	boşluk, açıklık	difference	noun	zayif	
+synonym	gap	noun	boşluk, açıklık	hole	noun	zayif	
+synonym	gas	noun	benzin	fuel	noun	zayif	
+synonym	gas	noun	gaz	vapor	noun	zayif	
+synonym	gate	noun	kapı, geçit	door	noun	zayif	
+synonym	gentle	adjective	nazik, kibar	soft	adjective	zayif	

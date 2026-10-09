@@ -212,3 +212,29 @@ class ListeAyristirmaTests(TestCase):
         """`advocate` hem isim hem fiil — iki ayrı istektir."""
         istekler = self._oku("advocate:noun\nadvocate:verb\n")
         self.assertEqual(istekler, [("advocate", "noun"), ("advocate", "verb")])
+
+
+class KalipBicimiTests(TestCase):
+    """Modelden gelen kalıp yeni gösterime çevrilir (rapor 18.7): "+ noun" yok."""
+
+    def test_kalip_bicimlenir_bilgisiz_kalip_atilir(self):
+        from words.enrich.schema import UsagePattern
+        a = anlam("ilgili", cumleler=[
+            "She is very interested in modern art and history.",
+            "He was interested in the job offer.",
+            "They are interested in learning Spanish this year.",
+            "Few people seemed interested in the old museum.",
+            "I am interested in what you have to say.",
+        ])
+        a.patterns = [
+            UsagePattern(pattern="interested in + noun", kind="preposition",
+                         example="She is interested in art.", note=""),
+            UsagePattern(pattern="be interested", kind="structure",
+                         example="She is interested.", note=""),
+        ]
+        rapor = checks.Rapor()
+        bicimler = checks._bicimler("interested", "adjective", "", "")
+        self.assertTrue(checks._anlami_denetle(a, "1", bicimler, [], rapor,
+                                               "adjective", "interested"))
+        self.assertEqual([k.pattern for k in a.patterns], ["interested in sth"])
+        self.assertIn("kalip_bicimi", [s.kod for s in rapor.sorunlar])

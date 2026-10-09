@@ -1,0 +1,224 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+synonym	underinsured	adjective	yetersiz sigortalı	uninsured	adjective	sil	
+simpler	underlining	noun	altını çizme, vurgulama	underline	noun	sil	
+simpler	underpayment	noun	eksik ödeme, az ödeme	pay	noun	sil	
+simpler	underperform	verb	beklentilerin altında performans göstermek	perform	verb	sil	
+simpler	understandably	adverb	haklı olarak, doğal olarak	clearly	adverb	sil	
+antonym	undertaking	noun	görev, proje, girişim	challenge	noun	sil	
+simpler	underwrite	verb	sigorta etmek, teminat altına almak	risk	verb	sil	
+simpler	undiluted	adjective	seyreltilmemiş, saf	clear	adjective	sil	
+synonym	undisciplined	adjective	disiplinsiz, kuralsız, düzensiz	orderly	adjective	sil	
+antonym	undulating	adjective	dalgalı, salınımlı	smooth	adjective	sil	
+synonym	unforgiven	adjective	bağışlanmamış	unforgivable	adjective	sil	
+simpler	unfrozen	adjective	donmuş olmayan, çözülmüş	cold	adjective	sil	
+simpler	unfunded	adjective	fonlandırılmamış, bütçesiz	poor	adjective	sil	
+synonym	unhelpful	adjective	yararsız, faydasız	useful	adjective	sil	
+synonym	unholy	adjective	kutsal olmayan, şeytani	sacred	adjective	sil	
+simpler	unionization	noun	sendika kurma, sendikalaşma	union	noun	sil	
+synonym	universal	noun	evrensel kavram, genel ilke	concept	noun	sil	
+antonym	unlearn	verb	öğrenilen bir şeyi bırakmak	relearn	verb	sil	
+simpler	unlicensed	adjective	lisanssız, ruhsatsız	legal	adjective	sil	
+antonym	unlockable	adjective	kilidi açılabilir, erişilebilir	locked	adjective	sil	
+simpler	unlockable	adjective	kilidi açılabilir, erişilebilir	open	adjective	sil	
+simpler	unnecessarily	adverb	gerekli olmayan şekilde, gereksiz olarak	needlessly	adverb	sil	
+antonym	unnecessarily	adverb	gerekli olmayan şekilde, gereksiz olarak	necessarily	adverb	sil	
+synonym	unprepared	adjective	hazır olmayan, hazırlıksız	ready	adjective	sil	
+simpler	unprofessional	adjective	profesyonellikten uzak, iş ahlakına aykırı, gayriciddi	proper	adjective	sil	
+synonym	unqualified	adjective	niteliksiz, yeterli/uygun olmayan	eligible	adjective	sil	
+synonym	unrealistic	adjective	gerçekçi olmayan	practical	adjective	sil	
+simpler	unregistered	adjective	kayıtlı olmayan, tescilsiz	official	adjective	sil	
+synonym	unreliability	noun	güvenilmezlik, güvenilir olmama	trustworthiness	noun	sil	
+synonym	unreliable	adjective	güvenilmez	dependable	adjective	sil	
+synonym	unsanitary	adjective	sağlıksız, hijyenik olmayan	clean	adjective	sil	
+synonym	unsanitary	adjective	sağlıksız, hijyenik olmayan	hygienic	adjective	sil	
+synonym	unsatisfied	adjective	memnun olmayan, tatmin olmamış	content	adjective	sil	
+simpler	unsatisfied	adjective	memnun olmayan, tatmin olmamış	pleased	adjective	sil	
+synonym	unsaturated	adjective	doymamış	healthy	adjective	sil	
+simpler	unsaturated	adjective	doymamış	fatty	adjective	sil	
+simpler	unsolved	adjective	çözülmemiş	fixed	adjective	sil	
+synonym	unspecified	adjective	belirtilmemiş	defined	adjective	sil	
+simpler	unsuitable	adjective	uygunsuz, elverişsiz	fit	adjective	sil	
+simpler	unsupportive	adjective	destekleyici olmayan, destek vermeyen	helpful	adjective	sil	
+simpler	untrustworthy	adjective	güvenilmez	reliable	adjective	sil	
+antonym	unveiling	noun	açığa çıkarma, tanıtım töreni	hide	noun	sil	
+antonym	unwind	verb	çözmek, açmak, gevşetmek	rewind	verb	sil	
+simpler	unwritten	adjective	yazılı olmayan, sözlü, açıkça belirtilmemiş	formal	adjective	sil	
+antonym	upset	noun	sürpriz yenilgi	loss	noun	sil	
+simpler	upstate	adjective	şehir dışı, iç kesim	outside	adjective	sil	
+simpler	upstate	noun	şehir dışı bölge, kırsal bölge	area	noun	sil	
+simpler	uptake	noun	alım, benimseme, emilim	take	noun	sil	
+synonym	uptown	noun	şehrin yukarı kısmı, lüks yerleşim bölgesi	suburb	noun	sil	
+simpler	urbanization	noun	kentselleşme	city	noun	sil	
+synonym	urchin	noun	denizkestanesi	spine	noun	sil	
+antonym	urn	noun	kül vazosu, kül kabı	casket	noun	sil	
+antonym	uterine	adjective	rahimle ilgili, rahime ait	cervical	adjective	sil	
+antonym	uterus	noun	rahim	ovary	noun	sil	
+synonym	vaccination	noun	aşı, bağışıklama	vaccine	noun	sil	
+simpler	vaccine	noun	aşı	disease	noun	sil	
+synonym	valet	verb	arabasını park etmek, oto kuaförlüğü yapmak	service	verb	sil	
+antonym	valet	verb	arabasını park etmek, oto kuaförlüğü yapmak	ignore	verb	sil	
+simpler	valiantly	adverb	cesurca, kahramanca	well	adverb	sil	
+simpler	vandal	noun	tahripçi, yıkıcı, vandal	thief	noun	sil	
+simpler	vandalize	verb	hasar vermek, tahrip etmek	damage	verb	sil	
+antonym	vaporizer	noun	buharlaştırıcı, buharlaştırıcı cihaz	smoker	noun	sil	
+simpler	vaporizer	noun	buharlaştırıcı, buharlaştırıcı cihaz	device	noun	sil	
+antonym	varsity	noun	üniversite takımı, okul takımı	club	noun	sil	
+simpler	varsity	noun	üniversite takımı, okul takımı	college	noun	sil	
+antonym	vat	noun	fıçı, tekne, tank	drum	noun	sil	
+antonym	vault	noun	atlama, sıçrama	fall	noun	sil	
+antonym	vaulting	noun	tonoz yapma, tonozlar	flattening	noun	sil	
+synonym	vegetarianism	noun	vejetaryenlik	vegetarian	noun	sil	
+simpler	veiling	noun	örtme, gizleme	hide	noun	sil	
+antonym	velocity	noun	hız, sürat	acceleration	noun	sil	
+simpler	vending	noun	satış, dağıtım	vendor	noun	sil	
+antonym	veneer	noun	ince kaplama, ince tabaka	mask	noun	sil	
+simpler	venom	noun	zehir	bite	noun	sil	
+antonym	verbalize	verb	sözlü olarak ifade etmek	silence	verb	sil	
+synonym	vernacular	noun	yerel dil, ağız	slang	noun	sil	
+synonym	vertebra	noun	omurga kemiği	spine	noun	sil	
+antonym	vertebra	noun	omurga kemiği	fracture	noun	sil	
+simpler	vertigo	noun	baş dönmesi, dönme hissi	balance	noun	sil	
+antonym	vet	verb	eleştirel olarak incelemek, gözden geçirmek	approve	verb	sil	
+synonym	veterinary	adjective	veterinerlik ile ilgili, veteriner	clinical	adjective	sil	
+antonym	vicar	noun	papaz, mahalle papazı	bishop	noun	sil	
+simpler	viewfinder	noun	vizör, bakaç	camera	noun	sil	
+simpler	underestimate	verb	azımsamak, küçümsemek	guess	verb	zayif	
+synonym	underlie	verb	temelini oluşturmak, dayanak olmak	cause	verb	zayif	
+synonym	underlie	verb	temelini oluşturmak, dayanak olmak	support	verb	zayif	
+simpler	underlie	verb	temelini oluşturmak, dayanak olmak	base	verb	zayif	
+synonym	underlining	noun	altını çizme, vurgulama	highlight	noun	zayif	
+antonym	underperform	verb	beklentilerin altında performans göstermek	exceed	verb	zayif	
+antonym	underway	adjective	devam eden, sürmekte olan, başlamış	pending	adjective	zayif	
+simpler	underworld	noun	yeraltı dünyası, suç örgütü	crime	noun	zayif	
+antonym	underwrite	verb	sigorta etmek, teminat altına almak	reject	verb	zayif	
+antonym	undetermined	adjective	belirlenmemiş, saptanmamış, kesinleşmemiş	determined	adjective	zayif	
+synonym	undignified	adjective	saygın olmayan, onursuz	disgraceful	adjective	zayif	
+simpler	undiscovered	adjective	keşfedilmemiş	new	adjective	zayif	
+antonym	undo	verb	geri almak, etkisini ortadan kaldırmak	apply	verb	zayif	
+simpler	undocumented	adjective	kayıtsız, resmi kayıtlara geçmemiş	illegal	adjective	zayif	
+antonym	undulate	verb	dalgalanmak	remain	verb	zayif	
+simpler	unedited	adjective	düzenlenmemiş	original	adjective	zayif	
+synonym	uneducated	adjective	eğitimsiz	illiterate	adjective	zayif	
+synonym	unencrypted	adjective	şifrelenmemiş	plain	adjective	zayif	
+simpler	unequal	adjective	eşit olmayan	different	adjective	zayif	
+synonym	unexpectedly	adverb	beklenmedik bir şekilde	abruptly	adverb	zayif	
+simpler	unfaithful	adjective	sadakatsiz, vefasız	untrue	adjective	zayif	
+simpler	unfamiliar	adjective	tanıdık olmayan, yabancı	new	adjective	zayif	
+synonym	unfixed	adjective	sabitlenmemiş, belirlenmemiş	unstable	adjective	zayif	
+synonym	unforgettable	adjective	unutulmaz	remarkable	adjective	zayif	
+synonym	unfriend	verb	arkadaşlıktan çıkarmak, arkadaşlıktan silmek	block	verb	zayif	
+synonym	unfunded	adjective	fonlandırılmamış, bütçesiz	underfunded	adjective	zayif	
+synonym	unhelpful	adjective	yararsız, faydasız	useless	adjective	zayif	
+synonym	unincorporated	adjective	şirketleşmemiş, tüzel kişilik kazanmamış	separate	adjective	zayif	
+simpler	unincorporated	adjective	şirketleşmemiş, tüzel kişilik kazanmamış	independent	adjective	zayif	
+simpler	uninitiated	adjective	acemi, yabancı, bilgisiz	new	adjective	zayif	
+simpler	uninviting	adjective	çekici olmayan, davet etmeyen	cold	adjective	zayif	
+synonym	unionize	verb	sendikalaştırmak	join	verb	zayif	
+antonym	universal	noun	evrensel kavram, genel ilke	exception	noun	zayif	
+simpler	universal	noun	evrensel kavram, genel ilke	rule	noun	zayif	
+synonym	universalist	adjective	evrenselci, tümcü	inclusive	adjective	zayif	
+simpler	universalist	adjective	evrenselci, tümcü	general	adjective	zayif	
+synonym	unlearn	verb	öğrenilen bir şeyi bırakmak	forget	verb	zayif	
+synonym	unauthorized	adjective	yetkisiz, izinsiz	illegal	adjective	zayif	
+synonym	unlicensed	adjective	lisanssız, ruhsatsız	illegal	adjective	zayif	
+simpler	unlock	verb	kullanılabilir hâle getirmek, erişim sağlamak	access	verb	zayif	
+synonym	unlockable	adjective	kilidi açılabilir, erişilebilir	inaccessible	adjective	zayif	
+synonym	unlovable	adjective	sevilmesi zor, sevimsiz, sevilemez	unattractive	adjective	zayif	
+simpler	unnoticeable	adjective	gözle görülmez, fark edilmez	small	adjective	zayif	
+synonym	unofficially	adverb	resmi olmayan şekilde	secretly	adverb	zayif	
+synonym	unplanned	adjective	planlanmamış	unexpected	adjective	zayif	
+synonym	unprofessional	adjective	profesyonellikten uzak, iş ahlakına aykırı, gayriciddi	incompetent	adjective	zayif	
+synonym	unprofessional	adjective	profesyonellikten uzak, iş ahlakına aykırı, gayriciddi	unethical	adjective	zayif	
+simpler	unprovoked	adjective	nedensiz, sebepsiz	unfair	adjective	zayif	
+simpler	unreasonable	adjective	mantıksız, akılsız, makul olmayan	unfair	adjective	zayif	
+simpler	unreasonable	adjective	aşırı, haksız	high	adjective	zayif	
+synonym	unrefined	adjective	kaba, görgüsüz, incelikten yoksun	rude	adjective	zayif	
+simpler	unreleased	adjective	yayınlanmamış, yayımlanmamış	new	adjective	zayif	
+simpler	unrewarded	adjective	ödül almamış, karşılıksız	unpaid	adjective	zayif	
+simpler	unsentimental	adjective	duygusuz, mantıklı, duygusal olmayan	cold	adjective	zayif	
+synonym	unspecified	adjective	belirtilmemiş	general	adjective	zayif	
+antonym	unspecified	adjective	belirtilmemiş	clear	adjective	zayif	
+antonym	unstated	adjective	belirtilmemiş, söylenmemiş	clear	adjective	zayif	
+synonym	unstoppable	adjective	durmaz, durdurulamaz	irresistible	adjective	zayif	
+antonym	unstoppable	adjective	durmaz, durdurulamaz	manageable	adjective	zayif	
+synonym	unsympathetic	adjective	sempati göstermeyen, anlayışsız	cold	adjective	zayif	
+simpler	untimely	adjective	zamansız, vakitsiz, yersiz	late	adjective	zayif	
+synonym	untold	adjective	anlatılmamış, söylenmemiş	hidden	adjective	zayif	
+simpler	untouchable	adjective	dokunulmaz, el değmemiş	safe	adjective	zayif	
+simpler	untranslated	adjective	çevirisi yapılmamış	original	adjective	zayif	
+synonym	untreated	adjective	tedavi edilmemiş, işlenmemiş	raw	adjective	zayif	
+simpler	unusually	adverb	alışılmadık şekilde	very	adverb	zayif	
+simpler	unveiling	noun	açığa çıkarma, tanıtım töreni	show	noun	zayif	
+synonym	unwind	verb	çözmek, açmak, gevşetmek	undo	verb	zayif	
+antonym	upbringing	noun	yetiştirilme, yetiştirilme tarzı, terbiye	neglect	noun	zayif	
+synonym	upload	noun	yükleme	transfer	noun	zayif	
+antonym	uprising	noun	ayaklanma, isyan	peace	noun	zayif	
+simpler	uprising	noun	ayaklanma, isyan	protest	noun	zayif	
+simpler	upscale	adjective	lüks, yüksek sınıf	rich	adjective	zayif	
+synonym	upset	noun	sürpriz yenilgi	defeat	noun	zayif	
+simpler	upset	noun	sürpriz yenilgi	surprise	noun	zayif	
+antonym	upset	noun	kargaşa, karışıklık	stability	noun	zayif	
+synonym	upstate	adjective	şehir dışı, iç kesim	rural	adjective	zayif	
+antonym	upstate	adjective	şehir dışı, iç kesim	urban	adjective	zayif	
+antonym	uptake	noun	alım, benimseme, emilim	decline	noun	zayif	
+synonym	uptown	adjective	şehir merkezinin dışındaki, yukarı mahalledeki, lüks semtteki	suburban	adjective	zayif	
+simpler	uptown	noun	şehrin yukarı kısmı, lüks yerleşim bölgesi	city	noun	zayif	
+synonym	urbanization	noun	kentselleşme	development	noun	zayif	
+simpler	urge	noun	güçlü istek, arzu	need	noun	zayif	
+synonym	urgently	adverb	acilen	quickly	adverb	zayif	
+antonym	urgently	adverb	acilen	slowly	adverb	zayif	
+simpler	urging	noun	ısrar, teşvik	push	noun	zayif	
+antonym	urinate	verb	idrar yapmak	retain	verb	zayif	
+simpler	urinate	verb	idrar yapmak	go	verb	zayif	
+synonym	urination	noun	idrar yapma	void	noun	zayif	
+simpler	usability	noun	kullanılabilirlik	use	noun	zayif	
+simpler	usefulness	noun	kullanışlılık, faydalılık	use	noun	zayif	
+antonym	utterance	noun	söz, ifade	silence	noun	zayif	
+synonym	vacancy	noun	iş ilanı, boş pozisyon	job	noun	zayif	
+antonym	vaccination	noun	aşı, bağışıklama	infection	noun	zayif	
+antonym	vaccine	noun	aşı	infection	noun	zayif	
+synonym	vain	adjective	kibirli, kendini beğenmiş	arrogant	adjective	zayif	
+antonym	vale	noun	vadi	hill	noun	zayif	
+synonym	valet	noun	özel uşak	servant	noun	zayif	
+simpler	valet	noun	özel uşak	assistant	noun	zayif	
+simpler	validly	adverb	geçerli bir şekilde	properly	adverb	zayif	
+antonym	valor	noun	cesaret, kahramanlık	fear	noun	zayif	
+synonym	valued	adjective	değer verilen, saygı duyulan, kıymetli	priceless	adjective	zayif	
+synonym	vampire	noun	vampir	undead	noun	zayif	
+antonym	vampire	noun	vampir	human	noun	zayif	
+synonym	vandal	noun	tahripçi, yıkıcı, vandal	destroyer	noun	zayif	
+antonym	vandal	noun	tahripçi, yıkıcı, vandal	preserver	noun	zayif	
+antonym	vapor	noun	buhar	liquid	noun	zayif	
+simpler	vaporize	verb	buharlaştırmak, buhara dönüştürmek	turn	verb	zayif	
+synonym	varsity	noun	üniversite takımı, okul takımı	team	noun	zayif	
+antonym	vaulted	adjective	kubbeli, kemerli	flat	adjective	zayif	
+synonym	vaulting	noun	tonoz yapma, tonozlar	arch	noun	zayif	
+antonym	vegetate	verb	tembelce yaşamak, hareketsiz kalmak	work	verb	zayif	
+simpler	vegetate	verb	tembelce yaşamak, hareketsiz kalmak	relax	verb	zayif	
+antonym	vegetation	noun	bitki örtüsü, bitki yaşamı	desert	noun	zayif	
+synonym	vend	verb	satmak	market	verb	zayif	
+antonym	vending	noun	satış, dağıtım	purchase	noun	zayif	
+simpler	veneer	noun	ince kaplama, ince tabaka	surface	noun	zayif	
+antonym	vent	noun	havalandırma açıklığı, delik	seal	noun	zayif	
+simpler	vent	noun	havalandırma açıklığı, delik	air	noun	zayif	
+simpler	verbal	noun	sözlü uyarı	talk	noun	zayif	
+antonym	verge	verb	eşiğine ulaşmak, ...a yaklaşmak	avoid	verb	zayif	
+synonym	vernacular	adjective	yerel, halk diliyle ilgili	local	adjective	zayif	
+simpler	versatility	noun	çok yönlülük	use	noun	zayif	
+synonym	version	verb	versiyonlamak	update	verb	zayif	
+antonym	version	verb	versiyonlamak	revert	verb	zayif	
+simpler	versioning	noun	sürümleme	update	noun	zayif	
+simpler	vertex	noun	köşe, uç, tepe	node	noun	zayif	
+antonym	vertigo	noun	baş dönmesi, dönme hissi	stability	noun	zayif	
+synonym	vial	noun	şişe, ampul	container	noun	zayif	
+antonym	vibe	noun	atmosfer, ruh hali	tension	noun	zayif	
+simpler	vibe	noun	atmosfer, ruh hali	energy	noun	zayif	
+synonym	vibration	noun	atmosfer	tension	noun	zayif	
+antonym	vibrational	adjective	titreşimle ilgili, titreşimsel	stable	adjective	zayif	
+antonym	vibrational	adjective	titreşimle ilgili, titreşimsel	steady	adjective	zayif	
+antonym	vibratory	adjective	titreşimli, titreşim üreten	still	adjective	zayif	
+antonym	vicinity	noun	yakın çevre, civar	distance	noun	zayif	
+synonym	victimless	adjective	kurbanı olmayan, mağduru bulunmayan	harmless	adjective	zayif	
+synonym	viewfinder	noun	vizör, bakaç	preview	noun	zayif	
+synonym	vigil	noun	nöbet, uyanık kalma, gözetleme	guard	noun	zayif	
+antonym	vigil	noun	nöbet, uyanık kalma, gözetleme	sleep	noun	zayif	

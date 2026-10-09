@@ -1,0 +1,235 @@
+tur	kaynak	kaynak_tur	anlam	hedef	hedef_tur	karar	not
+simpler	impossibly	adverb	imkânsız bir şekilde	hardly	adverb	sil	
+simpler	improbability	noun	düşük olasılık, imkânsızlık	chance	noun	sil	
+antonym	incubator	noun	girişim destek merkezi	obstacle	noun	sil	
+synonym	incumbency	noun	görevde olma, görev süresi	incumbent	noun	sil	
+antonym	incumbency	noun	görevde olma, görev süresi	challenge	noun	sil	
+simpler	incumbent	noun	görevde bulunan, mevcut görev sahibi	candidate	noun	sil	
+antonym	indebtedness	noun	borçluluk	creditor	noun	sil	
+simpler	individualist	noun	bireyselci	person	noun	sil	
+antonym	induction	noun	elektromanyetik indüksiyon, akım üretimi	resistance	noun	sil	
+synonym	inertia	noun	eylemsizlik momenti, dönme eylemsizliği	stability	noun	sil	
+simpler	inexplicable	adjective	açıklanamaz, anlaşılmaz	clear	adjective	sil	
+simpler	infamously	adverb	kötü şöhretli bir şekilde	badly	adverb	sil	
+simpler	infinity	noun	sonsuzluk	limit	noun	sil	
+antonym	informatics	noun	bilişim	biology	noun	sil	
+antonym	inquisition	noun	engizisyon, engizisyon mahkemesi	persecution	noun	sil	
+simpler	insignificance	noun	önemsizlik, değersizlik	importance	noun	sil	
+synonym	institutionalization	noun	kurumsallaşma	institution	noun	sil	
+antonym	instrumentation	noun	ölçüm cihazları, alet donanımı, çalgılama	automation	noun	sil	
+simpler	instrumentation	noun	ölçüm cihazları, alet donanımı, çalgılama	instrument	noun	sil	
+synonym	insulin	noun	insülin	glucose	noun	sil	
+synonym	intellectualism	noun	akılcılık, entelektüel düşünce tarzı	intellect	noun	sil	
+synonym	interchangeably	adverb	birbirinin yerine kullanılabilir şekilde	alternately	adverb	sil	
+antonym	intercourse	noun	karşılıklı iletişim, etkileşim	silence	noun	sil	
+antonym	interrogate	verb	sorgulamak, sorguya çekmek	answer	verb	sil	
+antonym	intoxicate	verb	büyülemek, mest etmek	bewilder	verb	sil	
+simpler	inventiveness	noun	yaratıcılık, icat gücü	idea	noun	sil	
+antonym	irrespective	adjective	bağımsız, ... dikkate almaksızın	considerate	adjective	sil	
+synonym	iterator	noun	yineleyici	generator	noun	sil	
+antonym	jig	verb	jig dansı yapmak, hızlı sallanmak	stagger	verb	sil	
+antonym	juridical	adjective	hukuki, yasal	illegal	adjective	sil	
+antonym	jurisprudence	noun	hukuk bilimi, hukuk felsefesi	practice	noun	sil	
+synonym	juror	noun	jüri üyesi, hâkim heyeti üyesi	jury	noun	sil	
+synonym	juror	noun	jüri üyesi, hâkim heyeti üyesi	verdict	noun	sil	
+antonym	kinetics	noun	kinetik, hareket bilimi	thermodynamics	noun	sil	
+antonym	kite	verb	karşılıksız çek düzenlemek, çek sahtekarlığı yapmak	pay	verb	sil	
+antonym	knighthood	noun	şövalyelik, şövalye unvanı	commoner	noun	sil	
+simpler	ladyship	noun	hanımefendi unvanı	woman	noun	sil	
+antonym	lander	noun	iniş aracı	satellite	noun	sil	
+antonym	lattice	noun	örgü, kristal örgüsü	chaos	noun	sil	
+simpler	lattice	noun	örgü, kristal örgüsü	order	noun	sil	
+simpler	layman	noun	uzman olmayan kimse, sıradan kişi, meslekten olmayan kimse	person	noun	sil	
+synonym	lean	noun	ince et, yağsız kısım	trim	noun	sil	
+simpler	leftism	noun	solculuk, sol görüş	politics	noun	sil	
+antonym	legate	noun	temsilci, elçi	messenger	noun	sil	
+synonym	legion	noun	askeri birlik, lejyon	battalion	noun	sil	
+antonym	legion	noun	askeri birlik, lejyon	detachment	noun	sil	
+antonym	legislator	noun	yasama üyesi, yasa yapan kişi	regulator	noun	sil	
+simpler	legislator	noun	yasama üyesi, yasa yapan kişi	law	noun	sil	
+antonym	librarianship	noun	kütüphanecilik	administration	noun	sil	
+simpler	librarianship	noun	kütüphanecilik	librarian	noun	sil	
+simpler	librarianship	noun	kütüphanecilik	library	noun	sil	
+synonym	licensee	noun	lisans sahibi	license	noun	sil	
+simpler	linearity	noun	doğrusallık	line	noun	sil	
+antonym	linguistically	adverb	dilbilimsel olarak	culturally	adverb	sil	
+antonym	lipid	noun	yağ, yağ benzeri madde	carbohydrate	noun	sil	
+synonym	liquidity	noun	likidite	solvency	noun	sil	
+antonym	litigant	noun	davanın tarafı, dava tarafı	defendant	noun	sil	
+antonym	locus	noun	yer, konum	origin	noun	sil	
+antonym	logging	noun	kayıt tutma, veri kaydetme işlemi	audit	noun	sil	
+synonym	logistically	adverb	lojistik olarak	efficiently	adverb	sil	
+synonym	longitudinal	adjective	boylamsal, uzunlamasına	prospective	adjective	sil	
+synonym	longitudinally	adverb	boylamsal olarak, uzunlamasına olarak	across	adverb	sil	
+antonym	lymph	noun	lenf	blood	noun	sil	
+antonym	lymphocyte	noun	lenfosit, beyaz kan hücresi	antibody	noun	sil	
+simpler	lynching	noun	linç	kill	noun	sil	
+simpler	magnetics	noun	manyetik bilim, manyetizma	physics	noun	sil	
+antonym	major	noun	binbaşı	colonel	noun	sil	
+antonym	manifestation	noun	belirti, semptom	cause	noun	sil	
+antonym	manifold	noun	dağıtıcı boru, çoklu çıkışlı boru	single	noun	sil	
+antonym	impossibly	adverb	imkânsız bir şekilde	easily	adverb	zayif	
+simpler	impregnable	adjective	girilmez, savunması çok güçlü	strong	adjective	zayif	
+simpler	impressionism	noun	izlenimcilik, empresyonizm	painting	noun	zayif	
+simpler	impressionist	noun	izlenimci	artist	noun	zayif	
+simpler	impressively	adverb	etkileyici bir şekilde	well	adverb	zayif	
+simpler	imprinting	noun	basımlama, mühürlenme, bağlanma	learning	noun	zayif	
+synonym	impunity	noun	cezadan kaçınma, dokunulmazlık	immunity	noun	zayif	
+antonym	incarnate	adjective	somut, vücut bulmuş, kişileştirilmiş	abstract	adjective	zayif	
+antonym	incarnate	verb	somutlaştırmak, vücut bulmak	abstract	verb	zayif	
+simpler	incidental	adjective	ikincil, yan, ek	extra	adjective	zayif	
+simpler	incisive	adjective	keskin, derin	direct	adjective	zayif	
+simpler	incompleteness	noun	tamamlanmamışlık, eksiklik	lack	noun	zayif	
+simpler	incongruity	noun	uygunsuzluk, çelişki	difference	noun	zayif	
+synonym	incubator	noun	girişim destek merkezi	accelerator	noun	zayif	
+antonym	incumbent	noun	görevde bulunan, mevcut görev sahibi	predecessor	noun	zayif	
+synonym	indefatigable	adjective	yorulmaz, bitmek bilmeyen	relentless	adjective	zayif	
+synonym	indefinitely	adverb	süresiz olarak, süresizce	permanently	adverb	zayif	
+simpler	indispensable	adjective	vazgeçilmez, olmazsa olmaz	useful	adjective	zayif	
+synonym	indistinguishable	adjective	ayırt edilemez, birbirine benzer	similar	adjective	zayif	
+synonym	individualism	noun	bireysellik, bireycilik	individuality	noun	zayif	
+synonym	inducer	noun	uyarıcı, tetikleyici, indükleyici	trigger	noun	zayif	
+synonym	inducible	adjective	uyarılabilir, tetiklenebilir, indüklenebilir	responsive	adjective	zayif	
+antonym	industrialist	noun	sanayici	worker	noun	zayif	
+simpler	industrialization	noun	sanayileşme	development	noun	zayif	
+synonym	inertial	adjective	ataletle ilgili, atalete ait	static	adjective	zayif	
+synonym	inertial	adjective	ataletle ilgili, atalete ait	still	adjective	zayif	
+antonym	inevitability	noun	kaçınılmazlık	possibility	noun	zayif	
+simpler	inexplicably	adverb	açıklanamaz bir şekilde	oddly	adverb	zayif	
+synonym	infallibility	noun	yanılmazlık	perfection	noun	zayif	
+simpler	infallible	adjective	yanılmaz, hatasız	sure	adjective	zayif	
+simpler	infective	adjective	bulaşıcı, enfeksiyon yapıcı	dangerous	adjective	zayif	
+antonym	infectivity	noun	bulaşıcılık, enfeksiyon gücü	resistance	noun	zayif	
+antonym	inference	noun	çıkarım	assumption	noun	zayif	
+simpler	inference	noun	çıkarım	guess	noun	zayif	
+antonym	inferno	noun	büyük yangın, cehennem ateşi	calm	noun	zayif	
+synonym	infiltrator	noun	içeri sızan kimse, gizli ajan, sızan kişi	agent	noun	zayif	
+synonym	inflationary	adjective	enflasyonla ilgili, enflasyon yaratan	rising	adjective	zayif	
+simpler	informatics	noun	bilişim	computer	noun	zayif	
+antonym	infringer	noun	ihlal eden	owner	noun	zayif	
+antonym	infringer	noun	ihlal eden	plaintiff	noun	zayif	
+simpler	inhibition	noun	engelleme, bastırma	block	noun	zayif	
+simpler	innate	adjective	doğuştan gelen	born	adjective	zayif	
+synonym	innovate	verb	yenilik yapmak, icat etmek	introduce	verb	zayif	
+simpler	innovate	verb	yenilik yapmak, icat etmek	make	verb	zayif	
+antonym	inquest	noun	ölüm tahkikatı, adli soruşturma	closure	noun	zayif	
+synonym	instantiation	noun	örnekleme, somutlaştırma	example	noun	zayif	
+synonym	integral	noun	integral, belirli bir fonksiyonun türevinin tersine işlem sonucu elde edilen değer	area	noun	zayif	
+antonym	integral	noun	integral, belirli bir fonksiyonun türevinin tersine işlem sonucu elde edilen değer	derivative	noun	zayif	
+simpler	intellect	noun	akıl, zihin, entelekt	mind	noun	zayif	
+synonym	intentionality	noun	yönelimsellik, niyetlilik	intention	noun	zayif	
+synonym	intentionality	noun	yönelimsellik, niyetlilik	purpose	noun	zayif	
+synonym	interactivity	noun	etkileşimlilik, karşılıklı etkileşim	interaction	noun	zayif	
+synonym	interceptor	noun	önleme uçağı, önleyici füze, önleyici	defender	noun	zayif	
+antonym	interceptor	noun	önleme uçağı, önleyici füze, önleyici	attacker	noun	zayif	
+simpler	interceptor	noun	önleme uçağı, önleyici füze, önleyici	fighter	noun	zayif	
+synonym	interchangeable	adjective	değiştirilebilir, birbirinin yerine kullanılabilir	replaceable	adjective	zayif	
+antonym	interchangeable	adjective	değiştirilebilir, birbirinin yerine kullanılabilir	fixed	adjective	zayif	
+antonym	interchangeably	adverb	birbirinin yerine kullanılabilir şekilde	exclusively	adverb	zayif	
+antonym	intercontinental	adjective	kıtalararası	regional	adjective	zayif	
+simpler	intercultural	adjective	kültürlerarası	cultural	adjective	zayif	
+simpler	internationalist	noun	uluslararasıcı	supporter	noun	zayif	
+antonym	interstellar	adjective	yıldızlararası	terrestrial	adjective	zayif	
+synonym	interventional	adjective	müdahale edici, girişimsel	interventionist	adjective	zayif	
+simpler	interventional	adjective	müdahale edici, girişimsel	active	adjective	zayif	
+synonym	intimate	verb	ima etmek, çıtlatmak, üstü kapalı belirtmek	reveal	verb	zayif	
+simpler	intimate	verb	ima etmek, çıtlatmak, üstü kapalı belirtmek	tell	verb	zayif	
+antonym	intravenously	adverb	damardan	orally	adverb	zayif	
+simpler	intricacy	noun	karmaşıklık, ayrıntılılık, incelik	detail	noun	zayif	
+antonym	intrigue	noun	entrika, dolap, komplo	transparency	noun	zayif	
+antonym	intuition	noun	sezgi	logic	noun	zayif	
+synonym	keep	noun	koruma yeri, kale	fortress	noun	zayif	
+synonym	kennel	verb	köpek kulübesine koymak, barındırmak	house	verb	zayif	
+antonym	kennel	verb	köpek kulübesine koymak, barındırmak	release	verb	zayif	
+simpler	kennel	verb	köpek kulübesine koymak, barındırmak	contain	verb	zayif	
+antonym	keystone	noun	kritik unsur	detail	noun	zayif	
+antonym	kingmaker	noun	lideri belirleyen kişi	pawn	noun	zayif	
+synonym	kite	verb	karşılıksız çek düzenlemek, çek sahtekarlığı yapmak	cheat	verb	zayif	
+synonym	knighthood	noun	şövalyelik, şövalye unvanı	title	noun	zayif	
+synonym	knockout	noun	genin işlevinin ortadan kaldırılması	mutation	noun	zayif	
+antonym	knuckle	verb	parmak eklemleriyle vurmak, tıklatmak	protect	verb	zayif	
+synonym	ladyship	noun	hanımefendi unvanı	madam	noun	zayif	
+antonym	ladyship	noun	hanımefendi unvanı	sir	noun	zayif	
+synonym	laird	noun	soylu toprak sahibi (İskoçya)	chief	noun	zayif	
+antonym	lance	verb	bir yarayı açmak, delmek	heal	verb	zayif	
+synonym	landmass	noun	kara parçası, kara kütlesi	island	noun	zayif	
+simpler	landmass	noun	kara parçası, kara kütlesi	area	noun	zayif	
+simpler	lark	noun	eğlenceli bir macera, şaka, keyifli bir iş	prank	noun	zayif	
+synonym	lashing	noun	bağlama, halatla sabitleme	tie	noun	zayif	
+antonym	latency	noun	gecikme, gecikme süresi	speed	noun	zayif	
+simpler	latency	noun	gecikme, gecikme süresi	wait	noun	zayif	
+antonym	latent	adjective	gelişmemiş, ortaya çıkmamış	explicit	adjective	zayif	
+synonym	launder	verb	kara para aklamak	cleanse	verb	zayif	
+simpler	launder	verb	kara para aklamak	hide	verb	zayif	
+synonym	lawfully	adverb	yasal olarak	rightfully	adverb	zayif	
+simpler	lawlessness	noun	hukuksuzluk, kanunsuzluk	crime	noun	zayif	
+antonym	lee	noun	kuytu yer, rüzgar altı	exposure	noun	zayif	
+synonym	leftism	noun	solculuk, sol görüş	liberalism	noun	zayif	
+simpler	legion	noun	askeri birlik, lejyon	unit	noun	zayif	
+simpler	legislate	verb	yasa koymak, kanun çıkarmak, yasalaştırmak	make	verb	zayif	
+simpler	legitimacy	noun	meşruiyet	authority	noun	zayif	
+simpler	lethality	noun	öldürücülük, ölümcül olma	danger	noun	zayif	
+synonym	leukemia	noun	lösemi, kan kanseri	cancer	noun	zayif	
+antonym	leukemia	noun	lösemi, kan kanseri	remission	noun	zayif	
+simpler	leverage	noun	kaldıraç, etki, avantaj	use	noun	zayif	
+synonym	liberator	noun	özgürleştirici, kurtarıcı	savior	noun	zayif	
+simpler	liberator	noun	özgürleştirici, kurtarıcı	hero	noun	zayif	
+synonym	libertarian	adjective	özgürlükçü, bireysel özgürlükleri savunan	liberal	adjective	zayif	
+synonym	libertarianism	noun	özgürlükçülük, bireysel özgürlükçü ideoloji	freedom	noun	zayif	
+synonym	licensure	noun	ruhsatlandırma, lisanslandırma, lisans alma süreci	permit	noun	zayif	
+synonym	licensure	noun	ruhsatlandırma, lisanslandırma, lisans alma süreci	license	noun	zayif	
+antonym	licensure	noun	ruhsatlandırma, lisanslandırma, lisans alma süreci	disqualification	noun	zayif	
+synonym	lieu	noun	yerine, karşılık	substitute	noun	zayif	
+synonym	lime	verb	kireçlemek	treat	verb	zayif	
+simpler	lime	verb	kireçlemek	apply	verb	zayif	
+simpler	lineage	noun	soy, sülale, köken	family	noun	zayif	
+synonym	linearity	noun	doğrusallık	proportionality	noun	zayif	
+simpler	linguist	noun	dilbilimci	expert	noun	zayif	
+synonym	linguistically	adverb	dilbilimsel olarak	grammatically	adverb	zayif	
+simpler	lipid	noun	yağ, yağ benzeri madde	oil	noun	zayif	
+simpler	liquidity	noun	likidite	cash	noun	zayif	
+antonym	listed	adjective	tescilli	unregistered	adjective	zayif	
+synonym	litigate	verb	dava açmak, hukuki süreç yürütmek	prosecute	verb	zayif	
+antonym	livery	noun	boya şeması, özel renk düzeni	plain	noun	zayif	
+simpler	lobbying	noun	lobicilik, lobi faaliyetleri	push	noun	zayif	
+simpler	localize	verb	yerelleştirmek	translate	verb	zayif	
+synonym	locative	adjective	yerle ilgili, konumla ilgili	spatial	adjective	zayif	
+synonym	logician	noun	mantıkçı	philosopher	noun	zayif	
+synonym	logistically	adverb	lojistik olarak	practically	adverb	zayif	
+antonym	longevity	noun	uzun ömür	shortness	noun	zayif	
+simpler	longevity	noun	uzun ömür	age	noun	zayif	
+simpler	longitudinal	adjective	boylamsal, uzunlamasına	long	adjective	zayif	
+synonym	lordship	noun	soyluluk, efendi unvanı	nobility	noun	zayif	
+synonym	lumber	verb	ağır ağır yürümek	stagger	verb	zayif	
+antonym	lumber	verb	ağır ağır yürümek	glide	verb	zayif	
+synonym	lurk	verb	yorum yapmadan bulunmak	monitor	verb	zayif	
+synonym	lynch	verb	linç etmek	execute	verb	zayif	
+antonym	lynching	noun	linç	justice	noun	zayif	
+simpler	lyricism	noun	şiirsel anlatım, liriklik	poetry	noun	zayif	
+simpler	maestro	noun	usta, büyük usta	leader	noun	zayif	
+simpler	magnificence	noun	görkem, ihtişam	beauty	noun	zayif	
+synonym	majesty	noun	hükümdar unvanı, majeste	royalty	noun	zayif	
+simpler	majesty	noun	hükümdar unvanı, majeste	king	noun	zayif	
+simpler	majesty	noun	hükümdar unvanı, majeste	queen	noun	zayif	
+synonym	major	noun	binbaşı	officer	noun	zayif	
+synonym	malarial	adjective	sıtma ile ilgili, sıtma kaynaklı	febrile	adjective	zayif	
+simpler	malarial	adjective	sıtma ile ilgili, sıtma kaynaklı	ill	adjective	zayif	
+antonym	malignancy	noun	kötü huylu tümör, kanser	health	noun	zayif	
+simpler	malignancy	noun	kötü huylu tümör, kanser	disease	noun	zayif	
+simpler	malpractice	noun	tıbbi hata, mesleki ihmal, görevi kötüye kullanma	error	noun	zayif	
+antonym	maneuverability	noun	manevra kabiliyeti, yönlendirme yeteneği	rigidity	noun	zayif	
+simpler	maneuverability	noun	manevra kabiliyeti, yönlendirme yeteneği	control	noun	zayif	
+synonym	manic	adjective	çılgın, aşırı coşkulu	crazy	adjective	zayif	
+synonym	manifold	noun	dağıtıcı boru, çoklu çıkışlı boru	branch	noun	zayif	
+synonym	manifold	noun	dağıtıcı boru, çoklu çıkışlı boru	pipe	noun	zayif	
+synonym	manipulator	noun	manipülatör, entrikacı, yönlendirici kimse	controller	noun	zayif	
+synonym	mansion	noun	malikane, konak	estate	noun	zayif	
+synonym	jurisdictional	adjective	yargı yetkisine ait	juridical	adjective	zayif	
+antonym	jurist	noun	hukukçu, hukuk bilimi uzmanı	layperson	noun	zayif	
+synonym	jurist	noun	hukukçu, hukuk bilimi uzmanı	lawyer	noun	zayif	
+simpler	jurist	noun	hukukçu, hukuk bilimi uzmanı	judge	noun	zayif	
+simpler	juror	noun	jüri üyesi, hâkim heyeti üyesi	judge	noun	zayif	
+synonym	judiciary	noun	yargı, adalet sistemi	court	noun	zayif	
+simpler	judiciary	noun	yargı, adalet sistemi	judge	noun	zayif	
+synonym	junta	noun	askeri yönetim, darbe yönetimi	regime	noun	zayif	
+simpler	junta	noun	askeri yönetim, darbe yönetimi	government	noun	zayif	

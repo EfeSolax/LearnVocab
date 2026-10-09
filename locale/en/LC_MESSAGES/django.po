@@ -831,6 +831,10 @@ msgstr "More examples"
 msgid "Kalıplar"
 msgstr "Patterns"
 
+#: templates/base/_kelimeKarti.html:154 templates/pages/words/_madde.html:80
+msgid "sb: birisi · sth: bir şey"
+msgstr "sb: somebody · sth: something"
+
 #: templates/base/_kelimeKarti.html:173
 msgid "aynı aileden"
 msgstr "same family"
