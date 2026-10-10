@@ -24,19 +24,16 @@ ya da saatlik sınır yok) ve `POST/DELETE /api/eklenti/listem/<id>/`
 gelen isteği kabul eder.
 
 ## Yerelde denemek
-1. `arkaplan.js`'de `SITE`'yi `http://localhost:8765` yap, `manifest.json`'daki
-   `host_permissions`'a `"http://localhost:8765/*"` ekle (yayına gönderirken geri al).
+1. `.venv/bin/python araclar/eklenti_paketle.py --yerel` → `tmp/eklenti-yerel/`
+   (yerel sunucuya, `http://localhost:8765`, bağlanan kopya; kaynak dosyalar değişmez).
 2. Chrome → `chrome://extensions` → sağ üstte "Geliştirici modu" → "Paketlenmemiş
-   öğe yükle" → bu klasör.
+   öğe yükle" → `tmp/eklenti-yerel`.
 3. Kartta görünen kimliği (32 harf) yerel `.env`'e yaz: `EKLENTI_KIMLIKLERI=<kimlik>`,
    sunucuyu yeniden başlat. Bu olmadan "Listeme ekle" 403 alır; anlamlar yine gelir.
 
 ## Yayına göndermek
 1. Önce sunucu kodu yayına alınır (ekleme ucu ve `girisli` alanı yoksa "+" çalışmaz).
-2. Paket (README dışarıda kalır):
-   ```
-   cd chrome-eklentisi && zip -r ../learnvocab-eklenti-1.0.0.zip . -x README.md -x ".*"
-   ```
+2. Paket: `.venv/bin/python araclar/eklenti_paketle.py` → `tmp/learnvocab-eklenti-<sürüm>.zip`.
 3. https://chrome.google.com/webstore/devconsole → geliştirici hesabı (bir kerelik 5 $)
    → "Yeni öğe" → zip'i yükle.
 4. Mağaza sayfası: kategori "Eğitim", dil Türkçe; en az bir ekran görüntüsü
