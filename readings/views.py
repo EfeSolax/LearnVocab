@@ -195,6 +195,12 @@ def metin_ekle(request):
     if tur not in ("pdf", "yapistir"):
         tur = "pdf"
     hata, baslik, yapistirilan = None, "", ""
+    if request.method != "POST":
+        # Telefonda "Paylaş → LearnVocab" ile gelen uzun metin (LearnVocab/paylas.py).
+        from LearnVocab.paylas import OTURUM_ANAHTARI
+        yapistirilan = request.session.pop(OTURUM_ANAHTARI, "")
+        if yapistirilan:
+            tur = "yapistir"
 
     if request.method == "POST":
         baslik = (request.POST.get("baslik") or "").strip()[:200]

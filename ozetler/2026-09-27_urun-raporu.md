@@ -468,6 +468,8 @@ Açılışta **iki büyük seçenek** vardır:
   - Yeni sürümün yayında olması: `learnvocab.com.tr`'de şu an eski sürüm var; kelime API'si ve "+" ucu yeni sürümle gelir (geçiş, 18.30).
   - Chrome Web Store'a bir kerelik 5 $ ücret (Efe ödeyecek). Kurulumda "tüm sitelerdeki verileri okuyabilir" uyarısı çıkar; çift tıklamayı her sitede yakalamak için gerekiyor.
   - Chrome'un kendi PDF görüntüleyicisinde ve `chrome://` sayfalarında çalışmaz.
+- **Telefon (Efe'nin isteği, 10 Ekim):** telefonda Chrome ve Google uygulaması eklenti desteklemiyor. Yerine **Android paylaş menüsü**: site ana ekrana eklenince (PWA, rapor 10) metni seçip "Paylaş → LearnVocab" denebilir; manifest'teki `share_target` → `GET /paylas/` (`LearnVocab/paylas.py`). En çok 4 kelimeyse sözlük araması, daha uzunsa "Kendi metinlerim"e yapıştırılmış gelir (metin oturumda, adreste değil). Uygulamaların eklediği adres ve tırnaklar atılır. Ana sayfanın eklenti bölümünde anlatılıyor.
+  - **Sonraki adımlar (sıra Claude'un önerisi):** seçim menüsünün kendisinde "LearnVocab" satırı için Play Store'da siteyi saran küçük bir Android uygulaması (TWA; bir kerelik 25 $); Firefox eklentisi (bilgisayar ve Android; Listeme ekle için anahtar yöntemi gerekir, Firefox her kurulumda rastgele kimlik veriyor); iPhone ve Safari (yılda 99 $, App Store) talep olursa.
 
 ---
 
@@ -1807,3 +1809,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-10:** 7–8 Ekim işleri commit edildi. Ağır işler (18.37): değerlendirme ve PDF için eşzamanlı iş sınırı, takılan iş çubuğu, kullanıcı beklerken `sleep` yok, cron 15 dakikada bir ve kilitli; istek sınırı sayaçlarının pencere hatası düzeltildi. KVKK aydınlatma metni (18.19): `/gizlilik/` tr ve en, kayıtta zorunlu "okudum" kutusu, Google düğmesinin altında not; `users/0007` ana veritabanına yedekten sonra uygulandı (`~/LearnVocab-yedekler/db.sqlite3.yedek-20261010-aydinlatma-oncesi`). 1000 test geçiyor.
 - **2026-10-10 (2):** Efe doğruladı: barındırma Veridyen, sunucular Türkiye'de (18.19).
 - **2026-10-10 (3):** Chrome eklentisi v1'e alındı ve yazıldı (Efe'nin kararı; rapor 11): çift tıklama, dışarı tıklayınca kapanma, "Listeme ekle +" sitedeki oturumla, "Oxford'da ara" aynı sekmede; günlük/saatlik sınır yok, dakikalık bot sınırı 300. Ana sayfaya eklenti bölümü, aydınlatma metnine eklenti maddesi. Yayın yeni sürümün yayına alınmasını bekliyor. 1006 test geçiyor.
+- **2026-10-10 (4):** Efe eklentiyi yerelde denedi, "Listeme ekle" dahil çalışıyor (yerel kopya 8000 portunda; Google girişi Console'da orada kayıtlı). Telefon için Android paylaş menüsü: `share_target` ve `/paylas/` (rapor 11). 1010 test geçiyor.

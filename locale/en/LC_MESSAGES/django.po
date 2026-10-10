@@ -4461,3 +4461,11 @@ msgstr "Coming soon to the Chrome Web Store."
 #: templates/pages/index.html
 msgid "dene: kelimeye dokun"
 msgstr "try it: tap a word"
+
+#: templates/pages/index.html
+msgid ""
+"Telefonda (Android): LearnVocab'ı ana ekrana ekle; sonra herhangi bir "
+"uygulamada kelimeyi seç, “Paylaş”a dokun ve LearnVocab'ı seç."
+msgstr ""
+"On your phone (Android): add LearnVocab to your home screen; then select a "
+"word in any app, tap “Share” and choose LearnVocab."

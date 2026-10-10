@@ -29,6 +29,12 @@ def manifest(request):
         "start_url": "/",
         "scope": "/",
         "display": "standalone",
+        # Android paylaş menüsü (rapor 11, LearnVocab/paylas.py): seçilen metin buraya gelir.
+        "share_target": {
+            "action": "/paylas/",
+            "method": "GET",
+            "params": {"title": "baslik", "text": "metin", "url": "adres"},
+        },
         "theme_color": TEMA_RENGI,
         "background_color": ARKA_PLAN,
         "icons": [

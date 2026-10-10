@@ -25,7 +25,7 @@ from django.utils.translation import gettext_lazy as _
 
 from bildirimler.urls import kok_urlpatterns as pwa_urlpatterns
 from learnpass.urls import api_urlpatterns as learnpass_api
-from LearnVocab import diller, eski_adresler, istatistik, seo_views, yardim, yasal
+from LearnVocab import diller, eski_adresler, istatistik, paylas, seo_views, yardim, yasal
 from LearnVocab.anasayfa import ana_sayfa
 from readings import api as readings_api
 from words.sozluk_urls import liste_urlpatterns
@@ -42,6 +42,8 @@ urlpatterns = [
     # Dil düğmesi (rapor 18.22): seçilen dildeki aynı sayfaya gider; öneksiz.
     path("dil/", diller.dil_degistir, name="dil_degistir"),
     path("sitemap.xml", seo_views.sitemap_xml, name="sitemap_xml"),
+    # Telefonda "seç → Paylaş → LearnVocab" (rapor 11): manifest'teki share_target; öneksiz.
+    path("paylas/", paylas.paylas, name="paylas"),
     # PWA (rapor 10): /manifest.webmanifest, /sw.js
     *pwa_urlpatterns,
     # Google ile giriş (rapor 18.21, django-allauth). allauth'un kendi giriş/kayıt/çıkış
