@@ -28,3 +28,5 @@ işlev kelimeleri atlanır. Etiketsiz kısa satırlar ("white", "a teacher") ark
 `uret_101.py` OLR'de altı çizili hedefleri, RHO'da türlü kalın başlıkları alır ve ikisini hafta hafta tek listede
 birleştirir; Speakout'ta düz liste satırları ve kalınlar, ünite ünite. Yarım kalın ("Argentin**ian**") tam kelimeye
 tamamlanır; ülke tablosundan Polish/Turkey/China başka anlamdaki kelimelere (polish, turkey, china) bağlanmaz.
+
+**Yalnızca altı çizili listeler (502 Span 3–4):** `docx_bicim.py` ile çıkar, `uret_alti_cizili.py <json> veri/hazir_listeler <ad>`.
