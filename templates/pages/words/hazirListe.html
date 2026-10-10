@@ -47,6 +47,14 @@ Hazır liste sayfası (rapor 4.1, D7): kelimeler kapalı kartlar, "Bu listeyle �
 </header>
 
 {% if toplam %}
+{% if bolumler|length > 1 %}
+<nav class="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1" aria-label="{% translate 'Haftalar' %}" data-liste-bolumleri>
+    <a href="?" class="lv-el text-[22px] font-bold {% if not secili_bolum %}lv-isaret text-gray-900 dark:text-slate-100{% else %}hover:underline{% endif %}" {% if not secili_bolum %}aria-current="page"{% endif %}>{% translate "Hepsi" %}</a>
+    {% for b in bolumler %}
+    <a href="?bolum={{ b|urlencode }}" class="lv-el text-[22px] font-bold {% if b == secili_bolum %}lv-isaret text-gray-900 dark:text-slate-100{% else %}hover:underline{% endif %}" {% if b == secili_bolum %}aria-current="page"{% endif %}>{% if b.isdigit %}{% blocktranslate with n=b %}{{ n }}. hafta{% endblocktranslate %}{% else %}{{ b }}{% endif %}</a>
+    {% endfor %}
+</nav>
+{% endif %}
 <form method="get" role="search" class="mb-5 max-w-[520px]" data-liste-ara onsubmit="return false">
     <label for="liste-ara" class="sr-only">{% translate "Bu listede ara" %}</label>
     <input id="liste-ara" type="search" name="ara" value="{{ ara }}" autocomplete="off" spellcheck="false"
@@ -78,6 +86,7 @@ document.addEventListener('click', function (olay) {
     var kutu = document.querySelector('[data-hazir-liste-kartlari]');
     var sonuc = document.querySelector('[data-liste-ara-sonuc]');
     if (!girdi || !kutu) { return; }
+    var BOLUM = '{{ secili_bolum|escapejs }}';
     var BIR = '{% filter escapejs %}{% blocktranslate with n="%(n)s" %}eşleşen: {{ n }}{% endblocktranslate %}{% endfilter %}';
     var zamanlayici = null, istek = null, son = girdi.value.trim();
 
@@ -89,6 +98,7 @@ document.addEventListener('click', function (olay) {
         istek = new AbortController();
         var p = new URLSearchParams({ parca: '1' });
         if (ara) { p.set('ara', ara); }
+        if (BOLUM) { p.set('bolum', BOLUM); }
         fetch('?' + p.toString(), { credentials: 'same-origin', signal: istek.signal })
             .then(function (c) {
                 if (!c.ok) { throw new Error(); }
@@ -98,7 +108,10 @@ document.addEventListener('click', function (olay) {
             .then(function (y) {
                 kutu.innerHTML = y.html;
                 sonuc.textContent = ara ? BIR.replace('%(n)s', y.n) : '';
-                history.replaceState(null, '', ara ? '?' + new URLSearchParams({ ara: ara }) : location.pathname);
+                var q = new URLSearchParams();
+                if (BOLUM) { q.set('bolum', BOLUM); }
+                if (ara) { q.set('ara', ara); }
+                history.replaceState(null, '', q.toString() ? '?' + q : location.pathname);
             })
             .catch(function () {});
     }

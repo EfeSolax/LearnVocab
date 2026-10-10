@@ -4487,3 +4487,16 @@ msgstr "matches: %(n)s"
 #, python-format
 msgid "Bu listede “%(ara)s” ile eşleşen kelime yok."
 msgstr "No words in this list match “%(ara)s”."
+
+#: templates/pages/words/hazirListe.html
+msgid "Haftalar"
+msgstr "Weeks"
+
+#: templates/pages/words/_hazirListeKartlari.html
+#, python-format
+msgid "%(n)s. hafta"
+msgstr "Week %(n)s"
+
+#: templates/pages/words/hazirListe.html
+msgid "Hepsi"
+msgstr "All"

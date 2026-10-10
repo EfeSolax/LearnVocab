@@ -417,12 +417,14 @@ def hazir_listeler(request):
     return redirect("sozluk")
 
 
-def _liste_uyeleri(liste, ara):
+def _liste_uyeleri(liste, ara, bolum=""):
     """
     Listenin kelime kimlikleri, liste sırasıyla. `ara` verilirse yalnızca o listedeki
     kelimeler: İngilizcesinde ya da Türkçe anlamında geçenler, baştan eşleşenler önce.
     """
     uyeler = liste.uyelikler.all()
+    if bolum:
+        uyeler = uyeler.filter(bolum=bolum)
     if ara:
         en, tr = arama.en_normal(ara), arama.tr_normal(ara)
         eslesen = (liste.uyelikler.filter(Q(word__text__icontains=en) | Q(word__meanings__meaning_tr__icontains=tr))
@@ -432,7 +434,7 @@ def _liste_uyeleri(liste, ara):
                   .order_by("bastan", "sira", "id"))
     else:
         uyeler = uyeler.order_by("sira", "id")
-    return uyeler.values_list("word_id", flat=True)
+    return uyeler.values_list("word_id", "bolum")
 
 
 def hazir_liste_sayfasi(request, slug):
@@ -443,14 +445,37 @@ def hazir_liste_sayfasi(request, slug):
     """
     liste = get_object_or_404(HazirListe, slug=slug, yayinda=True)
     ara = (request.GET.get("ara") or "").strip()[:80]
-    sayfa = Paginator(_liste_uyeleri(liste, ara), HAZIR_LISTE_SAYFA_BOYU).get_page(request.GET.get("sayfa") or 1)
-    kartlar = kart_verisi(list(sayfa.object_list), request.user)
+    # Bölümler (ODTÜ'de haftalar) listede ilk geçtikleri sırayla; ?bolum= yalnızca o bölüm.
+    bolumler = list(dict.fromkeys(liste.uyelikler.exclude(bolum="").order_by("sira", "id")
+                                  .values_list("bolum", flat=True)))
+    bolum = request.GET.get("bolum") or ""
+    if bolum not in bolumler:
+        bolum = ""
+    uyeler = _liste_uyeleri(liste, ara, bolum)
+    sayfa = Paginator(uyeler, HAZIR_LISTE_SAYFA_BOYU).get_page(request.GET.get("sayfa") or 1)
+    satirlar = list(sayfa.object_list)
+    kartlar = kart_verisi([w for w, _ in satirlar], request.user)
+    # Bölüm başlığı (ODTÜ'de hafta) bölüm değişince bir kez; aramada başlık yok.
+    # "Daha fazla göster" ile gelen parçada önceki sayfanın son bölümü tekrar yazılmaz.
+    onceki = ""
+    if not ara and sayfa.start_index() > 1:
+        onceki = uyeler[sayfa.start_index() - 2][1]
+    bolum_of = dict(satirlar)
+    ogeler = []
+    for kart in kartlar:
+        bolum = bolum_of.get(kart.id, "")
+        baslik = bolum if (bolum and bolum != onceki and not ara) else ""
+        onceki = bolum
+        ogeler.append((kart, baslik))
     baglam = {
         "active_page": "Sözlük",
         "liste": liste,
         "kartlar": kartlar,
+        "ogeler": ogeler,
         "sayfa": sayfa,
         "ara": ara,
+        "bolumler": bolumler,
+        "secili_bolum": bolum,
         "toplam": liste.uyelikler.count(),
         "meta_aciklama": liste.yerel_aciklama,
         "calisiliyor": hazir_liste.aktif_liste(request.user) == liste,

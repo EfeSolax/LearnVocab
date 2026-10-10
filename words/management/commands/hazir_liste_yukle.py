@@ -3,7 +3,8 @@ Hazır listeyi dosyadan yükler (ürün raporu 4.1, veri işi D7).
 
 Dosya biçimi: bir satıra bir kelime, isteğe bağlı tür ':' ile.
 
-    # ODTÜ 101 — 1. hafta
+    # ODTÜ 101
+    ## 1            <- bölüm (hafta ya da konu); sonraki kelimeler bu bölümde
     aim
     aim:fiil
     decide:verb
@@ -84,8 +85,8 @@ class Command(BaseCommand):
             else:
                 liste = HazirListe.objects.create(slug=slug, **alanlar)
             HazirListeKelimesi.objects.bulk_create([
-                HazirListeKelimesi(liste=liste, word=w, sira=i)
-                for i, w in enumerate(sonuc.kelimeler, start=1)
+                HazirListeKelimesi(liste=liste, word=w, sira=i, bolum=b)
+                for i, (w, b) in enumerate(zip(sonuc.kelimeler, sonuc.bolumler), start=1)
             ])
         self.stdout.write(self.style.SUCCESS(
             f"“{liste.ad}” ({slug}): {len(sonuc.kelimeler)} kelime yazıldı."))

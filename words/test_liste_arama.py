@@ -45,3 +45,41 @@ class ListeAramaTests(TestCase):
     def test_bos_arama_hepsini_liste_sirasiyla_verir(self):
         _, bulunan = self._metinler()
         self.assertEqual(bulunan, ["cabin", "abandon", "absorb"])
+
+
+class ListeBolumuTests(TestCase):
+    """ODTÜ listeleri hafta hafta (Efe'nin kararı, 10 Ekim): '## 1' satırı bölüm başlatır."""
+
+    def setUp(self):
+        import tempfile
+        from django.core.management import call_command
+        for metin, anlam in (("alter", "değiştirmek"), ("attach", "eklemek"), ("remain", "kalmak"), ("boast", "övünmek")):
+            make_word(metin, level="B1", meaning=anlam)
+        with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False) as f:
+            f.write("# deneme\n## 1\nalter\nattach\n## 2\nremain\nalter\n## 3\nboast\n")
+        call_command("hazir_liste_yukle", f.name, ad="ODTÜ 401 Span 1", slug="odtu-401-span-1", stdout=open("/dev/null", "w"))
+        self.adres = reverse("hazir_liste", args=["odtu-401-span-1"])
+
+    def test_bolumler_kaydedilir_tekrar_ilk_haftada_kalir(self):
+        liste = HazirListe.objects.get(slug="odtu-401-span-1")
+        self.assertEqual(list(liste.uyelikler.order_by("sira").values_list("word__text", "bolum")),
+                         [("alter", "1"), ("attach", "1"), ("remain", "2"), ("boast", "3")])
+
+    def test_hafta_basliklari_bir_kez_ve_hafta_dugmeleri(self):
+        html = self.client.get(self.adres).content.decode()
+        for n in (1, 2, 3):
+            self.assertEqual(html.count(f">{n}. hafta</h2>"), 1)
+        self.assertIn('href="?bolum=2"', html)
+
+    def test_hafta_secilince_yalnizca_o_hafta(self):
+        html = self.client.get(self.adres, {"bolum": "2"}).content.decode()
+        self.assertIn(">remain<", html)
+        self.assertNotIn(">alter<", html)
+
+    def test_sonraki_parcada_ayni_baslik_tekrarlanmaz(self):
+        from unittest.mock import patch
+        with patch("words.sozluk_views.HAZIR_LISTE_SAYFA_BOYU", 1):
+            ikinci = self.client.get(self.adres, {"sayfa": 2, "parca": 1}).content.decode()
+            ucuncu = self.client.get(self.adres, {"sayfa": 3, "parca": 1}).content.decode()
+        self.assertNotIn("1. hafta", ikinci)            # attach: hâlâ 1. hafta
+        self.assertIn(">2. hafta</h2>", ucuncu)         # remain: yeni hafta

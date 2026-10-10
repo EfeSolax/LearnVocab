@@ -962,6 +962,9 @@ class HazirListeKelimesi(models.Model):
     liste = models.ForeignKey(HazirListe, on_delete=models.CASCADE, related_name="uyelikler")
     word = models.ForeignKey(Word, on_delete=models.CASCADE, related_name="hazir_liste_uyelikleri")
     sira = models.PositiveIntegerField(default=0)
+    # Listenin içindeki bölüm (ODTÜ'de hafta: "1", "2" …; ya da konu adı). Liste
+    # sayfasında başlık olur; yalnızca rakamsa "1. hafta" diye yazılır. Boş olabilir.
+    bolum = models.CharField(max_length=80, blank=True, default="")
 
     class Meta:
         ordering = ("sira", "id")

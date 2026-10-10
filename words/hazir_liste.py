@@ -74,6 +74,7 @@ _CEFR_SIRASI = {"A1": 0, "A2": 1, "B1": 2, "B2": 3, "C1": 4, "C2": 5}
 @dataclass
 class EslesmeSonucu:
     kelimeler: list = field(default_factory=list)       # sıralı Word listesi
+    bolumler: list = field(default_factory=list)        # kelimelerle aynı sırada bölüm adı ("" olabilir)
     eslesmeyenler: list = field(default_factory=list)   # (satır no, satır, neden)
     kokten: list = field(default_factory=list)          # (satır, kök) went -> go
     belirsiz: list = field(default_factory=list)        # (satır, seçilen, diğer türler)
@@ -101,6 +102,7 @@ def _yaygin_once(kelimeler):
 def dosyadan_eslestir(satirlar):
     """
     Bir satıra bir kelime[:tür]. Boş satırlar ve # ile başlayanlar atlanır.
+    "## 1" ya da "## Food" satırı bölüm başlatır: sonraki kelimeler o bölümdedir.
     Yalnızca ortak sözlükteki (kur ya da herkese açık) kelimelerle eşleşir.
 
       - Tür verilmişse o tür; yoksa kelimenin en yaygın türü (ötekiler raporlanır).
@@ -110,8 +112,12 @@ def dosyadan_eslestir(satirlar):
     sonuc = EslesmeSonucu()
     gorulen = set()
     ortak = Q(isBaseWord=True) | Q(visibility="public")
+    bolum = ""
     for no, ham in enumerate(satirlar, start=1):
         satir = ham.strip()
+        if satir.startswith("## "):
+            bolum = satir[3:].strip()[:80]
+            continue
         if not satir or satir.startswith("#"):
             continue
         try:
@@ -143,5 +149,6 @@ def dosyadan_eslestir(satirlar):
             continue
         gorulen.add(secilen.id)
         sonuc.kelimeler.append(secilen)
+        sonuc.bolumler.append(bolum)
     return sonuc
 

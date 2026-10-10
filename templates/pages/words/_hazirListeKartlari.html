@@ -1,13 +1,14 @@
 {% load i18n %}
 {% comment %}Hazır liste sayfasının kartları (kapalı) + "Daha fazla göster" (?parca=1).{% endcomment %}
-{% for kart in kartlar %}
+{% for kart, baslik in ogeler %}
+    {% if baslik %}<h2 class="lv-bolum !mt-8 first:!mt-0" data-liste-bolumu>{% if baslik.isdigit %}{% blocktranslate with n=baslik %}{{ n }}. hafta{% endblocktranslate %}{% else %}{{ baslik }}{% endif %}</h2>{% endif %}
     {% include 'base/_kelimeKarti.html' with kart=kart kapali=True %}
 {% empty %}
     {% if ara %}<p class="lv-el text-[22px] leading-snug py-2 text-center">{% blocktranslate %}Bu listede “{{ ara }}” ile eşleşen kelime yok.{% endblocktranslate %}</p>{% endif %}
 {% endfor %}
 {% if sayfa.has_next %}
 <button type="button" data-hazir-liste-devam
-        data-adres="?sayfa={{ sayfa.next_page_number }}{% if ara %}&amp;ara={{ ara|urlencode }}{% endif %}&amp;parca=1"
-        data-yedek="?sayfa={{ sayfa.next_page_number }}{% if ara %}&amp;ara={{ ara|urlencode }}{% endif %}"
+        data-adres="?sayfa={{ sayfa.next_page_number }}{% if ara %}&amp;ara={{ ara|urlencode }}{% endif %}{% if secili_bolum %}&amp;bolum={{ secili_bolum|urlencode }}{% endif %}&amp;parca=1"
+        data-yedek="?sayfa={{ sayfa.next_page_number }}{% if ara %}&amp;ara={{ ara|urlencode }}{% endif %}{% if secili_bolum %}&amp;bolum={{ secili_bolum|urlencode }}{% endif %}"
         class="block w-full rounded-lg px-4 py-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-slate-800 disabled:opacity-50">{% translate "Daha fazla göster" %}</button>
 {% endif %}
