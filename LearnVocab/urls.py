@@ -57,6 +57,7 @@ urlpatterns = [
 api_urlpatterns = [
     # Kelime sorgulama (okuma baloncuğu, Chrome eklentisi)
     path("kelime/", readings_api.kelime, name="kelime_api"),
+    path("eklenti/listem/<int:word_id>/", readings_api.eklenti_listem, name="eklenti_listem"),
     path("", include("words.api_urls")),
     path("learn-pass/", include(learnpass_api)),
     path("seri/", include("seri.urls")),

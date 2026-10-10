@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>LearnVocab</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { width: 300px; margin: 0; padding: 16px 18px; background: #fbfaf5; color: #1b1d22;
+         font: 14px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { margin: 0 0 6px; font: 900 20px/1.2 Georgia, "Times New Roman", serif; }
+  p { margin: 6px 0 0; }
+  .soluk { color: #5f6470; font-size: 13px; }
+  a { display: inline-block; margin-top: 12px; padding: 8px 12px; border-radius: 4px; background: #1d3f8f;
+      color: #fff; font-weight: 600; text-decoration: none; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #1d2027; color: #e9e8e2; }
+    .soluk { color: #a3a7b0; }
+    a { background: #9db8ff; color: #16181d; }
+  }
+</style>
+</head>
+<body>
+  <h1 data-i18n="pencere_baslik">Bir kelimeye çift tıkla</h1>
+  <p data-i18n="pencere_metin"></p>
+  <p data-i18n="pencere_liste"></p>
+  <p class="soluk" data-i18n="pencere_not"></p>
+  <a href="https://www.learnvocab.com.tr/" target="_blank" rel="noopener" data-i18n="pencere_ac">LearnVocab'ı aç</a>
+  <script src="pencere.js"></script>
+</body>
+</html>

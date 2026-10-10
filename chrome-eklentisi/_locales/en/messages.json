@@ -1,0 +1,50 @@
+{
+  "ad": {
+    "message": "LearnVocab: double-click any English word"
+  },
+  "aciklama": {
+    "message": "Double-click an English word on any site to see its Turkish meaning from LearnVocab, and add it to your list."
+  },
+  "simge_basligi": {
+    "message": "LearnVocab"
+  },
+  "listeme_ekle": {
+    "message": "Add to my list"
+  },
+  "listemde": {
+    "message": "In my list"
+  },
+  "listemde_cikar": {
+    "message": "In my list — click to remove"
+  },
+  "tekrar_dene": {
+    "message": "Didn't work, try again"
+  },
+  "giris_yap": {
+    "message": "Sign in to add"
+  },
+  "oxford_ara": {
+    "message": "Search Oxford"
+  },
+  "sozlukte_yok": {
+    "message": "Not in our dictionary yet."
+  },
+  "getiremedik": {
+    "message": "We couldn't get the meaning right now. Could you try again?"
+  },
+  "pencere_baslik": {
+    "message": "Double-click a word"
+  },
+  "pencere_metin": {
+    "message": "Double-click an English word on any site; its meaning appears in a small box. Click outside the box to close it."
+  },
+  "pencere_liste": {
+    "message": "To add words to your list, just be signed in to LearnVocab."
+  },
+  "pencere_not": {
+    "message": "It doesn't work in Chrome's built-in PDF viewer or on chrome:// pages."
+  },
+  "pencere_ac": {
+    "message": "Open LearnVocab"
+  }
+}

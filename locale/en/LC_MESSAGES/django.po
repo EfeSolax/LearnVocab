@@ -4421,3 +4421,43 @@ msgstr ""
 #: users/views.py
 msgid "Hesap açmak için Aydınlatma Metni'ni okuduğunu onaylaman gerekiyor."
 msgstr "To create an account, please confirm that you have read the Privacy Notice."
+
+#: templates/pages/index.html
+msgid "Defterin her sitede yanında"
+msgstr "Your notebook, on every site"
+
+#: templates/pages/index.html
+msgid "Chrome eklentisi: haberde, makalede, dizi sitesinde"
+msgstr "Chrome extension: in the news, in articles, on streaming sites"
+
+#: templates/pages/index.html
+msgid ""
+"Herhangi bir sitede İngilizce bir kelimeye çift tıkla; Türkçe anlamı küçük "
+"bir kutuda çıksın. Kutunun dışına tıklayınca kapanır."
+msgstr ""
+"Double-click an English word on any site and its Turkish meaning appears in "
+"a small box. Click outside the box to close it."
+
+#: templates/pages/index.html
+msgid ""
+"Giriş yaptıysan “Listeme ekle +” ile kelime doğrudan listene gider. "
+"“Oxford'da ara” kelimeyi Oxford sözlüğünde açar."
+msgstr ""
+"If you're signed in, “Add to my list +” sends the word straight to your "
+"list. “Search Oxford” opens the word in the Oxford dictionary."
+
+#: templates/pages/index.html
+msgid "Chrome'a ekle"
+msgstr "Add to Chrome"
+
+#: templates/pages/index.html
+msgid "ücretsiz"
+msgstr "free"
+
+#: templates/pages/index.html
+msgid "Chrome Web Store'da çok yakında."
+msgstr "Coming soon to the Chrome Web Store."
+
+#: templates/pages/index.html
+msgid "dene: kelimeye dokun"
+msgstr "try it: tap a word"

@@ -1,0 +1,50 @@
+{
+  "ad": {
+    "message": "LearnVocab: İngilizce kelimeye çift tıkla"
+  },
+  "aciklama": {
+    "message": "Her sitede İngilizce bir kelimeye çift tıkla, Türkçe anlamını LearnVocab sözlüğünden gör; tek dokunuşla listene ekle."
+  },
+  "simge_basligi": {
+    "message": "LearnVocab"
+  },
+  "listeme_ekle": {
+    "message": "Listeme ekle"
+  },
+  "listemde": {
+    "message": "Listemde"
+  },
+  "listemde_cikar": {
+    "message": "Listemde — çıkarmak için tıkla"
+  },
+  "tekrar_dene": {
+    "message": "Olmadı, tekrar dene"
+  },
+  "giris_yap": {
+    "message": "Giriş yap, listene ekle"
+  },
+  "oxford_ara": {
+    "message": "Oxford'da ara"
+  },
+  "sozlukte_yok": {
+    "message": "Henüz sözlüğümüzde yok."
+  },
+  "getiremedik": {
+    "message": "Anlamı şu an getiremedik, tekrar dener misin?"
+  },
+  "pencere_baslik": {
+    "message": "Bir kelimeye çift tıkla"
+  },
+  "pencere_metin": {
+    "message": "Herhangi bir sitede İngilizce bir kelimeye çift tıkla; anlamı küçük bir kutuda çıkar. Kutunun dışına tıklayınca kapanır."
+  },
+  "pencere_liste": {
+    "message": "Listene eklemek için LearnVocab'da giriş yapmış olman yeterli."
+  },
+  "pencere_not": {
+    "message": "Chrome'un kendi PDF görüntüleyicisinde ve chrome:// sayfalarında çalışmaz."
+  },
+  "pencere_ac": {
+    "message": "LearnVocab'ı aç"
+  }
+}

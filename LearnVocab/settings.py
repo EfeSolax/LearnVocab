@@ -176,6 +176,16 @@ LANGUAGE_CODE = 'tr'
 # kararı: Türkçe anlamlı sözlükte Almanca arayüz kopya sayfa üretiyordu); çevirisi
 # locale/de'de duruyor, eski /de/ adresleri Türkçesine 301 verir (diller.py).
 # Bir dili geçici olarak kapatmak için ortamda YAYIN_DILLERI=tr gibi verilir.
+# Chrome eklentisi (rapor 11, chrome-eklentisi/): "Listeme ekle" yalnızca bu
+# kaynaklardan kabul edilir. Kimlik Web Store'da (ve yerelde "Paketlenmemiş öğe
+# yükle"de) chrome://extensions sayfasında görünür; virgülle birden çok verilebilir.
+EKLENTI_KAYNAKLARI = tuple(
+    f"chrome-extension://{k.strip()}"
+    for k in os.environ.get('EKLENTI_KIMLIKLERI', '').split(',') if k.strip()
+)
+# Web Store'daki sayfası (ana sayfadaki "Chrome'a ekle" düğmesi). Boşsa "yakında" yazar.
+EKLENTI_ADRESI = os.environ.get('EKLENTI_ADRESI', '')
+
 # KVKK aydınlatma metni (rapor 18.19, /gizlilik/): veri sorumlusu ve başvuru adresi.
 KVKK_VERI_SORUMLUSU = os.environ.get('KVKK_VERI_SORUMLUSU', 'Efe Solmaz')
 KVKK_ILETISIM_EPOSTASI = os.environ.get('KVKK_ILETISIM_EPOSTASI', '')

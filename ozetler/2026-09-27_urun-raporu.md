@@ -23,7 +23,7 @@
 8. Okumalar
 9. Yazılar
 10. Bildirimler
-11. Chrome eklentisi (v1 sonrası)
+11. Chrome eklentisi (v1'de)
 12. Site geneli kurallar
 13. Veri: mevcut durum ve yapılacak veri işleri
 14. Teknik bağlam ve çalışma kuralları
@@ -453,13 +453,21 @@ Açılışta **iki büyük seçenek** vardır:
 
 ---
 
-## 11. Chrome eklentisi (v1'den sonra)
-- **İşlev:** Herhangi bir sitede kelimeye tıklayınca anlam **bizim veritabanımızdan** gelir. "+" ile listeye eklenir.
-- **Altyapı:** Okumalar'daki kelime sorgulama API'sini kullanır.
+## 11. Chrome eklentisi (v1'de; Efe'nin kararı, 10 Ekim) — **yazıldı, yayın bekliyor**
+- **İşlev:** Herhangi bir sitede İngilizce bir kelimeye **çift tıklayınca** anlam **bizim veritabanımızdan** gelir. Baloncuk Okumalar'dakinin aynısı: kök, numaralı anlamlar, phrasal verb, "Henüz sözlüğümüzde yok".
+  - **Hareket çift tıklama** (Efe'nin kararı): Chrome zaten çift tıklamada kelimeyi seçiyor; tek tıklama sitelerin bağlantılarını ve düğmelerini bozardı. Yazı kutularında açılmaz.
+  - **Kapanma:** baloncuğun dışında herhangi bir yere (kelimenin kendisi dahil) bir kez tıklayınca, Esc ile ya da kelime ekrandan çıkınca. Aynı anda tek baloncuk.
+  - **"Listeme ekle +"** girişliyse; değilse "Giriş yap, listene ekle" sitenin giriş sayfasını yeni sekmede açar.
+  - **"Oxford'da ara"** (Efe'nin isteği): Oxford Learner's Dictionaries'te o kelimeyi **aynı sekmede** açar (yeni sekme değil). Kelime bizde yoksa da görünür.
+  - **Herkese açık, günlük ya da saatlik sınır yok** (Efe'nin kararı). Yalnızca botlara karşı adres başına dakikada 300 (okul ve yurt ağları için 120'den çıkarıldı).
+- **Giriş (Claude'un önerisi, Efe onayladı):** ayrı bir giriş yok. Sitede girişliyse eklentide de girişli: istekler eklentinin arka plan betiğinden atılır; siteye erişim izni olduğu için Chrome CORS uygulamaz ve oturum çerezini gönderir. "+" ucu `POST/DELETE /api/eklenti/listem/<id>/` CSRF jetonu yerine isteğin kaynağına bakar: yalnızca `EKLENTI_KIMLIKLERI`'ndeki eklenti (Origin taklit edilemez, başka site listeye kelime ekletemez).
+- **Kod:** `chrome-eklentisi/` (Manifest V3, Türkçe ve İngilizce; baloncuk kapalı Shadow DOM'da, sitenin CSS'iyle karışmaz). Sunucu: `readings/api.py` (`kelime` cevabında `girisli`, `eklenti_listem`). Yerelde deneme ve yayın adımları `chrome-eklentisi/README.md`'de.
+- **Ana sayfa:** "Defterin her sitede yanında" bölümü (Okumalar'dan sonra, misafir ve girişli). `EKLENTI_ADRESI` boşsa "Chrome Web Store'da çok yakında", doluysa "Chrome'a ekle".
+- **Aydınlatma metni:** eklentinin yalnızca çift tıklanan kelimeyi ve yanındaki en çok beş kelimeyi gönderdiği, sayfa adresini göndermediği yazıldı (18.19).
 - **Gereksinimler ve sınırlar:**
-  - HTTPS'li sunucu.
-  - Chrome Web Store'a bir kerelik 5 $ ücret.
-  - Chrome'un kendi PDF görüntüleyicisinde çalışmaz.
+  - Yeni sürümün yayında olması: `learnvocab.com.tr`'de şu an eski sürüm var; kelime API'si ve "+" ucu yeni sürümle gelir (geçiş, 18.30).
+  - Chrome Web Store'a bir kerelik 5 $ ücret (Efe ödeyecek). Kurulumda "tüm sitelerdeki verileri okuyabilir" uyarısı çıkar; çift tıklamayı her sitede yakalamak için gerekiyor.
+  - Chrome'un kendi PDF görüntüleyicisinde ve `chrome://` sayfalarında çalışmaz.
 
 ---
 
@@ -1798,3 +1806,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-08:** Almanca arayüz yayından kaldırıldı (Efe'nin kararı; 18.22): yayında tr ve en, eski `/de/` adresleri Türkçesine 301. Güvenlik ve yük: (1) önceden açılmış hesapla ele geçirme incelendi; allauth 65, e-postası doğrulanmamış hesaba Google ile girilince şifreyi siliyor ve saldırganın oturumu düşüyor; kayıt formu e-postayı doğrulanmış saymadığı için korunuyoruz, `users/test_hesap_guvenligi.py` bunu kanıtlıyor. (2) İstek sınırları (`LearnVocab/sinir.py`, ayrı `sinir` önbelleği): `/api/kelime/` adres başına dakikada 120; `BulunamayanArama` yeni satırı adres başına saatte 30, günde 2.000, toplam 50.000 sınırlı; giriş adres başına 15 dakikada 20, hesap başına 10 hatalı deneme; kayıt adres başına saatte 10; şifre sıfırlama kodu adres başına saatte 10. (3) Misafir L&P aday havuzları bir saat önbellekte (açılış 6 → 3 sorgu). 987 test geçiyor.
 - **2026-10-10:** 7–8 Ekim işleri commit edildi. Ağır işler (18.37): değerlendirme ve PDF için eşzamanlı iş sınırı, takılan iş çubuğu, kullanıcı beklerken `sleep` yok, cron 15 dakikada bir ve kilitli; istek sınırı sayaçlarının pencere hatası düzeltildi. KVKK aydınlatma metni (18.19): `/gizlilik/` tr ve en, kayıtta zorunlu "okudum" kutusu, Google düğmesinin altında not; `users/0007` ana veritabanına yedekten sonra uygulandı (`~/LearnVocab-yedekler/db.sqlite3.yedek-20261010-aydinlatma-oncesi`). 1000 test geçiyor.
 - **2026-10-10 (2):** Efe doğruladı: barındırma Veridyen, sunucular Türkiye'de (18.19).
+- **2026-10-10 (3):** Chrome eklentisi v1'e alındı ve yazıldı (Efe'nin kararı; rapor 11): çift tıklama, dışarı tıklayınca kapanma, "Listeme ekle +" sitedeki oturumla, "Oxford'da ara" aynı sekmede; günlük/saatlik sınır yok, dakikalık bot sınırı 300. Ana sayfaya eklenti bölümü, aydınlatma metnine eklenti maddesi. Yayın yeni sürümün yayına alınmasını bekliyor. 1006 test geçiyor.

@@ -14,6 +14,7 @@ bölümler kendi verisiyle dolar:
   Seri           misafir: açıkça "örnek" yazan takvim; girişli: gerçek son beş hafta (18.9)
   Misafir        "Defterin yapamadığı dört şey"; girişli: "Bugün başka ne yapsan?"
   Okumalar       kütüphaneden üç metin
+  Eklenti        Chrome eklentisi: çift tıkla, anlamı gör (rapor 11; Web Store adresi EKLENTI_ADRESI)
   Seviye         A1–C2 sekmeleri (girişlide kendi seviyesi işaretli) + seviye testi
   Hazır liste    yayındaki ilk liste
   Misafir        sık sorulanlar ve hesap çağrısı
@@ -24,6 +25,7 @@ Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
 import random
 from datetime import timedelta
 
+from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
@@ -48,6 +50,7 @@ def ana_sayfa(request):
     user = request.user
     liste = HazirListe.objects.filter(yayinda=True).first()
     baglam = {
+        "eklenti_adresi": settings.EKLENTI_ADRESI,      # rapor 11: Chrome eklentisi bölümü
         "active_page": "Ana Sayfa",
         "gunun_kelimesi": gunun.kelime_durumu(user),
         "gunun_ifadesi": gunun.ifade_durumu(user),

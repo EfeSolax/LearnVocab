@@ -177,6 +177,31 @@ Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
 <a href="{% url 'readings' %}" class="lv-el-bag mt-6 inline-block">{% translate "bütün okumalar →" %}</a>
 {% endif %}
 
+{# ======================= Chrome eklentisi (rapor 11) ======================= #}
+<h2 class="lv-bolum mt-20" id="eklenti">{% translate "Defterin her sitede yanında" %}</h2>
+<span class="lv-bolum-notu mt-1">{% translate "Chrome eklentisi: haberde, makalede, dizi sitesinde" %}</span>
+<div class="mt-6 grid items-start gap-7 md:grid-cols-2">
+    <div class="text-[17px] leading-relaxed text-gray-700 dark:text-slate-300">
+        <p>{% translate "Herhangi bir sitede İngilizce bir kelimeye çift tıkla; Türkçe anlamı küçük bir kutuda çıksın. Kutunun dışına tıklayınca kapanır." %}</p>
+        <p class="mt-3">{% translate "Giriş yaptıysan “Listeme ekle +” ile kelime doğrudan listene gider. “Oxford'da ara” kelimeyi Oxford sözlüğünde açar." %}</p>
+        <div class="mt-5 flex flex-wrap items-center gap-3">
+            {% if eklenti_adresi %}
+            <a href="{{ eklenti_adresi }}" target="_blank" rel="noopener" class="lv-dugme">{% translate "Chrome'a ekle" %}</a>
+            <span class="lv-el text-[21px]">{% translate "ücretsiz" %}</span>
+            {% else %}
+            <span class="lv-el text-[22px]">{% translate "Chrome Web Store'da çok yakında." %}</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="lv-sayfa lv-metin px-4 py-3 text-lg leading-[1.75]" lang="en">
+        <span class="lv-el text-[21px]" lang="tr">{% translate "dene: kelimeye dokun" %}</span><br>
+        Scientists say the new findings could
+        <button type="button" class="lv-dokun" data-dokun>reshape<span class="lv-balon" lang="tr">reshape · yeniden şekillendirmek</span></button>
+        how we think about
+        <button type="button" class="lv-dokun" data-dokun>memory<span class="lv-balon" lang="tr">hafıza, bellek</span></button>.
+    </div>
+</div>
+
 {# ======================= 7. Seviye sekmeleri ======================= #}
 <h2 class="lv-bolum mt-20" id="seviye">{% if user.is_authenticated %}{% translate "Defterinin sekmeleri" %}{% else %}{% translate "Hangi sayfadan başlamalısın?" %}{% endif %}</h2>
 <span class="lv-bolum-notu mt-1">{% if user.is_authenticated %}{% translate "seviyelere göz at; senin sayfan işaretli" %}{% else %}{% translate "defterin sekmeleri: istediğine atla" %}{% endif %}</span>
