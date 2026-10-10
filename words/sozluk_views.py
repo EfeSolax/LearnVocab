@@ -26,6 +26,7 @@ from urllib.parse import urlencode
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Case, Q, Value, When
 from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -416,22 +417,48 @@ def hazir_listeler(request):
     return redirect("sozluk")
 
 
+def _liste_uyeleri(liste, ara):
+    """
+    Listenin kelime kimlikleri, liste sırasıyla. `ara` verilirse yalnızca o listedeki
+    kelimeler: İngilizcesinde ya da Türkçe anlamında geçenler, baştan eşleşenler önce.
+    """
+    uyeler = liste.uyelikler.all()
+    if ara:
+        en, tr = arama.en_normal(ara), arama.tr_normal(ara)
+        eslesen = (liste.uyelikler.filter(Q(word__text__icontains=en) | Q(word__meanings__meaning_tr__icontains=tr))
+                   .values("id"))
+        uyeler = (uyeler.filter(id__in=eslesen)
+                  .annotate(bastan=Case(When(word__text__istartswith=en, then=Value(0)), default=Value(1)))
+                  .order_by("bastan", "sira", "id"))
+    else:
+        uyeler = uyeler.order_by("sira", "id")
+    return uyeler.values_list("word_id", flat=True)
+
+
 def hazir_liste_sayfasi(request, slug):
-    """Liste sayfası: kelimeler kapalı kartlar; "Bu listeyle çalış". Toplu ekleme YOK."""
+    """
+    Liste sayfası: kelimeler kapalı kartlar; "Bu listeyle çalış". Toplu ekleme YOK.
+    ?ara= yalnızca bu listede arar (Efe'nin isteği, 10 Ekim): sayfa yazdıkça
+    ?ara=…&parca=1 ile kartları yeniler, Enter gerekmez.
+    """
     liste = get_object_or_404(HazirListe, slug=slug, yayinda=True)
-    uyeler = liste.uyelikler.order_by("sira", "id").values_list("word_id", flat=True)
-    sayfa = Paginator(uyeler, HAZIR_LISTE_SAYFA_BOYU).get_page(request.GET.get("sayfa") or 1)
+    ara = (request.GET.get("ara") or "").strip()[:80]
+    sayfa = Paginator(_liste_uyeleri(liste, ara), HAZIR_LISTE_SAYFA_BOYU).get_page(request.GET.get("sayfa") or 1)
     kartlar = kart_verisi(list(sayfa.object_list), request.user)
     baglam = {
         "active_page": "Sözlük",
         "liste": liste,
         "kartlar": kartlar,
         "sayfa": sayfa,
+        "ara": ara,
+        "toplam": liste.uyelikler.count(),
         "meta_aciklama": liste.yerel_aciklama,
         "calisiliyor": hazir_liste.aktif_liste(request.user) == liste,
     }
     if request.GET.get("parca"):
-        return render(request, "pages/words/_hazirListeKartlari.html", baglam)
+        cevap = render(request, "pages/words/_hazirListeKartlari.html", baglam)
+        cevap["X-Sonuc-Sayisi"] = str(sayfa.paginator.count)
+        return cevap
     return render(request, "pages/words/hazirListe.html", baglam)
 
 

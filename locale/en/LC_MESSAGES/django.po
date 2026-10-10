@@ -4469,3 +4469,21 @@ msgid ""
 msgstr ""
 "On your phone (Android): add LearnVocab to your home screen; then select a "
 "word in any app, tap “Share” and choose LearnVocab."
+
+#: templates/pages/words/hazirListe.html
+msgid "Bu listede ara"
+msgstr "Search this list"
+
+#: templates/pages/words/hazirListe.html
+msgid "Bu listede ara (İngilizce ya da Türkçe)"
+msgstr "Search this list (English or Turkish)"
+
+#: templates/pages/words/hazirListe.html
+#, python-format
+msgid "eşleşen: %(n)s"
+msgstr "matches: %(n)s"
+
+#: templates/pages/words/_hazirListeKartlari.html
+#, python-format
+msgid "Bu listede “%(ara)s” ile eşleşen kelime yok."
+msgstr "No words in this list match “%(ara)s”."

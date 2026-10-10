@@ -525,7 +525,7 @@ Açılışta **iki büyük seçenek** vardır:
 | **D4** | Seviye testi okuma havuzu (~100 metin + soru) | 3 zorluk düzeyi, özet cümlesi ve çeldiriciler. |
 | **D5** | Okuma kütüphanesi | Telifsiz, akademik, hikâye ve yapay zekâ metinleri. |
 | **D6** | Diyalog havuzu (Yazma) | Kelime başına diyalog, Türkçe ipucu ve register notu. |
-| **D7** | Hazır listeler | ODTÜ, Bilkent, Cambridge vb. listeleri veritabanındaki kelimelerle eşleştirilecek. Eşleşmeyenler raporlanacak. **Bilkent yapıldı (10 Ekim):** ELPP 2025-26'nın beş seviyesi beş liste: Bilkent Elementary 817 · Pre-Intermediate 516 · Intermediate 746 · Upper-Intermediate 660 · Pre-Faculty 695 kelime. Yalnızca başlık kelimeleri alındı (eş dizim sütunu Bilkent'in içeriği, alınmadı); tür PDF'in sütunlarından, İngiliz yazımı Amerikan karşılığına bağlandı. Aynı kelime birden çok seviyede olabilir (Efe'nin kararı). Sözlükte olmayan 64 madde `veri/hazir_listeler/bilkent-sozlukte-yok.txt`'de (give up, find out gibi phrasal verb'ler, credit card gibi birleşik isimler, both / yet gibi temel kelimeler → 18.36). Betik `araclar/bilkent_listesi.py`, dosyalar `veri/hazir_listeler/`. ODTÜ, Cambridge… sonra. |
+| **D7** | Hazır listeler | ODTÜ, Bilkent, Cambridge vb. listeleri veritabanındaki kelimelerle eşleştirilecek. Eşleşmeyenler raporlanacak. **Bilkent yapıldı (10 Ekim):** ELPP 2025-26'nın beş seviyesi beş liste: Bilkent Elementary 817 · Pre-Intermediate 516 · Intermediate 746 · Upper-Intermediate 660 · Pre-Faculty 695 kelime. Yalnızca başlık kelimeleri alındı (eş dizim sütunu Bilkent'in içeriği, alınmadı); tür PDF'in sütunlarından, İngiliz yazımı Amerikan karşılığına bağlandı. Aynı kelime birden çok seviyede olabilir (Efe'nin kararı). Sözlükte olmayan 64 madde `veri/hazir_listeler/bilkent-sozlukte-yok.txt`'de (give up, find out gibi phrasal verb'ler, credit card gibi birleşik isimler, both / yet gibi temel kelimeler → 18.36). Betik `araclar/bilkent_listesi.py`, dosyalar `veri/hazir_listeler/`. ODTÜ, Cambridge… sonra. **Liste içi arama** (Efe'nin isteği): liste sayfasında "Bu listede ara"; yazdıkça süzülür (Enter gerekmez), yalnızca o listenin kelimeleri, İngilizcede ya da Türkçe anlamda, baştan eşleşenler önce (`?ara=`). |
 | **D8** | Seviye testi kelime ekranları | 3 × 40 kelime. Yaygın ve tanınır kelimelerden, seviyeye göre seçilecek. |
 
 ---
@@ -632,6 +632,7 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 > **29 Eylül:** Karar bekleyen konular Bölüm 18'de; tam liste 18.20'nin sonunda. En yakın konuşmalar: **CEFR (18.16)**, **seri (18.9)** ve **günün kelimesi/ifadesi (18.8)**.
 
 **Efe ile konuşulmadan uygulanmayacaklar:**
+- **Hazır listeyi topluca listeme ekleme (Efe tekrar konuşmak istiyor, 10 Ekim):** Bölüm 17'de "kullanıcıyı boğar" diye vazgeçilmişti, yerine "Bu listeyle çalış" geldi. Konuşulacak seçenekler: hepsini tek tıkla ekleme (ör. 817 kelime; Listem ve günün tekrarı bir anda dolar); sayfa sayfa ("bu 40'ı listeme ekle"); "bilmediklerimi ekle" (bildiklerini işaretler, gerisi eklenir); tümünü eklerken uyarı. Karar verilene kadar uygulanmaz.
 - **Tekrar algoritması (L&P):** (→ 18.2: 29 Eylül'de karar verildi: Efe'nin 1-3-7-21 kuralı) "biliyorum" ve "bilmiyorum" denen kelimeler ne zaman tekrar gelir, birikme nasıl yönetilir.
 - **Seri (streak):** → 18.9'da 29 Eylül'de kararlaştırıldı.
 - **Ayarlar sayfası:** raporda ayarlara yapılan bütün göndermeler (oran kaydırıcısı, varsayılan soru sayısı, yazma sertliği, seviye, bildirimler, hesap) geçerli ama sayfa henüz tasarlanmadı. Mevcut kullanıcı verisinin taşınması da bu sırada ele alınacak.
@@ -1656,7 +1657,7 @@ Yeni sürüm yayına çıkmadan önce bu liste baştan sona yapılır. Yeni sür
 - **Hattın tuzağı:** hat kelimenin sözlükte olup olmadığına büyük-küçük harfe duyarlı bakar; silinen ya da büyük harfe çevrilen kelimeler sonraki partide yeniden üretilir. Çare: `kopyalari_sil()` ve ara deponun `kararlar.json`'ına `cikar`. `cikar` **taslağın kendi kökünde** uygulanır (ailenin son kökünde değil), bu yüzden kelimeyi içeren her taslağın köküne yazılmalı (replicant, "replica" taslağından sızmıştı).
 - **Parti 4 (5 Ekim, 766 tohum):** 916 yeni kelime, ~1,7 $ (tahmini; doldurma bilgisayar uykuya geçince takıldı, süreç durdurulup yeniden başlatıldı, yazılmış aileler atlandığı için kayıp olmadı). Beş partinin toplamı **4.598 kelime, ~8,1 $**. Claude denetimi `uygula_4`. Kalan: "incelenecek" aileler (Efe ile).
 
-### 18.36 En temel kelimeler elle eklenecek (Efe'nin kararı, 5 Ekim) — **sonra yapılacak**
+### 18.36 En temel kelimeler elle eklenecek (Efe'nin kararı, 5 Ekim) — **yayından önce yapılacak (Efe, 10 Ekim; 18.38)**
 - Sözlükte bazı en temel kelimeler yok: the, a, an, I, he, we, my, your, they, which, because, although, however, instead, though, would, could, myself, everyone… (tam liste `listeler/2026-10-05-temel-eksikler.txt`, 54 kelime).
 - Bunlar çoğunlukla dilbilgisi kelimeleri (zamir, belirteç, bağlaç, kip). Model hattı bunlarda zayıf kalır; **Claude elle yazar** (API yok, eksik Oxford kelimeleri gibi `veri/…/*.jsonl` + `manage.py elle_kelime_yukle`). Anlam ve örnekler öğrencinin gerçekten kullanacağı biçimde (ör. "although = -e rağmen, -diği hâlde").
 - Bu kelimelerin kartı ve L&P'deki yeri ayrıca düşünülür (çok sık oldukları için L&P'de ağırlık formülü onları baskın çıkarabilir; 18.16).
@@ -1702,6 +1703,12 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **PDF** (`readings/views.py`): aynı anda en çok 2 PDF okunur (`ESZAMANLI_PDF`), kullanıcı başına saatte 20 PDF (`PDF_SAATTE`). PDF isteğin içinde okunmaya devam ediyor (400 sayfa birkaç saniye); kuyruğa almak kullanıcıyı 15 dakika bekletirdi.
 - **"Yer" sınırı** `LearnVocab/sinir.py`'de (`yer_al` / `yer_birak`): her iş zaman damgalı yer alır; süreç ölürse yer süre sonunda kendiliğinden boşalır.
 - **Düzeltme:** sabit pencereli sayaçlar dosya önbelleğinde her artışta 1 saate uzuyordu (Django'nun `incr`'i süreyi sıfırlıyor). Sayaç artık pencerenin bitişini kendisi tutuyor.
+
+### 18.38 Yayından önce eklenecekler (Efe'nin kararı, 10 Ekim) — **açık**
+Bilkent listeleri eşleştirilirken çıktı (D7, `veri/hazir_listeler/bilkent-sozlukte-yok.txt`). Yayından önce sözlüğe eklenir; eklenince ilgili Bilkent listelerine de eklenir.
+- **Phrasal verb'ler:** sözlükte yalnızca 52 tane var, en yaygınların bir kısmı yok: give up, find out, look forward to, come up with, get rid of, end up, point out, try on, get on… Önce en sık kullanılanların bir listesi çıkarılır (sıklık ve kurum listeleri), sonra eklenir.
+- **En temel kelimeler (18.36):** both, yet, instead, the, because, although… `listeler/2026-10-05-…` listesi ve Bilkent'te çıkanlar.
+- Yöntem (Claude elle mi, Gemini mi) Efe ile kararlaştırılır.
 
 ## Değişiklik kaydı
 - **2026-09-27:** İlk sürüm. Kaynak: `ozetler/2026-09-26_urun-kararlari.md` (26–27 Eylül konuşmaları).
@@ -1811,3 +1818,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-10 (3):** Chrome eklentisi v1'e alındı ve yazıldı (Efe'nin kararı; rapor 11): çift tıklama, dışarı tıklayınca kapanma, "Listeme ekle +" sitedeki oturumla, "Oxford'da ara" aynı sekmede; günlük/saatlik sınır yok, dakikalık bot sınırı 300. Ana sayfaya eklenti bölümü, aydınlatma metnine eklenti maddesi. Yayın yeni sürümün yayına alınmasını bekliyor. 1006 test geçiyor.
 - **2026-10-10 (4):** Efe eklentiyi yerelde denedi, "Listeme ekle" dahil çalışıyor (yerel kopya 8000 portunda; Google girişi Console'da orada kayıtlı). Telefon için Android paylaş menüsü: `share_target` ve `/paylas/` (rapor 11). 1010 test geçiyor.
 - **2026-10-10 (5):** D7: Bilkent ELPP 2025-26'nın beş seviye listesi yüklendi (3.434 kelime; Efe'nin kararları: yalnızca 2025-26 dosyası, seviye başına bir liste, tam seviye adı, seviyeler arası tekrar serbest). Örnek "Akademik fiiller" listesi kaldırıldı. Yedek: `~/LearnVocab-yedekler/db.sqlite3.yedek-20261010-bilkent-oncesi`. 1010 test geçiyor.
+- **2026-10-10 (6):** Hazır listelerde "Bu listede ara" (yazdıkça süzülür). 18.38 açıldı: phrasal verb'ler ve en temel kelimeler yayından önce eklenecek (Efe'nin kararı). Bölüm 16'ya "hazır listeyi topluca ekleme" konuşması eklendi. 1015 test geçiyor.
