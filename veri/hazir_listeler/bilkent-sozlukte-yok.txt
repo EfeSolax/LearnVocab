@@ -1,0 +1,76 @@
+# Bilkent ELPP 2025-26 listelerinde olup sözlükte bulunmayanlar (rapor 4.1, D7).
+# Sözlüğe eklenince ilgili listeye de eklenir.
+
+# elementary (ELM)
+business woman businessperson
+chewing gum
+christmas
+civil servant
+dining room
+english
+father-in-law
+hardworking
+homemaker
+living room
+look forward to
+mobile phone
+mother-in-law
+police officer
+post office
+rock climbing
+role-play
+shop assistant
+try on
+
+# pre-intermediate (PIN)
+both
+cell phone
+credit card
+flight attendant
+give up
+instead
+landscape design
+look forward
+mid-
+mineral water
+multi-
+photocopy
+pre-
+sore throat
+the same as
+well-dressed
+yet
+
+# intermediate (INT)
+anti
+deduce
+exchange- rate
+find out
+get on
+along with
+get rid of
+nutrient
+podcast
+saucer
+
+# upper-intermediate (UPP)
+bad-tempered
+come up with
+dissatisfy
+pros and cons
+punctual
+semi
+thanks to
+
+# pre-faculty (PFC)
+ce
+bc
+bce
+drugstore
+end up
+extrinsic
+in charge
+inborn
+incurable
+inordinate
+point out

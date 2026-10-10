@@ -525,7 +525,7 @@ Açılışta **iki büyük seçenek** vardır:
 | **D4** | Seviye testi okuma havuzu (~100 metin + soru) | 3 zorluk düzeyi, özet cümlesi ve çeldiriciler. |
 | **D5** | Okuma kütüphanesi | Telifsiz, akademik, hikâye ve yapay zekâ metinleri. |
 | **D6** | Diyalog havuzu (Yazma) | Kelime başına diyalog, Türkçe ipucu ve register notu. |
-| **D7** | Hazır listeler | ODTÜ, Bilkent, Cambridge vb. listeleri veritabanındaki kelimelerle eşleştirilecek. Eşleşmeyenler raporlanacak. |
+| **D7** | Hazır listeler | ODTÜ, Bilkent, Cambridge vb. listeleri veritabanındaki kelimelerle eşleştirilecek. Eşleşmeyenler raporlanacak. **Bilkent yapıldı (10 Ekim):** ELPP 2025-26'nın beş seviyesi beş liste: Bilkent Elementary 817 · Pre-Intermediate 516 · Intermediate 746 · Upper-Intermediate 660 · Pre-Faculty 695 kelime. Yalnızca başlık kelimeleri alındı (eş dizim sütunu Bilkent'in içeriği, alınmadı); tür PDF'in sütunlarından, İngiliz yazımı Amerikan karşılığına bağlandı. Aynı kelime birden çok seviyede olabilir (Efe'nin kararı). Sözlükte olmayan 64 madde `veri/hazir_listeler/bilkent-sozlukte-yok.txt`'de (give up, find out gibi phrasal verb'ler, credit card gibi birleşik isimler, both / yet gibi temel kelimeler → 18.36). Betik `araclar/bilkent_listesi.py`, dosyalar `veri/hazir_listeler/`. ODTÜ, Cambridge… sonra. |
 | **D8** | Seviye testi kelime ekranları | 3 × 40 kelime. Yaygın ve tanınır kelimelerden, seviyeye göre seçilecek. |
 
 ---
@@ -647,7 +647,7 @@ Her adım kendi içinde test edilir ve Efe'ye gösterilir. Veri havuzları (D2�
 **Efe'nin 28 Eylül kararları:**
 - Veri havuzları (D2–D6) için **hiç LLM harcaması yapılmaz**. Yükleme komutları ve biçimler hazır; havuzlar boş, ilgili arayüzler boş hâli gösterir ("Yakında" / "hazırlanıyor").
 - `reading-texts/` metinlerine dokunulmaz, kütüphaneye yeni metin eklenmez.
-- Hazır liste verisi (ODTÜ, Bilkent, Cambridge…) şimdilik eklenmez; altyapı ve `hazir_liste_yukle` komutu hazır.
+- Hazır liste verisi (ODTÜ, Bilkent, Cambridge…) şimdilik eklenmez; altyapı ve `hazir_liste_yukle` komutu hazır. *(10 Ekim'de değişti: Bilkent listeleri eklendi, D7.)*
 - Barındırma Veridyen: cron ve HTTPS var.
 
 **Uygulama sırasında Claude'un verdiği, Efe'ye sorulacak ara kararlar** (değişebilir):
@@ -1149,7 +1149,7 @@ Rastgele yazı yazıp günü tamamlamak engellenir. Metin, seriye sayılmak içi
 - D4 seviye testi: 5 değil, tam havuz yazıldı (301 soru, 18.27).
 - D5 kütüphane: her konuda bir metin (hukuk, psikoloji, sosyoloji, antropoloji, eğitim), B1–B2, özgün.
 - D6 diyalog: 5 diyalog (apologize, exhausted, reluctant, borrow, delicious).
-- D7 hazır liste: "Örnek liste: Akademik fiiller" (20 fiil, hepsi sözlükte eşleşti).
+- D7 hazır liste: "Örnek liste: Akademik fiiller" (20 fiil, hepsi sözlükte eşleşti). *10 Ekim'de kaldırıldı (Efe'nin kararı; dosya `veri/ornek/d7_akademik_fiiller.txt`'de duruyor, sonra yeniden eklenebilir).*
 - **Göze çarpan veri sorunu (B aşamasına):** Örnek listede bazı fiillerin ilk anlamı yanlış sırada: "interpret" → önce "çevirmenlik yapmak", "occur" → önce "aklına gelmek". Asıl anlam ("yorumlamak", "meydana gelmek") başa alınmalı.
 
 - Boş görünmesinler diye her boş havuza **5 örnek**, Claude tarafından **elle** yazılır. API harcaması olmaz.
@@ -1810,3 +1810,4 @@ Her adım ayrı commit, her adımdan sonra testler.
 - **2026-10-10 (2):** Efe doğruladı: barındırma Veridyen, sunucular Türkiye'de (18.19).
 - **2026-10-10 (3):** Chrome eklentisi v1'e alındı ve yazıldı (Efe'nin kararı; rapor 11): çift tıklama, dışarı tıklayınca kapanma, "Listeme ekle +" sitedeki oturumla, "Oxford'da ara" aynı sekmede; günlük/saatlik sınır yok, dakikalık bot sınırı 300. Ana sayfaya eklenti bölümü, aydınlatma metnine eklenti maddesi. Yayın yeni sürümün yayına alınmasını bekliyor. 1006 test geçiyor.
 - **2026-10-10 (4):** Efe eklentiyi yerelde denedi, "Listeme ekle" dahil çalışıyor (yerel kopya 8000 portunda; Google girişi Console'da orada kayıtlı). Telefon için Android paylaş menüsü: `share_target` ve `/paylas/` (rapor 11). 1010 test geçiyor.
+- **2026-10-10 (5):** D7: Bilkent ELPP 2025-26'nın beş seviye listesi yüklendi (3.434 kelime; Efe'nin kararları: yalnızca 2025-26 dosyası, seviye başına bir liste, tam seviye adı, seviyeler arası tekrar serbest). Örnek "Akademik fiiller" listesi kaldırıldı. Yedek: `~/LearnVocab-yedekler/db.sqlite3.yedek-20261010-bilkent-oncesi`. 1010 test geçiyor.
