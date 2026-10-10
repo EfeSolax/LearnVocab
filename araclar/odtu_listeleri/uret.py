@@ -27,7 +27,7 @@ INGILIZ = {"labour": "labor", "behaviour": "behavior", "favour": "favor", "colou
            "emphatize": "empathize", "surunpredictableface": "surface"}
 EDAT = {"in", "on", "of", "to", "with", "about", "from", "for", "by", "into", "upon", "as", "at", "against",
         "sth", "smt", "sb", "sb's", "sth's", "doing", "oneself", "yourself", "v1", "ving", "n"}
-BASLIK_ATLA = re.compile(r"^\s*(TEXT|Text|READING|COLLOCATIONAL|METU|DBE|ACTIVE|SPAN|30[12]|20[12]|Suggested|Additional|MTR 1 WORD|Fall|Spring|20\d\d)", re.I)
+BASLIK_ATLA = re.compile(r"^\s*(TEXT|Text|READING|COLLOCATIONAL|METU|DBE|ACTIVE|SPAN|30[12]|20[12]|50[12]|40[12]|Suggested|Additional|MTR 1 WORD|Fall|Spring|20\d\d)", re.I)
 
 def adaylar(b):
     b = TAG.sub(" ", b).replace("’", "'").rstrip(":")
