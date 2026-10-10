@@ -18,3 +18,8 @@ Kelimeler yalnızca bu kalınlardan alınır; kalıplar, tanımlar ve örnek cü
    Sözlükte olmayanlar `odtu-<kur>-sozlukte-yok.txt`'ye yazılır (18.38).
 3. Önce `hazir_liste_yukle … --dry-run`, sonra yükle (`--yenile` var olanın üyelerini baştan yazar).
 4. Çıktı belgeyle karşılaştırılır (ilk haftalar ekran görüntüsüyle); hoca bazı yerlerde kalın yazmayı unutabiliyor.
+
+**Kalınsız listeler (201/202):** hedef kelime kalın değil, maddeler kalıp ("to grow flowers (v phr)").
+`uret_kalinsiz.py` kalıptaki bütün içerik kelimelerini alır (Efe'nin kararı, 10 Ekim); be/have/do/get ve
+işlev kelimeleri atlanır. Etiketsiz kısa satırlar ("white", "a teacher") arkasından tek başına gelen etikete
+("(adj)", "(v phr)") kadar grup sayılır. Phrasal verb'ler 18.38'e yazılır.
