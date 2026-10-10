@@ -23,3 +23,8 @@ Kelimeler yalnızca bu kalınlardan alınır; kalıplar, tanımlar ve örnek cü
 `uret_kalinsiz.py` kalıptaki bütün içerik kelimelerini alır (Efe'nin kararı, 10 Ekim); be/have/do/get ve
 işlev kelimeleri atlanır. Etiketsiz kısa satırlar ("white", "a teacher") arkasından tek başına gelen etikete
 ("(adj)", "(v phr)") kadar grup sayılır. Phrasal verb'ler 18.38'e yazılır.
+
+**101 (OLR + RHO + Speakout):** `docx_bicim.py` kalını ve altı çiziliyi ayrı çıkarır (`olr.json`, `rho.json`, `so.json`);
+`uret_101.py` OLR'de altı çizili hedefleri, RHO'da türlü kalın başlıkları alır ve ikisini hafta hafta tek listede
+birleştirir; Speakout'ta düz liste satırları ve kalınlar, ünite ünite. Yarım kalın ("Argentin**ian**") tam kelimeye
+tamamlanır; ülke tablosundan Polish/Turkey/China başka anlamdaki kelimelere (polish, turkey, china) bağlanmaz.
