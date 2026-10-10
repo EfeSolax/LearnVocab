@@ -25,7 +25,8 @@ gelen isteği kabul eder.
 
 ## Yerelde denemek
 1. `.venv/bin/python araclar/eklenti_paketle.py --yerel` → `tmp/eklenti-yerel/`
-   (yerel sunucuya, `http://localhost:8765`, bağlanan kopya; kaynak dosyalar değişmez).
+   (yerel sunucuya, `http://localhost:8000`, bağlanan kopya; kaynak dosyalar değişmez).
+   Sunucu 8000'de çalışmalı: Google girişi Console'da bu adresle kayıtlı.
 2. Chrome → `chrome://extensions` → sağ üstte "Geliştirici modu" → "Paketlenmemiş
    öğe yükle" → `tmp/eklenti-yerel`.
 3. Kartta görünen kimliği (32 harf) yerel `.env`'e yaz: `EKLENTI_KIMLIKLERI=<kimlik>`,

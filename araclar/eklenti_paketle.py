@@ -3,8 +3,9 @@ Chrome eklentisini hazırlar (rapor 11, chrome-eklentisi/).
 
     .venv/bin/python araclar/eklenti_paketle.py --yerel
         tmp/eklenti-yerel/ klasörünü kurar: eklenti yerel sunucuya
-        (http://localhost:8765) bağlanır. Chrome'da "Paketlenmemiş öğe yükle"
-        ile bu klasör seçilir. Kaynak dosyalar değişmez.
+        (http://localhost:8000; Google girişi Console'da bu adresle kayıtlı)
+        bağlanır. Chrome'da "Paketlenmemiş öğe yükle" ile bu klasör seçilir.
+        Kaynak dosyalar değişmez.
 
     .venv/bin/python araclar/eklenti_paketle.py
         Web Store'a yüklenecek zip'i yapar: tmp/learnvocab-eklenti-<sürüm>.zip
@@ -21,7 +22,7 @@ KOK = Path(__file__).resolve().parent.parent
 KAYNAK = KOK / "chrome-eklentisi"
 TMP = KOK / "tmp"
 CANLI = "https://www.learnvocab.com.tr"
-YEREL = "http://localhost:8765"
+YEREL = "http://localhost:8000"
 DISARIDA = {"README.md"}
 
 
@@ -64,7 +65,7 @@ def paket():
 
 if __name__ == "__main__":
     ayrac = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ayrac.add_argument("--yerel", action="store_true", help="yerel deneme kopyası (localhost:8765)")
+    ayrac.add_argument("--yerel", action="store_true", help="yerel deneme kopyası (localhost:8000)")
     if ayrac.parse_args().yerel:
         yerel()
     else:
