@@ -168,13 +168,13 @@ Kurallar (rapor 4.3):
             {% endfor %}
         </div>
 
-        {# Aile — kartın altında bir kez #}
+        {# Aile — kartın altında bir kez; kaynağın ailesi varsa o (sozluk_views._kaynak_ailesi) #}
         {% if kart.aile %}
         <footer class="flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-dashed border-[color:var(--satir)] px-4 py-4 text-base sm:px-6" data-aile>
             <span class="lv-el mr-1 text-[22px] font-bold">{% translate "aynı aileden" %}</span><span class="sr-only">{% translate "Aile:" %}</span>
             {% for uye in kart.aile %}
-            <a lang="en" href="{{ uye.text|kelime_adresi }}" data-kart-ac="{{ uye.id }}"
-               class="lv-serif bg-[color:var(--kagit)] px-2 py-0.5 font-bold shadow-sm hover:underline">{{ uye.text }}</a>{% if not forloop.last %}<span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>{% endif %}
+            {% if uye.id %}<a lang="en" href="{{ uye.text|kelime_adresi }}" data-kart-ac="{{ uye.id }}"
+               class="lv-serif bg-[color:var(--kagit)] px-2 py-0.5 font-bold shadow-sm hover:underline">{{ uye.text }}</a>{% else %}<span lang="en" class="lv-serif px-2 py-0.5 font-bold">{{ uye.text }}</span>{% endif %}{% if not forloop.last %}<span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>{% endif %}
             {% endfor %}
         </footer>
         {% endif %}

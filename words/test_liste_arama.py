@@ -84,3 +84,24 @@ class ListeBolumuTests(TestCase):
             ucuncu = self.client.get(self.adres, {"sayfa": 3, "parca": 1}).content.decode()
         self.assertNotIn("1. hafta", ikinci)            # attach: hâlâ 1. hafta
         self.assertIn(">2. hafta</h2>", ucuncu)         # remain: yeni hafta
+
+
+class KaynakAilesiTests(TestCase):
+    """More to Read II: kartta sözlüğün ailesi değil, kaynağın ailesi (Efe'nin kararı, 10 Ekim)."""
+
+    def setUp(self):
+        import tempfile
+        from django.core.management import call_command
+        self.abandon = make_word("abandon", level="B2", meaning="terk etmek")
+        make_word("abandonment", level="C1", meaning="terk")
+        with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False) as f:
+            f.write("## A\nabandon | abandoned, abandonment\n")
+        call_command("hazir_liste_yukle", f.name, ad="More to Read II · Academic Word List",
+                     slug="more-to-read-ii-awl", stdout=open("/dev/null", "w"))
+
+    def test_aile_kaydedilir_ve_kartta_gorunur(self):
+        uye = HazirListeKelimesi.objects.get(liste__slug="more-to-read-ii-awl")
+        self.assertEqual(uye.aile, ["abandoned", "abandonment"])
+        html = self.client.get(reverse("hazir_liste", args=["more-to-read-ii-awl"])).content.decode()
+        self.assertIn(">abandoned</span>", html)                     # sözlükte yok: düz yazı
+        self.assertRegex(html, r'data-kart-ac="\d+"\s+class="[^"]*">abandonment</a>')   # sözlükte var: kartı

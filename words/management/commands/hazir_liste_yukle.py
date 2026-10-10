@@ -85,8 +85,8 @@ class Command(BaseCommand):
             else:
                 liste = HazirListe.objects.create(slug=slug, **alanlar)
             HazirListeKelimesi.objects.bulk_create([
-                HazirListeKelimesi(liste=liste, word=w, sira=i, bolum=b)
-                for i, (w, b) in enumerate(zip(sonuc.kelimeler, sonuc.bolumler), start=1)
+                HazirListeKelimesi(liste=liste, word=w, sira=i, bolum=b, aile=a)
+                for i, (w, b, a) in enumerate(zip(sonuc.kelimeler, sonuc.bolumler, sonuc.aileler), start=1)
             ])
         self.stdout.write(self.style.SUCCESS(
             f"“{liste.ad}” ({slug}): {len(sonuc.kelimeler)} kelime yazıldı."))

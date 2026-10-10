@@ -965,6 +965,9 @@ class HazirListeKelimesi(models.Model):
     # Listenin içindeki bölüm (ODTÜ'de hafta: "1", "2" …; ya da konu adı). Liste
     # sayfasında başlık olur; yalnızca rakamsa "1. hafta" diye yazılır. Boş olabilir.
     bolum = models.CharField(max_length=80, blank=True, default="")
+    # Kaynağın kendi kelime ailesi (More to Read II'nin Academic Word List'i: abandon -> abandoned,
+    # abandoning). Doluysa kartta sözlüğün ailesi yerine bu gösterilir. Yalnızca metin.
+    aile = models.JSONField(default=list, blank=True)
 
     class Meta:
         ordering = ("sira", "id")

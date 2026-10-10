@@ -42,7 +42,7 @@ from usersettings.anlam import turkce_acik
 
 from .adres import kelime_adresi, slug_yap
 from .kart import kart_verisi
-from .models import CEFR_LEVELS, HazirListe
+from .models import CEFR_LEVELS, HazirListe, Word
 
 HAZIR_LISTE_SAYFA_BOYU = 40
 
@@ -437,6 +437,24 @@ def _liste_uyeleri(liste, ara, bolum=""):
     return uyeler.values_list("word_id", "bolum")
 
 
+def _kaynak_ailesi(liste, kartlar):
+    """
+    Kaynağın kendi ailesi varsa (More to Read II) kartta sözlüğün ailesi yerine o gösterilir.
+    Sözlükte ayrı kelime olanlar kendi kartına bağlanır; çekimler (abandoned) düz yazı kalır.
+    """
+    aileler = dict(liste.uyelikler.filter(word_id__in=[k.id for k in kartlar])
+                   .exclude(aile=[]).values_list("word_id", "aile"))
+    if not aileler and not liste.uyelikler.exclude(aile=[]).exists():
+        return
+    metinler = {t.lower() for a in aileler.values() for t in a}
+    kelime_idleri = {}
+    for w in Word.objects.filter(arama.ortak_sozluk(), text__in=list(metinler)).order_by("id"):
+        kelime_idleri.setdefault(w.text.lower(), w)
+    for kart in kartlar:
+        kart.aile = [kelime_idleri.get(t.lower()) or {"text": t, "id": None}
+                     for t in aileler.get(kart.id, [])]
+
+
 def hazir_liste_sayfasi(request, slug):
     """
     Liste sayfası: kelimeler kapalı kartlar; "Bu listeyle çalış". Toplu ekleme YOK.
@@ -455,6 +473,7 @@ def hazir_liste_sayfasi(request, slug):
     sayfa = Paginator(uyeler, HAZIR_LISTE_SAYFA_BOYU).get_page(request.GET.get("sayfa") or 1)
     satirlar = list(sayfa.object_list)
     kartlar = kart_verisi([w for w, _ in satirlar], request.user)
+    _kaynak_ailesi(liste, kartlar)
     # Bölüm başlığı (ODTÜ'de hafta) bölüm değişince bir kez; aramada başlık yok.
     # "Daha fazla göster" ile gelen parçada önceki sayfanın son bölümü tekrar yazılmaz.
     onceki = ""
