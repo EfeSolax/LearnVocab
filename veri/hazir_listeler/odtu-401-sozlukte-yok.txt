@@ -1,4 +1,4 @@
-# ODTÜ 401/402 listelerinde olup sözlükte bulunmayanlar (rapor 18.38).
+# ODTÜ 401/402 listelerinde (belgedeki kalın kelimeler) olup sözlükte bulunmayanlar (rapor 18.38).
 
 # odtu-401-span-1
 make up
@@ -8,36 +8,51 @@ bring up
 overcrowded
 overcrowding
 make use of
-lead to
+self-destructive
 cross-cultural
+common sense
+cause offense
+contrary to
 get rid of
 set aside
 take place
 cut down on
 interactively
+take for granted
 industrious
-turn out
+turns out
 carry out
 apart from
-hear of
+hear of/ about
+seem/appear/ look like
 
 # odtu-401-span-2
+in short supply
 underrepresented
 figure out
+take seriously
+over-burdened
 curtail
-instead of
+instead
 nutrient
+133 mixed messages across cultures
+on purpose
 prejudiced
 urgency
 date back
 discreetly
 point out
-stand for
+nutrients
+result in
+out of date
+prepare the ground
 put up with
 deal with
-gravitational
+gravitational pull
 use up
 give up
+well-preserved
+make up
 ill-treat
 ill-treatment
 advent
@@ -46,15 +61,24 @@ long-lasting
 # odtu-402-span-3
 overexploitation
 set off
+legislation legislation
+genetically-modified
 inborn
+graduate-dominated
+broaden the mind
+for the sake of of doing
 enviable
 enviably
+verge
 turn down
+as regards
 
 # odtu-402-span-4
 inception
+in the foreseeable future
 miss out
-stand for
 disarray
-fed up
+come up with
+driving force
+fed up with
 set up

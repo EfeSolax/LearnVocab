@@ -70,6 +70,7 @@ class ListeBolumuTests(TestCase):
         for n in (1, 2, 3):
             self.assertEqual(html.count(f">{n}. hafta</h2>"), 1)
         self.assertIn('href="?bolum=2"', html)
+        self.assertIn('aria-current="page">Hepsi', html)          # hafta seçilmeden "Hepsi" seçili
 
     def test_hafta_secilince_yalnizca_o_hafta(self):
         html = self.client.get(self.adres, {"bolum": "2"}).content.decode()

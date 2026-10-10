@@ -463,9 +463,9 @@ def hazir_liste_sayfasi(request, slug):
     bolum_of = dict(satirlar)
     ogeler = []
     for kart in kartlar:
-        bolum = bolum_of.get(kart.id, "")
-        baslik = bolum if (bolum and bolum != onceki and not ara) else ""
-        onceki = bolum
+        kart_bolumu = bolum_of.get(kart.id, "")
+        baslik = kart_bolumu if (kart_bolumu and kart_bolumu != onceki and not ara) else ""
+        onceki = kart_bolumu
         ogeler.append((kart, baslik))
     baglam = {
         "active_page": "Sözlük",
