@@ -17,8 +17,9 @@ GÜNÜN KELİMESİ
     diye GununKelimesi tablosuna yazılır. Gün, kullanıcının yerel günüdür.
   - "Biliyordum" / "Bilmiyordum" L&P verisine yazılır (learnpass.tekrar.kaydet,
     yeni kelime olarak): bilinmeyen tekrar takibine girer.
-  - Kullanıcı kelimeyi listesine ekler ya da "Biliyordum" derse kart o gün
-    kapanır: "Bugünün kelimesi tamam ✓, yarın yenisi gelecek."
+  - Kart gün boyu açık kalır (Efe'nin kararı, 11 Ekim): cevap ya da listeye ekleme
+    kartı kapatmaz; iki düğme durur, seçilen işaretlenir, fikir değiştirilebilir
+    (son cevap L&P verisine yazılır).
 
 GÜNÜN İFADESİ
   - Herkese aynı ifade: AZ BİLİNEN ifadelerden (Expression.bilinirlik),
@@ -174,32 +175,30 @@ def gunun_kelimesi(user):
 
 def kelime_durumu(user):
     """
-    Kart için: {"kart", "tamam", "cevap"} ya da None (aday yok).
-      tamam: kart kapalı ("Bugünün kelimesi tamam ✓").
-      cevap: "" | "known" | "unknown" — düğmeler yalnızca "" iken görünür.
+    Kart için: {"kart", "cevap"} ya da None (aday yok).
+      cevap: "" | "known" | "unknown" — seçilen düğme işaretli görünür.
     """
     if user is None or not user.is_authenticated:
         kelime = misafir_kelimesi()
-        return {"kart": kart_verisi([kelime], user)[0], "tamam": False, "cevap": ""} if kelime else None
+        return {"kart": kart_verisi([kelime], user)[0], "cevap": ""} if kelime else None
     kayit = kullanici_kaydi(user)
     if kayit is None:
         return None
-    kart = kart_verisi([kayit.word], user)[0]
-    return {"kart": kart, "cevap": kayit.cevap,
-            "tamam": kayit.cevap == BILIYORDUM or kart.listede}
+    return {"kart": kart_verisi([kayit.word], user)[0], "cevap": kayit.cevap}
 
 
 def cevapla(user, cevap):
     """
-    "Biliyordum" / "Bilmiyordum". L&P verisine YENİ kelime olarak yazılır;
-    bir kez cevaplanır. Döner: güncel kelime_durumu ya da None (geçersiz).
+    "Biliyordum" / "Bilmiyordum". L&P verisine YENİ kelime olarak yazılır.
+    Fikir değiştirilebilir: yalnızca öncekinden farklı cevap yazılır (aynı düğmeye
+    yeniden basmak kayıt çoğaltmaz). Döner: güncel kelime_durumu ya da None (geçersiz).
     """
     if cevap not in (BILIYORDUM, BILMIYORDUM):
         return None
     kayit = kullanici_kaydi(user)
     if kayit is None:
         return None
-    if not kayit.cevap:
+    if kayit.cevap != cevap:
         from learnpass import tekrar
         from learnpass.models import WordEncounter
         tekrar.kaydet(user, kayit.word, cevap, WordEncounter.MODE_NEW)

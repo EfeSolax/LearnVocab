@@ -9,7 +9,7 @@ bölüm: Sözlük · Çalışmalar · Ana Sayfa · Okumalar · Yazılar — mobi
 liste ekranın altındaki sabit sekme çubuğunda (base/_mobileTabBar.html).
 İkisi de LearnVocab/navigation.py içindeki tek listeden besleniyor.
 Sağda kullanıcının profil fotoğrafı (Hesap sayfasına götürür; rapor 18.26);
-girişsizken aynı yerde "Giriş Yap". Tema düğmesi Ayarlar sayfasındadır.
+girişsizken aynı yerde "Giriş Yap". Yanında dil ve tema düğmeleri (tema Ayarlar'da da var).
 
 Girişsiz ziyaretçi için giriş gerektiren bölümde data-giris-gerekli var:
 dokununca giriş sayfasına yönlendirilir (bkz. base/_girisGerekli.html).
@@ -23,7 +23,8 @@ dokununca giriş sayfasına yönlendirilir (bkz. base/_girisGerekli.html).
         <a href="{% url 'index' %}" class="flex shrink-0 items-center gap-2">
             {# Logo görseli şimdilik aynı (rapor 18.12: logo sonra ele alınacak); yazısı defter başlığı gibi. #}
             <img src="{% static 'images/logo.png' %}" alt="" class="h-9 w-auto" />
-            <span class="lv-logo">Learn<span>Vocab</span></span>
+            {# Dar ekranda yalnız logo görseli (içinde zaten "Learn Vocab" yazıyor); yazı sağdaki düğmelere yer bırakır. #}
+            <span class="lv-logo hidden sm:inline">Learn<span>Vocab</span></span>
         </a>
 
         {# --- Orta: bölümler (yalnızca masaüstü) --- #}
@@ -38,9 +39,10 @@ dokununca giriş sayfasına yönlendirilir (bkz. base/_girisGerekli.html).
             {% endfor %}
         </div>
 
-        {# --- Sağ: profil fotoğrafı / giriş (tema düğmesi Ayarlar'da, rapor 18.26) --- #}
+        {# --- Sağ: dil, tema, profil fotoğrafı / giriş (rapor 18.26) --- #}
         <div class="flex shrink-0 items-center gap-1 sm:gap-2">
             {% include 'base/_dilDugmesi.html' %}
+            {% include 'base/_temaDugmesi.html' %}
             {% include 'base/_accountButton.html' %}
         </div>
     </nav>

@@ -2,8 +2,8 @@
 {% comment %}
 Günün kelimesi / ifadesi kartlarının davranışı (rapor 18.8).
   - "Biliyordum" / "Bilmiyordum" -> /api/gunun-kelimesi/cevap/ (L&P verisine yazılır).
-    Biliyordum: kart kapanır. Bilmiyordum: düğmeler gider, küçük not çıkar.
-  - Kelime listeye eklenince (base/_kelimeKartiJs.html "kelime-listesi" olayı) kart kapanır.
+    Kart kapanmaz: seçilen düğme işaretlenir (aria-pressed), fikir değiştirilebilir;
+    Bilmiyordum'da küçük not görünür.
   - İfadede "Listeme ekle" -> kart kapanır.
 {% endcomment %}
 {% if user.is_authenticated %}
@@ -37,9 +37,11 @@ Günün kelimesi / ifadesi kartlarının davranışı (rapor 18.8).
             var dugmeler = kart.querySelectorAll('[data-gunun-cevap]');
             dugmeler.forEach(function (d) { d.disabled = true; });
             gonder(CEVAP, { cevap: cevap.getAttribute('data-gunun-cevap') }).then(function (veri) {
-                if (veri.tamam) { kapat(kart); return; }
-                kart.querySelector('[data-gunun-dugmeler]').remove();   // .flex, hidden'ı ezer
-                kart.querySelector('[data-gunun-not]').hidden = false;
+                dugmeler.forEach(function (d) {
+                    d.disabled = false;
+                    d.setAttribute('aria-pressed', String(d.getAttribute('data-gunun-cevap') === veri.cevap));
+                });
+                kart.querySelector('[data-gunun-not]').hidden = veri.cevap !== 'unknown';
             }).catch(function () {
                 dugmeler.forEach(function (d) { d.disabled = false; });
                 hata();
@@ -55,12 +57,6 @@ Günün kelimesi / ifadesi kartlarının davranışı (rapor 18.8).
         }
     });
 
-    // Günün kelimesi listeye eklendiyse kart kapanır; "Geri al" ile çıkarılırsa yeniden açılır.
-    document.addEventListener('kelime-listesi', function (olay) {
-        document.querySelectorAll('[data-gunun-kelimesi="' + olay.detail.id + '"]').forEach(function (kart) {
-            if (olay.detail.listede) { kapat(kart); }
-        });
-    });
 })();
 </script>
 {% endif %}

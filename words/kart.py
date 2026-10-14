@@ -25,6 +25,7 @@ from django.utils.translation import gettext_lazy as _
 from usersettings.anlam import turkce_acik
 
 from . import inflect
+from .konular import konu_bilgisi
 from .models import (
     Collocation, ExampleSentence, Meaning, PartOfSpeech, UsagePattern, UserWordLink,
     Word, WordRelation,
@@ -38,6 +39,8 @@ TUR_ETIKETLERI = {
     PartOfSpeech.NOUN: _("isim"), PartOfSpeech.VERB: _("fiil"), PartOfSpeech.ADJECTIVE: _("sıfat"),
     PartOfSpeech.ADVERB: _("zarf"), PartOfSpeech.PHRASAL_VERB: _("phrasal verb"),
     PartOfSpeech.PREPOSITION: _("edat"), PartOfSpeech.CONJUNCTION: _("bağlaç"),
+    PartOfSpeech.PRONOUN: _("zamir"), PartOfSpeech.DETERMINER: _("belirleyici"),
+    PartOfSpeech.MODAL_VERB: _("yardımcı fiil"), PartOfSpeech.EXCLAMATION: _("ünlem"),
 }
 
 # Kartta seviye rozeti gösterilmeyen değer.
@@ -63,6 +66,7 @@ class KartAnlami:
     diger_ornekler: list = field(default_factory=list)   # "› Daha fazla örnek"
     kaliplar: list = field(default_factory=list)          # "› Kalıplar": {metin, anlam, ornek}
     iliski_satirlari: list = field(default_factory=list)  # [("Benzer", [Word…]), …]
+    konular: list = field(default_factory=list)           # anlamın konuları (rapor 18.39): words.konular.konu_bilgisi
 
 
 @dataclass
@@ -101,12 +105,13 @@ class Kart:
 
 
 def _kelime_sorgusu(idler):
-    """Kart için gereken her şey tek seferde: 1 + 6 sorgu."""
+    """Kart için gereken her şey tek seferde: 1 + 7 sorgu."""
     iliski_turleri = [tur for tur, _ in Meaning.ILISKI_SATIRLARI]
     anlamlar = Meaning.objects.order_by("sort_order", "id").prefetch_related(
         Prefetch("examples", queryset=ExampleSentence.objects.order_by("sort_order", "id")),
         Prefetch("collocations", queryset=Collocation.objects.order_by("sort_order", "id")),
         Prefetch("patterns", queryset=UsagePattern.objects.order_by("sort_order", "id")),
+        "categories",                                     # konular (rapor 18.39)
         # Meaning.iliski_satirlari() self.relations.all() üzerinden grupluyor;
         # bu önbellek onu besliyor. Yalnızca kartta görünen üç tür ve ortak
         # sözlükteki hedefler.
@@ -147,6 +152,7 @@ def _kart_anlami(anlam):
         diger_ornekler=ornekler[1:],
         kaliplar=_kaliplar(anlam),
         iliski_satirlari=anlam.iliski_satirlari(),
+        konular=sorted((konu_bilgisi(k) for k in anlam.categories.all()), key=lambda k: k["ad"]),
     )
 
 
@@ -169,7 +175,7 @@ def kart_verisi(kelimeler, user=None):
     Kelimelerden kart listesi (list[Kart]) üretir, verilen sırayla.
 
     Sorgu sayısı sabit: kelimeler + anlamlar + örnekler + collocation'lar +
-    kalıplar + ilişkiler + aile (+ girişliyse liste durumu) = en çok 8.
+    kalıplar + ilişkiler + konular + aile (+ girişliyse liste durumu) = en çok 9.
     Queryset verilirse onu değerlendirmek için +1.
     """
     idler = list(dict.fromkeys(k.pk if isinstance(k, Word) else int(k) for k in kelimeler))

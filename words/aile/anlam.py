@@ -40,7 +40,6 @@ import warnings
 from typing import List, Literal
 
 from django.db import transaction
-from django.utils.text import slugify
 from pydantic import BaseModel, Field
 
 from words import inflect
@@ -462,13 +461,6 @@ def kalip_turu(desen):
 # Yazma
 # ----------------------------------------------------------------------
 
-def _kategori(ad):
-    from words.models import Category
-    kayit, _ = Category.objects.get_or_create(slug=slugify(ad) or ad.lower(),
-                                              defaults={"name": ad})
-    return kayit
-
-
 def _en_kolay(seviyeler):
     sirali = [s for s in CEFR_SIRASI if s in seviyeler]
     return sirali[0] if sirali else "Belirtilmemiş"
@@ -551,8 +543,8 @@ def aileyi_yaz(kok, kelimeler, kaynak):
                 cefr=anlam.cefr, sort_order=sira)
             sira += 1
             sayac["anlam"] += 1
-            if anlam.categories:
-                m.categories.set([_kategori(ad) for ad in anlam.categories])
+            # Kategoriler (konular) 11 Ekim'den beri yalnızca elle işaretlenir (rapor 18.39);
+            # modelin yazdığı kategori yazılmaz.
             ExampleSentence.objects.bulk_create([
                 ExampleSentence(meaning=m, text=c[:400], source=kaynak[:120], sort_order=i)
                 for i, c in enumerate(anlam.sentences)])

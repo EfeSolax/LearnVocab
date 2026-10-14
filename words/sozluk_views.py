@@ -37,12 +37,12 @@ from django.views.decorators.http import require_GET, require_POST
 from LearnVocab import sinir
 from LearnVocab.seo import tam_adres
 
-from . import arama, dizine_alma, gozat, gunun, hazir_liste, listem
+from . import arama, dizine_alma, gozat, gunun, hazir_liste, konular, listem
 from usersettings.anlam import turkce_acik
 
 from .adres import kelime_adresi, slug_yap
 from .kart import kart_verisi
-from .models import CEFR_LEVELS, HazirListe, Word
+from .models import CEFR_LEVELS, Category, Expression, HazirListe, Word
 
 HAZIR_LISTE_SAYFA_BOYU = 40
 
@@ -248,6 +248,9 @@ def _kesfet_baglami(request):
         "gunun_kelimesi": gunun.kelime_durumu(user),
         "gunun_ifadesi": gunun.ifade_durumu(user),
         "hazir_listeler": list(hazir_liste.yayindaki_listeler()),
+        # Konu kutucukları (rapor 18.39): arama kutusuyla günün kelimesi arasında
+        "konular": konular.kesfet_konulari(),
+        "konu_onde": konular.ONDE_GORUNEN,
         "aktif_liste": hazir_liste.aktif_liste(user),
         # Göz atma bağlantıları (rapor 18.15)
         "seviyeler": gozat.dolu_seviyeler(),
@@ -329,7 +332,7 @@ def gunun_kelimesi_cevap(request):
     durum = gunun.cevapla(request.user, request.POST.get("cevap"))
     if durum is None:
         return JsonResponse({"ok": False}, status=400)
-    return JsonResponse({"ok": True, "tamam": durum["tamam"], "cevap": durum["cevap"]})
+    return JsonResponse({"ok": True, "cevap": durum["cevap"]})
 
 
 # ----------------------------------------------------------------------
@@ -504,6 +507,46 @@ def hazir_liste_sayfasi(request, slug):
         cevap["X-Sonuc-Sayisi"] = str(sayfa.paginator.count)
         return cevap
     return render(request, "pages/words/hazirListe.html", baglam)
+
+
+def konu_sayfasi(request, slug):
+    """
+    Konu sayfası (rapor 18.39): o konuyla işaretlenmiş kelimeler, hazır liste sayfasındaki gibi
+    alt alta kapalı kartlar (kolaydan zora); konunun ifadeleri en altta. "Daha fazla göster"
+    ?sayfa=N&parca=1 ile gelir; "Bu listede ara" ?ara=…&parca=1 ile yazdıkça süzer.
+    Google'a kapalı (seo.DIZINE_ACIK'ta değil).
+    """
+    kategori = get_object_or_404(Category, slug=slug)
+    tumu = konular.konu_kelime_idleri(kategori, arama.ortak_sozluk())
+    # "Bu listede ara" (hazır listedeki gibi): İngilizcede ya da Türkçe anlamda, baştan eşleşenler önce.
+    ara = (request.GET.get("ara") or "").strip()[:80]
+    idler = tumu
+    if ara:
+        en, tr = arama.en_normal(ara), arama.tr_normal(ara)
+        eslesen = Word.objects.filter(id__in=tumu).filter(
+            Q(text__icontains=en) | Q(meanings__meaning_tr__icontains=tr))
+        bastan = set(eslesen.filter(text__istartswith=en).values_list("id", flat=True))
+        eslesen = set(eslesen.values_list("id", flat=True))
+        idler = [i for i in tumu if i in bastan] + [i for i in tumu if i in eslesen and i not in bastan]
+    sayfa = Paginator(idler, HAZIR_LISTE_SAYFA_BOYU).get_page(request.GET.get("sayfa") or 1)
+    kartlar = kart_verisi(list(sayfa.object_list), request.user)
+    baglam = {
+        "active_page": "Sözlük",
+        "konu": konular.konu_bilgisi(kategori),
+        "ogeler": [(k, "") for k in kartlar],
+        "sayfa": sayfa,
+        "ara": ara,
+        "secili_bolum": "",
+        "toplam": len(tumu),
+    }
+    if request.GET.get("parca"):
+        cevap = render(request, "pages/words/_hazirListeKartlari.html", baglam)
+        cevap["X-Sonuc-Sayisi"] = str(sayfa.paginator.count)
+        return cevap
+    if not sayfa.has_previous() and not ara:
+        baglam["ifadeler"] = [arama.ifade_hazirla(e) for e in Expression.objects.filter(
+            visibility="public", categories=kategori).prefetch_related("examples").order_by("text")]
+    return render(request, "pages/words/konu.html", baglam)
 
 
 @login_required

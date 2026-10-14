@@ -86,6 +86,7 @@ Kart verisi kelime kartıyla aynıdır (words.kart.Kart); liste düğmesi ve
                     {% for k in kelimeler %}<a lang="en" href="{{ k.text|kelime_adresi }}" class="text-base font-semibold underline decoration-[color:var(--satir)] decoration-2 underline-offset-4 hover:decoration-indigo-600">{{ k.text }}</a>{% endfor %}
                 </p>
                 {% endfor %}
+                {% include 'base/_konuEtiketleri.html' %}
             </div>
         </section>
         {% endfor %}

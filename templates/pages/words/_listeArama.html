@@ -1,0 +1,54 @@
+{% load i18n %}
+{% comment %}
+"Bu listede ara" (Efe'nin isteği, 10 Ekim): yazdıkça ?ara=…&parca=1 ile kartlar yenilenir (Enter
+gerekmez). Hazır liste ve konu sayfalarında ortak. Bağlam: ara, sayfa, secili_bolum;
+kartlar [data-hazir-liste-kartlari] içinde, görünüm parca=1'de X-Sonuc-Sayisi başlığını döner.
+{% endcomment %}
+<form method="get" role="search" class="mb-5 max-w-[520px]" data-liste-ara onsubmit="return false">
+    <label for="liste-ara" class="sr-only">{% translate "Bu listede ara" %}</label>
+    <input id="liste-ara" type="search" name="ara" value="{{ ara }}" autocomplete="off" spellcheck="false"
+           placeholder="{% translate 'Bu listede ara (İngilizce ya da Türkçe)' %}" class="lv-girdi" data-liste-ara-girdi>
+    <p class="lv-el mt-1 text-[20px]" aria-live="polite" data-liste-ara-sonuc>{% if ara %}{% blocktranslate with n=sayfa.paginator.count %}eşleşen: {{ n }}{% endblocktranslate %}{% endif %}</p>
+</form>
+<script>
+// Bu listede ara: yazdıkça süzülür. Kart kutusu formdan sonra geldiği için sayfa yüklenince başlar.
+document.addEventListener('DOMContentLoaded', function () {
+    var girdi = document.querySelector('[data-liste-ara-girdi]');
+    var kutu = document.querySelector('[data-hazir-liste-kartlari]');
+    var sonuc = document.querySelector('[data-liste-ara-sonuc]');
+    if (!girdi || !kutu) { return; }
+    var BOLUM = '{{ secili_bolum|escapejs }}';
+    var BIR = '{% filter escapejs %}{% blocktranslate with n="%(n)s" %}eşleşen: {{ n }}{% endblocktranslate %}{% endfilter %}';
+    var zamanlayici = null, istek = null, son = girdi.value.trim();
+
+    function getir() {
+        var ara = girdi.value.trim();
+        if (ara === son) { return; }
+        son = ara;
+        if (istek) { istek.abort(); }
+        istek = new AbortController();
+        var p = new URLSearchParams({ parca: '1' });
+        if (ara) { p.set('ara', ara); }
+        if (BOLUM) { p.set('bolum', BOLUM); }
+        fetch('?' + p.toString(), { credentials: 'same-origin', signal: istek.signal })
+            .then(function (c) {
+                if (!c.ok) { throw new Error(); }
+                var n = c.headers.get('X-Sonuc-Sayisi');
+                return c.text().then(function (html) { return { html: html, n: n }; });
+            })
+            .then(function (y) {
+                kutu.innerHTML = y.html;
+                sonuc.textContent = ara ? BIR.replace('%(n)s', y.n) : '';
+                var q = new URLSearchParams();
+                if (BOLUM) { q.set('bolum', BOLUM); }
+                if (ara) { q.set('ara', ara); }
+                history.replaceState(null, '', q.toString() ? '?' + q : location.pathname);
+            })
+            .catch(function () {});
+    }
+    girdi.addEventListener('input', function () {
+        clearTimeout(zamanlayici);
+        zamanlayici = setTimeout(getir, 200);
+    });
+});
+</script>

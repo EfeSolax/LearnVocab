@@ -46,6 +46,18 @@ class PartOfSpeech(models.TextChoices):
     PHRASAL_VERB = "phrasal_verb", "phrasal verb"
     PREPOSITION = "preposition", "edat"
     CONJUNCTION = "conjunction", "bağlaç"
+    # Dilbilgisi kelimeleri (rapor 18.36): the, I, my, can, hello …
+    PRONOUN = "pronoun", "zamir"
+    DETERMINER = "determiner", "belirleyici"
+    MODAL_VERB = "modal_verb", "yardımcı fiil"
+    EXCLAMATION = "exclamation", "ünlem"
+
+
+# Learn & Pass'in yeni kelime havuzuna girmeyen türler (rapor 18.36): "the", "I", "can",
+# "hello" kaydırılarak öğrenilecek kelimeler değil; sıklıkları yüzünden havuzu da domine ederler.
+# Sözlükte, okuma baloncuğunda ve listelerde dururlar.
+DILBILGISI_TURLERI = (PartOfSpeech.PRONOUN, PartOfSpeech.DETERMINER,
+                      PartOfSpeech.MODAL_VERB, PartOfSpeech.EXCLAMATION)
 
 
 class FormKind(models.TextChoices):

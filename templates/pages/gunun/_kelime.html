@@ -1,24 +1,20 @@
 {% load i18n %}
 {% comment %}
 Günün Kelimesi kartı (rapor 18.8). Ana Sayfa'da ve Sözlük › Keşfet'te AYNI kart.
-Veri: words.gunun.kelime_durumu -> gk = {"kart", "tamam", "cevap"}
+Veri: words.gunun.kelime_durumu -> gk = {"kart", "cevap"}
 
   - Kelime (dokununca Sözlük'teki tam kart: /sozluk/<kelime>/), seviye,
     telaffuz, TEK anlam ve bir örnek cümle.
   - Giriş yapmış kullanıcı: "Listeme ekle" + "Bilmiyordum / Biliyordum".
-  - Listeye eklenir ya da "Biliyordum" denirse kart kapanır:
-    "Bugünün kelimesi tamam ✓, yarın yenisi gelecek."
+  - Kart gün boyu açık kalır (Efe, 11 Ekim): iki düğme hep durur, seçilen
+    kendi renginde elipsle işaretlenir (aria-pressed), fikir değiştirilebilir.
 Davranış: pages/gunun/_js.html
 {% endcomment %}
 <section data-gunun-kelimesi="{{ gk.kart.id }}" aria-label="{% translate "Günün kelimesi" %}"
          class="lv-not lv-bantli min-w-0 text-gray-900 dark:text-slate-100">
     <p class="lv-el text-[22px] font-bold leading-none !text-gray-600 dark:!text-slate-300">{% translate "günün kelimesi" %}</p>
 
-    <p data-gunun-tamam class="mt-3 text-base font-semibold text-emerald-700 dark:text-emerald-300" {% if not gk.tamam %}hidden{% endif %}>
-        {% translate "Bugünün kelimesi tamam ✓, yarın yenisi gelecek." %}
-    </p>
-
-    <div data-gunun-icerik {% if gk.tamam %}hidden{% endif %}>
+    <div data-gunun-icerik>
         {% with kart=gk.kart ilk=gk.kart.anlamlar.0 %}
         <div class="mt-2 flex items-start justify-between gap-2">
             <a href="{{ kart.text|kelime_adresi }}" lang="en" data-gunun-baglanti
@@ -32,14 +28,12 @@ Davranış: pages/gunun/_js.html
         {% if user.is_authenticated %}
         <div class="mt-4 flex flex-wrap items-center gap-2">
             {% include 'base/_kartListeDugmesi.html' with kart=kart %}
-            {% if not gk.cevap %}
             <span data-gunun-dugmeler class="ml-auto flex gap-2">
-                <button type="button" data-gunun-cevap="unknown"
-                        class="lv-el px-1 text-[22px] font-bold !text-red-700 hover:underline disabled:opacity-60 dark:!text-red-300">✗ {% translate "bilmiyordum" %}</button>
-                <button type="button" data-gunun-cevap="known"
-                        class="lv-el px-1 text-[22px] font-bold !text-emerald-700 hover:underline disabled:opacity-60 dark:!text-emerald-300">✓ {% translate "biliyordum" %}</button>
+                <button type="button" data-gunun-cevap="unknown" aria-pressed="{% if gk.cevap == "unknown" %}true{% else %}false{% endif %}"
+                        class="lv-el rounded-[50%] border-2 border-transparent px-3 py-0.5 text-[22px] font-bold !text-red-700 hover:underline disabled:opacity-60 aria-pressed:border-red-700 dark:!text-red-300 dark:aria-pressed:border-red-300">✗ {% translate "bilmiyordum" %}</button>
+                <button type="button" data-gunun-cevap="known" aria-pressed="{% if gk.cevap == "known" %}true{% else %}false{% endif %}"
+                        class="lv-el rounded-[50%] border-2 border-transparent px-3 py-0.5 text-[22px] font-bold !text-emerald-700 hover:underline disabled:opacity-60 aria-pressed:border-emerald-700 dark:!text-emerald-300 dark:aria-pressed:border-emerald-300">✓ {% translate "biliyordum" %}</button>
             </span>
-            {% endif %}
         </div>
         <p data-gunun-not class="mt-2 text-sm text-gray-700 dark:text-slate-300" {% if gk.cevap != "unknown" %}hidden{% endif %}>{% translate "Tekrarlarına eklendi; Learn & Pass'te yeniden karşına çıkacak." %}</p>
         {% endif %}

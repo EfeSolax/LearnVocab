@@ -46,3 +46,27 @@ class ElleKelimeTests(TestCase):
         yol = self._dosya({"text": "x", "pos": "noun", "cefr": "A1", "anlamlar": [{"tr": "x"}]})
         with self.assertRaises(CommandError):
             call_command("elle_kelime_yukle", yol, stdout=StringIO())
+
+    def test_phrasal_verb_fiile_baglanir_cekim_ve_benzer(self):
+        give = make_word("give", pos="verb", level="A1")
+        quit = make_word("quit", pos="verb", level="B1")
+        yol = self._dosya(
+            {"text": "give up", "pos": "phrasal_verb", "cefr": "B1", "cefr_kaynak": "learnvocab",
+             "anlamlar": [{"tr": "vazgeçmek", "en": "to stop trying", "ornekler": ["Don't give up."],
+                           "benzer": ["quit", "olmayan"]}]},
+        )
+        cikti = StringIO()
+        call_command("elle_kelime_yukle", yol, stdout=cikti)
+        self.assertIn("give up = olmayan", cikti.getvalue())
+        w = Word.objects.get(text="give up")
+        self.assertEqual((w.cefr_kaynak, w.base_verb, w.family), ("learnvocab", give, give.family))
+        self.assertEqual((w.v2Form, w.v3Form), ("gave up", "given up"))
+        self.assertTrue(WordForm.objects.filter(word=w, surface="gave up").exists())
+        m = w.meanings.get()
+        self.assertEqual(list(m.relations.values_list("to_word", "type")), [(quit.pk, "synonym")])
+
+    def test_bilinmeyen_seviye_kaynagi_hata(self):
+        yol = self._dosya({"text": "x", "pos": "noun", "cefr": "A1", "cefr_kaynak": "uydurma",
+                           "anlamlar": [{"tr": "x", "en": "x", "ornekler": ["x"]}]})
+        with self.assertRaises(CommandError):
+            call_command("elle_kelime_yukle", yol, stdout=StringIO())

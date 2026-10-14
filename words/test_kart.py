@@ -145,9 +145,9 @@ class KartVerisiTests(TestCase):
         UserWordLink.objects.create(user=self.user, word=kelimeler[0])
 
         # +1: "Türkçe anlamlar" ayarı ilk kartta bir kez okunur, sonra kullanıcıda saklanır (rapor 18.22).
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(10):
             tek = kart_verisi(kelimeler[:1], self.user)
-        with self.assertNumQueries(8):
+        with self.assertNumQueries(9):                   # +1: anlamların konuları (rapor 18.39)
             hepsi = kart_verisi(kelimeler, self.user)
         self.assertEqual(len(tek), 1)
         self.assertEqual(len(hepsi), 12)

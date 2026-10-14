@@ -1,0 +1,29 @@
+{% load i18n %}
+{% comment %}
+Konu kutucukları (rapor 18.39; Efe'nin isteği, 11 Ekim): Sözlük › Keşfet'te arama kutusuyla
+günün kelimesi arasında. Her konu kendi renginde eliptik bir kutucuk (emoji + ad); ilk
+konu_onde tanesi görünür, "daha fazla göster" hepsini aynı yerde açar, sonra "daha az göster".
+Veri: words.konular.kesfet_konulari -> konular = [{slug, ad, emoji, renk}, …]
+{% endcomment %}
+{% if konular %}
+<section class="mt-6" x-data="{ hepsi: false }" aria-labelledby="konular-baslik" data-konular>
+    <h2 id="konular-baslik" class="lv-el mb-2 text-[22px] font-bold">{% translate "konulara göz at" %}</h2>
+    <ul class="flex flex-wrap items-center gap-2">
+        {% for k in konular %}
+        <li {% if forloop.counter > konu_onde %}x-show="hepsi" x-cloak data-konu-gizli{% endif %}>
+            <a href="{% url 'sozluk_konu' k.slug %}" data-konu="{{ k.slug }}"
+               class="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[15px] font-semibold shadow-sm ring-1 ring-black/5 transition hover:-translate-y-px hover:shadow"
+               style="background-color: {{ k.renk }}; color: #1f2937"><span aria-hidden="true">{{ k.emoji }}</span>{{ k.ad }}</a>
+        </li>
+        {% endfor %}
+        {% if konular|length > konu_onde %}
+        <li>
+            <button type="button" @click="hepsi = !hepsi" :aria-expanded="hepsi.toString()" aria-expanded="false" data-konu-dugme
+                    class="lv-el px-2 py-1 text-[20px] font-bold underline decoration-1 underline-offset-4">
+                <span x-show="!hepsi">{% translate "daha fazla göster" %}</span><span x-show="hepsi" x-cloak>{% translate "daha az göster" %}</span>
+            </button>
+        </li>
+        {% endif %}
+    </ul>
+</section>
+{% endif %}

@@ -62,7 +62,7 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
         </li>
         {% endfor %}
     </ul>
-    <p data-metinlerim-bos class="lv-el text-[22px] leading-snug py-2 text-center">
+    <p data-metinlerim-bos class="lv-el text-[22px] leading-snug py-2 text-center {% if metinlerim %}hidden{% endif %}">
         {% translate "Henüz metin eklemedin. Derste okuduğun bir PDF'i yükle ya da bir yazıyı yapıştır; kelimelerine dokunarak oku." %}
     </p>
 

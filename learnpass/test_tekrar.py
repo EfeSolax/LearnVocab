@@ -222,3 +222,16 @@ class EgzersizBaglantiTests(TestCase):
                                                      istenen=10, sorular=[], kaynak=self.oturum)
         self.assertIsNone(cevaplari_kaydet(self.user, tekrar_turu, "anlam", [(self.w.id, False)]))
         self.assertFalse(WordEncounter.objects.filter(user=self.user).exists())
+
+
+class DilbilgisiTurleriTests(TestCase):
+    """Rapor 18.36: the / I / can / hello Learn & Pass'in yeni kelime havuzuna girmez."""
+
+    def test_yeni_havuza_girmez(self):
+        from learnpass.tekrar import _yeni_havuz
+        from words.testing import make_word
+        the = make_word("the", pos="determiner", level="A1")
+        kedi = make_word("cat", pos="noun", level="A1")
+        havuz = set(_yeni_havuz(None, "A1").values_list("id", flat=True))
+        self.assertIn(kedi.id, havuz)
+        self.assertNotIn(the.id, havuz)

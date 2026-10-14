@@ -168,6 +168,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'tr'
 
+# Testlerde her istekten sonra dil varsayılana döner (LearnVocab/test_runner.py).
+TEST_RUNNER = 'LearnVocab.test_runner.DilSifirlayanRunner'
+
 # YAYINDAKİ diller (rapor 18.22). Türkçe öneksizdir; diğer diller adres
 # önekiyle gelir (/en/…, /de/…) ve her sayfada hreflang basılır.
 # Bir dil, arayüz çevirisi BİTMEDEN buraya eklenmez: çevirisiz /en/ sayfaları

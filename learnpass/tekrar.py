@@ -38,7 +38,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.utils import timezone
 
-from words.models import UserWordLink, Word
+from words.models import DILBILGISI_TURLERI, UserWordLink, Word
 from words.siklik import lp_agirligi
 
 from .models import EncounterLog, WordEncounter
@@ -238,7 +238,7 @@ def _seviye_sirasi(user, rng):
 
 def _yeni_havuz(user, seviye=None):
     from users.seviye import kullanici_seviyesi
-    qs = Word.objects.filter(isBaseWord=True)
+    qs = Word.objects.filter(isBaseWord=True).exclude(pos__in=DILBILGISI_TURLERI)
     if seviye:
         qs = qs.filter(cefr=seviye)
     if user is not None and user.is_authenticated:

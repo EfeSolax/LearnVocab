@@ -1,0 +1,12 @@
+{% load i18n %}
+{% comment %}Anlamın konuları (rapor 18.39): kelime kartında ve kelime sayfasında, konu sayfasına bağlı küçük kutucuklar. Bağlam: anlam (words.kart.KartAnlami){% endcomment %}
+{% if anlam.konular %}
+<div class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[15px]" data-konu-etiketleri>
+    <span class="text-gray-600 dark:text-slate-300">{% translate "konu" %}:</span>
+    {% for k in anlam.konular %}
+    <a href="{% url 'sozluk_konu' k.slug %}" data-konu="{{ k.slug }}"
+       class="inline-flex items-center gap-2 rounded-full px-2.5 py-0.5 text-sm font-semibold ring-1 ring-black/5 hover:shadow"
+       style="background-color: {{ k.renk }}; color: #1f2937"><span aria-hidden="true">{{ k.emoji }}</span>{{ k.ad }}</a>
+    {% endfor %}
+</div>
+{% endif %}

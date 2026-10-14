@@ -63,6 +63,13 @@ TUR_YAZIMLARI = {
     "edat": PartOfSpeech.PREPOSITION,
     "conjunction": PartOfSpeech.CONJUNCTION, "conj": PartOfSpeech.CONJUNCTION,
     "bağlaç": PartOfSpeech.CONJUNCTION, "baglac": PartOfSpeech.CONJUNCTION,
+    "pronoun": PartOfSpeech.PRONOUN, "pron": PartOfSpeech.PRONOUN, "zamir": PartOfSpeech.PRONOUN,
+    "determiner": PartOfSpeech.DETERMINER, "det": PartOfSpeech.DETERMINER,
+    "belirleyici": PartOfSpeech.DETERMINER,
+    "modal_verb": PartOfSpeech.MODAL_VERB, "modal verb": PartOfSpeech.MODAL_VERB,
+    "mv": PartOfSpeech.MODAL_VERB, "modal": PartOfSpeech.MODAL_VERB,
+    "exclamation": PartOfSpeech.EXCLAMATION, "exclam": PartOfSpeech.EXCLAMATION,
+    "ünlem": PartOfSpeech.EXCLAMATION, "unlem": PartOfSpeech.EXCLAMATION,
 }
 
 # Tür verilmemiş ve kelimenin birden çok türü varsa hangisi seçilir:

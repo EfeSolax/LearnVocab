@@ -83,6 +83,7 @@ Anlık öneri kutusu: pages/words/_oneriKutusu.html (Keşfet ve Listem ortak).
     {% endif %}
 {% else %}
     {# ---------- Keşfet: boş hâl (rapor 4.1) ---------- #}
+    {% include 'pages/words/_konular.html' %}
     <div class="mt-10 space-y-12">
         {# Günün kelimesi ve ifadesi: Ana Sayfa'dakiyle aynı iki kart (rapor 18.8) #}
         {% if gunun_kelimesi or gunun_ifadesi %}

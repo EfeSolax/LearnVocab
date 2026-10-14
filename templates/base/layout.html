@@ -148,7 +148,8 @@
     </script>
 
     <script>
-        // Tema seçimi (rapor 18.26): Ayarlar sayfasındaki [data-tema-sec] düğmeleri.
+        // Tema seçimi (rapor 18.26): Ayarlar sayfasındaki [data-tema-sec] düğmeleri
+        // ve sağ üstteki tek düğme [data-tema-dugmesi] (açık <-> koyu).
         // "sistem" -> kayıt silinir, cihazın teması geçerli olur; "light" / "dark"
         // -> seçim bu cihazda saklanır.
         (function () {
@@ -162,9 +163,11 @@
                 });
             }
             document.addEventListener('click', function (event) {
-                var dugme = event.target.closest('[data-tema-sec]');
+                var dugme = event.target.closest('[data-tema-sec], [data-tema-dugmesi]');
                 if (!dugme) { return; }
-                var secim = dugme.getAttribute('data-tema-sec');
+                var secim = dugme.hasAttribute('data-tema-dugmesi')
+                    ? (document.documentElement.classList.contains('dark') ? 'light' : 'dark')
+                    : dugme.getAttribute('data-tema-sec');
                 var koyu = secim === 'dark' ||
                     (secim === 'sistem' && window.matchMedia('(prefers-color-scheme: dark)').matches);
                 document.documentElement.classList.toggle('dark', koyu);

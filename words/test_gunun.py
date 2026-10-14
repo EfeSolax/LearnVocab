@@ -94,32 +94,39 @@ class KartTests(TestCase):
             self.assertIn('href="/sozluk/habit/"', html)
             self.assertIn("data-telaffuz-grubu", html)
 
-    def test_biliyordum_kaydeder_ve_karti_kapatir(self):
+    def _kart_html(self):
+        html = self.client.get(reverse("index")).content.decode()
+        return html[html.index("data-gunun-kelimesi"):]
+
+    def test_biliyordum_kaydeder_kart_acik_ve_isaretli(self):
         cevap = self._cevap("known").json()
-        self.assertEqual((cevap["tamam"], cevap["cevap"]), (True, "known"))
+        self.assertEqual(cevap["cevap"], "known")
         enc = WordEncounter.objects.get(user=self.user, word=self.kelime)
         self.assertEqual((enc.last_verdict, enc.last_mode, enc.takipte), ("known", "new", False))
-        html = self.client.get(reverse("index")).content.decode()
-        kart = html[html.index("data-gunun-kelimesi"):]
-        self.assertIn("Bugünün kelimesi tamam ✓, yarın yenisi gelecek.", kart[:kart.index("data-gunun-icerik")])
-        self.assertIn('data-gunun-icerik hidden', kart)
+        kart = self._kart_html()
+        self.assertNotIn("Bugünün kelimesi tamam", kart)                    # kart kapanmaz (Efe, 11 Ekim)
+        self.assertIn('href="/sozluk/habit/"', kart)
+        self.assertIn('data-gunun-cevap="known" aria-pressed="true"', kart)
+        self.assertIn('data-gunun-cevap="unknown" aria-pressed="false"', kart)
 
-    def test_bilmiyordum_takibe_alir_kart_acik_kalir(self):
-        cevap = self._cevap("unknown").json()
-        self.assertEqual(cevap["tamam"], False)
-        enc = WordEncounter.objects.get(user=self.user, word=self.kelime)
-        self.assertTrue(enc.takipte)
-        html = self.client.get(reverse("index")).content.decode()
-        self.assertNotIn('data-gunun-cevap="', html)                    # bir kez cevaplanır
-        self.assertIn("Tekrarlarına eklendi", html)
-        # İkinci cevap bir şey değiştirmez
-        self._cevap("known")
+    def test_fikir_degistirilebilir_son_cevap_yazilir(self):
+        self._cevap("unknown")
+        self.assertTrue(WordEncounter.objects.get(user=self.user, word=self.kelime).takipte)
+        self.assertIn("Tekrarlarına eklendi", self._kart_html())
+        self._cevap("unknown")                                              # aynı cevap çoğalmaz
         self.assertEqual(WordEncounter.objects.get(user=self.user, word=self.kelime).times_seen, 1)
+        self.assertEqual(self._cevap("known").json()["cevap"], "known")     # fikir değişti
+        enc = WordEncounter.objects.get(user=self.user, word=self.kelime)
+        self.assertEqual((enc.last_verdict, enc.times_seen), ("known", 2))
+        kart = self._kart_html()
+        self.assertIn('data-gunun-cevap="known" aria-pressed="true"', kart)
+        self.assertIn("data-gunun-not class=\"mt-2 text-sm text-gray-700 dark:text-slate-300\" hidden", kart)
 
-    def test_listeye_eklenince_kapanir(self):
+    def test_listeye_eklenince_kart_acik_kalir(self):
         self.assertEqual(gunun.gunun_kelimesi(self.user), self.kelime)
         UserWordLink.objects.create(user=self.user, word=self.kelime)
-        self.assertTrue(gunun.kelime_durumu(self.user)["tamam"])
+        self.assertEqual(gunun.kelime_durumu(self.user)["kart"].id, self.kelime.id)
+        self.assertIn('data-gunun-cevap="known"', self._kart_html())
 
     def test_gecersiz_cevap_ve_misafir(self):
         self.assertEqual(self._cevap("belki").status_code, 400)

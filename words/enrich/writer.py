@@ -15,23 +15,14 @@ eklenir. Aynı listeyi iki kez çalıştırmak veriyi bozmaz.
 import logging
 
 from django.db import transaction
-from django.utils.text import slugify
 
 from words import inflect
 from words.models import (
-    Category, Collocation, ExampleSentence, FalseFriend, Meaning,
+    Collocation, ExampleSentence, FalseFriend, Meaning,
     UsagePattern, Word, WordFamily, WordRelation,
 )
 
 logger = logging.getLogger(__name__)
-
-
-def _kategori(ad):
-    """Alan adını Category kaydına çevirir (seed_words ile aynı slug mantığı)."""
-    kayit, _ = Category.objects.get_or_create(
-        slug=slugify(ad) or ad.lower(), defaults={"name": ad},
-    )
-    return kayit
 
 
 @transaction.atomic
@@ -118,8 +109,7 @@ def yaz(kelime, kaynak="AI", aile=None):
         sonraki_sira += 1
         sayac["anlam"] += 1
 
-        if anlam.categories:
-            kayitli_anlam.categories.set([_kategori(ad) for ad in anlam.categories])
+        # Kategoriler (konular) 11 Ekim'den beri yalnızca elle işaretlenir (rapor 18.39).
 
         ExampleSentence.objects.bulk_create([
             ExampleSentence(meaning=kayitli_anlam, text=cumle[:400],

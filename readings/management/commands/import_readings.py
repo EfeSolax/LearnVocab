@@ -18,6 +18,10 @@ from django.core.management.base import BaseCommand, CommandError
 from readings.models import TOPIC_LABELS, ReadingText
 from readings.parser import parse_directory
 
+# reading-texts/ ODTÜ'nün More to Read II kitabının metinleri (numaralar kitaptaki sıra, 1–56).
+# Sonradan eklenen kütüphane metinleri (kutuphane_yukle) 101'den başlar.
+KAYNAK = "More to Read II"
+
 
 class Command(BaseCommand):
     help = "reading-texts/ klasöründeki okuma metinlerini içeri alır."
@@ -72,6 +76,7 @@ class Command(BaseCommand):
                 "title": metin["title"],
                 "body": govde,
                 "word_count": sum(len(p.split()) for p in metin["paragraphs"]),
+                "source": KAYNAK,
             }
 
             mevcut = ReadingText.objects.filter(number=metin["number"]).first()

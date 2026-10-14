@@ -7,7 +7,8 @@ Bilerek ÇOK KÜÇÜK: model yalnızca kelimeyi ve türünü yazıyor. Çekimler
 yani katı kip, prompt'taki "başka hiçbir şey yazma" kuralını API
 seviyesinde de dayatıyor.
 
-Tür değerleri Django modelindeki PartOfSpeech ile birebir aynı.
+Tür değerleri Django modelindeki PartOfSpeech ile aynı; yalnızca dilbilgisi türleri
+(zamir, belirleyici, yardımcı fiil, ünlem; DILBILGISI_TURLERI) yok: onlar elle eklenir (rapor 18.36).
 """
 
 from typing import List, Literal

@@ -1,0 +1,53 @@
+{% extends 'base/appLayout.html' %}
+{% load i18n %}
+
+{% comment %}
+Konu sayfası (rapor 18.39): konudaki kelimeler hazır liste sayfasındaki gibi alt alta kapalı kartlar
+(kolaydan zora), konunun ifadeleri en altta. Görünüm: words.sozluk_views.konu_sayfasi
+{% endcomment %}
+
+{% block title %}{% blocktranslate with ad=konu.ad %}{{ ad }}: konuya göre kelimeler — LearnVocab Sözlük{% endblocktranslate %}{% endblock %}
+{% block page_heading %}{% endblock %}
+
+{% block page %}
+<a href="{% url 'sozluk' %}" class="lv-el text-[22px] font-bold hover:underline">← {% translate "Sözlük" %}</a>
+
+<header class="mt-4 mb-8">
+    <div class="inline-block rounded-[28px] px-6 py-5 shadow-sm ring-1 ring-black/5" style="background-color: {{ konu.renk }}; color: #1f2937" data-konu-baslik>
+        <p class="lv-el text-[22px] font-bold !text-gray-700">{% translate "konu" %}</p>
+        <h1 class="lv-serif text-[34px] font-black leading-tight"><span aria-hidden="true" class="mr-2">{{ konu.emoji }}</span>{{ konu.ad }}</h1>
+        <p class="lv-el mt-1 text-[22px] font-bold !text-gray-700">{% blocktranslate count n=toplam %}{{ n }} kelime{% plural %}{{ n }} kelime{% endblocktranslate %}</p>
+    </div>
+</header>
+
+{% if toplam %}
+{% include 'pages/words/_listeArama.html' %}
+<div class="space-y-2" data-hazir-liste-kartlari>
+    {% include 'pages/words/_hazirListeKartlari.html' %}
+</div>
+{% else %}
+<p class="lv-el text-[22px] leading-snug py-2 text-center">{% translate "Bu konuya henüz kelime eklenmedi." %}</p>
+{% endif %}
+
+{% if ifadeler %}
+<section class="mt-10" aria-labelledby="konu-ifadeleri" data-konu-ifadeleri>
+    <h2 id="konu-ifadeleri" class="lv-bolum mb-4 !text-3xl">{% translate "İfadeler" %}</h2>
+    <div class="space-y-3">
+        {% for ifade in ifadeler %}{% include 'pages/words/_ifadeKarti.html' with ifade=ifade %}{% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<script>
+document.addEventListener('click', function (olay) {
+    var dugme = olay.target.closest('[data-hazir-liste-devam]');
+    if (!dugme) { return; }
+    olay.preventDefault();
+    dugme.disabled = true;
+    fetch(dugme.dataset.adres, { credentials: 'same-origin' })
+        .then(function (c) { if (!c.ok) { throw new Error(); } return c.text(); })
+        .then(function (html) { dugme.insertAdjacentHTML('beforebegin', html); dugme.remove(); })
+        .catch(function () { window.location.href = dugme.dataset.yedek; });
+});
+</script>
+{% endblock %}

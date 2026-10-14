@@ -108,9 +108,9 @@ class AilePromptTests(SimpleTestCase):
         self.assertEqual(alanlar, {"word", "type"})
 
     def test_turler_veritabani_ile_ayni(self):
-        from words.models import PartOfSpeech
+        from words.models import DILBILGISI_TURLERI, PartOfSpeech
         sema = AileCevabi.model_json_schema()["$defs"]["AileUyesi"]["properties"]["type"]
-        self.assertEqual(set(sema["enum"]), set(PartOfSpeech.values))
+        self.assertEqual(set(sema["enum"]), set(PartOfSpeech.values) - set(DILBILGISI_TURLERI))
 
     def test_kullanici_metni(self):
         self.assertEqual(prompt.aile_kullanici_metni("decisively"), 'word: "decisively"')
@@ -848,7 +848,7 @@ class AileDoldurTests(TestCase):
         anlam = fiil.meanings.get()
         self.assertEqual(anlam.register, "neutral")                          # general -> neutral
         self.assertEqual(anlam.cefr, "B1")
-        self.assertEqual([c.name for c in anlam.categories.all()], ["Environment"])
+        self.assertEqual(anlam.categories.count(), 0)            # kategori yalnızca elle (rapor 18.39)
         self.assertEqual(anlam.examples.count(), 5)
         self.assertEqual(anlam.patterns.get().kind, "preposition")
         self.assertEqual(anlam.collocations.get().kind, "verb_noun")
