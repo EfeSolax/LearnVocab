@@ -1,0 +1,100 @@
+26738 | take back | phrasal_verb | B1 | #2/3 | TR: (sözünü) geri almak | EN: to admit that something you said was wrong | ÖRNEK: I take back what I said.
+26739 | take back | phrasal_verb | B1 | #3/3 | TR: geçmişe götürmek, hatırlatmak | EN: to make you remember a time in the past | ÖRNEK: This song takes me back to my school days.
+26292 | come up with | phrasal_verb | B2 | #1/1 | TR: (fikir, çözüm) bulmak, ortaya atmak | EN: to think of an idea, plan or answer | ÖRNEK: She came up with a great idea.
+26488 | help out | phrasal_verb | B1 | #1/1 | TR: yardım etmek, el uzatmak | EN: to help someone, especially by doing part of their work or giving them money | ÖRNEK: My parents helped me out when I lost my job.
+15212 | keep | noun | B1 | #1/2 | TR: geçim, masraf | EN: the amount of money required to maintain a standard of living or to cover ongoing expenses | ÖRNEK: Her scholarship covered most of the keep, but she still needed a part-time job.
+15213 | keep | noun | B1 | #2/2 | TR: koruma yeri, kale | EN: a fortified tower or stronghold, often part of a castle, used for defense and storage | ÖRNEK: The ancient keep dominates the skyline of the historic town.
+27307 | please | exclamation | A1 | #1/2 | TR: lütfen | EN: used to make a request or order more polite | ÖRNEK: Please sit down.
+27308 | please | exclamation | A1 | #2/2 | TR: evet, lütfen (teklifi kabul ederken) | EN: used to accept something politely | ÖRNEK: "More coffee?" "Yes, please."
+26769 | think through | phrasal_verb | C1 | #1/1 | TR: ayrıntılı düşünmek, enine boyuna düşünmek | EN: to consider all the possible results of something | ÖRNEK: You need to think the plan through.
+26190 | back down | phrasal_verb | B2 | #1/1 | TR: geri adım atmak, iddiasından vazgeçmek | EN: to stop asking for something or stop saying you are right | ÖRNEK: The government refused to back down.
+26911 | come out with | phrasal_verb | C1 | #1/1 | TR: (beklenmedik bir şey) söylemek, ağzından kaçırmak | EN: to say something suddenly, especially something surprising | ÖRNEK: Kids come out with the funniest things.
+26372 | get around | phrasal_verb | B2 | #1/3 | TR: dolaşmak, bir yerden bir yere gitmek | EN: to travel to different places | ÖRNEK: It's easy to get around the city by bus.
+26373 | get around | phrasal_verb | B2 | #2/3 | TR: (haber) yayılmak | EN: to become known by many people | ÖRNEK: News gets around fast in a small town.
+26374 | get around | phrasal_verb | B2 | #3/3 | TR: (sorunu) aşmak, çaresini bulmak | EN: to find a way of dealing with a problem or avoiding a rule | ÖRNEK: We found a way to get around the problem.
+26443 | go down | phrasal_verb | B1 | #1/3 | TR: düşmek, azalmak | EN: to become lower in level or amount | ÖRNEK: Prices have gone down.
+26444 | go down | phrasal_verb | B1 | #2/3 | TR: (güneş) batmak | EN: to disappear below the horizon (the sun) | ÖRNEK: The sun goes down at about eight.
+26445 | go down | phrasal_verb | B1 | #3/3 | TR: karşılanmak (iyi/kötü) | EN: to be received in a particular way | ÖRNEK: His joke didn't go down well.
+26501 | keep in | phrasal_verb | B1 | #1/1 | TR: içeride tutmak, (dışarı) çıkarmamak | EN: to make someone stay inside | ÖRNEK: The teacher kept us in after school.
+26995 | keep to | phrasal_verb | B2 | #1/2 | TR: (kurala, plana) uymak | EN: to do what you have promised or planned | ÖRNEK: We must keep to the plan.
+26996 | keep to | phrasal_verb | B2 | #2/2 | TR: (konudan) ayrılmamak | EN: to not move away from a subject or path | ÖRNEK: Keep to the point, please.
+26586 | own up | phrasal_verb | C1 | #1/1 | TR: (suçunu) itiraf etmek, kabullenmek | EN: to admit that you have done something wrong | ÖRNEK: Nobody owned up to breaking the window.
+26624 | put in | phrasal_verb | B2 | #1/2 | TR: (zaman, emek) harcamak, ortaya koymak | EN: to spend time or energy doing something | ÖRNEK: She put in a lot of work on the project.
+26625 | put in | phrasal_verb | B2 | #2/2 | TR: kurmak, takmak | EN: to fit equipment in a building | ÖRNEK: We're having a new kitchen put in.
+26464 | go through | phrasal_verb | B2 | #1/3 | TR: (zor bir şey) yaşamak, geçirmek | EN: to experience a difficult or unpleasant situation | ÖRNEK: She's going through a difficult time.
+26465 | go through | phrasal_verb | B2 | #2/3 | TR: dikkatle incelemek, gözden geçirmek | EN: to look at or examine something carefully | ÖRNEK: I went through my notes before the exam.
+26466 | go through | phrasal_verb | B2 | #3/3 | TR: (yasa, anlaşma) kabul edilmek, onaylanmak | EN: to be officially accepted or approved | ÖRNEK: The new law went through last week.
+26503 | keep on | phrasal_verb | B1 | #1/1 | TR: -e devam etmek, durmadan yapmak | EN: to continue doing something, or to do something many times | ÖRNEK: She kept on asking questions.
+26628 | put on | phrasal_verb | A2 | #1/5 | TR: giymek, takmak | EN: to put clothes, shoes or jewelry on your body | ÖRNEK: Put on your coat, it's cold.
+26629 | put on | phrasal_verb | A2 | #2/5 | TR: (cihazı) açmak, çalıştırmak | EN: to make a piece of equipment start working | ÖRNEK: Can you put the light on?
+26630 | put on | phrasal_verb | A2 | #3/5 | TR: (kilo) almak | EN: to become heavier | ÖRNEK: I've put on two kilos this month.
+26631 | put on | phrasal_verb | A2 | #4/5 | TR: (gösteri) sahnelemek, düzenlemek | EN: to organize an event or performance | ÖRNEK: The school is putting on a play.
+26632 | put on | phrasal_verb | A2 | #5/5 | TR: numara yapmak, takınmak | EN: to pretend to have a particular feeling or way of speaking | ÖRNEK: She put on a brave face.
+27148 | work off | phrasal_verb | C1 | #1/1 | TR: (enerjiyi, kiloyu) atmak | EN: to get rid of something by doing physical activity | ÖRNEK: I went for a run to work off my anger.
+26426 | give out | phrasal_verb | B1 | #1/2 | TR: dağıtmak | EN: to give something to a lot of people | ÖRNEK: The teacher gave out the exam papers.
+26427 | give out | phrasal_verb | B1 | #2/2 | TR: (güç, makine) tükenmek, çalışmaz olmak | EN: to stop working because of being old or used too much | ÖRNEK: My legs gave out after ten miles.
+26428 | give up | phrasal_verb | B1 | #1/2 | TR: vazgeçmek, pes etmek | EN: to stop trying to do something | ÖRNEK: Don't give up – you're almost there!
+26429 | give up | phrasal_verb | B1 | #2/2 | TR: (alışkanlığı, işi) bırakmak | EN: to stop doing or having something that you did regularly | ÖRNEK: He gave up smoking last year.
+26541 | look after | phrasal_verb | A2 | #1/1 | TR: bakmak, ilgilenmek | EN: to take care of someone or something | ÖRNEK: Who's looking after the children?
+26550 | look into | phrasal_verb | B2 | #1/1 | TR: araştırmak, incelemek | EN: to examine the facts about a problem or situation | ÖRNEK: The police are looking into the case.
+3943 | second | noun | A1 | #1/1 | TR: saniye | EN: a unit of time equal to one sixtieth of a minute | ÖRNEK: The experiment lasted only ten seconds.
+3944 | second | verb | C1 | #1/1 | TR: desteklemek | EN: to give assistance or approval to someone or something | ÖRNEK: She will second the plan if the team agrees.
+20048 | someone | pronoun | A2 | #1/1 | TR: birisi | EN: a person who is unspecified or unknown | ÖRNEK: Someone left a message on my desk this morning.
+15227 | away | adjective | B1 | #1/2 | TR: burada olmayan, uzakta, tatilde | EN: not present; having left or being absent | ÖRNEK: He is away on a business trip this week.
+15226 | away | adjective | B1 | #2/2 | TR: deplasman | EN: relating to a game or competition that is played at the opponent's venue | ÖRNEK: The football club lost the away game last night.
+26989 | keep at | phrasal_verb | C1 | #1/1 | TR: (bir işe) azimle devam etmek | EN: to continue working hard at something | ÖRNEK: Keep at it and you'll succeed.
+26993 | keep from | phrasal_verb | B2 | #1/2 | TR: -den alıkoymak, engellemek | EN: to prevent someone from doing something | ÖRNEK: The noise kept me from sleeping.
+26994 | keep from | phrasal_verb | B2 | #2/2 | TR: (birinden) saklamak, gizlemek | EN: to not tell someone something | ÖRNEK: He kept the bad news from his parents.
+26554 | look over | phrasal_verb | B2 | #1/1 | TR: gözden geçirmek, göz atmak | EN: to examine something quickly | ÖRNEK: Can you look over my essay?
+24824 | take off | phrasal_verb | A2 | #1/2 | TR: kıyafet çıkarmak, soyunmak | EN: to remove clothing or an item of clothing | ÖRNEK: She took off her jacket because it was warm inside.
+24825 | take off | phrasal_verb | A2 | #2/2 | TR: havalanmak, kalkmak | EN: to leave the ground and begin to fly; to become airborne | ÖRNEK: The aircraft took off smoothly despite the windy conditions.
+26909 | come into | phrasal_verb | C1 | #1/2 | TR: (miras) kalmak, -e konmak | EN: to receive money or property after someone has died | ÖRNEK: She came into a lot of money when her aunt died.
+26910 | come into | phrasal_verb | C1 | #2/2 | TR: devreye girmek, rol oynamak | EN: to be involved or have an effect | ÖRNEK: Where does money come into it?
+26952 | give up on | phrasal_verb | B2 | #1/1 | TR: (birinden, bir şeyden) umudu kesmek | EN: to stop hoping that someone or something will succeed or change | ÖRNEK: Don't give up on me – I'll do better.
+26546 | look back | phrasal_verb | B1 | #1/1 | TR: (geçmişe) dönüp bakmak, hatırlamak | EN: to think about something that happened in the past | ÖRNEK: Looking back, I should have studied harder.
+15231 | lot | noun | A1 | #1/2 | TR: çok, büyük miktar | EN: a great amount or number of something | ÖRNEK: There are a lot of students waiting outside the lecture hall.
+15232 | lot | noun | A1 | #2/2 | TR: arsa, parsel | EN: a piece of land, especially a large one | ÖRNEK: The family purchased a lot on the hillside to build their new home.
+27149 | work through | phrasal_verb | C1 | #1/1 | TR: (bir sorunu) adım adım çözmek, üstesinden gelmek | EN: to deal with a problem or emotion until it is solved | ÖRNEK: We need to work through these issues together.
+26283 | come over | phrasal_verb | B1 | #1/1 | TR: (birinin evine) gelmek, uğramak | EN: to visit someone at their home | ÖRNEK: Why don't you come over for dinner?
+26319 | do without | phrasal_verb | B2 | #1/1 | TR: -siz idare etmek | EN: to manage without something | ÖRNEK: I can't do without my morning coffee.
+26336 | end up | phrasal_verb | B1 | #1/1 | TR: sonunda bir yere ya da duruma düşmek, sonunda (bir şey) yapmak | EN: to finally be in a particular place or situation, usually without planning it | ÖRNEK: We got lost and ended up in a small village.
+26352 | feel like | phrasal_verb | B1 | #1/1 | TR: canı istemek | EN: to want to have or do something | ÖRNEK: I feel like a cup of tea.
+18909 | real | noun | B2 | #1/1 | TR: gerçeklik | EN: the state or quality of being real; what actually exists or happens | ÖRNEK: The real can be uncomfortable, but it is necessary to acknowledge it.
+26685 | show up | phrasal_verb | B1 | #1/3 | TR: gelmek, ortaya çıkmak | EN: to arrive somewhere, especially when people are expecting you | ÖRNEK: He didn't show up for the meeting.
+26686 | show up | phrasal_verb | B1 | #2/3 | TR: görünmek, belli olmak | EN: to be easy to see | ÖRNEK: The marks show up clearly in the photo.
+26687 | show up | phrasal_verb | B1 | #3/3 | TR: rezil etmek, mahcup etmek | EN: to embarrass someone by behaving badly in front of others | ÖRNEK: You showed me up in front of my friends!
+26740 | take down | phrasal_verb | B1 | #1/2 | TR: (yazıyla) not etmek, yazmak | EN: to write down information | ÖRNEK: The police officer took down my details.
+26741 | take down | phrasal_verb | B1 | #2/2 | TR: (asılı şeyi) indirmek, sökmek | EN: to remove something from a high place or take it apart | ÖRNEK: We took down the Christmas decorations.
+21477 | come back | phrasal_verb | A2 | #1/1 | TR: geri dönmek, tekrar ortaya çıkmak | EN: to return to a place or condition after being away or absent | ÖRNEK: She will come back tomorrow after the conference.
+26505 | keep up | phrasal_verb | B1 | #1/3 | TR: (birine) ayak uydurmak, yetişmek | EN: to move or do something at the same speed as someone else | ÖRNEK: Slow down, I can't keep up!
+26506 | keep up | phrasal_verb | B1 | #2/3 | TR: sürdürmek, devam ettirmek | EN: to continue doing something or make something continue at the same level | ÖRNEK: Keep up the good work!
+26507 | keep up | phrasal_verb | B1 | #3/3 | TR: (gelişmeleri) takip etmek | EN: to know about the most recent news or developments | ÖRNEK: I try to keep up with the news.
+26525 | let in | phrasal_verb | B1 | #1/1 | TR: içeri almak, içeri bırakmak | EN: to allow someone or something to enter | ÖRNEK: Open the door and let the dog in.
+27010 | look back on | phrasal_verb | B2 | #1/1 | TR: (geçmişe) dönüp bakmak, hatırlamak | EN: to think about something that happened in the past | ÖRNEK: I look back on my school days with happiness.
+27033 | play on | phrasal_verb | C1 | #1/1 | TR: (korkuyu, zaafı) istismar etmek, kullanmak | EN: to use someone's feelings or weaknesses to get what you want | ÖRNEK: The ads play on people's fears.
+26640 | put up | phrasal_verb | B1 | #1/3 | TR: (yukarı) asmak, dikmek, kurmak | EN: to put something on a wall or build something | ÖRNEK: We put up some pictures in the living room.
+26641 | put up | phrasal_verb | B1 | #2/3 | TR: (fiyatı) artırmak | EN: to increase the price or amount of something | ÖRNEK: The shop has put up its prices.
+26642 | put up | phrasal_verb | B1 | #3/3 | TR: (birini evinde) misafir etmek | EN: to let someone stay in your home for a short time | ÖRNEK: Can you put me up for the night?
+14586 | set | adjective | B2 | #1/1 | TR: sabit, hazır | EN: fixed or arranged in a particular position or condition | ÖRNEK: The teacher gave us a set list of vocabulary words to study.
+19993 | team up | phrasal_verb | B1 | #1/1 | TR: birlikte çalışmak, iş birliği yapmak | EN: to join forces with one or more people in order to achieve a common goal | ÖRNEK: The two scientists decided to team up to study the rare disease.
+12866 | done | adjective | B1 | #1/1 | TR: tamamlanmış, bitmiş | EN: having been performed or completed; no longer needing further action | ÖRNEK: He finished the report and marked it as done.
+26960 | go around | phrasal_verb | B2 | #1/2 | TR: (hastalık, haber) yayılmak, dolaşmak | EN: to spread from one person to another | ÖRNEK: There's a virus going around.
+26961 | go around | phrasal_verb | B2 | #2/2 | TR: herkese yetmek | EN: to be enough for everyone | ÖRNEK: There aren't enough books to go around.
+26504 | keep out | phrasal_verb | B1 | #1/1 | TR: içeri girmemek, içeri sokmamak | EN: to not enter a place, or to prevent someone from entering | ÖRNEK: The sign said "Danger – keep out".
+27002 | let on | phrasal_verb | C1 | #1/1 | TR: (sırrı) belli etmek, söylemek | EN: to tell someone a secret | ÖRNEK: Don't let on that I told you.
+26633 | put out | phrasal_verb | B1 | #1/3 | TR: (ateşi) söndürmek | EN: to make a fire or cigarette stop burning | ÖRNEK: Firefighters put out the fire quickly.
+26634 | put out | phrasal_verb | B1 | #2/3 | TR: zahmet vermek, rahatsız etmek | EN: to cause someone extra work or trouble | ÖRNEK: I don't want to put you out.
+26635 | put out | phrasal_verb | B1 | #3/3 | TR: (bildiri) yayımlamak | EN: to produce information and make it available | ÖRNEK: The police put out a description of the man.
+27053 | put up to | phrasal_verb | C1 | #1/1 | TR: (birini kötü bir şeye) kışkırtmak, doldurmak | EN: to encourage someone to do something wrong or silly | ÖRNEK: Who put you up to this?
+26862 | set in | phrasal_verb | C1 | #1/1 | TR: (kötü bir şey) başlamak ve sürmek | EN: to begin and seem likely to continue (something unpleasant) | ÖRNEK: Winter seems to have set in early.
+15246 | group | verb | B1 | #1/1 | TR: gruplamak | EN: to arrange or classify items into groups | ÖRNEK: The coach will group the players into two teams for practice.
+27234 | each other | pronoun | A2 | #1/1 | TR: birbirini, birbirine | EN: used to show that each person in a group does something to the others | ÖRNEK: They love each other.
+26643 | put up with | phrasal_verb | B2 | #1/1 | TR: katlanmak, tahammül etmek | EN: to accept unpleasant behavior or a situation without complaining | ÖRNEK: I can't put up with this noise any longer.
+26242 | care for | phrasal_verb | B2 | #1/2 | TR: bakmak, ilgilenmek | EN: to look after someone who is ill, old or very young | ÖRNEK: She cares for her elderly mother.
+26243 | care for | phrasal_verb | B2 | #2/2 | TR: (olumsuz/soru) hoşlanmak, istemek | EN: to like or want something (formal) | ÖRNEK: I don't really care for jazz.
+15264 | case | verb | B2 | #1/1 | TR: keşif yapmak, gözetlemek, kolaçan etmek | EN: to examine or investigate something, especially a place, in order to gather information | ÖRNEK: Before the heist, the crew cased the museum for security weaknesses.
+26276 | come off | phrasal_verb | B2 | #1/2 | TR: çıkmak, kopmak | EN: to become separated from something | ÖRNEK: A button has come off my coat.
+26277 | come off | phrasal_verb | B2 | #2/2 | TR: başarılı olmak, gerçekleşmek | EN: to succeed or happen as planned | ÖRNEK: The plan didn't come off.
+26965 | go under | phrasal_verb | C1 | #1/2 | TR: batmak, iflas etmek | EN: to fail financially | ÖRNEK: Many small businesses went under during the crisis.
+26966 | go under | phrasal_verb | C1 | #2/2 | TR: (su altına) batmak | EN: to sink below the surface of water | ÖRNEK: The ship went under in minutes.
+15278 | enough | adjective | A1 | #1/1 | TR: yeterli | EN: having as much as is needed; adequate in quantity or degree. | ÖRNEK: He didn't have enough money to buy the textbook.

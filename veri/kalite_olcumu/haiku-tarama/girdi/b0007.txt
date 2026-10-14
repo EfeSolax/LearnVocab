@@ -1,0 +1,100 @@
+27064 | run up against | phrasal_verb | C1 | #1/1 | TR: (bir engelle) karşılaşmak | EN: to have to deal with an unexpected difficulty | ÖRNEK: The plan ran up against strong opposition.
+26784 | turn back | phrasal_verb | B1 | #1/1 | TR: geri dönmek | EN: to return the way you came | ÖRNEK: It got dark, so we turned back.
+26487 | hear of | phrasal_verb | B1 | #1/1 | TR: (birini, bir şeyi) duymuş olmak | EN: to know about someone or something | ÖRNEK: I've never heard of him.
+20069 | space | verb | B2 | #1/1 | TR: aralıklı hâle getirmek, boşluk bırakmak | EN: to arrange or place objects with gaps between them; to give room or distance to something or someone | ÖRNEK: The instructor told us to space the desks before the test.
+27402 | talk show | noun | B1 | #1/1 | TR: sohbet programı | EN: a TV or radio show in which famous people are interviewed | ÖRNEK: She was a guest on a talk show.
+26790 | turn off | phrasal_verb | A2 | #1/2 | TR: (cihazı, ışığı) kapatmak | EN: to stop a machine, light or supply of water by pressing a switch or turning a handle | ÖRNEK: Turn off the lights when you leave.
+26791 | turn off | phrasal_verb | A2 | #2/2 | TR: (yoldan) sapmak | EN: to leave a road and go onto another one | ÖRNEK: Turn off at the next exit.
+26256 | clear out | phrasal_verb | B2 | #1/1 | TR: boşaltıp toplamak, ayıklamak | EN: to tidy a place by removing things you do not want | ÖRNEK: I need to clear out my wardrobe.
+26257 | clear up | phrasal_verb | B1 | #1/4 | TR: toplamak, ortalığı derlemek | EN: to make a place tidy | ÖRNEK: Clear up your room before you go out.
+26258 | clear up | phrasal_verb | B1 | #2/4 | TR: (hava) açılmak | EN: to become brighter (weather) | ÖRNEK: I hope it clears up before the picnic.
+26259 | clear up | phrasal_verb | B1 | #3/4 | TR: (sorunu, yanlış anlamayı) çözmek, gidermek | EN: to solve a problem or explain something | ÖRNEK: Let's clear up this misunderstanding.
+26260 | clear up | phrasal_verb | B1 | #4/4 | TR: (hastalık) geçmek, iyileşmek | EN: to get better (an illness or infection) | ÖRNEK: The rash cleared up after a few days.
+15765 | shot | adjective | B2 | #1/1 | TR: tamamen bitmiş, yorgun, tükenmiş | EN: describing someone who is exhausted, depleted, or has no chance left | ÖRNEK: She stayed up all night and now feels completely shot.
+15772 | site | verb | B2 | #1/1 | TR: yerleştirmek, konumlandırmak | EN: to place something in a particular location or to assign a specific place for something | ÖRNEK: The team will site the temporary shelters near the floodplain for quick access.
+26305 | cut out | phrasal_verb | B2 | #1/3 | TR: kesip çıkarmak | EN: to remove something by cutting | ÖRNEK: She cut out a picture from the magazine.
+26306 | cut out | phrasal_verb | B2 | #2/3 | TR: (yemekten) çıkarmak, bırakmak | EN: to stop eating or doing something | ÖRNEK: I've cut out sugar completely.
+26307 | cut out | phrasal_verb | B2 | #3/3 | TR: (motor) durmak, stop etmek | EN: to suddenly stop working (an engine) | ÖRNEK: The engine cut out on the highway.
+26308 | cut up | phrasal_verb | B1 | #1/1 | TR: doğramak, parçalara bölmek | EN: to cut something into small pieces | ÖRNEK: Cut up the meat for the children.
+26368 | get across | phrasal_verb | C1 | #1/1 | TR: anlatmak, (fikrini) iletmek | EN: to make people understand something | ÖRNEK: He found it hard to get his ideas across.
+26486 | hear from | phrasal_verb | A2 | #1/1 | TR: (birinden) haber almak | EN: to receive a letter, phone call or message from someone | ÖRNEK: Have you heard from your brother lately?
+26785 | turn down | phrasal_verb | B1 | #1/2 | TR: (teklifi) reddetmek, geri çevirmek | EN: to refuse an offer or request | ÖRNEK: She turned down the job offer.
+26786 | turn down | phrasal_verb | B1 | #2/2 | TR: (sesi, ısıyı) kısmak | EN: to reduce the level of sound or heat | ÖRNEK: Can you turn down the music?
+26177 | account for | phrasal_verb | B2 | #1/2 | TR: açıklamak, gerekçesini vermek | EN: to give an explanation for something | ÖRNEK: How do you account for the drop in sales?
+26178 | account for | phrasal_verb | B2 | #2/2 | TR: (bir oranı) oluşturmak | EN: to form a particular amount or part of something | ÖRNEK: Students account for half of the city's population.
+26891 | ask around | phrasal_verb | B2 | #1/1 | TR: (birkaç kişiye) sorup soruşturmak | EN: to ask several people for information or help | ÖRNEK: I'll ask around and see if anyone has a spare bike.
+26832 | bring back | phrasal_verb | A2 | #1/3 | TR: geri getirmek | EN: to return with something, or to return something | ÖRNEK: Can you bring back some bread?
+26833 | bring back | phrasal_verb | A2 | #2/3 | TR: (anıları) canlandırmak, hatırlatmak | EN: to make you remember something | ÖRNEK: This photo brings back happy memories.
+26834 | bring back | phrasal_verb | A2 | #3/3 | TR: yeniden getirmek, yeniden uygulamaya koymak | EN: to start doing or using something again | ÖRNEK: The school brought back uniforms.
+15824 | club | verb | B1 | #1/1 | TR: coplamak, sopayla vurmak, sopayla dövmek | EN: to strike someone or something with a heavy stick or weapon | ÖRNEK: The guard clubbed the intruder with his baton.
+4201 | common | noun | B2 | #1/2 | TR: ortak şey, ortak nokta | EN: a characteristic, feature, or element that is shared by two or more people or things | ÖRNEK: The two students discovered many hobbies in common during orientation.
+4202 | common | noun | B2 | #2/2 | TR: mera, ortak arazi | EN: land or a piece of land that is owned collectively by a community and used by its members | ÖRNEK: The ancient charter granted villagers rights to the common for grazing.
+26978 | hear out | phrasal_verb | C1 | #1/1 | TR: (sözünü) sonuna kadar dinlemek | EN: to listen to someone until they have finished saying what they want to say | ÖRNEK: Please hear me out before you decide.
+13119 | lead | noun | B2 | #1/2 | TR: liderlik, öncülük | EN: the position of being in charge or at the front of a group, activity, or competition | ÖRNEK: The professor took the lead in organizing the conference.
+13118 | lead | noun | B2 | #2/2 | TR: kurşun | EN: a heavy, soft, bluish-gray metal with the chemical symbol Pb | ÖRNEK: The museum displayed a lead statue from the 19th century.
+6341 | perfect | noun | B2 | #1/1 | TR: tamamlanmış zaman | EN: a verb form that expresses a completed action or state relative to a point in time | ÖRNEK: The present perfect is used to link past actions to the present.
+6342 | perfect | verb | B2 | #1/1 | TR: tamamlamak, kusursuz hâle getirmek | EN: to make something completely free from faults or defects; to bring to a state of completeness | ÖRNEK: She wants to perfect her English pronunciation before the exam.
+5313 | center | verb | B1 | #1/1 | TR: ortaya yerleştirmek, merkeze almak | EN: to place something in the middle of something else or to make it the focal point of attention | ÖRNEK: She centered the photograph before sending it to the printer.
+15849 | couple | verb | B1 | #1/1 | TR: eşleştirmek, birleştirmek | EN: to join two items or people together so that they form a pair or work as a unit | ÖRNEK: The technician will couple the two wires before the test.
+26573 | miss out | phrasal_verb | B2 | #1/2 | TR: (fırsatı) kaçırmak | EN: to lose an opportunity to do or have something good | ÖRNEK: Don't miss out on this great offer.
+26574 | miss out | phrasal_verb | B2 | #2/2 | TR: atlamak, dahil etmemek | EN: to not include someone or something | ÖRNEK: You've missed out an important point.
+9592 | private | noun | B2 | #1/1 | TR: er | EN: the lowest enlisted rank in many armed forces, typically a soldier with limited authority | ÖRNEK: The private marched in step with his squad during the parade.
+26780 | turn around | phrasal_verb | B1 | #1/2 | TR: dönmek, arkasını dönmek | EN: to move your body so that you are facing the opposite direction | ÖRNEK: She turned around and smiled at me.
+26781 | turn around | phrasal_verb | B1 | #2/2 | TR: (kötü durumu) düzeltmek, iyileştirmek | EN: to make a business or situation successful after it was failing | ÖRNEK: The new manager turned the company around.
+26214 | break in | phrasal_verb | B1 | #1/2 | TR: (bir yere) zorla girmek | EN: to enter a building illegally, usually by breaking a door or window | ÖRNEK: Someone broke in while we were on holiday.
+26215 | break in | phrasal_verb | B1 | #2/2 | TR: sözünü kesmek, araya girmek | EN: to interrupt when someone else is speaking | ÖRNEK: "That's not true!" she broke in.
+26835 | bring down | phrasal_verb | B2 | #1/2 | TR: düşürmek, azaltmak | EN: to reduce the level of something | ÖRNEK: The government wants to bring down prices.
+26836 | bring down | phrasal_verb | B2 | #2/2 | TR: (hükümeti) devirmek | EN: to make a government or leader lose power | ÖRNEK: The scandal brought down the government.
+26300 | cut back | phrasal_verb | B2 | #1/1 | TR: kısmak, azaltmak | EN: to reduce the amount of something, especially money spent | ÖRNEK: We need to cut back on spending.
+26492 | hold on | phrasal_verb | B1 | #1/2 | TR: biraz beklemek | EN: to wait for a short time | ÖRNEK: Hold on, I'll get my coat.
+26493 | hold on | phrasal_verb | B1 | #2/2 | TR: sıkıca tutunmak | EN: to hold something firmly | ÖRNEK: Hold on tight!
+26986 | hold on to | phrasal_verb | B2 | #1/1 | TR: sıkıca tutmak; elinde tutmak, korumak | EN: to hold something tightly, or to keep something | ÖRNEK: Hold on to my hand.
+1812 | needed | adjective | B1 | #1/1 | TR: gerekli, zorunlu | EN: required or essential in order to achieve a particular purpose or result | ÖRNEK: The team realized that extra help was needed for the experiment.
+27031 | play along | phrasal_verb | C1 | #1/1 | TR: (oyununa) ayak uydurmak, öyleymiş gibi yapmak | EN: to pretend to agree with someone or do what they want | ÖRNEK: I knew it was a joke, but I played along.
+27309 | sorry | exclamation | A1 | #1/2 | TR: özür dilerim, pardon | EN: used to apologize | ÖRNEK: Sorry, I'm late.
+27310 | sorry | exclamation | A1 | #2/2 | TR: efendim?, pardon? (duyamadığında) | EN: used to ask someone to repeat something | ÖRNEK: Sorry? What did you say?
+26851 | fight back | phrasal_verb | B2 | #1/2 | TR: karşılık vermek, direnmek | EN: to defend yourself when someone attacks or criticizes you | ÖRNEK: When he hit her, she fought back.
+26852 | fight back | phrasal_verb | B2 | #2/2 | TR: (duygusunu) zor tutmak | EN: to try hard not to show an emotion | ÖRNEK: She fought back her tears.
+27001 | lead up to | phrasal_verb | B2 | #1/1 | TR: -e kadar gelen (dönem), -e zemin hazırlamak | EN: to happen in the period before an event | ÖRNEK: In the weeks leading up to the exam, I studied every day.
+13618 | added | adjective | B2 | #1/1 | TR: ekstra, ilave | EN: existing in addition to what is already present; extra | ÖRNEK: The salad includes added cheese for extra flavor.
+15922 | bank | verb | B1 | #1/2 | TR: para yatırmak, mevduat yapmak | EN: to place money into a financial institution for safekeeping or future use | ÖRNEK: He banks his salary at the end of each month.
+15923 | bank | verb | B1 | #2/2 | TR: güvenmek, dayanmak | EN: to rely on or count on something or someone for support or certainty | ÖRNEK: You can bank on his honesty in any situation.
+21350 | break up | phrasal_verb | B1 | #1/2 | TR: ayrılmak, ilişkiyi sonlandırmak | EN: to end a romantic or other close relationship | ÖRNEK: She broke up with him because they had different goals.
+21351 | break up | phrasal_verb | B1 | #2/2 | TR: parçalanmak, kırılmak | EN: to separate into pieces or cause something to separate into pieces | ÖRNEK: The ice began to break up as the sun warmed the lake.
+26010 | cut off | phrasal_verb | B1 | #1/1 | TR: kesmek, bağını koparmak, izole etmek | EN: to stop the supply or connection of something, or to separate someone or something from a larger group or network | ÖRNEK: The water company cut off the supply because of a leak.
+26309 | date back | phrasal_verb | B2 | #1/1 | TR: (tarihi) -e dayanmak, -den kalma olmak | EN: to have existed since a particular time in the past | ÖRNEK: The castle dates back to the 12th century.
+26983 | hold out | phrasal_verb | B2 | #1/3 | TR: (elini) uzatmak | EN: to put your hand or an object forward | ÖRNEK: She held out her hand.
+26984 | hold out | phrasal_verb | B2 | #2/3 | TR: dayanmak, direnmek | EN: to continue to defend yourself or to refuse to give in | ÖRNEK: The town held out for three months.
+26985 | hold out | phrasal_verb | B2 | #3/3 | TR: (umudu) korumak | EN: to have hope | ÖRNEK: I don't hold out much hope of finding it.
+26494 | hold up | phrasal_verb | B1 | #1/3 | TR: geciktirmek, oyalamak | EN: to make someone or something late | ÖRNEK: Sorry I'm late – I was held up in traffic.
+26495 | hold up | phrasal_verb | B1 | #2/3 | TR: (silahla) soymak | EN: to rob a person or place using a weapon | ÖRNEK: Two men held up the bank.
+26496 | hold up | phrasal_verb | B1 | #3/3 | TR: (yukarı) kaldırmak, tutmak | EN: to raise something or support something | ÖRNEK: She held up her hand.
+15340 | tried | adjective | B2 | #1/1 | TR: denenmiş, sınanmış | EN: having been tested or proven reliable through experience | ÖRNEK: Many students rely on tried textbooks for exam preparation.
+27134 | turn against | phrasal_verb | C1 | #1/1 | TR: -e karşı dönmek, cephe almak | EN: to start to dislike or oppose someone you liked before | ÖRNEK: His friends turned against him.
+25970 | break out | phrasal_verb | B1 | #1/1 | TR: aniden ortaya çıkmak, patlak vermek | EN: to start suddenly, especially a fire, war, disease, or conflict | ÖRNEK: A small fire broke out in the kitchen last night.
+7797 | cool | noun | B1 | #1/1 | TR: soğukkanlılık, serinlik | EN: the quality of being moderately cold or emotionally composed | ÖRNEK: The cool of the early morning made the run pleasant.
+26301 | cut down | phrasal_verb | B1 | #1/2 | TR: (ağaç) kesmek | EN: to make a tree fall by cutting it | ÖRNEK: They cut down the old tree in the garden.
+26302 | cut down | phrasal_verb | B1 | #2/2 | TR: azaltmak | EN: to do or use less of something | ÖRNEK: I'm trying to cut down on sugar.
+26920 | cut through | phrasal_verb | C1 | #1/2 | TR: (zorluğu, bürokrasiyi) aşmak, kestirip atmak | EN: to quickly deal with something that is causing problems | ÖRNEK: We need to cut through the paperwork.
+26921 | cut through | phrasal_verb | C1 | #2/2 | TR: -in içinden geçmek (kestirme yoldan) | EN: to go through a place, especially as a shorter way | ÖRNEK: We cut through the park to get home.
+26941 | fight off | phrasal_verb | B2 | #1/1 | TR: (saldırganı, hastalığı) püskürtmek, atlatmak | EN: to stop someone or something from attacking you, or to get rid of an illness | ÖRNEK: She managed to fight off her attacker.
+15181 | giving | noun | B2 | #1/1 | TR: verme, bağışlama, cömertlik | EN: the act of giving something to someone; generosity | ÖRNEK: She enjoys the giving of small gifts to her friends.
+15966 | ground | verb | B1 | #1/3 | TR: uçuşunu engellemek, kısıtlamak | EN: to prohibit an aircraft, vehicle, or person from moving or flying, usually for safety or disciplinary reasons | ÖRNEK: The storm forced the airport to ground the flight for safety.
+15967 | ground | verb | B1 | #2/3 | TR: topraklamak, elektrik devresini toprağa bağlamak | EN: to connect an electrical circuit or device to the earth so that excess electricity can flow safely away | ÖRNEK: Before repairing the laptop, the technician grounded the circuit to avoid shocks.
+15968 | ground | verb | B1 | #3/3 | TR: temellendirmek, dayandırmak | EN: to base an argument, theory, or action on a particular fact or principle | ÖRNEK: The professor grounded his lecture on classic literary theory.
+27039 | press on | phrasal_verb | C1 | #1/1 | TR: (zorluğa rağmen) devam etmek | EN: to continue doing something in a determined way | ÖRNEK: Despite the rain, we pressed on.
+15962 | source | verb | B2 | #1/1 | TR: kaynağından temin etmek, sağlamak | EN: to obtain or procure something from a particular source | ÖRNEK: The factory sources steel from nearby mills.
+27099 | stay away | phrasal_verb | B2 | #1/1 | TR: uzak durmak, gelmemek | EN: to not go somewhere or near someone | ÖRNEK: Stay away from my sister!
+26263 | come across | phrasal_verb | B1 | #1/2 | TR: rastlamak, tesadüfen bulmak | EN: to meet someone or find something by chance | ÖRNEK: I came across an old photo of my parents.
+26264 | come across | phrasal_verb | B1 | #2/2 | TR: izlenim bırakmak, görünmek | EN: to seem to have a particular quality | ÖRNEK: He comes across as very confident.
+26849 | cut down on | phrasal_verb | B2 | #1/1 | TR: (bir şeyi) azaltmak | EN: to eat, drink or use less of something | ÖRNEK: I'm trying to cut down on coffee.
+2466 | evidence | verb | B2 | #1/1 | TR: kanıtlamak, gösterge olmak | EN: to provide evidence for something; to show or indicate that something is true or exists | ÖRNEK: The report evidences the increase in greenhouse gases.
+16014 | round | verb | B1 | #1/2 | TR: dönmek, çevirmek | EN: to move in a circular direction or to cause something to move in a circular direction | ÖRNEK: The car will round the bend at about sixty miles per hour.
+16015 | round | verb | B1 | #2/2 | TR: yuvarlamak, şekillendirmek | EN: to make something have a circular shape or to smooth out edges | ÖRNEK: She used a file to round the sharp corners of the metal sheet.
+10105 | save | noun | B2 | #1/1 | TR: kurtarış | EN: a defensive action in sports, especially in soccer or ice hockey, that prevents the opposing team from scoring | ÖRNEK: The goalie made a spectacular save that thrilled the crowd.
+27094 | stand in | phrasal_verb | B2 | #1/1 | TR: (birinin) yerine geçmek, vekâlet etmek | EN: to do someone's job for a short time | ÖRNEK: Can you stand in for me tomorrow?
+26782 | turn away | phrasal_verb | B2 | #1/2 | TR: geri çevirmek, içeri almamak | EN: to not allow someone to enter a place | ÖRNEK: Hundreds of fans were turned away at the gate.
+26783 | turn away | phrasal_verb | B2 | #2/2 | TR: (yüzünü) başka yöne çevirmek | EN: to move your face so that you are not looking at something | ÖRNEK: She turned away in disgust.
+15995 | whatever | conjunction | B2 | #1/1 | TR: her ne, ne ...-se, her ne ...-se | EN: to refer to anything that is the case, regardless of what it is | ÖRNEK: Whatever the weather, the ceremony will be held outdoors.
+26216 | break into | phrasal_verb | B2 | #1/2 | TR: zorla girmek, soymak | EN: to enter a building or car illegally | ÖRNEK: Someone broke into my car last night.
+26217 | break into | phrasal_verb | B2 | #2/2 | TR: aniden başlamak (koşmaya, gülmeye vb.) | EN: to suddenly start doing something | ÖRNEK: The audience broke into applause.

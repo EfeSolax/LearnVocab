@@ -1,0 +1,100 @@
+926 | hide | noun | B1 | #1/1 | TR: deri, hayvan derisi | EN: the skin of an animal, especially when used as a material | ÖRNEK: The hunter cleaned the deer and kept its hide for later use.
+16491 | linked | adjective | B2 | #1/1 | TR: bağlantılı, ilişkilendirilmiş | EN: connected or associated with something else, often forming a relationship or chain. | ÖRNEK: The two villages are linked by a narrow bridge.
+26572 | mess around | phrasal_verb | B2 | #1/1 | TR: vakit öldürmek, ciddiye almamak, aptalca davranmak | EN: to behave in a silly way or waste time | ÖRNEK: Stop messing around and do your homework.
+1453 | sight | verb | B1 | #1/1 | TR: görmek, gözlemlemek | EN: to see or notice something; to aim a weapon at a target | ÖRNEK: The hiker sighted a rare bird on the trail.
+3211 | wet | verb | A2 | #1/1 | TR: ıslatmak | EN: to make something moist or covered with liquid | ÖRNEK: She wet the towel before cleaning the window.
+9092 | bike | verb | A2 | #1/1 | TR: bisiklet sürmek | EN: to ride a bicycle or to travel by bicycle | ÖRNEK: She bikes to school every day because the campus is close.
+9255 | drawn | adjective | B2 | #1/1 | TR: yorgun, solgun | EN: appearing thin and tired, often because of stress or lack of sleep | ÖRNEK: She felt drawn after staying up all night for the exam.
+2513 | invited | adjective | B1 | #1/1 | TR: davetli | EN: having been asked to attend or take part in an event or activity | ÖRNEK: The invited participants signed the registration form before the workshop.
+15244 | letting | noun | B2 | #1/1 | TR: kiralama, kiraya verme | EN: the act of renting out a property or granting the use of something to another party | ÖRNEK: The letting of the office space was completed last week.
+19028 | marine | noun | B2 | #1/1 | TR: deniz piyadesi | EN: a member of a naval force trained for operations at sea and on land | ÖRNEK: The marine boarded the ship early in the morning.
+19623 | officially | adverb | B2 | #1/1 | TR: resmi olarak | EN: in a manner that is authorized, recognized, or declared by an official authority | ÖRNEK: The school officially opened its new library on Monday.
+3315 | peak | adjective | B2 | #1/1 | TR: en yüksek, doruk | EN: of the greatest height, amount, or intensity; representing the highest point or level. | ÖRNEK: During the exam, she felt her concentration at peak level.
+3317 | peak | verb | B2 | #1/1 | TR: zirveye ulaşmak | EN: to reach the highest point or level | ÖRNEK: The athlete peaked at the championship and won gold.
+4198 | portion | verb | B2 | #1/1 | TR: bölmek, paylaştırmak | EN: to divide or allocate something into parts or shares | ÖRNEK: During the picnic, we portioned the sandwiches so everyone got a fair share.
+3947 | secondary | noun | B1 | #1/1 | TR: lise, ortaöğretim okulu | EN: an educational institution that provides secondary education, typically for students aged 12-18 | ÖRNEK: After primary, children must start secondary by the age of twelve.
+1684 | suffering | adjective | B2 | #1/1 | TR: acı çeken, ıstırap içinde olan | EN: experiencing pain, distress, or hardship; undergoing suffering | ÖRNEK: The suffering animal was rescued by the volunteers.
+27126 | tip off | phrasal_verb | C1 | #1/1 | TR: (gizlice) haber vermek, ihbar etmek | EN: to warn someone secretly about something that will happen | ÖRNEK: Someone tipped off the police.
+1044 | unknown | noun | B2 | #1/1 | TR: bilinmeyen şey | EN: something that is not known or identified | ÖRNEK: The unknown can be frightening for many people.
+18762 | attached | adjective | B1 | #1/2 | TR: ekli, iliştirilmiş | EN: connected or added to something, especially a document or object | ÖRNEK: I sent you an email with the attached file.
+18763 | attached | adjective | B1 | #2/2 | TR: bağlı, düşkün | EN: having an emotional or psychological dependence on someone or something | ÖRNEK: The child is still attached to his mother and cries when she leaves.
+471 | blind | verb | B2 | #1/1 | TR: kör etmek, gözünü kamaştırmak | EN: to cause someone to lose sight or to be unable to see | ÖRNEK: A sudden flash can blind a person instantly.
+4043 | brief | noun | B1 | #1/2 | TR: kısa özet, talimat | EN: a short written summary or set of instructions, often used in work or military contexts | ÖRNEK: The professor gave us a brief of the exam topics yesterday.
+4045 | brief | verb | B2 | #1/1 | TR: bilgilendirmek, özetlemek | EN: to give someone a short summary or essential information about something | ÖRNEK: The supervisor will brief the interns tomorrow morning.
+4044 | brief | noun | B1 | #2/2 | TR: hukuki dilekçe, dava dosyası | EN: a written document presented to a court that sets out the arguments and legal authorities supporting one side of a case | ÖRNEK: The senior lawyer asked the junior associate to write a brief for the upcoming hearing.
+26225 | burn out | phrasal_verb | B2 | #1/1 | TR: tükenmek (aşırı çalışmaktan) | EN: to become very tired or ill because of working too hard | ÖRNEK: If you work like this, you'll burn out.
+26241 | calm down | phrasal_verb | A2 | #1/1 | TR: sakinleşmek, sakinleştirmek | EN: to become quiet and relaxed after being angry or excited, or to make someone do this | ÖRNEK: Calm down and tell me what happened.
+2199 | grab | noun | B1 | #1/1 | TR: kavrama, yakalama | EN: an act of seizing something quickly or forcibly | ÖRNEK: She made a grab for the ball.
+1907 | pilot | verb | B1 | #1/2 | TR: bir uçağı/araç sürmek | EN: to operate or steer an aircraft or other vehicle | ÖRNEK: The young woman will pilot the small aircraft tomorrow.
+1908 | pilot | verb | B1 | #2/2 | TR: bir projeyi deneme amaçlı yürütmek | EN: to run a trial or test version of a project, program, or system | ÖRNEK: The company decided to pilot the new marketing strategy this quarter.
+17920 | registered | adjective | B2 | #1/1 | TR: kayıtlı, resmi olarak kaydedilmiş | EN: entered or recorded officially in a list, database, or official document | ÖRNEK: The car is a registered vehicle and must pass yearly inspections.
+17072 | rising | adjective | B2 | #1/1 | TR: artan, yükselen | EN: describing something that is increasing in amount, level, or intensity. | ÖRNEK: The rising temperature made the day feel uncomfortable.
+4959 | steam | verb | B1 | #1/2 | TR: buhar çıkarmak, buhar üretmek | EN: to cause water to turn into vapor or to emit vapor | ÖRNEK: The iron steams when you press the button.
+4960 | steam | verb | B1 | #2/2 | TR: buharda pişirmek | EN: to cook food by exposing it to steam | ÖRNEK: I steam the broccoli every evening for dinner.
+26185 | aim at | phrasal_verb | B2 | #1/1 | TR: hedeflemek, amaçlamak | EN: to intend something to reach or affect a particular person or result | ÖRNEK: The course is aimed at beginners.
+26224 | burn down | phrasal_verb | B1 | #1/1 | TR: yanıp kül olmak, yakıp yıkmak | EN: to destroy a building by fire, or to be destroyed by fire | ÖRNEK: The old school burned down last year.
+2305 | cap | verb | B2 | #1/1 | TR: sınırlamak, üst sınır koymak | EN: to set an upper limit or maximum on something | ÖRNEK: The school will cap the number of students in each class.
+8043 | entitled | adjective | B2 | #1/2 | TR: hak sahibi, hakkı olan | EN: having a right or claim to something; given a title or name | ÖRNEK: All citizens are entitled to basic healthcare services.
+8044 | entitled | adjective | B2 | #2/2 | TR: kendini ayrıcalıklı gören, şımarık | EN: having an attitude that one deserves special treatment or privileges without merit | ÖRNEK: The manager's entitled behavior annoyed the staff.
+3528 | exact | verb | C1 | #1/1 | TR: talep etmek, zorlamak | EN: to demand and obtain something, especially a payment or punishment, from someone | ÖRNEK: The landlord exacted a higher rent after the renovation.
+18647 | exposed | adjective | B1 | #1/1 | TR: korunmasız, savunmasız | EN: being in a state where one is open to danger, attack, or criticism | ÖRNEK: The hikers' exposed faces were bruised by the cold wind.
+1150 | nose | verb | B2 | #1/1 | TR: burnunu sokmak | EN: to intrude into something or to pry into someone's affairs, often by asking personal questions | ÖRNEK: She always noses into my conversations, even when I'm busy.
+1870 | suspect | adjective | B2 | #1/1 | TR: şüpheli, kuşkulu | EN: regarded as possibly false, unreliable, or dishonest | ÖRNEK: The teacher found the student's answer suspect because it did not match the textbook.
+27452 | theme park | noun | A2 | #1/1 | TR: tema parkı, lunapark | EN: a large park with rides and games based on a particular theme | ÖRNEK: The kids loved the theme park.
+8911 | trend | verb | B2 | #1/1 | TR: gündem olmak, popülerleşmek | EN: to become popular or fashionable, especially on social media or in public discourse | ÖRNEK: The hashtag quickly began to trend on Twitter after the announcement.
+520 | burning | adjective | A2 | #1/2 | TR: yanan, ateşli | EN: producing heat and flame; on fire | ÖRNEK: The burning log gave off a warm glow.
+522 | burning | noun | B1 | #1/1 | TR: yanma, yanıcı olay, ateş | EN: the process of being on fire; a flame or fire that is consuming something | ÖRNEK: The burning of the old barn attracted many curious onlookers.
+521 | burning | adjective | A2 | #2/2 | TR: şiddetli, yakıcı, çok güçlü | EN: characterized by intense emotion or desire; very strong | ÖRNEK: His burning curiosity led him to study astronomy.
+16933 | engineer | verb | B2 | #1/2 | TR: tasarlamak, planlamak, inşa etmek | EN: to design, build, or construct something, especially a machine, structure, or system | ÖRNEK: The architect will engineer the building to withstand earthquakes.
+16932 | engineer | verb | B2 | #2/2 | TR: gizlice ayarlamak, tezgâhlamak | EN: to devise or manipulate something in a secretive or clever way | ÖRNEK: The hackers engineered a backdoor into the system without anyone noticing.
+27434 | fed up | adjective | B1 | #1/1 | TR: bıkmış, gına gelmiş | EN: annoyed or bored with something that has continued for too long | ÖRNEK: I'm fed up with this rain.
+1716 | hanging | noun | B1 | #1/2 | TR: asılma, asılı durma | EN: the act or state of being suspended from above | ÖRNEK: The hanging of the picture was done carefully.
+1717 | hanging | noun | B1 | #2/2 | TR: idam, asma cezası | EN: the execution of a person by suspending them by the neck | ÖRNEK: The historical account mentions a hanging that took place in 1790.
+27361 | identity card | noun | B1 | #1/1 | TR: kimlik kartı | EN: an official card with your name, photo and other details | ÖRNEK: Please show your identity card.
+25436 | lock out | phrasal_verb | B1 | #1/1 | TR: dışarıda bırakmak, erişimini engellemek | EN: to prevent someone from entering or accessing a place, system, or service | ÖRNEK: The landlord locked out the tenants for not paying rent.
+26537 | lock up | phrasal_verb | B1 | #1/2 | TR: (her yeri) kilitlemek | EN: to lock all the doors and windows of a building | ÖRNEK: Don't forget to lock up when you leave.
+26538 | lock up | phrasal_verb | B1 | #2/2 | TR: hapsetmek | EN: to put someone in prison | ÖRNEK: He was locked up for ten years.
+1828 | marked | adjective | B1 | #1/2 | TR: belirgin, göze çarpan | EN: noticeable or conspicuous; standing out clearly from its surroundings or from other things. | ÖRNEK: Scientists observed a marked rise in ocean temperatures last year.
+1829 | marked | adjective | B1 | #2/2 | TR: işaretli, damgalı | EN: having a visible mark or sign on it; marked in a way that indicates a particular condition or characteristic. | ÖRNEK: The map showed the trail marked with red arrows.
+8488 | miller | noun | B1 | #1/1 | TR: değirmenci | EN: a person who operates or owns a mill, especially one that grinds grain into flour | ÖRNEK: The miller grinds the wheat into flour for the bakery.
+4832 | neighborhood | noun | A1 | #1/2 | TR: mahalle | EN: a district or community within a city or town where people live close to each other | ÖRNEK: My family lives in a quiet neighborhood near the park.
+4833 | neighborhood | noun | A1 | #2/2 | TR: çevre, yakın çevre | EN: the surrounding area or vicinity of a particular place | ÖRNEK: The museum is just a short walk around the neighborhood.
+27040 | pull apart | phrasal_verb | B2 | #1/2 | TR: ayırmak, parçalarına ayırmak | EN: to separate something into pieces | ÖRNEK: The dog pulled the pillow apart.
+27041 | pull apart | phrasal_verb | B2 | #2/2 | TR: (eseri) acımasızca eleştirmek | EN: to criticize something severely | ÖRNEK: The critics pulled her new book apart.
+17853 | recommended | adjective | B2 | #1/1 | TR: önerilen, tavsiye edilen | EN: describing something that has been suggested as good or suitable for a particular purpose or situation | ÖRNEK: The guidebook says this museum is recommended for first-time visitors.
+1446 | shoulder | verb | B2 | #1/1 | TR: üstlenmek, sorumluluğunu almak | EN: to take on a responsibility, burden, or task; to accept something as one's own. | ÖRNEK: She decided to shoulder the extra work during the busy season.
+12646 | shower | verb | A2 | #1/2 | TR: duş almak, yıkamak | EN: to wash oneself by standing under a spray of water | ÖRNEK: I will shower before dinner tonight.
+12645 | shower | verb | A2 | #2/2 | TR: yağdırmak, boğmak | EN: to cause rain or other liquid to fall in a light, brief manner | ÖRNEK: A sudden storm started to shower rain on the fields.
+26776 | tie up | phrasal_verb | B2 | #1/2 | TR: bağlamak | EN: to tie something with string or rope | ÖRNEK: They tied up the boat.
+26777 | tie up | phrasal_verb | B2 | #2/2 | TR: meşgul etmek | EN: to keep someone busy | ÖRNEK: I'm tied up in meetings all day.
+1606 | tower | verb | B2 | #1/1 | TR: yükselmek, heybetle yükselmek, tepesinde dikilmek | EN: to rise high or stand prominently above something | ÖRNEK: The lighthouse towers over the harbor, guiding ships at night.
+1639 | visual | noun | B2 | #1/1 | TR: görsel | EN: something that can be seen; a visual representation or image used to convey information | ÖRNEK: The teacher showed a visual to help the students understand the concept.
+1653 | wheel | verb | B1 | #1/1 | TR: tekerlekli şeyle taşımak, itmek | EN: to cause something to turn around an axis or to rotate, especially by using a wheel or wheels | ÖRNEK: She wheeled the cart to the kitchen to bring the groceries.
+27465 | DNA | noun | B2 | #1/1 | TR: DNA | EN: the chemical in cells that carries genetic information | ÖRNEK: DNA tests can identify a person.
+3214 | contemporary | noun | B2 | #1/1 | TR: çağdaş, akran | EN: a person who lived at the same time as another person | ÖRNEK: The poet was a contemporary of the famous playwright.
+26409 | get rid of | phrasal_verb | B1 | #1/1 | TR: -den kurtulmak, atmak | EN: to throw away or remove something that you do not want | ÖRNEK: I need to get rid of these old clothes.
+970 | inch | verb | B1 | #1/1 | TR: hafifçe ilerlemek, yavaşça kaymak | EN: to move slowly or gradually in a particular direction | ÖRNEK: The line of students inched forward as the teacher entered the room.
+9574 | junior | noun | B1 | #1/2 | TR: küçük, daha genç kişi | EN: a younger or lower-ranking person, especially in a professional or hierarchical context | ÖRNEK: The company hired a junior accountant to assist with daily transactions.
+9573 | junior | noun | B1 | #2/2 | TR: üçüncü sınıf öğrencisi | EN: a student in the third year of a four-year high school or college program | ÖRNEK: My brother is a junior at the local university.
+2924 | pride | verb | B2 | #1/1 | TR: gurur duymak, kendinden memnun olmak | EN: to feel deep satisfaction or pleasure in one's own achievements or qualities | ÖRNEK: Many scientists pride themselves on rigorous experimental methods.
+27390 | shop assistant | noun | A2 | #1/1 | TR: satış görevlisi, tezgâhtar | EN: a person who serves customers in a shop | ÖRNEK: The shop assistant helped me find a size.
+20058 | studied | adjective | B2 | #1/1 | TR: özenli, düşünülmüş | EN: having been carefully considered or planned; showing deliberate effort | ÖRNEK: The essay reflects a studied effort to address the topic clearly.
+2253 | universal | noun | B2 | #1/1 | TR: evrensel kavram, genel ilke | EN: a principle or concept that is considered applicable in all cases or to all people | ÖRNEK: Scientists often search for a universal that can explain different phenomena.
+12811 | wanting | adjective | B2 | #1/1 | TR: eksik, yetersiz | EN: lacking or deficient in a particular quality or amount | ÖRNEK: The report was wanting in detail, so the professor asked for revisions.
+839 | finger | verb | B1 | #1/1 | TR: parmaklarıyla dokunmak, elle yoklamak, kurcalamak | EN: to touch or handle something with the fingers, especially in order to examine or manipulate it | ÖRNEK: She fingered the fabric to feel its texture before buying it.
+10027 | heading | noun | B1 | #1/2 | TR: başlık | EN: a word or phrase at the top of a page, chapter or section that indicates its subject | ÖRNEK: The heading of the chapter tells the reader what will be discussed.
+10028 | heading | noun | B1 | #2/2 | TR: yön | EN: the direction in which something is moving or facing | ÖRNEK: The compass shows the current heading of the boat.
+27353 | hearing aid | noun | B2 | #1/1 | TR: işitme cihazı | EN: a small device worn in the ear that helps you hear better | ÖRNEK: My grandfather wears a hearing aid.
+27009 | lock away | phrasal_verb | C1 | #1/1 | TR: (güvenli yere) kilitleyip saklamak; hapsetmek | EN: to put something in a safe place and lock it, or to put someone in prison | ÖRNEK: She locked away her jewelry.
+1228 | pocket | verb | B1 | #1/2 | TR: cebine koymak, cebe koymak | EN: to place something into a pocket | ÖRNEK: She pocketed the pen and continued writing her notes.
+1229 | pocket | verb | B1 | #2/2 | TR: çalmak, gizlice almak | EN: to take something secretly, especially by putting it into one's pocket | ÖRNEK: The pickpocket pocketed the tourist's wallet in the crowded subway.
+7983 | regardless | adjective | B2 | #1/1 | TR: bağımsız, kayıtsız | EN: without being influenced by or taking into account something else | ÖRNEK: The team finished the experiment regardless of the limited time.
+1821 | sharp | noun | B1 | #1/2 | TR: müzik notası olarak diyez | EN: a symbol (♯) that raises the pitch of a musical note by a semitone | ÖRNEK: The composer wrote a sharp next to the C note.
+1822 | sharp | noun | B1 | #2/2 | TR: hilekâr, açıkgöz kimse, kumarbaz | EN: a person who is clever, quick-witted, or shrewd in business or social matters | ÖRNEK: The new intern proved to be a sharp during the first week.
+6160 | stable | noun | B1 | #1/1 | TR: ahır | EN: a building where horses or other livestock are kept and fed | ÖRNEK: The stable is located behind the farmhouse.
+27102 | step aside | phrasal_verb | C1 | #1/1 | TR: kenara çekilmek; görevi bırakmak | EN: to move to one side, or to leave a job so someone else can do it | ÖRNEK: Please step aside and let them pass.
+475 | bone | verb | B2 | #1/1 | TR: kemik çıkarmak, kemik ayırmak | EN: to remove the bones from (meat, fish, or other food) | ÖRNEK: She boned the salmon before adding it to the salad.
+19738 | format | verb | B1 | #1/1 | TR: biçimlendirmek, düzenlemek | EN: to arrange or organize something according to a particular layout or structure | ÖRNEK: Please format the essay according to the guidelines.
+2205 | gate | verb | B2 | #1/1 | TR: girişi kapatmak | EN: to block or restrict access to a place or to control the flow of something | ÖRNEK: The school gates the playground during recess to keep students safe.
+26987 | hunt down | phrasal_verb | C1 | #1/1 | TR: (aradığını) bulmak, peşine düşüp yakalamak | EN: to search everywhere for someone or something until you find them | ÖRNEK: The police hunted down the escaped prisoner.
+16178 | killer | noun | B2 | #1/1 | TR: katil | EN: a person who kills another person, especially one who murders as a profession or habit | ÖRNEK: The detective interviewed the killer for several hours.

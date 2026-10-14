@@ -1,0 +1,100 @@
+26900 | call out | phrasal_verb | B2 | #1/2 | TR: seslenmek, yüksek sesle söylemek | EN: to shout or say something loudly | ÖRNEK: The teacher called out the names.
+26901 | call out | phrasal_verb | B2 | #2/2 | TR: (yanlışı) açıkça eleştirmek, yüzüne vurmak | EN: to publicly criticize someone for something wrong they have done | ÖRNEK: She called out the company for its unfair pay.
+26977 | head out | phrasal_verb | B2 | #1/1 | TR: (bir yere) çıkmak, yola koyulmak | EN: to leave a place to go somewhere | ÖRNEK: We're heading out for dinner.
+26992 | keep down | phrasal_verb | B2 | #1/1 | TR: (düşük seviyede) tutmak | EN: to stop something from increasing | ÖRNEK: We must keep costs down.
+26619 | put down | phrasal_verb | B1 | #1/4 | TR: yere bırakmak, elinden bırakmak | EN: to put something on the floor or another surface | ÖRNEK: Put down that knife!
+26620 | put down | phrasal_verb | B1 | #2/4 | TR: (yazıyla) kaydetmek, yazmak | EN: to write something | ÖRNEK: Put your name down on the list.
+26621 | put down | phrasal_verb | B1 | #3/4 | TR: küçük düşürmek, aşağılamak | EN: to criticize someone and make them feel stupid | ÖRNEK: He's always putting his wife down.
+26622 | put down | phrasal_verb | B1 | #4/4 | TR: (isyanı) bastırmak | EN: to stop a rebellion by force | ÖRNEK: The army put down the revolt.
+27052 | put down to | phrasal_verb | C1 | #1/1 | TR: -e bağlamak, -e yormak | EN: to think that something is caused by something else | ÖRNEK: I put his rudeness down to stress.
+26636 | put through | phrasal_verb | B1 | #1/2 | TR: (telefonla) bağlamak | EN: to connect someone to the person they want to speak to on the phone | ÖRNEK: Could you put me through to the manager?
+26637 | put through | phrasal_verb | B1 | #2/2 | TR: (zor bir şey) yaşatmak, çektirmek | EN: to make someone experience something unpleasant | ÖRNEK: She put her parents through a lot of worry.
+26719 | start over | phrasal_verb | B1 | #1/1 | TR: baştan başlamak, yeniden başlamak | EN: to begin something again | ÖRNEK: I made a mistake, so I had to start over.
+26779 | try out | phrasal_verb | B1 | #1/1 | TR: denemek, test etmek | EN: to use something to find out if it works or if you like it | ÖRNEK: I'd like to try out the new software.
+19388 | working | noun | B2 | #1/1 | TR: çalışma, işleyiş | EN: the process or act of performing work; the way something functions or operates | ÖRNEK: The working of the printer was interrupted by a paper jam.
+20009 | course | verb | B2 | #1/1 | TR: akmak, yönlenmek | EN: to move or flow in a particular direction or along a particular route | ÖRNEK: The stream courses over the rocks during spring melt.
+21919 | line up | phrasal_verb | B1 | #1/1 | TR: sıralamak, hizaya getirmek | EN: to arrange people or things in a straight line or in proper order | ÖRNEK: The teacher asked the students to line up before entering the classroom.
+26658 | run out | phrasal_verb | A2 | #1/1 | TR: bitmek, tükenmek | EN: to be completely used so that there is nothing left | ÖRNEK: The milk has run out.
+27063 | run up | phrasal_verb | C1 | #1/1 | TR: (borç, fatura) biriktirmek, kabartmak | EN: to make a debt or bill larger by spending money | ÖRNEK: He ran up a huge phone bill.
+26735 | take away | phrasal_verb | B1 | #1/2 | TR: alıp götürmek, elinden almak | EN: to remove something or someone from a place | ÖRNEK: The waiter took away our plates.
+26736 | take away | phrasal_verb | B1 | #2/2 | TR: (sayı) çıkarmak | EN: to subtract one number from another | ÖRNEK: If you take away 3 from 10, you get 7.
+27461 | high school | noun | A2 | #1/1 | TR: lise | EN: a school for young people between about 14 and 18 | ÖRNEK: She's in her last year of high school.
+26526 | let off | phrasal_verb | B2 | #1/2 | TR: affetmek, cezasız bırakmak | EN: to not punish someone, or to give them only a small punishment | ÖRNEK: The police let him off with a warning.
+26527 | let off | phrasal_verb | B2 | #2/2 | TR: (havai fişek) patlatmak | EN: to make something such as a bomb or firework explode | ÖRNEK: They let off fireworks at midnight.
+26583 | open up | phrasal_verb | B2 | #1/2 | TR: açılmak, içini dökmek | EN: to start to talk about your feelings | ÖRNEK: It took him a long time to open up to me.
+26584 | open up | phrasal_verb | B2 | #2/2 | TR: (fırsat, olanak) açmak, ortaya çıkarmak | EN: to make something possible or available | ÖRNEK: The new road will open up the region to tourists.
+10535 | post | preposition | B1 | #1/1 | TR: sonra | EN: to indicate that something occurs after a particular time or event | ÖRNEK: The meeting will be held post lunch.
+26659 | run out of | phrasal_verb | B1 | #1/1 | TR: (bir şey) bitmek, tüketmek | EN: to use all of something and have nothing left | ÖRNEK: We've run out of coffee.
+26673 | set off | phrasal_verb | B1 | #1/3 | TR: yola çıkmak | EN: to start a journey | ÖRNEK: We set off early in the morning.
+26674 | set off | phrasal_verb | B1 | #2/3 | TR: (alarmı) çalıştırmak, (bombayı) patlatmak | EN: to cause something to start, especially an alarm or explosion | ÖRNEK: The smoke set off the fire alarm.
+26675 | set off | phrasal_verb | B1 | #3/3 | TR: tetiklemek, başlatmak | EN: to cause a series of events to start | ÖRNEK: His remarks set off a huge argument.
+26206 | book in | phrasal_verb | B2 | #1/1 | TR: (otelde) kayıt yaptırmak, yer ayırtmak | EN: to arrange for someone to stay at a hotel, or to arrive and register there | ÖRNEK: We booked in at a small hotel.
+26524 | let down | phrasal_verb | B2 | #1/1 | TR: hayal kırıklığına uğratmak, yüzüstü bırakmak | EN: to disappoint someone by not doing what they expected | ÖRNEK: I promised to help, and I won't let you down.
+26598 | play down | phrasal_verb | C1 | #1/1 | TR: önemsizmiş gibi göstermek, küçümsemek | EN: to make something seem less important or less bad than it really is | ÖRNEK: The government tried to play down the problem.
+26682 | show around | phrasal_verb | B1 | #1/1 | TR: (birine bir yeri) gezdirmek | EN: to go with someone to a place they have not visited before and show them the interesting parts | ÖRNEK: Let me show you around the office.
+7299 | social | noun | B1 | #1/1 | TR: sosyal etkinlik, toplantı | EN: an organized gathering of people for a social purpose, often informal and for enjoyment | ÖRNEK: The university organized a social for first-year students to meet each other.
+27143 | while away | phrasal_verb | C1 | #1/1 | TR: (zamanı) hoşça geçirmek | EN: to spend time in a relaxed way | ÖRNEK: We whiled away the afternoon by the pool.
+26892 | black out | phrasal_verb | C1 | #1/1 | TR: bayılmak, kendinden geçmek | EN: to suddenly become unconscious | ÖRNEK: He blacked out and fell to the floor.
+20027 | court | verb | B2 | #1/1 | TR: flört etmek, ilgi göstermek | EN: to try to win the affection or support of someone, especially in a romantic or political context | ÖRNEK: He started to court her after they were introduced at the party.
+15179 | given | adjective | B2 | #1/1 | TR: belirli, söz konusu | EN: existing or stipulated as a fact; assumed to be true in a particular context | ÖRNEK: She accepted the given instructions without question.
+20018 | single | verb | B2 | #1/1 | TR: (out ile) seçip ayırmak, öne çıkarmak | EN: to pick out or separate one person or thing from a group | ÖRNEK: The coach singled out the fastest runner for the relay team.
+26718 | start off | phrasal_verb | B2 | #1/1 | TR: başlamak | EN: to begin by doing something | ÖRNEK: Let's start off with some easy questions.
+27111 | stop over | phrasal_verb | B2 | #1/1 | TR: (yolculukta) bir yerde konaklamak, aktarma yapmak | EN: to stay somewhere for a short time during a long journey | ÖRNEK: We stopped over in Dubai on the way to Australia.
+26229 | call back | phrasal_verb | A2 | #1/1 | TR: geri aramak | EN: to telephone someone again, or to phone someone who phoned you | ÖRNEK: I'll call you back in ten minutes.
+26338 | face up to | phrasal_verb | C1 | #1/1 | TR: (gerçekle, sorunla) yüzleşmek, kabul etmek | EN: to accept that a difficult situation exists and deal with it | ÖRNEK: You have to face up to your problems.
+26415 | get together | phrasal_verb | B1 | #1/1 | TR: bir araya gelmek, toplanmak | EN: to meet in order to do something or spend time together | ÖRNEK: Let's get together next week.
+26476 | hand in | phrasal_verb | B1 | #1/1 | TR: teslim etmek, vermek | EN: to give something to a person in authority | ÖRNEK: Please hand in your homework by Friday.
+26650 | run after | phrasal_verb | B2 | #1/1 | TR: kovalamak, peşinden koşmak | EN: to chase someone or something | ÖRNEK: The dog ran after the ball.
+26655 | run into | phrasal_verb | B1 | #1/3 | TR: (tesadüfen) karşılaşmak | EN: to meet someone you know by chance | ÖRNEK: I ran into Sarah at the supermarket.
+26656 | run into | phrasal_verb | B1 | #2/3 | TR: (soruna) girmek, karşılaşmak | EN: to start to experience a difficult situation | ÖRNEK: The project ran into problems.
+26657 | run into | phrasal_verb | B1 | #3/3 | TR: (araçla) çarpmak | EN: to hit something with a vehicle | ÖRNEK: The car ran into a tree.
+27006 | live off | phrasal_verb | C1 | #1/1 | TR: (biri, bir şey sayesinde) geçinmek | EN: to get money or food from someone or something in order to live | ÖRNEK: He's 30 and still lives off his parents.
+15463 | room | verb | B1 | #1/1 | TR: ortak odada kalmak | EN: to share a bedroom or living space with another person | ÖRNEK: They will room together in the campus housing.
+26660 | run over | phrasal_verb | B2 | #1/2 | TR: (araçla) ezmek, üstünden geçmek | EN: to hit someone or something with a vehicle and drive over them | ÖRNEK: He was nearly run over by a truck.
+26661 | run over | phrasal_verb | B2 | #2/2 | TR: süreyi aşmak | EN: to continue past the expected finishing time | ÖRNEK: The meeting ran over by twenty minutes.
+15069 | several | determiner | B1 | #1/1 | TR: birkaç, çeşitli | EN: more than two but not many; a number of distinct items or instances | ÖRNEK: The museum displayed several paintings from the 19th century.
+15468 | wrong | verb | B2 | #1/1 | TR: haksızlık yapmak, birine zarar vermek | EN: to treat someone unfairly or unjustly; to cause injury or disadvantage to someone | ÖRNEK: He wronged his teammate by ignoring his ideas during the meeting.
+26291 | come up against | phrasal_verb | C1 | #1/1 | TR: (bir zorlukla) karşılaşmak | EN: to have to deal with a difficult problem | ÖRNEK: We came up against a lot of opposition.
+27032 | play around | phrasal_verb | B2 | #1/1 | TR: oyalanmak, (bir şeyle) kurcalamak | EN: to behave in a silly way, or to try different things to see what works | ÖRNEK: Stop playing around and get dressed!
+27110 | stop off | phrasal_verb | B2 | #1/1 | TR: (yolda) mola vermek, uğramak | EN: to stop somewhere for a short time during a journey | ÖRNEK: We stopped off in Paris for two days.
+26765 | tell off | phrasal_verb | B1 | #1/1 | TR: azarlamak, fırça atmak | EN: to speak angrily to someone because they have done something wrong | ÖRNEK: The teacher told him off for being late.
+20035 | air | verb | B1 | #1/2 | TR: yayınlamak | EN: to transmit a program, speech, or other content via radio, television, or the internet | ÖRNEK: The channel will air the documentary tomorrow evening.
+20036 | air | verb | B1 | #2/2 | TR: havalandırmak, havaya çıkarmak | EN: to expose something to the air, especially to ventilate or to let it become dry | ÖRNEK: Please air the kitchen before dinner.
+26235 | call off | phrasal_verb | B1 | #1/1 | TR: iptal etmek | EN: to decide that a planned event will not happen | ÖRNEK: The match was called off because of the rain.
+26477 | hand out | phrasal_verb | B1 | #1/1 | TR: dağıtmak | EN: to give something to each person in a group | ÖRNEK: The teacher handed out the worksheets.
+26975 | head off | phrasal_verb | C1 | #1/2 | TR: yola çıkmak, gitmek | EN: to start going somewhere | ÖRNEK: We headed off early in the morning.
+26976 | head off | phrasal_verb | C1 | #2/2 | TR: önlemek, önüne geçmek | EN: to prevent something from happening | ÖRNEK: The government acted to head off a crisis.
+27007 | live through | phrasal_verb | C1 | #1/1 | TR: (zor bir dönem) yaşamak, atlatmak | EN: to experience a difficult event or period and survive it | ÖRNEK: My grandparents lived through the war.
+19969 | saying | noun | B1 | #1/1 | TR: atasözü, özdeyiş | EN: a short, well-known expression that states a general truth or piece of advice | ÖRNEK: The teacher asked the class to write down a favorite saying.
+27082 | single out | phrasal_verb | C1 | #1/1 | TR: (birini) seçip ayırmak | EN: to choose one person or thing from a group for special attention | ÖRNEK: The teacher singled her out for praise.
+26760 | talk out of | phrasal_verb | C1 | #1/1 | TR: (birini bir şeyden) vazgeçirmek | EN: to persuade someone not to do something | ÖRNEK: My friends talked me out of leaving my job.
+13584 | class | verb | B2 | #1/1 | TR: sınıflandırmak | EN: to assign something to a particular class or category based on its characteristics | ÖRNEK: The teacher asked us to class the books by genre for the library project.
+18426 | close | adverb | A2 | #1/2 | TR: yakın, hemen yakın | EN: at a short distance from something; in close proximity | ÖRNEK: Our office is close by the train station, making commuting easy.
+18428 | close | noun | B1 | #1/2 | TR: son, kapanış, bitiş | EN: the final part or ending of an event, period, or document | ÖRNEK: The close of the lecture was delayed by a technical problem.
+18427 | close | adverb | A2 | #2/2 | TR: neredeyse, az çok | EN: to a degree that is almost, but not completely, the case | ÖRNEK: The temperature is close to freezing tonight, so wear a coat.
+18429 | close | noun | B1 | #2/2 | TR: çıkmaz sokak, dar sokak | EN: a short, dead-end street, often residential, that is entered and exited by the same road | ÖRNEK: The new apartments are built in a quiet close at the edge of town.
+26419 | give away | phrasal_verb | B1 | #1/2 | TR: (bedava) vermek, dağıtmak | EN: to give something to someone without asking for payment | ÖRNEK: She gave away all her old toys.
+26420 | give away | phrasal_verb | B1 | #2/2 | TR: (sırrı) açığa vurmak, ele vermek | EN: to tell people something secret, often by mistake | ÖRNEK: Don't give away the ending of the film!
+26979 | hit on | phrasal_verb | C1 | #1/1 | TR: (fikri) bulmak, aklına gelmek | EN: to suddenly have an idea | ÖRNEK: She hit on the idea of selling cakes online.
+27061 | run off | phrasal_verb | C1 | #1/2 | TR: kaçıp gitmek | EN: to leave a place or person suddenly | ÖRNEK: The boys ran off when they saw the police.
+27062 | run off | phrasal_verb | C1 | #2/2 | TR: (fotokopi) çekmek, basmak | EN: to quickly print copies of something | ÖRNEK: Can you run off ten copies of this?
+12810 | wanted | adjective | B2 | #1/1 | TR: aranan | EN: describing a person who is sought by law-enforcement authorities | ÖRNEK: The police issued a wanted poster for the bank robber.
+26904 | close in | phrasal_verb | C1 | #1/1 | TR: (yavaş yavaş) yaklaşmak, etrafını sarmak | EN: to gradually surround or come nearer to someone or something | ÖRNEK: The police were closing in on the thief.
+10715 | due | noun | B1 | #1/1 | TR: hak, alacak | EN: a sum of money that is owed to someone | ÖRNEK: She finally collected the due after months of waiting.
+26500 | keep away | phrasal_verb | B1 | #1/1 | TR: uzak durmak, uzak tutmak | EN: to not go near someone or something, or to stop someone going near | ÖRNEK: Keep away from the fire!
+26577 | move in | phrasal_verb | B1 | #1/1 | TR: (yeni eve) taşınmak | EN: to start living in a new home | ÖRNEK: We're moving in next week.
+26578 | move on | phrasal_verb | B1 | #1/2 | TR: (başka bir konuya, yere) geçmek, devam etmek | EN: to leave a place or start doing something new | ÖRNEK: Let's move on to the next topic.
+26579 | move on | phrasal_verb | B1 | #2/2 | TR: geride bırakmak, yoluna devam etmek | EN: to accept that a situation has changed and start thinking about other things | ÖRNEK: It's time to move on and forget about him.
+26616 | put away | phrasal_verb | B1 | #1/1 | TR: kaldırmak, yerine koymak | EN: to put something in the place where you usually keep it | ÖRNEK: Put your toys away, please.
+26652 | run down | phrasal_verb | C1 | #1/3 | TR: (pil) bitmek, (gücü) azalmak | EN: to lose power or become weaker | ÖRNEK: My phone battery has run down.
+26653 | run down | phrasal_verb | C1 | #2/3 | TR: (araçla) çarpıp yaralamak | EN: to hit someone with a vehicle and injure or kill them | ÖRNEK: He was run down by a bus.
+26654 | run down | phrasal_verb | C1 | #3/3 | TR: kötülemek, yermek | EN: to criticize someone or something, often unfairly | ÖRNEK: Stop running yourself down!
+26662 | run through | phrasal_verb | B2 | #1/1 | TR: (hızlıca) gözden geçirmek, prova etmek | EN: to repeat something or explain something quickly | ÖRNEK: Let's run through the plan once more.
+7863 | special | noun | B2 | #1/1 | TR: günün spesiyali, özel program, indirimli ürün | EN: a particular item, event, or person that is distinguished from others because of its unique qualities or status | ÖRNEK: The café's special today is a pumpkin spice latte.
+26759 | talk into | phrasal_verb | C1 | #1/1 | TR: (birini bir şeye) ikna etmek | EN: to persuade someone to do something | ÖRNEK: She talked me into buying a new car.
+26804 | wait on | phrasal_verb | B2 | #1/1 | TR: (birine) hizmet etmek | EN: to serve someone, especially at a table in a restaurant | ÖRNEK: She waited on tables to pay for college.
+26186 | ask for | phrasal_verb | A2 | #1/2 | TR: istemek, talep etmek | EN: to say that you want someone to give you something | ÖRNEK: He asked for a glass of water.
+26187 | ask for | phrasal_verb | A2 | #2/2 | TR: (başına) iş açmak, kaşınmak | EN: to behave in a way that is likely to cause trouble for you | ÖRNEK: If you drive like that, you're asking for trouble.
+27252 | either | determiner | B1 | #1/2 | TR: (ikisinden) biri, herhangi biri | EN: one or the other of two | ÖRNEK: You can take either road.
+27253 | either | determiner | B1 | #2/2 | TR: her iki | EN: both of two | ÖRNEK: There are shops on either side of the street.
+26370 | get along | phrasal_verb | B1 | #1/2 | TR: iyi geçinmek, anlaşmak | EN: to have a friendly relationship with someone | ÖRNEK: I get along well with my sister.

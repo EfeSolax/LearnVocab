@@ -1,0 +1,100 @@
+26371 | get along | phrasal_verb | B1 | #2/2 | TR: idare etmek, yürütmek | EN: to manage or deal with a situation | ÖRNEK: How are you getting along in your new job?
+26478 | hand over | phrasal_verb | B2 | #1/1 | TR: teslim etmek, devretmek | EN: to give something or someone to another person, especially officially | ÖRNEK: The thief was handed over to the police.
+18526 | light | noun | A1 | #1/2 | TR: lamba, fener, ışık kaynağı | EN: a device that produces illumination | ÖRNEK: The light on the desk helps me read my notes.
+18527 | light | noun | A1 | #2/2 | TR: trafik ışığı | EN: a colored signal used to control vehicle and pedestrian traffic | ÖRNEK: The light turned red just as the bus approached the intersection.
+20043 | low | verb | C2 | #1/1 | TR: böğürmek | EN: to make the characteristic deep sound of cattle | ÖRNEK: The calf lowed softly as the farmer walked by.
+7931 | police | verb | B2 | #1/1 | TR: gözetlemek, denetlemek, kollamak | EN: to enforce rules, regulations or standards, especially by official authority | ÖRNEK: The school hired a supervisor to police the hallway during lunch.
+3702 | short | noun | B2 | #1/1 | TR: kısa film | EN: a brief motion picture, usually lasting less than 40 minutes | ÖRNEK: We watched a short about climate change before the main documentary.
+3703 | short | verb | C1 | #1/1 | TR: açığa satmak | EN: to sell a security that one does not own, hoping to buy it back later at a lower price | ÖRNEK: He shorted the tech stock after hearing the rumor.
+27117 | talk back | phrasal_verb | B2 | #1/1 | TR: (büyüğüne) karşılık vermek, terbiyesizce cevap vermek | EN: to answer someone rudely | ÖRNEK: Don't talk back to your mother!
+26761 | talk over | phrasal_verb | B2 | #1/1 | TR: (bir konuyu) görüşmek, konuşup tartışmak | EN: to discuss something before making a decision | ÖRNEK: Let's talk it over before we decide.
+15548 | buy | noun | B1 | #1/2 | TR: alış, satın alma | EN: the act of purchasing something; the thing that is purchased | ÖRNEK: His recent buy includes a laptop and a printer.
+15549 | buy | noun | B1 | #2/2 | TR: kelepir, kârlı alışveriş | EN: a purchase made at a very low price, offering great value for money | ÖRNEK: The clearance sale offered several great buys for budget shoppers.
+26971 | hand back | phrasal_verb | B1 | #1/1 | TR: geri vermek | EN: to return something to the person who gave it to you | ÖRNEK: The teacher handed back our tests.
+11029 | reason | verb | B2 | #1/1 | TR: düşünmek, akıl yürütmek | EN: to think about something in a logical way, to form conclusions based on evidence or arguments | ÖRNEK: She reasons that the project will finish on time.
+26721 | stay in | phrasal_verb | A2 | #1/1 | TR: evde kalmak, dışarı çıkmamak | EN: to stay at home rather than go out | ÖRNEK: I'm tired, I'll stay in tonight.
+27100 | stay on | phrasal_verb | B2 | #1/1 | TR: (bir yerde, işte) kalmaya devam etmek | EN: to continue to stay somewhere after others have left or after the expected time | ÖRNEK: She stayed on at school for another year.
+26787 | turn in | phrasal_verb | B2 | #1/2 | TR: teslim etmek | EN: to give something to someone in authority | ÖRNEK: Please turn in your essays by Friday.
+26788 | turn in | phrasal_verb | B2 | #2/2 | TR: yatmaya gitmek | EN: to go to bed | ÖRNEK: I think I'll turn in now.
+27135 | turn to | phrasal_verb | B2 | #1/2 | TR: (yardım için) -e başvurmak | EN: to go to someone or something for help or advice | ÖRNEK: She has no one to turn to.
+27136 | turn to | phrasal_verb | B2 | #2/2 | TR: -e başlamak, -e yönelmek | EN: to start doing or using something | ÖRNEK: After the war, he turned to writing.
+26252 | check in | phrasal_verb | B1 | #1/1 | TR: (otele, havalimanında) giriş yapmak, kayıt yaptırmak | EN: to arrive at a hotel or airport and say that you have arrived | ÖRNEK: We checked in at the hotel at six.
+26310 | deal with | phrasal_verb | B1 | #1/2 | TR: ilgilenmek, halletmek, başa çıkmak | EN: to take action to solve a problem or do a task | ÖRNEK: I'll deal with this problem tomorrow.
+26311 | deal with | phrasal_verb | B1 | #2/2 | TR: (bir konuyu) ele almak, işlemek | EN: to be about a particular subject | ÖRNEK: The book deals with climate change.
+20987 | further | verb | B2 | #1/1 | TR: ilerletmek, sürdürmek, geliştirmek | EN: to promote the progress or development of something; to advance or extend | ÖRNEK: The manager asked the staff to further the project by next week.
+26580 | move out | phrasal_verb | B1 | #1/1 | TR: (evden) taşınıp çıkmak | EN: to stop living in a particular home | ÖRNEK: He moved out of his parents' house at 18.
+26593 | pay back | phrasal_verb | B1 | #1/2 | TR: (borcu) geri ödemek | EN: to give back money that you borrowed | ÖRNEK: I'll pay you back next week.
+26594 | pay back | phrasal_verb | B1 | #2/2 | TR: (birinden) intikam almak | EN: to do something unpleasant to someone because they did something bad to you | ÖRNEK: I'll pay him back for what he did.
+26792 | turn on | phrasal_verb | A2 | #1/2 | TR: (cihazı, ışığı) açmak | EN: to start a machine, light or supply of water | ÖRNEK: Can you turn on the TV?
+26793 | turn on | phrasal_verb | A2 | #2/2 | TR: (birine) aniden saldırmak, karşı çıkmak | EN: to suddenly attack someone | ÖRNEK: The dog turned on its owner.
+27137 | wait up | phrasal_verb | B2 | #1/1 | TR: (birini) uyumadan beklemek | EN: to not go to bed until someone comes home | ÖRNEK: Don't wait up for me – I'll be late.
+27145 | win over | phrasal_verb | C1 | #1/1 | TR: (birini) kazanmak, ikna edip yanına çekmek | EN: to persuade someone to support you or agree with you | ÖRNEK: She won over the audience with her speech.
+26188 | ask out | phrasal_verb | B1 | #1/1 | TR: çıkma teklif etmek | EN: to invite someone to go somewhere with you, especially as a date | ÖRNEK: He finally asked her out.
+26523 | leave out | phrasal_verb | B1 | #1/1 | TR: dışarıda bırakmak, atlamak | EN: to not include someone or something | ÖRNEK: You left out a word in this sentence.
+15579 | major | noun | B2 | #1/2 | TR: bölüm, ana dal | EN: a specific field of study that a student specializes in at a university or college | ÖRNEK: She declared her major in biology during orientation week.
+15581 | major | verb | B2 | #1/1 | TR: bir alanda uzmanlaşmak | EN: to specialize in a particular academic subject or field of study | ÖRNEK: She will major in psychology next year.
+15580 | major | noun | B2 | #2/2 | TR: binbaşı | EN: a military rank above captain and below lieutenant colonel, typically commanding a battalion or serving as a staff officer | ÖRNEK: The major inspected the training grounds early in the morning.
+26811 | watch out | phrasal_verb | A2 | #1/1 | TR: dikkat etmek, sakınmak | EN: used to tell someone to be careful | ÖRNEK: Watch out! There's a car coming.
+27144 | win back | phrasal_verb | C1 | #1/1 | TR: geri kazanmak | EN: to get back something that you had lost | ÖRNEK: The party is trying to win back voters.
+26888 | act on | phrasal_verb | C1 | #1/1 | TR: (bilgiye, tavsiyeye) göre hareket etmek | EN: to do something because of advice, information or a feeling | ÖRNEK: The police acted on a tip from a neighbor.
+26228 | buy up | phrasal_verb | C1 | #1/1 | TR: hepsini satın almak, kapatmak | EN: to buy as much of something as possible | ÖRNEK: Investors are buying up land in the area.
+26489 | hit back | phrasal_verb | C1 | #1/1 | TR: karşılık vermek, misilleme yapmak | EN: to criticize or attack someone who has criticized or attacked you | ÖRNEK: The minister hit back at his critics.
+27484 | level off | phrasal_verb | C1 | #1/1 | TR: durağanlaşmak, sabitlenmek | EN: to stop rising or falling and stay at the same level | ÖRNEK: House prices have started to level off.
+26531 | light up | phrasal_verb | B2 | #1/2 | TR: aydınlatmak, aydınlanmak | EN: to make something bright with light, or to become bright | ÖRNEK: Fireworks lit up the sky.
+26532 | light up | phrasal_verb | B2 | #2/2 | TR: (yüzü) parlamak, sevinçle aydınlanmak | EN: to suddenly look happy | ÖRNEK: Her face lit up when she saw him.
+4558 | near | verb | B2 | #1/1 | TR: yaklaşmak | EN: to come closer to someone or something; to move toward a particular point or time | ÖRNEK: The train neared the station and slowed down.
+24556 | pay off | phrasal_verb | B1 | #1/2 | TR: borçları tamamen ödemek, kapatmak | EN: to settle a debt or financial obligation completely | ÖRNEK: I saved enough money to pay off my car loan this year.
+24557 | pay off | phrasal_verb | B1 | #2/2 | TR: başarılı olmak, sonuç vermek | EN: to produce a successful result after effort or investment | ÖRNEK: Studying every night will pay off when the exam comes.
+27101 | stay out | phrasal_verb | B1 | #1/1 | TR: (gece) dışarıda kalmak, eve gelmemek | EN: to not come home at night or until late | ÖRNEK: Don't stay out too late.
+26722 | stay up | phrasal_verb | A2 | #1/1 | TR: geç saate kadar yatmamak | EN: to go to bed later than usual | ÖRNEK: We stayed up late watching films.
+27118 | talk down to | phrasal_verb | C1 | #1/1 | TR: (birine) tepeden bakarak konuşmak | EN: to talk to someone as if they were less intelligent than you | ÖRNEK: I hate it when people talk down to me.
+27119 | talk through | phrasal_verb | C1 | #1/1 | TR: (adım adım) anlatmak, konuşarak üzerinden geçmek | EN: to discuss something in detail so that someone understands it | ÖRNEK: Let me talk you through the process.
+26800 | turn up | phrasal_verb | B1 | #1/3 | TR: (beklenmedik biçimde) gelmek, ortaya çıkmak | EN: to arrive or appear somewhere, often unexpectedly | ÖRNEK: He turned up late for the meeting.
+26801 | turn up | phrasal_verb | B1 | #2/3 | TR: (sesi, ısıyı) açmak, yükseltmek | EN: to increase the level of sound or heat | ÖRNEK: Turn up the radio, I love this song!
+26802 | turn up | phrasal_verb | B1 | #3/3 | TR: (kaybolan şey) bulunmak, çıkmak | EN: to be found, especially by chance | ÖRNEK: Don't worry, your keys will turn up.
+6474 | according | preposition | A2 | #1/1 | TR: göre, ...a istinaden | EN: used to introduce the source or basis of information, indicating that something is in agreement with a particular statement, rule, or authority | ÖRNEK: According to the schedule, the meeting starts at nine o'clock.
+18698 | former | noun | B1 | #1/1 | TR: ilk bahsedilen, önceki | EN: the first of two previously mentioned items or persons | ÖRNEK: The former was built in the 19th century and still stands today.
+10423 | front | verb | B2 | #1/1 | TR: önderlik etmek, liderlik etmek | EN: to take the leading position or to act as the leader of a group or movement | ÖRNEK: She fronted the student union during her sophomore year.
+26435 | go along with | phrasal_verb | C1 | #1/1 | TR: kabul etmek, -e uymak | EN: to support an idea, or to agree with someone | ÖRNEK: I'll go along with your plan.
+26475 | hand down | phrasal_verb | C1 | #1/1 | TR: (sonraki kuşağa) aktarmak, miras bırakmak | EN: to give something to a younger person or to people who live after you | ÖRNEK: The ring was handed down from my grandmother.
+8181 | ready | verb | B1 | #1/1 | TR: hazırlamak, hazır hâle getirmek | EN: to make something or someone prepared for a particular purpose or situation | ÖRNEK: The chef readied the kitchen before the dinner service started.
+26794 | turn out | phrasal_verb | B2 | #1/4 | TR: (sonunda) ortaya çıkmak, anlaşılmak | EN: to happen in a particular way, or to be discovered to be something | ÖRNEK: It turned out that she was right.
+26795 | turn out | phrasal_verb | B2 | #2/4 | TR: (bir yere) gelmek, katılmak | EN: to come to an event | ÖRNEK: Thousands of people turned out to see the parade.
+26796 | turn out | phrasal_verb | B2 | #3/4 | TR: (ışığı) söndürmek | EN: to switch off a light | ÖRNEK: Turn out the lights before you go to bed.
+26797 | turn out | phrasal_verb | B2 | #4/4 | TR: üretmek | EN: to produce something | ÖRNEK: The factory turns out 500 cars a day.
+26889 | act up | phrasal_verb | C1 | #1/1 | TR: yaramazlık yapmak; (makine) sorun çıkarmak | EN: to behave badly, or to not work properly | ÖRNEK: The kids always act up when they're tired.
+26253 | check out | phrasal_verb | B1 | #1/2 | TR: (otelden) çıkış yapmak | EN: to pay your bill and leave a hotel | ÖRNEK: We checked out early the next morning.
+26254 | check out | phrasal_verb | B1 | #2/2 | TR: incelemek, kontrol etmek, bakmak | EN: to look at something or find out about it to see if it is true, good or interesting | ÖRNEK: Check out this website!
+27431 | check-up | noun | B1 | #1/1 | TR: check-up, genel kontrol | EN: a general medical examination to check that you are healthy | ÖRNEK: I go for a check-up once a year.
+4950 | meet | noun | B1 | #1/1 | TR: spor müsabakası, yarışma | EN: an organized sporting competition where athletes compete in various events | ÖRNEK: The school organized a meet for the track and field team.
+27419 | March | noun | A1 | #1/1 | TR: mart | EN: the third month of the year | ÖRNEK: My birthday is in March.
+26179 | act out | phrasal_verb | B2 | #1/1 | TR: canlandırmak, oynamak | EN: to perform the actions of a story or situation | ÖRNEK: The children acted out the story for their parents.
+15655 | baby | verb | B2 | #1/1 | TR: aşırı şımartmak, nazikçe bakmak | EN: to treat someone in an overly protective or indulgent way | ÖRNEK: Parents often baby their infants by answering every small cry.
+26839 | bring in | phrasal_verb | B2 | #2/2 | TR: (para) kazandırmak, getirmek | EN: to earn or make money | ÖRNEK: The shop brings in about $2,000 a week.
+26895 | bring on | phrasal_verb | C1 | #1/1 | TR: -e yol açmak, tetiklemek (genellikle kötü bir şey) | EN: to cause something to happen, usually something bad | ÖRNEK: Stress can bring on headaches.
+26227 | buy into | phrasal_verb | C1 | #1/1 | TR: (bir fikre) inanmak, benimsemek | EN: to believe in an idea, especially one that many people believe | ÖRNEK: I don't buy into the idea that money brings happiness.
+15649 | chance | verb | B1 | #1/1 | TR: göze almak, riske atmak, şansını denemek | EN: to do something by chance or to take a risk in order to achieve something | ÖRNEK: He chanced a risky investment hoping for high returns.
+26845 | check up on | phrasal_verb | C1 | #1/1 | TR: (birini) kontrol etmek, takip etmek | EN: to find out what someone is doing to make sure they are behaving correctly | ÖRNEK: My parents are always checking up on me.
+15651 | father | verb | B1 | #1/1 | TR: babası olmak, babalık etmek, öncülük etmek | EN: to act as a father to someone; to be the male parent of a person or to guide and support something as a father would | ÖRNEK: He fathered a son when he was twenty years old.
+26789 | turn into | phrasal_verb | B1 | #1/1 | TR: -e dönüşmek, -e dönüştürmek | EN: to change and become something different | ÖRNEK: The caterpillar turned into a butterfly.
+15658 | word | verb | B1 | #1/1 | TR: ifade etmek, kelimelere dökmek | EN: to express something in words, especially in a careful or precise way | ÖRNEK: She tried to word her opinion clearly during the meeting.
+26261 | close down | phrasal_verb | B1 | #1/1 | TR: kapanmak, kapatmak (işletme) | EN: to stop operating as a business, or to make a business stop | ÖRNEK: The factory closed down last year.
+26949 | get behind | phrasal_verb | C1 | #1/2 | TR: geri kalmak, (işlerde) gecikmek | EN: to fail to do as much work or pay as much money as you should by a particular time | ÖRNEK: I got behind with my studies when I was ill.
+26950 | get behind | phrasal_verb | C1 | #2/2 | TR: desteklemek | EN: to support a person or idea | ÖRNEK: The whole town got behind the team.
+26638 | put together | phrasal_verb | B2 | #1/2 | TR: (parçaları) birleştirmek, kurmak | EN: to make something by joining its parts | ÖRNEK: It took us an hour to put the shelf together.
+26639 | put together | phrasal_verb | B2 | #2/2 | TR: hazırlamak, oluşturmak | EN: to prepare something by collecting ideas or information | ÖRNEK: She put together a report on the project.
+26651 | run away | phrasal_verb | B1 | #1/1 | TR: kaçmak, (evden) kaçıp gitmek | EN: to leave a place or person secretly and suddenly | ÖRNEK: The boy ran away from home.
+26798 | turn over | phrasal_verb | B1 | #1/2 | TR: (sayfayı, bir şeyi) çevirmek, ters çevirmek | EN: to move something so that the other side is facing up | ÖRNEK: Turn over the page.
+26799 | turn over | phrasal_verb | B1 | #2/2 | TR: teslim etmek, devretmek | EN: to give something or someone to a person in authority | ÖRNEK: He turned the evidence over to the police.
+26830 | bring about | phrasal_verb | B2 | #1/1 | TR: -e yol açmak, gerçekleştirmek | EN: to cause something to happen | ÖRNEK: The internet has brought about huge changes.
+26840 | bring out | phrasal_verb | B2 | #1/2 | TR: piyasaya çıkarmak, yayımlamak | EN: to produce something and start to sell it | ÖRNEK: The band is bringing out a new album.
+26841 | bring out | phrasal_verb | B2 | #2/2 | TR: (bir özelliği) ortaya çıkarmak | EN: to make a quality or detail easier to notice | ÖRNEK: The sun brings out the colors of the garden.
+26842 | bring up | phrasal_verb | B1 | #1/2 | TR: (çocuk) yetiştirmek, büyütmek | EN: to look after a child until it becomes an adult | ÖRNEK: She was brought up by her grandparents.
+26843 | bring up | phrasal_verb | B1 | #2/2 | TR: (konuyu) açmak, gündeme getirmek | EN: to start to talk about a particular subject | ÖRNEK: She brought up the question of money.
+26265 | come along | phrasal_verb | B1 | #1/2 | TR: gelmek, birlikte gelmek | EN: to go somewhere with someone | ÖRNEK: We're going to the cinema. Do you want to come along?
+26266 | come along | phrasal_verb | B1 | #2/2 | TR: ilerlemek, gelişmek | EN: to make progress | ÖRNEK: How's your English coming along?
+26303 | cut in | phrasal_verb | C1 | #1/2 | TR: sözünü kesmek, araya girmek | EN: to interrupt someone who is speaking | ÖRNEK: "I don't agree," she cut in.
+26304 | cut in | phrasal_verb | C1 | #2/2 | TR: (trafikte) önüne kırmak | EN: to drive suddenly in front of another vehicle | ÖRNEK: A car cut in right in front of me.
+15700 | field | verb | B2 | #1/1 | TR: karşılamak, ele almak | EN: to deal with or answer something, or to catch a ball or other object that is thrown or hit | ÖRNEK: The journalist had to field many simple queries from the crowd.
+15706 | main | noun | B2 | #1/1 | TR: ana boru, şebeke | EN: a principal pipe or conduit that carries water, gas, electricity, etc., especially in a municipal system | ÖRNEK: The water main was shut down for maintenance yesterday.
+27019 | meet up | phrasal_verb | A2 | #1/1 | TR: buluşmak, bir araya gelmek | EN: to meet someone, usually by arrangement | ÖRNEK: Let's meet up for coffee next week.

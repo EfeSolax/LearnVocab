@@ -1,0 +1,100 @@
+26936 | even out | phrasal_verb | C1 | #1/1 | TR: dengelenmek, eşitlenmek | EN: to become level or equal, or to make something level or equal | ÖRNEK: Prices should even out over the year.
+26380 | get back | phrasal_verb | A2 | #1/2 | TR: geri dönmek | EN: to return to a place | ÖRNEK: What time did you get back last night?
+26381 | get back | phrasal_verb | A2 | #2/2 | TR: geri almak | EN: to have something again after it was taken or lost | ÖRNEK: Did you get your money back?
+26382 | get back to | phrasal_verb | B1 | #1/2 | TR: (birine) sonra dönmek, cevap vermek | EN: to talk to someone again later, especially to give them an answer | ÖRNEK: I'll get back to you tomorrow.
+26383 | get back to | phrasal_verb | B1 | #2/2 | TR: (bir işe) geri dönmek | EN: to start doing something again | ÖRNEK: Let's get back to work.
+1088 | man | verb | B1 | #1/1 | TR: personel sağlamak, görevlendirmek | EN: to provide a place, vehicle, or organization with staff or workers | ÖRNEK: The small shop will man the counter for the weekend.
+26819 | work out | phrasal_verb | A2 | #1/4 | TR: spor yapmak, antrenman yapmak | EN: to do physical exercise to make your body strong | ÖRNEK: I work out at the gym three times a week.
+26820 | work out | phrasal_verb | A2 | #2/4 | TR: (sonunda) anlamak, çözmek | EN: to understand something or find the answer by thinking | ÖRNEK: I can't work out how to use this.
+26821 | work out | phrasal_verb | A2 | #3/4 | TR: (iyi) sonuçlanmak, yolunda gitmek | EN: to develop in a particular way, especially a good way | ÖRNEK: Don't worry, everything will work out.
+26822 | work out | phrasal_verb | A2 | #4/4 | TR: hesaplamak | EN: to calculate an amount | ÖRNEK: Work out how much it will cost.
+27150 | work up | phrasal_verb | C1 | #1/2 | TR: (cesaret, iştah) toplamak, kazanmak | EN: to develop a feeling or quality, especially by effort | ÖRNEK: I worked up the courage to ask her out.
+27151 | work up | phrasal_verb | C1 | #2/2 | TR: (birini) heyecanlandırmak, sinirlendirmek | EN: to make someone excited or upset | ÖRNEK: Don't get so worked up about it!
+19548 | home | verb | B2 | #1/1 | TR: hedefe yönelmek, odaklanmak | EN: to direct one's aim or attention toward a target or goal | ÖRNEK: The team homed in on the main problem during the meeting.
+11751 | long | adjective | A1 | #1/1 | TR: uzun | EN: having a great extent from end to end; measuring a large distance in space. | ÖRNEK: The river is long and winds through many villages.
+11753 | long | adverb | B1 | #1/1 | TR: uzun süre | EN: to a great extent of time; for a considerable period | ÖRNEK: I have known her long enough to trust her advice.
+11754 | long | verb | B2 | #1/1 | TR: hasretini çekmek, çok istemek, özlemini duymak | EN: to have a strong desire for something | ÖRNEK: She longed for a quiet evening at home.
+20049 | something | pronoun | A1 | #1/1 | TR: bir şey | EN: an unspecified object, event, or idea; a thing that is not named or known | ÖRNEK: I need something to write with during the exam.
+27012 | look to | phrasal_verb | C1 | #1/1 | TR: -den beklemek, -e güvenmek | EN: to hope that someone will provide help or advice | ÖRNEK: Students look to their teachers for guidance.
+18509 | used | adjective | B1 | #1/2 | TR: alışkın | EN: accustomed to something; familiar with a situation or activity | ÖRNEK: She is used to drinking coffee every morning.
+18510 | used | adjective | B1 | #2/2 | TR: kullanılmış | EN: having been employed or consumed; not new; previously owned | ÖRNEK: He found a used laptop at a reasonable price.
+26948 | get back at | phrasal_verb | C1 | #1/1 | TR: (birinden) intikam almak, öcünü almak | EN: to do something unpleasant to someone because they have done something unpleasant to you | ÖRNEK: He wanted to get back at his brother for the joke.
+27014 | make into | phrasal_verb | B2 | #1/1 | TR: -e dönüştürmek, -e çevirmek | EN: to change something into something else | ÖRNEK: They made the old barn into a house.
+26749 | take out | phrasal_verb | B1 | #1/3 | TR: çıkarmak | EN: to remove something from a place | ÖRNEK: She took out her phone.
+26750 | take out | phrasal_verb | B1 | #2/3 | TR: (birini) dışarı götürmek, yemeğe çıkarmak | EN: to take someone to a restaurant, cinema or similar place | ÖRNEK: He took her out for dinner.
+26751 | take out | phrasal_verb | B1 | #3/3 | TR: (bankadan para) çekmek, (kredi) almak | EN: to get money from a bank or to get a loan or insurance | ÖRNEK: I took out some money from the ATM.
+26756 | take up | phrasal_verb | B1 | #1/3 | TR: (bir hobiye, işe) başlamak | EN: to start doing a particular job or activity | ÖRNEK: He took up golf when he retired.
+26757 | take up | phrasal_verb | B1 | #2/3 | TR: (yer, zaman) kaplamak, almak | EN: to fill an amount of space or time | ÖRNEK: This table takes up too much space.
+26758 | take up | phrasal_verb | B1 | #3/3 | TR: (teklifi) kabul etmek | EN: to accept an offer or opportunity | ÖRNEK: I'd like to take up your offer.
+26548 | look for | phrasal_verb | A1 | #1/1 | TR: aramak | EN: to try to find someone or something | ÖRNEK: I'm looking for my keys.
+1927 | part | verb | B1 | #1/1 | TR: ayrılmak, vedalaşmak | EN: to leave or separate from someone or something, often temporarily | ÖRNEK: She will part from her friends after graduation.
+26768 | think over | phrasal_verb | B2 | #1/1 | TR: iyice düşünmek, üzerinde düşünmek | EN: to consider something carefully before deciding | ÖRNEK: I'll think it over and let you know.
+26274 | come in | phrasal_verb | A2 | #1/2 | TR: içeri girmek | EN: to enter a room or building | ÖRNEK: Come in and sit down.
+26275 | come in | phrasal_verb | A2 | #2/2 | TR: (yarışta) -inci olmak | EN: to finish a race in a particular position | ÖRNEK: She came in second.
+26912 | come to | phrasal_verb | B2 | #1/3 | TR: (toplam) etmek, tutmak | EN: to reach a particular total | ÖRNEK: The bill came to $45.
+26913 | come to | phrasal_verb | B2 | #2/3 | TR: kendine gelmek, ayılmak | EN: to become conscious again | ÖRNEK: When I came to, I was in hospital.
+26914 | come to | phrasal_verb | B2 | #3/3 | TR: (bir karara, sonuca) varmak | EN: to reach a decision or conclusion | ÖRNEK: We came to the conclusion that he was lying.
+26396 | get off | phrasal_verb | A2 | #1/3 | TR: (otobüsten, trenden) inmek | EN: to leave a bus, train, plane or bicycle | ÖRNEK: We get off at the next stop.
+26397 | get off | phrasal_verb | A2 | #2/3 | TR: (işten) çıkmak, ayrılmak | EN: to leave work at the end of the day | ÖRNEK: What time do you get off work?
+26398 | get off | phrasal_verb | A2 | #3/3 | TR: (cezadan) kurtulmak, hafif cezayla atlatmak | EN: to avoid punishment | ÖRNEK: He got off with a small fine.
+26431 | go after | phrasal_verb | B2 | #1/2 | TR: peşine düşmek, kovalamak | EN: to follow or chase someone | ÖRNEK: The police went after the thief.
+26432 | go after | phrasal_verb | B2 | #2/2 | TR: (bir şeyi elde etmek için) uğraşmak | EN: to try to get something | ÖRNEK: She's going after the manager's job.
+26962 | go into | phrasal_verb | B2 | #1/3 | TR: (ayrıntılarına) girmek, ayrıntılı anlatmak | EN: to describe or explain something in detail | ÖRNEK: I don't want to go into details now.
+26963 | go into | phrasal_verb | B2 | #2/3 | TR: (bir işe, mesleğe) girmek | EN: to start working in a particular type of job | ÖRNEK: She wants to go into medicine.
+26964 | go into | phrasal_verb | B2 | #3/3 | TR: (para, emek) harcanmak | EN: to be used or spent for something | ÖRNEK: A lot of work went into this project.
+26544 | look at | phrasal_verb | A1 | #1/2 | TR: bakmak | EN: to turn your eyes towards someone or something | ÖRNEK: Look at that beautiful bird!
+26545 | look at | phrasal_verb | A1 | #2/2 | TR: incelemek, ele almak | EN: to think about or study a subject or problem | ÖRNEK: We need to look at all the options.
+27011 | look in on | phrasal_verb | C1 | #1/1 | TR: (birini görmek için) uğramak, yoklamak | EN: to visit someone for a short time, especially to check that they are all right | ÖRNEK: I'll look in on Grandma on my way home.
+27114 | take out on | phrasal_verb | C1 | #1/1 | TR: (öfkesini) birinden çıkarmak | EN: to treat someone badly because you are angry or upset about something else | ÖRNEK: Don't take it out on me!
+27123 | think back | phrasal_verb | B2 | #1/1 | TR: (geçmişi) düşünmek, hatırlamak | EN: to think about something that happened in the past | ÖRNEK: Think back to your first day at school.
+26278 | come on | phrasal_verb | B1 | #1/2 | TR: hadi, haydi (cesaretlendirme, acele ettirme) | EN: used to encourage someone or tell them to hurry | ÖRNEK: Come on, we'll be late!
+26279 | come on | phrasal_verb | B1 | #2/2 | TR: (cihaz, ışık) yanmak, çalışmaya başlamak | EN: to start working (a machine or light) | ÖRNEK: The lights came on at six.
+26461 | go over | phrasal_verb | B2 | #1/1 | TR: gözden geçirmek, tekrar incelemek | EN: to look at or explain something carefully, especially to check it | ÖRNEK: Let's go over the plan once more.
+15159 | old | noun | B1 | #1/1 | TR: yaşlılar, yaşlı insanlar | EN: people who are advanced in age; the elderly. | ÖRNEK: The old often share stories about their youth.
+26908 | come in for | phrasal_verb | C1 | #1/1 | TR: (eleştiri) almak, -e maruz kalmak | EN: to receive criticism or blame | ÖRNEK: The government has come in for a lot of criticism.
+26905 | come by | phrasal_verb | B2 | #1/2 | TR: (zorlukla) elde etmek, bulmak | EN: to manage to get something that is difficult to get | ÖRNEK: Good jobs are hard to come by.
+26906 | come by | phrasal_verb | B2 | #2/2 | TR: uğramak | EN: to visit a place for a short time | ÖRNEK: Come by my office this afternoon.
+26385 | get down | phrasal_verb | B1 | #1/3 | TR: (aşağı) inmek | EN: to move to a lower position | ÖRNEK: Get down from that wall!
+26386 | get down | phrasal_verb | B1 | #2/3 | TR: morali bozmak, üzmek | EN: to make someone feel sad | ÖRNEK: This weather is getting me down.
+26387 | get down | phrasal_verb | B1 | #3/3 | TR: yazmak, not almak | EN: to write something | ÖRNEK: Did you get down everything she said?
+26388 | get down to | phrasal_verb | B2 | #1/1 | TR: (bir işe) ciddi olarak başlamak, koyulmak | EN: to start doing something seriously | ÖRNEK: Let's get down to business.
+26412 | get through | phrasal_verb | B1 | #1/3 | TR: (telefonda) ulaşmak, bağlantı kurmak | EN: to manage to talk to someone on the phone | ÖRNEK: I tried to call you but I couldn't get through.
+26413 | get through | phrasal_verb | B1 | #2/3 | TR: (zor bir dönemi) atlatmak, geçirmek | EN: to manage to deal with a difficult situation or period | ÖRNEK: We'll get through this together.
+26414 | get through | phrasal_verb | B1 | #3/3 | TR: (sınavı) geçmek | EN: to succeed in an exam or test | ÖRNEK: She got through her driving test.
+26439 | go back | phrasal_verb | A2 | #1/2 | TR: geri dönmek | EN: to return to a place where you were before | ÖRNEK: I want to go back to Paris one day.
+26440 | go back | phrasal_verb | A2 | #2/2 | TR: -e dayanmak, -den beri sürmek | EN: to have existed since a particular time | ÖRNEK: Our friendship goes back to our school days.
+26272 | come from | phrasal_verb | A1 | #1/2 | TR: -li olmak, -den gelmek | EN: to be born in or live in a particular place | ÖRNEK: Where do you come from?
+26273 | come from | phrasal_verb | A1 | #2/2 | TR: -den kaynaklanmak | EN: to start or be made in a particular place or thing | ÖRNEK: This word comes from Latin.
+15169 | game | verb | B1 | #1/1 | TR: video oyunu oynamak, bilgisayar oyunu oynamak, kumar oynamak | EN: to take part in a game or sport, or to engage in an activity for enjoyment | ÖRNEK: He often games with his brother on the weekend.
+9183 | look out | phrasal_verb | A2 | #1/1 | TR: dikkat etmek, uyarı vermek | EN: to be watchful and warn someone about possible danger or trouble | ÖRNEK: Look out before you cross the street.
+26556 | look up | phrasal_verb | B1 | #1/3 | TR: (sözlükte, internette) bakmak, aramak | EN: to try to find a piece of information in a book or on a computer | ÖRNEK: Look up the word in a dictionary.
+26557 | look up | phrasal_verb | B1 | #2/3 | TR: (durum) iyiye gitmek, düzelmek | EN: to become better | ÖRNEK: Things are finally looking up.
+26558 | look up | phrasal_verb | B1 | #3/3 | TR: (gözünü) kaldırıp bakmak | EN: to raise your eyes | ÖRNEK: She looked up from her book.
+18718 | school | verb | B2 | #1/1 | TR: eğitmek, öğretmek, terbiye etmek | EN: to teach or train someone, especially in a formal setting or in a particular skill | ÖRNEK: The coach will school the new players during the preseason.
+26664 | see off | phrasal_verb | B2 | #1/1 | TR: (havalimanında, istasyonda) uğurlamak | EN: to go to an airport or station to say goodbye to someone | ÖRNEK: We went to the airport to see her off.
+26803 | use up | phrasal_verb | B1 | #1/1 | TR: bitirmek, tüketmek | EN: to use all of something | ÖRNEK: We've used up all the milk.
+26422 | give in | phrasal_verb | B1 | #1/3 | TR: (sonunda) kabul etmek, boyun eğmek | EN: to finally agree to what someone wants after refusing for a time | ÖRNEK: My parents finally gave in and let me go.
+26423 | give in | phrasal_verb | B1 | #2/3 | TR: pes etmek | EN: to accept that you have been defeated | ÖRNEK: The team refused to give in.
+26424 | give in | phrasal_verb | B1 | #3/3 | TR: (ödevi) teslim etmek | EN: to give a piece of work to a teacher | ÖRNEK: Please give in your homework on Monday.
+26559 | look up to | phrasal_verb | B2 | #1/1 | TR: saygı duymak, örnek almak | EN: to admire and respect someone | ÖRNEK: I've always looked up to my older brother.
+26563 | make off | phrasal_verb | C1 | #1/1 | TR: kaçıp gitmek, sıvışmak | EN: to leave quickly, especially to escape | ÖRNEK: The thieves made off in a stolen car.
+26733 | take after | phrasal_verb | B2 | #1/1 | TR: (anne babasına) benzemek, çekmek | EN: to look or behave like an older relative | ÖRNEK: She takes after her mother.
+26262 | come about | phrasal_verb | B2 | #1/1 | TR: olmak, meydana gelmek | EN: to happen, especially in a way that is not planned | ÖRNEK: How did this situation come about?
+26552 | look out for | phrasal_verb | B2 | #1/2 | TR: gözünü dört açmak, dikkat etmek | EN: to watch carefully for someone or something | ÖRNEK: Look out for pickpockets in the market.
+26553 | look out for | phrasal_verb | B2 | #2/2 | TR: (birini) kollamak, korumak | EN: to take care of someone and protect them | ÖRNEK: Older children should look out for younger ones.
+26752 | take over | phrasal_verb | B2 | #1/1 | TR: devralmak, ele geçirmek | EN: to take control of a company, country or activity | ÖRNEK: A big company has taken over the firm.
+26828 | back off | phrasal_verb | B2 | #1/1 | TR: geri çekilmek, üstüne gelmeyi bırakmak | EN: to move away from someone, or to stop trying to force someone to do something | ÖRNEK: Back off! Leave me alone.
+26280 | come out | phrasal_verb | B1 | #1/3 | TR: çıkmak, piyasaya çıkmak, yayımlanmak | EN: to become available to buy or see | ÖRNEK: Her new album comes out next month.
+26281 | come out | phrasal_verb | B1 | #2/3 | TR: ortaya çıkmak, anlaşılmak | EN: to become known | ÖRNEK: The truth will come out eventually.
+26282 | come out | phrasal_verb | B1 | #3/3 | TR: (güneş, yıldız) çıkmak, görünmek | EN: to appear in the sky | ÖRNEK: The sun came out after the rain.
+26288 | come up | phrasal_verb | B1 | #1/3 | TR: gündeme gelmek, konu açılmak | EN: to be mentioned or discussed | ÖRNEK: The subject came up at the meeting.
+26289 | come up | phrasal_verb | B1 | #2/3 | TR: (sorun, fırsat) çıkmak, ortaya çıkmak | EN: to happen, usually unexpectedly | ÖRNEK: Something has come up and I can't come tonight.
+26290 | come up | phrasal_verb | B1 | #3/3 | TR: (güneş) doğmak | EN: to rise (the sun) | ÖRNEK: The sun comes up at six.
+26451 | go off | phrasal_verb | B1 | #1/4 | TR: (alarm, bomba) çalmak, patlamak | EN: to make a sudden loud noise (an alarm or bomb) | ÖRNEK: My alarm went off at six.
+26452 | go off | phrasal_verb | B1 | #2/4 | TR: (yiyecek) bozulmak | EN: to become bad and not good to eat or drink | ÖRNEK: The milk has gone off.
+26453 | go off | phrasal_verb | B1 | #3/4 | TR: (ışık, cihaz) sönmek, kapanmak | EN: to stop working (a light or machine) | ÖRNEK: The lights suddenly went off.
+26935 | end in | phrasal_verb | B2 | #1/1 | TR: ile sonuçlanmak, ile bitmek | EN: to have a particular result or ending | ÖRNEK: The match ended in a draw.
+26359 | find out | phrasal_verb | A2 | #1/1 | TR: öğrenmek, bulmak, ortaya çıkarmak | EN: to get information about something | ÖRNEK: Can you find out what time the train leaves?
+26665 | see through | phrasal_verb | C1 | #1/2 | TR: (oyununu, yalanını) görmek, içyüzünü anlamak | EN: to understand that someone is trying to deceive you | ÖRNEK: I saw through his lies immediately.
+26666 | see through | phrasal_verb | C1 | #2/2 | TR: (bir işi) sonuna kadar götürmek | EN: to continue doing something until it is finished | ÖRNEK: She was determined to see the project through.
+26737 | take back | phrasal_verb | B1 | #1/3 | TR: geri götürmek, iade etmek | EN: to return something to the place you got it from | ÖRNEK: I took the shirt back because it was too small.

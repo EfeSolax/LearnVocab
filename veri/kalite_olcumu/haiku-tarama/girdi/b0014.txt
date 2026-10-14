@@ -1,0 +1,100 @@
+15615 | listed | adjective | B2 | #1/2 | TR: listede yer alan | EN: included in a list or catalogue | ÖRNEK: The website shows the listed products with their prices.
+15616 | listed | adjective | B2 | #2/2 | TR: tescilli | EN: officially recorded or registered, especially a historic building or monument | ÖRNEK: Authorities maintain a register of listed monuments across the country.
+20223 | tech | noun | B1 | #1/1 | TR: teknoloji | EN: the application of scientific knowledge for practical purposes, especially in industry and everyday life | ÖRNEK: Tech has changed how we communicate with friends and family.
+4625 | combined | adjective | B2 | #1/1 | TR: birleşik, birleştirilmiş | EN: made by joining two or more things together | ÖRNEK: The combined score of the two exams determines the final grade.
+18243 | express | adjective | B1 | #1/1 | TR: hızlı, doğrudan, açık | EN: fast, direct, or clearly stated without unnecessary detail | ÖRNEK: The train provides an express route between the two cities.
+18244 | express | noun | B2 | #1/1 | TR: hızlı tren, hızlı hizmet | EN: a fast train or a service that operates with a higher speed and fewer stops than regular services | ÖRNEK: The express leaves the station every hour during rush hour.
+5111 | increasing | adjective | B2 | #1/1 | TR: artan, giderek artan | EN: describing something that is becoming greater in amount, size, or intensity over time | ÖRNEK: Scientists observed an increasing number of plastic particles in the ocean.
+17592 | loan | verb | B1 | #1/1 | TR: ödünç vermek, borç vermek | EN: to give money or something to someone for a period of time, expecting it to be returned | ÖRNEK: The library will loan books to any registered member.
+15805 | shared | adjective | B1 | #1/1 | TR: ortak, paylaşılan | EN: having been used, owned, or experienced by more than one person or group | ÖRNEK: The family uses a shared calendar to keep track of appointments.
+27106 | stick together | phrasal_verb | B2 | #1/1 | TR: birbirine destek olmak, birlikte olmak | EN: to support each other | ÖRNEK: Friends should stick together.
+14750 | stuck | adjective | B1 | #1/1 | TR: takılmış, sıkışmış | EN: unable to move because something is preventing motion or because it is caught in a position | ÖRNEK: The car was stuck in the mud after the rain.
+12407 | appropriate | verb | B2 | #1/2 | TR: ödenek ayırmak, tahsis etmek | EN: to set aside money or resources for a specific purpose | ÖRNEK: The school board will appropriate money for new computers next year.
+12408 | appropriate | verb | B2 | #2/2 | TR: el koymak, zimmetine geçirmek, sahiplenmek | EN: to take something for one's own use, often without permission | ÖRNEK: The thief attempted to appropriate the jewelry from the safe.
+27331 | changing room | noun | B1 | #1/1 | TR: soyunma odası; (mağazada) deneme kabini | EN: a room for changing your clothes, or for trying on clothes in a shop | ÖRNEK: The changing rooms are next to the pool.
+27343 | exchange rate | noun | B1 | #1/1 | TR: döviz kuru | EN: the value of one country's money compared to another's | ÖRNEK: What's the exchange rate for dollars today?
+17616 | factor | verb | B2 | #1/1 | TR: düşünmek, hesaba katmak | EN: to include or consider something as a relevant element when making a decision or calculation | ÖRNEK: We must factor in taxes when we calculate the price.
+17624 | pool | verb | B2 | #1/1 | TR: kaynakları birleştirmek, toplamak | EN: to combine or gather resources, funds, or efforts for a common purpose | ÖRNEK: The students pooled their notes to create a comprehensive study guide.
+17632 | route | verb | B1 | #1/1 | TR: yönlendirmek, güzergah belirlemek | EN: to send or direct something or someone along a particular course or path | ÖRNEK: The manager will route the new project files to the design team tomorrow.
+17673 | fox | noun | A2 | #1/1 | TR: tilki | EN: a small to medium-sized, carnivorous mammal belonging to the genus Vulpes, known for its pointed snout, bushy tail, and cunning behavior | ÖRNEK: A fox crossed the road near the school this morning.
+17686 | hole | verb | C1 | #1/1 | TR: delik açmak, delmek | EN: to make a hole or opening in something | ÖRNEK: The workers holed the metal sheet to install the pipe.
+17657 | holiday | verb | B1 | #1/1 | TR: tatil yapmak, izinli olmak | EN: to take a vacation or a period of leisure away from work or routine | ÖRNEK: I will holiday in the mountains after my final exams.
+16266 | listening | noun | B1 | #1/1 | TR: dinleme | EN: the act of giving attention to sound or speech in order to hear and understand it | ÖRNEK: Good listening can prevent many misunderstandings in relationships.
+27363 | long jump | noun | B1 | #1/1 | TR: uzun atlama | EN: a sport in which you jump as far as possible | ÖRNEK: She came first in the long jump.
+17666 | lunch | verb | B1 | #1/1 | TR: öğle yemeği yemek | EN: to eat a midday meal, typically between noon and 1 p.m. | ÖRNEK: I usually lunch at my desk when I am very busy.
+17887 | max | noun | B2 | #1/1 | TR: azami değer, en yüksek miktar | EN: the greatest amount or degree that is possible or allowed | ÖRNEK: The car can hold a max of five passengers.
+17888 | max | verb | B2 | #1/1 | TR: en üst seviyeye çıkarmak | EN: to increase something to its highest possible level or limit | ÖRNEK: The company decided to max production to meet the sudden surge in demand.
+11468 | milk | verb | A2 | #1/2 | TR: süt sağmak | EN: to extract milk from an animal, especially a cow | ÖRNEK: The child watched the farmer milk a cow at the farm.
+11469 | milk | verb | A2 | #2/2 | TR: sömürmek | EN: to exploit someone or something for personal gain | ÖRNEK: The politician was accused of trying to milk public funds for personal use.
+12480 | storm | verb | B2 | #1/2 | TR: öfkeyle yürümek, hışımla gitmek | EN: to move in a violent, angry manner, often with great speed and force | ÖRNEK: She stormed into the office, demanding an immediate answer.
+12481 | storm | verb | B2 | #2/2 | TR: şiddetli bir saldırı yapmak | EN: to attack or assault something or someone with great force | ÖRNEK: The rebels stormed the city walls, catching the guards off guard.
+17653 | sub | noun | B1 | #1/3 | TR: yedek oyuncu | EN: a player who replaces another player during a game | ÖRNEK: The team used a sub after the striker got injured.
+17654 | sub | noun | B1 | #2/3 | TR: denizaltı | EN: a military or research vessel that can travel underwater | ÖRNEK: The crew boarded the sub before sunrise.
+17655 | sub | noun | B1 | #3/3 | TR: sandviç | EN: a type of sandwich, usually a long roll filled with meats, cheese, and vegetables | ÖRNEK: The cafe offers a fresh sub every morning.
+27335 | climate change | noun | B1 | #1/1 | TR: iklim değişikliği | EN: changes in the world's weather, especially the increase in temperature caused by human activity | ÖRNEK: Climate change is a global problem.
+9809 | committed | adjective | B2 | #1/1 | TR: bağlı, adanmış | EN: showing firm dedication to a cause, person, or activity | ÖRNEK: She is a committed student who studies every night.
+17718 | fake | verb | B1 | #1/2 | TR: sahtesini yapmak, sahtecilik yapmak | EN: to create a counterfeit or fraudulent version of something | ÖRNEK: The artist can fake a painting that looks authentic.
+17719 | fake | verb | B1 | #2/2 | TR: numarasını yapmak, yalandan yapmak, rolü yapmak | EN: to imitate or copy something in order to deceive or amuse | ÖRNEK: He faked a laugh to hide his embarrassment.
+27354 | high jump | noun | B1 | #1/1 | TR: yüksek atlama | EN: a sport in which you jump over a bar that is raised higher and higher | ÖRNEK: He won a medal in the high jump.
+17698 | journey | verb | B1 | #1/1 | TR: seyahat etmek | EN: to travel from one place to another, especially over a long distance | ÖRNEK: I will journey to the city tomorrow morning.
+27022 | pack up | phrasal_verb | B1 | #1/2 | TR: (eşyalarını) toplamak | EN: to put your things into bags or boxes, often before leaving | ÖRNEK: We packed up and left the hotel.
+27023 | pack up | phrasal_verb | B1 | #2/2 | TR: (makine) bozulmak, çalışmaz olmak | EN: to stop working | ÖRNEK: My old laptop finally packed up.
+1286 | quiet | noun | B1 | #1/1 | TR: sessizlik | EN: the state of being silent or free from noise | ÖRNEK: The quiet of the early morning helped her think clearly.
+1287 | quiet | verb | B1 | #1/1 | TR: sessizleştirmek, sakinleştirmek | EN: to make or become silent or still | ÖRNEK: She whispered to quiet the noisy hallway.
+17708 | split | adjective | B2 | #1/1 | TR: bölünmüş, ayrılmış | EN: describing something that has been divided into two or more parts or sections | ÖRNEK: The split road forced drivers to choose a direction.
+27113 | strike up | phrasal_verb | C1 | #1/1 | TR: (sohbet, arkadaşlık) başlatmak | EN: to start a conversation or relationship with someone | ÖRNEK: He struck up a conversation with the woman next to him.
+17693 | task | verb | B1 | #1/1 | TR: görevlendirmek, görev vermek | EN: to assign a piece of work or responsibility to someone | ÖRNEK: The teacher will task you with a short essay for homework.
+27410 | turning point | noun | B2 | #1/1 | TR: dönüm noktası | EN: a time when an important change happens | ÖRNEK: Moving to Istanbul was a turning point in my life.
+3137 | affected | adjective | C1 | #1/1 | TR: yapmacık, özentili, yapay | EN: behaving in an artificial or pretentious way, often to impress others | ÖRNEK: The actor adopted an affected British accent for the role.
+19397 | extended | adjective | B2 | #1/1 | TR: uzun, ayrıntılı | EN: containing many details or covering a large amount of material | ÖRNEK: The interview turned into an extended conversation about his childhood.
+17735 | fault | verb | B2 | #1/1 | TR: suçlamak, hatalı olduğunu söylemek | EN: to assign responsibility for a mistake or wrongdoing to someone | ÖRNEK: The teacher faulted the student for not doing the homework.
+17738 | fill | noun | B1 | #1/1 | TR: doyumluk miktar, doyasıya miktar | EN: the amount that satisfies a need or desire, especially hunger; enough to make someone feel full | ÖRNEK: After the long hike, I finally had my fill of the trail snacks.
+26354 | fill in | phrasal_verb | A2 | #1/3 | TR: (formu, boşluğu) doldurmak | EN: to write information in the spaces on a form or in a text | ÖRNEK: Please fill in this form.
+26355 | fill in | phrasal_verb | A2 | #2/3 | TR: (birine) bilgi vermek, durumdan haberdar etmek | EN: to tell someone about recent events | ÖRNEK: Can you fill me in on what happened?
+26356 | fill in | phrasal_verb | A2 | #3/3 | TR: (birinin) yerine bakmak, vekâlet etmek | EN: to do someone's job for a short time while they are away | ÖRNEK: I'm filling in for Sarah this week.
+26999 | laugh off | phrasal_verb | C1 | #1/1 | TR: gülüp geçmek, önemsememek | EN: to pretend that something is not serious by laughing about it | ÖRNEK: He laughed off the criticism.
+2846 | lay | adjective | B2 | #1/1 | TR: meslekten olmayan, uzman olmayan, din adamı olmayan | EN: not ordained or not professional; relating to non-clergy or non-expert persons | ÖRNEK: The museum provides a lay guide for visitors who are not art experts.
+27018 | measure up | phrasal_verb | C1 | #1/1 | TR: beklentiyi karşılamak, yeterli olmak | EN: to be good enough | ÖRNEK: The new player didn't measure up.
+17763 | phase | verb | B2 | #1/1 | TR: aşamalara bölmek, kademeli olarak uygulamak | EN: to carry out or cause something to happen in stages or to bring something into a particular stage | ÖRNEK: The manager will phase the project into three clear steps.
+26704 | split up | phrasal_verb | B1 | #1/2 | TR: ayrılmak (ilişkiyi bitirmek) | EN: to end a romantic relationship | ÖRNEK: She split up with her boyfriend last month.
+26705 | split up | phrasal_verb | B1 | #2/2 | TR: bölünmek, gruplara ayırmak | EN: to divide into smaller groups or parts | ÖRNEK: Let's split up into three groups.
+17724 | truck | verb | B1 | #1/1 | TR: kamyonla taşımak | EN: to transport goods or materials by truck | ÖRNEK: The farmer trucks the harvest to the market every week.
+17791 | bowl | verb | B1 | #1/1 | TR: top yuvarlamak | EN: to roll a ball in a game of bowling or to throw a ball in a similar manner | ÖRNEK: She bowled a perfect game during the weekend tournament.
+17784 | chicken | adjective | B1 | #1/1 | TR: korkak, çekingen | EN: describing a person who lacks courage or is easily frightened | ÖRNEK: The new student seemed chicken during the first class discussion.
+8497 | collected | adjective | B2 | #1/1 | TR: sakin, soğukkanlı | EN: calm and self-possessed; not easily disturbed or excited | ÖRNEK: The teacher praised the student for his collected attitude during the exam.
+26357 | fill out | phrasal_verb | B1 | #1/1 | TR: (formu) doldurmak | EN: to write information in the spaces on a form | ÖRNEK: Fill out the application form and send it back.
+26358 | fill up | phrasal_verb | B1 | #1/1 | TR: ağzına kadar doldurmak, dolmak | EN: to make something completely full, or to become full | ÖRNEK: Fill up the tank, please.
+19217 | inspired | adjective | B2 | #1/2 | TR: ilham almış, coşkulu | EN: having received creative influence or motivation, often resulting in enthusiastic or passionate expression | ÖRNEK: She felt inspired after watching the documentary.
+19216 | inspired | adjective | B2 | #2/2 | TR: dahice, harika, müthiş | EN: causing great admiration or enthusiasm because of outstanding quality or brilliance | ÖRNEK: The painting was an inspired use of color and light.
+27000 | lay into | phrasal_verb | C1 | #1/1 | TR: (birine) sözle ya da fiziksel olarak saldırmak, giydirmek | EN: to attack or criticize someone angrily | ÖRNEK: The coach really laid into the players after the match.
+26519 | lay out | phrasal_verb | B2 | #1/2 | TR: düzenlemek, yerleştirmek, sermek | EN: to arrange or spread something out | ÖRNEK: She laid out the clothes on the bed.
+26520 | lay out | phrasal_verb | B2 | #2/2 | TR: açıklamak, ortaya koymak | EN: to explain something clearly and in detail | ÖRNEK: The report lays out a plan for the future.
+26595 | phase out | phrasal_verb | C1 | #1/1 | TR: aşamalı olarak kaldırmak | EN: to gradually stop using or providing something | ÖRNEK: The old system will be phased out next year.
+27381 | public transport | noun | B1 | #1/1 | TR: toplu taşıma | EN: buses, trains and other vehicles that everyone can use | ÖRNEK: I always use public transport.
+9848 | remaining | adjective | B1 | #1/1 | TR: kalan, geride kalan | EN: still existing after other parts have been removed, used, or dealt with; left over. | ÖRNEK: The remaining cookies were placed on the plate for later.
+21196 | whenever | adverb | B1 | #1/1 | TR: her ne zaman | EN: at any time or every time that something happens | ÖRNEK: Whenever I have free time, I read a book.
+21197 | whenever | conjunction | A2 | #1/1 | TR: her ne zaman ... -sa, herhangi bir zaman | EN: introduces a clause that states that something happens at any time that a certain condition is met | ÖRNEK: Whenever it rains, the garden looks greener.
+17771 | zero | verb | B1 | #1/2 | TR: sıfırlamak | EN: to reduce something to zero or to eliminate it completely | ÖRNEK: The accountant zeroed the ledger after reconciling all entries.
+17770 | zero | verb | B1 | #2/2 | TR: odaklanmak, hedefe kilitlenmek | EN: to direct one's attention or aim precisely at a particular target or point | ÖRNEK: The photographer zeroed in on the bird perched on the branch.
+27152 | zero in on | phrasal_verb | C1 | #1/1 | TR: (bir şeye) odaklanmak, hedef almak | EN: to direct all your attention to one thing | ÖRNEK: The police zeroed in on the main suspect.
+17820 | champion | adjective | B2 | #1/1 | TR: üstün, birincilik sahibi | EN: having the qualities of a champion; being the best in a particular field | ÖRNEK: The champion swimmer won gold at the regional competition.
+17823 | champion | verb | B2 | #1/1 | TR: savunmak, desteklemek | EN: to publicly support or defend a person, cause, or idea | ÖRNEK: The student champions the new recycling program at school.
+18189 | estimated | adjective | B2 | #1/1 | TR: tahmini, yaklaşık | EN: describing a value, quantity, or time that has been roughly calculated or judged without exact measurement | ÖRNEK: The estimated distance between the two towns is 120 kilometers.
+26339 | fall apart | phrasal_verb | B2 | #1/2 | TR: dağılmak, parçalanmak | EN: to break into pieces because of being old or badly made | ÖRNEK: My old shoes are falling apart.
+26516 | lay down | phrasal_verb | C1 | #1/2 | TR: (kural) koymak, belirlemek | EN: to officially state rules or principles | ÖRNEK: The rules are laid down by the committee.
+26517 | lay down | phrasal_verb | C1 | #2/2 | TR: yere bırakmak, (silahı) bırakmak | EN: to put something down | ÖRNEK: She laid the baby down in the bed.
+26518 | lay off | phrasal_verb | B2 | #1/1 | TR: işten çıkarmak | EN: to stop employing someone because there is not enough work | ÖRNEK: The factory laid off 200 workers.
+27004 | lie ahead | phrasal_verb | B2 | #1/1 | TR: (gelecekte) beklemek, önünde olmak | EN: to be going to happen in the future | ÖRNEK: Difficult times lie ahead.
+9270 | minor | noun | B1 | #1/1 | TR: reşit olmayan kişi | EN: a person who is under the legal age of adulthood | ÖRNEK: A minor cannot purchase alcohol in most countries.
+17816 | stream | verb | B1 | #1/2 | TR: akmak, süzülmek | EN: to move continuously in a current or as a continuous series | ÖRNEK: A small creek streams through the forest.
+17817 | stream | verb | B1 | #2/2 | TR: yayın akışı yapmak, internetten yayınlamak, kesintisiz izlemek | EN: to transmit or receive data continuously over the internet | ÖRNEK: She streams video tutorials for free.
+15694 | cutting | adjective | B2 | #1/1 | TR: keskin, alaycı | EN: characterized by sharpness or a biting, critical tone; causing a feeling of being sharply criticized or hurt | ÖRNEK: The teacher's cutting feedback made the student rethink his approach.
+5169 | drunk | noun | B1 | #1/1 | TR: sarhoş, alkollü kişi | EN: a person who has consumed enough alcohol to be intoxicated | ÖRNEK: She saw a drunk stumbling out of the bar and called a taxi.
+17428 | fail | noun | B2 | #1/1 | TR: başarısızlık | EN: the state of not achieving a desired result or goal | ÖRNEK: His first exam was a fail.
+27475 | prime minister | noun | B1 | #1/1 | TR: başbakan | EN: the leader of the government in some countries | ÖRNEK: The prime minister gave a speech.
+17865 | solo | adverb | B1 | #1/1 | TR: tek başına, yalnızca | EN: without assistance or accompaniment; alone | ÖRNEK: She sang the song solo during the school talent show.
+17856 | ticket | verb | B2 | #1/1 | TR: bilet kesmek, ceza kesmek | EN: to issue a ticket to someone, usually for a traffic violation or for admission to an event | ÖRNEK: The officer ticketed the car for speeding on the highway.
+17861 | upset | noun | B2 | #1/2 | TR: sürpriz yenilgi | EN: an unexpected loss or defeat, especially in a competition or election | ÖRNEK: The team suffered an upset in the quarter-finals and was eliminated.
+17862 | upset | noun | B2 | #2/2 | TR: kargaşa, karışıklık | EN: a situation of disorder or confusion | ÖRNEK: The announcement of the merger caused an upset in the company's workforce.
+17868 | wing | verb | B2 | #1/2 | TR: uçmak, kanat çırpmak | EN: to move through the air by flapping or using wings | ÖRNEK: During the documentary, the camera captured a hawk winging over the cliffs.
+17869 | wing | verb | B2 | #2/2 | TR: kendiliğinden yapmak, doğaçlama yapmak | EN: to perform or complete something without preparation, often improvising | ÖRNEK: He missed the rehearsal and had to wing the performance on stage.

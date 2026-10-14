@@ -1,0 +1,100 @@
+17248 | net | verb | B1 | #1/2 | TR: yakalamak | EN: to catch or capture something, especially fish or game | ÖRNEK: The kids tried to net the butterflies in the garden.
+17249 | net | verb | B1 | #2/2 | TR: net kazanç sağlamak | EN: to earn an amount after all deductions have been made | ÖRNEK: The shop netted a small profit this month.
+27042 | pull away | phrasal_verb | B2 | #1/2 | TR: (araç) hareket edip uzaklaşmak | EN: to start moving away (a vehicle) | ÖRNEK: The bus pulled away just as I arrived.
+27043 | pull away | phrasal_verb | B2 | #2/2 | TR: (birinden) çekilmek, uzaklaşmak | EN: to move away from someone who is holding you | ÖRNEK: She pulled away when he tried to hug her.
+26727 | stick to | phrasal_verb | B2 | #1/1 | TR: (plana, karara) bağlı kalmak, sadık kalmak | EN: to continue doing or using something and not change it | ÖRNEK: We must stick to the plan.
+27107 | stick with | phrasal_verb | B2 | #1/1 | TR: (bir şeye, birine) bağlı kalmak, devam etmek | EN: to continue doing or using something | ÖRNEK: I'll stick with my old phone.
+26771 | throw away | phrasal_verb | A2 | #1/2 | TR: (çöpe) atmak | EN: to get rid of something you do not want | ÖRNEK: Don't throw away those old photos.
+26772 | throw away | phrasal_verb | A2 | #2/2 | TR: (fırsatı) heba etmek, kaçırmak | EN: to waste a skill or opportunity | ÖRNEK: He threw away his chance of winning.
+18875 | wake | noun | B1 | #1/2 | TR: cenaze töreni sonrası toplanma, anma | EN: a gathering of family and friends to commemorate a deceased person before a funeral | ÖRNEK: The wake was held at the community hall after the funeral service.
+18876 | wake | noun | B1 | #2/2 | TR: gemi izi, dalga izi | EN: the trail of disturbed water left behind a moving vessel | ÖRNEK: The kayak was tossed by the wake of the passing speedboat.
+15552 | buying | noun | B1 | #1/1 | TR: satın alma | EN: the act of acquiring something in exchange for money | ÖRNEK: The company reported higher buying activity this quarter.
+17308 | corner | verb | B2 | #1/1 | TR: köşeye sıkıştırmak, zor durumda bırakmak | EN: to force someone or something into a position where they have limited options or escape routes | ÖRNEK: The police cornered the suspect in the alley.
+26322 | dress up | phrasal_verb | A2 | #1/2 | TR: süslenip giyinmek, şık giyinmek | EN: to put on formal or special clothes | ÖRNEK: You don't need to dress up for the party.
+26323 | dress up | phrasal_verb | A2 | #2/2 | TR: kılık değiştirmek, -in kostümünü giymek | EN: to wear a costume to look like someone else | ÖRNEK: The children dressed up as pirates.
+11896 | frank | adjective | B1 | #1/1 | TR: açık, dürüst | EN: describing someone who expresses thoughts and feelings directly and honestly | ÖRNEK: She was frank about her feelings during the interview.
+11897 | frank | noun | B2 | #1/1 | TR: sosis, frenk sosisi | EN: a cooked sausage, usually served in a sliced bun, commonly known as a hot dog | ÖRNEK: I bought a frank from the street vendor during the fair.
+11898 | frank | verb | B2 | #1/1 | TR: posta damgası basmak, damgalamak, mühürlemek | EN: to apply a postage stamp or official seal to a letter, parcel, or document | ÖRNEK: I will frank the envelope before mailing it.
+27015 | map out | phrasal_verb | C1 | #1/1 | TR: ayrıntılı planlamak | EN: to plan something in detail | ÖRNEK: She has mapped out her whole career.
+17324 | raise | noun | B2 | #1/1 | TR: maaş artışı, zam | EN: an increase in an employee's salary or wages | ÖRNEK: The employee was delighted to receive a raise this month.
+26688 | shut down | phrasal_verb | B2 | #1/1 | TR: (işletmeyi, sistemi) kapatmak, kapanmak | EN: to stop a business, machine or system operating | ÖRNEK: The factory shut down in 2010.
+27397 | sports center | noun | A2 | #1/1 | TR: spor merkezi | EN: a building where people can play different sports | ÖRNEK: I go swimming at the sports center.
+26725 | stick out | phrasal_verb | B2 | #1/2 | TR: dışarı çıkmak, taşmak | EN: to come out beyond a surface or edge | ÖRNEK: A pen was sticking out of his pocket.
+26726 | stick out | phrasal_verb | B2 | #2/2 | TR: göze batmak, kendini belli etmek | EN: to be very easy to see or notice | ÖRNEK: His bright yellow jacket really stuck out.
+26728 | stick up for | phrasal_verb | C1 | #1/1 | TR: savunmak, arka çıkmak | EN: to defend or support someone, especially when others are criticizing them | ÖRNEK: My brother always sticks up for me.
+26734 | take apart | phrasal_verb | B2 | #1/1 | TR: sökmek, parçalarına ayırmak | EN: to separate something into its different parts | ÖRNEK: He took the radio apart to fix it.
+20146 | treat | noun | A2 | #1/1 | TR: ikram, ikramlık, atıştırmalık | EN: something pleasant that is given to someone, often as a reward or for enjoyment | ÖRNEK: She bought a small treat for her colleague's birthday.
+18879 | wake up | phrasal_verb | A2 | #1/1 | TR: uyanmak | EN: to stop sleeping and become conscious | ÖRNEK: I usually wake up at six o'clock on weekdays.
+26267 | come apart | phrasal_verb | B2 | #1/1 | TR: parçalanmak, dağılmak | EN: to separate into pieces | ÖRNEK: The old book came apart in my hands.
+17358 | edge | verb | B2 | #1/1 | TR: kenara kaymak, hafifçe ilerlemek | EN: to move gradually or cautiously toward or along something, often in a small or subtle way | ÖRNEK: The kitten edged toward the warm blanket cautiously.
+26363 | fix up | phrasal_verb | B2 | #1/2 | TR: onarmak, elden geçirmek | EN: to repair or improve something | ÖRNEK: He fixed up an old car.
+26364 | fix up | phrasal_verb | B2 | #2/2 | TR: ayarlamak, düzenlemek | EN: to arrange something | ÖRNEK: I've fixed up a meeting for Monday.
+1743 | ordered | adjective | B1 | #1/1 | TR: düzenli, tertipli | EN: arranged or organized in a systematic way; not chaotic | ÖRNEK: The shelves were kept ordered so that every book could be found quickly.
+27055 | roll out | phrasal_verb | C1 | #1/1 | TR: (yeni ürünü, hizmeti) kullanıma sunmak, yaygınlaştırmak | EN: to make a new product or service available | ÖRNEK: The company will roll out the new app next month.
+17384 | bay | adjective | C1 | #1/1 | TR: doru | EN: of a reddish-brown colour, especially used to describe the coat of a horse | ÖRNEK: The bay horse trotted calmly across the meadow.
+17386 | bay | verb | C1 | #1/1 | TR: havlamak, ulumak | EN: to emit a deep, prolonged bark or howl, especially by a dog or a wolf. | ÖRNEK: The dog began to bay when it saw the stranger.
+16770 | camera-ready | adjective | B2 | #1/1 | TR: yayına hazır | EN: ready for printing or publication, especially a manuscript or file that meets all formatting requirements | ÖRNEK: The journal requires a camera-ready version of each accepted article.
+17393 | core | verb | B2 | #1/1 | TR: çekirdeğini çıkarmak, iç kısmını çıkarmak | EN: to remove the central part of something, especially the seed or pit of a fruit or vegetable | ÖRNEK: The chef asked the kitchen staff to core the pears before baking.
+26333 | dry up | phrasal_verb | B2 | #1/2 | TR: kurumak | EN: to become completely dry | ÖRNEK: The river dries up in summer.
+26334 | dry up | phrasal_verb | B2 | #2/2 | TR: tükenmek, kesilmek | EN: to stop being available | ÖRNEK: The money for the project has dried up.
+26854 | iron out | phrasal_verb | C1 | #1/1 | TR: (sorunları) gidermek, halletmek | EN: to solve small problems or difficulties | ÖRNEK: We need to iron out a few problems before we start.
+17383 | lee | noun | C1 | #1/1 | TR: kuytu yer, rüzgar altı | EN: the side sheltered from the wind; a place of protection from wind or weather | ÖRNEK: The house is built on the lee side of the ridge to avoid strong winds.
+27432 | mental health | noun | B1 | #1/1 | TR: ruh sağlığı | EN: the condition of a person's mind and emotions | ÖRNEK: Exercise is good for your mental health.
+19556 | port | verb | B2 | #1/1 | TR: taşımak, aktarmak | EN: to carry or transfer something, especially data, software, or equipment, from one place or system to another | ÖRNEK: The company will port the legacy system to a cloud service next quarter.
+27045 | pull together | phrasal_verb | C1 | #1/2 | TR: birlikte çalışmak, el ele vermek | EN: to work together to achieve something | ÖRNEK: If we all pull together, we can do it.
+27046 | pull together | phrasal_verb | C1 | #2/2 | TR: kendini toparlamak | EN: to control your feelings and start behaving calmly | ÖRNEK: Pull yourself together and stop crying.
+17389 | sport | verb | B1 | #1/1 | TR: taşımak, göstermek | EN: to wear or display something, especially as a fashion statement or to show off | ÖRNEK: He likes to sport a baseball cap during class.
+27407 | traffic light | noun | A2 | #1/1 | TR: trafik lambası | EN: a set of colored lights that tell traffic when to stop and go | ÖRNEK: Turn left at the traffic lights.
+17420 | afternoon | adjective | B1 | #1/1 | TR: öğleden sonraki | EN: relating to or occurring in the period after noon and before evening | ÖRNEK: The conference includes an afternoon workshop on data analysis.
+27339 | credit card | noun | A2 | #1/1 | TR: kredi kartı | EN: a small plastic card that you use to buy things and pay for them later | ÖRNEK: Can I pay by credit card?
+19806 | flat | adverb | B1 | #1/2 | TR: düz bir şekilde, boylu boyunca | EN: in a level, even manner without any rise or variation | ÖRNEK: The picture hangs flat on the wall.
+19807 | flat | adverb | B1 | #2/2 | TR: tamamen, kesinlikle, açıkça | EN: completely or absolutely, often used for emphasis | ÖRNEK: She flat refused to sign the contract.
+2087 | ill | adverb | B2 | #1/1 | TR: kötü, fena bir şekilde | EN: in a bad or unfavorable manner; poorly or inadequately. | ÖRNEK: The report was ill written, making the data hard to read.
+26856 | kick in | phrasal_verb | C1 | #1/1 | TR: etkisini göstermeye başlamak, devreye girmek | EN: to start to have an effect | ÖRNEK: The painkillers are starting to kick in.
+27366 | mobile phone | noun | A2 | #1/1 | TR: cep telefonu | EN: a phone that you can carry with you (British English) | ÖRNEK: Turn off your mobile phone in the cinema.
+17464 | pair | verb | B1 | #1/1 | TR: eşleştirmek | EN: to join or match two items together, often for a specific purpose | ÖRNEK: The instructor asked us to pair the socks after washing them.
+17435 | plane | adjective | B1 | #1/1 | TR: düz, yatay | EN: having a flat, even surface; not curved or inclined | ÖRNEK: The table top is plane and ready for painting.
+17439 | plane | verb | B2 | #1/1 | TR: düzleştirmek, yüzeyi pürüzsüz hâle getirmek | EN: to make a surface smooth and even, usually by using a hand-held plane tool | ÖRNEK: The carpenter planes the wooden plank to make it flat.
+13595 | plenty | noun | B1 | #1/1 | TR: bolluk, çokluk | EN: a large amount or supply of something; an abundance | ÖRNEK: The market offers plenty of fresh fruits during summer.
+17458 | quarter | verb | B1 | #1/2 | TR: konaklatmak, barındırmak | EN: to provide lodging or shelter for someone, especially in a military or emergency context | ÖRNEK: The shelter will quarter the displaced families for the winter.
+17459 | quarter | verb | B1 | #2/2 | TR: dörde bölmek | EN: to divide something into four equal parts or sections | ÖRNEK: The manager will quarter the annual budget for each department.
+27078 | shoot up | phrasal_verb | B2 | #1/2 | TR: hızla artmak, fırlamak | EN: to increase very quickly | ÖRNEK: Prices have shot up this year.
+27079 | shoot up | phrasal_verb | B2 | #2/2 | TR: (çocuk) hızla büyümek, boy atmak | EN: to grow quickly in height | ÖRNEK: Your son has really shot up!
+13027 | sky | verb | C2 | #1/1 | TR: yükselmek, artmak | EN: to increase rapidly in amount, level, or intensity | ÖRNEK: The cost of textbooks may sky next semester.
+27105 | stick around | phrasal_verb | B2 | #1/1 | TR: (bir yerde) kalmak, beklemek | EN: to stay somewhere for a period of time | ÖRNEK: Stick around after class – I want to talk to you.
+26871 | stress out | phrasal_verb | B2 | #1/1 | TR: strese sokmak, strese girmek | EN: to make someone feel very worried or nervous | ÖRNEK: Exams really stress me out.
+17467 | toward | preposition | A2 | #1/1 | TR: doğru, ... yönünde | EN: indicating direction or orientation in the direction of something | ÖRNEK: The dog ran toward the park gate.
+15037 | upper | noun | B1 | #1/1 | TR: saya, ayakkabı yüzü | EN: the part of a shoe that covers the top of the foot | ÖRNEK: The shoe upper is made of durable canvas.
+17470 | zone | verb | B2 | #1/1 | TR: bölgeye ayırmak | EN: to divide an area into zones or sections, often for planning or regulatory purposes | ÖRNEK: The city plans to zone the new suburb for housing and schools.
+26193 | bear with | phrasal_verb | C1 | #1/1 | TR: sabretmek, biraz beklemek | EN: to be patient while someone does something | ÖRNEK: Please bear with me while I find the file.
+17501 | boat | verb | B1 | #1/1 | TR: tekne ile seyahat etmek | EN: to travel by boat | ÖRNEK: The children love to boat on the lake during holidays.
+5167 | drinking | noun | B1 | #1/1 | TR: içme, içme eylemi | EN: the act or habit of consuming liquids, especially alcoholic beverages | ÖRNEK: The university conducted a survey on student drinking habits.
+27349 | gas station | noun | A2 | #1/1 | TR: benzin istasyonu | EN: a place where you buy fuel for your car | ÖRNEK: We stopped at a gas station.
+26510 | kick out | phrasal_verb | B2 | #1/1 | TR: kovmak, dışarı atmak | EN: to force someone to leave a place or organization | ÖRNEK: He was kicked out of school.
+18674 | proposed | adjective | B2 | #1/1 | TR: önerilen, tasarlanan | EN: suggested or put forward for consideration or acceptance | ÖRNEK: The board approved the proposed plan after a short discussion.
+17496 | steel | verb | B2 | #1/2 | TR: kendini hazırlamak, cesaretini toplamak | EN: to brace oneself mentally for a difficult or dangerous task | ÖRNEK: She steeled herself before the interview.
+17497 | steel | verb | B2 | #2/2 | TR: çelikle güçlendirmek, çelik kaplamak | EN: to coat or reinforce something with steel, making it stronger | ÖRNEK: The manufacturer steeled the car doors for safety.
+26764 | tell apart | phrasal_verb | B2 | #1/1 | TR: (birbirinden) ayırt etmek | EN: to see the difference between two very similar people or things | ÖRNEK: I can't tell the twins apart.
+27153 | zone out | phrasal_verb | C1 | #1/1 | TR: dalıp gitmek, dikkati dağılmak | EN: to stop paying attention and not notice what is happening around you | ÖRNEK: I zoned out during the lecture.
+26192 | bear out | phrasal_verb | C1 | #1/1 | TR: doğrulamak, desteklemek | EN: to show that something is true | ÖRNEK: The results bear out our theory.
+17536 | crew | verb | B2 | #1/1 | TR: personel temin etmek, ekibe almak | EN: to provide a ship, aircraft, or other vehicle with a crew; to staff or enlist people for a particular task or operation | ÖRNEK: The manager will crew the boat with volunteers for the lake cleanup.
+17532 | crowd | verb | B2 | #1/1 | TR: doluşmak, üşüşmek, doldurmak | EN: to fill a place with many people; to push or press people together in a confined space | ÖRNEK: The commuters crowded into the subway car during rush hour.
+17740 | filled | adjective | B1 | #1/1 | TR: dolu, içi dolu | EN: having been filled with something; containing as much as possible. | ÖRNEK: The box is filled with old books.
+26575 | mix up | phrasal_verb | B1 | #1/1 | TR: karıştırmak, birbirine karıştırmak | EN: to think that one person or thing is another | ÖRNEK: People often mix up the twins.
+27478 | natural resources | noun | B2 | #1/1 | TR: doğal kaynaklar | EN: things such as water, minerals and forests that exist in nature and can be used by people | ÖRNEK: The country is rich in natural resources.
+12294 | profit | verb | B2 | #1/2 | TR: kâr elde etmek | EN: to make a financial gain; to earn more than the cost | ÖRNEK: The shop profited from the holiday discount campaign.
+12293 | profit | verb | B2 | #2/2 | TR: yararlanmak, faydalanmak | EN: to obtain advantage or benefit from something | ÖRNEK: Students profit from regular study habits.
+10867 | proof | adjective | B2 | #1/1 | TR: dayanıklı, geçirmez | EN: capable of resisting or withstanding a particular influence or condition; not allowing something to pass through. | ÖRNEK: Manufacturers claim the fabric is proof against mold and mildew growth.
+12738 | republican | adjective | B2 | #1/1 | TR: cumhuriyetçi | EN: relating to a republic or to support a republican form of government, especially one that opposes monarchy | ÖRNEK: She voted for the republican candidate in the local election.
+12739 | republican | noun | B2 | #1/1 | TR: cumhuriyetçi | EN: a person who supports a republican form of government or the principles of a republic | ÖRNEK: He is a republican who believes in a government without a monarch.
+27404 | text message | noun | A2 | #1/1 | TR: kısa mesaj, SMS | EN: a written message sent from one phone to another | ÖRNEK: I sent her a text message.
+26807 | warm up | phrasal_verb | B1 | #1/2 | TR: ısınmak, ısıtmak | EN: to become warmer, or to make something warmer | ÖRNEK: Let me warm up some soup.
+26808 | warm up | phrasal_verb | B1 | #2/2 | TR: (spordan önce) ısınma hareketi yapmak | EN: to prepare for physical activity by doing gentle exercises | ÖRNEK: Always warm up before you run.
+17567 | domestic | noun | B2 | #1/1 | TR: ev işçisi | EN: a person employed to perform household chores such as cleaning, cooking, or childcare | ÖRNEK: The family employed a domestic to assist with daily chores.
+931 | honor | noun | B2 | #1/2 | TR: saygı, hürmet | EN: deep respect and admiration for someone or something | ÖRNEK: He always treats his elders with great honor.
+933 | honor | verb | B2 | #1/2 | TR: saygı göstermek | EN: to show respect or esteem for someone or something | ÖRNEK: The school will honor the best student this year.
+932 | honor | noun | B2 | #2/2 | TR: onur ödülü, taltif, nişan | EN: a distinction or privilege granted as a mark of esteem or achievement | ÖRNEK: The university will grant an honor to the best graduating class.
+934 | honor | verb | B2 | #2/2 | TR: sözünü tutmak | EN: to keep a promise or fulfill an obligation | ÖRNEK: He will honor his word and pay back the loan.
+26988 | jump at | phrasal_verb | C1 | #1/1 | TR: (fırsatı) hemen kabul etmek, kaçırmamak | EN: to accept an opportunity quickly and eagerly | ÖRNEK: She jumped at the chance to study abroad.
+26499 | jump in | phrasal_verb | B2 | #1/1 | TR: (konuşmaya) atılmak, araya girmek | EN: to interrupt a conversation | ÖRNEK: Can I jump in here?
+26508 | kick off | phrasal_verb | B2 | #1/1 | TR: başlamak, başlatmak | EN: to start a football match | ÖRNEK: The game kicks off at three o'clock.

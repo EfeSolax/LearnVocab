@@ -1,0 +1,100 @@
+19439 | scale | verb | B2 | #1/2 | TR: tırmanmak, çıkmak | EN: to climb up or ascend, especially a steep surface such as a mountain or wall | ÖRNEK: The climbers will scale the rock face before nightfall.
+19440 | scale | verb | B2 | #2/2 | TR: ölçeklendirmek, boyutunu ayarlamak | EN: to adjust the size, proportion, or level of something, often by using a scale or ratio | ÖRNEK: The designer scaled the sketch to fit the presentation board.
+26864 | shop around | phrasal_verb | B2 | #1/1 | TR: (en uygununu bulmak için) farklı yerlere bakmak | EN: to compare prices in different shops before you buy something | ÖRNEK: It's worth shopping around for a good price.
+16979 | smart | verb | C1 | #1/1 | TR: sızlamak, acımak, batmak | EN: to feel a sharp, stinging pain; to experience a sudden physical discomfort | ÖRNEK: He stubbed his toe and it smarted for a few minutes.
+16948 | surface | verb | B1 | #1/1 | TR: yüzeye çıkmak, ortaya çıkmak | EN: to become visible or evident; to appear on the surface | ÖRNEK: The cracks began to surface after the heavy rain.
+1590 | throw | noun | B1 | #1/1 | TR: atış, fırlatma | EN: the act of throwing something; a sudden, forceful motion of an object through the air. | ÖRNEK: The child practiced his throw during recess.
+27124 | throw in | phrasal_verb | C1 | #1/2 | TR: (bedava) eklemek, üstüne vermek | EN: to include something extra with something you are selling, without charging more | ÖRNEK: If you buy the TV, we'll throw in the cable for free.
+27125 | throw in | phrasal_verb | C1 | #2/2 | TR: (söz arasında) eklemek | EN: to add a remark to a conversation | ÖRNEK: She threw in a few jokes during her talk.
+16975 | twitter | noun | B2 | #1/1 | TR: cıvıltı | EN: a series of short, high-pitched sounds made by birds or insects | ÖRNEK: The garden was alive with the twitter of sparrows.
+27146 | wind up | phrasal_verb | C1 | #1/2 | TR: (sonunda) bir yere / duruma düşmek | EN: to finally be in a particular place or situation | ÖRNEK: We wound up in a little bar by the sea.
+27147 | wind up | phrasal_verb | C1 | #2/2 | TR: bitirmek, sona erdirmek | EN: to end something | ÖRNEK: Let's wind up the meeting.
+17044 | budget | verb | B1 | #1/1 | TR: bütçe ayırmak, harcamaları planlamak | EN: to allocate a specific amount of money for a particular purpose or period | ÖRNEK: The manager will budget the marketing expenses for the quarter.
+27334 | civil service | noun | C1 | #1/1 | TR: devlet memurluğu, kamu hizmeti | EN: all the government departments and the people who work in them | ÖRNEK: She has worked in the civil service for 20 years.
+26919 | count out | phrasal_verb | C1 | #1/1 | TR: (birini) hesaba katmamak | EN: to not include someone in an activity | ÖRNEK: If it's another long meeting, count me out.
+14302 | fashion | verb | B2 | #1/1 | TR: tasarlamak, şekillendirmek | EN: to create or give a particular form or style to something | ÖRNEK: She fashions a new outfit every week for the fashion club.
+17018 | jack | noun | B1 | #1/2 | TR: vale | EN: a playing card with a single figure, ranking between ten and queen | ÖRNEK: The jack in the deck is worth eleven points.
+17020 | jack | verb | B1 | #1/1 | TR: kaldırmak, yükseltmek | EN: to lift or raise something, especially by using a mechanical device such as a jack. | ÖRNEK: She used a small jack to jack up the bike for repairs.
+17019 | jack | noun | B1 | #2/2 | TR: kriko | EN: a device used to lift heavy objects, especially vehicles, by applying force to a small area | ÖRNEK: The jack lifted the car just enough to replace the tire.
+17041 | mid | adjective | B1 | #1/1 | TR: ortadaki, orta seviyedeki | EN: situated in the middle of something; not at the extreme end | ÖRNEK: The mid point of the road is marked by a small sign.
+27379 | primary school | noun | A2 | #1/1 | TR: ilkokul | EN: a school for children between five and eleven years old | ÖRNEK: My sister is in primary school.
+17017 | profile | verb | B2 | #1/1 | TR: profilini çıkarmak, tanımlamak | EN: to describe or analyze the characteristics, habits, or background of a person or group, often for the purpose of creating a profile | ÖRNEK: The researcher profiled the participants before starting the experiment.
+26605 | pull in | phrasal_verb | B2 | #1/1 | TR: (araç) kenara çekmek, yanaşmak | EN: to move to the side of the road and stop (a vehicle) | ÖRNEK: The driver pulled in at a gas station.
+27050 | push for | phrasal_verb | C1 | #1/1 | TR: (bir şey için) ısrar etmek, baskı yapmak | EN: to try hard to achieve something or make it happen | ÖRNEK: Parents are pushing for longer school vacations.
+27104 | step forward | phrasal_verb | C1 | #1/1 | TR: (yardım için) öne çıkmak, gönüllü olmak | EN: to offer to help | ÖRNEK: Several people stepped forward to help.
+26773 | throw out | phrasal_verb | B1 | #1/2 | TR: atmak, kurtulmak | EN: to get rid of something you do not want | ÖRNEK: We threw out the old sofa.
+26774 | throw out | phrasal_verb | B1 | #2/2 | TR: (bir yerden) kovmak | EN: to force someone to leave a place | ÖRNEK: He was thrown out of the club.
+26775 | throw up | phrasal_verb | B2 | #1/1 | TR: kusmak | EN: to vomit | ÖRNEK: He threw up after eating the fish.
+15446 | becoming | adjective | B2 | #1/1 | TR: uygun, çekici | EN: attractive or suitable in appearance or character | ÖRNEK: The new haircut looks becoming on her.
+27326 | brand new | adjective | B1 | #1/1 | TR: yepyeni, sıfır | EN: completely new | ÖRNEK: He bought a brand new car.
+27340 | department store | noun | A2 | #1/1 | TR: büyük mağaza | EN: a large shop that sells many different things in different parts | ÖRNEK: She works in a department store.
+9248 | draw | noun | B1 | #1/2 | TR: beraberlik, eşit sonuç | EN: a situation in which two or more competitors have the same score or result | ÖRNEK: The football match finished in a draw, leaving fans disappointed.
+9249 | draw | noun | B1 | #2/2 | TR: çekiliş, kura | EN: an event in which names or numbers are selected at random, often for a prize | ÖRNEK: The school organized a draw to decide who would be class monitor.
+27369 | opening hours | noun | B1 | #1/1 | TR: çalışma saatleri, açık olduğu saatler | EN: the times when a shop, museum or office is open | ÖRNEK: What are the opening hours of the museum?
+19863 | prime | noun | B2 | #1/2 | TR: en verimli dönem | EN: the period of greatest vigor, productivity, or success in a person's life or in the life of something | ÖRNEK: She felt energetic during the prime of her youth.
+19865 | prime | verb | B2 | #1/1 | TR: hazırlamak, önceden hazırlamak | EN: to make something ready for use or action, especially by performing preliminary steps | ÖRNEK: The teacher primed the students with a short review before the exam.
+19864 | prime | noun | B2 | #2/2 | TR: asal sayı | EN: a natural number greater than 1 that has no positive divisors other than 1 and itself | ÖRNEK: Researchers discovered a new record-breaking large prime last year.
+26607 | pull out | phrasal_verb | B2 | #1/2 | TR: (anlaşmadan, yarıştan) çekilmek | EN: to stop being involved in an activity or agreement | ÖRNEK: He pulled out of the race with an injury.
+26608 | pull out | phrasal_verb | B2 | #2/2 | TR: (araç) yola çıkmak, şerit değiştirmek | EN: to drive onto a road or move to another part of the road | ÖRNEK: The car pulled out in front of me.
+26611 | pull up | phrasal_verb | B2 | #1/2 | TR: (araç) durmak | EN: to stop a vehicle | ÖRNEK: A taxi pulled up outside the hotel.
+26612 | pull up | phrasal_verb | B2 | #2/2 | TR: (sandalye) çekmek, yaklaştırmak | EN: to move a chair closer to something | ÖRNEK: Pull up a chair and join us.
+12143 | ring | verb | A1 | #1/2 | TR: ses çıkarmak, çalmak | EN: to produce a clear, resonant sound, especially a metallic or bell-like sound | ÖRNEK: The school bell rang to signal the end of class.
+12142 | ring | verb | A1 | #2/2 | TR: telefonla aramak | EN: to make a telephone call to someone | ÖRNEK: I will ring you tomorrow to discuss the project.
+9765 | silver | verb | B2 | #1/1 | TR: gümüşle kaplamak | EN: to coat or cover something with a thin layer of silver | ÖRNEK: She will silver the picture frame for the art project.
+26699 | slow down | phrasal_verb | B1 | #1/1 | TR: yavaşlamak, yavaşlatmak | EN: to become slower, or to make something slower | ÖRNEK: Slow down, you're driving too fast!
+26321 | draw up | phrasal_verb | B2 | #1/1 | TR: (plan, belge) hazırlamak, düzenlemek | EN: to prepare a plan, list or document | ÖRNEK: The lawyer drew up a contract.
+14584 | happening | adjective | B2 | #1/1 | TR: canlı, hareketli, popüler | EN: characterized by being fashionable, exciting, or attracting attention | ÖRNEK: The art gallery hosted a happening exhibition that drew many visitors.
+14585 | happening | noun | B1 | #1/1 | TR: olay, gelişme | EN: an event or occurrence | ÖRNEK: The accident was a sudden happening that shocked everyone.
+17092 | institute | verb | B2 | #1/1 | TR: kurmak, başlatmak | EN: to formally establish or set in motion a system, law, policy, or organization | ÖRNEK: The school will institute a new grading system next semester.
+26530 | lie down | phrasal_verb | A2 | #1/1 | TR: uzanmak, yatmak | EN: to move into a position in which your body is flat, usually to sleep or rest | ÖRNEK: I'm going to lie down for an hour.
+9752 | mouth off | phrasal_verb | B2 | #1/1 | TR: kaba konuşmak | EN: to speak in a rude or disrespectful manner, often challenging someone | ÖRNEK: He mouthed off at the coach after the practice ended.
+26609 | pull over | phrasal_verb | B2 | #1/1 | TR: (aracı) kenara çekmek | EN: to move a vehicle to the side of the road and stop | ÖRNEK: The police officer told him to pull over.
+26646 | ring up | phrasal_verb | B1 | #1/1 | TR: telefonla aramak | EN: to telephone someone | ÖRNEK: I rang up the cinema to book tickets.
+27065 | scale back | phrasal_verb | C1 | #1/1 | TR: küçültmek, kısmak | EN: to make something smaller in size or amount | ÖRNEK: The company has scaled back its plans.
+17088 | senate | noun | B2 | #1/1 | TR: senato, meclis | EN: a legislative body, typically the upper chamber of a bicameral parliament, that makes laws and oversees the government | ÖRNEK: The Senate passed the education reform bill after lengthy debate.
+15308 | smaller | adjective | A2 | #1/1 | TR: daha küçük | EN: comparative form of *small*, indicating a lesser size, amount, or degree. | ÖRNEK: The kitten is smaller than the puppy.
+20047 | somebody | pronoun | A1 | #1/1 | TR: biri, birisi | EN: a person who is unspecified or unknown; used to refer to an individual without naming them | ÖRNEK: Somebody left their bag in the hallway.
+10542 | spread out | phrasal_verb | B1 | #1/2 | TR: dağılmak, yayılmak | EN: to become distributed over a larger area or surface | ÖRNEK: After the rain, the puddles spread out across the street.
+10543 | spread out | phrasal_verb | B1 | #2/2 | TR: yaymak, sermek, açmak | EN: to arrange or lay something so that it covers a larger area | ÖRNEK: The chef spread out the dough on the counter before cutting it.
+14031 | stone | verb | B1 | #1/2 | TR: çekirdeğini çıkarmak, çekirdek ayırmak | EN: to remove the stone or pit from fruit, such as cherries or olives | ÖRNEK: She stones the cherries before baking the tart.
+14032 | stone | verb | B1 | #2/2 | TR: taşlamak, taşa tutmak | EN: to throw stones at someone or something; to pelt with stones | ÖRNEK: The villagers stone the old well out of superstition.
+5285 | wild | noun | B2 | #1/1 | TR: vahşi doğa, yaban | EN: the natural environment in which plants and animals live without human cultivation or control | ÖRNEK: The documentary shows how wolves survive in the wild.
+26815 | wind down | phrasal_verb | C1 | #1/2 | TR: gevşemek, dinlenmek | EN: to relax after a period of work or excitement | ÖRNEK: I read a book to wind down before bed.
+26816 | wind down | phrasal_verb | C1 | #2/2 | TR: (yavaş yavaş) kapatmak, faaliyetini azaltmak | EN: to gradually reduce the work of a business until it closes | ÖRNEK: The company is winding down its operations.
+19971 | window | verb | C2 | #1/1 | TR: pencere takmak, zaman aralığı tanımak | EN: to provide a building or vehicle with windows; to allow a limited period of time for something to happen | ÖRNEK: The contractor will window the old cottage before the winter.
+20197 | bag | verb | B1 | #1/2 | TR: paketlemek, bir çantaya koymak | EN: to place something into a bag or container | ÖRNEK: She quickly bagged the fresh vegetables after the market.
+20198 | bag | verb | B1 | #2/2 | TR: yakalamak, tutuklamak | EN: to capture or seize someone or something, especially in a quick or decisive manner | ÖRNEK: The security guard bagged the shoplifter before he could escape.
+26917 | count down | phrasal_verb | B2 | #1/1 | TR: geri saymak | EN: to count backwards to zero before an event | ÖRNEK: The crowd counted down the last ten seconds of the year.
+14049 | draw back | phrasal_verb | B2 | #1/1 | TR: geri çekilmek, tereddüt etmek | EN: to move away from a position or to hesitate before doing something | ÖRNEK: The soldier drew back when the enemy opened fire.
+2462 | firm | verb | B2 | #1/1 | TR: sağlamlaştırmak, pekiştirmek, sıkılaştırmak | EN: to make something solid, stable, or secure; to strengthen or reinforce. | ÖRNEK: Engineers firm the foundation of the bridge to ensure safety.
+2437 | greatest | adjective | A2 | #1/1 | TR: en büyük, en üstün | EN: of the highest degree; surpassing all others in size, importance, or quality. | ÖRNEK: The team celebrated their greatest victory of the season.
+27044 | pull back | phrasal_verb | C1 | #1/1 | TR: geri çekilmek, vazgeçmek | EN: to move back or decide not to do something | ÖRNEK: The troops pulled back from the border.
+26606 | pull off | phrasal_verb | C1 | #1/1 | TR: (zor bir işi) başarmak, becermek | EN: to succeed in doing something difficult | ÖRNEK: They pulled off a surprising win.
+27048 | push back | phrasal_verb | C1 | #1/2 | TR: ertelemek | EN: to change the time of an event to a later time | ÖRNEK: The meeting has been pushed back to Friday.
+27049 | push back | phrasal_verb | C1 | #2/2 | TR: karşı çıkmak, direnmek | EN: to oppose a plan or idea | ÖRNEK: Students pushed back against the new rules.
+26645 | ring back | phrasal_verb | B1 | #1/1 | TR: geri aramak | EN: to telephone someone again, or to telephone someone who rang you | ÖRNEK: I'm busy now – can I ring you back?
+3983 | spirit | verb | C1 | #1/1 | TR: gizlice götürmek, kaçırmak | EN: to take someone or something away secretly or by stealth, often to a hidden place | ÖRNEK: She tried to spirit the confidential file off the desk before the manager entered.
+17125 | till | noun | B1 | #1/1 | TR: yazar kasa, para çekmecesi, kasa | EN: a cash drawer in a shop or bank where money is kept | ÖRNEK: The shop assistant counted the coins in the till before opening.
+17127 | till | verb | B1 | #1/1 | TR: toprak işlemek, ekin ekmek | EN: to prepare soil for planting by digging, turning over, or breaking it up | ÖRNEK: The farmer tilled the field early in the morning.
+9912 | advantage | verb | B2 | #1/1 | TR: yarar sağlamak, avantaj vermek | EN: to give someone a benefit or a more favorable position | ÖRNEK: The scholarship will advantage you when applying for graduate school.
+17177 | apart | adjective | B1 | #1/1 | TR: ayrı, ayrı duran | EN: being separated or set apart from others | ÖRNEK: She felt apart from her classmates during the first week.
+17154 | gift | verb | B1 | #1/1 | TR: hediye vermek | EN: to give something to someone as a present | ÖRNEK: She will gift her friend a scarf for the holidays.
+23200 | helping | noun | B1 | #1/1 | TR: porsiyon | EN: a portion of food that is served or taken | ÖRNEK: She took a helping of the salad and smiled.
+26604 | pull down | phrasal_verb | B2 | #1/1 | TR: (binayı) yıkmak | EN: to destroy a building or other structure | ÖRNEK: The old cinema was pulled down.
+26610 | pull through | phrasal_verb | C1 | #1/1 | TR: (ağır bir hastalığı) atlatmak, iyileşmek | EN: to recover from a serious illness or difficult situation | ÖRNEK: The doctors think she'll pull through.
+27051 | push through | phrasal_verb | C1 | #1/1 | TR: (yasayı, planı) zorla kabul ettirmek | EN: to get a law or plan accepted despite opposition | ÖRNEK: The government pushed through the new law.
+17197 | bridge | verb | B2 | #1/1 | TR: bağlamak, köprü kurmak | EN: to make a connection or transition between two separate things, places, ideas, or groups | ÖRNEK: The teacher used a story to bridge the lesson and the students' interests.
+17219 | dear | noun | B1 | #1/1 | TR: sevgili, değerli kişi | EN: a person who is loved or cherished, often used as a term of address | ÖRNEK: Thank you, my dear.
+17210 | garden | verb | B1 | #1/1 | TR: bahçe işleri yapmak | EN: to cultivate, tend, or work in a garden | ÖRNEK: She gardens every weekend to keep her roses healthy.
+9101 | journal | verb | B1 | #1/1 | TR: günlük tutmak | EN: to write or keep a personal record of events, thoughts, or experiences | ÖRNEK: She journals every night before she goes to sleep.
+18846 | labor | noun | B1 | #1/2 | TR: çalışma, emek, iş | EN: the physical or mental effort directed toward a task or the production of goods and services | ÖRNEK: The farm workers performed labor from sunrise to sunset.
+18848 | labor | verb | B1 | #1/2 | TR: çalışmak, emek harcamak | EN: to work, especially with physical or mental effort; to engage in productive activity. | ÖRNEK: She labors in the garden every weekend to keep the flowers healthy.
+18847 | labor | noun | B1 | #2/2 | TR: doğum, doğum süreci | EN: the process of giving birth to a baby; the act of delivering a child | ÖRNEK: The midwife monitored the woman as she entered labor.
+18849 | labor | verb | B1 | #2/2 | TR: doğum sancısı çekmek, doğuma girmek | EN: to give birth to a child; to undergo the process of childbirth. | ÖRNEK: She labored for eight hours before the baby was finally born.
+27254 | neither | determiner | B1 | #1/1 | TR: (ikisinden) hiçbiri | EN: not one and not the other of two | ÖRNEK: Neither answer is correct.
+27081 | shut out | phrasal_verb | C1 | #1/1 | TR: dışarıda bırakmak, içeri almamak; (duyguyu) bastırmak | EN: to prevent someone or something from entering, or to stop yourself thinking about something | ÖRNEK: Close the curtains to shut out the light.
+26689 | shut up | phrasal_verb | B1 | #1/2 | TR: susmak, çenesini kapatmak (kaba) | EN: to stop talking (impolite) | ÖRNEK: Shut up and listen!
+26690 | shut up | phrasal_verb | B1 | #2/2 | TR: (bir yeri) kapatmak, kilitlemek | EN: to close a building or room | ÖRNEK: They shut up the shop and went home.
+17238 | bitch | noun | B2 | #1/1 | TR: dişi köpek | EN: a female dog | ÖRNEK: The veterinarian examined the stray bitch that was found near the park.
+17230 | boss | verb | B2 | #1/1 | TR: yönetmek, emir vermek | EN: to give orders to people, to act as a person in charge of others | ÖRNEK: She doesn't like it when her classmates boss her around in group projects.
+17297 | fellow | noun | B1 | #1/1 | TR: adam, tip | EN: a man or a person, especially when referring to someone in a casual or informal way | ÖRNEK: The fellow at the desk helped me find the right form.

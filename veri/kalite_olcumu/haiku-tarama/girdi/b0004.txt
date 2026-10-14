@@ -1,0 +1,100 @@
+27449 | free time | noun | A1 | #1/1 | TR: boş zaman | EN: time when you are not working or studying | ÖRNEK: What do you do in your free time?
+26421 | give back | phrasal_verb | A2 | #1/1 | TR: geri vermek, iade etmek | EN: to return something to the person who owns it | ÖRNEK: Can you give me back my pen?
+27003 | let up | phrasal_verb | C1 | #1/1 | TR: (yağmur, baskı) dinmek, azalmak | EN: to become weaker or stop | ÖRNEK: The rain didn't let up all day.
+5849 | live | verb | A1 | #1/2 | TR: yaşamak, hayatta olmak | EN: to be alive; to have existence | ÖRNEK: Philosophers often debate what it means to truly live a good life.
+5850 | live | verb | A1 | #2/2 | TR: ikamet etmek, oturmak | EN: to have one's home in a particular place; to reside | ÖRNEK: My grandparents live in a small village by the sea.
+26555 | look through | phrasal_verb | B1 | #1/1 | TR: (hızlıca) göz gezdirmek, karıştırmak | EN: to read something quickly | ÖRNEK: I looked through the newspaper.
+27034 | play out | phrasal_verb | C1 | #1/1 | TR: (olay) gelişmek, yaşanmak | EN: to happen or develop in a particular way | ÖRNEK: Let's see how the situation plays out.
+27035 | play up | phrasal_verb | C1 | #1/2 | TR: abartmak, öne çıkarmak | EN: to make something seem more important than it is | ÖRNEK: The newspapers played up the story.
+27036 | play up | phrasal_verb | C1 | #2/2 | TR: sorun çıkarmak, yaramazlık yapmak | EN: to cause problems or behave badly | ÖRNEK: My knee is playing up again.
+5066 | read | noun | B1 | #1/1 | TR: okuma | EN: the act of looking at and understanding written or printed material | ÖRNEK: The teacher assigned a short read for homework.
+26754 | take part | phrasal_verb | A2 | #1/1 | TR: katılmak, yer almak | EN: to be involved in an activity with other people | ÖRNEK: Thirty students took part in the competition.
+27297 | yet | conjunction | B2 | #1/1 | TR: ama, yine de | EN: used to add something that seems surprising after what was said before | ÖRNEK: The hotel was cheap, yet very comfortable.
+26268 | come down | phrasal_verb | B1 | #1/1 | TR: inmek, düşmek | EN: to become lower in price, level or amount | ÖRNEK: Prices have come down recently.
+26316 | do away with | phrasal_verb | C1 | #1/1 | TR: kaldırmak, ortadan kaldırmak | EN: to get rid of something or stop using it | ÖRNEK: Many schools have done away with uniforms.
+26377 | get away | phrasal_verb | B1 | #1/2 | TR: kaçmak, kurtulmak | EN: to escape from someone or somewhere | ÖRNEK: The thief got away on a motorbike.
+26378 | get away | phrasal_verb | B1 | #2/2 | TR: (tatile) gitmek, uzaklaşmak | EN: to go somewhere to have a holiday | ÖRNEK: We're hoping to get away for a few days.
+26953 | give way | phrasal_verb | B2 | #1/3 | TR: çökmek, kırılmak | EN: to break or fall down because of pressure | ÖRNEK: The bridge gave way under the weight.
+26954 | give way | phrasal_verb | B2 | #2/3 | TR: (trafikte) yol vermek | EN: to allow other vehicles to go first | ÖRNEK: You must give way to traffic on the right.
+26955 | give way | phrasal_verb | B2 | #3/3 | TR: yerini bırakmak; boyun eğmek | EN: to be replaced by something, or to stop opposing something | ÖRNEK: Sadness gave way to anger.
+26470 | go without | phrasal_verb | B2 | #1/1 | TR: -siz kalmak, mahrum kalmak | EN: to not have something you need or usually have | ÖRNEK: She went without food for two days.
+26528 | let out | phrasal_verb | B2 | #1/2 | TR: dışarı bırakmak, salıvermek | EN: to allow someone or something to leave a place | ÖRNEK: Let the cat out, please.
+26529 | let out | phrasal_verb | B2 | #2/2 | TR: (ses) çıkarmak | EN: to make a sound | ÖRNEK: She let out a scream.
+5451 | mean | adjective | A2 | #1/3 | TR: kaba, aşağılayıcı | EN: behaving in an unkind or insulting manner toward others | ÖRNEK: The teacher warned the student for being mean to classmates.
+5453 | mean | noun | B2 | #1/1 | TR: ortalama, aritmetik ortalama | EN: the arithmetic average of a set of numbers | ÖRNEK: The mean of the test scores was 78.
+5450 | mean | adjective | A2 | #2/3 | TR: cimri | EN: unwilling to spend money; reluctant to give or share resources | ÖRNEK: The mean landlord raised the rent without any notice.
+5452 | mean | adjective | A2 | #3/3 | TR: ortalama | EN: having a value that is in the middle of a set of numbers; average | ÖRNEK: The mean temperature for July was higher than usual.
+27037 | point to | phrasal_verb | B2 | #1/1 | TR: -e işaret etmek, -i göstermek (kanıt olarak) | EN: to show that something is likely to be true | ÖRNEK: All the evidence points to him.
+26861 | set about | phrasal_verb | C1 | #1/1 | TR: (bir işe) girişmek, koyulmak | EN: to start doing something | ÖRNEK: She set about cleaning the house.
+26676 | set out | phrasal_verb | B1 | #1/3 | TR: yola koyulmak | EN: to start a journey | ÖRNEK: They set out for the mountains at dawn.
+26677 | set out | phrasal_verb | B1 | #2/3 | TR: (amacıyla) işe girişmek, niyetlenmek | EN: to start doing something with a particular aim | ÖRNEK: She set out to become a doctor.
+26678 | set out | phrasal_verb | B1 | #3/3 | TR: açıkça ortaya koymak, belirtmek | EN: to explain ideas or facts in a clear and organized way | ÖRNEK: The report sets out the main problems.
+22346 | set up | phrasal_verb | B1 | #1/1 | TR: kurmak, düzenlemek, hazırlamak | EN: to arrange or organize something, especially a system, event, or piece of equipment, so that it is ready for use | ÖRNEK: The professor will set up the experiment before the class begins.
+26907 | come down to | phrasal_verb | C1 | #1/1 | TR: -e dayanmak, -den ibaret olmak, sonunda -e bağlı olmak | EN: to be the most important thing that decides a situation | ÖRNEK: In the end, it comes down to money.
+26286 | come through | phrasal_verb | B2 | #1/2 | TR: (zor bir durumu) atlatmak | EN: to manage to get to the end of a difficult or dangerous situation | ÖRNEK: She came through the operation well.
+26287 | come through | phrasal_verb | B2 | #2/2 | TR: (haber, sonuç) gelmek, ulaşmak | EN: to arrive or become known | ÖRNEK: My visa came through yesterday.
+26958 | go against | phrasal_verb | B2 | #1/2 | TR: -e aykırı olmak, -e karşı gelmek | EN: to be opposite to a principle, belief or wish | ÖRNEK: It goes against my beliefs.
+26959 | go against | phrasal_verb | B2 | #2/2 | TR: (karar) aleyhine sonuçlanmak | EN: to be unfavorable to someone | ÖRNEK: The decision went against us.
+26533 | live on | phrasal_verb | B2 | #1/3 | TR: (bir miktar parayla) geçinmek | EN: to have a particular amount of money to buy things | ÖRNEK: It's hard to live on such a small salary.
+26534 | live on | phrasal_verb | B2 | #2/3 | TR: (bir yiyecekle) beslenmek | EN: to eat a particular type of food | ÖRNEK: Pandas live on bamboo.
+26535 | live on | phrasal_verb | B2 | #3/3 | TR: yaşamaya devam etmek, sürmek | EN: to continue to exist | ÖRNEK: His memory will live on.
+27008 | live with | phrasal_verb | B2 | #1/1 | TR: (kötü bir şeyle) yaşamayı öğrenmek, katlanmak | EN: to accept a difficult or unpleasant situation | ÖRNEK: I don't like the noise, but I can live with it.
+26547 | look down on | phrasal_verb | B2 | #1/1 | TR: hor görmek, tepeden bakmak | EN: to think that someone is less important than you | ÖRNEK: He looks down on people who didn't go to university.
+26270 | come down with | phrasal_verb | B2 | #1/1 | TR: (hastalığa) yakalanmak | EN: to start to have an illness | ÖRNEK: I think I'm coming down with a cold.
+26379 | get away with | phrasal_verb | B2 | #1/1 | TR: (cezasız) yanına kâr kalmak, paçayı kurtarmak | EN: to do something wrong without being punished | ÖRNEK: He cheated in the exam and got away with it.
+26425 | give off | phrasal_verb | B2 | #1/1 | TR: (koku, ısı, ışık) yaymak, salmak | EN: to produce heat, light, a smell or gas | ÖRNEK: The flowers give off a lovely smell.
+21797 | head | adjective | B2 | #1/1 | TR: baş, ana, birincil | EN: relating to the most important or leading part of something; chief or principal. | ÖRNEK: The head professor introduced the new curriculum to the students.
+26990 | keep back | phrasal_verb | B2 | #1/2 | TR: (bilgiyi) saklamak, söylememek | EN: to not tell someone something | ÖRNEK: I think she's keeping something back.
+26991 | keep back | phrasal_verb | B2 | #2/2 | TR: uzak durmak, geride durmak | EN: to stay away from something | ÖRNEK: Keep back from the edge of the platform.
+26617 | put back | phrasal_verb | B1 | #1/2 | TR: yerine geri koymak | EN: to return something to the place where it was | ÖRNEK: Put the book back on the shelf when you've finished.
+26618 | put back | phrasal_verb | B1 | #2/2 | TR: ertelemek | EN: to change the date or time of an event to a later one | ÖRNEK: The meeting has been put back to Friday.
+27120 | tell on | phrasal_verb | B2 | #1/2 | TR: (birini) ispiyonlamak, şikâyet etmek | EN: to tell someone in authority about something bad that someone has done | ÖRNEK: If you do that again, I'll tell on you.
+27121 | tell on | phrasal_verb | B2 | #2/2 | TR: (kötü) etkisini göstermek | EN: to have a bad effect on someone | ÖRNEK: The stress is beginning to tell on him.
+26872 | top up | phrasal_verb | B2 | #1/1 | TR: (bakiye, bardak) doldurmak, tamamlamak | EN: to add more of something to make it full again | ÖRNEK: I need to top up my phone.
+26195 | believe in | phrasal_verb | B1 | #1/2 | TR: inanmak, varlığına inanmak | EN: to be sure that something exists | ÖRNEK: Do you believe in ghosts?
+26196 | believe in | phrasal_verb | B1 | #2/2 | TR: güvenmek, doğruluğuna inanmak | EN: to think that something is good or right | ÖRNEK: I believe in hard work.
+26230 | call for | phrasal_verb | B1 | #1/3 | TR: gerektirmek | EN: to need or deserve a particular action or quality | ÖRNEK: This situation calls for quick action.
+26231 | call for | phrasal_verb | B1 | #2/3 | TR: açıkça istemek, çağrıda bulunmak | EN: to say publicly that something must happen | ÖRNEK: They are calling for changes to the law.
+26232 | call for | phrasal_verb | B1 | #3/3 | TR: (birini) almaya gitmek | EN: to go to a place to collect someone | ÖRNEK: I'll call for you at seven.
+26233 | call in | phrasal_verb | B1 | #1/2 | TR: (birini) çağırmak, yardıma çağırmak | EN: to ask someone to come and help you | ÖRNEK: We had to call in a plumber.
+26234 | call in | phrasal_verb | B1 | #2/2 | TR: uğramak | EN: to visit a place or person for a short time | ÖRNEK: I'll call in on my way home.
+26484 | head for | phrasal_verb | B1 | #1/2 | TR: -e doğru gitmek, yönelmek | EN: to go towards a place | ÖRNEK: Let's head for home.
+26485 | head for | phrasal_verb | B1 | #2/2 | TR: (kötü bir duruma) doğru gitmek | EN: to be likely to experience something bad | ÖRNEK: The company is heading for disaster.
+3478 | side | verb | B2 | #1/1 | TR: tarafını tutmak, desteklemek | EN: to support or align oneself with a particular person, group, or position | ÖRNEK: The teacher asked the students which side they would side with in the discussion.
+27097 | start out | phrasal_verb | B2 | #1/1 | TR: (işe) başlamak, ilk başta … olmak | EN: to begin your life or career in a particular way | ÖRNEK: She started out as a waitress.
+27098 | start up | phrasal_verb | B2 | #1/1 | TR: (işletme) kurmak, başlatmak; (motor) çalışmak | EN: to start a business, or to start working (a machine) | ÖRNEK: He started up his own company.
+26755 | take place | phrasal_verb | B1 | #1/1 | TR: gerçekleşmek, yer almak, olmak | EN: to happen, especially as planned | ÖRNEK: The meeting will take place on Monday.
+15348 | yes | adverb | A1 | #1/1 | TR: evet | EN: used to give a positive answer or to agree | ÖRNEK: She smiled and said yes to the simple request.
+26236 | call on | phrasal_verb | B2 | #1/2 | TR: (resmî olarak) çağrıda bulunmak, istemek | EN: to formally ask someone to do something | ÖRNEK: The UN has called on both sides to stop fighting.
+26237 | call on | phrasal_verb | B2 | #2/2 | TR: ziyaret etmek, uğramak | EN: to visit someone for a short time | ÖRNEK: We called on my aunt on the way home.
+26543 | look around | phrasal_verb | A2 | #1/1 | TR: etrafa bakmak, gezmek | EN: to visit a place and look at the things in it | ÖRNEK: We spent the afternoon looking around the town.
+15370 | party | verb | B1 | #1/1 | TR: parti yapmak, eğlenmek | EN: to hold a social gathering or celebration, often with food, drink, and entertainment | ÖRNEK: They will party after the final match ends.
+20005 | service | verb | B2 | #1/1 | TR: bakımını yapmak, servise almak | EN: to perform work for someone or to maintain something so that it works properly | ÖRNEK: The technician will service the printer tomorrow morning.
+26683 | show off | phrasal_verb | B1 | #1/2 | TR: hava atmak, gösteriş yapmak | EN: to try to make people admire you, in a way that is annoying | ÖRNEK: He's always showing off in front of girls.
+26684 | show off | phrasal_verb | B1 | #2/2 | TR: (gururla) sergilemek, göstermek | EN: to show something to a lot of people because you are proud of it | ÖRNEK: She showed off her new ring.
+27109 | stop by | phrasal_verb | B1 | #1/1 | TR: (kısaca) uğramak | EN: to visit somewhere for a short time | ÖRNEK: I'll stop by your house later.
+26189 | back away | phrasal_verb | B2 | #1/1 | TR: geri geri çekilmek | EN: to move backwards away from someone or something, often because you are afraid | ÖRNEK: She backed away from the angry dog.
+13110 | country | adjective | B1 | #1/1 | TR: kırsal | EN: relating to or characteristic of the countryside; not urban or metropolitan | ÖRNEK: The house is located in a quiet country area near the hills.
+26436 | go away | phrasal_verb | A2 | #1/2 | TR: gitmek, uzaklaşmak | EN: to leave a place or person | ÖRNEK: Go away and leave me alone!
+26438 | go away | phrasal_verb | A2 | #2/2 | TR: geçmek, kaybolmak | EN: to disappear or stop | ÖRNEK: My headache won't go away.
+26536 | live up to | phrasal_verb | C1 | #1/1 | TR: (beklentiyi) karşılamak, -e layık olmak | EN: to be as good as people expected | ÖRNEK: The film didn't live up to my expectations.
+6556 | open | noun | B2 | #1/1 | TR: açık turnuva, herkesin katılabildiği yarışma | EN: a competition that is open to all participants, without restriction | ÖRNEK: She dreamed of playing in the Open one day.
+26600 | point out | phrasal_verb | B1 | #1/2 | TR: belirtmek, dikkat çekmek | EN: to tell someone something that they did not know or had not noticed | ÖRNEK: She pointed out a mistake in my essay.
+26601 | point out | phrasal_verb | B1 | #2/2 | TR: (parmakla) göstermek | EN: to show someone where something is by pointing | ÖRNEK: He pointed out the house where he was born.
+26644 | read out | phrasal_verb | B1 | #1/1 | TR: sesli okumak | EN: to read something and say the words so that other people can hear | ÖRNEK: The teacher read out the names.
+27060 | run for | phrasal_verb | B2 | #1/1 | TR: (bir göreve) aday olmak | EN: to try to be elected to a position | ÖRNEK: She's running for mayor.
+15376 | season | verb | B1 | #1/1 | TR: baharatlamak, tatlandırmak | EN: to add herbs, spices, or other flavorings to food in order to improve its taste | ÖRNEK: I always season my pasta with a little basil and oregano.
+26778 | try on | phrasal_verb | A2 | #1/1 | TR: (kıyafeti) denemek | EN: to put on a piece of clothing to see if it fits | ÖRNEK: Can I try on these jeans?
+15383 | general | noun | B2 | #1/1 | TR: üst düzey asker, general | EN: a high-ranking officer in the army, typically in command of a large formation or a branch of the armed forces | ÖRNEK: The general gave a brief speech to the soldiers.
+26502 | keep off | phrasal_verb | B1 | #1/1 | TR: (üstüne) basmamak, uzak durmak | EN: to not go onto an area | ÖRNEK: Keep off the grass.
+26626 | put off | phrasal_verb | B1 | #1/2 | TR: ertelemek | EN: to decide to do something later | ÖRNEK: Don't put off going to the dentist.
+26627 | put off | phrasal_verb | B1 | #2/2 | TR: (birinin) hevesini kaçırmak, soğutmak | EN: to make someone dislike something or not want to do something | ÖRNEK: The smell put me off my food.
+27054 | read up on | phrasal_verb | B2 | #1/1 | TR: (bir konu hakkında) okuyup bilgi edinmek | EN: to read a lot about a subject in order to learn about it | ÖRNEK: I read up on the company before the interview.
+15342 | trying | adjective | B2 | #1/1 | TR: zorlu, sıkıntılı | EN: causing difficulty or annoyance; demanding great effort or patience | ÖRNEK: The long hike was trying, but they reached the summit together.
+26238 | call up | phrasal_verb | B2 | #1/3 | TR: telefonla aramak | EN: to telephone someone | ÖRNEK: I'll call him up and ask.
+26239 | call up | phrasal_verb | B2 | #2/3 | TR: askere çağırmak | EN: to order someone to join the army | ÖRNEK: He was called up when the war started.
+26240 | call up | phrasal_verb | B2 | #3/3 | TR: (bilgisayarda) açmak, getirmek | EN: to find and show information on a computer | ÖRNEK: She called up his file on the screen.
+27440 | good-looking | adjective | A2 | #1/1 | TR: yakışıklı, güzel, alımlı | EN: physically attractive | ÖRNEK: He's a good-looking young man.
+27059 | run by | phrasal_verb | C1 | #1/1 | TR: (fikrini almak için) birine danışmak, göstermek | EN: to tell someone about an idea to see what they think | ÖRNEK: Can I run an idea by you?
+11519 | set back | phrasal_verb | B1 | #1/1 | TR: gerçekleşmesini geciktirmek, ilerlemeyi engellemek | EN: to cause a delay or obstacle that hinders progress | ÖRNEK: The heavy rain set back the construction work for the new bridge.
+5241 | war | verb | B2 | #1/1 | TR: savaşmak, çatışmak | EN: to engage in war or armed conflict with another party | ÖRNEK: Historians study how nations war for resources and power.

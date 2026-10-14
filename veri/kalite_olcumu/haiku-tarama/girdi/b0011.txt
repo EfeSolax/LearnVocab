@@ -1,0 +1,100 @@
+15291 | telling | noun | B2 | #1/1 | TR: anlatım, anlatma, hikâye, ortaya koyma | EN: the act or instance of telling something, especially a story or piece of information | ÖRNEK: Her telling of the childhood memory moved everyone in the room.
+16633 | wear | noun | B1 | #1/2 | TR: giysi, kıyafet | EN: clothing or items that are worn on the body | ÖRNEK: The store offers a wide range of winter wear for students.
+16634 | wear | noun | B1 | #2/2 | TR: aşınma, yıpranma | EN: the state of being worn down, eroded, or deteriorated through use | ÖRNEK: The constant friction caused noticeable wear on the metal surface.
+16654 | cash out | phrasal_verb | B2 | #1/1 | TR: nakde çevirmek | EN: to exchange an asset for cash | ÖRNEK: She cashed out her savings to buy a new car.
+19614 | grand | noun | B2 | #1/1 | TR: bin | EN: a thousand dollars, especially used in informal speech | ÖRNEK: I need a grand to buy the new phone.
+16679 | skin | verb | B1 | #1/1 | TR: derisini sıyırmak, soymak | EN: to remove the skin or outer covering from an animal, fruit, or body part | ÖRNEK: He skinned the chicken quickly after it was cooked.
+11154 | speaking | noun | B1 | #1/1 | TR: konuşma | EN: the act or process of producing spoken language; the activity of speaking, especially when considered as a skill or subject. | ÖRNEK: The teacher praised her clear speaking during the presentation.
+19699 | supposed | adjective | B2 | #1/1 | TR: varsayılan, zannedilen, sözde | EN: believed to be true or expected to happen, often without proof | ÖRNEK: The article discusses the supposed benefits of the new policy.
+21174 | thus | adverb | C1 | #1/1 | TR: böylece, bu yüzden | EN: in this way; as a result; consequently | ÖRNEK: The study was poorly designed, thus its findings are questionable.
+27129 | touch on | phrasal_verb | C1 | #1/1 | TR: (bir konuya) değinmek | EN: to mention a subject briefly | ÖRNEK: The lecture touched on several important issues.
+26813 | wear out | phrasal_verb | B1 | #1/2 | TR: aşınmak, eskimek, eskitmek | EN: to use something so much that it is damaged and cannot be used any more | ÖRNEK: My shoes have worn out.
+26814 | wear out | phrasal_verb | B1 | #2/2 | TR: (birini) çok yormak, bitkin düşürmek | EN: to make someone very tired | ÖRNEK: The children have worn me out.
+20918 | congress | noun | B1 | #1/2 | TR: yasama organı, meclis | EN: a formal legislative body, especially the United States Congress, that makes laws and represents the people. | ÖRNEK: Many citizens watch the live stream of Congress sessions.
+20919 | congress | noun | B1 | #2/2 | TR: toplantı, kongre | EN: a formal meeting or assembly of delegates for discussion, decision-making, or sharing information. | ÖRNEK: The university organized a congress on sustainable development.
+16701 | doctor | verb | B2 | #1/1 | TR: tahrif etmek, değiştirmek, üzerinde oynamak | EN: to alter or manipulate something, especially a document or piece of information, in order to deceive or improve it | ÖRNEK: The editor had to doctor the article to meet the word limit.
+26927 | dream up | phrasal_verb | C1 | #1/1 | TR: (fikir, plan) uydurmak, kafasında kurmak | EN: to invent something unusual or new | ÖRNEK: Who dreamed up this crazy idea?
+26341 | fall behind | phrasal_verb | B2 | #1/1 | TR: geri kalmak, geride kalmak | EN: to fail to do something as quickly as others or as planned | ÖRNEK: He fell behind with his studies when he was ill.
+2436 | greater | adjective | A2 | #1/1 | TR: daha büyük | EN: comparative form of great, indicating a higher degree or larger size, amount, or importance. | ÖRNEK: The mountain is greater than the hill nearby.
+26970 | grow on | phrasal_verb | C1 | #1/1 | TR: (zamanla) hoşuna gitmeye başlamak, ısınmak | EN: to become more liked by someone over time | ÖRNEK: I didn't like the song at first, but it's growing on me.
+19462 | machine | verb | B2 | #1/1 | TR: işlemek, makineyle şekillendirmek | EN: to shape or finish a material by using a machine or mechanical process | ÖRNEK: The factory machines the plastic sheets into thin films.
+2957 | re-present | verb | B2 | #1/1 | TR: tekrar sunmak, yeniden sunmak | EN: to present something again, often in a revised or clarified form | ÖRNEK: The professor asked the student to re-present the experiment results for clarity.
+27481 | sea level | noun | B2 | #1/1 | TR: deniz seviyesi | EN: the average height of the sea, used to measure the height of land | ÖRNEK: The city is 500 meters above sea level.
+27130 | touch up | phrasal_verb | C1 | #1/1 | TR: rötuş yapmak, ufak düzeltmeler yapmak | EN: to make small changes to improve something | ÖRNEK: She touched up her make-up before the meeting.
+16714 | captain | verb | B2 | #1/1 | TR: komuta etmek, kaptanlık yapmak | EN: to act as the captain of a ship, aircraft, or sports team; to lead and be responsible for the group's performance and safety | ÖRNEK: The navy officer will captain the destroyer on its first deployment.
+26244 | carry on | phrasal_verb | B1 | #1/1 | TR: devam etmek, sürdürmek | EN: to continue doing something | ÖRNEK: Carry on with your work.
+27337 | common sense | noun | B2 | #1/1 | TR: sağduyu, akıl | EN: the ability to make good decisions in everyday situations | ÖRNEK: Use your common sense!
+26325 | drink up | phrasal_verb | B1 | #1/1 | TR: (içeceği) bitirmek | EN: to finish a drink completely | ÖRNEK: Drink up, we have to go.
+26473 | grow up | phrasal_verb | A2 | #1/2 | TR: büyümek, yetişmek | EN: to change from being a child to being an adult | ÖRNEK: I grew up in a small town.
+26474 | grow up | phrasal_verb | A2 | #2/2 | TR: olgun davranmak | EN: to behave in a more adult way | ÖRNEK: Oh, grow up! You're not a child.
+27430 | heart attack | noun | B1 | #1/1 | TR: kalp krizi | EN: a sudden serious medical condition in which the heart stops working normally | ÖRNEK: He had a heart attack at 60.
+15859 | holding | noun | B2 | #1/1 | TR: hisse, sahiplik, tutma durumu | EN: the act or state of possessing or owning something, especially a share in a company | ÖRNEK: The university's endowment includes a holding in several biotech firms.
+27083 | sit in on | phrasal_verb | C1 | #1/1 | TR: (dersi, toplantıyı) dinleyici olarak izlemek | EN: to watch a class or meeting without taking part | ÖRNEK: Can I sit in on your lesson?
+27084 | sit out | phrasal_verb | C1 | #1/1 | TR: (bir şeye) katılmamak, dışarıda kalmak | EN: to not take part in an activity | ÖRNEK: I'll sit out this dance.
+26695 | sit up | phrasal_verb | B1 | #1/2 | TR: doğrulmak, dik oturmak | EN: to move from lying to sitting, or to sit with your back straight | ÖRNEK: He sat up in bed.
+26696 | sit up | phrasal_verb | B1 | #2/2 | TR: geç saate kadar oturmak, yatmamak | EN: to stay awake until late at night | ÖRNEK: We sat up talking until two o'clock.
+27132 | trip up | phrasal_verb | C1 | #1/1 | TR: tökezletmek, sendelemek; hata yaptırmak | EN: to make someone fall, or to make someone make a mistake | ÖRNEK: He tripped up on the stairs.
+27413 | waiting room | noun | A2 | #1/1 | TR: bekleme salonu | EN: a room where people wait, for example to see a doctor | ÖRNEK: Please sit in the waiting room.
+27322 | bank account | noun | A2 | #1/1 | TR: banka hesabı | EN: an arrangement with a bank to keep your money there | ÖRNEK: I opened a bank account.
+26245 | carry out | phrasal_verb | B1 | #1/2 | TR: yapmak, gerçekleştirmek, yürütmek | EN: to do a particular piece of work, research or task | ÖRNEK: Scientists carried out a series of experiments.
+26246 | carry out | phrasal_verb | B1 | #2/2 | TR: (emri, planı) yerine getirmek, uygulamak | EN: to do something that you have said you will do or that someone has told you to do | ÖRNEK: The soldiers carried out their orders.
+26471 | grow out of | phrasal_verb | B2 | #1/2 | TR: (giysiye) büyümek, küçük gelmek | EN: to become too big to fit into clothes | ÖRNEK: He's grown out of his shoes already.
+26472 | grow out of | phrasal_verb | B2 | #2/2 | TR: (bir alışkanlıktan) zamanla vazgeçmek | EN: to stop doing something as you get older | ÖRNEK: She'll grow out of this behavior.
+12488 | purpose | verb | C2 | #1/1 | TR: amaçlamak, niyet etmek | EN: to intend or aim to achieve something | ÖRNEK: Scientists purpose to develop a vaccine that works against all strains.
+27141 | wear down | phrasal_verb | C1 | #1/1 | TR: aşındırmak; (birini) yıpratmak, yıldırmak | EN: to make something smaller by using it, or to make someone tired and weak | ÖRNEK: The steps were worn down by years of use.
+26812 | wear off | phrasal_verb | B2 | #1/1 | TR: (etkisi) geçmek, azalmak | EN: to gradually disappear or stop having an effect | ÖRNEK: The pain will wear off soon.
+26247 | catch on | phrasal_verb | C1 | #1/2 | TR: tutmak, yaygınlaşmak | EN: to become popular | ÖRNEK: The idea never really caught on.
+26248 | catch on | phrasal_verb | C1 | #2/2 | TR: anlamak, çakmak | EN: to begin to understand something | ÖRNEK: He's slow, but he'll catch on eventually.
+16824 | coast | verb | B1 | #1/1 | TR: süzülmek, güç sarf etmeden ilerlemek, kıyı boyunca gitmek | EN: to move along the coast or to travel without effort | ÖRNEK: She coasted home after school.
+16795 | drug | verb | B1 | #1/2 | TR: ilaç vermek, ilaç katmak | EN: to give someone a drug, especially for medical purposes | ÖRNEK: The thieves drugged the guard and stole the jewels.
+16796 | drug | verb | B1 | #2/2 | TR: uyuşturmak, etkisi altına almak | EN: to give someone a drug, especially an illegal or harmful one, in order to impair their judgment or consciousness | ÖRNEK: He was arrested after police discovered he tried to drug the bartender.
+26360 | finish off | phrasal_verb | B2 | #1/1 | TR: bitirmek, son kısmını tamamlamak | EN: to complete the last part of something | ÖRNEK: I need to finish off this report.
+16819 | foot | verb | B2 | #1/1 | TR: ödemek, sorumluluğunu üstlenmek | EN: to pay for something, especially a bill or expense; to assume responsibility for the cost of something. | ÖRNEK: The manager promised to foot the bill for the team dinner.
+26968 | grow into | phrasal_verb | C1 | #1/2 | TR: (zamanla) -e dönüşmek, olmak | EN: to develop into a particular type of person or thing | ÖRNEK: She has grown into a confident young woman.
+26969 | grow into | phrasal_verb | C1 | #2/2 | TR: (giysiye) zamanla uymak | EN: to become big enough to fit clothes | ÖRNEK: The coat is too big, but he'll grow into it.
+16776 | mass | verb | B1 | #1/1 | TR: toplanmak, toplamak | EN: to gather together or assemble in a group or crowd | ÖRNEK: The community massed together to clean the park after the storm.
+26602 | pop in | phrasal_verb | B2 | #1/1 | TR: (kısa süreliğine) uğramak | EN: to visit someone for a short time | ÖRNEK: I'll pop in to see you later.
+26693 | sit back | phrasal_verb | B2 | #1/1 | TR: arkasına yaslanmak, keyfine bakmak | EN: to relax and not do anything | ÖRNEK: Just sit back and enjoy the show.
+27128 | touch down | phrasal_verb | B2 | #1/1 | TR: (uçak) yere inmek | EN: to land on the ground (a plane) | ÖRNEK: The plane touched down at 6 a.m.
+16782 | weather | verb | B2 | #1/1 | TR: atlatmak, dayanmak, göğüs germek | EN: to endure or withstand the effects of weather or other adverse conditions | ÖRNEK: The hikers weathered the rain and continued their trek.
+26902 | carry over | phrasal_verb | C1 | #1/1 | TR: (sonraki döneme) aktarmak, devretmek | EN: to continue to exist or have an effect in a different situation or period | ÖRNEK: You can carry over five days of vacation to next year.
+26903 | catch out | phrasal_verb | C1 | #1/1 | TR: (hatasını) yakalamak, açığını yakalamak; hazırlıksız yakalanmak | EN: to discover that someone has made a mistake, or to put someone in a difficult situation | ÖRNEK: The tricky question caught many students out.
+26249 | catch up | phrasal_verb | B1 | #1/2 | TR: yetişmek, arayı kapatmak | EN: to reach the same level or place as someone who is ahead | ÖRNEK: Go on ahead, I'll catch up with you.
+26250 | catch up | phrasal_verb | B1 | #2/2 | TR: (bir konuda) haberleşmek, eksiği tamamlamak | EN: to do work you did not do earlier, or to learn the latest news | ÖRNEK: I have a lot of work to catch up on.
+16838 | condition | verb | B2 | #1/1 | TR: şartlandırmak, koşullandırmak | EN: to train or accustom someone or something to a particular state or set of circumstances | ÖRNEK: The coach conditioned the players to practice daily.
+26603 | pop up | phrasal_verb | B2 | #1/1 | TR: aniden belirmek, ortaya çıkmak | EN: to appear suddenly or unexpectedly | ÖRNEK: A message popped up on the screen.
+26694 | sit down | phrasal_verb | A1 | #1/1 | TR: oturmak | EN: to move your body so that you are sitting | ÖRNEK: Please sit down.
+27085 | sit through | phrasal_verb | C1 | #1/1 | TR: (sıkıcı bir şeyi) sonuna kadar oturup izlemek | EN: to stay until the end of something boring or long | ÖRNEK: We had to sit through a three-hour meeting.
+16707 | sitting | noun | B1 | #1/2 | TR: oturum, seans | EN: a period of time in which a meeting, discussion, or other activity takes place | ÖRNEK: During the sitting, members raised many important questions.
+16708 | sitting | noun | B1 | #2/2 | TR: oturma, oturmuş olma | EN: the act or state of being seated | ÖRNEK: Long sitting can cause discomfort if you do not stretch.
+15993 | standing | noun | B1 | #1/2 | TR: itibar, konum, saygınlık | EN: the position, rank, or reputation that someone has in a particular context | ÖRNEK: She has a good standing in the local business community.
+15994 | standing | noun | B1 | #2/2 | TR: dik durma, ayakta kalma | EN: the act or condition of being upright on one's feet | ÖRNEK: She practiced yoga to improve her standing balance.
+16885 | channel | verb | B2 | #1/1 | TR: yönlendirmek, iletmek | EN: to direct or guide something, especially information or energy, through a particular route or medium | ÖRNEK: The teacher will channel the students' questions to the guest speaker.
+712 | distance | verb | B2 | #1/1 | TR: uzaklaştırmak, araya mesafe koymak | EN: to keep apart or cause to be at a distance; to separate physically or emotionally | ÖRNEK: She distances herself from gossip at school.
+5343 | eating | noun | B1 | #1/1 | TR: yemek yeme | EN: the act of consuming food; the process of taking in nourishment | ÖRNEK: Eating quickly can cause indigestion.
+16830 | heat up | phrasal_verb | A2 | #1/2 | TR: ısıtmak | EN: to cause something to become hotter or to increase the intensity of a situation | ÖRNEK: She turned up the stove to heat up the sauce for the pasta.
+4258 | learned | adjective | C1 | #1/1 | TR: bilgili, eğitimli | EN: having acquired a great deal of knowledge, especially through study or experience | ÖRNEK: The professor is a learned man who writes many articles.
+27374 | police officer | noun | A2 | #1/1 | TR: polis memuru | EN: a member of the police | ÖRNEK: The police officer helped the lost child.
+16872 | religious | noun | C2 | #1/1 | TR: dini kişi, din mensubu | EN: a person who belongs to a religious order or who is devoted to a particular religion | ÖRNEK: The university invited a religious to speak about interfaith dialogue.
+16891 | royal | noun | B2 | #1/1 | TR: kraliyet üyesi | EN: a person who belongs to a royal family, such as a king, queen, prince, or princess | ÖRNEK: The royal arrived at the airport in a golden carriage.
+19957 | serve | noun | B1 | #1/1 | TR: tenisteki servis atışı | EN: the act of hitting the ball to start a point in tennis | ÖRNEK: The player practiced his serve for an hour before the match.
+19276 | signed | adjective | B1 | #1/1 | TR: imzalı | EN: having a signature attached; marked as having been signed by a person. | ÖRNEK: She handed me a signed receipt for the purchase.
+16909 | slow | adverb | B1 | #1/1 | TR: yavaşça | EN: in a slow manner; without haste | ÖRNEK: The turtle moves slow across the sand.
+16898 | traffic | verb | C1 | #1/1 | TR: uyuşturucu kaçırmak, kaçakçılık yapmak | EN: to deal in or transport illegal goods, especially drugs, from one place to another | ÖRNEK: The police discovered a ring that traffics illegal drugs.
+16915 | tree | verb | C2 | #1/1 | TR: ağaca kıstırmak, ağaca kaçırtmak | EN: to force a person or animal to climb up a tree, often to prevent escape or as a form of restraint | ÖRNEK: The police treed the suspect to keep him from fleeing.
+27230 | whom | pronoun | B2 | #1/1 | TR: kimi, kime (resmî) | EN: used instead of "who" as the object of a verb or preposition (formal) | ÖRNEK: To whom should I send the letter?
+14120 | bottom | verb | C2 | #1/1 | TR: alt kısmını oluşturmak | EN: to form or make the bottom part of something | ÖRNEK: The carpenter bottomed the shelf with sturdy plywood.
+19142 | lie | noun | A2 | #1/1 | TR: yanlış beyan, yalan | EN: a statement that is not true; a falsehood | ÖRNEK: He told a lie to protect his friend from criticism.
+19143 | lie | verb | A2 | #1/2 | TR: yatmak, uzanmak | EN: to be in a horizontal position on a surface | ÖRNEK: After the long walk, I needed to lie down for a few minutes.
+19144 | lie | verb | A2 | #2/2 | TR: yalan söylemek | EN: to say something that is not true | ÖRNEK: The boy quickly learned not to lie when his teacher caught him.
+11610 | partner | verb | B2 | #1/1 | TR: ortaklık kurmak, iş birliği yapmak | EN: to associate with someone or an organization in a joint effort or to form a partnership | ÖRNEK: The school partnered with a nonprofit to improve literacy rates.
+27375 | police station | noun | A2 | #1/1 | TR: karakol | EN: the office of the police in a town or area | ÖRNEK: He was taken to the police station.
+16926 | square | verb | B1 | #1/2 | TR: karesini almak | EN: to multiply a number by itself; to raise a quantity to the second power | ÖRNEK: The teacher asked us to square 7 on the board.
+16927 | square | verb | B1 | #2/2 | TR: hesabı kapatmak, denkleştirmek | EN: to settle a debt or balance; to make something even or equal | ÖRNEK: After the trip, we had to square up the expenses.
+11824 | wind | verb | B1 | #1/1 | TR: kıvrılmak, dolanmak | EN: to turn or coil something around an axis or object | ÖRNEK: She wound the string around the spool carefully.
+16997 | bus | verb | B1 | #1/1 | TR: otobüsle taşımak | EN: to transport people or goods by bus | ÖRNEK: The tour agency buses the tourists to the museum each day.
+26918 | count in | phrasal_verb | C1 | #1/1 | TR: (birini) hesaba katmak, dahil etmek | EN: to include someone in an activity | ÖRNEK: If you're going to the beach, count me in!
+26295 | count on | phrasal_verb | B2 | #1/1 | TR: güvenmek, bel bağlamak | EN: to trust someone to help you or do something | ÖRNEK: You can always count on me.
+27460 | fire station | noun | A2 | #1/1 | TR: itfaiye istasyonu | EN: a building where firefighters and fire engines are | ÖRNEK: The fire station is next to the school.
+17382 | mentioned | adjective | B1 | #1/1 | TR: bahsi geçen, söz edilen | EN: having been referred to or spoken about; noted in a previous statement or text | ÖRNEK: The teacher listed the mentioned books on the board.
+9751 | mouth | verb | B1 | #1/1 | TR: dudaklarla söylemek | EN: to form words with the mouth without vocalizing | ÖRNEK: She mouthed the answer during the silent quiz.

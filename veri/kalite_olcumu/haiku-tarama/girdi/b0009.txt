@@ -1,0 +1,100 @@
+16245 | die | noun | B1 | #1/2 | TR: zar | EN: a small cube marked with numbers on each side, used in games of chance. | ÖRNEK: She picked up a die and placed it on the table.
+16246 | die | noun | B1 | #2/2 | TR: döküm kalıbı | EN: a hardened metal tool used to shape material, especially in metalworking and manufacturing. | ÖRNEK: The workshop contains several steel dies for shaping metal.
+26937 | fall back on | phrasal_verb | C1 | #1/1 | TR: (zor durumda) -e başvurmak, -e dayanmak | EN: to use something or someone for help when other things have failed | ÖRNEK: We have some savings to fall back on.
+26980 | hold against | phrasal_verb | C1 | #1/1 | TR: (birine bir şey yüzünden) kin tutmak, bunu ona karşı kullanmak | EN: to like someone less because of something they have done | ÖRNEK: He made a mistake, but I won't hold it against him.
+16233 | paper | verb | B1 | #1/1 | TR: kağıtla kaplamak, duvarları kağıtla döşemek | EN: to cover, wrap, or line something with paper | ÖRNEK: The students papered the classroom walls for the art project.
+27028 | pick at | phrasal_verb | C1 | #1/1 | TR: (yemekle) oynamak, isteksizce yemek | EN: to eat only a small amount of food, slowly and without interest | ÖRNEK: She just picked at her dinner.
+26596 | pick on | phrasal_verb | B2 | #1/1 | TR: (birine) sataşmak, hep onu hedef almak | EN: to treat someone badly or unfairly, especially repeatedly | ÖRNEK: Stop picking on your little brother!
+5144 | safe | noun | B1 | #1/1 | TR: kasa, hazine odası | EN: a strong container used to store valuables securely | ÖRNEK: The hotel provides a safe for guests to store their passports.
+27093 | stand down | phrasal_verb | C1 | #1/1 | TR: (görevden) çekilmek | EN: to leave an important job or position | ÖRNEK: The chairman stood down after ten years.
+15254 | starting | adjective | B1 | #1/1 | TR: başlangıç, başlatıcı | EN: relating to the beginning of something; used to describe something that initiates or is at the initial stage. | ÖRNEK: The starting price of the laptop is affordable for most students.
+16243 | version | verb | B2 | #1/1 | TR: versiyonlamak | EN: to create or produce a particular version of something, especially a software program or document | ÖRNEK: The team will version the app after fixing the bugs.
+16251 | voice | verb | B1 | #1/1 | TR: ifade etmek, seslendirmek | EN: to express something in words or sounds, especially opinions or feelings | ÖRNEK: She will voice her ideas at the conference tomorrow.
+26296 | cover up | phrasal_verb | B2 | #1/2 | TR: örtbas etmek, gizlemek | EN: to stop people from discovering the truth about something bad | ÖRNEK: The government tried to cover up the scandal.
+26297 | cover up | phrasal_verb | B2 | #2/2 | TR: örtmek, kapatmak | EN: to put something over something else to hide or protect it | ÖRNEK: She covered up the scar with make-up.
+26326 | drive off | phrasal_verb | B2 | #1/1 | TR: arabayla uzaklaşmak | EN: to leave in a car | ÖRNEK: She got in the car and drove off.
+4430 | earth | verb | B2 | #1/1 | TR: topraklamak, toprakla bağlamak | EN: to connect an electrical circuit or device to the ground so that excess electricity can flow safely away | ÖRNEK: The technician will earth the faulty wiring before the inspection.
+26342 | fall down | phrasal_verb | A2 | #1/2 | TR: düşmek, yere düşmek | EN: to fall to the ground | ÖRNEK: She fell down and hurt her knee.
+26343 | fall down | phrasal_verb | A2 | #2/2 | TR: (plan, iddia) çürük çıkmak, başarısız olmak | EN: to fail because of a weakness | ÖRNEK: That's where the argument falls down.
+26346 | fall off | phrasal_verb | B1 | #1/2 | TR: (bir şeyin üstünden) düşmek | EN: to fall from something | ÖRNEK: He fell off his bike.
+26347 | fall off | phrasal_verb | B1 | #2/2 | TR: azalmak, düşmek | EN: to become less in amount or quality | ÖRNEK: Sales have fallen off this year.
+26351 | fall through | phrasal_verb | C1 | #1/1 | TR: suya düşmek, gerçekleşmemek | EN: to fail to happen | ÖRNEK: Our holiday plans fell through.
+26945 | follow through | phrasal_verb | C1 | #1/1 | TR: (bir işi) sonuna kadar götürmek, arkasını getirmek | EN: to complete something that you have started or promised | ÖRNEK: It's a good plan, but will they follow it through?
+6812 | follow-through | noun | B2 | #1/1 | TR: uygulama, tamamlama, sonuçlandırma | EN: the act of completing a task or carrying out a plan after it has been started | ÖRNEK: The coach praised the players for their follow-through during the practice drills.
+27005 | listen in | phrasal_verb | C1 | #1/1 | TR: (gizlice) dinlemek, kulak misafiri olmak | EN: to listen to a conversation without the speakers knowing | ÖRNEK: Someone was listening in on our phone call.
+26560 | lose out | phrasal_verb | C1 | #1/1 | TR: zarar görmek, kaybetmek, fırsatı kaçırmak | EN: to not have an advantage or opportunity that others have | ÖRNEK: Small farmers lose out to big companies.
+16253 | okay | adjective | A2 | #1/1 | TR: tamam, iyi, kabul edilebilir | EN: acceptable or satisfactory; indicating that something is all right or satisfactory. | ÖRNEK: The coffee tastes okay, but it could be stronger.
+16254 | okay | adverb | A2 | #1/1 | TR: tamam, anlaşıldı | EN: used to express agreement, acceptance, or to signal that something is understood or will be done. | ÖRNEK: Okay, I understand the instructions now.
+16255 | okay | noun | B1 | #1/1 | TR: onay, izin | EN: an expression of approval or permission granted for something | ÖRNEK: The teacher gave the okay for the class trip.
+22102 | pick out | phrasal_verb | B1 | #1/1 | TR: seçmek, ayırmak | EN: to select or identify something from a group or collection | ÖRNEK: She will pick out a gift for her friend's birthday tomorrow.
+22103 | pick up | phrasal_verb | A2 | #1/3 | TR: almak, toplamak | EN: to take something that is lying or standing somewhere and bring it with you | ÖRNEK: I need to pick up the groceries before dinner.
+22104 | pick up | phrasal_verb | A2 | #2/3 | TR: öğrenmek, kavramak | EN: to acquire knowledge or a skill, often informally or by listening | ÖRNEK: During the trip, I picked up a few phrases in French.
+22105 | pick up | phrasal_verb | A2 | #3/3 | TR: iyileşmek, toparlanmak | EN: to become healthier or feel better after an illness or a setback | ÖRNEK: The economy is starting to pick up after the recession.
+3401 | practice | verb | A1 | #1/1 | TR: uygulamak, alıştırma yapmak | EN: to perform an activity repeatedly or regularly in order to improve or maintain proficiency | ÖRNEK: She practices yoga every morning to stay flexible.
+26669 | send back | phrasal_verb | B1 | #1/1 | TR: geri göndermek, iade etmek | EN: to return something, especially because it is damaged or not right | ÖRNEK: I sent the shoes back because they were too small.
+26692 | sign up | phrasal_verb | B1 | #1/1 | TR: kaydolmak, yazılmak | EN: to agree to take part in an activity or become a member of something | ÖRNEK: I've signed up for a Spanish course.
+26723 | step down | phrasal_verb | C1 | #1/1 | TR: (görevden) çekilmek, istifa etmek | EN: to leave an important job or position | ÖRNEK: The president stepped down after ten years.
+12875 | waiting | noun | B1 | #1/1 | TR: bekleme | EN: the act or period of staying in one place or remaining inactive until something happens | ÖRNEK: The waiting was long, but the concert started on time.
+26805 | walk out | phrasal_verb | B2 | #1/2 | TR: çekip gitmek, (protesto için) terk etmek | EN: to leave a meeting or place suddenly, especially to show that you are angry | ÖRNEK: He walked out of the meeting.
+26806 | walk out | phrasal_verb | B2 | #2/2 | TR: (birini) terk edip gitmek | EN: to suddenly leave your husband, wife or partner | ÖRNEK: Her husband walked out on her.
+22739 | base | adjective | C2 | #1/1 | TR: aşağı, ahlaksız, alçak | EN: of low moral standards; lacking moral principles | ÖRNEK: The base remarks made the audience uncomfortable.
+26208 | break away | phrasal_verb | B2 | #1/2 | TR: ayrılmak, kopmak | EN: to leave a group or country and become independent | ÖRNEK: Several members broke away to form a new party.
+26209 | break away | phrasal_verb | B2 | #2/2 | TR: kurtulup kaçmak | EN: to escape from someone who is holding you | ÖRNEK: The prisoner broke away from the guards.
+26284 | come round | phrasal_verb | B2 | #1/2 | TR: fikrini değiştirip kabul etmek, ikna olmak | EN: to change your opinion and agree with someone | ÖRNEK: She'll come round to the idea eventually.
+26285 | come round | phrasal_verb | B2 | #2/2 | TR: kendine gelmek, ayılmak | EN: to become conscious again | ÖRNEK: He came round in hospital.
+26313 | die out | phrasal_verb | B2 | #1/1 | TR: yok olmak, nesli tükenmek | EN: to become less common and finally disappear completely | ÖRNEK: Dinosaurs died out millions of years ago.
+26353 | figure out | phrasal_verb | B2 | #1/1 | TR: anlamak, çözmek, (sonunda) kavramak | EN: to understand something or find the answer to something by thinking | ÖRNEK: I can't figure out how this machine works.
+15777 | missing | noun | B2 | #1/1 | TR: kayıp olanlar, eksik olanlar | EN: people or things that are not present or have not been found | ÖRNEK: The family posted flyers for the missing.
+26589 | pass on | phrasal_verb | B1 | #1/2 | TR: iletmek, aktarmak | EN: to give information or an object to someone else | ÖRNEK: Can you pass on a message to her?
+26590 | pass on | phrasal_verb | B1 | #2/2 | TR: (hastalığı) bulaştırmak, geçirmek | EN: to give a disease to someone | ÖRNEK: The virus can be passed on through touch.
+26649 | run across | phrasal_verb | C1 | #1/1 | TR: rastlamak, tesadüfen bulmak | EN: to meet someone or find something by chance | ÖRNEK: I ran across an old friend in town.
+26670 | send off | phrasal_verb | B2 | #1/2 | TR: (postayla) göndermek | EN: to send a letter, document or parcel by post | ÖRNEK: Have you sent off your application?
+26671 | send off | phrasal_verb | B2 | #2/2 | TR: (oyundan) atmak, kırmızı kart göstermek | EN: to order a sports player to leave the field because they have broken the rules | ÖRNEK: He was sent off for a bad foul.
+26697 | sleep in | phrasal_verb | B1 | #1/1 | TR: geç kalkmak, uyuyakalmak | EN: to sleep until later in the morning than usual | ÖRNEK: I usually sleep in on Sundays.
+27087 | sleep on | phrasal_verb | C1 | #1/1 | TR: (karar vermeden önce) bir gece düşünmek | EN: to wait until the next day before deciding something | ÖRNEK: I'll sleep on it and tell you tomorrow.
+27394 | social media | noun | B1 | #1/1 | TR: sosyal medya | EN: websites and apps that people use to share information and communicate | ÖRNEK: She spends hours on social media.
+20131 | table | verb | B2 | #1/2 | TR: ertelemek | EN: to formally delay consideration of a proposal or issue, especially in a legislative or meeting context | ÖRNEK: The council will table the proposal until more research is available.
+20132 | table | verb | B2 | #2/2 | TR: gündeme getirmek, masaya koymak | EN: to bring a matter before a group for discussion or consideration, especially in a formal setting | ÖRNEK: The professor will table the research findings during the seminar.
+16293 | ball | verb | B1 | #1/1 | TR: yuvarlak hâle getirmek | EN: to shape or form something into a round or spherical shape | ÖRNEK: Students often ball the play-dough during art class.
+16308 | box | verb | B1 | #1/2 | TR: paketlemek, kutuya koymak | EN: to place something inside a container, typically a cardboard box, for storage or transport | ÖRNEK: She boxed the toys carefully before the move.
+16309 | box | verb | B1 | #2/2 | TR: boks yapmak, yumruk atmak | EN: to fight using fists, typically in a sport or a training session | ÖRNEK: He boxes at the local gym every Tuesday and Thursday.
+11928 | build | noun | B1 | #1/2 | TR: yapı, vücut yapısı | EN: the physical form or structure of something, especially a person's body | ÖRNEK: The doctor noted her petite build during the check-up.
+11929 | build | noun | B1 | #2/2 | TR: inşa, yapı, bina | EN: the act of constructing something or the result of such construction; a building | ÖRNEK: The new build on Main Street attracted many shoppers.
+16303 | card | verb | B1 | #1/1 | TR: kimlik sormak, kimliğini doğrulamak | EN: to ask someone for identification or to verify a person's identity by checking their ID | ÖRNEK: The bouncer asked to card the guests before letting them in.
+26549 | look forward to | phrasal_verb | A2 | #1/1 | TR: dört gözle beklemek, sabırsızlıkla beklemek | EN: to feel happy and excited about something that is going to happen | ÖRNEK: I'm looking forward to the holidays.
+16298 | minister | verb | B2 | #1/1 | TR: hizmet etmek, bakmak, ilgilenmek | EN: to attend to or care for someone or something, especially in a supportive or official capacity | ÖRNEK: The nurse ministers to the patients in the ward.
+26588 | pass by | phrasal_verb | B1 | #1/1 | TR: (yanından) geçmek | EN: to go past a person or place | ÖRNEK: I pass by the bakery every morning.
+12216 | percent | noun | B1 | #1/1 | TR: yüzde | EN: a proportion or rate expressed as a part of one hundred | ÖRNEK: The test score improved by five percent after extra tutoring.
+16284 | piece | verb | B1 | #1/1 | TR: birleştirmek, montaj yapmak | EN: to join separate parts or items together to form a whole | ÖRNEK: The child tried to piece the broken toy back together.
+6625 | straight | noun | B1 | #1/2 | TR: düz yol, düz hat | EN: a straight section of a race track or road, especially the part where the course runs without curves | ÖRNEK: The runner kept his pace on the straight of the track.
+6626 | straight | noun | B1 | #2/2 | TR: düz sıra, ardışık kart dizisi | EN: a sequence of five cards in numerical order, regardless of suit, in poker or other card games | ÖRNEK: In the final round, he completed a straight and took the pot.
+16295 | wall | verb | B2 | #1/1 | TR: duvarla çevrelemek, engellemek | EN: to enclose or surround with a wall; to block or impede | ÖRNEK: The city council will wall off the old market for renovation.
+26896 | build on | phrasal_verb | C1 | #1/1 | TR: (başarının) üzerine inşa etmek, geliştirmek | EN: to use a success or achievement as a base for further progress | ÖRNEK: We need to build on last year's success.
+26271 | come forward | phrasal_verb | C1 | #1/1 | TR: ortaya çıkıp bilgi vermek, gönüllü olmak | EN: to offer help or information | ÖRNEK: Police asked witnesses to come forward.
+26997 | kill off | phrasal_verb | C1 | #1/1 | TR: yok etmek, ortadan kaldırmak | EN: to cause the death or end of many living things or ideas | ÖRNEK: The cold winter killed off many plants.
+27364 | main course | noun | A2 | #1/1 | TR: ana yemek | EN: the biggest part of a meal | ÖRNEK: For the main course I'll have the fish.
+3713 | pain | verb | B1 | #1/1 | TR: acı vermek | EN: to cause physical or mental suffering to someone or something | ÖRNEK: The cut will pain you for a few minutes.
+26591 | pass out | phrasal_verb | B2 | #1/1 | TR: bayılmak | EN: to become unconscious for a short time | ÖRNEK: He passed out because of the heat.
+26592 | pass up | phrasal_verb | C1 | #1/1 | TR: (fırsatı) geri çevirmek, kaçırmak | EN: to not use an opportunity | ÖRNEK: I can't pass up a chance like this.
+27447 | point of view | noun | B1 | #1/1 | TR: bakış açısı | EN: a particular way of thinking about a situation | ÖRNEK: From my point of view, the plan won't work.
+26831 | bring along | phrasal_verb | B1 | #1/1 | TR: yanında getirmek | EN: to bring someone or something with you | ÖRNEK: Bring along your friends!
+26221 | build up | phrasal_verb | B2 | #1/2 | TR: artmak, birikmek | EN: to increase or become larger or stronger over time | ÖRNEK: Traffic builds up in the evening.
+26222 | build up | phrasal_verb | B2 | #2/2 | TR: güçlendirmek, geliştirmek | EN: to make something stronger or bigger | ÖRNEK: She built up the business from nothing.
+6646 | effect | verb | B2 | #1/1 | TR: gerçekleştirmek, sağlamak, yürürlüğe koymak | EN: to cause something to happen or to bring about a result | ÖRNEK: The amendment will effect new rules for campus safety.
+5569 | except | verb | B2 | #1/1 | TR: hariç tutmak, dışlamak | EN: to exclude someone or something from a group, statement, or consideration | ÖRNEK: The teacher excepted the late arrivals from the attendance count.
+16365 | eye | verb | B1 | #1/1 | TR: gözlemlemek, bakmak | EN: to look at or watch something carefully, often with interest or desire | ÖRNEK: She eyed the cake and decided to have a slice.
+16356 | network | verb | B2 | #1/1 | TR: bağlantı kurmak, ağ oluşturmak | EN: to connect or interact with others in order to exchange information, ideas, or resources, especially for professional or social purposes | ÖRNEK: She networks with classmates to share study notes.
+6590 | provided | conjunction | B2 | #1/1 | TR: şartıyla, koşuluyla | EN: introducing a condition that must be met for something else to happen | ÖRNEK: You can borrow my bike, provided you return it before sunset.
+17139 | required | adjective | B2 | #1/1 | TR: gerekli, zorunlu | EN: needed or demanded; obligatory | ÖRNEK: The school handbook lists the required uniforms for all students.
+27140 | walk off with | phrasal_verb | C1 | #1/1 | TR: (ödülü) kolayca kazanmak; (bir şeyi) alıp götürmek | EN: to win a prize easily, or to take something that is not yours | ÖRNEK: She walked off with first prize.
+18491 | weight | verb | B2 | #1/1 | TR: ağırlık eklemek, ağırlaştırmak | EN: to add weight to something; to make something heavier | ÖRNEK: The trainer asked her to weight the barbell before lifting.
+16141 | Chinese | adjective | A2 | #1/2 | TR: Çin, Çinli | EN: relating to China, its people, culture, or products | ÖRNEK: The Chinese flag has five stars on a red background.
+16143 | Chinese | noun | A1 | #1/2 | TR: Çinli | EN: a person who is a native or citizen of China | ÖRNEK: The Chinese arrived early for the meeting.
+16142 | Chinese | adjective | A2 | #2/2 | TR: Çince | EN: the language spoken by the majority of people in China | ÖRNEK: He can read basic Chinese signs in the city.
+16144 | Chinese | noun | A1 | #2/2 | TR: Çince | EN: the Sino-Tibetan language spoken primarily in China and by Chinese communities worldwide | ÖRNEK: Chinese is spoken by over a billion people worldwide.
+6827 | beat | adjective | B1 | #1/1 | TR: yorgun, bitkin | EN: exhausted or extremely tired; having no energy left | ÖRNEK: I stayed up late studying, so now I'm beat.
+16384 | brown | verb | B1 | #1/1 | TR: kızartmak, pembeleştirmek, kavurmak | EN: to become brown in colour or to cause something to turn brown | ÖRNEK: The chef browned the chicken in a hot pan.
+26312 | die down | phrasal_verb | B2 | #1/1 | TR: azalmak, dinmek | EN: to gradually become less strong or loud | ÖRNEK: The wind died down in the evening.
+26924 | die off | phrasal_verb | C1 | #1/1 | TR: (birer birer) ölüp gitmek, tükenmek | EN: to die one by one until there are none left | ÖRNEK: The old trees are slowly dying off.
+14575 | double | noun | A2 | #1/2 | TR: iki katı, iki katına çıkmış miktar | EN: twice the amount or size of something; a quantity that is double | ÖRNEK: The rent this month is double the rent we paid last year.
+14574 | double | noun | A2 | #2/2 | TR: eş, benzeri, dublör | EN: a thing that is exactly the same as another thing; a duplicate | ÖRNEK: The museum displayed a double of the ancient vase for visitors.

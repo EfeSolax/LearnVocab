@@ -1,0 +1,100 @@
+1686 | creative | noun | B2 | #1/1 | TR: yaratıcı kişi, tasarımcı | EN: a person who has the ability to create original ideas, especially in artistic or inventive fields | ÖRNEK: The university hired a creative to develop new teaching materials.
+12208 | dealing | noun | B2 | #1/1 | TR: anlaşma, muamele | EN: the act or process of conducting business or handling a matter; an arrangement or transaction between parties | ÖRNEK: The museum's dealing with loaned artworks required careful documentation.
+17907 | don | noun | B2 | #1/2 | TR: profesör, akademik öğretim üyesi | EN: a senior university teacher, especially at Oxford or Cambridge, who is a member of the faculty and often holds a college fellowship | ÖRNEK: The don greeted the new students during orientation week.
+17909 | don | verb | C1 | #1/1 | TR: giymek, üzerine almak | EN: to put on an article of clothing or to dress oneself in something | ÖRNEK: She will don her rain jacket before the storm arrives.
+17908 | don | noun | B2 | #2/2 | TR: suç lideri | EN: the head of a criminal organization, especially in the Italian Mafia, who commands respect and authority | ÖRNEK: The don met with his lieutenants to discuss the new operation.
+26480 | hang on | phrasal_verb | B1 | #1/2 | TR: biraz beklemek | EN: to wait for a short time | ÖRNEK: Hang on, I'll be ready in a minute.
+26481 | hang on | phrasal_verb | B1 | #2/2 | TR: sıkıca tutunmak | EN: to hold something tightly | ÖRNEK: Hang on tight!
+26973 | hang on to | phrasal_verb | B2 | #1/2 | TR: (bir şeyi) elinde tutmak, saklamak | EN: to keep something | ÖRNEK: Hang on to your ticket – you'll need it later.
+26974 | hang on to | phrasal_verb | B2 | #2/2 | TR: sıkıca tutunmak | EN: to hold something tightly | ÖRNEK: Hang on to the rail.
+27047 | push ahead | phrasal_verb | C1 | #1/1 | TR: kararlılıkla ilerlemek, sürdürmek | EN: to continue with a plan in a determined way | ÖRNEK: The government is pushing ahead with the reforms.
+17882 | row | noun | A2 | #1/2 | TR: sıra, diziliş | EN: a horizontal line of objects or people placed side by side | ÖRNEK: The students sat in a single row during the lecture.
+17884 | row | verb | A2 | #1/1 | TR: kürek çekmek, kürekle ilerletmek | EN: to propel a boat or other watercraft by using oars | ÖRNEK: The children learned how to row a small boat during the camp.
+17883 | row | noun | A2 | #2/2 | TR: tartışma, kavga | EN: a noisy or angry dispute between people | ÖRNEK: The siblings had a row over who would use the computer.
+17897 | salt | verb | B1 | #1/1 | TR: tuz eklemek, tuzla korumak | EN: to add salt to food or to preserve something with salt | ÖRNEK: She salts the salad lightly to bring out the fresh flavors.
+27389 | security guard | noun | B1 | #1/1 | TR: güvenlik görevlisi | EN: a person whose job is to protect a building or people | ÖRNEK: The security guard checked our bags.
+27068 | seek out | phrasal_verb | C1 | #1/1 | TR: (araştırıp) bulmak, arayıp bulmak | EN: to look for someone or something, especially for a long time | ÖRNEK: She sought out the best doctors.
+17876 | statistics | noun | B1 | #1/1 | TR: istatistik | EN: the science of collecting, analyzing, interpreting, and presenting numerical data | ÖRNEK: She used simple statistics to compare the two groups.
+26732 | switch on | phrasal_verb | A2 | #1/1 | TR: (cihazı) açmak | EN: to turn on a light or machine | ÖRNEK: Switch on the TV, the news is starting.
+3133 | affect | noun | C2 | #1/1 | TR: duygulanım | EN: the experience of feeling or emotion; a mental state that can be observed in behavior or expressed verbally. | ÖRNEK: The therapist noted a flat affect during the interview.
+17954 | aside | noun | B2 | #1/2 | TR: ayraç içi söz, ek yorum, konu dışı söz | EN: a separate or additional part of something, often set apart from the main part | ÖRNEK: The book includes an aside that explains the author's background.
+17955 | aside | noun | B2 | #2/2 | TR: kenara söz, seyirciye hitap | EN: a brief remark by a character in a play, spoken directly to the audience and not heard by other characters | ÖRNEK: The playwright inserted an aside to expose the villain's true motives.
+17930 | bell | verb | C2 | #1/1 | TR: çan takmak | EN: to attach a bell to something, usually so it can ring when moved | ÖRNEK: Farmers often bell the cattle to locate them easily.
+17933 | bond | verb | B2 | #1/1 | TR: bağ kurmak, bağlamak | EN: to join or be joined securely to something else, especially by chemical or physical forces | ÖRNEK: The scientist bonds the two molecules in the lab.
+13666 | controlled | adjective | B2 | #1/1 | TR: denetimli, kontrol altında | EN: being kept under control or regulation; not free to act independently | ÖRNEK: The laboratory uses a controlled environment for all sensitive experiments.
+25327 | hang out | phrasal_verb | B1 | #1/1 | TR: takılmak, vakit geçirmek | EN: to spend time in a relaxed, informal way, usually with other people | ÖRNEK: I usually hang out with my classmates after the lecture.
+23183 | hang over | phrasal_verb | B2 | #1/1 | TR: gölge düşürmek, tehdit oluşturmak, çökmek | EN: to remain as an unresolved issue or to cast a shadow over something | ÖRNEK: The recent scandal still hangs over the mayor's reputation.
+26482 | hang up | phrasal_verb | B1 | #1/2 | TR: (telefonu) kapatmak | EN: to end a phone call by putting the phone down | ÖRNEK: He hung up before I could answer.
+26483 | hang up | phrasal_verb | B1 | #2/2 | TR: (askıya) asmak | EN: to put something such as clothes on a hook | ÖRNEK: Hang up your coat in the hall.
+5717 | motion | verb | B1 | #1/1 | TR: işaret etmek, el hareketiyle göstermek | EN: to move a part of the body, especially the hand, in order to convey a message or indicate something | ÖRNEK: The teacher motioned the students to be quiet during the test.
+8337 | nick | noun | B2 | #1/2 | TR: karakol, hapishane | EN: a place where people are detained by the police or corrections authorities | ÖRNEK: The police arrested the suspect and brought him to the nick.
+8339 | nick | verb | B1 | #1/1 | TR: küçük bir kesik atmak | EN: to make a small cut or notch in something | ÖRNEK: The carpenter nicked the plank while shaping the edge.
+8338 | nick | noun | B2 | #2/2 | TR: küçük kesik, çentik | EN: a small cut or indentation made on a surface, often unintentionally | ÖRNEK: He accidentally made a nick in the metal while filing it.
+17948 | pacific | adjective | B2 | #1/1 | TR: barışçıl, sakin | EN: peaceful; not involving war or conflict and showing a calm disposition | ÖRNEK: The pacific lake reflected the clear blue sky.
+17963 | prize | verb | B2 | #1/1 | TR: değer vermek, kıymetli saymak | EN: to regard someone or something as being of great worth or importance | ÖRNEK: She prizes her family's support during difficult times.
+10110 | saving | adjective | B2 | #1/1 | TR: kurtarıcı | EN: providing rescue or relief; capable of preventing harm or loss | ÖRNEK: The fire department acted as a saving grace for the trapped residents.
+27409 | travel agent | noun | A2 | #1/1 | TR: seyahat acentesi (görevlisi) | EN: a person or company that arranges vacations and travel | ÖRNEK: We booked our vacation through a travel agent.
+2180 | warning | adjective | B1 | #1/1 | TR: uyarıcı, ihtar veren | EN: giving notice or advice about possible danger or problems; intended to alert someone. | ÖRNEK: The warning sign told drivers to slow down near the curve.
+27416 | web page | noun | A2 | #1/1 | TR: internet sayfası, web sayfası | EN: a page of information on the internet | ÖRNEK: I found the information on a web page.
+26199 | blow out | phrasal_verb | B1 | #1/1 | TR: (üfleyerek) söndürmek | EN: to stop a flame burning by blowing on it | ÖRNEK: She blew out the candles on her cake.
+26893 | blow over | phrasal_verb | C1 | #1/1 | TR: (fırtına, tartışma) geçip gitmek, unutulmak | EN: to become less strong and then end | ÖRNEK: The storm blew over during the night.
+26200 | blow up | phrasal_verb | B1 | #1/3 | TR: havaya uçurmak, patlamak | EN: to destroy something with a bomb, or to explode | ÖRNEK: The bridge was blown up during the war.
+26201 | blow up | phrasal_verb | B1 | #2/3 | TR: şişirmek | EN: to fill something with air | ÖRNEK: Can you help me blow up these balloons?
+26202 | blow up | phrasal_verb | B1 | #3/3 | TR: aniden öfkelenmek, patlamak | EN: to suddenly become very angry | ÖRNEK: He blew up at me for being late.
+17981 | branch | verb | B2 | #1/1 | TR: kollara ayrılmak, dallanmak, çatallanmak | EN: to divide into branches or to spread out from a main part | ÖRNEK: The river branches into several smaller streams near the valley.
+6172 | favor | verb | B1 | #1/1 | TR: desteklemek, lehine olmak | EN: to show preference for or support someone or something | ÖRNEK: She favors chocolate ice cream.
+17987 | flag | verb | B1 | #1/2 | TR: işaretlemek, dikkat çekmek | EN: to mark or draw attention to something, often by using a flag or a similar indicator | ÖRNEK: The teacher asked us to flag any sentences that seemed unclear.
+17988 | flag | verb | B1 | #2/2 | TR: zayıflamak, güç kaybetmek | EN: to lose strength, vigor, or enthusiasm; to become weaker | ÖRNEK: She felt her concentration flag as the lecture dragged on.
+26972 | hang back | phrasal_verb | C1 | #1/1 | TR: geride durmak, çekinmek | EN: to not move forward, often because you are shy or nervous | ÖRNEK: She hung back while the others went in.
+26730 | switch off | phrasal_verb | A2 | #1/2 | TR: (cihazı) kapatmak | EN: to turn off a light or machine | ÖRNEK: Switch off the lights when you leave.
+26731 | switch off | phrasal_verb | A2 | #2/2 | TR: (dikkatini) kapatmak, kafa dinlemek | EN: to stop giving your attention to something | ÖRNEK: I just switch off when he starts talking about football.
+18052 | bottle | verb | B1 | #1/1 | TR: şişeye doldurmak | EN: to place a liquid or other substance into bottles, especially for storage or sale | ÖRNEK: The workers bottle the juice in a clean facility every morning.
+26207 | branch out | phrasal_verb | C1 | #1/1 | TR: faaliyet alanını genişletmek, yeni bir alana açılmak | EN: to start doing something new or different | ÖRNEK: The company has branched out into clothing.
+18016 | bunch | verb | B1 | #1/1 | TR: toplamak, bir araya getirmek | EN: to gather or cause to gather into a group or cluster | ÖRNEK: During the protest, the crowd began to bunch near the city hall.
+18026 | diet | verb | B1 | #1/1 | TR: diyet yapmak, beslenme düzeni uygulamak | EN: to restrict or control one's food intake for health or weight reasons | ÖRNEK: She decided to diet to lose a few pounds before the wedding.
+13314 | fruit | verb | B2 | #1/1 | TR: meyve vermek, sonuç üretmek | EN: to produce fruit or to yield results; to bear fruit | ÖRNEK: The garden trees fruit early in the spring.
+26479 | hang around | phrasal_verb | B2 | #1/1 | TR: (bir yerde) boş boş takılmak, beklemek | EN: to wait or spend time somewhere without doing much | ÖRNEK: Young people hang around the shopping center.
+18044 | index | verb | B1 | #1/1 | TR: dizinlemek, endekslemek | EN: to assign a numerical or alphabetical index to items in a list or database | ÖRNEK: The librarian will index the new books by subject.
+18056 | mess | verb | B1 | #1/1 | TR: dağınık hâle getirmek, karıştırmak | EN: to make something untidy or disorderly; to interfere with something in a way that causes confusion or mistakes | ÖRNEK: If you mess up the data entry, the whole report will be inaccurate.
+18069 | navy | noun | A2 | #1/2 | TR: lacivert | EN: a dark blue color, often used to describe uniforms or flags | ÖRNEK: She chose a navy dress for the evening gala.
+18070 | navy | noun | A2 | #2/2 | TR: deniz kuvvetleri | EN: the branch of a country's armed forces that conducts naval operations | ÖRNEK: The navy conducts regular patrols along the coastline.
+18062 | scheme | verb | B2 | #1/1 | TR: planlamak, düzenlemek, entrika kurmak | EN: to devise a systematic plan or scheme, especially one that is secret or devious | ÖRNEK: Local officials scheme to cut taxes without public debate.
+18005 | tank | verb | B2 | #1/1 | TR: başarısız olmak, çöküşe uğramak | EN: to perform very poorly, especially in a competition or test, resulting in a failure or loss | ÖRNEK: He tanked the quiz and got a zero.
+18665 | unlike | adjective | B2 | #1/1 | TR: farklı, benzemeyen | EN: not similar to; having characteristics that are not the same as something else. | ÖRNEK: The new policy is unlike any previous regulations the company has used.
+15260 | weekly | noun | B2 | #1/1 | TR: haftalık dergi, haftalık gazete | EN: a publication that is issued once every week | ÖRNEK: The campus library distributes a weekly to all students each Monday.
+20880 | anybody | pronoun | A2 | #1/1 | TR: herhangi bir kişi | EN: any person; anyone, without specifying who | ÖRNEK: Anybody can learn a new language with practice.
+27321 | apartment building | noun | A2 | #1/1 | TR: apartman, apartman binası | EN: a large building divided into apartments | ÖRNEK: We live in a tall apartment building.
+26894 | bottle up | phrasal_verb | C1 | #1/1 | TR: (duygularını) içine atmak, bastırmak | EN: to not allow yourself to show strong feelings | ÖRNEK: It's not healthy to bottle up your anger.
+18083 | button | verb | B1 | #1/1 | TR: iliklemek, düğmelemek | EN: to fasten something, especially clothing, by using buttons | ÖRNEK: She buttoned the blouse quickly before the meeting started.
+8108 | counter | adjective | B2 | #1/1 | TR: karşı, zıt | EN: serving as an opposite or opposing force; used to describe something that opposes or contradicts another. | ÖRNEK: The committee raised a counter point during the meeting.
+18087 | crown | verb | B2 | #1/1 | TR: taç takmak, taçlandırmak | EN: to place a crown on the head of a person or object, thereby making them a monarch or marking them as the highest in a series | ÖRNEK: The team hopes to crown the season with a championship win.
+19177 | defined | adjective | B2 | #1/1 | TR: belirli, tanımlı, kesin | EN: clearly stated or identified; having precise limits | ÖRNEK: The teacher gave a defined set of rules for the assignment.
+18115 | golf | verb | B1 | #1/1 | TR: golf oynamak | EN: to play the sport of golf | ÖRNEK: I golf every Saturday with my friends at the local club.
+11439 | grace | verb | B2 | #1/1 | TR: şereflendirmek, onurlandırmak, süslemek | EN: to show favor or mercy toward someone | ÖRNEK: The professor graced the lecture with insightful anecdotes.
+18057 | mess up | phrasal_verb | B1 | #1/1 | TR: karıştırmak, berbat etmek, hatalı yapmak | EN: to make a mistake or cause something to be in a disordered or incorrect state | ÖRNEK: I always mess up my coffee when I rush in the morning.
+18073 | pattern | verb | B2 | #1/2 | TR: model almak, örnek almak | EN: to follow or copy the design, model, or example of something | ÖRNEK: The student patterned his essay after the professor's sample paper.
+18074 | pattern | verb | B2 | #2/2 | TR: düzenlemek, bir desen oluşturmak | EN: to arrange or decorate something in a repeated decorative design | ÖRNEK: The craftsman patterned the wooden panel with intricate vines.
+18110 | premier | adjective | B2 | #1/1 | TR: ilk, birincil, en önde gelen | EN: being the first in rank, importance, or position; leading or most important | ÖRNEK: Our school offers a premier program for gifted students.
+26614 | put aside | phrasal_verb | B2 | #1/2 | TR: (para, zaman) ayırmak, biriktirmek | EN: to save money or time for a particular purpose | ÖRNEK: I put aside some money every month.
+26615 | put aside | phrasal_verb | B2 | #2/2 | TR: bir kenara bırakmak, göz ardı etmek | EN: to not think about a problem or feeling so that you can deal with something else | ÖRNEK: Let's put aside our differences.
+18101 | turkey | noun | A1 | #1/1 | TR: hindi | EN: a large bird native to North America, commonly raised for its meat | ÖRNEK: The turkey waddled across the farmyard in the early morning.
+26197 | blow away | phrasal_verb | B2 | #1/2 | TR: (rüzgârla) uçup gitmek, uçurmak | EN: to move or be moved away by the wind | ÖRNEK: My hat blew away.
+26198 | blow away | phrasal_verb | B2 | #2/2 | TR: çok etkilemek, büyülemek | EN: to impress someone very much | ÖRNEK: The concert completely blew me away.
+20894 | catholic | adjective | B2 | #1/2 | TR: Katolik, Katolik Kilisesi'ne ait | EN: relating to the Roman Catholic Church or its members | ÖRNEK: The cathedral is a central place of worship for catholic believers.
+20895 | catholic | adjective | B2 | #2/2 | TR: kapsayıcı, geniş kapsamlı | EN: including a wide variety of ideas, beliefs, or people; not limited to a single group | ÖRNEK: Her catholic interests include literature, astronomy, and cooking.
+27341 | digital camera | noun | A2 | #1/1 | TR: dijital fotoğraf makinesi | EN: a camera that stores photos electronically | ÖRNEK: He took the photos with a digital camera.
+7100 | dirty | verb | B1 | #1/1 | TR: kirletmek | EN: to make something dirty or unclean | ÖRNEK: The children dirty the playground when they play with mud.
+7486 | panel | verb | B2 | #1/1 | TR: panel takmak, panel yerleştirmek | EN: to cover or line a surface with panels | ÖRNEK: The crew will panel the new office walls next week.
+2122 | plate | verb | B2 | #1/2 | TR: kaplamak | EN: to cover a surface with a thin layer of metal or another material | ÖRNEK: Scientists plated the metal to improve its durability.
+2123 | plate | verb | B2 | #2/2 | TR: servis tabağına koymak | EN: to arrange food on a plate for serving | ÖRNEK: The waiter plated the soup and brought it to the table.
+13752 | retail | verb | B2 | #1/1 | TR: perakende satmak | EN: to sell goods directly to consumers rather than to other businesses | ÖRNEK: The small store retails handmade crafts to tourists.
+1352 | roof | verb | B1 | #1/1 | TR: çatıyla kapatmak, üstünü örmek | EN: to cover the top of a building or structure with a roof | ÖRNEK: The builders will roof the small cottage this weekend.
+17956 | set aside | phrasal_verb | B1 | #1/2 | TR: bir kenara ayırmak | EN: to reserve something for a particular purpose or future use | ÖRNEK: I set aside a small amount of money each month for emergencies.
+17957 | set aside | phrasal_verb | B1 | #2/2 | TR: göz ardı etmek | EN: to deliberately ignore or disregard something | ÖRNEK: He set aside his doubts and signed the contract.
+2592 | shame | verb | B2 | #1/1 | TR: utandırmak, rezil etmek | EN: to cause someone to feel embarrassed or guilty about something they have done | ÖRNEK: He shamed his friend for forgetting the meeting.
+27405 | tour guide | noun | A2 | #1/1 | TR: tur rehberi | EN: a person whose job is to show tourists around a place | ÖRNEK: Our tour guide spoke three languages.
+17587 | updated | adjective | B2 | #1/1 | TR: güncel, yenilenmiş | EN: made current or brought up to date | ÖRNEK: The professor posted an updated syllabus for the semester.
+2156 | absolute | noun | C1 | #1/1 | TR: mutlak, kesin şey, kesin gerçek | EN: the ultimate or perfect reality, a thing that is completely independent and not limited by anything else | ÖRNEK: The concept of the absolute has fascinated philosophers for centuries.
+2991 | constant | noun | B2 | #1/1 | TR: sabit, sabit değer, değişmez | EN: a quantity or quality that does not change; a value that remains the same over time | ÖRNEK: The speed of light is a physical constant that scientists rely on.
+16072 | driven | adjective | B2 | #1/1 | TR: güdümlü, motive olmuş | EN: having strong motivation or being propelled by a force | ÖRNEK: She feels driven to finish her thesis before the deadline.
+26967 | grow apart | phrasal_verb | C1 | #1/1 | TR: (zamanla) birbirinden uzaklaşmak | EN: to gradually become less close to someone | ÖRNEK: We grew apart after we left school.

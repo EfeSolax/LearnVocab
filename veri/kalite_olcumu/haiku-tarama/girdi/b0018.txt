@@ -1,0 +1,100 @@
+2161 | root | verb | B1 | #1/1 | TR: kök salmak, yerleşmek | EN: to establish firmly in a place or situation; to cause a plant to develop roots. | ÖRNEK: The seedlings were rooted in the greenhouse for two weeks.
+18447 | steal | noun | B2 | #1/1 | TR: ucuz bir alışveriş, fırsat | EN: something obtained at a price much lower than its usual value | ÖRNEK: That concert ticket was a steal for only five dollars.
+18450 | stolen | adjective | B2 | #1/1 | TR: çalıntı | EN: taken without permission or legal right; having been taken illegally | ÖRNEK: The shop displayed a sign warning customers about stolen merchandise.
+21198 | whereas | conjunction | C1 | #1/1 | TR: oysa, -iken | EN: introducing a contrast or comparison between two statements or facts | ÖRNEK: She enjoys hiking, whereas her brother prefers swimming.
+3004 | abandoned | adjective | B2 | #1/1 | TR: terk edilmiş, ıssız | EN: left without occupants, support, or care; deserted | ÖRNEK: The old house looks abandoned and eerie at night.
+2475 | buried | adjective | B2 | #1/1 | TR: gömülü, toprağa gömülmüş | EN: covered or placed under the ground | ÖRNEK: Archaeologists uncovered a buried statue from the Roman period.
+24078 | crack down | phrasal_verb | B2 | #1/1 | TR: baskı uygulamak, sert önlem almak | EN: to take severe measures to stop or limit something, especially illegal or undesirable behavior | ÖRNEK: The police decided to crack down on street racing after several accidents.
+26298 | crack up | phrasal_verb | C1 | #1/1 | TR: gülmekten kırılmak | EN: to suddenly laugh a lot | ÖRNEK: We all cracked up when he fell off his chair.
+10065 | elite | adjective | B2 | #1/2 | TR: seçkin, ayrıcalıklı | EN: relating to a group of people considered to be the most powerful, privileged, or talented in a society. | ÖRNEK: The university admits only elite students with top grades.
+10066 | elite | adjective | B2 | #2/2 | TR: üstün, çok iyi | EN: of a very high standard; superior in quality or performance. | ÖRNEK: The university's elite program attracts scholars from around the world.
+13390 | hop | noun | A2 | #1/2 | TR: küçük sıçrama, zıplama | EN: a quick, short jump or leap, especially with one foot leaving the ground | ÖRNEK: The child made a hop to reach the low shelf.
+13392 | hop | verb | A2 | #1/1 | TR: zıplamak, sıçramak | EN: to jump lightly or quickly, especially on one foot or over a short distance | ÖRNEK: The rabbit hopped across the garden to reach the lettuce.
+13391 | hop | noun | A2 | #2/2 | TR: şerbetçi otu | EN: the flower of the hop plant, used primarily as a flavoring and stabilizing agent in beer brewing | ÖRNEK: The brewery sourced organic hops from the Pacific Northwest.
+6527 | insane | adjective | C1 | #1/1 | TR: akıl hastası, delice | EN: seriously mentally ill; extremely irrational or foolish | ÖRNEK: The movie shows an insane character who laughs at danger.
+2851 | layer | verb | B2 | #1/1 | TR: katmanlamak, katman halinde yerleştirmek | EN: to arrange or place something in separate layers or to apply a coating in successive layers | ÖRNEK: The geologist layered the sediment samples for analysis.
+2492 | nurse | verb | B1 | #1/2 | TR: bakmak, tedavi etmek | EN: to provide medical care or attention to someone who is ill or injured | ÖRNEK: The nurse will nurse patients in the emergency department.
+2491 | nurse | verb | B1 | #2/2 | TR: emzirmek | EN: to feed a baby with milk directly from the breast | ÖRNEK: She can nurse a baby without any help.
+1246 | pot | verb | B1 | #1/1 | TR: saksıya dikmek | EN: to place a plant or seedling into a pot for growing | ÖRNEK: She potted the rose seedling in a clay pot yesterday.
+1266 | printed | adjective | B1 | #1/1 | TR: basılı | EN: having been produced by the process of printing; reproduced on paper or another surface using ink. | ÖRNEK: The teacher handed out a printed worksheet for the class.
+1299 | recall | noun | B1 | #1/1 | TR: hatırlama, geri çağırma | EN: the act of remembering something or bringing something back into consideration | ÖRNEK: He had a clear recall of the meeting details.
+27056 | root out | phrasal_verb | C1 | #1/1 | TR: kökünü kazımak, ortadan kaldırmak | EN: to find and get rid of something bad | ÖRNEK: We must root out corruption.
+27386 | rush hour | noun | B1 | #1/1 | TR: trafiğin yoğun olduğu saat, iş çıkış saati | EN: the time of day when the roads and trains are busiest | ÖRNEK: Avoid driving during rush hour.
+2625 | sheet | verb | B2 | #1/1 | TR: örtmek, kaplamak | EN: to cover a surface or object with a sheet or similar material | ÖRNEK: The crew sheeted the stage before the performance began.
+2830 | smooth | verb | B1 | #1/1 | TR: düzleştirmek, pürüzsüz hâle getirmek | EN: to make something even or free from irregularities | ÖRNEK: She smooths the wooden table before painting it.
+5103 | string | verb | B1 | #1/1 | TR: dizmek, bir dizi haline getirmek | EN: to tie, arrange, or connect things in a line or series | ÖRNEK: She can string beads quickly for her jewelry projects.
+13762 | vacation | verb | B1 | #1/1 | TR: tatil yapmak | EN: to take a holiday or a period of leave from work or study, usually for rest or travel | ÖRNEK: I will vacation next week after my exams end.
+11660 | Arab | adjective | B1 | #1/1 | TR: Arap | EN: of or relating to Arab people, language, or culture | ÖRNEK: The Arab market offers a variety of spices and textiles.
+11661 | Arab | noun | B1 | #1/1 | TR: Arap | EN: a person who belongs to an Arab-speaking ethnic group or originates from an Arab country | ÖRNEK: The Arab arrived at the conference to discuss trade opportunities.
+16377 | associate | noun | B1 | #1/1 | TR: iş ortağı, meslektaş | EN: a person who is connected with another or with a group, especially in a professional or business context | ÖRNEK: My associate helped me finish the report on time.
+6659 | bother | noun | B1 | #1/1 | TR: rahatsızlık, sıkıntı, sorun | EN: a thing that causes inconvenience, annoyance, or difficulty | ÖRNEK: The broken window was a bother for the family.
+11859 | bye | exclamation | A1 | #1/1 | TR: elveda | EN: a word used to express good wishes when parting | ÖRNEK: She waved and shouted bye as the bus left.
+789 | entrance | verb | B2 | #1/1 | TR: büyülemek, hayran bırakmak | EN: to fill someone with wonder and delight; to captivate or charm | ÖRNEK: The dancer's graceful moves entrance the judges during the competition.
+18808 | fallen | adjective | B1 | #1/2 | TR: düşmüş, yere düşmüş | EN: having dropped to a lower position or to the ground | ÖRNEK: After the earthquake, many buildings were left as fallen ruins.
+18809 | fallen | adjective | B1 | #2/2 | TR: ölmüş, şehit olmuş | EN: deceased, especially as a result of war or disaster | ÖRNEK: The newspaper listed the names of the fallen after the conflict.
+6800 | pan | verb | B1 | #1/2 | TR: kamera kaydırmak | EN: to move a camera horizontally while filming | ÖRNEK: The news crew panned the camera to follow the runner on the track.
+6801 | pan | verb | B1 | #2/2 | TR: eleştirmek, sertçe ele almak | EN: to criticize someone or something severely | ÖRNEK: The columnist panned the new policy as ineffective and short-sighted.
+27024 | pan out | phrasal_verb | C1 | #1/1 | TR: (sonunda) gelişmek, sonuçlanmak | EN: to develop or happen in a particular way | ÖRNEK: Let's see how things pan out.
+21112 | posting | noun | B1 | #1/1 | TR: gönderi, ilan | EN: the act of publishing or sending something, especially a message, advertisement or job announcement. | ÖRNEK: A posting about the conference was displayed on the bulletin board.
+5337 | shell | verb | B1 | #1/2 | TR: kabuğunu çıkarmak | EN: to remove the outer covering or shell from something, especially a nut, seed, or egg | ÖRNEK: She shells the almonds before adding them to the cake batter.
+5338 | shell | verb | B1 | #2/2 | TR: bombalamak, top atmak | EN: to fire artillery shells at a target; to bombard with explosive projectiles | ÖRNEK: The rebels shelled the outpost during the night.
+5557 | angle | verb | B2 | #1/1 | TR: eğmek, yönünü ayarlamak | EN: to position or tilt something at a particular angle; to try to obtain or achieve something by indirect means | ÖRNEK: The photographer angled the lens to capture the sunset.
+2495 | grass | verb | B2 | #1/1 | TR: ihbar etmek, birini polise bildirmek | EN: to inform authorities about someone's wrongdoing, especially to the police | ÖRNEK: The teenager was scared to grass on his friends after the prank.
+21006 | hence | adverb | B2 | #1/1 | TR: bu yüzden, bundan dolayı | EN: as a result; for this reason | ÖRNEK: The road was closed, hence we took a longer route.
+8486 | mill | verb | B1 | #1/2 | TR: öğütmek, değirmenle işlemek | EN: to grind grain or other substances into a powder or smaller pieces using a mill | ÖRNEK: She milled the coffee beans to a medium coarseness for her espresso.
+8487 | mill | verb | B1 | #2/2 | TR: dolanmak, etrafta dolaşmak | EN: to move around aimlessly or wander about, often without a clear purpose | ÖRNEK: After the lecture, students mill about the hallway chatting about the assignment.
+26581 | narrow down | phrasal_verb | C1 | #1/1 | TR: (seçenekleri) daraltmak, azaltmak | EN: to make a list of possibilities smaller | ÖRNEK: We've narrowed the list down to three candidates.
+1165 | occasion | verb | B2 | #1/1 | TR: nedeni olmak, yol açmak | EN: to cause or bring about something; to make an event happen | ÖRNEK: The sudden thunderstorm occasioned a delay in the flight schedule.
+3030 | pen | verb | B1 | #1/1 | TR: yazmak, kaleme almak | EN: to write or compose something, especially a piece of text such as a letter, article, or story | ÖRNEK: She will pen a short note to thank her host.
+8883 | pope | noun | B1 | #1/1 | TR: katolik kilisesinin başı, papa | EN: the bishop of Rome who is the leader of the worldwide Catholic Church | ÖRNEK: The Pope leads the Catholic Church.
+2639 | rapid | noun | B2 | #1/1 | TR: akarsu bölümü, hızlı akıntı | EN: a fast-flowing and turbulent part of a river, often called a rapid | ÖRNEK: The river has a rapid near the old bridge.
+13764 | alleged | adjective | B2 | #1/1 | TR: iddia edilen, sözde | EN: describing something that is claimed to be true or to have happened, but has not yet been proven. | ÖRNEK: The newspaper reported an alleged robbery in the downtown area.
+4708 | cop | verb | B2 | #1/2 | TR: tutmak, yakalamak | EN: to seize or apprehend a person, especially by law-enforcement officers | ÖRNEK: Police were able to cop the protester who threw a stone.
+4709 | cop | verb | B2 | #2/2 | TR: kapmak, elde etmek | EN: to obtain or acquire something, especially informally or without effort | ÖRNEK: I need to cop a lift to the conference because my bus is cancelled.
+11860 | creek | noun | B1 | #1/1 | TR: dere, küçük akarsu | EN: a small, narrow natural watercourse, usually a tributary of a larger river | ÖRNEK: A small creek runs behind the school garden.
+950 | hunter | noun | B1 | #1/1 | TR: avcı | EN: a person who hunts wild animals, especially for sport or food | ÖRNEK: The hunter set his sights on the deer in the clearing.
+23344 | log in | phrasal_verb | B1 | #1/1 | TR: giriş yapmak | EN: to enter a computer system, website, or application by providing a username and password | ÖRNEK: Students must log in to the learning platform before the class starts.
+26540 | log out | phrasal_verb | B1 | #1/1 | TR: oturumu kapatmak, çıkış yapmak | EN: to stop being connected to a computer system or website | ÖRNEK: Don't forget to log out of your account.
+27378 | price tag | noun | B2 | #1/1 | TR: fiyat etiketi | EN: a piece of paper on a product that shows how much it costs | ÖRNEK: Take the price tag off before you give her the present.
+2974 | rejected | adjective | B2 | #1/1 | TR: reddedilmiş, kabul edilmeyen, reddedilen | EN: having been refused or turned down; not accepted | ÖRNEK: The rejected manuscript was sent back to the author for major revisions.
+27382 | remote control | noun | A2 | #1/1 | TR: kumanda, uzaktan kumanda | EN: a small device used to control a TV or other machine from a distance | ÖRNEK: Where's the remote control?
+8276 | resort | verb | B2 | #1/1 | TR: başvurmak, sığınmak | EN: to turn to someone or something for help or as a solution | ÖRNEK: When the car broke down, we resorted to walking home.
+9585 | seed | verb | B1 | #1/1 | TR: ekmek, tohum ekmek | EN: to plant seeds in soil so that they may grow into plants | ÖRNEK: The gardener seeded the new flower bed on Monday.
+26863 | settle for | phrasal_verb | B2 | #1/1 | TR: (daha azına) razı olmak, yetinmek | EN: to accept something that is not what you really want | ÖRNEK: We wanted a house, but we settled for a small apartment.
+26681 | settle in | phrasal_verb | B2 | #1/1 | TR: (yeni yere) alışmak, uyum sağlamak | EN: to start to feel happy in a new home or job | ÖRNEK: Have you settled in at your new school?
+27073 | settle on | phrasal_verb | C1 | #1/1 | TR: -de karar kılmak | EN: to decide on something after considering many options | ÖRNEK: We finally settled on a name for the baby.
+2896 | sin | verb | B1 | #1/1 | TR: günah işlemek | EN: to commit a sin; to violate a moral or religious law | ÖRNEK: She knows that to sin is against her faith.
+26868 | spell out | phrasal_verb | C1 | #1/1 | TR: açık açık anlatmak, ayrıntılı açıklamak | EN: to explain something in a very clear way with details | ÖRNEK: Do I have to spell it out for you?
+3172 | tongue | verb | C2 | #1/1 | TR: dilini çıkarmak, yalamak | EN: to pass the tongue over something; to lick | ÖRNEK: The puppy began to tongue the new toy as soon as it arrived.
+3034 | ward | verb | B2 | #1/1 | TR: (off ile) savuşturmak, uzak tutmak | EN: to prevent something undesirable from approaching or affecting someone or something; to keep away. | ÖRNEK: The guard used a flashlight to ward away stray cats at night.
+585 | coat | verb | B1 | #1/1 | TR: kaplamak | EN: to cover something with a layer of a substance | ÖRNEK: The painter will coat the fence with a fresh layer of white paint.
+13768 | daddy | noun | A2 | #1/1 | TR: babacık, baba | EN: a familiar or affectionate term for one's father | ÖRNEK: My little brother always calls daddy when he needs help.
+27344 | extreme sport | noun | B1 | #1/1 | TR: ekstrem spor | EN: a dangerous sport such as skydiving | ÖRNEK: He loves extreme sports like bungee jumping.
+4580 | fate | verb | C1 | #1/1 | TR: kaderle belirlemek, önceden tayin etmek | EN: to determine or decide the destiny of someone or something in advance | ÖRNEK: The ancient myth says the gods fate the lives of mortals.
+11230 | juice | verb | B1 | #1/1 | TR: sıkmak, sıkılmış suyu çıkarmak | EN: to extract the liquid from fruit or vegetables by pressing or squeezing | ÖRNEK: She juiced an apple to make a healthy drink.
+18383 | landscape | verb | B2 | #1/1 | TR: düzenlemek, peyzajını şekillendirmek | EN: to modify or arrange the visible features of an area of land, especially for aesthetic or functional purposes | ÖRNEK: The homeowner hired a professional to landscape the front yard.
+26539 | log off | phrasal_verb | B1 | #1/1 | TR: (sistemden) çıkış yapmak | EN: to stop using a computer system by giving a command | ÖRNEK: Remember to log off when you finish.
+27387 | science fiction | noun | B1 | #1/1 | TR: bilim kurgu | EN: books and films about imagined future events, often involving space travel or new technology | ÖRNEK: I love science fiction films.
+19609 | script | verb | B2 | #1/1 | TR: senaryo yazmak, metin hazırlamak | EN: to write a script or screenplay for a film, play, broadcast, or other performance | ÖRNEK: The student was asked to script a short dialogue for the class project.
+26679 | settle down | phrasal_verb | B2 | #1/2 | TR: (bir yere) yerleşip düzen kurmak | EN: to start living in a place where you intend to stay, often with a partner | ÖRNEK: He wants to settle down and have a family.
+26680 | settle down | phrasal_verb | B2 | #2/2 | TR: sakinleşmek, yatışmak | EN: to become calm and quiet | ÖRNEK: Settle down, children!
+1899 | threatened | adjective | B2 | #1/1 | TR: tehdit altında | EN: feeling or being in a state where harm or danger is likely | ÖRNEK: The child felt threatened when the dog barked loudly.
+8489 | cant | noun | C2 | #1/2 | TR: ikiyüzlü sözler, sahte konuşma | EN: a type of insincere or hypocritical speech, often used by a particular group | ÖRNEK: The politician's speech was full of cant and empty promises.
+8491 | cant | verb | C1 | #1/1 | TR: eğmek, yana çevirmek | EN: to tilt or slant something so that it is not level | ÖRNEK: Architects often cant structures to create dramatic visual effects.
+8490 | cant | noun | C2 | #2/2 | TR: eğim, yamukluk | EN: a slope or tilt, especially of a surface or a road | ÖRNEK: The cant of the roof made the attic difficult to use.
+12219 | epic | adjective | B2 | #1/1 | TR: destansı, kahramanca | EN: relating to or characteristic of a long narrative poem or a grand, heroic story; impressive in scale or scope | ÖRNEK: The ancient Greeks wrote epic poems about their gods.
+12220 | epic | noun | B2 | #1/2 | TR: destan | EN: a long narrative poem, often concerning heroic deeds and events of cultural significance | ÖRNEK: The students read an epic about ancient heroes in class.
+12221 | epic | noun | B2 | #2/2 | TR: büyük, etkileyici olay | EN: an event or achievement that is unusually impressive or grand in scale | ÖRNEK: Fans called the championship game an epic after the last-minute comeback.
+836 | fancy | noun | B1 | #1/1 | TR: hayal, arzu, düşünce | EN: a whimsical or imaginative idea or desire; a notion that is not based on reality | ÖRNEK: His fancy for chocolate made him buy a whole box.
+12224 | input | verb | B1 | #1/1 | TR: girdi sağlamak, veri girmek | EN: to enter data or information into a computer or other device | ÖRNEK: The teacher asked us to input our answers into the online quiz.
+26513 | knock out | phrasal_verb | B2 | #1/2 | TR: bayıltmak, nakavt etmek | EN: to make someone unconscious | ÖRNEK: The boxer was knocked out in the third round.
+26514 | knock out | phrasal_verb | B2 | #2/2 | TR: (yarışmadan) elemek | EN: to defeat a team so they cannot continue in a competition | ÖRNEK: Our team was knocked out in the semi-final.
+23360 | lyrics | noun | B1 | #1/1 | TR: şarkı sözü, şarkı sözleri | EN: the words of a song, usually written to be sung | ÖRNEK: The band released the new album with catchy lyrics.
+2776 | painted | adjective | B1 | #1/1 | TR: boyalı | EN: having a surface that has been covered with paint; decorated with paint | ÖRNEK: The painted fence looks fresh after the recent renovation.
+14179 | poll | verb | B1 | #1/2 | TR: anket yapmak | EN: to ask people questions in order to gather their opinions or attitudes | ÖRNEK: The teacher polls the class to see if anyone has questions.
+14178 | poll | verb | B1 | #2/2 | TR: oyunu almak, oylamaya sunmak, oyunu sormak | EN: to record or collect votes in an election or referendum | ÖRNEK: The committee will poll the members before deciding on the budget.
+22253 | rep | noun | B1 | #1/2 | TR: tekrar | EN: a repetition of an action or exercise, especially in a series of identical movements | ÖRNEK: She counted each rep carefully during the workout.
+22255 | rep | verb | B2 | #1/1 | TR: temsil etmek | EN: to act as a representative of someone or something, especially in a public or official capacity | ÖRNEK: The student will rep the university at the science fair.
+22254 | rep | noun | B1 | #2/2 | TR: temsilci | EN: a person who acts or speaks on behalf of another, especially in a professional or political context | ÖRNEK: The rep introduced the new policy to the staff.
+1395 | screaming | adjective | B1 | #1/2 | TR: çığlık atan | EN: characterized by or producing a loud, high-pitched cry or shout | ÖRNEK: The screaming baby woke everyone in the apartment.
+1396 | screaming | adjective | B1 | #2/2 | TR: yüksek sesli, bağırarak söylenen | EN: produced or expressed with a loud, piercing sound; often used to describe noises or language | ÖRNEK: The screaming siren could be heard across the entire neighborhood.

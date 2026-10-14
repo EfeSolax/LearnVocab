@@ -1,0 +1,100 @@
+16409 | gas | verb | B2 | #1/2 | TR: zehirli gazla öldürmek | EN: to kill someone by exposing them to a poisonous gas | ÖRNEK: The dictator ordered his troops to gas the opposition camp.
+16410 | gas | verb | B2 | #2/2 | TR: çene çalmak, laklak etmek, boş konuşmak | EN: to talk at length, often in a rapid or enthusiastic manner | ÖRNEK: During the meeting, Tom started to gas on about his weekend plans.
+26521 | leave behind | phrasal_verb | B1 | #1/1 | TR: geride bırakmak | EN: to leave a place without taking something with you | ÖRNEK: I left my umbrella behind on the train.
+27026 | pass over | phrasal_verb | C1 | #1/1 | TR: (terfide) atlamak, görmezden gelmek | EN: to not choose someone for a job or promotion | ÖRNEK: She was passed over for promotion again.
+20145 | pressure | verb | B2 | #1/1 | TR: baskı uygulamak, zorlamak | EN: to exert force or influence on someone or something in order to make them act in a certain way | ÖRNEK: The coach pressured the players to improve their fitness during practice.
+26623 | put forward | phrasal_verb | B2 | #1/1 | TR: (öneri, fikir) ortaya atmak, sunmak | EN: to state an idea or opinion so that people can consider it | ÖRNEK: She put forward a plan to save money.
+16413 | radio | verb | B1 | #1/1 | TR: telsizle bildirmek, haberleşmek | EN: to communicate by means of a radio, especially to send a message or call using a radio device | ÖRNEK: The rescue team radioed the missing climbers for their location.
+26698 | sleep over | phrasal_verb | B1 | #1/1 | TR: (başkasının evinde) yatıya kalmak | EN: to sleep at someone else's house for a night | ÖRNEK: Can I sleep over at Emma's house?
+27091 | speak out | phrasal_verb | B2 | #1/1 | TR: açıkça konuşmak, sesini yükseltmek | EN: to state your opinion publicly, especially to oppose something | ÖRNEK: She spoke out against the plan.
+26702 | speak up | phrasal_verb | B1 | #1/2 | TR: daha yüksek sesle konuşmak | EN: to speak more loudly | ÖRNEK: Could you speak up, please? I can't hear you.
+26703 | speak up | phrasal_verb | B1 | #2/2 | TR: (birini, bir şeyi) savunmak, sesini yükseltmek | EN: to say what you think clearly, especially to support someone | ÖRNEK: It's time to speak up for our rights.
+16389 | station | verb | B2 | #1/1 | TR: konumlandırmak, yerleştirmek | EN: to assign or place someone or something in a particular position or location, especially troops or equipment | ÖRNEK: The police will station officers at the concert venue for safety.
+26720 | stay behind | phrasal_verb | B1 | #1/1 | TR: (herkes gidince) kalmak, geride kalmak | EN: to stay somewhere after other people have left | ÖRNEK: I stayed behind to help the teacher.
+25929 | western | noun | B2 | #1/1 | TR: batı filmi, kovboy filmi | EN: a film, book, or other work that depicts the American Old West, often featuring cowboys, outlaws, and frontier life | ÖRNEK: His favorite novel is a western set during the Gold Rush era.
+26877 | write up | phrasal_verb | B2 | #1/1 | TR: (notlardan) temize çekmek, rapor hâline getirmek | EN: to write something in a complete form, usually using notes you made earlier | ÖRNEK: I need to write up my notes from the lecture.
+16456 | ass | noun | B1 | #2/1 | TR: eşek | EN: a domesticated animal related to the horse, often used as a beast of burden | ÖRNEK: The farmer kept an ass in the barn for carrying heavy loads.
+12201 | beginning | adjective | B1 | #1/1 | TR: ilk, başlangıç, başlangıçta olan | EN: relating to the start or earliest part of something; occurring at the outset. | ÖRNEK: He felt nervous during the beginning weeks of his new job.
+11508 | content | adjective | B1 | #1/1 | TR: memnun, tatmin olmuş | EN: feeling satisfied with what one has or with a situation | ÖRNEK: The cat looks content after eating its meal.
+11510 | content | verb | B2 | #1/1 | TR: yetinmek, memnun etmek | EN: to satisfy someone or oneself; to make content | ÖRNEK: She contented herself with a cup of tea after the long walk.
+16446 | cross | adjective | B1 | #1/2 | TR: sinirli, kızgın | EN: feeling or showing irritation or anger | ÖRNEK: Tom felt cross when his coffee was spilled.
+16447 | cross | adjective | B1 | #2/2 | TR: çapraz, karşılıklı | EN: arranged so that it forms a cross or is positioned across something | ÖRNEK: The road signs were painted in a cross pattern for visibility.
+16470 | husband | verb | C2 | #1/1 | TR: tutumlu kullanmak, idareli kullanmak | EN: to use or manage (something) carefully and sparingly, especially resources or livestock | ÖRNEK: She husbanded the small amount of food during the trip.
+7749 | ice | verb | B1 | #1/2 | TR: buzla kaplamak | EN: to cover something with a layer of ice | ÖRNEK: The pond started to ice after the night's cold.
+7750 | ice | verb | B1 | #2/2 | TR: soğutmak | EN: to chill a drink or food by placing it in ice | ÖRNEK: Can you ice the lemonade for the kids?
+19795 | join | noun | B2 | #1/1 | TR: ek yeri, birleşme noktası | EN: a point or place where two or more things are connected or fastened together | ÖRNEK: The carpenter inspected the join before applying glue.
+26498 | join in | phrasal_verb | B1 | #1/1 | TR: katılmak, eşlik etmek | EN: to take part in an activity with other people | ÖRNEK: Everyone joined in the singing.
+16429 | particular | noun | B2 | #1/1 | TR: belirli bir şey, detay | EN: a specific item or detail that is singled out from others | ÖRNEK: The professor asked us to examine each particular of the experiment.
+27025 | pass off | phrasal_verb | C1 | #1/1 | TR: (sahtesini) gerçekmiş gibi yutturmak | EN: to pretend that something or someone is something else | ÖRNEK: He tried to pass off the painting as an original.
+16439 | section | verb | B2 | #1/1 | TR: bölmek, ayırmak | EN: to divide something into parts or sections | ÖRNEK: The teacher asked us to section the worksheet into three sections.
+26194 | beat up | phrasal_verb | B2 | #1/1 | TR: dövmek, pataklamak | EN: to hit someone many times and hurt them | ÖRNEK: The man was beaten up outside a bar.
+26328 | drop in | phrasal_verb | B1 | #1/1 | TR: (habersizce) uğramak | EN: to visit someone for a short time without telling them before | ÖRNEK: I'll drop in on my way home.
+26369 | get ahead | phrasal_verb | C1 | #1/1 | TR: ilerlemek, başarılı olmak | EN: to be successful in your job | ÖRNEK: You have to work hard to get ahead.
+16495 | kid | verb | B1 | #1/1 | TR: dalga geçmek, şaka yapmak | EN: to tease or make jokes about someone in a playful manner | ÖRNEK: She likes to kid her friends during coffee breaks.
+27016 | mark down | phrasal_verb | C1 | #1/2 | TR: (fiyatı) indirmek | EN: to reduce the price of something | ÖRNEK: All winter coats have been marked down.
+27017 | mark down | phrasal_verb | C1 | #2/2 | TR: (not) kırmak, düşük not vermek | EN: to give a lower grade | ÖRNEK: You'll be marked down for poor spelling.
+26299 | cross out | phrasal_verb | B1 | #1/1 | TR: (çizgiyle) üstünü çizmek, karalamak | EN: to draw a line through writing, usually because it is wrong | ÖRNEK: Cross out any wrong answers.
+26327 | drop by | phrasal_verb | B1 | #1/1 | TR: (kısaca) uğramak | EN: to visit someone for a short time, usually without arranging it | ÖRNEK: Drop by any time you're in the area.
+16500 | minute | adjective | B2 | #1/1 | TR: çok küçük, ince | EN: extremely small or fine; of a very small size or degree | ÖRNEK: The microscope revealed minute particles on the slide.
+16501 | minute | noun | A1 | #1/1 | TR: dakika | EN: a unit of time equal to sixty seconds | ÖRNEK: The meeting will start in five minutes.
+26582 | note down | phrasal_verb | B1 | #1/1 | TR: not etmek, not almak | EN: to write something down so that you will not forget it | ÖRNEK: I noted down her address.
+26700 | sort out | phrasal_verb | B1 | #1/2 | TR: halletmek, çözmek | EN: to deal with a problem or difficult situation | ÖRNEK: Can you sort out this problem for me?
+26701 | sort out | phrasal_verb | B1 | #2/2 | TR: düzenlemek, ayıklamak | EN: to put things in order or separate them | ÖRNEK: I need to sort out my clothes.
+26867 | speed up | phrasal_verb | B1 | #1/1 | TR: hızlanmak, hızlandırmak | EN: to move or happen faster, or to make something do this | ÖRNEK: The car sped up as it went down the hill.
+15478 | winning | adjective | B2 | #1/1 | TR: başarılı, galip, çekici | EN: causing or resulting in victory; having a tendency to win | ÖRNEK: She has a winning attitude that helps her succeed in class.
+26875 | write off | phrasal_verb | C1 | #1/2 | TR: (borcu) silmek | EN: to accept that an amount of money has been lost or will not be paid back | ÖRNEK: The bank wrote off the debt.
+26876 | write off | phrasal_verb | C1 | #2/2 | TR: (birini) gözden çıkarmak, başarısız saymak | EN: to decide that someone or something is not useful or will not succeed | ÖRNEK: Don't write him off yet.
+26332 | drop out | phrasal_verb | B2 | #1/1 | TR: (okulu, yarışı) bırakmak, yarıda bırakmak | EN: to stop going to classes or stop taking part in something before it has finished | ÖRNEK: He dropped out of university after a year.
+26433 | go ahead | phrasal_verb | B1 | #1/2 | TR: (planlandığı gibi) yapılmak, gerçekleşmek | EN: to happen as planned | ÖRNEK: The concert will go ahead despite the rain.
+26434 | go ahead | phrasal_verb | B1 | #2/2 | TR: buyurun, devam et (izin verirken) | EN: used to tell someone they can start doing something | ÖRNEK: "Can I ask a question?" "Go ahead."
+27122 | think ahead | phrasal_verb | B2 | #1/1 | TR: ileriyi düşünmek, önceden planlamak | EN: to think about what might happen in the future and plan for it | ÖRNEK: It's important to think ahead when you travel.
+27138 | walk away | phrasal_verb | B2 | #1/2 | TR: (bir durumdan) çekip gitmek, sırtını dönmek | EN: to leave a difficult situation instead of dealing with it | ÖRNEK: You can't just walk away from your problems.
+27139 | walk away | phrasal_verb | B2 | #2/2 | TR: (kazadan) sağ salim kurtulmak | EN: to come out of an accident without serious injury | ÖRNEK: She walked away from the crash without a scratch.
+26826 | write down | phrasal_verb | A2 | #1/1 | TR: yazmak, not etmek | EN: to write something on a piece of paper so that you do not forget it | ÖRNEK: Write down your password and keep it safe.
+26183 | agree with | phrasal_verb | A2 | #1/2 | TR: aynı fikirde olmak, katılmak | EN: to have the same opinion as someone | ÖRNEK: I agree with you completely.
+26184 | agree with | phrasal_verb | A2 | #2/2 | TR: (yiyecek) dokunmamak, iyi gelmek (çoğu zaman olumsuz) | EN: to suit someone's health, especially their stomach | ÖRNEK: Spicy food doesn't agree with me.
+15318 | calling | noun | B2 | #1/1 | TR: meslek, yaşam amacı, tutku | EN: a strong inner impulse toward a particular kind of work or career; a vocation | ÖRNEK: She believes teaching is her true calling.
+26923 | die away | phrasal_verb | C1 | #1/1 | TR: (ses, rüzgâr) yavaş yavaş kaybolmak | EN: to gradually become quieter and then stop | ÖRNEK: The sound of the car died away.
+20157 | gun | verb | B2 | #1/1 | TR: gaz vermek, motoru köklemek | EN: to increase the speed of an engine rapidly, especially by adding more fuel or throttle | ÖRNEK: The driver gunned the engine to escape the traffic jam.
+27474 | human rights | noun | B1 | #1/1 | TR: insan hakları | EN: the basic rights that every person should have | ÖRNEK: The organization protects human rights.
+26668 | sell out | phrasal_verb | B1 | #1/1 | TR: (biletler, ürün) tükenmek | EN: to sell all of something so that none is left | ÖRNEK: The concert sold out in two hours.
+10637 | subject | verb | B2 | #1/1 | TR: maruz bırakmak, tabi kılmak | EN: to cause someone or something to experience or undergo something, especially something unpleasant or undesirable | ÖRNEK: The new law will subject all drivers to stricter emission tests.
+26873 | track down | phrasal_verb | B2 | #1/1 | TR: (uzun aramadan sonra) bulmak, izini sürmek | EN: to find someone or something after looking for them in a lot of places | ÖRNEK: The police tracked down the killer.
+20993 | German | adjective | A1 | #1/1 | TR: Alman, Almanya'ya ait | EN: relating to Germany, its people, or its language | ÖRNEK: The German flag has black, red, and gold colors.
+20995 | German | noun | A1 | #1/2 | TR: Almanca | EN: the West Germanic language spoken primarily in Germany, Austria, Switzerland and other parts of Europe | ÖRNEK: German is taught in many high schools across the United States.
+20994 | German | noun | A1 | #2/2 | TR: Alman (kişi) | EN: a person who is a native or citizen of Germany | ÖRNEK: A German arrived at the airport early this morning.
+20165 | author | verb | B2 | #1/1 | TR: yazmak, oluşturmak | EN: to be the writer or creator of a piece of writing, report, or other work | ÖRNEK: The professor will author a textbook for the upcoming semester.
+22872 | clean up | phrasal_verb | B1 | #1/1 | TR: temizlemek, düzenlemek | EN: to remove dirt, clutter, or unwanted items from a place or situation, making it tidy or organized | ÖRNEK: She cleaned up the living room before the guests arrived.
+26361 | fit in | phrasal_verb | B1 | #1/2 | TR: uyum sağlamak, kaynaşmak | EN: to feel happy in a group because you are similar to the other people | ÖRNEK: It was hard to fit in at the new school.
+26362 | fit in | phrasal_verb | B1 | #2/2 | TR: (birine, bir şeye) zaman ayırmak, sığdırmak | EN: to find time to do something or see someone | ÖRNEK: The doctor can fit you in at three.
+16560 | letter | verb | B2 | #1/1 | TR: harflerle yazmak, yazıya dökmek | EN: to write or inscribe letters or characters on a surface | ÖRNEK: The designer lettered the logo using a modern font.
+26542 | look ahead | phrasal_verb | B2 | #1/1 | TR: ileriye bakmak, geleceği düşünmek | EN: to think about what will happen in the future | ÖRNEK: It's time to look ahead to next year.
+26587 | pass away | phrasal_verb | B2 | #1/1 | TR: vefat etmek, ölmek | EN: to die (used to be polite) | ÖRNEK: Her grandfather passed away last year.
+16565 | plus | noun | B1 | #1/1 | TR: artı, ek, artı işareti, avantaj | EN: a sign (+) indicating addition or a positive attribute; something added that improves a situation | ÖRNEK: A plus sign is used to show addition in arithmetic.
+18620 | regular | noun | B1 | #1/1 | TR: düzenli müşteri, sık gelen kişi | EN: a person who habitually visits a place or uses a service | ÖRNEK: She is a regular at the neighborhood bakery and orders the same pastry every week.
+14192 | annual | noun | B2 | #1/1 | TR: yıllık, almanak | EN: a publication that is issued once a year | ÖRNEK: The school distributes an annual to all parents each summer.
+25965 | brain | verb | C2 | #1/1 | TR: kafasına vurmak | EN: to strike someone on the head, usually with a hard object | ÖRNEK: The thief tried to brain the shop owner during the robbery.
+26329 | drop off | phrasal_verb | B1 | #1/3 | TR: (birini, bir şeyi) bırakmak | EN: to take someone or something to a place in a car and leave them there | ÖRNEK: I'll drop you off at the station.
+26330 | drop off | phrasal_verb | B1 | #2/3 | TR: uyuyakalmak | EN: to fall asleep | ÖRNEK: I dropped off in front of the TV.
+26331 | drop off | phrasal_verb | B1 | #3/3 | TR: azalmak, düşmek | EN: to become less in level or amount | ÖRNEK: Sales dropped off after Christmas.
+27345 | fast food | noun | A2 | #1/1 | TR: hazır yemek, fast food | EN: hot food such as burgers that is prepared and served quickly | ÖRNEK: Too much fast food is bad for you.
+16599 | floor | verb | B1 | #1/1 | TR: döşemek | EN: to cover a floor with a material such as wood, carpet, or tiles | ÖRNEK: She plans to floor the bedroom with a soft carpet.
+8355 | image | verb | B2 | #1/2 | TR: görüntülemek, tasvir etmek | EN: to produce a visual representation of something, especially by recording or copying it | ÖRNEK: The photographer will image the monument at sunrise.
+8356 | image | verb | B2 | #2/2 | TR: zihinde canlandırmak, hayal etmek | EN: to form a mental picture of something; to imagine | ÖRNEK: Children often image fantastical worlds while reading.
+16571 | pro | noun | B2 | #1/1 | TR: profesyonel, uzman | EN: a person who is highly skilled or qualified in a particular field, especially in sports or a profession | ÖRNEK: He started his career as a pro in the tech industry.
+6452 | master | adjective | C1 | #1/1 | TR: üstün, çok yetkin, uzman | EN: having a high level of skill or expertise; being the most important or principal in a particular context | ÖRNEK: After years of practice, she became a master violinist performing worldwide.
+27069 | sell off | phrasal_verb | C1 | #1/1 | TR: (ucuza) elden çıkarmak, satıp kurtulmak | EN: to sell something, often cheaply, because you need money or do not need it | ÖRNEK: The company sold off its old factories.
+12466 | stock | verb | B1 | #1/1 | TR: temin etmek, stoklamak | EN: to supply a store or place with goods for sale or use; to keep a quantity of something for future use | ÖRNEK: The shop will stock new books next Monday.
+16613 | trump | noun | B2 | #1/1 | TR: koz, üstünlük | EN: a playing card of a suit that outranks all others in a particular hand, or the act of using such a card to win a trick | ÖRNEK: The player laid down a high trump and won the trick.
+16614 | trump | verb | B1 | #1/2 | TR: kozla almak | EN: to win a trick in a card game by playing a card of the trump suit | ÖRNEK: She trumped his low card and won the trick.
+16615 | trump | verb | B1 | #2/2 | TR: üstünlük sağlamak, birini geçmek | EN: to have more influence or importance than someone or something else; to outdo or surpass | ÖRNEK: The legislation will trump earlier regulations on data privacy.
+16659 | band | verb | B1 | #1/1 | TR: (together ile) bir araya gelmek, kenetlenmek | EN: to bind or unite people or things together, often for a common purpose | ÖRNEK: The volunteers banded together to paint the community center.
+27446 | body language | noun | B1 | #1/1 | TR: beden dili | EN: the way you show your feelings by the movements and positions of your body | ÖRNEK: His body language showed he was nervous.
+16653 | cash in | phrasal_verb | B2 | #1/1 | TR: nakde çevirmek, kâr elde etmek | EN: to exchange something (such as a voucher, bond, or investment) for cash, or to profit from a situation | ÖRNEK: She can cash in the gift card at any store.
+14549 | fan | verb | B1 | #1/1 | TR: yelpazelemek, havalandırmak, körüklemek | EN: to cause air to move in order to cool or to spread something out, often by waving a fan or similar object. | ÖRNEK: She fanned herself with a hand-held fan during the summer class.
+26942 | fit into | phrasal_verb | B2 | #1/1 | TR: -e uymak, -e uyum sağlamak, -e sığmak | EN: to be part of a group or situation, or to be the right size for a space | ÖRNEK: How does this piece fit into the puzzle?
+8420 | multiple | noun | B2 | #1/1 | TR: kat | EN: a number that can be divided by another number without leaving a remainder; in mathematics, a factor of a given number | ÖRNEK: The number eight is a multiple of four.
+26648 | rule out | phrasal_verb | C1 | #1/1 | TR: ihtimal dışı bırakmak, olasılığını reddetmek | EN: to decide that something is not possible or suitable | ÖRNEK: The police have ruled out murder.
+16649 | senior | noun | B1 | #1/1 | TR: yaşlı, yaşlı kimse | EN: a person who is older than most others in a group | ÖRNEK: My grandfather is a senior who enjoys gardening every morning.
+26870 | stock up | phrasal_verb | B2 | #1/1 | TR: (ileride kullanmak için) stok yapmak | EN: to buy a lot of something to use later | ÖRNEK: We stocked up on food before the storm.
+15290 | telling | adjective | B2 | #1/1 | TR: anlamlı, çok şey anlatan, fikir veren | EN: having a strong effect or significance; revealing something important. | ÖRNEK: The teacher gave a telling comment about the student's progress.

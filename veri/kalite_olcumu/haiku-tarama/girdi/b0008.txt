@@ -1,0 +1,100 @@
+16029 | fast | noun | B1 | #1/1 | TR: oruç | EN: a period of abstaining from all or some foods or drinks, often for religious or health reasons | ÖRNEK: She kept a fast for three days during the holiday.
+16030 | fast | verb | B1 | #1/1 | TR: oruç tutmak | EN: to abstain from all or some kinds of food or drink, especially for religious or health reasons | ÖRNEK: She fasts every Monday for health reasons.
+14504 | green | verb | B2 | #1/2 | TR: çevre dostu hâle getirmek | EN: to make something more environmentally friendly or sustainable | ÖRNEK: The university greened its campus by installing solar panels.
+14505 | green | verb | B2 | #2/2 | TR: yeşile dönüşmek, yeşillenmek | EN: to become green in color or to develop vegetation | ÖRNEK: The meadow greened after the heavy rain.
+26490 | hold back | phrasal_verb | B2 | #1/2 | TR: (kendini, duygularını) tutmak, bastırmak | EN: to stop yourself from showing a feeling or doing something | ÖRNEK: She held back her tears.
+26491 | hold back | phrasal_verb | B2 | #2/2 | TR: engel olmak, ilerlemesini önlemek | EN: to stop someone or something from developing or making progress | ÖRNEK: Lack of money is holding the project back.
+16038 | size | verb | B1 | #1/1 | TR: boyutlandırmak, ölçmek | EN: to measure or estimate the dimensions, magnitude, or extent of something | ÖRNEK: The carpenter sized the wooden board before cutting it.
+26707 | stand by | phrasal_verb | B2 | #1/4 | TR: (birinin) yanında olmak, desteklemek | EN: to continue to support someone when they are in a difficult situation | ÖRNEK: Her husband stood by her through the illness.
+26708 | stand by | phrasal_verb | B2 | #2/4 | TR: hazır beklemek | EN: to be ready to do something if necessary | ÖRNEK: Ambulances are standing by.
+26709 | stand by | phrasal_verb | B2 | #3/4 | TR: (sözünün) arkasında durmak | EN: to continue to believe in something you said or decided | ÖRNEK: I stand by what I said.
+26710 | stand by | phrasal_verb | B2 | #4/4 | TR: seyirci kalmak | EN: to allow something bad to happen without doing anything | ÖRNEK: We can't just stand by and watch.
+26711 | stand for | phrasal_verb | B2 | #1/3 | TR: (kısaltma) anlamına gelmek | EN: to be a short form of a word or name | ÖRNEK: BBC stands for British Broadcasting Corporation.
+26712 | stand for | phrasal_verb | B2 | #2/3 | TR: savunmak, temsil etmek | EN: to support or represent a particular idea or principle | ÖRNEK: I don't like what that party stands for.
+26713 | stand for | phrasal_verb | B2 | #3/3 | TR: (olumsuz) tahammül etmek, göz yummak | EN: to accept a situation or behavior (usually negative) | ÖRNEK: I won't stand for this kind of behavior.
+26724 | step in | phrasal_verb | C1 | #1/1 | TR: araya girmek, müdahale etmek | EN: to become involved in a difficult situation in order to help | ÖRNEK: The teacher had to step in to stop the fight.
+26344 | fall for | phrasal_verb | B2 | #1/2 | TR: (birine) aşık olmak, vurulmak | EN: to suddenly start to love someone | ÖRNEK: He fell for her the moment he saw her.
+26345 | fall for | phrasal_verb | B2 | #2/2 | TR: (bir oyuna, yalana) kanmak | EN: to be tricked into believing something that is not true | ÖRNEK: I can't believe you fell for that story!
+26365 | follow up | phrasal_verb | C1 | #1/1 | TR: (bir konunun) peşine düşmek, devamını getirmek | EN: to find out more about something, or do something to continue what was started | ÖRNEK: The police are following up several leads.
+6813 | follow-up | noun | B2 | #1/1 | TR: takip, devam, izleme | EN: an action taken to continue or review something that has previously been started or discussed | ÖRNEK: The manager sent a follow-up report after the quarterly review.
+16100 | forward | noun | B2 | #1/1 | TR: forvet, hücum oyuncusu | EN: a player whose primary role is to score goals or create scoring opportunities, usually positioned nearest to the opponent's goal | ÖRNEK: The forward scored the winning goal in the final minute.
+16101 | forward | verb | B1 | #1/2 | TR: iletmek, yönlendirmek | EN: to send (something) on to a further destination or recipient | ÖRNEK: I will forward the file to you by tomorrow.
+16102 | forward | verb | B1 | #2/2 | TR: ilerletmek, geliştirmek | EN: to move ahead or progress toward a goal or position | ÖRNEK: The company plans to forward its expansion into Asia next quarter.
+26853 | hold off | phrasal_verb | C1 | #1/1 | TR: ertelemek, beklemek | EN: to delay doing something | ÖRNEK: Let's hold off on buying a car until next year.
+16084 | mom | noun | A1 | #1/1 | TR: anne | EN: a female parent | ÖRNEK: My mom made breakfast early this morning.
+16094 | page | verb | B2 | #1/1 | TR: anonsla çağırmak, çağrı cihazıyla aramak, çağırmak | EN: to contact someone by sending a signal through a pager or to summon someone, especially in a hospital or office setting | ÖRNEK: The doctor was paged about a critical patient in the ICU.
+24693 | round up | phrasal_verb | B1 | #1/2 | TR: yukarı yuvarlamak | EN: to increase a number to the nearest whole number or to a specified increment | ÖRNEK: The teacher asked us to round up 2.3 to the nearest whole number.
+24694 | round up | phrasal_verb | B1 | #2/2 | TR: toplamak, bir araya getirmek | EN: to gather people or things together, especially for a specific purpose | ÖRNEK: The coach will round up the players for the final practice.
+26860 | save up | phrasal_verb | A2 | #1/1 | TR: (para) biriktirmek | EN: to keep money so that you can buy something in the future | ÖRNEK: I'm saving up for a new bike.
+27090 | sound out | phrasal_verb | C1 | #1/1 | TR: (birinin) ağzını aramak, fikrini yoklamak | EN: to talk to someone to discover what they think about something | ÖRNEK: I'll sound out the boss about the idea.
+26714 | stand out | phrasal_verb | B2 | #1/1 | TR: göze çarpmak, öne çıkmak | EN: to be very easy to see or notice | ÖRNEK: Her red dress really stood out.
+26715 | stand up | phrasal_verb | A2 | #1/2 | TR: ayağa kalkmak | EN: to rise to a standing position | ÖRNEK: Everyone stood up when the teacher came in.
+26716 | stand up | phrasal_verb | A2 | #2/2 | TR: (randevuya) ekmek, gelmemek | EN: to not meet someone you have arranged to meet | ÖRNEK: He stood me up last night.
+27131 | trade in | phrasal_verb | C1 | #1/1 | TR: (eskisini verip) yenisini almak, takas etmek | EN: to give something old as part of the payment for something new | ÖRNEK: I traded in my old car for a new one.
+27418 | working hours | noun | B1 | #1/1 | TR: çalışma saatleri, mesai | EN: the hours of the day when people work | ÖRNEK: My working hours are 9 to 6.
+26890 | answer back | phrasal_verb | B2 | #1/1 | TR: (büyüğüne) karşılık vermek, terbiyesizce cevap vermek | EN: to reply rudely to someone in authority | ÖRNEK: Don't answer back when your teacher is talking to you.
+26218 | break off | phrasal_verb | B2 | #1/2 | TR: koparmak, kopmak | EN: to separate a piece from something, or to become separated | ÖRNEK: She broke off a piece of chocolate.
+26219 | break off | phrasal_verb | B2 | #2/2 | TR: (ilişkiyi, görüşmeyi) kesmek, sona erdirmek | EN: to end a relationship or discussion suddenly | ÖRNEK: They broke off their engagement.
+20107 | cannot | verb | A2 | #1/1 | TR: yapamamak | EN: to be unable to do something; to lack the ability or permission to perform an action. | ÖRNEK: I cannot swim, so I stay on the shore.
+16113 | cup | verb | B1 | #1/1 | TR: avuçlamak, avucuna almak, çanak yapmak | EN: to shape one's hand or a container into a cup-like form, usually to hold something | ÖRNEK: She cupped her hands to protect the small bird from the wind.
+26335 | eat out | phrasal_verb | A2 | #1/1 | TR: dışarıda yemek, lokantada yemek | EN: to eat in a restaurant | ÖRNEK: We usually eat out on Fridays.
+26933 | eat up | phrasal_verb | B1 | #1/2 | TR: (yemeğini) bitirmek, silip süpürmek | EN: to eat all of something | ÖRNEK: Eat up your vegetables!
+26934 | eat up | phrasal_verb | B1 | #2/2 | TR: (zamanı, parayı) tüketmek, yutmak | EN: to use a lot of something | ÖRNEK: This old car eats up gas.
+26348 | fall out | phrasal_verb | B2 | #1/2 | TR: (biriyle) bozuşmak, tartışıp küsmek | EN: to argue with someone and stop being friendly with them | ÖRNEK: She's fallen out with her best friend.
+26349 | fall out | phrasal_verb | B2 | #2/2 | TR: dökülmek | EN: to drop out of a place | ÖRNEK: His hair started to fall out.
+26410 | get round | phrasal_verb | B2 | #1/2 | TR: (kuralı, sorunu) aşmak, çaresini bulmak | EN: to find a way of avoiding a problem or rule | ÖRNEK: We found a way to get round the rules.
+26411 | get round | phrasal_verb | B2 | #2/2 | TR: (birini) kandırıp razı etmek | EN: to persuade someone to do what you want | ÖRNEK: She knows how to get round her father.
+26951 | get round to | phrasal_verb | C1 | #1/1 | TR: (sonunda) -e fırsat bulmak, -meye vakit bulmak | EN: to do something that you have intended to do for a long time | ÖRNEK: I finally got round to fixing the door.
+26981 | hold down | phrasal_verb | C1 | #1/2 | TR: (işini) sürdürmek, elinde tutmak | EN: to manage to keep a job | ÖRNEK: He can't hold down a job for more than a month.
+26982 | hold down | phrasal_verb | C1 | #2/2 | TR: (fiyatı) düşük tutmak; bastırmak | EN: to keep something at a low level, or to stop someone moving | ÖRNEK: We must hold down prices.
+18323 | lower | adjective | B1 | #1/1 | TR: daha düşük | EN: situated below or at a smaller level or amount than something else | ÖRNEK: The lower shelf holds the kitchen spices.
+24428 | match up | phrasal_verb | B1 | #1/1 | TR: eşleştirmek, uyumlu hale getirmek | EN: to pair or correspond two or more items so that they are similar or compatible | ÖRNEK: The teacher asked us to match up the vocabulary words with their definitions.
+27377 | post office | noun | A1 | #1/1 | TR: postane | EN: a place where you can buy stamps and send letters and parcels | ÖRNEK: I need to go to the post office.
+26613 | put across | phrasal_verb | C1 | #1/1 | TR: (fikrini) anlatmak, ifade etmek | EN: to explain your ideas clearly so that people understand them | ÖRNEK: She put her point across very well.
+27071 | send in | phrasal_verb | B2 | #1/2 | TR: (postayla, bir kuruma) göndermek | EN: to send something to an organization | ÖRNEK: Viewers sent in their photos.
+27072 | send in | phrasal_verb | B2 | #2/2 | TR: (bir yere) birlik göndermek | EN: to send soldiers or police to deal with a situation | ÖRNEK: The army was sent in to help after the earthquake.
+27086 | size up | phrasal_verb | C1 | #1/1 | TR: (birini, durumu) tartmak, değerlendirmek | EN: to look at someone or something carefully to form an opinion | ÖRNEK: She sized up the situation quickly.
+26717 | stand up for | phrasal_verb | B2 | #1/1 | TR: savunmak, arka çıkmak | EN: to support or defend a person, idea or principle | ÖRNEK: You must stand up for your rights.
+27095 | stand up to | phrasal_verb | B2 | #1/2 | TR: (birine) karşı koymak, kafa tutmak | EN: to defend yourself against a more powerful person | ÖRNEK: You must stand up to bullies.
+27096 | stand up to | phrasal_verb | B2 | #2/2 | TR: (bir şeye) dayanmak | EN: to not be damaged by something | ÖRNEK: These boots stand up to heavy use.
+26869 | step up | phrasal_verb | C1 | #1/1 | TR: artırmak, yoğunlaştırmak | EN: to increase the size, amount or speed of something | ÖRNEK: The police have stepped up security.
+14489 | style | verb | B2 | #1/1 | TR: düzenlemek, biçimlendirmek | EN: to arrange or give a particular appearance to something, often according to a fashion or design | ÖRNEK: She styles her hair every morning before work.
+16148 | august | adjective | C1 | #1/1 | TR: saygın, görkemli, ulu | EN: having a dignified, impressive, or respected appearance or character; worthy of admiration and reverence. | ÖRNEK: The august scholar delivered his lecture with calm authority.
+6819 | blood | verb | C1 | #1/1 | TR: deneyim kazandırmak, ilk kez savaşa/işe sokmak | EN: to expose someone to a difficult or challenging situation for the first time, especially in a military or work context | ÖRNEK: The coach will blood the rookie players in the first practice.
+26210 | break down | phrasal_verb | A2 | #1/4 | TR: bozulmak, arızalanmak | EN: to stop working because of a fault | ÖRNEK: Our car broke down on the highway.
+26211 | break down | phrasal_verb | A2 | #2/4 | TR: (kendini tutamayıp) ağlamaya başlamak | EN: to lose control of your feelings and start crying | ÖRNEK: She broke down when she heard the news.
+26212 | break down | phrasal_verb | A2 | #3/4 | TR: başarısız olmak, çökmek | EN: to fail or stop | ÖRNEK: Talks between the two sides broke down.
+26213 | break down | phrasal_verb | A2 | #4/4 | TR: ayrıntılarına ayırmak | EN: to divide something into smaller parts so that it is easier to understand | ÖRNEK: Let's break the problem down into smaller steps.
+26220 | break through | phrasal_verb | B2 | #1/1 | TR: aşmak, yarıp geçmek | EN: to force your way through something that is holding you back | ÖRNEK: Protesters broke through the police lines.
+16140 | china | noun | B2 | #1/1 | TR: porselen | EN: a type of fine, often white, ceramic tableware, especially porcelain | ÖRNEK: She inherited a set of china from her grandmother.
+16133 | dog | verb | C1 | #1/1 | TR: peşini bırakmamak, musallat olmak | EN: to follow someone persistently, often in a way that is annoying or threatening | ÖRNEK: The child kept dogging his brother until he gave up the toy.
+16152 | lord | verb | B2 | #1/1 | TR: üstünlük taslamak, tahakküm kurmak, büyüklük taslamak | EN: to act in a domineering or superior manner; to exercise authority over someone or something | ÖRNEK: The boss often tries to lord over the team during briefings.
+14011 | oil | verb | B1 | #1/1 | TR: yağlamak | EN: to coat or lubricate something with oil | ÖRNEK: I oil the wooden table every month to keep it shiny.
+27070 | send for | phrasal_verb | B2 | #1/1 | TR: (birini) çağırtmak, getirtmek | EN: to ask someone to come to you | ÖRNEK: Send for a doctor!
+26182 | add to | phrasal_verb | B2 | #1/1 | TR: artırmak, katkıda bulunmak | EN: to increase something or make it bigger | ÖRNEK: The rain only added to our problems.
+16159 | damn | adjective | B2 | #1/1 | TR: lanetli, kahrolası | EN: causing strong negative feeling; described as being under a curse or very undesirable. | ÖRNEK: The movie was a damn disappointment for many fans.
+12504 | decided | adjective | B2 | #1/1 | TR: kesin, belirgin | EN: showing a firm decision or being clearly defined | ÖRNEK: The committee reached a decided conclusion after the meeting.
+26932 | eat into | phrasal_verb | C1 | #1/1 | TR: (zamanı, parayı) yemek, azaltmak | EN: to use or take away a large part of something valuable | ÖRNEK: The repairs ate into our savings.
+26938 | fall into | phrasal_verb | C1 | #1/2 | TR: (bir gruba, kategoriye) girmek | EN: to be part of a particular group | ÖRNEK: These animals fall into two groups.
+26939 | fall into | phrasal_verb | C1 | #2/2 | TR: (bir duruma, alışkanlığa) düşmek, kapılmak | EN: to start to be in a particular state or habit | ÖRNEK: He fell into a deep sleep.
+26462 | go round | phrasal_verb | B2 | #1/2 | TR: (birine) yetmek | EN: to be enough for everyone | ÖRNEK: Is there enough cake to go round?
+26463 | go round | phrasal_verb | B2 | #2/2 | TR: (birinin evine) gitmek, uğramak | EN: to visit someone at their home | ÖRNEK: I'm going round to Tom's later.
+16174 | kill | noun | B1 | #1/1 | TR: öldürme, av | EN: the act of causing death; the result of killing someone or something | ÖRNEK: The lion moved in for the kill.
+3963 | poor | noun | B1 | #1/1 | TR: yoksullar, fakirler | EN: a person who has little money or material possessions; someone who is financially disadvantaged | ÖRNEK: Government policies aim to improve the living standards of the poor.
+26672 | send out | phrasal_verb | B2 | #1/1 | TR: (birçok kişiye) göndermek, yollamak | EN: to send something to a lot of people | ÖRNEK: We sent out 200 invitations.
+26706 | stand back | phrasal_verb | B2 | #1/1 | TR: geri çekilmek | EN: to move a short distance away from something | ÖRNEK: Stand back from the edge!
+19671 | code | verb | B2 | #1/1 | TR: kodlamak, programlamak | EN: to write instructions in a programming language for a computer to execute | ÖRNEK: She can code simple games using JavaScript.
+26293 | cool down | phrasal_verb | B1 | #1/2 | TR: soğumak, serinlemek | EN: to become less hot | ÖRNEK: Let the soup cool down before you eat it.
+26294 | cool down | phrasal_verb | B1 | #2/2 | TR: sakinleşmek | EN: to become less angry or excited | ÖRNEK: Wait until he's cooled down before you talk to him.
+26915 | cool off | phrasal_verb | B2 | #1/2 | TR: serinlemek | EN: to become cooler | ÖRNEK: We went for a swim to cool off.
+26916 | cool off | phrasal_verb | B2 | #2/2 | TR: sakinleşmek | EN: to become calmer after being angry | ÖRNEK: Give him time to cool off.
+26350 | fall over | phrasal_verb | A2 | #1/1 | TR: düşmek, devrilmek | EN: to fall to the ground, especially from a standing position | ÖRNEK: The child fell over in the playground.
+26691 | sign in | phrasal_verb | B1 | #1/1 | TR: (deftere, sisteme) giriş yapmak, imzalayarak girmek | EN: to write your name or enter your details when you arrive somewhere or start using a system | ÖRNEK: All visitors must sign in at reception.
+16214 | staff | verb | B2 | #1/1 | TR: personel temin etmek, çalışan sağlamak | EN: to provide a place of work with employees; to assign staff to a particular position or task | ÖRNEK: Our research lab will staff the new experiment with graduate students.
+27103 | step back | phrasal_verb | C1 | #1/1 | TR: geri çekilip durumu değerlendirmek | EN: to stop and think about something from a distance | ÖRNEK: Let's step back and look at the whole picture.
+16210 | super | adverb | B1 | #1/1 | TR: çok, aşırı | EN: to a great degree; extremely | ÖRNEK: The new app is super useful for students.
+16211 | super | noun | B2 | #1/1 | TR: bina görevlisi, kapıcı, müdür | EN: a person who supervises or manages a group, especially in a school or workplace; short for superintendent | ÖRNEK: The super opened the office early to prepare for the meeting.
+26180 | add up | phrasal_verb | B1 | #1/2 | TR: toplamak, toplamını bulmak | EN: to put numbers together to find the total | ÖRNEK: Can you add up these numbers for me?
+26181 | add up | phrasal_verb | B1 | #2/2 | TR: mantıklı olmak, akla yatmak | EN: to seem reasonable or true | ÖRNEK: His story just doesn't add up.
+3411 | bed | verb | C1 | #1/1 | TR: yatırmak, yatağa yatırmak | EN: to put (someone) to bed; to arrange a place for someone to sleep | ÖRNEK: She bedded the child quickly after the bedtime story.
+19987 | daily | noun | B2 | #1/1 | TR: günlük gazete | EN: a newspaper that is published every day | ÖRNEK: She picks up a daily on her way to the office.
