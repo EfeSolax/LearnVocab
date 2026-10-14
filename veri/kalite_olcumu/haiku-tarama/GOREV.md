@@ -5,6 +5,7 @@ Sen bu işin **koordinatörüsün**. Kendin hiçbir anlamı puanlamazsın; bunu 
 Çalışma klasörü: proje kökü. Dosyalar `veri/kalite_olcumu/haiku-tarama/` altında:
 - `girdi/bNNNN.txt` — 181 dosya, her biri 100 anlam kaydı
 - `cikti/bNNNN.tsv` — alt ajanların yazdığı sonuçlar (başta boş)
+- `pilot-high/` — b0001–b0015'in `high` eforla yapılmış eski pilot sonucu (karşılaştırma için; **dokunma**, `cikti/` dışındadır)
 
 ## Adımlar
 1. **Eksik grupları bul** (Bash):

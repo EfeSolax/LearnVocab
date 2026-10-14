@@ -2,7 +2,7 @@
 name: sozluk-denetci
 description: Sözlük anlam kayıtlarının Türkçe karşılık kalitesini ve uyumunu puanlayan denetçi. Yalnızca veri/kalite_olcumu/haiku-tarama/ altındaki grup dosyalarını işler.
 model: haiku
-effort: high
+effort: max
 tools: Read, Write, Bash
 ---
 
