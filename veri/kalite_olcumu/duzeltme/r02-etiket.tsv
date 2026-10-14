@@ -1,0 +1,34 @@
+# r02: anlam yalnızca parçacıkla geçiyor; karşılığın başına (parçacık ile) yazılır, anlam korunur.
+# id	kelime	tür	eski_tr	yeni_tr
+2232	shore	verb	desteklemek, güçlendirmek	(up ile) desteklemek, güçlendirmek
+3916	fend	verb	savunmak, korumak	(off ile) savuşturmak, püskürtmek
+10658	flare	verb	patlak vermek, alevlenmek	(up ile) alevlenmek, birden patlak vermek
+12271	freak	verb	çılgınlaşmak, paniklemek	(out ile) paniklemek, çok sinirlenmek
+20018	single	verb	ayırmak, seçmek	(out ile) seçip ayırmak, öne çıkarmak
+24142	dole	verb	dağıtmak, vermek	(out ile) dağıtmak, paylaştırmak
+560	chase	verb	kovmak, kaçırmak, defetmek	(away/out ile) kovmak, uzaklaştırmak
+2643	flesh	verb	detaylandırmak, somutlaştırmak	(out ile) ayrıntılandırmak, somutlaştırmak
+3034	ward	verb	uzaklaştırmak, engellemek	(off ile) savuşturmak, uzak tutmak
+3265	rear	verb	şaha kalkmak	(up ile) şaha kalkmak
+3722	pump	verb	basınç artırmak	(up ile) coşturmak, hevesini artırmak, şişirmek
+5744	dish	verb	servis etmek, sunmak	(out/up ile) servis etmek, dağıtmak
+6196	pat	verb	üstünü aramak	(down ile) üstünü aramak
+6209	ham	verb	abartılı oynamak	(up ile) abartarak oynamak
+6629	straighten	verb	düzeltmek, davranışı iyileştirmek	(up ile) düzeltmek, toparlamak
+7627	keel	verb	tersine çevirmek, devirmek	(over ile) devrilmek, alabora olmak
+7744	soak	verb	emmek, nüfuz etmek	(up ile) emmek, içine çekmek
+8891	glaze	verb	gözleri donuk, şaşkın hâle gelmek	(over ile) (bakışlar) donuklaşmak
+9024	chew	verb	düşünmek, üzerine kafa yormak	(over ile) uzun uzun düşünmek
+11680	sober	verb	ayılmak, ayıltmak	(up ile) ayılmak, ayıltmak
+11809	stave	verb	delmek, kırmak, çökertmek	(off ile) savuşturmak, geciktirmek
+12756	spice	verb	canlandırmak, heyecan katmak	(up ile) renklendirmek, tadını artırmak
+13034	stub	verb	söndürmek	(out ile) (sigarayı) söndürmek
+13677	pluck	verb	cesaretini toplamak	(up ile) (cesaretini) toplamak
+16659	band	verb	bağlamak, bir araya getirmek	(together ile) bir araya gelmek, kenetlenmek
+22220	ramp	verb	kademeli olarak artırmak, yükseltmek	(up ile) kademeli olarak artırmak
+22408	sponge	verb	emmek	(up ile) emmek, çekmek
+22474	tee	verb	topu çubuğa yerleştirmek	(up ile) (golf topunu) çubuğa yerleştirmek
+23017	doll	verb	süslenmek, süslemek, şık giyinmek	(up ile) süslenmek, şık giyinmek
+23511	pore	verb	özenle incelemek, dikkatle bakmak	(over ile) özenle incelemek
+25182	dredge	verb	ortaya çıkarmak, gün yüzüne çıkarmak	(up ile) (eski bir şeyi) ortaya çıkarmak
+25926	weasel	verb	kurnazca davranmak	(out ile) kurnazlıkla sıyrılmak, kaçmak

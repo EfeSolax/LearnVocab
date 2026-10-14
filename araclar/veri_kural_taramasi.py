@@ -183,7 +183,7 @@ def main():
     for mid, exs in ornekler.items():
         if mid not in anlamlar or not exs: continue
         ex = exs[0]; nedenler = []
-        if len(ex.split()) < 4: nedenler.append("örnek <4 kelime")
+        if len(ex.split()) < 3: nedenler.append("örnek <3 kelime")
         if SABLON_ORNEK.search(ex): nedenler.append("kalıp örnek (textbook explains…)")
         if nedenler:
             bulgu["r06_ornek_kalitesi"].append(satir(mid, "; ".join(nedenler) + " :: " + ex[:80]))

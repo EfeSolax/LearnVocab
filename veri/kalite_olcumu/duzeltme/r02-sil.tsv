@@ -1,0 +1,10 @@
+# r02: phrasal verb kaydı aynı anlamı veriyor; fiil kelimesinin başka anlamı var → bu anlam silinir.
+# id	kelime	tür	eski_tr	neden
+1886	wrap	verb	sonuçlandırmak, bitirmek	wrap up kaydı kapsıyor
+2162	root	verb	kökünden çıkarmak, sökmek	root out kaydı kapsıyor
+3342	cheer	verb	neşelendirmek, mutlu etmek	cheer up kaydı kapsıyor
+7798	cool	verb	sakinleşmek, yatışmak	cool down kaydı kapsıyor
+10468	conjure	verb	akla getirmek, hatırlatmak	conjure up kaydı kapsıyor
+11642	line	verb	sıra oluşturmak, dizmek	line up kaydı kapsıyor
+16790	pop	verb	aniden ortaya çıkmak	pop up kaydı kapsıyor
+18548	sum	verb	özetlemek	sum up kaydı kapsıyor

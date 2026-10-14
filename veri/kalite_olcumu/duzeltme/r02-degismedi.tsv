@@ -1,0 +1,10 @@
+# r02: gözden geçirildi, yanlış alarm (geçerli fiil anlamı); değişiklik yok.
+# id	kelime	tür	eski_tr	neden
+17546	jump	verb	zıplamak, atlamak	jump: yön gösteren edat, geçerli fiil anlamı
+6277	scramble	verb	tırmanmak, zor bir yoldan çıkmak	scramble: tırmanmak, geçerli
+19424	bounce	verb	sekmek, geri sekmek	bounce: sekmek, geçerli
+8102	cluster	verb	kümelenmek, toplanmak, öbeklenmek	cluster: kümelenmek, geçerli
+23097	flake	verb	pul pul dökülmek	flake: pul pul dökülmek, geçerli
+23221	hurdle	verb	engelin üzerinden atlamak	hurdle: engel atlamak, geçerli
+11326	obsess	verb	takıntı yapmak	obsess: obsess over geçerli fiil+edat
+6546	lap	verb	yalamak	lap: yalamak, geçerli

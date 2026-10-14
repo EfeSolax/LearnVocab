@@ -9,13 +9,13 @@ Veritabanı: `db.sqlite3`; 26392 anlam, 22286 kelime tarandı.
 | `r03_tur_uyumsuzlugu` | 0 | karşılığın -mak/-mek biçimi ile kelime türü uyuşmuyor |
 | `r04_karsilik_bicimi` | 23 | q/w/x, yinelenen, çok uzun, boş parantez… |
 | `r05_tanim_turu` | 24 | tanımın biçimi kelimenin türüne uymuyor |
-| `r06_ornek_kalitesi` | 341 | çok kısa, şablon, 'textbook explains' örüntüsü |
+| `r06_ornek_kalitesi` | 312 | çok kısa, şablon, 'textbook explains' örüntüsü |
 | `r07_hassas_siddet` | 59 | mevcut hassas filtre + şiddet sözcükleri (örneklerde) |
 | `r08_supheli_turkce` | 17 | altın etiketten tohumlanmış kötü karşılıklar listesi |
 | `r09_yinelenen_anlam` | 4 | aynı kelimenin anlamları çakışıyor |
 | `r10_anlam_sirasi` | 15 | 1. anlam sonrakilerden 2+ CEFR yüksek (sıra şüphesi) |
 
-Birleşik: **4574** farklı anlam en az bir kural tarafından işaretlendi (17.3%).
+Birleşik: **4546** farklı anlam en az bir kural tarafından işaretlendi (17.2%).
 
 ## Altın etiket (14 Ekim, 16 bulgu) hangi kuralla yakalandı
 

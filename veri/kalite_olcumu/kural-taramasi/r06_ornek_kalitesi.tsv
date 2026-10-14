@@ -243,15 +243,7 @@ anlam_id	kelime	tür	cefr	kaynak	TR	neden
 20143	pressure	noun	B1	oxford	basınç, zorlayıcı etki	kalıp örnek (textbook explains…) :: The teacher explained how pressure is measured in pascals.
 20176	authorship	noun	B2	learnvocab	yazarlık, eser sahibi olma	kalıp örnek (textbook explains…) :: The professor explained the concept of authorship to the class.
 20184	basic	adjective	B1	oxford	temel, esas	kalıp örnek (textbook explains…) :: The course covers the basic ideas of economics for beginners.
-20294	carrot	noun	A1	oxford	havuç	örnek <4 kelime :: Rabbits like carrots.
-20310	from	preposition	A1	oxford	-den, -dan (yer, kaynak)	örnek <4 kelime :: I'm from Turkey.
-20317	here	adverb	A1	oxford	burada, buraya	örnek <4 kelime :: I live here.
-20332	lot	adverb	A1	oxford	çok (a lot)	örnek <4 kelime :: Thanks a lot!
-20342	OK	adjective	A1	oxford	iyi, fena değil, idare eder	örnek <4 kelime :: Are you OK?
-20438	ski	verb	A2	oxford	kayak yapmak	örnek <4 kelime :: Can you ski?
-20546	full-time	adverb	B2	oxford	tam zamanlı olarak	örnek <4 kelime :: She works full-time.
-20582	overseas	adverb	B2	oxford	yurt dışına, yurt dışında	örnek <4 kelime :: She works overseas.
-20856	next	noun	B1	oxford	sonraki (kişi, şey)	örnek <4 kelime :: Next, please!
+20856	next	noun	B1	oxford	sonraki (kişi, şey)	örnek <3 kelime :: Next, please!
 20873	algorithm	noun	B2	learnvocab	algoritma	kalıp örnek (textbook explains…) :: The teacher explained what an algorithm is in simple terms.
 20891	canonical	adjective	C1	learnvocab	kabul edilmiş, resmi	kalıp örnek (textbook explains…) :: The textbook presents the canonical rules of grammar for beginners.
 21015	interestingly	adverb	B2	learnvocab	ilginç bir şekilde	kalıp örnek (textbook explains…) :: The professor explained the theory, and interestingly, the students grasped it q
@@ -316,27 +308,6 @@ anlam_id	kelime	tür	cefr	kaynak	TR	neden
 26003	cryptographic	adjective	C1	learnvocab	şifreleme ile ilgili	kalıp örnek (textbook explains…) :: The course introduces basic cryptographic concepts for beginners.
 26014	undefined	adjective	B2	learnvocab	tanımsız, belirsiz	kalıp örnek (textbook explains…) :: The teacher said the assignment criteria are still undefined.
 26034	encoding	noun	B2	learnvocab	kodlama	kalıp örnek (textbook explains…) :: The textbook explains basic encoding for beginners.
-26481	hang on	phrasal_verb	B1	learnvocab	sıkıca tutunmak	örnek <4 kelime :: Hang on tight!
-26493	hold on	phrasal_verb	B1	learnvocab	sıkıca tutunmak	örnek <4 kelime :: Hold on tight!
-26680	settle down	phrasal_verb	B2	learnvocab	sakinleşmek, yatışmak	örnek <4 kelime :: Settle down, children!
-26694	sit down	phrasal_verb	A1	cambridge	oturmak	örnek <4 kelime :: Please sit down.
-26879	get	verb	A1	oxford	olmak, hâline gelmek; (bir duruma) girmek	örnek <4 kelime :: It's getting dark.
-26886	get	verb	A1	oxford	(bir işe) başlamak, koyulmak	örnek <4 kelime :: Let's get started.
-27154	can	modal_verb	A1	cambridge	-ebilmek (yetenek)	örnek <4 kelime :: I can swim.
-27168	you	pronoun	A1	cambridge	sen; siz	örnek <4 kelime :: Are you hungry?
-27173	it	pronoun	A1	cambridge	(hava, zaman, mesafe cümlelerinde boş özne)	örnek <4 kelime :: It's raining.
-27174	we	pronoun	A1	cambridge	biz	örnek <4 kelime :: We are friends.
-27181	us	pronoun	A1	cambridge	bizi, bize	örnek <4 kelime :: Come with us!
-27190	myself	pronoun	A2	cambridge	kendimi, kendime (dönüşlü)	örnek <4 kelime :: I hurt myself.
-27202	yourselves	pronoun	A2	learnvocab	kendinizi, kendinize (dönüşlü)	örnek <4 kelime :: Enjoy yourselves, kids!
-27207	that	pronoun	A1	cambridge	şu, o (uzaktaki şey ya da kişi; söylenen şey)	örnek <4 kelime :: Who's that?
-27215	anyone	pronoun	A2	cambridge	(soru ve olumsuzda) kimse, biri	örnek <4 kelime :: Is anyone here?
-27217	everyone	pronoun	A1	cambridge	herkes	örnek <4 kelime :: Everyone was happy.
-27218	everybody	pronoun	A1	cambridge	herkes	örnek <4 kelime :: Everybody likes her.
-27221	everything	pronoun	A1	cambridge	her şey	örnek <4 kelime :: Everything is ready.
-27236	your	determiner	A1	cambridge	senin; sizin	örnek <4 kelime :: What's your name?
-27250	no	determiner	A1	cambridge	(yasak bildirir) … yasaktır, … yok	örnek <4 kelime :: No smoking.
-27307	please	exclamation	A1	learnvocab	lütfen	örnek <4 kelime :: Please sit down.
-27309	sorry	exclamation	A1	learnvocab	özür dilerim, pardon	örnek <4 kelime :: Sorry, I'm late.
-27317	cheers	exclamation	B1	cambridge	şerefe!	örnek <4 kelime :: Cheers! Happy birthday!
-27417	wetsuit	noun	B1	learnvocab	dalgıç elbisesi, wetsuit	örnek <4 kelime :: Surfers wear wetsuits.
+27173	it	pronoun	A1	cambridge	(hava, zaman, mesafe cümlelerinde boş özne)	örnek <3 kelime :: It's raining.
+27207	that	pronoun	A1	cambridge	şu, o (uzaktaki şey ya da kişi; söylenen şey)	örnek <3 kelime :: Who's that?
+27250	no	determiner	A1	cambridge	(yasak bildirir) … yasaktır, … yok	örnek <3 kelime :: No smoking.
