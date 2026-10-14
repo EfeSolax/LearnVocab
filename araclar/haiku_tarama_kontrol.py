@@ -37,24 +37,39 @@ def cikti_oku(yol):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bozuk-sil", action="store_true")
+    ap.add_argument("--duzelt", action="store_true", help="adı karışmış çıktı dosyalarını içeriğine göre doğru adına taşı")
     a = ap.parse_args()
     girdiler = sorted((KOK / "girdi").glob("b*.txt"))
-    eksik, bozuk, gecerli = [], [], {}
-    for g in girdiler:
-        ad = g.stem
-        c = KOK / "cikti" / f"{ad}.tsv"
-        if not c.exists():
-            eksik.append(ad)
-            continue
-        beklenen = girdi_oku(g)
+    beklenenler = {g.stem: girdi_oku(g) for g in girdiler}
+    kimlikten_grup = {frozenset(b): ad for ad, b in beklenenler.items()}
+    eksik, bozuk, gecerli, yer_degisen, tasima = [], [], {}, [], []
+    for c in sorted((KOK / "cikti").glob("b*.tsv")):
         sat = cikti_oku(c)
         idler = [x[0] for x in sat]
-        if idler != list(beklenen):
-            bozuk.append((ad, f"{len(idler)} satır (beklenen {len(beklenen)}), kimlikler uyuşmuyor" if set(idler) != set(beklenen) else "sıra farklı"))
+        # Dosya adına değil kimliklere bak: paralel ajanlar adları karıştırabiliyor.
+        ad = kimlikten_grup.get(frozenset(idler))
+        if ad is None or len(idler) != len(set(idler)) or idler != list(beklenenler[ad]):
+            bozuk.append((c.stem, f"{len(idler)} satır, hiçbir girdi grubuyla birebir uyuşmuyor"))
             if a.bozuk_sil:
                 c.unlink()
             continue
-        gecerli[ad] = (beklenen, sat)
+        if ad != c.stem:
+            yer_degisen.append(f"{c.stem} → {ad}")
+            tasima.append((c, ad))
+        if ad in gecerli:
+            bozuk.append((c.stem, f"{ad} grubunun yinelenen çıktısı"))
+            continue
+        gecerli[ad] = (beklenenler[ad], sat)
+    eksik = [g.stem for g in girdiler if g.stem not in gecerli and not any(b[0] == g.stem for b in bozuk)]
+
+    if a.duzelt and tasima:
+        gecici = []
+        for c, ad in tasima:          # önce geçici adlara, sonra doğru adlara (çakışma olmasın)
+            t = c.with_name(f"_tasi_{ad}.tmp"); c.rename(t); gecici.append((t, ad))
+        for t, ad in gecici:
+            t.rename(KOK / "cikti" / f"{ad}.tsv")
+        yer_degisen = [f"{x} (düzeltildi)" for x in yer_degisen]
+    (KOK / "eksik.txt").write_text("\n".join(eksik) + ("\n" if eksik else ""), encoding="utf-8")
 
     toplam = collections.Counter(); batch_oran = {}
     sonuc_satirlari, isaretli = [], []
@@ -80,6 +95,8 @@ def main():
         d += ["", "## Bozuk çıktılar (yeniden çalıştırılmalı; `--bozuk-sil` siler)"] + [f"- {ad}: {neden}" for ad, neden in bozuk[:40]]
     if supheli:
         d += ["", "## Şüpheli grup (işaretleme oranı <%3 ya da >%60: model tembellik/aşırı işaretleme yapmış olabilir)"] + [f"- {ad}: %{100 * batch_oran[ad]:.0f}" for ad in supheli[:40]]
+    if yer_degisen:
+        d += ["", "## Dosya adı karışmış ama içerik geçerli (kimlikle eşleşti): " + ", ".join(yer_degisen[:10])]
     if eksik:
         d += ["", f"## Eksik ({len(eksik)}): " + ", ".join(eksik[:12]) + (" …" if len(eksik) > 12 else "")]
     (KOK / "durum.md").write_text("\n".join(d) + "\n", encoding="utf-8")

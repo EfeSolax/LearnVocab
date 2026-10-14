@@ -8,11 +8,11 @@ Sen bu işin **koordinatörüsün**. Kendin hiçbir anlamı puanlamazsın; bunu 
 - `pilot-high/` — b0001–b0015'in `high` eforla yapılmış eski pilot sonucu (karşılaştırma için; **dokunma**, `cikti/` dışındadır)
 
 ## Adımlar
-1. **Eksik grupları bul** (Bash):
+1. **Eksik grupları bul** (Bash): paralel ajanlar bazen çıktı dosyalarının adını karıştırır, bu yüzden dosya adına değil kimliklere bakan kontrol aracını kullan:
    ```
-   cd veri/kalite_olcumu/haiku-tarama && comm -23 <(ls girdi | sed 's/\.txt$//') <(ls cikti | sed 's/\.tsv$//')
+   python3 araclar/haiku_tarama_kontrol.py --duzelt > /dev/null && cat veri/kalite_olcumu/haiku-tarama/eksik.txt
    ```
-   Çıktı boşsa 4. adıma geç.
+   Çıktı boşsa 4. adıma geç. Çıktıdaki grup adları eksik gruplardır.
 2. **Grupla:** Eksikleri 5'erli kümelere ayır (b0001–b0005 gibi sıralı; son küme daha kısa olabilir).
 3. **Dağıt:** Her küme için `sozluk-denetci` alt ajanını **arka planda** başlat; istemi yalnızca şudur: `Şu grupları işle: b0001, b0002, b0003, b0004, b0005`. Aynı anda **en çok 4** alt ajan çalıştır; biri bitince sıradaki kümeyi başlat. Her alt ajanın tek satırlık özetini topla (OK / BOZUK). Bütün kümeler bitene kadar devam et.
    - Kullanım limiti / rate limit hatası alırsan **dur**, hangi kümelerin bittiğini söyle ve çık. Kullanıcı aynı istemi tekrar verince işe kaldığın yerden devam edersin (1. adım eksikleri bulur).
