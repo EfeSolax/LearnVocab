@@ -1,0 +1,60 @@
+# Temel kelimeler · 3. dosya: bağlaçlar, zarflar ve ünlemler · Claude elle yazdı, 11 Ekim 2026 (rapor 18.36)
+# Kaynak: c = Cambridge A2 Key / B1 Preliminary listesinde var; l = Claude'un etiketi.
+# Bağlayıcı ifade kartları (Expression) duruyor; kelime kartı aynı adreste ondan önce görünür.
+and | conjunction | A1 | c
+  ve | used to join two words, phrases or sentences | I like tea and coffee. / She opened the door and went in.
+  (sonra) da, ve sonra | used to show that one thing happens after another | I got up and had a shower. / Wait and see.
+or | conjunction | A1 | c
+  veya, ya da | used to connect different possibilities | Do you want tea or coffee? / You can go today or tomorrow.
+  yoksa, aksi hâlde | used to say what will happen if something is not done | Hurry up, or we'll be late. / Wear a coat or you'll get cold. | otherwise
+  (olumsuzda) ne de | used after a negative to mean "and not" | I don't eat meat or fish. / He can't read or write.
+because | conjunction | A1 | c
+  çünkü, -diği için | for the reason that | I stayed at home because I was ill. / Because it was raining, we didn't go out. | since
+although | conjunction | B1 | c
+  -e rağmen, -diği hâlde | despite the fact that | Although it was cold, we went swimming. / He passed the exam although he didn't study much. | though
+though | conjunction | B1 | c
+  -e rağmen, -diği hâlde (although'dan daha gündelik) | despite the fact that | Though she was tired, she kept working. / I enjoyed the film, though it was long. | although
+if | conjunction | A1 | c
+  eğer, -se, -sa (koşul) | used to say that something will happen only after something else happens | If it rains, we'll stay at home. / If I were you, I'd say sorry.
+  -ip -madığını, acaba (dolaylı soru) | used to introduce a yes/no question in reported speech | She asked me if I was hungry. / I don't know if he's coming. | whether
+  -diğinde, ne zaman … -se (genel durum) | used to say that something always happens in a particular situation | If you heat ice, it melts. / If I drink coffee at night, I can't sleep. | when
+unless | conjunction | B1 | c
+  -medikçe, -mezse | except if | You can't go unless you finish your homework. / I'll be there at six unless the train is late.
+yet | conjunction | B2 | l
+  ama, yine de | used to add something that seems surprising after what was said before | The hotel was cheap, yet very comfortable. / He's rich, yet he's not happy. | but
+yet | adverb | A2 | c
+  (olumsuzda) henüz, daha | until now; used in negatives and questions | I haven't finished yet. / Has the bus arrived yet?
+  hâlâ, daha (gelecekte olabilir) | used to say that something may still happen | We may win yet. / The best is yet to come. | still
+however | adverb | B1 | c
+  ancak, bununla birlikte, yine de | used to introduce a statement that contrasts with something just said | The plan is good. However, it will be expensive. / I'd like to go. However, I'm too busy.
+  ne kadar … olursa olsun | used to say that something does not change, whatever the degree or amount | However hard I try, I can't do it. / Call me, however late it is.
+  her nasıl, ne şekilde olursa | in whatever way | You can do it however you like. / However you look at it, it was a mistake.
+instead | adverb | A2 | c
+  onun yerine, bunun yerine | in place of someone or something else | We didn't have tea, so we drank coffee instead. / Let's stay home instead.
+hi | exclamation | A1 | c
+  merhaba, selam (gündelik) | an informal way of saying hello | Hi! How are you? / Hi, I'm Can.
+hey | exclamation | A2 | c
+  hey!, baksana! (dikkat çekmek için) | used to get someone's attention, or to show surprise | Hey! Wait for me! / Hey, that's my seat!
+thanks | exclamation | A1 | c
+  sağ ol, teşekkürler | an informal way of saying thank you | Thanks for your help. / "Here you are." "Thanks!"
+please | exclamation | A1 | l
+  lütfen | used to make a request or order more polite | Please sit down. / Can I have some water, please?
+  evet, lütfen (teklifi kabul ederken) | used to accept something politely | "More coffee?" "Yes, please."
+sorry | exclamation | A1 | l
+  özür dilerim, pardon | used to apologize | Sorry, I'm late. / Sorry, I didn't mean to hurt you.
+  efendim?, pardon? (duyamadığında) | used to ask someone to repeat something | Sorry? What did you say? / Sorry, could you say that again? | pardon
+yeah | exclamation | A1 | c
+  evet, he (gündelik) | an informal way of saying yes | "Are you coming?" "Yeah, sure." / Yeah, I know.
+no | exclamation | A1 | c
+  hayır, yok | used to give a negative answer | "Are you tired?" "No, I'm fine." / No, thank you.
+oh | exclamation | A1 | c
+  ah!, öyle mi!, hmm (şaşkınlık, anlama, duygu) | used to show surprise, interest, understanding or another feeling | Oh, I didn't know that. / Oh no! I've lost my wallet.
+wow | exclamation | A2 | c
+  vay!, vay canına! | used to show surprise or admiration | Wow! What a beautiful house! / Wow, that's amazing!
+pardon | exclamation | A2 | c
+  efendim?, pardon? (duyamadığında) | used to ask someone to repeat something | Pardon? I didn't hear you. / Pardon? Could you say that again?
+congratulations | exclamation | A2 | c
+  tebrikler!, tebrik ederim! | used to praise someone for something they have achieved or for a happy event | Congratulations on your new job! / You passed? Congratulations!
+cheers | exclamation | B1 | c
+  şerefe! | used when people lift their glasses to drink together | Cheers! Happy birthday! / Cheers, everyone!
+  sağ ol, eyvallah (İngiltere, gündelik) | used in British English to say thank you or goodbye | "Here's your change." "Cheers!" / Cheers, see you tomorrow.

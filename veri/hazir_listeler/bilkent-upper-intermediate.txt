@@ -98,6 +98,7 @@ coincidence:noun
 collective:adjective
 column:noun
 combine:verb
+come up with
 command
 comment
 commission:noun

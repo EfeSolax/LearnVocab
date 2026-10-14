@@ -1,0 +1,204 @@
+# Temel kelimeler · 4. dosya: birleşik isimler (ice cream, living room …) · Claude elle yazdı, 11 Ekim 2026 (rapor 18.38)
+# Kaynak: kurum listelerinde "sözlükte yok" çıkanlar (Cambridge A1/A2/B1, Bilkent, ODTÜ, High Note).
+# c = Cambridge Pre A1 Starters / A1 Movers listesinde; l = Claude'un etiketi. İngiliz biçimleri (car park,
+# petrol station, city centre) alınmadı: Amerikan karşılıkları burada (parking lot, gas station).
+air conditioning | noun | B1 | l
+  klima | a system that keeps the air in a building or car cool | The hotel room has air conditioning. / Can you turn on the air conditioning?
+alarm clock | noun | A2 | l
+  çalar saat | a clock that makes a noise to wake you up | My alarm clock goes off at seven. / I forgot to set my alarm clock.
+apartment building | noun | A2 | l
+  apartman, apartman binası | a large building divided into apartments | We live in a tall apartment building. / The apartment building has an elevator.
+bank account | noun | A2 | l
+  banka hesabı | an arrangement with a bank to keep your money there | I opened a bank account. / The money goes straight into my bank account.
+bathing suit | noun | A2 | l
+  mayo | a piece of clothing that you wear for swimming | Don't forget your bathing suit. / She bought a new bathing suit for the vacation. | swimsuit
+board game | noun | A1 | c
+  kutu oyunu, masa oyunu | a game played on a board, such as chess | We played board games all evening. / Monopoly is my favorite board game.
+boarding pass | noun | B1 | l
+  biniş kartı | a card you must show before you get on a plane | Please show your boarding pass at the gate. / I printed my boarding pass at home.
+brand new | adjective | B1 | l
+  yepyeni, sıfır | completely new | He bought a brand new car. / These shoes are brand new.
+bus station | noun | A1 | c
+  otogar, otobüs terminali | a building where buses start and finish their journeys | The bus station is in the city center. / Let's meet at the bus station.
+bus stop | noun | A1 | c
+  otobüs durağı | a place at the side of a road where buses stop | I'm waiting at the bus stop. / Get off at the next bus stop.
+cell phone | noun | A2 | l
+  cep telefonu | a phone that you can carry with you | Please turn off your cell phone. / I left my cell phone at home.
+central heating | noun | B1 | l
+  kalorifer, merkezi ısıtma | a system that heats a whole building from one place | The apartment has central heating. / Turn the central heating up.
+changing room | noun | B1 | l
+  soyunma odası; (mağazada) deneme kabini | a room for changing your clothes, or for trying on clothes in a shop | The changing rooms are next to the pool. / You can try it on in the changing room.
+chewing gum | noun | A2 | l
+  sakız | a sweet that you chew but do not swallow | Can I have some chewing gum? / Chewing gum is not allowed in class.
+civil servant | noun | B2 | l
+  devlet memuru | a person who works for the government | My father is a civil servant. / Civil servants work in government offices.
+civil service | noun | C1 | l
+  devlet memurluğu, kamu hizmeti | all the government departments and the people who work in them | She has worked in the civil service for 20 years. / He wants a job in the civil service.
+climate change | noun | B1 | l
+  iklim değişikliği | changes in the world's weather, especially the increase in temperature caused by human activity | Climate change is a global problem. / We must act on climate change.
+comic book | noun | A1 | c
+  çizgi roman | a magazine that tells a story with pictures | He reads comic books every weekend. / My favorite comic book is about superheroes.
+common sense | noun | B2 | l
+  sağduyu, akıl | the ability to make good decisions in everyday situations | Use your common sense! / It's just common sense to wear a helmet.
+convenience store | noun | B1 | l
+  bakkal, market (geç saate kadar açık) | a small shop that is open for long hours and sells food and other basic things | I bought some milk at the convenience store. / The convenience store is open 24 hours.
+credit card | noun | A2 | l
+  kredi kartı | a small plastic card that you use to buy things and pay for them later | Can I pay by credit card? / I lost my credit card.
+department store | noun | A2 | l
+  büyük mağaza | a large shop that sells many different things in different parts | She works in a department store. / The department store has five floors.
+digital camera | noun | A2 | l
+  dijital fotoğraf makinesi | a camera that stores photos electronically | He took the photos with a digital camera. / Digital cameras are smaller than they used to be.
+dining room | noun | A1 | c
+  yemek odası | a room in a house where people eat meals | We eat dinner in the dining room. / The dining room has a big table.
+exchange rate | noun | B1 | l
+  döviz kuru | the value of one country's money compared to another's | What's the exchange rate for dollars today? / The exchange rate has changed a lot.
+extreme sport | noun | B1 | l
+  ekstrem spor | a dangerous sport such as skydiving | He loves extreme sports like bungee jumping. / Extreme sports are becoming popular.
+fast food | noun | A2 | l
+  hazır yemek, fast food | hot food such as burgers that is prepared and served quickly | Too much fast food is bad for you. / Let's get some fast food.
+flight attendant | noun | A2 | l
+  uçuş görevlisi, kabin memuru | a person who looks after passengers on a plane | The flight attendant brought us drinks. / She works as a flight attendant.
+french fries | noun | A2 | l
+  patates kızartması | long thin pieces of potato cooked in oil | I'd like a burger and french fries. / Do you want ketchup with your french fries?
+frying pan | noun | B1 | l
+  tava | a flat pan used for frying food | Heat some oil in a frying pan. / She cooked the eggs in a frying pan.
+gas station | noun | A2 | l
+  benzin istasyonu | a place where you buy fuel for your car | We stopped at a gas station. / Is there a gas station near here?
+genetic engineering | noun | C1 | l
+  genetik mühendisliği | the science of changing the genes of living things | Genetic engineering can make crops stronger. / Some people are worried about genetic engineering.
+global warming | noun | B1 | l
+  küresel ısınma | the increase in the earth's temperature caused by gases such as carbon dioxide | Global warming is melting the ice at the poles. / We need to reduce global warming.
+grocery store | noun | A2 | l
+  bakkal, market | a shop that sells food and other things for the home | I'm going to the grocery store. / The grocery store closes at nine.
+hearing aid | noun | B2 | l
+  işitme cihazı | a small device worn in the ear that helps you hear better | My grandfather wears a hearing aid. / She got a new hearing aid.
+high jump | noun | B1 | l
+  yüksek atlama | a sport in which you jump over a bar that is raised higher and higher | He won a medal in the high jump. / The high jump is my favorite event.
+hip hop | noun | B1 | l
+  hip hop | a type of popular music with spoken words over a strong beat | He listens to hip hop. / Hip hop started in New York.
+ice cream | noun | A1 | c
+  dondurma | a very cold sweet food made from milk or cream | I'd like a chocolate ice cream. / Children love ice cream.
+ice hockey | noun | A2 | l
+  buz hokeyi | a game played on ice in which players hit a small disc with sticks | Ice hockey is popular in Canada. / He plays ice hockey every winter.
+ice rink | noun | A1 | c
+  buz pateni pisti | a large area of ice for skating | We went to the ice rink on Saturday. / The ice rink is open all year.
+ice skate | noun | A1 | c
+  buz pateni (ayakkabısı) | a boot with a metal blade for skating on ice | I need new ice skates. / She put on her ice skates.
+ice skating | noun | A1 | c
+  buz pateni (sporu) | the activity of moving on ice in special boots | Let's go ice skating. / Ice skating is hard at first.
+identity card | noun | B1 | l
+  kimlik kartı | an official card with your name, photo and other details | Please show your identity card. / You need an identity card to vote. | ID
+living room | noun | A1 | c
+  oturma odası, salon | the room in a house where people sit and relax | We watched TV in the living room. / The living room has a big sofa.
+long jump | noun | B1 | l
+  uzun atlama | a sport in which you jump as far as possible | She came first in the long jump. / He practices the long jump every day.
+main course | noun | A2 | l
+  ana yemek | the biggest part of a meal | For the main course I'll have the fish. / We didn't have room for dessert after the main course.
+mineral water | noun | A2 | l
+  maden suyu | water from under the ground that contains minerals | A bottle of mineral water, please. / I prefer mineral water to cola.
+mobile phone | noun | A2 | l
+  cep telefonu | a phone that you can carry with you (British English) | Turn off your mobile phone in the cinema. / What's your mobile phone number?
+movie star | noun | A1 | c
+  film yıldızı | a famous actor or actress | She wants to be a movie star. / I met a movie star at the airport.
+movie theater | noun | A2 | l
+  sinema salonu | a building where people go to watch films | Let's go to the movie theater tonight. / The movie theater was full. | cinema
+opening hours | noun | B1 | l
+  çalışma saatleri, açık olduğu saatler | the times when a shop, museum or office is open | What are the opening hours of the museum? / The opening hours are 9 to 5.
+parking lot | noun | A1 | c
+  otopark | an outdoor area where people can park their cars | I left my car in the parking lot. / The parking lot was full.
+pencil case | noun | A2 | l
+  kalemlik | a small bag or box for pens and pencils | Put your pens in your pencil case. / I forgot my pencil case.
+pocket money | noun | A2 | l
+  harçlık | money that parents give to their children every week | How much pocket money do you get? / He spends all his pocket money on candy.
+polar bear | noun | A1 | c
+  kutup ayısı | a large white bear that lives near the North Pole | Polar bears live in the Arctic. / We saw a polar bear at the zoo.
+police officer | noun | A2 | l
+  polis memuru | a member of the police | The police officer helped the lost child. / Ask a police officer for directions.
+police station | noun | A2 | l
+  karakol | the office of the police in a town or area | He was taken to the police station. / Where is the nearest police station?
+pop star | noun | A1 | c
+  pop yıldızı | a famous pop singer | She dreams of becoming a pop star. / The pop star gave a free concert.
+post office | noun | A1 | l
+  postane | a place where you can buy stamps and send letters and parcels | I need to go to the post office. / The post office closes at five.
+price tag | noun | B2 | l
+  fiyat etiketi | a piece of paper on a product that shows how much it costs | Take the price tag off before you give her the present. / The price tag says $50.
+primary school | noun | A2 | l
+  ilkokul | a school for children between five and eleven years old | My sister is in primary school. / I went to primary school in Izmir. | elementary school
+profit margin | noun | C1 | l
+  kâr marjı | the difference between what something costs to make and the price it is sold for | The company has a high profit margin. / Profit margins are falling.
+public transport | noun | B1 | l
+  toplu taşıma | buses, trains and other vehicles that everyone can use | I always use public transport. / Public transport in the city is cheap.
+remote control | noun | A2 | l
+  kumanda, uzaktan kumanda | a small device used to control a TV or other machine from a distance | Where's the remote control? / Pass me the remote control, please.
+rock climbing | noun | A2 | l
+  kaya tırmanışı | the sport of climbing rocks and cliffs | We went rock climbing in the mountains. / Rock climbing can be dangerous.
+roller skate | noun | A1 | c
+  paten (tekerlekli) | a boot with wheels for moving quickly on the ground | I got roller skates for my birthday. / She put on her roller skates.
+roller skating | noun | A1 | c
+  tekerlekli paten (sporu) | the activity of moving on roller skates | Roller skating is fun. / We go roller skating in the park.
+rush hour | noun | B1 | l
+  trafiğin yoğun olduğu saat, iş çıkış saati | the time of day when the roads and trains are busiest | Avoid driving during rush hour. / The trains are crowded at rush hour.
+science fiction | noun | B1 | l
+  bilim kurgu | books and films about imagined future events, often involving space travel or new technology | I love science fiction films. / He writes science fiction.
+seat belt | noun | A2 | l
+  emniyet kemeri | a belt in a car or plane that holds you in your seat | Fasten your seat belt. / Always wear a seat belt.
+security guard | noun | B1 | l
+  güvenlik görevlisi | a person whose job is to protect a building or people | The security guard checked our bags. / He works as a security guard at the bank.
+shop assistant | noun | A2 | l
+  satış görevlisi, tezgâhtar | a person who serves customers in a shop | The shop assistant helped me find a size. / She works as a shop assistant.
+shopping mall | noun | A1 | c
+  alışveriş merkezi, AVM | a large building with many shops inside | Let's meet at the shopping mall. / The new shopping mall has a cinema. | mall
+skate park | noun | A1 | c
+  kaykay parkı | an outdoor area with ramps for skateboarding | The kids are at the skate park. / There's a new skate park near the school.
+soap opera | noun | B1 | l
+  dizi (pembe dizi) | a TV series about the daily lives of a group of people | My mom watches a soap opera every evening. / The soap opera has been on TV for years.
+social media | noun | B1 | l
+  sosyal medya | websites and apps that people use to share information and communicate | She spends hours on social media. / The news spread quickly on social media.
+sore throat | noun | A2 | l
+  boğaz ağrısı | a pain in your throat, often because of a cold | I have a sore throat. / Drink warm tea for your sore throat.
+speed bump | noun | B2 | l
+  hız tümseği, kasis | a raised area across a road that makes cars slow down | Slow down – there's a speed bump. / They put speed bumps outside the school.
+sports center | noun | A2 | l
+  spor merkezi | a building where people can play different sports | I go swimming at the sports center. / The sports center has a gym.
+stomach ache | noun | A1 | c
+  karın ağrısı, mide ağrısı | a pain in your stomach | I have a stomach ache. / Eating too fast gave him a stomach ache.
+swimming pool | noun | A1 | c
+  yüzme havuzu | a large area of water made for people to swim in | The hotel has a swimming pool. / We swim in the swimming pool every morning.
+table manners | noun | B2 | l
+  sofra adabı | the rules of polite behavior when eating | Children should learn good table manners. / His table manners are terrible.
+table tennis | noun | A1 | c
+  masa tenisi | a game in which players hit a small ball over a net on a table | Do you want to play table tennis? / He's good at table tennis.
+talk show | noun | B1 | l
+  sohbet programı | a TV or radio show in which famous people are interviewed | She was a guest on a talk show. / I watch a talk show every night.
+tennis racket | noun | A1 | c
+  tenis raketi | a racket used for playing tennis | I need a new tennis racket. / Don't forget your tennis racket.
+text message | noun | A2 | l
+  kısa mesaj, SMS | a written message sent from one phone to another | I sent her a text message. / Did you get my text message?
+tour guide | noun | A2 | l
+  tur rehberi | a person whose job is to show tourists around a place | Our tour guide spoke three languages. / The tour guide showed us the castle.
+traffic jam | noun | A2 | l
+  trafik sıkışıklığı | a long line of vehicles that cannot move or move slowly | We were stuck in a traffic jam for an hour. / There's a traffic jam on the bridge.
+traffic light | noun | A2 | l
+  trafik lambası | a set of colored lights that tell traffic when to stop and go | Turn left at the traffic lights. / The traffic light is red.
+trash can | noun | A2 | l
+  çöp kutusu | a container for waste | Throw it in the trash can. / The trash can is full.
+travel agent | noun | A2 | l
+  seyahat acentesi (görevlisi) | a person or company that arranges vacations and travel | We booked our vacation through a travel agent. / The travel agent found us a cheap flight.
+turning point | noun | B2 | l
+  dönüm noktası | a time when an important change happens | Moving to Istanbul was a turning point in my life. / The battle was a turning point in the war.
+video clip | noun | B1 | l
+  video klip, kısa video | a short piece of video | She posted a funny video clip online. / Watch this video clip.
+video game | noun | A1 | c
+  video oyunu | a game played on a computer, phone or games console | He plays video games every evening. / What's your favorite video game?
+waiting room | noun | A2 | l
+  bekleme salonu | a room where people wait, for example to see a doctor | Please sit in the waiting room. / The waiting room was full of patients.
+washing machine | noun | A2 | l
+  çamaşır makinesi | a machine for washing clothes | Put your clothes in the washing machine. / The washing machine is broken.
+weather forecast | noun | A2 | l
+  hava durumu (tahmini) | a report saying what the weather will be like | What's the weather forecast for tomorrow? / I watched the weather forecast on TV.
+web page | noun | A2 | l
+  internet sayfası, web sayfası | a page of information on the internet | I found the information on a web page. / The web page loads slowly.
+wetsuit | noun | B1 | l
+  dalgıç elbisesi, wetsuit | a rubber suit that keeps you warm in cold water | Surfers wear wetsuits. / I rented a wetsuit for diving.
+working hours | noun | B1 | l
+  çalışma saatleri, mesai | the hours of the day when people work | My working hours are 9 to 6. / Nurses often have long working hours.

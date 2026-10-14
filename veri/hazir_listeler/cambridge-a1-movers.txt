@@ -1,0 +1,451 @@
+# Cambridge A1 Movers Digital Wordlist (2024) · alfabetik liste, ## = harf.
+# Kişi adları, unvanlar, kalıplar (phrase), sayılar ve konu listeleri alınmadı. Betik: araclar/cambridge_a1_listesi.py
+## A
+above:preposition
+address:noun
+afraid:adjective
+after:preposition
+age:noun
+all:adverb
+all:determiner
+along:preposition
+always:adverb
+another:determiner
+any:determiner
+app:noun
+around:preposition
+asleep:adjective
+at:preposition
+aunt:noun
+awake:adjective
+## B
+back:adjective
+back:adverb
+back:noun
+bad:adjective
+badly:adverb
+badminton:noun
+balcony:noun
+band:noun
+basement:noun
+bat:noun
+beard:noun
+because:conjunction
+before:preposition
+below:preposition
+best:adjective
+best:adverb
+better:adjective
+better:adverb
+blanket:noun
+blond:adjective
+bored:adjective
+boring:adjective
+both:determiner
+bottle:noun
+bottom:adjective
+bottom:noun
+bowl:noun
+brave:adjective
+break:noun
+brilliant:adjective
+bring:verb
+build:verb
+builder:noun
+building:noun
+bus station:noun
+bus stop:noun
+busy:adjective
+buy:verb
+by:preposition
+## C
+cabbage:noun
+call:verb
+call:noun
+## P
+parking lot:noun
+## C
+careful:adjective
+carefully:adverb
+carry:verb
+catch:verb
+cave:noun
+center:noun
+change:verb
+chat:verb
+cinema:noun
+circle:noun
+circus:noun
+city:noun
+cleaner:noun
+clever:adjective
+climb:verb
+closet:noun
+cloud:noun
+cloudy:adjective
+clown:noun
+coffee:noun
+cold:adjective
+cold:noun
+come on:phrasal_verb
+comic:noun
+comic book:noun
+cook:verb
+cook:noun
+cough:noun
+could:modal_verb
+country:noun
+countryside:noun
+curly:adjective
+## D
+dance:verb
+dancer:noun
+dangerous:adjective
+daughter:noun
+dentist:noun
+difference:noun
+different:adjective
+difficult:adjective
+doctor:noun
+dolphin:noun
+down:adverb
+down:preposition
+downstairs:adverb
+dragon:noun
+dream:noun
+dream:verb
+dress up:phrasal_verb
+drive:noun
+driver:noun
+drop:verb
+dry:adjective
+dry:verb
+## E
+easy:adjective
+elevator:noun
+email:noun
+email:verb
+every:determiner
+everyone:pronoun
+everything:pronoun
+excited:adjective
+exciting:adjective
+## F
+fall:verb
+famous:adjective
+farm:noun
+farmer:noun
+fat:adjective
+feed:verb
+field:noun
+## M
+movie:noun
+movie star:noun
+## F
+fine:adjective
+first:adjective
+first:adverb
+fish:verb
+fix:verb
+floor:noun
+fly:noun
+forest:noun
+Friday:noun
+## G
+get off:phrasal_verb
+get on:phrasal_verb
+get up:phrasal_verb
+glass:noun
+glove:noun
+goal:noun
+granddaughter:noun
+grandparent:noun
+grandson:noun
+grass:noun
+ground:noun
+grow:verb
+## H
+headache:noun
+helmet:noun
+help:verb
+hey:exclamation
+hide:verb
+hockey:noun
+## V
+vacation:noun
+## H
+homework:noun
+hop:verb
+hospital:noun
+hot:adjective
+hotel:noun
+how:adverb
+huge:adjective
+hungry:adjective
+hurt:verb
+## I
+ice:noun
+ice rink:noun
+ice skating:noun
+idea:noun
+ill:adjective
+information:noun
+inside:adverb
+inside:noun
+inside:preposition
+internet:noun
+into:preposition
+invite:verb
+island:noun
+## J
+jacket:noun
+jellyfish:noun
+jungle:noun
+## K
+kick:noun
+kind:noun
+kitten:noun
+## L
+lake:noun
+laptop:noun
+last:adjective
+laugh:noun
+laugh:verb
+leaf:noun
+leave:noun
+library:noun
+lion:noun
+look for:phrasal_verb
+lose:verb
+loud:adjective
+loudly:adverb
+## M
+machine:noun
+mall:noun
+map:noun
+market:noun
+matter:noun
+mean:verb
+meet:verb
+message:noun
+mistake:noun
+model:noun
+Monday:noun
+moon:noun
+more:adverb
+most:adverb
+mountain:noun
+mustache:noun
+move:verb
+must:modal_verb
+## N
+naughty:adjective
+near:adverb
+near:preposition
+neck:noun
+need:verb
+net:noun
+never:adverb
+noise:noun
+nothing:pronoun
+nurse:noun
+## O
+off:adverb
+off:preposition
+often:adverb
+on:adverb
+on:preposition
+only:adverb
+opposite:preposition
+other:adjective
+out:adverb
+outside:adverb
+outside:noun
+outside:preposition
+## P
+pair:noun
+pancake:noun
+parent:noun
+park:verb
+parrot:noun
+pasta:noun
+peach:noun
+penguin:noun
+picnic:noun
+pineapple:noun
+pirate:noun
+place:noun
+plant:noun
+plant:verb
+plate:noun
+player:noun
+polar bear:noun
+pool:noun
+pop star:noun
+practice:noun
+practice:verb
+present:noun
+pretty:adjective
+puppy:noun
+put on:phrasal_verb
+## Q
+quick:adjective
+quickly:adverb
+quiet:adjective
+quietly:adverb
+## R
+rabbit:noun
+rain:noun
+rain:verb
+rainbow:noun
+ready:adjective
+ride:noun
+river:noun
+road:noun
+rock:noun
+roller skating:noun
+roof:noun
+round:adjective
+round:adverb
+round:preposition
+## S
+safe:adjective
+sail:noun
+sail:verb
+sandwich:noun
+Saturday:noun
+sauce:noun
+sausage:noun
+scarf:noun
+score:verb
+seat:noun
+second:adjective
+send:verb
+shall:modal_verb
+shape:noun
+shark:noun
+shelf:noun
+shop:verb
+shopping:noun
+shopping mall:noun
+shoulder:noun
+shout:verb
+shower:noun
+sick:adjective
+sign:noun
+singer:noun
+skate:noun
+skate:verb
+skate park:noun
+skip:verb
+sky:noun
+slow:adjective
+slowly:adverb
+snail:noun
+snow:noun
+snow:verb
+someone:pronoun
+something:pronoun
+sometimes:adverb
+son:noun
+soup:noun
+square:adjective
+square:noun
+stair:noun
+star:noun
+station:noun
+stomach:noun
+stomach ache:noun
+straight:adjective
+strong:adjective
+Sunday:noun
+sunny:adjective
+supermarket:noun
+sure:adjective
+surprised:adjective
+sushi:noun
+sweater:noun
+sweet:adjective
+swim:noun
+swimming pool:noun
+swimsuit:noun
+## T
+take:verb
+take off:phrasal_verb
+tall:adjective
+tea:noun
+teach:verb
+teenager:noun
+temperature:noun
+terrible:adjective
+text:noun
+text:verb
+than:conjunction
+then:adverb
+thin:adjective
+think:verb
+thirsty:adjective
+Thursday:noun
+ticket:noun
+tooth:noun
+toothbrush:noun
+toothpaste:noun
+top:noun
+towel:noun
+town:noun
+tractor:noun
+travel:verb
+treasure:noun
+trip:noun
+trumpet:noun
+Tuesday:noun
+## U
+uncle:noun
+up:adverb
+up:preposition
+upstairs:adverb
+use:verb
+## V
+vegetable:noun
+video:noun
+village:noun
+## W
+wait:verb
+wake:verb
+walk:noun
+water:verb
+waterfall:noun
+wave:noun
+weak:adjective
+weather:noun
+website:noun
+Wednesday:noun
+week:noun
+weekend:noun
+well:adjective
+well:adverb
+wet:adjective
+whale:noun
+when:adverb
+where:adverb
+which:pronoun
+who:pronoun
+why:adverb
+wind:noun
+windy:adjective
+wing:noun
+work:noun
+work:verb
+worker:noun
+world:noun
+worry:verb
+worse:adjective
+worse:adverb
+worst:adjective
+worst:adverb
+would:modal_verb
+writer:noun
+wrong:adjective
+## Y
+yesterday:adverb
+yesterday:noun

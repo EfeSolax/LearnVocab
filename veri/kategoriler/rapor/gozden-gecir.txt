@@ -1,0 +1,990 @@
+# Çok anlamlı kelimelerde konuya bağlanan anlam (seçilen || öteki anlamlar). Claude okudu; seçimler veri/kategoriler/*.txt ipuçlarıyla sabit (14 Ekim).
+duygular	afraid	korkmuş, endişeli || çekinen, tereddüt eden
+duygular	nervous	kaygılı, endişeli || sinirlerle ilgili, sinir
+duygular	anxious=endişeli	endişeli, kaygılı || istekli, can atan
+duygular	glad	memnun, mutlu || memnuniyet duyan, seve s
+duygular	miserable	perişan, çok mutsuz || kötü, berbat
+duygular	depressed	üzgün, morali bozuk, depresif || durgun, gerilemiş
+duygular	curious	meraklı, öğrenmeye istekli || ilginç, garip
+duygular	hopeful	umutlu, iyimser || umut verici
+duygular	guilty	suçluluk hisseden || suçlu, suç işleyen
+duygular	fear:n	korku, endişe || korku, kaygı, endişe
+duygular	love:n=sevgi	sevgi, derin bağ, şefkat || romantik aşk, tutkulu il
+duygular	pride	onur, gurur || aslan sürüsü
+duygular	shame	utanç, mahcubiyet || utanç, rezillik
+duygular	stress:n=gerginlik	psikolojik baskı, gerginlik || fiziksel gerilim, basınç
+duygular	relief=rahatlama	rahatlama, hafifleme || yardım, destek / kabartma, rölyef
+duygular	surprise:n	beklenmedik olay, sürpriz || şaşkınlık, hayret duygus
+duygular	feeling	duygu, his || hissetme, algı
+duygular	mood	duygu durumu, ruh hali || atmosfer, ortam
+duygular	emotional	duygusal || duygu yüklü, dokunaklı, 
+duygular	feel	hissetmek, duyu organlarıyla a || düşünmek, bir görüş bild
+duygular	cry:v=ağlamak	ağlamak || bağırmak, haykırmak / çığlık atmak
+duygular	enjoy	zevk almak, keyif duymak || eğlenmek, hoş vakit geçi
+duygular	miss:v=özlemek	özlemek, hasret duymak || kaçırmak, yakalayamamak
+duygular	burst into	(birden) -e başlamak (gülmek,  || (bir yere) dalmak, hızla
+kisilik-davranis	rude	kaba, saygısız || sarsıcı, ani, acı
+kisilik-davranis	dishonest	dürüst olmayan || aldatıcı
+kisilik-davranis	shy	çekingen, utangaç || çekingen, tereddütlü, te
+kisilik-davranis	outgoing=sosyal	sosyal, dışa dönük || görevden ayrılan, eski
+kisilik-davranis	smart	akıllı, zeki || şık, moda, tarz sahibi / şiddetli, sert, can yakı
+kisilik-davranis	funny:adj=komik	komik, güldürücü || garip, tuhaf
+kisilik-davranis	responsible	sorumlu, hesap verebilir || sorumluluk sahibi, güven
+kisilik-davranis	careful	dikkatli, tedbirli || özenli, titiz
+kisilik-davranis	aggressive	kavgacı, saldırgan || girişken, atılgan
+kisilik-davranis	modest	mütevazı, alçakgönüllü || az, ılımlı, sınırlı
+kisilik-davranis	humble:adj	alçakgönüllü, mütevazı || mütevazı, gösterişsiz, s
+kisilik-davranis	stubborn	inatçı, dikbaşlı || inatçı, zorlu, çıkmayan
+kisilik-davranis	flexible	esnek, bükülebilir || uyarlanabilir, değişime 
+kisilik-davranis	curious	meraklı, öğrenmeye istekli || ilginç, garip
+kisilik-davranis	mature=sorumluluk sahibi	olgun, sorumluluk sahibi || tam gelişmiş, olgun
+kisilik-davranis	gentle	nazik, kibar || hafif, yumuşak
+kisilik-davranis	thoughtful=düşünceli	düşünceli, nazik || derin düşüncelere dalmış
+kisilik-davranis	rational	akılcı, mantıklı || rasyonel
+kisilik-davranis	emotional	duygusal || duygu yüklü, dokunaklı, 
+kisilik-davranis	loud	yüksek sesli, gürültülü || gösterişli, çarpıcı
+kisilik-davranis	mean:adj=cimri	cimri || kaba, aşağılayıcı / ortalama
+kisilik-davranis	nice=kibar	kibar, nazik || hoş, güzel
+kisilik-davranis	determined	kararlı, azimli || belirlenmiş, kesin
+kisilik-davranis	organized	düzenli, tertipli || örgütlü
+kisilik-davranis	tolerant	hoşgörülü, farklılıklara saygı || dayanıklı, etkilenmeye k
+kisilik-davranis	character=karakter	karakter, kahraman || yazı işareti, harf, semb
+kisilik-davranis	attitude	tutum, yaklaşım, davranış biçi || vücut duruşu, pozisyon
+kisilik-davranis	habit	alışkanlık, rutin || rahibe giysisi, cübbe
+kisilik-davranis	manner=davranış	davranış, tutum || yöntem, şekil
+kisilik-davranis	temper	öfke, sinir || karakter, mizaç
+kisilik-davranis	show off	hava atmak, gösteriş yapmak || (gururla) sergilemek, gö
+kisilik-davranis	get along	iyi geçinmek, anlaşmak || idare etmek, yürütmek
+gorus-tercih	view:n=görüş	görüş, düşünce || manzara, görünüm
+gorus-tercih	idea	düşünce, kavram || plan, öneri
+gorus-tercih	attitude	tutum, yaklaşım, davranış biçi || vücut duruşu, pozisyon
+gorus-tercih	taste:n=zevk	tercih, zevk || tat, lezzet / estetik anlayış, incelik
+gorus-tercih	like:v=sevmek	sevmek, hoşlanmak || istemek, arzu etmek
+gorus-tercih	enjoy	zevk almak, keyif duymak || eğlenmek, hoş vakit geçi
+gorus-tercih	adore	çok sevmek || tapınmak
+gorus-tercih	think:v	düşünmek || düşünmek, sanmak
+gorus-tercih	believe	inanmak, kabul etmek || düşünmek, saymak, inanma
+gorus-tercih	feel=düşünmek	düşünmek, bir görüş bildirmek || hissetmek, duyu organlar
+gorus-tercih	suppose	varsaymak, tahmin etmek || gerekmek, zorunda olmak
+gorus-tercih	approve=tasvip etmek	onaylamak, tasvip etmek, doğru || onaylamak, tasdik etmek
+gorus-tercih	suggest	öneri sunmak, tavsiye etmek || ima etmek, dolaylı olara
+gorus-tercih	advise	tavsiye etmek, öneride bulunma || bilgi vermek, bilgilendi
+gorus-tercih	support:v	yardım etmek, desteklemek || taşımak, tutmak, ayakta 
+gorus-tercih	choose	seçmek || tercih etmek
+gorus-tercih	honestly	açıkçası || dürüstçe
+gorus-tercih	keen	istekli, hevesli || keskin, ayırt edici
+gorus-tercih	interesting	dikkat çekici, ilgi uyandıran || merak uyandıran, keşfetm
+gorus-tercih	great=mükemmel	mükemmel, harika || büyük / önemli, kayda değer
+gorus-tercih	awful	korkunç, berbat, çok kötü || korkutucu, hayret verici
+gorus-tercih	brilliant	harika, mükemmel || parlak, ışık saçan / zeki, üstün yetenekli
+gorus-tercih	perfect	kusursuz, hatasız || ideal, en uygun
+gorus-tercih	fine	iyi, memnun edici || ince, zarif
+gorus-tercih	nice	hoş, güzel || kibar, nazik
+gorus-tercih	worth	değer, yapmaya değer || değerinde, tutarında
+gorus-tercih	fair	adil, hakkaniyetli || açık renkli, sarışın, ku / açık, güzel, elverişli
+gorus-tercih	right:adj=doğru	doğru, hatasız || ahlaki, erdemli / sağ
+gorus-tercih	true	gerçek, doğru || sadık, dürüst
+gorus-tercih	false	yanlış, gerçek olmayan || aldatıcı, sahte
+gorus-tercih	sure	kesin, emin || güvenilir, sağlam
+gorus-tercih	certain=emin	emin, kesin || belirli, bazı
+gorus-tercih	impression	izlenim, etki || baskı, damga, iz
+gorus-tercih	judge:v	yargılamak, hüküm vermek || fikir oluşturmak, yargıl
+gorus-tercih	complain	şikayet etmek, memnuniyetsizli || şikayetçi olmak, dava aç
+gorus-tercih	suggestion	öneri, tavsiye || ipucu, ima
+gorunus-beden	body=vücut	vücut || ceset
+gorunus-beden	head	baş, kafa || lider, başkan
+gorunus-beden	face	yüz || yüzey / ifade, görünüm
+gorunus-beden	hair	saç || kıl, tüy
+gorunus-beden	ear	kulak || koçan, başak
+gorunus-beden	mouth	ağız || açıklık, giriş
+gorunus-beden	lip	dudak || kenar, sınır
+gorunus-beden	neck	boyun || boğaz, boyun kısmı
+gorunus-beden	arm	kol || silah, silahlanma
+gorunus-beden	hand	el || yardım / işçi
+gorunus-beden	nail=tırnak	tırnak || çivi
+gorunus-beden	chest	göğüs || sandık, kutu
+gorunus-beden	foot	ayak || fit / taban, temel
+gorunus-beden	toe	ayak parmağı || ayakkabı ucu / uç, kıyı
+gorunus-beden	heel	ayakkabı topuğu || kötü, ahlaksız kişi
+gorunus-beden	muscle	kas, kas dokusu || güç, kuvvet
+gorunus-beden	heart	kalp || merkez / cesaret
+gorunus-beden	brain	beyin || zihin
+gorunus-beden	blood	vücut sıvısı, kan || soy, kan bağı
+gorunus-beden	cheek	yanak || küstahlık, yüzsüzlük, cü
+gorunus-beden	tall	uzun boylu, uzun || uzun
+gorunus-beden	fat	şişman, kilolu || kalın, dolgun
+gorunus-beden	slim	ince, zayıf, ince yapılı || az, düşük
+gorunus-beden	handsome	yakışıklı, çekici || cömert, büyük
+gorunus-beden	cute	sevimli, şirin || kurnaz, akıllı, becerikl
+gorunus-beden	old	yaşlı || eski
+gorunus-beden	straight:adj	düz, bükülmemiş || dürüst, doğru
+gorunus-beden	dark:adj	koyu || karanlık, loş / kasvetli, umutsuz
+gorunus-beden	fair:adj=sarışın	açık renkli, sarışın, kumral || adil, hakkaniyetli / açık, güzel, elverişli
+gorunus-beden	pale	soluk, solgun, açık || zayıf, hafif
+gorunus-beden	wrinkle	kırışıklık, buruşukluk || pürüz, aksaklık, ufak so
+gorunus-beden	height	yükseklik || boy
+gorunus-beden	appearance	dış görünüş, görünüm || görünme, ortaya çıkma
+gorunus-beden	look:v=görünmek	görünmek || bakmak, gözlemlemek / aramak, bir şey bulmaya 
+gorunus-beden	muscular	kaslarla ilgili, kas || güçlü, iyi kaslı, kuvvet
+aile-iliskiler	parent	ebeveyn || kaynak, köken, ana
+aile-iliskiler	partner=eş	eş, hayat arkadaşı || iş ortağı
+aile-iliskiler	child	çocuk, genç insan || evlat, soy
+aile-iliskiler	generation=nesil	nesil, kuşak || üretim
+aile-iliskiler	adopt=evlat edinmek	evlat edinmek || kabul etmek, benimsemek
+aile-iliskiler	couple=çift	çift || bir iki, birkaç, çift
+aile-iliskiler	marriage	evlilik, yasal birlik || evlilik kurumu, toplumsa
+aile-iliskiler	engagement=nişan	nişan, nişanlılık || randevu, sözleşme / katılım, iştirak
+aile-iliskiler	relationship	bağ, ilişki, bağlantı || romantik bağ, sevgili il
+aile-iliskiler	date:v	biriyle çıkmak, flört etmek || tarih atmak, tarihlendir
+aile-iliskiler	break up	ayrılmak, ilişkiyi sonlandırma || parçalanmak, kırılmak
+aile-iliskiler	split up	ayrılmak (ilişkiyi bitirmek) || bölünmek, gruplara ayırm
+aile-iliskiler	get along	iyi geçinmek, anlaşmak || idare etmek, yürütmek
+aile-iliskiler	get on=geçinmek	iyi geçinmek, anlaşmak || (otobüse, trene) binmek / ilerlemek, durumu iyi ol / (bir işe) devam etmek
+aile-iliskiler	fall out	(biriyle) bozuşmak, tartışıp k || dökülmek
+aile-iliskiler	make up=barışmak	barışmak || uydurmak / oluşturmak, meydana geti / makyaj yapmak
+aile-iliskiler	bring up	(çocuk) yetiştirmek, büyütmek || (konuyu) açmak, gündeme 
+aile-iliskiler	grow up	büyümek, yetişmek || olgun davranmak
+aile-iliskiler	raise:v=yetiştirmek	büyütmek, yetiştirmek || yükseltmek, artırmak
+aile-iliskiler	single:adj	evli olmayan, bekar || tek, yalnız bir
+aile-iliskiler	engaged	nişanlı || meşgul, bir işe/aktivite / bağlı, kararlı, sorumlul
+aile-iliskiler	birth	doğum, dünyaya gelme || köken, ortaya çıkış
+aile-iliskiler	home	ev, yuva || memleket, vatan
+yiyecek-icecek	food	yiyecek, besin || yemek, yemekler
+yiyecek-icecek	lunch	öğle yemeği || öğle yemeği daveti, yeme
+yiyecek-icecek	egg	yumurta || yumurta, yumurta hücresi
+yiyecek-icecek	beef	sığır eti || sorun, şikayet
+yiyecek-icecek	oil:n=yağ	yemeklik yağ, pişirme yağı || petrol, ham petrol / motor yağı, makine yağı
+yiyecek-icecek	pepper	karabiber || biber (sebze)
+yiyecek-icecek	honey	bal || sevgili, canım
+yiyecek-icecek	jam	reçel, marmelat || trafik sıkışıklığı, tıka
+yiyecek-icecek	cereal	tahıl || kahvaltılık gevrek
+yiyecek-icecek	peach	şeftali || harika biri, çok tatlı k
+yiyecek-icecek	bean	fasulye || çekirdek, tohum
+yiyecek-icecek	nut	kuruyemiş || somun / çılgın, deli
+yiyecek-icecek	cookie	kurabiye, bisküvi || çerez
+yiyecek-icecek	juice	meyve suyu || şarj, elektrik, güç
+yiyecek-icecek	soda	gazlı içecek || sodyum karbonat
+yiyecek-icecek	sweet:adj	şekerli, tatlı || hoş, sevimli, çekici
+yiyecek-icecek	sour	ekşi || limoni, bozuk, gergin
+yiyecek-icecek	bitter=acı	acı, buruk || hırçın, içerlemiş, kırgı
+yiyecek-icecek	salty	tuzlu || küskün, alaycı
+yiyecek-icecek	fresh	taze, yeni, henüz bozulmamış || dinç, zinde, yeni
+yiyecek-icecek	healthy=sağlığa yararlı	sağlıklı, sağlığa yararlı || sağlıklı, hastalıksız
+yiyecek-icecek	raw	pişmemiş, çiğ || işlenmemiş, ham
+yiyecek-icecek	cafe	kafe, kahvehane || kafe, kafeterya
+yiyecek-icecek	bill:n=fatura	fatura, ödeme belgesi || tasarı / banknot, kağıt para
+yiyecek-icecek	tip:n=bahşiş	bahşiş || ipucu, tavsiye / uç, sivri kısım
+yiyecek-icecek	order:v	sipariş etmek || emretmek, emir vermek / düzenlemek, sıralamak
+yiyecek-icecek	taste:v	tatmak, lezzetini algılamak || tadında olmak, belirli b / denemek, bir şeyin tadın
+yiyecek-icecek	chew	çiğnemek || düşünmek, üzerine kafa y
+yiyecek-icecek	bite	lokma, atıştırmalık || ısırık, diş izi
+yemek-yapma	cook:v	yemek hazırlamak, pişirmek || hileli düzenlemek
+yemek-yapma	stove	ocak, yemek pişirme ocağı || soba, ısıtma cihazı
+yemek-yapma	plate	yemek tabağı || metal levha
+yemek-yapma	cup=bardak	bardak, fincan || kupa
+yemek-yapma	glass:n=bardak	içecek kabı, bardak || cam, şeffaf sert madde
+yemek-yapma	cut:v	kesmek, doğramak || azaltmak, kısmak, düşürm
+yemek-yapma	roast:v	kızartmak, kavurmak || alay etmek, eleştirmek
+yemek-yapma	heat up	ısınmak || ısıtmak
+yemek-yapma	warm up	ısınmak, ısıtmak || (spordan önce) ısınma ha
+yemek-yapma	stir:v	karıştırmak, çalkalamak || hareket ettirmek, kışkır
+yemek-yapma	add	eklemek, toplamak || artırmak, ek bir şey kat
+yemek-yapma	freeze:v	katılaşmak, donmak || durdurmak, askıya almak
+yemek-yapma	taste:v	tatmak, lezzetini algılamak || tadında olmak, belirli b / denemek, bir şeyin tadın
+yemek-yapma	weigh	ağırlığında olmak, gelmek || ölçmek, tartmak / değerlendirmek, kıymetin
+yemek-yapma	whisk	çırpıcı, çırpma teli || hızlı hareket, savuruş
+yemek-yapma	steam:v=buharda pişirmek	buharda pişirmek || buhar çıkarmak, buhar ür
+yemek-yapma	grate	rendelemek || rahatsız etmek, sinirlen
+yemek-yapma	spread:v	yaymak, sürmek || yayılmak, genişlemek
+yemek-yapma	wash:v	yıkamak, temizlemek || vurmak, süpürmek, akmak
+yemek-yapma	dish:n=yemek	yemek, tabakta sunulan yemek || tabak, çanak
+yemek-yapma	spice:n	baharat, çeşni || heyecan, canlılık
+yemek-yapma	raw	pişmemiş, çiğ || işlenmemiş, ham
+yemek-yapma	tender:adj	hassas, ağrıyan || nazik, yumuşak
+ev-esyalar	home	ev, yuva || memleket, vatan
+ev-esyalar	house	konut, ev || meclis, yasama organı
+ev-esyalar	flat:n=daire	daire, apartman dairesi || düz alan, ova
+ev-esyalar	room	oda, salon, bölüm || yer, boşluk, imkan
+ev-esyalar	hall=koridor	koridor, geçit || toplantı salonu, büyük o
+ev-esyalar	yard=avlu	avlu, bahçe || yarda
+ev-esyalar	garage	garaj || tamirhane, oto servis
+ev-esyalar	floor	kat, seviye || zemin, taban
+ev-esyalar	bed	yatak, karyola || yatak, nehir tabanı, tar
+ev-esyalar	chair	sandalye, oturma aracı || başkan, kürsü başkanı
+ev-esyalar	table	masa, sehpa || tablo, veri tablosu
+ev-esyalar	wardrobe	gardırop || kostüm koleksiyonu
+ev-esyalar	drawer	çekmece || çizer, ressam
+ev-esyalar	mirror	ayna || yansıma
+ev-esyalar	light:n=ışık	lamba, fener, ışık kaynağı || trafik ışığı
+ev-esyalar	sheet	yaprak, tabaka, kağıt || çarşaf, yatak örtüsü / tabaka, örtü, levha
+ev-esyalar	shower=duş	duş || sağanak / hediye partisi, kutlama 
+ev-esyalar	bath	küvet, banyo || hamam, kaplıca
+ev-esyalar	tap	musluk, musluk başlığı || hafif dokunuş, hafif vur
+ev-esyalar	iron:n=ütü	ütü || demir / golf sopası
+ev-esyalar	key	anahtar || ton
+ev-esyalar	rent:n=kira	kira || yırtık, delik
+ev-esyalar	tidy	düzenli, tertipli || kayda değer, önemli ölçü
+ev-esyalar	clean:adj	kirli olmayan, temiz || ahlaki açıdan kusursuz, 
+ev-esyalar	comfortable	rahat, konforlu || rahat, içi rahat, huzurl
+ev-esyalar	dust:v	toz almak, temizlemek || toz serpmek, kaplamak
+ev-esyalar	do up	iliklemek, bağlamak, kapamak || (evi) yenilemek, onarmak
+giyim-moda	fashion	stil, moda, giyim tarzı || yöntem, biçim, şekil
+giyim-moda	style	moda, giyim tarzı || yöntem, biçim / edebi üslup, tarz
+giyim-moda	jumper	kazak, süveter || atlayıcı
+giyim-moda	coat	palto, kaban, mont || kaplama, tabaka
+giyim-moda	suit:n=takım elbise	takım elbise || dava, hukuki işlem / seri, renk
+giyim-moda	pants=pantolon	pantolon || külot, don
+giyim-moda	shoe	ayakkabı || at nalı
+giyim-moda	boot=çizme	çizme, bot || bagaj / bilgisayar başlatma
+giyim-moda	trainer	spor ayakkabısı || eğitmen, antrenör / antrenman cihazı, eğitim
+giyim-moda	cap=şapka	şapka || kapak / üst sınır, limit
+giyim-moda	belt	kemer || konveyör kayışı / bölge, kuşak
+giyim-moda	tie:n=kravat	kravat || bağ, ilişki / beraberlik, eşitlik
+giyim-moda	pocket	cep || küçük alan, bölge
+giyim-moda	button	düğme, giysi bağlayıcısı || düğme, kontrol elemanı
+giyim-moda	zip	fermuar || sıfır, hiç, hiç bir şey
+giyim-moda	collar	gömlek yakası || hayvan tasması
+giyim-moda	size=giyim bedeni	giyim bedeni, kıyafet ölçüsü || boyut, ölçü
+giyim-moda	ring:n=yüzük	yüzük || çan sesi, zil sesi / çember, daire
+giyim-moda	watch:n=kol saati	kol saati, saat || nöbet, vardiya
+giyim-moda	wear	giymek, takmak || aşınmak, yıpranmak
+giyim-moda	put on	giymek, takmak || (cihazı) açmak, çalıştır / (kilo) almak / (gösteri) sahnelemek, dü
+giyim-moda	take off	kıyafet çıkarmak, soyunmak || havalanmak, kalkmak
+giyim-moda	dress:v	giydirmek, giyinmek || hazırlamak, düzenlemek
+giyim-moda	change:v	değiştirmek, farklı hâle getir || değiş tokuş yapmak, taka
+giyim-moda	fit:v	uymak, sığmak || uygun olmak, karşılamak
+giyim-moda	match:v	eşleşmek, uyum sağlamak || boy ölçüşmek, denk gelme
+giyim-moda	casual:adj	gündelik, resmi olmayan || tesadüfi, rastgele
+giyim-moda	smart=şık	şık, moda, tarz sahibi || akıllı, zeki / şiddetli, sert, can yakı
+giyim-moda	loose	gevşek, sıkı olmayan || serbest, kısıtlanmamış
+giyim-moda	cotton	pamuk lifi, pamuk kumaşı || pamuk, pamuk bitkisi
+giyim-moda	model:n=manken	manken, model || maket, minyatür / örnek, timsal, numune
+giyim-moda	brand	ticaret markası, marka || itibar, imaj
+saglik	health	sağlık, iyi olma durumu || tıp, sağlık bilimi
+saglik	healthy	sağlıklı, hastalıksız || sağlıklı, sağlığa yararl
+saglik	ill	hasta, sağlığı bozulmuş || kötü, zararlı, uygunsuz
+saglik	sick	hasta, rahatsız || harika, çok iyi
+saglik	pain	acı, ağrı || üzüntü, sıkıntı
+saglik	cold:n=nezle	soğuk algınlığı, nezle || soğukluk, düşük sıcaklık
+saglik	temperature	ateş || sıcaklık, derece
+saglik	injure	yaralamak, sakatlamak || zarara uğratmak, incitme
+saglik	cut:n	kesik, yara || kesinti, indirim
+saglik	broken	hasar görmüş, kırık, parçalanm || bozuk, çalışmayan / tutulmamış, bozulmuş, ih
+saglik	blood	vücut sıvısı, kan || soy, kan bağı
+saglik	virus	virüs || bilgisayar virüsü
+saglik	cancer	kanser, kötü huylu tümör || yengeç burcu
+saglik	stroke:n=felç	inme, felç || vuruş, darbe, kulaç
+saglik	treatment	tedavi, bakım || davranış biçimi, muamele
+saglik	treat:v=tedavi etmek	tedavi etmek, iyileştirmek || ısmarlamak, ikram etmek / davranmak, muamelede bul
+saglik	medicine	ilaç, tedavi edici madde || tıp bilimi, tıbbi uygula
+saglik	drug:n=ilaç	ilaç, tıbbi madde || uyuşturucu, yasa dışı ma
+saglik	pill	tablet, hap || doğum kontrol hapı
+saglik	tablet	hap || tablet, tablet bilgisaya / tablet, yazıt, kitabe
+saglik	operation	cerrahi müdahale, ameliyat || işletme, faaliyete geçir / matematiksel işlem, arit
+saglik	surgery	ameliyat, cerrahi müdahale || cerrahi dalı, cerrahi bi
+saglik	appointment	randevu, görüşme || görev, atama
+saglik	recover	iyileşmek, sağlığına kavuşmak || geri kazanmak, tekrar el
+saglik	recovery	iyileşme, toparlanma || toparlanma, düzelme, can
+saglik	rest	ara, dinlenme || kalan, geri kalan
+saglik	fit:adj	sağlıklı, formda || uygun, yerinde
+saglik	fitness	sağlık, kondisyon || uygunluk
+saglik	stress	psikolojik baskı, gerginlik || fiziksel gerilim, basınç
+saglik	depression	depresyon, ruhsal bozukluk || ekonomik bunalım, buhran / çöküntü, alçak bölge
+saglik	breath	nefes, soluk || bir nebze, esinti, kırın
+saglik	get over	atlatmak, iyileşmek || (sorunu) aşmak
+okul-egitim	school	okul, eğitim kurumu || balık sürüsü
+okul-egitim	class	ders, ders saati || sınıf, öğrenci grubu / sınıf, toplumsal katman
+okul-egitim	lesson	ders, öğretim bölümü || ibret, tecrübeden çıkarı
+okul-egitim	course	ders, program, müfredat || rota, gidişat, akış yönü
+okul-egitim	subject	ders || konu, mesele / özne
+okul-egitim	schedule	zaman çizelgesi, program || plan, düzenleme
+okul-egitim	term=süre	süre, dönem || şartlar, koşullar / terim
+okul-egitim	pupil	öğrenci || göz bebeği
+okul-egitim	principal:n=müdür	okul müdürü, baş öğretmen || anapara, asıl tutar
+okul-egitim	study	öğrenim, ders çalışma || araştırma, inceleme / çalışma odası, ofis
+okul-egitim	practice	alıştırma, uygulama || meslek, iş yeri
+okul-egitim	revise	(sınava) tekrar etmek, çalışma || gözden geçirmek, düzeltm
+okul-egitim	assignment	ödev, görev || atanma, tahsis
+okul-egitim	essay	deneme, akademik yazı || makale, edebi deneme
+okul-egitim	report	yazılı bildirim, rapor || haber, haber raporu
+okul-egitim	presentation	sunum, konuşma || gösterim, sergi
+okul-egitim	test	sınav, değerlendirme || deneme, deney
+okul-egitim	grade	not, sınıf, derece || eğim, yamaç
+okul-egitim	mark:n=not	puan, not || işaret, damga / hedef, amaç
+okul-egitim	fail	başarısız olmak || yapmayı ihmal etmek
+okul-egitim	degree	üniversite derecesi, diploma || seviye, derece, ölçü / derece
+okul-egitim	certificate	belge, resmi evrak || sertifika, nitelik belge
+okul-egitim	graduate:v	mezun olmak || bir üst seviyeye geçmek
+okul-egitim	pen	kalem || çiftlik ahırı, hayvan kü
+okul-egitim	ruler	cetvel, ölçü aleti || hükümdar, lider
+okul-egitim	board	tahta, levha || yönetim kurulu / yemek, iaşe
+okul-egitim	break:n=ara	ara, duraklama || kırık, çatlak
+okul-egitim	lecture	ders, konferans, sunum || uyarı, azarlama
+okul-egitim	history	tarih, geçmiş || tarih bilimi
+okul-egitim	literature	literatür, kaynakça || yazılı eserler, edebiyat
+okul-egitim	language	dil, konuşma sistemi || programlama dili
+okul-egitim	attend	katılmak, bulunmak || bakmak, ilgilenmek, göz 
+okul-egitim	absent	yok, bulunmayan || dalgın, düşünceli
+okul-egitim	mistake	hata, yanlışlık || yanlış anlama, hatalı ka
+okul-egitim	explain	açıklamak, anlatmak || gerekçe sunmak, gerekçel
+okul-egitim	question	soru, sorgu || şüphe, kuşku
+okul-egitim	translate	bir dilden başka dile aktarmak || dönüştürmek, aktarmak
+okul-egitim	read	okumak, metni anlamak || yorumlamak, anlam çıkarm
+okul-egitim	write	yazmak || kayda geçirmek, kaydetme
+okul-egitim	spell=hecelemek	yazmak, hecelemek || anlamına gelmek, ifade e
+okul-egitim	count	saymak, numaraları belirtmek || önem taşımak, önemli olm
+okul-egitim	calculate	hesaplamak, bulmak || planlamak, stratejik ola
+is-meslekler	job	iş, meslek, pozisyon || görev, iş, sorumluluk
+is-meslekler	work:n	iş, görev || çalışma
+is-meslekler	profession	meslek, iş, kariyer || beyan, ikrar, itiraf
+is-meslekler	occupation	meslek, iş, uğraş || işgal, bir bölgeyi ele g
+is-meslekler	staff	çalışan, personel || çubuk, baston
+is-meslekler	worker	işçi || çalışan
+is-meslekler	company=işletme	işletme, firma, şirket || arkadaşlık, beraberlik,  / bir grup insan, birlik
+is-meslekler	business	ticaret, iş, faaliyet || iş, görev, sorumluluk / şirket, kurum
+is-meslekler	department	bölüm || bakanlık, daire
+is-meslekler	interview	görüşme, röportaj || soru-cevap oturumu, müla
+is-meslekler	application	uygulama, program || başvuru, müracaat
+is-meslekler	apply=başvurmak	başvurmak, talepte bulunmak || uygulamak, kullanmak / geçerli olmak, uygulanab
+is-meslekler	hire	istihdam etmek || kiralamak
+is-meslekler	employ	istihdam etmek, işe almak || kullanmak, faydalanmak
+is-meslekler	fire:v=kovmak	işten çıkarmak, kovmak || ateş etmek, silah kullan
+is-meslekler	promote=terfi	terfi ettirmek, yükseltmek || teşvik etmek, destekleme / tanıtmak, reklamını yapm
+is-meslekler	promotion	terfi, yükselme || tanıtım, reklam kampanya
+is-meslekler	shift:n=vardiya	vardiya, iş değişimi || değişim, kayma
+is-meslekler	qualification	yeterlilik, nitelik || çekince, sınırlama, şerh
+is-meslekler	training	eğitim, öğretim || egzersiz, spor antrenman
+is-meslekler	task	görev, sorumluluk || ödev, çalışma
+is-meslekler	duty	görev, sorumluluk || vergi
+is-meslekler	engineer	mühendis || makinist
+is-meslekler	pilot	uçak pilotu, havacılık çalışan || televizyon, radyo progra
+is-meslekler	cleaner=temizlikçi	temizlikçi || temizlik maddesi
+sanat-eglence	art	sanat || ustalık, beceri
+sanat-eglence	painter=ressam	ressam || boyacı
+sanat-eglence	picture	görsel, fotoğraf, resim || tasvir, betimleme
+sanat-eglence	draw	çizmek, resim yapmak || çekmek, bir şeyi bir yer
+sanat-eglence	paint:v	boyamak, renk vermek || resim yapmak, sanat eser
+sanat-eglence	gallery	sanat galerisi || balkon, asma kat, galeri
+sanat-eglence	exhibition	sergi, sergileme etkinliği || gösteriş, aleni sergilem
+sanat-eglence	song	şarkı, beste || ezgi, türkü, koşuk
+sanat-eglence	sing	şarkı söylemek, sesli müzik ür || ötmek, şakımak
+sanat-eglence	band	müzik grubu || şerit, bant
+sanat-eglence	concert	konser || uyum, iş birliği
+sanat-eglence	album	albüm || fotoğraf albümü
+sanat-eglence	instrument=müzik aleti	müzik aleti || araç, alet
+sanat-eglence	pop:n	pop müziği, popüler müzik || pat sesi, patlama sesi
+sanat-eglence	classical	klasik, antik Yunan-Roma dönem || klasik, geleneksel, zama
+sanat-eglence	play:n=oyun	oyun, sahne eseri || hamle, oyun, pozisyon
+sanat-eglence	stage	sahne || aşama, evre
+sanat-eglence	performance	gösteri, sahneleme || verim, başarı, sonuç
+sanat-eglence	perform=sahnelemek	sahnelemek, bir gösteri sergil || gerçekleştirmek, yerine 
+sanat-eglence	show:n=sergi	sergi, sergileme || program, televizyon yayı / performans, sahne göster
+sanat-eglence	film	film, sinema yapımı, hareketli || ince tabaka, kaplama
+sanat-eglence	scene	sahne, olay yeri || manzara, doğa görüntüsü
+sanat-eglence	character=karakter	karakter, kahraman || yazı işareti, harf, semb
+sanat-eglence	plot:n=hikâye	hikâye, kurgu || arsa, arazi parçası / plan, komplo
+sanat-eglence	script	senaryo, metin || betik, komut dosyası
+sanat-eglence	drama	tiyatro oyunu, sahne eseri || gerilim, olay, dram
+sanat-eglence	animation=çizgi film	çizgi film, hareketli görüntü || canlılık / animasyon
+sanat-eglence	star:n=yıldız	yıldız || ünlü kişi, yıldız / derecelendirme işareti, 
+sanat-eglence	festival	kutlama, şenlik || bayram, tatil dönemi
+sanat-eglence	ticket	bilet || ceza makbuzu, trafik cez
+sanat-eglence	story	hikâye, öykü, anlatı || kat, katman, bina katı
+sanat-eglence	literature	literatür, kaynakça || yazılı eserler, edebiyat
+sanat-eglence	craft=beceri	beceri, el sanatları, zanaat || araç, gemi, tekne / meslek, iş, uğraş
+sanat-eglence	design=görünüm	görünüm, stil || tasarım, plan
+sanat-eglence	entertain	eğlendirmek, hoşnut etmek || misafir ağırlamak, ikram
+spor	sport	spor, atletik etkinlik || eğlence, şaka
+spor	surfing	dalga sörfü, sörf yapma || internette gezinme
+spor	race:n=yarış	yarış, rekabet || etnik grup, ırk
+spor	match:n=müsabaka	yarışma, müsabaka || eş, uyum, çift / kibrit çubuğu
+spor	game:n=oyun	oyun, eğlence || av hayvanı, av
+spor	player	oyuncu, katılımcı || çalar, oynatıcı
+spor	coach:n=antrenör	antrenör, koç || otobüs, uzun mesafe taşı
+spor	fan:n=taraftar	hayran, taraftar || vantilatör, fan, yelpaze
+spor	captain=spor takımının kaptanı	spor takımının kaptanı, lider  || gemi kaptanı, denizci li / yüzbaşı, deniz albayı
+spor	champion	şampiyon, birincilik kazanan || savunucu, bir konunun de
+spor	league	spor ligi, kulüpler birliği || birlik, ittifak
+spor	competition	yarışma, müsabaka || rekabet, kıyasıya mücade
+spor	score:v	puan almak, sayı kazanmak || çizmek, çentik açmak
+spor	score:n	puan, skor || müzik parçası, film müzi
+spor	goal	gol, kale || amaç, hedef / niyet, maksat
+spor	point:n=puan	puan || nokta / ana fikir, konu, mesele
+spor	win	kazanmak, galip gelmek || kazanmak, elde etmek
+spor	draw:n=beraberlik	beraberlik, eşit sonuç || çekiliş, kura
+spor	beat:v=yenmek	yenmek, mağlup etmek || vurmak, dövmek / atmak, çarpmak
+spor	record:n=rekor	rekor || plak / kayıt
+spor	pitch:n=saha	saha || zift, katran / ton
+spor	court:n=spor sahası	spor sahası, oyun alanı || mahkeme, yargı yeri
+spor	pool=havuz	havuz || kaynak havuzu, birikim / bilardo, bilardo oyunu
+spor	ball	top, küre, yuvarlak nesne || balo
+spor	racket=raket	raket || gürültü, ses kirliliği / haraç çarkı, yasa dışı i
+spor	bat:n=sopa	sopa, raket || yarasa
+spor	throw	fırlatmak, atmak || düşürmek, devirmek
+spor	catch	yakalamak, tutmak || anlamak, kavramak
+spor	hit	vuruş, darbe || başarı, popüler şarkı/fi
+spor	run	koşmak, hızlı yürümek || yürütmek, işletmek / akışını sürdürmek, devam
+spor	jump	atlama, sıçrama || ani artış, yükseliş
+spor	train:v=antrenman yapmak	antrenman yapmak || birini eğitmek
+spor	training=egzersiz	egzersiz, spor antrenmanı || eğitim, öğretim
+spor	fitness	sağlık, kondisyon || uygunluk
+spor	fit:adj	sağlıklı, formda || uygun, yerinde
+spor	warm up	ısınmak, ısıtmak || (spordan önce) ısınma ha
+spor	work out	spor yapmak, antrenman yapmak || (sonunda) anlamak, çözme / (iyi) sonuçlanmak, yolun / hesaplamak
+spor	professional	mesleki, işine ait || uzman, yetkin
+spor	tie:n=beraberlik	beraberlik, eşitlik || bağ, ilişki / kravat
+spor	penalty	penaltı || para cezası
+bos-zaman	interest	merak, ilgi || faiz, getiri / çıkar, menfaat
+bos-zaman	enjoy	zevk almak, keyif duymak || eğlenmek, hoş vakit geçi
+bos-zaman	rest	ara, dinlenme || kalan, geri kalan
+bos-zaman	play:v	oynamak, eğlenmek || müzik aleti çalmak
+bos-zaman	game	oyun, eğlence || av hayvanı, av
+bos-zaman	puzzle=bulmaca	bulmaca || muamma, gizem
+bos-zaman	collect	toplamak, almak, gidip almak || zaman içinde biriktirmek
+bos-zaman	collection	koleksiyon || toplama, biriktirme eyle / derleme, antoloji
+bos-zaman	read	okumak, metni anlamak || yorumlamak, anlam çıkarm
+bos-zaman	listen	dinlemek || söz dinlemek, kulak verm
+bos-zaman	film	film, sinema yapımı, hareketli || ince tabaka, kaplama
+bos-zaman	concert	konser || uyum, iş birliği
+bos-zaman	party	kutlama, eğlence, davetli topl || siyasi grup, parti / hukuki taraf
+bos-zaman	camp	geçici konaklama yeri, çadır k || yaz kampı, gençlik kampı / kamp
+bos-zaman	hike=yürüyüş	yürüyüş, uzun yürüyüş || artış, zam
+bos-zaman	walk=gezinti	gezinti || yürüyüş
+bos-zaman	sing	şarkı söylemek, sesli müzik ür || ötmek, şakımak
+bos-zaman	craft=el sanatları	beceri, el sanatları, zanaat || araç, gemi, tekne / meslek, iş, uğraş
+bos-zaman	club	sosyal kulüp, dernek || sopa, cop, gürz / gece kulübü, dans salonu
+bos-zaman	member	üye || bileşen, parça
+bos-zaman	join	katılmak, üye olmak || bağlamak, birleştirmek
+bos-zaman	festival	kutlama, şenlik || bayram, tatil dönemi
+bos-zaman	trip	gezi, seyahat || düşme, tökezleme
+bos-zaman	go out	dışarı çıkmak, eğlenmeye çıkma || (biriyle) çıkmak, sevgil / (ışık, ateş) sönmek
+bos-zaman	take up	(bir hobiye, işe) başlamak || (yer, zaman) kaplamak, a / (teklifi) kabul etmek
+bos-zaman	gallery	sanat galerisi || balkon, asma kat, galeri
+seyahat	trip	gezi, seyahat || düşme, tökezleme
+seyahat	adventure	macera, heyecanlı yolculuk || tehlikeli girişim, riskl
+seyahat	ticket	bilet || ceza makbuzu, trafik cez
+seyahat	reservation	rezervasyon, ön rezervasyon || çekince, şüphe
+seyahat	baggage	bagaj, eşya || psikolojik yük, geçmişte
+seyahat	map	harita || şema
+seyahat	guide	rehber, yol gösteren kişi || rehber kitap, kılavuz
+seyahat	accommodation	konaklama, konukevi, konaklama || uyum, düzenleme, ayarlam
+seyahat	room	oda, salon, bölüm || yer, boşluk, imkan
+seyahat	single:adj=tek	tek, yalnız bir || evli olmayan, bekar
+seyahat	double:adj=çift	çift, iki kişilik || iki katı, iki misli
+seyahat	reception	resepsiyon || karşılama, karşılama tör / çekim, sinyal gücü, alış
+seyahat	check out	(otelden) çıkış yapmak || incelemek, kontrol etmek
+seyahat	resort	tatil yeri || başvuru, çare, sığınak
+seyahat	flight=uçuş	uçuş || kaçış
+seyahat	plane	uçak || düzlem / düzey, seviye
+seyahat	gate	kapı, geçit || biniş kapısı
+seyahat	leave	ayrılmak, gitmek || bırakmak, teslim etmek
+seyahat	local:adj	yerel, bölgesel || yerli, bölgeye ait
+seyahat	culture	kültür || mikroorganizma yetiştirm
+seyahat	set off	yola çıkmak || (alarmı) çalıştırmak, (b / tetiklemek, başlatmak
+seyahat	set out	yola koyulmak || (amacıyla) işe girişmek, / açıkça ortaya koymak, be
+seyahat	get away	kaçmak, kurtulmak || (tatile) gitmek, uzaklaş
+seyahat	pack:v	toplamak, bavul hazırlamak, pa || sıkıştırmak, yer tasarru
+seyahat	unpack	paketten çıkarmak, açmak || çözümlemek, ayrıntılı in
+ulasim	vehicle	taşıma aracı, ulaşım aracı || hukuki araç, finansal ar
+ulasim	coach:n=otobüs	otobüs, uzun mesafe taşıma ara || antrenör, koç
+ulasim	underground	metro || yeraltı direnişi, gizli 
+ulasim	van	yük taşıma aracı, kamyonet || yük vagonu, bagaj vagonu
+ulasim	plane	uçak || düzlem / düzey, seviye
+ulasim	ship	gemi || uzay aracı
+ulasim	pilot	uçak pilotu, havacılık çalışan || televizyon, radyo progra
+ulasim	conductor=kondüktör	kondüktör, biletçi || orkestra şefi / iletken
+ulasim	road	yol || kariyer, yaşam yolu
+ulasim	traffic	araç akışı, yol trafiği || ticaret, nakliye, taşıma
+ulasim	station	istasyon, durak || radyo/televizyon istasyo / askeri üs, karargâh
+ulasim	platform	yükseltilmiş zemin, platform || yazılım ortamı, platform / siyasi program, parti ma
+ulasim	port	liman, iskele || bağlantı noktası / porto şarabı, porto
+ulasim	ticket	bilet || ceza makbuzu, trafik cez
+ulasim	crash:n	çarpışma, kaza || ani bir çöküş, çarpma
+ulasim	fly	uçmak || uçakla seyahat etmek
+ulasim	cycle=bisiklet	bisiklet || dönüş, döngü, periyot
+ulasim	walk=gezinti	gezinti || yürüyüş
+ulasim	get on	(otobüse, trene) binmek || iyi geçinmek, anlaşmak / ilerlemek, durumu iyi ol / (bir işe) devam etmek
+ulasim	get off	(otobüsten, trenden) inmek || (işten) çıkmak, ayrılmak / (cezadan) kurtulmak, haf
+ulasim	get in	(arabaya) binmek || (eve, bir yere) varmak,  / (okula, kuruma) kabul ed
+ulasim	get out	dışarı çıkmak, kaçmak || (arabadan) inmek / (haber, sır) yayılmak, d
+ulasim	pick up	almak, toplamak || öğrenmek, kavramak / iyileşmek, toparlanmak
+ulasim	drop off	(birini, bir şeyi) bırakmak || uyuyakalmak / azalmak, düşmek
+ulasim	take off=havalanmak	havalanmak, kalkmak || kıyafet çıkarmak, soyunm
+ulasim	land:v=yere inmek	yere inmek || elde etmek, kapmak / varmak, ayak basmak
+ulasim	miss:v=kaçırmak	kaçırmak, yakalayamamak || özlemek, hasret duymak
+ulasim	catch:v=yakalamak	yakalamak, tutmak || anlamak, kavramak
+ulasim	late	geç, zamanında gelmemiş || vefat etmiş, hayatta olm / sonları, sonlarındaki, g
+ulasim	license	izin, ruhsat || lisans
+sehir-yerler	capital	başkent || sermaye / büyük harf
+sehir-yerler	neighborhood	mahalle || çevre, yakın çevre
+sehir-yerler	area	bölge, bölge parçası || alan
+sehir-yerler	district	bölge, ilçe || seçim bölgesi, oy bölges
+sehir-yerler	road	yol || kariyer, yaşam yolu
+sehir-yerler	avenue	cadde, bulvar || yöntem, yol, imkan
+sehir-yerler	square=şehir meydanı	şehir meydanı, açık alan || kare
+sehir-yerler	building	bina, yapı || inşaat, yapım süreci
+sehir-yerler	block=ada	blok, ada, iki sokak arası || küp, blok, parça / engel, tıkanıklık
+sehir-yerler	house	konut, ev || meclis, yasama organı
+sehir-yerler	market	pazar, alışveriş yeri || piyasa, finansal piyasa
+sehir-yerler	store=mağaza	mağaza, alışveriş yeri || depo, stok
+sehir-yerler	bank:n=banka	banka, finans kurumu || nehir kıyısı, sahil
+sehir-yerler	school	okul, eğitim kurumu || balık sürüsü
+sehir-yerler	gallery=sanat galerisi	sanat galerisi || balkon, asma kat, galeri
+sehir-yerler	cafe	kafe, kahvehane || kafe, kafeterya
+sehir-yerler	bar	bar || kalıp, çubuk
+sehir-yerler	church	ibadet yeri, kilise binası || hristiyan topluluğu, kil
+sehir-yerler	temple=tapınak	tapınak || şakak
+sehir-yerler	tower	yüksek yapı, kule || gözlem kulesi, gözetleme
+sehir-yerler	station	istasyon, durak || radyo/televizyon istasyo / askeri üs, karargâh
+sehir-yerler	map	harita || şema
+sehir-yerler	direction	yön, istikamet || talimat, yönlendirme
+sehir-yerler	right:n=sağ taraf	sağ, sağ taraf || hak, hakkı / doğru, haklılık
+sehir-yerler	straight	düz, bükülmemiş || dürüst, doğru
+sehir-yerler	busy	meşgul, bir işi/planı olan || yoğun, hareketli
+sehir-yerler	local	yerel, bölgesel || yerli, bölgeye ait
+sehir-yerler	sign:n=işaret	belirti, işaret || sembol
+sehir-yerler	crossing=geçiş	geçiş, kavşak || yaya geçidi, geçit
+alisveris-para	store=mağaza	mağaza, alışveriş yeri || depo, stok
+alisveris-para	market	pazar, alışveriş yeri || piyasa, finansal piyasa
+alisveris-para	pay=ödemek	ödemek, para vermek || dikkat etmek, ilgi göste
+alisveris-para	spend	para harcamak, harcama yapmak || zaman harcamak, vakit ge
+alisveris-para	cost:v	mal olmak || mal olmak, gerektirmek
+alisveris-para	cost:n	maliyet || bedel
+alisveris-para	price	maliyet, fiyat || bedel
+alisveris-para	cheap	ucuz, düşük maliyetli || kalitesiz, adi, bayağı
+alisveris-para	sale	satış, alım-satım işlemi || indirimli satış, kampany
+alisveris-para	bargain:n=fırsat	fırsat, ucuz ürün || anlaşma, sözleşme
+alisveris-para	bill:n=fatura	fatura, ödeme belgesi || tasarı / banknot, kağıt para
+alisveris-para	change:n=para üstü	bozuk para, para üstü || değişim, dönüşüm
+alisveris-para	note=kağıt para	kağıt para, banknot || kısa yazılı kayıt, not / müzik notası, ses
+alisveris-para	money	para, nakit || servet, zenginlik
+alisveris-para	pound	ingiliz sterlini || pound, libre / hayvan barınağı
+alisveris-para	bank:n=banka	banka, finans kurumu || nehir kıyısı, sahil
+alisveris-para	account	hesap, banka hesabı, mali kayı || rapor, açıklama / kullanıcı hesabı, profil
+alisveris-para	save:v=biriktirmek	tasarruf etmek, biriktirmek || kurtarmak, korumak
+alisveris-para	debt	borç || borç, vefa borcu, minnet
+alisveris-para	budget:n	bütçe, mali plan || bütçe, ayrılan para mikt
+alisveris-para	rich	zengin, varlıklı || lezzetli, yoğun
+alisveris-para	poor	fakir, yoksul || zayıf, yetersiz, düşük / kötü, düşük kalitede
+alisveris-para	return:v=iade etmek	geri vermek, iade etmek || geri dönmek, tekrar gelm
+alisveris-para	exchange:v	takas etmek, değiş tokuş yapma || değiştirmek, yenisiyle d
+alisveris-para	deliver	teslim etmek, ulaştırmak || söylemek, sunmak / kurtarmak, özgür kılmak
+alisveris-para	delivery	teslimat, sevk || doğum, doğum süreci
+alisveris-para	order:v=sipariş	sipariş etmek || emretmek, emir vermek / düzenlemek, sıralamak
+alisveris-para	trolley=alışveriş arabası	alışveriş arabası, el arabası, || tramvay, sokak arabası
+alisveris-para	line=kuyruk	kuyruk, sıra || çizgi, hat
+alisveris-para	size=giyim bedeni	giyim bedeni, kıyafet ölçüsü || boyut, ölçü
+alisveris-para	brand	ticaret markası, marka || itibar, imaj
+alisveris-para	product	ürün, mal, nesne || sonuç, netice
+alisveris-para	tax	vergi || yük, sorumluluk
+alisveris-para	value	değer, fiyat || önem, kıymet / ilkeler, değerler
+alisveris-para	worth	değer, yapmaya değer || değerinde, tutarında
+alisveris-para	pay back	(borcu) geri ödemek || (birinden) intikam almak
+hava-durumu	season	mevsim || sezon
+hava-durumu	spring:n=bahar	bahar || yay / kaynak
+hava-durumu	fall:n=sonbahar	sonbahar || düşme, düşüş / çöküş, yıkım
+hava-durumu	sun	güneş, yıldız || gün ışığı, aydınlık
+hava-durumu	shower:n=sağanak	sağanak || duş / hediye partisi, kutlama 
+hava-durumu	storm	fırtına, şiddetli yağış || kargaşa, ayaklanma
+hava-durumu	icy	buzlu || soğuk, mesafeli
+hava-durumu	frost=ayaz	don, ayaz || kırağı, don
+hava-durumu	wind	hava akımı, rüzgar || bükülme, dolanma, kıvrım
+hava-durumu	temperature	ateş || sıcaklık, derece
+hava-durumu	degree==derece	derece || üniversite derecesi, dip / seviye, derece, ölçü
+hava-durumu	hot	sıcak || baharatlı, acı / popüler, çok talep gören
+hava-durumu	warm	ılık, hafif sıcak || samimi, içten
+hava-durumu	cool:adj	serin, soğuk || havalı, moda / sakin, rahat
+hava-durumu	cold:adj	soğuk, düşük sıcaklıkta || soğuk, duygusuz, mesafel
+hava-durumu	wet	ıslak, nemli || yağmurlu, yağışlı
+hava-durumu	dry	ıslak olmayan, nemi olmayan || kurak, susuz, nemi az / sıkıcı, ilgi çekmeyen
+hava-durumu	mild=az şiddetli	az şiddetli || hafif, yumuşak
+hava-durumu	freeze:v	katılaşmak, donmak || durdurmak, askıya almak
+hava-durumu	blow	esmek || üflemek
+hava-durumu	shine:v	parlamak, ışık yaymak || başarılı olmak, öne çıkm
+hava-durumu	clear up=açılmak	(hava) açılmak || toplamak, ortalığı derle / (sorunu, yanlış anlamayı / (hastalık) geçmek, iyile
+hava-durumu	cool down	soğumak, serinlemek || sakinleşmek
+doga	nature	doğa, doğal ortam || öz, karakter, doğa
+doga	natural	doğal, insan yapımı olmayan || doğuştan gelen, içsel
+doga	earth	toprak, yer || dünya, gezegen
+doga	land	toprak, arazi, yeryüzü || ülke, vatan / arsa, mülk
+doga	ground	yer, zemin, toprak || temel, dayanak, esas / topraklama, elektriksel 
+doga	soil	toprak, yer kabuğu || kir, çamur
+doga	jungle	cangıl, balta girmemiş orman,  || karmaşa, kargaşa ortamı,
+doga	wood:n=ormanlık	ormanlık alan || ahşap, tahta, odun
+doga	plant:n	bitki || fabrika, tesis
+doga	branch	dal || şube
+doga	root:n	kök, kök organı || kaynak, köken
+doga	seed	tohum, çekirdek || kaynak, başlangıç noktas / başlangıç değeri, tohuml
+doga	stream:n	akarsu, dere || akış, sürekli veri akışı
+doga	wave	dalga || el sallama
+doga	field	tarla, arazi || alan, disiplin / spor sahası, oyun alanı
+doga	landscape	manzara, doğa görünümü || manzara resmi, peyzaj ta
+doga	sun	güneş, yıldız || gün ışığı, aydınlık
+doga	star	yıldız || ünlü kişi, yıldız / derecelendirme işareti, 
+doga	space	uzay, gök cismi dışı boşluk || alan, boşluk, yer / zaman aralığı, boşluk
+doga	fire	yangın || ateş
+doga	wild	vahşi, yabani || kontrolsüz, aşırı
+doga	protect	korumak, savunmak || hukuki koruma sağlamak
+doga	season	mevsim || sezon
+doga	grow	büyümek, gelişmek || yetiştirmek, ekmek
+hayvanlar	wild	vahşi, yabani || kontrolsüz, aşırı
+hayvanlar	goose	kaz || aptal, şakacı kişi
+hayvanlar	donkey	eşek || aptal, salak
+hayvanlar	mouse:n=fare	fare || bilgisayar faresi
+hayvanlar	rat	sıçan || ihbarcı
+hayvanlar	whale	balina || harika şey, muazzam şey
+hayvanlar	fly:n=sinek	sinek || fermuar
+hayvanlar	snail	salyangoz || yavaş kişi, tembel insan
+hayvanlar	bat:n=yarasa	yarasa || sopa, raket
+hayvanlar	horn	hayvan boynuzu || araç kornası / korno, boru
+hayvanlar	shell=koruyucu dış kabuk	koruyucu dış kabuk || top mermisi, mermi kovan / komut satırı arayüzü
+hayvanlar	hunt	avlamak, yakalamak || aramak, araştırmak
+zaman	time	zaman || kere, defa, kez / dönem, çağ
+zaman	hour	saat, zaman birimi || çalışma süresi, iş saati
+zaman	day=gün	gün || gündüz
+zaman	spring:n=bahar	bahar || yay / kaynak
+zaman	season	mevsim || sezon
+zaman	date:n=tarih	takvim günü, tarih || hurma / romantik buluşma, randev
+zaman	watch:n=kol saati	kol saati, saat || nöbet, vardiya
+zaman	schedule	zaman çizelgesi, program || plan, düzenleme
+zaman	then	sonra, ardından || o zaman, o sırada
+zaman	late	geç, zamanında gelmemiş || vefat etmiş, hayatta olm / sonları, sonlarındaki, g
+zaman	yet	(olumsuzda) henüz, daha || hâlâ, daha (gelecekte ol
+zaman	still	yine de, hâlâ || daha da, bir de
+zaman	once	bir kez, bir kere || bir zamanlar
+zaman	present:n=şimdiki zaman	şimdiki zaman || hediye
+zaman	period	zaman aralığı, dönem || nokta / ders saati, okul dönemi
+zaman	moment	kısa bir zaman dilimi, an || önemli olay, kritik an
+zaman	while	... sırasında, ... süresince || oysa, -e rağmen
+zaman	since	...'den beri || çünkü
+iletisim-medya	language	dil, konuşma sistemi || programlama dili
+iletisim-medya	speak	konuşmak, söz söylemek || konuşma yapmak, hitabet  / fikir belirtmek, görüş b
+iletisim-medya	tell	söylemek, bildirmek || anlatmak, açıklamak
+iletisim-medya	message	ileti, haber || ana fikir, mesaj
+iletisim-medya	letter=mektup	mektup, yazılı iletişim || harf, alfabe karakteri
+iletisim-medya	call:v=aramak	telefonla birine ulaşmak, aram || isimlendirmek, bir şeye  / toplamak, bir yere davet
+iletisim-medya	respond	yanıt vermek, cevaplamak || tepki vermek, karşılık v
+iletisim-medya	explain	açıklamak, anlatmak || gerekçe sunmak, gerekçel
+iletisim-medya	article=makale	makale || madde, eşya / tanımlık
+iletisim-medya	interview	görüşme, röportaj || soru-cevap oturumu, müla
+iletisim-medya	report	yazılı bildirim, rapor || haber, haber raporu
+iletisim-medya	media	kitle iletişim araçları, medya || ortamlar, araçlar, vasıt
+iletisim-medya	channel	televizyon kanalı, yayın kanal || su kanalı, geçit, akarsu / araç, yol, iletişim yolu
+iletisim-medya	program	yayın programı || program, izlence
+iletisim-medya	follow	takip etmek || uygulamak
+iletisim-medya	press	basın, medya kuruluşu || baskı makinesi, matbaa
+iletisim-medya	signal	işaret, belirti || elektronik sinyal
+iletisim-medya	hang up	(telefonu) kapatmak || (askıya) asmak
+iletisim-medya	speak up	daha yüksek sesle konuşmak || (birini, bir şeyi) savun
+iletisim-medya	point out	belirtmek, dikkat çekmek || (parmakla) göstermek
+iletisim-medya	bring up=konuyu	(konuyu) açmak, gündeme getirm || (çocuk) yetiştirmek, büy
+iletisim-medya	express	ifade etmek, dile getirmek || hızlı göndermek, ekspres
+iletisim-medya	translate	bir dilden başka dile aktarmak || dönüştürmek, aktarmak
+iletisim-medya	accent	vurgu, hece vurgusu || lehçe, aksan
+iletisim-medya	gesture:n	jest, el hareketi || sembolik davranış, jest
+teknoloji	computer	bilgisayar || hesaplayıcı
+teknoloji	tablet=tablet	tablet, tablet bilgisayar || hap / tablet, yazıt, kitabe
+teknoloji	keyboard	bilgisayar klavyesi || elektronik piyano
+teknoloji	mouse:n=fare	fare || bilgisayar faresi
+teknoloji	charger	şarj cihazı, akü doldurucu || savaş atı, cenk atı / büyük servis tabağı, sun
+teknoloji	cable	elektrik, iletişim kablosu || ağır halat, tel
+teknoloji	device	araç, cihaz || hile, taktik, yöntem
+teknoloji	program	yayın programı || program, izlence
+teknoloji	application	uygulama, program || başvuru, müracaat
+teknoloji	network	iletişim ağı || sosyal ağ
+teknoloji	account=kullanıcı hesabı	kullanıcı hesabı, profil || hesap, banka hesabı, mal / rapor, açıklama
+teknoloji	file	dosya, evrak || törpü, eğe
+teknoloji	install	yüklemek || kurmak, yerleştirmek
+teknoloji	type:v	yazmak, klavyeyle harf girmek || sınıflandırmak, türünü b
+teknoloji	click:v	tıklamak, fare tuşuna basmak || çıtlamak, kısa ses çıkar
+teknoloji	link	bağlantı, ilişki || köprü
+teknoloji	virus=bilgisayar virüsü	bilgisayar virüsü || virüs
+teknoloji	security	güvenlik, emniyet || mali güvence, istikrar
+teknoloji	smart	akıllı, zeki || şık, moda, tarz sahibi / şiddetli, sert, can yakı
+teknoloji	innovation	yenilik, inovasyon || yenilikçilik, yenilik ya
+teknoloji	invent	icat etmek, bulmak || uydurmak, kafadan atmak
+teknoloji	engineer	mühendis || makinist
+teknoloji	code=bilgisayar	bilgisayar programı, yazılım || şifre, gizli işaret / yasa, kanun bütünü
+teknoloji	memory	hafıza, bellek, anı || bellek, hafıza
+teknoloji	switch off	(cihazı) kapatmak || (dikkatini) kapatmak, ka
+teknoloji	turn on	(cihazı, ışığı) açmak || (birine) aniden saldırma
+teknoloji	turn off	(cihazı, ışığı) kapatmak || (yoldan) sapmak
+teknoloji	charge:v=şarj etmek	şarj etmek || ücret almak, fiyat istem / suçlamak, itham etmek
+teknoloji	automatic	otomatik || bilinçli düşünce olmadan
+bilim-arastirma	study:n=araştırma	araştırma, inceleme || öğrenim, ders çalışma / çalışma odası, ofis
+bilim-arastirma	observe	gözlemlemek, izlemek || uygulamak, bir kurala uy
+bilim-arastirma	measurement	ölçü || ölçüm
+bilim-arastirma	discover	keşfetmek, bulmak || farkına varmak, öğrenmek
+bilim-arastirma	invent	icat etmek, bulmak || uydurmak, kafadan atmak
+bilim-arastirma	develop	geliştirmek, ilerletmek || gelişmek, ilerlemek
+bilim-arastirma	development	gelişme, ilerleme || inşaat projesi, yapı
+bilim-arastirma	fact	gerçek, hakikat || bilgi, veri
+bilim-arastirma	figure:n=rakam	sayı, rakam || şekil, form / kişi, şahıs, önemli kişi
+bilim-arastirma	statistics	istatistik || istatistikler, sayısal v
+bilim-arastirma	survey:n=anket	anket, soruşturma || gözlem, genel bakış
+bilim-arastirma	factor	etken, unsur, bileşen || çarpan
+bilim-arastirma	element	element || bileşen, parça
+bilim-arastirma	cell	hücre || hapis hücresi
+bilim-arastirma	energy	güç, kuvvet, enerji || elektrik enerjisi
+bilim-arastirma	force:n=kuvvet	güç, kuvvet || zorla yaptırma, baskı
+bilim-arastirma	gravity	yer çekimi || ciddiyet, ağırlık
+bilim-arastirma	temperature=sıcaklık	sıcaklık, derece || ateş
+bilim-arastirma	process:n	süreç, işlem || süreç
+bilim-arastirma	technique	yöntem, usul || beceri, sanat
+bilim-arastirma	precise	tam, eksiksiz, hatasız || detaylı, titiz
+bilim-arastirma	valid=mantıklı	mantıklı, akla yatkın, tutarlı || geçerli, kabul edilen, b
+bilim-arastirma	significant=istatistiksel olarak anlamlı	istatistiksel olarak anlamlı || önemli, kayda değer
+bilim-arastirma	model:n=örnek	örnek, timsal, numune || maket, minyatür / manken, model
+bilim-arastirma	estimate	tahmin, yaklaşık değer || değerlendirme, fiyat tek
+bilim-arastirma	calculate	hesaplamak, bulmak || planlamak, stratejik ola
+bilim-arastirma	demonstrate	göstermek, açıklamak || protesto etmek, gösteri 
+bilim-arastirma	indicate	göstermek, işaret etmek || belirtmek, ima etmek
+bilim-arastirma	confirm	doğrulamak, teyit etmek || onaylamak, tasdik etmek
+bilim-arastirma	conduct:v	iletmek || davranmak / yönetmek
+bilim-arastirma	academic	akademik, bilimsel || kuramsal, teorik
+bilim-arastirma	journal=akademik dergi	akademik dergi, bilimsel yayın || günlük, kişisel defter
+bilim-arastirma	article=makale	makale || madde, eşya / tanımlık
+bilim-arastirma	field:n=alan	alan, disiplin || tarla, arazi / spor sahası, oyun alanı
+bilim-arastirma	specialist	uzman, alanında yetkin kişi || tıp dalında uzman doktor
+ekonomi-is-dunyasi	business	ticaret, iş, faaliyet || iş, görev, sorumluluk / şirket, kurum
+ekonomi-is-dunyasi	company=işletme	işletme, firma, şirket || arkadaşlık, beraberlik,  / bir grup insan, birlik
+ekonomi-is-dunyasi	industry	sektör, endüstri || sanayi, fabrikalar
+ekonomi-is-dunyasi	market	pazar, alışveriş yeri || piyasa, finansal piyasa
+ekonomi-is-dunyasi	trade:n	ticaret, alışveriş || meslek, uğraş / değiş tokuş, takas
+ekonomi-is-dunyasi	export	ihracat || ihraç malı, ihraç ürünü
+ekonomi-is-dunyasi	import	ithal mal || ithalat
+ekonomi-is-dunyasi	product	ürün, mal, nesne || sonuç, netice
+ekonomi-is-dunyasi	production	üretim, imalat || yapım, prodüksiyon
+ekonomi-is-dunyasi	service:n=hizmet	hizmet, yardım || bakım, onarım
+ekonomi-is-dunyasi	consumption	tüketim || verem, tüberküloz
+ekonomi-is-dunyasi	supply:n	stok, kaynak, miktar || tedarik
+ekonomi-is-dunyasi	price	maliyet, fiyat || bedel
+ekonomi-is-dunyasi	cost	maliyet || bedel
+ekonomi-is-dunyasi	loss	zarar || kayıp / kayıp, azalma, yitim
+ekonomi-is-dunyasi	tax	vergi || yük, sorumluluk
+ekonomi-is-dunyasi	budget:n	bütçe, mali plan || bütçe, ayrılan para mikt
+ekonomi-is-dunyasi	investment	yatırım, sermaye koyma || yatırım
+ekonomi-is-dunyasi	invest	yatırım yapmak || adamak, kendini vermek
+ekonomi-is-dunyasi	stock:n=hisse senedi	hisse senedi, pay || mal, ürün, envanter
+ekonomi-is-dunyasi	bank	banka, finans kurumu || nehir kıyısı, sahil
+ekonomi-is-dunyasi	debt	borç || borç, vefa borcu, minnet
+ekonomi-is-dunyasi	interest:n=faiz	faiz, getiri || merak, ilgi / çıkar, menfaat
+ekonomi-is-dunyasi	inflation	enflasyon, fiyat artışı || şişirme, şişirilme
+ekonomi-is-dunyasi	growth	büyüme, artış || gelişim, olgunlaşma
+ekonomi-is-dunyasi	grow=büyümek	büyümek, gelişmek || yetiştirmek, ekmek
+ekonomi-is-dunyasi	capital=sermaye	sermaye || başkent / büyük harf
+ekonomi-is-dunyasi	fund	para kaynağı, mali kaynak || fon, vakıf
+ekonomi-is-dunyasi	brand	ticaret markası, marka || itibar, imaj
+ekonomi-is-dunyasi	competition=rekabet	rekabet, kıyasıya mücadele || yarışma, müsabaka
+ekonomi-is-dunyasi	rich	zengin, varlıklı || lezzetli, yoğun
+ekonomi-is-dunyasi	poor	fakir, yoksul || zayıf, yetersiz, düşük / kötü, düşük kalitede
+ekonomi-is-dunyasi	deal:n	işlem, anlaşma || çok, bir miktar
+ekonomi-is-dunyasi	agreement	sözleşme, antlaşma || uyum, mutabakat
+ekonomi-is-dunyasi	commercial:adj	ticari, iş dünyasına ait || reklam, tanıtım amaçlı
+hukuk-suc	law	yasa, kanun, hukuk || hukuk
+hukuk-suc	legal	yasal, hukuka uygun || hukuki, yasalara ilişkin
+hukuk-suc	judge:n	mahkeme görevlisi, hâkim || jüri üyesi, jüri, hakem
+hukuk-suc	court:n=mahkeme	mahkeme, yargı yeri || spor sahası, oyun alanı
+hukuk-suc	trial=yargılama	yargılama, dava || deneme, test
+hukuk-suc	case:n=dava	hukuki dava || durum, vaka / kutu, kap
+hukuk-suc	guilty=suçlu	suçluluk hisseden || suçlu, suç işleyen
+hukuk-suc	innocent	masum, suçsuz || naif, saf, deneyimsiz
+hukuk-suc	sentence:n=ceza	hüküm, ceza || cümle
+hukuk-suc	commit	işlemek || bağlamak, taahhüt etmek
+hukuk-suc	offense	suç, yasa dışı eylem || alınma, gücenme, kırılma
+hukuk-suc	charge:v=suçlamak	suçlamak, itham etmek || ücret almak, fiyat istem / şarj etmek
+hukuk-suc	kill	öldürmek || sonlandırmak, bitirmek
+hukuk-suc	right:n=hak	hak, hakkı || doğru, haklılık / sağ, sağ taraf
+hukuk-suc	rule:n=kural	kural, düzenleme || hüküm, yönetim
+hukuk-suc	regulation	kural, yönetmelik || düzenleme, kontrol
+hukuk-suc	allow	izin vermek, müsaade etmek || mümkün kılmak, yol açmak
+hukuk-suc	break:v=çiğnemek	ihlâl etmek, kuralları çiğneme || parçalamak, kırmak / ara vermek, molaya girme
+hukuk-suc	security	güvenlik, emniyet || mali güvence, istikrar
+hukuk-suc	protect	korumak, savunmak || hukuki koruma sağlamak
+hukuk-suc	defend	korumak, savunmak || savunmak, arka çıkmak
+hukuk-suc	appeal:n	temyiz, itiraz || çekicilik, cazibe / çağrı, yardım çağrısı, y
+hukuk-suc	verdict	karar || görüş
+hukuk-suc	release:v	serbest bırakmak, özgür kılmak || yayınlamak, piyasaya sür
+hukuk-suc	deny=inkar etmek	inkar etmek, reddetmek || mahrum bırakmak, reddetm
+siyaset-toplum	political	siyasi, politik || politik, çıkar gözeten, 
+siyaset-toplum	government	hükûmet || yönetim, idare
+siyaset-toplum	govern	yönetmek, idare etmek || düzenlemek, yönlendirmek
+siyaset-toplum	state:n=devlet	devlet || eyalet / durum, hal
+siyaset-toplum	nation	ülke, devlet || millet, topluluk
+siyaset-toplum	country	ülke, devlet || kırsal bölge, kırsal ala
+siyaset-toplum	president	devlet başkanı, cumhurbaşkanı || bir kuruluşun başkanı, y
+siyaset-toplum	minister=bakan	bakan || din görevlisi
+siyaset-toplum	party:n=parti	siyasi grup, parti || kutlama, eğlence, davetl / hukuki taraf
+siyaset-toplum	elect	seçmek, tercih etmek || seçmek, göreve getirmek
+siyaset-toplum	vote:n	oy || oylama
+siyaset-toplum	campaign	kampanya, seçim kampanyası || kampanya, reklam kampany / sefer, askeri harekat
+siyaset-toplum	right:n=hak	hak, hakkı || doğru, haklılık / sağ, sağ taraf
+siyaset-toplum	society	toplum || dernek, kuruluş
+siyaset-toplum	social	toplumsal, toplumla ilgili || sosyal, insanlarla kayna
+siyaset-toplum	community	toplum, topluluk || camia, topluluk, çevre
+siyaset-toplum	immigration=göç	göç || pasaport kontrolü
+siyaset-toplum	charity	yardım, bağış, hayırseverlik || hayır kurumu, bağış kuru
+siyaset-toplum	revolution	devrim || devrimci değişim, köklü  / tam dönüş, bir tur
+siyaset-toplum	conflict	çatışma, anlaşmazlık || içsel mücadele, çelişki
+siyaset-toplum	war	savaş, harp || mücadele, çekişme
+siyaset-toplum	army	ordu || ordu, kalabalık, yığın
+siyaset-toplum	power:n=güç	enerji, güç || otorite, hâkimiyet
+siyaset-toplum	authority	güç, yetki, otorite || kurum, resmi kuruluş / uzman, otorite, merci
+siyaset-toplum	law	yasa, kanun, hukuk || hukuk
+siyaset-toplum	tax	vergi || yük, sorumluluk
+siyaset-toplum	budget:n	bütçe, mali plan || bütçe, ayrılan para mikt
+siyaset-toplum	issue:n=konu	konu, mesele || yayın, sayı / ihtilaf konusu, uyuşmazl
+siyaset-toplum	tradition	gelenek, görenek || geleneksel uygulama, mir
+siyaset-toplum	culture	kültür || mikroorganizma yetiştirm
+siyaset-toplum	religion	din, inanç sistemi || din, inanç
+siyaset-toplum	religious	dini, dinle ilgili || dindar, ibadet eden
+siyaset-toplum	generation=nesil	nesil, kuşak || üretim
+siyaset-toplum	organization	kurum, kuruluş || düzen, örgütlenme
+tarih	history	tarih, geçmiş || tarih bilimi
+tarih	age:n=çağ	dönem, çağ || yaş
+tarih	period	zaman aralığı, dönem || nokta / ders saati, okul dönemi
+tarih	king	kral, hükümdar || satranç taşı, şah
+tarih	queen	kraliçe || kraliçe arı, ana arı
+tarih	kingdom	krallık || âlem
+tarih	ruler=hükümdar	hükümdar, lider || cetvel, ölçü aleti
+tarih	rule:v	yönetmek, idare etmek || karar vermek, hüküm koym
+tarih	reign	saltanat, hükümranlık || dönem, egemenlik süresi
+tarih	war	savaş, harp || mücadele, çekişme
+tarih	battle	savaş, muharebe || mücadele, çaba
+tarih	army	ordu || ordu, kalabalık, yığın
+tarih	invasion	istila, saldırı || istila, sarma, basma
+tarih	colony	sömürge, bir ülkenin toprağı || koloni
+tarih	revolution	devrim || devrimci değişim, köklü  / tam dönüş, bir tur
+tarih	slave	köle, zorla çalıştırılan kişi || bağlı aygıt, ikincil cih
+tarih	tradition	gelenek, görenek || geleneksel uygulama, mir
+tarih	discover	keşfetmek, bulmak || farkına varmak, öğrenmek
+tarih	document:n	belge, resmi evrak || dosya, elektronik belge
+tarih	record:n=kayıt	kayıt || plak / rekor
+tarih	event=olay	olay || etkinlik
+tarih	origin	köken, kaynak || başlangıç, doğuş
+tarih	establish	kurmak, kurulu bir şeyi oluştu || kanıtlamak, ispatlamak
+tarih	legend	efsane, efsanevi kişi || harita üzerindeki göster
+psikoloji-zihin	mind	zihin, akıl || düşünce, görüş
+psikoloji-zihin	brain=zihin	zihin || beyin
+psikoloji-zihin	memory	hafıza, bellek, anı || bellek, hafıza
+psikoloji-zihin	think	düşünmek || düşünmek, sanmak
+psikoloji-zihin	thought	fikir, düşünce, görüş || düşünme eylemi, akıl yür
+psikoloji-zihin	idea	düşünce, kavram || plan, öneri
+psikoloji-zihin	imagine	zihinde canlandırmak, tasavvur || farz etmek, varsaymak
+psikoloji-zihin	dream:n	rüya || hayal, hedef
+psikoloji-zihin	intelligence	zeka || bilgi, istihbarat
+psikoloji-zihin	perceive=algılamak	algılamak, fark etmek || yorumlamak, değerlendirm
+psikoloji-zihin	attention	dikkat, odaklanma || ilgi, alaka
+psikoloji-zihin	concentrate	odaklanmak, yoğunlaşmak || konsantre etmek, yoğunla
+psikoloji-zihin	concentration	odaklanma, yoğunlaşma || konsantrasyon, çözelti y
+psikoloji-zihin	focus:v	odaklanmak, konsantre olmak || odaklamak, netlemek
+psikoloji-zihin	emotional	duygusal || duygu yüklü, dokunaklı, 
+psikoloji-zihin	feeling	duygu, his || hissetme, algı
+psikoloji-zihin	mood	duygu durumu, ruh hali || atmosfer, ortam
+psikoloji-zihin	attitude	tutum, yaklaşım, davranış biçi || vücut duruşu, pozisyon
+psikoloji-zihin	habit	alışkanlık, rutin || rahibe giysisi, cübbe
+psikoloji-zihin	stress	psikolojik baskı, gerginlik || fiziksel gerilim, basınç
+psikoloji-zihin	depression	depresyon, ruhsal bozukluk || ekonomik bunalım, buhran / çöküntü, alçak bölge
+psikoloji-zihin	fear	korku, endişe || korku, kaygı, endişe
+psikoloji-zihin	trauma	travma, psikolojik yara || yaralanma, fiziksel trav
+psikoloji-zihin	confidence	güven, öz güven || gizlilik, sır
+psikoloji-zihin	consciousness	bilinç || farkındalık
+psikoloji-zihin	conscious	bilinçli, farkında || uyanık, bilinç hâlinde
+psikoloji-zihin	reaction	tepki || kimyasal reaksiyon
+psikoloji-zihin	react	tepki vermek, tepki göstermek || kimyasal reaksiyona girm
+psikoloji-zihin	response=tepki	tepki, reaksiyon || yanıt, cevap
+psikoloji-zihin	development	gelişme, ilerleme || inşaat projesi, yapı
+psikoloji-zihin	judgment=kişisel görüş	kişisel görüş, kanaat || hukuki karar, mahkeme ka
+psikoloji-zihin	reason:n=akıl	akıl, mantık || gerekçe, sebep
+psikoloji-zihin	rational	akılcı, mantıklı || rasyonel
+psikoloji-zihin	dream:v	rüya görmek || hayal kurmak, arzu etmek
+cevre-iklim	waste:n	atık, çöp || israf, boşa harcama
+cevre-iklim	rubbish=çöp	çöp || saçmalık
+cevre-iklim	reduce	azaltmak, düşürmek || hafifletmek, yatıştırmak
+cevre-iklim	energy	güç, kuvvet, enerji || elektrik enerjisi
+cevre-iklim	wind:n	hava akımı, rüzgar || bükülme, dolanma, kıvrım
+cevre-iklim	oil:n=petrol	petrol, ham petrol || yemeklik yağ, pişirme ya / motor yağı, makine yağı
+cevre-iklim	gas	benzin || gaz / eğlence, şamata
+cevre-iklim	power:n=enerji	enerji, güç || otorite, hâkimiyet
+cevre-iklim	resource=doğa kaynağı	doğa kaynağı, doğal varlık || kaynak, malzeme
+cevre-iklim	conserve:v	korumak, muhafaza etmek || tasarruf etmek, saklamak
+cevre-iklim	protect	korumak, savunmak || hukuki koruma sağlamak
+cevre-iklim	protection	koruma || savunma
+cevre-iklim	preserve:v	korumak, muhafaza etmek || konserve yapmak, saklama
+cevre-iklim	sustainable	sürdürülebilir || çevreye duyarlı, ekoloji
+cevre-iklim	temperature=sıcaklık	sıcaklık, derece || ateş
+cevre-iklim	atmosphere	atmosfer || ortam, ruh hali
+cevre-iklim	green:adj=çevre dostu	çevre dostu, ekolojik || yeşil / tecrübesiz, yeni başlaya
+cevre-iklim	consume	kullanmak, tüketmek || yok etmek, yakmak, harap
+cevre-iklim	consumption	tüketim || verem, tüberküloz
+neden-sonuc-degisim	cause:n	neden, sebep || amaç, gayret, hareket
+neden-sonuc-degisim	effect	etki, tesir || etki, nüfuz
+neden-sonuc-degisim	affect	etkilemek, nüfuz etmek || taklit etmek, yapmacık d
+neden-sonuc-degisim	reason=gerekçe	gerekçe, sebep || akıl, mantık
+neden-sonuc-degisim	since=çünkü	çünkü || ...'den beri
+neden-sonuc-degisim	impact:n	etki, tesir || çarpma, çarpışma
+neden-sonuc-degisim	factor	etken, unsur, bileşen || çarpan
+neden-sonuc-degisim	source	kaynak, köken || kaynak
+neden-sonuc-degisim	origin=başlangıç	başlangıç, doğuş || köken, kaynak
+neden-sonuc-degisim	contribute=katkı sağlamak	katkı sağlamak, yol açmak, pay || katkıda bulunmak, bir şe
+neden-sonuc-degisim	change:n=değişim	değişim, dönüşüm || bozuk para, para üstü
+neden-sonuc-degisim	change:v	değiştirmek, farklı hâle getir || değiş tokuş yapmak, taka
+neden-sonuc-degisim	increase:v	artırmak, büyütmek || artmak, yükselmek
+neden-sonuc-degisim	fall:n=düşme	düşme, düşüş || sonbahar / çöküş, yıkım
+neden-sonuc-degisim	grow	büyümek, gelişmek || yetiştirmek, ekmek
+neden-sonuc-degisim	growth	büyüme, artış || gelişim, olgunlaşma
+neden-sonuc-degisim	decline:v	azalmak, düşmek || reddetmek, geri çevirmek
+neden-sonuc-degisim	drop:n	düşüş, azalma || damla / bırakma, düşürme
+neden-sonuc-degisim	drop:v	bırakmak, düşürmek || azalmak, düşmek
+neden-sonuc-degisim	reduce	azaltmak, düşürmek || hafifletmek, yatıştırmak
+neden-sonuc-degisim	develop	geliştirmek, ilerletmek || gelişmek, ilerlemek
+neden-sonuc-degisim	development	gelişme, ilerleme || inşaat projesi, yapı
+neden-sonuc-degisim	expand	büyütmek, genişletmek || açıklamak, ayrıntılandır
+neden-sonuc-degisim	shrink:v=küçülmek	küçülmek, büzülmek || çekinmek, geri çekilmek
+neden-sonuc-degisim	sharp:adj	ani, sert || keskin, sivri / zeki, akıllı
+neden-sonuc-degisim	slight:adj	küçük, önemsiz || ince, zayıf
+neden-sonuc-degisim	steady	sabit, değişmeyen || güvenilir, istikrarlı
+neden-sonuc-degisim	significant	önemli, kayda değer || istatistiksel olarak anl
+neden-sonuc-degisim	dramatic=çarpıcı	çarpıcı, etkileyici, ani || dramatik, tiyatroyla ilg
+neden-sonuc-degisim	dramatically=büyük ölçüde	büyük ölçüde, çarpıcı biçimde || dramatik bir şekilde
+neden-sonuc-degisim	stable:adj	sabit, değişmeyen || sağlam, dayanıklı
+neden-sonuc-degisim	transform	değiştirmek, biçimini/halini d || dönüştürmek, bir şeyin i
+neden-sonuc-degisim	shift:n	değişim, kayma || vardiya, iş değişimi
+neden-sonuc-degisim	modify	değiştirmek, düzenlemek || uyarlamak, adapte etmek
+neden-sonuc-degisim	replace	yerine koymak, değiştirmek || yerine geri koymak, geri
+neden-sonuc-degisim	account for	açıklamak, gerekçesini vermek || (bir oranı) oluşturmak
+tartisma	argue	tartışmak, münakaşa etmek || iddia etmek, savunmak
+tartisma	argument	tartışma, anlaşmazlık || savunma, gerekçe, iddia
+tartisma	claim:n	iddia || hak talebi
+tartisma	view:n=görüş	görüş, düşünce || manzara, görünüm
+tartisma	point:n=nokta	nokta || puan / ana fikir, konu, mesele
+tartisma	issue	konu, mesele || yayın, sayı / ihtilaf konusu, uyuşmazl
+tartisma	statement	beyan, açıklama || mali rapor, finansal tab
+tartisma	state:v=belirtmek	belirtmek, tanımlamak || ifade etmek, söylemek
+tartisma	suggest	öneri sunmak, tavsiye etmek || ima etmek, dolaylı olara
+tartisma	propose	önermek, teklif etmek || evlenme teklif etmek, ev
+tartisma	proposal	öneri, tasarı || evlilik teklifi
+tartisma	support:v	yardım etmek, desteklemek || taşımak, tutmak, ayakta 
+tartisma	opposition	muhalefet, karşıtlık || muhalefet, rakip
+tartisma	agreement	sözleşme, antlaşma || uyum, mutabakat
+tartisma	fact	gerçek, hakikat || bilgi, veri
+tartisma	reason=gerekçe	gerekçe, sebep || akıl, mantık
+tartisma	justify	gerekçelendirmek, haklı çıkarm || haklı göstermek, doğrula
+tartisma	conclude	sonuçlandırmak, bitirmek || sonuç çıkarmak, hüküm ve
+tartisma	summary	özet || özet, dava özeti, hülasa
+tartisma	stress:v=vurgulamak	vurgulamak, ön plana çıkarmak || baskı uygulamak, zorlama
+tartisma	point out	belirtmek, dikkat çekmek || (parmakla) göstermek
+tartisma	refer	atıfta bulunmak, işaret etmek || yönlendirmek, sevk etmek
+tartisma	deny=inkar	inkar etmek, reddetmek || mahrum bırakmak, reddetm
+tartisma	accept	kabul etmek, almayı onaylamak || onaylamak, geçerli sayma
+tartisma	criticism	eleştiri, değerlendirme || kınama, olumsuz yorum
+tartisma	valid	geçerli, kabul edilen, bağlayı || mantıklı, akla yatkın, t
+tartisma	reasonable	mantıklı, akla yatkın || makul, uygun fiyatlı
+tartisma	while=oysa	oysa, -e rağmen || ... sırasında, ... süres
+tartisma	however	ancak, bununla birlikte, yine  || ne kadar … olursa olsun / her nasıl, ne şekilde ol
+tartisma	disadvantage	dezavantaj, sakınca || dezavantaj, aleyhte duru
+tartisma	benefit	fayda, yarar, kazanç || ödenek, yardım parası, y
+tartisma	perspective	bakış açısı, görüş || perspektif
+tartisma	approach	yöntem, yaklaşım || yaklaşma, geliş
+tartisma	consider	düşünmek, göz önünde bulundurm || kabul etmek, saymak
+tartisma	believe	inanmak, kabul etmek || düşünmek, saymak, inanma

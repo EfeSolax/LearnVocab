@@ -1,0 +1,440 @@
+# Anlam birleştirme · Claude elle seçti, 14 Ekim 2026 (rapor 18.40)
+# Satır: kelime<TAB>tür<TAB>yeni Türkçe karşılık<TAB>kalan anlam<TAB>katılan anlam(lar)... (Türkçe karşılıklar birebir)
+# Yalnız kalan anlam yazılıysa birleştirme yok, sadece karşılık düzeltilir.
+think	verb	düşünmek, sanmak	düşünmek	düşünmek, sanmak
+take over	phrasal_verb	devralmak, ele geçirmek	(yönetimi, işi) devralmak, ele geçirmek	(birinin işini) devralmak
+give up	phrasal_verb	(alışkanlığı, işi) bırakmak	(alışkanlığı) bırakmak	(işi, bir şeyi) bırakmak, feda etmek
+end up	phrasal_verb	sonunda bir yere ya da duruma düşmek, sonunda (bir şey) yapmak	sonunda bir yere/duruma varmak, -e düşmek	sonunda (bir şey yapmak)
+god	noun	tanrı, ilah	tanrı, ilah	ilah, tanrı
+bad	adjective	kötü	kötü, kalitesiz, istenmeyen	kötü, ahlâksız, zararlı
+believe	verb	inanmak, sanmak	inanmak, kabul etmek	düşünmek, saymak, inanmak
+go away	phrasal_verb	gitmek, uzaklaşmak	gitmek, uzaklaşmak	(tatile, bir yere) gitmek
+law	noun	yasa, kanun, hukuk	yasa, kanun, hukuk	hukuk
+history	noun	tarih, geçmiş	tarih, geçmiş	tarih bilimi
+win	verb	kazanmak	kazanmak, galip gelmek	kazanmak, elde etmek
+community	noun	toplum, topluluk, camia	toplum, topluluk	camia, topluluk, çevre
+front	noun	cephe	cephe, savaş cephesi	cephe
+process	noun	süreç, işlem	süreç, işlem	süreç
+process	verb	işlemek, işleme koymak	işlemek, işleme koymak	işlemek
+cost	verb	mal olmak, tutmak	mal olmak	mal olmak, gerektirmek
+force	verb	zorlamak	zorlamak	zorla açmak, zorlayarak hareket ettirmek, zorlamak
+private	adjective	özel, kişisel	kişisel, özel	özel
+worth	adjective	değer, değerinde	değer, yapmaya değer	değerinde, tutarında
+role	noun	rol, görev	rol, görev	toplumsal rol, rol
+provide	verb	sağlamak, vermek	sağlamak, temin etmek	vermek, sunmak, sağlamak
+source	noun	kaynak, köken	kaynak, köken	kaynak
+send	verb	göndermek, yollamak	göndermek, iletmek	göndermek, yollamak
+complete	adjective	tam, eksiksiz	tam, eksiksiz	tam, büsbütün
+increase	verb	artmak, artırmak	artırmak, büyütmek	artmak, yükselmek
+crazy	adjective	deli, çılgın	deli, çılgın	çılgın, kontrolsüz, vahşi
+loss	noun	kayıp	kayıp	kayıp, azalma, yitim
+army	noun	ordu	ordu	ordu, kalabalık, yığın
+effect	noun	etki, tesir	etki, tesir	etki, nüfuz
+cold	adjective	soğuk	soğuk, düşük sıcaklıkta	soğuk, duygusuz, mesafeli
+expect	verb	beklemek, ummak	beklemek, ummak, tahmin etmek	beklemek, talep etmek, şart koşmak
+text	noun	metin, yazı	metin	metin, yazı
+leave behind	phrasal_verb	geride bırakmak	geride bırakmak, unutmak	geride bırakmak (birini)
+individual	adjective	bireysel, tek, ayrı	bireysel, tek başına	tek, ayrı, diğerlerinden farklı
+focus	noun	odak, odak noktası	odak, merkez, dikkatin yöneldiği nokta	odak, odak noktası
+speed	verb	hızla gitmek, hızlandırmak	hızla gitmek	hızlandırmak
+campaign	noun	kampanya	kampanya, seçim kampanyası	kampanya, reklam kampanyası
+heavy	adjective	ağır	ağır, büyük kütleli	ciddi, yoğun, ağır
+fear	noun	korku, endişe	korku, endişe	korku, kaygı, endişe
+judge	verb	yargılamak, hüküm vermek	fikir oluşturmak, yargılamak	yargılamak, hüküm vermek
+unit	noun	birim	birim, ölçü birimi	birim, parça
+civil	adjective	sivil	askeri olmayan, sivil	sivil, vatandaşlarla ilgili
+carry	verb	taşımak, götürmek	taşımak, götürmek	almak, taşımak, kaldırmak
+investment	noun	yatırım	yatırım, sermaye koyma	yatırım
+separate	adjective	ayrı	ayrı, birbirinden bağımsız	ayrı, müstakil, kendine ait
+surface	verb	yüzeye çıkmak, ortaya çıkmak	yüzeye çıkmak, belirmek	yüzeye getirmek, ortaya çıkarmak
+budget	noun	bütçe	bütçe, mali plan	bütçe, ayrılan para miktarı
+healthy	adjective	sağlıklı	sağlıklı, hastalıksız	sağlıklı, sağlığa yararlı
+magic	noun	büyü, sihir	büyü, sihir	büyü, büyüleyicilik, sihir
+youth	noun	gençlik, gençler	gençler, gençlik	gençlik dönemi, gençlik çağı
+religion	noun	din, inanç	din, inanç sistemi	din, inanç
+dry	adjective	kuru, kurak	ıslak olmayan, nemi olmayan	kurak, susuz, nemi az
+teaching	noun	öğretim, öğretmenlik, eğitim	öğretim, öğretmenlik, ders anlatımı	öğretmenlik, öğretim	eğitim
+mix up	phrasal_verb	karıştırmak, birbirine karıştırmak	karıştırmak, birbirine karıştırmak	(sırayı) karıştırmak, karmakarışık etmek
+debt	noun	borç	borç	borç, vefa borcu, minnet
+domestic	adjective	ailevi, eve ait, ev (işi)	evcil, ailevi, eve ait
+user	noun	kullanıcı	kullanıcı	sistem kullanıcısı
+kick off	phrasal_verb	başlamak, başlatmak	(maç) başlamak	başlamak, başlatmak
+comfortable	adjective	rahat, konforlu	rahat, konforlu	rahat, içi rahat, huzurlu
+determine	verb	belirlemek, karar vermek	belirlemek, karar vermek	belirlemek, tayin etmek
+statistics	noun	istatistik	istatistik	istatistikler, sayısal veri kümesi
+empty	verb	boşaltmak, boşalmak	boşaltmak, temizlemek	boşalmak, dökülmek
+recovery	noun	iyileşme, toparlanma	iyileşme, toparlanma	toparlanma, düzelme, canlanma
+represent	verb	temsil etmek, simgelemek	temsil etmek	simgelemek, temsil etmek, göstermek
+opposition	noun	muhalefet, karşıtlık	muhalefet, karşıtlık	muhalefet, rakip
+item	noun	madde, parça, eşya	madde, nesne, eşya	madde, satır, giriş
+index	verb	dizinlemek, endekslemek	endekslemek	dizinini çıkarmak, dizinlemek
+button	noun	düğme	düğme, giysi bağlayıcısı	düğme, kontrol elemanı
+combat	verb	mücadele etmek, savaşmak	savaşmak, mücadele etmek	mücadele etmek, karşı koymak
+constitution	noun	bünye, yapı	bünye	yapı, oluşum, bünye
+shame	noun	utanç	utanç, mahcubiyet	utanç, rezillik
+hide	verb	saklamak, saklanmak	gizlemek, saklamak	saklanmak, gizlenmek
+absolute	adjective	mutlak, tam	tam, mutlak	kesin, mutlak
+tall	adjective	uzun, uzun boylu	uzun boylu, uzun	uzun
+wise	adjective	akıllı, bilge, akıllıca	bilgili, deneyimli, akıllı	akıllıca, mantıklı
+wheel	verb	tekerlekli şeyle taşımak, itmek	tekerlekli şeyle taşımak, sürmek, itmek	tekerlekli taşımak, tekerlek üstünde götürmek
+repeat	verb	tekrarlamak, tekrar olmak	tekrarlamak, yeniden yapmak	yeniden meydana gelmek, tekrar olmak
+tone	noun	ton, ses tonu	ses rengi, ton	müzikal perde, ton
+universal	adjective	evrensel, genel	genel, tüm, evrensel	her yerde geçerli, tüm insanlara uygulanabilir
+defend	verb	savunmak, korumak	korumak, savunmak	savunmak, arka çıkmak
+egg	noun	yumurta	yumurta	yumurta, yumurta hücresi
+establishment	noun	kuruluş, kurum	kuruluş, tesis etme	kurulu kurum, kuruluş
+delay	verb	geciktirmek, ertelemek, gecikmek	ertelemek, geciktirmek	gecikmek, oyalanmak
+refuse	verb	reddetmek, geri çevirmek	reddetmek, kabul etmemek	geri çevirmek, reddetmek
+collect	verb	toplamak, biriktirmek	toplamak, almak, gidip almak	zaman içinde biriktirmek, toplamak
+summary	noun	özet	özet	özet, dava özeti, hülasa
+automatic	adjective	otomatik	otomatik	bilinçli düşünce olmadan gerçekleşen, otomatik
+cotton	noun	pamuk	pamuk lifi, pamuk kumaşı	pamuk, pamuk bitkisi
+specialist	noun	uzman	uzman, alanında yetkin kişi	tıp dalında uzman doktor
+mature	adjective	olgun	tam gelişmiş, olgun	olgun, sorumluluk sahibi
+venture	noun	girişim	girişim, iş girişimi	riskli girişim, macera
+gather	verb	toplamak, toplanmak	toplamak, biriktirmek	toplanmak, bir araya gelmek
+export	noun	ihracat, ihraç malı	ihracat	ihraç malı, ihraç ürünü
+pole	noun	kutup	kutup	manyetik kutup, kutup
+invasion	noun	istila, saldırı	istila, saldırı	istila, sarma, basma
+canal	noun	kanal	kanal, su kanalı	vücut içi geçit, kanal
+sink	verb	batmak, batırmak	batırmak	batmak
+patch	noun	yama	yama	yama, yazılım güncellemesi
+flip	noun	ani dönüş, hızlı çevirme	ani dönüş, hızlı çevirme	kısa, hızlı bir hareket
+patent	noun	patent	patent, patent hakkı	patent belgesi, berat
+shade	verb	gölgelemek, gölgelendirmek	gölgelendirmek, gölge sağlamak	renk tonunu hafifçe değiştirmek, gölgelendirmek
+shy	adjective	utangaç, çekingen	çekingen, utangaç	çekingen, tereddütlü, temkinli
+icon	noun	simge, ikon	simge, temsil	ikon, idol, efsane
+blank	noun	boşluk	boş alan, boşluk	boş kısım, boşluk
+harsh	adjective	sert, acımasız	sert, acımasız, zorlayıcı	sert, rahatsız edici
+boundary	noun	sınır	sınır, çizgi	sınır, limit, had
+jungle	noun	cangıl, balta girmemiş orman	cangıl, balta girmemiş orman, tropik orman	karmaşa, kargaşa ortamı, cangıl
+diplomatic	adjective	diplomatik	diplomatik, dış ilişkilerle ilgili	diplomatik, usturuplu, incelikli
+humble	adjective	alçakgönüllü, mütevazı	alçakgönüllü, mütevazı	mütevazı, gösterişsiz, sıradan
+import	noun	ithalat, ithal mal	ithal mal	ithalat
+leak	noun	sızıntı	sızıntı	sızdırma, bilgi sızıntısı
+cafe	noun	kafe	kafe, kahvehane	kafe, kafeterya
+setup	noun	kurulum, düzenleme	kurulum, düzenleme	kurulum, hazırlık, montaj
+approve	verb	onaylamak, tasvip etmek	onaylamak, tasdik etmek	onaylamak, tasvip etmek, doğru bulmak
+intensive	adjective	yoğun	yoğun, sıkı	yoğun, yoğunlaştırılmış
+mobility	noun	hareketlilik	hareket kabiliyeti, hareketlilik	sosyal hareketlilik, sınıf değişimi
+elect	verb	seçmek	seçmek, göreve getirmek	seçmek, tercih etmek
+disk	noun	disk	disk, kurs	disk
+archive	noun	arşiv	arşiv	arşiv, arşiv dairesi
+explosive	adjective	patlayıcı	patlayıcı, şiddetli	yankı uyandıran, patlamaya hazır, gergin
+frontier	noun	sınır	sınır, sınır hattı	öncü alan, yeni ufuk, sınır
+frost	noun	don, kırağı, ayaz	kırağı, don	don, ayaz
+correction	noun	düzeltme	düzeltme, hata giderme	cezai disiplin, düzeltme
+ginger	adjective	kızıl	kızıl, kızıl saçlı	kızıl kahverengi, kızılımsı sarı
+charitable	adjective	hayır amaçlı, cömert	hayır amaçlı, yardım amaçlı	cömert, bağışta bulunmaya istekli
+gesture	noun	jest, el hareketi	jest, el hareketi	sembolik davranış, jest
+shuttle	noun	servis aracı, mekik	servis, servis aracı, mekik	mekik
+balloon	noun	balon	şişme torba, balon	sıcak hava balonu
+terrific	adjective	harika, müthiş	harika, müthiş	çok büyük, müthiş
+baron	noun	baron	baron	zengin iş adamı, baron
+node	noun	düğüm	düğüm, bağlantı noktası	düğüm, yumru, şişlik
+regulate	verb	düzenlemek	düzenlemek, ayarlamak, dengelemek	düzenlemek, kurallara bağlamak
+lively	adjective	canlı, hareketli	canlı, hareketli, hayat dolu	canlı, hareketli
+manipulation	noun	manipülasyon, yönlendirme	kontrol, yönlendirme, işleme	manipülasyon, yönlendirme, parmağında oynatma
+feminism	noun	feminizm	feminizm, kadın hakları hareketi	feminizm
+cooperate	verb	iş birliği yapmak	birlikte çalışmak, iş birliği yapmak	iş birliği yapmak, yardımcı olmak, zorluk çıkarmamak
+disco	noun	disko	disko, gece kulübü	disko, disko müziği
+dinosaur	noun	dinozor	dinozor, tarih öncesi sürüngen	çağ dışı kalmış kimse, dinozor
+registry	noun	kayıt, sicil	kayıt defteri, resmi liste	kayıt tutma bölümü, kayıt birimi
+stubborn	adjective	inatçı	inatçı, dikbaşlı	inatçı, zorlu, çıkmayan
+rigid	adjective	katı, sert	sert, katı, esnemez	katı, esnek olmayan, değişime kapalı
+mortar	noun	havan	havan	havan topu, havan
+naive	adjective	saf, toy	deneyimsiz, saf, kolay kandırılabilen	saf, içten, karmaşadan uzak
+regain	verb	geri kazanmak	yeniden elde etmek, geri kazanmak	yeniden kazanmak, geri kazanmak
+disadvantage	noun	dezavantaj, sakınca	dezavantaj, sakınca	dezavantaj, aleyhte durum
+slack	adjective	gevşek	gevşek	tembel, gevşek
+pottery	noun	çanak çömlek, çömlekçilik	çanak çömlek, seramik ürün	çömlekçilik sanatı, çömlek yapma işi
+capsule	noun	kapsül	kapsül	küçük kap, kapsül
+manipulate	verb	yönlendirmek, manipüle etmek	kontrol etmek, yönlendirmek	hileli bir şekilde yönlendirmek, aldatmak
+purity	noun	saflık	saflık, temiz olma durumu	ahlaki temizlik, masumiyet
+drown	verb	boğulmak, boğmak	boğmak, suda boğulmak	bunalmak, ezmek, boğmak
+validation	noun	doğrulama, onaylama	doğrulama, onaylama	geçerli kılma, onaylama, geçerleme
+translator	noun	çevirmen	çevirmen	çeviri programı, çevirici
+stimulate	verb	uyarmak, teşvik etmek	uyarmak, teşvik etmek	uyarmak, uyarı vermek
+ripe	adjective	olgun	olgun, yenmeye hazır	tam gelişmiş, olgunlaşmış
+assemble	verb	toplamak, toplanmak, bir araya getirmek	toplamak, bir araya getirmek	toplanmak, bir araya gelmek
+align	verb	hizalamak, uyumlu hâle getirmek	aynı doğrultuda olmak, uyumlu hâle getirmek	düz bir hat üzerinde sıralamak, hizalamak
+dim	verb	karartmak, kararmak	karartmak, ışığı azaltmak	kararmak, loşlaşmak, sönükleşmek
+weary	adjective	yorgun, bitkin	yorgun, bitkin, bıkkın	bitkin, yorgun
+handicap	noun	engel, dezavantaj	engel, engellilik	dezavantaj, engel
+nominal	adjective	itibari, sözde	itibari, nominal, sözde	küçük, sözde, düşük
+affirmative	adjective	olumlu	olumlu, kabul edici	olumsuz olmayan, olumlu
+discrete	adjective	ayrık	ayrık, ayrı, bağımsız	ayrık, kesintili
+summon	verb	çağırmak	çağırmak, birini gelmeye zorlamak	çağırmak, bir varlığı ortaya çıkarmak
+blur	verb	bulanıklaştırmak, bulanıklaşmak	bulanıklaştırmak, netliğini kaybettirmek	bulanıklaşmak, netliğini yitirmek
+dart	noun	dart, küçük ok	dart oku, küçük ok	dart oyunu
+harden	verb	sertleştirmek, sertleşmek	sertleştirmek, katılaştırmak	katılaşmak, sertleşmek
+overload	verb	aşırı yüklemek	aşırı yüklemek, fazla yüklemek	aşırı yüklenmek, zorlanmak
+frontal	adjective	ön, cepheden	cepheden, doğrudan	ön, ön taraftaki
+char	noun	yanık, kömürleşmiş kısım	kömürleşmiş madde, yanık izi	hafif yanık, yanık kabuk
+shaky	adjective	sallantılı, titrek	sallantılı, titrek, çürük	sağlam olmayan, zayıf, çürük
+insensitive	adjective	duyarsız	duyarsız, hissiz, empati yoksunu	hassas olmayan, duyarsız
+provocative	adjective	kışkırtıcı	uyarıcı, düşündürücü, kışkırtıcı	kışkırtıcı, tahrik edici
+migrate	verb	göç etmek	başka ülkeye göç etmek	mevsimsel göç yapmak
+stronghold	noun	kale	kale, hisar, müstahkem mevki	kale, merkez, odak noktası
+evasion	noun	kaçınma, (vergi) kaçırma	kaçınma, sakınma	kaçırma, kaçınma, yasa dışı kaçınma
+thrift	noun	tutumluluk	tasarruf, tutumluluk	tutumluluk
+inward	adjective	iç, içsel	iç, içsel	iç, içsel, içe dönük
+insertion	noun	ekleme, yerleştirme	ekleme, yerleştirme	yerleştirme, takma
+brittle	adjective	kırılgan	kırılgan, kolay kırılan	kırılgan, çabuk sinirlenen
+morbid	adjective	marazi, hastalıklı	hastalığa, hastalık durumuna ilişkin	marazi, hastalıklı, içi karartıcı
+peeling	noun	soyulma, kabuk	soyulmuş kabuk	soyma, soyulma
+braid	noun	örgü	örgü, saç örgüsü	örgü, şerit
+fragmentation	noun	parçalanma	parçalanma, bölünme	bölünmüşlük, parçalanmışlık
+transplantation	noun	nakil	organ nakli, doku nakli	bitki nakli, fidan ekimi
+airy	adjective	havadar, ferah	hafif, ince, havadar	havadar, geniş, ferah
+flannel	noun	flanel	flanel	flanel gömlek
+reconnect	verb	yeniden bağlanmak, yeniden iletişim kurmak	yeniden bağlamak, tekrar bağlamak	yeniden iletişim kurmak, ilişkiyi tazelemek
+outburst	noun	patlama, öfke patlaması	öfke patlaması, duygu patlaması	ani patlama, ani çıkış
+finisher	noun	bitiren kişi	yarışı tamamlayan kişi	tamamlayıcı, bitirici kişi
+clasp	noun	toka, kopça	klips, toka, kopça	takma, toka
+chameleon	noun	bukalemun	bukalemun	bukalemun, nabza göre şerbet veren kimse, dönek
+symptomatic	adjective	belirtisi olan	belirtisi olan, göstergesi olan	hastalığa özgü belirtiler gösteren
+impart	verb	vermek, iletmek	vermek, iletmek	kazandırmak, vermek, katmak
+pretense	noun	yapmacık, gösteriş	gösteriş, sahtecilik, yapma	kibirli tavır, gösteriş
+radiate	verb	yaymak, saçmak	yaymak, yayılmak	saçmak, yaymak, yansıtmak
+normality	noun	olağanlık, normallik	olağanlık, normal olma durumu	istatistikte normal dağılım
+unbound	adjective	bağlanmamış, serbest	bağlanmamış, sarılmamış, ciltlenmemiş	serbest, bağlanmamış
+dipper	noun	kepçe	kaşık, kepçe	kepçe, cezve
+modulate	verb	ayarlamak, düzenlemek	ayarlamak, düzenlemek	ayarlamak, dengelemek, derecesini değiştirmek
+sear	verb	dağlamak, kavurmak	mühürlemek, dağlamak, kavurmak	dağlamak, yakmak, yüreğini yakmak
+triangulation	noun	üçgenleme	üçgenleme, nirengi	üçgenleme, çeşitleme
+underwrite	verb	sigortalamak, mali güvence vermek	sigorta etmek, teminat altına almak	desteklemek, mali olarak sorumluluk almak
+plaything	noun	oyuncak	oyuncak, alet	oyuncak, kukla
+salting	noun	tuzlama	tuzlama, tuz ekleme	tuzlama, tuzlama işlemi
+cabinetry	noun	dolaplar, dolap yapımı	dolaplar, sabit dolap donanımı	dolap yapımı sanatı, mobilya üretimi
+get up	phrasal_verb	kalkmak (yataktan, ayağa)	(yataktan) kalkmak	ayağa kalkmak
+right	verb	düzeltmek, doğrultmak	düzeltmek, doğru yapmak	doğrultmak, dikeltmek
+long	adjective	uzun	uzun, uzunluk bakımından geniş	uzun süren, uzun zamanlı
+start	noun	başlangıç	başlangıç	başlatma
+system	noun	sistem, düzen	düzen, bütün, sistem	bilgisayar sistemi
+come down	phrasal_verb	inmek, düşmek	düşmek, inmek (fiyat, oran)	aşağı inmek
+president	noun	başkan, cumhurbaşkanı	devlet başkanı, cumhurbaşkanı	bir kuruluşun başkanı, yöneticisi
+working	adjective	çalışma, çalışan	çalışma	çalışan, işte olan
+health	noun	sağlık	sağlık, iyi olma durumu	tıp, sağlık bilimi
+local	adjective	yerel, yerli	yerel, bölgesel	yerli, bölgeye ait
+report	noun	rapor, haber	yazılı bildirim, rapor	haber, haber raporu
+building	noun	bina, yapı, inşaat	bina, yapı	inşaat, yapım süreci
+program	noun	program	yayın programı	program, izlence
+energy	noun	enerji, güç	güç, kuvvet, enerji	elektrik enerjisi
+hour	noun	saat	saat, zaman birimi	çalışma süresi, iş saati
+church	noun	kilise	ibadet yeri, kilise binası	hristiyan topluluğu, kilise kurumu
+relationship	noun	ilişki, bağ	bağ, ilişki, bağlantı	romantik bağ, sevgili ilişkisi
+size	noun	boyut, ölçü, beden	boyut, ölçü	giyim bedeni, kıyafet ölçüsü
+property	noun	mülk, mülkiyet	mülk, gayrimenkul	mülkiyet, mal mülk
+poor	adjective	kötü, zayıf, yetersiz	zayıf, yetersiz, düşük	kötü, düşük kalitede
+kill	noun	öldürme, av	öldürme, leş	av, öldürülen hayvan
+legal	adjective	yasal, hukuki	yasal, hukuka uygun	hukuki, yasalara ilişkin
+safe	adjective	güvenli, güvenilir	güvenli, tehlikesiz	güvenilir, sağlam
+writing	noun	yazı, yazma	yazı, yazma	yazılı eser, metin
+district	noun	bölge, ilçe	bölge, ilçe	seçim bölgesi, oy bölgesi
+speak	verb	konuşmak, konuşma yapmak	konuşmak, söz söylemek	konuşma yapmak, hitabet etmek
+album	noun	albüm	albüm	fotoğraf albümü
+double	noun	eş, benzeri, dublör	kopya, eş, benzer	benzeri, dublör, tıpkısı
+interesting	adjective	ilginç, ilgi çekici	dikkat çekici, ilgi uyandıran	merak uyandıran, keşfetmeye değer
+construction	noun	inşaat, yapım, yapı	inşa süreci, yapım	yapı, bina
+search	verb	aramak, araştırmak	aramak, araştırmak	didik didik aramak, derinlemesine aramak, taramak
+administration	noun	yönetim, idare	yönetim, idare	devlet yönetimi
+protect	verb	korumak	korumak, savunmak	hukuki koruma sağlamak
+marriage	noun	evlilik	evlilik, yasal birlik	evlilik kurumu, toplumsal yapı
+glad	adjective	memnun, seve seve	memnun, mutlu	memnuniyet duyan, seve seve yapan
+captain	noun	kaptan	gemi kaptanı, denizci lideri	spor takımının kaptanı, lider oyuncu
+broken	adjective	kırık, bozuk	hasar görmüş, kırık, parçalanmış	bozuk, çalışmayan
+mass	verb	toplanmak, toplamak	toplanmak, birikmek	biriktirmek, toplamak
+condition	verb	şartlandırmak, koşullandırmak	şartlandırmak, alıştırmak	koşullandırmak, şart koymak
+accept	verb	kabul etmek	kabul etmek, almayı onaylamak	onaylamak, geçerli saymak
+speech	noun	konuşma	konuşma, sözlü iletişim	hitabet, resmi konuşma
+exchange	verb	değiştirmek, takas etmek	takas etmek, değiş tokuş yapmak	değiştirmek, yenisiyle değiştirmek
+silver	adjective	gümüş	gümüşten yapılmış, gümüş	parlak, gümüş rengi
+camp	noun	kamp	geçici konaklama yeri, çadır kampı	yaz kampı, gençlik kampı	kamp
+setting	noun	ortam, mekân, zaman	ortam, mekan, bağlam	zaman dilimi, tarihsel bağlam
+connection	noun	bağlantı	bağ, ilişki, bağlantı	elektrik, veri bağlantısı
+wake	verb	uyanmak, uyandırmak	uyanmak, farkına varmak	uyandırmak
+guide	noun	rehber, kılavuz	rehber, yol gösteren kişi	rehber kitap, kılavuz
+develop	verb	geliştirmek, gelişmek	geliştirmek, ilerletmek	gelişmek, ilerlemek
+variety	noun	çeşitlilik, çeşit	çeşitlilik, farklılık, çokluk	çeşit, tür, varyete
+evil	adjective	kötü, şeytani	kötü, şeytani	zararlı, kötücül
+taste	verb	tatmak, tadına bakmak	tatmak, lezzetini algılamak	denemek, bir şeyin tadına bakmak
+electric	adjective	elektrikli, elektrik	elektrikli, elektrik enerjisiyle çalışan	elektrikle ilgili
+proper	adjective	uygun, doğru, düzgün	doğru, düzgün, kurallara uygun	uygun, yerinde
+advanced	adjective	ileri, gelişmiş	gelişmiş, ileri düzeyde	ilerlemiş, önde gelen
+limit	noun	sınır, limit	sınır, sınır çizgisi	kısıtlama, sınırlama	maksimum, en yüksek değer
+mistake	noun	hata, yanlışlık	hata, yanlışlık	yanlış anlama, hatalı kanaat
+feed	noun	akış (haber, sosyal medya)	besleme, besleme akışı	akış
+emotional	adjective	duygusal	duygusal	duygu yüklü, dokunaklı, etkileyici
+lunch	noun	öğle yemeği	öğle yemeği	öğle yemeği daveti, yemekli toplantı
+internal	adjective	iç, dahili	iç, içinde bulunan	dahili, kurum içinde
+hole	noun	delik	delik, boşluk	golf deliği
+distribution	noun	dağıtım, dağılım	dağıtım	dağılım
+secure	adjective	güvenli, sağlam	güvenli, emniyetli	sağlam, garantili, güvencede
+neck	noun	boyun	boyun	boğaz, boyun kısmı
+surgery	noun	ameliyat, cerrahi	ameliyat, cerrahi müdahale	cerrahi dalı, cerrahi bilimi
+selection	noun	seçim, seçki	seçim, tercih	seçilen grup, koleksiyon
+assembly	noun	toplantı, meclis	toplantı, meclis	okul toplantısı, okul töreni
+reserve	verb	ayırtmak, ayırmak	rezervasyon yapmak, ayırtmak	ayırmak, saklamak
+prize	noun	ödül	ödül	çekiliş ödülü
+revolution	noun	devrim	devrim	devrimci değişim, köklü dönüşüm
+resistance	noun	direnç, direniş	direnç, karşı koyma	elektrik direnci
+prepare	verb	hazırlamak, hazırlanmak	hazırlamak	hazırlanmak
+circle	verb	daire çizmek, etrafında dönmek, çevrelemek	dönmek, daire çizmek	daire içine almak, çevrelemek
+incident	noun	olay	olay, meydana gelen durum	kaza, istenmeyen olay
+respond	verb	yanıt vermek, tepki vermek	yanıt vermek, cevaplamak	tepki vermek, karşılık vermek
+secondary	adjective	ikincil, ikinci	ikinci, birinciden sonra gelen	ikincil, daha az önemli
+tower	noun	kule	yüksek yapı, kule	gözlem kulesi, gözetleme kulesi
+tradition	noun	gelenek	gelenek, görenek	geleneksel uygulama, miras
+document	noun	belge	belge, resmi evrak	dosya, elektronik belge
+gate	noun	kapı, geçit, biniş kapısı	kapı, geçit	biniş kapısı
+awful	adjective	berbat, korkunç	korkunç, berbat, çok kötü	korkutucu, hayret verici
+package	noun	paket	paket, koli	program, hizmet paketi
+resource	noun	kaynak	kaynak, malzeme	doğa kaynağı, doğal varlık
+defensive	adjective	savunma, savunmacı	koruyucu, savunmaya yönelik	savunma ile ilgili, savunma amaçlı
+connect	verb	bağlamak, bağlanmak	bağlamak, birleştirmek	iletişim kurmak, bağlanmak
+sequence	noun	dizi, sıra	dizi, sıra, ardışık düzen	DNA dizisi, genetik dizi
+contribute	verb	katkıda bulunmak, katkı sağlamak	katkıda bulunmak, bir şeye eklemek	katkı sağlamak, yol açmak, payı olmak
+crossing	noun	geçit, geçiş	yaya geçidi, geçit	geçiş, kavşak
+faculty	noun	fakülte, öğretim kadrosu	fakülte, akademik bölüm	öğretim üyeleri, akademik kadro
+innovation	noun	yenilik	yenilik, inovasyon	yenilikçilik, yenilik yapma süreci
+define	verb	tanımlamak, belirlemek	tanımlamak, bir kavramın anlamını belirtmek	sınırlandırmak, bir şeyin kapsamını belirlemek
+certificate	noun	belge, sertifika	belge, resmi evrak	sertifika, nitelik belgesi
+estimate	noun	tahmin, fiyat teklifi	tahmin, yaklaşık değer	değerlendirme, fiyat teklifi
+spare	verb	ayırmak	ayırmak, vermek, kıymak	zaman ayırmak
+parallel	adjective	paralel, benzer	yan yana, aynı doğrultuda, paralel	benzer, eşdeğer, aynı derecede
+arrangement	noun	düzenleme, plan, anlaşma	düzen, plan, organizasyon	anlaşma, düzenleme
+shelter	noun	barınak, sığınak	barınak, korunaklı yer	koruma, sığınma
+vary	verb	değişmek, değiştirmek	değişmek, farklı olmak	değiştirmek, ayarlamak
+complain	verb	şikâyet etmek	şikayet etmek, memnuniyetsizliğini dile getirmek	şikayetçi olmak, dava açmak
+discipline	verb	disipline etmek	disipline etmek, terbiye etmek, alıştırmak	kendini disipline etmek, nefsine hakim olmak
+essay	noun	deneme, kompozisyon, makale	deneme, akademik yazı	makale, edebi deneme
+fluid	adjective	akışkan, akıcı	akıcılık gösteren, akışkan	akıcı, esnek
+wrap	verb	sarmak	sarmak, örtmek	rulo yapmak, sarma yapmak
+dose	noun	doz	ilaç dozu, belirli miktarda ilaç	bir şeyin miktarı
+confusion	noun	karışıklık, kafa karışıklığı	karışıklık, belirsizlik	kafa karışıklığı, şaşkınlık
+graphics	noun	grafik	grafikler, görsel ögeler	bilgisayar grafikleri
+humor	noun	mizah, espri	mizah, espri yeteneği	komik şey, espri
+restore	verb	eski hâline getirmek, yenilemek	eski haline getirmek, yenilemek	görevine, makamına geri getirmek
+verse	noun	dize, kıta	dörtlük, kıta, dize	şarkı kıtası, söz bölümü, bent
+grain	noun	tane, tahıl	tahıl, dane, tahıl tanesi	küçük parçacık, tanecik
+jam	verb	sıkıştırmak, sıkışmak	sıkıştırmak, bastırmak	tıkanmak, sıkışmak
+controlling	adjective	kontrolcü, baskıcı	kontrol eden, yöneten	baskıcı, kontrolcü, tahakkümcü
+justify	verb	haklı çıkarmak, gerekçelendirmek	gerekçelendirmek, haklı çıkarmak	haklı göstermek, doğrulamak
+trauma	noun	travma	travma, psikolojik yara	yaralanma, fiziksel travma
+corrupt	verb	bozmak, yozlaştırmak	yozlaştırmak, ayartmak, ahlakını bozmak	bozmak, tahrif etmek, hasara uğratmak
+controller	noun	denetleyici, kontrolör	denetleyici, kontrol cihazı	denetçi, kontrolör
+charm	verb	büyülemek	büyülemek, etkilemek	büyü yapmak, sihir uygulamak
+linear	adjective	doğrusal	düz, doğru, kıvrımsız	doğrusal, matematiksel
+rage	verb	öfkelenmek, köpürmek	öfkelenmek, hiddetli bir şekilde sinirlenmek	küplere binmek, köpürmek, öfke saçmak
+rental	noun	kiralama, kiralık	kiralama	kiralanan mülk, kiralık ev, kiralık araba
+unbelievable	adjective	inanılmaz	inanılmaz, akla gelmez	inandırıcı olmayan, güvenilmez, akıl almaz
+dynamics	noun	dinamik, dinamikler	dinamik	dinamikler
+warehouse	noun	depo, ambar	depo, ambar	veri ambarı
+console	noun	konsol, oyun konsolu	oyun konsolu	konsol
+variation	noun	değişiklik, çeşitlilik	fark, değişiklik	çeşitlilik, farklılık
+ink	noun	mürekkep	mürekkep	dövme mürekkebi
+allied	adjective	müttefik	müttefik, bağlantılı, birleşik	ortaklaşa çalışan, iş birliği yapan
+graph	noun	grafik	çizelge, veri grafiği	graf, matematiksel grafik
+measurement	noun	ölçü, ölçüm	ölçü	ölçüm
+alter	verb	değiştirmek, değişmek	değiştirmek, düzeltmek	değişmek, farklılaşmak
+sketch	noun	taslak, kroki	kroki, taslak çizim, karalama	taslak
+transform	verb	dönüştürmek, değiştirmek	değiştirmek, biçimini/halini değiştirmek	dönüştürmek, bir şeyin işlevini/özelliğini değiştirmek
+sentiment	noun	duygu, görüş	duygu, his, içsel tutum	görüş, tutum, düşünce
+warn	verb	uyarmak	uyarmak, haber vermek	tehdidi bildirmek, uyarı vermek
+slam	verb	çarpmak, sertçe kapatmak, fırlatmak	çarpmak, sertçe vurmak	kaba bir şekilde bir yere atmak, fırlatmak
+axis	noun	eksen	dönme ekseni, dönme hattı	referans ekseni, koordinat ekseni
+evaluate	verb	değerlendirmek	değerlendirmek, ölçmek	hesaplamak, sayısal olarak değerlemek
+expectation	noun	beklenti	beklenti, öngörü	beklenen sonuç, standart
+needle	noun	iğne	iğne	enjeksiyon iğnesi
+admire	verb	hayran olmak, beğenmek	saygı duymak, hayran olmak	hayranlıkla bakmak, beğenmek
+armor	noun	zırh	zırh, koruyucu giysi	koruma, savunma
+scout	noun	gözcü, yetenek avcısı	gözcü, keşif yapan kişi	yetenek keşfeden kişi
+illusion	noun	yanılsama, illüzyon	yanılsama, aldatıcı algı	optik yanılsama, görsel illüzyon
+grind	noun	öğütme, öğütülmüş kahve	öğütülmüş kahve, öğütme derecesi	öğütme işlemi, kırma eylemi
+cement	noun	çimento	bağlayıcı madde, çimento	bağlayıcı, birleştirici unsur
+texture	noun	doku	yüzey dokusu, yapısı	doku, yapı
+showcase	noun	vitrin	vitrin, sergi, tanıtım fırsatı	sergi vitrini, cam kutu
+refuge	noun	sığınak, sığınma	güvenli yer, sığınak	sığınma
+anthem	noun	marş	ulusal marş, resmi şarkı	övgü şarkısı, marş
+intersection	noun	kesişme, kavşak	kesişme, kavşak	kesişim
+fatigue	noun	yorgunluk	yorgunluk, bitkinlik	malzeme yorgunluğu, yorulma
+therapeutic	adjective	tedavi edici, iyileştirici	iyileştirici, tedavi edici	tedaviyle ilgili, terapiye ait
+censorship	noun	sansür	sansür, ifade özgürlüğünün kısıtlanması	sansür uygulaması, denetleme süreci
+critique	noun	eleştiri	eleştiri, değerlendirme	eleştirel yaklaşım, eleştirel bakış
+decree	noun	kararname, buyruk	resmi karar, buyruk	kararname, ferman, hüküm
+eclipse	verb	gölgede bırakmak, karartmak	gölgelemek, karartmak	gölgede bırakmak, sönük bırakmak
+flush	verb	sifon çekmek, akıtarak temizlemek	sifon çekmek, suyla temizlemek, yıkamak	vücuttan atmak, temizlemek, akıtarak atmak
+hopeful	adjective	umutlu, umut verici	umutlu, iyimser	umut verici
+bulletin	noun	bülten, duyuru	bülten, haber duyurusu	duyuru, ilan
+visibility	noun	görünürlük, görüş mesafesi	görünürlük	görüş mesafesi
+maternal	adjective	anneye ait, annelik	anne tarafından, anne tarafına ait, anneye ait	anneye özgü
+prohibition	noun	yasak, yasaklama	yasak	yasaklama, men etme
+potent	adjective	güçlü, etkili	güçlü, etkili	etkin
+insecure	adjective	güvensiz	güvensiz, kendine güveni olmayan	güvenli olmayan, tehlikeli
+slack	verb	gevşemek, gevşetmek	ihmal etmek, gevşek davranmak	gevşetmek, yumuşatmak
+cork	noun	mantar, tıpa	şişe mantarı, tıpa	mantar
+stain	noun	leke	leke	kötü iz, itibar lekesi
+stain	verb	lekelemek	lekelemek, leke yapmak	itibarı lekelemek
+jewel	noun	mücevher	değerli taş, mücevher	göz bebeği, inci, en değerli parça
+partition	noun	bölme, bölünme	bölünme, parçalanma	bölme, bölücü duvar
+muscular	adjective	kaslı, kas	kaslarla ilgili, kas	güçlü, iyi kaslı, kuvvetli
+salvage	noun	kurtarma	kurtarma	kurtarılmış malzeme
+neon	noun	neon	neon, neon gazı	neon tabelası
+interrupt	verb	kesmek, sözünü kesmek	kesmek, bölmek	sözünü kesmek, araya girmek, lafa karışmak
+rusty	adjective	paslı, körelmiş	paslı	körelmiş, paslanmış
+coloring	noun	boyama, boya	renklendirme, boyama	renklendirici madde, gıda boyası
+tolerant	adjective	hoşgörülü, dayanıklı	hoşgörülü, farklılıklara saygı gösteren	dayanıklı, etkilenmeye karşı bağışıklık gösteren
+optics	noun	optik	optik	optik aksam, mercekler, optik parçalar
+tango	noun	tango	tango, tango dansı	tango müziği
+reversal	noun	tersine dönüş, iptal	tersine dönüş, değişim	karar değişikliği, iptal
+fragment	noun	parça	parça, kırıntı	metin parçası, alıntı
+obstruction	noun	engel, tıkanıklık	engelleme, tıkanıklık	engel, bariyer
+indulge	verb	şımartmak, kendini şımartmak	kendine zevk vermek, kendini şımartmak	şımartmak, yüz vermek, suyuna gitmek
+maneuver	verb	yönlendirmek, manevra yapmak	yönlendirmek, kontrol etmek	becerikli bir şekilde yönlendirmek
+robe	noun	cübbe, bornoz, sabahlık	bornoz, sabahlık, cübbe	akademik cübbe, mezuniyet kıyafeti
+blueprint	noun	plan, taslak, mimari çizim	mimari çizim, teknik plan	detaylı plan, strateji
+shutter	verb	kapatmak	kapatmak	kepenklerini kapatmak, kepenkle örtmek
+rewrite	verb	yeniden yazmak	yeniden yazmak, gözden geçirerek düzeltmek	yeniden düzenlemek, tamamen değiştirmek
+tanker	noun	tanker	petrol taşıyan gemi	sıvı taşıyan kamyon
+contingency	noun	olası durum, beklenmedik durum	olası durum, ihtimal	beklenmedik durum, acil durum
+torrent	noun	sel, akın	büyük akıntı, sel, şiddetli akış	çok sayıda, yoğun akış
+indefinite	adjective	belirsiz, süresiz	belirsiz, kesin olmayan	sınırsız, belirli bir sonu olmayan
+barrage	verb	bombardımana tutmak, yağmuruna tutmak	yoğun ateşle bombardımana tutmak, bombalamak	yağmuruna tutmak, bombardımana tutmak
+authorize	verb	yetkilendirmek, izin vermek	yetkilendirmek, resmi izin vermek	güç vermek, yetki tanımak
+saturation	noun	doygunluk	doygunluk, doygunluk seviyesi	renk doygunluğu, renk yoğunluğu
+cosmopolitan	adjective	kozmopolit, çok kültürlü	dünya vatandaşı, evrensel, çok kültürlü	kültürlerarası, çok uluslu
+palate	noun	damak, damak tadı	damak tadı, damak zevki	damak
+sling	noun	askı, kol askısı	askı, askı aparatı	kol askısı
+bombardment	noun	bombardıman	bombardıman, yoğun saldırı	sürekli eleştiri, yoğun baskı
+scraping	noun	kazıma, kazıntı	kazıntı	kazıma
+escalation	noun	tırmanma, artış	yükselme, artış	gerilim artışı, çatışma tırmanışı
+instruct	verb	talimat vermek, öğretmek	öğretmek, talimat vermek	emir vermek, talimatlandırmak
+prelude	noun	giriş, prelüd	giriş bölümü	prelüt, giriş müziği
+clinch	verb	kesinleştirmek, garantilemek	kazanmak, bir anlaşmayı kesinleştirmek	sonuçlandırmak, kesin bir sonuca bağlamak
+sectarian	adjective	mezhepsel, mezhepçi	mezhebe ait, mezhebiyle ilgili	bölücü, dar görüşlü, mezhepsel
+breathless	adjective	nefes nefese, soluksuz	nefessiz, soluksuz	nefesi kesilmiş, soluk soluğa, heyecandan soluğu tıkanmış
+breakaway	noun	ayrılma, kopan grup	ayrılma, kopma	ayrılan grup
+iodine	noun	iyot	iyot	tentürdiyot, iyot çözeltisi
+devour	verb	silip süpürmek, yiyip bitirmek	yemek, oburca tüketmek	tüketmek, yok etmek
+shorthand	noun	kısaltma, stenografi	stenografi, kısaltılmış yazı	kısaltma, kısaltılmış ifade
+disorderly	adjective	düzensiz, taşkınlık yapan	düzensiz, dağınık, intizamsız	kamu düzenini bozan, taşkınlık yapan, asayişi bozan
+acutely	adverb	şiddetle, keskin biçimde	şiddetli bir şekilde, keskin biçimde	akut olarak, ani bir biçimde
+stampede	noun	izdiham, panikle kaçışma	ürküp kaçışma, sürü paniği	izdiham, panikle kaçışma
+standoff	noun	çıkmaz, karşı karşıya bekleyiş	çıkmaz, çıkmaz durum	gergin bekleyiş, kriz durumu, kuşatma
+ejection	noun	dışarı atılma	dışarı atılma, oyundan/maçtan atılma	çıkma, dışarı fırlatma
+nauseous	adjective	midesi bulanan, mide bulandırıcı	midesi bulanan, mide bulantısı hissi veren	bulantı verici, iğrenç
+erode	verb	aşındırmak, zayıflatmak	yavaş yavaş aşındırmak, yıpratmak	azaltmak, zayıflatmak, aşındırmak
+roadblock	noun	barikat, engel	barikat, yol barikatı, yol engeli	engelleme, zorluk
+increment	noun	artış, artım	artış, ek	artım, artırma
+diverge	verb	ayrılmak, ayrışmak	ayrılmak, farklı yönlere gitmek	farklı düşünmek, ayrışmak
+fastening	noun	toka, bağlantı parçası	tutturucu, kanca, toka	bağlama, tutturma
+etch	verb	kazımak, kazınmak	kazımak, oyuk açmak	hafızaya kazınmak, aklına kazınmak
+yardstick	noun	ölçüt, kıstas	ölçüm çubuğu	ölçüt, kıstas
+slipstream	noun	art akıntı	hava koridoru, art akıntı, rüzgâr koridoru	rüzgârı arkasına alma, etkisi altında olma, peşinden sürüklenme
+generality	noun	genellik, genel ilke	genellik, genel olma durumu	genel kavram, genel ilke
+futurism	noun	fütürizm	gelecekçi akım, fütürizm	gelecekçilik, geleceğe yönelik düşünce
+distiller	noun	damıtıcı	içki üreticisi, damıtıcı	damıtma cihazı
+deputation	noun	heyet	temsilciler heyeti, kurul	görevli gönderme, temsilcilik görevi
+summoner	noun	çağıran kişi	çağıran, davet eden kişi	çağırıcı
+ail	verb	rahatsız etmek, hasta olmak	rahatsız etmek, sıkıntı vermek	hastalanmak, rahatsız olmak

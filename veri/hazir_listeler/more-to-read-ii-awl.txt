@@ -1,9 +1,9 @@
 # More to Read II · Academic Word List (kitabın Ek C'si, s. 515–541). ## = harf; "kelime | aile" (kitabın yazdığı aile).
-# Claude taranmış sayfalardan elle okudu. Kitaptaki ilgisiz aile üyeleri çıkarıldı: alter -> alternate, alternating; withdraw -> draw.
+# Claude taranmış sayfalardan elle okudu. Kitaptaki ilgisiz aile üyeleri çıkarıldı: alter -> alternate, alternating; withdraw -> draw. Belirsiz türlerde ailesine bakılarak tür yazıldı (stable:adj, treat:verb gibi).
 ## A
 abandon | abandoned, abandoning
 abolish | abolishes, abolished, abolishing, abolition
-abstract | abstraction, abstractions, abstractly, abstracts
+abstract:adj | abstraction, abstractions, abstractly, abstracts
 abuse | abuser, abusive, abusing, abused, abuses
 accelerate | acceleration, accelerating, accelerated, accelerates
 access | accessed, accesses, accessibility, accessible, accessing, inaccessible
@@ -23,7 +23,7 @@ adjust | adjusted, adjusting, adjustment, adjustments, adjusts, readjust, readju
 administrate | administrates, administration, administrations, administrative, administratively, administrator, administrators
 admire | admiration, admirable, admirably, admirer, admiring, admiringly, admired, admires
 adopt | adopts, adopted, adopting, adoption, adoptive
-advance | advancing, advanced, advancement, advances
+advance:verb | advancing, advanced, advancement, advances
 advantage | advantageous, advantageously, disadvantages, disadvantage, advantages, disadvantaged, disadvantageous
 advent
 adverse | adversely
@@ -41,14 +41,14 @@ alternative | alternatively, alternatives
 ambiguous | ambiguities, ambiguity, unambiguous, unambiguously
 amend | amended, amending, amendment, amendments, amends
 analogy | analogies, analogous
-annual | annually
+annual:adj | annually
 anticipate | anticipated, anticipates, anticipating, anticipation, unanticipated
 apparent | apparently
 appreciate | appreciable, appreciably, appreciated, appreciates, appreciating, appreciation, unappreciated
 apprehend | apprehended, apprehends, apprehending, apprehension
 approach | approachable, approached, approaches, approaching, unapproachable
-appropriate | appropriately, inappropriate, inappropriately
-approximate | approximated, approximately, approximates, approximating, approximation, approximations
+appropriate:adj | appropriately, inappropriate, inappropriately
+approximate:adj | approximated, approximately, approximates, approximating, approximation, approximations
 arbitrary | arbitrariness, arbitrarily
 architecture | architect, architectural, architecturally
 aspect | aspects
@@ -58,14 +58,14 @@ assert | asserted, assertive, assertively, assertiveness, asserts
 assess | assessable, assessed, assesses, assessing, assessment, assessments, reassess, reassessed, reassessing, reassessment, unassessed
 assign | assigned, assigning, assignment, assignments, assigns, reassign, reassigned, reassigning, reassigns, unassigned
 assist | assistance, assistant, assistants, assisted, assisting, assists, unassisted
-associate | associated, associating, associates
+associate:verb | associated, associating, associates
 assume | assumed, assumes, assuming, assumption, assumptions
 assure | assurance, assurances, assured, assuredly, assures, assuring
 attach | attached, attaches, attaching, attachment, attachments, unattached
 attain | attainable, attained, attaining, attainment, attainments, attains, unattainable
 attend | attended, attending, attendance, attends
 attitude | attitudes
-attribute | attributable, attributed, attributes, attributing, attribution
+attribute:verb | attributable, attributed, attributes, attributing, attribution
 available | availability, unavailable
 avoid | avoidance, avoidable, unavoidable, unavoidably, avoided, avoids, avoiding
 aware | awareness, unaware
@@ -76,19 +76,19 @@ benefit | beneficial, benefited, benefiting, benefits
 bias | biased, biases, biasing, unbiased
 border | bordering, cross-border, borders
 bribe | bribery, bribed, bribes
-brief | briefed, briefing, briefly
+brief:adj | briefed, briefing, briefly
 ## C
 calculate | calculation, calculator, calculates, calculations, calculating
 capable | capabilities, capability, incapable
 capacity | capacities
-capture | captures, captured, capturing
+capture:verb | captures, captured, capturing
 category | categories, categorization, categorize, categorized, categorizes, categorizing
 cause | causal, causality, causes
 cautious | cautiously, caution, cautions, cautiousness
 cease | ceased, ceaseless, ceases, ceasing
 challenge | challenged, challenger, challengers, challenges, challenging
 channel | channelled, channeling, channels
-chase | chases, chased, chasing
+chase:verb | chases, chased, chasing
 circumstance | circumstances
 cite | citation, citations, cited, citing, cites
 civilize | civilization, civilized, uncivilized
@@ -102,7 +102,7 @@ collapse | collapsed, collapses, collapsible, collapsing
 colleague | colleagues
 collide | collision, collides, collided, colliding
 comment | commentaries, commentary, commentator, commentators, commented, commenting, comments
-commercial | commerce, commercialize, commercialized, commercialization, commercialism, commercials, commercially
+commercial:adj | commerce, commercialize, commercialized, commercialization, commercialism, commercials, commercially
 commission | commissioned, commissioner, commissioners, commissioning, commissions
 commit | commitment, commitments, commits, committed, committing
 commodity | commodities
@@ -125,7 +125,7 @@ concern | concerned, concernedly, concerning, concerns
 conclude | concluded, concludes, concluding, conclusion, conclusions, conclusive, conclusively, inconclusive, inconclusively
 condemn | condemnation, condemned, condemns, condemning
 condense | condensed, condensation, condenses, condensing
-conduct | conducted, conducting, conducts
+conduct:verb | conducted, conducting, conducts
 confer | conference, conferences, conferred, conferring, confers
 confidence | confident, confidently
 confine | confined, confines, confining, unconfined
@@ -137,19 +137,19 @@ conscious | consciousness, consciously, unconscious, unconsciously, unconsciousn
 consensus
 consent | consensus, consented, consenting, consents
 consequent | consequence, consequences, consequently
-conserve | conserves, conserved, conserving, conservation
+conserve:verb | conserves, conserved, conserving, conservation
 considerable | considerably
 consist | consisted, consistency, consistent, consistently, consisting, consists, inconsistencies, inconsistency, inconsistent
-constant | constancy, constantly, constants, inconstancy, inconstantly
+constant:adj | constancy, constantly, constants, inconstancy, inconstantly
 constitute | constituencies, constituency, constituent, constituents, constituted, constitutes, constituting, constitution, constitutions, constitutional, constitutionally, constitutive, unconstitutional
 constrain | constrained, constraining, constrains, constraint, constraints, unconstrained
-construct | constructed, constructing, construction, constructions, constructive, constructs, reconstruct, reconstructed, reconstructing, reconstruction, reconstructs
+construct:verb | constructed, constructing, construction, constructions, constructive, constructs, reconstruct, reconstructed, reconstructing, reconstruction, reconstructs
 consult | consultancy, consultant, consultants, consultation, consultations, consultative, consulted, consults, consulting
 consume | consumed, consumer, consumers, consumes, consuming, consumption
 contact | contactable, contacted, contacting, contacts
 contagious | contagion
 contain | container, contains, contained, containing
-contemporary | contemporaries
+contemporary:adj | contemporaries
 context | contexts, contextual, contextualize, contextualized, contextualizing, uncontextualised
 contract | contracted, contracting, contractor, contractors, contracts
 contradict | contradicted, contradicting, contradiction, contradictions, contradictory, contradicts
@@ -159,8 +159,8 @@ controversy | controversies, controversial, controversially, uncontroversial
 convene | convention, convenes, convened, convening, conventional, conventionally, conventions, unconventional
 convenient | inconvenient, convenience, inconvenience, conveniently, inconveniently
 converse | conversely
-convert | conversion, conversions, converted, convertible, converting, converts
-convict | convicted, conviction, convicts
+convert:verb | conversion, conversions, converted, convertible, converting, converts
+convict:verb | convicted, conviction, convicts
 convince | convinced, convinces, convincing, convincingly, unconvinced
 cooperate | cooperated, cooperates, cooperating, cooperation, cooperative, cooperatively, co-operate, co-operated, co-operates, co-operation, co-operative, co-operatively
 cope with
@@ -171,7 +171,7 @@ create | created, creates, creating, creation, creations, creative, creatively, 
 crime | criminal, criminalise, criminally, crimes
 criteria | criterion
 crucial | crucially
-curb | curbing, curbs, curbed
+curb:verb | curbing, curbs, curbed
 cure | curable, curability, incurable, cures, curing, cured
 currency | currencies
 custom | customary, customarily, customs
@@ -182,7 +182,569 @@ debate | debatable, debated, debates, debating
 decade | decades
 decide | decision, decisive, decisively, indecisive, indecisively, indecision, decides, decided, decisions, deciding
 deceive | deception, deceptive, deceptively, deceiver, deceives, deceived, deceiving
-decline | declined, declines, declining
+decline:verb | declined, declines, declining
 deduce | deduced, deduces, deducing, deduction, deductions
 deep | depth, deepen, deeply, deepens, deepened, deepening
-# İLERLEME: s. 1–7 okundu (s. 515–521). Sıradaki: s08.png
+deficiency | deficient, deficiently
+deficit | deficits
+definite | definitely, definitive, indefinite, indefinitely
+deliberate | deliberately, deliberation
+demand | demanding, demands, demanded
+demonstrate | demonstrated, demonstrates, demonstrating, demonstration, demonstrations, demonstrative, demonstratively, demonstrator, demonstrators
+denote | denotation, denotations, denoted, denotes, denoting
+deny | deniable, denial, denials, denied, denies, denying, undeniable
+depend | independent, dependent, independently, independence, dependence, depending, depended, depends
+deplete | depleted, depletion, depleting, depletes
+depress | depressed, depresses, depressing, depression
+deprive | deprived, deprivation, deprives, depriving
+derive | derivation, derivations, derivative, derivatives, derived, derives, deriving
+design | designed, designer, designers, designing, designs
+desperate | desperately, desperation
+destroy | destruction, destructive, destructively, destructiveness, destroys, destroyed, destroying
+detect | detectable, detected, detecting, detection, detective, detectives, detector, detectors, detects
+deter | deterrent, deters, deterred, deterring
+deteriorate | deterioration, deteriorates, deteriorated
+determined | determine, determination, determinedly
+detriment | detrimental
+devastate | devastated, devastating, devastatingly, devastation
+develop | developed, developing, developer, development, developmental, develops
+deviate | deviated, deviates, deviating, deviation, deviations
+device | devices
+devise | devises, devised, devising
+devote | devoted, devotedly, devotes, devoting, devotion, devotions
+differentiate | differentiated, differentiates, differentiating, differentiation
+diffuse:adj | diffusely, diffuses, diffused
+dimension | dimensional, dimensions, multidimensional
+diminish | diminished, diminishes, diminishing, undiminished
+disaster | disastrous, disastrously
+discard:verb | discards, discarded, discarding
+discharge:verb | discharges, discharged, discharging
+discrete | discretely, discretion, indiscrete, indiscretion
+discriminate | discriminated, discriminates, discriminating, discrimination
+displace | displaced, displacement, displaces, displacing
+display | displayed, displaying, displays
+dispose | disposable, disposal, disposed, disposes, disposing
+dispute | disputed, disputable, indisputable, disputes
+disrupt | disruption, disruptive, disruptively, disrupts, disrupting, disrupted
+dissuade | dissuades, dissuaded
+distinct | distinction, distinctions, distinctive, distinctively, distinctly, indistinct, indistinctly
+distort | distorted, distorting, distortion, distortions, distorts
+distract | distracting, distraction, distracts, distracted
+distribute | distributed, distributing, distribution, distributional, distributions, distributive, distributor, distributors, redistribute, redistributed, redistributes, redistributing, redistribution
+diverse | diversely, diversification, diversified, diversifies, diversify, diversifying, diversity
+divide | division, divisible, divisor, divides, divided, dividing
+domain | domains
+domestic:adj | domestically, domesticate, domesticated, domesticating, domestics
+dominate | dominance, dominant, dominated, dominates, dominating, domination
+donate | donor, donation, donates, donors, donated, donations, donating
+doubt | doubtful, doubtfully, doubtless, doubts, doubted
+draft | drafted, drafting, drafts, redraft, redrafted, redrafting, redrafts
+dump:verb | dumping, dumps, dumped
+durable | durability
+duration
+dynamic | dynamically, dynamics
+## E
+ease | easiness, eases, eased, easing
+economy | economic, economical, economically, economics, economies, economist, economists, uneconomical, economize
+edit | edited, editing, edition, editions, editor, editorial, editorials, editors, edits
+educate | education, educational, educationally, educated, uneducated, educative, educator, educationist, educates, educating
+effect | effective, effectively, effectiveness, effects
+efficient | efficiently, efficiency, inefficient, inefficiently, inefficiency
+elaborate | elaboration, elaborately, elaborates, elaborated, elaborating
+eliminate | eliminated, eliminates, eliminating, elimination
+emerge | emerged, emergence, emergent, emerges, emerging
+emigrate | emigration, emigrant, emigrated, emigrates, emigrants, emigrating
+emphasis | emphasize, emphasized, emphasizing
+empirical | empirically
+enable | enabled, enables, enabling
+encounter:verb | encountered, encountering, encounters
+endanger | endangered, endangers
+endure | endurable, endurance, enduring, endures, endured
+enforce | enforced, enforcement, enforces, enforcing
+enhance | enhanced, enhancement, enhances, enhancing
+enormous | enormity, enormously
+enroll | enrolls, enrolled, enrolling, enrollment
+ensure | ensured, ensures, ensuring
+entire | entirely
+entitle | entitled, entitlement, entitles, entitling
+entity | entities
+environment | environmental, environmentalist, environmentalists, environmentally, environments
+envision | envisions, envisioned, envisioning
+equip | equipment, equipped, equipping, equips
+equivalent:adj | equivalence
+eradicate | eradicates, eradicated, eradication, eradicating
+erode | eroded, erodes, eroding, erosion
+error | erroneous, erroneously, errors
+essential | essentially
+establish | disestablish, disestablished, disestablishes, disestablishing, disestablishment, established, establishes, establishing, establishment, establishments
+estimate:verb | estimated, estimates, estimating, estimation, estimations, over-estimate, overestimate, overestimated, overestimates, overestimating, underestimate, underestimated, underestimates, underestimating
+ethic | ethical, ethically, ethics, unethical
+ethnic | ethnicity
+evaluate | evaluated, evaluates, evaluating, evaluation, evaluations, evaluative, re-evaluate, re-evaluated, re-evaluates, re-evaluating, re-evaluation
+evaporate | evaporation, evaporates, evaporated, evaporating
+eventual | eventuality, eventually
+evident | evidenced, evidence, evidential, evidently
+evolve | evolution, evolved, evolving, evolves, evolutionary, evolutionist, evolutionists
+exaggerate | exaggerates, exaggerated, exaggerating, exaggeration, exaggeratedly
+exceed | exceeded, exceeding, exceeds
+excessive | excessively, excess
+exchange | exchangeable, exchanges, exchanged, exchanging
+exclude | excluded, excludes, excluding, exclusion, exclusionary, exclusionist, exclusions, exclusive, exclusively
+exhaust:verb | exhaustible, exhaustive, exhaustively, exhausted, exhausting, exhausts
+exhibit:verb | exhibited, exhibiting, exhibition, exhibitions, exhibits
+exist | existence, existent, existing, exists, existed
+expand | expanded, expanding, expands, expansion, expansive
+expect | expected, expectancy, expectation, unexpected, unexpectedly, expects, expectations, expecting
+expel | expels, expelled, expelling
+expend | expendable, expenditure, expends, expended, expending
+expense | expenses
+expert | expertise, expertly, experts
+experience | experienced, inexperienced, inexperience, experiences, experiencing
+explicit | explicitly
+exploit:verb | exploitation, exploited, exploiting, exploits
+explore | exploration, explorer, exploratory, explores, explored, exploring
+export | exported, exporter, exporters, exporting, exports
+expose | exposed, exposes, exposing, exposure, exposures
+extend | extendable, extended, extension, extends, extending
+external | externalization, externalize, externalized, externalizes, externalizing
+extinct | extinction
+extract | extracted, extracting, extraction, extracts
+extreme | extremely
+## F
+facilitate | facilitated, facilitates, facilities, facilitating, facilitation, facilitator, facilitators, facility
+familiar | familiarize, familiarity, familiarly, unfamiliar, familiarizes, familiarized
+fault | faulty, faultless, faultlessly, faults
+feature | featured, features, featuring
+fee | fees
+file | filed, files, filing
+finance | financed, finances, financial, financially, financier, financiers, financing
+fined | fine, fines
+finite | infinite, infinitely
+flexible | flexibility, inflexible, inflexibility
+flourish:verb | flourishing, flourishes, flourished
+fluctuate | fluctuated, fluctuates, fluctuating, fluctuation, fluctuations
+forecast | forecaster, forecasts, forecasted
+foresee | foreseeable, unforeseen, foresees, foresaw, foreseeing, foreseen
+former:adj | formerly
+formidable | formidably
+formula | formulae, formulas, formulate, formulated, formulating, formulation, formulations, reformulate, reformulated, reformulating, reformulation, reformulations
+found | founded, founder, founders, founding, unfounded
+foundation | foundations
+framework | frameworks
+free | frees, freed, freeing, freedom
+frustrate | frustrated, frustrating, frustration, frustrates
+fund | funded, funder, funders, funding, funds
+fundamental:adj | fundamentally
+## G
+gather | gathering, gathers, gathered
+gender | genders
+generate | generated, generates, generating
+generation | generations
+globe | global, globally, globalization
+goal | goals
+grade | graded, grades, grading
+grant | granted, granting, grants
+guideline | guidelines
+guilty | guilt, guiltily, guiltiness, guiltless
+## H
+handicap | handicapped
+hazard:noun | hazardous, hazards
+heredity | hereditary
+hierarchy | hierarchical, hierarchies
+highlight | highlighted, highlighting, highlights
+hostile | hostility, hostilities
+## I
+identical | identically
+identify | identifiable, identification, identified, identifies, identifying, identities, identity, unidentifiable
+ideology | ideological, ideologically, ideologies
+ignorant | ignorance, ignore, ignored, ignoring
+illustrate | illustrated, illustrates, illustrating, illustration, illustrations, illustrative
+image | imagery, images
+immense | immensely, immensity
+immigrate | immigrant, immigrants, immigrated, immigrates, immigrating, immigration
+impact | impacted, impacting, impacts
+implement:verb | implementation, implemented, implementing, implements
+implicate | implicated, implicates, implicating, implication, implications
+implicit | implicitly
+imply | implied, implies, implying
+import | importer, importation, imports, imported, importing
+impose | imposed, imposes, imposing, imposition
+impress | impressed, impressive, impressing, impressively, impresses, impression
+imprison | imprisonment, imprisoned, imprisoning
+improve | improvement, improves, improved, improving
+incentive | incentives
+incidence | incident, incidentally, incidents
+incline:verb | inclination, inclinations, inclined, inclines, inclining
+include | inclusive, included, including, inclusion, includes
+income | incomes
+incorporate | incorporated, incorporates, incorporating, incorporation
+incredible | incredibly, credible, credibly, credibility
+indicate | indicated, indicates, indicating, indication, indications, indicative, indicator, indicators
+indifferent | indifferently, indifference
+individual | individualized, individuality, individualism, individualist, individualists, individualistic, individually, individuals
+induce | induced, induces, inducing, induction
+industry | industrial, industrious, industrially, industrialism, industrialist, industrialize, industrialized, industrializing, industrialization, industries
+inevitable | inevitability, inevitably
+infer | inference, inferences, inferred, inferring, infers
+inflate | inflated, inflates, inflating
+inflict | infliction, inflicted, inflicting
+influence | influential, influences, influenced, influencing
+infrastructure | infrastructures
+ingenious | ingeniously, ingenuity
+inhabitant | inhabit, inhabitable, uninhabitable, inhabits, inhabited, inhabiting
+inherent | inherently
+inhibit | inhibited, inhibiting, inhibition, inhibitions, inhibits
+initial:adj | initially
+initiate | initiated, initiates, initiating, initiation, initiations, initiative, initiatives, initiator, initiators
+injure | injured, injures, injuries, injuring, injury, uninjured
+inmate | inmates
+innate | innately
+innocent | innocence, innocently
+innovate | innovation, innovated, innovates, innovating, innovations, innovative, innovator, innovators
+input:noun | inputs
+insert | inserted, inserting, insertion, inserts
+insight | insightful, insights
+inspect | inspected, inspecting, inspection, inspections, inspector, inspectors, inspects
+inspire | inspiration, inspirational, inspired, inspiring, inspires
+instance | instances
+insulate | insulation, insulator, insulates, insulated, insulating
+integral:adj
+integrate | integrated, integrates, integrating, integration
+intelligent | intelligence, intelligently, unintelligent
+intense | intensely, intenseness, intensification, intensified, intensifies, intensify, intensifying, intension, intensity, intensive, intensively
+interact | interacted, interacting, interaction, interactions, interactive, interactively, interacts
+interfere | interference, interfering
+internal | internalize, internalized, internalizes, internalizing, internally
+interpret | interpretation, interpretations, interpretative, interpreted, interpreting, interpretive, interprets, misinterpret, misinterpretation, misinterpretations, misinterpreted, misinterpreting, misinterprets, reinterpret, reinterpreted, reinterprets, reinterpreting, reinterpretation, reinterpretations
+interrupt | interruption, interrupts, interrupted, interrupting
+interval | intervals
+intervene | intervened, intervenes, intervening, intervention, interventions
+interview | interviewer, interviewee, interviewed, interviews
+intrude | intruder, intrusion, intrusive, intrudes, intruded, intruding
+intuition | intuit, intuitive, intuitively
+invade | invader, invasion, invasive, invades, invaded, invading
+invent | invention, inventor, inventive, inventively, inventiveness, invents, invented, inventing
+invest | invested, investing, investment, investments, investor, investors, invests, reinvest, reinvested, reinvesting, reinvestment, reinvests
+investigate | investigated, investigates, investigating, investigation, investigations, investigative, investigator, investigators
+invoke | invoked, invokes, invoking
+involve | involved, involvement, involves, involving, uninvolved
+isolate:verb | isolated, isolates, isolating, isolation, isolationism
+issue | issued, issues, issuing
+## J
+journal | journals
+judge:verb | judgment, judgmental, judgmentally, judges, judged, judging
+justify | justifiable, justifiably, justification, justifications, justified, justifies, justifying, unjustified
+## L
+label | labeled, labeling, labels
+labor | labored, laboring, labors
+launch:verb | launcher
+layer | layered, layering, layers
+legal | illegal, illegality, illegally, legality, legally
+legislate | legislated, legislates, legislating, legislation, legislative, legislator, legislators, legislature
+legitimate:adj | legitimately, legitimacy, legitimize, legitimized, legitimizes
+liberal:adj | liberalize, liberalism, liberalization, liberalized, liberalizes, liberalizing, liberate, liberated, liberates, liberation, liberations, liberating, liberator, liberators, liberally, liberals
+license | licenses, licensed, licensing, unlicensed
+literate | illiterate, literacy, illiteracy
+loan:noun | loans
+local | localize, localized, localizes, localizing
+locate | located, locating, location, locations, relocate, relocated, relocates, relocating, relocation
+logic | illogical, illogically, logical, logically, logician, logicians
+## M
+maintain | maintained, maintaining, maintains, maintenance
+major | majorities, majority
+manipulate | manipulated, manipulates, manipulating, manipulation, manipulations, manipulative
+manual | manually, manuals
+manufacture:verb | manufacturer, manufactured, manufactures, manufacturing
+margin | marginal, marginally, margins
+mass | massive, massively, massiveness
+mature:adj | immature, immaturity, maturation, maturational, matured, matures, maturing, maturity
+mediate | mediated, mediates, mediating, mediation
+medium
+menace | menacing, menacingly
+mental | mentality, mentally
+migrate | migrant, migrants, migrated, migrates, migrating, migration, migrations, migratory
+military:adj
+minimize | minimized, minimizes, minimizing
+ministry | ministered, ministering, ministerial, ministries
+minor:adj | minorities, minority, minors
+mislead | misleading, misleadingly, misleads, misled
+moderate:adj | moderation, moderates, moderated, moderating, moderator, moderately
+modernize | modern, modernist, modernistic, modernity, modernization, modernizes, modernized, modernizing
+modify | modification, modifications, modified, modifies, modifying, unmodified
+monitor | monitored, monitoring, monitors, unmonitored
+moral:adj | immoral, morality, immorality, morally, immorally, moralize, moralistic, moralist
+motive | motivate, motivated, motivates, motivating, motivation, motivations, motives, unmotivated
+mutual | mutually
+## N
+native | natives
+necessary | necessarily, necessity, unnecessary, unnecessarily, necessitates, necessitate, necessitating, necessitated
+neglect | negligible, neglectful, neglected, neglects, neglecting
+negotiate | negotiable, negotiation, negotiates, negotiated, negotiating, negotiator
+network | networked, networking, networks
+neutral | neutralization, neutralize, neutralized, neutralizes, neutralizing, neutrality
+norm | norms
+normal | abnormal, abnormally, normalization, normalize, normalized, normalizes, normalizing, normality, normally
+notion | notions
+nourish | nourishing, nourishment, nourishes, nourished
+## O
+objective:adj | objectively, objectivity
+observe | observation, observer, observatory, observee, observed, observes, observing
+obtain | obtainable, obtained, obtaining, obtains, unobtainable
+obvious | obviously
+occupy | occupancy, occupant, occupants, occupation, occupational, occupations, occupied, occupier, occupiers, occupies, occupying
+occur | occurred, occurrence, occurrences, occurring, occurs, reoccur, reoccurred, reoccurring, reoccurs
+offend | offense, offensive, offensively, inoffensive, offensiveness, offender, offends, offended
+offset | offsets, offsetting
+ongoing
+opportunity | opportunist, opportunistically, opportunists
+option | optional, options
+orbit | orbital, orbits, orbiting
+ordinary | ordinarily, ordinariness, extraordinary, extraordinarily
+organize | organization, organized, organizer, disorganized, disorganization, organizes, organizing, organizations, organizers
+orient | orientate, orientated, orientates, orientation, orientating, oriented, orienting, orients, reorient, reorientation
+origin | original, originally, originate, originator, origins, originates, originated, originating
+outcome | outcomes
+outnumber | outnumbers, outnumbered, outnumbering
+output | outputs
+overall
+overcome | overcame, overcoming, overcomes
+overlap | overlapped, overlapping, overlaps
+## P
+paradigm | paradigms
+parameter | parameters
+participate | participant, participants, participated, participates, participating, participation, participatory
+penalty | penal, penalize, penalties, penalizes, penalized, penalizing
+perceive | perceived, perceives, perceiving, perception, perceptions
+perform | performance, performer, performs, performed, performing
+period | periodic, periodical, periodically, periodicals, periods
+permit:verb | permits, permitting, permitted, permission, permissive, permissiveness, permissible
+persist | persisted, persistence, persistent, persistently, persisting, persists
+perspective | perspectives
+phase | phased, phases, phasing
+phenomenon | phenomena, phenomenal
+plentiful | plenty, plentifully
+policy | policies
+pollute | pollution, pollutant, polluter, pollutes, polluting, polluted
+population | populate, populous, populated, populates
+portion | portions
+pose:verb | posed, poses, posing
+potential:adj | potentially
+practitioner | practitioners
+praise | praiseworthy, praising, praises, praised
+precede | preceded, precedence, precedent, precedes, preceding, unprecedented
+precise | imprecise, precisely, precision
+predict | predictability, predictable, predictably, predicted, predicting, prediction, predictions, predicts, unpredictability, unpredictable
+predominant | predominance, predominantly, predominate, predominated, predominates, predominating
+prejudice | prejudiced, prejudices, prejudicing
+preliminary | preliminaries
+presume | presumably, presumed, presumes, presuming, presumption, presumptions, presumptuous
+pretend | pretends, pretended, pretending
+prevail | prevailing, prevails, prevailed
+prevent | prevention, preventive, preventable, prevents, prevented, preventing
+previous | previously
+primary | primarily
+prime:adj | primacy
+principal | principally
+prior | priority, priorities, prioritization, prioritize, prioritized, prioritizes, prioritizing
+private | privately, privacy, privatize, privatization
+privilege | privileged, privileges
+proceed | procedural, procedure, procedures, proceeded, proceeding, proceedings, proceeds
+process | processed, processes, processing
+produce | product, production, producer, productive, productively, productivity, produces, produced, producing
+progress | progression, progressive, progressively, progresses, progressed, progressing
+profit | profitable, profitably, profitability, profiteer, profiteering, unprofitable, profits
+prohibit | prohibited, prohibiting, prohibition, prohibitions, prohibitive, prohibits
+prolong | prolonged, prolongation, prolongs, prolonging
+promote | promoted, promoter, promoters, promotes, promoting, promotion, promotions
+proportion | disproportion, disproportionate, disproportionately, proportional, proportionally, proportionate, proportionately, proportions
+prospect | prospective, prospects
+prosperity | prosper, prospers, prospered, prosperous, prosperously, prospering
+protect | protection, protected, protective, protectively, protectiveness, protector, protects, protecting, protectors
+provide | provider, provision, provided, provides, providing
+publication | publications
+publicity | publicize, publicizes, publicizing, publicized, publicist
+publish | published, publisher, publishers, publishes, publishing, unpublished
+punish | punishment, punishable, punishes, punished, punishing
+purchase | purchased, purchaser, purchasers, purchases, purchasing
+pursue | pursued, pursues, pursuing, pursuit, pursuits
+## Q
+quote:verb | quotation, quotations, quoted, quotes, quoting
+## R
+radical:adj | radically, radicals
+raise | raised, raises, raising
+random | randomly, randomness
+range | ranged, ranges, ranging
+ratio | ratios
+rational | irrational, rationalization, rationalizations, rationalize, rationalized, rationalizes, rationalizing, rationalism, rationality, rationally
+react | reacted, reacts, reacting, reaction, reactionary, reactions, reactive, reactivate, reactivation, reactor, reactors
+real | realism, realist, realistic, realistically, reality, realize, realizable, realization, realizes, realizing, realized
+reasonable | unreasonable, reason, reasonably, reasons, reasoning
+rebel | rebellious, rebelliously, rebelliousness, rebellion, rebelled, rebelling
+recall:verb | recalls, recalled, recalling
+receive | receipt, receives, receiver, received, receiving
+recognize | recognizable, recognizably, recognition, recognized, recognizing, recognizes
+recover | recoverable, recovered, recovering, recovers, recovery
+reduce | reduction, reduces, reduced, reducing
+refine | refined, refinement, refinements, refines, refining
+reflect | reflection, reflective, reflector, reflects, reflecting, reflected
+refute | refutation, refutes, refuted, refuting
+regard:verb | regarding, regardless, disregard, disregards, regarded, disregarded, disregarding
+region | regional, regionally, regions
+reinforce | reinforced, reinforcement, reinforcements, reinforces, reinforcing
+reject | rejected, rejecting, rejection, rejects, rejections
+release | released, releases, releasing
+relevant | irrelevance, irrelevant, relevance
+relieve | relief, relieved, relieves, relieving
+reluctance | reluctant, reluctantly
+rely | reliability, reliable, reliably, reliance, reliant, relied, relies, relying, unreliable
+remain | remains, remainder, remaining, remained
+remark | remarkable, remarkably, remarks, remarked
+remote | remotely, remoteness
+remove | removable, removal, removals, removed, removes, removing
+replace | replacement, replaceable, irreplaceable, replaces, replaced, replacing
+require | required, requirement, requirements, requires, requiring
+research | researched, researcher, researchers, researches, researching
+resemble | resemblance, resembles, resembled, resembling
+reside | resided, residence, resident, residential, residents, resides, residing
+resist | resistance, resistant, resists, resisted, resisting
+resolve | resolution, resolved, resolves, resolving, unresolved
+resource | resourced, resourceful, resources, resourcing, unresourceful, under-resourced
+respond | responded, respondent, respondents, responding, responds, response, responses, responsive, responsiveness, unresponsive
+responsible | responsibility, responsibly, irresponsible, irresponsibility, irresponsibly, responsibilities
+restore | restoration, restored, restores, restoring
+restrain | restrained, restraining, restrains, restraint, restraints, unrestrained
+restrict | restricted, restricting, restriction, restrictions, restrictive, restrictively, restricts, unrestricted, unrestrictive
+retain | retained, retaining, retainer, retainers, retains, retention, retentive
+retaliate | retaliation, retaliatory, retaliates, retaliated, retaliating
+reveal | revealed, revealing, reveals, revelation, revelations
+revenue | revenues
+reverse:verb | reversal, reversed, reverses, reversible, reversing, reversals, irreversible
+revise | revised, revises, revising, revision, revisions
+revive | revival, revives, revived, reviving
+revolt | revolts, revolting, revolted
+revolution | revolutionary, revolutionaries, revolutionize, revolutionized, revolutionizes, revolutionizing, revolutionist, revolutionists, revolutions
+rigid | rigidity, rigidly
+route | routed, routes, routing
+ruin | ruins, ruined, ruining
+rural
+## S
+satisfy | satisfied, satisfying, satisfactory, satisfactorily, satisfaction, dissatisfaction, dissatisfied, unsatisfactory, satisfies
+save | saver, savings, saves, saved, saving
+schedule | reschedule, rescheduled, reschedules, rescheduling, scheduled, schedules, scheduling, unscheduled
+scheme | schematic, schemed, schemes, scheming
+scope:noun
+section | sectioned, sectioning, sections
+sector | sectors
+secure:adj | insecure, insecurities, insecurity, secured, securely, secures, securing, securities, security
+seek | seeking, seeks, sought
+select | selected, selecting, selection, selections, selective, selectively, selector, selectors, selects
+sequence | sequenced, sequences, sequencing, sequential, sequentially
+series
+serve | server, serving, servant, served, serves
+settle | settlement, settler, settled, settles
+shift | shifted, shifting, shifts
+shortage | shortages
+significant | insignificant, insignificantly, significance, significantly, signified, signifies, signify, signifying
+similar | dissimilar, similarities, similarity, similarly
+simulate | simulated, simulates, simulating, simulation
+so-called
+source | sourced, sources, sourcing
+species
+specific | specifically, specification, specifications, specificity, specifics
+specify | specifiable, specified, specifies, specifying, unspecified
+speculate | speculation, speculative, speculatively, speculator, speculates, speculated, speculating, speculations
+stable:adj | instability, stabilization, stabilize, stabilized, stabilizes, stabilizing, stability, unstable
+status
+steady:adj | steadily, steadiness
+store | storage, stored, stores, storing
+straightforward
+strategy | strategic, strategies, strategically, strategist, strategists
+stress | stressed, stresses, stressful, stressing, unstressed
+structure | restructure, restructured, restructures, restructuring, structural, structurally, structured, structures, structuring, unstructured
+submit | submission, submissions, submits, submitted, submitting
+subordinate | subordinates, subordination
+subscribe | subscribed, subscribes, subscription, subscriber
+subsequent | subsequently
+subsidy | subsidiary, subsidies, subsidize, subsidized, subsidizes, subsidizing
+substantial | substantially
+substitute | substituted, substitutes, substituting, substitution
+suburbs | suburban, suburbanite
+succeed | success, successful, successfully, unsuccessful, unsuccessfully, succeeds, succeeded, succeeding
+successor | succession, successions, successive, successively, successors
+suffer | suffering, sufferer, suffers, suffered, sufferers
+sufficient | sufficiency, insufficient, insufficiently, sufficiently
+sum | summation, summed, summing, sums
+summary | summaries, summarize, summarized, summarizes, summarizing, summarization, summarizations
+supplement | supplementary, supplemented, supplementing, supplements
+supply | supplier, supplies, supplied, suppliers, supplying
+suppress | suppression, suppressor, suppressing, suppressed, suppresses
+survey | surveyed, surveying, surveys
+survive | survival, survived, survives, surviving, survivor, survivors
+suspect:verb | suspicious, suspiciously, suspicion, suspected, suspects, suspecting
+suspend | suspended, suspending, suspends, suspension
+sustain | sustainable, sustainability, sustained, sustaining, sustains, sustenance, unsustainable
+## T
+tackle | tackled, tackles, tackling
+target | targeted, targeting, targets
+task | tasks
+team | teamed, teaming, teams
+temporary | temporarily
+tend to | tendency, tends to, tending to, tended to
+tense:adj | tension, tensely, tensions
+terminate | terminal, terminals, terminated, terminates, terminating, termination, terminations
+territory | territorial, territories
+theme | themes, thematic, thematically
+theory | theoretical, theoretically, theories, theorist, theorists
+thesis | theses
+threat | threaten, threatening, threateningly, threatens, threatened, threats
+thrive | thrives, thrived, thriving
+tolerate | tolerant, tolerates, tolerated, tolerating, intolerant, tolerance, intolerance
+topic | topical, topics
+trace | traceable, traced, traces, tracing
+trade | trader, trading, traded, trades, traders
+tradition | non-traditional, traditional, traditionalist, traditionally, traditions
+trainer | trains, training, trained, trainee, trainers, trainees
+transform | transformation, transformations, transformed, transforming, transforms
+transit | transited, transiting, transition, transitional, transitions, transitory, transits
+transmit | transmission, transmissions, transmitted, transmitting, transmits
+transplant | transplantation, transplants, transplanted, transplanting
+trap | trapped, trapper, traps, trapping
+treat:verb | treatment, treats, treated, treating, treatments
+trend | trends
+trigger | triggered, triggering, triggers
+trust | trustful, trustworthy, trustworthiness, trusts, trusting, trusted
+## U
+ultimate | ultimately
+underestimate | underestimates, underestimated, underestimating
+undergo | undergoes, undergoing, undergone, underwent
+underlie | underlay, underlies, underlying
+undertake | undertaken, undertakes, undertaking, undertook
+uniform:adj | uniformity, uniformly
+unify | unification, unified, unifies, unifying
+unique | uniquely, uniqueness
+universal:adj | universally, universality, universe
+urban | urbanize, urbanized, urbanization
+urge:verb | urging, urges, urged
+utilize | utilization, utilized, utilizes, utilizing, utilizer, utilizers, utility, utilities
+## V
+valid | invalidate, invalidity, validate, validated, validating, validation, validity, validly
+vary | invariable, invariably, variability, variable, variables, variably, variance, variant, variants, variation, variations, varied, varies, varying, various
+vast | vastly
+verify | verification, verifiable, verifies, verified, verifying
+version | versions
+via
+violate | violated, violates, violating, violation, violations
+violent | violence, violently
+virtual | virtually
+visible | visibility, visibly, invisible, invisibility
+vision | visions
+visual:adj | visualize, visualized, visualizing, visualization, visually
+volume | volumes
+voluntary | voluntarily, volunteer, volunteering, volunteered, volunteers
+vulnerable | vulnerability
+## W
+welfare
+widespread
+willing | willingly, willingness, unwilling, unwillingly, unwillingness
+withdraw | withdrawal, withdrawn, withdraws, withdrew, withdrawing
+worth | worthy, worthily, worthless, worthlessness

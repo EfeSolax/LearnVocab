@@ -1,0 +1,125 @@
+# Temel kelimeler · 1. dosya: tanımlıklar ve zamirler · Claude elle yazdı, 11 Ekim 2026 (rapor 18.36)
+# Kaynak: c = Cambridge A2 Key / B1 Preliminary listesinde var; l = Claude'un etiketi.
+a | determiner | A1 | c
+  bir (belirsiz tanımlık; sessiz harfle başlayan kelimeden önce) | used before a singular noun that has not been mentioned before, when the next word begins with a consonant sound | I have a brother and a sister. / She is a teacher.
+  her, başına (miktar, sıklık) | used to mean "each" or "every" when talking about prices, speeds or how often | I go to the gym three times a week. / Apples are $2 a kilo.
+an | determiner | A1 | c
+  bir (belirsiz tanımlık; sesli harfle başlayan kelimeden önce) | used instead of "a" when the next word begins with a vowel sound | I ate an apple. / It takes an hour to get there.
+the | determiner | A1 | c
+  (belirli tanımlık; bilinen, daha önce sözü geçen ya da tek olan şey için) | used before a noun when it is clear which person or thing you mean | Can you close the door? / The sun is very hot today.
+  (bir türün tamamı, enstrüman, ırmak, okyanus vb. adlardan önce) | used before some names and to talk about a whole group or type | She plays the piano. / The Nile is the longest river in Africa.
+  ne kadar … o kadar | used with two comparative forms to show that two things change together | The more you practice, the better you get. / The sooner, the better.
+I | pronoun | A1 | c
+  ben | used by the speaker to refer to himself or herself as the subject of a verb | I am a student. / I don't like coffee.
+you | pronoun | A1 | c
+  sen; siz | used to refer to the person or people you are speaking to | Are you hungry? / You are all welcome.
+  insan, kişi (genel olarak herkes) | used to refer to people in general | You can't smoke here. / You never know what will happen.
+he | pronoun | A1 | c
+  o (erkek) | used to refer to a man, boy or male animal as the subject of a verb | He is my brother. / Where does he live?
+she | pronoun | A1 | c
+  o (kadın) | used to refer to a woman, girl or female animal as the subject of a verb | She works in a bank. / Is she your sister?
+it | pronoun | A1 | c
+  o (cansız şey, hayvan, durum) | used to refer to a thing, animal or situation that has already been mentioned | I bought a new phone. It's very fast. / Where's the cat? Is it outside?
+  (hava, zaman, mesafe cümlelerinde boş özne) | used as the subject of a verb when talking about the weather, time, distance or a situation | It's raining. / It's ten o'clock. / It's important to sleep well.
+we | pronoun | A1 | c
+  biz | used by the speaker to refer to himself or herself and one or more other people as the subject of a verb | We are friends. / Shall we go now?
+they | pronoun | A1 | c
+  onlar | used to refer to two or more people or things as the subject of a verb | They live in Ankara. / Where are my keys? Are they in the car?
+  o (cinsiyeti bilinmeyen ya da belirtilmeyen tek kişi) | used to refer to one person when you do not know or do not want to say if it is a man or a woman | Someone called, but they didn't leave a message. / Ask each student if they have a pen.
+  onlar, yetkililer, insanlar (belirsiz) | used to refer to people in general or people in authority | They say it will rain tomorrow. / They're building a new hospital.
+me | pronoun | A1 | c
+  beni, bana | used as the object of a verb or preposition, or after "be", to refer to the speaker | Can you help me? / He gave me a book. / It's me!
+him | pronoun | A1 | c
+  onu, ona (erkek) | used as the object of a verb or preposition to refer to a man, boy or male animal | I saw him yesterday. / Give the book to him.
+her | pronoun | A1 | c
+  onu, ona (kadın) | used as the object of a verb or preposition to refer to a woman, girl or female animal | I called her last night. / This present is for her.
+us | pronoun | A1 | c
+  bizi, bize | used as the object of a verb or preposition to refer to the speaker and another person or other people | Come with us! / They invited us to dinner.
+them | pronoun | A1 | c
+  onları, onlara | used as the object of a verb or preposition to refer to two or more people or things | I love these shoes. I'll buy them. / Tell them to wait.
+  onu, ona (cinsiyeti belirtilmeyen tek kişi) | used to refer to one person when you do not know or do not want to say if it is a man or a woman | If anyone calls, tell them I'm busy. / Every student should bring their book with them.
+mine | pronoun | A1 | c
+  benimki | used to refer to something that belongs to the speaker | This bag is mine. / Is that your car or mine? |
+yours | pronoun | A1 | c
+  seninki; sizinki | used to refer to something that belongs to the person or people you are speaking to | Is this pen yours? / Our house is smaller than yours.
+his | pronoun | A1 | c
+  onunki (erkek) | used to refer to something that belongs to a man, boy or male animal | That bike is his. / My phone is old, but his is new.
+hers | pronoun | A2 | c
+  onunki (kadın) | used to refer to something that belongs to a woman, girl or female animal | The red car is hers. / Is this coat yours or hers?
+ours | pronoun | A2 | c
+  bizimki | used to refer to something that belongs to the speaker and another person or other people | That table is ours. / Their garden is bigger than ours.
+theirs | pronoun | A2 | c
+  onlarınki | used to refer to something that belongs to two or more people or things | The decision is theirs. / Our kids are older than theirs.
+myself | pronoun | A2 | c
+  kendimi, kendime (dönüşlü) | used as the object of a verb or preposition when the speaker is both the subject and the object | I hurt myself. / I bought myself a new watch.
+  kendim (vurgu için); kendi kendime | used to emphasize "I", or to mean "alone, without help" | I made this cake myself. / I did it all by myself.
+yourself | pronoun | A2 | c
+  kendini, kendine (dönüşlü) | used as the object of a verb or preposition when the person you are talking to is both the subject and the object | Be careful – don't cut yourself. / Help yourself to some cake.
+  kendin (vurgu için); kendi kendine | used to emphasize "you", or to mean "alone, without help" | Did you paint this yourself? / You can't do it all by yourself.
+himself | pronoun | A2 | c
+  kendini, kendine (erkek, dönüşlü) | used as the object of a verb or preposition when a man or boy is both the subject and the object | He looked at himself in the mirror. / He taught himself to play the guitar.
+  kendisi (vurgu için); kendi kendine | used to emphasize a male subject, or to mean "alone, without help" | The president himself came to the opening. / He lives by himself.
+herself | pronoun | A2 | c
+  kendini, kendine (kadın, dönüşlü) | used as the object of a verb or preposition when a woman or girl is both the subject and the object | She bought herself a new dress. / She hurt herself playing football.
+  kendisi (vurgu için); kendi kendine | used to emphasize a female subject, or to mean "alone, without help" | She made the dress herself. / She traveled around Asia by herself.
+itself | pronoun | A2 | c
+  kendini, kendine (cansız şey, hayvan; dönüşlü) | used as the object of a verb or preposition when a thing or animal is both the subject and the object | The cat is washing itself. / The door opened by itself.
+  kendisi (vurgu için) | used to emphasize a thing or animal | The town itself is very small. / The idea itself is good.
+ourselves | pronoun | A2 | c
+  kendimizi, kendimize (dönüşlü) | used as the object of a verb or preposition when the speaker and others are both the subject and the object | We enjoyed ourselves at the party. / We should be proud of ourselves.
+  kendimiz (vurgu için); kendi kendimize | used to emphasize "we", or to mean "alone, without help" | We built the house ourselves. / We did it by ourselves.
+yourselves | pronoun | A2 | l
+  kendinizi, kendinize (dönüşlü) | used as the object of a verb or preposition when the people you are talking to are both the subject and the object | Enjoy yourselves, kids! / Please help yourselves to drinks.
+  kendiniz (vurgu için); kendi kendinize | used to emphasize "you" (plural), or to mean "alone, without help" | Did you make this yourselves? / You'll have to do it by yourselves.
+themselves | pronoun | A2 | c
+  kendilerini, kendilerine (dönüşlü) | used as the object of a verb or preposition when people or things are both the subject and the object | The children enjoyed themselves. / They introduced themselves.
+  kendileri (vurgu için); kendi kendilerine | used to emphasize "they", or to mean "alone, without help" | The students organized the event themselves. / They live by themselves.
+this | pronoun | A1 | c
+  bu (yakındaki şey ya da kişi) | used to refer to a person or thing that is near you, or to the present situation | This is my sister, Ayşe. / What's this?
+that | pronoun | A1 | c
+  şu, o (uzaktaki şey ya da kişi; söylenen şey) | used to refer to a person or thing that is not near you, or to something already mentioned | Who's that? / That's a great idea!
+  ki, -en, -dığı (ilgi zamiri) | used to introduce a part of a sentence that gives more information about a noun | This is the book that I told you about. / The man that lives next door is a doctor. | which
+these | pronoun | A1 | c
+  bunlar | used to refer to people or things that are near you | These are my friends. / Are these yours?
+those | pronoun | A1 | c
+  şunlar, onlar | used to refer to people or things that are not near you | Those are my parents over there. / What are those?
+  -enler, … olanlar | used to mean "the people who" or "the things which" | Those who finished early can go home. / The best seats are those at the front.
+one | pronoun | A2 | c
+  (daha önce söz edilen şeyin yerine) olan, -i | used instead of a noun that has already been mentioned | I don't like the blue shirt. I'll take the red one. / Which one do you want?
+  insan, kişi (resmî) | used to mean people in general, including the speaker (formal) | One should always be polite. / One never knows.
+none | pronoun | B1 | c
+  hiçbiri, hiç | not one of a group of people or things, or not any of an amount | None of my friends came. / "Is there any milk?" "No, there's none left." |
+anyone | pronoun | A2 | c
+  (soru ve olumsuzda) kimse, biri | used in questions and negatives to mean "any person" | Is anyone here? / I didn't see anyone.
+  herkes, kim olursa | any person, when it does not matter who | Anyone can learn to swim. / Anyone could do that job.
+everyone | pronoun | A1 | c
+  herkes | every person | Everyone was happy. / Hello, everyone!
+everybody | pronoun | A1 | c
+  herkes | every person | Everybody likes her. / Is everybody ready?
+anything | pronoun | A1 | c
+  (soru ve olumsuzda) bir şey, hiçbir şey | used in questions and negatives to mean "a thing" | Do you need anything? / I didn't buy anything.
+  ne olursa, herhangi bir şey | any thing, when it does not matter which | You can eat anything you like. / I'd do anything for you.
+everything | pronoun | A1 | c
+  her şey | all things, or all the things in a group | Everything is ready. / Thank you for everything.
+nobody | pronoun | A2 | c
+  hiç kimse | no person | Nobody knows the answer. / There was nobody at home.
+nothing | pronoun | A1 | c
+  hiçbir şey | not anything | There's nothing in the box. / I have nothing to do today.
+what | pronoun | A1 | c
+  ne | used to ask for information about something | What is your name? / What happened?
+  -diği şey, ne … -sa | the thing or things that | I don't understand what you mean. / Tell me what you want.
+which | pronoun | A1 | c
+  hangi(si) | used to ask about one or more things from a limited group | Which is your car? / Which of these do you like?
+  ki, -en, -dığı (ilgi zamiri, şeyler için) | used to introduce extra information about a thing | The house, which is very old, is for sale. / This is the bus which goes to the airport. | that
+who | pronoun | A1 | c
+  kim | used to ask about the name or identity of a person | Who is that man? / Who called you?
+  ki, -en, -dığı (ilgi zamiri, kişiler için) | used to introduce information about a person | The woman who lives here is a doctor. / I have a friend who speaks five languages. | that
+whom | pronoun | B2 | l
+  kimi, kime (resmî) | used instead of "who" as the object of a verb or preposition (formal) | To whom should I send the letter? / The man whom I met was very kind.
+whose | pronoun | A2 | c
+  kimin | used to ask who something belongs to | Whose bag is this? / Whose is this phone?
+  ki onun, -en (sahiplik bildiren ilgi zamiri) | used to show who or what something belongs to | That's the girl whose father is a pilot. / I met a man whose car was stolen.
+whoever | pronoun | B2 | l
+  her kim, kim … -sa | any person who, or the person who | Whoever wins will get a prize. / Whoever told you that was wrong.
+each other | pronoun | A2 | l
+  birbirini, birbirine | used to show that each person in a group does something to the others | They love each other. / We help each other with homework.

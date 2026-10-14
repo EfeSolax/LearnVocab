@@ -1,0 +1,95 @@
+# Temel kelimeler · 2. dosya: belirleyiciler ve modal (yardımcı) fiiller · Claude elle yazdı, 11 Ekim 2026 (rapor 18.36)
+# Kaynak: c = Cambridge A2 Key / B1 Preliminary listesinde var; l = Claude'un etiketi.
+my | determiner | A1 | c
+  benim | belonging to or connected with the speaker | My name is Ali. / I lost my keys.
+your | determiner | A1 | c
+  senin; sizin | belonging to or connected with the person or people you are speaking to | What's your name? / Is this your bag?
+his | determiner | A1 | c
+  onun (erkek) | belonging to or connected with a man, boy or male animal | His father is a doctor. / He forgot his phone.
+her | determiner | A1 | c
+  onun (kadın) | belonging to or connected with a woman, girl or female animal | Her name is Zeynep. / She lives with her parents.
+its | determiner | A1 | c
+  onun (cansız şey, hayvan) | belonging to or connected with a thing or animal | The dog is eating its food. / The company changed its name.
+our | determiner | A1 | c
+  bizim | belonging to or connected with the speaker and another person or other people | Our house is near the sea. / We love our teacher.
+their | determiner | A1 | c
+  onların | belonging to or connected with two or more people or things | Their children are at school. / The birds built their nest in the tree.
+  onun (cinsiyeti belirtilmeyen tek kişi için) | used instead of "his" or "her" when you do not know or do not want to say if a person is a man or a woman | Everyone should bring their own lunch. / Someone left their umbrella here.
+this | determiner | A1 | c
+  bu | used before a noun to refer to a person or thing that is near you, or to the present time | This book is very interesting. / I'm busy this week.
+that | determiner | A1 | c
+  şu, o | used before a noun to refer to a person or thing that is not near you, or to a time in the past | Look at that bird! / I was in Paris that summer.
+these | determiner | A1 | c
+  bu (çoğul) | used before a plural noun to refer to people or things that are near you | These shoes are too small. / I like these photos.
+those | determiner | A1 | c
+  şu, o (çoğul) | used before a plural noun to refer to people or things that are not near you | Can you pass me those books? / Those days were happy.
+any | determiner | A1 | c
+  (soru ve olumsuzda) hiç, herhangi bir | used in questions and negatives to mean "some" or "even a small amount" | Do you have any questions? / I don't have any money.
+  herhangi bir, hangisi olursa | used to mean one of a group when it does not matter which | Take any seat you like. / You can call me at any time.
+no | determiner | A1 | c
+  hiç … yok, hiçbir | not any; not a | There's no milk in the fridge. / I have no idea.
+  (yasak bildirir) … yasaktır, … yok | used on signs to say that something is not allowed | No smoking. / No parking.
+each | determiner | A2 | c
+  her bir | every one of two or more people or things, considered separately | Each student has a book. / There are flowers on each side of the road. | every
+every | determiner | A1 | c
+  her | used to refer to all the members of a group, or to say how often something happens | I go to the gym every day. / Every child needs love. | each
+either | determiner | B1 | l
+  (ikisinden) biri, herhangi biri | one or the other of two | You can take either road. / I don't like either color.
+  her iki | both of two | There are shops on either side of the street. / She had a bag in either hand.
+neither | determiner | B1 | l
+  (ikisinden) hiçbiri | not one and not the other of two | Neither answer is correct. / Neither team played well.
+both | determiner | A2 | c
+  her iki, ikisi de | used to refer to two people or things together | Both my parents are teachers. / I like both cakes.
+all | determiner | A1 | l
+  bütün, tüm, hepsi | the whole number or amount of something | All the students passed the exam. / She spent all her money. | every
+many | determiner | A1 | c
+  çok, birçok (sayılabilenle) | a large number of | Many people live in this city. / Do you have many friends? / How many brothers do you have?
+much | determiner | A1 | l
+  çok (sayılamayanla; soru ve olumsuzda) | a large amount of | I don't have much time. / How much money do you need?
+another | determiner | A1 | c
+  başka bir, bir … daha | one more, or a different one | Would you like another coffee? / Let's meet another day.
+such | determiner | B1 | c
+  öyle, böyle, bu tür | used to talk about something similar to what has been mentioned | I've never seen such a beautiful place. / Don't say such things.
+what | determiner | A1 | c
+  ne, hangi | used to ask for information about people or things | What time is it? / What color is your car?
+  ne kadar … ! (ünlem cümlesinde) | used to show surprise or strong feeling | What a beautiful day! / What a nice surprise!
+which | determiner | A1 | c
+  hangi | used to ask about one or more things from a limited group | Which bus goes to the city center? / Which color do you prefer?
+whose | determiner | A2 | c
+  kimin | used to ask who something belongs to | Whose car is this? / Whose idea was it?
+can | modal_verb | A1 | c
+  -ebilmek (yetenek) | to be able to | I can swim. / Can you speak English?
+  -ebilir miyim?, -ebilirsin (izin) | used to ask for or give permission | Can I open the window? / You can use my phone.
+  -ebilir misin? (rica) | used to ask someone to do something | Can you help me, please? / Can you pass the salt?
+  -ebilir (olasılık) | used to say that something is possible | It can be very cold here in winter. / Smoking can cause cancer.
+could | modal_verb | A1 | c
+  -ebildi, -ebiliyordu (geçmişte yetenek) | used as the past form of "can" | I could read when I was four. / She couldn't come to the party.
+  -ebilir miyim?, -ebilir misiniz? (kibar rica, izin) | used to ask politely for something or for permission | Could you help me, please? / Could I use your phone?
+  -ebilir (olasılık) | used to say that something is possible | It could rain later. / That could be true.
+  -ebilirsin (öneri) | used to make a suggestion | You could ask your teacher. / We could go to the cinema.
+may | modal_verb | A2 | c
+  -ebilir (olasılık) | used to say that something is possible | It may rain tomorrow. / She may be at home.
+  -ebilir miyim? (resmî izin) | used to ask for or give permission (formal) | May I come in? / You may leave now.
+might | modal_verb | A2 | c
+  -ebilir (zayıf olasılık) | used to say that something is possible but not certain | I might go to the party. / Take an umbrella – it might rain.
+must | modal_verb | A1 | c
+  -meli, -mek zorunda (zorunluluk) | used to say that something is necessary or very important | You must wear a seat belt. / I must finish this today. | have
+  -meli, olmalı (güçlü tahmin) | used to say that something is very likely to be true | You must be tired after your trip. / He must be at home – his car is outside.
+  -mamalı (olumsuz: yasak) | used in the negative to say that something is not allowed | You mustn't smoke here. / Students must not use phones in class.
+shall | modal_verb | A2 | c
+  -elim mi? (öneri, teklif) | used with "I" and "we" to make suggestions or offers | Shall we go for a walk? / Shall I open the window?
+  -eceğim, -eceğiz (gelecek; resmî) | used with "I" and "we" to talk about the future (formal) | I shall never forget this day. / We shall see.
+should | modal_verb | A1 | c
+  -meli, -malı (tavsiye) | used to give advice or say what is the right thing to do | You should see a doctor. / You shouldn't eat so much sugar.
+  -mesi gerekir, muhtemelen (beklenti) | used to say that something is expected or likely | The train should arrive at six. / It should be easy.
+will | modal_verb | A1 | c
+  -ecek, -acak (gelecek zaman) | used to talk about the future | I will call you tomorrow. / It will be sunny on Sunday.
+  -erim, -ayım (anlık karar, söz, teklif) | used to make a decision at the moment of speaking, or a promise or offer | I'll have the chicken, please. / I'll help you with your bags.
+  -er misin? (rica) | used to ask someone to do something | Will you close the door, please? / Will you marry me?
+would | modal_verb | A1 | c
+  -erdi, -ırdı (koşul, hayal) | used to talk about an imagined situation | If I had money, I would buy a car. / It would be nice to see you.
+  ister misiniz?, isterim (kibar teklif ve istek) | used in polite offers and requests | Would you like some tea? / I would like a glass of water.
+  -er misiniz? (kibar rica) | used to ask someone politely to do something | Would you open the door, please? / Would you mind waiting?
+  -ecekti (geçmişte gelecek); -erdi (geçmişte alışkanlık) | used as the past of "will", or to talk about things that happened often in the past | He said he would call. / When I was a child, we would play in the street.
+ought | modal_verb | B1 | c
+  (ought to) -meli, -malı (tavsiye, görev) | used to say what is the right thing to do | You ought to apologize. / We ought to leave now. | should

@@ -121,6 +121,7 @@ chef:noun
 chemist:noun
 chemist
 chew:verb
+chewing gum
 chicken:noun
 child:noun
 chin:noun
@@ -130,6 +131,7 @@ chop:verb
 cinema:noun
 circle:noun
 city:noun
+civil servant
 class:noun
 classroom:noun
 clean
@@ -193,6 +195,7 @@ dictionary:noun
 die:verb
 different
 difficult
+dining room
 dinner:noun
 dirty:adjective
 dish:noun
@@ -425,8 +428,10 @@ listen:verb
 liter:noun
 little:adjective
 live:verb
+living room
 location:noun
 look:verb
+look forward to
 lose:verb
 loud:adjective
 love
@@ -459,6 +464,7 @@ minute:noun
 mirror:noun
 miss:verb
 mix:verb
+mobile phone
 modern:adjective
 moment:noun
 monday:noun
@@ -551,11 +557,13 @@ plumber:noun
 plural:noun
 pocket:noun
 poem:noun
+police officer
 polite:adjective
 pool:noun
 pop:adjective
 popular:adjective
 positive:adjective
+post office
 potato:noun
 practice:noun
 prefer:verb
@@ -604,6 +612,7 @@ ride:verb
 right
 river:noun
 road:noun
+rock climbing
 romantic:adjective
 room:noun
 roommate:noun
@@ -614,6 +623,7 @@ rude:adjective
 sad:adjective
 salad:noun
 sales
+shop assistant
 salt:noun
 sand:noun
 saturday:noun
@@ -765,6 +775,7 @@ trip:noun
 trousers:noun
 true:adjective
 try:verb
+try on
 tuesday:noun
 turn:verb
 umbrella:noun

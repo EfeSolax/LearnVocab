@@ -67,6 +67,7 @@ book:verb
 boot:noun
 borrow:verb
 boss:noun
+both
 bowl:noun
 brain:noun
 brave:adjective
@@ -90,6 +91,7 @@ castle:noun
 catalog:noun
 cause:noun
 celebrate:verb
+cell phone
 central:adjective
 century:noun
 certain:adjective
@@ -131,6 +133,7 @@ crash
 crazy:adjective
 cream:noun
 create:verb
+credit card
 crime:noun
 cross:verb
 crowd:noun
@@ -200,7 +203,7 @@ farmer:noun
 fashion:noun
 feeling:noun
 feet
-few:adjective
+few
 fight
 final
 finger:noun
@@ -208,6 +211,7 @@ fire
 firstly:adverb
 fish
 fit:adjective
+flight attendant
 flu:noun
 follow:verb
 foreign:adjective
@@ -222,6 +226,7 @@ generally:adverb
 generous:adjective
 geography:noun
 ghost:noun
+give up
 glad:adjective
 gold:noun
 golf:noun
@@ -259,6 +264,7 @@ immediately:adverb
 impossible:adjective
 improve:verb
 include:verb
+instead:adverb
 instructions
 intelligent:adjective
 interest:noun
@@ -314,6 +320,7 @@ memorize:verb
 mend:verb
 mess:noun
 message:noun
+mineral water
 miserable:adjective
 missing:adjective
 mistake:noun
@@ -417,7 +424,7 @@ search:verb
 seatbelt:noun
 secret
 serious:adjective
-several:adjective
+several
 shave:verb
 shine:verb
 ship:noun
@@ -437,6 +444,7 @@ social:adjective
 society:noun
 socks
 soldier:noun
+sore throat
 sound
 spare:adjective
 staff:noun
@@ -515,3 +523,4 @@ wine:noun
 wood:noun
 worry
 writer:noun
+yet:adverb

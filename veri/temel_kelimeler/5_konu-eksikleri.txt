@@ -1,0 +1,134 @@
+# Temel kelimeler · 5. dosya: konuları işaretlerken sözlükte eksik çıkan önemli kelimeler · Claude elle yazdı, 11 Ekim 2026 (rapor 18.39)
+# l = Claude'un etiketi.
+March | noun | A1 | l
+  mart | the third month of the year | My birthday is in March. / Spring starts in March.
+vet | noun | A2 | l
+  veteriner | a doctor for animals | We took our dog to the vet. / She wants to be a vet.
+burger | noun | A1 | l
+  hamburger | a round piece of minced meat cooked and served in a bread roll | I'd like a burger and fries. / They sell vegetarian burgers too. | hamburger
+kangaroo | noun | A2 | l
+  kanguru | a large Australian animal that jumps on its strong back legs | Kangaroos carry their babies in a pouch. / We saw kangaroos in Australia.
+hamster | noun | A2 | l
+  hamster | a small furry animal often kept as a pet | My little brother has a hamster. / The hamster sleeps all day.
+scooter | noun | A2 | l
+  scooter; mobilet | a small two-wheeled vehicle that you stand on, or a small motorcycle | The kids ride their scooters to school. / He goes to work on a scooter.
+sunglasses | noun | A2 | l
+  güneş gözlüğü | dark glasses that protect your eyes from the sun | Don't forget your sunglasses. / She put on her sunglasses.
+glasses | noun | A1 | l
+  gözlük | two pieces of glass in a frame that you wear to see better | I need glasses to read. / Where are my glasses?
+shorts | noun | A1 | l
+  şort | short trousers that end above the knees | He wears shorts in summer. / Put on your shorts and a T-shirt.
+earache | noun | A2 | l
+  kulak ağrısı | a pain inside your ear | The baby has an earache. / I've had an earache all day.
+toothache | noun | A2 | l
+  diş ağrısı | a pain in one of your teeth | I have a terrible toothache. / You should see a dentist about your toothache.
+heart attack | noun | B1 | l
+  kalp krizi | a sudden serious medical condition in which the heart stops working normally | He had a heart attack at 60. / Smoking increases the risk of a heart attack.
+check-up | noun | B1 | l
+  check-up, genel kontrol | a general medical examination to check that you are healthy | I go for a check-up once a year. / The dentist gave me a check-up.
+mental health | noun | B1 | l
+  ruh sağlığı | the condition of a person's mind and emotions | Exercise is good for your mental health. / Many students have mental health problems.
+homesick | adjective | B1 | l
+  memleketini özlemiş, sıla hasreti çeken | sad because you are away from your home and family | She felt homesick during her first week at university. / I get homesick when I travel.
+fed up | adjective | B1 | l
+  bıkmış, gına gelmiş | annoyed or bored with something that has continued for too long | I'm fed up with this rain. / He's fed up with his job.
+hardworking | adjective | A2 | l
+  çalışkan | working with a lot of effort | She is a very hardworking student. / The workers here are hardworking.
+easygoing | adjective | B1 | l
+  rahat, uysal, kolay geçinilen | relaxed and not easily worried or annoyed | My dad is very easygoing. / She has an easygoing personality.
+punctual | adjective | B1 | l
+  dakik, zamanında gelen | arriving or doing something at the expected time | Please be punctual for the meeting. / He's always punctual.
+open-minded | adjective | B2 | l
+  açık fikirli | willing to consider new ideas and opinions | Try to be open-minded about other cultures. / My grandmother is very open-minded.
+narrow-minded | adjective | B2 | l
+  dar görüşlü | not willing to accept ideas or ways of behaving that are different from your own | Don't be so narrow-minded. / He has narrow-minded views.
+good-looking | adjective | A2 | l
+  yakışıklı, güzel, alımlı | physically attractive | He's a good-looking young man. / The actors were all very good-looking. | attractive
+middle-aged | adjective | B1 | l
+  orta yaşlı | neither young nor old, about 45 to 65 years old | A middle-aged man opened the door. / Her parents are middle-aged.
+tanned | adjective | B1 | l
+  bronzlaşmış, esmerleşmiş | having darker skin after spending time in the sun | She came back from vacation looking tanned. / His face was tanned.
+freckle | noun | B2 | l
+  çil | a small brown spot on the skin | She has freckles on her nose. / The sun gives him freckles.
+self-esteem | noun | B2 | l
+  öz saygı, kendine değer verme | the feeling of being happy with your own character and abilities | Praise can build a child's self-esteem. / He suffers from low self-esteem. | confidence
+peer pressure | noun | B2 | l
+  akran baskısı | the influence that people of your own age have on how you behave | Many teenagers start smoking because of peer pressure. / It's hard to resist peer pressure.
+body language | noun | B1 | l
+  beden dili | the way you show your feelings by the movements and positions of your body | His body language showed he was nervous. / Good body language is important in interviews.
+point of view | noun | B1 | l
+  bakış açısı | a particular way of thinking about a situation | From my point of view, the plan won't work. / Try to see it from her point of view. | viewpoint, perspective
+manners | noun | A2 | l
+  görgü, terbiye | polite ways of behaving in social situations | It's bad manners to talk with your mouth full. / The children have good manners.
+free time | noun | A1 | l
+  boş zaman | time when you are not working or studying | What do you do in your free time? / I don't have much free time.
+horse riding | noun | A2 | l
+  binicilik, ata binme | the activity of riding a horse | She goes horse riding every weekend. / Horse riding is expensive.
+cycling | noun | A2 | l
+  bisiklet sürme | the activity of riding a bicycle | Cycling is good exercise. / We went cycling in the park.
+theme park | noun | A2 | l
+  tema parkı, lunapark | a large park with rides and games based on a particular theme | The kids loved the theme park. / We spent the day at a theme park.
+housework | noun | A2 | l
+  ev işi | work such as cleaning and washing that you do in your home | I hate doing housework. / We share the housework.
+sightseeing | noun | A2 | l
+  gezip görme, turistik gezi | the activity of visiting interesting places as a tourist | We went sightseeing in Rome. / There's a lot of sightseeing to do in Istanbul.
+guidebook | noun | A2 | l
+  rehber kitap | a book with information for tourists about a place | I bought a guidebook for Paris. / The guidebook recommends this restaurant.
+guesthouse | noun | B1 | l
+  pansiyon | a small hotel or private house where people pay to stay | We stayed in a small guesthouse by the sea. / The guesthouse was cheap and clean.
+jet lag | noun | B2 | l
+  jet lag, saat farkı yorgunluğu | the tired feeling after a long flight to a place with a different time | I still have jet lag from my trip. / Jet lag makes it hard to sleep.
+crossroads | noun | B1 | l
+  kavşak, dört yol ağzı | a place where two roads cross each other | Turn left at the crossroads. / There's a café at the crossroads.
+steering wheel | noun | B1 | l
+  direksiyon | the wheel that a driver turns to control the direction of a car | Keep both hands on the steering wheel. / The steering wheel is on the left in Turkey.
+fire station | noun | A2 | l
+  itfaiye istasyonu | a building where firefighters and fire engines are | The fire station is next to the school. / We visited the fire station on a school trip.
+high school | noun | A2 | l
+  lise | a school for young people between about 14 and 18 | She's in her last year of high school. / I went to high school in Ankara.
+skyscraper | noun | B1 | l
+  gökdelen | a very tall building in a city | New York is full of skyscrapers. / They're building a new skyscraper downtown.
+whiteboard | noun | A2 | l
+  beyaz tahta | a white board that teachers write on with special pens | The teacher wrote the answers on the whiteboard. / Clean the whiteboard, please.
+astronomy | noun | B2 | l
+  astronomi, gökbilim | the scientific study of the stars, planets and space | She studied astronomy at university. / Astronomy helps us understand the universe.
+DNA | noun | B2 | l
+  DNA | the chemical in cells that carries genetic information | DNA tests can identify a person. / Scientists studied the DNA of the plant.
+artificial intelligence | noun | B2 | l
+  yapay zekâ | the ability of computers to do things that normally need human intelligence | Artificial intelligence is changing many jobs. / The app uses artificial intelligence.
+AI | noun | B1 | l
+  yapay zekâ | artificial intelligence | AI can write texts and translate languages. / Many companies use AI to answer customers.
+Wi-Fi | noun | A2 | l
+  Wi-Fi, kablosuz internet | a system for connecting to the internet without wires | Does the hotel have free Wi-Fi? / The Wi-Fi isn't working.
+offline | adjective | B1 | l
+  çevrimdışı | not connected to the internet | You can read the book offline. / The website is offline right now.
+username | noun | B1 | l
+  kullanıcı adı | a name you use to log in to a computer system or website | Enter your username and password. / I forgot my username.
+ATM | noun | A2 | l
+  ATM, bankamatik | a machine in a wall where you can get money with your bank card | Is there an ATM near here? / I took some cash out of the ATM.
+CV | noun | B1 | l
+  özgeçmiş, CV | a document that describes your education and work experience, used when applying for jobs | Send your CV to the manager. / I updated my CV last week. | resume
+vegan | noun | B1 | l
+  vegan | a person who does not eat or use any animal products | My sister is a vegan. / This restaurant has dishes for vegans.
+human rights | noun | B1 | l
+  insan hakları | the basic rights that every person should have | The organization protects human rights. / Freedom of speech is a human right.
+prime minister | noun | B1 | l
+  başbakan | the leader of the government in some countries | The prime minister gave a speech. / Who is the prime minister of the UK?
+heatwave | noun | B1 | l
+  sıcak hava dalgası | a period of unusually hot weather | Europe had a heatwave last summer. / Drink plenty of water during the heatwave.
+natural disaster | noun | B1 | l
+  doğal afet | a natural event such as a flood or earthquake that causes great damage | Earthquakes are the most common natural disaster in Turkey. / The country was hit by a natural disaster.
+natural resources | noun | B2 | l
+  doğal kaynaklar | things such as water, minerals and forests that exist in nature and can be used by people | The country is rich in natural resources. / We must protect our natural resources.
+fossil fuel | noun | B2 | l
+  fosil yakıt | a fuel such as coal, oil or gas that was formed from plants and animals millions of years ago | Burning fossil fuels causes pollution. / We need to use fewer fossil fuels.
+carbon dioxide | noun | B2 | l
+  karbondioksit | a gas produced when people and animals breathe out or when carbon is burned | Trees absorb carbon dioxide. / Cars produce carbon dioxide.
+sea level | noun | B2 | l
+  deniz seviyesi | the average height of the sea, used to measure the height of land | The city is 500 meters above sea level. / Global warming is causing sea levels to rise.
+eco-friendly | adjective | B2 | l
+  çevre dostu | not harmful to the environment | We use eco-friendly cleaning products. / Cycling is an eco-friendly way to travel. | green
+environmentally friendly | adjective | B2 | l
+  çevre dostu | not harmful to the environment | The company makes environmentally friendly packaging. / Electric cars are more environmentally friendly.
+level off | phrasal_verb | C1 | l
+  durağanlaşmak, sabitlenmek | to stop rising or falling and stay at the same level | House prices have started to level off. / The number of new cases leveled off in May. | stabilize

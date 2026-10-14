@@ -284,6 +284,7 @@ fee:noun
 fetch:verb
 fever:noun
 figure:noun
+find out
 fire
 firm:noun
 fix:verb
@@ -311,6 +312,8 @@ gap:noun
 garbage:noun
 gather:verb
 generation:noun
+get on
+get rid of
 giant
 global:adjective
 goal:noun

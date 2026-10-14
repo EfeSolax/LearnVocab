@@ -205,6 +205,7 @@ emit:verb
 empathy:noun
 emphasis:noun
 enable:verb
+end up
 endurance:noun
 enemy:noun
 energetic:adjective
@@ -462,6 +463,7 @@ plagiarize:verb
 plot:noun
 plow:noun
 plug
+point out
 policy:noun
 pose:verb
 possess:verb
