@@ -1,0 +1,60 @@
+anlam_id	kelime	tür	cefr	kaynak	TR	neden
+3169	knife	noun	A2	oxford	bıçak	şiddet sözcüğü: stabbed
+3195	detective	noun	A2	oxford	dedektif	şiddet sözcüğü: murder
+3466	fistfight	noun	B1	learnvocab	yumruk dövüşü	şiddet sözcüğü: assault
+3847	underground	adjective	A2	oxford	gizli, yasa dışı	şiddet sözcüğü: terrorism
+4060	aggressor	noun	C1	learnvocab	saldırgan, saldıran taraf	şiddet sözcüğü: assaulting
+6026	apprehension	noun	B2	learnvocab	tutuklama, yakalama	şiddet sözcüğü: terrorist
+6733	rack	noun	A2	learnvocab	işkence aleti, çekiştirme cihazı	şiddet sözcüğü: torture
+6915	organized	adjective	B1	oxford	örgütlü	şiddet sözcüğü: terrorism
+7255	revenge	noun	C1	oxford	intikam	şiddet sözcüğü: murder
+7854	execute	verb	C1	oxford	infaz etmek, idam etmek	şiddet sözcüğü: murderer
+7857	execution	noun	C1	oxford	idam, ölüm cezası	şiddet sözcüğü: murderer
+7967	mugger	noun	B2	learnvocab	gaspçı, kapkaççı	şiddet sözcüğü: assault
+8163	stab	verb	C1	oxford	bıçaklamak, saplamak	şiddet sözcüğü: stabbed
+10304	radicalize	verb	C1	learnvocab	radikalleştirmek, aşırılığa itmek	şiddet sözcüğü: terrorism
+10412	vulgar	adjective	B2	learnvocab	kaba, aşağılayıcı, argo	hassas (müstehcen) kalıp
+10413	vulgarity	noun	B2	learnvocab	kabalık, bayağılık, edepsizlik	hassas (müstehcen) kalıp
+10425	frontal	adjective	B1	learnvocab	ön, cepheden	şiddet sözcüğü: assault
+11050	avenge	verb	B2	learnvocab	intikam almak	şiddet sözcüğü: murder
+11318	anatomist	noun	C1	learnvocab	anatomi uzmanı	hassas (müstehcen) kalıp
+12155	shiv	noun	C2	learnvocab	hapishane bıçağı	şiddet sözcüğü: assault
+12810	wanted	adjective	B2	learnvocab	aranan	şiddet sözcüğü: terrorist
+13201	gagged	adjective	B2	learnvocab	ağzı tıkanmış, susturulmuş	şiddet sözcüğü: kidnapper
+13304	retaliate	verb	B2	learnvocab	misilleme yapmak, karşılık vermek	şiddet sözcüğü: terrorism
+13763	allegation	noun	C1	oxford	iddia	şiddet sözcüğü: tortured
+13797	sex	noun	B1	oxford	cinsiyet	hassas (müstehcen) kalıp
+14245	bomber	noun	B2	learnvocab	bombacı	şiddet sözcüğü: murders
+14873	retribution	noun	C1	learnvocab	ceza, intikam	şiddet sözcüğü: assault
+16169	attacker	noun	B1	learnvocab	saldıran kişi, saldırgan	şiddet sözcüğü: assault
+16346	charge	noun	B1	oxford	suçlama, iddia	şiddet sözcüğü: assault
+16796	drug	verb	B1	learnvocab	uyuşturmak, etkisi altına almak	şiddet sözcüğü: assault
+18104	combat	verb	C1	oxford	mücadele etmek, savaşmak	şiddet sözcüğü: terrorism
+18374	informer	noun	B2	learnvocab	bilgi veren, ihbarcı	şiddet sözcüğü: terrorism
+18615	convict	verb	C1	oxford	suçlu bulmak, mahkum etmek	şiddet sözcüğü: assault
+20403	female	adjective	A2	oxford	dişi, kadın	hassas (müstehcen) kalıp
+21185	valve	noun	B1	learnvocab	kapakçık, kapak	hassas (müstehcen) kalıp
+22181	prostitution	noun	B2	learnvocab	fuhuş, cinsel hizmet satışı	hassas (müstehcen) kalıp
+22224	ransom	noun	B2	learnvocab	fidye	şiddet sözcüğü: hostage
+22225	ransom	verb	B2	learnvocab	fidye ödemek, fidye talep etmek	şiddet sözcüğü: kidnapping
+22959	dagger	noun	B1	learnvocab	hançer	şiddet sözcüğü: assault
+23245	indictable	adjective	C1	learnvocab	iddianameyle kovuşturulabilir, dava açılabilir, ağır	şiddet sözcüğü: assault
+23368	manslaughter	noun	C1	learnvocab	kasıtsız öldürme, kasten olmayan cinayet	şiddet sözcüğü: murder
+23437	obscene	adjective	B2	learnvocab	müstehcen, edepsiz, ahlaksızca	hassas (müstehcen) kalıp
+23846	accomplice	noun	C1	learnvocab	suç ortağı	şiddet sözcüğü: murderer
+23960	blasphemous	adjective	C1	learnvocab	kutsala saygısız, küfür niteliğinde	hassas (müstehcen) kalıp
+24063	congenital	adjective	C1	learnvocab	doğuştan gelen, doğuştan var olan	hassas (müstehcen) kalıp
+24094	cyanide	noun	C1	learnvocab	siyanür, zehirli kimyasal	şiddet sözcüğü: murderer
+24297	heinous	adjective	C1	learnvocab	menfur, korkunç, canavarca	şiddet sözcüğü: murder
+24342	inquisition	noun	B2	learnvocab	engizisyon, engizisyon mahkemesi	şiddet sözcüğü: torture
+24538	palate	noun	B2	learnvocab	damak, damak tadı	hassas (müstehcen) kalıp
+24631	psychopathic	adjective	C1	learnvocab	psikopatik	şiddet sözcüğü: murderer
+24707	sclerotic	adjective	C1	learnvocab	sertleşmiş, katılaşmış	hassas (müstehcen) kalıp
+24819	retake	verb	B1	learnvocab	yeniden ele geçirmek	şiddet sözcüğü: assault
+25018	blacklist	verb	B2	learnvocab	kara listeye almak	şiddet sözcüğü: terrorism
+25678	sadist	noun	C1	learnvocab	sadist	şiddet sözcüğü: assault
+25680	sadistic	adjective	C1	learnvocab	sadist, sadistçe	şiddet sözcüğü: murderer
+25786	standoff	noun	B1	learnvocab	çıkmaz, karşı karşıya bekleyiş	şiddet sözcüğü: hostage
+25965	brain	verb	C2	learnvocab	kafasına vurmak	şiddet sözcüğü: assault
+26082	prenatal	adjective	B2	learnvocab	doğum öncesi	hassas (müstehcen) kalıp
+26648	rule out	phrasal_verb	C1	learnvocab	ihtimal dışı bırakmak, olasılığını reddetmek	şiddet sözcüğü: murder

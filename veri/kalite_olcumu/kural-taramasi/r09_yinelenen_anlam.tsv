@@ -1,0 +1,5 @@
+anlam_id	kelime	tür	cefr	kaynak	TR	neden
+20193	memory	noun	A2	oxford	bellek, hafıza	#1 ile karşılıklar çakışıyor: ['bellek', 'hafıza']
+20278	at	preposition	A1	oxford	-de, -da (zaman)	#1 ile karşılıklar çakışıyor: ['-da', '-de']
+20311	from	preposition	A1	oxford	-den, -dan (zaman)	#1 ile karşılıklar çakışıyor: ['-dan', '-den']
+20372	to	preposition	A1	oxford	-e, -a (alıcı)	#1 ile karşılıklar çakışıyor: ['-a', '-e']
