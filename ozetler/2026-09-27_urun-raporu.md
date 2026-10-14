@@ -122,6 +122,8 @@ Sekmeler: **Learn & Pass** (varsayılan) | **Egzersizler** (misafirde sekme yok)
 
 **Veri**
 - **Kalite ölçümü (14 Ekim) bulguları** (`veri/kalite_olcumu/2026-10-14-sonuc.md`): 200 rastgele anlamda **%3 hata** (6), %4,5 zayıf; ölçüm bağımsız değil (aynı model ailesi). 16 işaretli anlam **düzeltilmedi**. **Yapısal bulgu:** `learnvocab` etiketli B1'in %22'si, B2'nin %34,5'i Zipf < 3,0 (Oxford'lu olanlarda ~%0); 3.755 kelime için seviye kararı (yükselt / "az kullanılan" işaretle / L&P'den çıkar) Efe'nin. "Yalnızca phrasal biçimde geçen fiil" (sum up, team up) örüntüsü taranmalı. Kalıp ve bağ hata oranı henüz ölçülmedi.
+- **Kural taraması (14 Ekim, ücretsiz, `araclar/veri_kural_taramasi.py`, çıktı `veri/kalite_olcumu/kural-taramasi/`):** 10 kural; seviye (r01), yalnızca parçacıkla geçen fiil (r02), şablon örnek (r06), şiddet/hassas (r07) yararlı çıktı. Türkçe karşılık kalitesi kuralla bulunamaz (altın 16 bulgudan yalnızca 3'ü bağımsız yakalandı). **Uygulandı** (`words/duzeltmeler/d_2026_10_14b.py`, yedek `~/LearnVocab-yedekler/db.sqlite3.yedek-20261014-r02-r06-r07-oncesi`): 8 yinelenen fiil anlamı silindi (yedek `veri/kalite_olcumu/duzeltme/silinen-anlamlar.tsv`), 32 anlamın karşılığına parçacık etiketi yazıldı ("(off ile) savuşturmak"), 308 anlamda genel kalıp örnek yerine iyi örnek öne alındı, 2 şiddetli örnek değişti. **Açık:** etiketli 32+6 anlamın ayrı phrasal verb kaydına dönüştürülmesi (içerik yazma işi, Efe karar verecek); r07'de brain/drug fiilleri, shiv, sadist, prostitution, obscene, vulgar kararı Efe'nin.
+- **Haiku 5.5 ön eleme (14 Ekim kalibrasyonu):** İstem 2 (`veri/kalite_olcumu/haiku/istem-2.md`) kapsamdaki hataların %80'ini yakaladı, %25 işaretledi; öneri: yüksek riskli katmanlarda (`learnvocab` 18.038 + phrasal 1.024 anlam) Haiku → işaretlenenleri Sonnet inceler. Henüz başlamadı. Opus tam taraması haftalık limitin ~%40'ı (Efe).
 - Efe'nin incelemesi bekleyen dosyalar: `ozetler/zayif-baglar.tsv` (11.820 bağ), `zayif-kaliplar.tsv` (430), `hassas-anlamlar.txt` (kalsın / "kaba" / silinsin). **Eş dizimler (Collocation) henüz elle okunmadı.**
 - Cambridge A1'e indirme: `learnvocab` etiketli 28 kelime A1 olurdu; Efe'ye soruldu, uygulanmadı.
 - Sözlükte olmayanlar: ülke/milliyet adları (özel isim nasıl girecek?), High Note 5'in 478 deyimi + 187 birleşik sıfat (ifade olarak eklenebilir), ODTÜ/High Note/More to Read listelerinin phrasal verb'lerle yeniden bağlanması. İfade havuzu (295) büyütülecek. [arşiv 18.38]
@@ -144,7 +146,7 @@ Kelime yolculuğu / "öğrenildi" durumu · tek zorunlu günlük akış · L&P'd
 |---|---|
 | Kelime (`Word`, her tür ayrı; ortak sözlük) | **22.286** (phrasal verb 715) |
 | Aile | 7.771 |
-| Anlam | 26.392 (birleştirme sonrası) |
+| Anlam | 26.384 (birleştirme ve 14 Ekim düzeltmeleri sonrası) |
 | Örnek cümle | 119.069 |
 | Eş dizim (`Collocation`) / kullanım kalıbı (`UsagePattern`) | 45.001 / 19.661 |
 | İlişki (`WordRelation`; eş/zıt/basit anlama bağlı) | 40.545 (+ zayıf işaretli bağlar duruyor) |

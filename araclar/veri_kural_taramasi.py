@@ -118,6 +118,8 @@ def main():
         w = kelimeler[m["wid"]]
         if w["pos"] != "verb" or not ornekler.get(mid):
             continue
+        if re.match(r"\([a-z/]+ ile\)", m["tr"]):
+            continue  # 14 Ekim: parçacık etiketi yazılmış, bilinçli (d_2026_10_14b)
         formlar_w = formlar.get(m["wid"], set()) | {w["text"].lower()}
         bulundu, parcacikli, hangi = 0, 0, collections.Counter()
         for ex in ornekler[mid]:

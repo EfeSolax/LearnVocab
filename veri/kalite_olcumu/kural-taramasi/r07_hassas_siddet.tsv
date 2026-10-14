@@ -1,5 +1,4 @@
 anlam_id	kelime	tür	cefr	kaynak	TR	neden
-3169	knife	noun	A2	oxford	bıçak	şiddet sözcüğü: stabbed
 3195	detective	noun	A2	oxford	dedektif	şiddet sözcüğü: murder
 3466	fistfight	noun	B1	learnvocab	yumruk dövüşü	şiddet sözcüğü: assault
 3847	underground	adjective	A2	oxford	gizli, yasa dışı	şiddet sözcüğü: terrorism
@@ -20,7 +19,6 @@ anlam_id	kelime	tür	cefr	kaynak	TR	neden
 11318	anatomist	noun	C1	learnvocab	anatomi uzmanı	hassas (müstehcen) kalıp
 12155	shiv	noun	C2	learnvocab	hapishane bıçağı	şiddet sözcüğü: assault
 12810	wanted	adjective	B2	learnvocab	aranan	şiddet sözcüğü: terrorist
-13201	gagged	adjective	B2	learnvocab	ağzı tıkanmış, susturulmuş	şiddet sözcüğü: kidnapper
 13304	retaliate	verb	B2	learnvocab	misilleme yapmak, karşılık vermek	şiddet sözcüğü: terrorism
 13763	allegation	noun	C1	oxford	iddia	şiddet sözcüğü: tortured
 13797	sex	noun	B1	oxford	cinsiyet	hassas (müstehcen) kalıp
