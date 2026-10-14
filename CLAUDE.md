@@ -1,12 +1,14 @@
 # LearnVocab — Claude için başlangıç notu
 
-İşe başlamadan önce ürün raporunu oku: `ozetler/2026-09-27_urun-raporu.md`
-- Ürünün tek doğruluk kaynağı bu rapordur. Kararlar, ekran tasarımları, veri işleri ve uygulama planı orada.
-- Rapordaki "Vazgeçilen fikirler" (Bölüm 17) geri getirilmez.
-- "Sonra konuşulacaklar" (Bölüm 16) Efe ile konuşulmadan uygulanmaz.
-- Yeni karar alınırsa raporu güncelle ve "Değişiklik kaydı"na ekle.
+İşe başlamadan önce ürün durumunu oku: `ozetler/2026-09-27_urun-raporu.md` (kısa, ~170 satır)
+- Ürünün tek doğruluk kaynağı bu dosyadır: güncel kararlar, ekranlar, veri durumu, açık işler.
+- Tarihçe ve gerekçeler `ozetler/arsiv/2026-09-27_urun-raporu-tam.md` dosyasında. Koddaki "rapor 18.8" gibi atıflar arşivdeki numaralara bakar.
+- "Vazgeçilen fikirler" (Bölüm 16) geri getirilmez.
+- "Açık işler ve karar bekleyenler" (Bölüm 15) Efe ile konuşulmadan uygulanmaz.
+- Yeni karar alınırsa durum dosyasını güncelle (eskiyi sil, yenisini yaz) ve arşivin sonundaki "Değişiklik kaydı"na tarihli satır ekle.
+- Veri kalitesi ölçümü: `veri/kalite_olcumu/`.
 
-Çalışma kuralları (ayrıntı: raporun Bölüm 14'ü):
+Çalışma kuralları (ayrıntı: durum dosyasının Bölüm 18'i):
 - Testler her değişiklikten sonra çalıştırılır:
   `manage.py test --settings=testayar --parallel 4`
 - Bağlı klasörde dosya silinmez.

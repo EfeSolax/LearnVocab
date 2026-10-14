@@ -1,0 +1,201 @@
+# Sıra|Anlam kimliği|Kelime|Tür|CEFR|Sıra/toplam anlam|Türkçe|İngilizce açıklama|İlk örnek   (tohum 20261014, ortak sözlükten rastgele 200 anlam; bkz. 2026-10-14-sonuc.md)
+1|24893|uptake|noun|B2|#1/1|alım, benimseme, emilim|the act of taking something in, especially the absorption or adoption of a substance, idea, or practice|The clinic recorded a high uptake of the new flu vaccine this season.
+2|18753|pressing|adjective|B2|#1/1|acil, zorunlu|requiring immediate attention or action; urgent.|The manager called a meeting about the pressing deadline.
+3|6272|swollen|adjective|C1|#1/2|şişmiş, şiş|larger than usual, often because of injury or illness|Her ankle was swollen after the fall.
+4|23192|headset|noun|B1|#1/1|kulaklık, kulaklık takımı|a pair of headphones with a microphone used for listening to audio and speaking in communication|She bought a new headset for her computer.
+5|26255|chop up|phrasal_verb|B1|#1/1|doğramak, küçük parçalara kesmek|to cut something into small pieces|Chop up the onions and fry them.
+6|5418|silk|noun|B2|#1/1|ipek|a fine, strong, soft natural fiber produced by silkworms|The baby wrapped the doll in a soft silk blanket.
+7|16579|reach out|phrasal_verb|B1|#1/1|ulaşmak, iletişime geçmek|to make an effort to contact or help someone, especially by extending one's hand or by communicating directly|She reached out to her old friend after many years.
+8|20286|best|adjective|A1|#1/1|en iyi|of the highest quality or most suitable; the superlative of good|She is my best friend.
+9|17471|zonal|adjective|B2|#1/1|bölgesel, bölgeye ait|relating to or characteristic of a particular zone or region|The plant shows a zonal pattern of leaf size across its range.
+10|11521|intrigue|noun|B2|#2/2|merak, ilgi çekicilik|something that arouses curiosity or interest|The strange logo created intrigue among passersby.
+11|21684|fluff|verb|B2|#1/2|yumuşatmak, kabartmak, havalı hâle getirmek|to make something light, airy, or fluffy, often by beating or shaking|He fluffed the blanket to make it look more comfortable.
+12|12432|dummy|noun|B1|#1/3|emzik|a soft rubber or silicone nipple used to soothe a baby|The newborn accepted the dummy quickly and stopped crying.
+13|11140|intimidation|noun|B2|#1/1|korkutma, sindirme|the act of making someone feel frightened or overawed, especially in order to influence their behavior|The teacher warned that intimidation will not be tolerated in the classroom.
+14|18091|tournament|noun|B2|#1/1|yarışma, turnuva|a series of contests in which participants compete for a prize or title|The school announced a soccer tournament for the spring semester.
+15|12316|directorial|adjective|C1|#1/1|yönetmenlikle ilgili, yönetimle ilgili|relating to the duties, style, or authority of a director, especially in film or theatre|The film's success is largely due to its strong directorial vision.
+16|27199|itself|pronoun|A2|#2/2|kendisi (vurgu için)|used to emphasize a thing or animal|The town itself is very small.
+17|5511|twitch|noun|B1|#1/1|kas kımıldaması, ani kasılma|a sudden, brief, involuntary movement of a muscle or group of muscles|The sudden twitch in his hand startled everyone in the lab.
+18|18743|press|verb|B1|#1/1|basmak|to apply force to something in order to flatten, shape, or move it|She pressed the key and the computer turned on.
+19|15036|upper|adjective|B2|#1/1|üst, yüksek, üstteki|situated above or higher in position, rank, or quality.|The upper shelf holds the most frequently used books.
+20|10842|account|verb|B2|#1/1|hesap vermek, açıklamak|to give a detailed explanation or justification for something; to provide an account of events or actions|The accountant must account for every transaction in the ledger.
+21|15263|case|noun|A2|#3/3|hukuki dava|a legal action or lawsuit brought before a court|The judge dismissed the case after finding insufficient evidence.
+22|14910|tinker|verb|B1|#1/1|kurcalamak, uğraşmak, tamir etmeye çalışmak|to attempt to repair or improve something in a casual or experimental way, often by making small adjustments or changes|He tinkers with his bike every weekend to keep it running smoothly.
+23|9489|irony|noun|C1|#1/1|ironi|the use of words to convey a meaning that is opposite of their literal meaning, often for humorous or emphatic effect|The teacher explained irony with a simple example about a fire station burning down.
+24|8343|terribly|adverb|B2|#2/2|berbat bir şekilde, kötüce|to a very bad or unpleasant degree; in a manner that is terrible|She spoke in a voice that sounded terribly harsh to the listeners.
+25|2402|despair|verb|B2|#1/1|umutsuzluğa kapılmak, çaresiz kalmak|to lose hope and feel that nothing can improve a situation|She despairs when the exam results are low.
+26|23938|bathe|verb|A2|#1/1|yıkanmak, duş almak|to wash oneself or another person by immersing in water or applying water to the body|I bathe every morning before work.
+27|15420|localization|noun|B2|#1/1|yerelleştirme|the process of adapting a product, service, or content to suit the language, cultural norms, and preferences of a specific local market|The team started localization of the app last month.
+28|24133|distillery|noun|B2|#1/1|damıtma tesisi, içki üretim yeri|a place where alcoholic spirits are produced by the process of distillation|The small town has a distillery that makes local gin.
+29|10965|geographic|adjective|B2|#1/1|coğrafi|relating to the physical features, location, or distribution of something on the Earth's surface|The map shows the geographic location of each university in the state.
+30|22628|afterlife|noun|C1|#1/1|ölüm sonrası yaşam|the existence or state of living after death, often considered in religious or philosophical contexts|Many people find hope in the idea of an afterlife.
+31|17315|fixation|noun|B2|#1/2|takıntı, saplantı|the state of being excessively preoccupied with a particular idea, object, or activity|He couldn't stop thinking about the exam; his fixation was overwhelming.
+32|26956|go about|phrasal_verb|B2|#1/2|(bir işe) girişmek, nasıl yapacağını bilmek|to start to deal with something|How do I go about getting a visa?
+33|21416|catalytic|adjective|B2|#1/1|katalitik|relating to or caused by a catalyst; enabling a chemical reaction to proceed faster or with lower energy.|The catalytic converter in the vehicle helps clean the exhaust gases.
+34|20031|office|noun|A1|#1/1|ofis, iş yeri|a room or set of rooms where business or professional work is performed|The office is located on the third floor of the building.
+35|21462|coconut|noun|A2|#1/1|hindistancevizi|the large brown fruit of the coconut palm, containing white edible flesh and liquid|The coconut fell from the palm onto the sand.
+36|13929|wedge|noun|B1|#2/2|takoz|a triangular piece of wood, metal, or plastic used to hold, separate, or lift objects|The painter slipped a wedge between the boards to keep them apart.
+37|10976|bracket|noun|B1|#2/3|dilim, kademe|a range or category within a set, often used to group items such as income levels or age groups|The company divided its customers into three income brackets.
+38|26838|bring in|phrasal_verb|B2|#1/2|(yasa, kural) getirmek, yürürlüğe koymak|to introduce a new law or system|The government brought in a new tax.
+39|9263|gear|verb|B2|#1/2|uyarlamak, göre tasarlamak, yönlendirmek|to adapt or adjust something so that it is suitable for a particular purpose or situation|The workshop was geared to help beginners learn coding basics.
+40|25858|topology|noun|C1|#1/1|topoloji|the study of properties of space that are preserved under continuous deformations|Topology examines how shapes can stretch without tearing.
+41|14563|scurry|verb|B1|#1/1|koşmak, çabucak hareket etmek|to move quickly and hurriedly, often with short, rapid steps|The squirrel scurried up the tree to escape the dog.
+42|19535|move|noun|B1|#3/3|taşınma, yer değiştirme|the act of relocating from one residence or place to another.|The family announced their move to a smaller town for a quieter life.
+43|7144|doom|verb|B2|#1/1|kaderine mahkum etmek, lanetlemek|to condemn someone or something to a terrible fate or ruin|The storm doomed the small village to severe flooding.
+44|2888|mistaken|adjective|B1|#1/1|yanlış, hatalı|wrong in one's opinion or judgment; incorrect|I was mistaken about the meeting time and arrived an hour early.
+45|24043|clout|noun|B2|#1/2|etki, nüfuz, güç|the power to influence people, decisions, or events|The mayor's clout helped the new park get approved quickly.
+46|11684|bloomer|noun|B2|#1/1|çiçek açan bitki, gelişen kimse|a person or thing that produces flowers or begins to develop rapidly|Many students are early bloomers when they start university.
+47|7638|reforestation|noun|B2|#1/1|yeniden ağaçlandırma|the process of planting trees in an area where the forest has been depleted|The city council approved a small reforestation plan for the park.
+48|4117|expansionary|adjective|C1|#1/1|genişletici, genişlemeye yönelik|relating to or intended to cause economic growth, especially through increased government spending or lower taxes.|The country used an expansionary fiscal policy to reduce the recession's impact.
+49|13223|compatible|adjective|B2|#1/1|uyumlu, birlikte çalışabilir|able to exist or work together without conflict|The app is compatible with Android phones.
+50|3669|wipe|verb|C1|#1/1|silmek, temizlemek|to rub a surface with a cloth, hand, or other object in order to remove dirt, liquid, or marks|She wiped the spill from the kitchen counter.
+51|791|entry|noun|B1|#1/3|kayıt, madde, giriş|a written or electronic record of information; an item listed in a log or database|The clerk recorded each entry in the daily log.
+52|24938|wilted|adjective|B1|#1/1|solmuş, pörsümüş, pörsük|having become limp and drooping, typically because of lack of water or age|The garden plants looked wilted after the heat wave.
+53|1997|naturalization|noun|B2|#1/1|vatandaşlık kazanma, vatandaşlığa geçiş|the legal process by which a foreign citizen acquires citizenship of a new country|After ten years of residence, he began the naturalization process.
+54|12830|recurrent|adjective|B2|#1/1|tekrarlayan, tekrar eden|occurring again or repeatedly, especially at intervals or after a period of remission|She experiences recurrent migraines during exam weeks.
+55|9713|accumulate|verb|C1|#1/1|biriktirmek, toplamak|to gather or collect something over time, increasing in quantity or number|She accumulates points in the loyalty program every month.
+56|13558|touch|noun|B1|#2/2|bir nebze, bir parça, az miktar|a slight effect or subtle impression left by something|The novel contains a touch of mystery that keeps readers engaged.
+57|4440|fishery|noun|B2|#1/1|balıkçılık, balıkçılık sektörü|a place or industry where fish are reared or caught for commercial purposes|The fishery provides jobs for many people in the town.
+58|14979|livid|adjective|B2|#1/2|kızgın, öfkeli|extremely angry; showing intense fury|The student was livid about the low grade he received.
+59|13201|gagged|adjective|B2|#1/1|ağzı tıkanmış, susturulmuş|forced to remain silent, usually by being fitted with a gag or otherwise restrained from speaking|The kidnapper left a gagged victim on the doorstep, unable to call for help.
+60|3406|practically|adverb|B2|#1/1|neredeyse, fiilen, pratik olarak|to a great extent or almost completely; in a way that is effectively true or useful|The exam was practically over when the fire alarm rang.
+61|4831|neighbor|noun|A2|#1/1|komşu|a person who lives near or next to another person's residence|My neighbor waved at me as I walked to class.
+62|5192|perilous|adjective|B2|#1/1|tehlikeli, riskli|causing or involving great danger or risk|The narrow path was perilous, so the hikers moved very slowly.
+63|24935|wiggly|adjective|B1|#1/1|dalgalı, kıvrımlı, sallanan|characterized by a series of curves or bends; not straight|The snake moved in a wiggly motion across the sand.
+64|26014|undefined|adjective|B2|#1/1|tanımsız, belirsiz|not clearly defined or specified; lacking a precise meaning or value|The teacher said the assignment criteria are still undefined.
+65|9558|momentary|adjective|B2|#1/1|kısa süreli, geçici|lasting for only a very short time; brief|The fireworks created a momentary flash of light in the night sky.
+66|12581|indecipherable|adjective|C1|#1/1|çözülemez, anlaşılması güç|not able to be deciphered or understood|The graffiti on the wall was indecipherable to the police.
+67|2303|cap|noun|B1|#1/3|şapka|a head covering, often with a brim, worn for protection or fashion|He bought a new cap to protect his eyes from the sun.
+68|12987|allegorical|adjective|C1|#1/1|alegorik|relating to or containing an allegory; using symbolic figures or actions to convey a deeper meaning.|The fable uses an allegorical style to teach children about honesty.
+69|23655|shuttered|adjective|B2|#1/1|kapalı, kapatılmış|having been closed with shutters; not open or operating|The small shop was shuttered after the owner retired.
+70|4884|patient|noun|A2|#1/1|hasta|a person receiving medical treatment or care, especially in a hospital or clinic|The patient waited calmly in the waiting room.
+71|2315|pitch|noun|B2|#1/3|saha|a large, flat area of ground marked for sports such as football or cricket|The school built a new football pitch for the students.
+72|7246|independently|adverb|B2|#1/1|bağımsız olarak, kendi başına|without relying on others; in a manner that is self-directed|She solved the puzzle independently, without any hints.
+73|686|descend|verb|C1|#1/1|inmek, aşağı doğru hareket etmek|to move or go downwards, typically from a higher to a lower place|The hikers began to descend the steep trail after reaching the summit.
+74|10368|oriental|adjective|B2|#1/1|doğuya ait, doğu kökenli|relating to the countries, peoples, or cultures of the Eastern world, especially Asia.|The textbook explains the basic features of Oriental geography.
+75|17843|cream|verb|B1|#1/1|krem haline getirmek, çırpmak|to beat or whisk a food so that it becomes smooth and thick|She creamed the butter and sugar for the cake batter.
+76|19089|sunbeam|noun|B1|#1/1|güneş ışını|a narrow ray of sunlight that passes through an opening or breaks through clouds|A sunbeam lit the dusty floor of the old attic.
+77|556|charmer|noun|B2|#1/1|büyüleyici, çekici kişi|a person who delights or attracts others by being pleasant, attractive, or persuasive|The salesman was a real charmer and closed the deal quickly.
+78|451|belief|noun|B1|#1/1|inanç, inanma, kabul|a conviction that something is true or exists, often without proof|Her belief in fairness guides her decisions at work.
+79|9438|tropic|noun|B2|#1/2|dönence|the latitude line located at about 23.5 degrees north (Tropic of Cancer) or south (Tropic of Capricorn) of the equator|The Tropic of Cancer marks the northern limit of the sun's direct rays.
+80|3336|sweat|noun|A2|#1/1|ter|the salty fluid that is produced by the body's sweat glands|He felt sweat on his forehead during the short run.
+81|12814|complementarity|noun|C1|#1/1|tamamlayıcılık, karşılıklı tamamlayıcı olma|the state or quality of being complementary; the relationship in which two things complete each other|The two methods show complementarity in solving simple equations.
+82|18548|sum|verb|B2|#2/2|özetlemek|to give a brief statement of the main points of something|After the lecture, she will sum up the main ideas for the class.
+83|24554|patriarchate|noun|C1|#1/1|patriklik, patrikhane|the office, jurisdiction, or authority of a patriarch, especially in certain Christian churches|The patriarchate governs several dioceses in the region.
+84|26454|go off|phrasal_verb|B1|#4/4|(biri) soğumak, sevmez olmak|to stop liking someone or something|I've gone off coffee lately.
+85|25598|pseudonym|noun|B2|#1/1|takma ad|a fictitious name used by an author or other person instead of their real name|The poet released the collection under a pseudonym to stay anonymous.
+86|16889|royal|adjective|B1|#1/2|kraliyet, monarşi ile ilgili|of, belonging to, or associated with a king or queen|The royal palace attracts many tourists each year.
+87|25276|frugal|adjective|B2|#1/1|tasarruflu, tutumlu|characterized by careful and sparing use of resources, especially money, to avoid waste.|The student chose a frugal diet to keep expenses low during exams.
+88|3674|educator|noun|C1|#1/1|eğitimci|a person who provides instruction or training, especially in a formal setting such as a school or university|The school hired a new educator to teach mathematics to ninth-grade students.
+89|27273|must|modal_verb|A1|#3/3|-mamalı (olumsuz: yasak)|used in the negative to say that something is not allowed|You mustn't smoke here.
+90|12455|paddle|noun|B1|#1/1|kürek|a short pole with a broad blade used to propel or steer a small boat|He grabbed a paddle and rowed the small boat.
+91|612|comrade|noun|B2|#1/1|yoldaş, dost, arkadaş|a fellow member of an organization or group, especially in a political or military context|The new recruit quickly became a trusted comrade in the unit.
+92|9230|dazzle|verb|B2|#2/2|büyülemek, etkilemek|to impress someone strongly with brilliance, skill, or beauty|The young artist dazzled the gallery visitors with her vivid paintings.
+93|391|afterwards|adverb|B2|#1/1|sonradan, daha sonra|at a later time; after something has happened|She finished her homework and went out afterwards.
+94|4181|glimpse|verb|B2|#1/1|gözüne ilişmek, anlık görmek, hayal meyal görmek|to see something briefly or partially|I glimpsed a cat in the garden this morning.
+95|26013|indefinitely|adverb|C1|#1/1|süresiz olarak, süresizce|for an unlimited or unspecified period of time|The meeting was postponed indefinitely because of scheduling conflicts.
+96|19779|compressibility|noun|C1|#1/1|sıkıştırılabilirlik, sıkıştırma özelliği|the degree to which a material or substance can be reduced in volume under pressure|The textbook explains compressibility in simple terms for beginners.
+97|16508|computationally|adverb|B2|#1/1|hesaplamalı olarak, sayısal olarak|in a manner that involves the use of computers or calculations|Our team developed a computationally robust model for protein folding.
+98|23594|rodeo|noun|B2|#1/1|kovboy gösterisi|a competitive event featuring horse riding, bull riding, and other cattle-handling activities|The town organized a small rodeo for the summer festival.
+99|972|indicate|verb|B1|#2/2|belirtmek, ima etmek|to suggest or imply something indirectly, often through a sign or a piece of evidence|The sudden drop in temperature indicates that a storm is approaching.
+100|7569|dip|noun|A2|#1/2|çöküntü, çukur, alçak nokta|a low or hollow place; a slight decline in level or amount|The hikers stopped to rest in the dip of the valley.
+101|723|distress|verb|C1|#1/1|üzmek, sıkıntıya sokmak|to cause someone to feel anxiety, sorrow, or pain; to put someone in a state of severe difficulty or suffering|The loud noise distressed the baby during nap time.
+102|25453|meatball|noun|A2|#1/1|köfte|a small rounded ball of ground meat, often mixed with breadcrumbs, herbs, and spices, and then cooked by frying, baking, or simmering|The cafeteria offers meatballs for lunch every Friday.
+103|6005|wearied|adjective|B2|#1/1|yorgun, bitap|feeling or showing extreme tiredness, often as a result of prolonged effort or strain|The student felt wearied after studying for ten hours straight.
+104|7597|sickened|adjective|B2|#1/1|tiksinmiş, midesi bulanmış, dehşete düşmüş|causing a feeling of disgust or revulsion; made to feel sick or repulsed|He felt sickened after watching the violent movie scene.
+105|19039|humbled|adjective|B2|#1/1|mahcup olmuş, gururu kırılmış, tevazu hissiyle dolmuş|feeling or showing humility as a result of a humbling experience|She was humbled after receiving the unexpected compliment.
+106|11023|parental|adjective|C1|#1/1|ebeveynlere ait, ebeveynlikle ilgili|relating to a parent or parents|Parents often give their children parental guidance at home.
+107|23626|savvy|adjective|B2|#1/1|bilgili, deneyimli, akıllı|having practical knowledge and good judgment; well-informed and shrewd.|The new employee quickly proved she was savvy about customer service.
+108|8019|bitter|adjective|B2|#1/2|acı, buruk|having a sharp, unpleasant taste; causing a feeling of distress or disappointment|The coffee had a bitter flavor that lingered.
+109|12949|fret|noun|B1|#2/2|tasa, kaygı, telaş|a feeling of anxiety or irritation caused by something that worries or bothers a person|The sudden change in schedule put him in a fret.
+110|9918|disadvantaged|adjective|B2|#1/1|az avantajlı, dezavantajlı|having fewer advantages or resources than others; lacking the benefits that others enjoy.|The scholarship aims to help disadvantaged students attend college.
+111|403|anger|verb|B1|#1/1|kızdırmak, öfkelendirmek|to cause someone to feel angry or to become angry|The loud music can anger nearby neighbors.
+112|7575|gut|noun|C1|#2/2|cesaret, yürek|the quality of being brave or having courage|She showed great guts when she rescued the child from the fire.
+113|5380|tape|noun|B1|#3/3|mezura, şerit metre|a flexible ruler, usually marked in centimeters or inches, used for measuring length|She used a tape to measure the length of the fabric.
+114|3610|halt|verb|C1|#2/2|duraklamak, ara vermek|to pause briefly, especially in speech or movement, before continuing|The runner halted briefly to check the time.
+115|24894|uptown|adjective|B2|#1/1|şehir merkezinin dışındaki, yukarı mahalledeki, lüks semtteki|relating to or situated in the part of a city that is away from the commercial centre, often more residential and affluent|He bought a small apartment in the uptown area of the city.
+116|19962|serving|noun|B1|#1/1|porsiyon, servis|a portion of food or drink that is presented or offered to a person|She took a serving of the fruit salad for lunch.
+117|20118|union|noun|B1|#2/2|sendika, işçi birliği|an organized association of workers formed to protect and promote their rights and interests|The union organized a strike to demand higher wages.
+118|7572|dipper|noun|B2|#1/1|kepçe|a small container with a handle used for dipping liquids|She reached for the dipper to add more broth to the soup.
+119|8482|transition|verb|B2|#1/1|geçiş yapmak, değişime uğramak|to undergo or cause a change from one state, condition, or place to another|The school will transition to online learning next semester.
+120|3538|single-breasted|adjective|B2|#1/1|tek sıra düğmeli|having one column of buttons down the front of a coat, jacket or suit, as opposed to a double-breasted style|The store offers a single-breasted coat in navy blue.
+121|24429|matchmaking|noun|B2|#1/1|eşleştirme, eş bulma|the process of pairing people or items together, especially for romantic relationships or competitive events|The club started a matchmaking program to help members find study partners.
+122|7544|deterministic|adjective|C1|#1/1|belirleyici, önceden belirlenmiş, deterministik|relating to or involving the philosophical doctrine that all events, including human actions, are determined by preceding causes|The program follows a deterministic rule, so it never surprises the user.
+123|12635|lintel|noun|B2|#1/1|lento, atkı|a horizontal structural member placed over an opening such as a door or window to support the weight above|The old house has a wooden lintel above the front door.
+124|18271|overjoyed|adjective|C1|#1/1|çok sevinçli|feeling great happiness or delight|She was overjoyed when she saw her newborn baby.
+125|9139|applause|noun|B1|#1/1|alkış|the clapping of hands to show approval or appreciation, especially after a performance or speech|The children gave a round of applause after the school play.
+126|17682|candidate|noun|B1|#1/1|aday|a person who is nominated or applies for a position, office, or honor|The company announced three candidates for the manager position.
+127|5439|adolescent|adjective|B2|#1/1|ergen, genç|relating to the period of adolescence; characteristic of a young person who is in the teenage years|The study examined how peer pressure affects adolescent choices.
+128|27172|it|pronoun|A1|#1/2|o (cansız şey, hayvan, durum)|used to refer to a thing, animal or situation that has already been mentioned|I bought a new phone. It's very fast.
+129|26770|think up|phrasal_verb|B2|#1/1|(fikir, bahane) bulmak, uydurmak|to invent or imagine something, especially an excuse|She thought up a clever excuse.
+130|20688|embassy|noun|C1|#1/1|büyükelçilik|the official building where an ambassador and their staff work|I went to the embassy to get a visa.
+131|7729|undertaker|noun|C1|#1/1|cenaze memuru|a person whose business is preparing bodies for burial and arranging funerals|The undertaker arranged the flowers and the casket for the service.
+132|5120|loner|noun|B2|#1/1|yalnız kimse|a person who prefers to spend time alone and avoids social interaction|The new student is a loner who keeps to himself during lunch.
+133|1158|observant|adjective|B2|#1/1|dikkatli, gözlemci|showing careful attention to details and being quick to notice things|The observant child quickly spotted the missing puzzle piece.
+134|1136|nervously|adverb|B1|#1/1|gergin bir şekilde, tedirgince, endişeyle|in a nervous manner; showing anxiety or lack of confidence|He answered the question nervously, stumbling over his words.
+135|15669|outside|adjective|A2|#1/1|dışarıdaki, dış|situated or located on the outer side of something; not inside.|The researchers measured the outside humidity to compare with indoor levels.
+136|20183|anyway|adverb|A2|#1/1|her neyse, yine de|in any case; regardless of what has been said or done|I was tired, but I went to the party anyway.
+137|17828|orange|noun|A1|#1/1|portakal|a citrus fruit with a thick rind and juicy, sweet-tart flesh|I bought a few oranges for the picnic.
+138|16250|voice|noun|A2|#2/2|görüş, ifade|the expression of an opinion or attitude, especially in a public context|Everyone should have a voice in the decision.
+139|16176|kill|verb|A2|#1/2|öldürmek|to cause the death of a person, animal, or other living thing|The hunter aimed carefully and killed the deer.
+140|20985|friction|noun|B2|#2/2|sürtünme, direnç|the resistance that one surface or object encounters when moving over another|Friction slows down a moving object.
+141|15899|unanswerable|adjective|C1|#1/1|cevapsız, yanıtlanamaz|not able to be answered or responded to|The exam included an unanswerable question that confused many students.
+142|22786|bookbinder|noun|B2|#1/1|kitap ciltçisi|a person who binds books, assembling printed pages and attaching covers|The bookbinder repaired the torn pages of the old diary.
+143|23999|caliphate|noun|C1|#1/1|halifelik|a form of Islamic government led by a caliph, who is regarded as the political and religious successor to the Prophet Muhammad|The early Islamic caliphate expanded rapidly across the Arabian Peninsula.
+144|659|creatively|adverb|B2|#1/1|yaratıcı bir şekilde|in a way that shows imagination or originality|He solved the puzzle creatively, using a piece of paper as a guide.
+145|16218|pick|noun|B2|#2/3|pena, mızrap|a small, thin, flat tool used to pluck or strum the strings of a guitar|The guitarist bought a new pick before the concert.
+146|24951|accrue|verb|B2|#1/1|birikmek, artmak|to accumulate or increase over time, especially as a result of interest, benefits, or other gradual additions|The bank account will accrue interest if you keep the money deposited.
+147|15842|return|noun|A1|#1/2|geri dönüş, dönüş|the act of coming back to a place or condition|The train's return was scheduled for 6 p.m.
+148|27027|pay out|phrasal_verb|C1|#1/1|(büyük miktarda) para ödemek|to spend or pay a large amount of money|The insurance company paid out millions after the storm.
+149|10444|unhindered|adjective|C1|#1/1|engelsiz, kısıtlanmamış, önünde engel bulunmayan|not obstructed or impeded; free to act or move without restriction|The river flows unhindered after the dam was removed.
+150|9298|infective|adjective|C1|#1/1|bulaşıcı, enfeksiyon yapıcı|causing infection; capable of transmitting a disease or pathogen to another organism|The doctor warned that the wound was infective and needed proper dressing.
+151|7836|crystallize|verb|B2|#1/2|katılaştırmak, kristalleşmek|to cause a substance to form solid crystals or to become crystalline|The scientist added a seed crystal to crystallize the solution quickly.
+152|26551|look on|phrasal_verb|C1|#1/1|seyretmek, (karışmadan) izlemek|to watch something happening without taking part|A crowd looked on as the firefighters worked.
+153|27417|wetsuit|noun|B1|#1/1|dalgıç elbisesi, wetsuit|a rubber suit that keeps you warm in cold water|Surfers wear wetsuits.
+154|10054|evening|noun|A1|#1/1|akşam|the period of time at the end of the day, typically after sunset and before night|The sun set, and the evening began with a gentle breeze.
+155|2953|presentation|noun|B1|#2/2|gösterim, sergi|an event or display in which items, artworks, or products are shown to an audience|The museum's presentation of ancient artifacts attracted many visitors.
+156|27329|cell phone|noun|A2|#1/1|cep telefonu|a phone that you can carry with you|Please turn off your cell phone.
+157|26837|bring forward|phrasal_verb|C1|#1/1|(tarihi) öne almak|to change the date or time of an event so that it happens earlier|The meeting has been brought forward to Monday.
+158|13729|engulf|verb|B2|#1/1|bütün olarak kaplamak, içine almak|to surround or cover something completely, often in a way that overwhelms it|The small boat was engulfed by the sudden storm on the lake.
+159|16937|demand|verb|B2|#2/2|gerektirmek|to require something as necessary or essential|The contract demands that all parties sign before the deadline.
+160|12837|communion|noun|B2|#1/2|kutsal ayin, kutsal paylaşım|the Christian rite in which bread and wine are consecrated and consumed as symbols of the body and blood of Christ|The church announced that communion would be held at 10 a.m. on Sunday.
+161|27177|they|pronoun|A1|#3/3|onlar, yetkililer, insanlar (belirsiz)|used to refer to people in general or people in authority|They say it will rain tomorrow.
+162|20214|clothing|noun|A2|#1/1|giysi, kıyafet, giyim|items worn to cover the body, such as shirts, pants, dresses, and accessories.|She bought new clothing for the upcoming semester at university.
+163|5436|heap|noun|B1|#1/2|yığın, küme|a collection of items placed one on another forming a mound or pile|The children built a heap of sand at the beach.
+164|14680|beautification|noun|B2|#1/1|güzelleştirme|the process of making something more attractive or aesthetically pleasing|Local volunteers helped with the beautification of the riverbank.
+165|14391|emptiness|noun|B2|#1/1|boşluk, anlamsızlık|the state of being empty; a feeling that nothing is present or meaningful|The quiet room gave him a feeling of emptiness.
+166|16987|branded|adjective|B1|#1/1|markalı, damgalı|having a mark, logo, or symbol applied to something, typically for identification or commercial purposes|The farmer marked his herd with a branded cattle tag.
+167|10000|dreamer|noun|B1|#1/1|hayalperest, idealist|a person who frequently imagines or pursues ideas and aspirations that are unlikely to be realized|The young poet was known as a dreamer who wrote about distant worlds.
+168|16903|glass|verb|B2|#1/1|camla kaplamak, camla donatmak|to cover or fit something with glass, especially windows or surfaces|The builder will glass the new office windows next week.
+169|16829|heat up|phrasal_verb|A2|#2/2|ısınmak|to become hotter or warmer, especially as a result of external conditions or internal processes|The water will heat up in a few minutes on the burner.
+170|13726|bristle|verb|B2|#2/2|tüyleri diken diken olmak, kabarmak|to stand upright, especially hair or fur, as a reaction to fear, cold, or excitement|The cat bristled when the dog entered the room.
+171|20961|exponent|noun|B2|#1/2|savunucu, temsilci|a person who advocates or represents a particular idea, group, or cause|The activist is a strong exponent of environmental protection.
+172|8269|participatory|adjective|C1|#1/1|katılımcı|involving or encouraging the active involvement of many people in a process or activity|The workshop used a participatory format to engage all attendees.
+173|12999|tingle|noun|B1|#1/1|hafif karıncalanma, iğneleme|a slight prickling or stinging sensation, often felt on the skin|The cold wind gave her a brief tingle on her cheeks.
+174|14968|thunderbolt|noun|B2|#1/1|yıldırım|a flash of lightning accompanied by a loud crash of thunder|A thunderbolt lit up the dark clouds during the storm.
+175|10835|snore|verb|A2|#1/1|horlamak|to make a loud breathing sound while sleeping|He snored all night and woke me up.
+176|12008|scoop|verb|B1|#1/2|kepçelemek, kaşıkla almak, daldırıp almak|to lift or gather something with a scoop or similar utensil|She scooped the flour into the mixing bowl.
+177|13538|excavator|noun|B2|#1/1|kazıcı, kepçe|a large machine equipped with a bucket and arm used for digging and moving earth or other materials|The construction site hired an excavator to dig the foundation quickly.
+178|3953|concealed|adjective|B2|#1/1|gizli, saklı|hidden or kept out of sight; not openly visible|The treasure was concealed beneath the old oak tree.
+179|7921|decayed|adjective|B2|#1/1|çürük, bozulmuş|having undergone decay; rotted or decomposed|The apple was decayed after sitting on the counter for a week.
+180|15661|across|preposition|A1|#1/2|karşıdan karşıya, karşıya, bir ucundan diğer ucuna|to move from one side of something to the opposite side|The cat jumped across the fence to chase the mouse.
+181|19992|team|verb|B2|#1/1|takım kurmak, birlikte çalışmak|to bring people together to work as a group or to cooperate on a task|Our department will team up with industry partners next semester.
+182|22875|clubhouse|noun|B1|#1/1|kulüp binası|a building or room used by members of a club for meetings and social activities|The soccer team meets in the clubhouse before each game.
+183|21765|guru|noun|C1|#1/1|uzman, danışman|a person who has extensive knowledge or expertise in a particular field and is often consulted for advice|The tech guru gave us simple advice.
+184|6195|pat|noun|B1|#1/1|hafif vurma, hafif tokat|a light, quick touch or tap made with the hand or a flat object|The child gave his friend a quick pat on the shoulder.
+185|26340|fall apart|phrasal_verb|B2|#2/2|çökmek, başarısız olmak|to fail or stop working effectively|Their marriage was falling apart.
+186|7386|moderate|adjective|C1|#3/3|ortacı, aşırı uçta olmayan|holding political views that are not extreme; centrist|Many voters prefer a moderate candidate who can bridge party divides.
+187|13401|certify|verb|B2|#1/1|onaylamak, tasdik etmek|to officially confirm that something meets certain standards or requirements|The university will certify your degree after verification.
+188|2052|magic|noun|B1|#1/1|büyü, sihir|the use of supernatural powers to influence events or produce extraordinary phenomena|The ancient book described how to harness magic for healing.
+189|5563|hook|verb|C1|#2/2|bağlamak, takmak|to attach or fasten something with a hook or similar device.|The technician hooked the new sensor onto the machine yesterday.
+190|12247|bug|verb|B1|#2/2|gizli dinleme cihazı takmak|to place a listening device (a bug) on or in something for surveillance|The detective suspected that the hallway had been bugged by the rival agency.
+191|11220|rivet|noun|B2|#1/1|perçin|a short metal pin with a head on one end, used to fasten two pieces of material together by being deformed on the other end|During the workshop, students learned how to set a rivet using a hand tool.
+192|9715|accumulator|noun|B2|#1/1|akümülatör|a device that stores energy, especially electrical energy, for later use|The car has an accumulator that stores electricity.
+193|16816|foot|noun|A1|#1/3|ayak|the lower extremity of the leg below the ankle, on which a person stands or walks|She slipped and hurt her foot on the wet floor.
+194|8315|flexible|adjective|B2|#2/2|uyarlanabilir, değişime açık|able to change or be modified to suit different conditions or needs|The university offers a flexible curriculum for interdisciplinary majors.
+195|25506|omnibus|noun|C1|#2/2|derleme, toplu eser|a volume containing several works, such as a collection of laws, stories, or essays|The library added a new omnibus of 19th-century novels to its collection.
+196|13148|melodramatic|adjective|B2|#1/1|abartılı, duygusallığı aşırı gösteren|characterized by exaggerated emotional expression or overly theatrical behavior|The movie's plot is so melodramatic that it feels unrealistic.
+197|2847|lay|noun|C2|#1/1|kısa şarkı|a short lyrical poem or song, often with a narrative theme|The poet wrote a lay about the ancient battle.
+198|11643|line|verb|B2|#3/3|çizgi çekmek, işaretlemek|to draw a line or mark on a surface|He lined the paper with a ruler before writing his notes.
+199|18978|expendable|adjective|B2|#1/1|feda edilebilir, gözden çıkarılabilir, harcanabilir|capable of being used up or sacrificed without serious loss; not essential or irreplaceable|The manager said the interns are expendable if the budget is cut.
+200|4360|temper|verb|B2|#2/2|tavlamak, sertleştirmek|to adjust the temperature of something, especially metal, by heating and cooling|The blacksmith tempered the blade before sharpening it.
