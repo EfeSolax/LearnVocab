@@ -1,0 +1,50 @@
+7972	DUZELT	TR	sürü halinde toplanma, toplu hareket	"sürülenme" yapay
+8851	DUZELT	TR	soğuk ısırması, don yanığı, doku donması	"donuk" yanıltıcı
+23244	DUZELT	TR	resmen suçlamak, hakkında iddianame düzenlemek	"dava açmak" yanlış
+5220	DUZELT	TR	sorgulayıcı, soruşturucu, engizisyon yargıcı	"mahkeme memuru" yanlış
+2217	DUZELT	TR	tokmak, dövme aleti	"döveç" arkaik
+3826	DUZELT	TR	yeniden yapılandırıcı, onarıcı	onarıcı anlamı eksik
+15009	DUZELT	TR	tamamen kaplamak, örtmek	"bastırmak" örnekle uyuşmuyor
+6894	DUZELT	TR	kilit pimi, kilit mandalı	"kilit dili" yanlış kavram
+10849	DUZELT	TR	hesabı verilmemiş, kaydı bulunmayan, sayılmamış	"kayıtsız, hesapsız" yanlış
+495	EFE			TR, EN ve örnek birbiriyle çelişiyor
+19869	DUZELT	TR	karşıt, düşmanca, çekişmeli	"rakip" zayıf
+10892	DUZELT	TR	sadakatsiz, vefasız	"güvenilmez" farklı kavram
+16921	DUZELT	TR	değiş tokuş eden kişi, değiştirici cihaz, eşanjör	"takas makinesi" şüpheli
+8631	DUZELT	TR	hesaptan fazla çekme, kredili mevduat, eksi bakiye	yerleşik terim
+11586	DUZELT	TR	azarlama, paylama	"uyarı" zayıf
+11091	DUZELT	TR	bilinçaltına ilişkin, bilinçaltı etkili	sıfat için isim verilmiş
+23032	DUZELT	TR	koyu renkli, loş, alacakaranlık gibi	"soluk" yanıltıcı
+14141	DUZELT	TR	belagat, hitabet, güzel konuşma	"fesahat" arkaik
+13335	DUZELT	TR	amaca elverişli, pratik, çıkara uygun	ahlaki ima eksik
+23091	DUZELT	TR	kurcalayan kişi	"hile yapan" örnekle uyuşmuyor
+25379	DUZELT	TR	yutmak, ağızdan almak, bünyeye almak	"içmek" hap için yanıltıcı
+11581	DUZELT	TR	besleyici, doyurucu	"canlandırıcı" şüpheli
+13713	DUZELT	TR	ani nöbet, ani coşku	"patlama" zayıf
+2978	DUZELT	TR	ciyaklama, çığlık, tiz ses	"bağırış" yanlış
+2979	DUZELT	TR	ciyaklamak, çığlık atmak	"bağırmak" yanlış
+18549	EFE			summarily "özet olarak" anlamı yok; kayıt silinmeli mi
+18550	DUZELT	TR	derhal, çarçabuk, kısa yoldan	"usulsüzce" yanlış
+9414	DUZELT	TR	meyveli hamur tatlısı	"meyveli tatlı" fazla genel
+7808	DUZELT	TR	lanet olası, kahrolası	"berbat" zayıf
+13997	DUZELT	TR	ihtiyatlı olarak, temkinli bir şekilde	"muhafazakar" yanıltıcı
+772	DUZELT	TR	ilgisiz, kopuk, bağlantısız	"çekimser" yanlış
+15105	DUZELT	TR	elde eden kimse, edinen kişi	"kazanan" yanıltıcı
+4308	DUZELT	TR	görkemli bir şekilde, muhteşem biçimde	"yüceltilmiş biçimde" yanlış
+24356	DUZELT	TR	gezgin, dolaşan, göçebe	"geçici" anlamı vermiyor
+8714	DUZELT	TR	varsayıma dayalı, muhtemel	"varsayımsal" zayıf
+2571	DUZELT	TR	borçlu, minnettar, bağımlı	"sorumlu" yanlış
+4678	EFE			bir kayıtta birbirinden farklı anlamlar karışmış
+13716	DUZELT	TR	alaycı kişi, her şeye kuşkuyla bakan kişi	"şüpheci" cynic değil
+2724	DUZELT	TR	üst geçit, köprülü kavşak	"viyadük" farklı kavram
+21005	DUZELT	TR	sarmal, helezoni, spiral biçimli	"spiral" tek başına belirsiz
+11585	DUZELT	TR	azarlamak, paylamak	"uyarı vermek" yanlış
+1659	EFE			örnek ve açıklama uyumsuz; anlam belirsiz
+22682	DUZELT	TR	ağaç bahçesi, botanik ağaç parkı	"ağaç koleksiyonu" zayıf
+17777	DUZELT	TR	suçsuz, kabahatsiz, ayıplanmayacak	"kusursuz" yanıltıcı
+20932	DUZELT	TR	yakınsayan, birleşen, bir noktada buluşan	"örtüşen" yan karşılık yanlış
+2464	DUZELT	TR	sertlik, katılık, kararlılık	"sağlamlık" yanıltıcı
+21008	DUZELT	TR	herbisit, ot öldürücü	yerleşik terim eksik
+12092	DUZELT	TR	bolca, cömertçe, savurganca	"aşırı derecede" ihtişamı vermiyor
+7377	DUZELT	TR	çabuk bozulabilen, çabuk bozulan	"dayanaksız" yanlış
+2505	DUZELT	TR	sahtekâr, taklitçi, taht iddiacısı	taht iddiacısı anlamı eksik
