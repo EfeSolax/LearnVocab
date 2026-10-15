@@ -33,7 +33,7 @@
 21467	0
 25088	0
 25089	0
-21535	1	A	çapraz geçiş yerleşik değil; tür karışımı vermiyor
+21535	1	A	çapraz geçiş tür karışımını vermiyor
 14292	0
 14294	1	A	ezmek EN'de yok; çiğneme anlamına uymuyor
 14293	0
@@ -74,7 +74,7 @@
 22035	0
 13167	1	A	çevreyle ilgili, çevresel ile karışır
 13168	0
-22112	1	A	yarım litre tam karşılık değil (0,473 L)
+22112	1	A	yarım litre; 0,473 L'ye denk değil
 22113	0
 1273	0
 1274	0
