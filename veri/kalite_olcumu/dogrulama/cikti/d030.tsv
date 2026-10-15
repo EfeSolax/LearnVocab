@@ -1,0 +1,50 @@
+9208	DUZELT	TR	kulaç, derinlik ölçü birimi	"kulaç" yerleşik terim
+24227	DUZELT	TR	sarkık, gevşek, yumuşak	"esnek" zayıf
+24228	DUZELT	TR	disket	"esnek disk" yerleşik değil
+24291	DUZELT	TR	iç bölge, merkez bölge, kalp bölgesi	"can damarı" yanıltıcı
+10453	DUZELT	TR	soluk almak, içine çekmek	"içine çekmek" eklendi
+24385	DUZELT	TR	süzmek, çözüp sürüklemek, yıkayıp götürmek	geçişli, örnekle uyumlu
+24417	DUZELT	TR	tıbbi hata, mesleki hata, görev ihmali	"görevi kötüye kullanma" farklı kavram
+7607	DUZELT	TR	manipülatif, çıkarcı, kendi çıkarı için yönlendiren	adaletsizlik anlamı eklendi
+21103	DUZELT	TR	böcek ilacı, zirai ilaç, pestisit	"böcek ilacı" dar
+24754	DUZELT	TR	çöküntü bölgesi, yoksul mahalle	gecekondu Türkiye'ye özgü
+22438	DUZELT	TR	çivili, perçinli, kabartmalı	"zımbalı" yanlış
+24715	DUZELT	TR	alt bölüm, alt kısım	"bölüm altı" yerleşik değil
+24826	DUZELT	TR	petrol mavisi, koyu turkuaz	camgöbeği teal değil
+24827	DUZELT	TR	petrol mavisi, koyu turkuaz	camgöbeği teal değil
+24846	DUZELT	TR	geçmişi andıran şey, eski tarza dönüş, nostalji	nesne anlamı eklendi
+10455	DUZELT	TR	tüvit, yünlü kumaş	"tüvit" yerleşik terim
+26101	DUZELT	TR	tanesi, her biri için	"kişi başına" örnekle uyumsuz
+10456	DUZELT	TR	sargı, sargı bezi	"yara bandı" farklı nesne
+23961	DUZELT	TR	bitki hastalığı, yanıklık	"külleme" dar, belirli hastalık
+7083	DUZELT	TR	karşılıklı rızaya dayalı, rızaya bağlı	"gönüllü" tek taraflı sanılır
+23113	DUZELT	TR	floresans, ışıldama	"floresan ışık" lamba sanılır
+25490	DUZELT	TR	geceleri etkin olan, gece yaşayan, geceyle ilgili	gece aktiflik anlamı eksikti
+24500	DUZELT	TR	püskürtme ucu, meme, hortum ucu	"ağızlık" yanıltıcı
+9668	DUZELT	TR	kabuk, soyulmuş kabuk	"soyulma" işlem anlamı
+18739	DUZELT	TR	dönmek, etrafında dönmek	"çevirmek" geçişli, yanıltıcı
+11825	DUZELT	TR	geri sarmak	"geriye aldırmak" yapay
+24716	DUZELT	TR	ayartmak, cezbederek ikna etmek, yoldan çıkarmak	örnek ikna anlamında
+10797	DUZELT	TR	boğuk, kısık, bastırılmış	"boğulmuş" yanıltıcı
+24850	DUZELT	TR	gıdıklanma hissi, gıdıklama	"kaşıntı" farklı kavram
+24897	DUZELT	TR	(ölü külleri için) kül kabı, vazo	"kül kabı" tek başına küllük sanılır
+24925	BIRAK			kasırga/hortum yakın, zevk meselesi
+24083	DUZELT	TR	pota, eritme kabı	yerleşik terim "pota" eklendi
+10003	DUZELT	TR	rüya gibi, düşsel, dalgın	"hayalperest" örnekle uyumsuz
+14545	DUZELT	TR	fanatik, aşırı tutkulu, taassuplu	sıfat karşılığı güçlendirildi
+4305	DUZELT	TR	abartılı, olduğundan büyük gösterilen	"gerçek dışı" yanıltıcı
+19785	DUZELT	TR	nöroloji	"asabiye" eski, yanıltıcı
+20087	DUZELT	TR	karadan yapılan, kara yoluyla olan	sıfat için isim karşılığı çıkarıldı
+2552	DUZELT	TR	ilişkisel	"bağa dayalı" belirsiz
+24682	DUZELT	TR	dönek, safını değiştiren, isyancı	"hain" fazla ağır
+5058	DUZELT	TR	yırtan kişi veya alet, parçalayıcı	"yırtıcı alet" belirsiz, karındeşen nadir
+5059	DUZELT	TR	harika şey, çok iyi şey	kayıt isim, karşılık sıfat
+12560	DUZELT	TR	kuşak, omuz şeridi	"kemir" farklı nesne
+13782	DUZELT	TR	bölütleme, bölümleme, pazar bölümlendirme	"parçalama" uymuyor
+5116	DUZELT	TR	koruma, zırhlama, koruyucu kalkan	"kalkanlama" yapay
+18471	DUZELT	TR	eşlik, eşlik eden şey, garnitür	"yan ürün" yanlış
+19495	DUZELT	TR	dönüşümlü olarak, sırayla	"ardışık" yanıltıcı
+12133	DUZELT	TR	kum midyesi, istiridye türü	"midye" clam değil
+7271	DUZELT	TR	davul sesi, gümbürtü	"tıkırtı" örneğe uymuyor
+24256	DUZELT	TR	gemi mutfağı, uçak mutfağı	"kuzine" arkaik
+24257	DUZELT	TR	kadırga, kürekli savaş gemisi	yerleşik terim
