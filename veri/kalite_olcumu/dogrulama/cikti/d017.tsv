@@ -1,0 +1,52 @@
+10430	DUZELT	TR	yoğun istek, canı çekme	"özlem" yanıltıcı
+5522	DUZELT	TR	gürültü, uğultu, patırtı	"ses kirliliği" çevre terimi
+1942	DUZELT	TR	mantıksız, akıl dışı	"akılsız" yanıltıcı
+9245	BIRAK			yönsel, idari doğru karşılıklar
+23449	DUZELT	TR	şehir çevresi, kenar mahalleler, banliyö	"şehir dışı" yanıltıcı
+7618	BIRAK			pagan, putperest doğru
+10061	BIRAK			organizatör promoter için yerleşik
+1281	DUZELT	TR	uyarınca, gereğince	"uygun" fazla genel
+23627	DUZELT	TR	pratik zekâ, bilgi ve beceri, kavrayış	yargı gücü karşılanmıyor
+23699	DUZELT	TR	çılgınca harcama, çılgınlık, cümbüş	"alem" yanıltıcı
+14225	DUZELT	TR	tabak, sepici, derici	"sepiye" yanlış
+23800	DUZELT	TR	nehrin yukarı kesimindeki, akıntı yukarısındaki, öncül	"yukarı çığırdaki" yapay
+12443	BIRAK			adam, tip uygun
+6009	BIRAK			blur geçişsiz de kullanılır
+22955	DUZELT	TR	birikimli, kümülatif, giderek artan	"toplu" yanıltıcı
+13945	DUZELT	TR	küratör, sergi sorumlusu, koleksiyon yöneticisi	yerleşik terim küratör eklendi
+8045	DUZELT	TR	hak, hak sahipliği	yetki ve ayrıcalık çıkarıldı
+8045	DUZELT	EN	the right to have or receive something, such as a benefit or privilege	EN örnekle uyumsuzdu
+7645	DUZELT	TR	çete üyesi, gangster	"suçlu" fazla genel
+15177	DUZELT	TR	ücretsiz dağıtım, bedava hediye	"çekiliş" EN'de yok
+14824	DUZELT	TR	ayyaş, içkici	"alkolik" fazla güçlü
+23373	BIRAK			örnekle uyumlu, birleştirmek yeterli
+23379	DUZELT	TR	çöküş, ani kriz, reaktör çekirdeğinin erimesi	anlamlar örnekle uyumlu hale getirildi
+23379	DUZELT	EN	a sudden severe failure or collapse; the melting of a nuclear reactor core	EN iki anlam karışıktı
+16299	DUZELT	TR	bakanlıkla ilgili, bakana ait	ikinci karşılık yineleme
+15716	DUZELT	TR	işe alıştırmak, oryantasyon vermek, sürece dahil etmek	"katmak" anlamı vermiyor
+4540	DUZELT	TR	nüfuz etmek, içine işlemek, delip geçmek	"geçmek" genel
+9173	DUZELT	TR	bir soluk, üfleme, bir nefes duman	"buhar patlaması" yanıltıcı
+9175	DUZELT	TR	üflemek, tüttürmek	"tüttürmek" daha yerleşik
+9174	DUZELT	TR	puf böreği, kabarık hamur işi, profiterol	"çörek" yanıltıcı
+2346	DUZELT	EN	to criticize or tease someone in a harsh or mocking way	TR'de olmayan yırtma anlamı çıkarıldı
+7153	DUZELT	TR	spoiler, olay örgüsünü önceden açığa vuran bilgi	açıklama cümlesiydi, terim eklendi
+6876	DUZELT	TR	meyhane, taverna	meyhane tek başına dar
+7346	DUZELT	TR	pens, pili, dikiş kıvrımı	yerleşik terimler eklendi
+19128	DUZELT	TR	su geçirmez	"suya dayanıklı" ayrı kavram
+22609	DUZELT	TR	akademik dünya, akademik çevre	"akademi" kurum anlamı
+22817	DUZELT	TR	büfe, yemek odası dolabı	"konsol" farklı mobilya
+519	DUZELT	TR	ocak gözü, bek, brülör	"ocak" geniş
+16803	DUZELT	TR	(beyzbol) yakalayıcı, yakalayan kişi, tutucu	beyzbol karşılığı eksikti
+22933	DUZELT	TR	saklanma yeri, sık çalılık	"sığınak" zayıf
+20944	DUZELT	TR	lehçe, şive, ağız	şive ve ağız yerleşik
+23018	DUZELT	TR	kamera arabası, dolly	EN kamera dolly'si
+19366	DUZELT	TR	yazıt, kitabe	"kazıma" yanıltıcı
+19503	DUZELT	TR	pastoral eser, çoban şiiri	"kırsal yaşam" eser değil
+19502	DUZELT	TR	din görevlisine ait, ruhani rehberliğe ilişkin	"ruhani" zayıf
+5696	DUZELT	TR	fizyolojik	"biyolojik" farklı kavram
+23613	DUZELT	TR	evden kaçan çocuk, evden kaçan genç	"kaçak" yanıltıcı
+23612	DUZELT	TR	kaçmış, firari, çok büyük çaplı	karışık karşılık, örnek başarı
+23631	DUZELT	TR	mezhep, tarikat, dinî topluluk	tarikat eksikti
+23692	DUZELT	TR	gözlük	çerçeve anlamı dar
+9019	DUZELT	TR	ilgi uyandırıcı, ufuk açıcı, canlandırıcı	örnekteki anlam eksikti
+21177	DUZELT	TR	yazıya dökme, yazıya geçirme, transkripsiyon	"kopya" yanıltıcı

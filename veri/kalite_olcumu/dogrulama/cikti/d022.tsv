@@ -1,0 +1,53 @@
+22917	DUZELT	TR	ölüm nedenini araştıran resmî görevli, adli tıp yetkilisi	adli tabip dar ve yanıltıcı
+454	DUZELT	TR	inanamama, inanmama, kuşku	şüphe öncelikli değil
+23000	DUZELT	TR	ihtiyatlı, ketum, tedbirli	gizli yanıltıcı
+11112	DUZELT	TR	başı dönen, sersemlemiş	sersem aptallık çağrıştırır
+13519	DUZELT	TR	engelleme, yolda yakalama, gizlice dinleme	örnekteki dinleme anlamı eksik
+7187	DUZELT	TR	gevşek, sarkık, halsiz	cılız nesne için yanlış
+7188	DUZELT	TR	topallama, aksayarak yürüme	cılız yürüyüş yanlış
+23515	DUZELT	TR	arka, arkadaki, arka kısımdaki	geriye ait yanıltıcı
+23515	DUZELT	ORNEK	The posterior part of the skull was damaged.	örnek anlamı göstermiyor
+26102	DUZELT	TR	arka bölüm, arka kısım, kalça	karşılıklar karışık
+26102	DUZELT	ORNEK	The doctor examined the posterior of the heart on the scan.	örnek uygun değil
+6602	DUZELT	TR	takviye, destek, pekiştirme	örnekteki pekiştirme eksik
+8879	DUZELT	TR	beceri dağarcığı, yetenek yelpazesi	yetenekler dizisi yapay
+7191	DUZELT	TR	kavga, arbede	çarpışma yanıltıcı
+23658	BIRAK			yavrulatmak hayvan için uygun
+8881	DUZELT	TR	klişeleştirmek, kalıp yargılarla değerlendirmek	yaftalamak farklı kavram
+23712	DUZELT	TR	katı, sıkı, sert	zorlayıcı anlamı kaydırıyor
+7031	DUZELT	TR	sel gibi akış, sağanak, coşkun akıntı	sel ve akın yanıltıcı
+23831	DUZELT	TR	sertçe vurmak, şaplatmak	tokat atmak dar
+22720	DUZELT	TR	balad, anlatı şiiri, halk şarkısı	destan yanlış
+14653	DUZELT	TR	uyumlu, kurallara uygun	itaatkar örnekle uyumsuz
+13993	DUZELT	TR	muhafazakârlık, gelenekçilik	muhafazakârlık yerleşik terim
+17222	DUZELT	TR	en sevgili, çok değerli	en sevdiği hatalı
+23004	DUZELT	TR	fark, eşitsizlik, dengesizlik	uçurum abartılı
+5341	DUZELT	TR	yemek yiyen kimse, yiyici	yiyen tür uyumsuz
+23077	DUZELT	TR	dış görünüş, yapmacık görüntü, maske	dış cephe bina anlamı
+12912	DUZELT	TR	pus, hafif sis, sisli görünüm	duman yanlış
+12914	DUZELT	TR	bulanıklaştırmak, puslandırmak	gölgelemek anlamı vermiyor
+13976	DUZELT	TR	tersi, karşıtı	isim için ters zayıf
+23391	DUZELT	TR	çeşitli, karışık, türlü	birbirinden ayrı yanıltıcı
+9687	DUZELT	TR	kısık, yumuşatılmış, donuk	susturulmuş yanıltıcı
+22005	DUZELT	TR	erişte, noodle	makarna geniş kalıyor
+5190	DUZELT	TR	yol kaplaması, zemin kaplaması, döşeme	asfalt dar
+21111	DUZELT	TR	çokluk, nispi çoğunluk, en çok oy	TR ile EN uyuşmuyor
+21111	DUZELT	EN	the state of being more than one; in elections, the largest number of votes, though not more than half	EN seçim anlamını içermiyor
+21139	DUZELT	TR	kopyalama, çoğaltma, yineleme	deney yinelemesi eksik
+5869	DUZELT	TR	hileli düzenleme, hile karıştırma	sahtecilik yanıltıcı
+23598	DUZELT	TR	rotor, döner kanat	pervane ve fırdöndü yanıltıcı
+6711	DUZELT	TR	görünüşteki, görünürdeki, zahiri	sözde yanıltıcı
+13574	DUZELT	TR	dürüst, doğru sözlü	doğru belirsiz
+9053	DUZELT	TR	artefakt, ölçüm hatası	yanlışlık yanıltıcı
+22819	BIRAK			tosun ve öküz kabul edilebilir
+22832	DUZELT	TR	alçak, terbiyesiz adam	namussuz fazla güçlü
+12315	DUZELT	TR	müdürlük, genel müdürlük, yönetim birimi	müdürlük yerleşik karşılık
+23021	DUZELT	TR	uykuda, durgun, uyuyan	etkisiz yanıltıcı
+23069	BIRAK			vergi kaçırma etiketli, kabul edilebilir
+23123	DUZELT	TR	ipotekli mala el koyma, ipotek icrası	haciz farklı işlem
+23140	DUZELT	TR	cin	peri farklı varlık
+26011	DUZELT	EN	not clearly defined; vague, or without a set end or limit	süresiz anlamı açıklamada yok
+18242	DUZELT	TR	kavrayışlı, içgörülü, isabetli	sezgili zayıf
+23577	DUZELT	TR	(of ile) -e bakmaksızın, -den bağımsız	edat ve anlam eksik
+17454	DUZELT	TR	topa vuran oyuncu, vuruşçu	tekme atan oyuncu zayıf
+12495	DUZELT	TR	çıkıntı, pervaz, kaya çıkıntısı	kaya seti anlamsız
