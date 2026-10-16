@@ -1,0 +1,50 @@
+25783	DUZELT	TR	ürküp kaçışma, panikle kaçışma, izdiham	hayvan sürüsü anlamı başa alındı
+19255	DUZELT	TR	görkemli, heybetli, ağırbaşlı	gösterişli saygınlık anlamını vermiyor
+25818	DUZELT	TR	süpernova, yıldız patlaması	yerleşik terim eksik
+10012	BIRAK
+16057	DUZELT	TR	eşleşmemiş, eşi olmayan	uyumsuz yanıltıcı
+25904	DUZELT	TR	ince kaplama, furnir, ince tabaka	yerleşik terim furnir eksik
+25914	DUZELT	TR	(for ile) kefil olmak, güvence vermek, doğrulamak	parçacık etiketi ve yerleşik karşılık eksik
+25915	DUZELT	TR	kefil olmak, güvence vermek, doğrulamak	teminat vermek yanıltıcı
+25951	DUZELT	TR	emir subayı, yardımcı subay	yardımcı memur askerî bağlamda yanlış
+12154	DUZELT	TR	atriyum, iç avlu	avlu dış mekân, terim eksik
+19426	DUZELT	TR	fedai, giriş güvenlik görevlisi	yerleşik karşılık fedai
+25032	DUZELT	TR	ritim, kadans, ses ahengi	akıcılık farklı kavram
+10999	DUZELT	TR	sermayelendirme, sermaye artırımı	piyasa değeri açıklamayla uyuşmuyor
+25084	DUZELT	TR	birleşme, birleşme noktası	kesişme farklı kavram
+25131	DUZELT	TR	koruyucu, sorumlu kişi, hizmetli	örnekte hizmetli anlamı eksik
+14061	DUZELT	TR	ödemesi gecikmiş, vadesi geçmiş, gecikmiş	borçlu yanıltıcı
+25227	DUZELT	TR	kedigil, kedi	kedigiller anlamı eksik
+24272	DUZELT	TR	boğuşmak, güreşmek	çarpışmak yanlış
+25340	DUZELT	TR	hikori, cevizgillerden sert odunlu bir ağaç	ad eksik
+25374	DUZELT	TR	kışkırtmak, tahrik etmek, körüklemek	teşvik etmek olumlu çağrışım
+9756	DUZELT	TR	sözcü, temsilci, borazan	maşa farklı anlam
+25472	DUZELT	TR	çamur, gübre, pislik	örnekte gübre anlamı
+25483	BIRAK
+10207	DUZELT	TR	alamet, işaret, belirti	kehanet farklı kavram
+18063	BIRAK
+11546	DUZELT	TR	bol miktarda, bolca, fazlasıyla	aşırı yanıltıcı
+14455	BIRAK
+25061	DUZELT	TR	chesterfield kanepe, kapitone deri kanepe	kanepe türü belirtilmeli
+22922	DUZELT	TR	aşındırıcı, korozif, yakıcı	erozyon yapan yanıltıcı
+25111	DUZELT	TR	kontrpuan, karşıtlık, zıtlık	müzik terimi kontrpuan eksik
+21592	DUZELT	TR	durdurmak, sona erdirmek, üretimini durdurmak	kesintiye uğratmak geçici demek
+11125	DUZELT	TR	(with ile) vazgeçmek, bırakmak, gerek duymamak	anlam with ile oluşuyor
+25211	BIRAK
+25246	DUZELT	TR	fisyon, çekirdek bölünmesi	yerleşik fizik terimi
+14958	DUZELT	TR	oyuntu, derin oluk	yerleşik terim oyuntu
+25342	DUZELT	TR	hologram, üç boyutlu görüntü	yerleşik terim eksik
+20086	DUZELT	TR	toprak sahibi, arazi sahibi	arsa sahibi dar
+15235	DUZELT	TR	akşam karanlığı, akşamın çökmesi, hava kararması	gün batımı farklı an
+25695	DUZELT	TR	günah keçisi	suçlu bulunan kişi haksızlığı anlatmıyor
+3369	DUZELT	TR	ağız, akıtma ucu, emzik	en yaygın karşılık başa alındı
+25802	DUZELT	TR	stokastik, olasılıksal, rastgele	yerleşik terim eksik
+26161	DUZELT	TR	dokunulmaz, eleştirilemez	el değmemiş açıklamayla uyumsuz
+25920	BIRAK
+15866	DUZELT	TR	hüsnükuruntuya dayanan, temenni niteliğinde, hayalperest	karşılıklar yapay, yerleşik terim eksik
+15364	DUZELT	ORNEK	In actuality, the trip took twice as long as planned.	örnek anlamı göstermiyordu
+24987	BIRAK			kurnaz açıklamadaki çıkar anlamına uygun
+25031	DUZELT	TR	burlesk, parodi, hiciv gösterisi	yerleşik terim burlesk
+17120	DUZELT	TR	dökümcü, büyü yapan kişi, oyuncu seçen kişi	açıklamadaki rol anlamı eksik
+6378	DUZELT	TR	tutturmak, bağlamak, tokasını takmak	kapanmak geçişsiz, yanlış
+4035	DUZELT	TR	karşı konulamaz dürtü, zorlantı, içsel baskı	zorunluluk dürtü anlamını vermiyor
