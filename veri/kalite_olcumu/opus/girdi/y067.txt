@@ -1,0 +1,100 @@
+20601 | short-term | adjective | B2 | #1/1 | TR: kısa vadeli | EN: lasting a short time; connected with the near future | ÖRNEK: This is only a short-term solution.
+3704 | shortage | noun | B2 | #1/1 | TR: kıtlık, eksiklik, yetersizlik | EN: the state of not having enough of something that is needed or wanted | ÖRNEK: The school reported a shortage of textbooks for the new semester.
+3709 | shortly | adverb | B1 | #1/1 | TR: yakında, kısa bir süre içinde | EN: in a short time; soon after a particular point or event | ÖRNEK: The professor will start the lecture shortly.
+15766 | shot | noun | A2 | #1/3 | TR: atış, vuruş | EN: the act of firing a projectile from a gun or the impact of that projectile. | ÖRNEK: The hunter fired a shot and the deer ran away.
+15767 | shot | noun | B1 | #2/3 | TR: fotoğraf, çekim | EN: a single photograph taken with a camera. | ÖRNEK: He took a quick shot of the street before the rain started.
+15768 | shot | noun | B1 | #3/3 | TR: deneme, şans | EN: an attempt or try at doing something, often with an uncertain outcome. | ÖRNEK: After weeks of practice, he finally took his first shot at the piano.
+27276 | should | modal_verb | A1 | #1/2 | TR: -meli, -malı (tavsiye) | EN: used to give advice or say what is the right thing to do | ÖRNEK: You should see a doctor.
+27277 | should | modal_verb | A1 | #2/2 | TR: -mesi gerekir, muhtemelen (beklenti) | EN: used to say that something is expected or likely | ÖRNEK: The train should arrive at six.
+1445 | shoulder | noun | A2 | #1/1 | TR: omuz | EN: the upper joint of the arm and the part of the body between the neck and the arm | ÖRNEK: She carried the bag on her shoulder.
+1447 | shout | noun | B1 | #1/1 | TR: bağırış, haykırış, çığlık | EN: a loud cry or call made to attract attention or express strong emotion | ÖRNEK: The child let out a loud shout when he saw the ice cream truck.
+1448 | shout | verb | A1 | #1/1 | TR: bağırmak | EN: to utter a loud call or cry, typically to attract attention or express strong emotion | ÖRNEK: The child shouted when he saw the ice cream truck.
+15185 | show | noun | A2 | #1/3 | TR: program, televizyon yayını | EN: a television or radio broadcast that presents entertainment, information, or news | ÖRNEK: I watched a comedy show on TV yesterday.
+15186 | show | noun | B1 | #2/3 | TR: sergi, sergileme | EN: an event where items such as art, products, or performances are displayed for public viewing | ÖRNEK: The university organized a science show for high school students.
+15187 | show | noun | A1 | #3/3 | TR: performans, sahne gösterisi | EN: a public entertainment consisting of music, drama, dance, or other artistic presentation | ÖRNEK: The circus show amazed children with its acrobats.
+15188 | show | verb | A2 | #1/2 | TR: göstermek, sergilemek | EN: to cause something to be seen or noticed, especially by presenting it visually or publicly | ÖRNEK: The teacher showed the map to the class.
+15189 | show | verb | A2 | #2/2 | TR: kanıtlamak, ispatlamak | EN: to provide evidence or reasons that demonstrate the truth or existence of something | ÖRNEK: The graph shows that sales increased last quarter.
+12643 | shower | noun | A2 | #1/3 | TR: duş | EN: a device that sprays water for bathing | ÖRNEK: He needs to take a shower before the meeting.
+12642 | shower | noun | B1 | #2/3 | TR: sağanak | EN: a brief period of heavy rain | ÖRNEK: A light shower fell while we were walking to school.
+12644 | shower | noun | B2 | #3/3 | TR: hediye partisi, kutlama partisi | EN: a party held to celebrate an upcoming birth | ÖRNEK: My coworker is organizing a baby shower for her colleague.
+9341 | shrink | verb | B1 | #1/2 | TR: küçülmek, büzülmek | EN: to become smaller in size, amount, or extent | ÖRNEK: My new jeans shrank after the first wash.
+9340 | shrink | verb | B2 | #2/2 | TR: çekinmek, geri çekilmek | EN: to move back or withdraw from a position, commitment, or situation | ÖRNEK: He shrank from the idea of speaking in front of the class.
+3151 | shrug | verb | B1 | #1/1 | TR: omuz silkmek, umursamamak | EN: to raise (or lower) one's shoulders briefly, typically to express doubt, indifference, or lack of knowledge | ÖRNEK: She shrugged when the teacher asked her to explain the solution.
+20435 | shut | adjective | A2 | #1/1 | TR: kapalı | EN: not open; closed | ÖRNEK: Keep the door shut.
+17167 | shut | verb | A2 | #1/1 | TR: kapamak, kapatmak | EN: to close something so that it is no longer open or accessible | ÖRNEK: She shut the laptop and went to bed.
+23655 | shuttered | adjective | B2 | #1/1 | TR: kapalı, kapatılmış | EN: having been closed with shutters; not open or operating | ÖRNEK: The small shop was shuttered after the owner retired.
+6548 | shy | adjective | B1 | #1/1 | TR: utangaç, çekingen | EN: reluctant to speak or act because of fear of embarrassment or rejection | ÖRNEK: The shy girl stayed quiet during the class discussion.
+11058 | sibling | noun | B1 | #1/1 | TR: kardeş | EN: a brother or sister; a person who shares at least one parent with another person | ÖRNEK: My sibling and I share the same birthday.
+7593 | sick | adjective | A1 | #1/2 | TR: hasta, rahatsız | EN: affected by illness or disease; not feeling well | ÖRNEK: She woke up feeling sick and stayed in bed all morning.
+7594 | sick | adjective | C1 | #2/2 | TR: harika, çok iyi | EN: used informally to describe something as impressive, exciting, or excellent. | ÖRNEK: The new video game has sick graphics that wow the players.
+7597 | sickened | adjective | B2 | #1/1 | TR: tiksinmiş, midesi bulanmış, dehşete düşmüş | EN: causing a feeling of disgust or revulsion; made to feel sick or repulsed | ÖRNEK: He felt sickened after watching the violent movie scene.
+3476 | side | noun | A2 | #1/2 | TR: kenar, yüz | EN: the surface or border of an object that is distinct from its front or back | ÖRNEK: The cat curled up on the side of the couch.
+3477 | side | noun | A2 | #2/2 | TR: taraf, grup, görüş | EN: a group of people who share the same opinion, interest, or allegiance | ÖRNEK: In the meeting, each member chose a side and defended it.
+1449 | sigh | noun | B1 | #1/1 | TR: iç çekiş, içten gelen ses | EN: a soft sound made by exhaling audibly, often expressing tiredness, relief, or emotion | ÖRNEK: She let out a quiet sigh when the lecture ended.
+1450 | sigh | verb | B1 | #1/1 | TR: iç çekmek | EN: to emit a long, deep breath that expresses tiredness, relief, or emotion | ÖRNEK: She sighed when the computer froze again.
+1451 | sight | noun | A2 | #1/2 | TR: görme, görme yetisi | EN: the ability to see; the sense of vision | ÖRNEK: She can read the small print because she has excellent sight.
+1452 | sight | noun | B1 | #2/2 | TR: manzara, görünüm | EN: a view or scene that can be seen, especially one that is impressive or noteworthy | ÖRNEK: The city skyline is a beautiful sight from the hilltop.
+19267 | sign | noun | A2 | #1/2 | TR: belirti, işaret | EN: a mark, object, or event that indicates the presence or existence of something | ÖRNEK: The red light is a sign that you must stop.
+19268 | sign | noun | B2 | #2/2 | TR: sembol | EN: an object, shape, or figure that represents something else by association, resemblance, or convention | ÖRNEK: The dove is often used as a sign of peace.
+19270 | sign | verb | A2 | #1/2 | TR: imzalamak | EN: to write one's name on a document to show agreement or approval | ÖRNEK: The manager asked the new employee to sign the confidentiality agreement.
+19269 | sign | verb | B1 | #2/2 | TR: işaret diliyle konuşmak | EN: to communicate by using hand gestures that represent words or ideas | ÖRNEK: The teacher asked the deaf student to sign the answer clearly.
+20247 | signal | noun | B1 | #1/2 | TR: işaret, belirti | EN: a visible or audible indication that conveys information or a command | ÖRNEK: The lighthouse uses a flashing signal to guide ships at night.
+20248 | signal | noun | B2 | #2/2 | TR: elektronik sinyal | EN: a transmitted electrical or electromagnetic wave that carries data or instructions | ÖRNEK: The radio antenna captured a weak signal from the distant station.
+20249 | signal | verb | B1 | #1/2 | TR: işaret etmek, göstermek | EN: to convey information or a warning by means of a sign, gesture, or device | ÖRNEK: The traffic officer signaled a stop for the cars.
+20250 | signal | verb | B2 | #2/2 | TR: iletişim kurmak, sinyal göndermek | EN: to transmit a message or data by electronic or radio means | ÖRNEK: The satellite signals the ground station every few minutes.
+19274 | signature | noun | B1 | #1/2 | TR: imza | EN: a handwritten name or mark used to authenticate a document or agreement | ÖRNEK: Please add your signature at the bottom of the form.
+19275 | signature | noun | B2 | #2/2 | TR: kendine özgü nitelik | EN: a distinctive characteristic or feature that identifies a person, object, or style | ÖRNEK: His signature laugh makes him instantly recognizable.
+6311 | significance | noun | B2 | #1/2 | TR: önem | EN: the quality of being important or worthy of attention | ÖRNEK: Your contribution has real significance for the project's success.
+6312 | significance | noun | C1 | #2/2 | TR: anlam, manâ | EN: the meaning or sense conveyed by a word, sign, or symbol | ÖRNEK: The linguist studied the significance of the word in different dialects.
+6313 | significant | adjective | B1 | #1/2 | TR: önemli, kayda değer | EN: notable or important enough to be worthy of attention | ÖRNEK: The teacher gave a significant warning about late assignments.
+6314 | significant | adjective | C1 | #2/2 | TR: istatistiksel olarak anlamlı | EN: showing a result unlikely to have occurred by chance in statistical analysis | ÖRNEK: The study found a significant association between diet and heart disease.
+6315 | significantly | adverb | C1 | #1/1 | TR: önemli ölçüde, kayda değer şekilde | EN: to a large or important degree; markedly | ÖRNEK: The new policy significantly reduced waiting times at the clinic.
+1679 | silence | noun | B1 | #1/2 | TR: sessizlik, ses olmaması | EN: the complete absence of any audible sound | ÖRNEK: The library is known for its strict silence policy.
+1680 | silence | noun | B2 | #2/2 | TR: susma, susma emri | EN: the act of ordering someone to stop speaking or making noise | ÖRNEK: The teacher raised her hand to signal silence in the classroom.
+1677 | silent | adjective | A2 | #1/2 | TR: sessiz, suskun | EN: not making or accompanied by any sound; not speaking or making noise | ÖRNEK: The cat lay in the silent garden and watched the birds.
+1678 | silent | adjective | B2 | #2/2 | TR: gizli, fark edilmemiş | EN: not publicly known or acknowledged; done or occurring without attracting attention | ÖRNEK: Many citizens form a silent majority that rarely votes.
+5418 | silk | noun | B1 | #1/1 | TR: ipek | EN: a fine, strong, soft natural fiber produced by silkworms | ÖRNEK: The baby wrapped the doll in a soft silk blanket.
+5726 | silly | adjective | B1 | #1/1 | TR: aptal, saçma | EN: showing a lack of good sense or judgment; foolish. | ÖRNEK: He made a silly comment during the meeting.
+9762 | silver | adjective | A2 | #1/1 | TR: gümüş | EN: made of or resembling silver | ÖRNEK: He polished the silver cutlery before the dinner party.
+9764 | silver | noun | B1 | #1/1 | TR: gümüş | EN: the chemical element with symbol Ag, a shiny gray-white metal used in jewelry, coins, and industrial applications. | ÖRNEK: The necklace is made of pure silver and shines brightly.
+19707 | similar | adjective | A1 | #1/1 | TR: benzer | EN: having a likeness or resemblance in characteristics, appearance, or nature | ÖRNEK: The two shirts look similar in color and style.
+19709 | similarity | noun | B2 | #1/1 | TR: benzerlik | EN: the state or quality of being similar; likeness or resemblance between two or more things | ÖRNEK: The similarity between the twins made it hard for the teacher to tell them apart.
+19710 | similarly | adverb | B1 | #1/1 | TR: aynı şekilde | EN: in a similar manner or to a similar degree; in the same way | ÖRNEK: The two cars have similar engines, and similarly they consume the same amount of fuel.
+4777 | simple | adjective | A2 | #1/3 | TR: kolay, anlaşılması basit | EN: not complicated or difficult; easy to understand or do | ÖRNEK: The test was simple, so most students finished quickly.
+4778 | simple | adjective | A2 | #2/3 | TR: sade, süssüz, gösterişsiz | EN: plain and not elaborate; lacking ornament or decoration | ÖRNEK: The painting's simple style attracted many modern art fans.
+4779 | simple | adjective | B1 | #3/3 | TR: naif, akılsız, saf | EN: lacking mental acuity or sophistication; easily deceived or misled | ÖRNEK: Many scammers target simple individuals who trust too easily.
+4785 | simply | adverb | B1 | #1/1 | TR: basitçe, sadece | EN: in a straightforward manner; merely; without adding anything else | ÖRNEK: She simply refused to answer the question.
+14347 | simulate | verb | B2 | #1/1 | TR: taklit etmek, benzetmek | EN: to imitate the conditions or behavior of something, especially for the purpose of study or testing | ÖRNEK: The game simulates a medieval battlefield for players.
+14348 | simulation | noun | B2 | #1/1 | TR: taklit, benzetim, modelleme | EN: the imitation of a real-world process or system over time, often using a computer model, to study its behavior or predict outcomes | ÖRNEK: The physics class performed a simple simulation of projectile motion.
+5475 | simultaneously | adverb | B2 | #1/1 | TR: aynı anda | EN: in a way that occurs at the same time; concurrently | ÖRNEK: The bells rang simultaneously, waking everyone in the dorm.
+2895 | sin | noun | B1 | #1/1 | TR: günah | EN: a violation of moral or religious law; an act considered to be immoral or sinful | ÖRNEK: He admitted his sin and asked for forgiveness.
+20857 | since | adverb | B1 | #1/1 | TR: o zamandan beri | EN: from a time in the past until now | ÖRNEK: He left in 2010 and I haven't seen him since.
+15154 | since | conjunction | B1 | #1/2 | TR: ...'den beri | EN: indicating that something started at a particular point in the past and continues up to the present | ÖRNEK: Our team has been winning matches since the season started.
+15155 | since | conjunction | B2 | #2/2 | TR: çünkü | EN: introducing a clause that gives a reason or cause for something mentioned earlier | ÖRNEK: She left early since she felt ill.
+15156 | since | preposition | B1 | #1/1 | TR: ...den beri | EN: indicating that something started at a particular point in the past and continues up to the present. | ÖRNEK: The museum has been open since March.
+9879 | sincere | adjective | B2 | #1/1 | TR: samimi, içten | EN: genuine and honest in feeling, expression, or action; not pretending or deceitful | ÖRNEK: She gave a sincere smile when she greeted her old friend.
+9882 | sincerely | adverb | B1 | #1/1 | TR: samimi bir şekilde | EN: in a sincere manner; expressing genuine feelings or honesty | ÖRNEK: She wrote a letter and sincerely apologized for the delay.
+7103 | sing | verb | A2 | #1/2 | TR: şarkı söylemek, sesli müzik üretmek | EN: to produce musical sounds with the voice, often forming words or melodies | ÖRNEK: She can sing very well and often performs at school events.
+7104 | sing | verb | B1 | #2/2 | TR: ötmek, şakımak | EN: to produce musical sounds, especially as a bird or other animal does | ÖRNEK: The robin sings from the top of the oak tree each sunrise.
+7105 | singer | noun | A2 | #1/1 | TR: şarkıcı | EN: a person who sings, especially one who performs professionally or as a hobby | ÖRNEK: The young singer performed at the local café last night.
+7106 | singing | noun | B1 | #1/1 | TR: şarkı söyleme, vokal performans | EN: the act or skill of producing musical sounds with the voice; a vocal performance | ÖRNEK: She practices singing every morning before work.
+20015 | single | adjective | A2 | #1/2 | TR: evli olmayan, bekar | EN: not married; not in a romantic relationship. | ÖRNEK: She decided to stay single after her recent breakup.
+20016 | single | adjective | B1 | #2/2 | TR: tek, yalnız bir | EN: only one; not accompanied by others; solitary. | ÖRNEK: She ordered a single cup of coffee before the meeting.
+20017 | single | noun | B2 | #1/1 | TR: tekli müzik kaydı, tek parça şarkı | EN: a song released separately from an album, often for promotional purposes | ÖRNEK: The singer's latest single has already received millions of streams.
+3538 | single-breasted | adjective | B2 | #1/1 | TR: tek sıra düğmeli | EN: having one column of buttons down the front of a coat, jacket or suit, as opposed to a double-breasted style | ÖRNEK: The store offers a single-breasted coat in navy blue.
+1914 | sink | noun | A2 | #1/1 | TR: lavabo, mutfak lavabosu | EN: a bowl-shaped plumbing fixture used for washing hands, dishes, or other objects | ÖRNEK: The sink in the kitchen is made of porcelain.
+1915 | sink | verb | A2 | #1/1 | TR: batmak, batırmak | EN: to cause something to go down below the surface of a liquid | ÖRNEK: The diver carefully sank the anchor to keep the boat steady.
+16261 | sir | noun | A1 | #1/1 | TR: bey, efendi | EN: a title or form of address used to show respect to a man | ÖRNEK: He called the teacher sir during class every day.
+16547 | sister | noun | A2 | #1/1 | TR: kız kardeş | EN: a female sibling; a woman who shares at least one parent with another person | ÖRNEK: My sister lives nearby and visits us every weekend.
+16704 | sit | verb | A1 | #1/2 | TR: oturmak, oturmakta kalmak | EN: to be in a seated position; to remain seated | ÖRNEK: The cat likes to sit on the windowsill every morning.
+16705 | sit | verb | B2 | #2/2 | TR: görev yapmak, üyesi olmak, yer almak | EN: to occupy a place or position, especially as a member of a group or as a function | ÖRNEK: The professor will sit on the admissions committee this year.
+15769 | site | noun | A2 | #1/3 | TR: internet sitesi | EN: a collection of related web pages located under a single domain name and accessible via the Internet | ÖRNEK: The conference details are posted on the event's site.
+15770 | site | noun | A2 | #2/3 | TR: yer, konum, bölge | EN: a particular location or place where something is situated or occurs | ÖRNEK: The museum is located at a famous archaeological site.
+15771 | site | noun | B1 | #3/3 | TR: inşaat alanı, yapı sahası | EN: a piece of land where a building or other structure is being built | ÖRNEK: The contractor inspected the site before starting work.
+20796 | situated | adjective | C1 | #1/1 | TR: (bir yerde) bulunan, konumlanmış | EN: in a particular place or position | ÖRNEK: The hotel is situated close to the beach.
+10877 | situation | noun | A1 | #1/2 | TR: durum, koşul | EN: a set of circumstances or a state of affairs at a particular time | ÖRNEK: During the meeting, we discussed the financial situation of the project.
+10878 | situation | noun | C1 | #2/2 | TR: yer, konum | EN: the place or location where something is positioned or occurs | ÖRNEK: The hotel is in a beautiful situation overlooking the sea.
+16036 | size | noun | A2 | #1/1 | TR: boyut, ölçü, beden | EN: the physical dimensions, magnitude, or extent of something | ÖRNEK: The size of the new stadium impressed the visitors.
+22365 | skate | verb | B1 | #1/1 | TR: patenle kaymak, kaymak | EN: to move over a surface on skates or a skateboard, typically for sport or recreation | ÖRNEK: She can skate very fast on the frozen lake.
+27392 | skate park | noun | A1 | #1/1 | TR: kaykay parkı | EN: an outdoor area with ramps for skateboarding | ÖRNEK: The kids are at the skate park.
+22366 | skateboard | noun | B1 | #1/1 | TR: kaykay | EN: a short board with wheels, ridden standing up and used for performing tricks or moving around. | ÖRNEK: He bought a new skateboard for his birthday.

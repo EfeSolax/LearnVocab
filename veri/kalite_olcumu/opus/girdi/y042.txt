@@ -1,0 +1,100 @@
+9212 | large | adjective | B2 | #2/2 | TR: önemli, kapsamlı | EN: significant in amount, degree, or importance; extensive. | ÖRNEK: The discovery made a large impact on the field of genetics.
+20725 | large-scale | adjective | C1 | #1/1 | TR: büyük çaplı, geniş ölçekli | EN: involving many people or things, or a large area | ÖRNEK: There was a large-scale search for the missing child.
+9215 | largely | adverb | B2 | #1/1 | TR: büyük ölçüde, çoğunlukla | EN: to a great extent; for the most part; mainly | ÖRNEK: The new policy is largely unpopular among students.
+11624 | laser | noun | B2 | #1/1 | TR: lazer, ışın | EN: a device that produces a narrow, intense beam of light through stimulated emission of radiation | ÖRNEK: The laboratory bought a new laser for the optics experiment.
+9524 | last | adjective | A2 | #1/2 | TR: son, en son, final | EN: being the final or most recent item in a series or sequence | ÖRNEK: I watched the last episode of the series yesterday.
+9525 | last | adjective | B1 | #2/2 | TR: kalan, son kalan, tek kalan | EN: remaining after all others have been used, taken, or dealt with | ÖRNEK: Only one ticket was left, and it was the last one available.
+7496 | late | adjective | A2 | #1/3 | TR: geç, zamanında gelmemiş | EN: not arriving, happening, or done at the expected or scheduled time. | ÖRNEK: He was late for class and missed the first lecture.
+7497 | late | adjective | B2 | #2/3 | TR: vefat etmiş, hayatta olmayan | EN: no longer living; having died. | ÖRNEK: The late president was honored with a national day of mourning.
+7498 | late | adjective | B1 | #3/3 | TR: sonları, sonlarındaki, geç | EN: belonging to a recent period of time; occurring or existing in the recent past. | ÖRNEK: Researchers focused on climate data from the late 1800s.
+20330 | late | adverb | A1 | #1/1 | TR: geç | EN: after the expected or usual time | ÖRNEK: The train arrived late.
+7499 | lately | adverb | B1 | #1/1 | TR: son zamanlarda | EN: in recent times; recently | ÖRNEK: I have noticed that the weather has been colder lately.
+7501 | later | adjective | B1 | #1/1 | TR: daha sonraki | EN: referring to a time that comes after the present or after something else | ÖRNEK: The class will start at a later time tomorrow.
+7502 | later | adverb | A1 | #1/1 | TR: sonra, daha sonra | EN: at a time after the present or after a time already mentioned | ÖRNEK: I will call you later this afternoon.
+7503 | latest | adjective | A2 | #1/1 | TR: en yeni | EN: most recent; having occurred or been made most recently | ÖRNEK: She read the latest news on her phone.
+20560 | latest | noun | B2 | #1/1 | TR: en yenisi, son haber | EN: the most recent news, fashion or thing of its kind | ÖRNEK: Have you heard the latest?
+18097 | latter | adjective | B1 | #1/2 | TR: ikinci, bahsedilen ikincisi | EN: referring to the second of two items or the one mentioned later | ÖRNEK: Both candidates presented strong arguments, but the latter impressed the panel more.
+18098 | latter | adjective | B2 | #2/2 | TR: son, sonraki | EN: situated toward the end of a period, sequence, or portion | ÖRNEK: The novel's plot thickens in the latter chapters, revealing hidden motives.
+18099 | latter | noun | B2 | #1/1 | TR: ikincisi, sonuncusu | EN: the second of two mentioned things or people | ÖRNEK: Both books are interesting, but the latter is easier to read.
+1046 | laugh | noun | A2 | #1/1 | TR: gülme | EN: the act or sound of laughing; an expression of amusement or joy | ÖRNEK: The child's laugh filled the playground with joy.
+1047 | laugh | verb | A2 | #1/1 | TR: gülmek, kahkaha atmak | EN: to produce a sound and facial expression that shows amusement or joy | ÖRNEK: The child laughed when the puppy chased its tail.
+1049 | laughter | noun | A2 | #1/1 | TR: kahkaha | EN: the sound or act of laughing; an expression of joy or amusement | ÖRNEK: The child's laughter filled the playground on a sunny afternoon.
+17553 | launch | noun | B2 | #1/1 | TR: başlatma, fırlatma | EN: the act of starting or introducing something, especially a product, project, or a spacecraft, into operation or into the market | ÖRNEK: The launch of the new website attracted thousands of visitors on the first day.
+17554 | launch | verb | B2 | #1/2 | TR: başlatmak, piyasaya sürmek | EN: to start or introduce something, especially a new product, service, or campaign | ÖRNEK: The startup plans to launch its website by the end of June.
+17555 | launch | verb | B2 | #2/2 | TR: fırlatmak, ateşlemek | EN: to send something such as a rocket, missile, or spacecraft into the air or space | ÖRNEK: The engineers prepared to launch the satellite tomorrow morning.
+21896 | laundry | noun | B1 | #1/1 | TR: çamaşır, çamaşırhane | EN: clothes and linens that need to be washed or the place where they are washed | ÖRNEK: I need to wash my laundry before the weekend.
+19900 | law | noun | A2 | #1/1 | TR: yasa, kanun, hukuk | EN: a system of rules that are created and enforced through social or governmental institutions to regulate behavior | ÖRNEK: The new law was passed by the parliament last month.
+6572 | lawn | noun | A2 | #1/1 | TR: çim, çimlik | EN: an area of short, regularly mowed grass, especially in a yard, park, or other open space | ÖRNEK: The children played on the fresh green lawn after school.
+20726 | lawsuit | noun | C1 | #1/1 | TR: dava | EN: a claim or complaint against someone that a court is asked to decide | ÖRNEK: She filed a lawsuit against her former employer.
+19907 | lawyer | noun | A2 | #1/1 | TR: avukat | EN: a person who is qualified to practice law and represent clients in legal matters | ÖRNEK: The lawyer helped the client understand the contract.
+2847 | lay | noun | C2 | #1/1 | TR: kısa şarkı | EN: a short lyrical poem or song, often with a narrative theme | ÖRNEK: The poet wrote a lay about the ancient battle.
+2848 | lay | verb | A2 | #1/2 | TR: yerleştirmek, koymak | EN: to put something down in a horizontal position or to place it in a particular location | ÖRNEK: She laid the keys on the kitchen counter before leaving.
+2849 | lay | verb | B1 | #2/2 | TR: yumurta bırakmak, yumurtlamak | EN: to produce eggs, especially by a bird or other egg-laying animal | ÖRNEK: The chicken laid a fresh egg for breakfast.
+2850 | layer | noun | B1 | #1/1 | TR: katman, tabaka | EN: a sheet or thickness of material, or a level in a hierarchical structure | ÖRNEK: The cake has three sweet layers that melt in your mouth.
+20727 | layout | noun | C1 | #1/1 | TR: yerleşim, düzen, sayfa düzeni | EN: the way in which the parts of something are arranged | ÖRNEK: I like the layout of your flat.
+11239 | lazy | adjective | A2 | #1/1 | TR: tembel | EN: unwilling to work or use effort; showing a lack of activity or diligence | ÖRNEK: He felt lazy and decided not to do his homework.
+13121 | lead | verb | B1 | #1/2 | TR: birine yol göstermek, rehberlik etmek | EN: to guide or direct someone, showing the way to a destination or goal | ÖRNEK: The teacher leads the class through the new curriculum each semester.
+13120 | lead | verb | B2 | #2/2 | TR: yol açmak, neden olmak | EN: to cause something to happen or to result in a particular outcome | ÖRNEK: The rain will lead to flooding in low-lying areas.
+13122 | leader | noun | A2 | #1/1 | TR: lider, önder | EN: a person who guides or directs a group, organization, or country | ÖRNEK: The leader gave clear instructions to the new employees.
+13123 | leadership | noun | B2 | #1/1 | TR: liderlik | EN: the action of leading a group, organization, or country, and the ability to do so effectively | ÖRNEK: Good leadership helps a small team finish its project on time.
+13124 | leading | adjective | B2 | #1/1 | TR: öncü, birincil, önde gelen | EN: being in a position of highest rank, importance, or influence; ahead of others in a particular field or activity. | ÖRNEK: The leading university in the country announced a new scholarship program.
+18201 | leaf | noun | A2 | #1/1 | TR: yaprak | EN: the flat, typically green part of a plant that grows from a stem or branch and is used for photosynthesis | ÖRNEK: The gardener trimmed the dead leaf from the rose bush.
+18204 | leaflet | noun | B1 | #1/1 | TR: broşür, el ilanı | EN: a small printed sheet of paper containing information or advertising, usually folded or stapled | ÖRNEK: The tourist office gave me a leaflet about local attractions.
+16033 | league | noun | B1 | #1/2 | TR: spor ligi, kulüpler birliği | EN: an organized group of sports teams that compete against each other according to a schedule | ÖRNEK: The local soccer club entered the amateur league last month.
+16034 | league | noun | B2 | #2/2 | TR: birlik, ittifak | EN: a formal agreement between countries or organizations to cooperate for common goals | ÖRNEK: The two countries signed a treaty to create a trade league.
+6407 | leak | noun | B1 | #1/1 | TR: sızıntı | EN: the act or instance of a liquid or gas escaping from a container or system | ÖRNEK: A leak in the garden hose dripped all afternoon.
+6408 | leak | verb | B1 | #1/1 | TR: sızdırmak, kaçırmak | EN: to allow liquid, gas, or information to escape unintentionally | ÖRNEK: The faucet started to leak after weeks of use.
+1054 | lean | verb | B1 | #1/2 | TR: eğilmek, yana yatmak | EN: to incline or bend from a vertical position; to tilt or slant. | ÖRNEK: She leaned against the fence to catch her breath.
+1055 | lean | verb | B1 | #2/2 | TR: dayanmak, güvenmek | EN: to depend on or trust in someone or something for support or help. | ÖRNEK: He leaned on his mentor for advice before making the decision.
+2116 | leap | noun | B1 | #1/1 | TR: atılım, sıçrama | EN: a sudden jump or increase, either physical or figurative | ÖRNEK: The rabbit made a quick leap across the garden.
+3011 | leap | verb | B1 | #1/1 | TR: atlamak, sıçramak | EN: to jump or spring a short distance, especially quickly and energetically | ÖRNEK: The rabbit leapt across the garden to reach the carrot.
+4257 | learn | verb | A2 | #1/1 | TR: öğrenmek | EN: to acquire knowledge or skill through study, experience, or instruction | ÖRNEK: She decided to learn French before her trip to Paris.
+4260 | learning | noun | A1 | #1/1 | TR: öğrenme | EN: the process of acquiring knowledge, skills, or attitudes through study, experience, or instruction | ÖRNEK: The university offers courses that support experiential learning.
+15351 | least | adjective | B1 | #1/1 | TR: en az | EN: smallest in amount or degree | ÖRNEK: The class chose the least expensive textbook for the semester.
+15352 | least | adverb | B1 | #1/1 | TR: en az | EN: to the smallest degree or amount; not more than any other comparable case | ÖRNEK: She ate at least three slices of pizza for lunch.
+3991 | leather | noun | B1 | #1/1 | TR: deri, hayvan derisi | EN: the tanned hide of an animal used for making goods such as clothing, accessories, and upholstery. | ÖRNEK: The leather on the old armchair is cracked and faded.
+15513 | leave | noun | B1 | #1/1 | TR: izin, tatil | EN: permission to be absent from work or school for a period of time | ÖRNEK: I need to take leave next Friday for a family event.
+15514 | leave | verb | A2 | #1/2 | TR: ayrılmak, gitmek | EN: to go away from a place or person; to depart. | ÖRNEK: She will leave the house at eight o'clock tomorrow.
+15515 | leave | verb | B1 | #2/2 | TR: bırakmak, teslim etmek | EN: to give something to someone, often temporarily, or to allow something to remain. | ÖRNEK: Can you leave your phone on the desk before you go?
+6202 | lecture | noun | A2 | #1/2 | TR: ders, konferans, sunum | EN: a formal talk or presentation given to an audience, especially in an academic setting | ÖRNEK: The lecture started promptly at nine o'clock.
+6203 | lecture | noun | C1 | #2/2 | TR: uyarı, azarlama | EN: a formal or stern reprimand, often given by someone in authority | ÖRNEK: After the mistake, his supervisor gave him a lecture about safety procedures.
+6205 | lecture | verb | B1 | #1/2 | TR: ders vermek, konuşma yapmak | EN: to deliver an educational talk or presentation to an audience, usually in an academic setting | ÖRNEK: The professor lectured about the causes of the French Revolution.
+6204 | lecture | verb | B2 | #2/2 | TR: azarlamak, nasihat çekmek | EN: to speak to someone in a severe or admonishing way, often to criticize their behavior | ÖRNEK: The teacher lectured the class about cheating during exams.
+6206 | lecturer | noun | B2 | #1/1 | TR: öğretim görevlisi | EN: a person who gives lectures, especially at a university or college | ÖRNEK: The lecturer explained the basic concepts of photosynthesis to the first-year students.
+15518 | left | adjective | A1 | #1/2 | TR: sol | EN: relating to the side of a person or object that is opposite the right side | ÖRNEK: The left door was painted blue.
+15519 | left | adjective | B1 | #2/2 | TR: kalan, geride kalan | EN: remaining after other parts have been removed, used, or dealt with | ÖRNEK: Only a few tickets were left after the sale.
+20331 | left | adverb | A1 | #1/1 | TR: sola | EN: towards the left side | ÖRNEK: Turn left at the bank.
+15520 | left | noun | A2 | #1/1 | TR: sol | EN: the side of a person or object that is opposite the right side; the direction toward the west when facing north. | ÖRNEK: The map shows the river flowing from the left to the right side of the page.
+17658 | leg | noun | A1 | #1/1 | TR: bacak, uzuv | EN: the lower limb of a human or animal, extending from the knee to the foot | ÖRNEK: She hurt her leg while running in the park.
+13766 | legacy | noun | B2 | #1/1 | TR: miras, kalıt | EN: something handed down from an ancestor or predecessor, especially property, titles, or cultural traditions | ÖRNEK: The old manor is part of the family's legacy.
+19812 | legal | adjective | B1 | #1/1 | TR: yasal, hukuki | EN: conforming to the law; permitted by law | ÖRNEK: The contract is legal and can be enforced by the courts.
+6794 | legend | noun | B2 | #1/2 | TR: efsane, efsanevi kişi | EN: a traditional story regarded as historical but unauthenticated, often about a heroic figure | ÖRNEK: The legend of the phoenix has been told for centuries.
+6795 | legend | noun | C1 | #2/2 | TR: harita üzerindeki gösterge, işaret | EN: a key or explanatory table on a map or diagram that explains symbols and colors | ÖRNEK: The map legend shows that green areas represent forests.
+6796 | legendary | adjective | B2 | #1/1 | TR: efsanevi, destansı | EN: describing something or someone that is famous in stories or history and is regarded as remarkable or extraordinary | ÖRNEK: The old tale describes a legendary warrior who never lost a battle.
+8023 | legislation | noun | C1 | #1/1 | TR: yasa, mevzuat | EN: the act of making or enacting laws; a body of laws that have been formally enacted by a legislative body. | ÖRNEK: The city council passed legislation to lower noise levels after midnight.
+8024 | legislative | adjective | C1 | #1/1 | TR: yasama ile ilgili, yasama | EN: relating to the making of laws or the authority to make laws | ÖRNEK: The committee reviewed the proposed legislative changes.
+8026 | legislature | noun | C1 | #1/1 | TR: yasama organı | EN: the branch of government that makes laws | ÖRNEK: The legislature meets every month to discuss new policies.
+14622 | legitimate | adjective | B2 | #1/2 | TR: meşru, yasal | EN: conforming to law or to rules; recognized as lawful or valid | ÖRNEK: The contract was signed by a legitimate representative of the company.
+14623 | legitimate | adjective | B1 | #2/2 | TR: gerçek, hakiki | EN: genuine; truly what it claims to be, not false or spurious | ÖRNEK: The museum displayed a legitimate artifact from the ancient period.
+6097 | leisure | noun | B1 | #1/1 | TR: boş zaman, dinlenme | EN: time free from work or duties, used for relaxation or enjoyable activities | ÖRNEK: The university offers clubs so students can make the most of their leisure time.
+14202 | lemon | noun | A2 | #1/1 | TR: limon | EN: a small, oval, yellow citrus fruit with a sour taste, used in cooking, drinks, and as a flavoring | ÖRNEK: The lemon on the table looks fresh and bright.
+14203 | lemonade | noun | A2 | #1/1 | TR: limonata | EN: a sweetened, carbonated or still drink made from lemon juice, water and sugar | ÖRNEK: The children asked for lemonade after playing in the park.
+10115 | lend | verb | A2 | #1/1 | TR: ödünç vermek | EN: to give something to someone temporarily, expecting it to be returned | ÖRNEK: I can lend you my notes for the exam.
+17181 | length | noun | A2 | #1/2 | TR: uzunluk | EN: the measurement of something from end to end | ÖRNEK: The length of the table is two meters.
+17180 | length | noun | B1 | #2/2 | TR: süre | EN: the amount of time that something continues or lasts | ÖRNEK: The length of the movie is two hours.
+17184 | lengthy | adjective | B2 | #1/1 | TR: uzun, uzun süren | EN: extending to a great length or taking a long time; not brief | ÖRNEK: The movie was lengthy, lasting over three hours.
+9109 | lens | noun | B1 | #1/2 | TR: mercek, optik mercek | EN: a piece of transparent material, usually glass or plastic, that is shaped to focus or disperse light, used in devices such as cameras, microscopes, and eyeglasses | ÖRNEK: The microscope's lens magnified the tiny cells for the students.
+9110 | lens | noun | C1 | #2/2 | TR: bakış açısı, perspektif | EN: a particular way of looking at or interpreting something; a figurative lens through which an issue is examined | ÖRNEK: Historians often study the era through an economic lens.
+15349 | less | adjective | A2 | #1/1 | TR: daha az | EN: indicating a smaller amount or degree compared to something else | ÖRNEK: He has less money than his brother.
+15350 | less | adverb | A2 | #1/1 | TR: daha az | EN: to a smaller extent or degree; not as much as something else | ÖRNEK: She feels less confident after the recent criticism.
+15353 | lesser | adjective | B2 | #1/1 | TR: daha az, daha küçük | EN: of lower importance, size, or degree; not as great | ÖRNEK: In the report, the lesser risks were highlighted first.
+1057 | lesson | noun | A2 | #1/2 | TR: ders, öğretim bölümü | EN: a period of instruction or teaching in a school or other educational setting | ÖRNEK: The math lesson started with a quick review of fractions.
+1058 | lesson | noun | B1 | #2/2 | TR: ibret, tecrübeden çıkarılan ders | EN: a moral or practical insight gained from an experience, often used to advise others | ÖRNEK: The loss of his job was a harsh lesson about financial planning.
+15243 | let | verb | A2 | #1/1 | TR: izin vermek | EN: to give permission for someone to do something | ÖRNEK: Can you let me borrow your notes for the class?
+13857 | lethal | adjective | C1 | #1/1 | TR: ölümcül, öldürücü | EN: causing death; capable of killing a living organism. | ÖRNEK: The venom of the spider is lethal to humans.
+16558 | letter | noun | A1 | #1/2 | TR: harf, alfabe karakteri | EN: a single written or printed symbol that represents a speech sound and forms part of an alphabet | ÖRNEK: The child learned to recognize each letter of the alphabet.
+16559 | letter | noun | A2 | #2/2 | TR: mektup, yazılı iletişim | EN: a written or printed message addressed to a person or organization | ÖRNEK: She mailed the letter early in the morning.
+15437 | level | adjective | A2 | #1/2 | TR: düz, yatay | EN: having a flat, even surface without any incline or depression | ÖRNEK: The table is level, so the books do not slide off.
+15438 | level | adjective | B1 | #2/2 | TR: eşit, aynı seviyede | EN: having the same rank, status, or amount as something else | ÖRNEK: All students received the same grade, making the results level across the class.
+15439 | level | noun | B1 | #1/2 | TR: düzey, seviye | EN: a position on a scale of intensity, amount, or quality | ÖRNEK: The exam tests students at an intermediate level.
+15440 | level | noun | B1 | #2/2 | TR: kat, katman | EN: a storey or floor of a building | ÖRNEK: The library occupies the second level of the university complex.

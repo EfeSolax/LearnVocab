@@ -1,0 +1,100 @@
+16741 | winter | noun | A2 | #1/1 | TR: kış | EN: the cold season of the year between autumn and spring | ÖRNEK: Winter is the coldest season of the year.
+3669 | wipe | verb | A2 | #1/1 | TR: silmek, temizlemek | EN: to rub a surface with a cloth, hand, or other object in order to remove dirt, liquid, or marks | ÖRNEK: She wiped the spill from the kitchen counter.
+5541 | wire | noun | A2 | #1/2 | TR: tel | EN: a thin, flexible strand of metal used to conduct electricity or signals | ÖRNEK: She bought a roll of copper wire for her DIY project.
+5542 | wire | noun | B1 | #2/2 | TR: telgraf, ajans haberi | EN: a message or piece of information transmitted by telephone, telegraph, or electronic means | ÖRNEK: The journalist got a wire about the breaking news at dawn.
+1663 | wisdom | noun | B2 | #1/1 | TR: bilgelik | EN: the quality of having experience, knowledge, and good judgment | ÖRNEK: She values the wisdom of her grandparents.
+1660 | wise | adjective | B1 | #1/1 | TR: akıllı, bilge, akıllıca | EN: having or showing experience, knowledge, and good judgment | ÖRNEK: Her wise advice helped me avoid many mistakes.
+15863 | wish | noun | A2 | #1/1 | TR: dilek, istek | EN: a desire or hope for something to happen or be true | ÖRNEK: He wrote his wish on a piece of paper and kept it in his wallet.
+15864 | wish | verb | A2 | #1/2 | TR: dilemek, arzu etmek | EN: to desire or hope for something to happen or be true | ÖRNEK: I wish I could stay longer at the beach.
+15865 | wish | verb | B1 | #2/2 | TR: keşke...olsaydı demek, dilek ifade etmek | EN: to express a regret or a hypothetical desire about a situation that is not true or unlikely | ÖRNEK: I wish I had taken the earlier train.
+6094 | wit | noun | B2 | #1/2 | TR: zekâ, akıl, anlayış | EN: the ability to think quickly and intelligently; mental sharpness | ÖRNEK: The professor praised the student's wit during the debate.
+6095 | wit | noun | B1 | #2/2 | TR: espri, nüktedanlık | EN: the ability to say or write things that are funny or clever | ÖRNEK: The comedian's wit kept the crowd entertained all night.
+20381 | with | preposition | A1 | #1/3 | TR: ile, birlikte | EN: in the company of someone or something | ÖRNEK: I live with my parents.
+20382 | with | preposition | A1 | #2/3 | TR: ile (araç) | EN: using something | ÖRNEK: Cut the bread with a knife.
+20383 | with | preposition | A1 | #3/3 | TR: -li, -lı (sahip olma) | EN: having or carrying something | ÖRNEK: I met a girl with red hair.
+5647 | withdraw | verb | B1 | #1/2 | TR: para çekmek, para almak | EN: to take money out of a bank account or other financial institution | ÖRNEK: She withdrew $200 from her savings account yesterday.
+5648 | withdraw | verb | B2 | #2/2 | TR: geri çekilmek, çekilmek | EN: to retreat or move back from a position, situation, or statement | ÖRNEK: The army withdrew from the border after the cease-fire was signed.
+5649 | withdrawal | noun | B1 | #1/3 | TR: geri çekilme, çekilme | EN: the act of pulling back or removing oneself from a situation or place | ÖRNEK: The company announced its withdrawal from the market last month.
+5650 | withdrawal | noun | B1 | #2/3 | TR: para çekme | EN: the act of taking money out of a bank account or other financial resource | ÖRNEK: I need to go to the bank for a quick withdrawal.
+5651 | withdrawal | noun | B2 | #3/3 | TR: yoksunluk, kriz, çekilme | EN: the physical or psychological symptoms that occur when a person stops using an addictive substance | ÖRNEK: The doctor warned him about possible withdrawal after stopping the drug.
+15406 | within | preposition | B1 | #1/1 | TR: içinde, -de, -e kadar | EN: inside something or during a period of time; not beyond the limits or boundaries mentioned. | ÖRNEK: The keys are hidden within the drawer.
+15184 | without | preposition | A2 | #1/1 | TR: olmadan | EN: in the absence of; not having or lacking something | ÖRNEK: I went to the store without my wallet.
+1665 | witness | noun | B1 | #1/1 | TR: tanık | EN: a person who sees an event happen and can give a statement about it | ÖRNEK: The police asked the neighbor to be a witness to the burglary.
+1666 | witness | verb | B2 | #1/1 | TR: tanık olmak | EN: to see an event happen and be able to give a firsthand account of it | ÖRNEK: I witnessed the fireworks from my balcony.
+15509 | woman | noun | A1 | #1/1 | TR: kadın | EN: a female human being, typically an adult | ÖRNEK: The woman bought a coffee at the kiosk.
+8220 | wonder | noun | B1 | #1/2 | TR: hayret, şaşkınlık | EN: a feeling of amazement and curiosity caused by something unexpected or impressive | ÖRNEK: The museum exhibit sparked a sense of wonder in the visitors.
+8221 | wonder | noun | B2 | #2/2 | TR: mucize, harika şey | EN: something that causes amazement because it is extraordinary or seemingly impossible | ÖRNEK: The ancient pyramids remain a wonder for archaeologists.
+8222 | wonder | verb | B1 | #1/2 | TR: merak etmek, şaşırmak | EN: to feel curiosity about something or to be in doubt about something | ÖRNEK: She wondered why the lights kept flickering during the night.
+8223 | wonder | verb | B2 | #2/2 | TR: hayran kalmak, şaşkınlık duymak | EN: to feel admiration or amazement at something impressive or beautiful | ÖRNEK: He wondered at the elegance of the dancer's movements.
+8224 | wonderful | adjective | A1 | #1/1 | TR: harika, mükemmel | EN: causing delight, admiration, or pleasure; extremely good or impressive. | ÖRNEK: The weather was wonderful for our picnic yesterday.
+17141 | wood | noun | A2 | #1/2 | TR: ahşap, tahta, odun | EN: the hard fibrous material that forms the trunk and branches of trees | ÖRNEK: The carpenter selected a piece of wood for the new desk.
+17142 | wood | noun | B1 | #2/2 | TR: ormanlık alan | EN: an area covered chiefly with trees and undergrowth | ÖRNEK: The wood behind the school is a popular spot for picnics.
+17147 | wooden | adjective | A2 | #1/2 | TR: ahşap, tahta | EN: made of wood; consisting of or resembling wood in material or appearance | ÖRNEK: The children built a wooden fort in the backyard.
+17148 | wooden | adjective | B2 | #2/2 | TR: donuk, ruhsuz, yapmacık | EN: lacking flexibility, expression, or warmth; appearing stiff or awkward | ÖRNEK: The speaker's wooden delivery made it hard to stay focused.
+11686 | wool | noun | A2 | #1/1 | TR: yün | EN: the soft, curly fiber that grows from the skin of sheep and some other animals, used for making textiles. | ÖRNEK: The farmer sheared the sheep to collect fresh wool.
+15656 | word | noun | A1 | #1/2 | TR: sözcük, kelime | EN: a single distinct meaningful element of speech or writing, used with others to form sentences. | ÖRNEK: The teacher asked each student to write a new word in their notebook.
+15657 | word | noun | B2 | #2/2 | TR: söz, vaat | EN: a promise or assurance that something will happen or be done. | ÖRNEK: The contract states that each party must keep their word.
+19372 | work | noun | A2 | #1/2 | TR: iş, görev | EN: tasks or duties that a person is expected or required to perform, especially as part of a job or occupation. | ÖRNEK: She finished her work early and left the office.
+19373 | work | noun | B2 | #2/2 | TR: çalışma | EN: the process of applying effort and skill to achieve a result, especially in academic or scientific contexts. | ÖRNEK: The lab work required careful measurement of chemicals.
+19374 | work | verb | A2 | #1/1 | TR: çalışmak, iş yapmak | EN: to engage in physical or mental activity in order to achieve a result or earn money | ÖRNEK: I work at the university library every Saturday.
+19382 | worker | noun | B1 | #1/2 | TR: işçi | EN: a person who performs manual labour or works for wages, especially in industry or manufacturing | ÖRNEK: The construction site hired several new workers last week.
+19383 | worker | noun | A2 | #2/2 | TR: çalışan | EN: a person who is employed by an organization or company, regardless of the type of work performed | ÖRNEK: The company announced bonuses for all its workers.
+19384 | workforce | noun | B2 | #1/1 | TR: iş gücü, çalışanlar topluluğu | EN: the total number of people who are employed or available for employment in a specific organization, region, or country | ÖRNEK: The factory employs a workforce of two hundred workers.
+19385 | working | adjective | B1 | #1/2 | TR: çalışma, çalışan | EN: relating to or involving work; used to describe something that is done as part of a job or activity | ÖRNEK: The office has flexible working hours for all staff.
+19387 | working | adjective | B2 | #2/2 | TR: çalışır durumda, işlevsel | EN: functioning or operating correctly; used for machines, systems, or processes that are active | ÖRNEK: The laboratory installed a working microscope for the students.
+20842 | workout | noun | C1 | #1/1 | TR: antrenman, egzersiz | EN: a period of physical exercise | ÖRNEK: I do a short workout every morning.
+19210 | workplace | noun | B1 | #1/1 | TR: iş yeri | EN: a location where people are employed to perform their jobs | ÖRNEK: The office is a modern workplace with open spaces.
+20621 | workshop | noun | B2 | #1/2 | TR: atölye çalışması | EN: a meeting at which a group of people learn about a subject by doing practical activities | ÖRNEK: I went to a writing workshop.
+20622 | workshop | noun | B2 | #2/2 | TR: atölye, işlik | EN: a room or building where things are made or repaired | ÖRNEK: He has a small workshop in his garage.
+18982 | world | noun | A1 | #1/1 | TR: dünya | EN: the earth, together with all of its countries, peoples, and natural features | ÖRNEK: The world is round, as shown by satellite images.
+18779 | worldwide | adjective | B2 | #1/1 | TR: dünya çapında | EN: extending or reaching across the whole world; global in scope | ÖRNEK: The smartphone brand is sold in many countries and has a worldwide presence.
+20505 | worldwide | adverb | B1 | #1/1 | TR: dünya çapında | EN: in all parts of the world | ÖRNEK: The company employs 5,000 people worldwide.
+20623 | worm | noun | B2 | #1/1 | TR: solucan, kurt | EN: a small long thin creature with a soft body and no legs | ÖRNEK: The bird pulled a worm out of the ground.
+16944 | worried | adjective | B1 | #1/1 | TR: endişeli, kaygılı | EN: feeling anxious or concerned about something that may happen or is happening | ÖRNEK: She felt worried about the storm approaching the coast.
+16942 | worry | noun | B1 | #1/1 | TR: endişe, kaygı | EN: a feeling of anxiety or concern about something uncertain or undesirable | ÖRNEK: She felt a sudden worry when the phone stopped ringing.
+16943 | worry | verb | B1 | #1/1 | TR: endişelenmek, kaygı duymak | EN: to feel anxious or concerned about something, especially something that may happen in the future | ÖRNEK: She worries about the weather forecast every morning.
+3221 | worse | adjective | B1 | #1/1 | TR: daha kötü | EN: comparative form of 'bad', indicating a lower quality or more severe state than something else | ÖRNEK: The weather today is worse than yesterday.
+20506 | worse | adverb | B1 | #1/1 | TR: daha kötü (şekilde) | EN: in a worse way; less well | ÖRNEK: He played worse than usual.
+20624 | worse | noun | B2 | #1/1 | TR: daha kötüsü | EN: something that is worse | ÖRNEK: I'm afraid there's worse to come.
+4061 | worship | noun | B2 | #1/1 | TR: ibadet, tapınma | EN: the feeling of reverence and adoration toward a deity or something considered sacred | ÖRNEK: She attends worship every Friday at the local mosque.
+4062 | worship | verb | B2 | #1/1 | TR: ibadet etmek, tapmak | EN: to show reverence and adoration for a deity, person, or thing, often through rituals or prayers | ÖRNEK: The community gathers to worship every Saturday morning.
+3225 | worst | adjective | A2 | #1/1 | TR: en kötü, en feci | EN: most undesirable or of the lowest quality among a group | ÖRNEK: The weather today is the worst we have seen this month.
+20507 | worst | adverb | B1 | #1/1 | TR: en kötü (şekilde), en çok (olumsuz) | EN: most badly; to the greatest degree | ÖRNEK: Children are the worst affected by the war.
+20625 | worst | noun | B2 | #1/1 | TR: en kötüsü | EN: the most unpleasant or least good person, thing or situation | ÖRNEK: The worst is over now.
+4135 | worth | adjective | A2 | #1/1 | TR: değer, değerinde | EN: having value, merit, or usefulness | ÖRNEK: The museum exhibit is worth seeing for anyone interested in history.
+4137 | worth | noun | B1 | #1/1 | TR: değer, kıymet | EN: the monetary or intrinsic value of something; the amount that something is considered to be worth. | ÖRNEK: The antique vase has a worth of several thousand dollars.
+4141 | worthwhile | adjective | B2 | #1/1 | TR: zahmete değer, yapmaya değer, vakit ayırmaya değer | EN: describing something that is worth the time, effort, or cost invested in it | ÖRNEK: Reading the article was a worthwhile activity for the class.
+4142 | worthy | adjective | B2 | #1/1 | TR: değerli, saygıya layık | EN: deserving respect, admiration, or attention because of one's qualities or achievements | ÖRNEK: The teacher called the essay worthy of a high grade.
+27281 | would | modal_verb | A1 | #1/4 | TR: -erdi, -ırdı (koşul, hayal) | EN: used to talk about an imagined situation | ÖRNEK: If I had money, I would buy a car.
+27282 | would | modal_verb | A1 | #2/4 | TR: ister misiniz?, isterim (kibar teklif ve istek) | EN: used in polite offers and requests | ÖRNEK: Would you like some tea?
+27283 | would | modal_verb | A1 | #3/4 | TR: -er misiniz? (kibar rica) | EN: used to ask someone politely to do something | ÖRNEK: Would you open the door, please?
+27284 | would | modal_verb | A1 | #4/4 | TR: -ecekti (geçmişte gelecek); -erdi (geçmişte alışkanlık) | EN: used as the past of "will", or to talk about things that happened often in the past | ÖRNEK: He said he would call.
+1667 | wound | noun | B1 | #1/1 | TR: yara | EN: a break in the skin or other body tissue caused by injury or trauma | ÖRNEK: He got a small wound on his knee while playing soccer.
+1668 | wound | verb | B1 | #1/1 | TR: yaralamak, incitmek | EN: to cause physical injury to someone or something, typically by cutting or breaking the skin | ÖRNEK: The child fell off the bike and wounded his knee.
+27314 | wow | exclamation | A2 | #1/1 | TR: vay!, vay canına! | EN: used to show surprise or admiration | ÖRNEK: Wow! What a beautiful house!
+1884 | wrap | verb | A2 | #1/1 | TR: sarmak | EN: to cover something completely with paper, cloth, or another material | ÖRNEK: She wrapped the sandwich in foil before putting it in her bag.
+6425 | wrist | noun | A2 | #1/1 | TR: bilek | EN: the joint connecting the hand to the forearm | ÖRNEK: She lifted the cup using only her wrist.
+6038 | write | verb | A2 | #1/2 | TR: yazmak | EN: to produce words, letters, or symbols on a surface or in a digital medium | ÖRNEK: She writes in her journal every night before sleep.
+6039 | write | verb | B2 | #2/2 | TR: kayda geçirmek, kaydetmek | EN: to enter information into a written or electronic record | ÖRNEK: The lab technician writes down the measurements after each trial.
+6048 | writer | noun | A1 | #1/1 | TR: yazar | EN: a person who produces written works, such as books, articles, or stories | ÖRNEK: The writer signed copies of her novel at the local bookstore.
+6049 | writing | noun | A1 | #1/1 | TR: yazı, yazma | EN: the act or process of producing text by hand or using a device | ÖRNEK: She practiced her writing every evening to become more fluent.
+6051 | written | adjective | B1 | #1/1 | TR: yazılı | EN: existing or expressed in written form rather than spoken or implied. | ÖRNEK: The teacher handed out a written assignment for the class.
+15466 | wrong | adjective | A1 | #1/1 | TR: yanlış, hatalı | EN: not correct or accurate; containing an error. | ÖRNEK: The test marked my answer as wrong because I missed a sign.
+20508 | wrong | adverb | B1 | #1/1 | TR: yanlış (şekilde) | EN: in a way that is not correct | ÖRNEK: You've spelled my name wrong.
+15467 | wrong | noun | B2 | #1/1 | TR: haksızlık, adaletsizlik | EN: an act or condition that is unjust or unfair; a violation of rights or law | ÖRNEK: The documentary highlighted the historical wrongs committed against indigenous peoples.
+18018 | yard | noun | A2 | #1/2 | TR: avlu, bahçe | EN: an open space adjoining a building, often used for recreation or storage | ÖRNEK: The kids are playing soccer in the yard.
+18017 | yard | noun | B1 | #2/2 | TR: yarda | EN: a unit of length equal to three feet (approximately 0.91 meters) | ÖRNEK: The room is twelve yards long, which is about eleven meters.
+27311 | yeah | exclamation | A1 | #1/1 | TR: evet, he (gündelik) | EN: an informal way of saying yes | ÖRNEK: "Are you coming?" "Yeah, sure."
+15127 | year | noun | A1 | #1/1 | TR: yıl | EN: a period of twelve months, usually beginning on January 1st | ÖRNEK: The school year starts in September.
+1671 | yell | verb | B1 | #1/1 | TR: bağırmak | EN: to shout loudly, often to attract attention or express strong emotion | ÖRNEK: The teacher yelled to quiet the noisy classroom.
+17570 | yellow | adjective | A2 | #1/1 | TR: sarı | EN: of the colour between green and orange in the visible spectrum; resembling the colour of ripe lemons or egg yolks. | ÖRNEK: The sunflowers in the garden are a vivid yellow.
+17571 | yellow | noun | A2 | #1/1 | TR: sarı renk | EN: the color between green and orange in the visible spectrum | ÖRNEK: The school bus is painted a vivid yellow for visibility.
+16668 | yesterday | adverb | A1 | #1/1 | TR: dün | EN: on the day before today | ÖRNEK: I saw her yesterday at the library.
+20384 | yesterday | noun | A1 | #1/1 | TR: dün | EN: the day before today | ÖRNEK: Yesterday was my birthday.
+27298 | yet | adverb | A2 | #1/2 | TR: (olumsuzda) henüz, daha | EN: until now; used in negatives and questions | ÖRNEK: I haven't finished yet.
+27299 | yet | adverb | A2 | #2/2 | TR: hâlâ, daha (gelecekte olabilir) | EN: used to say that something may still happen | ÖRNEK: We may win yet.
+3501 | yield | noun | B2 | #1/2 | TR: getiri, kâr payı | EN: the amount of profit or return generated by an investment or asset | ÖRNEK: The fund reported a 5% yield last quarter.
+3502 | yield | noun | B1 | #2/2 | TR: verim, üretim | EN: the amount of product obtained from a process, especially in agriculture or manufacturing | ÖRNEK: The wheat field had a good yield this year.
+3503 | yield | verb | B2 | #1/2 | TR: üretmek, vermek, sağlamak | EN: to produce or provide something, especially as a result of effort or natural processes | ÖRNEK: The wheat field yields a good harvest each summer.
+3504 | yield | verb | B1 | #2/2 | TR: teslim olmak, vazgeçmek, boyun eğmek | EN: to give up resistance or submit to another's authority or demand | ÖRNEK: The army finally yielded after a prolonged siege.
+27168 | you | pronoun | A1 | #1/2 | TR: sen; siz | EN: used to refer to the person or people you are speaking to | ÖRNEK: Are you hungry?

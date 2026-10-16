@@ -1,0 +1,100 @@
+12525 | tack | noun | B1 | #3/3 | TR: yöntem, yaklaşım | EN: a particular way of dealing with a situation or problem | ÖRNEK: He tried a gentle tack to persuade his colleague.
+12526 | tack | verb | B1 | #1/2 | TR: raptiyelemek, tutturmak | EN: to attach or fasten something, especially with a small nail or pin | ÖRNEK: She tacked the invitation to the door for everyone to see.
+12527 | tack | verb | B2 | #2/2 | TR: yön değiştirmek | EN: to change the direction of a sailing vessel by turning the bow through the wind | ÖRNEK: The boat tacked to the left as the wind shifted.
+25829 | tacky | adjective | B2 | #1/2 | TR: yapışkan | EN: having a slightly sticky texture; tending to adhere to other surfaces. | ÖRNEK: The glue made the paper feel tacky after a few minutes.
+25830 | tacky | adjective | B1 | #2/2 | TR: zevksiz, rüküş, bayağı | EN: lacking good taste; gaudy, cheap, or in poor style. | ÖRNEK: The party decorations were bright but ended up looking tacky.
+26151 | tactful | adjective | B2 | #1/1 | TR: düşünceli, nazik, incelikli | EN: showing sensitivity in dealing with others or with difficult situations | ÖRNEK: He gave a tactful comment during the meeting.
+7164 | tactician | noun | C1 | #1/1 | TR: taktikçi | EN: a person who is skilled at planning and directing military operations, games, or other activities that require strategic thinking | ÖRNEK: The tactician studied the map before giving orders.
+26152 | tactile | adjective | B2 | #1/1 | TR: dokunsal | EN: relating to or perceptible by the sense of touch | ÖRNEK: The lab uses tactile sensors to measure pressure on the robot's gripper.
+26153 | tactless | adjective | C1 | #1/1 | TR: patavatsız, düşüncesiz, nezaketsiz | EN: lacking sensitivity or consideration in dealing with other people; not showing tact | ÖRNEK: He gave a tactless answer that surprised the audience.
+10499 | tagger | noun | B2 | #1/2 | TR: grafiti yapan kişi | EN: a person who creates graffiti tags on walls or other surfaces | ÖRNEK: A tagger painted a bright logo on the side of the school building.
+10500 | tagger | noun | C1 | #2/2 | TR: etiketleyici | EN: a person or software that assigns tags or labels to items, such as documents, images, or data entries | ÖRNEK: The university library uses a tagger to label new digital resources.
+1562 | tail | verb | B1 | #1/1 | TR: takip etmek, izini sürmek | EN: to follow someone or something, especially in a secretive or persistent way | ÖRNEK: The police officer had to tail the thief after the robbery.
+1563 | tailed | adjective | B2 | #1/1 | TR: kuyruklu | EN: having a tail; possessing a tail as a characteristic feature | ÖRNEK: A tailed dinosaur fossil was displayed in the museum.
+13932 | tailor | noun | B1 | #1/1 | TR: terzi | EN: a person who makes, repairs, or alters clothing professionally | ÖRNEK: The tailor fixed the tear in my shirt quickly.
+13933 | tailor | verb | B2 | #1/1 | TR: uyarlamak, göre düzenlemek, dikmek | EN: to make or adapt something to suit a particular purpose or need | ÖRNEK: The designer tailored the dress to fit the model perfectly.
+23737 | taint | noun | B2 | #1/1 | TR: leke, kirlilik, kusur | EN: a trace of something undesirable that contaminates or spoils something | ÖRNEK: The water supply showed a slight taint of chemicals.
+23738 | taint | verb | B2 | #1/1 | TR: kirletmek, leke sürmek | EN: to contaminate or affect something so that it becomes impure or less valuable | ÖRNEK: The spilled oil can taint the water in the lake.
+23739 | tainted | adjective | B2 | #1/1 | TR: lekeli, kirli, bozulmuş | EN: contaminated or affected by something undesirable, often morally or physically | ÖRNEK: The river water became tainted after the chemical spill.
+15139 | take | noun | B1 | #1/3 | TR: görüş, tutum | EN: a particular opinion or perspective on a matter | ÖRNEK: His take on the experiment surprised the whole team.
+15138 | take | noun | C1 | #3/3 | TR: çekim | EN: one continuous recording of a scene in filmmaking or photography | ÖRNEK: The crew reviewed the first take and approved it.
+26733 | take after | phrasal_verb | B2 | #1/1 | TR: (anne babasına) benzemek, çekmek | EN: to look or behave like an older relative | ÖRNEK: She takes after her mother.
+26734 | take apart | phrasal_verb | B2 | #1/1 | TR: sökmek, parçalarına ayırmak | EN: to separate something into its different parts | ÖRNEK: He took the radio apart to fix it.
+26735 | take away | phrasal_verb | B1 | #1/2 | TR: alıp götürmek, elinden almak | EN: to remove something or someone from a place | ÖRNEK: The waiter took away our plates.
+26736 | take away | phrasal_verb | B1 | #2/2 | TR: (sayı) çıkarmak | EN: to subtract one number from another | ÖRNEK: If you take away 3 from 10, you get 7.
+26737 | take back | phrasal_verb | B1 | #1/3 | TR: geri götürmek, iade etmek | EN: to return something to the place you got it from | ÖRNEK: I took the shirt back because it was too small.
+26738 | take back | phrasal_verb | B1 | #2/3 | TR: (sözünü) geri almak | EN: to admit that something you said was wrong | ÖRNEK: I take back what I said.
+26739 | take back | phrasal_verb | B1 | #3/3 | TR: geçmişe götürmek, hatırlatmak | EN: to make you remember a time in the past | ÖRNEK: This song takes me back to my school days.
+26740 | take down | phrasal_verb | B1 | #1/2 | TR: (yazıyla) not etmek, yazmak | EN: to write down information | ÖRNEK: The police officer took down my details.
+26741 | take down | phrasal_verb | B1 | #2/2 | TR: (asılı şeyi) indirmek, sökmek | EN: to remove something from a high place or take it apart | ÖRNEK: We took down the Christmas decorations.
+26742 | take in | phrasal_verb | B2 | #1/3 | TR: anlamak, kavramak | EN: to understand and remember something | ÖRNEK: It was too much information to take in.
+26743 | take in | phrasal_verb | B2 | #2/3 | TR: kandırmak | EN: to deceive someone | ÖRNEK: Don't be taken in by his charm.
+26744 | take in | phrasal_verb | B2 | #3/3 | TR: (evine) almak, barındırmak | EN: to let someone stay in your home | ÖRNEK: They took in two refugees.
+24824 | take off | phrasal_verb | A2 | #1/2 | TR: kıyafet çıkarmak, soyunmak | EN: to remove clothing or an item of clothing | ÖRNEK: She took off her jacket because it was warm inside.
+24825 | take off | phrasal_verb | B1 | #2/2 | TR: havalanmak, kalkmak | EN: to leave the ground and begin to fly; to become airborne | ÖRNEK: The aircraft took off smoothly despite the windy conditions.
+26745 | take on | phrasal_verb | B2 | #1/4 | TR: (iş, sorumluluk) üstlenmek | EN: to accept a particular job or responsibility | ÖRNEK: She took on too much work.
+26746 | take on | phrasal_verb | B2 | #2/4 | TR: işe almak | EN: to start to employ someone | ÖRNEK: The company is taking on new staff.
+26747 | take on | phrasal_verb | B2 | #3/4 | TR: (bir nitelik) kazanmak, bürünmek | EN: to begin to have a particular quality or appearance | ÖRNEK: His face took on a worried look.
+26748 | take on | phrasal_verb | B2 | #4/4 | TR: (rakiple) karşı karşıya gelmek, mücadele etmek | EN: to compete or fight against someone | ÖRNEK: Our team will take on the champions next week.
+26749 | take out | phrasal_verb | B1 | #1/3 | TR: çıkarmak | EN: to remove something from a place | ÖRNEK: She took out her phone.
+26750 | take out | phrasal_verb | B1 | #2/3 | TR: (birini) dışarı götürmek, yemeğe çıkarmak | EN: to take someone to a restaurant, cinema or similar place | ÖRNEK: He took her out for dinner.
+26751 | take out | phrasal_verb | B1 | #3/3 | TR: (bankadan para) çekmek, (kredi) almak | EN: to get money from a bank or to get a loan or insurance | ÖRNEK: I took out some money from the ATM.
+27114 | take out on | phrasal_verb | C1 | #1/1 | TR: (öfkesini) birinden çıkarmak | EN: to treat someone badly because you are angry or upset about something else | ÖRNEK: Don't take it out on me!
+26752 | take over | phrasal_verb | B2 | #1/1 | TR: devralmak, ele geçirmek | EN: to take control of a company, country or activity | ÖRNEK: A big company has taken over the firm.
+26754 | take part | phrasal_verb | A2 | #1/1 | TR: katılmak, yer almak | EN: to be involved in an activity with other people | ÖRNEK: Thirty students took part in the competition.
+26755 | take place | phrasal_verb | B1 | #1/1 | TR: gerçekleşmek, yer almak, olmak | EN: to happen, especially as planned | ÖRNEK: The meeting will take place on Monday.
+27115 | take to | phrasal_verb | B2 | #1/2 | TR: (birini, bir şeyi) sevmek, ısınmak | EN: to start to like someone or something | ÖRNEK: The kids took to their new teacher immediately.
+27116 | take to | phrasal_verb | B2 | #2/2 | TR: (alışkanlık olarak) -e başlamak | EN: to start doing something as a habit | ÖRNEK: He's taken to going for long walks.
+26756 | take up | phrasal_verb | B1 | #1/3 | TR: (bir hobiye, işe) başlamak | EN: to start doing a particular job or activity | ÖRNEK: He took up golf when he retired.
+26757 | take up | phrasal_verb | B1 | #2/3 | TR: (yer, zaman) kaplamak, almak | EN: to fill an amount of space or time | ÖRNEK: This table takes up too much space.
+26758 | take up | phrasal_verb | B1 | #3/3 | TR: (teklifi) kabul etmek | EN: to accept an offer or opportunity | ÖRNEK: I'd like to take up your offer.
+24823 | takeoff | noun | B1 | #1/1 | TR: kalkış | EN: the phase when an aircraft leaves the ground and begins to fly | ÖRNEK: The plane's takeoff was smooth and everyone felt safe.
+15141 | takeover | noun | C1 | #1/1 | TR: devralma, ele geçirme, satın alma | EN: the act of gaining control of a company or organization, typically by buying a majority of its shares. | ÖRNEK: The company announced a takeover of its smaller rival.
+15142 | taker | noun | B1 | #1/1 | TR: talip, müşteri | EN: a person who takes or receives something, especially a buyer or a person who accepts an offer | ÖRNEK: Our store recorded a record number of takers for the holiday sale.
+27117 | talk back | phrasal_verb | B2 | #1/1 | TR: (büyüğüne) karşılık vermek, terbiyesizce cevap vermek | EN: to answer someone rudely | ÖRNEK: Don't talk back to your mother!
+27118 | talk down to | phrasal_verb | C1 | #1/1 | TR: (birine) tepeden bakarak konuşmak | EN: to talk to someone as if they were less intelligent than you | ÖRNEK: I hate it when people talk down to me.
+26759 | talk into | phrasal_verb | C1 | #1/1 | TR: (birini bir şeye) ikna etmek | EN: to persuade someone to do something | ÖRNEK: She talked me into buying a new car.
+26760 | talk out of | phrasal_verb | C1 | #1/1 | TR: (birini bir şeyden) vazgeçirmek | EN: to persuade someone not to do something | ÖRNEK: My friends talked me out of leaving my job.
+26761 | talk over | phrasal_verb | B2 | #1/1 | TR: (bir konuyu) görüşmek, konuşup tartışmak | EN: to discuss something before making a decision | ÖRNEK: Let's talk it over before we decide.
+27402 | talk show | noun | B1 | #1/1 | TR: sohbet programı | EN: a TV or radio show in which famous people are interviewed | ÖRNEK: She was a guest on a talk show.
+27119 | talk through | phrasal_verb | C1 | #1/1 | TR: (adım adım) anlatmak, konuşarak üzerinden geçmek | EN: to discuss something in detail so that someone understands it | ÖRNEK: Let me talk you through the process.
+15428 | talkative | adjective | B1 | #1/1 | TR: konuşkan | EN: describing a person who tends to talk a lot, often in a lively or chatty manner | ÖRNEK: The talkative girl always volunteers to answer questions in class.
+15429 | talker | noun | B1 | #1/1 | TR: çok konuşan kimse, geveze | EN: a person who talks a lot or is inclined to speak frequently | ÖRNEK: My brother is a talker, so family gatherings are always lively.
+22465 | tally | noun | B1 | #1/1 | TR: sayım, toplam | EN: a record of a number of items or a total amount, often used to keep track of scores or quantities | ÖRNEK: The coach kept a tally of each player's goals during the season.
+22466 | tally | verb | B1 | #1/2 | TR: uyuşmak, denk gelmek | EN: to correspond or agree in number, amount, or detail | ÖRNEK: The two reports tally with each other.
+22467 | tally | verb | B2 | #2/2 | TR: saymak, kaydetmek | EN: to record or count items, especially for the purpose of keeping a total | ÖRNEK: Please tally the receipts before filing them.
+14114 | talon | noun | B2 | #1/1 | TR: pençe | EN: the sharp, hooked claw of a bird of prey | ÖRNEK: The owl has long talons for catching mice.
+14151 | tambourine | noun | B1 | #1/1 | TR: tef | EN: a small handheld drum with metal jingles that is shaken or struck to produce a rhythmic sound in music | ÖRNEK: The teacher gave each student a tambourine for the rhythm exercise.
+8718 | tame | adjective | B1 | #1/2 | TR: evcilleştirilmiş, uysal | EN: (of an animal) not wild; used to living with people | ÖRNEK: The farmer raised a tame goat that never tried to escape.
+8719 | tame | adjective | B2 | #2/2 | TR: hafif, yumuşak | EN: not exciting, severe, or extreme; mild | ÖRNEK: His jokes were tame and did not offend anyone at the meeting.
+8720 | tame | verb | B2 | #1/1 | TR: evcilleştirmek | EN: to make an animal or a person less wild or aggressive and more manageable | ÖRNEK: The farmer tried to tame the stray cat that roamed his fields.
+25832 | tampering | noun | B2 | #1/1 | TR: karışma, müdahale, izinsiz değişiklik | EN: the act of interfering with something, especially in order to cause damage or make unauthorized changes | ÖRNEK: The school discovered tampering in the computer lab last week.
+14222 | tan | adjective | B1 | #1/1 | TR: koyu sarı-kahverengi, bronz renk | EN: having a light brown to brownish-yellow colour, especially as a result of exposure to sunlight. | ÖRNEK: The hikers returned with tan faces from the sunny trail.
+14224 | tan | verb | B1 | #1/2 | TR: güneşte bronzlaşmak | EN: to expose one's skin to sunlight or artificial UV light in order to darken its colour | ÖRNEK: She tans on the beach every weekend.
+14223 | tan | verb | B2 | #2/2 | TR: deriyi tabaklamak | EN: to treat animal hide so that it becomes leather, usually by soaking it in a chemical solution | ÖRNEK: The tannery tans hides to create leather for shoes.
+25833 | tangent | noun | B2 | #1/2 | TR: teğet | EN: a straight line that touches a curve or surface at a single point without crossing it | ÖRNEK: The mathematician drew a tangent line to the curve at the origin.
+25834 | tangent | noun | C1 | #2/2 | TR: konudan sapma, lafı dağıtma | EN: a digression or a remark that deviates from the main subject | ÖRNEK: He started to speak about his childhood, a tangent that confused the audience.
+14786 | tangible | adjective | B2 | #1/2 | TR: elle tutulabilen, maddi | EN: capable of being touched or felt; having a physical form that can be perceived by the senses. | ÖRNEK: The museum displayed tangible artifacts from the ancient civilization.
+14787 | tangible | adjective | C1 | #2/2 | TR: somut, açık, kesin | EN: clear and definite; able to be clearly understood or recognized. | ÖRNEK: The lecturer gave a tangible example to illustrate the concept.
+11163 | tangle | noun | B1 | #1/2 | TR: arapsaçı, kördüğüm, karışıklık | EN: a twisted mass of something, especially rope, hair, or wires | ÖRNEK: The cat got its paw caught in a tangle of yarn.
+11164 | tangle | noun | B2 | #2/2 | TR: karmaşık durum, sıkıntı | EN: a complicated or confused situation that is difficult to resolve | ÖRNEK: The project became a tangle of missed deadlines and budget overruns.
+11165 | tangle | verb | B1 | #1/2 | TR: dolaşmak, dolaştırmak, arapsaçına dönmek | EN: to twist together so that the parts become interwoven or knotted | ÖRNEK: The children tangle the rope while playing tag in the yard.
+11167 | tangled | adjective | B1 | #1/1 | TR: dolaşık, düğümlü | EN: twisted together in a confusing or complicated way | ÖRNEK: The cat's fur was tangled after playing in the garden.
+22468 | tango | noun | B1 | #1/1 | TR: tango | EN: a lively ballroom dance originating from Argentina, performed by a couple moving in close embrace | ÖRNEK: The couple learned to dance the tango in just a few weeks.
+22470 | tango | verb | B1 | #1/1 | TR: tango yapmak | EN: to dance the tango, a partner dance of Argentine origin | ÖRNEK: She learned how to tango during her summer vacation in Buenos Aires.
+18005 | tank | verb | B2 | #1/1 | TR: başarısız olmak, çöküşe uğramak | EN: to perform very poorly, especially in a competition or test, resulting in a failure or loss | ÖRNEK: He tanked the quiz and got a zero.
+18006 | tanker | noun | B2 | #1/1 | TR: tanker | EN: a large ship designed to transport liquid cargo, especially oil, across seas | ÖRNEK: The tanker arrived with a full load of crude oil.
+27442 | tanned | adjective | B1 | #1/1 | TR: bronzlaşmış, esmerleşmiş | EN: having darker skin after spending time in the sun | ÖRNEK: She came back from vacation looking tanned.
+25836 | tantrum | noun | B2 | #1/1 | TR: öfke patlaması, sinir krizi | EN: a sudden, uncontrolled outburst of anger or frustration, often displayed by a child or an adult in a public setting | ÖRNEK: The child threw a tantrum when his ice cream fell on the floor.
+5381 | tape | verb | A2 | #1/2 | TR: yapıştırmak, bantlamak | EN: to fasten or secure something with adhesive tape or similar material | ÖRNEK: The teacher taped the poster on the classroom door for the project.
+5382 | tape | verb | B1 | #2/2 | TR: kaydetmek, kasete kaydetmek | EN: to record sounds, video, or other data onto magnetic tape or a digital medium | ÖRNEK: The journalist taped the press conference for the news segment.
+9989 | taper | noun | B2 | #1/2 | TR: incelme, daralma, azalma | EN: a gradual reduction in thickness, width, or intensity | ÖRNEK: The river narrows as it approaches the delta, showing a clear taper.
+9990 | taper | noun | C1 | #2/2 | TR: konik şekilli mum, ince çubuk | EN: a slender candle or stick that tapers to a point, often used for lighting | ÖRNEK: The wedding aisle was lined with tall taper candles that glowed softly.
+9991 | taper | verb | B2 | #1/1 | TR: azalmak, incelmek | EN: to become gradually smaller, thinner, or less intense | ÖRNEK: The candle flame will taper as the wax runs out.
+9992 | tapered | adjective | B2 | #1/1 | TR: kademeli olarak incelen, daralan | EN: gradually becoming narrower or thinner toward one end | ÖRNEK: The artist painted a tapered line to guide the viewer's eye.
+10459 | tapestry | noun | B2 | #1/1 | TR: duvar halısı, duvar süsü | EN: a heavy fabric with decorative designs, often hung on walls as a decorative piece | ÖRNEK: She bought a colorful tapestry for her bedroom wall.
+11423 | tar | noun | B2 | #1/1 | TR: katran, yapışkan sıvı | EN: a thick, black, sticky substance obtained from the distillation of organic materials such as coal or wood, used for waterproofing and paving | ÖRNEK: The construction crew spread fresh tar over the pavement to fill the cracks.
+17028 | targeted | adjective | B2 | #1/1 | TR: amaçlanan, hedef alınan | EN: directed or aimed at a particular person, group, or purpose | ÖRNEK: The flyer was targeted at local shoppers.
+22471 | tariff | noun | B2 | #1/2 | TR: gümrük vergisi, ithalat vergisi | EN: a tax imposed by a government on imported goods or services | ÖRNEK: The new tariff on electronics increased prices for consumers.
+22472 | tariff | noun | B1 | #2/2 | TR: tarife, fiyat listesi | EN: a schedule that lists the charges or fees for a service or product | ÖRNEK: The airline posted its new tariff for baggage fees.
+23741 | tart | adjective | B2 | #1/2 | TR: iğneleyici, alaycı | EN: having a sharp, cutting, or mocking quality | ÖRNEK: The journalist's article contained a tart remark about the mayor.

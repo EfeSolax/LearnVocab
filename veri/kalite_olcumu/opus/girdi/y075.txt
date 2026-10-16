@@ -1,0 +1,100 @@
+1571 | temple | noun | B1 | #2/2 | TR: şakak | EN: the flat region on either side of the forehead, between the eye and the ear | ÖRNEK: She touched her temple when the headache started.
+18907 | temporarily | adverb | B1 | #1/1 | TR: geçici olarak | EN: for a limited period of time, not permanently | ÖRNEK: The shop will temporarily shut down for cleaning.
+18906 | temporary | adjective | B1 | #1/1 | TR: geçici | EN: lasting only for a short period of time; not permanent | ÖRNEK: The school set up a temporary classroom for the new students.
+6748 | tempt | verb | B2 | #1/1 | TR: ayartmak, aklını çelmek, cezbetmek | EN: to try to persuade someone to do something, especially something unwise, by offering pleasure or advantage | ÖRNEK: The chocolate cake tempted the children during the break.
+20809 | tenant | noun | C1 | #1/1 | TR: kiracı | EN: a person who pays rent to live in or use a building or land | ÖRNEK: The landlord asked the tenants to leave.
+3156 | tend | verb | B2 | #1/2 | TR: eğilim göstermek, meyilli olmak | EN: to be likely to behave in a particular way or to have a particular characteristic | ÖRNEK: Students tend to study harder before exams.
+3157 | tend | verb | B1 | #2/2 | TR: bakımını üstlenmek, ilgilenmek | EN: to take care of or look after someone or something | ÖRNEK: The farmer tends the cows every morning.
+3158 | tendency | noun | B2 | #1/1 | TR: eğilim | EN: a regular or prevailing disposition toward a particular type of behavior, thought, or feeling | ÖRNEK: Many people have a tendency to check their phones first thing in the morning.
+15026 | tender | adjective | B1 | #1/2 | TR: hassas, ağrıyan | EN: easily hurt or feeling pain; delicate to touch or emotion | ÖRNEK: The child's arm was tender after the fall.
+15027 | tender | adjective | B1 | #2/2 | TR: nazik, yumuşak | EN: showing gentleness, kindness, or careful consideration | ÖRNEK: The mother sang a tender lullaby to her baby.
+12225 | tennis | noun | A1 | #1/1 | TR: tenis | EN: a racket sport played individually or in pairs on a rectangular court divided by a net | ÖRNEK: I started playing tennis when I was ten years old.
+27403 | tennis racket | noun | A1 | #1/1 | TR: tenis raketi | EN: a racket used for playing tennis | ÖRNEK: I need a new tennis racket.
+5231 | tension | noun | B2 | #1/2 | TR: gerilim, gerilme | EN: the state of being stretched tight or under mental or emotional strain | ÖRNEK: She could sense the tension among the students during the exam.
+5232 | tension | noun | B1 | #2/2 | TR: gerginlik, sıkıntı | EN: a feeling of mental or emotional strain, often caused by conflict or uncertainty | ÖRNEK: The news report added tension to the already uneasy atmosphere.
+12282 | tent | noun | A2 | #1/1 | TR: çadır | EN: a portable shelter made of fabric stretched over a frame, used for camping or outdoor events | ÖRNEK: We arrived at the campsite and quickly set up a tent.
+20810 | tenure | noun | C1 | #1/1 | TR: görev süresi | EN: the period of time when someone holds an important job | ÖRNEK: During his tenure as mayor, the city changed a lot.
+20061 | term | noun | A2 | #1/3 | TR: süre, dönem | EN: a fixed or limited period of time during which something lasts or is valid | ÖRNEK: The lease is valid for a term of twelve months.
+20062 | term | noun | A2 | #2/3 | TR: terim | EN: a word or expression used in a specific field or discipline, often with a precise meaning | ÖRNEK: The professor introduced several new terms during the lecture.
+20060 | term | noun | B1 | #3/3 | TR: şartlar, koşullar | EN: the conditions or provisions that are part of an agreement or contract | ÖRNEK: The contract lists the terms that both parties must follow.
+20063 | term | verb | B2 | #1/1 | TR: adlandırmak, isimlendirmek | EN: to give a particular name or label to someone or something | ÖRNEK: The manager will term the project "Alpha" to distinguish it from others.
+19457 | terminal | adjective | B2 | #1/2 | TR: son, nihai, son nokta | EN: relating to or forming the end or final stage of something | ÖRNEK: The contract includes a terminal clause that ends the partnership.
+19458 | terminal | adjective | C1 | #2/2 | TR: ölümcül, ölüm getiren | EN: describing a disease or condition that will inevitably lead to death | ÖRNEK: The doctor explained that the disease was terminal and incurable.
+19459 | terminal | noun | B1 | #1/1 | TR: uçuş terminali, havalimanı binası | EN: a building at an airport where passengers board and disembark from aircraft | ÖRNEK: The airline announced a delay at the terminal.
+19510 | terminate | verb | B2 | #1/1 | TR: sonlandırmak, bitirmek | EN: to bring something to an end; to discontinue or conclude it | ÖRNEK: The manager will terminate the outdated policy next week.
+20609 | terms | noun | B2 | #1/1 | TR: şartlar, koşullar | EN: the conditions of an agreement or contract | ÖRNEK: Read the terms and conditions carefully.
+20811 | terrain | noun | C1 | #1/1 | TR: arazi, yeryüzü şekli | EN: an area of land, especially when thinking about its physical features | ÖRNEK: The car is designed for rough terrain.
+8342 | terrible | adjective | A1 | #1/1 | TR: korkunç, berbat, çok kötü | EN: extremely bad or serious; causing fear, dread, or disgust | ÖRNEK: The movie was terrible and everyone left the theater early.
+8344 | terribly | adverb | B1 | #1/2 | TR: çok, aşırı | EN: to a great extent; extremely | ÖRNEK: The movie was terribly boring, and many viewers left early.
+8343 | terribly | adverb | B2 | #2/2 | TR: berbat bir şekilde, kötüce | EN: to a very bad or unpleasant degree; in a manner that is terrible | ÖRNEK: She spoke in a voice that sounded terribly harsh to the listeners.
+20812 | terrific | adjective | C1 | #1/1 | TR: harika, müthiş | EN: excellent; very good (informal) | ÖRNEK: You look terrific in that dress!
+3017 | terrified | adjective | B1 | #1/1 | TR: korkmuş, dehşete kapılmış | EN: feeling intense fear; extremely scared | ÖRNEK: The little girl felt terrified of the thunderstorm outside.
+1723 | terrify | verb | B2 | #1/1 | TR: korkutmak, dehşete sürüklemek | EN: to cause someone to feel extreme fear | ÖRNEK: The loud scream terrified the small dog.
+17878 | territory | noun | B1 | #1/2 | TR: bölge, arazi, toprak parçası | EN: a defined area of land under the jurisdiction of a ruler, government, or organization | ÖRNEK: The wildlife sanctuary protects a large territory of forest.
+17879 | territory | noun | B2 | #2/2 | TR: alan, uzmanlık, sorumluluk | EN: a field or sphere of activity, knowledge, or influence | ÖRNEK: The professor encouraged students to explore new territory in their essays.
+1573 | terror | noun | B2 | #1/2 | TR: korku, dehşet | EN: a feeling of intense fear and dread, often caused by a threat of violence or danger | ÖRNEK: The sudden noise filled the room with terror.
+1574 | terror | noun | C1 | #2/2 | TR: terör | EN: the use of violence and intimidation, especially against civilians, in the pursuit of political aims | ÖRNEK: The city council discussed measures to prevent terror.
+1575 | terrorism | noun | B1 | #1/1 | TR: terörizm | EN: the use of violence and intimidation, especially against civilians, in the pursuit of political aims. | ÖRNEK: Many countries have strengthened their security to prevent terrorism.
+1576 | terrorist | noun | B1 | #1/1 | TR: terörist | EN: a person who uses violence and intimidation, especially against civilians, in order to achieve political aims | ÖRNEK: The police arrested a suspected terrorist near the airport.
+9634 | test | noun | A1 | #1/2 | TR: sınav, değerlendirme | EN: an assessment or examination designed to measure knowledge, skill, or performance | ÖRNEK: The school announced a new test for all ninth-grade students.
+9635 | test | noun | A2 | #2/2 | TR: deneme, deney | EN: a procedure carried out to discover something unknown or to verify a hypothesis | ÖRNEK: Scientists designed a test to measure the material's resistance to heat.
+9636 | test | verb | B1 | #1/1 | TR: denetlemek, ölçmek, sınamak | EN: to assess the knowledge, skill, or performance of someone or something by means of questions, tasks, or experiments | ÖRNEK: The teacher will test the class on the recent lesson tomorrow.
+9643 | testify | verb | C1 | #1/1 | TR: tanıklık etmek, ifade vermek | EN: to give a formal statement, usually in a court of law, describing what one knows about a particular event or situation | ÖRNEK: The defendant asked the victim to testify about what happened that night.
+9646 | testimony | noun | B2 | #1/2 | TR: tanıklık, beyan | EN: a formal statement given by a witness, especially in a court of law | ÖRNEK: The survivor's testimony was crucial for the prosecution's case.
+9645 | testimony | noun | B2 | #2/2 | TR: kanıt, gösterge | EN: a statement or piece of evidence that proves something | ÖRNEK: Scientists often treat data as testimony for their hypotheses.
+20610 | testing | noun | B2 | #1/1 | TR: test etme, sınama | EN: the activity of checking something to find out how well it works or whether it is correct | ÖRNEK: The new drug is still in testing.
+14392 | text | noun | A2 | #1/2 | TR: kısa mesaj | EN: a brief written or electronic message sent to someone | ÖRNEK: I sent a text to my friend to ask about dinner plans.
+14393 | text | noun | A2 | #2/2 | TR: metin, yazı | EN: a piece of written or printed material, such as a book, article, or document | ÖRNEK: The textbook contains a text on modern physics for undergraduate students.
+20444 | text | verb | A2 | #1/1 | TR: mesaj atmak, kısa mesaj göndermek | EN: to send someone a written message using a mobile phone | ÖRNEK: I'll text you when I arrive.
+11026 | textbook | noun | B1 | #1/1 | TR: ders kitabı | EN: a book used as a standard source of information for a particular subject in schools or colleges | ÖRNEK: She bought a new biology textbook for the semester.
+8685 | texture | noun | B2 | #1/1 | TR: doku | EN: the visual or tactile quality of a surface, especially the pattern of its small parts or the way it feels to the touch | ÖRNEK: The geologist examined the rock's texture to determine its formation.
+15110 | than | conjunction | A2 | #1/1 | TR: -den, -e göre, kıyasla | EN: used to introduce the second element in a comparison, indicating that one thing exceeds or differs from another. | ÖRNEK: The cat is smaller than the dog.
+13104 | thank | verb | A2 | #1/1 | TR: teşekkür etmek | EN: to express gratitude to someone for something they have done or given | ÖRNEK: The student thanked the lecturer for the clear explanation.
+13106 | thankfully | adverb | B1 | #1/1 | TR: çok şükür | EN: in a way that expresses gratitude or relief about something that has happened | ÖRNEK: She arrived on time, thankfully, and did not miss the meeting.
+27306 | thanks | exclamation | A1 | #1/1 | TR: sağ ol, teşekkürler | EN: an informal way of saying thank you | ÖRNEK: Thanks for your help.
+20367 | thanks | noun | A1 | #1/1 | TR: teşekkür | EN: words or actions that show you are grateful | ÖRNEK: Many thanks for your help.
+20495 | that | adverb | B1 | #1/1 | TR: o kadar | EN: to such a degree; so | ÖRNEK: The film wasn't that good.
+20368 | that | conjunction | A1 | #1/1 | TR: -dığını, -diği, ki | EN: used to introduce a clause that reports or explains something | ÖRNEK: She said that she was tired.
+27244 | that | determiner | A1 | #1/1 | TR: şu, o | EN: used before a noun to refer to a person or thing that is not near you, or to a time in the past | ÖRNEK: Look at that bird!
+27207 | that | pronoun | A1 | #1/2 | TR: şu, o (uzaktaki şey ya da kişi; söylenen şey) | EN: used to refer to a person or thing that is not near you, or to something already mentioned | ÖRNEK: Who's that?
+27208 | that | pronoun | A1 | #2/2 | TR: ki, -en, -dığı (ilgi zamiri) | EN: used to introduce a part of a sentence that gives more information about a noun | ÖRNEK: This is the book that I told you about.
+27164 | the | determiner | A1 | #1/3 | TR: (belirli tanımlık; bilinen, daha önce sözü geçen ya da tek olan şey için) | EN: used before a noun when it is clear which person or thing you mean | ÖRNEK: Can you close the door?
+27165 | the | determiner | A1 | #2/3 | TR: (bir türün tamamı, enstrüman, ırmak, okyanus vb. adlardan önce) | EN: used before some names and to talk about a whole group or type | ÖRNEK: She plays the piano.
+27166 | the | determiner | A1 | #3/3 | TR: ne kadar … o kadar | EN: used with two comparative forms to show that two things change together | ÖRNEK: The more you practice, the better you get.
+11607 | theatrical | adjective | B2 | #1/1 | TR: tiyatroyla ilgili, sahneye uygun, gösterişli | EN: relating to the theater or drama; performed in a way that is exaggerated or overly dramatic | ÖRNEK: The school drama club staged a theatrical production of Shakespeare's *Macbeth*.
+18451 | theft | noun | B1 | #1/1 | TR: hırsızlık | EN: the illegal taking of someone else's property without permission or consent | ÖRNEK: The police caught the teenager stealing a bike, which is a clear case of theft.
+27241 | their | determiner | A1 | #1/2 | TR: onların | EN: belonging to or connected with two or more people or things | ÖRNEK: Their children are at school.
+27242 | their | determiner | A1 | #2/2 | TR: onun (cinsiyeti belirtilmeyen tek kişi için) | EN: used instead of "his" or "her" when you do not know or do not want to say if a person is a man or a woman | ÖRNEK: Everyone should bring their own lunch.
+27189 | theirs | pronoun | A2 | #1/1 | TR: onlarınki | EN: used to refer to something that belongs to two or more people or things | ÖRNEK: The decision is theirs.
+27182 | them | pronoun | A1 | #1/2 | TR: onları, onlara | EN: used as the object of a verb or preposition to refer to two or more people or things | ÖRNEK: I love these shoes. I'll buy them.
+27183 | them | pronoun | A1 | #2/2 | TR: onu, ona (cinsiyeti belirtilmeyen tek kişi) | EN: used to refer to one person when you do not know or do not want to say if it is a man or a woman | ÖRNEK: If anyone calls, tell them I'm busy.
+17829 | theme | noun | B2 | #1/2 | TR: konu, ana fikir | EN: the central subject or main idea of a piece of writing, discussion, or artistic work | ÖRNEK: The teacher asked us to identify the theme of the short story.
+17830 | theme | noun | C1 | #2/2 | TR: müzikal tema, melodi | EN: a recurring musical idea, melody, or motif that unifies a composition | ÖRNEK: The orchestra began with a simple, memorable theme.
+27204 | themselves | pronoun | A2 | #1/2 | TR: kendilerini, kendilerine (dönüşlü) | EN: used as the object of a verb or preposition when people or things are both the subject and the object | ÖRNEK: The children enjoyed themselves.
+27205 | themselves | pronoun | A2 | #2/2 | TR: kendileri (vurgu için); kendi kendilerine | EN: used to emphasize "they", or to mean "alone, without help" | ÖRNEK: The students organized the event themselves.
+20847 | then | adverb | A1 | #1/2 | TR: sonra, ardından | EN: next; after that | ÖRNEK: We had dinner and then watched a film.
+20848 | then | adverb | A1 | #2/2 | TR: o zaman, o sırada | EN: at that time in the past or future | ÖRNEK: I was living in Izmir then.
+20814 | theology | noun | C1 | #1/1 | TR: ilahiyat, teoloji | EN: the study of religion and religious ideas | ÖRNEK: He studied theology at university.
+12724 | theoretical | adjective | C1 | #1/1 | TR: kuramsal | EN: relating to the abstract principles of a subject rather than its practical applications | ÖRNEK: Students were asked to compare the theoretical predictions with the experimental data.
+12723 | theory | noun | B2 | #1/1 | TR: kuram, teori | EN: a systematic set of ideas intended to explain a phenomenon or a set of facts | ÖRNEK: Many students find abstract theories difficult to understand at first.
+4810 | therapist | noun | B2 | #1/1 | TR: terapist | EN: a professional who is trained to treat mental or physical disorders through therapy | ÖRNEK: She made an appointment with a therapist to discuss her worries.
+4806 | therapy | noun | B2 | #1/1 | TR: tedavi, terapi | EN: the treatment of physical or mental illness by psychological methods or medical procedures | ÖRNEK: She started therapy after feeling overwhelmed at work.
+20369 | there | adverb | A1 | #1/1 | TR: orada, oraya | EN: in, at or to that place | ÖRNEK: I'll meet you there at six.
+20815 | thereafter | adverb | C1 | #1/1 | TR: ondan sonra, bundan böyle | EN: after that time (formal) | ÖRNEK: She moved to Paris in 1990 and lived there thereafter.
+22492 | therefore | adverb | B2 | #1/1 | TR: bu yüzden, dolayısıyla | EN: used to introduce a logical conclusion or result based on the preceding statement | ÖRNEK: The test was difficult; therefore many students failed.
+27245 | these | determiner | A1 | #1/1 | TR: bu (çoğul) | EN: used before a plural noun to refer to people or things that are near you | ÖRNEK: These shoes are too small.
+27209 | these | pronoun | A1 | #1/1 | TR: bunlar | EN: used to refer to people or things that are near you | ÖRNEK: These are my friends.
+13811 | thesis | noun | C1 | #1/2 | TR: tez, yüksek lisans/doktora çalışması | EN: a long piece of academic writing based on original research, submitted for a degree | ÖRNEK: The student began to write her thesis in September.
+13812 | thesis | noun | B2 | #2/2 | TR: sav, öneri, temel düşünce | EN: a statement or theory that is put forward as a premise to be maintained or proved | ÖRNEK: His thesis argues that technology can improve education outcomes.
+27175 | they | pronoun | A1 | #1/3 | TR: onlar | EN: used to refer to two or more people or things as the subject of a verb | ÖRNEK: They live in Ankara.
+27176 | they | pronoun | A1 | #2/3 | TR: o (cinsiyeti bilinmeyen ya da belirtilmeyen tek kişi) | EN: used to refer to one person when you do not know or do not want to say if it is a man or a woman | ÖRNEK: Someone called, but they didn't leave a message.
+27177 | they | pronoun | A1 | #3/3 | TR: onlar, yetkililer, insanlar (belirsiz) | EN: used to refer to people in general or people in authority | ÖRNEK: They say it will rain tomorrow.
+1578 | thick | adjective | A2 | #1/3 | TR: kalın, kalınlıkta | EN: having a relatively large distance between opposite surfaces; not thin. | ÖRNEK: The teacher handed out a thick textbook for the semester.
+1579 | thick | adjective | B1 | #2/3 | TR: yoğun, sıkışık | EN: having a high density or concentration; crowded or compact. | ÖRNEK: The market was thick with shoppers on Saturday afternoon.
+1580 | thick | adjective | A2 | #3/3 | TR: koyu, ağdalı | EN: having a high viscosity; not runny or watery. | ÖRNEK: The laboratory technician stirred the solution until it turned thick.
+18871 | thief | noun | B1 | #1/1 | TR: hırsız | EN: a person who steals property belonging to another person | ÖRNEK: The thief ran away with the wallet.
+1585 | thin | adjective | A2 | #1/1 | TR: ince, zayıf | EN: having little thickness; not thick or dense | ÖRNEK: The ice on the pond was thin and dangerous.
+15173 | thing | noun | A1 | #1/1 | TR: nesne, şey | EN: an object, item, or entity that is not specifically named or identified | ÖRNEK: I found a small thing on the floor and picked it up.
+9771 | think | verb | A1 | #1/1 | TR: düşünmek, sanmak | EN: to use one's mind to consider or reason about something | ÖRNEK: I think about my plans every night before sleeping.
+26770 | think up | phrasal_verb | B2 | #1/1 | TR: (fikir, bahane) bulmak, uydurmak | EN: to invent or imagine something, especially an excuse | ÖRNEK: She thought up a clever excuse.
+9776 | thinking | noun | B2 | #1/1 | TR: düşünme, düşünce süreci | EN: the process of using one's mind to consider or reason about something | ÖRNEK: She enjoys quiet moments of thinking in the park.

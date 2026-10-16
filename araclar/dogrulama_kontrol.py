@@ -1,12 +1,14 @@
 """Doğrulama aşaması kontrolü: eksik/bozuk dosyaları ve karar dağılımını gösterir.
 
-Kullanım (proje kökünden): python3 araclar/dogrulama_kontrol.py
-Çıktı: özet + veri/kalite_olcumu/dogrulama/eksik.txt
+Kullanım (proje kökünden): python3 araclar/dogrulama_kontrol.py [klasör]
+Klasör varsayılanı veri/kalite_olcumu/dogrulama; Opus turu için veri/kalite_olcumu/opus.
+Çıktı: özet + <klasör>/eksik.txt (girdi dosya adlarının sırasıyla)
 """
 from collections import Counter
+import sys
 from pathlib import Path
 
-D = Path("veri/kalite_olcumu/dogrulama")
+D = Path(sys.argv[1] if len(sys.argv) > 1 else "veri/kalite_olcumu/dogrulama")
 KARARLAR = {"DUZELT", "BIRAK", "EFE"}
 ALANLAR = {"TR", "EN", "ORNEK"}
 
@@ -30,7 +32,8 @@ def gecerli(ad):
     return gorulen == beklenen
 
 
-dosyalar = sorted(p.stem for p in (D / "girdi").glob("d*.txt"))
+# Sıra: o (işaretli) → y (hiç taranmamış) → t (temiz); dogrulama klasöründe yalnız d
+dosyalar = sorted((p.stem for p in (D / "girdi").glob("*.txt")), key=lambda a: ("doyt".index(a[0]), a))
 eksik = [d for d in dosyalar if not gecerli(d)]
 bozuk = [d for d in eksik if (D / "cikti" / f"{d}.tsv").exists()]
 (D / "eksik.txt").write_text("".join(d + "\n" for d in eksik), encoding="utf-8")

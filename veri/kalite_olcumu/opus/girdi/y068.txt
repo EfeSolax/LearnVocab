@@ -1,0 +1,100 @@
+25736 | skateboard | verb | B1 | #1/1 | TR: kaykay sürmek | EN: to ride on a skateboard, typically for recreation or sport | ÖRNEK: The kids skateboard to school every morning.
+24741 | skating | noun | B1 | #1/1 | TR: paten kayma, paten | EN: the activity or sport of moving on ice or a smooth surface using skates | ÖRNEK: She learned skating when she was five years old.
+10565 | sketch | noun | B1 | #1/1 | TR: taslak, kroki | EN: a brief, freehand drawing that captures the main features of a subject | ÖRNEK: The teacher asked the students to produce a sketch of a tree.
+20436 | ski | adjective | A2 | #1/1 | TR: kayak (-ı) | EN: connected with skiing | ÖRNEK: We stayed at a ski resort in the Alps.
+20437 | ski | noun | A2 | #1/1 | TR: kayak (tahtası) | EN: one of a pair of long narrow pieces of wood or plastic that you fasten to boots to move over snow | ÖRNEK: She put on her skis and started down the hill.
+20438 | ski | verb | A2 | #1/1 | TR: kayak yapmak | EN: to move over snow on skis | ÖRNEK: Can you ski?
+20439 | skiing | noun | A2 | #1/1 | TR: kayak (sporu) | EN: the sport or activity of moving over snow on skis | ÖRNEK: We go skiing every winter.
+12991 | skill | noun | B1 | #1/1 | TR: beceri, yetenek | EN: the ability to do something well, especially because of training or experience | ÖRNEK: She learned a new skill during the summer workshop.
+12992 | skilled | adjective | B1 | #1/1 | TR: nitelikli, vasıflı, becerikli | EN: having the ability, knowledge, or experience to do something well | ÖRNEK: The skilled carpenter built a sturdy wooden table for the kitchen.
+16678 | skin | noun | A2 | #1/1 | TR: deri | EN: the outer protective layer covering the body of a person or animal | ÖRNEK: She felt a slight itch on her skin after the hike.
+6397 | skip | verb | A2 | #1/2 | TR: atlamak, zıplamak | EN: to move lightly and quickly by jumping or hopping, often repeatedly | ÖRNEK: The girl skips happily in the playground.
+6398 | skip | verb | A2 | #2/2 | TR: atlamak, es geçmek, yapmamak | EN: to omit or fail to do something, especially a part of a text or a scheduled activity | ÖRNEK: He skipped the boring part of the lecture.
+9869 | skirt | noun | A2 | #1/1 | TR: etek | EN: a piece of clothing that hangs from the waist and covers part of the legs | ÖRNEK: She bought a new skirt for the summer festival.
+3297 | skull | noun | B1 | #1/1 | TR: kafatası | EN: the bony structure that forms the head and protects the brain | ÖRNEK: The child touched the skull model during the biology lesson.
+13026 | sky | noun | A2 | #1/1 | TR: gökyüzü | EN: the expanse of atmosphere that appears above the earth | ÖRNEK: The sky is blue today.
+4399 | slam | verb | B1 | #1/2 | TR: çarpmak, sertçe kapatmak, fırlatmak | EN: to strike something with great force or sudden impact | ÖRNEK: He slammed the book onto the table after reading the last page.
+4400 | slam | verb | B2 | #2/2 | TR: ağır eleştirmek, topa tutmak, yerden yere vurmak | EN: to criticize or speak about someone or something in a harsh, abrupt manner | ÖRNEK: The reviewer slammed the movie for its weak plot and poor acting.
+8845 | slap | verb | B1 | #1/1 | TR: vurmak, tokat atmak | EN: to strike someone or something with an open hand, usually as a quick, sharp blow | ÖRNEK: The child slapped the ball and it rolled away.
+9033 | slash | verb | B1 | #1/2 | TR: kesmek, bir darbeyle yarmak | EN: to cut something with a swift, sweeping motion, often using a sharp blade | ÖRNEK: During the movie scene, the hero slashed the villain's cloak with his sword.
+9032 | slash | verb | B2 | #2/2 | TR: büyük oranda indirmek, sert şekilde kısmak, fiyat kırmak | EN: to reduce something, especially prices or rates, sharply and dramatically | ÖRNEK: The store will slash prices on all winter coats this weekend.
+2383 | slave | noun | B2 | #1/2 | TR: köle, zorla çalıştırılan kişi | EN: a person who is legally owned by another and forced to work for them without freedom | ÖRNEK: The museum exhibit explains how slaves were treated in ancient Rome.
+2384 | slave | noun | C1 | #2/2 | TR: bağlı aygıt, ikincil cihaz | EN: a secondary device that is controlled by a primary device, often used in computing or electronics | ÖRNEK: The master board communicates with the slave module via a serial bus.
+2388 | slavery | noun | B2 | #1/1 | TR: kölelik | EN: the system or condition in which people are owned by others as property and are forced to work without freedom | ÖRNEK: The museum displayed documents about slavery in the 1800s.
+1455 | sleep | noun | A1 | #1/1 | TR: uyku | EN: the natural periodic state of rest for the body and mind | ÖRNEK: She usually gets eight hours of sleep each night.
+1456 | sleep | verb | A1 | #1/1 | TR: uyumak | EN: to be in a state of rest in which the body is inactive and the mind is unconscious | ÖRNEK: I usually sleep eight hours each night.
+1463 | sleepy | adjective | B1 | #1/1 | TR: uykulu, sersem | EN: feeling a need for sleep; inclined to fall asleep. | ÖRNEK: I felt sleepy after the bus ride.
+7707 | slice | noun | A2 | #1/1 | TR: dilim, kesit | EN: a thin, flat piece cut from a larger object, especially food | ÖRNEK: I ate a slice of pizza for lunch.
+7708 | slice | verb | B1 | #1/1 | TR: dilimlemek | EN: to cut something into thin, flat pieces | ÖRNEK: She sliced the tomato for the sandwich.
+3851 | slide | noun | A2 | #1/2 | TR: kaydırak | EN: a smooth inclined surface for children to glide down | ÖRNEK: The kids lined up to try the new slide at the park.
+3852 | slide | noun | B1 | #2/2 | TR: slayt | EN: a single page of a visual presentation, usually shown on a screen | ÖRNEK: The lecturer clicked to the next slide during the lecture.
+3853 | slide | verb | A2 | #1/2 | TR: kaymak, kaydırmak | EN: to move smoothly along a surface while maintaining continuous contact | ÖRNEK: He slid the glass bottle across the table without spilling.
+3854 | slide | verb | B2 | #2/2 | TR: düşüşe geçmek, kötüleşmek | EN: to decline in quality, performance, or condition | ÖRNEK: After the scandal, his reputation began to slide quickly.
+1464 | slight | adjective | B1 | #1/2 | TR: küçük, önemsiz | EN: of little size, amount, or importance; not significant | ÖRNEK: The slight breeze made the leaves rustle gently.
+1465 | slight | adjective | B2 | #2/2 | TR: ince, zayıf | EN: thin or slender in build; not robust or sturdy | ÖRNEK: The cat has a slight, graceful body that slips through narrow gaps.
+1467 | slightly | adverb | B1 | #1/1 | TR: az bir ölçüde | EN: to a small degree; not considerably; used to modify adjectives or other adverbs indicating a minor amount | ÖRNEK: The coffee is slightly warm, not hot enough to drink.
+13429 | slim | adjective | A2 | #1/2 | TR: ince, zayıf, ince yapılı | EN: having little thickness or width; slender in shape | ÖRNEK: The model has a slim silhouette that catches everyone's eye.
+13430 | slim | adjective | B1 | #2/2 | TR: az, düşük | EN: small in amount, degree, or probability | ÖRNEK: The slim profit this quarter worries the investors.
+1471 | slip | verb | A2 | #1/3 | TR: kaymak, ayak kaymasıyla düşmek | EN: to lose one's footing and slide unintentionally, often resulting in a fall | ÖRNEK: He slipped on the wet pavement and almost fell.
+1470 | slip | verb | B1 | #2/3 | TR: sıvışmak, sessizce girmek, süzülmek | EN: to move or enter somewhere quietly and without being noticed | ÖRNEK: The cat slipped into the house through the open window.
+1472 | slip | verb | B2 | #3/3 | TR: yanlış yapmak, hata yapmak | EN: to make an error or mistake, especially in speech or writing | ÖRNEK: During the interview, she slipped and gave an incorrect statistic.
+9347 | slogan | noun | B1 | #1/1 | TR: slogan, reklam sözü, parola | EN: a short, memorable phrase used in advertising or political campaigns to convey an idea or brand identity | ÖRNEK: The new coffee shop uses a short slogan on its storefront.
+3144 | slope | noun | B1 | #1/1 | TR: eğim, yamaç | EN: a surface that is inclined rather than level; a slanted or inclined surface | ÖRNEK: Rainwater runs quickly down the steep slope of the mountain.
+3145 | slope | verb | B2 | #1/1 | TR: eğilmek, eğimli olmak | EN: to have an incline or to cause something to be inclined | ÖRNEK: The driveway slopes down to the parking lot.
+20797 | slot | noun | C1 | #1/2 | TR: yuva, delik (para vb. için) | EN: a long narrow opening into which you put something | ÖRNEK: Put a coin in the slot.
+20798 | slot | noun | C1 | #2/2 | TR: zaman dilimi, yer | EN: a time or place in a schedule | ÖRNEK: The show has moved to a later time slot.
+16907 | slow | adjective | A2 | #1/2 | TR: yavaş | EN: having a low speed; not moving or acting quickly. | ÖRNEK: She prefers a slow walk in the park after dinner.
+16908 | slow | adjective | B2 | #2/2 | TR: geç anlayan, ağır kanlı, kalın kafalı | EN: lacking quickness of mind; taking a long time to understand or react. | ÖRNEK: The child is a slow learner but shows great perseverance.
+16910 | slow | verb | B1 | #1/1 | TR: yavaşlatmak | EN: to cause something to move, act, or happen more slowly | ÖRNEK: The driver had to slow the car because of the sharp turn.
+16912 | slowly | adverb | A2 | #1/1 | TR: yavaşça | EN: in a slow manner; at a reduced speed | ÖRNEK: The snail crawls slowly on the leaf.
+15306 | small | adjective | A1 | #1/2 | TR: küçük, sınırlı boyutta | EN: of limited physical size; not large. | ÖRNEK: The kitten is small and needs careful handling.
+15307 | small | adjective | B2 | #2/2 | TR: önemsiz, az değerli | EN: of little importance, significance, or influence. | ÖRNEK: The error was small, but it caused the system to crash.
+16976 | smart | adjective | A1 | #1/3 | TR: akıllı, zeki | EN: having or showing a quick-witted intelligence; able to understand and solve problems efficiently | ÖRNEK: The smart child solved the puzzle in minutes.
+16977 | smart | adjective | B1 | #2/3 | TR: şık, moda, tarz sahibi | EN: fashionably elegant or stylish in appearance or dress | ÖRNEK: She chose a smart coat for the winter party.
+16978 | smart | adjective | C2 | #3/3 | TR: şiddetli, sert, can yakıcı | EN: causing a sharp, stinging pain; feeling a sudden, intense discomfort | ÖRNEK: The cut left a smart sensation on his finger.
+20440 | smartphone | noun | A2 | #1/1 | TR: akıllı telefon | EN: a mobile phone that can also be used like a small computer and connects to the internet | ÖRNEK: Almost every student has a smartphone.
+3932 | smash | verb | B1 | #1/1 | TR: ezmek, parçalamak, çarpmak | EN: to break something into pieces or to strike something with great force | ÖRNEK: She smashed the empty bottle on the floor in frustration.
+3001 | smell | noun | A2 | #1/2 | TR: koku | EN: the quality of something that people or animals can sense through the nose | ÖRNEK: There was a strong smell of coffee in the kitchen.
+1480 | smell | noun | B2 | #2/2 | TR: koku alma duyusu | EN: the sense by which odors are perceived | ÖRNEK: The laboratory tests the participants' sense of smell.
+1481 | smell | verb | A2 | #1/1 | TR: koku almak | EN: to perceive an odor through the nose | ÖRNEK: She smelled the fresh bread as she walked past the bakery.
+17747 | smile | noun | A1 | #1/1 | TR: gülümseme | EN: a facial expression in which the corners of the mouth turn up, showing happiness or friendliness | ÖRNEK: She gave a quick smile as she passed by.
+17748 | smile | verb | A1 | #1/1 | TR: gülümsemek | EN: to make a facial expression in which the corners of the mouth turn up, typically showing pleasure or friendliness | ÖRNEK: The child smiled when he saw his mother.
+12516 | smoke | noun | A2 | #1/1 | TR: duman | EN: the visible gaseous product of combustion or burning, consisting of tiny particles of carbon and other substances suspended in air | ÖRNEK: The campfire produced a thin column of smoke that drifted upward.
+12517 | smoke | verb | A2 | #1/1 | TR: duman çıkarmak, sigara içmek | EN: to emit smoke or to inhale and exhale the smoke of tobacco or other substances | ÖRNEK: He likes to smoke after dinner.
+12521 | smoking | noun | B1 | #1/1 | TR: sigara içme, sigara içme alışkanlığı | EN: the act of inhaling and exhaling the smoke of tobacco products; the habit of using cigarettes or other tobacco items. | ÖRNEK: Smoking is bad for your health.
+2828 | smooth | adjective | A2 | #1/2 | TR: pürüzsüz, yumuşak | EN: having an even, regular surface without roughness or irregularities | ÖRNEK: The table top is smooth and easy to clean.
+2829 | smooth | adjective | B2 | #2/2 | TR: akıcı, sorunsuz | EN: characterized by an easy, uninterrupted flow or progress; without difficulty or obstacles | ÖRNEK: The project manager promised a smooth rollout of the new policy.
+13840 | snack | noun | A2 | #1/1 | TR: atıştırmalık | EN: a small amount of food eaten between meals | ÖRNEK: I ate a snack between breakfast and lunch.
+22383 | snail | noun | A2 | #1/2 | TR: salyangoz | EN: a small mollusk with a coiled shell that moves slowly on land or in water | ÖRNEK: A snail crawled across the damp garden path in the early morning.
+22384 | snail | noun | B1 | #2/2 | TR: yavaş kişi, tembel insan | EN: a person who moves or works very slowly, often used informally or humorously | ÖRNEK: My brother is such a snail that he still hasn't cleaned his room after weeks.
+2278 | snake | noun | A2 | #1/1 | TR: yılan | EN: a legless reptile with a long, slender body and a forked tongue | ÖRNEK: A snake slithered across the garden path early this morning.
+2017 | snap | verb | B1 | #1/3 | TR: kırılmak, çatlamak | EN: to break or cause to break suddenly with a sharp sound | ÖRNEK: The thin ice snapped as the child stepped onto it.
+2016 | snap | verb | B1 | #2/3 | TR: terslemek, azarlamak | EN: to speak or act sharply and angrily toward someone | ÖRNEK: The teacher snapped at the noisy student during class.
+2018 | snap | verb | B1 | #3/3 | TR: fotoğraf çekmek | EN: to take a photograph quickly and casually | ÖRNEK: He snapped a quick photo of the street performer.
+10835 | snore | verb | A2 | #1/1 | TR: horlamak | EN: to make a loud breathing sound while sleeping | ÖRNEK: He snored all night and woke me up.
+11483 | snow | noun | A1 | #1/1 | TR: kar | EN: frozen precipitation that falls from clouds as white flakes | ÖRNEK: Snow covered the playground early this morning.
+11484 | snow | verb | A1 | #1/1 | TR: kar yağmak, karla kaplamak | EN: to fall as snow; to cover an area with snow | ÖRNEK: The forecast says it will snow tomorrow afternoon.
+11485 | snowfall | noun | B1 | #1/1 | TR: kar yağışı | EN: the amount of snow that falls during a particular period of time | ÖRNEK: The snowfall this morning made the streets slippery and dangerous.
+20846 | so | adverb | A1 | #1/1 | TR: çok, o kadar | EN: to such a great degree; very | ÖRNEK: I'm so happy to see you!
+20602 | so-called | adjective | B2 | #1/1 | TR: sözde, sözüm ona | EN: used to show that you think a word or name is not suitable or not true | ÖRNEK: The so-called expert gave us the wrong advice.
+7743 | soak | verb | B1 | #1/2 | TR: daldırmak, ıslatmak | EN: to immerse something in liquid so that it becomes wet or saturated | ÖRNEK: I soaked the shirt in warm water to remove the stain.
+7744 | soak | verb | C1 | #2/2 | TR: (up ile) emmek, içine çekmek | EN: to absorb or take in something, especially information or emotions | ÖRNEK: The freshman tried to soak up knowledge during the orientation week.
+10888 | soap | noun | A2 | #1/1 | TR: sabun | EN: a substance used for cleaning or washing, typically in the form of a solid bar or liquid | ÖRNEK: I bought a new soap at the store.
+4741 | soar | verb | B2 | #1/1 | TR: yükseğe çıkmak, yükselmek | EN: to rise or increase rapidly and dramatically, especially in height, price, or level | ÖRNEK: The kite began to soar as the wind picked up.
+20441 | soccer | noun | A2 | #1/1 | TR: futbol (Amerikan İngilizcesi) | EN: the game of football, played by two teams with a round ball | ÖRNEK: He plays soccer after school.
+7304 | sociable | adjective | B1 | #1/1 | TR: arkadaş canlısı, sosyal | EN: inclined to seek companionship and enjoy being with other people | ÖRNEK: She is sociable and greets everyone in the hallway.
+7297 | social | adjective | A2 | #1/2 | TR: toplumsal, toplumla ilgili | EN: relating to society or its organization, especially concerning the interactions among individuals or groups. | ÖRNEK: The university offers several social programs for local residents.
+7298 | social | adjective | A2 | #2/2 | TR: sosyal, insanlarla kaynaşabilen | EN: inclined to seek companionship and interact with others; friendly and outgoing. | ÖRNEK: My brother is very social and makes friends easily.
+20799 | socialist | adjective | C1 | #1/1 | TR: sosyalist | EN: connected with or believing in socialism | ÖRNEK: He joined a socialist party.
+7313 | society | noun | A2 | #1/2 | TR: toplum | EN: a group of people living together in a community with shared customs, laws, and institutions | ÖRNEK: The small village forms a close-knit society where everyone knows each other.
+7314 | society | noun | B1 | #2/2 | TR: dernek, kuruluş | EN: an organized group of people with a common purpose, often formal and registered | ÖRNEK: She became a member of the photography society to improve her skills.
+5689 | sock | noun | A1 | #1/1 | TR: çorap | EN: a piece of clothing that covers the foot and often part of the lower leg | ÖRNEK: She puts on clean socks every morning before work.
+2845 | sofa | noun | A2 | #1/1 | TR: kanepe, koltuk, çekyat | EN: a piece of furniture for sitting, typically with a back and arms | ÖRNEK: The family bought a new sofa for their living room.
+2909 | soft | adjective | A2 | #1/2 | TR: yumuşak, hafif | EN: having a smooth, gentle, or easily compressible texture; not hard or firm | ÖRNEK: The blanket felt soft and warm on the chilly night.
+2910 | soft | adjective | B1 | #2/2 | TR: nazik, kibar | EN: showing a gentle, mild, or compassionate manner; not harsh or severe | ÖRNEK: Her tone was soft, making the criticism easier to accept.
+17213 | software | noun | A2 | #1/1 | TR: yazılım | EN: computer programs and related data that enable a computer to perform specific tasks | ÖRNEK: The university provides free software for all students.
+3226 | soil | noun | A2 | #1/2 | TR: toprak, yer kabuğu | EN: the upper layer of the earth in which plants grow | ÖRNEK: The garden's soil is dark and moist after the rain.
+3227 | soil | noun | C1 | #2/2 | TR: kir, çamur | EN: dirt or grime that makes a surface unclean | ÖRNEK: Rain left soil on the driveway after the storm.
+8785 | solar | adjective | B1 | #1/1 | TR: güneşle ilgili, güneş enerjisiyle ilgili | EN: relating to or derived from the sun; produced by sunlight. | ÖRNEK: Solar panels convert sunlight into electricity for homes.
+18161 | soldier | noun | A1 | #1/1 | TR: asker | EN: a person who serves in an army, especially a professional member of the armed forces | ÖRNEK: The young soldier marched proudly through the city streets.
+5609 | sole | adjective | B1 | #1/1 | TR: tek, yalnız, münhasır | EN: being the only one of its kind; not shared with others. | ÖRNEK: She is the sole manager of the small office.

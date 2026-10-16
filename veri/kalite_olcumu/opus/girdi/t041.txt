@@ -1,0 +1,100 @@
+10254 | dresser | noun | B1 | #1/1 | TR: giyinme odası mobilyası, şifonyer | EN: a piece of bedroom furniture with drawers for storing clothes and accessories | ÖRNEK: She placed her jewelry in the top drawer of the dresser.
+10256 | dressing | noun | A2 | #1/2 | TR: salata sosu, sos | EN: a sauce used to flavor salads or other dishes | ÖRNEK: The chef drizzled a creamy dressing over the mixed greens.
+10255 | dressing | noun | B1 | #2/2 | TR: pansuman, sargı bezi | EN: a material used to cover and protect a wound | ÖRNEK: The paramedic placed a clean dressing on the injured arm.
+10257 | dressy | adjective | B1 | #1/1 | TR: şık, gösterişli | EN: stylish or formal in appearance, suitable for a special occasion | ÖRNEK: She bought a dressy dress for the gala.
+26324 | drift apart | phrasal_verb | C1 | #1/1 | TR: (zamanla) birbirinden uzaklaşmak | EN: to gradually become less friendly with someone | ÖRNEK: We drifted apart after school.
+26928 | drift off | phrasal_verb | B2 | #1/1 | TR: uyuyakalmak, dalmak | EN: to gradually fall asleep | ÖRNEK: I drifted off while watching TV.
+8084 | drill | noun | A2 | #1/3 | TR: matkap, delgi aleti | EN: a hand or machine tool used for making holes in wood, metal, or other materials | ÖRNEK: The carpenter selected the right drill bit for the hardwood.
+8086 | drill | noun | B1 | #3/3 | TR: tekrarlanan alıştırma, uygulama | EN: a repeated practice activity designed to improve skill or knowledge | ÖRNEK: The teacher started the lesson with a quick math drill.
+8087 | drill | verb | B1 | #1/2 | TR: alıştırmak, tekrarlamak | EN: to train or practice repeatedly, especially to develop a skill or habit | ÖRNEK: The teacher drills the class in basic multiplication facts each week.
+8088 | drill | verb | B1 | #2/2 | TR: delmek, bir delik açmak | EN: to make a hole in a material using a drill or similar tool | ÖRNEK: He drills the wooden board to attach the shelf securely.
+8089 | driller | noun | B2 | #1/1 | TR: delici, matkap operatörü | EN: a person who operates a drill or performs drilling work | ÖRNEK: The driller set up the machine before starting the work.
+26325 | drink up | phrasal_verb | B1 | #1/1 | TR: (içeceği) bitirmek | EN: to finish a drink completely | ÖRNEK: Drink up, we have to go.
+5165 | drinkable | adjective | B2 | #1/1 | TR: içilebilir | EN: able to be drunk; safe or suitable for drinking | ÖRNEK: The bottled water is clearly labeled as drinkable.
+5166 | drinker | noun | B1 | #1/1 | TR: içki tüketicisi, alkol içen kişi | EN: a person who regularly consumes alcoholic beverages | ÖRNEK: John is a drinker who enjoys a cold beer after his shift.
+7745 | drip | noun | B1 | #1/1 | TR: damla, sızıntı | EN: a small drop of liquid that falls or leaks slowly | ÖRNEK: A single drip fell from the broken pipe onto the floor.
+7746 | drip | verb | B1 | #1/1 | TR: damlamak | EN: to fall or let fall in small drops | ÖRNEK: A small leak caused the pipe to drip in the kitchen.
+7747 | drippy | adjective | B2 | #1/1 | TR: damlayan, sulu | EN: characterized by or causing a slow, steady flow of liquid; often describing something that leaks or drips continuously. | ÖRNEK: The old pipe was drippy and needed to be replaced quickly.
+16071 | drivable | adjective | B2 | #1/1 | TR: sürülebilir, kullanılabilir | EN: able to be driven; suitable for vehicle travel | ÖRNEK: The map shows which streets are drivable after the flood.
+26326 | drive off | phrasal_verb | B2 | #1/1 | TR: arabayla uzaklaşmak | EN: to leave in a car | ÖRNEK: She got in the car and drove off.
+25184 | drizzle | noun | B1 | #1/1 | TR: ince yağmur | EN: a light rain falling in very fine drops | ÖRNEK: A light drizzle fell during the early morning commute.
+25185 | drizzly | adjective | B1 | #1/1 | TR: yağmurlu, çiseleyen | EN: characterized by light rain or drizzle | ÖRNEK: The drizzly weather made the streets slippery and quiet.
+7585 | drone | noun | B2 | #1/3 | TR: insansız hava aracı | EN: an unmanned aircraft that is remotely controlled or flies autonomously | ÖRNEK: The farmer uses a drone to monitor his fields.
+7586 | drone | noun | C1 | #2/3 | TR: uğultu, vızıltı | EN: a low, continuous humming sound, especially that made by insects or machinery | ÖRNEK: The drone of the refrigerator was barely audible.
+7587 | drone | noun | C1 | #3/3 | TR: erkek arı | EN: the male bee in a hive, whose primary role is to mate with the queen | ÖRNEK: A drone bee has larger eyes than worker bees.
+7588 | drone | verb | B1 | #1/1 | TR: sürekli uğultu çıkarmak | EN: to make a continuous low humming sound | ÖRNEK: The old air conditioner droned all night, keeping me awake.
+12193 | droop | noun | B2 | #1/1 | TR: sarkma, eğilme | EN: a sagging or hanging down of something, especially a plant or a part of the body | ÖRNEK: The wilted flower had a noticeable droop at the tip of its stem.
+26327 | drop by | phrasal_verb | B1 | #1/1 | TR: (kısaca) uğramak | EN: to visit someone for a short time, usually without arranging it | ÖRNEK: Drop by any time you're in the area.
+26328 | drop in | phrasal_verb | B1 | #1/1 | TR: (habersizce) uğramak | EN: to visit someone for a short time without telling them before | ÖRNEK: I'll drop in on my way home.
+26329 | drop off | phrasal_verb | B1 | #1/3 | TR: (birini, bir şeyi) bırakmak | EN: to take someone or something to a place in a car and leave them there | ÖRNEK: I'll drop you off at the station.
+26330 | drop off | phrasal_verb | B1 | #2/3 | TR: uyuyakalmak | EN: to fall asleep | ÖRNEK: I dropped off in front of the TV.
+26331 | drop off | phrasal_verb | B1 | #3/3 | TR: azalmak, düşmek | EN: to become less in level or amount | ÖRNEK: Sales dropped off after Christmas.
+26332 | drop out | phrasal_verb | B2 | #1/1 | TR: (okulu, yarışı) bırakmak, yarıda bırakmak | EN: to stop going to classes or stop taking part in something before it has finished | ÖRNEK: He dropped out of university after a year.
+11218 | droplet | noun | B2 | #1/1 | TR: damla | EN: a small drop of liquid | ÖRNEK: A droplet of rain landed on my notebook.
+11219 | dropper | noun | B1 | #1/1 | TR: damlalık | EN: a small container with a narrow tube used to dispense drops of liquid | ÖRNEK: He took two drops from the dropper before bedtime.
+26929 | drown out | phrasal_verb | C1 | #1/1 | TR: (sesi) bastırmak, duyulmaz hâle getirmek | EN: to make a sound impossible to hear by making a louder noise | ÖRNEK: The music drowned out our conversation.
+3899 | drowning | noun | B1 | #1/1 | TR: boğulma | EN: the act or process of dying by submersion in water | ÖRNEK: Parents should teach their kids water safety to avoid drowning accidents.
+16796 | drug | verb | B2 | #2/2 | TR: uyuşturmak, etkisi altına almak | EN: to give someone a drug, especially an illegal or harmful one, in order to impair their judgment or consciousness | ÖRNEK: He was arrested after police discovered he tried to drug the bartender.
+7268 | drum | verb | A2 | #1/2 | TR: davul çalmak, trampet çalmak, tıkırdatmak | EN: to strike a drum or similar surface with the hands or sticks to produce a rhythmic sound | ÖRNEK: She drums a simple beat on the practice pad during her lesson.
+7269 | drum | verb | B1 | #2/2 | TR: gürültü çıkarmak, ses çıkarmak | EN: to make a loud, repeated noise, often by striking something repeatedly | ÖRNEK: The protesters drummed loudly outside the city hall to attract attention.
+7270 | drummer | noun | B1 | #1/1 | TR: davulcu | EN: a person who plays the drums, especially as a member of a musical group | ÖRNEK: The school marching band needs a new drummer for the upcoming parade.
+7272 | drumming | noun | B1 | #2/2 | TR: davul çalma | EN: the activity of playing drums, especially in a musical context | ÖRNEK: During the festival, drumming filled the streets with excitement.
+5169 | drunk | noun | B1 | #1/1 | TR: sarhoş, alkollü kişi | EN: a person who has consumed enough alcohol to be intoxicated | ÖRNEK: She saw a drunk stumbling out of the bar and called a taxi.
+5171 | drunken | adjective | B1 | #1/1 | TR: sarhoş | EN: affected by alcohol; showing the characteristics of someone who has consumed too much alcohol | ÖRNEK: The police warned the driver about his drunken state during the traffic stop.
+5172 | drunkenly | adverb | B2 | #1/1 | TR: sarhoşça, içki etkisi altında | EN: in a manner that shows the influence of alcohol; while intoxicated | ÖRNEK: He walked home drunkenly after the celebration.
+5173 | drunkenness | noun | B2 | #1/1 | TR: sarhoşluk | EN: the condition of being intoxicated by alcohol | ÖRNEK: He felt a mild drunkenness after one beer at the bar.
+26333 | dry up | phrasal_verb | B2 | #1/2 | TR: kurumak | EN: to become completely dry | ÖRNEK: The river dries up in summer.
+26334 | dry up | phrasal_verb | B2 | #2/2 | TR: tükenmek, kesilmek | EN: to stop being available | ÖRNEK: The money for the project has dried up.
+17342 | dryer | noun | B1 | #1/1 | TR: kurutma makinesi | EN: a machine that removes moisture from clothes or other items by blowing heated air | ÖRNEK: I put the wet towels in the dryer after washing them.
+17343 | dryness | noun | B1 | #1/1 | TR: kuruluk | EN: the state of being dry; lack of moisture. | ÖRNEK: His voice sounded hoarse because of throat dryness.
+25187 | dualistic | adjective | C1 | #1/1 | TR: ikili, ikiye bölünmüş | EN: relating to or based on the division of something into two distinct parts or aspects | ÖRNEK: The philosopher presented a dualistic view of consciousness and matter.
+25188 | duality | noun | C1 | #1/1 | TR: ikilik, çift yönlülük | EN: the quality or state of having two parts, aspects, or elements; the condition of being dual. | ÖRNEK: The concept of duality is introduced early in philosophy courses.
+23026 | dubious | adjective | B2 | #1/2 | TR: şüpheli, kuşku verici | EN: causing doubt or uncertainty; not likely to be true or reliable | ÖRNEK: The article presented a dubious argument that many readers questioned.
+23027 | dubious | adjective | C1 | #2/2 | TR: belirsiz, kesin olmayan | EN: not clearly decided or settled; open to doubt or suspicion | ÖRNEK: The preliminary findings are still dubious and need replication.
+21616 | duchess | noun | B2 | #1/1 | TR: düşes | EN: a woman who holds the rank of duke in her own right or is the wife of a duke | ÖRNEK: The duchess visited the local school to encourage reading.
+9096 | duchy | noun | B2 | #1/1 | TR: düklük | EN: a territory ruled by a duke or duchess | ÖRNEK: The duchy is located near the river.
+5345 | duck | verb | B1 | #1/2 | TR: başını eğmek, alçaltmak | EN: to lower one's head or body quickly, usually to avoid something | ÖRNEK: The cat jumped, and the mouse ducked quickly.
+5346 | duck | verb | B1 | #2/2 | TR: kaçınmak, sakınmak | EN: to evade or avoid something, especially a danger or an unpleasant situation | ÖRNEK: When the teacher asked about the missing homework, he tried to duck the question.
+26028 | duct | noun | B1 | #1/1 | TR: kanal, boru, havalandırma kanalı | EN: a tube or passage that conveys air, fluid, or other substances from one place to another | ÖRNEK: The house has a small duct that carries warm air to the bedroom.
+10715 | due | noun | B1 | #1/1 | TR: hak, alacak | EN: a sum of money that is owed to someone | ÖRNEK: She finally collected the due after months of waiting.
+12425 | duel | noun | B2 | #1/1 | TR: iki kişi arasında silahlı düello | EN: a formal combat between two people, often with weapons, to settle a dispute | ÖRNEK: The two gentlemen arranged a duel to defend their reputations.
+12427 | duelist | noun | C1 | #1/1 | TR: düellocu | EN: a person who takes part in a duel, especially one who is skilled in fighting with swords or pistols | ÖRNEK: The young duelist practiced his sword strokes every afternoon.
+23028 | duet | noun | B1 | #1/1 | TR: düet | EN: a musical composition for two performers, often sung or played together | ÖRNEK: The choir members sang a short duet during the rehearsal.
+9095 | duke | noun | B2 | #1/1 | TR: dük, soylu bir unvan | EN: a male member of the highest rank of the British or certain other European aristocracy, below a prince and above a marquess | ÖRNEK: The duke hosted a lavish banquet for the visiting ambassadors.
+9097 | dukedom | noun | B2 | #1/1 | TR: dük unvanı, düklük | EN: the rank or title of a duke; the status of being a duke | ÖRNEK: Many nobles aspire to obtain a dukedom for prestige and influence.
+4728 | dulled | adjective | B2 | #1/1 | TR: donuk, mat, azalmış | EN: made less sharp, bright, or intense; having lost its original vividness or intensity | ÖRNEK: The old photograph showed dulled colors after many years of exposure.
+4729 | dullness | noun | B1 | #1/1 | TR: sıkıcılık, donukluk | EN: the quality of being uninteresting, lacking sharpness or brightness | ÖRNEK: The lecture was so dry that many students felt a strong sense of dullness.
+4730 | dully | adverb | B1 | #1/1 | TR: sıkıcı bir şekilde | EN: in a dull, uninteresting, or monotonous manner | ÖRNEK: During the meeting, he answered the proposals dully, showing little interest.
+10716 | duly | adverb | C1 | #1/1 | TR: uygun şekilde | EN: in a proper or appropriate manner; as is required or expected | ÖRNEK: The teacher duly recorded each student's attendance.
+11267 | dump | noun | B1 | #1/1 | TR: çöp yığını, atık alanı | EN: a place where waste material is deposited, especially a site for the disposal of garbage or other unwanted material | ÖRNEK: The town's dump is located near the river, far from residential areas.
+11270 | dumper | noun | B2 | #1/2 | TR: damperli kamyon, damper | EN: a heavy vehicle designed to transport loose material such as sand, gravel, or demolition waste and to unload it by tipping its load | ÖRNEK: The dumper delivered sand to the building foundation yesterday.
+24151 | dun | noun | C2 | #1/1 | TR: koyu gri-kahverengi renk, kum rengi | EN: a dull grayish-brown colour, often used to describe the coat of a horse or a natural earth tone | ÖRNEK: The sand dunes showed a soft dun colour at sunset.
+23029 | dune | noun | B1 | #1/1 | TR: kum tepesi | EN: a hill of sand formed by wind, typically found in deserts or near beaches | ÖRNEK: The wind created a small dune near the beach.
+11550 | dung | noun | B1 | #1/1 | TR: hayvan dışkısı, gübre | EN: the excrement of animals, especially cattle, used as fertilizer | ÖRNEK: The cows produced a lot of dung after grazing all day.
+8571 | dungeon | noun | B2 | #1/1 | TR: zindan | EN: a dark underground prison or cell, especially in a castle or fortress | ÖRNEK: The tourists visited the old castle and saw the dark dungeon.
+23030 | dunk | verb | B2 | #1/1 | TR: batırmak, bandırmak, smaç basmak | EN: to thrust something quickly into a liquid or, in sports, to forcefully push a ball through the hoop in basketball | ÖRNEK: The rookie managed to dunk the ball on his first attempt during practice.
+25189 | duplex | adjective | B2 | #1/1 | TR: çift, iki katlı | EN: having two parts or units; consisting of two connected parts | ÖRNEK: The apartment complex includes several duplex units for families.
+21619 | duplicate | verb | B1 | #1/1 | TR: kopyasını yapmak, çoğaltmak | EN: to make an exact copy of something | ÖRNEK: The assistant will duplicate the contract for both parties.
+21621 | duplicative | adjective | C1 | #1/1 | TR: tekrarlayıcı, yinelenen | EN: characterized by unnecessary repetition or duplication | ÖRNEK: The committee's recommendations were largely duplicative of previous suggestions.
+13912 | durability | noun | B2 | #1/1 | TR: dayanıklılık | EN: the ability of an object or material to withstand wear, pressure, or damage over time | ÖRNEK: The chair's durability makes it suitable for daily use.
+13911 | durable | adjective | B2 | #1/1 | TR: dayanıklı, sağlam | EN: able to withstand wear, pressure, or damage over time | ÖRNEK: The backpack is made of durable fabric that resists tearing.
+23031 | dusk | noun | B1 | #1/1 | TR: alacakaranlık | EN: the period of time after sunset when the sky is partially illuminated but the sun is below the horizon | ÖRNEK: We walked home at dusk after the soccer game.
+742 | dust | verb | A2 | #1/2 | TR: toz almak, temizlemek | EN: to remove dust or dirt from a surface | ÖRNEK: She dusted the coffee table every morning.
+743 | dust | verb | B1 | #2/2 | TR: toz serpmek, kaplamak | EN: to apply a fine powder or dust to something | ÖRNEK: The chef dusted the pastry with cocoa powder.
+17524 | dutiful | adjective | B2 | #1/1 | TR: vazifeşinas, görevine bağlı, itaatkâr | EN: showing a strong sense of duty and obedience; performing one's responsibilities faithfully | ÖRNEK: The dutiful student always completes his homework on time.
+17525 | dutifully | adverb | B1 | #1/1 | TR: görev bilinciyle, vazifeşinasça, itaatle | EN: in a manner that shows a sense of duty or responsibility | ÖRNEK: She dutifully cleaned the kitchen after dinner every night.
+14266 | dwarf | noun | B2 | #1/1 | TR: kısa boylu insan, cüce | EN: a person of unusually short stature, often used for mythological or fantasy beings | ÖRNEK: The garden gnome is a small dwarf statue made of stone.
+14267 | dwarf | verb | B2 | #1/1 | TR: küçültmek, gölgede bırakmak | EN: to cause someone or something to seem less important, impressive, or large in comparison with something else | ÖRNEK: Her calm voice dwarfs the loud arguments around the table.
+4690 | dwell | verb | B1 | #1/1 | TR: yaşamak, ikamet etmek | EN: to live in or at a particular place; to reside permanently or for a long period | ÖRNEK: The monks dwell in a quiet monastery near the river.
+26930 | dwell on | phrasal_verb | C1 | #1/1 | TR: (üzücü bir şey üzerinde) durmak, kafaya takmak | EN: to keep thinking or talking about something, especially something bad | ÖRNEK: Don't dwell on your mistakes.
+4691 | dweller | noun | B1 | #1/1 | TR: ikamet eden, sakin | EN: a person who lives in a particular place | ÖRNEK: The mountain dweller lives in a small cabin.
+4692 | dwelling | noun | B1 | #1/1 | TR: konut, ikamet yeri | EN: a place where someone lives; a house, apartment, or other residence | ÖRNEK: The new housing project provides affordable dwellings for low-income families.
+10621 | dye | noun | B1 | #1/1 | TR: boya | EN: a substance used to add color to materials such as fabric, hair, or food | ÖRNEK: The store sells a variety of fabric dyes for home projects.
+10622 | dye | verb | B1 | #1/1 | TR: boyamak | EN: to apply a colored substance to something in order to change its colour | ÖRNEK: She dyes her hair a new colour every summer.
+10623 | dyeing | noun | B1 | #1/1 | TR: boyama, renklendirme | EN: the process of applying dye to material such as fabric, hair, or food to change its colour | ÖRNEK: The school chemistry lab demonstrated basic dyeing techniques for students.
+10624 | dyer | noun | B2 | #1/1 | TR: boyacı | EN: a person who applies dye to cloth or other materials | ÖRNEK: The small town's dyer has been coloring fabrics for generations.
+7661 | dynamically | adverb | C1 | #1/1 | TR: dinamik olarak | EN: in a manner that involves constant change, activity, or progress; often used to describe processes that adapt or respond in real time | ÖRNEK: The app dynamically changes its layout depending on screen size.
+7662 | dynamics | noun | B2 | #1/1 | TR: dinamik, dinamikler | EN: the branch of physics concerned with the forces and motion of objects | ÖRNEK: The professor introduced the basics of dynamics in the first lecture.
+7664 | dynamism | noun | C1 | #1/1 | TR: canlılık, dinamizm, hareketlilik | EN: the quality of being energetic and full of vigorous activity; the tendency for change and development in a system or organization | ÖRNEK: The new manager brought dynamism to the department, improving morale quickly.
+11435 | dynamite | noun | B2 | #1/1 | TR: dinamit | EN: an explosive consisting of nitroglycerin mixed with an absorbent material such as sawdust or kieselguhr | ÖRNEK: The miners placed dynamite in the tunnel to break the rock.
+11436 | dynamite | verb | B2 | #1/1 | TR: patlatmak, dinamitle yok etmek | EN: to explode or destroy something using dynamite | ÖRNEK: The crew dynamited the wall to create a new entrance.

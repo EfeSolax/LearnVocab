@@ -1,0 +1,100 @@
+9028 | optimism | noun | B2 | #1/1 | TR: iyimserlik | EN: the tendency to expect the best possible outcome or to see the positive side of things | ÖRNEK: Optimism helps people cope with everyday stress.
+9029 | optimistic | adjective | B2 | #1/1 | TR: iyimser | EN: showing a tendency to expect the best possible outcome or to see the positive side of things | ÖRNEK: She feels optimistic about the upcoming exam and studies hard.
+17102 | option | noun | B1 | #1/2 | TR: seçenek, tercih | EN: a thing that is or may be chosen; a possibility or alternative that can be selected | ÖRNEK: You can choose any option from the menu.
+17103 | option | noun | C1 | #2/2 | TR: opsiyon | EN: a contract that gives the holder the right, but not the obligation, to buy or sell an asset at a predetermined price within a set time period | ÖRNEK: The trader bought a call option on the tech company's stock.
+27287 | or | conjunction | A1 | #1/3 | TR: veya, ya da | EN: used to connect different possibilities | ÖRNEK: Do you want tea or coffee?
+27288 | or | conjunction | A1 | #2/3 | TR: yoksa, aksi hâlde | EN: used to say what will happen if something is not done | ÖRNEK: Hurry up, or we'll be late.
+27289 | or | conjunction | A1 | #3/3 | TR: (olumsuzda) ne de | EN: used after a negative to mean "and not" | ÖRNEK: I don't eat meat or fish.
+14184 | oral | adjective | B1 | #1/2 | TR: sözlü | EN: relating to the mouth or spoken communication rather than written | ÖRNEK: The teacher announced an oral test for next week.
+14185 | oral | adjective | B1 | #2/2 | TR: ağızla ilgili, ağız içinde bulunan | EN: situated in or affecting the mouth | ÖRNEK: She brushed her teeth to maintain good oral health.
+17827 | orange | adjective | A1 | #1/1 | TR: turuncu | EN: of a hue resembling that of a ripe orange fruit; between red and yellow in the visible spectrum. | ÖRNEK: The orange balloon floated above the crowd.
+17828 | orange | noun | A2 | #1/1 | TR: portakal | EN: a citrus fruit with a thick rind and juicy, sweet-tart flesh | ÖRNEK: I bought a few oranges for the picnic.
+20578 | orchestra | noun | B2 | #1/1 | TR: orkestra | EN: a large group of musicians playing many different instruments together | ÖRNEK: She plays the violin in an orchestra.
+1737 | order | noun | A2 | #1/3 | TR: düzen, sıra, düzenleme | EN: a particular arrangement or sequence of items or events | ÖRNEK: The books on the shelf are in alphabetical order.
+1738 | order | noun | A2 | #2/3 | TR: emir, talimat | EN: a directive given by a person in authority to be obeyed | ÖRNEK: The judge gave an order to release the detained student.
+1739 | order | noun | A2 | #3/3 | TR: sipariş, talep edilen ürün | EN: a request to purchase goods or services, typically recorded by a seller | ÖRNEK: He called the store to make an order for fresh vegetables.
+1740 | order | verb | A2 | #1/3 | TR: sipariş etmek | EN: to request goods or services to be delivered, typically by a seller or provider | ÖRNEK: I will order a new laptop next week.
+1741 | order | verb | A2 | #2/3 | TR: emretmek, emir vermek | EN: to give an instruction or directive that must be followed | ÖRNEK: The captain ordered the crew to lower the sails.
+1742 | order | verb | B1 | #3/3 | TR: düzenlemek, sıralamak | EN: to arrange or organize items or events in a particular sequence or structure | ÖRNEK: She ordered the documents before the meeting.
+1168 | ordinary | adjective | B1 | #1/1 | TR: sıradan, olağan | EN: conforming to the usual standard; not special or unusual | ÖRNEK: The restaurant offers ordinary meals at reasonable prices.
+18598 | organ | noun | B1 | #1/3 | TR: vücut organı, iç organ | EN: a distinct part of an organism that performs a specific function, such as the heart or liver | ÖRNEK: The doctor explained how each organ works in the body.
+18599 | organ | noun | B2 | #2/3 | TR: organ, kurul, merci | EN: an organization or body of people with a particular purpose, especially a public or governmental one | ÖRNEK: The organ responsible for education sets national curriculum standards.
+18600 | organ | noun | B1 | #3/3 | TR: org, klavye çalgısı | EN: a large keyboard musical instrument that produces sound by air flowing through pipes or electronic means | ÖRNEK: During the recital, the audience admired the rich sound of the organ.
+18987 | organic | adjective | B1 | #1/1 | TR: organik | EN: relating to or derived from living matter; not made with artificial chemicals or processes | ÖRNEK: Organic vegetables are sold at the local market.
+6910 | organization | noun | A2 | #1/2 | TR: kurum, kuruluş | EN: a structured group of people with a specific purpose or activity | ÖRNEK: The university's research organization received a major grant this year.
+6911 | organization | noun | B1 | #2/2 | TR: düzen, örgütlenme | EN: the act or result of arranging things systematically | ÖRNEK: She praised his good organization of the workshop schedule.
+6912 | organizational | adjective | B2 | #1/2 | TR: örgütsel, organizasyonla ilgili | EN: relating to the way an organization is structured or managed | ÖRNEK: The university introduced a new organizational chart for its departments.
+6913 | organizational | adjective | B1 | #2/2 | TR: kurumsal, bir kuruma ait | EN: pertaining to a specific organization, especially in a corporate or institutional context | ÖRNEK: The organizational policy was distributed to every employee.
+6907 | organize | verb | B1 | #1/1 | TR: düzenlemek, tertip etmek | EN: to arrange or systematize items, tasks, or people in a structured way | ÖRNEK: She organized her desk before the exam started.
+6914 | organized | adjective | B1 | #1/2 | TR: düzenli, tertipli | EN: arranged or structured in a systematic way; having order and method. | ÖRNEK: The classroom was organized with desks in neat rows.
+6915 | organized | adjective | C1 | #2/2 | TR: örgütlü | EN: connected with an organized group, especially in the context of illegal activities. | ÖRNEK: The city has a high rate of organized crime involving drug trafficking.
+6916 | organizer | noun | B1 | #1/1 | TR: düzenleyici, planlayıcı | EN: a person or thing that arranges or coordinates activities, items, or information | ÖRNEK: The conference organizer sent out the schedule to all participants.
+10368 | oriental | adjective | B2 | #1/1 | TR: doğuya ait, doğu kökenli | EN: relating to the countries, peoples, or cultures of the Eastern world, especially Asia. | ÖRNEK: She bought an Oriental carpet for her new apartment.
+10371 | orientation | noun | B1 | #1/2 | TR: yön, yönelim | EN: the position or direction of something relative to a reference point | ÖRNEK: The compass helps determine the orientation of the trail.
+10372 | orientation | noun | B2 | #2/2 | TR: tanıtım, oryantasyon | EN: a program or session that introduces newcomers to an organization, institution, or environment | ÖRNEK: All freshmen must attend orientation before classes begin.
+2980 | origin | noun | B2 | #1/2 | TR: köken, kaynak | EN: the point or place where something begins or is derived from | ÖRNEK: The origin of the river is high in the mountains.
+2981 | origin | noun | B1 | #2/2 | TR: başlangıç, doğuş | EN: the point in time or space where something first appears or starts | ÖRNEK: He traced his family's origin to a small village in Italy.
+2983 | original | adjective | A2 | #1/2 | TR: ilk, başlangıç, en eski | EN: existing or occurring at the beginning; the first of its kind | ÖRNEK: The original manuscript dates back to the 12th century.
+2982 | original | adjective | B2 | #2/2 | TR: gerçek, özgün, taklit olmayan | EN: not derived from something else; genuine and not a copy | ÖRNEK: The original manuscript was discovered in a hidden archive.
+2984 | original | noun | B2 | #1/1 | TR: orijinal, özgün eser | EN: the first or earliest form of something from which copies are made | ÖRNEK: The original was discovered in a small attic in Paris.
+2986 | originally | adverb | B1 | #1/1 | TR: başlangıçta, aslen | EN: in the beginning; at first; before any later changes | ÖRNEK: The festival was originally a small local gathering.
+2987 | originate | verb | B2 | #1/1 | TR: kaynaklanmak, ortaya çıkmak | EN: to begin or arise from a particular source or cause | ÖRNEK: The custom originates from a centuries-old festival in the village.
+20353 | other | adjective | A1 | #1/1 | TR: diğer, başka | EN: additional; different from the one already mentioned | ÖRNEK: Where are the other children?
+21093 | otherwise | adverb | B2 | #1/1 | TR: aksi takdirde, başka bir şekilde | EN: in a different way or under different circumstances; if not | ÖRNEK: You need to submit the form today, otherwise it will be rejected.
+27159 | ought | modal_verb | B1 | #1/1 | TR: (ought to) -meli, -malı (tavsiye, görev) | EN: used to say what is the right thing to do | ÖRNEK: You ought to apologize.
+27240 | our | determiner | A1 | #1/1 | TR: bizim | EN: belonging to or connected with the speaker and another person or other people | ÖRNEK: Our house is near the sea.
+27188 | ours | pronoun | A2 | #1/1 | TR: bizimki | EN: used to refer to something that belongs to the speaker and another person or other people | ÖRNEK: That table is ours.
+27200 | ourselves | pronoun | A2 | #1/2 | TR: kendimizi, kendimize (dönüşlü) | EN: used as the object of a verb or preposition when the speaker and others are both the subject and the object | ÖRNEK: We enjoyed ourselves at the party.
+27201 | ourselves | pronoun | A2 | #2/2 | TR: kendimiz (vurgu için); kendi kendimize | EN: used to emphasize "we", or to mean "alone, without help" | ÖRNEK: We built the house ourselves.
+20354 | out | adverb | A1 | #1/2 | TR: dışarı, dışarıda | EN: away from the inside of a place | ÖRNEK: She went out to buy some milk.
+20355 | out | adverb | A1 | #2/2 | TR: evde değil, dışarıda | EN: not at home or at work | ÖRNEK: I called you, but you were out.
+15087 | out | preposition | A1 | #1/1 | TR: dışarı | EN: to indicate movement or position away from the inside or center of something | ÖRNEK: She walked out of the classroom after the lecture ended.
+11915 | outbreak | noun | B2 | #1/1 | TR: salgın, yayılma, ani artış | EN: a sudden increase in the occurrence of a disease or an undesirable event | ÖRNEK: The town experienced an outbreak of flu last winter.
+8801 | outcome | noun | B2 | #1/1 | TR: sonuç, netice | EN: the final result of a process, event, or action | ÖRNEK: The team's effort produced a clear outcome after the match.
+12241 | outdoor | adjective | B1 | #1/1 | TR: açık hava, dış mekân | EN: relating to or situated in the open air, outside a building | ÖRNEK: The school organized an outdoor picnic for the graduating class.
+20484 | outdoors | adverb | B1 | #1/1 | TR: dışarıda, açık havada | EN: outside, not in a building | ÖRNEK: The children love playing outdoors.
+20579 | outer | adjective | B2 | #1/1 | TR: dış | EN: on the outside of something; far from the centre | ÖRNEK: Remove the outer leaves of the cabbage.
+20580 | outfit | noun | B2 | #1/1 | TR: kıyafet, takım | EN: a set of clothes worn together, especially for a special occasion | ÖRNEK: She bought a new outfit for the wedding.
+20761 | outing | noun | C1 | #1/1 | TR: gezi, kısa gezinti | EN: a short trip taken for pleasure, usually with a group | ÖRNEK: The class went on an outing to the zoo.
+14657 | outlet | noun | B1 | #1/3 | TR: elektrik prizi, duvar soketi | EN: a point in an electrical system where current can be drawn to power devices | ÖRNEK: She plugged the toaster into the kitchen outlet.
+14658 | outlet | noun | B1 | #2/3 | TR: alışveriş mağazası, indirimli satış yeri | EN: a retail store that sells goods, often at reduced prices | ÖRNEK: The family visited the outlet mall during the weekend.
+14659 | outlet | noun | B2 | #3/3 | TR: duygusal boşalma, rahatlama yolu | EN: a means of expressing or releasing strong emotions or energy | ÖRNEK: She uses music as an outlet for stress.
+4982 | outline | noun | B1 | #1/2 | TR: dış hat, silüet | EN: the outer edge or shape of something, especially when seen against a contrasting background | ÖRNEK: The outline of the building could be seen against the bright sky.
+4983 | outline | noun | B2 | #2/2 | TR: taslak, özet | EN: a brief summary or plan that presents the main points of a subject without detailed elaboration | ÖRNEK: The professor asked us to submit an outline of our final paper.
+4984 | outline | verb | B1 | #1/2 | TR: çizmek, hatlarını belirlemek | EN: to draw the outer edge or shape of something, showing its main form | ÖRNEK: She outlined the basic shape of the vase in pencil.
+4985 | outline | verb | B2 | #2/2 | TR: özetlemek, ana hatlarını vermek | EN: to give a brief summary or the main points of something | ÖRNEK: Please outline the key ideas of the chapter for the exam.
+9839 | outlook | noun | B2 | #1/3 | TR: gelecek beklentisi, gidişat | EN: the expected future condition or direction of something | ÖRNEK: The market outlook looks steady this quarter.
+9840 | outlook | noun | B1 | #2/3 | TR: bakış açısı, perspektif | EN: a particular way of considering or viewing something | ÖRNEK: His outlook on politics is quite cynical.
+9841 | outlook | noun | B2 | #3/3 | TR: hava durumu tahmini | EN: a forecast of weather conditions for a particular period | ÖRNEK: The morning outlook shows clear skies.
+10501 | output | noun | B2 | #1/1 | TR: çıktı, üretim | EN: the amount of something produced by a system, process, or person | ÖRNEK: The printer's output was clear and easy to read.
+7324 | outrage | noun | B2 | #1/2 | TR: öfke, kızgınlık | EN: a strong feeling of anger or indignation caused by something perceived as unjust or offensive | ÖRNEK: The news of the accident caused great outrage among the locals.
+7325 | outrage | noun | C1 | #2/2 | TR: hakaret, skandal | EN: an act or statement that is shocking, offensive, or scandalous | ÖRNEK: The court ruled that the graffiti was an outrage against public decency.
+7326 | outrage | verb | B2 | #1/1 | TR: öfkelendirmek, kızdırmak | EN: to cause strong anger or indignation in someone | ÖRNEK: The news outraged many people in the city.
+15669 | outside | adjective | A2 | #1/1 | TR: dışarıdaki, dış | EN: situated or located on the outer side of something; not inside. | ÖRNEK: The researchers measured the outside humidity to compare with indoor levels.
+15670 | outside | adverb | A2 | #1/1 | TR: dışarıda, dışarı, dışarıya | EN: to or at a location that is not inside; beyond the limits of an interior space | ÖRNEK: The cat is sitting outside.
+15671 | outside | noun | A2 | #1/1 | TR: dış kısım, dış yüzey | EN: the outer part or surface of something | ÖRNEK: The outside of the house is painted white.
+15672 | outside | preposition | A2 | #1/1 | TR: dışında, dışarıda | EN: indicating a location or position that is not within a particular area or object; beyond the limits of something. | ÖRNEK: The cat is sitting outside the door.
+20762 | outsider | noun | C1 | #1/2 | TR: yabancı, dışarıdan biri | EN: a person who is not accepted as a member of a group | ÖRNEK: I always felt like an outsider at school.
+20763 | outsider | noun | C1 | #2/2 | TR: şansı az görülen (aday) | EN: a person or team that is not expected to win | ÖRNEK: The horse was a complete outsider.
+11848 | outstanding | adjective | B2 | #1/2 | TR: olağanüstü, mükemmel | EN: exceptionally good; superior to others in quality or performance | ÖRNEK: The professor praised the student's outstanding essay on climate change.
+11849 | outstanding | adjective | B1 | #2/2 | TR: ödenmemiş, henüz ödenmesi gereken | EN: not yet settled or paid; remaining to be dealt with | ÖRNEK: The bank sent a reminder about the customer's outstanding loan.
+20426 | oven | noun | A2 | #1/1 | TR: fırın | EN: the part of a cooker, shaped like a box with a door, used for baking or roasting food | ÖRNEK: Bake the cake in the oven for forty minutes.
+12354 | over | adverb | A2 | #1/2 | TR: tamamlanmış, bitti | EN: finished or ended; no longer continuing | ÖRNEK: The movie is over, so we can go home now.
+12353 | over | adverb | B1 | #2/2 | TR: tekrar, baştan | EN: again or repeatedly; often used in the phrase "over and over" | ÖRNEK: She read the chapter over and over to understand it.
+12355 | over | preposition | A2 | #1/1 | TR: üstünde, üzerinde | EN: indicating a position higher than and directly above something, often covering it partially or completely | ÖRNEK: The cat jumped over the fence and landed safely.
+16698 | overall | adjective | B1 | #1/1 | TR: genel, bütün, tüm | EN: relating to or considering everything or the whole situation | ÖRNEK: The overall cost of the trip was higher than expected.
+16699 | overall | adverb | B2 | #1/1 | TR: genel olarak, bütün olarak | EN: to a whole or in general; considering everything together | ÖRNEK: Overall, the experiment showed promising results.
+2833 | overcome | verb | B2 | #1/1 | TR: üstesinden gelmek, aşmak | EN: to successfully deal with or gain control over something difficult | ÖRNEK: She overcame the language barrier quickly.
+18271 | overjoyed | adjective | C1 | #1/1 | TR: çok sevinçli | EN: feeling great happiness or delight | ÖRNEK: She was overjoyed when she saw her newborn baby.
+9189 | overlook | verb | B1 | #1/2 | TR: gözden kaçırmak, fark etmemek | EN: to fail to notice or consider something; to miss seeing something. | ÖRNEK: The teacher overlooked the student's mistake in the homework.
+9190 | overlook | verb | B1 | #2/2 | TR: -e bakmak, tepeden görmek, yukarıdan görmek | EN: to have a view over something from a higher position; to look out over an area. | ÖRNEK: The lighthouse overlooks the harbor and guides ships at night.
+12356 | overly | adverb | B2 | #1/1 | TR: aşırı derecede | EN: to a greater degree than is desirable or appropriate; excessively | ÖRNEK: The soup tasted overly salty for my liking.
+13784 | overnight | adjective | B1 | #1/2 | TR: gece boyunca süren, geceyle ilgili | EN: lasting for the duration of the night; extending through the night | ÖRNEK: The hotel offers an overnight package that includes dinner and breakfast.
+13783 | overnight | adjective | B2 | #2/2 | TR: bir gecede gerçekleşen, ani | EN: occurring or completed within a single night; sudden and rapid | ÖRNEK: The storm caused an overnight flood that damaged many homes.
+13785 | overnight | adverb | A2 | #1/1 | TR: bir gece boyunca | EN: during the course of a single night; for the duration of one night | ÖRNEK: The conference attendees will stay overnight at the hotel.
+20581 | overseas | adjective | B2 | #1/1 | TR: yurt dışı (-ndan), denizaşırı | EN: coming from or connected with other countries | ÖRNEK: The university has many overseas students.
+20582 | overseas | adverb | B2 | #1/1 | TR: yurt dışına, yurt dışında | EN: in or to a foreign country | ÖRNEK: She works overseas.
+18972 | oversee | verb | B2 | #1/1 | TR: denetlemek, gözetmek, yönetmek | EN: to supervise, manage, or direct the work or activities of someone or something | ÖRNEK: The professor will oversee the students' laboratory work this semester.
+13284 | overturn | verb | B2 | #1/2 | TR: devirmek, tersine çevirmek | EN: to turn something upside down or to cause it to fall over | ÖRNEK: The strong wind overturned the small boat near the dock.
+13285 | overturn | verb | C1 | #2/2 | TR: iptal etmek, bozulmasını sağlamak | EN: to invalidate or cancel something, especially a legal or official ruling | ÖRNEK: The appellate court overturned the lower court's decision.
+6222 | overwhelm | verb | B2 | #1/2 | TR: bunaltmak, boğmak, alt etmek | EN: to cause someone to feel great stress or to be unable to cope with something | ÖRNEK: The deadline overwhelmed the interns, causing many mistakes.

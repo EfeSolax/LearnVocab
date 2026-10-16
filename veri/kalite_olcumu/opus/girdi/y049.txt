@@ -1,0 +1,100 @@
+16354 | network | noun | A2 | #1/2 | TR: iletişim ağı | EN: a system of interconnected computers or devices that share resources and data | ÖRNEK: The campus computer network provides fast internet for all students.
+16355 | network | noun | B1 | #2/2 | TR: sosyal ağ | EN: a group of people connected by social relationships or common interests | ÖRNEK: Many students use social networks to share study resources.
+8284 | neutral | adjective | B1 | #1/1 | TR: tarafsız, nesnel | EN: not taking sides; not supporting or favoring any particular side in a conflict or dispute | ÖRNEK: The news anchor tried to stay neutral when covering the election results.
+15143 | never | adverb | A1 | #1/1 | TR: asla | EN: at no time; not ever | ÖRNEK: I never drink coffee in the morning.
+18996 | new | adjective | A2 | #1/2 | TR: yeni, yeni ortaya çıkan | EN: existing for the first time; having recently come into existence or use | ÖRNEK: The new student joined the class on Monday.
+18997 | new | adjective | B1 | #2/2 | TR: deneyimsiz, yeni başlayan | EN: lacking experience or knowledge in a particular field or activity | ÖRNEK: The new intern struggled with the complex spreadsheet at first.
+18998 | newly | adverb | B1 | #1/1 | TR: yeni, henüz, yakın zamanda | EN: in a recent or fresh manner; having just become new | ÖRNEK: The company launched a newly designed website last week.
+15397 | news | noun | A1 | #1/1 | TR: haber | EN: information about recent events that is reported by media outlets | ÖRNEK: The newspaper printed the news early this morning.
+20752 | newsletter | noun | C1 | #1/1 | TR: bülten | EN: a report with news about an organization, sent regularly to its members | ÖRNEK: Sign up for our weekly newsletter.
+17895 | newspaper | noun | A1 | #1/1 | TR: gazete | EN: a printed publication containing news, articles, and advertisements, typically issued daily or weekly | ÖRNEK: She bought a newspaper at the corner kiosk.
+15182 | next | adjective | A2 | #1/1 | TR: takip eden, bir sonraki | EN: referring to the person or thing that follows immediately after the one mentioned | ÖRNEK: Please turn to the next slide for more details.
+15183 | next | adverb | A1 | #1/1 | TR: sonra, bir sonraki olarak | EN: immediately after; in the following position or time | ÖRNEK: What should we do next?
+20856 | next | noun | B1 | #1/1 | TR: sonraki (kişi, şey) | EN: the next person or thing | ÖRNEK: Next, please!
+14644 | nice | adjective | A2 | #1/2 | TR: hoş, güzel | EN: pleasing or attractive in appearance, manner, or quality | ÖRNEK: The garden looks nice after the spring rain.
+14645 | nice | adjective | A1 | #2/2 | TR: kibar, nazik | EN: showing kindness, consideration, or good manners toward others | ÖRNEK: He always says nice things when someone makes a mistake.
+7910 | niche | noun | B2 | #1/2 | TR: özel alan, niş pazar | EN: a specialized but small segment of the market for a particular product or service | ÖRNEK: Many startups target a niche market to avoid direct competition.
+7911 | niche | noun | B1 | #2/2 | TR: niş, duvar oyuğu | EN: a shallow recess, especially one in a wall, used for displaying objects or for a specific purpose | ÖRNEK: The ancient temple had several wall niches for holding candles.
+15233 | night | noun | A1 | #1/1 | TR: gece, karanlık zaman | EN: the period of darkness between sunset and sunrise | ÖRNEK: The children went to bed early last night.
+22001 | nightclub | noun | B1 | #1/1 | TR: gece kulübü | EN: a place that operates late at night and provides music, dancing, and drinks for entertainment | ÖRNEK: The friends planned to visit a nightclub after dinner.
+15237 | nightlife | noun | B2 | #1/1 | TR: gece hayatı | EN: the social activities and entertainment that take place in a city or area during the night | ÖRNEK: Many young people enjoy the nightlife in the city center.
+5154 | nightmare | noun | A2 | #1/1 | TR: kabus | EN: a frightening or unpleasant dream that causes strong feelings of fear, anxiety, or distress | ÖRNEK: I woke up sweating after a terrible nightmare about falling.
+27249 | no | determiner | A1 | #1/2 | TR: hiç … yok, hiçbir | EN: not any; not a | ÖRNEK: There's no milk in the fridge.
+27250 | no | determiner | A1 | #2/2 | TR: (yasak bildirir) … yasaktır, … yok | EN: used on signs to say that something is not allowed | ÖRNEK: No smoking.
+27312 | no | exclamation | A1 | #1/1 | TR: hayır, yok | EN: used to give a negative answer | ÖRNEK: "Are you tired?" "No, I'm fine."
+1138 | noble | adjective | B2 | #1/2 | TR: soylu, asil, yüksek rütbeli | EN: having a high social rank or belonging to the aristocracy | ÖRNEK: The king awarded the knight a noble title for bravery.
+1139 | noble | adjective | B2 | #2/2 | TR: erdemli, ahlaki açıdan üstün | EN: having high moral principles and integrity | ÖRNEK: The teacher praised the student for his noble behavior in class.
+27222 | nobody | pronoun | A2 | #1/1 | TR: hiç kimse | EN: no person | ÖRNEK: Nobody knows the answer.
+1145 | nod | verb | B1 | #1/1 | TR: başını sallamak | EN: to move one's head up and down as a sign of agreement or acknowledgement | ÖRNEK: The student nodded when the teacher asked if anyone understood the question.
+1146 | noise | noun | A2 | #1/1 | TR: ses, gürültü | EN: any unwanted or disruptive sound, especially one that interferes with hearing or concentration | ÖRNEK: The baby cried, creating a loud noise in the quiet room.
+1148 | noisy | adjective | A1 | #1/1 | TR: gürültülü | EN: producing or characterized by a lot of loud sounds | ÖRNEK: The library is quiet, but the hallway outside is noisy.
+20753 | nominate | verb | C1 | #1/1 | TR: aday göstermek | EN: to formally suggest someone for a job, position or prize | ÖRNEK: She was nominated for an Oscar.
+20754 | nomination | noun | C1 | #1/1 | TR: adaylık, aday gösterme | EN: the act of officially suggesting someone for a job or prize | ÖRNEK: The film received six nominations.
+20755 | nominee | noun | C1 | #1/1 | TR: aday | EN: a person who has been formally suggested for a job or prize | ÖRNEK: She is a nominee for best actress.
+27214 | none | pronoun | B1 | #1/1 | TR: hiçbiri, hiç | EN: not one of a group of people or things, or not any of an amount | ÖRNEK: None of my friends came.
+18379 | nonsense | noun | B1 | #1/1 | TR: saçma, anlamsız şey | EN: something that has no meaning or makes no sense | ÖRNEK: The child laughed at the teacher's nonsense story.
+8523 | noon | noun | A2 | #1/1 | TR: öğle | EN: the middle of the day; the time around 12:00 PM | ÖRNEK: The school bell rings at noon every day.
+20480 | nor | adverb | B1 | #1/1 | TR: … de değil | EN: used before a verb to add another negative statement | ÖRNEK: I don't eat meat, nor do I eat fish.
+20481 | nor | conjunction | B1 | #1/1 | TR: ne de (neither … nor) | EN: used after 'neither' to join two negative ideas | ÖRNEK: She speaks neither French nor German.
+7942 | norm | noun | B2 | #1/2 | TR: kural, standart | EN: a standard or typical example that is used as a basis for comparison or behavior | ÖRNEK: The company follows the industry norm for product testing.
+7943 | norm | noun | C1 | #2/2 | TR: ortalama, istatistiksel norm | EN: the average value in a set of data, used as a reference point | ÖRNEK: The test scores were plotted against the class norm.
+7947 | normal | adjective | A2 | #1/2 | TR: olağan, sıradan, tipik | EN: conforming to the usual, typical, or expected standard; not unusual or abnormal | ÖRNEK: The weather today is normal for this time of year.
+7948 | normal | adjective | C1 | #2/2 | TR: normal, çan eğrisi şeklinde | EN: relating to or denoting a probability distribution that is symmetric about the mean, often used in statistics | ÖRNEK: In many natural phenomena, values tend to cluster around a normal distribution.
+7949 | normal | noun | B2 | #1/1 | TR: norm, olağan durum | EN: a standard or typical condition that is considered usual or expected | ÖRNEK: Temperatures are above normal for this time of year.
+7954 | normally | adverb | B1 | #1/1 | TR: genellikle | EN: in a usual or typical way; under normal conditions | ÖRNEK: The train normally arrives at 8:00 a.m. on weekdays.
+15521 | north | adjective | A1 | #1/1 | TR: kuzey | EN: situated to the north; relating to the north direction | ÖRNEK: The park is on the north side of the street.
+15522 | north | adverb | A2 | #1/1 | TR: kuzeye doğru | EN: to or toward the north; in a northern direction | ÖRNEK: The river flows north through the valley.
+15523 | north | noun | A2 | #1/1 | TR: kuzey | EN: the direction that is opposite to south; the point on the horizon toward which a compass needle points. | ÖRNEK: The map shows the north at the top.
+15526 | northern | adjective | B1 | #1/1 | TR: kuzey, kuzeye ait | EN: situated in, relating to, or characteristic of the north | ÖRNEK: The northern coast is known for its cold waters.
+1149 | nose | noun | A1 | #1/1 | TR: burun | EN: the part of the face that contains the nostrils and is used for smelling and breathing | ÖRNEK: She touched her nose gently after sneezing.
+20337 | not | adverb | A1 | #1/1 | TR: değil, -me, -ma (olumsuzluk) | EN: used to make a sentence negative | ÖRNEK: I am not tired.
+12718 | notable | adjective | B2 | #1/1 | TR: dikkate değer, öne çıkan | EN: worthy of attention or notice because of being remarkable or important. | ÖRNEK: The museum displayed a notable painting from the 18th century.
+12720 | notably | adverb | B2 | #1/1 | TR: özellikle, dikkate değer bir şekilde | EN: to a noticeable degree; especially; in a way that attracts attention | ÖRNEK: The professor was notably enthusiastic during the lecture.
+12713 | note | noun | A2 | #1/3 | TR: kısa yazılı kayıt, not | EN: a brief written record of information or a reminder | ÖRNEK: I wrote a short note on the back of the paper.
+12714 | note | noun | B1 | #2/3 | TR: müzik notası, ses | EN: a single musical sound represented by a symbol on a staff | ÖRNEK: The violinist sustained a beautiful note throughout the piece.
+12715 | note | noun | A2 | #3/3 | TR: kağıt para, banknot | EN: a piece of paper money issued by a bank or government | ÖRNEK: He found a ten-dollar note on the sidewalk.
+12716 | note | verb | B1 | #1/1 | TR: dikkat etmek, kayda geçirmek | EN: to notice or record something, especially in writing or mentally | ÖRNEK: Please note that the office is closed on Monday.
+13884 | notebook | noun | A2 | #1/1 | TR: defter, not defteri | EN: a bound collection of paper pages for writing notes, ideas, or records | ÖRNEK: I bought a new notebook for my biology class.
+27223 | nothing | pronoun | A1 | #1/1 | TR: hiçbir şey | EN: not anything | ÖRNEK: There's nothing in the box.
+11493 | notice | noun | B2 | #1/1 | TR: duyuru, bildiri, ilan | EN: a formal written or printed announcement that gives information about something | ÖRNEK: The school sent a notice to all parents about the fire drill.
+11494 | notice | verb | A2 | #1/1 | TR: fark etmek, algılamak | EN: to become aware of something through the senses or the mind | ÖRNEK: She noticed a small crack on the window.
+20757 | notify | verb | C1 | #1/1 | TR: bildirmek, haber vermek | EN: to formally tell someone about something | ÖRNEK: Please notify us if you change your address.
+1152 | notion | noun | B2 | #1/2 | TR: fikir, kavram | EN: a general understanding or idea about something | ÖRNEK: Many students have a vague notion of how the exam will be structured.
+1153 | notion | noun | C1 | #2/2 | TR: inanç, kanaat | EN: a belief or opinion held by someone | ÖRNEK: She held the notion that hard work always leads to success.
+12349 | notorious | adjective | B2 | #1/1 | TR: adı çıkmış, kötü şöhretli | EN: widely known for some negative quality or wrongdoing | ÖRNEK: The city has a notorious traffic jam during rush hour.
+12848 | novel | adjective | B2 | #1/2 | TR: yeni, henüz görülmemiş | EN: being new or not previously experienced; not existing before. | ÖRNEK: The novel technology attracted a lot of media attention.
+12849 | novel | adjective | B2 | #2/2 | TR: özgün, yaratıcı | EN: characterized by originality and creativity; not derived from something else. | ÖRNEK: The novel theory challenged long-standing assumptions in physics.
+12850 | novel | noun | A2 | #1/1 | TR: roman | EN: a long fictional narrative which describes intimate human experiences, usually in prose form | ÖRNEK: The novel tells the story of a young woman's struggle for independence.
+12851 | novelist | noun | B2 | #1/1 | TR: roman yazarı | EN: a person who writes novels | ÖRNEK: She wants to become a novelist.
+15108 | now | adverb | A1 | #1/1 | TR: şimdi | EN: at the present time; at this moment | ÖRNEK: I will call you now.
+20482 | now | conjunction | B1 | #1/1 | TR: mademki, artık … olduğuna göre | EN: because of the fact that; since | ÖRNEK: Now that you're here, we can start.
+4769 | nowadays | adverb | B1 | #1/1 | TR: günümüzde | EN: at the present time; in the current period | ÖRNEK: Nowadays most teenagers use smartphones for communication.
+4567 | nowhere | adverb | B1 | #1/1 | TR: hiçbir yerde | EN: not in or to any place | ÖRNEK: We had nowhere to go.
+7024 | nuclear | adjective | B2 | #1/1 | TR: atom çekirdeğiyle ilgili, nükleer | EN: relating to the nucleus of an atom or to nuclear physics | ÖRNEK: Researchers measured the speed of particles after a nuclear collision.
+8760 | number | noun | A2 | #1/2 | TR: miktar, sayı, nicelik | EN: a mathematical object used to count, measure, or label items | ÖRNEK: The number of cars in the parking lot increased today.
+8761 | number | noun | A2 | #2/2 | TR: telefon numarası, iletişim numarası | EN: a sequence of digits assigned to a telephone line for identification | ÖRNEK: My office phone number changed last month.
+8762 | number | verb | B1 | #1/1 | TR: numaralandırmak, saymak | EN: to assign numbers to items or to count them | ÖRNEK: The librarian will number the new books for easy reference.
+8771 | numerous | adjective | B2 | #1/1 | TR: çok, sayısız, birçok | EN: existing in large numbers; many. | ÖRNEK: The museum displayed numerous paintings from the Renaissance era.
+2490 | nurse | noun | A1 | #1/1 | TR: sağlık çalışanı, hemşire | EN: a trained professional who provides medical care and support to patients in hospitals or other health-care settings | ÖRNEK: The nurse checked the patient's temperature every hour.
+20758 | nursery | noun | C1 | #1/2 | TR: kreş, anaokulu | EN: a place where young children are cared for while their parents are at work | ÖRNEK: Their son goes to a nursery three days a week.
+20759 | nursery | noun | C1 | #2/2 | TR: fidanlık | EN: a place where plants are grown and sold | ÖRNEK: We bought the trees from a local nursery.
+20577 | nursing | adjective | B2 | #1/1 | TR: bakım (evi), hemşirelik | EN: connected with caring for sick or old people | ÖRNEK: Her grandmother lives in a nursing home.
+11299 | nut | noun | A2 | #1/3 | TR: kuruyemiş | EN: a hard-shelled fruit of some trees or plants, typically edible and often eaten as a snack | ÖRNEK: I always keep a handful of nuts in my desk drawer.
+11300 | nut | noun | B2 | #2/3 | TR: somun | EN: a small metal fastener with a threaded hole, used with a bolt to secure objects together | ÖRNEK: The carpenter replaced the missing nut on the wooden bench.
+11301 | nut | noun | C1 | #3/3 | TR: çılgın, deli | EN: a person who behaves in an eccentric or wildly enthusiastic manner; also used informally to describe something extremely enthusiastic or eccentric | ÖRNEK: He is known as a nut in the office because of his bizarre jokes.
+14333 | nutrition | noun | B2 | #1/1 | TR: beslenme | EN: the process of providing or obtaining the food necessary for health and growth | ÖRNEK: Good nutrition helps you stay healthy and energetic.
+13150 | obesity | noun | B2 | #1/1 | TR: obezite | EN: the condition of having an excessive amount of body fat, typically defined by a body mass index (BMI) of 30 or higher. | ÖRNEK: Obesity is a major public-health concern in many countries.
+2659 | obey | verb | B1 | #1/1 | TR: itaat etmek, uymak | EN: to follow the commands, rules, or instructions of someone in authority | ÖRNEK: The dog obeys its owner's commands during the training session.
+6116 | object | noun | A2 | #1/3 | TR: nesne, madde | EN: a material thing that can be seen and touched | ÖRNEK: The museum displayed a rare object from the 18th century.
+6115 | object | noun | B2 | #2/3 | TR: amaç, hedef | EN: a thing or goal that someone aims to achieve or attain | ÖRNEK: The committee set the reduction of waste as its main object.
+6117 | object | noun | B1 | #3/3 | TR: konu, mesele | EN: the subject or matter that is being considered or discussed | ÖRNEK: The budget deficit is the object of today's parliamentary debate.
+6118 | object | verb | B2 | #1/1 | TR: itiraz etmek, karşı çıkmak | EN: to express or feel disapproval or opposition to something | ÖRNEK: They object to loud music in the library.
+6120 | objection | noun | B2 | #1/2 | TR: itiraz | EN: a statement of disagreement or disapproval, especially in a formal or legal context | ÖRNEK: The committee heard his objection and asked for clarification.
+6121 | objection | noun | B1 | #2/2 | TR: karşı çıkma | EN: the act of expressing a contrary opinion or resistance, often in a debate or discussion | ÖRNEK: She had an objection to the way the experiment was designed.
+6123 | objective | adjective | B2 | #1/1 | TR: nesnel, tarafsız | EN: describing something that is based on facts rather than personal feelings or opinions | ÖRNEK: The teacher asked for an objective description of the experiment.
+6124 | objective | noun | B2 | #1/1 | TR: amaç, hedef | EN: a specific goal or purpose that someone aims to achieve | ÖRNEK: The company defined its main objective for the next fiscal year.
+3888 | obligation | noun | B2 | #1/2 | TR: görev, sorumluluk | EN: a duty or commitment that a person is bound to perform or fulfill | ÖRNEK: He accepted the job because it came with a clear obligation to travel abroad.
+3889 | obligation | noun | C1 | #2/2 | TR: zorunluluk, mecburi şart | EN: a requirement that is imposed by law, rule, or contract | ÖRNEK: The new regulation creates an obligation for manufacturers to label allergens.
+3886 | oblige | verb | B2 | #1/2 | TR: zorunlu kılmak, birine bir şey yapmasını gerektirmek | EN: to require or compel someone to do something, often by law, duty, or a request | ÖRNEK: The new policy obliges all employees to wear identification badges.
+3887 | oblige | verb | C1 | #2/2 | TR: yardım etmek, birine iyilik yapmak | EN: to do a favor for someone; to be helpful or accommodating | ÖRNEK: Could you oblige me by sending the file before noon?
+1158 | observant | adjective | B2 | #1/1 | TR: dikkatli, gözlemci | EN: showing careful attention to details and being quick to notice things | ÖRNEK: The observant child quickly spotted the missing puzzle piece.

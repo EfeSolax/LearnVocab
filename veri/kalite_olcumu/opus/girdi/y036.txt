@@ -1,0 +1,100 @@
+10073 | heritage | noun | B2 | #1/1 | TR: kültürel miras | EN: the traditions, achievements, objects, and values that are passed down from previous generations within a society or group | ÖRNEK: The festival celebrates the local heritage with music and dance.
+8156 | hero | noun | A2 | #1/2 | TR: kahraman | EN: a person who is admired for courage, outstanding achievements, or noble qualities | ÖRNEK: The brave soldier returned home and was called a hero by his village.
+8157 | hero | noun | B1 | #2/2 | TR: başkahraman, başkarakter | EN: the main character in a story, play, or film, especially one who is admired or idealized | ÖRNEK: The novel's hero travels across continents in search of truth.
+8160 | heroine | noun | B2 | #1/1 | TR: kadın kahraman | EN: a woman admired for her courage, outstanding achievements, or noble qualities | ÖRNEK: The firefighter was praised as a heroine for saving the child.
+27187 | hers | pronoun | A2 | #1/1 | TR: onunki (kadın) | EN: used to refer to something that belongs to a woman, girl or female animal | ÖRNEK: The red car is hers.
+27196 | herself | pronoun | A2 | #1/2 | TR: kendini, kendine (kadın, dönüşlü) | EN: used as the object of a verb or preposition when a woman or girl is both the subject and the object | ÖRNEK: She bought herself a new dress.
+27197 | herself | pronoun | A2 | #2/2 | TR: kendisi (vurgu için); kendi kendine | EN: used to emphasize a female subject, or to mean "alone, without help" | ÖRNEK: She made the dress herself.
+2223 | hesitate | verb | B1 | #1/1 | TR: tereddüt etmek, duraksamak | EN: to pause before saying or doing something because of uncertainty or unwillingness | ÖRNEK: She hesitated before answering the simple question.
+27305 | hey | exclamation | A2 | #1/1 | TR: hey!, baksana! (dikkat çekmek için) | EN: used to get someone's attention, or to show surprise | ÖRNEK: Hey! Wait for me!
+27304 | hi | exclamation | A1 | #1/1 | TR: merhaba, selam (gündelik) | EN: an informal way of saying hello | ÖRNEK: Hi! How are you?
+929 | hidden | adjective | A2 | #1/1 | TR: gizli, saklı | EN: out of sight or not easily discovered; concealed | ÖRNEK: The cat hid under the couch, staying hidden from the dog.
+927 | hide | verb | A2 | #1/1 | TR: saklamak, saklanmak | EN: to put or keep out of sight; to conceal something from view or knowledge | ÖRNEK: She hides her diary under the mattress.
+13485 | hierarchy | noun | C1 | #1/1 | TR: hiyerarşi | EN: a system in which members of an organization or society are ranked according to relative status or authority | ÖRNEK: The school has a clear hierarchy of teachers and administrators.
+18314 | high | adjective | A1 | #1/1 | TR: yüksek, yüksek konumlu | EN: having a great vertical distance from the ground or a reference point; situated at a great height. | ÖRNEK: The tower is high and can be seen from miles away.
+18316 | high | adverb | A2 | #1/1 | TR: yukarıya, yükseğe | EN: to a great height; toward a higher position or level | ÖRNEK: The balloon floated high over the park.
+20553 | high | noun | B2 | #1/1 | TR: en yüksek seviye, zirve | EN: the highest level or number | ÖRNEK: Prices reached a new high this year.
+20706 | high-profile | adjective | C1 | #1/1 | TR: tanınmış, dikkat çeken | EN: receiving a lot of public attention | ÖRNEK: It was a high-profile case.
+13068 | highlight | noun | B1 | #1/1 | TR: en önemli kısım, doruk noktası | EN: the most important or outstanding part of something | ÖRNEK: The highlight of the trip was visiting the ancient ruins.
+13069 | highlight | verb | B2 | #1/1 | TR: vurgulamak, öne çıkarmak | EN: to give special attention to something so that it stands out or is easily noticed | ÖRNEK: The teacher highlighted the important dates on the board.
+18320 | highly | adverb | B2 | #1/1 | TR: çok, aşırı derecede | EN: to a great degree; very | ÖRNEK: The lecture was highly informative and kept the students engaged.
+9803 | highway | noun | B1 | #1/1 | TR: otoyol | EN: a main road, especially one that connects cities and is designed for fast traffic | ÖRNEK: The highway connects the two major cities in the region.
+12336 | hike | verb | B1 | #1/1 | TR: yürüyüş yapmak, uzun yürüyüşe çıkmak | EN: to walk a long distance, especially for pleasure or exercise, usually on trails or in the countryside | ÖRNEK: I like to hike on weekends when the weather is nice.
+20554 | hilarious | adjective | B2 | #1/1 | TR: çok komik | EN: extremely funny | ÖRNEK: The film was hilarious.
+17029 | hill | noun | A2 | #1/1 | TR: tepe | EN: a naturally raised area of land, smaller than a mountain | ÖRNEK: The children played on the small hill behind the school.
+27179 | him | pronoun | A1 | #1/1 | TR: onu, ona (erkek) | EN: used as the object of a verb or preposition to refer to a man, boy or male animal | ÖRNEK: I saw him yesterday.
+27194 | himself | pronoun | A2 | #1/2 | TR: kendini, kendine (erkek, dönüşlü) | EN: used as the object of a verb or preposition when a man or boy is both the subject and the object | ÖRNEK: He looked at himself in the mirror.
+27195 | himself | pronoun | A2 | #2/2 | TR: kendisi (vurgu için); kendi kendine | EN: used to emphasize a male subject, or to mean "alone, without help" | ÖRNEK: The president himself came to the opening.
+1909 | hint | noun | B1 | #1/1 | TR: ipucu, ima, işaret | EN: a small piece of information or suggestion that helps to understand or solve something | ÖRNEK: The crossword clue was a subtle hint about the answer.
+1910 | hint | verb | B1 | #1/1 | TR: ipucu vermek, ima etmek | EN: to give a small piece of information or suggestion that helps someone understand something | ÖRNEK: She hinted that the exam would be difficult, so I studied harder.
+8263 | hip | noun | A2 | #1/1 | TR: kalça, kalça kemiği | EN: the projection of the pelvis on each side of the body, forming the hip joint | ÖRNEK: She slipped and bruised her hip during gym class.
+25341 | hippo | noun | B1 | #1/1 | TR: su aygırı | EN: a large, mostly herbivorous mammal native to sub-Saharan Africa that spends much of its time in water | ÖRNEK: A hippo was seen grazing near the riverbank early this morning.
+7839 | hire | noun | B2 | #1/1 | TR: yeni çalışan, işe alınan kişi | EN: a person who has been hired; an employee | ÖRNEK: Our latest hire has already contributed valuable ideas to the team.
+7840 | hire | verb | B1 | #1/2 | TR: istihdam etmek | EN: to give someone a job and pay them for their work | ÖRNEK: The restaurant will hire a new chef next month.
+7841 | hire | verb | A2 | #2/2 | TR: kiralamak | EN: to obtain the temporary use of something by paying for it | ÖRNEK: She hired a bike to explore the city.
+27237 | his | determiner | A1 | #1/1 | TR: onun (erkek) | EN: belonging to or connected with a man, boy or male animal | ÖRNEK: His father is a doctor.
+27186 | his | pronoun | A1 | #1/1 | TR: onunki (erkek) | EN: used to refer to something that belongs to a man, boy or male animal | ÖRNEK: That bike is his.
+6446 | historian | noun | B2 | #1/1 | TR: tarihçi | EN: a person who studies or writes about history | ÖRNEK: She consulted a historian to verify the dates in her family tree.
+6447 | historic | adjective | B2 | #1/1 | TR: önemli, tarihe damga vurmuş | EN: of great significance in history; famous or noteworthy because of its impact on the past. | ÖRNEK: The city held a parade to celebrate the historic victory.
+6448 | historical | adjective | B2 | #1/1 | TR: tarihi | EN: relating to past events or to the study of history | ÖRNEK: The museum displayed several historical artifacts from the 18th century.
+6444 | history | noun | A1 | #1/1 | TR: tarih, geçmiş | EN: the collection of past events, especially in a particular period or area | ÖRNEK: The museum exhibit displays artifacts from local history.
+15489 | hit | noun | A2 | #1/2 | TR: vuruş, darbe | EN: an act of striking something or someone; a blow | ÖRNEK: The boxer took a hard hit to the face.
+15490 | hit | noun | B1 | #2/2 | TR: başarı, popüler şarkı/film | EN: something that is very successful or popular, especially a song, film, or product | ÖRNEK: The song quickly became a hit on the radio.
+15491 | hit | verb | A2 | #1/1 | TR: vurmak, çarpmak | EN: to strike something or someone with force, usually using a hand, weapon, or object | ÖRNEK: He hit the ball and it flew over the fence.
+13972 | hitchhike | verb | B1 | #1/1 | TR: otostop çekmek, otostop yapmak | EN: to travel by obtaining rides from passing motorists, usually by standing at the roadside and signaling with an outstretched thumb | ÖRNEK: She stood on the highway and tried to hitchhike to the nearest town.
+20318 | hobby | noun | A1 | #1/1 | TR: hobi, uğraş | EN: an activity that you do for pleasure in your free time | ÖRNEK: My hobbies are reading and swimming.
+20414 | hockey | noun | A2 | #1/1 | TR: hokey | EN: a game played by two teams who use long curved sticks to hit a ball or puck | ÖRNEK: She plays hockey for the school team.
+15853 | hold | noun | B1 | #1/2 | TR: tutma, kavrama | EN: the act of gripping or keeping something in one's hands or control | ÖRNEK: The child has a strong hold on the toy car.
+15854 | hold | noun | B1 | #2/2 | TR: ayırma, bekletme, askıya alma | EN: an arrangement to keep a place or service available for a person at a later time | ÖRNEK: I called the airline to place a hold on my ticket.
+15856 | hold | verb | A2 | #1/2 | TR: tutmak, elinde bulundurmak | EN: to keep something in one's hand, grasp, or possession | ÖRNEK: She holds the pen in her right hand.
+15855 | hold | verb | A2 | #2/2 | TR: düzenlemek, yapmak | EN: to arrange or conduct an event, meeting, or activity | ÖRNEK: The club will hold a meeting this Friday.
+17684 | hole | noun | A2 | #1/1 | TR: delik | EN: a hollow place or opening in a solid surface or object | ÖRNEK: The mouse squeezed through a tiny hole in the fence.
+17656 | holiday | noun | A2 | #1/1 | TR: bayram, resmi tatil | EN: a day of celebration or a public holiday officially recognized by the state | ÖRNEK: The school is closed for the holiday next Monday.
+3304 | hollow | adjective | B1 | #1/2 | TR: içi boş, boş, oyuk | EN: having a space or cavity inside; not solid | ÖRNEK: The wooden log had a hollow section near its base.
+3305 | hollow | adjective | C1 | #2/2 | TR: sahte, anlamsız, kuru | EN: lacking real substance or value; superficial or insincere | ÖRNEK: The company's report was full of hollow claims about future growth.
+8195 | holy | adjective | B2 | #1/1 | TR: kutsal, dinî | EN: connected with a deity or religious worship; regarded as sacred. | ÖRNEK: The ancient temple is considered holy by the villagers.
+20415 | home | adjective | A2 | #1/2 | TR: ev (-i), evdeki | EN: connected with the place where you live | ÖRNEK: What's your home address?
+20416 | home | adjective | A2 | #2/2 | TR: iç, yurt içi; ev sahibi (takım) | EN: connected with your own country, or with the place where a team is based | ÖRNEK: The home team won two–nil.
+19545 | home | adverb | A1 | #1/1 | TR: eve | EN: to or at the place where one lives | ÖRNEK: She finished her work and went home.
+19546 | home | noun | A2 | #1/2 | TR: ev, yuva | EN: a place where a person lives permanently, especially as a member of a family or household | ÖRNEK: My home is a small apartment near the university.
+19547 | home | noun | B1 | #2/2 | TR: memleket, vatan | EN: the country where a person was born or where they feel a strong sense of belonging | ÖRNEK: She misses the food from her home.
+20707 | homeland | noun | C1 | #1/1 | TR: anavatan, yurt | EN: the country where someone was born | ÖRNEK: After the war, many refugees returned to their homeland.
+19549 | homeless | adjective | B1 | #1/1 | TR: evsiz, barınaksız | EN: without a permanent residence or home; lacking a place to live. | ÖRNEK: After losing his job, he became homeless and had to live on the streets.
+26054 | homepage | noun | B1 | #1/1 | TR: ana sayfa | EN: the main or introductory page of a website, typically containing links to other sections | ÖRNEK: The university's homepage provides quick access to student resources.
+4396 | homework | noun | A1 | #1/1 | TR: ödev | EN: a task assigned to students to be completed outside class | ÖRNEK: She finished her homework quickly after school.
+10956 | honest | adjective | B1 | #1/1 | TR: dürüst | EN: being truthful, not lying or cheating; showing integrity | ÖRNEK: She is an honest student who never cheats on exams.
+10960 | honestly | adverb | B1 | #1/2 | TR: açıkçası | EN: in a frank and sincere way, often used to introduce a statement that may be surprising or contrary to expectations | ÖRNEK: Honestly, I didn't understand the professor's explanation at first.
+10961 | honestly | adverb | B2 | #2/2 | TR: dürüstçe | EN: in a manner that is truthful and without deceit; performing an action with integrity | ÖRNEK: The researcher honestly reported the unexpected errors in the data.
+10962 | honesty | noun | B1 | #1/1 | TR: dürüstlük | EN: the quality of being truthful, sincere, and free from deceit | ÖRNEK: Honesty helps build trust between friends and colleagues.
+7077 | honey | noun | A2 | #1/2 | TR: bal | EN: a sweet, viscous liquid produced by bees from flower nectar | ÖRNEK: The bees collected nectar and turned it into honey.
+7078 | honey | noun | A2 | #2/2 | TR: sevgili, canım | EN: a term of endearment used to address someone affectionately | ÖRNEK: She whispered 'honey' as a gentle nickname.
+21818 | honeymoon | noun | B1 | #1/1 | TR: balayı | EN: the first holiday taken by a newly married couple after their wedding ceremony | ÖRNEK: After the wedding, they booked a hotel for their honeymoon.
+5560 | hook | noun | A2 | #1/2 | TR: kanca, çengel | EN: a curved piece of metal or other material used for catching, holding, or pulling something | ÖRNEK: He used a small hook to pull the fishing line from the water.
+5561 | hook | noun | B2 | #2/2 | TR: çekici unsur, nakarat | EN: the part of a song, story, or advertisement that is designed to attract attention and be memorable | ÖRNEK: The advertisement relied on a simple hook to grab viewers' attention.
+5562 | hook | verb | B1 | #1/2 | TR: yakalamak, tutturmak | EN: to catch or seize something, especially a fish, with a hook. | ÖRNEK: He threw the line and quickly hooked a small fish.
+5563 | hook | verb | B1 | #2/2 | TR: bağlamak, takmak | EN: to attach or fasten something with a hook or similar device. | ÖRNEK: The technician hooked the new sensor onto the machine yesterday.
+7956 | hope | noun | A1 | #1/1 | TR: umut | EN: a feeling of expectation and desire for a certain thing to happen | ÖRNEK: She has hope that the exam will be easy.
+7957 | hope | verb | A2 | #1/1 | TR: umut etmek | EN: to desire something to happen and expect it to happen, often with confidence | ÖRNEK: She hopes to travel abroad next summer.
+7958 | hopeful | adjective | B1 | #1/1 | TR: umutlu, umut verici | EN: feeling or showing optimism about a future outcome | ÖRNEK: She felt hopeful after receiving the good news.
+7960 | hopefully | adverb | B1 | #1/1 | TR: inşallah, umarım | EN: used to say what one hopes will happen | ÖRNEK: Hopefully the exam results will be released next week.
+7961 | hopeless | adjective | B2 | #1/1 | TR: umutsuz | EN: describing a state or feeling in which there is no expectation of a positive outcome or improvement | ÖRNEK: He looked at the broken bridge and felt hopeless.
+4654 | horizon | noun | B1 | #1/1 | TR: ufuk | EN: the line where the earth's surface and the sky appear to meet; the limit of one's knowledge or experience | ÖRNEK: The sun set behind the distant horizon, painting the sky orange.
+2880 | horn | noun | B1 | #1/3 | TR: hayvan boynuzu | EN: a hard, pointed growth made of keratin that projects from the head of certain animals | ÖRNEK: The goat lifted its head, showing a sharp horn.
+2881 | horn | noun | A2 | #2/3 | TR: araç kornası | EN: a device on a vehicle that produces a loud sound to warn or attract attention | ÖRNEK: He pressed the horn to warn the cyclist of the sudden turn.
+2882 | horn | noun | B2 | #3/3 | TR: korno, boru | EN: a wind instrument made of metal, typically shaped in a curved tube, used to produce musical tones | ÖRNEK: He borrowed a brass horn for the school marching band.
+18326 | horrible | adjective | A2 | #1/1 | TR: korkunç, berbat | EN: causing horror or disgust; extremely unpleasant or bad. | ÖRNEK: The movie was horrible and everyone left early.
+940 | horror | noun | B2 | #1/1 | TR: korku, dehşet | EN: a strong feeling of fear, shock, or disgust | ÖRNEK: The sudden scream caused a wave of horror among the audience.
+17233 | horse | noun | A2 | #1/1 | TR: at | EN: a large domesticated mammal with a mane and tail, used for riding, pulling loads, or sport | ÖRNEK: The farmer bought a new horse for his farm.
+12768 | hospital | noun | A1 | #1/1 | TR: hastane | EN: a place where sick or injured people receive medical treatment and care | ÖRNEK: The hospital is located near the city center and is easy to find.
+17198 | host | noun | A2 | #1/1 | TR: ev sahibi, misafirperver kişi | EN: a person who owns a house or property and receives guests, often offering hospitality | ÖRNEK: My aunt is a generous host who always prepares delicious meals for her visitors.
+17199 | host | verb | B1 | #1/1 | TR: ev sahipliği yapmak, konuk ağırlamak | EN: to act as the organizer or presenter of an event, program, or gathering, providing the venue and taking responsibility for its success | ÖRNEK: The family will host a dinner for their relatives next month.
+20708 | hostage | noun | C1 | #1/1 | TR: rehine | EN: a person who is held prisoner until the captors get what they want | ÖRNEK: The gunmen took three people hostage.
+26058 | hostel | noun | B1 | #1/1 | TR: yurt, pansiyon, öğrenci yurdu | EN: a low-cost, shared accommodation for travelers or students, often offering basic rooms and communal facilities | ÖRNEK: The group chose a hostel because it was cheaper than a hotel.
+6420 | hostile | adjective | B2 | #1/1 | TR: düşmanca, karşıt | EN: showing antagonism or opposition; unfriendly and aggressive. | ÖRNEK: The new manager seemed hostile during the meeting.
+6421 | hostility | noun | C1 | #1/1 | TR: düşmanlık, husumet | EN: the state of being unfriendly, antagonistic, or openly aggressive toward someone or something | ÖRNEK: The new manager sensed hostility from some employees.
+12169 | hot | adjective | A2 | #1/3 | TR: sıcak | EN: having a high degree of heat or a high temperature. | ÖRNEK: The hot sun shone brightly over the park.
+12170 | hot | adjective | B1 | #2/3 | TR: baharatlı, acı | EN: having a strong, spicy flavor that causes a burning sensation. | ÖRNEK: The soup was too hot for the children to eat.
+12171 | hot | adjective | B2 | #3/3 | TR: popüler, çok talep gören | EN: currently fashionable, widely liked or in great demand. | ÖRNEK: The new smartphone model is hot among tech enthusiasts.
+16550 | hotel | noun | A2 | #1/1 | TR: konaklama yeri, otel | EN: a commercial establishment that provides lodging, meals, and other services for travelers and tourists | ÖRNEK: I need to find a hotel for my business trip next week.
+15872 | hour | noun | A1 | #1/1 | TR: saat | EN: a period of time equal to 60 minutes | ÖRNEK: The meeting will start in an hour.
+7058 | house | noun | A1 | #1/2 | TR: konut, ev | EN: a building or structure that serves as a dwelling for people | ÖRNEK: My family bought a new house last summer.

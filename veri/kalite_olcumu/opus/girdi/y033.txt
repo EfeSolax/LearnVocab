@@ -1,0 +1,100 @@
+17944 | gender | noun | A2 | #1/1 | TR: cinsiyet | EN: the state of being male or female, typically used in biological contexts | ÖRNEK: The survey asked participants to indicate their gender.
+2208 | gene | noun | C1 | #1/1 | TR: gen | EN: a unit of heredity that is transferred from a parent to offspring and determines a characteristic of the offspring | ÖRNEK: The gene determines eye color in many mammals.
+15382 | general | adjective | B1 | #1/1 | TR: genel, yaygın | EN: relating to or affecting all or most members of a group; not specific or detailed | ÖRNEK: The general guidelines were posted on the bulletin board.
+15389 | generally | adverb | B1 | #1/1 | TR: genel olarak | EN: in most cases; usually | ÖRNEK: Generally, students find the exam easy.
+4464 | generate | verb | B1 | #1/1 | TR: üretmek, yaratmak | EN: to cause something to come into existence; to produce or bring about | ÖRNEK: The wind turbines generate electricity for the nearby town.
+4466 | generation | noun | B1 | #1/2 | TR: nesil, kuşak | EN: a group of individuals born and living at about the same time, often sharing cultural or historical experiences | ÖRNEK: My grandparents belong to a generation that grew up without television.
+4465 | generation | noun | B2 | #2/2 | TR: üretim | EN: the act or process of producing something; the creation of goods, ideas, or energy | ÖRNEK: Renewable sources now account for a large part of electricity generation.
+12254 | generic | adjective | B1 | #1/2 | TR: genel, tümüyle ilgili | EN: relating to or characteristic of a whole class or group; not specific or detailed | ÖRNEK: The textbook uses generic examples to illustrate the concept.
+12255 | generic | adjective | B2 | #2/2 | TR: jenerik, markasız | EN: relating to a medication that is not protected by a brand name and is sold under its chemical name | ÖRNEK: The clinic switched to generic medication to reduce expenses.
+7264 | generous | adjective | A2 | #1/1 | TR: cömert, eli açık | EN: showing a readiness to give more of something, especially money or time, than is usual or expected | ÖRNEK: She is generous and often shares her lunch with classmates.
+2207 | genetic | adjective | C1 | #1/1 | TR: genetik | EN: relating to genes, heredity, or the transmission of traits from parents to offspring | ÖRNEK: The lab identified a genetic marker linked to the condition.
+20547 | genius | noun | B2 | #1/2 | TR: dâhi | EN: a person who is unusually intelligent or talented | ÖRNEK: Einstein was a scientific genius.
+20548 | genius | noun | B2 | #2/2 | TR: deha, üstün yetenek | EN: very great intelligence or skill | ÖRNEK: The painting shows her genius.
+20702 | genocide | noun | C1 | #1/1 | TR: soykırım | EN: the deliberate killing of a large group of people, especially of a particular nation or ethnic group | ÖRNEK: The court was set up to try those accused of genocide.
+12253 | genre | noun | B2 | #1/1 | TR: tür, biçim, kategori | EN: a category of artistic, musical, or literary composition characterized by a particular style, form, or content | ÖRNEK: The teacher asked us to identify the genre of the short story.
+3152 | gentle | adjective | A2 | #1/2 | TR: nazik, kibar | EN: showing kindness, mildness, or tenderness in behavior or manner | ÖRNEK: The teacher's gentle smile reassured the shy student.
+3153 | gentle | adjective | B1 | #2/2 | TR: hafif, yumuşak | EN: not strong, severe, or intense; mild in force or effect | ÖRNEK: A gentle rain fell throughout the afternoon, keeping the garden moist.
+2444 | gentleman | noun | B1 | #1/1 | TR: kibar, görgülü erkek | EN: a man who is courteous, well-mannered and behaves with respect towards others | ÖRNEK: He always says please and thank you, showing he is a gentleman.
+6940 | genuine | adjective | B1 | #1/1 | TR: gerçek, sahici | EN: authentic and not false or pretended | ÖRNEK: The teacher praised her genuine effort in the assignment.
+6941 | genuinely | adverb | B2 | #1/1 | TR: gerçekten, samimi bir şekilde | EN: in a sincere or truthful manner; without pretense or deceit | ÖRNEK: I genuinely enjoy reading scientific articles in my free time.
+10965 | geographic | adjective | B2 | #1/1 | TR: coğrafi | EN: relating to the physical features, location, or distribution of something on the Earth's surface | ÖRNEK: The map shows the geographic location of each university in the state.
+10963 | geography | noun | A1 | #1/1 | TR: coğrafya | EN: the scientific study of the Earth's surface, its physical features, climate, and the distribution of life and human activity. | ÖRNEK: The geography class visited the local river to observe erosion.
+883 | gesture | noun | B1 | #1/1 | TR: jest, el hareketi | EN: a movement of part of the body, especially a hand or arm, to express an idea or feeling | ÖRNEK: She raised her hand and made a friendly gesture.
+15103 | get | verb | A2 | #1/11 | TR: almak, elde etmek, edinmek | EN: to obtain, receive, or acquire something | ÖRNEK: Can you get me a glass of water, please?
+26879 | get | verb | A2 | #2/11 | TR: olmak, hâline gelmek; (bir duruma) girmek | EN: to become or start to be; to reach a particular state | ÖRNEK: It's getting dark.
+26880 | get | verb | A1 | #3/11 | TR: varmak, ulaşmak, gitmek | EN: to arrive at or reach a place, or to move to a place | ÖRNEK: What time did you get home?
+15104 | get | verb | B2 | #4/11 | TR: anlamak, kavramak | EN: to become aware of or comprehend something | ÖRNEK: Do you get what the professor meant in the lecture?
+26881 | get | verb | A2 | #5/11 | TR: getirmek, (gidip) almak | EN: to go somewhere and bring back someone or something | ÖRNEK: Can you get me a glass of water?
+26882 | get | verb | B1 | #6/11 | TR: (birine bir şey) yaptırmak; ikna edip yaptırmak | EN: to make someone do something, or to arrange for something to be done | ÖRNEK: I got my brother to help me.
+26883 | get | verb | A2 | #7/11 | TR: (hastalığa) yakalanmak, -e tutulmak | EN: to catch an illness or start to have a pain | ÖRNEK: I think I'm getting a cold.
+26884 | get | verb | A2 | #8/11 | TR: (taşıta) binmek, ile gitmek | EN: to travel somewhere on a bus, train, plane or taxi | ÖRNEK: I usually get the bus to work.
+26885 | get | verb | B1 | #9/11 | TR: (bir şeyi yapma) fırsatı bulmak, -ebilmek | EN: to have the opportunity to do something | ÖRNEK: I got to meet my favorite singer.
+26886 | get | verb | B1 | #10/11 | TR: (bir işe) başlamak, koyulmak | EN: to start doing something, or to start to move | ÖRNEK: Let's get started.
+26887 | get | verb | A1 | #11/11 | TR: (have got) sahip olmak; (have got to) -mek zorunda olmak | EN: have got: to have or own something; have got to: to have to do something | ÖRNEK: I've got two brothers.
+2743 | ghost | noun | A2 | #1/1 | TR: ruh, hayalet | EN: a spirit or apparition of a dead person that is believed to appear to the living | ÖRNEK: Do you believe in ghosts?
+18963 | giant | adjective | B1 | #1/1 | TR: devasa, çok büyük | EN: of unusually great size or extent; larger than normal or typical. | ÖRNEK: The giant oak tree shaded the entire playground.
+18964 | giant | noun | B1 | #1/1 | TR: dev | EN: a person, animal or thing of unusually great size, strength, or importance | ÖRNEK: The giant towered over the small houses.
+17152 | gift | noun | A2 | #1/2 | TR: hediye, armağan | EN: an item given voluntarily without payment in return | ÖRNEK: She wrapped the gift carefully before the party.
+17153 | gift | noun | B2 | #2/2 | TR: yetenek, doğal yetenek | EN: a natural ability or talent possessed by a person | ÖRNEK: She discovered her gift for painting at a young age.
+20549 | gig | noun | B2 | #1/1 | TR: konser, sahne performansı | EN: a performance by a musician or band (informal) | ÖRNEK: The band has a gig in London on Saturday.
+24265 | giraffe | noun | A2 | #1/1 | TR: zürafa | EN: a tall African mammal with a very long neck and legs, spotted coat, and horn-like ossicones | ÖRNEK: A giraffe lives in the African savannah.
+15484 | girl | noun | A1 | #1/2 | TR: kız | EN: a female child or young woman, typically under the age of adulthood | ÖRNEK: The girl walked home after school with her backpack.
+15485 | girl | noun | A2 | #2/2 | TR: genç kadın | EN: a young female person, often referring to a woman in her teens or early twenties | ÖRNEK: The girl moved to the city to attend university.
+4383 | girlfriend | noun | A2 | #1/1 | TR: kız arkadaş | EN: a female partner in a romantic relationship | ÖRNEK: He asked his girlfriend to join him for dinner.
+15175 | give | verb | A2 | #1/2 | TR: vermek, birine bir şey sunmak | EN: to transfer possession of something to someone else | ÖRNEK: She gave her brother a book for his birthday.
+15176 | give | verb | B2 | #2/2 | TR: vermek, bir şeyin gerçekleşmesini sağlamak | EN: to cause something to happen or to allow something to be done | ÖRNEK: The experiment gave clear results that supported the hypothesis.
+11398 | glad | adjective | A2 | #1/1 | TR: memnun, seve seve | EN: feeling pleasure or happiness about something. | ÖRNEK: She was glad to receive the scholarship.
+887 | glance | noun | B1 | #1/1 | TR: kısa bakış | EN: a brief or hurried look at something | ÖRNEK: She took a quick glance at the menu before ordering.
+888 | glance | verb | B1 | #1/1 | TR: bakmak, göz atmak | EN: to look quickly or briefly at something | ÖRNEK: She glanced at her phone during the lecture.
+16901 | glass | noun | A1 | #1/2 | TR: cam, şeffaf sert madde | EN: a hard, transparent material made from silica, used for windows, containers, and many other objects | ÖRNEK: The laboratory uses glass beakers for chemical experiments.
+16902 | glass | noun | A2 | #2/2 | TR: içecek kabı, bardak | EN: a drinking vessel made of glass, typically used for serving beverages | ÖRNEK: She lifted the glass and toasted to their success.
+16903 | glass | verb | B2 | #1/1 | TR: camla kaplamak, camla donatmak | EN: to cover or fit something with glass, especially windows or surfaces | ÖRNEK: The builder will glass the new office windows next week.
+4180 | glimpse | noun | B1 | #1/1 | TR: kısa bakış, göz atma | EN: a brief or fleeting view of something, especially something that is difficult to see clearly | ÖRNEK: During the interview, the candidate gave a glimpse of his research interests.
+4181 | glimpse | verb | B2 | #1/1 | TR: gözüne ilişmek, anlık görmek, hayal meyal görmek | EN: to see something briefly or partially | ÖRNEK: I glimpsed a cat in the garden this morning.
+3066 | global | adjective | B2 | #1/1 | TR: küresel | EN: relating to the whole world; affecting or involving all parts of the Earth or the entire planet. | ÖRNEK: The global pandemic changed daily routines for people everywhere.
+3069 | globalization | noun | C1 | #1/1 | TR: küreselleşme | EN: the process by which businesses, cultures, and societies become integrated and operate on a worldwide scale | ÖRNEK: Globalization connects markets around the world.
+3064 | globe | noun | B1 | #1/2 | TR: dünya, yerküre | EN: the planet Earth considered as a whole, especially when represented as a spherical model | ÖRNEK: The teacher pointed to the globe and asked where the Sahara Desert is.
+3065 | globe | noun | B2 | #2/2 | TR: küre, yuvarlak nesne | EN: a spherical object or shape, often used to describe a ball-like form | ÖRNEK: The child rolled the small globe across the floor.
+4307 | glorious | adjective | B2 | #1/1 | TR: şanlı, görkemli, muhteşem | EN: deserving great admiration, honor, or praise because of outstanding qualities or achievements | ÖRNEK: The sunrise painted the sky with glorious colors.
+4302 | glory | noun | B2 | #1/2 | TR: görkem | EN: splendid magnificence or grandeur, especially of a person, place, or thing | ÖRNEK: The ancient cathedral stood in all its glory after the restoration.
+4303 | glory | noun | C1 | #2/2 | TR: şan | EN: high renown or honor earned by notable achievements | ÖRNEK: The politician promised national glory through economic reforms.
+8703 | glove | noun | A1 | #1/1 | TR: eldiven | EN: a covering for the hand, usually made of leather, fabric, or rubber, that has separate sections for each finger and the thumb | ÖRNEK: She slipped on a pair of warm gloves before stepping outside.
+15117 | go | noun | A2 | #1/2 | TR: sıra, hak | EN: the opportunity or turn for someone to act or speak | ÖRNEK: It's your go now — roll the dice.
+15118 | go | noun | B1 | #2/2 | TR: girişim, çaba | EN: an attempt or effort to achieve something | ÖRNEK: His first go at cooking resulted in a surprisingly tasty dish.
+15119 | go | verb | A1 | #1/1 | TR: gitmek, hareket etmek | EN: to move from one place to another; to travel; to proceed or continue | ÖRNEK: I will go to the library after class.
+26956 | go about | phrasal_verb | B2 | #1/2 | TR: (bir işe) girişmek, nasıl yapacağını bilmek | EN: to start to deal with something | ÖRNEK: How do I go about getting a visa?
+26454 | go off | phrasal_verb | B1 | #4/4 | TR: (biri) soğumak, sevmez olmak | EN: to stop liking someone or something | ÖRNEK: I've gone off coffee lately.
+16256 | goal | noun | A2 | #1/3 | TR: gol, kale | EN: a point scored in a sport such as football or hockey by getting the ball or puck into the opponent's net | ÖRNEK: The team celebrated after they scored a goal in the last minute.
+16257 | goal | noun | A2 | #2/3 | TR: amaç, hedef | EN: an intended result or purpose that a person or organization aims to achieve | ÖRNEK: My goal for this semester is to improve my academic writing skills.
+16258 | goal | noun | B1 | #3/3 | TR: niyet, maksat | EN: the purpose or intention behind an action or statement | ÖRNEK: He explained his actions with the goal of helping the community.
+21731 | goalkeeper | noun | B1 | #1/1 | TR: kaleci | EN: a player whose primary role is to prevent the opposing team from scoring by guarding the goal | ÖRNEK: The goalkeeper caught the ball cleanly during the practice session.
+893 | goat | noun | A2 | #1/1 | TR: keçi | EN: a domesticated animal with horns and a beard, kept for its milk, meat, and hair | ÖRNEK: The goat ate the grass in the meadow.
+7577 | god | noun | A2 | #1/1 | TR: tanrı, ilah | EN: a supreme being worshiped as having power over nature and human affairs | ÖRNEK: People around the world pray to a god for guidance.
+20413 | gold | adjective | A2 | #1/1 | TR: altın, altından yapılmış | EN: made of gold or having the colour of gold | ÖRNEK: She wore a gold ring.
+15910 | gold | noun | A1 | #1/1 | TR: altın | EN: a yellow precious metal that is highly valued for its rarity, malleability, and conductivity, often used for jewelry, coins, and industrial applications. | ÖRNEK: Gold is a dense, yellow metal found in nature.
+15911 | golden | adjective | B1 | #1/1 | TR: altın rengi, değerli, mükemmel | EN: having the colour of gold; characterized by great value, success, or happiness. | ÖRNEK: The sunrise painted the sky with a golden hue.
+18114 | golf | noun | B1 | #1/1 | TR: golf | EN: a game played on a large outdoor course, in which players use clubs to hit a small ball into a series of holes in as few strokes as possible | ÖRNEK: She started to play golf when she was ten years old.
+3506 | good | adjective | A1 | #1/2 | TR: iyi, kaliteli | EN: having a high standard or quality; satisfactory or desirable. | ÖRNEK: The cake tastes good.
+3507 | good | adjective | A2 | #2/2 | TR: ahlaki açıdan doğru, erdemli | EN: conforming to moral standards; virtuous or righteous. | ÖRNEK: She is a good person who always helps others.
+3508 | good | noun | B2 | #1/2 | TR: iyilik, ahlakî değer | EN: the quality of being morally right or virtuous; that which is considered beneficial or desirable | ÖRNEK: Many cultures teach children to seek the good in everyday life.
+3509 | good | noun | B1 | #2/2 | TR: yarar, fayda | EN: something that is advantageous or useful; a benefit | ÖRNEK: This law is for the good of everyone.
+20312 | goodbye | exclamation | A1 | #1/1 | TR: veda, hoşça kal | EN: the act of saying goodbye when someone leaves | ÖRNEK: We said our goodbyes at the airport.
+3512 | goodness | noun | A2 | #1/2 | TR: aman tanrım, aman Allahım, hayret | EN: an exclamation used to express surprise, shock, or amazement. | ÖRNEK: Goodness, I forgot my passport at home!
+3511 | goodness | noun | B2 | #2/2 | TR: iyilik, erdem | EN: the quality of being morally good or virtuous; the state of having good moral character. | ÖRNEK: The teacher praised the student's honesty as a sign of true goodness.
+20474 | goods | noun | B1 | #1/1 | TR: mal, eşya, ürün | EN: things that are produced to be sold | ÖRNEK: The shop sells electrical goods.
+14605 | gorgeous | adjective | B2 | #1/1 | TR: görkemli, muhteşem, çok güzel | EN: extremely beautiful and striking; having a dazzling appearance | ÖRNEK: The actress wore a gorgeous gown on the red carpet.
+3360 | govern | verb | B2 | #1/2 | TR: yönetmek, idare etmek | EN: to exercise authority or control over a state, organization, or people | ÖRNEK: The mayor will govern the city until the next election.
+3361 | govern | verb | C1 | #2/2 | TR: düzenlemek, yönlendirmek | EN: to direct or influence the course or development of something | ÖRNEK: The committee governs the allocation of research funds each year.
+3362 | governance | noun | C1 | #1/1 | TR: yönetim | EN: the act or process of governing a state, organization, or people; the exercise of authority and control. | ÖRNEK: Effective governance improves public trust in institutions.
+3363 | government | noun | B1 | #1/2 | TR: hükûmet | EN: the group of people with authority to govern a country or state at a particular time | ÖRNEK: The government passed a law to protect endangered species.
+3364 | government | noun | B2 | #2/2 | TR: yönetim, idare | EN: the act or process of governing; the system or manner in which a political unit is managed | ÖRNEK: Effective government requires transparency and accountability.
+3366 | governor | noun | B2 | #1/2 | TR: vali, yönetici, başkan | EN: a person who has authority to govern or rule over a political unit or organization | ÖRNEK: The governor visited the flood-affected villages to assess damage.
+3367 | governor | noun | C1 | #2/2 | TR: regülatör, düzenleyici | EN: a device that automatically regulates the speed or pressure of a machine, especially an engine | ÖRNEK: The locomotive's governor automatically reduced speed on steep grades.
+2200 | grab | verb | B1 | #1/2 | TR: kapmak, çabuk tutmak | EN: to seize or take something quickly and firmly | ÖRNEK: He grabbed the book from the shelf.
+2201 | grab | verb | A2 | #2/2 | TR: almak, elde etmek | EN: to obtain or get something, often informally or quickly | ÖRNEK: I need to grab a coffee before the exam.
+11437 | grace | noun | B2 | #1/2 | TR: zarafet, incelik | EN: the quality of moving smoothly and elegantly; refined poise in behavior or appearance | ÖRNEK: The ballerina performed with grace, impressing the judges.
+11438 | grace | noun | C1 | #2/2 | TR: lütuf, ilahi yardım | EN: the unmerited favor and love of a deity toward humans, often considered a spiritual blessing | ÖRNEK: In the sermon, the pastor emphasized that grace is a gift, not earned by works.
+17106 | grade | noun | B1 | #1/2 | TR: not, sınıf, derece | EN: a particular level of quality, rank, or achievement in an educational or professional context | ÖRNEK: She got a good grade on her biology test.
+17107 | grade | noun | B2 | #2/2 | TR: eğim, yamaç | EN: the slope or inclination of a surface, especially a road or terrain | ÖRNEK: The road has a gentle grade that makes it easy for trucks.
+17108 | grade | verb | B1 | #1/1 | TR: not vermek, puanlamak | EN: to assign a score or classification to something, especially a piece of work or a performance | ÖRNEK: The instructor will grade the essays tomorrow.

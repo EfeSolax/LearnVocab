@@ -1,0 +1,100 @@
+5918 | glide | verb | B1 | #1/1 | TR: kaymak, süzülmek | EN: to move smoothly and continuously along a surface or through the air with little resistance | ÖRNEK: The ice skater glided across the rink with ease.
+5919 | glider | noun | B2 | #1/2 | TR: planör | EN: a light aircraft without an engine that is designed to glide after being launched or towed aloft | ÖRNEK: She earned her glider license after completing the basic training course.
+5920 | glider | noun | B2 | #2/2 | TR: uçan kuskus, uçar kuskus | EN: a small nocturnal marsupial native to Australia and New Guinea that can glide between trees using a membrane stretched between its limbs | ÖRNEK: The glider clung to the tree trunk before leaping onto a neighboring branch.
+11557 | glimmer | noun | B1 | #1/1 | TR: zayıf ışık, parıltı | EN: a faint or wavering light; a small sign or indication of something | ÖRNEK: The candle gave a small glimmer in the dark room.
+11558 | glimmer | verb | B1 | #1/1 | TR: zayıf ışık saçmak, titrek parlamak | EN: to shine faintly or intermittently, giving off a weak or wavering light | ÖRNEK: The candle glimmered softly, barely lighting the small room.
+10273 | glint | noun | B2 | #1/1 | TR: parıltı, ışıldama | EN: a small, quick flash of light reflected from a surface | ÖRNEK: The metal spoon gave a brief glint of light in the kitchen.
+10274 | glint | verb | B1 | #1/1 | TR: kısa bir ışık parlamasıyla ışıldamak | EN: to give out or reflect a small flash of light | ÖRNEK: The knife glinted as the sun hit its blade.
+12997 | glisten | verb | B1 | #1/1 | TR: parlamak, ışıldamak | EN: to shine with a soft reflected light, especially when wet or polished | ÖRNEK: The wet pavement glistened after the rain.
+12998 | glistening | adjective | B2 | #1/1 | TR: parlak, ışıldayan | EN: shining with a soft reflected light | ÖRNEK: She brushed her hair until it was glistening and smooth.
+23146 | glitch | noun | B2 | #1/1 | TR: kısa süreli hata, aksaklık | EN: a brief, unexpected problem or malfunction, especially in a system or device | ÖRNEK: The app crashed after a sudden glitch in the code.
+23147 | glitchy | adjective | B2 | #1/1 | TR: hata veren, aksak, bozuk | EN: characterized by frequent small errors or malfunctions, especially in electronic or software systems | ÖRNEK: The website runs slowly because it is glitchy after the redesign.
+5359 | glitter | noun | B1 | #1/1 | TR: sim, parıltı | EN: small, shiny particles that reflect light and create a sparkling effect | ÖRNEK: The child's eyes widened at the glitter on the birthday cake.
+5360 | glitter | verb | B1 | #1/1 | TR: parıldamak, ışıldamak | EN: to shine with a bright, shimmering reflected light | ÖRNEK: The water glittered as the sun rose over the horizon.
+5361 | glittery | adjective | B1 | #1/1 | TR: parlak, ışıldayan | EN: having a surface that reflects light with a sparkling or shimmering effect | ÖRNEK: The party lights made the walls look glittery and festive.
+13733 | gloat | verb | B2 | #1/1 | TR: kibirle sevinmek | EN: to dwell on one's own success or good fortune in a smug or self-satisfied way | ÖRNEK: He gloated after winning the small prize at the fair.
+27351 | global warming | noun | B1 | #1/1 | TR: küresel ısınma | EN: the increase in the earth's temperature caused by gases such as carbon dioxide | ÖRNEK: Global warming is melting the ice at the poles.
+3067 | globalism | noun | C1 | #1/1 | TR: küreselcilik | EN: the ideology or policy that emphasizes the importance of global cooperation and interdependence among nations and peoples | ÖRNEK: The professor introduced globalism during the introductory political science lecture.
+3068 | globalist | noun | C1 | #1/1 | TR: küreselci, küresel politikaları savunan kişi | EN: a person who advocates for global integration and the spread of global policies or ideas | ÖRNEK: Some voters view the candidate as a globalist due to his support for free trade.
+3071 | globalized | adjective | B2 | #1/1 | TR: küreselleşmiş | EN: having been made worldwide in scope or influence, especially through economic, cultural, or political integration | ÖRNEK: The globalized economy allows small firms to reach customers abroad.
+3072 | globally | adverb | B2 | #1/1 | TR: küresel olarak | EN: in a way that relates to the whole world; worldwide. | ÖRNEK: The new policy will affect citizens globally.
+3073 | globular | adjective | B2 | #1/1 | TR: küre şeklinde, yuvarlak | EN: having the shape of a sphere or a roughly spherical form | ÖRNEK: The seed is globular and rolls easily across the ground.
+5785 | gloom | noun | B2 | #1/1 | TR: kasvet, karanlık, umutsuzluk | EN: a state of darkness or melancholy; a feeling that something is bleak or hopeless | ÖRNEK: The rainy weather gave the park a feeling of gloom.
+5786 | gloomily | adverb | B2 | #1/1 | TR: kasvetli bir şekilde | EN: in a manner that shows gloom; with a sad or depressed tone or expression | ÖRNEK: The news anchor reported the disaster gloomily, emphasizing the loss.
+5787 | gloomy | adjective | B1 | #1/2 | TR: karanlık, loş | EN: having little or no light; dim or poorly lit. | ÖRNEK: The morning light was faint and the sky looked gloomy.
+5788 | gloomy | adjective | B2 | #2/2 | TR: kasvetli, moral olarak düşük | EN: causing or showing a feeling of sadness, depression, or pessimism. | ÖRNEK: The news left the community in a gloomy mood.
+4304 | glorification | noun | C1 | #1/1 | TR: yüceltilme, övgü, yüceltme | EN: the act of praising or honoring someone or something, often by presenting them as admirable or worthy of admiration | ÖRNEK: Some songs contain the glorification of reckless behavior.
+4306 | glorify | verb | B2 | #1/1 | TR: yüceltmek, övmek, görkemli kılmak | EN: to praise someone or something highly, making them appear admirable or splendid | ÖRNEK: The novel glorifies the courage of ordinary people during wartime.
+23148 | gloss | noun | B1 | #1/2 | TR: parıltı, parlaklık | EN: a shiny surface or a smooth, lustrous appearance | ÖRNEK: The photograph has a subtle gloss that catches the light.
+23149 | gloss | noun | B2 | #2/2 | TR: kısa açıklama, dipnot | EN: a brief explanatory note added to a word or passage, often in a margin or footnote | ÖRNEK: The textbook includes a gloss for every foreign word.
+23150 | gloss | verb | C1 | #2/2 | TR: parlatmak, parlak hâle getirmek | EN: to apply a smooth, shiny surface to something, making it glossy | ÖRNEK: The artist decided to gloss the canvas to enhance its colors.
+23152 | glossary | noun | C1 | #1/1 | TR: terim sözlüğü, kavramlar listesi | EN: a list of terms and their definitions, usually found at the end of a book or document | ÖRNEK: The course packet contains a short glossary of key concepts.
+23153 | glossy | adjective | B1 | #1/1 | TR: parlak, cilalı | EN: having a smooth, shiny surface that reflects light | ÖRNEK: The new phone case has a glossy surface that catches everyone's eye.
+8704 | glove | verb | B1 | #1/1 | TR: eldiven takmak | EN: to put a glove on (someone's hand) or to cover with gloves | ÖRNEK: She gloved her hands before starting the experiment.
+8705 | gloved | adjective | B1 | #1/1 | TR: eldivenli | EN: wearing gloves; equipped with gloves | ÖRNEK: During the winter hike, the guide kept the children gloved against the cold.
+889 | glow | noun | B1 | #1/1 | TR: parıltı, ışıldama | EN: a steady, soft light emitted by something without a flame | ÖRNEK: The fireflies created a gentle glow over the meadow.
+890 | glow | verb | B1 | #1/1 | TR: parlamak | EN: to emit a steady light, especially in a soft or warm manner | ÖRNEK: The lantern began to glow as the night grew colder.
+891 | glowing | adjective | B1 | #1/2 | TR: ışıldayan, parlayan | EN: emitting light; shining brightly | ÖRNEK: The campfire produced a soft glowing light in the night.
+892 | glowing | adjective | B2 | #2/2 | TR: övgü dolu, parlak | EN: expressing great praise; highly favorable | ÖRNEK: The film earned a glowing review in the university newspaper.
+21729 | glucose | noun | B2 | #1/1 | TR: glikoz, basit şeker | EN: a simple sugar that is an important energy source in living organisms and is a component of many carbohydrates | ÖRNEK: Glucose provides quick energy for the brain during study sessions.
+11969 | glue | noun | B1 | #1/1 | TR: yapıştırıcı | EN: a sticky substance used for joining materials together | ÖRNEK: The teacher gave each student a small bottle of glue for the craft activity.
+11970 | glue | verb | B1 | #1/1 | TR: yapıştırmak | EN: to attach or fasten something using an adhesive substance | ÖRNEK: He glued the broken vase back together carefully.
+13749 | glum | adjective | B2 | #1/1 | TR: somurtkan, keyifsiz | EN: showing a sulky or gloomy mood; appearing unhappy and withdrawn. | ÖRNEK: He seemed glum after the long flight.
+13750 | glumly | adverb | B2 | #1/1 | TR: somurtkan bir şekilde | EN: in a gloomy, sulky, or morose manner | ÖRNEK: He glumly accepted the late invitation without protest.
+21730 | gluten | noun | B2 | #1/1 | TR: glüten | EN: the protein found in wheat and related grains that gives dough its elasticity | ÖRNEK: Gluten gives bread its chewy texture.
+15058 | gnaw | verb | B1 | #1/1 | TR: kemirmek | EN: to bite or chew on something persistently, often causing damage or wear | ÖRNEK: The rabbit will gnaw on carrots when it is hungry.
+26957 | go about | phrasal_verb | B2 | #2/2 | TR: (günlük işlerini) yapmak, sürdürmek | EN: to continue doing your usual activities | ÖRNEK: People went about their daily lives.
+26431 | go after | phrasal_verb | B2 | #1/2 | TR: peşine düşmek, kovalamak | EN: to follow or chase someone | ÖRNEK: The police went after the thief.
+26432 | go after | phrasal_verb | B2 | #2/2 | TR: (bir şeyi elde etmek için) uğraşmak | EN: to try to get something | ÖRNEK: She's going after the manager's job.
+26958 | go against | phrasal_verb | B2 | #1/2 | TR: -e aykırı olmak, -e karşı gelmek | EN: to be opposite to a principle, belief or wish | ÖRNEK: It goes against my beliefs.
+26959 | go against | phrasal_verb | B2 | #2/2 | TR: (karar) aleyhine sonuçlanmak | EN: to be unfavorable to someone | ÖRNEK: The decision went against us.
+26433 | go ahead | phrasal_verb | B1 | #1/2 | TR: (planlandığı gibi) yapılmak, gerçekleşmek | EN: to happen as planned | ÖRNEK: The concert will go ahead despite the rain.
+26434 | go ahead | phrasal_verb | B1 | #2/2 | TR: buyurun, devam et (izin verirken) | EN: used to tell someone they can start doing something | ÖRNEK: "Can I ask a question?" "Go ahead."
+26435 | go along with | phrasal_verb | C1 | #1/1 | TR: kabul etmek, -e uymak | EN: to support an idea, or to agree with someone | ÖRNEK: I'll go along with your plan.
+26960 | go around | phrasal_verb | B2 | #1/2 | TR: (hastalık, haber) yayılmak, dolaşmak | EN: to spread from one person to another | ÖRNEK: There's a virus going around.
+26961 | go around | phrasal_verb | B2 | #2/2 | TR: herkese yetmek | EN: to be enough for everyone | ÖRNEK: There aren't enough books to go around.
+26436 | go away | phrasal_verb | A2 | #1/2 | TR: gitmek, uzaklaşmak | EN: to leave a place or person | ÖRNEK: Go away and leave me alone!
+26438 | go away | phrasal_verb | A2 | #2/2 | TR: geçmek, kaybolmak | EN: to disappear or stop | ÖRNEK: My headache won't go away.
+26439 | go back | phrasal_verb | A2 | #1/2 | TR: geri dönmek | EN: to return to a place where you were before | ÖRNEK: I want to go back to Paris one day.
+26440 | go back | phrasal_verb | A2 | #2/2 | TR: -e dayanmak, -den beri sürmek | EN: to have existed since a particular time | ÖRNEK: Our friendship goes back to our school days.
+26441 | go by | phrasal_verb | B1 | #1/2 | TR: (zaman) geçmek | EN: to pass (time) | ÖRNEK: Time goes by so quickly.
+26442 | go by | phrasal_verb | B1 | #2/2 | TR: -e göre hareket etmek, -i esas almak | EN: to use information to help you make a decision | ÖRNEK: You can't go by what he says.
+26443 | go down | phrasal_verb | B1 | #1/3 | TR: düşmek, azalmak | EN: to become lower in level or amount | ÖRNEK: Prices have gone down.
+26444 | go down | phrasal_verb | B1 | #2/3 | TR: (güneş) batmak | EN: to disappear below the horizon (the sun) | ÖRNEK: The sun goes down at about eight.
+26445 | go down | phrasal_verb | B1 | #3/3 | TR: karşılanmak (iyi/kötü) | EN: to be received in a particular way | ÖRNEK: His joke didn't go down well.
+26446 | go for | phrasal_verb | B1 | #1/3 | TR: seçmek, tercih etmek | EN: to choose something | ÖRNEK: I think I'll go for the chicken.
+26447 | go for | phrasal_verb | B1 | #2/3 | TR: saldırmak, üzerine atılmak | EN: to attack someone | ÖRNEK: The dog went for the postman.
+26448 | go for | phrasal_verb | B1 | #3/3 | TR: (bir şeyi elde etmek için) denemek, peşinden gitmek | EN: to try to get or achieve something | ÖRNEK: If you want the job, go for it!
+26449 | go in for | phrasal_verb | C1 | #1/2 | TR: (bir yarışmaya) katılmak | EN: to take part in a competition or exam | ÖRNEK: Are you going in for the race?
+26450 | go in for | phrasal_verb | C1 | #2/2 | TR: (bir şeyden) hoşlanmak, -e meraklı olmak | EN: to like a particular activity, usually as a habit | ÖRNEK: I don't go in for sports much.
+26962 | go into | phrasal_verb | B2 | #1/3 | TR: (ayrıntılarına) girmek, ayrıntılı anlatmak | EN: to describe or explain something in detail | ÖRNEK: I don't want to go into details now.
+26963 | go into | phrasal_verb | B2 | #2/3 | TR: (bir işe, mesleğe) girmek | EN: to start working in a particular type of job | ÖRNEK: She wants to go into medicine.
+26964 | go into | phrasal_verb | B2 | #3/3 | TR: (para, emek) harcanmak | EN: to be used or spent for something | ÖRNEK: A lot of work went into this project.
+26451 | go off | phrasal_verb | B1 | #1/4 | TR: (alarm, bomba) çalmak, patlamak | EN: to make a sudden loud noise (an alarm or bomb) | ÖRNEK: My alarm went off at six.
+26452 | go off | phrasal_verb | B1 | #2/4 | TR: (yiyecek) bozulmak | EN: to become bad and not good to eat or drink | ÖRNEK: The milk has gone off.
+26453 | go off | phrasal_verb | B1 | #3/4 | TR: (ışık, cihaz) sönmek, kapanmak | EN: to stop working (a light or machine) | ÖRNEK: The lights suddenly went off.
+26455 | go on | phrasal_verb | B1 | #1/3 | TR: devam etmek, sürmek | EN: to continue | ÖRNEK: Go on, I'm listening.
+26456 | go on | phrasal_verb | B1 | #2/3 | TR: olmak, oluyor olmak | EN: to happen | ÖRNEK: What's going on here?
+26457 | go on | phrasal_verb | B1 | #3/3 | TR: (ışık, cihaz) yanmak, çalışmaya başlamak | EN: to start working (a light or machine) | ÖRNEK: The lights went on at dusk.
+26458 | go out | phrasal_verb | A2 | #1/3 | TR: dışarı çıkmak, eğlenmeye çıkmak | EN: to leave your home to do something enjoyable | ÖRNEK: Are you going out tonight?
+26459 | go out | phrasal_verb | A2 | #2/3 | TR: (biriyle) çıkmak, sevgili olmak | EN: to have a romantic relationship with someone | ÖRNEK: How long have they been going out?
+26460 | go out | phrasal_verb | A2 | #3/3 | TR: (ışık, ateş) sönmek | EN: to stop burning or shining | ÖRNEK: The fire went out during the night.
+26461 | go over | phrasal_verb | B2 | #1/1 | TR: gözden geçirmek, tekrar incelemek | EN: to look at or explain something carefully, especially to check it | ÖRNEK: Let's go over the plan once more.
+26462 | go round | phrasal_verb | B2 | #1/2 | TR: (birine) yetmek | EN: to be enough for everyone | ÖRNEK: Is there enough cake to go round?
+26463 | go round | phrasal_verb | B2 | #2/2 | TR: (birinin evine) gitmek, uğramak | EN: to visit someone at their home | ÖRNEK: I'm going round to Tom's later.
+26464 | go through | phrasal_verb | B2 | #1/3 | TR: (zor bir şey) yaşamak, geçirmek | EN: to experience a difficult or unpleasant situation | ÖRNEK: She's going through a difficult time.
+26465 | go through | phrasal_verb | B2 | #2/3 | TR: dikkatle incelemek, gözden geçirmek | EN: to look at or examine something carefully | ÖRNEK: I went through my notes before the exam.
+26466 | go through | phrasal_verb | B2 | #3/3 | TR: (yasa, anlaşma) kabul edilmek, onaylanmak | EN: to be officially accepted or approved | ÖRNEK: The new law went through last week.
+26965 | go under | phrasal_verb | C1 | #1/2 | TR: batmak, iflas etmek | EN: to fail financially | ÖRNEK: Many small businesses went under during the crisis.
+26966 | go under | phrasal_verb | C1 | #2/2 | TR: (su altına) batmak | EN: to sink below the surface of water | ÖRNEK: The ship went under in minutes.
+26467 | go up | phrasal_verb | A2 | #1/2 | TR: artmak, yükselmek | EN: to increase in price, level or amount | ÖRNEK: The price of gas has gone up again.
+26468 | go up | phrasal_verb | A2 | #2/2 | TR: (yukarı) çıkmak | EN: to move to a higher place | ÖRNEK: Go up the stairs and turn left.
+26469 | go with | phrasal_verb | B1 | #1/1 | TR: uymak, yakışmak | EN: to look or taste good with something | ÖRNEK: That shirt doesn't go with those pants.
+26470 | go without | phrasal_verb | B2 | #1/1 | TR: -siz kalmak, mahrum kalmak | EN: to not have something you need or usually have | ÖRNEK: She went without food for two days.
+26049 | goalie | noun | B1 | #1/1 | TR: kaleci | EN: a player whose primary role is to prevent the opposing team from scoring by guarding the goal | ÖRNEK: The goalie caught the ball and quickly threw it back to a teammate.
+26050 | goalkeeping | noun | B2 | #1/1 | TR: kalecilik | EN: the act of protecting the goal as a goalkeeper in football or other sports | ÖRNEK: She practices goalkeeping for two hours after school each day.
+894 | goatee | noun | B1 | #1/1 | TR: keçi sakalı, keçi sakal | EN: a small pointed beard that includes the chin and sometimes the mustache, resembling a goat's beard | ÖRNEK: He has a neat goatee that he trims every week.
+11205 | goblet | noun | B1 | #1/1 | TR: kadeh | EN: a drinking glass with a stem and a foot, used for wine or other beverages | ÖRNEK: He lifted the goblet and smiled.
+7579 | goddess | noun | B2 | #1/1 | TR: tanrıça | EN: a female deity; a woman who is worshipped as a god | ÖRNEK: The statue of the goddess stood in the town square.
+23154 | godfather | noun | B2 | #1/1 | TR: vaftiz babası | EN: a man who sponsors a child's baptism and assumes responsibility for their religious education | ÖRNEK: My brother asked me to be a godfather to his newborn daughter.
+7580 | godhead | noun | C1 | #1/1 | TR: tanrısal öz, ilahî varlık | EN: the divine nature or essence of a deity, especially in theological contexts | ÖRNEK: The professor introduced the term godhead during the first lecture.

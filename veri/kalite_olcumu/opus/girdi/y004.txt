@@ -1,0 +1,100 @@
+5877 | analysis | noun | B2 | #1/1 | TR: analiz | EN: the detailed examination and interpretation of data or information in order to understand its components and relationships | ÖRNEK: The teacher asked the students to write a short analysis of the poem.
+5878 | analyst | noun | B2 | #1/1 | TR: analist, veri yorumcusu | EN: a person who examines and interprets data or information, especially in a professional context | ÖRNEK: The analyst reviewed the quarterly sales figures for errors.
+7027 | ancestor | noun | B2 | #1/1 | TR: ata, atası | EN: a person from whom one is descended, especially a distant one | ÖRNEK: My great-grandfather is my ancestor.
+6722 | anchor | noun | B1 | #1/3 | TR: çapa, çıpa, demir | EN: a heavy object, usually made of metal, used to keep a vessel from drifting by being dropped to the seabed | ÖRNEK: The fisherman dropped the anchor to keep the boat steady.
+6721 | anchor | noun | B2 | #2/3 | TR: haber spikeri, sunucu | EN: a person who presents news programs or other broadcasts on television or radio | ÖRNEK: The anchor introduced the breaking news with a calm voice.
+6723 | anchor | noun | B1 | #3/3 | TR: dayanak, güvence, dayanak noktası | EN: a place of safety or stability where something or someone can be protected | ÖRNEK: The community center acted as an anchor for the neighborhood.
+17605 | ancient | adjective | A2 | #1/1 | TR: eski, çok eski, antik | EN: existing from a very distant past; having great age | ÖRNEK: The museum displayed an ancient vase from Greece.
+27285 | and | conjunction | A1 | #1/2 | TR: ve | EN: used to join two words, phrases or sentences | ÖRNEK: I like tea and coffee.
+27286 | and | conjunction | A1 | #2/2 | TR: (sonra) da, ve sonra | EN: used to show that one thing happens after another | ÖRNEK: I got up and had a shower.
+18164 | angel | noun | A2 | #1/2 | TR: melek | EN: a supernatural being believed to act as a messenger or servant of God, often depicted with wings and a halo | ÖRNEK: The painting shows an angel hovering above the clouds.
+18165 | angel | noun | B1 | #2/2 | TR: iyi insan, yardımsever | EN: a person who is exceptionally kind, helpful, or good-natured, often used metaphorically | ÖRNEK: She is an angel who always volunteers at the shelter.
+402 | anger | noun | B1 | #1/1 | TR: öfke, kızgınlık | EN: a strong feeling of displeasure or hostility | ÖRNEK: She felt a sudden surge of anger when she saw the broken vase.
+403 | anger | verb | B1 | #1/1 | TR: kızdırmak, öfkelendirmek | EN: to cause someone to feel angry or to become angry | ÖRNEK: The loud music can anger nearby neighbors.
+5555 | angle | noun | B1 | #1/2 | TR: açı, köşe | EN: the figure formed by two lines or surfaces intersecting at a common point, measured in degrees or radians | ÖRNEK: The teacher drew a 90-degree angle on the board.
+5556 | angle | noun | B2 | #2/2 | TR: bakış açısı, perspektif | EN: a particular way of considering or approaching something; a point of view | ÖRNEK: She offered a fresh angle on the debate about climate policy.
+405 | angry | adjective | A1 | #1/1 | TR: kızgın, öfkeli | EN: feeling or showing strong displeasure or hostility | ÖRNEK: The child felt angry when his toy broke.
+17051 | animal | noun | A2 | #1/1 | TR: hayvan | EN: a living organism that feeds on organic matter, typically able to move and respond to its environment | ÖRNEK: The zoo has a new animal that visitors can see today.
+10914 | animation | noun | B1 | #1/3 | TR: animasyon | EN: the art or process of making animated films or graphics | ÖRNEK: He enrolled in a course on animation to improve his design skills.
+10913 | animation | noun | B1 | #2/3 | TR: çizgi film, hareketli görüntü | EN: a technique of creating moving images by displaying a sequence of static pictures or drawings | ÖRNEK: The children enjoyed the colorful animation at the cinema.
+10912 | animation | noun | B2 | #3/3 | TR: canlılık | EN: the quality of being alive or lively; the state of having life or vigor | ÖRNEK: The child's eyes showed great animation when he saw the puppy.
+9868 | ankle | noun | A2 | #1/1 | TR: ayak bileği | EN: the joint that connects the foot to the leg | ÖRNEK: He hurt his ankle while running in the park.
+20512 | anniversary | noun | B2 | #1/1 | TR: yıl dönümü | EN: a date on which you remember something that happened on the same date in a past year | ÖRNEK: It's our wedding anniversary tomorrow.
+8644 | announce | verb | B2 | #1/1 | TR: duyurmak, ilan etmek | EN: to make a public statement about something, especially officially or formally | ÖRNEK: The school will announce the summer schedule next week.
+8645 | announcement | noun | B1 | #1/1 | TR: duyuru, ilan | EN: a public statement that gives information about something, especially a formal or official one | ÖRNEK: The school posted an announcement about the upcoming exam schedule.
+6139 | annoy | verb | B1 | #1/1 | TR: rahatsız etmek, sinirlendirmek | EN: to cause someone to feel slightly angry or irritated | ÖRNEK: The buzzing fly annoyed the teacher during the lecture.
+6141 | annoyed | adjective | B1 | #1/1 | TR: rahatsız, kızgın | EN: feeling displeased or irritated because of something or someone | ÖRNEK: The child was annoyed with the loud music in the classroom.
+6142 | annoying | adjective | B1 | #1/1 | TR: rahatsız edici | EN: causing irritation or discomfort to someone | ÖRNEK: The buzzing fly was annoying during the exam.
+14191 | annual | adjective | B1 | #1/1 | TR: yıllık, her yıl gerçekleşen | EN: occurring once every year; happening or produced each year | ÖRNEK: The school organizes an annual sports day for all students.
+14193 | annually | adverb | B1 | #1/1 | TR: yıllık olarak, her yıl | EN: once every year | ÖRNEK: The school publishes its calendar annually.
+9628 | anonymous | adjective | B2 | #1/1 | TR: kimliği bilinmeyen, ismi söylenmeyen | EN: not identified by name; lacking a known or disclosed identity | ÖRNEK: Many charities rely on anonymous donors to fund their projects.
+27259 | another | determiner | A1 | #1/1 | TR: başka bir, bir … daha | EN: one more, or a different one | ÖRNEK: Would you like another coffee?
+15896 | answer | noun | A2 | #1/1 | TR: cevap, yanıt | EN: a spoken or written reply to a question, request, or problem | ÖRNEK: The teacher asked a question and waited for an answer.
+15897 | answer | verb | A1 | #1/1 | TR: cevaplamak, yanıtlamak | EN: to give a response to a question, request, or situation | ÖRNEK: She answered the teacher's question in class.
+6868 | anticipate | verb | B2 | #1/1 | TR: beklemek, öngörmek, tahmin etmek | EN: to expect or look forward to something and often to act in preparation for it | ÖRNEK: She anticipates the meeting tomorrow with great interest.
+8011 | antique | adjective | B2 | #1/1 | TR: eski, antika, tarihî | EN: of great age; having value because of its age and rarity; not modern. | ÖRNEK: The antique clock on the wall still ticks accurately.
+8012 | antique | noun | B2 | #1/1 | TR: eski eşya, antika | EN: a valuable object or work of art that has survived from an earlier period, typically over a hundred years old | ÖRNEK: The antique was sold at a high price at the auction.
+408 | anxiety | noun | B1 | #1/1 | TR: kaygı, endişe | EN: a feeling of worry, nervousness, or uneasiness about something with an uncertain outcome | ÖRNEK: She felt a slight anxiety before stepping onto the stage.
+407 | anxious | adjective | B2 | #1/2 | TR: endişeli, kaygılı | EN: feeling worried, uneasy, or nervous about something uncertain or potentially harmful | ÖRNEK: He felt anxious about the upcoming exam.
+406 | anxious | adjective | B1 | #2/2 | TR: istekli, can atan | EN: feeling eager or longing for something to happen | ÖRNEK: She felt anxious to begin the research project.
+20389 | any | adverb | A2 | #1/1 | TR: hiç, biraz (daha) | EN: at all; to any degree (used in questions and negatives) | ÖRNEK: I can't walk any faster.
+27247 | any | determiner | A1 | #1/2 | TR: (soru ve olumsuzda) hiç, herhangi bir | EN: used in questions and negatives to mean "some" or "even a small amount" | ÖRNEK: Do you have any questions?
+27248 | any | determiner | A1 | #2/2 | TR: herhangi bir, hangisi olursa | EN: used to mean one of a group when it does not matter which | ÖRNEK: Take any seat you like.
+16612 | anymore | adverb | B1 | #1/1 | TR: artık | EN: used to indicate that a previous situation or habit no longer exists or is no longer true | ÖRNEK: I don't watch TV anymore because I prefer reading.
+27215 | anyone | pronoun | A2 | #1/2 | TR: (soru ve olumsuzda) kimse, biri | EN: used in questions and negatives to mean "any person" | ÖRNEK: Is anyone here?
+27216 | anyone | pronoun | A2 | #2/2 | TR: herkes, kim olursa | EN: any person, when it does not matter who | ÖRNEK: Anyone can learn to swim.
+27219 | anything | pronoun | A1 | #1/2 | TR: (soru ve olumsuzda) bir şey, hiçbir şey | EN: used in questions and negatives to mean "a thing" | ÖRNEK: Do you need anything?
+27220 | anything | pronoun | A1 | #2/2 | TR: ne olursa, herhangi bir şey | EN: any thing, when it does not matter which | ÖRNEK: You can eat anything you like.
+20183 | anyway | adverb | B1 | #1/1 | TR: her neyse, yine de | EN: in any case; regardless of what has been said or done | ÖRNEK: I was tired, but I went to the party anyway.
+17508 | anywhere | adverb | A2 | #1/1 | TR: herhangi bir yerde | EN: in, at, or to any place | ÖRNEK: You can park your car anywhere on this street.
+17178 | apart | adverb | B1 | #1/1 | TR: ayrı, uzakta, ayrı ayrı | EN: separated from or at a distance from something else | ÖRNEK: The two houses are built apart from each other.
+17179 | apartment | noun | A1 | #1/1 | TR: daire | EN: a set of rooms forming a separate residence within a building | ÖRNEK: She signed the lease for a small apartment near campus.
+8975 | apologize | verb | B1 | #1/1 | TR: özür dilemek, pişmanlık ifade etmek | EN: to express regret for a fault or offense and to ask for forgiveness | ÖRNEK: She apologized after accidentally spilling coffee on his shirt.
+8970 | apology | noun | B1 | #1/2 | TR: özür, pişmanlık beyanı | EN: a statement in which a person expresses regret for a mistake or offense | ÖRNEK: He wrote an apology to his teacher after missing the deadline.
+8971 | apology | noun | C1 | #2/2 | TR: savunma, müdafaa | EN: a formal defense or justification of a doctrine, belief, or practice, especially in theology or philosophy | ÖRNEK: In his lecture, the professor presented an apology for rationalism as a response to empiricism.
+16852 | app | noun | B1 | #1/1 | TR: uygulama | EN: a software program designed to perform a specific function on a computer or mobile device | ÖRNEK: She opened the app to check the weather forecast for tomorrow.
+9159 | apparatus | noun | B2 | #1/1 | TR: cihaz, alet, düzenek | EN: a set of tools or equipment designed to perform a specific function or task | ÖRNEK: He assembled the apparatus according to the manual's instructions.
+412 | apparent | adjective | B1 | #1/2 | TR: görünür, açık | EN: clearly visible or understood; obvious | ÖRNEK: The error in the report was apparent to everyone.
+413 | apparent | adjective | B2 | #2/2 | TR: görünüşteki, iddia edilen | EN: seeming to be true or real, but not necessarily so | ÖRNEK: The politician's motives seemed apparent, yet many remained skeptical.
+414 | apparently | adverb | B2 | #1/1 | TR: görünüşe göre | EN: used to indicate that something seems to be true based on what is known or observed | ÖRNEK: Apparently the shop opens at nine o'clock every day.
+17626 | appeal | noun | B2 | #1/3 | TR: çekicilik, cazibe | EN: the quality of being attractive or interesting | ÖRNEK: The painting's bright colors give it a strong appeal.
+17627 | appeal | noun | B1 | #2/3 | TR: çağrı, yardım çağrısı, yakarış | EN: a request for something, especially for help, support, or a favor | ÖRNEK: The organization issued an appeal for volunteers.
+17625 | appeal | noun | C1 | #3/3 | TR: temyiz, itiraz | EN: a formal request to a higher court to review and change a lower court's decision | ÖRNEK: He filed an appeal after the trial ended.
+17629 | appeal | verb | B1 | #1/2 | TR: çekici olmak, cazip gelmek | EN: to be attractive or interesting to someone; to arouse interest or desire | ÖRNEK: The bright colors of the poster appeal to children.
+17628 | appeal | verb | B2 | #2/2 | TR: temyize gitmek, itiraz etmek | EN: to make a formal request to a court, authority, or organization for a decision to be reconsidered | ÖRNEK: She will appeal the ruling because she believes it is unfair.
+17630 | appealing | adjective | B2 | #1/1 | TR: çekici, cazip | EN: attractive or interesting in a way that arouses interest or desire | ÖRNEK: The colorful brochure looks appealing to shoppers.
+410 | appear | verb | A2 | #1/2 | TR: görünmek, ortaya çıkmak | EN: to become visible or come into sight | ÖRNEK: The sun appeared over the horizon at dawn.
+411 | appear | verb | B1 | #2/2 | TR: sanki ... gibi görünmek | EN: to give the impression of being something or to seem | ÖRNEK: She appears happy, but her eyes tell another story.
+415 | appearance | noun | A2 | #1/2 | TR: dış görünüş, görünüm | EN: the way that someone or something looks to the eye or to the mind | ÖRNEK: His appearance was neat and tidy for the interview.
+416 | appearance | noun | B2 | #2/2 | TR: görünme, ortaya çıkma | EN: the act or fact of becoming visible or being noticed | ÖRNEK: The appearance of the comet was announced by astronomers worldwide.
+5435 | appetite | noun | B1 | #1/1 | TR: iştah, yeme isteği | EN: a natural desire to satisfy a bodily need, especially for food | ÖRNEK: She felt a sudden appetite after the long hike.
+9138 | applaud | verb | B1 | #1/1 | TR: alkışlamak | EN: to show approval or praise by clapping one's hands | ÖRNEK: The students applauded when the teacher announced the surprise holiday.
+9139 | applause | noun | B1 | #1/1 | TR: alkış | EN: the clapping of hands to show approval or appreciation, especially after a performance or speech | ÖRNEK: The children gave a round of applause after the school play.
+17232 | apple | noun | A1 | #1/1 | TR: elma | EN: a round fruit with red, green, or yellow skin and a crisp, sweet flesh | ÖRNEK: She bought a fresh apple from the market.
+9727 | applicable | adjective | B2 | #1/1 | TR: uygulanabilir | EN: capable of being applied or put into practice in a particular situation | ÖRNEK: The discount is applicable only to purchases over fifty dollars.
+9728 | applicant | noun | B2 | #1/1 | TR: başvuran, başvuru sahibi | EN: a person who makes a formal request, typically for a job, admission, or a grant | ÖRNEK: The university sent an email to every applicant with the interview schedule.
+9729 | application | noun | A2 | #1/2 | TR: uygulama, program | EN: a computer program designed to perform a specific task for the user | ÖRNEK: The new application helps students organize their study schedules.
+9730 | application | noun | B1 | #2/2 | TR: başvuru, müracaat | EN: the act of formally requesting something, especially a job, admission, or permission | ÖRNEK: Maria completed her application for the summer internship yesterday.
+9723 | apply | verb | A2 | #1/3 | TR: başvurmak, talepte bulunmak | EN: to make a formal request, typically for a job, admission, or a grant | ÖRNEK: He applied for the internship last week.
+9722 | apply | verb | B1 | #2/3 | TR: uygulamak, kullanmak | EN: to put something into operation or use, especially a method, rule, or piece of knowledge | ÖRNEK: She applies the formula correctly in each experiment.
+9724 | apply | verb | C1 | #3/3 | TR: geçerli olmak, uygulanabilir olmak | EN: to be relevant or appropriate to a particular situation or set of conditions | ÖRNEK: The theory applies to many natural phenomena.
+7823 | appoint | verb | B2 | #1/2 | TR: görevlendirmek, atamak | EN: to assign someone to a position or role, usually officially | ÖRNEK: The university will appoint a new dean next month.
+7824 | appoint | verb | C1 | #2/2 | TR: kararlaştırmak, belirlemek, tayin etmek | EN: to arrange a time for a meeting or event | ÖRNEK: Please appoint a date for the interview as soon as possible.
+7826 | appointment | noun | A2 | #1/2 | TR: randevu, görüşme | EN: a scheduled meeting between two or more people at a particular time and place | ÖRNEK: I called the clinic to set up an appointment for a check-up.
+7827 | appointment | noun | B2 | #2/2 | TR: görev, atama | EN: the act of assigning someone to a position or job, or the position itself that has been assigned | ÖRNEK: The university announced the appointment of a new dean last Friday.
+11629 | appreciate | verb | B2 | #1/2 | TR: takdir etmek, değerini bilmek | EN: to recognize the full worth, value, or significance of something or someone | ÖRNEK: I appreciate your help with the assignment.
+11630 | appreciate | verb | B1 | #2/2 | TR: minnettar olmak, teşekkür etmek | EN: to feel grateful for something received or done | ÖRNEK: I appreciate your advice on the exam.
+11633 | appreciation | noun | B1 | #1/2 | TR: takdir, minnet, şükran | EN: the feeling of gratefulness toward someone for something they have done | ÖRNEK: She felt a warm appreciation after the surprise birthday party.
+11632 | appreciation | noun | B2 | #2/2 | TR: değer artışı | EN: the increase in the monetary value of an asset over time | ÖRNEK: The house showed significant appreciation after the new highway was built.
+16624 | approach | noun | B2 | #1/2 | TR: yöntem, yaklaşım | EN: a way of dealing with a situation or problem | ÖRNEK: Scientists are testing a different approach to reduce carbon emissions.
+16625 | approach | noun | B2 | #2/2 | TR: yaklaşma, geliş | EN: the act of coming nearer to someone or something | ÖRNEK: The approach of the storm caused the school to cancel classes.
+16626 | approach | verb | A2 | #1/2 | TR: yaklaşmak | EN: to move closer to someone or something in distance or time | ÖRNEK: The hikers approached the summit as the sun set.
+16627 | approach | verb | B2 | #2/2 | TR: ele alıp çözmek, yönelmek | EN: to deal with a subject or task in a particular way | ÖRNEK: The scientist approached the research question with rigorous methodology.
+12406 | appropriate | adjective | B2 | #1/1 | TR: uygun, yerinde, elverişli | EN: suitable or proper in the circumstances; fitting for a particular purpose or situation. | ÖRNEK: The dress code requires appropriate attire for the ceremony.
+12409 | appropriately | adverb | B1 | #1/1 | TR: uygun bir şekilde, yerinde | EN: in a suitable or proper manner | ÖRNEK: She answered the question appropriately during the class discussion.
+6414 | approval | noun | B2 | #1/1 | TR: onay, kabul | EN: official or formal agreement to or acceptance of something | ÖRNEK: The manager gave his approval for the marketing plan.
+6412 | approve | verb | B1 | #1/1 | TR: onaylamak, tasvip etmek | EN: to give official consent or permission for something | ÖRNEK: The manager will approve your leave request tomorrow.
+17728 | approximately | adverb | B1 | #1/1 | TR: yaklaşık olarak | EN: close to a particular number or amount but not exactly | ÖRNEK: The class has approximately twenty students this semester.
+12346 | arbitrary | adjective | C1 | #1/1 | TR: keyfi, rastgele | EN: based on personal whim rather than any reason or system | ÖRNEK: The teacher gave an arbitrary grade that surprised the class.
+421 | architect | noun | A2 | #1/1 | TR: mimar | EN: a person who designs buildings and oversees their construction | ÖRNEK: The architect drew a simple house plan.
+422 | architectural | adjective | B2 | #1/1 | TR: mimari | EN: relating to the design and construction of buildings or other structures | ÖRNEK: The university hired a new firm for the campus architectural design.

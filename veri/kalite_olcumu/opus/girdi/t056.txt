@@ -1,0 +1,100 @@
+26399 | get on | phrasal_verb | A2 | #1/4 | TR: (otobüse, trene) binmek | EN: to go onto a bus, train, plane or bicycle | ÖRNEK: We got on the bus at the station.
+26400 | get on | phrasal_verb | A2 | #2/4 | TR: iyi geçinmek, anlaşmak | EN: to have a friendly relationship with someone | ÖRNEK: I get on well with my colleagues.
+26403 | get out | phrasal_verb | B1 | #1/3 | TR: dışarı çıkmak, kaçmak | EN: to leave or escape from a place | ÖRNEK: Get out of my room!
+26404 | get out | phrasal_verb | B1 | #2/3 | TR: (arabadan) inmek | EN: to leave a car | ÖRNEK: The driver got out and opened the door.
+26405 | get out | phrasal_verb | B1 | #3/3 | TR: (haber, sır) yayılmak, duyulmak | EN: to become known | ÖRNEK: The news soon got out.
+26406 | get out of | phrasal_verb | B2 | #1/1 | TR: (bir sorumluluktan) yakayı sıyırmak, kaçmak | EN: to avoid doing something you should do | ÖRNEK: He always gets out of doing the washing-up.
+26407 | get over | phrasal_verb | B2 | #1/2 | TR: atlatmak, iyileşmek | EN: to feel better after an illness, an unpleasant experience or the end of a relationship | ÖRNEK: It took her a long time to get over the shock.
+26408 | get over | phrasal_verb | B2 | #2/2 | TR: (sorunu) aşmak | EN: to deal with a problem successfully | ÖRNEK: We need to get over this difficulty.
+26409 | get rid of | phrasal_verb | B1 | #1/1 | TR: -den kurtulmak, atmak | EN: to throw away or remove something that you do not want | ÖRNEK: I need to get rid of these old clothes.
+26410 | get round | phrasal_verb | B2 | #1/2 | TR: (kuralı, sorunu) aşmak, çaresini bulmak | EN: to find a way of avoiding a problem or rule | ÖRNEK: We found a way to get round the rules.
+26951 | get round to | phrasal_verb | C1 | #1/1 | TR: (sonunda) -e fırsat bulmak, -meye vakit bulmak | EN: to do something that you have intended to do for a long time | ÖRNEK: I finally got round to fixing the door.
+26412 | get through | phrasal_verb | B1 | #1/3 | TR: (telefonda) ulaşmak, bağlantı kurmak | EN: to manage to talk to someone on the phone | ÖRNEK: I tried to call you but I couldn't get through.
+26413 | get through | phrasal_verb | B1 | #2/3 | TR: (zor bir dönemi) atlatmak, geçirmek | EN: to manage to deal with a difficult situation or period | ÖRNEK: We'll get through this together.
+26414 | get through | phrasal_verb | B1 | #3/3 | TR: (sınavı) geçmek | EN: to succeed in an exam or test | ÖRNEK: She got through her driving test.
+26415 | get together | phrasal_verb | B1 | #1/1 | TR: bir araya gelmek, toplanmak | EN: to meet in order to do something or spend time together | ÖRNEK: Let's get together next week.
+26416 | get up | phrasal_verb | A1 | #1/1 | TR: kalkmak (yataktan, ayağa) | EN: to get out of bed after sleeping | ÖRNEK: I get up at seven every day.
+26048 | getaway | noun | B1 | #1/1 | TR: tatil, kısa seyahat | EN: a short vacation or trip taken for relaxation or recreation | ÖRNEK: A weekend getaway can recharge your energy.
+15106 | getter | noun | C1 | #2/2 | TR: erişim metodu | EN: a method in object-oriented programming that returns the value of a property | ÖRNEK: The developer added a getter to expose the private variable safely.
+13311 | ghastly | adjective | B2 | #1/2 | TR: dehşet verici, korkunç | EN: causing horror or shock; extremely unpleasant or frightening. | ÖRNEK: The news anchor described the ghastly accident in a calm voice.
+13312 | ghastly | adjective | C1 | #2/2 | TR: solgun, morluklu, cansız görünümlü | EN: looking extremely pale, as if ill or frightened; having a gaunt or deathlike appearance. | ÖRNEK: She woke up with a ghastly face after the night of fever.
+2745 | ghost | verb | B2 | #2/2 | TR: ilişkiyi aniden kesmek, iletişimi durdurmak | EN: to suddenly stop all communication with someone, especially in a romantic or social context, without explanation | ÖRNEK: He sent a text, but she never replied; she had ghosted him.
+2746 | ghostly | adjective | B2 | #1/1 | TR: hayaleti andıran | EN: resembling a ghost; having an eerie, pale, or insubstantial appearance | ÖRNEK: The abandoned house looked ghostly in the fog.
+18965 | giantess | noun | B2 | #1/1 | TR: dev kadın, dev kız | EN: a very large woman; a female giant, often used in mythology or fantasy | ÖRNEK: The story begins with a lonely giantess who lives on a remote island.
+14927 | giddiness | noun | B1 | #1/1 | TR: baş dönmesi, sersemlik | EN: a state of being dizzy or light-headed, often accompanied by excitement or instability | ÖRNEK: After the roller coaster, she felt a sudden giddiness.
+14925 | giddy | adjective | B1 | #1/2 | TR: başı dönen, sersemlemiş | EN: feeling light-headed and unsteady, often as a result of excitement or a physical condition | ÖRNEK: The medicine made her feel giddy and a little unsteady.
+14926 | giddy | adjective | B2 | #2/2 | TR: coşkulu, neşeli, hafif çılgın | EN: excessively excited or frivolously happy, often showing a lack of seriousness | ÖRNEK: The children were giddy about the surprise party.
+17154 | gift | verb | B1 | #1/1 | TR: hediye vermek | EN: to give something to someone as a present | ÖRNEK: She will gift her friend a scarf for the holidays.
+17155 | gifted | adjective | C1 | #1/1 | TR: yetenekli, üstün yetenekli | EN: having exceptional natural ability or talent, especially in intellectual or artistic areas | ÖRNEK: The gifted child solved the puzzle faster than anyone else.
+17156 | giftedness | noun | C1 | #1/1 | TR: doğuştan üstün yetenek | EN: the state of having exceptional natural ability or talent, especially in intellectual or creative domains | ÖRNEK: The teacher noticed his giftedness in drawing during the first art class.
+18966 | gigantic | adjective | B2 | #1/1 | TR: devasa, çok büyük | EN: of extremely large size; enormous. | ÖRNEK: The ancient oak in the park looks gigantic during the summer.
+9387 | giggle | noun | B1 | #1/1 | TR: kıkırdama | EN: a light, silly laugh that is often uncontrollable and expressed in a high-pitched voice | ÖRNEK: The baby let out a soft giggle when she saw the colorful toy.
+9388 | giggle | verb | B1 | #1/1 | TR: kıkırdamak | EN: to laugh in a light, silly way, often repeatedly and quietly | ÖRNEK: The baby started to giggle when her mother tickled her belly.
+9389 | giggly | adjective | B1 | #1/1 | TR: kıkırdamaya meyilli, kıkırdamak eğiliminde | EN: characterized by or inclined to giggle; showing a tendency to laugh in a light, silly way | ÖRNEK: The toddler was giggly while playing with the bubbles.
+12540 | gild | verb | B2 | #1/1 | TR: altınla kaplamak | EN: to cover something with a thin layer of gold or a gold-like substance | ÖRNEK: The craftsman gilded the wooden box to make it look valuable.
+12541 | gilded | adjective | B2 | #1/1 | TR: altın kaplı, altınla süslenmiş | EN: covered thinly with gold or a gold-like substance, often for decorative purposes | ÖRNEK: The museum displayed a gilded vase from the ancient period.
+12542 | gilding | noun | B2 | #1/1 | TR: altın kaplama | EN: the process of covering a surface with a thin layer of gold, usually by applying gold leaf or gold paint | ÖRNEK: The museum displayed a vase with exquisite gilding on its rim.
+13491 | gill | noun | B1 | #1/1 | TR: solungaç | EN: a breathing organ of fish and some amphibians, consisting of thin filaments that extract oxygen from water | ÖRNEK: The goldfish flapped its gills as it swam near the surface.
+7341 | gin | noun | B1 | #1/1 | TR: cin | EN: a distilled alcoholic beverage flavored with juniper berries and other botanicals | ÖRNEK: I tried gin for the first time at a small pub.
+7342 | gin | verb | C2 | #1/1 | TR: çırçırlamak | EN: to separate cotton fibers from the seeds by using a gin | ÖRNEK: The farmer sent the harvested cotton to the mill to gin it.
+10334 | ginger | adjective | B1 | #1/1 | TR: kızıl | EN: having a reddish or reddish-brown colour, especially of hair or complexion | ÖRNEK: My sister has ginger hair that shines in the sunlight.
+10336 | ginger | noun | B1 | #1/2 | TR: zencefil | EN: a spicy aromatic rhizome used as a flavoring or medicine | ÖRNEK: The recipe calls for a tablespoon of grated ginger.
+10337 | ginger | noun | B2 | #2/2 | TR: kızıl saçlı, kızıl tenli kişi | EN: a person, especially a child, with red hair or a ruddy complexion | ÖRNEK: My brother is a ginger and often gets teased for his hair color.
+10338 | gingerly | adverb | B2 | #1/1 | TR: dikkatlice, özenle | EN: in a careful and cautious manner | ÖRNEK: She walked gingerly across the icy sidewalk to avoid falling.
+15486 | girlhood | noun | B2 | #1/1 | TR: kızlık dönemi | EN: the period of life when a female is a girl, before reaching adulthood | ÖRNEK: She remembers the games she played during her girlhood.
+15488 | girly | adjective | B1 | #1/1 | TR: kızsı, kadınsı | EN: having qualities, interests, or a style that are traditionally associated with girls or women | ÖRNEK: She chose a girly dress for the school dance.
+25300 | gist | noun | B2 | #1/1 | TR: öz, ana fikir | EN: the main point or essence of a text, speech, or idea | ÖRNEK: She caught the gist of the story after reading the first paragraph.
+26419 | give away | phrasal_verb | B1 | #1/2 | TR: (bedava) vermek, dağıtmak | EN: to give something to someone without asking for payment | ÖRNEK: She gave away all her old toys.
+26420 | give away | phrasal_verb | B1 | #2/2 | TR: (sırrı) açığa vurmak, ele vermek | EN: to tell people something secret, often by mistake | ÖRNEK: Don't give away the ending of the film!
+26421 | give back | phrasal_verb | A2 | #1/1 | TR: geri vermek, iade etmek | EN: to return something to the person who owns it | ÖRNEK: Can you give me back my pen?
+26422 | give in | phrasal_verb | B1 | #1/3 | TR: (sonunda) kabul etmek, boyun eğmek | EN: to finally agree to what someone wants after refusing for a time | ÖRNEK: My parents finally gave in and let me go.
+26423 | give in | phrasal_verb | B1 | #2/3 | TR: pes etmek | EN: to accept that you have been defeated | ÖRNEK: The team refused to give in.
+26424 | give in | phrasal_verb | B1 | #3/3 | TR: (ödevi) teslim etmek | EN: to give a piece of work to a teacher | ÖRNEK: Please give in your homework on Monday.
+26425 | give off | phrasal_verb | B2 | #1/1 | TR: (koku, ısı, ışık) yaymak, salmak | EN: to produce heat, light, a smell or gas | ÖRNEK: The flowers give off a lovely smell.
+26426 | give out | phrasal_verb | B1 | #1/2 | TR: dağıtmak | EN: to give something to a lot of people | ÖRNEK: The teacher gave out the exam papers.
+26427 | give out | phrasal_verb | B1 | #2/2 | TR: (güç, makine) tükenmek, çalışmaz olmak | EN: to stop working because of being old or used too much | ÖRNEK: My legs gave out after ten miles.
+26428 | give up | phrasal_verb | B1 | #1/2 | TR: vazgeçmek, pes etmek | EN: to stop trying to do something | ÖRNEK: Don't give up – you're almost there!
+26429 | give up | phrasal_verb | B1 | #2/2 | TR: (alışkanlığı, işi) bırakmak | EN: to stop doing or having something that you did regularly | ÖRNEK: He gave up smoking last year.
+26952 | give up on | phrasal_verb | B2 | #1/1 | TR: (birinden, bir şeyden) umudu kesmek | EN: to stop hoping that someone or something will succeed or change | ÖRNEK: Don't give up on me – I'll do better.
+26953 | give way | phrasal_verb | B2 | #1/3 | TR: çökmek, kırılmak | EN: to break or fall down because of pressure | ÖRNEK: The bridge gave way under the weight.
+26954 | give way | phrasal_verb | B2 | #2/3 | TR: (trafikte) yol vermek | EN: to allow other vehicles to go first | ÖRNEK: You must give way to traffic on the right.
+26955 | give way | phrasal_verb | B2 | #3/3 | TR: yerini bırakmak; boyun eğmek | EN: to be replaced by something, or to stop opposing something | ÖRNEK: Sadness gave way to anger.
+15178 | giveaway | noun | B2 | #2/2 | TR: hediye, promosyon ürünü | EN: an item that is given for free, often as part of a promotional campaign | ÖRNEK: The conference bag contained a small giveaway for all attendees.
+15180 | giver | noun | B1 | #1/1 | TR: bağışçı, veren kişi | EN: a person who gives something, especially as a gift or donation | ÖRNEK: The giver handed the envelope to the recipient with a smile.
+15181 | giving | noun | B2 | #1/1 | TR: verme, bağışlama, cömertlik | EN: the act of giving something to someone; generosity | ÖRNEK: She enjoys the giving of small gifts to her friends.
+12859 | glacial | adjective | B2 | #1/2 | TR: buzul, buzullara ait | EN: relating to or resembling a glacier; very cold or icy in nature | ÖRNEK: The glacier's surface is covered with glacial ice.
+12860 | glacial | adjective | C1 | #2/2 | TR: aşırı yavaş, çok yavaş | EN: extremely slow or sluggish, often used figuratively to describe pace or progress | ÖRNEK: The bureaucracy works at a glacial pace.
+12862 | glaciation | noun | C1 | #1/1 | TR: buzullaşma | EN: the process of formation or presence of glaciers; the period during which large areas are covered by ice | ÖRNEK: Scientists study glaciation to understand past climates.
+12858 | glacier | noun | B2 | #1/1 | TR: buzul | EN: a large, slow-moving mass of ice formed from compacted snow on land, especially in high mountains or polar regions | ÖRNEK: The glacier blocks the road during winter months.
+11400 | gladden | verb | C1 | #1/1 | TR: mutlu etmek | EN: to cause someone to feel pleasure or happiness | ÖRNEK: A friendly smile can gladden a stranger on the street.
+25301 | gladiator | noun | B2 | #1/2 | TR: gladyatör, arenada dövüşen savaşçı | EN: a person who fought armed in a public arena in ancient Rome, often for entertainment | ÖRNEK: The museum displayed a replica of a Roman gladiator helmet.
+25302 | gladiator | noun | C1 | #2/2 | TR: güçlü, mücadeleci rakip | EN: a person who fights fiercely or competes with great determination, often used metaphorically | ÖRNEK: The startup founder approached the market with a gladiator attitude.
+25303 | gladiatorial | adjective | B2 | #1/1 | TR: gladyatöre özgü | EN: relating to or characteristic of gladiators, especially in terms of combat or spectacle | ÖRNEK: The museum displayed a gladiatorial helmet from the 2nd century.
+11401 | gladly | adverb | A2 | #1/1 | TR: memnuniyetle, seve seve | EN: in a willing and cheerful manner; with pleasure | ÖRNEK: She gladly shared her notes with the new student.
+11402 | gladness | noun | B1 | #1/1 | TR: sevinç, mutluluk | EN: the state of being pleased or happy | ÖRNEK: The child felt gladness when he got a new toy.
+25304 | glam | noun | B2 | #1/1 | TR: göz alıcı şıklık, cazibe | EN: a striking, fashionable attractiveness that is often associated with luxury or celebrity culture | ÖRNEK: She loves the glam of red-carpet events.
+23142 | glamor | noun | B2 | #1/1 | TR: çarpıcı şıklık, göz alıcı cazibe | EN: the quality of being attractive and fashionable in a striking way | ÖRNEK: The actress's red-carpet dress exuded pure glamor at the premiere.
+23143 | glamorous | adjective | B2 | #1/1 | TR: çekici, göz alıcı, cazibeli | EN: attractive in a sophisticated, fashionable, or luxurious way | ÖRNEK: The model looks glamorous on the runway.
+23141 | glamour | noun | B2 | #1/1 | TR: çekicilik, albeni, göz alıcılık | EN: the quality of being attractive or exciting in a way that seems magical or luxurious | ÖRNEK: The movie set was full of glamour and bright lights.
+23145 | glandular | adjective | C1 | #1/1 | TR: bezle ilgili, bezsel | EN: relating to or having glands; characterized by the presence of glands. | ÖRNEK: The doctor explained that the tumor was made of glandular tissue.
+2665 | glare | noun | B1 | #1/2 | TR: parlak ışık, ışık parlaması | EN: a strong, harsh, and often blinding light | ÖRNEK: The glare from the computer screen hurt his eyes.
+2666 | glare | noun | B2 | #2/2 | TR: kızgın bakış, öfke dolu bakış | EN: a fierce or angry stare | ÖRNEK: The child gave a quick glare when his sister took his toy.
+2667 | glare | verb | B1 | #1/2 | TR: parıldamak, göz kamaştırmak | EN: to shine with a strong, harsh light; to be dazzlingly bright | ÖRNEK: The polished floor began to glare under the bright lamps.
+2668 | glare | verb | B2 | #2/2 | TR: öfkeyle bakmak, kızgın bakış atmak | EN: to stare angrily or fiercely at someone; to look with hostility | ÖRNEK: The child glared at his sister for taking his toy.
+27426 | glasses | noun | A1 | #1/1 | TR: gözlük | EN: two pieces of glass in a frame that you wear to see better | ÖRNEK: I need glasses to read.
+16904 | glassware | noun | B2 | #1/1 | TR: cam eşyaları, cam ürünleri | EN: objects made of glass, especially dishes, containers, and decorative items | ÖRNEK: The kitchen has many glassware items for serving drinks.
+16905 | glassy | adjective | B2 | #1/2 | TR: donuk, anlamsız | EN: having a smooth, shiny appearance like glass; showing a blank, expressionless look | ÖRNEK: The teacher noticed the student's glassy stare during the lecture.
+16906 | glassy | adjective | B1 | #2/2 | TR: camsı | EN: made of, resembling, or having the qualities of glass; transparent or clear | ÖRNEK: The laboratory test showed that the coating was completely glassy.
+8889 | glaze | noun | B2 | #1/1 | TR: sır, cila, parlatıcı sos | EN: a thin, glossy coating applied to pottery, ceramics, or other surfaces to give a smooth, shiny finish | ÖRNEK: The artist applied a clear glaze to protect the sculpture.
+8890 | glaze | verb | B1 | #1/2 | TR: kaplamak, parlak bir tabaka uygulamak | EN: to apply a smooth, glossy coating to a surface, especially pottery or food | ÖRNEK: She glazed the cupcakes with a smooth chocolate coating.
+8891 | glaze | verb | B2 | #2/2 | TR: (over ile) (bakışlar) donuklaşmak | EN: to become dull or unfocused, especially in the eyes, often because of fatigue or shock | ÖRNEK: He listened to the presentation but his eyes glazed over quickly.
+8892 | glazed | adjective | B1 | #1/2 | TR: parlak, sırlı, üzeri sırlı | EN: covered with a smooth, shiny coating or glaze | ÖRNEK: She bought a glazed vase for the living-room table.
+8894 | glazier | noun | B2 | #1/1 | TR: camcı, cam ustası | EN: a person who installs glass in windows and doors | ÖRNEK: The glazier replaced the cracked kitchen window yesterday.
+8895 | glazing | noun | B2 | #1/1 | TR: cam kaplama, pencere camı | EN: a layer of glass or a glass-like coating applied to a surface, especially on windows or ceramics | ÖRNEK: The architect specified low-emissivity glazing for the office tower.
+3773 | gleam | noun | B1 | #1/2 | TR: parıltı, ışık huzmesi | EN: a small, bright or reflected light, especially one that is brief or faint | ÖRNEK: The early morning sun produced a bright gleam on the lake.
+3774 | gleam | noun | B2 | #2/2 | TR: belirti, ipucu | EN: a slight indication or suggestion of something, especially a quality or feeling | ÖRNEK: The child's smile gave a gleam of confidence to the shy classmate.
+3775 | gleam | verb | B1 | #1/1 | TR: parlamak, ışıldamak | EN: to shine brightly, especially with a soft or reflected light | ÖRNEK: The polished floor gleamed under the bright hallway lights.
+13020 | glee | noun | B1 | #1/1 | TR: sevinç, neşe | EN: a feeling of great delight or happiness | ÖRNEK: The puppy wagged its tail, showing pure glee.
+13021 | gleeful | adjective | B1 | #1/1 | TR: sevinçli, neşeli | EN: feeling or showing great delight or merriment | ÖRNEK: The puppy wagged its tail, looking gleeful after the game.
+13022 | gleefully | adverb | B2 | #1/1 | TR: sevinçle, neşeyle | EN: in a manner showing great delight or merriment | ÖRNEK: The puppy wagged its tail gleefully when its owner returned home.
+5917 | glide | noun | B1 | #1/1 | TR: akıcı hareket, süzülüş | EN: a smooth, continuous movement through the air or over a surface | ÖRNEK: The paper airplane made a quiet glide across the classroom.

@@ -1,0 +1,100 @@
+23115 | flute | noun | B1 | #1/2 | TR: flüt | EN: a woodwind instrument that produces sound when air is blown across an opening, usually made of metal or wood | ÖRNEK: She bought a new flute for her music class.
+23116 | flute | noun | B2 | #2/2 | TR: oluk, oluklu kanal | EN: a long, narrow tube or a groove cut into a surface, often used in architecture or engineering | ÖRNEK: Designers often add flutes to metal pipes to reduce turbulence.
+2714 | fly | noun | A2 | #1/2 | TR: sinek | EN: a small winged insect of the order Diptera | ÖRNEK: A fly landed on my sandwich during lunch.
+2715 | fly | noun | B1 | #2/2 | TR: fermuar | EN: the opening of a pair of trousers that is closed by a zipper | ÖRNEK: The fly on his jeans was stuck and wouldn't close.
+2716 | fly | verb | A1 | #1/2 | TR: uçmak | EN: to move through the air using wings or an engine | ÖRNEK: The sparrow can fly very quickly.
+2717 | fly | verb | A2 | #2/2 | TR: uçakla seyahat etmek | EN: to travel by airplane from one place to another | ÖRNEK: I need to fly to New York for a meeting.
+20405 | flying | adjective | A2 | #1/1 | TR: uçan | EN: able to fly or moving through the air | ÖRNEK: There were flying insects everywhere.
+20406 | flying | noun | A2 | #1/1 | TR: uçma, uçak yolculuğu | EN: travelling in an aircraft | ÖRNEK: She is afraid of flying.
+16416 | focus | noun | B1 | #1/1 | TR: odak, odak noktası | EN: the point or area where attention, effort, or interest is concentrated | ÖRNEK: The focus of the meeting was the upcoming exam schedule.
+16418 | focus | verb | B1 | #1/2 | TR: odaklanmak, konsantre olmak | EN: to direct one's attention or effort toward a particular object, task, or subject | ÖRNEK: She tries to focus during the lecture.
+16419 | focus | verb | B2 | #2/2 | TR: odaklamak, netlemek | EN: to adjust a lens, microscope, camera, etc., so that the image becomes clear | ÖRNEK: Before the experiment, the scientist focused the microscope on the sample.
+8345 | fog | noun | B1 | #1/1 | TR: sis | EN: a thick cloud of tiny water droplets suspended near the ground that reduces visibility | ÖRNEK: A light fog drifted across the park this morning.
+8349 | foggy | adjective | B1 | #1/1 | TR: sisli | EN: characterized by or covered with fog; having reduced visibility due to a thick layer of water droplets in the air | ÖRNEK: The city park looked mysterious in the foggy dawn.
+2218 | fold | noun | B1 | #1/1 | TR: kat, kıvrım | EN: a bend or crease in a material, especially fabric or paper, created by folding it | ÖRNEK: She noticed a small fold in the paper after opening the envelope.
+2219 | fold | verb | A2 | #1/2 | TR: katlamak, bükmek | EN: to bend something, especially paper or fabric, so that one part lies on top of another | ÖRNEK: She folded the letter and slipped it into the envelope.
+2220 | fold | verb | B2 | #2/2 | TR: işletmeyi kapatmak, iflas etmek | EN: to close down a business or organization, especially because it is no longer profitable | ÖRNEK: After three years of losses, the retailer had to fold its stores.
+21691 | folder | noun | A2 | #1/1 | TR: dosya | EN: a flat, portable container made of paper, cardboard, or plastic used for holding loose papers or documents | ÖRNEK: She placed the contract in the red folder on her desk.
+20542 | folding | adjective | B2 | #1/1 | TR: katlanır | EN: that can be folded to make it smaller | ÖRNEK: We need some folding chairs for the garden.
+18206 | folk | adjective | B2 | #1/1 | TR: halk, geleneksel | EN: relating to the ordinary people of a nation or community, especially in terms of culture, music, or customs | ÖRNEK: The village hosts a folk dance every summer for tourists.
+18207 | folk | noun | B1 | #1/1 | TR: halk, bir topluluk | EN: the people belonging to a particular group, nation, or community | ÖRNEK: Country folk are often very friendly.
+6810 | follow | verb | A2 | #1/2 | TR: takip etmek | EN: to go after someone or something in order to catch up with or observe them | ÖRNEK: The cat will follow the mouse across the garden.
+6811 | follow | verb | B1 | #2/2 | TR: uygulamak | EN: to act in accordance with a rule, instruction, or request | ÖRNEK: Please follow the instructions on the questionnaire.
+20407 | following | adjective | A2 | #1/2 | TR: ertesi, sonraki | EN: coming next in time | ÖRNEK: We arrived on Friday and left the following day.
+20408 | following | adjective | A2 | #2/2 | TR: aşağıdaki | EN: that you are going to mention next | ÖRNEK: Answer the following questions.
+6815 | following | noun | B1 | #1/1 | TR: takipçiler | EN: people who follow a person, group, or idea | ÖRNEK: The singer's new album attracted a large following on streaming platforms.
+20543 | following | preposition | B2 | #1/1 | TR: -in ardından, -den sonra | EN: after or as a result of | ÖRNEK: Following the meeting, there will be lunch.
+4080 | fond | adjective | B1 | #1/1 | TR: düşkün, seven | EN: feeling affection or liking for someone or something | ÖRNEK: She is fond of reading novels before bedtime.
+15447 | food | noun | A1 | #1/2 | TR: yiyecek, besin | EN: any substance that can be eaten or drunk to provide nutritional support for an organism. | ÖRNEK: The children ate the food quickly after recess.
+15448 | food | noun | A2 | #2/2 | TR: yemek, yemekler | EN: a particular type of food, especially one that is prepared and served as a meal. | ÖRNEK: We tried the local food when we visited the city.
+857 | fool | noun | B1 | #1/1 | TR: aptal, budala | EN: a person who lacks good sense or judgment; a person who is easily deceived or tricked | ÖRNEK: The village idiot was called a fool by the townspeople.
+16816 | foot | noun | A1 | #1/3 | TR: ayak | EN: the lower extremity of the leg below the ankle, on which a person stands or walks | ÖRNEK: She slipped and hurt her foot on the wet floor.
+16817 | foot | noun | A2 | #2/3 | TR: fit | EN: a unit of length equal to 12 inches (approximately 30.48 centimeters) | ÖRNEK: The room is ten feet wide and twelve feet long.
+16818 | foot | noun | B2 | #3/3 | TR: taban, temel | EN: the lower part or base of something, especially a structure or object | ÖRNEK: The river flows gently at the foot of the hill.
+20697 | footage | noun | C1 | #1/1 | TR: görüntü, film kaydı | EN: part of a film showing a particular event | ÖRNEK: The news showed footage of the earthquake.
+16119 | football | noun | A2 | #1/1 | TR: futbol, ayak topu | EN: a team sport played with a spherical ball on a rectangular field, where two teams try to score by getting the ball into the opposing goal | ÖRNEK: The children gathered in the park to play football after class.
+16120 | footballer | noun | A2 | #1/1 | TR: futbolcu | EN: a person who plays football, especially as a profession or at a competitive level | ÖRNEK: The footballer ran onto the pitch after the warm-up.
+20843 | for | preposition | A1 | #1/2 | TR: için | EN: intended to be given to or used by someone; with the purpose of | ÖRNEK: This present is for you.
+20844 | for | preposition | A1 | #2/2 | TR: (süre) boyunca, -dir | EN: used to show a length of time | ÖRNEK: I lived in London for two years.
+18768 | forbid | verb | B2 | #1/1 | TR: yasaklamak | EN: to refuse to allow something; to prohibit someone from doing something | ÖRNEK: The museum forbids photography inside the galleries.
+18769 | forbidden | adjective | B2 | #1/1 | TR: yasaklanmış, men edilmiş | EN: not allowed by law, rule, or authority; prohibited | ÖRNEK: She felt a thrill when she entered the forbidden garden.
+19155 | force | noun | A2 | #1/2 | TR: güç, kuvvet | EN: the physical power or strength that can cause movement or change in an object. | ÖRNEK: She used a lot of force to open the stuck jar.
+19156 | force | noun | B2 | #2/2 | TR: zorla yaptırma, baskı | EN: the use of power or threats to make someone do something against their will. | ÖRNEK: The police were authorized to use force in the emergency.
+19157 | force | verb | B1 | #1/1 | TR: zorlamak | EN: to make someone do something against their will | ÖRNEK: The coach forced the players to run extra laps.
+12264 | forecast | noun | B2 | #1/1 | TR: tahmin, öngörü | EN: a prediction or estimate of future events, especially weather or economic conditions, based on analysis of data | ÖRNEK: The daily forecast says it will be sunny tomorrow.
+12265 | forecast | verb | B2 | #1/1 | TR: tahmin etmek, öngörmek | EN: to predict or estimate a future event or condition, especially by analyzing data or trends | ÖRNEK: The meteorologist forecasts rain for tomorrow.
+11473 | foreign | adjective | A1 | #1/1 | TR: yabancı | EN: relating to a country or language that is not one's own | ÖRNEK: The museum displays many foreign artifacts from ancient civilizations.
+11474 | foreigner | noun | B1 | #1/1 | TR: yabancı | EN: a person who comes from another country or is not a citizen of the place where they are living | ÖRNEK: A foreigner arrived at the airport and asked for directions.
+7633 | forest | noun | B1 | #1/1 | TR: orman | EN: a large area covered chiefly with trees and undergrowth | ÖRNEK: The children played near the edge of the forest during recess.
+17354 | forever | adverb | A2 | #1/1 | TR: sonsuza kadar | EN: at all times; for an endless or indefinite period | ÖRNEK: The children believed the fairy tale would last forever.
+6999 | forge | verb | B1 | #1/2 | TR: şekillendirmek, dövmek | EN: to shape or form metal by heating and hammering it | ÖRNEK: The apprentice learned how to forge iron bars in the furnace.
+7000 | forge | verb | C1 | #2/2 | TR: sahte belge üretmek | EN: to create a false document or imitation with the intent to deceive | ÖRNEK: The clerk attempted to forge a signature on the official form.
+862 | forget | verb | A1 | #1/1 | TR: unutmak, hatırlamamak | EN: to fail to remember something or someone | ÖRNEK: I often forget my keys at home.
+4602 | forgive | verb | B1 | #1/1 | TR: affetmek, bağışlamak | EN: to stop feeling angry or resentful towards someone for an offense, mistake, or disappointment and to grant them pardon | ÖRNEK: She forgave her brother after the argument.
+7411 | fork | noun | A1 | #1/1 | TR: çatal | EN: a utensil with two or more prongs used for eating or serving food | ÖRNEK: She placed the fork beside her plate during dinner.
+18686 | form | noun | A2 | #1/2 | TR: form, başvuru belgesi | EN: a printed or electronic document that contains fields to be filled in with information | ÖRNEK: She handed the form to the clerk at the front desk.
+18687 | form | noun | B1 | #2/2 | TR: şekil | EN: the visible outline or configuration of something; the way in which something is arranged or appears | ÖRNEK: The sculpture has an unusual form that catches the eye.
+18688 | form | verb | B1 | #1/1 | TR: oluşturmak, şekillendirmek | EN: to bring something into existence or to give it a particular shape or structure | ÖRNEK: The teacher asked the students to form a sentence using the new vocabulary.
+18692 | formal | adjective | B2 | #1/1 | TR: resmi, kurallara uygun | EN: conforming to established rules, customs, or ceremonies; official in nature | ÖRNEK: The conference required formal registration before entry.
+19737 | format | noun | B1 | #1/1 | TR: biçim, düzen | EN: a particular way in which something is arranged or presented | ÖRNEK: The professor asked us to submit the essay in the required format.
+18694 | formation | noun | B2 | #1/1 | TR: oluşum, yapı, düzen | EN: the process of being formed or the result of that process; a particular arrangement or structure of something. | ÖRNEK: The geologist explained the formation of the canyon to the students.
+18697 | former | adjective | B1 | #1/2 | TR: eski, geçmişteki | EN: describing something that existed or held a position in the past but no longer does | ÖRNEK: The museum displayed artifacts from the former kingdom of the region.
+18696 | former | adjective | B1 | #2/2 | TR: ilk, bahsedilen iki şeyden birincisi | EN: referring to the first of two items or the one mentioned before another | ÖRNEK: The teacher asked us to compare the former and the latter statements.
+19209 | formerly | adverb | B2 | #1/1 | TR: eskiden, önceki zamanlarda | EN: in the past; at an earlier time | ÖRNEK: He formerly lived in Ankara before moving to Istanbul.
+19263 | formula | noun | B2 | #1/2 | TR: matematiksel ifade, formül | EN: a set of symbols showing a relationship between quantities, especially in mathematics or science | ÖRNEK: The teacher wrote the formula on the board for the class.
+19264 | formula | noun | B1 | #2/2 | TR: tarif, reçete, hazır karışım | EN: a fixed method or recipe for producing something | ÖRNEK: The bakery uses a special formula to bake its famous bread.
+18699 | formulate | verb | B2 | #1/1 | TR: sistematize etmek, formüle etmek | EN: to express an idea, theory, or plan in a clear and systematic way, often in the form of a statement or equation | ÖRNEK: After the meeting, the team formulated a clear action plan.
+867 | forth | adverb | B2 | #1/1 | TR: ileri, öne, ileri doğru | EN: forward or onward, especially in a specified direction | ÖRNEK: The river flows forth from the mountain spring.
+20698 | forthcoming | adjective | C1 | #1/1 | TR: yaklaşan, önümüzdeki | EN: going to happen or appear soon | ÖRNEK: Details of the forthcoming concert are on our website.
+13245 | fortnight | noun | B1 | #1/1 | TR: iki hafta | EN: a period of fourteen consecutive days; two weeks | ÖRNEK: The conference lasts for a fortnight and ends on Friday.
+3489 | fortunate | adjective | B1 | #1/1 | TR: şanslı, talihli | EN: having good luck or favorable circumstances | ÖRNEK: She felt fortunate when she found her lost wallet.
+3490 | fortunately | adverb | B1 | #1/1 | TR: şans eseri | EN: luckily; used to say that something good happened | ÖRNEK: Fortunately, the train arrived on time despite the heavy snow.
+3487 | fortune | noun | B2 | #1/2 | TR: zenginlik, servet | EN: a large amount of money or valuable possessions; wealth | ÖRNEK: He won the lottery and suddenly had a fortune.
+3488 | fortune | noun | B1 | #2/2 | TR: kader, talih | EN: the events that will happen to a person or thing in the future; destiny | ÖRNEK: Many cultures have myths that explain a person's fortune.
+20544 | forum | noun | B2 | #1/1 | TR: forum, tartışma ortamı | EN: a place, meeting or website where people can exchange ideas | ÖRNEK: I asked the question on an online forum.
+16097 | forward | adjective | B1 | #1/2 | TR: ileri, önde | EN: situated or moving toward the front; ahead in position or time | ÖRNEK: The forward part of the ship is painted red.
+16098 | forward | adjective | B2 | #2/2 | TR: haddini aşan, cüretkâr, laubali | EN: showing confidence and willingness to take risks; bold | ÖRNEK: The forward student asked the professor a challenging question.
+16099 | forward | adverb | B1 | #1/1 | TR: ileri, öne | EN: to a position ahead in space or time; toward the front | ÖRNEK: The runner stepped forward and began the race.
+6727 | fossil | noun | B2 | #1/1 | TR: fosil | EN: the preserved remains or impression of a plant or animal from a past geological age | ÖRNEK: The museum displayed a well-preserved fossil of a trilobite.
+3592 | foster | verb | B2 | #1/2 | TR: geliştirmek, desteklemek | EN: to encourage the growth or development of something or someone | ÖRNEK: The school created clubs to foster creativity among students.
+3593 | foster | verb | B2 | #2/2 | TR: koruyucu ailelik yapmak, bakmak | EN: to take care of and raise a child who is not one's biological offspring | ÖRNEK: The couple applied to foster a child last month.
+3780 | found | verb | B2 | #1/1 | TR: kurmak | EN: to establish an institution, organization, or settlement | ÖRNEK: She founded a nonprofit to help homeless youth.
+3781 | foundation | noun | B2 | #1/2 | TR: temel, alt yapı | EN: the lowest supporting part of a building or structure; the underlying basis of an idea or system | ÖRNEK: The construction crew poured concrete for the building's foundation.
+3782 | foundation | noun | B1 | #2/2 | TR: vakıf, kurum | EN: an organization established to provide support, funding, or services for a specific purpose | ÖRNEK: The foundation was created in 1995 to support local artists.
+3784 | founder | noun | B2 | #1/1 | TR: kurucu | EN: a person who establishes or originates an organization, company, institution, or movement | ÖRNEK: The founder started the small bakery in 1998.
+7589 | fraction | noun | B2 | #1/2 | TR: küçük bir parça | EN: a small portion or segment of something larger | ÖRNEK: A small fraction of the students understood the lecture.
+11941 | fraction | noun | B1 | #2/2 | TR: kesir | EN: a number that is not a whole number, such as 1/2 or 3/4 | ÖRNEK: One half is a simple fraction.
+14248 | fragile | adjective | B2 | #1/1 | TR: kırılgan, hassas | EN: easily broken, damaged, or destroyed; not strong or durable | ÖRNEK: The vase is fragile, so please place it carefully on the shelf.
+3198 | fragment | noun | B1 | #1/1 | TR: parça | EN: a small piece broken off or separated from something larger | ÖRNEK: The broken vase left a small fragment on the floor.
+14606 | frame | noun | A2 | #1/2 | TR: çerçeve | EN: a rigid structure that surrounds or supports something, especially a picture, photograph, or piece of artwork | ÖRNEK: The photograph fits perfectly in the new picture frame.
+14607 | frame | noun | B2 | #2/2 | TR: gövde, iskelet | EN: the main structural part of a living organism, especially the part that supports the limbs and head | ÖRNEK: The doctor examined the patient's frame for any spinal abnormalities.
+14608 | frame | verb | A2 | #1/2 | TR: çerçevelemek | EN: to put a picture, photograph, or object into a frame | ÖRNEK: She bought a wooden frame to frame the new artwork.
+14609 | frame | verb | B2 | #2/2 | TR: kurgulamak | EN: to devise or construct a situation, plan, or accusation, often deceitfully | ÖRNEK: The rival politician tried to frame his opponent for corruption.
+14610 | framework | noun | B2 | #1/2 | TR: çerçeve | EN: a basic structure of ideas, rules, or beliefs that supports a system or concept | ÖRNEK: The committee created a framework for the upcoming project.
+14611 | framework | noun | B2 | #2/2 | TR: iskelet, yapı | EN: the supporting structure or outer frame of a physical object | ÖRNEK: The carpenter built the framework of the house using timber beams.
+20699 | franchise | noun | C1 | #1/1 | TR: bayilik, franchise | EN: permission to sell a company's products or use its name in a particular area | ÖRNEK: He owns a fast-food franchise.
+11899 | frankly | adverb | C1 | #1/1 | TR: açıkçası, açıkça, doğrusu | EN: in a direct and honest manner, without concealment or euphemism | ÖRNEK: Frankly, I don't understand the instructions.
+12660 | fraud | noun | B2 | #1/1 | TR: dolandırıcılık, sahtekârlık | EN: the intentional deception of a person or organization for personal or financial gain | ÖRNEK: The bank discovered a fraud attempt and blocked the transaction.
+4846 | free | adjective | A2 | #1/3 | TR: özgür, bağımsız | EN: not under the control or power of another; able to act or think without external constraints. | ÖRNEK: She felt free after quitting her stressful job.
+4847 | free | adjective | A2 | #2/3 | TR: ücretsiz, bedava | EN: provided without charge; not requiring payment. | ÖRNEK: The concert tickets were free for all students.
+4848 | free | adjective | A1 | #3/3 | TR: boş, müsait | EN: not bound by rules, obligations, or restrictions; available for use without reservation. | ÖRNEK: After finishing the project, she enjoyed a few free days.

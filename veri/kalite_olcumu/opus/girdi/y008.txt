@@ -1,0 +1,100 @@
+17929 | bell | noun | A2 | #1/1 | TR: çan, zil | EN: a hollow metal instrument that produces a ringing sound when struck | ÖRNEK: The school bell signals the start of each lesson.
+460 | belong | verb | A2 | #1/1 | TR: ait olmak, mensup olmak | EN: to be a member of or be owned by something; to be appropriate to a particular group or place | ÖRNEK: The cat belongs to my sister and sleeps on her lap.
+4225 | beloved | adjective | B1 | #1/1 | TR: sevgili, çok sevilen | EN: causing deep affection or love; greatly loved | ÖRNEK: The children called the old oak tree their beloved playground.
+20285 | below | adverb | A1 | #1/1 | TR: aşağıda, altta | EN: at or to a lower place | ÖRNEK: From the top of the hill we could see the village below.
+16269 | below | preposition | A2 | #1/1 | TR: altında | EN: at a lower level or position than something else | ÖRNEK: The cat hid below the table during the storm.
+5465 | belt | noun | A2 | #1/3 | TR: kemer | EN: a strip of leather or other material worn around the waist to hold up clothing or as a fashion accessory | ÖRNEK: She bought a black leather belt to match her shoes.
+5466 | belt | noun | B2 | #2/3 | TR: konveyör kayışı | EN: a continuous loop of material that moves objects from one place to another in a factory or airport | ÖRNEK: The factory installed a new belt to speed up assembly.
+5467 | belt | noun | C1 | #3/3 | TR: bölge, kuşak | EN: a region or area characterized by a particular feature, activity, or cultural trait | ÖRNEK: Researchers studied the migration patterns within the agricultural belt.
+2629 | bench | noun | A2 | #1/2 | TR: oturma yeri, bank | EN: a long seat, typically made of wood or metal, for multiple people to sit on | ÖRNEK: The wooden bench in the garden was perfect for a quick break.
+2630 | bench | noun | B2 | #2/2 | TR: mahkeme kürsüsü, yargı oturumu | EN: the seat where a judge sits in a courtroom, or the group of judges themselves | ÖRNEK: The new judge took his place on the bench last Monday.
+20637 | benchmark | noun | C1 | #1/1 | TR: ölçüt, kıstas | EN: a standard used to measure or compare other things | ÖRNEK: The new phone sets a benchmark for battery life.
+2367 | bend | noun | B1 | #1/1 | TR: kıvrım, viraj | EN: a place where a road, river, or other line changes direction sharply | ÖRNEK: The cyclist slowed down for the bend.
+2368 | bend | verb | A2 | #1/1 | TR: eğmek, bükmek | EN: to shape or cause something straight or rigid to become curved or angled | ÖRNEK: She bent the wire to make a small hook for the project.
+18199 | beneath | preposition | B1 | #1/1 | TR: altında | EN: in a lower position or level than something else; underneath. | ÖRNEK: The book slipped and fell beneath the couch.
+9126 | beneficial | adjective | B2 | #1/1 | TR: yararlı, faydalı | EN: producing a good effect or result; advantageous. | ÖRNEK: A short walk each day is beneficial for your health.
+9127 | beneficiary | noun | C1 | #1/1 | TR: yararlanıcı | EN: a person or organization that receives benefits, profits, or advantages from something, especially from a will, trust, or insurance policy | ÖRNEK: The bank asked for the name of the beneficiary on the account.
+11939 | benefit | noun | B1 | #1/2 | TR: fayda, yarar, kazanç | EN: an advantage or good effect that something brings | ÖRNEK: Regular exercise has many health benefits.
+9121 | benefit | noun | B1 | #2/2 | TR: ödenek, yardım parası, yan hak | EN: a payment or allowance given to someone, especially as part of a contract or employment | ÖRNEK: The new contract includes a higher salary and additional benefits.
+9122 | benefit | verb | B1 | #1/1 | TR: yararlanmak, fayda sağlamak | EN: to receive an advantage or to give an advantage to someone or something | ÖRNEK: The training will benefit all new employees.
+2372 | bent | adjective | B1 | #1/2 | TR: kıvrılmış, eğilmiş | EN: having a curved or angled shape; not straight. | ÖRNEK: The bent stick lay on the ground after the storm.
+2373 | bent | adjective | B2 | #2/2 | TR: azimli, kararlı, bir şeye yönelmiş | EN: having a strong inclination or determination to do something; being intent on a particular goal. | ÖRNEK: He is bent on finishing the project before the deadline.
+18213 | beside | preposition | A2 | #1/1 | TR: yanında | EN: to be next to or at the side of something or someone | ÖRNEK: The cat slept beside the warm fireplace.
+18214 | besides | preposition | B1 | #1/1 | TR: ...-den başka, ...-in yanı sıra, ... dışında | EN: to be in addition to; apart from something or someone | ÖRNEK: Besides the exam, we have a quiz tomorrow.
+20286 | best | adjective | A1 | #1/1 | TR: en iyi | EN: of the highest quality or most suitable; the superlative of good | ÖRNEK: She is my best friend.
+20393 | best | adverb | A2 | #1/1 | TR: en iyi şekilde, en çok | EN: in the best way; most | ÖRNEK: Which song do you like best?
+20394 | best | noun | A2 | #1/1 | TR: en iyisi | EN: the most excellent person or thing | ÖRNEK: She is the best in the class.
+17110 | bet | noun | B1 | #1/1 | TR: bahis | EN: an agreement where one person risks something of value on the outcome of an uncertain event | ÖRNEK: He made a small bet on the football match last night.
+17111 | bet | verb | B1 | #1/2 | TR: bahse girmek, bahis oynamak | EN: to risk money or something of value on an uncertain outcome | ÖRNEK: Tom bet $10 on the next card.
+17112 | bet | verb | B2 | #2/2 | TR: emin olmak | EN: to be confident that something is true or will happen | ÖRNEK: I bet you can solve this puzzle quickly.
+4194 | betray | verb | B2 | #1/1 | TR: ihanet etmek, birine sadakatsiz davranmak | EN: to be disloyal to someone or something, revealing secrets or acting against their interests | ÖRNEK: He betrayed his friend by revealing the secret.
+20287 | better | adjective | A1 | #1/1 | TR: daha iyi | EN: of a higher quality or more suitable; the comparative of good | ÖRNEK: This phone is better than my old one.
+20395 | better | adverb | A2 | #1/1 | TR: daha iyi (şekilde) | EN: in a better way; more | ÖRNEK: She can sing better than me.
+20457 | better | noun | B1 | #1/1 | TR: daha iyisi | EN: something that is better | ÖRNEK: I expected better from such a good team.
+20396 | between | adverb | A2 | #1/1 | TR: arada, ortada | EN: in the space or time separating two things | ÖRNEK: There are two houses with a small garden in between.
+15152 | between | preposition | A2 | #1/1 | TR: arasında | EN: to be in the middle of two or more things, points, or periods | ÖRNEK: The cat is sleeping between the two chairs.
+16496 | beyond | adverb | B2 | #1/1 | TR: daha ileri, aşarak | EN: to a point farther than; at a greater distance or extent than something else | ÖRNEK: The research findings go beyond what was previously known in the field.
+16497 | beyond | preposition | B2 | #1/1 | TR: ... ötesinde, ... dışındaki | EN: indicating that something is farther away from a point of reference or exceeds a limit. | ÖRNEK: The park lies beyond the river, near the old mill.
+6684 | bias | noun | C1 | #1/1 | TR: yanlılık, sistematik hata | EN: a systematic error that causes a result to deviate from the true value in data or measurement | ÖRNEK: The study revealed a bias in the questionnaire responses.
+11670 | bicycle | noun | A2 | #1/1 | TR: bisiklet | EN: a human-powered, two-wheeled vehicle that is propelled by pedaling | ÖRNEK: She bought a new bicycle for her daily commute.
+4964 | bid | noun | B2 | #1/3 | TR: teklif | EN: an offer to pay a particular price for something, especially at an auction | ÖRNEK: She placed a bid of $5,000 for the vintage car.
+4965 | bid | noun | B1 | #2/3 | TR: girişim, çaba | EN: an attempt to achieve something or to persuade someone | ÖRNEK: The company made a bid to expand its market share in Asia.
+4966 | bid | noun | C1 | #3/3 | TR: ihale | EN: the process of offering a price for a contract or job, especially in a public procurement context | ÖRNEK: The agency opened a bid for the renewable energy project.
+4967 | bid | verb | B2 | #1/2 | TR: teklif vermek, fiyat teklifinde bulunmak | EN: to offer a price for something, especially at an auction or in a competitive situation | ÖRNEK: She decided to bid on the old house after the viewing.
+4968 | bid | verb | C1 | #2/2 | TR: emir vermek, talimat vermek | EN: to command or order someone to do something; archaic or formal usage | ÖRNEK: The king bid his knights to protect the kingdom.
+15204 | big | adjective | A1 | #1/2 | TR: büyük | EN: of considerable size, extent, or magnitude | ÖRNEK: The dog is big and friendly.
+15205 | big | adjective | A2 | #2/2 | TR: önemli | EN: of great significance or importance | ÖRNEK: The new law addresses a big problem in traffic safety.
+9091 | bike | noun | A2 | #1/1 | TR: bisiklet | EN: a two-wheeled vehicle that is propelled by pedaling | ÖRNEK: She bought a new bike for her daily commute.
+15975 | bill | noun | A2 | #1/3 | TR: fatura, ödeme belgesi | EN: a written statement of the amount of money owed for goods or services | ÖRNEK: The restaurant gave us the bill after we finished eating.
+15976 | bill | noun | B2 | #2/3 | TR: tasarı | EN: a draft of a proposed law presented for debate in a legislative body | ÖRNEK: The parliament introduced a new education bill this session.
+15977 | bill | noun | A2 | #3/3 | TR: banknot, kağıt para | EN: a piece of paper money, especially a banknote of a particular denomination | ÖRNEK: The tourist exchanged his euros for US dollar bills at the airport.
+15978 | bill | verb | B2 | #1/1 | TR: fatura kesmek, ücretlendirmek | EN: to send a written statement of charges to someone for goods or services provided | ÖRNEK: The dentist will bill you after the appointment.
+5399 | bin | noun | A2 | #1/1 | TR: çöp kutusu, konteyner | EN: a container, typically with a lid, used for storing or disposing of waste or other items | ÖRNEK: The kitchen has a small bin for food scraps.
+20270 | bind | verb | B2 | #1/2 | TR: bağlamak, bağlayıcı olmak | EN: to tie something tightly; to make someone legally or morally obliged | ÖRNEK: They bound his hands with a rope.
+18921 | bind | verb | B2 | #2/2 | TR: ciltlemek | EN: to attach pages together, usually with glue or stitching, forming a cover for a book or document | ÖRNEK: The student learned how to bind the report using a simple stapler.
+20638 | biography | noun | C1 | #1/1 | TR: biyografi, yaşam öyküsü | EN: a book or account of someone's life written by another person | ÖRNEK: I'm reading a biography of Atatürk.
+2168 | biological | adjective | B2 | #1/1 | TR: biyolojik, yaşamla ilgili | EN: relating to biology or living organisms; concerned with the processes and characteristics of living things | ÖRNEK: The lab examined the biological effects of the new drug on mice.
+2166 | biology | noun | A2 | #1/1 | TR: biyoloji | EN: the scientific study of living organisms and their vital processes. | ÖRNEK: She read the biology textbook to prepare for the upcoming exam.
+17778 | bird | noun | A1 | #1/1 | TR: kuş | EN: a warm-blooded vertebrate animal with feathers, wings, and a beak, typically able to fly | ÖRNEK: A small bird landed on the windowsill this morning.
+17186 | birth | noun | A2 | #1/2 | TR: doğum, dünyaya gelme | EN: the act or process of being born; the emergence of a person or animal from the womb | ÖRNEK: The hospital recorded the birth of 120 babies last month.
+17187 | birth | noun | B2 | #2/2 | TR: köken, ortaya çıkış | EN: the origin or beginning of something; the point at which something starts to exist | ÖRNEK: The birth of jazz can be traced back to early 20th-century New Orleans.
+17190 | birthday | noun | A2 | #1/1 | TR: doğum günü | EN: the anniversary of the day on which a person was born | ÖRNEK: My sister will turn twenty on her birthday next week.
+8876 | biscuit | noun | A2 | #1/1 | TR: bisküvi, kurabiye | EN: a small, typically sweet baked good that is crisp or crumbly in texture | ÖRNEK: I bought a pack of biscuits from the grocery store.
+10517 | bishop | noun | B2 | #1/2 | TR: piskopos | EN: a senior member of the Christian clergy who oversees a diocese | ÖRNEK: The bishop gave a sermon at the Sunday service.
+10518 | bishop | noun | B1 | #2/2 | TR: fil | EN: a chess piece that moves diagonally across the board | ÖRNEK: The bishop captured the opponent's pawn on d5.
+7230 | bit | noun | A2 | #1/2 | TR: küçük parça, az miktar | EN: a small piece or amount of something | ÖRNEK: I only need a bit of help with this assignment.
+7231 | bit | noun | B2 | #2/2 | TR: ikili sayı birimi, bit | EN: the smallest unit of data in computing, representing a 0 or 1 | ÖRNEK: A single bit can represent two possible values.
+7227 | bite | noun | A2 | #1/2 | TR: lokma, atıştırmalık | EN: a small amount of food taken quickly, often as a snack | ÖRNEK: He offered me a bite of his sandwich during the break.
+7228 | bite | noun | B1 | #2/2 | TR: ısırık, diş izi | EN: the wound or mark left on skin or flesh after something has been bitten | ÖRNEK: The child ran away after receiving a sharp bite from the puppy.
+7229 | bite | verb | A2 | #1/1 | TR: ısırmak | EN: to cut or grip something with the teeth | ÖRNEK: The child tried to bite the toy rabbit.
+8019 | bitter | adjective | A2 | #1/2 | TR: acı, buruk | EN: having a sharp, unpleasant taste; causing a feeling of distress or disappointment | ÖRNEK: The coffee had a bitter flavor that lingered.
+8018 | bitter | adjective | B2 | #2/2 | TR: hırçın, içerlemiş, kırgın | EN: feeling angry or resentful, often as a result of a perceived injustice | ÖRNEK: He felt bitter after his friend ignored his advice.
+9453 | bizarre | adjective | C1 | #1/1 | TR: garip, tuhaf | EN: unusual in a striking or odd way, often causing surprise or curiosity | ÖRNEK: The strange lights in the sky looked bizarre to the villagers.
+7467 | black | adjective | A2 | #1/2 | TR: siyah, koyu renk | EN: of the darkest color, resulting from the absence or complete absorption of light | ÖRNEK: The black car parked in front of the building.
+7468 | black | adjective | B2 | #2/2 | TR: kötü, karanlık, umutsuz | EN: relating to something that is morally or emotionally negative, gloomy, or without hope | ÖRNEK: The report painted a black picture of the country's fiscal situation.
+7469 | black | noun | A2 | #1/1 | TR: siyah renk | EN: the darkest color, resulting from the absence or complete absorption of light | ÖRNEK: The artist mixed several pigments to achieve a deep, velvety black hue for the painting.
+2875 | blade | noun | B1 | #1/2 | TR: bıçak ağzı, bıçak, jilet | EN: a thin, flat cutting part of a tool or weapon | ÖRNEK: The chef used a clean blade to slice the vegetables.
+2876 | blade | noun | C1 | #2/2 | TR: kanat | EN: a flat, elongated part of a propeller or rotor that moves air or water | ÖRNEK: The turbine's blade rotates at thousands of RPMs.
+17775 | blame | noun | B1 | #1/1 | TR: suç, sorumluluk | EN: the responsibility for a fault or wrongdoing that is assigned to someone or something | ÖRNEK: Despite the evidence, the jury struggled to assign clear blame for the accident.
+17776 | blame | verb | B1 | #1/1 | TR: suçlamak, sorumlu tutmak | EN: to assign responsibility for a fault or wrongdoing to someone or something | ÖRNEK: The teacher blamed the student for not doing the homework.
+463 | blank | adjective | A2 | #1/2 | TR: boş, doldurulmamış | EN: not containing any writing, marks, or other content; empty | ÖRNEK: The notebook had a blank page at the end.
+464 | blank | adjective | B1 | #2/2 | TR: ifadesiz, duygusuz | EN: showing no emotion or expression; having a neutral or vacant facial expression | ÖRNEK: The student answered the question with a blank look.
+465 | blank | noun | B1 | #1/1 | TR: boşluk | EN: an empty space on a page, screen, or other surface where nothing has been written or printed | ÖRNEK: The form has a blank where you should write your name.
+4723 | blanket | noun | A2 | #1/1 | TR: battaniye | EN: a large piece of soft fabric used to keep a person warm while sleeping or resting | ÖRNEK: The child slept soundly under a soft blanket.
+3800 | blast | noun | B1 | #1/1 | TR: patlama, şiddetli patlama | EN: a sudden, violent release of energy causing an explosion | ÖRNEK: The demolition crew set off a blast to remove the old wall.
+3801 | blast | verb | B1 | #1/3 | TR: patlatmak, patlamaya neden olmak | EN: to cause an explosion or to explode violently | ÖRNEK: The demolition crew will blast the wall tomorrow morning.
+3802 | blast | verb | B2 | #2/3 | TR: sert bir şekilde eleştirmek | EN: to criticize someone or something harshly and forcefully | ÖRNEK: The reviewer blasted the novel for its weak plot.
+3803 | blast | verb | B1 | #3/3 | TR: yüksek sesle çalmak, gümbürdemek, bangır bangır çalmak | EN: to emit a sudden, loud sound or burst of air | ÖRNEK: Fans blasted the anthem loudly before the match began.
+4524 | bleed | verb | B1 | #1/1 | TR: kan kaybetmek, kan akıtmak | EN: to lose blood from the body, usually as a result of a wound or injury | ÖRNEK: He cut his hand and began to bleed.
+7888 | blend | noun | B1 | #1/1 | TR: karışım | EN: a mixture of different substances or elements | ÖRNEK: The smoothie is a blend of fruit, yogurt, and honey.
+7889 | blend | verb | B1 | #1/1 | TR: karıştırmak, harmanlamak | EN: to mix two or more substances or elements together so that they become a single, uniform whole | ÖRNEK: She blends different musical styles in her new album.
+3545 | bless | verb | B2 | #1/2 | TR: kutsamak, kutsal kılmak | EN: to confer divine favor or sanctify someone or something | ÖRNEK: The pastor will bless the congregation at sunrise.
+3546 | bless | verb | B1 | #2/2 | TR: iyi dileklerde bulunmak | EN: to express good wishes or gratitude toward someone | ÖRNEK: He whispered, "Bless you," when his friend sneezed during lunch.
+3549 | blessing | noun | B2 | #1/1 | TR: nimet, kutsama, bereket | EN: something that is beneficial or fortunate, or thought to be granted by God | ÖRNEK: The sunny weather was a blessing for the outdoor wedding.
+469 | blind | adjective | A2 | #1/2 | TR: görme yeteneği olmayan, kör | EN: unable to see; lacking visual perception | ÖRNEK: The blind student navigated the campus with a guide dog.
+470 | blind | adjective | B2 | #2/2 | TR: kör, farkında olmadan yapılan | EN: lacking perception or understanding; done without awareness or reason | ÖRNEK: The crowd followed the speaker with blind loyalty.
+16745 | block | noun | A2 | #1/3 | TR: küp, blok, parça | EN: a solid piece of material, typically rectangular, used in construction or as a unit of measurement | ÖRNEK: The children played with colorful wooden blocks during recess.
+16746 | block | noun | B1 | #2/3 | TR: blok, ada, iki sokak arası | EN: the area bounded by four streets in a city, often used as a unit of distance or address | ÖRNEK: The bakery is just two blocks away from the park.
+16747 | block | noun | B2 | #3/3 | TR: engel, tıkanıklık | EN: an obstruction that prevents movement or flow, often causing a stoppage | ÖRNEK: The sudden snowstorm created a block on the mountain pass.
+16748 | block | verb | B1 | #1/1 | TR: engellemek, durdurmak | EN: to prevent something from moving forward, progressing, or being accessed | ÖRNEK: The teacher blocked the hallway to keep students safe.
+20288 | blog | noun | A1 | #1/1 | TR: blog, internet günlüğü | EN: a website where someone regularly writes about their experiences or opinions | ÖRNEK: She writes a travel blog.

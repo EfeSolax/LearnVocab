@@ -1,0 +1,100 @@
+1632 | visible | adjective | B2 | #2/2 | TR: açık, belli | EN: obvious or evident; able to be understood or recognized without doubt. | ÖRNEK: After the reform, the differences between schools became visible.
+20242 | vision | noun | B1 | #1/2 | TR: görme, görme yetisi | EN: the ability to see; the sense of sight | ÖRNEK: The doctor tested her vision during the routine check-up.
+20243 | vision | noun | B2 | #2/2 | TR: görüş, uzun vadeli plan, vizyon | EN: a mental image of what the future could be like; a strategic outlook | ÖRNEK: The founder articulated a bold vision for the startup.
+2837 | visit | noun | A1 | #1/1 | TR: ziyaret | EN: an act of going to see a person or place | ÖRNEK: I plan to make a visit to my aunt this weekend.
+2838 | visit | verb | A2 | #1/2 | TR: ziyaret etmek | EN: to go to a place or person in order to see them or spend time there | ÖRNEK: I will visit my grandparents this weekend.
+2839 | visit | verb | B1 | #2/2 | TR: kalmak, konaklamak | EN: to stay at a place for a short period, often as a guest | ÖRNEK: My sister will visit us for a few days next month.
+2844 | visitor | noun | A2 | #1/1 | TR: ziyaretçi, konuk | EN: a person who goes to a place for a short stay or to see someone | ÖRNEK: The museum welcomed the first visitor of the day with a smile.
+1638 | visual | adjective | B2 | #1/1 | TR: görsel | EN: relating to seeing or sight; capable of being perceived by the eyes | ÖRNEK: The museum displayed a visual guide for the new exhibition.
+5932 | vital | adjective | B2 | #1/2 | TR: hayati, çok önemli | EN: necessary or essential for the success, existence, or continuation of something. | ÖRNEK: Water is vital for all living organisms.
+5933 | vital | adjective | B1 | #2/2 | TR: canlı, yaşamı sürdüren | EN: relating to life or the capacity for life; necessary for survival. | ÖRNEK: The brain is a vital organ for cognitive functions.
+10099 | vitamin | noun | B1 | #1/1 | TR: vitamin | EN: an organic compound that is essential in small amounts for normal metabolism and must be obtained from the diet | ÖRNEK: She bought a bottle of vitamin C tablets at the pharmacy.
+20835 | vocal | adjective | C1 | #1/2 | TR: sesli, fikrini açıkça söyleyen | EN: telling people your opinions or protesting about something loudly | ÖRNEK: She is a vocal critic of the government.
+20836 | vocal | adjective | C1 | #2/2 | TR: ses ile ilgili, vokal | EN: connected with the voice | ÖRNEK: The singer has a wide vocal range.
+16249 | voice | noun | A2 | #1/2 | TR: ses, ses tonu | EN: the sound produced by a person's vocal cords when speaking or singing | ÖRNEK: The teacher's voice was calm during the lesson.
+16250 | voice | noun | B1 | #2/2 | TR: görüş, ifade | EN: the expression of an opinion or attitude, especially in a public context | ÖRNEK: Everyone should have a voice in the decision.
+22573 | volleyball | noun | B1 | #1/1 | TR: voleybol | EN: a team sport in which two teams of six players each try to score points by hitting a ball over a net using their hands. | ÖRNEK: The school organized a volleyball tournament for the students.
+17287 | volume | noun | A2 | #1/3 | TR: ses şiddeti | EN: the degree of loudness of a sound | ÖRNEK: The volume of the speaker was too low for the large hall.
+17288 | volume | noun | B1 | #2/3 | TR: miktar, hacim | EN: the amount or quantity of something, especially in three dimensions | ÖRNEK: The volume of the box is 2 cubic meters.
+17289 | volume | noun | B2 | #3/3 | TR: kitap bölümü, cilt | EN: one of a set of books forming part of a work, especially a scholarly or reference work | ÖRNEK: The first volume of the textbook introduces basic concepts.
+4315 | voluntary | adjective | B2 | #1/1 | TR: kendi isteğiyle, gönüllü | EN: done, undertaken, or given of one's own free will, without external compulsion | ÖRNEK: She gave a voluntary contribution to the charity.
+4309 | volunteer | noun | B1 | #1/1 | TR: gönüllü, ücretsiz çalışan | EN: a person who freely offers to take part in an activity or to provide a service without being paid | ÖRNEK: The park needs volunteers to help with the weekend clean-up.
+4310 | volunteer | verb | B1 | #1/1 | TR: gönüllü olarak çalışmak | EN: to offer one's services freely without being paid or compelled | ÖRNEK: She volunteered at the animal shelter during her winter break.
+16122 | vote | noun | A2 | #1/2 | TR: oy | EN: a formal indication of a preference between options, usually expressed by marking a ballot or raising a hand. | ÖRNEK: Every citizen has the right to cast a vote in elections.
+16123 | vote | noun | B2 | #2/2 | TR: oylama | EN: the act or process of voting, especially in a formal or organized setting. | ÖRNEK: The organization scheduled a vote to choose its new president.
+16124 | vote | verb | B1 | #1/1 | TR: oy kullanmak | EN: to cast a ballot in an election or on a proposal | ÖRNEK: Students will vote for class representatives next week.
+16126 | voting | noun | B1 | #1/1 | TR: oy kullanma, oy verme | EN: the act or process of casting votes in an election or decision-making setting | ÖRNEK: Many citizens consider voting an essential civic duty.
+7174 | vow | verb | B2 | #1/1 | TR: yemin etmek | EN: to solemnly promise to do or not do something | ÖRNEK: She vowed to help the refugees after seeing the news.
+7685 | vulnerability | noun | C1 | #1/1 | TR: savunmasızlık, hassasiyet | EN: the quality or state of being exposed to the possibility of being harmed or attacked | ÖRNEK: The flood left many homes in a state of vulnerability.
+7682 | vulnerable | adjective | B2 | #1/1 | TR: savunmasız, kırılgan | EN: easily hurt, damaged, or attacked; capable of being wounded or harmed | ÖRNEK: The small bird was vulnerable during the storm.
+6653 | wage | noun | B1 | #1/1 | TR: ücret, maaş | EN: the regular payment received for work or services performed | ÖRNEK: He receives a low wage for his part-time job.
+12872 | wait | noun | B1 | #1/1 | TR: bekleme | EN: the act of staying in one place or remaining inactive until something happens or someone arrives | ÖRNEK: The wait at the bus stop was only five minutes.
+12873 | wait | verb | A2 | #1/1 | TR: beklemek, durmak | EN: to remain in a place or remain inactive until something happens or someone arrives | ÖRNEK: I wait at the coffee shop every morning before class.
+12874 | waiter | noun | A2 | #1/1 | TR: garson | EN: a person who serves food and drinks to customers in a restaurant | ÖRNEK: The waiter brought us water as soon as we sat down.
+18878 | wake | verb | A1 | #1/1 | TR: uyanmak, uyandırmak | EN: to become awake or become aware of something; to cease sleeping | ÖRNEK: I usually wake at six to catch the bus.
+16190 | walk | noun | A2 | #1/2 | TR: yürüyüş | EN: the act of moving on foot at a moderate pace | ÖRNEK: She takes a short walk to the bus stop each morning.
+16191 | walk | noun | B1 | #2/2 | TR: gezinti | EN: a brief, leisurely trip on foot, often for pleasure or exercise | ÖRNEK: The couple took a walk after dinner to enjoy the cool night air.
+16192 | walk | verb | A1 | #1/1 | TR: yürümek | EN: to move at a regular pace by lifting and setting down each foot in turn, typically on foot | ÖRNEK: I walk to school every day.
+16196 | walking | noun | A2 | #1/1 | TR: yürüyüş, yürümek | EN: the act or activity of moving on foot at a moderate pace | ÖRNEK: The doctor recommended regular walking to lower blood pressure.
+16294 | wall | noun | A2 | #1/1 | TR: duvar, bariyer | EN: a solid vertical structure that encloses or separates an area | ÖRNEK: The children played soccer near the school wall.
+13796 | wallet | noun | A2 | #1/1 | TR: cüzdan | EN: a small, flat case used for carrying money, credit cards, and identification documents | ÖRNEK: She opened her wallet to pay for the coffee.
+3900 | wander | verb | B1 | #1/2 | TR: dolaşmak, amaçsızca yürümek | EN: to move about without a fixed course, aim or destination; to walk or travel aimlessly. | ÖRNEK: The tourists wandered around the old town looking for a café.
+3901 | wander | verb | B2 | #2/2 | TR: sapmak, konudan uzaklaşmak | EN: to deviate from a subject, course, or purpose; to stray mentally or verbally. | ÖRNEK: During the debate, one participant began to wander from the original question.
+12808 | want | verb | A2 | #1/1 | TR: istemek | EN: to have a desire for something or to wish for something to happen | ÖRNEK: I want a sandwich for lunch.
+5239 | war | noun | A1 | #1/2 | TR: savaş, harp | EN: an organized and often prolonged armed conflict between states or groups. | ÖRNEK: The war lasted for three years and caused many casualties.
+5240 | war | noun | C1 | #2/2 | TR: mücadele, çekişme | EN: a prolonged struggle or competition between opposing forces, ideas, or interests. | ÖRNEK: The company entered a price war with its main competitor.
+3031 | ward | noun | B1 | #1/3 | TR: koğuş, servis, hasta koğuşu | EN: a separate area in a hospital where patients receive specific types of care | ÖRNEK: The hospital added a new ward for maternity care.
+3032 | ward | noun | B2 | #2/3 | TR: semt, bölge | EN: an administrative division of a city or town, often used for electoral or policing purposes | ÖRNEK: Each ward elects its own council representative.
+3033 | ward | noun | C1 | #3/3 | TR: vesayet altındaki kimse, vesayet altındaki çocuk | EN: a person, especially a child or someone vulnerable, who is under the care or protection of another | ÖRNEK: The orphan became the ward of a caring family.
+11355 | wardrobe | noun | A2 | #1/2 | TR: gardırop | EN: a tall piece of furniture with doors, shelves and hanging space for storing clothes | ÖRNEK: She keeps all her winter coats in the wardrobe.
+11356 | wardrobe | noun | B2 | #2/2 | TR: kostüm koleksiyonu | EN: the collection of clothing and accessories used in a theatrical or film production | ÖRNEK: The costume designer oversaw every detail of the wardrobe.
+10562 | warehouse | noun | B1 | #1/1 | TR: depo, ambar | EN: a large building where goods are stored before distribution or sale | ÖRNEK: The retailer rents a warehouse to keep seasonal products.
+5242 | warfare | noun | C1 | #1/1 | TR: savaş, savaş hali | EN: the conduct of war or armed conflict; the methods, strategies, and activities involved in fighting. | ÖRNEK: The country has been preparing for possible warfare for years.
+7155 | warm | adjective | A2 | #1/2 | TR: ılık, hafif sıcak | EN: having or giving off a moderate degree of heat; not hot or cold. | ÖRNEK: The coffee was still warm when I arrived at the office.
+7156 | warm | adjective | B1 | #2/2 | TR: samimi, içten | EN: showing kindness, friendliness, or affection; emotionally pleasant. | ÖRNEK: The teacher gave a warm greeting to each student at the start of class.
+7157 | warm | verb | B1 | #1/1 | TR: ısıtmak, ısı vermek | EN: to make or become slightly hot; to raise the temperature of something. | ÖRNEK: I will warm the coffee for a few minutes.
+20617 | warming | noun | B2 | #1/1 | TR: ısınma | EN: an increase in temperature | ÖRNEK: Global warming is a serious problem.
+2178 | warn | verb | B1 | #1/1 | TR: uyarmak | EN: to inform someone in advance about a possible danger or problem so that they can avoid it | ÖRNEK: The sign warns drivers to reduce speed near the school.
+2181 | warning | noun | B1 | #1/1 | TR: uyarı, ihtar | EN: a statement or signal that alerts someone to a possible danger or problem | ÖRNEK: The teacher gave a warning to the students who were talking.
+20837 | warrant | noun | C1 | #1/1 | TR: (mahkeme) emri, müzekkere | EN: a legal document that allows the police to do something, such as arrest someone | ÖRNEK: The police have a warrant for his arrest.
+20838 | warrant | verb | C1 | #1/1 | TR: haklı çıkarmak, gerektirmek | EN: to make something necessary or appropriate (formal) | ÖRNEK: The situation does not warrant such a strong reaction.
+5246 | warrior | noun | B2 | #1/1 | TR: savaşçı | EN: a person who fights in wars, especially a brave or experienced soldier | ÖRNEK: The museum displayed a bronze warrior from ancient Greece.
+2264 | wash | noun | A2 | #1/1 | TR: yıkama | EN: the act or process of cleaning something with water or another liquid | ÖRNEK: The laboratory required a thorough wash of the glassware before the experiment.
+2265 | wash | verb | A1 | #1/2 | TR: yıkamak, temizlemek | EN: to clean something by applying water or another liquid and rubbing or soaking it | ÖRNEK: I wash my face every morning before school.
+2266 | wash | verb | B1 | #2/2 | TR: vurmak, süpürmek, akmak | EN: to flow or cause to flow, especially of water or another liquid | ÖRNEK: Rain washes the streets every evening in this town.
+2270 | washing | noun | A2 | #1/2 | TR: çamaşır | EN: the laundry; clothes or linens that need to be cleaned | ÖRNEK: She puts the dirty washing in the basket.
+2271 | washing | noun | B1 | #2/2 | TR: yıkama | EN: the act or process of cleaning something with water or another liquid | ÖRNEK: Proper washing removes most bacteria from surfaces.
+20503 | waste | adjective | B1 | #1/1 | TR: atık, artık, kullanılmayan | EN: no longer needed or useful and thrown away | ÖRNEK: Waste paper can be recycled.
+17056 | waste | noun | B1 | #1/2 | TR: atık, çöp | EN: material that is discarded because it is no longer useful or wanted | ÖRNEK: The kitchen trash can is full of food waste after dinner.
+17057 | waste | noun | A2 | #2/2 | TR: israf, boşa harcama | EN: the act of using resources or time in an inefficient or unnecessary way | ÖRNEK: He realized that his habit of scrolling aimlessly was a waste of time.
+17058 | waste | verb | B1 | #1/1 | TR: boşa harcamak, israf etmek | EN: to use resources carelessly or without purpose, causing loss or unnecessary consumption | ÖRNEK: He often wastes his free evenings watching TV shows.
+15530 | watch | noun | A2 | #1/2 | TR: kol saati, saat | EN: a small portable time-keeping device worn on the wrist or carried in a pocket | ÖRNEK: She bought a new watch at the mall.
+15531 | watch | noun | B2 | #2/2 | TR: nöbet, vardiya | EN: a period of time during which a person is assigned to keep watch or perform a duty | ÖRNEK: The guard began his watch at eight o'clock.
+15532 | watch | verb | A2 | #1/1 | TR: gözlemlemek, izlemek | EN: to look at or observe something attentively over a period of time | ÖRNEK: I watch the sunrise from my balcony every weekend.
+19119 | water | noun | A1 | #1/1 | TR: su | EN: the clear, colorless liquid that forms rivers, lakes, and seas, and is essential for life | ÖRNEK: The glass of water on the table is half empty.
+19120 | water | verb | A2 | #1/1 | TR: sulamak | EN: to supply or cover something with water; to pour water over something | ÖRNEK: I water my houseplants every afternoon.
+19122 | waterfall | noun | B1 | #1/1 | TR: şelale | EN: a steep cascade of water falling from a height, usually in a river or stream | ÖRNEK: The hikers stopped to take photos of the waterfall.
+17838 | wave | noun | A1 | #1/2 | TR: dalga | EN: a moving ridge or swell on the surface of water, caused by wind or other forces | ÖRNEK: The small wave gently lapped against the shore.
+17839 | wave | noun | A2 | #2/2 | TR: el sallama | EN: a gesture of moving the hand back and forth as a greeting or signal | ÖRNEK: The child gave a shy wave to the teacher.
+17840 | wave | verb | A2 | #1/1 | TR: el sallamak, el etmek, sallamak | EN: to move one's hand to and fro in greeting, signaling, or as a gesture | ÖRNEK: She waved her hand to get the teacher's attention.
+20618 | way | adverb | B2 | #1/1 | TR: çok, fazlasıyla | EN: very far; very much (informal) | ÖRNEK: The price is way too high.
+19974 | way | noun | A1 | #1/2 | TR: yöntem, yaklaşım, usul | EN: a particular method or manner of doing something | ÖRNEK: Can you suggest a better way to organize the data?
+19975 | way | noun | A2 | #2/2 | TR: yol, güzergah, geçit | EN: a route or path for traveling from one place to another | ÖRNEK: The way to the library is marked with blue signs.
+27174 | we | pronoun | A1 | #1/1 | TR: biz | EN: used by the speaker to refer to himself or herself and one or more other people as the subject of a verb | ÖRNEK: We are friends.
+4238 | weak | adjective | A2 | #1/1 | TR: zayıf, güçsüz | EN: having little physical strength or power | ÖRNEK: She felt weak after running the marathon.
+4239 | weaken | verb | B2 | #1/1 | TR: zayıflatmak, güçsüzleştirmek | EN: to make something less strong or less effective | ÖRNEK: The cold weather can weaken the metal if left outside.
+4242 | weakness | noun | B1 | #1/3 | TR: zaaf | EN: a physical or mental condition that makes a person vulnerable or less capable | ÖRNEK: His weakness made him struggle during the marathon.
+4243 | weakness | noun | B1 | #2/3 | TR: güçsüzlük | EN: the state of lacking physical strength or power | ÖRNEK: The child felt weakness after running too fast.
+4244 | weakness | noun | B2 | #3/3 | TR: eksik yön, kusur | EN: a flaw or shortcoming in a plan, argument, or system | ÖRNEK: The proposal has a clear weakness in its cost estimation.
+1878 | wealth | noun | B2 | #1/1 | TR: zenginlik, servet | EN: the abundance of valuable possessions or money; the state of having great material resources | ÖRNEK: She saved a portion of her salary each month to build wealth.
+1879 | wealthy | adjective | B2 | #1/1 | TR: zengin, varlıklı | EN: having a great amount of money, assets, or resources; possessing considerable wealth. | ÖRNEK: She inherited a large sum and is now wealthy.
+14368 | weapon | noun | B1 | #1/1 | TR: silah | EN: a device or instrument designed to cause injury, damage, or death to a target | ÖRNEK: The police found a hidden weapon in the suspect's car.
+16635 | wear | verb | A2 | #1/2 | TR: giymek, takmak | EN: to have clothing, accessories, or equipment on one's body as a regular or temporary practice. | ÖRNEK: She likes to wear comfortable shoes during class.
+16636 | wear | verb | B1 | #2/2 | TR: aşınmak, yıpranmak | EN: to become damaged, thin, or weak through continuous use or friction. | ÖRNEK: The carpet started to wear after years of heavy foot traffic.
+6005 | wearied | adjective | B2 | #1/1 | TR: yorgun, bitap | EN: feeling or showing extreme tiredness, often as a result of prolonged effort or strain | ÖRNEK: The student felt wearied after studying for ten hours straight.
+16781 | weather | noun | A1 | #1/1 | TR: hava, atmosferik koşul | EN: the state of the atmosphere at a particular place and time, including temperature, humidity, wind, and precipitation | ÖRNEK: The weather is sunny and pleasant this afternoon.
+5913 | weave | verb | B1 | #1/2 | TR: zikzak yapmak, aralardan geçmek | EN: to move in a winding or zigzag pattern, often to avoid obstacles or to follow a winding path | ÖRNEK: During the marathon, runners had to weave around many obstacles.
+5914 | weave | verb | B2 | #2/2 | TR: dokuma yapmak, örmek | EN: to interlace threads or strips of material to form a fabric or a similar structure | ÖRNEK: The weaver weaves a beautiful rug on the loom.
+17344 | web | noun | B1 | #1/2 | TR: ağ | EN: a system of interlinked documents and resources on the Internet | ÖRNEK: The web provides quick access to many research papers.
+17345 | web | noun | A2 | #2/2 | TR: örümcek ağı | EN: the silk structure spun by a spider to catch prey | ÖRNEK: A spider quickly repaired its web after a gust of wind.
+20378 | website | noun | A1 | #1/1 | TR: web sitesi | EN: a set of pages on the internet about a particular subject | ÖRNEK: You can find more information on our website.

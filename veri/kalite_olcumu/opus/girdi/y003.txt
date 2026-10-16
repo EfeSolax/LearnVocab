@@ -1,0 +1,100 @@
+20275 | again | adverb | A1 | #1/1 | TR: tekrar, yine | EN: one more time; another time | ÖRNEK: Can you say that again, please?
+15197 | against | preposition | A2 | #1/1 | TR: karşı | EN: preposition indicating opposition, resistance, or contact with something | ÖRNEK: She placed the picture against the door for better visibility.
+15554 | age | noun | A2 | #1/2 | TR: yaş | EN: the length of time that a person or thing has existed | ÖRNEK: The ancient tree's age is estimated at 500 years.
+15555 | age | noun | B2 | #2/2 | TR: dönem, çağ | EN: a particular period of history characterized by specific events or developments | ÖRNEK: The Renaissance marked a new age of artistic achievement.
+15556 | age | verb | B1 | #1/1 | TR: yaşlanmak, olgunlaşmak | EN: to become older; to undergo the process of growing older over time. | ÖRNEK: The tree will age slowly in this protected garden.
+15557 | aged | adjective | A2 | #1/2 | TR: ... yaşında | EN: indicating the number of years someone or something has lived or existed | ÖRNEK: The survey included respondents aged 18 to 45.
+15558 | aged | adjective | B2 | #2/2 | TR: yaşlı, ileri yaşta | EN: having lived or existed for a long time; old | ÖRNEK: The conference featured an aged professor who had taught for fifty years.
+16785 | agency | noun | B1 | #1/2 | TR: kurum, ajans | EN: an organization that provides a particular service, especially on behalf of another party | ÖRNEK: The local employment agency helped her find a part-time job.
+16786 | agency | noun | C1 | #2/2 | TR: faillik, eylem gücü | EN: the capacity or power to act or produce a particular effect | ÖRNEK: The policy gives citizens more agency over local decisions.
+20510 | agenda | noun | B2 | #1/1 | TR: gündem | EN: a list of things to be discussed at a meeting; things that need to be dealt with | ÖRNEK: The first item on the agenda is the budget.
+16784 | agent | noun | B2 | #1/1 | TR: temsilci, ajan | EN: a person or thing that acts on behalf of another to perform a specific function or task | ÖRNEK: The insurance agent explained the policy details to the client.
+4055 | aggression | noun | B2 | #1/1 | TR: saldırganlık, saldırgan davranış | EN: the act or a tendency to behave in a hostile or violent manner towards others | ÖRNEK: The child displayed aggression when he was denied a toy.
+4056 | aggressive | adjective | B2 | #1/2 | TR: kavgacı, saldırgan | EN: showing a readiness to attack or confront; hostile and forceful in behavior. | ÖRNEK: His aggressive tone during the debate upset many listeners.
+4057 | aggressive | adjective | C1 | #2/2 | TR: girişken, atılgan | EN: characterized by a strong desire to achieve something, often by taking bold or assertive actions. | ÖRNEK: She took an aggressive approach to improve her grades before graduation.
+15424 | ago | adverb | A1 | #1/1 | TR: önce | EN: referring to a time that is earlier than the present moment | ÖRNEK: I met her two weeks ago at the conference.
+8389 | agree | verb | A1 | #1/1 | TR: kabul etmek, aynı fikirde olmak | EN: to accept a proposal, offer, or idea; to give consent or approval. | ÖRNEK: She agreed to help us with the project.
+8392 | agreement | noun | A2 | #1/2 | TR: sözleşme, antlaşma | EN: a formal or official arrangement between two or more parties that creates mutual obligations | ÖRNEK: The students signed the agreement before the semester began.
+8393 | agreement | noun | B1 | #2/2 | TR: uyum, mutabakat | EN: a state of harmony or concurrence of opinion, feeling, or purpose among people | ÖRNEK: The family members were in agreement about the holiday plans.
+8642 | agricultural | adjective | B2 | #1/1 | TR: tarımsal, çiftlikle ilgili | EN: relating to agriculture, farming or the cultivation of land and crops | ÖRNEK: Farmers use modern tools to improve agricultural yields.
+8641 | agriculture | noun | B2 | #1/1 | TR: tarım | EN: the science or practice of cultivating the soil, producing crops and raising livestock | ÖRNEK: She studies agriculture at the university.
+16398 | ahead | adverb | A2 | #1/2 | TR: ileride, önde | EN: in a position that is in front of or before something else | ÖRNEK: The hikers moved ahead quickly to reach the summit before sunset.
+16399 | ahead | adverb | B2 | #2/2 | TR: önceden, önceden planlayarak | EN: in advance of a particular time; before something happens | ÖRNEK: Please submit your assignment ahead of the due date.
+17304 | aid | noun | B2 | #1/1 | TR: yardım, destek | EN: assistance or support given to a person or group in need | ÖRNEK: The charity offered aid to the homeless during winter.
+17305 | aid | verb | B1 | #1/1 | TR: yardım etmek, destek olmak | EN: to give help or support to someone or something, especially in a difficult situation | ÖRNEK: The teacher will aid the student in completing the assignment.
+17306 | aide | noun | B2 | #1/1 | TR: yardımcı, asistan | EN: a person who provides assistance or support, especially in a professional or official capacity | ÖRNEK: The new mayor hired an aide to manage her daily correspondence.
+392 | aim | noun | B1 | #1/1 | TR: hedef, amaç | EN: the purpose or intention that someone has in mind when doing something | ÖRNEK: She has a clear aim for her final year project.
+393 | aim | verb | B1 | #1/2 | TR: amaçlamak, hedeflemek | EN: to have the intention of achieving something | ÖRNEK: She aims to improve her English skills this semester.
+394 | aim | verb | B2 | #2/2 | TR: nişan almak, doğrultmak, yöneltmek | EN: to point a weapon or camera at a target | ÖRNEK: The photographer aimed the lens at the distant mountain.
+20034 | air | noun | A2 | #1/1 | TR: hava, atmosfer | EN: the invisible mixture of gases that surrounds the Earth and that people and animals breathe | ÖRNEK: The air was cool and crisp on the mountain top.
+17722 | aircraft | noun | B1 | #1/1 | TR: uçak, hava aracı | EN: any vehicle capable of atmospheric flight, such as a plane, helicopter, or glider | ÖRNEK: The small aircraft took off smoothly from the regional airport.
+20385 | airline | noun | A2 | #1/1 | TR: havayolu şirketi | EN: a company that provides regular flights for passengers or goods | ÖRNEK: Which airline are you flying with?
+16935 | airport | noun | A1 | #1/1 | TR: havalimanı | EN: a complex of runways and buildings where aircraft take off, land, and passengers board or disembark | ÖRNEK: The small town has only one airport for regional flights.
+395 | alarm | noun | A2 | #1/2 | TR: alarm | EN: a device that makes a loud sound to warn of danger or to wake someone | ÖRNEK: I forgot to turn off the alarm and it kept ringing all night.
+396 | alarm | noun | B1 | #2/2 | TR: endişe, kaygı duygusu | EN: a feeling of fear or anxiety about something that may happen | ÖRNEK: The news of the earthquake set off alarm among the residents.
+397 | alarm | verb | B2 | #1/1 | TR: endişelendirmek, telaşlandırmak, korkutmak | EN: to cause someone to feel fear or anxiety; to warn of danger | ÖRNEK: The loud siren alarmed the children in the hallway.
+16341 | album | noun | A2 | #1/1 | TR: albüm | EN: a collection of recorded music tracks released as a single item | ÖRNEK: The singer announced a new album during the interview.
+10589 | alcohol | noun | B1 | #1/2 | TR: alkol, içki | EN: a liquid containing ethanol that is used as a beverage or for industrial purposes | ÖRNEK: Alcohol is not allowed in the stadium.
+10590 | alcohol | noun | C1 | #2/2 | TR: etanol, kimyasal madde | EN: the chemical compound C₂H₅OH, commonly known as ethanol, used as a solvent, fuel, or in medical preparations | ÖRNEK: Ethanol, a type of alcohol, is produced by fermenting sugars in yeast.
+10591 | alcoholic | adjective | A2 | #1/2 | TR: alkollü, alkol içeren | EN: containing or made with alcohol; having alcohol as an ingredient. | ÖRNEK: The party served only alcoholic drinks for the guests.
+10592 | alcoholic | adjective | B2 | #2/2 | TR: alkole bağımlı, alkolik | EN: characterized by a dependence on alcohol; having a habit of excessive drinking. | ÖRNEK: The documentary highlighted the struggles of alcoholic families in rural areas.
+8051 | alert | adjective | B2 | #1/1 | TR: uyanık, tetikte | EN: watchful and quick to notice any signs of danger or problems | ÖRNEK: The guard stayed alert while patrolling the warehouse.
+8052 | alert | noun | B1 | #1/1 | TR: uyarı, alarm durumu | EN: a warning signal or notification about a possible danger or problem | ÖRNEK: The school sent an alert to parents about the fire drill.
+8053 | alert | verb | B1 | #1/1 | TR: uyarmak, haber vermek | EN: to give notice of a danger, problem, or important information to someone | ÖRNEK: The teacher alerted the class about the fire drill.
+6943 | alien | adjective | B1 | #1/2 | TR: yabancı, dışarıdan gelen | EN: relating to something or someone that is not native or familiar; foreign. | ÖRNEK: The new policy felt alien to many employees.
+6944 | alien | adjective | B1 | #2/2 | TR: uzaylıyla ilgili, dünya dışı | EN: pertaining to beings or phenomena originating from outside Earth; extraterrestrial. | ÖRNEK: Astronomers have discovered signals that might indicate alien intelligence.
+6945 | alien | noun | B1 | #1/2 | TR: yabancı, göçmen | EN: a person who is not a citizen of the country in which they live | ÖRNEK: Many aliens arrived seeking better job opportunities.
+6946 | alien | noun | B2 | #2/2 | TR: uzaylı, dünya dışı varlık | EN: a being from another planet or galaxy, often imagined as having advanced technology | ÖRNEK: The novel describes a peaceful alien visiting Earth.
+14797 | align | verb | B1 | #1/1 | TR: hizalamak, uyumlu hâle getirmek | EN: to place or arrange (things) so that they are in a straight line or in correct relative positions | ÖRNEK: The teacher asked the students to align the columns in the spreadsheet.
+14799 | alignment | noun | B2 | #1/2 | TR: hizalama, düzenleme | EN: the arrangement of parts in a straight line or in correct relative positions | ÖRNEK: The carpenter checked the alignment of the door frame before nailing it.
+14800 | alignment | noun | B1 | #2/2 | TR: uyum, tutarlılık | EN: a state in which different elements or groups are in agreement or work together harmoniously | ÖRNEK: The team's alignment on the project goals made the work progress smoothly.
+5250 | alike | adjective | B1 | #1/1 | TR: benzer, aynı | EN: having similar characteristics or qualities; being the same in nature or appearance | ÖRNEK: The twins look alike and often get mistaken for each other.
+5251 | alike | adverb | B2 | #1/1 | TR: benzer şekilde | EN: in a similar way; in a manner that shows similarity | ÖRNEK: My brother and I think alike about movies.
+5851 | alive | adjective | A2 | #1/1 | TR: canlı, diri | EN: having life; not dead. | ÖRNEK: The plant is still alive after weeks without water.
+20386 | all | adverb | A2 | #1/1 | TR: tamamen, bütünüyle | EN: completely | ÖRNEK: She was dressed all in black.
+13763 | allegation | noun | C1 | #1/1 | TR: iddia | EN: a claim or assertion that someone has done something illegal or wrong, typically made without proof | ÖRNEK: The newspaper published an allegation about the mayor's misuse of funds.
+20627 | allege | verb | C1 | #1/1 | TR: iddia etmek (kanıtsız) | EN: to say that something is true without proving it | ÖRNEK: The newspaper alleged that the minister had lied.
+13765 | allegedly | adverb | C1 | #1/1 | TR: iddia edildiğine göre | EN: in a manner that claims something to be true, although it has not been proven | ÖRNEK: The politician was allegedly bribing officials to gain favors.
+12987 | allegorical | adjective | C1 | #1/1 | TR: alegorik | EN: relating to or containing an allegory; using symbolic figures or actions to convey a deeper meaning. | ÖRNEK: The fable uses an allegorical style to teach children about honesty.
+5422 | alliance | noun | B2 | #1/1 | TR: ittifak | EN: a formal agreement or partnership between two or more parties, often for political or military purposes | ÖRNEK: The United Nations encourages small nations to form alliances for mutual security.
+20628 | allocate | verb | C1 | #1/1 | TR: ayırmak, tahsis etmek | EN: to give something officially to someone or for a particular purpose | ÖRNEK: The government allocated more money to schools.
+20629 | allocation | noun | C1 | #1/1 | TR: tahsis, pay | EN: an amount of money, time or space that is given for a particular purpose; the act of giving it | ÖRNEK: The allocation of funds caused an argument.
+16400 | allow | verb | A2 | #1/2 | TR: izin vermek, müsaade etmek | EN: to give permission for someone to do something or for something to happen | ÖRNEK: The manager allowed me to work from home on Fridays.
+16401 | allow | verb | B2 | #2/2 | TR: mümkün kılmak, yol açmak | EN: to make something possible or feasible | ÖRNEK: The flexible schedule allows students to balance work and study.
+16403 | allowance | noun | B1 | #1/2 | TR: limit, pay | EN: a fixed amount or limit that is allowed, especially in travel or shipping | ÖRNEK: Your ticket includes a 15-kilogram baggage allowance.
+16404 | allowance | noun | A2 | #2/2 | TR: miktar, harçlık | EN: a regular sum of money given to someone, often for personal expenses | ÖRNEK: My parents give me a small allowance to cover school supplies.
+5420 | ally | noun | B2 | #1/1 | TR: müttefik, dost ülke | EN: a state or organization that cooperates with another for a common purpose | ÖRNEK: The United Kingdom is an ally of the United States.
+15459 | almost | adverb | A1 | #1/1 | TR: neredeyse | EN: to a great extent, but not completely; nearly | ÖRNEK: I almost finished my homework before dinner.
+15957 | alone | adjective | A2 | #1/1 | TR: tek, yalnız | EN: without other people or things; existing or occurring by itself | ÖRNEK: She sat alone in the park and read a book.
+15958 | alone | adverb | B1 | #1/1 | TR: tek başına, yalnız | EN: without other people present; without assistance or company | ÖRNEK: She sat alone in the cafeteria during lunch.
+20387 | along | adverb | A2 | #1/2 | TR: ileri, boyunca | EN: forward; moving on | ÖRNEK: The line of cars moved slowly along.
+20388 | along | adverb | A2 | #2/2 | TR: yanında, beraber | EN: with someone | ÖRNEK: We're going to the beach. Why don't you come along?
+15479 | along | preposition | A2 | #1/1 | TR: boyunca | EN: indicating movement in a constant direction on or beside a line, path, or surface. | ÖRNEK: The children ran along the playground while laughing loudly.
+15480 | alongside | preposition | B1 | #1/1 | TR: yanında, beraberinde | EN: in a position next to or together with someone or something; side by side with. | ÖRNEK: The cat slept alongside the warm radiator.
+2153 | aloud | adverb | B1 | #1/1 | TR: yüksek sesle | EN: in a voice that can be heard; not silently | ÖRNEK: The child read the story aloud for the class.
+15267 | already | adverb | A2 | #1/1 | TR: zaten | EN: before now or before a particular time; indicating that something has happened earlier than expected or mentioned. | ÖRNEK: I have already booked my flight for next month.
+15107 | also | adverb | A2 | #1/1 | TR: ayrıca | EN: in addition; furthermore; used to add another point or item to what has already been mentioned | ÖRNEK: I will attend the meeting, and I also want to present my report.
+18568 | alter | verb | B1 | #1/1 | TR: değiştirmek, değişmek | EN: to make a change to something, especially in order to improve or correct it | ÖRNEK: She altered the dress to fit better.
+18571 | alternative | adjective | B1 | #1/1 | TR: alternatif | EN: providing or expressing a choice of one thing over another | ÖRNEK: The committee offered an alternative plan for the event.
+18572 | alternative | noun | B2 | #1/1 | TR: alternatif, seçenek | EN: a thing or choice that can be used instead of another | ÖRNEK: The menu includes a vegetarian alternative for meat lovers.
+27291 | although | conjunction | B1 | #1/1 | TR: -e rağmen, -diği hâlde | EN: despite the fact that | ÖRNEK: Although it was cold, we went swimming.
+2024 | altogether | adverb | B1 | #1/1 | TR: tamamen, bütün olarak | EN: to a total extent; completely; in total | ÖRNEK: The exam was altogether easy for most students.
+15153 | always | adverb | A1 | #1/1 | TR: her zaman | EN: at all times; on every occasion | ÖRNEK: She always drinks coffee in the morning before work.
+13064 | amateur | adjective | B1 | #1/1 | TR: amatör, profesyonel olmayan | EN: relating to a person who engages in an activity without formal training or professional status | ÖRNEK: Many people start as amateur cooks before attending culinary school.
+13065 | amateur | noun | B2 | #1/1 | TR: profesyonel olmayan, amatör | EN: a person who engages in a pursuit, especially a sport or hobby, on an unpaid or non-professional basis | ÖRNEK: He joined the local chess club as an amateur and learned new strategies.
+6437 | amazed | adjective | B2 | #1/1 | TR: şaşkın, hayret içinde | EN: feeling great surprise or wonder about something | ÖRNEK: The child was amazed by the colorful fireworks display.
+6439 | amazing | adjective | A1 | #1/1 | TR: şaşırtıcı, hayret verici | EN: causing great surprise or wonder; exceptionally good or impressive | ÖRNEK: The view from the mountain top was amazing.
+20630 | ambassador | noun | C1 | #1/1 | TR: büyükelçi | EN: an official who represents their country in a foreign country | ÖRNEK: She was appointed ambassador to France.
+6730 | ambition | noun | B2 | #1/1 | TR: hırs, büyük hedef | EN: a strong desire to achieve success or a particular goal | ÖRNEK: She has great ambition and works hard every day.
+6731 | ambitious | adjective | B2 | #1/1 | TR: hırslı, hedef odaklı | EN: having a strong desire to achieve success, power, or a particular goal. | ÖRNEK: She is ambitious and works hard to improve her grades.
+11895 | ambulance | noun | B1 | #1/1 | TR: ambulans | EN: a vehicle equipped for transporting sick or injured people to a hospital | ÖRNEK: The child hurt his arm and needed an ambulance.
+11075 | amend | verb | B2 | #1/1 | TR: değiştirmek, düzeltmek, iyileştirmek | EN: to make changes to a text, law, or agreement in order to improve or correct it | ÖRNEK: The university decided to amend its admission rules for international students.
+11077 | amendment | noun | B2 | #1/1 | TR: değişiklik, ek madde | EN: a formal change or addition to a law, policy, or document | ÖRNEK: The school board approved an amendment to the student handbook.
+18234 | amid | preposition | B1 | #1/1 | TR: ortasında, arasında | EN: in the middle of or surrounded by something; during a particular situation or event | ÖRNEK: The children played amid the fallen leaves in the park.
+15570 | among | preposition | A2 | #1/1 | TR: arasında, -in içinde | EN: used to indicate that someone or something is included in a group or surrounded by other things. | ÖRNEK: The teacher walked among the students during the lab session.
+16022 | amount | noun | B1 | #1/2 | TR: miktar, miktarın ölçüsü | EN: a quantity of something, especially the total of a material or abstract entity | ÖRNEK: The amount of rain this week surprised the farmers.
+16023 | amount | noun | B2 | #2/2 | TR: toplam, tutar | EN: the total sum or aggregate of a set of numbers, items, or values | ÖRNEK: The accountant calculated the amount owed by each client.
+16024 | amount | verb | B1 | #1/1 | TR: eşit olmak, toplamına ulaşmak | EN: to equal or total; to reach a particular sum or quantity | ÖRNEK: The bill amounts to fifty euros.
+5537 | amusing | adjective | B1 | #1/1 | TR: eğlenceli, keyifli | EN: causing laughter or providing enjoyment; entertaining. | ÖRNEK: The comedian's routine was amusing and made the audience laugh.
+27163 | an | determiner | A1 | #1/1 | TR: bir (belirsiz tanımlık; sesli harfle başlayan kelimeden önce) | EN: used instead of "a" when the next word begins with a vowel sound | ÖRNEK: I ate an apple.
+8173 | analogy | noun | B2 | #1/1 | TR: benzerlik, kıyaslama | EN: a comparison between two things, typically for the purpose of explanation or clarification | ÖRNEK: The textbook uses an analogy to explain the water cycle.

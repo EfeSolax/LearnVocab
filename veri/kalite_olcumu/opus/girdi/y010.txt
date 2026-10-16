@@ -1,0 +1,100 @@
+11708 | breakdown | noun | C1 | #3/3 | TR: detaylı inceleme, analiz | EN: a detailed analysis or examination of something, especially data or a situation | ÖRNEK: The paper offers a breakdown of the experimental data.
+17857 | breakfast | noun | A1 | #1/1 | TR: kahvaltı | EN: the first meal of the day, usually eaten in the morning | ÖRNEK: She eats breakfast quickly before the bus arrives.
+11711 | breakthrough | noun | C1 | #1/1 | TR: büyük atılım, çığır açan buluş | EN: a sudden, important development or discovery that significantly advances knowledge or technology | ÖRNEK: The new vaccine represents a breakthrough for public health.
+3532 | breast | noun | A2 | #1/1 | TR: göğüs, meme | EN: the upper front part of a human or animal's body, especially the area containing the mammary glands in females | ÖRNEK: She felt a sharp pain in her breast during the exam.
+503 | breath | noun | A1 | #1/2 | TR: nefes, soluk | EN: the act of inhaling and exhaling air; the air taken in or expelled during a single cycle of breathing | ÖRNEK: She inhaled a deep breath and smiled.
+504 | breath | noun | B2 | #2/2 | TR: bir nebze, esinti, kırıntı | EN: a brief statement or expression that conveys an idea or feeling, often used in the phrase "a breath of... " to indicate a small amount or a refreshing change | ÖRNEK: His comment was a breath of humor in the serious meeting.
+506 | breathe | verb | A1 | #1/1 | TR: soluk alıp vermek | EN: to take air into the lungs and then expel it, especially as a natural, involuntary process | ÖRNEK: She can barely breathe after climbing the steep hill.
+507 | breathing | noun | B1 | #1/1 | TR: solunum | EN: the act of taking air into and expelling it from the lungs | ÖRNEK: She took a deep breath and focused on her breathing.
+4150 | breed | noun | B1 | #1/1 | TR: ırk, tür | EN: a group of animals or plants within a species that share distinctive characteristics | ÖRNEK: The farmer raised a new breed of chickens.
+4151 | breed | verb | B1 | #1/1 | TR: üretmek, yetiştirmek, ırkını geliştirmek | EN: to produce offspring or to develop a particular type of animal or plant through selective mating | ÖRNEK: The farmer breeds chickens to sell eggs at the market.
+4083 | breeze | noun | B1 | #1/1 | TR: hafif rüzgar | EN: a gentle wind moving lightly across an area | ÖRNEK: A light breeze blew across the park on a sunny day.
+5738 | brick | noun | A2 | #1/1 | TR: tuğla | EN: a small rectangular block of baked clay used for building walls and structures | ÖRNEK: She bought a dozen red bricks for the garden fence.
+11264 | bride | noun | B1 | #1/1 | TR: gelin | EN: a woman on her wedding day, or shortly before or after it | ÖRNEK: The bride smiled as she walked down the aisle.
+17196 | bridge | noun | A2 | #1/1 | TR: köprü, geçit | EN: a structure built to span physical obstacles such as a river, road, or valley, allowing passage over it | ÖRNEK: The old wooden bridge connects the farm to the main road.
+4042 | brief | adjective | A2 | #1/1 | TR: kısa, kısa süreli | EN: lasting for a short period of time; not long in duration. | ÖRNEK: The rain lasted only a brief period before the sun appeared.
+4047 | briefly | adverb | B1 | #1/1 | TR: kısaca, kısa bir süre içinde | EN: in a short way or for a short period of time | ÖRNEK: He briefly introduced himself to the class.
+18950 | bright | adjective | A2 | #1/3 | TR: parlak, ışık yayan | EN: emitting a strong, vivid light; shining with high intensity. | ÖRNEK: The sunrise filled the sky with a bright orange glow.
+18951 | bright | adjective | A2 | #2/3 | TR: zeki, akıllı | EN: having a quick and keen intellect; able to understand and learn things rapidly. | ÖRNEK: The bright child solved the puzzle in seconds.
+18952 | bright | adjective | B1 | #3/3 | TR: neşeli, canlı | EN: cheerful and lively; giving a sense of happiness and optimism. | ÖRNEK: Her bright attitude made the long trip enjoyable.
+18959 | brilliant | adjective | A2 | #1/3 | TR: harika, mükemmel | EN: extremely good or impressive; outstanding in quality or performance | ÖRNEK: The new smartphone has a brilliant camera that captures vivid colors.
+18960 | brilliant | adjective | B2 | #2/3 | TR: parlak, ışık saçan | EN: emitting a great amount of light; shining brightly | ÖRNEK: The sunrise painted the sky with brilliant hues of orange and pink.
+18961 | brilliant | adjective | B1 | #3/3 | TR: zeki, üstün yetenekli | EN: exceptionally intelligent or talented; showing great mental acuity | ÖRNEK: The professor recognized the student as a brilliant mathematician.
+15632 | bring | verb | A2 | #1/2 | TR: getirmek | EN: to carry something to a place or person | ÖRNEK: Can you bring the report to my desk?
+15633 | bring | verb | B2 | #2/2 | TR: sebep olmak | EN: to cause something to happen or exist | ÖRNEK: His research brings new insights into climate change.
+26837 | bring forward | phrasal_verb | C1 | #1/1 | TR: (tarihi) öne almak | EN: to change the date or time of an event so that it happens earlier | ÖRNEK: The meeting has been brought forward to Monday.
+26838 | bring in | phrasal_verb | B2 | #1/2 | TR: (yasa, kural) getirmek, yürürlüğe koymak | EN: to introduce a new law or system | ÖRNEK: The government brought in a new tax.
+13726 | bristle | verb | B2 | #2/2 | TR: tüyleri diken diken olmak, kabarmak | EN: to stand upright, especially hair or fur, as a reaction to fear, cold, or excitement | ÖRNEK: The cat bristled when the dog entered the room.
+511 | broad | adjective | B1 | #1/2 | TR: geniş | EN: having a great extent from side to side; wide in measurement or scope | ÖRNEK: The river flows through a broad valley surrounded by hills.
+512 | broad | adjective | B2 | #2/2 | TR: kapsamlı, genel | EN: covering many subjects or areas; not limited to a narrow field | ÖRNEK: The textbook provides a broad introduction to quantum mechanics.
+20641 | broadband | noun | C1 | #1/1 | TR: geniş bant (internet) | EN: a fast internet connection | ÖRNEK: Most homes now have broadband.
+10513 | broadcast | noun | B1 | #1/1 | TR: yayın | EN: the transmission of programs or information by radio, television, or online media | ÖRNEK: The radio broadcast starts at six o'clock.
+10514 | broadcast | verb | B2 | #1/1 | TR: yaymak, yayınlamak | EN: to transmit (programs, information, etc.) by radio, television, or other electronic means to a wide audience | ÖRNEK: The radio station broadcast the weather forecast at six o'clock.
+10515 | broadcaster | noun | B2 | #1/1 | TR: yayıncı | EN: a person or organization that transmits radio or television programs to the public | ÖRNEK: The broadcaster aired the morning news at eight o'clock.
+515 | broadly | adverb | B2 | #1/1 | TR: genel olarak, genel hatlarıyla, esasen | EN: to a large extent or in general terms; without being specific | ÖRNEK: Broadly, the experiment showed a positive trend.
+11712 | broken | adjective | A1 | #1/2 | TR: kırık, bozuk | EN: damaged and no longer in its original or functional shape | ÖRNEK: The window was broken during the storm.
+11714 | broken | adjective | C1 | #2/2 | TR: tutulmamış, bozulmuş, ihlal edilmiş | EN: not fulfilled or kept; failing to meet an expectation or agreement | ÖRNEK: The politician faced criticism for a broken campaign pledge.
+4663 | brother | noun | A2 | #1/1 | TR: erkek kardeş | EN: a male sibling; a man who shares at least one parent with another person | ÖRNEK: My brother and I share a love for video games.
+16382 | brown | adjective | A2 | #1/1 | TR: kahverengi | EN: of a dark orange-brown color; resembling the color of chocolate or coffee beans | ÖRNEK: The wooden table has a warm brown finish that matches the room.
+16383 | brown | noun | A1 | #1/1 | TR: kahverengi | EN: the color produced by mixing red, yellow, and black; a dark shade of orange | ÖRNEK: She painted the wall a light brown to make the room feel cozy.
+14814 | browser | noun | B1 | #1/2 | TR: tarayıcı, internet tarayıcısı | EN: a software application used to access and view websites on the Internet | ÖRNEK: She launched the browser and typed the university's homepage.
+14815 | browser | noun | B2 | #2/2 | TR: göz gezdiren, göz atıcı | EN: a person who looks around or scans an area, especially in a casual or leisurely way | ÖRNEK: At the market, he acted as a casual browser, examining each stall.
+4714 | brush | noun | A2 | #1/3 | TR: fırça | EN: a handheld implement with bristles, used for cleaning, painting, or grooming | ÖRNEK: She used a brush to clean the kitchen counter after dinner.
+4715 | brush | noun | B1 | #2/3 | TR: çalı, çalılık | EN: dense, low vegetation consisting of shrubs and small trees, often forming a thicket | ÖRNEK: The trail disappeared into a thick brush near the riverbank.
+4716 | brush | noun | B2 | #3/3 | TR: kısa karşılaşma, tesadüfi temas | EN: a brief or casual encounter, often unexpected, with a person, situation, or danger | ÖRNEK: The tourist had a brush with a stray dog while walking downtown.
+4717 | brush | verb | A2 | #1/2 | TR: fırçalamak, süpürmek | EN: to clean, smooth, or arrange something by moving a brush over it | ÖRNEK: She brushes her teeth every morning and night.
+4718 | brush | verb | B1 | #2/2 | TR: temas etmek, hafifçe dokunmak | EN: to make a light or brief contact with something or someone | ÖRNEK: The wind brushed his face as he walked outside.
+7757 | brutal | adjective | B2 | #1/1 | TR: acımasız, vahşi | EN: extremely harsh or cruel; showing no pity or compassion. | ÖRNEK: During the debate, she presented a brutal critique of the proposed policy.
+5476 | bubble | noun | B1 | #1/1 | TR: kabarcık | EN: a thin sphere of liquid enclosing a pocket of gas, often seen in water or soap solutions | ÖRNEK: The soap solution formed a small bubble on the wand.
+20642 | buck | noun | C1 | #1/1 | TR: dolar (günlük dil) | EN: a dollar (informal) | ÖRNEK: It only costs ten bucks.
+14604 | buddy | noun | A2 | #1/1 | TR: arkadaş | EN: a close companion or friend, often used informally | ÖRNEK: My buddy and I walked to the library together.
+17042 | budget | noun | B1 | #1/1 | TR: bütçe | EN: a detailed plan outlining expected income and expenditures over a specific period | ÖRNEK: The school prepared its budget for the upcoming academic year.
+13940 | buffer | noun | B2 | #1/1 | TR: tampon, yastık, koruyucu ara katman | EN: a device or material that lessens or absorbs shock, impact, or change, often used to protect something else | ÖRNEK: The river's banks act as a natural buffer against flooding.
+12243 | bug | noun | A2 | #1/3 | TR: böcek | EN: a small insect, especially one that may be considered a pest | ÖRNEK: The farmer used a pesticide to control the bugs damaging his crops.
+12244 | bug | noun | B2 | #2/3 | TR: yazılım hatası | EN: an error, flaw or fault in a computer program that causes it to produce an incorrect or unexpected result | ÖRNEK: The program crashed because of a simple bug in the code.
+12245 | bug | noun | C1 | #3/3 | TR: dinleme cihazı | EN: a covert listening device used for surveillance | ÖRNEK: The journalist suspected that his office was equipped with a bug.
+12247 | bug | verb | C1 | #2/2 | TR: gizli dinleme cihazı takmak | EN: to place a listening device (a bug) on or in something for surveillance | ÖRNEK: The detective suspected that the hallway had been bugged by the rival agency.
+11930 | build | verb | A1 | #1/2 | TR: inşa etmek | EN: to construct something by putting parts together, especially a building or structure | ÖRNEK: The crew will build the cabin before winter arrives.
+11931 | build | verb | B2 | #2/2 | TR: geliştirmek | EN: to develop or improve something over time, such as a skill, argument, or relationship | ÖRNEK: She attended workshops to build her public-speaking skills.
+11934 | building | noun | A2 | #1/1 | TR: bina, yapı, inşaat | EN: a structure with a roof and walls, such as a house, school, or factory | ÖRNEK: The school building was renovated last year.
+5969 | bulk | noun | B1 | #1/2 | TR: büyük kısmı, çoğunluğu | EN: the main or largest part of something; the majority | ÖRNEK: The bulk of the class arrived early for the lecture.
+5970 | bulk | noun | B2 | #2/2 | TR: kütle, hacim | EN: the mass or size of something, especially when considered as a whole | ÖRNEK: The bulk of the metal was melted in the furnace.
+6955 | bullet | noun | B1 | #1/1 | TR: kurşun | EN: a small metal projectile fired from a gun | ÖRNEK: The hunter found a bullet on the ground.
+18015 | bunch | noun | B1 | #1/1 | TR: demet, grup, yığın | EN: a number of things, typically of the same kind, that are fastened together or close to each other | ÖRNEK: She gave me a bunch of fresh roses for my birthday.
+5618 | burden | noun | B1 | #1/2 | TR: yük, taşıma nesnesi | EN: a heavy object that is carried or supported; a load that must be borne | ÖRNEK: The courier lifted the heavy burden and walked down the street.
+5619 | burden | noun | B2 | #2/2 | TR: sorumluluk, zorunluluk | EN: a duty or responsibility that causes difficulty or stress | ÖRNEK: Parents often experience a social burden when raising children in a new country.
+11856 | bureaucracy | noun | C1 | #1/1 | TR: bürokrasi | EN: the system of government or organization in which decisions are made by state officials rather than elected representatives, often characterized by complex procedures and red tape | ÖRNEK: The university's admission process is slowed down by bureaucracy.
+2474 | burial | noun | B1 | #1/1 | TR: defin | EN: the act or process of placing a dead body in the ground, typically with a ceremony | ÖRNEK: The burial took place after the funeral service.
+516 | burn | noun | B1 | #1/1 | TR: yanık, yanma izi | EN: a damage to the skin or other tissue caused by heat, fire, electricity, radiation, or chemicals | ÖRNEK: The child got a small burn from the hot stove.
+517 | burn | verb | A2 | #1/2 | TR: yakmak | EN: to cause something to catch fire or to be consumed by fire | ÖRNEK: She burned the toast by leaving it in the oven too long.
+518 | burn | verb | B1 | #2/2 | TR: yanmak, acı hissetmek | EN: to be on fire or to feel a painful sensation of heat | ÖRNEK: The sunburn caused his skin to burn after a day at the beach.
+526 | burst | verb | B1 | #1/1 | TR: patlamak, aniden kırılmak | EN: to break open or apart suddenly and violently, often with a loud noise | ÖRNEK: The balloon burst when it touched the sharp branch.
+2473 | bury | verb | B1 | #1/1 | TR: gömmek | EN: to place something underground, especially a dead body or an object, so that it is hidden or preserved | ÖRNEK: The gardener will bury the broken pot in the soil.
+16996 | bus | noun | A2 | #1/1 | TR: otobüs | EN: a large motor vehicle designed to carry passengers along a fixed route | ÖRNEK: I catch the bus every morning at seven.
+27327 | bus station | noun | A1 | #1/1 | TR: otogar, otobüs terminali | EN: a building where buses start and finish their journeys | ÖRNEK: The bus station is in the city center.
+27328 | bus stop | noun | A1 | #1/1 | TR: otobüs durağı | EN: a place at the side of a road where buses stop | ÖRNEK: I'm waiting at the bus stop.
+3958 | bush | noun | A2 | #1/1 | TR: çalı, çalılık | EN: a dense growth of shrubs or small trees, often forming a thicket | ÖRNEK: A small bush grew beside the garden gate.
+14157 | business | noun | A1 | #1/3 | TR: ticaret, iş, faaliyet | EN: the activity of buying, selling, or providing goods and services for profit | ÖRNEK: Investors are looking for innovative business models in tech.
+14158 | business | noun | B1 | #2/3 | TR: iş, görev, sorumluluk | EN: a particular matter or affair that requires attention or action | ÖRNEK: She has a lot of business to finish before lunch.
+14159 | business | noun | A1 | #3/3 | TR: şirket, kurum | EN: an organization engaged in commercial, industrial, or professional activities | ÖRNEK: The business employs over two hundred people in the region.
+20398 | businessman | noun | A2 | #1/1 | TR: iş insanı, işadamı | EN: a man who works in business, especially one who runs a company | ÖRNEK: He is a successful businessman.
+14154 | busy | adjective | A2 | #1/2 | TR: meşgul, bir işi/planı olan | EN: engaged in work or activity; having little or no free time | ÖRNEK: I am busy studying for the exam.
+14155 | busy | adjective | B1 | #2/2 | TR: yoğun, hareketli | EN: characterized by a lot of activity or movement; lively | ÖRNEK: The downtown area is busy on weekend evenings.
+15082 | but | conjunction | A1 | #1/1 | TR: ama | EN: used to introduce a contrast or exception to what has just been mentioned | ÖRNEK: I wanted to go out, but it started to rain.
+20858 | but | preposition | B2 | #1/1 | TR: hariç, -den başka | EN: except | ÖRNEK: Everyone but me went to the party.
+21373 | butcher | noun | B1 | #1/1 | TR: kasap | EN: a person whose job is to cut, prepare, and sell meat | ÖRNEK: The butcher sliced the ham into thin pieces for the sandwich.
+20289 | butter | noun | A1 | #1/1 | TR: tereyağı | EN: a soft yellow food made from cream, used in cooking or on bread | ÖRNEK: Would you like some butter on your toast?
+21378 | butterfly | noun | A2 | #1/1 | TR: kelebek | EN: a flying insect with large, often colorful wings and a slender body | ÖRNEK: A bright orange butterfly landed on the flower.
+18081 | button | noun | A2 | #1/1 | TR: düğme | EN: a small disc or knob sewn onto clothing that fastens two pieces of fabric together | ÖRNEK: She sewed a new button onto her jacket after it fell off.
+15550 | buy | verb | A1 | #1/1 | TR: satın almak | EN: to obtain something in exchange for money | ÖRNEK: I want to buy a book for my class.
+15551 | buyer | noun | B1 | #1/1 | TR: alıcı | EN: a person who purchases something | ÖRNEK: The buyer signed the contract yesterday.
+20458 | by | adverb | B1 | #1/1 | TR: yanından (geçerek) | EN: past someone or something | ÖRNEK: A police car drove by.
+20290 | by | preposition | A1 | #1/3 | TR: ile (ulaşım) | EN: used to show how you travel | ÖRNEK: I go to work by bus.
+20291 | by | preposition | A1 | #2/3 | TR: tarafından | EN: used to show who did or made something | ÖRNEK: This book was written by a young teacher.
+20292 | by | preposition | A1 | #3/3 | TR: yanında, kenarında | EN: next to or near something | ÖRNEK: He was standing by the door.
+527 | cabin | noun | B1 | #1/1 | TR: kabin, kulübe | EN: a small, simple shelter or a private room on a ship or aircraft | ÖRNEK: The hikers found a small cabin to rest after the long trek.
+8913 | cabinet | noun | A2 | #1/2 | TR: dolap | EN: a piece of furniture with shelves, drawers, or doors for storing items | ÖRNEK: The wooden cabinet holds all the kitchen utensils.
+8914 | cabinet | noun | C1 | #2/2 | TR: bakanlar kurulu | EN: the group of senior government ministers who head executive departments | ÖRNEK: The cabinet approved the new education reform plan.
+10853 | cable | noun | B1 | #1/2 | TR: elektrik, iletişim kablosu | EN: a bundle of insulated wires used to transmit electricity or signals | ÖRNEK: The cable supplies electricity to the kitchen appliances.
+10854 | cable | noun | B2 | #2/2 | TR: ağır halat, tel | EN: a strong, thick rope made of steel or other material, used for lifting or securing heavy loads | ÖRNEK: The ship's anchor is attached to a massive steel cable.
+13806 | cafe | noun | A1 | #1/1 | TR: kafe | EN: a small establishment where coffee and light refreshments are served | ÖRNEK: I stopped at the cafe for a coffee before the meeting.

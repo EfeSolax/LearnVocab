@@ -1,0 +1,100 @@
+7897 | doubt | noun | B2 | #1/1 | TR: şüphe | EN: a feeling of uncertainty or lack of conviction about something | ÖRNEK: He felt a sudden doubt about his decision to move abroad.
+7898 | doubt | verb | B1 | #1/1 | TR: şüphe duymak, kuşkuya düşmek | EN: to feel uncertain about something or to lack confidence in its truth or reliability | ÖRNEK: I doubt the answer is correct.
+4870 | down | adverb | A1 | #1/1 | TR: aşağı, aşağıya | EN: to or toward a lower place or position; in a lower direction | ÖRNEK: The cat jumped down from the fence.
+4872 | down | preposition | A1 | #1/1 | TR: aşağı, aşağıya, aşağı doğru | EN: to or toward a lower place or position; in a lower direction or level | ÖRNEK: We walked down the narrow alley after dinner.
+17606 | download | noun | B1 | #1/1 | TR: indirme | EN: the act of receiving data from a remote computer or server to a local device | ÖRNEK: I started the download of the lecture slides after class.
+17607 | download | verb | B1 | #1/1 | TR: indirmek, veri almak | EN: to transfer data or a file from a remote computer or server to a local device | ÖRNEK: I downloaded the lecture slides before class.
+20400 | downstairs | adjective | A2 | #1/1 | TR: alt kattaki | EN: on a lower floor of a building | ÖRNEK: There is a downstairs toilet.
+3896 | downstairs | adverb | A2 | #1/1 | TR: alt katta | EN: in or to a lower floor of a building | ÖRNEK: The cat is sleeping downstairs on the carpet.
+20533 | downtown | adjective | B2 | #1/1 | TR: şehir merkezindeki | EN: in or connected with the centre of a city | ÖRNEK: We stayed at a downtown hotel.
+20534 | downtown | adverb | B2 | #1/1 | TR: şehir merkezine, merkezde | EN: in or towards the centre of a city | ÖRNEK: Let's go downtown this evening.
+15674 | downtown | noun | B1 | #1/1 | TR: şehir merkezi | EN: the central business district or main part of a city where most commercial, cultural, and administrative activities are concentrated | ÖRNEK: The new coffee shop opened in the downtown area last month.
+20535 | downwards | adverb | B2 | #1/1 | TR: aşağı doğru | EN: towards a lower place or level | ÖRNEK: The road slopes downwards to the river.
+2041 | dozen | noun | A2 | #1/1 | TR: düzine | EN: a group of twelve items | ÖRNEK: The recipe calls for a dozen eggs.
+8624 | draft | noun | B2 | #1/3 | TR: taslak, ön taslak | EN: a preliminary version of a piece of writing or a plan that is not yet final | ÖRNEK: The professor asked us to submit a draft of our essays by Friday.
+8625 | draft | noun | B1 | #2/3 | TR: askere alma, zorunlu askerlik | EN: the compulsory selection of individuals for military service, often by a written notice | ÖRNEK: The government announced a new draft to increase the armed forces.
+8626 | draft | noun | B2 | #3/3 | TR: hava akımı, içeri giren hava | EN: a current of air moving through a building or a confined space, often causing a feeling of coolness | ÖRNEK: A cold draft blew through the hallway when the door opened.
+8627 | draft | verb | B2 | #1/1 | TR: taslak hazırlamak | EN: to prepare a preliminary version of a document or plan | ÖRNEK: The student drafted a short essay for the assignment.
+740 | drag | verb | B1 | #1/1 | TR: sürüklemek, çekmek | EN: to pull someone or something along the ground or across a surface, often with effort or resistance | ÖRNEK: She dragged the heavy bag across the hallway.
+8668 | drain | verb | B1 | #1/2 | TR: suyunu çekmek, boşaltmak | EN: to cause liquid or another substance to flow out of something, emptying it | ÖRNEK: He opened the valve to drain the water from the tank.
+8669 | drain | verb | B2 | #2/2 | TR: tüketmek, kaynakları azaltmak | EN: to use up or deplete something, especially resources, energy, or enthusiasm | ÖRNEK: The high taxes will drain the savings of many families.
+3971 | drama | noun | B1 | #1/2 | TR: tiyatro oyunu, sahne eseri | EN: a composition intended for performance by actors on a stage | ÖRNEK: The school drama club performed a classic Shakespeare play.
+3972 | drama | noun | B2 | #2/2 | TR: gerilim, olay, dram | EN: a serious or emotional situation that involves conflict or tension | ÖRNEK: The sudden resignation created a lot of drama in the department.
+3973 | dramatic | adjective | B2 | #1/2 | TR: dramatik, tiyatroyla ilgili | EN: relating to drama or the performance of plays; characteristic of theatrical works. | ÖRNEK: The school drama club staged a dramatic performance for the parents.
+3974 | dramatic | adjective | B1 | #2/2 | TR: çarpıcı, etkileyici, ani | EN: causing sudden and striking effect; marked by a great change or intensity. | ÖRNEK: Investors noticed a dramatic rise in cryptocurrency values last month.
+3975 | dramatically | adverb | B2 | #1/2 | TR: dramatik bir şekilde | EN: in a way that is striking, theatrical or expressive, often to attract attention | ÖRNEK: The actor delivered his lines dramatically to keep the audience engaged.
+3976 | dramatically | adverb | C1 | #2/2 | TR: büyük ölçüde, çarpıcı biçimde | EN: to a great extent; markedly, causing a noticeable change | ÖRNEK: The temperature rose dramatically during the heat wave.
+9250 | draw | verb | A2 | #1/2 | TR: çizmek, resim yapmak | EN: to produce a picture or diagram by making lines on a surface with a pen, pencil, or other instrument | ÖRNEK: She can draw a simple house in just a few minutes.
+9251 | draw | verb | B1 | #2/2 | TR: çekmek, bir şeyi bir yere doğru hareket ettirmek | EN: to pull or drag something so that it moves toward the person or place doing the pulling | ÖRNEK: He drew the heavy box across the floor with great effort.
+9252 | drawer | noun | A2 | #1/2 | TR: çekmece | EN: a sliding box in a piece of furniture used for storing items | ÖRNEK: The kitchen cabinet has a small drawer for utensils.
+9253 | drawer | noun | B2 | #2/2 | TR: çizer, ressam | EN: a person who draws pictures or designs, especially as a profession or hobby | ÖRNEK: The drawer sketched the landscape with quick, confident strokes.
+9254 | drawing | noun | A1 | #1/1 | TR: çizim | EN: a picture or diagram made by making lines on a surface with a pen, pencil, or other instrument | ÖRNEK: She made a quick drawing of the tree.
+9996 | dream | noun | A2 | #1/2 | TR: rüya | EN: a series of images, ideas, emotions, and sensations that occur during sleep | ÖRNEK: I woke up early after a strange dream about a talking cat.
+9997 | dream | noun | A2 | #2/2 | TR: hayal, hedef | EN: an aspiration or goal that a person hopes to achieve in the future | ÖRNEK: He grew up in a small town but always had a big dream of traveling abroad.
+9998 | dream | verb | A2 | #1/2 | TR: rüya görmek | EN: to experience images, thoughts, or emotions while sleeping | ÖRNEK: I dreamed about a strange city full of bright lights.
+9999 | dream | verb | B1 | #2/2 | TR: hayal kurmak, arzu etmek | EN: to think about something that you would like to happen in the future | ÖRNEK: Many children dream of becoming astronauts when they grow up.
+10000 | dreamer | noun | B1 | #1/1 | TR: hayalperest, idealist | EN: a person who frequently imagines or pursues ideas and aspirations that are unlikely to be realized | ÖRNEK: The young poet was known as a dreamer who wrote about distant worlds.
+10251 | dress | noun | A2 | #1/1 | TR: giysi, elbise | EN: a piece of clothing that covers the body, typically consisting of a top and a skirt, worn especially by women or for formal occasions | ÖRNEK: She bought a new dress for the party.
+10252 | dress | verb | A2 | #1/2 | TR: giydirmek, giyinmek | EN: to put clothing on oneself or someone else | ÖRNEK: She dresses quickly every morning before work.
+10253 | dress | verb | B2 | #2/2 | TR: hazırlamak, düzenlemek | EN: to prepare or arrange something, especially food or a wound, for use or presentation | ÖRNEK: The chef dressed the salad with a tangy vinaigrette.
+20467 | dressed | adjective | B1 | #1/1 | TR: giyinmiş, giyinik | EN: wearing clothes | ÖRNEK: Hurry up and get dressed!
+4335 | drift | verb | B1 | #1/1 | TR: sürüklenmek, kaymak | EN: to move slowly and smoothly without a clear direction, often carried by wind or water | ÖRNEK: The small boat began to drift slowly after the engine stopped.
+5163 | drink | noun | B1 | #1/1 | TR: içki, içecek | EN: a liquid containing alcohol that is intended for consumption | ÖRNEK: She poured a drink for each guest at the dinner.
+5164 | drink | verb | A1 | #1/1 | TR: içmek | EN: to take liquid into the mouth and swallow it | ÖRNEK: She drinks water every morning to stay hydrated.
+16068 | drive | noun | A2 | #1/3 | TR: araba yolculuğu, sürüş | EN: the act of operating a vehicle, especially a car, for a period of time | ÖRNEK: She took a short drive to the grocery store.
+16067 | drive | noun | B2 | #2/3 | TR: motivasyon, içsel itici güç | EN: a strong desire or determination to achieve something | ÖRNEK: Her drive to finish the project impressed the supervisor.
+16069 | drive | noun | B1 | #3/3 | TR: sürücü | EN: a device for storing digital data, especially on a computer | ÖRNEK: The computer's hard drive failed after years of use.
+16070 | drive | verb | A2 | #1/1 | TR: araç kullanmak | EN: to control and direct the movement of a vehicle, especially a car, by operating its controls | ÖRNEK: She drives to work every morning using the highway.
+16073 | driver | noun | A2 | #1/1 | TR: sürücü | EN: a person who operates a vehicle, especially a car or truck | ÖRNEK: The driver stopped at the red light and waited patiently.
+20681 | driving | adjective | C1 | #1/1 | TR: itici, yönlendirici (güç) | EN: strong and powerful; making something happen | ÖRNEK: She was the driving force behind the project.
+20401 | driving | noun | A2 | #1/1 | TR: araba kullanma, sürüş | EN: the activity of controlling a car or other vehicle | ÖRNEK: I'm taking driving lessons.
+11214 | drop | noun | A1 | #1/3 | TR: damla | EN: a small round or pear-shaped portion of liquid that falls or is released in a single unit | ÖRNEK: A drop of rain landed on his forehead.
+11213 | drop | noun | A2 | #2/3 | TR: düşüş, azalma | EN: a decrease or reduction in amount, level, or intensity | ÖRNEK: The stock market saw a drop after the news broke.
+11215 | drop | noun | B1 | #3/3 | TR: bırakma, düşürme | EN: the act of letting something fall or letting go of it | ÖRNEK: The child's accidental drop of the toy caused it to break.
+11216 | drop | verb | A2 | #1/2 | TR: bırakmak, düşürmek | EN: to let something fall unintentionally or intentionally from a higher position to a lower one | ÖRNEK: She dropped her keys on the floor and bent down to pick them up.
+11217 | drop | verb | B1 | #2/2 | TR: azalmak, düşmek | EN: to become lower in amount, level, or intensity | ÖRNEK: The company's profits dropped after the market crash.
+7720 | drought | noun | B2 | #1/1 | TR: kuraklık | EN: a prolonged period of abnormally low rainfall that results in a shortage of water | ÖRNEK: The farmer noticed the crops wilting during the early drought.
+3897 | drown | verb | B1 | #1/1 | TR: boğulmak, boğmak | EN: to cause someone or something to die by submerging them in water; to die from being submerged in water. | ÖRNEK: The swimmer struggled but eventually began to drown in the cold lake.
+16793 | drug | noun | A2 | #1/2 | TR: uyuşturucu, yasa dışı madde | EN: a chemical substance that is illegal to possess, use, or distribute because of its harmful effects or potential for abuse | ÖRNEK: He was caught with a small amount of an illegal drug.
+16794 | drug | noun | B1 | #2/2 | TR: ilaç, tıbbi madde | EN: a substance used for the diagnosis, treatment, or prevention of disease, especially when taken by mouth or injection | ÖRNEK: The pharmacist gave her a drug to treat her allergy.
+7267 | drum | noun | A2 | #1/1 | TR: davul | EN: a cylindrical percussion instrument that produces sound when struck with sticks or hands | ÖRNEK: The marching band carried a large drum through the streets.
+5168 | drunk | adjective | B1 | #1/1 | TR: sarhoş, alkollü | EN: affected by alcohol; having consumed enough alcohol to impair mental and physical faculties | ÖRNEK: She felt drunk after only two glasses of wine.
+17338 | dry | adjective | A1 | #1/2 | TR: kuru, kurak | EN: not containing or affected by moisture; free from water or liquid. | ÖRNEK: The towel was dry after hanging in the sun.
+17340 | dry | adjective | B1 | #2/2 | TR: sıkıcı, ilgi çekmeyen | EN: lacking interest or excitement; dull and unengaging. | ÖRNEK: The presentation was dry and failed to capture the audience's attention.
+17341 | dry | verb | A2 | #1/1 | TR: kurutmak | EN: to remove moisture from something, making it no longer wet | ÖRNEK: The chef needs to dry the vegetables before frying them.
+20682 | dual | adjective | C1 | #1/1 | TR: çift, ikili | EN: having two parts or aspects | ÖRNEK: He has dual nationality.
+20683 | dub | verb | C1 | #1/2 | TR: lakap takmak, … diye adlandırmak | EN: to give someone or something a particular name | ÖRNEK: The newspapers dubbed him 'the king of pop'.
+20684 | dub | verb | C1 | #2/2 | TR: dublaj yapmak | EN: to replace the original speech in a film with speech in another language | ÖRNEK: The film was dubbed into Turkish.
+5344 | duck | noun | A2 | #1/1 | TR: ördek | EN: a waterbird with a broad body, short legs, and a flat bill, commonly found in lakes and rivers | ÖRNEK: A duck swam quietly across the calm pond early this morning.
+10714 | due | adjective | B1 | #1/1 | TR: beklenen, vadesi gelen | EN: expected or scheduled to happen or be paid at a particular time | ÖRNEK: The library book is due tomorrow, so return it on time.
+4725 | dull | adjective | B1 | #1/2 | TR: mat, donuk | EN: lacking brightness, vividness, or sheen; not shiny or glossy | ÖRNEK: The old photograph had a dull finish that hid many details.
+4726 | dull | adjective | B1 | #2/2 | TR: sıkıcı, ilgi çekmeyen | EN: lacking interest or excitement; boring | ÖRNEK: The meeting was so dull that several participants checked their phones.
+5792 | dumb | adjective | B1 | #1/2 | TR: akılsız, aptal | EN: lacking intelligence or common sense; unable to think clearly or act wisely | ÖRNEK: The student gave a dumb answer during the quiz.
+5793 | dumb | adjective | B2 | #2/2 | TR: sessiz, suskun | EN: unable or unwilling to speak; silent, especially because of shock or fear | ÖRNEK: When the teacher asked a difficult question, the student went dumb.
+12432 | dummy | noun | B1 | #1/3 | TR: emzik | EN: a soft rubber or silicone nipple used to soothe a baby | ÖRNEK: The newborn accepted the dummy quickly and stopped crying.
+11269 | dump | verb | B1 | #1/2 | TR: boşaltmak, atmak | EN: to unload or discard waste, unwanted material, or data in a large quantity | ÖRNEK: The truck driver dumped the gravel at the construction site.
+11268 | dump | verb | B2 | #2/2 | TR: terk etmek, bırakmak | EN: to discard or abandon someone or something, often abruptly or without concern | ÖRNEK: He dumped his girlfriend without giving any explanation.
+20685 | duo | noun | C1 | #1/1 | TR: ikili | EN: two people who perform together or are often seen together | ÖRNEK: The comedy duo became famous on television.
+13414 | duration | noun | B2 | #1/1 | TR: süre | EN: the length of time that something continues or lasts | ÖRNEK: We need to measure the duration of each trial carefully.
+15174 | during | preposition | A2 | #1/1 | TR: süreçte, ... sırasında | EN: throughout the time that something happens; while | ÖRNEK: I read a book during my lunch break.
+741 | dust | noun | A2 | #1/1 | TR: toz | EN: fine particles of matter that are suspended in the air or settle on surfaces | ÖRNEK: The windowsill collected a thin layer of dust every week.
+744 | dusty | adjective | B1 | #1/1 | TR: tozlu | EN: covered with or containing dust; having a fine layer of dust on its surface. | ÖRNEK: The old library had a dusty floor that needed cleaning.
+17522 | duty | noun | B1 | #1/2 | TR: görev, sorumluluk | EN: a moral or legal obligation to do something; a task or responsibility that one is required to perform | ÖRNEK: She sees it as her duty to support her younger siblings.
+17523 | duty | noun | B2 | #2/2 | TR: vergi | EN: a compulsory financial charge or tax imposed by a government on individuals or businesses | ÖRNEK: The government raised the duty on gasoline to fund infrastructure.
+7659 | dynamic | adjective | B2 | #1/2 | TR: enerjik, canlı, hareketli | EN: characterized by vigorous activity or energy; showing a lot of enthusiasm and initiative | ÖRNEK: The dynamic speaker captured everyone's attention during the conference.
+7660 | dynamic | adjective | C1 | #2/2 | TR: değişken, sürekli değişen | EN: characterized by continuous change, activity, or progress; not fixed or static | ÖRNEK: The climate model predicts a dynamic response to rising greenhouse gases.
+20686 | dynamic | noun | C1 | #1/1 | TR: dinamik, işleyiş | EN: the way in which people or things behave and react to each other in a situation | ÖRNEK: The dynamic between the two players has changed.
+20303 | each | adverb | A1 | #1/1 | TR: her biri, tanesi | EN: for or to every one of a group | ÖRNEK: The tickets cost ten euros each.
+27251 | each | determiner | A2 | #1/1 | TR: her bir | EN: every one of two or more people or things, considered separately | ÖRNEK: Each student has a book.
+3206 | eager | adjective | B1 | #1/1 | TR: istekli, hevesli | EN: having a strong desire or enthusiasm to do something. | ÖRNEK: The student was eager to answer the teacher's question.
+8823 | eagle | noun | B1 | #1/1 | TR: kartal | EN: a large bird of prey with a hooked beak and strong wings, known for soaring at great heights | ÖRNEK: The eagle swooped down and caught a rabbit.
+745 | ear | noun | A1 | #1/2 | TR: kulak | EN: the organ of hearing and balance in humans and other vertebrates | ÖRNEK: She covered her ear to block the loud noise.
+746 | ear | noun | B2 | #2/2 | TR: koçan, başak | EN: the seed-bearing part of a cereal plant, especially corn, that is attached to the stalk | ÖRNEK: The children pulled the ear of corn from the field.
+15414 | early | adjective | A1 | #1/1 | TR: erken | EN: occurring or done before the usual or expected time | ÖRNEK: Early adopters of the technology often gain a competitive advantage.
+15415 | early | adverb | A2 | #1/1 | TR: erken | EN: before the usual or expected time | ÖRNEK: The train left early, so we missed it.
+18157 | earn | verb | B1 | #1/1 | TR: kazanmak, elde etmek | EN: to receive money or another reward in return for work, effort, or achievement | ÖRNEK: She earns a small salary at the local bookstore.
+18159 | earnings | noun | B2 | #1/1 | TR: kazanç, gelir | EN: the money received for work, services, or from investments | ÖRNEK: The artist's earnings from the exhibition were modest but encouraging.
+21626 | earring | noun | A2 | #1/1 | TR: küpe | EN: a piece of jewelry that is attached to the ear, usually by a piercing | ÖRNEK: She bought a small earring at the market.
+4429 | earth | noun | A1 | #1/2 | TR: dünya, gezegen | EN: the third planet from the Sun, home to humans and other life forms | ÖRNEK: The earth rotates once every twenty-four hours.
+4428 | earth | noun | B1 | #2/2 | TR: toprak, yer | EN: the upper layer of soil that supports plant life | ÖRNEK: Children love to play in the soft earth at the park.
+3086 | earthquake | noun | A2 | #1/1 | TR: deprem | EN: a sudden shaking of the ground caused by the movement of the Earth's tectonic plates | ÖRNEK: A small earthquake was felt near the university campus early this morning.

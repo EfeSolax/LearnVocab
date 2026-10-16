@@ -1,0 +1,100 @@
+15435 | half | noun | A2 | #1/1 | TR: yarım | EN: one of two equal parts of something; a portion that is equal to 50 % of the whole. | ÖRNEK: The cake was cut into two equal pieces, and I took half.
+4483 | halfway | adverb | B1 | #1/1 | TR: yarı yolda, ortasında | EN: to a point that is in the middle of a distance or a process | ÖRNEK: She felt tired halfway through the lecture and took a short break.
+6492 | hall | noun | A2 | #1/2 | TR: toplantı salonu, büyük oda | EN: a large room used for meetings, concerts, or other public events | ÖRNEK: The wedding reception was held in a beautifully decorated hall.
+6493 | hall | noun | A2 | #2/2 | TR: koridor, geçit | EN: a long passage in a building that connects rooms or areas | ÖRNEK: He turned left at the end of the hall and entered the library.
+3608 | halt | noun | B1 | #1/1 | TR: durma, duraklama | EN: a temporary stop or pause in movement, progress, or activity | ÖRNEK: The train made a brief halt at the small station.
+3609 | halt | verb | B1 | #1/2 | TR: durmak, durdurmak | EN: to stop moving or causing something to stop moving; to bring to a standstill | ÖRNEK: The train halted unexpectedly at the station.
+3610 | halt | verb | B2 | #2/2 | TR: duraklamak, ara vermek | EN: to pause briefly, especially in speech or movement, before continuing | ÖRNEK: The runner halted briefly to check the time.
+11949 | hand | noun | A1 | #1/3 | TR: el | EN: the prehensile upper limb of a human, used for grasping and manipulating objects | ÖRNEK: She waved her hand to say goodbye.
+11950 | hand | noun | A2 | #2/3 | TR: yardım | EN: the act of giving aid or assistance to someone | ÖRNEK: He asked for a hand in fixing the computer.
+11951 | hand | noun | B1 | #3/3 | TR: işçi | EN: a person employed to do manual work, especially in agriculture or industry | ÖRNEK: The dock hired a new hand to load the cargo.
+11952 | hand | verb | A2 | #1/1 | TR: birine bir şey vermek | EN: to give something to someone, usually by passing it with the hand | ÖRNEK: She handed the envelope to the receptionist.
+13967 | handbag | noun | B1 | #1/1 | TR: el çantası | EN: a small bag with a handle or strap that is carried by hand, typically used to hold personal items such as a wallet, keys, and cosmetics | ÖRNEK: She bought a new handbag for the summer vacation.
+11954 | handful | noun | B1 | #1/2 | TR: avuç dolusu, bir avuç | EN: a quantity that can be held in one hand | ÖRNEK: She took a handful of popcorn and ate it during the movie.
+11955 | handful | noun | B1 | #2/2 | TR: az sayı, küçük bir grup | EN: a small number of people or things; a difficult task to manage | ÖRNEK: A handful of volunteers helped clean the park after the event.
+17132 | handle | noun | A2 | #1/1 | TR: sap, tutamak | EN: a part of an object designed to be held, moved, or operated with the hand | ÖRNEK: The mug has a small handle for easy drinking.
+17133 | handle | verb | B1 | #1/2 | TR: yönetmek, idare etmek | EN: to control, direct, or manage something, especially a task, situation, or piece of equipment | ÖRNEK: The new software allows users to handle data more easily.
+17134 | handle | verb | B1 | #2/2 | TR: elle tutmak, kavramak | EN: to touch or hold something with the hands | ÖRNEK: She handled the newborn baby gently.
+17136 | handling | noun | B2 | #1/1 | TR: ele alım, yönetim, işleme | EN: the act or process of dealing with or managing something | ÖRNEK: The company improved its handling of customer inquiries last year.
+7261 | handsome | adjective | B1 | #1/2 | TR: yakışıklı, çekici | EN: attractive in appearance, especially in a way considered pleasing to the eye | ÖRNEK: The handsome actor walked onto the stage confidently.
+7262 | handsome | adjective | B2 | #2/2 | TR: cömert, büyük | EN: large or generous in amount, size, or degree | ÖRNEK: The startup secured a handsome investment from venture capitalists.
+12046 | handwriting | noun | B1 | #1/1 | TR: el yazısı | EN: the style or manner in which a person writes by hand | ÖRNEK: His handwriting is clear enough for the teacher to read.
+11960 | handy | adjective | B1 | #1/2 | TR: kullanışlı, pratik | EN: useful or convenient for a particular purpose | ÖRNEK: The small screwdriver is handy for fixing the chair.
+11961 | handy | adjective | B1 | #2/2 | TR: becerikli, eli yatkın | EN: skillful or adept at using the hands or at performing tasks | ÖRNEK: My brother is handy with woodworking and builds furniture for us.
+1714 | hang | verb | A2 | #1/3 | TR: asmak, bir şeye tutturmak | EN: to attach or suspend something from a point so that it is supported from above | ÖRNEK: She hung the painting on the wall yesterday.
+1715 | hang | verb | B1 | #2/3 | TR: beklemek, askıda kalmak | EN: to remain undecided or unresolved, often referring to a decision or process that is pending | ÖRNEK: The negotiations are hanging in the balance after the latest proposal.
+1713 | hang | verb | C1 | #3/3 | TR: idam etmek | EN: to kill someone by suspending them from a rope or chain so that the body is supported by the neck | ÖRNEK: The ruler ordered to hang the rebel leader after the uprising.
+14583 | happen | verb | A2 | #1/1 | TR: olmak, meydana gelmek | EN: to occur or take place, especially without being planned or expected | ÖRNEK: Nobody knows what will happen next.
+911 | happily | adverb | A2 | #1/1 | TR: mutlulukla, sevinçle | EN: in a happy manner; showing or feeling happiness | ÖRNEK: She smiled happily when she saw her friends.
+912 | happiness | noun | B1 | #1/1 | TR: mutluluk | EN: the state of feeling or showing pleasure and contentment | ÖRNEK: She smiled, feeling a sudden burst of happiness.
+910 | happy | adjective | A2 | #1/1 | TR: mutlu, sevinçli | EN: feeling or showing pleasure, contentment, or joy | ÖRNEK: She felt happy after receiving the good news.
+20704 | harassment | noun | C1 | #1/1 | TR: taciz, rahatsız etme | EN: behaviour that annoys or upsets someone, often repeatedly | ÖRNEK: She complained of harassment at work.
+8306 | harbor | noun | B1 | #1/1 | TR: liman | EN: a place on the coast where ships may moor safely | ÖRNEK: The boat entered the harbor safely.
+9372 | hard | adjective | A1 | #1/2 | TR: sert, katı | EN: having a solid, firm, or unyielding surface or structure. | ÖRNEK: The floor was hard and cold under the winter carpet.
+9373 | hard | adjective | A1 | #2/2 | TR: zor, güç | EN: requiring great effort, skill, or endurance to accomplish. | ÖRNEK: The exam was hard, but I managed to finish it.
+9374 | hard | adverb | A1 | #1/1 | TR: sıkı, çok, yoğun bir şekilde | EN: to a great degree of difficulty; with great effort or intensity | ÖRNEK: She works hard every day to support her family.
+9378 | hardly | adverb | B2 | #1/1 | TR: neredeyse hiç, az | EN: almost not; only to a very small degree | ÖRNEK: Hardly anyone noticed the mistake in the report.
+20705 | hardware | noun | C1 | #1/1 | TR: donanım (bilgisayar) | EN: the machines and equipment of a computer system | ÖRNEK: We need to upgrade our computer hardware.
+2142 | harm | noun | B1 | #1/1 | TR: zarar, hasar | EN: damage or injury that reduces the well-being of a person, animal, or thing | ÖRNEK: The report highlighted the potential harm of excessive screen time for children.
+2143 | harm | verb | B1 | #1/1 | TR: zarar vermek | EN: to cause physical or mental injury, damage, or loss to someone or something | ÖRNEK: The loud noise can harm your hearing if you listen for long periods.
+2144 | harmful | adjective | B1 | #1/1 | TR: zararlı | EN: causing or likely to cause damage, injury, or negative effects | ÖRNEK: Researchers found that the pesticide is harmful to bees and other pollinators.
+917 | harmony | noun | B2 | #1/1 | TR: uyum, ahenk | EN: a state of agreement or concord between people, ideas, or sounds | ÖRNEK: The choir sang in perfect harmony during the concert.
+5634 | harsh | adjective | B1 | #1/1 | TR: sert, acımasız | EN: severe, cruel, or unkind in manner or treatment | ÖRNEK: The teacher gave harsh feedback on the essay.
+7117 | harvest | noun | B1 | #1/1 | TR: hasat | EN: the process of gathering mature crops from the fields | ÖRNEK: The farmer prepared his equipment for the upcoming harvest.
+7118 | harvest | verb | B1 | #1/1 | TR: hasat etmek | EN: to gather crops or other agricultural products from the fields | ÖRNEK: The farmer harvests the corn every September.
+924 | hat | noun | A1 | #1/1 | TR: şapka | EN: a covering for the head, typically having a brim and a crown, worn for protection or fashion | ÖRNEK: She bought a new hat for the summer festival.
+3812 | hate | noun | B1 | #1/1 | TR: nefret | EN: a feeling of intense dislike toward someone or something | ÖRNEK: He feels a deep hate for the noisy neighbor.
+3813 | hate | verb | A1 | #1/1 | TR: nefret etmek | EN: to feel intense or passionate dislike for someone or something | ÖRNEK: I hate rainy days because they make me feel gloomy.
+3816 | hatred | noun | B2 | #1/1 | TR: nefret | EN: a feeling of intense dislike or animosity toward someone or something | ÖRNEK: He could not hide his hatred for the noisy neighbor.
+7175 | haunt | verb | B2 | #1/2 | TR: musallat olmak, bir yerde sık sık belirmek | EN: to appear repeatedly in a place, especially as a ghost or a recurring presence | ÖRNEK: Local folklore says a phantom haunts the castle ruins every winter.
+7176 | haunt | verb | C1 | #2/2 | TR: aklında dolaşmak, rahatsız etmek | EN: to persist in someone's mind, especially in a troubling or unsettling way | ÖRNEK: The mistake haunts him whenever he writes a report.
+20314 | have | verb | A1 | #1/2 | TR: sahip olmak, -si olmak | EN: to own or possess something | ÖRNEK: I have two brothers.
+20315 | have | verb | A1 | #2/2 | TR: yemek, içmek (öğün) | EN: to eat or drink something | ÖRNEK: We usually have breakfast at eight.
+9313 | hazard | noun | B1 | #1/1 | TR: tehlike, risk | EN: a source of possible harm or danger; a situation that may cause injury or loss | ÖRNEK: The broken glass on the sidewalk is a clear hazard for pedestrians.
+27170 | he | pronoun | A1 | #1/1 | TR: o (erkek) | EN: used to refer to a man, boy or male animal as the subject of a verb | ÖRNEK: He is my brother.
+10023 | head | noun | A1 | #1/2 | TR: baş, kafa | EN: the upper part of the human body that contains the brain, eyes, ears, nose, and mouth | ÖRNEK: The child bumped his head on the low doorway.
+10024 | head | noun | A2 | #2/2 | TR: lider, başkan | EN: the person in charge of an organization, department, or group | ÖRNEK: The head of the company announced a new sustainability initiative.
+10026 | head | verb | A2 | #1/2 | TR: yönelmek, ilerlemek | EN: to move in a particular direction or toward a place | ÖRNEK: The bus will head downtown after the break.
+10025 | head | verb | B2 | #2/2 | TR: yönetmek, başkanlık etmek | EN: to be in charge of or to lead a group, organization, or activity | ÖRNEK: The professor will head the research team for the next semester.
+12741 | headache | noun | B1 | #1/1 | TR: baş ağrısı | EN: a continuous pain in the head, often causing discomfort or difficulty concentrating | ÖRNEK: I have a headache after reading all night.
+9842 | headline | noun | B1 | #1/1 | TR: başlık, manşet | EN: a short phrase or sentence at the top of a newspaper article or news story that summarizes the main point | ÖRNEK: The newspaper's headline announced the new mayor's victory.
+21802 | headphone | noun | B1 | #1/1 | TR: kulaklık | EN: a pair of small loudspeakers that are worn on or over the ears to listen to audio | ÖRNEK: I bought a new pair of headphones for my computer.
+9589 | headquarters | noun | B1 | #1/1 | TR: merkez, genel merkez | EN: the main office or center of operations of an organization, company, or military unit | ÖRNEK: The company's headquarters are in Chicago.
+23192 | headset | noun | B1 | #1/1 | TR: kulaklık, kulaklık takımı | EN: a pair of headphones with a microphone used for listening to audio and speaking in communication | ÖRNEK: She bought a new headset for her computer.
+2680 | heal | verb | B1 | #1/1 | TR: iyileşmek, tedavi etmek | EN: to cause (a wound, injury, or disease) to become healthy again; to recover health or soundness | ÖRNEK: The cut on his finger will heal within a few days.
+15398 | health | noun | A1 | #1/1 | TR: sağlık | EN: the condition of being free from illness or injury; a state of physical and mental well-being | ÖRNEK: She feels great because she has good health.
+20551 | healthcare | noun | B2 | #1/1 | TR: sağlık hizmetleri | EN: the services that look after people's health | ÖRNEK: Everyone should have access to good healthcare.
+15403 | healthy | adjective | A1 | #1/1 | TR: sağlıklı | EN: in a good physical condition; free from illness or injury | ÖRNEK: She feels healthy after a week of rest.
+5436 | heap | noun | B1 | #1/2 | TR: yığın, küme | EN: a collection of items placed one on another forming a mound or pile | ÖRNEK: The children built a heap of sand at the beach.
+9532 | hear | verb | A1 | #1/3 | TR: duymak, işitmek | EN: to perceive sound with the ears | ÖRNEK: She heard the alarm and ran outside quickly.
+9533 | hear | verb | A2 | #2/3 | TR: öğrenmek, duymak, haber almak | EN: to become aware of something through information or news | ÖRNEK: I heard that the university is opening a new research center.
+9534 | hear | verb | B2 | #3/3 | TR: dinlemek, duruşmaya bakmak, davaya bakmak | EN: to listen to a case, testimony, or argument in a formal setting | ÖRNEK: The tribunal will hear the complaint tomorrow morning.
+9536 | hearing | noun | A2 | #1/2 | TR: duyma, işitme | EN: the physiological ability to perceive sound; the act of perceiving sounds with the ears | ÖRNEK: The child's hearing was tested during the school health check.
+9537 | hearing | noun | B2 | #2/2 | TR: mahkeme duruşması, dinleme | EN: a formal session in which evidence and arguments are presented before a judge or other authority | ÖRNEK: The lawyer prepared his client for the upcoming hearing.
+9791 | heart | noun | A2 | #1/3 | TR: kalp | EN: the muscular organ that pumps blood through the circulatory system | ÖRNEK: The heart pumps blood to all parts of the body.
+9792 | heart | noun | B1 | #2/3 | TR: merkez | EN: the central or most important part of something | ÖRNEK: The park lies at the heart of the downtown area.
+9793 | heart | noun | B2 | #3/3 | TR: cesaret | EN: the quality of being brave and determined, especially in difficult situations | ÖRNEK: The firefighter showed great heart by entering the burning building.
+16827 | heat | noun | B1 | #1/1 | TR: ısı, sıcaklık | EN: the quality of being hot or the energy that causes a rise in temperature | ÖRNEK: The heat in the classroom made the students uncomfortable.
+16828 | heat | verb | A2 | #1/1 | TR: ısıtmak | EN: to raise the temperature of something, usually by applying fire or another source of warmth | ÖRNEK: I heat the coffee for a few minutes each morning.
+16829 | heat up | phrasal_verb | B1 | #2/2 | TR: ısınmak | EN: to become hotter or warmer, especially as a result of external conditions or internal processes | ÖRNEK: The water will heat up in a few minutes on the burner.
+16833 | heating | noun | B1 | #1/1 | TR: ısıtma | EN: the process of raising the temperature of something, especially a building or a room, by using a heating system. | ÖRNEK: The heating in my bedroom stopped working last night.
+6865 | heaven | noun | B2 | #1/1 | TR: cennet | EN: the place believed to be the dwelling of God, angels, and the blessed after death | ÖRNEK: The ancient text describes heaven as a place of endless peace.
+18498 | heavily | adverb | B1 | #1/1 | TR: ağır bir şekilde, şiddetle | EN: to a great degree; with a lot of force, weight, or intensity | ÖRNEK: The rain fell heavily all night, flooding the streets.
+18496 | heavy | adjective | A2 | #1/1 | TR: ağır | EN: having great weight; difficult to lift or move because of its mass. | ÖRNEK: The box is heavy, so ask for help lifting it.
+4731 | heel | noun | A2 | #1/2 | TR: ayakkabı topuğu | EN: the raised part at the back of a shoe that supports the foot's heel | ÖRNEK: She slipped on the wet floor because her heel was too high.
+4732 | heel | noun | C2 | #2/2 | TR: kötü, ahlaksız kişi | EN: a person who is dishonest or morally reprehensible; a scoundrel | ÖRNEK: The detective called the thief a heel for stealing from the elderly.
+18318 | height | noun | B1 | #1/2 | TR: yükseklik | EN: the measurement of how tall something or someone is from base to top | ÖRNEK: The tree's height makes it a landmark in the park.
+18319 | height | noun | A2 | #2/2 | TR: boy | EN: the vertical measurement of a person's stature, especially when referring to a person's overall size | ÖRNEK: Doctors track a child's height to monitor growth progress.
+18313 | heighten | verb | B2 | #1/1 | TR: artırmak, yükseltmek | EN: to make something become more intense, stronger, or higher | ÖRNEK: The teacher used a video to heighten interest in the lesson.
+3087 | helicopter | noun | B1 | #1/1 | TR: helikopter | EN: a type of aircraft that lifts off and lands vertically using one or more rotors | ÖRNEK: The helicopter hovered above the stadium during the ceremony.
+16145 | hell | noun | A2 | #1/2 | TR: cehennem | EN: a place of suffering regarded as a punishment after death | ÖRNEK: The novel opens with a vivid description of hell.
+16146 | hell | noun | B1 | #2/2 | TR: kötü durum, bela | EN: a very unpleasant or difficult situation | ÖRNEK: The traffic jam turned the commute into hell.
+20316 | hello | exclamation | A1 | #1/1 | TR: merhaba (selam) | EN: the word 'hello' used as a greeting | ÖRNEK: Say hello to your parents for me.
+10097 | helmet | noun | A2 | #1/1 | TR: kask | EN: a protective head covering worn to prevent injury | ÖRNEK: All schoolchildren must wear a helmet when riding a bike.
+5668 | help | noun | A2 | #1/1 | TR: yardım, destek | EN: the act of giving assistance or support to someone in need | ÖRNEK: He asked for help when the computer crashed.
+5669 | help | verb | A2 | #1/1 | TR: yardım etmek, destek olmak | EN: to give assistance or support to someone in order to achieve something or to make a situation easier | ÖRNEK: I can help you carry those bags.
+5670 | helpful | adjective | B1 | #1/1 | TR: yardımcı, faydalı | EN: providing assistance or useful information that makes a task easier or a situation better. | ÖRNEK: The teacher gave us helpful tips for writing a good thesis.
+27238 | her | determiner | A1 | #1/1 | TR: onun (kadın) | EN: belonging to or connected with a woman, girl or female animal | ÖRNEK: Her name is Zeynep.
+27180 | her | pronoun | A1 | #1/1 | TR: onu, ona (kadın) | EN: used as the object of a verb or preposition to refer to a woman, girl or female animal | ÖRNEK: I called her last night.
+20552 | herb | noun | B2 | #1/1 | TR: ot, bitki (baharat ya da şifa için) | EN: a plant whose leaves are used in cooking or medicine | ÖRNEK: Add some fresh herbs to the salad.
+20317 | here | adverb | A1 | #1/1 | TR: burada, buraya | EN: in, at or to this place | ÖRNEK: I live here.

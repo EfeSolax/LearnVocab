@@ -1,0 +1,100 @@
+13007 | figure | verb | B1 | #2/2 | TR: hesaplamak, saymak | EN: to calculate or estimate a number or amount | ÖRNEK: He figured the distance between the two cities.
+17329 | file | noun | A2 | #1/2 | TR: dosya, evrak | EN: a collection of documents or data stored together, often in a computer or a folder | ÖRNEK: The teacher asked the students to submit their assignments as a single file.
+17330 | file | noun | B1 | #2/2 | TR: törpü, eğe | EN: a hand tool with a rough surface used for smoothing or shaping metal, wood, or other materials | ÖRNEK: The mechanic reached for a file to smooth the rough spot on the engine block.
+17332 | file | verb | B1 | #1/3 | TR: dosyaları sıralamak, düzenlemek | EN: to arrange documents or items in a systematic order, often in a folder or cabinet | ÖRNEK: He filed the receipts after the trip.
+17331 | file | verb | B2 | #2/3 | TR: dosya sunmak, belge vermek | EN: to formally submit a document or record to an authority or organization | ÖRNEK: She will file the application tomorrow.
+17333 | file | verb | B1 | #3/3 | TR: eğelemek, törpülemek | EN: to smooth or shape a surface using a metal tool called a file | ÖRNEK: The mechanic filed the rusted bolt.
+17739 | fill | verb | A2 | #1/1 | TR: doldurmak, içini doldurmak | EN: to cause something to become full or to put something into a container until it is full | ÖRNEK: She filled the jar with fresh strawberries for the dessert.
+15816 | film | noun | A2 | #1/2 | TR: film, sinema yapımı, hareketli görüntü | EN: a series of moving pictures shown on a screen or projected onto a surface for entertainment or artistic purposes | ÖRNEK: The new film opened in theaters last Friday.
+15817 | film | noun | B2 | #2/2 | TR: ince tabaka, kaplama | EN: a thin layer of material, often plastic or metal, that covers a surface | ÖRNEK: The laboratory technician applied a thin film to the microscope slide.
+15818 | film | verb | B1 | #1/1 | TR: kaydetmek, film çekmek | EN: to record moving images with a camera or other recording device | ÖRNEK: The students will film a short video for their class project.
+9820 | filter | noun | A2 | #1/1 | TR: süzgeç, filtre | EN: a device or material that removes unwanted particles or substances from a liquid or gas | ÖRNEK: I bought a new water filter for the kitchen sink.
+9821 | filter | verb | B1 | #1/2 | TR: süzmek, arıtmak | EN: to cause a liquid or gas to pass through a device that removes unwanted particles or impurities | ÖRNEK: The kitchen faucet filters water to improve taste.
+9822 | filter | verb | B2 | #2/2 | TR: elemek, süzgeçten geçirmek | EN: to select or remove certain items, especially information, from a larger set | ÖRNEK: The librarian filters books to create a specialized reading list.
+15604 | final | adjective | A1 | #1/1 | TR: son, nihai, kesin | EN: relating to the last part of something; not to be changed or continued further | ÖRNEK: The final match will be played on Saturday.
+15605 | final | noun | B2 | #1/1 | TR: final maçı, final | EN: the last match of a tournament that determines the champion | ÖRNEK: The championship final will be held at the national stadium.
+15609 | finally | adverb | B1 | #1/1 | TR: sonunda, nihayet | EN: after a long time or after a series of events; at last | ÖRNEK: He finally finished his homework before dinner.
+16225 | finance | noun | B2 | #1/1 | TR: finans, maliye | EN: the management of large amounts of money, especially by governments or large companies | ÖRNEK: The university's finance office processes tuition payments each semester.
+16226 | finance | verb | B2 | #1/1 | TR: finanse etmek, para sağlamak | EN: to provide money for a particular purpose, especially for business or public projects | ÖRNEK: The company hopes to finance its expansion with a bank loan.
+16227 | financial | adjective | B2 | #1/1 | TR: mali, finansal | EN: relating to money, banking, or the management of funds | ÖRNEK: The company released its financial report last week.
+6035 | find | verb | A1 | #1/1 | TR: bulmak | EN: to discover or locate something after searching or by chance | ÖRNEK: I can't find my keys anywhere in the house.
+6037 | finding | noun | B2 | #1/1 | TR: bulgu, keşif | EN: a result or conclusion reached after investigation or research | ÖRNEK: The researchers presented their main finding at the conference.
+15718 | fine | adjective | A2 | #1/2 | TR: iyi, memnun edici | EN: of high quality or satisfactory; acceptable or satisfactory in condition or performance. | ÖRNEK: The weather is fine today, perfect for a walk.
+15719 | fine | adjective | B2 | #2/2 | TR: ince, zarif | EN: thin, slender, or delicate in size, texture, or structure. | ÖRNEK: The artist used a fine brush to add details to the painting.
+15720 | fine | noun | B1 | #1/1 | TR: para cezası | EN: a sum of money exacted as a penalty for an offense or breach of rules | ÖRNEK: The student had to pay a fine after returning the library book late.
+15721 | fine | verb | B2 | #1/1 | TR: para cezası vermek | EN: to impose a monetary penalty on someone for breaking a rule or law | ÖRNEK: The police officer fined the motorist for running a red light.
+838 | finger | noun | A1 | #1/1 | TR: parmak | EN: any of the five digits on the human hand | ÖRNEK: She broke a finger while playing basketball.
+16684 | finish | noun | B1 | #1/1 | TR: bitiş, son, sonuç | EN: the point or period when something ends; the final part of an activity or process | ÖRNEK: The finish of the marathon was marked by cheering crowds and confetti.
+16685 | finish | verb | A1 | #1/1 | TR: tamamlamak, bitirmek | EN: to bring something to an end; to complete a task or activity | ÖRNEK: She finished her homework before dinner.
+7992 | fire | noun | B1 | #1/2 | TR: yangın | EN: a destructive burning of property, vegetation, or other material | ÖRNEK: A small fire started in the kitchen after the pot boiled over.
+7993 | fire | noun | A2 | #2/2 | TR: ateş | EN: the heat and light produced by combustion, used for cooking, heating, or illumination | ÖRNEK: She lit a fire to keep warm on the cold night.
+7995 | fire | verb | A2 | #1/2 | TR: ateş etmek, silah kullanmak | EN: to discharge a weapon or to launch a projectile. | ÖRNEK: The security guard had to fire a warning shot to stop the intruder.
+7994 | fire | verb | B1 | #2/2 | TR: işten çıkarmak, kovmak | EN: to dismiss someone from a job or position, usually because of poor performance or misconduct. | ÖRNEK: After the quarterly review, the manager had to fire a staff member for poor performance.
+20696 | firearm | noun | C1 | #1/1 | TR: ateşli silah | EN: a gun that can be carried | ÖRNEK: It is illegal to carry a firearm without a licence.
+20541 | firefighter | noun | B2 | #1/1 | TR: itfaiyeci | EN: a person whose job is to stop fires | ÖRNEK: Firefighters rescued the family from the burning house.
+13864 | firework | noun | B1 | #1/1 | TR: havai fişek | EN: a device containing combustible chemicals that produces a spectacular visual and auditory display when ignited | ÖRNEK: The children watched the firework explode in bright colors.
+2460 | firm | adjective | B1 | #1/1 | TR: sağlam, katı, kesin | EN: having a solid, unyielding structure; not easily moved or changed | ÖRNEK: The table is firm and does not wobble.
+2461 | firm | noun | A2 | #1/1 | TR: şirket, işletme | EN: an organization engaged in commercial, industrial, or professional activities; a business entity. | ÖRNEK: The firm opened a new branch in downtown Chicago last month.
+2463 | firmly | adverb | B1 | #1/1 | TR: sağlam bir şekilde, kesin olarak | EN: in a strong, steady, or resolute manner | ÖRNEK: The teacher asked the students to hold the pencils firmly during the test.
+15113 | first | adjective | A2 | #1/1 | TR: ilk, birincil | EN: relating to the earliest in time, order, or rank; occurring before all others | ÖRNEK: The first chapter introduces the main concepts of the course.
+15114 | first | adverb | A2 | #1/1 | TR: ilk olarak | EN: before anything else in time or order | ÖRNEK: First, we will introduce the topic to the class.
+20853 | first | noun | A2 | #1/1 | TR: ilk (kişi, şey) | EN: the first person or thing to do or be something | ÖRNEK: She was the first to arrive.
+15115 | firstly | adverb | B1 | #1/1 | TR: ilk olarak | EN: in the first place; used to introduce the first point in a series of statements | ÖRNEK: Firstly, we must verify the hypothesis before proceeding to data collection.
+4437 | fish | noun | A1 | #1/1 | TR: balık | EN: a cold-blooded, aquatic vertebrate that lives in water and typically has scales and fins | ÖRNEK: I saw a colorful fish swimming near the coral reef.
+4438 | fish | verb | B1 | #1/1 | TR: balık tutmak | EN: to catch fish, usually with a hook, line, or net | ÖRNEK: I fish in the lake near my house every Saturday.
+4440 | fishery | noun | B2 | #1/1 | TR: balıkçılık, balıkçılık sektörü | EN: a place or industry where fish are reared or caught for commercial purposes | ÖRNEK: The fishery provides jobs for many people in the town.
+4441 | fishing | noun | B1 | #1/1 | TR: balık tutma, balıkçılık | EN: the activity of catching fish, especially for sport or as a livelihood | ÖRNEK: The lake is a popular spot for fishing during the summer.
+12647 | fit | adjective | B1 | #1/2 | TR: sağlıklı, formda | EN: in good physical condition; having strength and stamina | ÖRNEK: She runs three times a week to stay fit.
+12648 | fit | adjective | B2 | #2/2 | TR: uygun, yerinde | EN: appropriate or suitable for a particular purpose or situation. | ÖRNEK: That dress is fit for a formal dinner.
+12649 | fit | noun | B1 | #1/2 | TR: uygunluk, uygun olma | EN: the condition of being suitable or appropriate for a particular purpose or situation | ÖRNEK: The committee found her experience a good fit for the project.
+12650 | fit | noun | B2 | #2/2 | TR: nöbet, kriz, havale | EN: a sudden attack or convulsion, especially one caused by a medical condition | ÖRNEK: During the lecture, a student suddenly had a fit and needed assistance.
+12651 | fit | verb | A2 | #1/2 | TR: uymak, sığmak | EN: to be the right size or shape for something; to be able to be placed into a space without difficulty | ÖRNEK: The key fits the lock without any trouble.
+12652 | fit | verb | B2 | #2/2 | TR: uygun olmak, karşılamak | EN: to be appropriate or suitable for a particular purpose or situation | ÖRNEK: The software fits the needs of small businesses.
+12654 | fitness | noun | B1 | #1/2 | TR: sağlık, kondisyon | EN: the condition of being physically healthy and strong | ÖRNEK: The coach designed a program to boost the team's fitness.
+12655 | fitness | noun | C1 | #2/2 | TR: uygunluk | EN: the quality of being suitable or appropriate for a particular purpose | ÖRNEK: The device's fitness for harsh environments was tested.
+17309 | fix | noun | B1 | #1/1 | TR: tamir, düzeltme, çözüm | EN: a repair or correction made to something that was broken or faulty; a solution to a problem | ÖRNEK: The broken window needed a quick fix before the rain started.
+17311 | fix | verb | A2 | #1/3 | TR: düzeltmek, onarmak | EN: to repair something that is broken or not working properly | ÖRNEK: The plumber fixed the leak under the bathroom sink.
+17310 | fix | verb | B1 | #2/3 | TR: sabitlemek, monte etmek | EN: to attach something firmly so that it does not move | ÖRNEK: The carpenter fixed the cabinet to the floor securely.
+17312 | fix | verb | B2 | #3/3 | TR: ayarlamak, kararlaştırmak, belirlemek | EN: to arrange or settle something, often informally or quickly | ÖRNEK: Can you fix a meeting time that works for everyone?
+17315 | fixation | noun | B2 | #1/2 | TR: takıntı, saplantı | EN: the state of being excessively preoccupied with a particular idea, object, or activity | ÖRNEK: He couldn't stop thinking about the exam; his fixation was overwhelming.
+17317 | fixed | adjective | B2 | #1/1 | TR: değişmez, sabit, kesin | EN: not able or intended to be changed; permanent or determined | ÖRNEK: The museum displays a fixed collection of ancient artifacts.
+17319 | fixture | noun | B1 | #1/2 | TR: sabit donanım, kalıcı kurulum | EN: a piece of equipment or furniture that is permanently attached to a building or structure | ÖRNEK: The conference room has a modern video-conference fixture.
+17320 | fixture | noun | B2 | #2/2 | TR: maç programı, fikstür | EN: a schedule of matches or events, especially in sports competitions | ÖRNEK: The football club announced its fixture for the next three months.
+17985 | flag | noun | A2 | #1/2 | TR: bayrak, amblem | EN: a piece of cloth with distinctive colors and symbols used as a symbol of a country, organization, or signal | ÖRNEK: The red flag waved proudly over the hill.
+17986 | flag | noun | B1 | #2/2 | TR: işaret, uyarı | EN: a signal, often a piece of cloth, used to indicate a warning or to attract attention | ÖRNEK: The red flag indicated that the trail was closed.
+2171 | flame | noun | A2 | #1/2 | TR: alev, yanma | EN: the visible, gaseous part of a fire that emits light and heat | ÖRNEK: The small flame warmed the room during the cold night.
+2172 | flame | noun | B2 | #2/2 | TR: tutku, coşku | EN: a strong feeling of enthusiasm or passion, often used metaphorically | ÖRNEK: His eyes lit up with a flame of excitement when he saw the new project.
+840 | flash | noun | A2 | #1/2 | TR: kısa, ani ışık patlaması | EN: a brief, sudden burst of light | ÖRNEK: The lightning created a flash that startled everyone in the room.
+841 | flash | noun | B2 | #2/2 | TR: kısa haber, anlık duyuru | EN: a brief news report or announcement, often broadcast quickly | ÖRNEK: The television channel aired a flash about the sudden traffic jam.
+842 | flash | verb | B1 | #1/2 | TR: aniden ışık yaymak | EN: to emit a sudden burst of light | ÖRNEK: The warning light flashed red on the dashboard.
+843 | flash | verb | B2 | #2/2 | TR: kısa bir şekilde göstermek | EN: to display something briefly or suddenly | ÖRNEK: He flashed a grin and walked away.
+19803 | flat | adjective | A2 | #1/3 | TR: düz, seviyeli, yatay | EN: having a surface that is even and without bumps or inclines. | ÖRNEK: The carpenter checked that the board was flat before installing it.
+19804 | flat | adjective | B2 | #2/3 | TR: durgun, duygusuz, tekdüze | EN: lacking variation in tone, emotion, or interest; monotonous. | ÖRNEK: Her flat tone suggested she was not interested in the topic.
+19805 | flat | adjective | B1 | #3/3 | TR: gazsız, köpüksüz | EN: lacking carbonation; not fizzy. | ÖRNEK: The soda went flat when it sat on the counter for several hours.
+19808 | flat | noun | B1 | #1/2 | TR: daire, apartman dairesi | EN: a set of rooms on one floor of a building that is used as a residence | ÖRNEK: I found a small flat close to the campus.
+19809 | flat | noun | B2 | #2/2 | TR: düz alan, ova | EN: a level area of land with little or no slope | ÖRNEK: The road stretched across a flat for several miles.
+13088 | flavor | noun | B1 | #1/1 | TR: tat, lezzet | EN: the distinctive taste of a food or drink | ÖRNEK: The pizza has a rich tomato flavor that everyone enjoys.
+11427 | flaw | noun | B2 | #1/1 | TR: kusur, eksiklik | EN: a fault or imperfection that makes something less perfect or effective | ÖRNEK: The report highlighted a flaw in the company's financial statements.
+11429 | flawed | adjective | B2 | #1/1 | TR: kusurlu, hatalı | EN: having faults or imperfections; not perfect or correct. | ÖRNEK: The report contains several flawed sections that need correction.
+11350 | flee | verb | B1 | #1/1 | TR: kaçmak | EN: to run away from a place or situation of danger or threat | ÖRNEK: The rabbit saw the fox and fled into the bushes.
+5471 | fleet | noun | B1 | #1/1 | TR: filo | EN: a group of ships, aircraft, or vehicles owned or operated together, especially for commercial or military purposes | ÖRNEK: The navy's fleet consists of destroyers, frigates, and submarines.
+2642 | flesh | noun | B1 | #1/1 | TR: et, vücut eti | EN: the soft tissue of the body of a person or animal, especially muscle and fat | ÖRNEK: The chef sliced the meat and removed the flesh.
+8313 | flexibility | noun | B2 | #1/1 | TR: esneklik, uyum sağlama yeteneği | EN: the quality of being able to bend easily without breaking; the ability to adapt to new, different, or changing circumstances | ÖRNEK: The gymnast's flexibility allows her to perform complex routines.
+8314 | flexible | adjective | B1 | #1/2 | TR: esnek, bükülebilir | EN: capable of being bent easily without breaking | ÖRNEK: The yoga instructor praised her students for their flexible bodies.
+8315 | flexible | adjective | B2 | #2/2 | TR: uyarlanabilir, değişime açık | EN: able to change or be modified to suit different conditions or needs | ÖRNEK: The university offers a flexible curriculum for interdisciplinary majors.
+2719 | flight | noun | A2 | #1/2 | TR: uçuş | EN: the act of traveling through the air in an aircraft; a scheduled service of an aircraft | ÖRNEK: The flight departed on time despite the fog.
+2718 | flight | noun | B2 | #2/2 | TR: kaçış | EN: the act of fleeing or escaping from a place or situation | ÖRNEK: The refugees organized a flight from the war-torn city.
+848 | float | verb | B1 | #1/1 | TR: yüzmek, süzülmek, havada kalmak | EN: to remain on the surface of a liquid without sinking or to stay suspended in the air | ÖRNEK: The small boat began to float on the calm lake.
+853 | flood | noun | B1 | #1/1 | TR: sel | EN: a large amount of water covering an area that is usually dry | ÖRNEK: The heavy rain caused a flood in the small town.
+854 | flood | verb | B1 | #1/1 | TR: taşmak, suyla doldurmak | EN: to cause water to cover an area that is normally dry; to inundate with water or other liquid | ÖRNEK: The river flooded after three days of nonstop rain.
+16598 | floor | noun | A1 | #1/2 | TR: zemin, taban | EN: the lower surface of a room or building on which people stand | ÖRNEK: The children played on the wooden floor of the playroom.
+16597 | floor | noun | A2 | #2/2 | TR: kat, seviye | EN: one of the levels of a building that is used for a particular purpose | ÖRNEK: The library is on the second floor of the campus.
+20470 | flour | noun | B1 | #1/1 | TR: un | EN: a powder made from grain, used to make bread and cakes | ÖRNEK: Mix the flour with the eggs and milk.
+8728 | flourish | verb | B2 | #1/1 | TR: gelişmek, başarılı olmak | EN: to grow or develop in a healthy or vigorous way, especially as the result of a favorable environment | ÖRNEK: The garden plants flourished after the rain.
+13248 | flow | noun | B1 | #1/1 | TR: akış, akma, akıntı | EN: the continuous movement of a liquid, gas, or other substance in a steady stream | ÖRNEK: The water pipe showed a smooth flow after the repair.
+13249 | flow | verb | B1 | #1/2 | TR: akmak, süzülmek | EN: to move smoothly and continuously in a stream or current | ÖRNEK: The small creek flows gently through the forest.
+13250 | flow | verb | B2 | #2/2 | TR: yayılmak, dolaşmak | EN: to spread or circulate, especially in the form of information, electricity, or other intangible substances | ÖRNEK: News about the discovery quickly flows through scientific journals.
+18167 | flower | noun | A1 | #1/1 | TR: çiçek | EN: the reproductive structure in flowering plants that is often colorful and produces seeds | ÖRNEK: A red flower grew beside the path.
+13444 | flu | noun | B1 | #1/1 | TR: grip | EN: an infectious respiratory illness caused by influenza viruses, characterized by fever, cough, sore throat, and body aches | ÖRNEK: I felt a sore throat and decided I might have the flu.
+21684 | fluff | verb | B2 | #1/2 | TR: yumuşatmak, kabartmak, havalı hâle getirmek | EN: to make something light, airy, or fluffy, often by beating or shaking | ÖRNEK: He fluffed the blanket to make it look more comfortable.
+7259 | fluid | noun | B2 | #1/1 | TR: akışkan, sıvı | EN: a substance that has no fixed shape and flows easily, typically a liquid or gas | ÖRNEK: The scientist poured the fluid into the test tube for analysis.

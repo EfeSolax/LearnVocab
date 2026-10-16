@@ -1,0 +1,100 @@
+8572 | blond | adjective | A2 | #1/1 | TR: sarışın, açık sarı renkli | EN: having light yellowish hair color; often used to describe a person with such hair. | ÖRNEK: The child smiled, showing his bright blond hair.
+8574 | blonde | adjective | A2 | #1/1 | TR: sarışın | EN: having light yellowish hair color, often used to describe a person with such hair. | ÖRNEK: The child's blonde curls bounced as she ran across the playground.
+6817 | blood | noun | A1 | #1/2 | TR: vücut sıvısı, kan | EN: the red liquid that circulates in the arteries and veins of humans and other animals, carrying oxygen and nutrients to the cells and removing waste products | ÖRNEK: The nurse took a small amount of blood for the routine check-up.
+6818 | blood | noun | B2 | #2/2 | TR: soy, kan bağı | EN: the family or lineage to which a person belongs, especially when referring to inherited traits or ancestry | ÖRNEK: The genealogist traced the family's blood back to the 18th century.
+11684 | bloomer | noun | B2 | #1/1 | TR: çiçek açan bitki, gelişen kimse | EN: a person or thing that produces flowers or begins to develop rapidly | ÖRNEK: Many students are early bloomers when they start university.
+22779 | blouse | noun | A2 | #1/1 | TR: gömlek, bluz | EN: a loose-fitting upper garment for women, typically with a collar, sleeves, and a buttoned front | ÖRNEK: She bought a new blouse for the conference.
+6268 | blow | noun | B1 | #1/2 | TR: darbe, vuruş | EN: a hard hit with the hand or a weapon; a sudden event that causes damage or disappointment | ÖRNEK: He received a blow to the head during the fight.
+4627 | blow | noun | B1 | #2/2 | TR: rüzgar, esinti | EN: a movement of air, especially a gust or current of wind | ÖRNEK: The sailors adjusted the sails after a strong blow from the sea.
+4628 | blow | verb | A2 | #1/2 | TR: esmek | EN: to move air, causing a current of air to flow from one place to another | ÖRNEK: A gentle breeze blew across the meadow in the early morning.
+6269 | blow | verb | A2 | #2/2 | TR: üflemek | EN: to send air out from the mouth | ÖRNEK: She blew out the candles on her birthday cake.
+16018 | blue | adjective | A1 | #1/2 | TR: mavi | EN: of the colour that is between green and violet in the visible spectrum | ÖRNEK: The sky was blue and cloudless this morning.
+16019 | blue | adjective | B1 | #2/2 | TR: hüzünlü, üzgün | EN: feeling or showing sadness; melancholy | ÖRNEK: She felt blue after hearing that her friend moved away.
+16020 | blue | noun | A2 | #1/1 | TR: mavi | EN: a color that is between green and violet in the visible spectrum | ÖRNEK: The sky turned a bright blue after the rain stopped.
+15708 | board | noun | A2 | #1/3 | TR: tahta, levha | EN: a flat, rigid piece of material, typically wood, used for building, cutting, or other purposes | ÖRNEK: The carpenter nailed the board to the wall.
+15709 | board | noun | B2 | #2/3 | TR: yönetim kurulu | EN: a group of people who oversee the activities and policies of an organization | ÖRNEK: The board met to discuss the company's future strategy.
+15710 | board | noun | B1 | #3/3 | TR: yemek, iaşe | EN: the provision of meals and lodging, especially as part of a contract or arrangement | ÖRNEK: The hostel includes board and basic utilities in the price.
+15711 | board | verb | A2 | #1/2 | TR: binmek | EN: to get on or into a vehicle, aircraft, or ship | ÖRNEK: She boarded the bus and found a seat near the window.
+15712 | board | verb | B2 | #2/2 | TR: yatılı barındırmak, pansiyoner olarak almak, besleyip barındırmak | EN: to provide someone with regular meals and lodging, especially in a school or institution | ÖRNEK: Parents often board their children at a boarding school for better education.
+27324 | board game | noun | A1 | #1/1 | TR: kutu oyunu, masa oyunu | EN: a game played on a board, such as chess | ÖRNEK: We played board games all evening.
+10689 | boast | verb | B2 | #1/1 | TR: övünmek, böbürlenmek | EN: to talk about oneself or one's achievements in an exaggerated or bragging way | ÖRNEK: He boasts that he is the best player on the team.
+17500 | boat | noun | A2 | #1/1 | TR: tekne, bot | EN: a small vessel designed for traveling on water, typically smaller than a ship | ÖRNEK: The children watched the bright red boat float on the pond.
+3470 | body | noun | A2 | #1/2 | TR: vücut | EN: the physical structure of a person or animal, including the head, torso, arms, and legs | ÖRNEK: She stretched her arms to relax her body after the long flight.
+3469 | body | noun | B2 | #2/2 | TR: ceset | EN: the physical remains of a dead human or animal | ÖRNEK: The hikers were shocked when they found a body on the trail.
+3255 | boil | verb | A2 | #1/1 | TR: kaynatmak, kaynamaya getirmek | EN: to heat a liquid until it reaches its boiling point and produces bubbles | ÖRNEK: The chef boiled the eggs for exactly six minutes.
+3999 | bold | adjective | B2 | #1/2 | TR: cesur, korkusuz | EN: showing a willingness to take risks and act innovatively; not afraid of danger or difficulty. | ÖRNEK: The student gave a bold answer during the class discussion.
+4000 | bold | adjective | B1 | #2/2 | TR: göze çarpan, koyu | EN: having a strong, vivid, or conspicuous appearance, especially in color or typeface. | ÖRNEK: She chose a bold shade of blue for the living-room walls.
+14241 | bomb | noun | A2 | #1/2 | TR: bomba | EN: a weapon that explodes, causing damage or destruction | ÖRNEK: The police found a bomb hidden behind the trash cans.
+14242 | bomb | noun | C1 | #2/2 | TR: tam bir başarısızlık | EN: something that fails badly, especially a film, product, or event | ÖRNEK: The indie film was a bomb, earning hardly any ticket sales.
+14243 | bomb | verb | B2 | #1/2 | TR: bombalamak | EN: to attack a place or target with bombs | ÖRNEK: The protestors warned the army would bomb the camp.
+14244 | bomb | verb | B2 | #2/2 | TR: çuvallamak, batırmak, berbat etmek | EN: to perform very poorly or fail spectacularly, especially in an exam or performance | ÖRNEK: He studied little and bombed the quiz.
+14247 | bombing | noun | B2 | #1/1 | TR: bombalama, bombalı saldırı | EN: the act of dropping or detonating bombs, especially in a military or terrorist context | ÖRNEK: The news reported a bombing that destroyed several buildings in the capital.
+17932 | bond | noun | B1 | #1/2 | TR: bağ, ilişki, bağlanma | EN: a close connection or relationship between people, groups, or things | ÖRNEK: The twins have a special bond that nobody can break.
+17931 | bond | noun | B2 | #2/2 | TR: menkul kıymet, tahvil | EN: a written agreement in which a person or organization promises to pay a sum of money to another party, often used as a financial instrument | ÖRNEK: The university bought a municipal bond to support campus renovations.
+474 | bone | noun | A2 | #1/1 | TR: kemik | EN: a hard, calcified piece of the skeleton that supports and protects the body | ÖRNEK: The archaeologists uncovered a dinosaur bone at the dig site.
+20639 | bonus | noun | C1 | #1/2 | TR: prim, ikramiye | EN: extra money added to someone's pay | ÖRNEK: Employees get a bonus at the end of the year.
+20640 | bonus | noun | C1 | #2/2 | TR: ek avantaj, artı | EN: something good that you did not expect | ÖRNEK: The hotel was great, and the sea view was a bonus.
+15407 | book | noun | A2 | #1/1 | TR: kitap, yazılı eser | EN: a written or printed work consisting of pages glued or sewn together along one side and bound in covers | ÖRNEK: I bought a new book about modern art yesterday.
+15408 | book | verb | B1 | #1/1 | TR: rezervasyon yapmak, ayırtmak | EN: to arrange for something, such as a seat, a room, or a ticket, to be held for you in advance | ÖRNEK: I will book a seat on the train tomorrow morning.
+22786 | bookbinder | noun | B2 | #1/1 | TR: kitap ciltçisi | EN: a person who binds books, assembling printed pages and attaching covers | ÖRNEK: The bookbinder repaired the torn pages of the old diary.
+22787 | bookcase | noun | B1 | #1/1 | TR: kitaplık | EN: a piece of furniture with shelves for storing books | ÖRNEK: I bought a small bookcase for my dorm room.
+15410 | booking | noun | B1 | #1/1 | TR: rezervasyon, ayırtma | EN: the act of reserving a place, seat, or service in advance | ÖRNEK: I need to make a booking for a train ticket tomorrow.
+22791 | bookstore | noun | A2 | #1/1 | TR: kitapçı | EN: a shop where books are sold | ÖRNEK: The campus bookstore sells textbooks for all majors.
+6386 | boom | noun | B2 | #1/2 | TR: ekonomik büyüme, hızlı artış | EN: a period of rapid economic growth or increase in activity | ÖRNEK: The tech sector saw a boom after the launch of the new smartphone.
+6387 | boom | noun | B1 | #2/2 | TR: gürültülü patlama sesi | EN: a loud, deep, resonant sound, often caused by an explosion or a sudden impact | ÖRNEK: The sudden boom startled everyone in the quiet hall.
+11850 | boost | noun | B2 | #1/1 | TR: arttırma, destek | EN: an increase or improvement that makes something more effective or successful | ÖRNEK: The extra funding gave the project a much-needed boost.
+11851 | boost | verb | B1 | #1/2 | TR: arttırmak, yükseltmek | EN: to increase or improve something, especially in amount, strength, or confidence | ÖRNEK: The manager decided to boost the team's morale before the deadline.
+11852 | boost | verb | B2 | #2/2 | TR: desteklemek, teşvik etmek | EN: to give support or encouragement to someone or something | ÖRNEK: A supportive community can boost an individual's confidence.
+479 | boot | noun | A1 | #1/3 | TR: çizme, bot | EN: a sturdy, ankle-high shoe, often made of leather, worn for protection or fashion | ÖRNEK: The farmer slipped on the mud while wearing his heavy boot.
+478 | boot | noun | B1 | #2/3 | TR: bagaj | EN: the compartment at the rear of a car used for storing luggage or goods | ÖRNEK: She placed the spare tire in the boot of the car.
+480 | boot | noun | B2 | #3/3 | TR: bilgisayar başlatma | EN: the process of starting up a computer system, loading its operating system into memory | ÖRNEK: A slow boot can indicate hardware issues in the system.
+17538 | border | noun | B1 | #1/1 | TR: sınır, kenar | EN: a line that separates two political or geographical areas | ÖRNEK: The fence marks the border between the garden and the road.
+17539 | border | verb | B1 | #1/1 | TR: sınırını oluşturmak, komşu olmak | EN: to be adjacent to or form a boundary with something | ÖRNEK: The garden borders on the road, so it gets a lot of sunlight.
+3559 | bored | adjective | A1 | #1/1 | TR: sıkılmış, canı sıkılan | EN: feeling uninterested and weary because nothing is stimulating or enjoyable | ÖRNEK: The children felt bored during the long car ride.
+3562 | boring | adjective | A1 | #1/1 | TR: sıkıcı | EN: causing lack of interest; dull and unengaging. | ÖRNEK: The meeting was boring and lasted over two hours.
+20108 | born | adjective | B1 | #1/1 | TR: doğuştan | EN: existing from birth; inherent or innate. | ÖRNEK: The child is born with a rare genetic condition.
+4770 | borrow | verb | A2 | #1/1 | TR: ödünç almak | EN: to take something from someone with the intention of returning it later | ÖRNEK: I need to borrow a pen for the exam.
+17229 | boss | noun | B1 | #1/1 | TR: yönetici, patron | EN: a person who is in charge of a worker or an organization | ÖRNEK: Our boss asked each team member to submit a weekly progress report.
+17231 | bossy | adjective | B2 | #1/1 | TR: emir veren, otoriter | EN: tending to give orders and expect them to be obeyed; domineering | ÖRNEK: The new supervisor is very bossy and rarely listens to suggestions.
+27255 | both | determiner | A2 | #1/1 | TR: her iki, ikisi de | EN: used to refer to two people or things together | ÖRNEK: Both my parents are teachers.
+6660 | bother | verb | B1 | #1/2 | TR: zahmet etmek, uğraşmak | EN: to take the trouble or effort to do something; to make an effort that may be inconvenient | ÖRNEK: I didn't bother to wash the dishes after lunch.
+6661 | bother | verb | B1 | #2/2 | TR: rahatsız etmek, sıkmak | EN: to cause annoyance or discomfort to someone; to disturb | ÖRNEK: The buzzing fly bothered the student while he was studying.
+18051 | bottle | noun | A2 | #1/1 | TR: şişe | EN: a container, typically made of glass or plastic, with a narrow neck, used for storing liquids such as water, wine, or soda | ÖRNEK: The child dropped the glass bottle on the floor.
+20397 | bottom | adjective | A2 | #1/1 | TR: en alttaki | EN: in the lowest position | ÖRNEK: The towels are on the bottom shelf.
+14118 | bottom | noun | A2 | #1/1 | TR: en alt kısım, taban | EN: the lowest part or surface of something; the part that rests on a supporting surface | ÖRNEK: The cat slept at the bottom of the stairs.
+19424 | bounce | verb | B1 | #1/2 | TR: sekmek, geri sekmek | EN: to spring back after hitting a surface | ÖRNEK: The tennis ball bounced off the court after the serve.
+19425 | bounce | verb | A2 | #2/2 | TR: zıplamak, sıçramak | EN: to move up and down repeatedly | ÖRNEK: The child bounced the ball on the playground.
+486 | bound | adjective | C1 | #1/3 | TR: kesin, kaçınılmaz | EN: certain to happen; inevitable | ÖRNEK: If you ignore the warning signs, failure is bound to follow.
+487 | bound | adjective | B2 | #2/3 | TR: bağlı, zorunlu | EN: required or obligated to do something; having a duty or commitment | ÖRNEK: Students are bound to follow the university's academic integrity policy.
+488 | bound | adjective | B2 | #3/3 | TR: sınırlı, kısıtlı | EN: restricted within limits; not free to move or act beyond a certain point | ÖRNEK: His creativity felt bound by the strict guidelines of the project.
+18264 | boundary | noun | B1 | #1/1 | TR: sınır | EN: a line or surface that marks the limits of an area, object, or concept | ÖRNEK: The river forms the natural boundary between the two states.
+17790 | bowl | noun | A2 | #1/1 | TR: kâse, kase | EN: a round, deep dish used for holding food or liquid | ÖRNEK: She placed the cereal in a bowl and poured milk over it.
+16306 | box | noun | A2 | #1/2 | TR: kutu, sandık | EN: a container typically with a flat base and sides, used for storing or transporting items | ÖRNEK: She placed the old toys in a cardboard box.
+16307 | box | noun | B1 | #2/2 | TR: televizyon | EN: a television set, especially when referred to informally | ÖRNEK: The family gathered around the box to watch the football match.
+16311 | boxing | noun | B1 | #1/1 | TR: boks, yumruk dövüşü | EN: the sport in which two people fight each other using their fists while wearing gloves | ÖRNEK: Boxing is a popular sport in many countries.
+15916 | boy | noun | A1 | #1/1 | TR: erkek çocuk | EN: a male child or young male person | ÖRNEK: The boy played with his toy cars in the garden.
+4378 | boyfriend | noun | A1 | #1/1 | TR: erkek arkadaş | EN: a male partner in a romantic relationship | ÖRNEK: She told her friend that she has a boyfriend.
+21348 | bracelet | noun | A2 | #1/1 | TR: bilezik | EN: a piece of jewelry worn around the wrist | ÖRNEK: She bought a new bracelet at the market.
+10976 | bracket | noun | B2 | #2/3 | TR: dilim, kademe | EN: a range or category within a set, often used to group items such as income levels or age groups | ÖRNEK: The company divided its customers into three income brackets.
+16583 | brain | noun | B1 | #1/2 | TR: beyin | EN: the organ inside the skull that controls thought, memory, emotion, and bodily functions | ÖRNEK: The brain controls all voluntary movements in the body.
+16584 | brain | noun | B2 | #2/2 | TR: zihin | EN: the mental faculty of reasoning, thinking, and understanding | ÖRNEK: A creative brain often sees connections others miss.
+12332 | brake | noun | B1 | #1/1 | TR: fren | EN: a device used to slow down or stop a vehicle or machine | ÖRNEK: The driver pressed the brake to avoid hitting the cyclist.
+12333 | brake | verb | B1 | #1/1 | TR: fren yapmak, frene basmak | EN: to cause a vehicle or moving object to slow down or stop by applying a brake | ÖRNEK: The cyclist braked gently before the sharp turn.
+17979 | branch | noun | A2 | #1/2 | TR: dal | EN: a woody limb growing out of the trunk or a main limb of a tree | ÖRNEK: The squirrel jumped from one branch to another.
+17980 | branch | noun | B1 | #2/2 | TR: şube | EN: a local office or division of a larger organization, especially a bank or company | ÖRNEK: The bank has a branch near my house.
+16984 | brand | noun | B1 | #1/2 | TR: ticaret markası, marka | EN: a name, term, design, symbol, or any other feature that distinguishes one seller's goods or services from those of others | ÖRNEK: The company launched a new logo to refresh its brand.
+16985 | brand | noun | B2 | #2/2 | TR: itibar, imaj | EN: the general perception or reputation of a person, organization, or product in the public's mind | ÖRNEK: The airline's brand suffered after the series of delays.
+16986 | brand | verb | B2 | #1/1 | TR: damgalamak, yaftalamak | EN: to mark something with a distinctive symbol or name, often by burning or stamping, in order to identify it as belonging to a particular source or to give it a particular reputation | ÖRNEK: The workshop will brand each notebook with the university logo.
+16987 | branded | adjective | B1 | #1/1 | TR: markalı, damgalı | EN: having a mark, logo, or symbol applied to something, typically for identification or commercial purposes | ÖRNEK: The farmer marked his herd with a branded cattle tag.
+2498 | brave | adjective | A2 | #1/1 | TR: cesur, korkusuz | EN: showing courage and willingness to face danger or difficulty | ÖRNEK: The child felt brave when he climbed the tall tree.
+11626 | breach | noun | B2 | #1/1 | TR: ihlal, kırılma | EN: an act of breaking or failing to observe a law, agreement, or code | ÖRNEK: The breach of the agreement caused both parties to argue.
+11627 | breach | verb | B1 | #1/2 | TR: yarmak, delik açmak | EN: to make a gap or opening in something by breaking or forcing it apart | ÖRNEK: The workers breached the concrete to install new pipes.
+11628 | breach | verb | B2 | #2/2 | TR: ihlal etmek, kuralları çiğnemek | EN: to violate or fail to observe a law, agreement, or code of conduct | ÖRNEK: The employee breached the company's policy by sharing passwords.
+501 | bread | noun | A1 | #1/1 | TR: ekmek | EN: a staple food made from flour and water that is baked, typically in loaves or rolls | ÖRNEK: I bought a loaf of bread at the local market.
+11696 | break | noun | A2 | #1/2 | TR: ara, duraklama | EN: a short period of rest or interruption in an activity or process | ÖRNEK: The teacher announced a five-minute break during the exam.
+11697 | break | noun | B1 | #2/2 | TR: kırık, çatlak | EN: a fracture or split in an object, especially a solid material | ÖRNEK: A small break appeared in the old wooden fence after the storm.
+11698 | break | verb | A1 | #1/3 | TR: parçalamak, kırmak | EN: to cause something that is solid or whole to separate into pieces or to become damaged and no longer function as intended | ÖRNEK: She broke the pencil while writing her notes.
+11699 | break | verb | B1 | #2/3 | TR: ara vermek, molaya girmek | EN: to stop doing an activity for a short period of time in order to rest or to interrupt a continuous process | ÖRNEK: He decided to break for a short walk.
+11700 | break | verb | B2 | #3/3 | TR: ihlâl etmek, kuralları çiğnemek | EN: to fail to obey a law, rule, agreement, or promise | ÖRNEK: The company broke the environmental regulations last year.
+11706 | breakdown | noun | B2 | #1/3 | TR: arızalanma, bozulma | EN: a failure of a machine or system to operate correctly | ÖRNEK: The printer had a sudden breakdown during the exam.
+11707 | breakdown | noun | B2 | #2/3 | TR: psikolojik çöküş, bunalım | EN: a state of mental or emotional collapse, often caused by stress | ÖRNEK: After weeks of overtime, he had a nervous breakdown.

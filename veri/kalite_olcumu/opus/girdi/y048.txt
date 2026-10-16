@@ -1,0 +1,100 @@
+19540 | movement | noun | B2 | #1/1 | TR: hareket | EN: a group of people working together to advance a shared political or social goal | ÖRNEK: The student organized a movement to improve campus recycling.
+15959 | movie | noun | A1 | #1/1 | TR: film | EN: a recorded visual story that is shown in a theater or on a screen | ÖRNEK: I watched a movie last night with my friends.
+27367 | movie star | noun | A1 | #1/1 | TR: film yıldızı | EN: a famous actor or actress | ÖRNEK: She wants to be a movie star.
+19543 | moving | adjective | B1 | #1/2 | TR: hareket eden, hareketli | EN: in the process of changing position or location; not stationary | ÖRNEK: The moving car slowed down as it approached the intersection.
+19542 | moving | adjective | B2 | #2/2 | TR: dokunaklı, duygusal olarak etkileyen | EN: causing strong emotions, especially sympathy or sadness | ÖRNEK: The documentary was moving and made me think about climate change.
+15125 | much | adverb | A2 | #1/1 | TR: çok, oldukça, bir hayli | EN: to a great extent or degree; used to indicate a large amount or degree of something | ÖRNEK: I didn't understand the lecture much, so I asked for clarification.
+9834 | mud | noun | A2 | #1/1 | TR: çamur | EN: wet, soft earth or soil mixed with water, often forming a slippery or sticky substance. | ÖRNEK: The hikers slipped on the wet mud near the riverbank.
+8419 | multiple | adjective | B1 | #1/1 | TR: birden fazla, çoklu | EN: existing in or involving more than one element, quantity, or instance. | ÖRNEK: The survey showed multiple preferences among the participants.
+8425 | multiply | verb | B1 | #1/1 | TR: çoğaltmak, çarpmak | EN: to increase in number or quantity; to perform multiplication in arithmetic | ÖRNEK: The teacher asked the students to multiply the fractions correctly.
+5931 | mum | noun | A2 | #1/1 | TR: anne | EN: a person's mother, especially in informal British usage | ÖRNEK: My mum cooks dinner every night for the family.
+20751 | municipal | adjective | C1 | #1/1 | TR: belediyeye ait | EN: connected with the government of a town or city | ÖRNEK: The municipal elections are next month.
+12918 | murder | noun | B2 | #1/1 | TR: cinayet | EN: the unlawful killing of a person with intent or malice aforethought | ÖRNEK: The police discovered a body in the park, indicating a possible murder.
+12919 | murder | verb | B2 | #1/1 | TR: öldürmek, kasten öldürmek | EN: to unlawfully kill a person, typically with premeditation | ÖRNEK: The police arrested the man who murdered his neighbor last night.
+2860 | muscle | noun | A2 | #1/2 | TR: kas, kas dokusu | EN: a band or bundle of fibrous tissue in the body that contracts to produce movement | ÖRNEK: She felt a sharp pain in her calf muscle after the run.
+2861 | muscle | noun | B1 | #2/2 | TR: güç, kuvvet | EN: the physical strength or power of a person or animal, often used figuratively | ÖRNEK: The boxer relied on his muscle to deliver powerful punches.
+17505 | museum | noun | A1 | #1/1 | TR: müze | EN: a building or institution where objects of artistic, cultural, historical, or scientific importance are stored and displayed for public education and enjoyment | ÖRNEK: The city built a new museum to display local history.
+6785 | music | noun | A2 | #1/1 | TR: müzik | EN: the art of arranging sounds in time to produce a composition that is expressive or evocative | ÖRNEK: She turned on the music and started dancing.
+6786 | musical | adjective | B1 | #1/2 | TR: müzikle ilgili, müzikle alakalı | EN: relating to music; having to do with music or its performance. | ÖRNEK: The children enjoyed the musical activity during recess.
+6787 | musical | adjective | B2 | #2/2 | TR: melodik, ezgili | EN: having a pleasant melody; tuneful. | ÖRNEK: The song has a very musical chorus that stays in your mind.
+6788 | musical | noun | A2 | #1/1 | TR: müzikal | EN: a stage production that combines songs, spoken dialogue, acting, and dance | ÖRNEK: The school staged a short musical for the talent show.
+6791 | musician | noun | B1 | #1/1 | TR: müzisyen | EN: a person who plays a musical instrument or is skilled in creating, performing, or composing music | ÖRNEK: The young musician practiced the piano for two hours daily.
+27271 | must | modal_verb | A1 | #1/3 | TR: -meli, -mek zorunda (zorunluluk) | EN: used to say that something is necessary or very important | ÖRNEK: You must wear a seat belt.
+27272 | must | modal_verb | A1 | #2/3 | TR: -meli, olmalı (güçlü tahmin) | EN: used to say that something is very likely to be true | ÖRNEK: You must be tired after your trip.
+27273 | must | modal_verb | A1 | #3/3 | TR: -mamalı (olumsuz: yasak) | EN: used in the negative to say that something is not allowed | ÖRNEK: You mustn't smoke here.
+6185 | mutual | adjective | B2 | #1/1 | TR: karşılıklı | EN: relating to a feeling, action, or relationship that is shared by two or more parties equally | ÖRNEK: The two friends have a mutual interest in photography.
+27235 | my | determiner | A1 | #1/1 | TR: benim | EN: belonging to or connected with the speaker | ÖRNEK: My name is Ali.
+27190 | myself | pronoun | A2 | #1/2 | TR: kendimi, kendime (dönüşlü) | EN: used as the object of a verb or preposition when the speaker is both the subject and the object | ÖRNEK: I hurt myself.
+27191 | myself | pronoun | A2 | #2/2 | TR: kendim (vurgu için); kendi kendime | EN: used to emphasize "I", or to mean "alone, without help" | ÖRNEK: I made this cake myself.
+1127 | mysterious | adjective | B2 | #1/1 | TR: gizemli | EN: causing curiosity or wonder because it is difficult to understand or explain | ÖRNEK: The old house had a mysterious aura that attracted many curious visitors.
+1126 | mystery | noun | B2 | #1/1 | TR: gizem, bilinmezlik | EN: something that is difficult or impossible to understand or explain | ÖRNEK: The strange lights in the sky created a mystery for the villagers.
+4841 | myth | noun | B2 | #1/1 | TR: efsane, mit | EN: a traditional story, especially one concerning the early history of a people or explaining a natural or social phenomenon, that is not based on factual evidence | ÖRNEK: Many children grow up hearing myths about dragons and heroes.
+3861 | nail | noun | A2 | #1/2 | TR: çivi | EN: a thin, pointed metal object used to fasten things together | ÖRNEK: The carpenter selected a long nail for the heavy timber.
+3862 | nail | noun | A1 | #2/2 | TR: tırnak | EN: the hard protective covering at the tip of a finger or toe | ÖRNEK: He painted his nails a deep blue for the party.
+3025 | naked | adjective | A2 | #1/2 | TR: çıplak, giyimsiz | EN: without clothing; not covered by any garment. | ÖRNEK: The child ran around the garden naked, laughing loudly.
+3026 | naked | adjective | B2 | #2/2 | TR: açığa çıkarılmış, savunmasız | EN: exposed or vulnerable, lacking protection or concealment. | ÖRNEK: The patient felt naked after the doctor disclosed the diagnosis.
+10233 | name | noun | A1 | #1/2 | TR: isim, ad | EN: a word or set of words by which a person, animal, place, or thing is known, addressed, or referred to. | ÖRNEK: Please write your name clearly on the paper.
+10234 | name | noun | B2 | #2/2 | TR: ün, şöhret | EN: the reputation or fame of a person, organization, or product, especially as known by the public. | ÖRNEK: The scientist's name is respected worldwide.
+10235 | name | verb | A2 | #1/1 | TR: adlandırmak | EN: to give a person, place, or thing a particular name or title | ÖRNEK: The parents will name their baby tomorrow.
+10237 | namely | adverb | B2 | #1/1 | TR: yani | EN: that is to say; used to give the exact details of something just mentioned | ÖRNEK: The museum displays many artifacts, namely ancient pottery and bronze tools.
+4299 | narrative | adjective | B2 | #1/1 | TR: öyküsel, anlatımsal | EN: relating to or having the nature of a narrative; telling a story | ÖRNEK: She wrote a narrative essay about her childhood in the countryside.
+4300 | narrative | noun | B2 | #1/1 | TR: hikâye, anlatı | EN: a spoken or written account of connected events; a story or description of a sequence of events | ÖRNEK: The teacher asked the students to write a short narrative about their weekend.
+1129 | narrow | adjective | A2 | #1/2 | TR: dar, ince | EN: having a small width; not wide. | ÖRNEK: The narrow alley was difficult for the delivery truck.
+1130 | narrow | adjective | B2 | #2/2 | TR: kısıtlı, sınırlı | EN: limited in scope, extent, or amount; not broad. | ÖRNEK: The report showed a narrow margin between profit and loss.
+1131 | narrow | verb | B2 | #1/1 | TR: daraltmak, kısıtlamak | EN: to make or become less wide or limited in extent, amount, or scope | ÖRNEK: The teacher asked us to narrow the topic for our essay.
+6681 | nasty | adjective | B1 | #1/2 | TR: iğrenç, tiksindirici | EN: causing strong dislike or disgust | ÖRNEK: The soup had a nasty smell that made everyone lose their appetite.
+6682 | nasty | adjective | B2 | #2/2 | TR: kötü niyetli, alçak | EN: having a harmful or spiteful attitude toward others | ÖRNEK: He made a nasty remark that hurt her feelings during the lunch break.
+15319 | nation | noun | A2 | #1/2 | TR: ülke, devlet | EN: a politically organized body of people under a single government; a sovereign state | ÖRNEK: The nation declared independence after years of conflict.
+15320 | nation | noun | B1 | #2/2 | TR: millet, topluluk | EN: a group of people who share a common identity, culture, language, or ancestry | ÖRNEK: The poet wrote about the nation's longing for freedom.
+15325 | national | adjective | B1 | #1/1 | TR: ulusal | EN: relating to a nation; belonging to or characteristic of a particular country. | ÖRNEK: The national flag was raised during the ceremony.
+20575 | national | noun | B2 | #1/1 | TR: (bir ülkenin) vatandaşı | EN: a citizen of a particular country | ÖRNEK: Two French nationals were injured in the accident.
+15330 | nationality | noun | A2 | #1/1 | TR: uyruk | EN: the status of belonging to a particular nation, especially in terms of legal citizenship and cultural identity | ÖRNEK: Her nationality is Canadian, and she speaks both English and French fluently.
+15335 | nationwide | adjective | B2 | #1/1 | TR: ülke çapında, ulusal ölçekte | EN: extending or applying throughout an entire nation; covering the whole country | ÖRNEK: The school organized a nationwide reading competition for all students.
+17578 | native | adjective | B1 | #1/2 | TR: yerli, doğuştan gelen | EN: originating naturally in a particular place; born in a specified country or region | ÖRNEK: The child grew up speaking a native language at home.
+17579 | native | adjective | B2 | #2/2 | TR: doğal, kendine özgü | EN: existing naturally; not introduced or artificial | ÖRNEK: The plant thrives best in its native soil conditions.
+17580 | native | noun | B1 | #1/1 | TR: yerli, yerli kişi | EN: a person who was born in a particular place or who belongs to a particular group | ÖRNEK: The museum hired a native to guide the tour.
+1992 | natural | adjective | A1 | #1/2 | TR: doğal, insan yapımı olmayan | EN: existing in or caused by nature; not made or caused by humankind | ÖRNEK: The park is known for its natural beauty and clean air.
+1993 | natural | adjective | B2 | #2/2 | TR: doğuştan gelen, içsel | EN: existing in a person from birth; inherent or innate | ÖRNEK: Children often show a natural curiosity about the world around them.
+1997 | naturalization | noun | B2 | #1/1 | TR: vatandaşlık kazanma, vatandaşlığa geçiş | EN: the legal process by which a foreign citizen acquires citizenship of a new country | ÖRNEK: After ten years of residence, he began the naturalization process.
+1999 | naturally | adverb | B1 | #1/2 | TR: elbette, şüphesiz | EN: as might be expected; of course | ÖRNEK: Naturally, she was upset when she lost her job.
+2000 | naturally | adverb | B2 | #2/2 | TR: doğal olarak | EN: in a way that follows the natural order or inherent characteristics of something | ÖRNEK: Water freezes naturally at zero degrees Celsius.
+1990 | nature | noun | B1 | #1/2 | TR: doğa, doğal ortam | EN: the physical world and its phenomena, including plants, animals, landscapes, and other features of the earth that exist independently of human activity | ÖRNEK: The hikers admired the beauty of nature during their trek.
+1991 | nature | noun | C1 | #2/2 | TR: öz, karakter, doğa | EN: the essential qualities or character of something, especially as it is inherent or innate | ÖRNEK: He is kind by nature and helps anyone in need.
+18071 | naval | adjective | B2 | #1/1 | TR: donanma, bahriye, deniz kuvvetlerine ait | EN: of, relating to a navy or ships | ÖRNEK: The naval museum displays historic ships for visitors.
+14780 | navigation | noun | B2 | #1/2 | TR: yön bulma, seyir | EN: the process or activity of planning and directing the course of a vehicle, especially a ship or aircraft | ÖRNEK: The captain relied on basic navigation to reach the harbor.
+14781 | navigation | noun | B1 | #2/2 | TR: navigasyon | EN: a system or device that provides information for determining position and directing travel | ÖRNEK: The car's navigation helps drivers avoid congested streets.
+4554 | near | adjective | A2 | #1/1 | TR: yakın, yakın konumda | EN: situated at a short distance from something else; not far away. | ÖRNEK: She felt that success was near after months of hard work.
+4555 | near | adverb | A2 | #1/2 | TR: yakında, yakına | EN: to a short distance away; close in space or time | ÖRNEK: The project deadline is near, so we must work faster.
+4556 | near | adverb | B1 | #2/2 | TR: neredeyse, yaklaşık olarak | EN: to an approximate degree; almost | ÖRNEK: It's near impossible to finish in time.
+4557 | near | preposition | A2 | #1/1 | TR: yanında, yakınında | EN: to be close to something in distance or time | ÖRNEK: The library is near the main square.
+4559 | nearby | adjective | B1 | #1/1 | TR: yakın, yakınlarda | EN: situated close to a particular place or person; not far away. | ÖRNEK: There is a nearby bus stop that serves the whole district.
+20576 | nearby | adverb | B2 | #1/1 | TR: yakında, yakınlarda | EN: not far away | ÖRNEK: My parents live nearby.
+4562 | nearly | adverb | B1 | #1/1 | TR: neredeyse | EN: to a degree that is close to, but not quite, a particular amount, state, or condition | ÖRNEK: The exam was nearly over when the fire alarm rang.
+10691 | neat | adjective | A2 | #1/2 | TR: düzenli, tertipli | EN: clean and orderly in appearance or arrangement | ÖRNEK: The desk looked neat after she organized the papers.
+10692 | neat | adjective | B1 | #2/2 | TR: harika, çok iyi | EN: excellent or impressive; used informally to express approval | ÖRNEK: Your solution to the problem is neat and works perfectly.
+1806 | necessarily | adverb | B1 | #1/1 | TR: zorunlu olarak, mutlaka | EN: as a necessary or unavoidable result | ÖRNEK: The rule does not necessarily apply to every case.
+1805 | necessary | adjective | B1 | #1/1 | TR: gerekli, zorunlu | EN: required or essential to achieve a particular result | ÖRNEK: A passport is necessary for international travel.
+1808 | necessity | noun | B2 | #1/1 | TR: gerek, zorunluluk | EN: the condition of being required or indispensable | ÖRNEK: The team realized the necessity of revising their strategy after the loss.
+17772 | neck | noun | A1 | #1/1 | TR: boyun | EN: the part of the human body that connects the head to the torso | ÖRNEK: She brushed a strand of hair away from her neck.
+11345 | necklace | noun | A2 | #1/1 | TR: kolye | EN: a piece of jewelry that is worn around the neck, often made of metal, beads, or gemstones | ÖRNEK: She bought a new necklace at the market.
+1809 | need | noun | A2 | #1/1 | TR: gereksinim, ihtiyaç | EN: a requirement or necessity for something; something that is essential or wanted. | ÖRNEK: I have a need for a quiet place to study.
+1810 | need | verb | A2 | #1/2 | TR: gerekmek, ihtiyaç duymak | EN: to require something because it is essential or very important | ÖRNEK: I need a pen to write this note.
+1811 | need | verb | A1 | #2/2 | TR: gerekmek, icap etmek | EN: to be obliged or compelled to do something | ÖRNEK: You need to wear a mask in the laboratory.
+4015 | needle | noun | A2 | #1/1 | TR: iğne | EN: a thin, pointed metal tool used for sewing or stitching fabric | ÖRNEK: She bought a new sewing needle at the craft store.
+14770 | negative | adjective | B1 | #1/1 | TR: olumsuz, negatif | EN: expressing a denial, refusal, or lack of positivity; indicating the opposite of positive. | ÖRNEK: The teacher gave a negative comment on the essay.
+14771 | negative | noun | B2 | #1/1 | TR: negatif | EN: a photographic film or image in which the light and dark areas are reversed, used to produce a positive print | ÖRNEK: The darkroom technician hung the film negative on the drying rack.
+3357 | neglect | noun | B2 | #1/1 | TR: ihmal, göz ardı etme | EN: the failure to give proper attention or care to something or someone | ÖRNEK: The child's health worsened because of his parents' neglect.
+3358 | neglect | verb | B2 | #1/1 | TR: ihmal etmek, göz ardı etmek | EN: to fail to give proper attention or care to someone or something | ÖRNEK: He neglects his homework and gets poor grades.
+9862 | negotiate | verb | B2 | #1/1 | TR: pazarlık yapmak, görüşmek | EN: to discuss the terms of an agreement in order to reach a mutually acceptable outcome | ÖRNEK: The manager will negotiate the price with the supplier tomorrow.
+9864 | negotiation | noun | B2 | #1/1 | TR: müzakere, görüşme | EN: the process of discussing and reaching an agreement between parties, especially in business or diplomatic contexts | ÖRNEK: The two firms began a negotiation to merge their operations.
+4831 | neighbor | noun | A2 | #1/1 | TR: komşu | EN: a person who lives near or next to another person's residence | ÖRNEK: My neighbor waved at me as I walked to class.
+4836 | neighbourhood | noun | A1 | #1/1 | TR: mahalle, semt | EN: a district or area within a city or town, often characterized by a distinct community or residential character | ÖRNEK: The children play safely in their neighbourhood after school.
+20479 | neither | adverb | B1 | #1/1 | TR: ne de, … de değil | EN: used to show that a negative statement is also true of someone or something else | ÖRNEK: "I can't swim." "Neither can I."
+1839 | nerve | noun | B1 | #1/2 | TR: sinir, sinir dokusu | EN: a bundle of fibers that transmits signals between the brain and other parts of the body | ÖRNEK: The doctor explained how nerves control muscle movement.
+1840 | nerve | noun | B2 | #2/2 | TR: cesaret, dayanma gücü | EN: the mental or moral strength to face danger, difficulty, or pain | ÖRNEK: It takes nerve to speak in front of a large audience.
+1134 | nervous | adjective | B1 | #1/2 | TR: kaygılı, endişeli | EN: feeling or showing anxiety, worry, or uneasiness about something | ÖRNEK: She was nervous before the presentation.
+1135 | nervous | adjective | C1 | #2/2 | TR: sinirlerle ilgili, sinirsel | EN: relating to the nerves or the nervous system | ÖRNEK: The nervous system coordinates movement and sensation.
+1136 | nervously | adverb | B1 | #1/1 | TR: gergin bir şekilde, tedirgince, endişeyle | EN: in a nervous manner; showing anxiety or lack of confidence | ÖRNEK: He answered the question nervously, stumbling over his words.
+18859 | nest | noun | A2 | #1/1 | TR: yuva | EN: a structure built by birds or other animals to hold their eggs and raise their young | ÖRNEK: The robin built a nest in the backyard tree.
+17246 | net | adjective | B2 | #1/1 | TR: net | EN: remaining after deductions or subtractions; the amount left after all deductions have been made | ÖRNEK: The net salary after taxes is $3,200 per month.
+17247 | net | noun | A2 | #1/1 | TR: internet, ağ | EN: a system of interconnected computers that allows data exchange and communication worldwide | ÖRNEK: She checked the schedule on the net before leaving home.

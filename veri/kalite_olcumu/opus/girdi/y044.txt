@@ -1,0 +1,100 @@
+8129 | locate | verb | B2 | #1/1 | TR: bulmak, konumlandırmak | EN: to find the exact position of something or to place something in a particular position | ÖRNEK: The map helped us locate the campsite quickly.
+20476 | located | adjective | B1 | #1/1 | TR: (bir yerde) bulunan, yer alan | EN: in a particular place | ÖRNEK: The hotel is located near the beach.
+8133 | location | noun | A2 | #1/1 | TR: yer, konum | EN: the particular place or position of something or someone | ÖRNEK: The school is in a quiet location on the outskirts of town.
+1075 | lock | noun | A2 | #1/1 | TR: kilit | EN: a mechanical or electronic device that fastens a door, gate, or container and can be opened only with a key, combination, or other authorized method | ÖRNEK: The bike lock was rusted and difficult to open.
+1076 | lock | verb | A2 | #1/1 | TR: kilitlemek | EN: to fasten something so that it cannot be opened without a key or combination | ÖRNEK: She locks the door every night before she goes to bed.
+20732 | log | noun | C1 | #1/2 | TR: kütük | EN: a thick piece of wood cut from a tree | ÖRNEK: We put another log on the fire.
+20733 | log | noun | C1 | #2/2 | TR: kayıt, günlük (resmî) | EN: an official record of events | ÖRNEK: The captain kept a log of the voyage.
+8270 | log | verb | B1 | #1/2 | TR: kaydetmek, kayıt tutmak | EN: to write down or record information, events, or data, usually in a systematic way | ÖRNEK: The researcher logs the temperature readings each hour.
+8271 | log | verb | B2 | #2/2 | TR: ağaç kesmek, kütük haline getirmek | EN: to cut down trees or to cut a piece of wood into a log shape | ÖRNEK: The forest workers logged several pine trees yesterday.
+5041 | logic | noun | B2 | #1/1 | TR: mantık | EN: the systematic study of the principles of valid inference and correct reasoning | ÖRNEK: She studied basic logic in her introductory philosophy class.
+5043 | logical | adjective | B1 | #1/1 | TR: mantıksal | EN: relating to or according to the principles of logic; consistent with reason or sound reasoning | ÖRNEK: She chose a logical approach to organize her research notes.
+9826 | logo | noun | B1 | #1/1 | TR: kurumsal işaret, marka simgesi | EN: a distinctive design or symbol used to identify a company, organization, product, or brand | ÖRNEK: The school printed the new logo on its T-shirts.
+5119 | lonely | adjective | B1 | #1/1 | TR: yalnız, tek başına | EN: feeling sad because one has no company or friends | ÖRNEK: She felt lonely when her friends left the party early.
+5120 | loner | noun | B2 | #1/1 | TR: yalnız kimse | EN: a person who prefers to spend time alone and avoids social interaction | ÖRNEK: The new student is a loner who keeps to himself during lunch.
+20734 | long-standing | adjective | C1 | #1/1 | TR: köklü, uzun süredir var olan | EN: having existed for a long time | ÖRNEK: They have a long-standing friendship.
+20563 | long-term | adjective | B2 | #1/1 | TR: uzun vadeli | EN: lasting or having an effect over a long time | ÖRNEK: We need a long-term solution.
+20564 | long-term | adverb | B2 | #1/1 | TR: uzun vadede | EN: over a long period of time | ÖRNEK: Long-term, the plan will save money.
+20735 | long-time | adjective | C1 | #1/1 | TR: uzun süreli, eski (dost vb.) | EN: having been a particular thing for a long time | ÖRNEK: He is a long-time friend of the family.
+9179 | look | noun | A1 | #1/2 | TR: bakış, gözlem | EN: the act of directing one's eyes toward something in order to see it; a brief visual inspection | ÖRNEK: She gave the menu a quick look before ordering.
+9178 | look | noun | A2 | #2/2 | TR: görünüm, dış görünüş | EN: the way someone or something appears to the eye; a particular visual impression | ÖRNEK: The new smartphone has a sleek look that attracts many buyers.
+9180 | look | verb | A1 | #1/3 | TR: bakmak, gözlemlemek | EN: to direct one's eyes toward someone or something in order to see them | ÖRNEK: She looked at the clock and realized she was late.
+9181 | look | verb | A1 | #2/3 | TR: görünmek | EN: to seem or appear in a particular way to an observer | ÖRNEK: The old house looks abandoned after years of neglect.
+9182 | look | verb | A1 | #3/3 | TR: aramak, bir şey bulmaya çalışmak | EN: to search for someone or something by directing one's sight or attention | ÖRNEK: I looked for my glasses everywhere in the house.
+26551 | look on | phrasal_verb | C1 | #1/1 | TR: seyretmek, (karışmadan) izlemek | EN: to watch something happening without taking part | ÖRNEK: A crowd looked on as the firefighters worked.
+7041 | loom | verb | B2 | #1/1 | TR: belirmek, yaklaşmak | EN: to appear as a large, often threatening form; to become imminent | ÖRNEK: The dark clouds began to loom as the sun set.
+13055 | loop | noun | B1 | #1/1 | TR: döngü, halka | EN: a shape produced by a curve that bends around and returns to its starting point | ÖRNEK: The child tied a loop in the string to hang the picture.
+2854 | loose | adjective | A2 | #1/2 | TR: gevşek, sıkı olmayan | EN: not firmly or tightly fixed in place; having room for movement. | ÖRNEK: The shirt felt loose after he lost weight.
+2855 | loose | adjective | B1 | #2/2 | TR: serbest, kısıtlanmamış | EN: not restrained or confined; free to move or act. | ÖRNEK: The dog ran loose in the park after the gate was left open.
+16150 | lord | noun | B2 | #1/3 | TR: soylu, asil, derebeyi | EN: a man who holds a high rank in the feudal system, often owning large estates and exercising authority over tenants | ÖRNEK: The lord granted the village a new market day.
+16151 | lord | noun | B1 | #2/3 | TR: saygıdeğer kişi, efendi, patron | EN: a title used to address or refer to a person of high rank, authority, or respect, often in formal or ceremonial contexts | ÖRNEK: The ambassador greeted the lord with a respectful bow.
+16149 | lord | noun | C1 | #3/3 | TR: rab, tanrı | EN: God; a title for a supreme divine being in monotheistic religions | ÖRNEK: She thanked the Lord for her safe return.
+20421 | lorry | noun | A2 | #1/1 | TR: kamyon (İngiliz İngilizcesi) | EN: a large vehicle for carrying goods by road (American English: truck) | ÖRNEK: A lorry was blocking the road.
+20111 | lose | verb | A2 | #1/1 | TR: kaybetmek, yitirmek | EN: to fail to keep or retain something; to be deprived of something | ÖRNEK: I always lose my keys when I'm in a hurry.
+20125 | loss | noun | A2 | #1/2 | TR: kayıp | EN: the state of being missing or not present; something that is no longer in possession | ÖRNEK: The child noticed the loss of his favorite toy immediately.
+20124 | loss | noun | B1 | #2/2 | TR: zarar | EN: the amount of something that has been lost or taken away, especially money or value | ÖRNEK: The storm caused a large loss of crops for the farmers.
+20332 | lot | adverb | A1 | #1/1 | TR: çok (a lot) | EN: used in 'a lot' to mean very much or often | ÖRNEK: Thanks a lot!
+13813 | lottery | noun | B1 | #1/1 | TR: piyango, çekiliş | EN: a system in which people purchase tickets for a chance to win a prize, usually money | ÖRNEK: She bought a lottery ticket for fun.
+1082 | loud | adjective | A2 | #1/2 | TR: yüksek sesli, gürültülü | EN: producing a high level of sound; easily heard | ÖRNEK: The loud alarm woke everyone in the building early this morning.
+1083 | loud | adjective | B1 | #2/2 | TR: gösterişli, çarpıcı | EN: very noticeable or conspicuous, often because of bright colors or bold design | ÖRNEK: The dress featured loud patterns that made her the center of attention.
+20422 | loud | adverb | A2 | #1/1 | TR: yüksek sesle | EN: in a way that makes a lot of noise | ÖRNEK: Could you speak a bit louder?
+1084 | loudly | adverb | B1 | #1/1 | TR: yüksek sesle | EN: in a way that produces a high volume of sound | ÖRNEK: The children laughed loudly at the clown.
+4222 | love | noun | A2 | #1/2 | TR: sevgi, derin bağ, şefkat | EN: a strong feeling of deep affection or attachment toward someone or something | ÖRNEK: She showed great love for her younger brother.
+4223 | love | noun | A1 | #2/2 | TR: romantik aşk, tutkulu ilişki | EN: a strong romantic or sexual attraction between people, often involving emotional intimacy | ÖRNEK: Their love blossomed after months of working together on the project.
+4224 | love | verb | A2 | #1/1 | TR: sevmek, aşık olmak | EN: to feel deep affection or strong romantic attachment toward someone or something | ÖRNEK: I love reading short stories before bedtime.
+4232 | lovely | adjective | A2 | #1/1 | TR: güzel, hoş | EN: pleasing or attractive in a way that gives great pleasure | ÖRNEK: The garden looks lovely in the spring sunshine.
+20040 | low | adjective | A2 | #1/1 | TR: alçak, düşük | EN: situated or placed at a small distance from the ground or a reference point; not high. | ÖRNEK: The table is low, so you have to bend to sit at it.
+20041 | low | adverb | A2 | #1/1 | TR: alçaktan, aşağıda | EN: at or near a low position or level; not high | ÖRNEK: The ball rolled low across the grass.
+20042 | low | noun | B1 | #1/1 | TR: en düşük seviye, dip nokta | EN: the lowest point or level that something reaches | ÖRNEK: The temperature fell to a low of five degrees last night.
+18324 | lower | verb | B1 | #1/2 | TR: indirmek | EN: to cause something to move or be in a lower position or level | ÖRNEK: The teacher lowered the blinds to block the bright sun.
+18325 | lower | verb | B2 | #2/2 | TR: aşağıya doğru hareket ettirmek | EN: to move something downwards or cause it to descend | ÖRNEK: The crane lowered the heavy crate onto the dock.
+10891 | loyal | adjective | B2 | #1/1 | TR: sadık, bağlı | EN: showing firm and constant support or allegiance to a person, group, or cause | ÖRNEK: She is a loyal employee who never misses a deadline.
+10895 | loyalty | noun | B2 | #1/1 | TR: sadakat | EN: the quality of being loyal; firm and constant support or allegiance to a person, group, or cause | ÖRNEK: She values loyalty above all in her friendships.
+13467 | luck | noun | B1 | #1/1 | TR: şans, talih | EN: the success or failure that is believed to happen by chance rather than through one's own actions | ÖRNEK: Good luck with your exam!
+13468 | luckily | adverb | B1 | #1/1 | TR: şans eseri, talihli bir şekilde | EN: in a way that results from good fortune | ÖRNEK: I found a ten-dollar bill, luckily.
+13470 | lucky | adjective | B1 | #1/1 | TR: şanslı, uğurlu | EN: having good fortune or favorable outcomes | ÖRNEK: He felt lucky after finding a ten-dollar bill on the street.
+10139 | luggage | noun | B1 | #1/1 | TR: bagaj | EN: the suitcases, bags, and other items that a person takes when traveling | ÖRNEK: The airline lost my luggage during the flight.
+17664 | lunch | noun | A2 | #1/1 | TR: öğle yemeği | EN: a meal eaten in the middle of the day, typically between 12:00 and 14:00 | ÖRNEK: I always eat a sandwich for lunch at school.
+17669 | lunchtime | noun | B1 | #1/1 | TR: öğle yemeği zamanı | EN: the period of the day when people have their midday meal | ÖRNEK: I eat a sandwich at lunchtime.
+20565 | lung | noun | B2 | #1/1 | TR: akciğer | EN: one of the two organs in the chest that you use for breathing | ÖRNEK: Smoking damages your lungs.
+5574 | luxury | noun | B2 | #1/1 | TR: lüks, konforlu yaşam | EN: great comfort and elegance, usually involving expensive things | ÖRNEK: She enjoys a luxury lifestyle with designer clothes and fine dining.
+20566 | lyric | noun | B2 | #1/1 | TR: şarkı sözü (çoğunlukla lyrics) | EN: the words of a song | ÖRNEK: I love the lyrics of this song.
+19461 | machine | noun | A2 | #1/1 | TR: cihaz, makine | EN: a piece of equipment with moving parts that uses power to perform a specific task | ÖRNEK: The coffee machine in the office makes fresh coffee every morning.
+19463 | machinery | noun | B1 | #1/2 | TR: makine, ekipman, aygıtlar bütünü | EN: the collection of machines or equipment used to perform a specific task or set of tasks | ÖRNEK: The laboratory purchased new machinery for the chemistry experiments.
+19464 | machinery | noun | C1 | #2/2 | TR: mekanizma, işleyiş, çark | EN: the organized structure or system of people and processes that influence political or administrative outcomes | ÖRNEK: The study examined how the electoral machinery shapes voter behavior.
+4492 | mad | adjective | B1 | #1/3 | TR: deli, çılgın | EN: mentally disturbed or exhibiting irrational behavior | ÖRNEK: The crowd thought his plan was mad and risky.
+4493 | mad | adjective | A2 | #2/3 | TR: kızgın, öfkeli | EN: feeling or showing strong displeasure or anger | ÖRNEK: He was mad about the unfair grading of his essay.
+4494 | mad | adjective | B2 | #3/3 | TR: coşkulu, hevesli | EN: showing great enthusiasm or excitement about something | ÖRNEK: Tom is mad about jazz music and attends concerts weekly.
+3951 | madam | noun | B1 | #1/1 | TR: hanımefendi, bayan | EN: a polite form of address used for a woman, especially one of higher social status or in a formal setting | ÖRNEK: The receptionist called the customer "Madam" when she entered the store.
+17375 | magazine | noun | A1 | #1/1 | TR: dergi | EN: a periodical publication containing articles, photographs, and advertisements, typically issued weekly or monthly | ÖRNEK: I bought a new magazine at the newsstand.
+2051 | magic | adjective | A2 | #1/1 | TR: büyülü, sihirli | EN: relating to or having the qualities of magic; seeming to be caused by supernatural forces | ÖRNEK: The children watched the magic show with wide eyes.
+2052 | magic | noun | A2 | #1/1 | TR: büyü, sihir | EN: the use of supernatural powers to influence events or produce extraordinary phenomena | ÖRNEK: The ancient book described how to harness magic for healing.
+2054 | magical | adjective | B2 | #1/2 | TR: büyülü | EN: relating to or having the qualities of magic; seeming to be caused by supernatural forces. | ÖRNEK: The sunrise over the lake looked magical to the early hikers.
+2055 | magical | adjective | C1 | #2/2 | TR: olağanüstü, etkileyici | EN: so remarkable or extraordinary that it seems to belong to a different realm or to be beyond ordinary experience. | ÖRNEK: The new smartphone features a magical battery life that lasts for days.
+14288 | magistrate | noun | B2 | #1/1 | TR: yargıç, hâkim | EN: a civil officer or judge who administers the law, especially one who handles minor offenses and preliminary hearings | ÖRNEK: The magistrate dismissed the minor traffic violation quickly.
+8299 | magnetic | adjective | B2 | #1/2 | TR: manyetik, manyetik özelliği olan | EN: having the property of attracting iron or other ferromagnetic materials; capable of producing a magnetic field. | ÖRNEK: The compass points toward the Earth's magnetic north.
+8300 | magnetic | adjective | B2 | #2/2 | TR: çekici, etkileyici | EN: possessing an attractive or compelling quality that draws attention or interest. | ÖRNEK: The speaker's magnetic voice kept the audience engaged.
+7702 | magnificent | adjective | B1 | #1/1 | TR: görkemli, muhteşem | EN: extremely impressive in beauty, scale, or grandeur. | ÖRNEK: The sunrise over the mountains looked magnificent and filled us with awe.
+8531 | magnitude | noun | B2 | #1/1 | TR: büyüklük, ölçü, önem | EN: the size or extent of something, especially in terms of its importance, scale, or numerical value | ÖRNEK: The magnitude of the storm surprised the coastal residents.
+17424 | mail | noun | A2 | #1/1 | TR: posta | EN: the system of sending letters, packages, and other items from one place to another | ÖRNEK: The university sent important mail to all students last week.
+17425 | mail | verb | B1 | #1/1 | TR: posta göndermek | EN: to send something by post or electronic mail | ÖRNEK: I will mail the assignment before the deadline.
+15705 | main | adjective | A1 | #1/1 | TR: ana, birincil, başlıca | EN: being the most important or central part of something | ÖRNEK: The main road leads directly to the city center.
+20736 | mainland | noun | C1 | #1/1 | TR: anakara | EN: the main area of land of a country, not including its islands | ÖRNEK: The ferry takes an hour to reach the mainland.
+15707 | mainly | adverb | B1 | #1/1 | TR: başlıca, esas olarak | EN: to a great extent; chiefly; for the most part | ÖRNEK: The lecture was mainly about climate change and its impacts.
+20737 | mainstream | adjective | C1 | #1/1 | TR: ana akım, yaygın | EN: considered normal and accepted by most people | ÖRNEK: The film was a mainstream success.
+20738 | mainstream | noun | C1 | #1/1 | TR: ana akım | EN: the ideas and ways of behaving that most people accept as normal | ÖRNEK: Organic food has entered the mainstream.
+12210 | maintain | verb | B1 | #1/3 | TR: sürdürmek, devam ettirmek | EN: to keep something in existence, operation, or condition | ÖRNEK: Our company maintains a high level of customer service.
+12211 | maintain | verb | B1 | #2/3 | TR: bakımını yapmak, iyi durumda tutmak | EN: to perform regular checks and repairs on something to keep it functional | ÖRNEK: The staff maintains the laboratory instruments carefully.
+12209 | maintain | verb | B2 | #3/3 | TR: iddia etmek, savunmak | EN: to assert or defend something as true or valid | ÖRNEK: The scientist maintains that the data support the hypothesis.
+12215 | maintenance | noun | B2 | #1/1 | TR: bakım, sürdürme | EN: the process of preserving something in good condition or keeping it operational | ÖRNEK: The school hired a contractor to handle routine maintenance of its facilities.
+15577 | major | adjective | B1 | #1/2 | TR: önemli, büyük | EN: of great significance or importance; notable or serious in size, amount, or degree | ÖRNEK: The earthquake caused major damage to the coastal town.
+15578 | major | adjective | B2 | #2/2 | TR: ana, birincil | EN: being the most important or principal part of something; primary | ÖRNEK: The major axis of the ellipse determines its shape.
+15582 | majority | noun | B2 | #1/1 | TR: çoğunluk | EN: the greater number or part of a group, especially more than half of the total. | ÖRNEK: The majority of the class prefers online lectures.
+13394 | make | noun | B1 | #1/1 | TR: marka, üretici, model | EN: a particular brand or type of product, especially a vehicle or piece of equipment | ÖRNEK: The dealership offers several makes of SUVs at affordable prices.
+13395 | make | verb | A2 | #1/3 | TR: yapmak | EN: to create or perform something; to bring into existence | ÖRNEK: I will make a sandwich for lunch.
+13396 | make | verb | A2 | #2/3 | TR: üretmek, meydana getirmek | EN: to cause something to exist or come into being, especially by a process or effort | ÖRNEK: The artist makes sculptures from recycled metal.
+13397 | make | verb | B1 | #3/3 | TR: sebep olmak, yol açmak | EN: to cause something to happen or exist; to bring about a result | ÖRNEK: The loud noise made the baby cry.
+13399 | makeup | noun | B1 | #1/2 | TR: kozmetik, makyaj | EN: substances such as powder, lipstick, or eye shadow that are applied to the face to enhance appearance | ÖRNEK: She bought new makeup for the party.
+13400 | makeup | noun | B2 | #2/2 | TR: yapı, bileşim | EN: the way in which something is made up; the components or elements that form a whole | ÖRNEK: The makeup of the team changed after the new hires.
+20567 | making | noun | B2 | #1/1 | TR: yapım, üretim | EN: the process of producing something | ÖRNEK: The film shows the making of a famous album.
+16730 | male | adjective | A1 | #1/1 | TR: erkek | EN: relating to or characteristic of men or boys | ÖRNEK: The male cat slept on the windowsill all afternoon.

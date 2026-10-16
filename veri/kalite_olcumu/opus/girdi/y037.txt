@@ -1,0 +1,100 @@
+7059 | house | noun | B2 | #2/2 | TR: meclis, yasama organı | EN: a legislative body, especially a parliament or congress | ÖRNEK: The house voted to increase funding for public schools.
+7060 | house | verb | B1 | #1/1 | TR: konaklatmak, barındırmak | EN: to provide someone with a place to live; to give shelter to | ÖRNEK: The university will house incoming freshmen in on-campus dorms.
+7064 | household | noun | B1 | #1/1 | TR: aile, hane, ev halkı | EN: the people living together in a single dwelling and sharing expenses and responsibilities | ÖRNEK: The household consists of four members and a pet dog.
+7070 | housewife | noun | B1 | #1/1 | TR: ev hanımı | EN: a married woman whose main occupation is managing the household | ÖRNEK: My aunt is a housewife who looks after her two children.
+7071 | housing | noun | B1 | #1/1 | TR: konut, barınma | EN: buildings for people to live in; the provision of places to live | ÖRNEK: The university offers on-campus housing for first-year students.
+20319 | how | adverb | A1 | #1/2 | TR: nasıl | EN: in what way; used to ask about the way something happens or is done | ÖRNEK: How do you spell your name?
+20320 | how | adverb | A1 | #2/2 | TR: ne kadar (miktar, derece) | EN: used to ask about amount, age or degree | ÖRNEK: How old is your sister?
+27300 | however | adverb | B1 | #1/3 | TR: ancak, bununla birlikte, yine de | EN: used to introduce a statement that contrasts with something just said | ÖRNEK: The plan is good. However, it will be expensive.
+27301 | however | adverb | B1 | #2/3 | TR: ne kadar … olursa olsun | EN: used to say that something does not change, whatever the degree or amount | ÖRNEK: However hard I try, I can't do it.
+27302 | however | adverb | B1 | #3/3 | TR: her nasıl, ne şekilde olursa | EN: in whatever way | ÖRNEK: You can do it however you like.
+14790 | huge | adjective | B1 | #1/1 | TR: çok büyük, devasa | EN: extremely large in size, amount, or degree | ÖRNEK: The elephant is a huge animal that lives in Africa and Asia.
+5576 | human | adjective | B1 | #1/1 | TR: insanî | EN: relating to or characteristic of people or humanity | ÖRNEK: The novel explores what it means to be human in a digital age.
+5577 | human | noun | A2 | #1/1 | TR: insan, insanoğlu | EN: a member of the species Homo sapiens; a person | ÖRNEK: The museum displayed artifacts made by early humans.
+5584 | humanitarian | adjective | B2 | #1/1 | TR: insanî, insancıl | EN: relating to the promotion of human welfare and the alleviation of suffering, especially in crises or emergencies. | ÖRNEK: The Red Cross delivered humanitarian aid after the earthquake struck the city.
+5587 | humanity | noun | B2 | #1/2 | TR: insanlık, insanlık durumu, insan ırkı | EN: the collective existence of human beings; the human race as a whole | ÖRNEK: The documentary explores how climate change affects humanity.
+5588 | humanity | noun | B1 | #2/2 | TR: insaniyet, merhamet, şefkat | EN: the quality of being kind, compassionate, and considerate toward others | ÖRNEK: Volunteers demonstrated humanity by distributing food to the homeless.
+19036 | humble | adjective | B1 | #1/1 | TR: alçakgönüllü, mütevazı | EN: having a modest or low view of one's own importance; not proud or arrogant | ÖRNEK: She gave a humble thank-you after receiving the scholarship.
+19039 | humbled | adjective | B2 | #1/1 | TR: mahcup olmuş, gururu kırılmış, tevazu hissiyle dolmuş | EN: feeling or showing humility as a result of a humbling experience | ÖRNEK: She was humbled after receiving the unexpected compliment.
+21822 | humid | adjective | B1 | #1/1 | TR: nemli | EN: characterized by a relatively high amount of moisture in the air or in a substance | ÖRNEK: The weather forecast predicts humid weather for the weekend.
+11242 | humor | noun | B1 | #1/1 | TR: mizah, espri | EN: the ability to perceive, enjoy, or express what is funny or amusing | ÖRNEK: Her sense of humor makes the classroom atmosphere relaxed.
+11246 | humorous | adjective | B2 | #1/1 | TR: esprili, mizahi | EN: causing laughter or amusement; characterized by humor. | ÖRNEK: The comedian's humorous jokes made the crowd laugh loudly.
+4703 | hunger | noun | B1 | #1/2 | TR: açlık | EN: the physical need for food caused by a lack of sufficient nourishment | ÖRNEK: The refugee camp residents experienced constant hunger during the drought.
+4704 | hunger | noun | C1 | #2/2 | TR: özlem, arzu | EN: a strong desire or craving for something, especially something unattainable or abstract | ÖRNEK: The novel explores the protagonist's hunger for freedom in a repressive regime.
+4702 | hungry | adjective | A2 | #1/1 | TR: aç | EN: feeling the need for food; desiring to eat | ÖRNEK: I am hungry, so I will make a sandwich.
+946 | hunt | noun | B1 | #1/2 | TR: av, avlanma, sürek avı | EN: the act of pursuing and killing wild animals for sport or food | ÖRNEK: The village organized a hunt to control the deer population.
+947 | hunt | noun | B2 | #2/2 | TR: arama, arayış, takip | EN: the act of chasing something or someone in order to catch or capture it | ÖRNEK: The cat began a hunt for the mouse hiding under the couch.
+948 | hunt | verb | B1 | #1/2 | TR: avlamak, yakalamak | EN: to pursue and kill wild animals for sport or food | ÖRNEK: The boy learned how to hunt with his father last summer.
+949 | hunt | verb | B1 | #2/2 | TR: aramak, araştırmak | EN: to search for something or someone with determination | ÖRNEK: He decided to hunt for a better salary after his promotion.
+1751 | hunting | noun | B2 | #1/1 | TR: avcılık | EN: the activity of pursuing and killing wild animals for sport, food, or trade | ÖRNEK: The local council regulates hunting to protect endangered species.
+9301 | hurricane | noun | B2 | #1/1 | TR: kasırga | EN: a violent tropical cyclone with strong winds and heavy rain | ÖRNEK: The news reported a hurricane approaching the island.
+953 | hurry | noun | A2 | #1/1 | TR: acele | EN: a state of urgency or rapid movement; the need to act quickly | ÖRNEK: She grabbed her bag and left the house in a hurry.
+954 | hurry | verb | B1 | #1/1 | TR: acele etmek | EN: to move or act quickly because of a need to do something soon | ÖRNEK: I need to hurry to catch the bus.
+10219 | hurt | adjective | B1 | #1/1 | TR: yaralı, acı çeken | EN: causing or experiencing physical or emotional pain; in a state of injury or distress | ÖRNEK: She fell off the bike and now her knee is hurt.
+10220 | hurt | noun | B1 | #1/1 | TR: acı, zarar, yaralanma | EN: a physical or emotional injury; the feeling of pain or damage | ÖRNEK: She felt a deep hurt after hearing the news.
+10221 | hurt | verb | A2 | #1/2 | TR: acımak, ağrımak | EN: to cause physical pain or to feel physical pain oneself | ÖRNEK: She tripped on the curb and hurt her ankle.
+10222 | hurt | verb | B1 | #2/2 | TR: zarar vermek, incitmek | EN: to cause damage, injury, or emotional distress to someone or something | ÖRNEK: His jokes often hurt people's feelings without meaning to.
+16469 | husband | noun | A2 | #1/1 | TR: eş, koca | EN: a married man, especially in relation to his spouse | ÖRNEK: My husband cooks dinner every night.
+11307 | hydrogen | noun | B2 | #1/1 | TR: hidrojen | EN: the chemical element with symbol H, the lightest and most abundant element in the universe, consisting of one proton and one electron. | ÖRNEK: Hydrogen is the lightest element on the periodic table.
+6994 | hypothesis | noun | C1 | #1/1 | TR: hipotez, varsayım | EN: a proposed explanation for a phenomenon, based on limited evidence, that can be tested and refined | ÖRNEK: The teacher asked the class to write a simple hypothesis for the experiment.
+7748 | ice | noun | A2 | #1/1 | TR: buz, donmuş su | EN: frozen water; solid form of water that forms at or below 0 °C | ÖRNEK: The children slid down the hill on a sled over the ice.
+27356 | ice cream | noun | A1 | #1/1 | TR: dondurma | EN: a very cold sweet food made from milk or cream | ÖRNEK: I'd like a chocolate ice cream.
+27358 | ice rink | noun | A1 | #1/1 | TR: buz pateni pisti | EN: a large area of ice for skating | ÖRNEK: We went to the ice rink on Saturday.
+27359 | ice skate | noun | A1 | #1/1 | TR: buz pateni (ayakkabısı) | EN: a boot with a metal blade for skating on ice | ÖRNEK: I need new ice skates.
+27360 | ice skating | noun | A1 | #1/1 | TR: buz pateni (sporu) | EN: the activity of moving on ice in special boots | ÖRNEK: Let's go ice skating.
+12259 | icon | noun | B1 | #1/2 | TR: ikon, bilgisayar simgesi | EN: a small graphical representation of a program, file, or function on a computer screen | ÖRNEK: The recycle bin icon appears at the bottom right of the screen.
+12258 | icon | noun | B2 | #2/2 | TR: simge, ikon | EN: a person or thing regarded as a representative symbol of something | ÖRNEK: The Statue of Liberty is an icon of freedom.
+7751 | icy | adjective | B1 | #1/2 | TR: buzlu | EN: covered with or containing ice; very cold in temperature | ÖRNEK: The hikers slipped on the icy trail near the summit.
+7752 | icy | adjective | B2 | #2/2 | TR: soğuk, mesafeli | EN: showing little warmth or friendliness; emotionally cold | ÖRNEK: His icy tone during the meeting discouraged further questions.
+17871 | id | noun | A2 | #1/1 | TR: kimlik, kimlik belgesi | EN: a document or card that proves a person's identity, often containing a photograph and personal details | ÖRNEK: She always carries her ID in her wallet.
+1771 | idea | noun | A2 | #1/2 | TR: düşünce, kavram | EN: a thought or concept that exists in the mind | ÖRNEK: She shared her idea during the meeting.
+1772 | idea | noun | A1 | #2/2 | TR: plan, öneri | EN: a suggestion or plan for action, often to solve a problem | ÖRNEK: His idea to use solar panels was welcomed by the board.
+957 | ideal | adjective | B1 | #1/2 | TR: kusursuz, mükemmel | EN: the most suitable or perfect | ÖRNEK: The design is ideal for small apartments.
+958 | ideal | adjective | B2 | #2/2 | TR: ideal, soyut, kuramsal | EN: existing only in thought or imagination, not in reality | ÖRNEK: Many philosophers discuss the concept of an ideal society.
+1770 | ideal | noun | B2 | #1/1 | TR: ülkü, ideal | EN: a principle or standard of perfection; a conception of something in its most perfect form | ÖRNEK: Many students view education as an ideal of personal growth.
+18814 | identical | adjective | B2 | #1/1 | TR: aynı, özdeş | EN: being exactly the same in every detail; having no differences | ÖRNEK: The two samples looked identical under the microscope.
+20259 | identification | noun | B1 | #1/2 | TR: kimlik, kimlik belgesi | EN: the act of establishing or confirming the identity of a person or object, often by presenting official documents | ÖRNEK: She showed her identification to the security guard.
+20260 | identification | noun | B2 | #2/2 | TR: tanımlama, belirleme | EN: the process of recognizing and naming something, especially in a scientific or technical context | ÖRNEK: Researchers used DNA analysis for species identification.
+20257 | identify | verb | A2 | #1/1 | TR: teşhis etmek, tespit etmek, belirlemek | EN: to recognize or establish the identity of someone or something | ÖRNEK: The teacher asked us to identify the main idea of the paragraph.
+20239 | identity | noun | B2 | #1/1 | TR: kimlik | EN: the set of characteristics, qualities, or beliefs that make a person or group distinct | ÖRNEK: The passport proves a person's legal identity worldwide.
+12399 | ideological | adjective | C1 | #1/1 | TR: ideolojiyle ilgili, ideolojik | EN: relating to a set of ideas or beliefs, especially those that form the basis of a political or social system | ÖRNEK: Students often discuss ideological issues in their political science class.
+12398 | ideology | noun | C1 | #1/1 | TR: ideoloji | EN: a system of ideas and ideals, especially one that forms the basis of economic or political theory and policy. | ÖRNEK: The textbook defines ideology as a set of ideas that guide a group.
+5553 | idiot | noun | B1 | #1/1 | TR: ahmak, aptal | EN: a person who lacks good sense or judgment; a foolish or stupid person | ÖRNEK: The boy forgot his homework again, proving he is an idiot.
+27293 | if | conjunction | A1 | #1/3 | TR: eğer, -se, -sa (koşul) | EN: used to say that something will happen only after something else happens | ÖRNEK: If it rains, we'll stay at home.
+27294 | if | conjunction | A1 | #2/3 | TR: -ip -madığını, acaba (dolaylı soru) | EN: used to introduce a yes/no question in reported speech | ÖRNEK: She asked me if I was hungry.
+27295 | if | conjunction | A1 | #3/3 | TR: -diğinde, ne zaman … -se (genel durum) | EN: used to say that something always happens in a particular situation | ÖRNEK: If you heat ice, it melts.
+966 | ignorance | noun | B2 | #1/1 | TR: bilgisizlik, cahillik | EN: the state of lacking knowledge or awareness about something | ÖRNEK: Many people live in ignorance about basic health practices.
+965 | ignore | verb | B1 | #1/1 | TR: görmezden gelmek, dikkate almamak | EN: to deliberately pay no attention to someone or something | ÖRNEK: She ignored his comment during the meeting.
+2085 | ill | adjective | A2 | #1/2 | TR: hasta, sağlığı bozulmuş | EN: affected by disease or poor health; not feeling well | ÖRNEK: I felt ill after the long flight.
+2086 | ill | adjective | B2 | #2/2 | TR: kötü, zararlı, uygunsuz | EN: having a harmful or undesirable effect; not suitable or appropriate | ÖRNEK: The policy had several ill consequences for the local community.
+19814 | illegal | adjective | B2 | #1/1 | TR: kanuna aykırı | EN: not permitted by law; forbidden or prohibited by legal statutes. | ÖRNEK: The shop was closed because it sold illegal cigarettes.
+2088 | illness | noun | B1 | #1/1 | TR: hastalık | EN: the state of being unwell or having a disease | ÖRNEK: He caught a mild illness after the rainy trip.
+4862 | illusion | noun | B2 | #1/1 | TR: yanılsama, illüzyon | EN: a false idea or belief that misleads someone about the true nature of something | ÖRNEK: He thought the job was easy, but it was only an illusion.
+6751 | illustrate | verb | B1 | #1/2 | TR: resimlemek, tasvir etmek | EN: to create a picture or drawing of something; to depict visually | ÖRNEK: The artist illustrated the scene with bright colors.
+6752 | illustrate | verb | B2 | #2/2 | TR: örneklemek, açıklamak | EN: to clarify or explain something by giving examples or visual aids | ÖRNEK: The teacher illustrated the grammar rule with several sentences.
+6754 | illustration | noun | B1 | #1/2 | TR: çizim, resim, görsel | EN: a picture or drawing that explains or decorates something | ÖRNEK: The children's book is full of colorful illustrations that attract young readers.
+6755 | illustration | noun | B2 | #2/2 | TR: örnek, açıklayıcı örnek | EN: an example used to clarify or explain a concept or statement | ÖRNEK: The teacher used a historical event as an illustration of cause and effect.
+8353 | image | noun | A2 | #1/2 | TR: görsel, resim, tasvir | EN: a visual representation of something, such as a photograph, drawing, or mental picture | ÖRNEK: She posted a new image on her social media profile yesterday.
+8354 | image | noun | B2 | #2/2 | TR: imaj, itibar, algı | EN: the general impression that people have of someone or something; reputation | ÖRNEK: The celebrity's image suffered after the leaked photos were published.
+8357 | imagery | noun | C1 | #1/1 | TR: görsel betimleme, imgeler | EN: the use of vivid or figurative language to represent objects, actions, or ideas in a text or artwork | ÖRNEK: She admired the vivid imagery in the short story about a desert oasis.
+2351 | imaginary | adjective | B1 | #1/1 | TR: gerçek olmayan, hayali | EN: existing only in the mind; not real or factual. | ÖRNEK: The story describes an imaginary world where animals talk.
+2352 | imagination | noun | B2 | #1/1 | TR: hayal gücü | EN: the mental capacity to create images, ideas, or concepts not present to the senses | ÖRNEK: She solved the puzzle using her imagination.
+2348 | imagine | verb | A1 | #1/2 | TR: zihinde canlandırmak, tasavvur etmek | EN: to form a mental image or concept of something that is not present or not yet existing | ÖRNEK: I imagine a quiet garden where I can read every afternoon.
+2349 | imagine | verb | B2 | #2/2 | TR: farz etmek, varsaymak | EN: to suppose something to be true, especially for the sake of argument or planning | ÖRNEK: Imagine a city where traffic jams no longer exist.
+4282 | immediate | adjective | B1 | #1/2 | TR: derhal, acil, anlık | EN: occurring or done without any delay; happening at once. | ÖRNEK: The fire alarm required an immediate evacuation of the building.
+4283 | immediate | adjective | B2 | #2/2 | TR: doğrudan, en yakın, birinci dereceden | EN: being directly connected or close in space, time, or relationship without an intervening element. | ÖRNEK: The immediate predecessor of the smartphone had a smaller screen.
+4285 | immediately | adverb | A2 | #1/1 | TR: hemen, derhal | EN: without any delay; at once | ÖRNEK: The teacher asked the students to submit their assignments immediately.
+3567 | immense | adjective | C1 | #1/1 | TR: çok büyük, muazzam | EN: extremely large or great in size, amount, or degree. | ÖRNEK: The library contains an immense collection of rare books.
+11291 | immigrant | noun | B1 | #1/1 | TR: göçmen | EN: a person who moves to a new country or region in order to live there permanently | ÖRNEK: My cousin became an immigrant after moving to Germany last year.
+11294 | immigration | noun | B1 | #1/2 | TR: göç | EN: the act or condition of moving to a new country to live permanently or for an extended period | ÖRNEK: Immigration has increased the cultural diversity of the city.
+11293 | immigration | noun | B2 | #2/2 | TR: pasaport kontrolü | EN: the process of checking passports and granting entry to a country for foreign nationals | ÖRNEK: The officer checked his passport during immigration at the airport.
+13488 | imminent | adjective | B2 | #1/1 | TR: eli kulağında, pek yakın, yaklaşan | EN: expected to happen very soon; about to occur. | ÖRNEK: The storm is imminent, so we should secure the windows.
+4820 | immune | adjective | B2 | #1/1 | TR: bağışık, bağışıklığı olan | EN: protected from a disease or a harmful effect, especially by having antibodies or resistance | ÖRNEK: The child is immune to measles after receiving the vaccine.
+16642 | impact | noun | B2 | #1/2 | TR: etki, tesir | EN: the strong effect that something has on a situation, person, or thing | ÖRNEK: The advertisement had a clear impact on consumer choices.
+16643 | impact | noun | B1 | #2/2 | TR: çarpma, çarpışma | EN: the forceful contact between two objects, especially when one strikes another | ÖRNEK: The meteor's impact created a huge crater in the desert.
+16644 | impact | verb | B2 | #1/1 | TR: etkilemek | EN: to have a strong effect on someone or something | ÖRNEK: The loud noise impacted the baby's sleep.
+4886 | impatient | adjective | B1 | #1/1 | TR: sabırsız | EN: unable or unwilling to wait calmly; showing irritation caused by delay or opposition | ÖRNEK: The child became impatient while waiting for his turn on the swing.
+9830 | implement | verb | B2 | #1/1 | TR: uygulamak, hayata geçirmek | EN: to put a plan, decision, or method into effect | ÖRNEK: The school will implement the new curriculum next semester.
+9831 | implementation | noun | B2 | #1/1 | TR: uygulama | EN: the process of putting a plan, system, or policy into effect | ÖRNEK: The company announced the implementation of a new scheduling system.
+2079 | implication | noun | B2 | #1/2 | TR: olası sonuç, etki | EN: a possible effect or consequence that follows from something else | ÖRNEK: His remarks have serious implications for the upcoming election.
+2080 | implication | noun | B1 | #2/2 | TR: ima, örtük anlam | EN: something that is suggested or hinted at without being directly expressed | ÖRNEK: Her smile carried an implication of sarcasm.

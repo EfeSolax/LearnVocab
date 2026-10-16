@@ -1,0 +1,100 @@
+5612 | solely | adverb | B1 | #1/1 | TR: sadece, yalnızca | EN: only; not involving anyone or anything else | ÖRNEK: She solely prepared the presentation for the meeting.
+20800 | solicitor | noun | C1 | #1/1 | TR: avukat (İngiltere'de; hukuki danışman) | EN: a lawyer in Britain who gives legal advice and prepares documents | ÖRNEK: You should speak to a solicitor before signing.
+14981 | solid | adjective | A2 | #1/2 | TR: katı, sıvı olmayan | EN: existing in a firm, stable form and not liquid or gas; having a definite shape and volume. | ÖRNEK: Scientists studied the solid structure of the crystal under a microscope.
+14982 | solid | adjective | B2 | #2/2 | TR: sağlam, güvenilir | EN: strong, reliable, and able to withstand pressure or difficulty. | ÖRNEK: Her arguments were solid and convinced everyone in the meeting.
+14983 | solid | noun | B2 | #1/1 | TR: katı madde, katı cisim | EN: a state of matter characterized by structural rigidity and resistance to changes in shape or volume | ÖRNEK: Water freezes and becomes a solid at 0°C.
+11944 | solidarity | noun | B2 | #1/1 | TR: dayanışma | EN: the feeling of unity and mutual support within a group, especially in the face of a common challenge or goal. | ÖRNEK: The students formed a group to offer solidarity to the refugees.
+17864 | solo | adjective | B1 | #1/1 | TR: tek başına, yalnız | EN: existing or performed without the participation of others; done by a single person. | ÖRNEK: The artist released a solo album after years in a band.
+17866 | solo | noun | B1 | #1/1 | TR: solo, tek kişilik gösteri | EN: a piece of music or a performance done by a single performer without accompaniment | ÖRNEK: The singer sang a solo during the school talent show.
+1484 | solution | noun | B1 | #1/2 | TR: çözüm, yanıt | EN: an answer to or way of dealing with a problem, question, or difficulty | ÖRNEK: The teacher asked the class to write a solution for the math problem.
+1485 | solution | noun | B2 | #2/2 | TR: çözelti | EN: a homogeneous mixture of two or more substances, typically a liquid in which a solid is dissolved | ÖRNEK: The chemist prepared a solution by mixing the powder with distilled water.
+1483 | solve | verb | B1 | #1/1 | TR: çözmek | EN: to find an answer to a problem, question, or puzzle | ÖRNEK: The teacher asked the students to solve a simple puzzle in class.
+1490 | somehow | adverb | B2 | #1/1 | TR: bir şekilde, nedense, her nasılsa | EN: in some way or by some means; used when the exact method or reason is unknown or not specified. | ÖRNEK: She somehow remembered the password after many attempts.
+19882 | sometime | adverb | B1 | #1/1 | TR: bir ara, bir zaman | EN: at an unspecified time in the future or past | ÖRNEK: I will visit you sometime next month.
+20050 | sometimes | adverb | A2 | #1/1 | TR: bazen | EN: to some extent or on some occasions; not always but at irregular intervals | ÖRNEK: She sometimes reads a book before bedtime.
+1491 | somewhat | adverb | B1 | #1/1 | TR: biraz, bir miktar | EN: to a moderate degree or extent; not completely or entirely | ÖRNEK: She felt somewhat nervous before giving her presentation to the class.
+19981 | somewhere | adverb | A2 | #1/1 | TR: bir yerde | EN: in, at, or to a place that is not known or not stated | ÖRNEK: I think I left my keys somewhere in the kitchen.
+15617 | son | noun | A2 | #1/1 | TR: oğul, erkek çocuk | EN: a male child in relation to his parents | ÖRNEK: My son enjoys reading adventure books after school.
+7107 | song | noun | A2 | #1/2 | TR: şarkı, beste | EN: a short piece of music with lyrics, intended to be sung | ÖRNEK: She listened to a catchy song while studying for the exam.
+7108 | song | noun | B2 | #2/2 | TR: ezgi, türkü, koşuk | EN: a poem or lyrical composition, often set to music, that expresses ideas or emotions | ÖRNEK: The historian examined an old song that described medieval life.
+15547 | soon | adverb | A2 | #1/1 | TR: yakında | EN: at a short time after the present moment; in the near future | ÖRNEK: The professor will announce the exam date soon.
+8097 | sophisticated | adjective | C1 | #1/2 | TR: kültürlü, görmüş geçirmiş | EN: having refined knowledge, experience, and good taste, especially in cultural matters | ÖRNEK: She traveled across Europe and returned with a sophisticated outlook on art.
+8098 | sophisticated | adjective | B2 | #2/2 | TR: karmaşık, gelişmiş | EN: characterized by a high degree of complexity or intricacy | ÖRNEK: The new camera features a sophisticated lens that captures sharp images.
+12325 | sore | adjective | B1 | #1/2 | TR: ağrıyan, acıyan, sızlayan | EN: causing or feeling physical pain, especially as a result of injury or overuse | ÖRNEK: My foot is sore after the long hike.
+12326 | sore | adjective | B2 | #2/2 | TR: kızgın, sinirli | EN: feeling angry or resentful, often because of a perceived injustice | ÖRNEK: He felt sore after being blamed for the mistake.
+15867 | sorry | adjective | A2 | #1/1 | TR: üzgün, özür dileyen | EN: feeling or showing regret or remorse for a mistake or misfortune | ÖRNEK: I am sorry for being late to class.
+16464 | sort | noun | B1 | #1/2 | TR: tür, çeşit, tip | EN: a category of things or people that share similar characteristics | ÖRNEK: The museum displayed artifacts of many different sorts.
+16465 | sort | noun | B2 | #2/2 | TR: düzen, sıralama, sınıflandırma | EN: the act of arranging items into a particular order or system | ÖRNEK: The librarian performed a quick sort of the new arrivals by genre.
+16466 | sort | verb | B1 | #1/1 | TR: düzenlemek, sınıflandırmak | EN: to arrange or organize items into groups or categories according to shared characteristics | ÖRNEK: She sorted the letters by sender before mailing them.
+17073 | soul | noun | B1 | #1/1 | TR: ruh | EN: the immaterial essence of a person or living being, often regarded as the seat of emotions and personality | ÖRNEK: She believes that the soul lives on after death.
+14103 | sound | adjective | B2 | #1/1 | TR: sağlam, güvenilir | EN: being solid, reliable, or free from error or defect | ÖRNEK: The bridge was built with sound materials to ensure safety.
+14104 | sound | noun | A2 | #1/2 | TR: ses, gürültü | EN: a vibration that travels through a medium and can be heard by the ear | ÖRNEK: The baby laughed at the funny sound of the toy.
+14105 | sound | noun | B2 | #2/2 | TR: deniz körfezi, su yolu | EN: a narrow sea or ocean inlet between two bodies of land | ÖRNEK: The research team studied marine life in the sound near the coast.
+14106 | sound | verb | A2 | #1/3 | TR: ses çıkarmak, ses vermek | EN: to produce or emit a noise or audible vibration | ÖRNEK: The kettle sounded as the water began to boil.
+14107 | sound | verb | B1 | #2/3 | TR: görünmek, izlenim vermek | EN: to give the impression that something is true or has a particular quality | ÖRNEK: The report sounds convincing, but we need more data.
+14108 | sound | verb | B2 | #3/3 | TR: derinliğini ölçmek, suyun derinliğini saptamak | EN: to determine the depth of water or a surface by using a sounding line or echo | ÖRNEK: The submarine sounded the water to avoid underwater obstacles.
+7877 | soup | noun | A1 | #1/1 | TR: çorba | EN: a liquid dish typically made by boiling meat, vegetables, or legumes in stock or water | ÖRNEK: I ate a bowl of soup for dinner.
+15960 | source | noun | B1 | #1/1 | TR: kaynak, köken | EN: the point or place from which something originates or is obtained | ÖRNEK: The teacher asked us to identify the source of the quotation.
+20363 | south | adjective | A1 | #1/1 | TR: güney, güneydeki | EN: in or towards the south | ÖRNEK: We stayed on the south coast.
+15451 | south | adverb | A2 | #1/1 | TR: güneye | EN: to or toward the south; in a southern direction | ÖRNEK: The river flows south through the valley.
+15452 | south | noun | A2 | #1/1 | TR: güney | EN: the direction toward the point of the horizon 90 degrees clockwise from east; the opposite of north | ÖRNEK: The map shows the south as the lower part.
+15455 | southern | adjective | B1 | #1/1 | TR: güney, güneyle ilgili | EN: relating to or situated in the south; characteristic of the southern part of a country or region | ÖRNEK: The southern coast attracts many tourists during summer.
+11258 | southwest | adjective | B1 | #1/1 | TR: güneybatı yönünde, güneybatıya ait | EN: situated in or directed toward the southwestern part of a region or area | ÖRNEK: The town is located in the southwest part of the state.
+11259 | southwest | noun | B1 | #1/1 | TR: güneybatı yönü | EN: the direction that is halfway between south and west; a region located in that direction | ÖRNEK: The compass needle points to the southwest during the hike.
+24773 | souvenir | noun | B1 | #1/1 | TR: hatıra, yadigâr | EN: an object kept as a reminder of a person, place, or event | ÖRNEK: I bought a souvenir at the market during my vacation.
+20801 | sovereignty | noun | C1 | #1/1 | TR: egemenlik | EN: complete power to govern a country | ÖRNEK: The country fought to protect its sovereignty.
+20067 | space | noun | A1 | #1/3 | TR: alan, boşluk, yer | EN: a continuous area or extent that is free, available, or unoccupied | ÖRNEK: There is not enough space to park the car here.
+20066 | space | noun | A2 | #2/3 | TR: uzay, gök cismi dışı boşluk | EN: the boundless three-dimensional extent in which all objects and events occur, beyond the Earth's atmosphere | ÖRNEK: The telescope can see distant stars in space.
+20068 | space | noun | B2 | #3/3 | TR: zaman aralığı, boşluk | EN: a period of time between two events or actions | ÖRNEK: We need a short space of time to discuss the proposal.
+20802 | spam | noun | C1 | #1/1 | TR: istenmeyen e-posta, spam | EN: unwanted emails, usually advertisements, sent to many people | ÖRNEK: My inbox is full of spam.
+6717 | span | noun | B1 | #1/2 | TR: uzunluk, mesafe | EN: the distance between two points or the extent of something measured in length | ÖRNEK: Engineers measured the span of the arch before construction began.
+6718 | span | noun | B2 | #2/2 | TR: zaman dilimi, süre | EN: a period of time during which something continues or is effective | ÖRNEK: The project was completed within a span of six months.
+6719 | span | verb | B1 | #1/2 | TR: kapsamak, uzanmak | EN: to extend across or over something | ÖRNEK: The new cable will span the entire campus by next month.
+6720 | span | verb | B2 | #2/2 | TR: süreç boyunca devam etmek | EN: to continue for a period of time | ÖRNEK: The program will span three months of intensive training.
+3177 | spare | adjective | A2 | #1/2 | TR: fazla, yedek, ek | EN: available in addition to what is needed; extra or additional. | ÖRNEK: I always keep a spare key hidden under the mat.
+3178 | spare | adjective | C1 | #2/2 | TR: ince, zayıf, sıska | EN: thin and lean in build; not bulky or muscular. | ÖRNEK: The model has a spare physique that suits the runway.
+3179 | spare | verb | B1 | #1/1 | TR: ayırmak | EN: to give something extra or provide an additional amount | ÖRNEK: Can you spare a few minutes to help me?
+19053 | spark | verb | B2 | #1/1 | TR: başlatmak, kıvılcım oluşturmak | EN: to cause something to begin or develop, especially a small but noticeable sign of a larger process | ÖRNEK: The small fire sparked a quick response from the fire department.
+19063 | sparkling | adjective | B1 | #1/1 | TR: parlak, ışıldayan, köpüklü, ferahlatıcı | EN: shining with bright, reflected light; containing bubbles, giving a lively or effervescent quality | ÖRNEK: The children enjoyed drinking sparkling juice at the party.
+11149 | speak | verb | A1 | #1/2 | TR: konuşmak, konuşma yapmak | EN: to utter words or articulate sounds with the voice | ÖRNEK: She speaks English at home with her family.
+11151 | speak | verb | B1 | #2/2 | TR: fikir belirtmek, görüş bildirmek | EN: to express an opinion or viewpoint on a matter | ÖRNEK: Students are encouraged to speak their minds in class discussions.
+11153 | speaker | noun | B1 | #1/2 | TR: konuşmacı, konuşan kişi | EN: a person who delivers a speech or presentation to an audience | ÖRNEK: The speaker began his lecture with a surprising statistic.
+11152 | speaker | noun | A2 | #2/2 | TR: hoparlör, ses çıkaran aygıt | EN: a device that converts electrical signals into sound, used to play audio | ÖRNEK: The new phone has a louder speaker than the previous model.
+7861 | special | adjective | A1 | #1/2 | TR: özel, belirli | EN: relating to a particular person, thing, or situation rather than to anyone or anything in general | ÖRNEK: The museum has a special exhibit on ancient pottery.
+7862 | special | adjective | A2 | #2/2 | TR: üstün, olağanüstü | EN: being better, greater, or more important than what is usual or expected | ÖRNEK: The award recognized her special contributions to the field of genetics.
+20603 | specialist | adjective | B2 | #1/1 | TR: uzman, uzmanlık gerektiren | EN: having or needing special knowledge or skill | ÖRNEK: You need specialist equipment for this job.
+7865 | specialist | noun | B2 | #1/1 | TR: uzman | EN: a person who has a high level of knowledge or skill in a particular area | ÖRNEK: The university hired a specialist to improve the curriculum.
+7868 | specialize | verb | B2 | #1/1 | TR: alanına odaklanmak, uzmanlaşmak | EN: to focus on a particular area of study or work and become an expert in it | ÖRNEK: She will specialize in graphic design during her final year.
+20803 | specialized | adjective | C1 | #1/1 | TR: uzmanlaşmış, özel | EN: designed or trained for a particular purpose or type of work | ÖRNEK: The job requires specialized knowledge.
+7869 | specially | adverb | B1 | #1/1 | TR: özel olarak | EN: in a particular or specific way, often for a specific purpose | ÖRNEK: The museum displayed a specially curated collection of modern art.
+16875 | species | noun | B2 | #1/1 | TR: tür | EN: a group of organisms that share common characteristics and can interbreed | ÖRNEK: The zoo has many different species of mammals.
+16335 | specific | adjective | B2 | #1/1 | TR: belirli, özgül | EN: relating to a particular person, thing, or situation and not general | ÖRNEK: The teacher asked for specific examples to support the argument.
+16336 | specifically | adverb | B2 | #1/1 | TR: özellikle, belirli bir şekilde | EN: in a precise or particular manner | ÖRNEK: The teacher asked us to read the chapter specifically about photosynthesis.
+20804 | specification | noun | C1 | #1/1 | TR: teknik özellikler, şartname | EN: a detailed description of how something should be made or what it should be like | ÖRNEK: The house was built to our specifications.
+20604 | specify | verb | B2 | #1/1 | TR: belirtmek, açıkça söylemek | EN: to state something clearly and in detail | ÖRNEK: Please specify the size you want.
+5089 | specimen | noun | B2 | #1/1 | TR: örnek, numune | EN: a sample taken for scientific study or analysis | ÖRNEK: The biologist took a specimen of the plant for the lab.
+4349 | spectacle | noun | B2 | #1/2 | TR: gösteri, şov | EN: a public performance or display that is visually striking or entertaining | ÖRNEK: The circus presented a colorful spectacle for the children.
+4350 | spectacle | noun | B2 | #2/2 | TR: gözlük | EN: a pair of lenses set in a frame used to correct or assist vision | ÖRNEK: My mother always keeps her spectacles on the nightstand.
+4351 | spectacular | adjective | B2 | #1/1 | TR: göz kamaştırıcı, muhteşem | EN: causing great admiration because of its impressive size, beauty, or effect | ÖRNEK: The city skyline looks spectacular at night.
+8732 | spectator | noun | B1 | #1/1 | TR: izleyici | EN: a person who watches an event, performance, or sport without taking part in it | ÖRNEK: The stadium was filled with enthusiastic spectators cheering loudly.
+7392 | spectrum | noun | B2 | #1/2 | TR: yelpaze, aralık, kapsam | EN: a continuous range or series of something, such as colors, frequencies, opinions, or abilities | ÖRNEK: The museum exhibit shows a broad spectrum of ancient pottery.
+7393 | spectrum | noun | C1 | #2/2 | TR: elektromanyetik spektrum | EN: the band of electromagnetic radiation arranged according to wavelength or frequency, from radio waves to gamma rays | ÖRNEK: Radio stations broadcast signals in the lower part of the spectrum.
+5489 | speculate | verb | B2 | #1/2 | TR: tahmin etmek, varsaymak | EN: to form an idea or theory without firm evidence | ÖRNEK: She likes to speculate about ancient civilizations during dinner.
+5490 | speculate | verb | C1 | #2/2 | TR: riskli yatırım yapmak | EN: to engage in high-risk financial transactions in hopes of profit | ÖRNEK: He decided to speculate in foreign exchange after reading the news.
+5491 | speculation | noun | B2 | #1/1 | TR: tahmin, spekülasyon | EN: the act of forming ideas or theories without firm evidence; a guess or hypothesis about something uncertain | ÖRNEK: The media's speculation about the new policy caused public anxiety.
+11155 | speech | noun | A2 | #1/1 | TR: konuşma | EN: the act of expressing thoughts and feelings using spoken language | ÖRNEK: The teacher asked the students to practice their speech in front of the class.
+16421 | speed | noun | B1 | #1/1 | TR: hız, sürat | EN: the rate at which someone or something moves or operates | ÖRNEK: The car reached a speed of 60 miles per hour.
+16423 | speed | verb | B1 | #1/1 | TR: hızla gitmek, hızlandırmak | EN: to move or travel quickly | ÖRNEK: The car can speed on the open road without much fuel.
+1492 | spell | noun | B2 | #1/2 | TR: büyü, sihirli söz | EN: a series of words or sounds believed to have magical power | ÖRNEK: The ancient book described a spell that could summon rain.
+1493 | spell | noun | B2 | #2/2 | TR: dönem, ara | EN: a period of time during which something happens or continues | ÖRNEK: After the heat wave, a cool spell of weather arrived.
+1495 | spell | verb | A2 | #1/2 | TR: yazmak, hecelemek | EN: to write or name the letters of a word in order | ÖRNEK: The teacher asked the student to spell the word 'accommodation'.
+1494 | spell | verb | B1 | #2/2 | TR: anlamına gelmek, ifade etmek | EN: to mean or signify something | ÖRNEK: The red light spells danger for drivers.
+1499 | spelling | noun | A1 | #1/1 | TR: yazım | EN: the way in which words are written, especially with regard to correct letters and order | ÖRNEK: The dictionary provides the correct spelling of each entry.
+19677 | spend | verb | A2 | #1/2 | TR: para harcamak, harcama yapmak | EN: to use money to purchase goods or services | ÖRNEK: I need to spend some money on groceries today.
+19678 | spend | verb | A2 | #2/2 | TR: zaman harcamak, vakit geçirmek | EN: to use time doing an activity or being in a place | ÖRNEK: I like to spend time reading on weekends.
+19681 | spending | noun | B1 | #1/1 | TR: harcama, harcamalar | EN: the amount of money that is used for buying goods, services, or paying expenses | ÖRNEK: The university's annual spending includes salaries and research grants.
+3563 | sphere | noun | B1 | #1/2 | TR: küre | EN: a three-dimensional round object in which every point on the surface is the same distance from the center | ÖRNEK: The marble rolled like a perfect sphere across the floor.
+3564 | sphere | noun | B2 | #2/2 | TR: alan, kapsam | EN: a particular area of activity, interest, or expertise | ÖRNEK: She is a leading expert in the legal sphere.
+12753 | spice | noun | A2 | #1/2 | TR: baharat, çeşni | EN: a dried seed, fruit, root, or other plant substance used to flavor food | ÖRNEK: The recipe calls for a pinch of spice to enhance the taste.
+12754 | spice | noun | B1 | #2/2 | TR: heyecan, canlılık | EN: something that makes a situation more interesting or lively | ÖRNEK: A good story can add spice to a quiet evening.
+12759 | spicy | adjective | B1 | #1/1 | TR: baharatlı, acı | EN: having a strong, hot flavor due to the presence of spices | ÖRNEK: The restaurant offers a spicy chicken sandwich for lunch.

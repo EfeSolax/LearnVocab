@@ -1,0 +1,100 @@
+19958 | serve | verb | A1 | #1/1 | TR: sunmak, hizmet etmek | EN: to provide something for use or consumption; to perform duties for someone or an organization | ÖRNEK: The restaurant will serve breakfast from 7 to 10 a.m.
+20003 | service | noun | B1 | #1/2 | TR: hizmet, yardım | EN: the act of helping or doing work for someone or a group | ÖRNEK: The bank offers free checking account service.
+20004 | service | noun | B2 | #2/2 | TR: bakım, onarım | EN: the routine work of keeping something in good condition | ÖRNEK: The air conditioner requires annual service.
+19962 | serving | noun | B1 | #1/1 | TR: porsiyon, servis | EN: a portion of food or drink that is presented or offered to a person | ÖRNEK: She took a serving of the fruit salad for lunch.
+17422 | session | noun | B1 | #1/1 | TR: oturum, toplantı | EN: a period of time when a group of people meet to discuss or do something | ÖRNEK: The professor scheduled a lab session for Thursday afternoon.
+14588 | set | noun | A2 | #1/2 | TR: küme, takım, set | EN: a group of related objects or items that are considered as a unit | ÖRNEK: She opened the box and found a complete set of kitchen knives.
+14587 | set | noun | B2 | #2/2 | TR: sahne dekoru, film seti | EN: a collection of scenery, props, and equipment used to create a location for a film or theatrical production | ÖRNEK: The director praised the film set for its realistic details.
+14589 | set | verb | B1 | #1/3 | TR: ayarlamak, belirlemek | EN: to adjust or establish something, especially a value, a rule, or a condition | ÖRNEK: The teacher set a clear goal for the class.
+14590 | set | verb | B1 | #2/3 | TR: yerleştirmek, koymak | EN: to put something in a particular position or location | ÖRNEK: Please set the glasses on the tray.
+14591 | set | verb | B2 | #3/3 | TR: başlatmak, tetiklemek | EN: to cause something to begin or to start a process, often by initiating an action | ÖRNEK: The coach set the training session in motion with a warm-up drill.
+20793 | set-up | noun | C1 | #1/1 | TR: düzen, yapılanma, kurulum | EN: the way something is organized or arranged | ÖRNEK: I'm new here and still learning the set-up.
+14598 | setting | noun | B1 | #1/2 | TR: ortam, mekân, zaman | EN: the place or surroundings where something happens or is situated | ÖRNEK: The setting of the novel is a bustling market in Istanbul.
+14599 | setting | noun | B2 | #2/2 | TR: ayar, düzenleme | EN: a collection of options or parameters that determine how a device or program operates | ÖRNEK: The camera's settings include resolution, ISO, and white balance.
+1407 | settle | verb | B1 | #1/2 | TR: yerleşmek, oturmak | EN: to begin living in a place permanently or to become stable in a situation | ÖRNEK: The pioneers settled the new valley in the spring.
+1406 | settle | verb | B2 | #2/2 | TR: çözmek, uzlaşmak | EN: to reach an agreement or resolution about a dispute or problem | ÖRNEK: The manager asked the team to settle the issue quickly.
+1410 | settlement | noun | B2 | #1/3 | TR: anlaşma, uzlaşma | EN: an agreement that ends a dispute or claim | ÖRNEK: The two firms finally reached a settlement.
+1411 | settlement | noun | B1 | #2/3 | TR: yerleşim, topluluk | EN: a place where a group of people establish a community, often with legal recognition | ÖRNEK: The small settlement grew into a bustling town.
+1412 | settlement | noun | B2 | #3/3 | TR: ödeme, tazminat | EN: a sum of money paid to resolve a claim or compensate for loss | ÖRNEK: The airline paid a settlement to the passengers for the delayed flight.
+1413 | settler | noun | B2 | #1/1 | TR: yerleşimci, göçmen yerleşimci, kolonici | EN: a person who moves to a new area and establishes a permanent residence there | ÖRNEK: The first settlers arrived on the island in the early 1600s.
+7396 | severe | adjective | B2 | #1/1 | TR: ciddi, şiddetli | EN: causing great pain, difficulty, or damage; very strict or harsh | ÖRNEK: The doctor warned that the flu could become severe if untreated.
+7397 | severely | adverb | C1 | #1/1 | TR: ciddi bir şekilde, şiddetle | EN: to a great degree; in a serious or harsh manner | ÖRNEK: The storm severely disrupted the flight schedule.
+13797 | sex | noun | A2 | #1/1 | TR: cinsiyet | EN: the classification of a person or animal as male or female based on biological characteristics | ÖRNEK: The census collects data on the sex of each respondent.
+13799 | sexuality | noun | B2 | #1/1 | TR: cinsellik | EN: the quality or state of being sexual; the capacity for sexual feelings, behaviors, and identity. | ÖRNEK: Researchers measured how cultural norms influence sexuality across societies.
+13802 | sexy | adjective | B2 | #1/1 | TR: cazibeli, çekici | EN: sexually attractive or appealing in appearance or manner | ÖRNEK: The model posed in a sexy dress for the magazine.
+2796 | shade | noun | A2 | #1/2 | TR: gölge, karanlık alan | EN: a dark area or shadow produced by an object blocking light | ÖRNEK: The park bench was placed in the shade of a maple tree.
+2797 | shade | noun | B2 | #2/2 | TR: renk tonu, renk geçişi | EN: a particular degree of darkness or a variation of a color | ÖRNEK: The designer selected a soft shade of pink for the bedroom.
+1417 | shadow | noun | A2 | #1/1 | TR: gölge | EN: a dark shape produced by a body coming between rays of light and a surface. | ÖRNEK: The tree's shadow provided cool relief on the hot afternoon.
+1422 | shake | noun | B1 | #1/1 | TR: sarsıntı, titreme | EN: a sudden, short movement back and forth or up and down, often caused by an external force | ÖRNEK: The old bridge gave a slight shake when the truck passed.
+1423 | shake | verb | A2 | #1/2 | TR: titremek | EN: to move quickly up and down or from side to side, usually because of a sudden force or vibration | ÖRNEK: The table shook when the truck passed by.
+1424 | shake | verb | B1 | #2/2 | TR: sallamak | EN: to move something quickly up and down or side to side, often to mix, loosen, or cause it to lose its original position | ÖRNEK: He shook the bottle vigorously to mix the ingredients.
+27274 | shall | modal_verb | A2 | #1/2 | TR: -elim mi? (öneri, teklif) | EN: used with "I" and "we" to make suggestions or offers | ÖRNEK: Shall we go for a walk?
+27275 | shall | modal_verb | A2 | #2/2 | TR: -eceğim, -eceğiz (gelecek; resmî) | EN: used with "I" and "we" to talk about the future (formal) | ÖRNEK: I shall never forget this day.
+8524 | shallow | adjective | B1 | #1/2 | TR: sığ | EN: having little depth; not extending far down from the surface. | ÖRNEK: The stream is shallow enough to cross on foot.
+8525 | shallow | adjective | B2 | #2/2 | TR: yüzeysel | EN: lacking depth of thought, seriousness, or significance; concerned only with superficial aspects. | ÖRNEK: His comments were shallow and did not address the main issue.
+2590 | shame | noun | B1 | #1/1 | TR: utanç | EN: a feeling of guilt, embarrassment, or disgrace caused by a perceived fault or failure | ÖRNEK: She blushed with shame after forgetting his name.
+22351 | shampoo | noun | A2 | #1/1 | TR: şampuan, saç temizleme ürünü | EN: a liquid or gel used for washing hair | ÖRNEK: She bought a new shampoo at the supermarket.
+22352 | shampoo | verb | B1 | #1/1 | TR: saç yıkamak | EN: to wash (someone's) hair with shampoo | ÖRNEK: She shampooed her hair after the workout.
+17445 | shape | noun | A1 | #1/2 | TR: form, biçim, şekil | EN: the external outline or configuration of an object; the way something looks in terms of its contours and dimensions | ÖRNEK: The sculpture's shape is simple yet elegant.
+17446 | shape | noun | B1 | #2/2 | TR: durum, kondisyon, formda olma | EN: the physical condition or fitness of a person or object; how well something functions or performs | ÖRNEK: The athlete stayed in shape by running every morning.
+17447 | shape | verb | B1 | #1/2 | TR: şekillendirmek, biçim vermek | EN: to give a particular form or outline to something | ÖRNEK: She shapes the dough into small rolls before baking.
+17448 | shape | verb | B2 | #2/2 | TR: etkilemek, belirlemek | EN: to influence or determine the development of something | ÖRNEK: Government regulations shape how businesses operate in the market.
+20600 | shaped | adjective | B2 | #1/1 | TR: … biçiminde, şeklinde | EN: having a particular shape | ÖRNEK: She made heart-shaped biscuits.
+15802 | share | noun | B1 | #1/1 | TR: pay, hisse | EN: a part or portion of a whole that is allocated to someone | ÖRNEK: Each student received an equal share of the cake.
+15803 | share | verb | A1 | #1/1 | TR: paylaşmak | EN: to give a portion of something to others or to have something in common with someone | ÖRNEK: She will share the notes with the class tomorrow.
+15806 | shareholder | noun | B2 | #1/1 | TR: hissedar | EN: a person or entity that owns shares in a company | ÖRNEK: The new investor became a shareholder after buying 5,000 shares.
+3016 | shark | noun | B1 | #1/1 | TR: köpekbalığı | EN: a large marine predator fish with a cartilaginous skeleton, known for its sharp teeth and streamlined body | ÖRNEK: A shark swam close to the boat during the morning cruise.
+1431 | sharp | adjective | A2 | #1/3 | TR: keskin, sivri | EN: having a thin edge or point that can cut or pierce easily | ÖRNEK: The surgeon preferred a sharp scalpel for the operation.
+1430 | sharp | adjective | B1 | #2/3 | TR: ani, sert | EN: characterized by a sudden and abrupt change or action | ÖRNEK: The sudden rain caused a sharp drop in temperature.
+1432 | sharp | adjective | B2 | #3/3 | TR: zeki, akıllı | EN: quick to notice, understand, or devise something | ÖRNEK: The professor praised the student's sharp analysis of the data.
+7004 | shatter | verb | B2 | #1/1 | TR: parçalamak, kırmak, paramparça etmek | EN: to break something suddenly into many small pieces | ÖRNEK: The child dropped the vase and it shattered.
+27171 | she | pronoun | A1 | #1/1 | TR: o (kadın) | EN: used to refer to a woman, girl or female animal as the subject of a verb | ÖRNEK: She works in a bank.
+13364 | shed | verb | B1 | #1/2 | TR: bırakmak, dökmek, atmak | EN: to cause something to fall or be released, especially liquid or small particles; to get rid of something unwanted. | ÖRNEK: The child began to shed tears when his toy broke.
+13365 | shed | verb | B2 | #2/2 | TR: yaymak, saçmak | EN: to emit or radiate (light, heat, sound, etc.) from a source. | ÖRNEK: The lighthouse sheds a bright beam across the dark sea.
+3602 | sheep | noun | A2 | #1/1 | TR: koyun | EN: a domesticated ruminant animal with a thick woolly coat, kept for its meat or wool | ÖRNEK: The child watched the sheep graze in the field.
+20794 | sheer | adjective | C1 | #1/2 | TR: tam, saf, düpedüz | EN: used to emphasize how large, strong or complete something is | ÖRNEK: We were amazed by the sheer size of the building.
+20795 | sheer | adjective | C1 | #2/2 | TR: dik, sarp | EN: very steep | ÖRNEK: There was a sheer drop to the sea below.
+2622 | sheet | noun | A2 | #1/3 | TR: yaprak, tabaka, kağıt | EN: a thin, flat piece of paper, often used for writing or printing | ÖRNEK: I need a sheet of paper to write my notes.
+2623 | sheet | noun | A2 | #2/3 | TR: çarşaf, yatak örtüsü | EN: a large piece of fabric used to cover a bed | ÖRNEK: I bought a new sheet for my guest room.
+2624 | sheet | noun | B2 | #3/3 | TR: tabaka, örtü, levha | EN: a large, flat expanse of ice, especially on a body of water | ÖRNEK: A thin sheet of ice covered the lake early this morning.
+2907 | shelf | noun | A2 | #1/1 | TR: raf | EN: a flat, horizontal surface attached to a wall or inside a piece of furniture for storing or displaying items | ÖRNEK: The kitchen has a small shelf above the sink for spices.
+5335 | shell | noun | A2 | #1/3 | TR: koruyucu dış kabuk | EN: the hard outer covering of an animal, egg, or other object that protects the interior | ÖRNEK: The snail carries its shell wherever it goes.
+5334 | shell | noun | B2 | #2/3 | TR: top mermisi, mermi kovanı | EN: a hard, usually metal projectile that contains an explosive charge and is fired from an artillery gun | ÖRNEK: The army stored thousands of shells in the depot for future training.
+5336 | shell | noun | C1 | #3/3 | TR: komut satırı arayüzü | EN: a user interface for access to an operating system's services where commands are typed as text | ÖRNEK: She opened a shell to check the system logs.
+5799 | shelter | noun | B1 | #1/1 | TR: barınak, sığınak | EN: a place that provides protection from weather, danger, or hardship | ÖRNEK: The hikers found shelter under a large pine tree during the rain.
+5801 | shelter | verb | B1 | #1/2 | TR: sığınmak | EN: to take refuge or protection from danger, weather, or other adverse conditions | ÖRNEK: When the rain started, the children quickly sheltered under the school roof.
+5802 | shelter | verb | B2 | #2/2 | TR: korumak, barınak sağlamak | EN: to give someone or something a place of safety or protection | ÖRNEK: The government built new shelters to shelter the displaced families after the flood.
+18036 | shift | noun | B1 | #1/2 | TR: değişim, kayma | EN: a slight change in position, direction, or tendency | ÖRNEK: The shift in the weather made the hike more difficult.
+18037 | shift | noun | A2 | #2/2 | TR: vardiya, iş değişimi | EN: a period of work assigned to a person or group, especially in a schedule that repeats regularly | ÖRNEK: My shift begins at eight o'clock tomorrow.
+18038 | shift | verb | B1 | #1/1 | TR: değişmek, kaymak | EN: to move or cause to move from one place, position, or direction to another; to change in character or condition | ÖRNEK: The temperature shifted quickly as the storm approached.
+2358 | shine | verb | A2 | #1/2 | TR: parlamak, ışık yaymak | EN: to emit light or to be bright with reflected light | ÖRNEK: The stars shine in the clear night sky.
+2359 | shine | verb | B2 | #2/2 | TR: başarılı olmak, öne çıkmak | EN: to perform exceptionally well or to be conspicuously good at something | ÖRNEK: The young pianist shines during the recital.
+2361 | shiny | adjective | A2 | #1/1 | TR: parlak, ışıl ışıl | EN: reflecting light, bright and glossy in appearance | ÖRNEK: The polished floor was shiny and reflected the lights.
+16617 | ship | noun | A1 | #1/2 | TR: gemi | EN: a large watercraft that travels on seas or oceans, typically used for transporting goods or passengers. | ÖRNEK: The ship left the harbor at dawn.
+16618 | ship | noun | C1 | #2/2 | TR: uzay aracı | EN: a spacecraft designed for travel or transport in outer space. | ÖRNEK: The ship carried a crew of four astronauts to the International Space Station.
+16619 | ship | verb | B1 | #1/1 | TR: göndermek, sevk etmek | EN: to send goods or people by ship or other means of transport, especially for commercial purposes | ÖRNEK: The retailer will ship the order tomorrow.
+16622 | shipping | noun | B1 | #1/1 | TR: nakliye, sevkiyat | EN: the process of transporting goods by sea, land, or air, especially in commercial contexts | ÖRNEK: The company offers free shipping for orders over $50.
+17801 | shirt | noun | A2 | #1/1 | TR: gömlek | EN: a piece of clothing for the upper body, typically with sleeves and a collar | ÖRNEK: She bought a new shirt for the upcoming conference.
+1437 | shock | noun | B2 | #1/2 | TR: şok, ani şaşkınlık | EN: a sudden upsetting or surprising event or experience | ÖRNEK: The sudden news gave her a great shock.
+1438 | shock | noun | B1 | #2/2 | TR: elektrik şoku, akım çarpması | EN: a sudden discharge of electricity through a part of the body | ÖRNEK: The technician felt a sharp shock when the circuit was closed.
+1439 | shock | verb | B2 | #1/2 | TR: şaşırtmak, hayret ettirmek | EN: to cause someone to feel sudden surprise or alarm | ÖRNEK: The loud crash shocked the quiet classroom.
+1440 | shock | verb | B2 | #2/2 | TR: şok vermek, elektriksel şok uygulamak | EN: to deliver a sudden electric or physical jolt to someone or something | ÖRNEK: During CPR, they shocked the victim to restore heartbeat.
+1441 | shocked | adjective | B2 | #1/1 | TR: şaşkın, dehşete uğramış | EN: feeling sudden surprise or horror caused by an unexpected event | ÖRNEK: The students were shocked by the professor's unexpected exam.
+1443 | shocking | adjective | B2 | #1/1 | TR: şaşırtıcı, çarpıcı, şok edici | EN: causing great surprise, disgust, or horror; strikingly offensive or unexpected | ÖRNEK: The sudden fire alarm was shocking to everyone in the lecture hall.
+12156 | shoe | noun | A1 | #1/2 | TR: ayakkabı | EN: a covering for the foot, typically made of leather or other material, worn for protection and comfort | ÖRNEK: She slipped on her shoes and ran out the door.
+12157 | shoe | noun | B2 | #2/2 | TR: at nalı | EN: a metal covering nailed to a horse's hoof to protect it from wear | ÖRNEK: The horse lost a shoe on the road.
+15752 | shoot | noun | B2 | #1/2 | TR: filiz, sürgün | EN: the new growth that emerges from a plant, often a small branch or sprout | ÖRNEK: The plant produced a small shoot after the rain.
+15753 | shoot | noun | B2 | #2/2 | TR: film çekimi, sahne çekimi | EN: the process of recording a movie or television scene | ÖRNEK: The movie's final shoot will take place next month.
+15754 | shoot | verb | B1 | #1/3 | TR: ateş etmek, vurmak | EN: to fire a gun or other weapon at a target | ÖRNEK: He can shoot a pistol with great accuracy.
+15755 | shoot | verb | B1 | #2/3 | TR: fotoğraf çekmek | EN: to take a photograph or video of something | ÖRNEK: She will shoot a photo of the sunrise tomorrow.
+15756 | shoot | verb | B2 | #3/3 | TR: filizlenmek, yeni sürgün çıkarmak | EN: to cause a plant to produce new shoots or to grow new shoots | ÖRNEK: The seedlings will shoot after being watered regularly.
+15760 | shooting | noun | B1 | #1/3 | TR: atış, atıcılık | EN: the act of firing a gun or other weapon, especially as a sport or practice. | ÖRNEK: The club organizes weekly shooting sessions for its members.
+15761 | shooting | noun | B2 | #2/3 | TR: film çekimi | EN: the process of recording moving images with a camera, especially for a movie or television program. | ÖRNEK: She worked as a lighting technician during the shooting of the commercial.
+15762 | shooting | noun | C1 | #3/3 | TR: silahlı saldırı, silahlı çatışma | EN: an incident in which one or more people are shot, often resulting in injuries or fatalities. | ÖRNEK: Police arrived at the scene minutes after the shooting was reported.
+20187 | shop | noun | A2 | #1/1 | TR: mağaza, dükkan | EN: a place where goods are sold to the public | ÖRNEK: The shop on the corner sells fresh fruit and vegetables.
+20188 | shop | verb | A2 | #1/1 | TR: alışveriş yapmak, mağazada alışveriş yapmak | EN: to visit stores or an online site in order to buy goods or services | ÖRNEK: I usually shop for clothes on Saturday mornings.
+20190 | shopper | noun | B1 | #1/1 | TR: alışveriş yapan kişi | EN: a person who visits stores or markets to buy goods | ÖRNEK: The shopper bought a loaf of bread and some fruit.
+20191 | shopping | noun | A2 | #1/1 | TR: alışveriş | EN: the activity of buying goods and services, typically in stores or online | ÖRNEK: She enjoys shopping for clothes on the weekend.
+27391 | shopping mall | noun | A1 | #1/1 | TR: alışveriş merkezi, AVM | EN: a large building with many shops inside | ÖRNEK: Let's meet at the shopping mall.
+2231 | shore | noun | B1 | #1/1 | TR: kıyı, sahil | EN: the land along the edge of a sea, lake, or other body of water | ÖRNEK: The children built sandcastles on the shore during summer vacation.
+3701 | short | adjective | A2 | #1/1 | TR: kısa | EN: having a small length or distance | ÖRNEK: The table is short, so you can sit comfortably on the floor.

@@ -1,0 +1,100 @@
+13050 | jeering | noun | B2 | #1/1 | TR: alay etme, alaycı davranış | EN: the act of mocking or making derisive remarks toward someone or something | ÖRNEK: The jeering from the audience made the presenter nervous.
+12816 | jelly | noun | A2 | #1/1 | TR: jöle, meyve jölesi | EN: a sweet, gelatinous dessert made from fruit juice and sugar, often set in a mold | ÖRNEK: The children love eating strawberry jelly after school.
+25396 | jeopardize | verb | C1 | #1/1 | TR: tehlikeye atmak, riske sokmak | EN: to put something or someone at risk of loss, damage, or failure | ÖRNEK: The storm could jeopardize the coastal town's power supply.
+23286 | jeopardy | noun | B2 | #1/1 | TR: tehlike, risk | EN: the state of being in danger or at risk of loss, harm, or failure. | ÖRNEK: The flood put the town's infrastructure in jeopardy.
+5825 | jerk | noun | B1 | #1/3 | TR: ani hareket, sarsıntı | EN: a sudden, sharp movement or pull | ÖRNEK: The train lurched forward with a sharp jerk.
+5826 | jerk | noun | B1 | #2/3 | TR: kaba, saygısız kişi | EN: a person who behaves in a rude, insensitive, or obnoxious manner | ÖRNEK: She called him a jerk after he cut in line.
+5827 | jerk | noun | B2 | #3/3 | TR: jamaika usulü baharatlı yemek | EN: a style of Caribbean cooking that uses a spicy seasoning blend, often applied to meat such as chicken | ÖRNEK: The chef prepared a plate of jerk chicken for the guests.
+5828 | jerk | verb | B1 | #1/1 | TR: birden çekmek, sarsmak, silkmek | EN: to pull or move something suddenly and sharply | ÖRNEK: He jerked the handle and the drawer popped open.
+5829 | jerky | adjective | B2 | #1/1 | TR: ani, kesik, sarsıntılı | EN: characterized by sudden, irregular movements or changes | ÖRNEK: The old elevator made a jerky climb up the building.
+9743 | jest | verb | C1 | #1/1 | TR: şaka yapmak | EN: to make a joke or act in a humorous way | ÖRNEK: He likes to jest with his classmates during breaks.
+9744 | jester | noun | B2 | #1/1 | TR: soytarı, şakacı | EN: a professional entertainer who jokes and performs tricks, especially in a medieval court | ÖRNEK: The jester made the audience laugh with his jokes.
+2935 | jet | verb | B1 | #1/2 | TR: fışkırmak, sıçramak | EN: to forcefully gush or spurt out, especially a liquid or gas, in a sudden stream | ÖRNEK: The fountain jets water into the air during the festival.
+2936 | jet | verb | B2 | #2/2 | TR: jet ile seyahat etmek, jetle uçmak | EN: to travel by means of a jet aircraft, especially for fast transportation | ÖRNEK: The CEO will jet to London for the merger talks tomorrow.
+27457 | jet lag | noun | B2 | #1/1 | TR: jet lag, saat farkı yorgunluğu | EN: the tired feeling after a long flight to a place with a different time | ÖRNEK: I still have jet lag from my trip.
+9938 | jewel | noun | B1 | #1/1 | TR: mücevher | EN: a precious stone that has been cut and polished for use in ornaments or jewelry | ÖRNEK: The necklace was adorned with a single sparkling jewel.
+9940 | jeweled | adjective | B2 | #1/1 | TR: mücevherli, taşlı | EN: adorned with jewels or precious stones | ÖRNEK: The actress wore a jeweled bracelet on the red carpet.
+9941 | jeweler | noun | B2 | #1/1 | TR: kuyumcu | EN: a person who makes, sells, or repairs jewelry | ÖRNEK: The jeweler examined the diamond carefully before pricing it.
+25397 | jig | noun | B1 | #1/2 | TR: hızlı, ritmik dans | EN: a lively folk dance performed to fast music, often with a characteristic hopping step | ÖRNEK: The children learned a simple jig in their music class.
+25399 | jig | verb | C1 | #1/1 | TR: jig dansı yapmak, hızlı sallanmak | EN: to dance to a jig or to move up and down quickly in a lively manner | ÖRNEK: The folk band played, and the crowd began to jig.
+25400 | jigsaw | noun | B1 | #1/1 | TR: yapboz, birleştirerek tamamlanan bulmaca | EN: a puzzle consisting of many small, irregularly shaped pieces that must be fitted together to form a picture or pattern | ÖRNEK: The child enjoys putting together a simple jigsaw puzzle with bright colors.
+24359 | jingle | noun | B2 | #1/2 | TR: çıngırtı, şıngırtı | EN: a light, ringing sound, often made by small metal objects striking each other | ÖRNEK: The jingle of the bicycle bell warned pedestrians of his approach.
+24360 | jingle | noun | B1 | #2/2 | TR: kısa, akılda kalıcı melodi | EN: a short, catchy piece of music used in advertising or as a signature tune | ÖRNEK: The brand's jingle played on the radio every morning.
+24361 | jingle | verb | B1 | #1/1 | TR: çınlamak, çan sesleri çıkarmak | EN: to make a light ringing sound, especially repeatedly or when something metallic is moved | ÖRNEK: The little girl likes to jingle the keys when she is excited.
+25402 | jinx | verb | B2 | #1/1 | TR: kötü şans getirmek | EN: to cause someone or something to have bad luck | ÖRNEK: He laughed and said the broken glass would jinx anyone who steps over it.
+15347 | jobless | adjective | B1 | #1/1 | TR: işsiz | EN: without a paid job; not employed | ÖRNEK: He has been jobless since the company went bankrupt.
+21880 | jockey | noun | B2 | #1/1 | TR: jokey | EN: a person who rides horses in races, especially as a profession | ÖRNEK: The jockey rode the thoroughbred with great skill.
+21881 | jockey | verb | B2 | #1/1 | TR: manevra yapmak, çekişmek, yarışmak | EN: to maneuver or manipulate a situation, especially to gain an advantage or a better position. | ÖRNEK: He jockeyed for a better seat in the meeting.
+11144 | jogger | noun | B1 | #1/1 | TR: koşucu | EN: a person who runs at a steady, moderate pace as a form of exercise | ÖRNEK: The local community center offers a group for beginner joggers.
+19795 | join | noun | B2 | #1/1 | TR: ek yeri, birleşme noktası | EN: a point or place where two or more things are connected or fastened together | ÖRNEK: The carpenter inspected the join before applying glue.
+26498 | join in | phrasal_verb | B1 | #1/1 | TR: katılmak, eşlik etmek | EN: to take part in an activity with other people | ÖRNEK: Everyone joined in the singing.
+19799 | joinery | noun | B2 | #1/1 | TR: ahşap işçiliği, marangozluk | EN: the craft or trade of constructing wooden components and fittings, especially for furniture or building structures | ÖRNEK: She measured the timber before starting the joinery work.
+19800 | jointed | adjective | B2 | #1/1 | TR: eklemli, eklemli yapıdaki | EN: having joints or segments; consisting of separate parts that are connected by joints. | ÖRNEK: The robot arm is jointed with flexible connectors.
+19801 | jointly | adverb | B2 | #1/1 | TR: ortak olarak, birlikte | EN: together with one or more other parties, sharing responsibility or ownership | ÖRNEK: The partners jointly manage the small family bakery.
+21882 | joker | noun | B1 | #1/2 | TR: şaka yapan kişi | EN: a person who tells jokes or makes humorous remarks | ÖRNEK: The joker told a quick joke at the party.
+21883 | joker | noun | B1 | #2/2 | TR: joker kartı | EN: a special playing card that can substitute for any other card | ÖRNEK: The joker can replace any missing card in the hand.
+17598 | jokester | noun | B1 | #1/1 | TR: şakacı, espri yapan kişi | EN: a person who tells jokes or behaves in a humorous way | ÖRNEK: The new student is a jokester who makes everyone laugh.
+17599 | jokey | adjective | B2 | #1/1 | TR: şakacı, esprili | EN: having the quality of a joke; not serious; humorous | ÖRNEK: She told a jokey story that made everyone laugh.
+25403 | joking | adjective | B1 | #1/1 | TR: şaka yollu, şaka niteliğinde | EN: characterized by making jokes or speaking in a humorous way | ÖRNEK: He made a joking remark during the meeting.
+21884 | jokingly | adverb | B1 | #1/1 | TR: şakayla, şakasına, şakayla karışık | EN: in a manner that is intended to be humorous or not serious | ÖRNEK: He answered the question jokingly, making everyone smile.
+8183 | jolly | adjective | B1 | #1/1 | TR: neşeli, şen | EN: happy and full of good spirits; showing a lively, cheerful disposition | ÖRNEK: The children were jolly during the birthday party, laughing and playing games.
+11810 | jolt | noun | B1 | #1/1 | TR: ani şok, sarsıntı | EN: a sudden, brief movement or shock that causes a rapid change in position or feeling | ÖRNEK: The car hit a pothole and gave me a jolt.
+11812 | jolting | adjective | B2 | #1/1 | TR: sarsıcı, ani | EN: causing a sudden shock or abrupt movement | ÖRNEK: The unexpected thunderclap was jolting to the quiet crowd.
+15068 | jostling | noun | B1 | #1/1 | TR: itme, itiş, sıkışık hareket | EN: the act of pushing, shoving, or bumping against someone or something, especially in a crowded place | ÖRNEK: The commuters felt the jostling as the train entered the station.
+15007 | jot | verb | C1 | #1/1 | TR: kısa not almak, hızlıca yazmak | EN: to write something quickly and briefly, often as a reminder | ÖRNEK: I jotted the meeting time on a sticky note.
+26855 | jot down | phrasal_verb | B2 | #1/1 | TR: (hızlıca) not almak, karalamak | EN: to write something quickly | ÖRNEK: Let me jot down your number.
+15008 | jotting | noun | C1 | #1/1 | TR: kısa not | EN: a brief written note or record, often made quickly to capture an idea or piece of information | ÖRNEK: During the meeting, Mark made a jotting of the main decisions.
+9101 | journal | verb | B1 | #1/1 | TR: günlük tutmak | EN: to write or keep a personal record of events, thoughts, or experiences | ÖRNEK: She journals every night before she goes to sleep.
+17698 | journey | verb | B1 | #1/1 | TR: seyahat etmek | EN: to travel from one place to another, especially over a long distance | ÖRNEK: I will journey to the city tomorrow morning.
+1009 | joyful | adjective | B1 | #1/1 | TR: sevinçli, neşeli | EN: feeling, expressing, or causing great happiness or delight | ÖRNEK: The children were joyful as they opened their birthday gifts.
+1010 | joyfully | adverb | B1 | #1/1 | TR: sevinçle, neşeyle | EN: in a manner that shows great happiness or delight | ÖRNEK: She smiled joyfully when she saw her old friend.
+1011 | joyous | adjective | B1 | #1/1 | TR: sevinçli, neşeli | EN: feeling or showing great happiness and delight | ÖRNEK: The children felt joyous when they opened their birthday presents.
+18408 | judgment | noun | B2 | #1/2 | TR: kişisel görüş, kanaat | EN: an opinion or assessment formed after considering facts or circumstances | ÖRNEK: Her judgment about the project's feasibility was spot on.
+18407 | judgment | noun | B2 | #2/2 | TR: hukuki karar, mahkeme kararı | EN: a formal decision made by a court or a judge in a legal case | ÖRNEK: The court issued its judgment on Monday.
+18412 | judicious | adjective | B2 | #1/1 | TR: akıllıca, sağduyulu | EN: showing good judgment, wisdom, and sense in making decisions or choices | ÖRNEK: The manager praised her for the judicious handling of the client complaint.
+24362 | judo | noun | B1 | #1/1 | TR: judo | EN: a modern Japanese martial art focused on throws and grappling | ÖRNEK: She started judo when she was ten years old.
+13264 | jug | noun | C2 | #2/2 | TR: hapishane | EN: slang term for a prison or jail | ÖRNEK: After the trial, the thief was sent to the jug for burglary.
+14497 | juggle | verb | B2 | #1/1 | TR: birden çok işi idare etmek, hokkabazlık yapmak | EN: to manage several tasks or responsibilities at the same time | ÖRNEK: She juggles her studies and a part-time job.
+14499 | juggling | noun | B2 | #1/1 | TR: birden fazla işi idare etme, aynı anda yürütme | EN: the act of handling several tasks or responsibilities at the same time | ÖRNEK: The CEO was praised for juggling several high-profile projects.
+11230 | juice | verb | B1 | #1/1 | TR: sıkmak, sıkılmış suyu çıkarmak | EN: to extract the liquid from fruit or vegetables by pressing or squeezing | ÖRNEK: She juiced an apple to make a healthy drink.
+11231 | juicer | noun | B1 | #1/1 | TR: meyve sıkacağı | EN: a device used to extract juice from fruits or vegetables | ÖRNEK: I bought a new juicer to make fresh apple juice at home.
+11232 | juicy | adjective | B1 | #1/1 | TR: sulu, lezzetli | EN: containing a lot of juice; moist and flavorful, especially when describing food. | ÖRNEK: The apple she ate was juicy and sweet.
+23289 | jumbo | adjective | B1 | #1/1 | TR: çok büyük | EN: of unusually large size; larger than normal or expected | ÖRNEK: The supermarket sells jumbo bags of rice for families.
+26988 | jump at | phrasal_verb | C1 | #1/1 | TR: (fırsatı) hemen kabul etmek, kaçırmamak | EN: to accept an opportunity quickly and eagerly | ÖRNEK: She jumped at the chance to study abroad.
+26499 | jump in | phrasal_verb | B2 | #1/1 | TR: (konuşmaya) atılmak, araya girmek | EN: to interrupt a conversation | ÖRNEK: Can I jump in here?
+17549 | jumping | noun | B1 | #1/1 | TR: atlama, sıçrama | EN: the action of springing off the ground or moving suddenly, often used to describe a physical activity or a sudden change in position | ÖRNEK: Kids often practice jumping rope during recess at school.
+9573 | junior | noun | B1 | #2/2 | TR: üçüncü sınıf öğrencisi | EN: a student in the third year of a four-year high school or college program | ÖRNEK: My brother is a junior at the local university.
+25404 | juniper | noun | B2 | #1/1 | TR: ardıç | EN: a coniferous evergreen shrub or small tree of the genus Juniperus, often used for ornamental planting or timber | ÖRNEK: The park ranger identified the plant as a juniper.
+14220 | junk | noun | B1 | #1/1 | TR: çöp, atık, hurda | EN: unwanted or discarded material, especially waste that is of little value | ÖRNEK: The street was littered with junk after the festival.
+14221 | junk | verb | B1 | #1/1 | TR: atmak, çöp atmak, hurdaya ayırmak | EN: to discard something as worthless or of no use | ÖRNEK: She junked the cheap plastic toys after cleaning the garage.
+24363 | junkie | noun | B2 | #1/1 | TR: bağımlı, uyuşturucu bağımlısı | EN: a person who is addicted to drugs, especially heroin | ÖRNEK: He met a junkie in the park who asked for money.
+24364 | junta | noun | C1 | #1/1 | TR: askeri yönetim, darbe yönetimi | EN: a group of military officers who rule a country after taking power by force | ÖRNEK: The junta announced new curfews across the city.
+23291 | juridical | adjective | C1 | #1/1 | TR: hukuki, yasal | EN: relating to the law or the administration of justice | ÖRNEK: The university offers a course on juridical language for law students.
+23292 | jurisdictional | adjective | C1 | #1/1 | TR: yargı yetkisine ait | EN: relating to the authority of a court or legal body to make decisions and enforce laws within a specific area | ÖRNEK: The judge clarified the jurisdictional scope of the new law.
+23293 | jurisprudence | noun | C1 | #1/1 | TR: hukuk bilimi, hukuk felsefesi | EN: the study or theory of law, especially the philosophical and theoretical aspects of legal systems | ÖRNEK: The professor introduced basic jurisprudence in the first lecture.
+23294 | jurist | noun | C1 | #1/1 | TR: hukukçu, hukuk bilimi uzmanı | EN: a person who is an expert in law or who studies, interprets, and applies legal principles | ÖRNEK: The jurist explained the new regulation to the committee.
+1019 | justifiably | adverb | C1 | #1/1 | TR: haklı bir şekilde, meşru olarak | EN: in a way that is shown to be right or reasonable | ÖRNEK: The teacher's criticism was justifiably harsh given the student's plagiarism.
+1021 | justified | adjective | B2 | #1/1 | TR: gerekçeli, haklı | EN: shown or proven to be right or reasonable; having a valid reason or basis | ÖRNEK: Her protest was justified because the company ignored safety standards.
+1024 | justly | adverb | B2 | #1/1 | TR: adilce, adil bir şekilde, hakkaniyetle | EN: in a fair or morally right manner; according to what is just or deserved | ÖRNEK: The teacher graded the exams justly, giving each student the score they earned.
+11331 | juvenile | adjective | B2 | #1/2 | TR: çocuksu, olgunlaşmamış | EN: describing behavior that is childish or lacking maturity | ÖRNEK: The student made a juvenile comment during the meeting.
+11333 | juvenile | noun | B2 | #1/1 | TR: ergen, genç, çocuk | EN: a young person who has not yet reached adulthood | ÖRNEK: The school counselor works with many juveniles each semester.
+27422 | kangaroo | noun | A2 | #1/1 | TR: kanguru | EN: a large Australian animal that jumps on its strong back legs | ÖRNEK: Kangaroos carry their babies in a pouch.
+23295 | karate | noun | B1 | #1/1 | TR: karate | EN: a Japanese martial art that emphasizes striking techniques using punches, kicks, knee strikes, and open-hand blows | ÖRNEK: She joined a karate club to stay active.
+21885 | karma | noun | B2 | #1/1 | TR: karma | EN: the sum of a person's actions in this and previous lives, believed to determine their fate | ÖRNEK: She practices meditation to improve her karma.
+21886 | karmic | adjective | B2 | #1/1 | TR: karmaya ait, karmayla ilgili | EN: relating to the law of karma; indicating that something is a result of one's actions in past lives or earlier circumstances. | ÖRNEK: Many people think that good deeds create positive karmic consequences.
+7626 | keel | noun | B2 | #1/1 | TR: omurga | EN: the central structural backbone of a ship that runs along the bottom of the hull | ÖRNEK: The boat's keel keeps it from capsizing in strong winds.
+3655 | keenness | noun | B2 | #1/2 | TR: istek, heves, coşku | EN: the quality of being eager or enthusiastic about something | ÖRNEK: She felt a strong keenness to travel after reading the brochure.
+15212 | keep | noun | B1 | #1/2 | TR: geçim, masraf | EN: the amount of money required to maintain a standard of living or to cover ongoing expenses | ÖRNEK: Her scholarship covered most of the keep, but she still needed a part-time job.
+26989 | keep at | phrasal_verb | C1 | #1/1 | TR: (bir işe) azimle devam etmek | EN: to continue working hard at something | ÖRNEK: Keep at it and you'll succeed.
+26500 | keep away | phrasal_verb | B1 | #1/1 | TR: uzak durmak, uzak tutmak | EN: to not go near someone or something, or to stop someone going near | ÖRNEK: Keep away from the fire!
+26990 | keep back | phrasal_verb | B2 | #1/2 | TR: (bilgiyi) saklamak, söylememek | EN: to not tell someone something | ÖRNEK: I think she's keeping something back.
+26991 | keep back | phrasal_verb | B2 | #2/2 | TR: uzak durmak, geride durmak | EN: to stay away from something | ÖRNEK: Keep back from the edge of the platform.
+26992 | keep down | phrasal_verb | B2 | #1/1 | TR: (düşük seviyede) tutmak | EN: to stop something from increasing | ÖRNEK: We must keep costs down.
+26993 | keep from | phrasal_verb | B2 | #1/2 | TR: -den alıkoymak, engellemek | EN: to prevent someone from doing something | ÖRNEK: The noise kept me from sleeping.
+26994 | keep from | phrasal_verb | B2 | #2/2 | TR: (birinden) saklamak, gizlemek | EN: to not tell someone something | ÖRNEK: He kept the bad news from his parents.
+26501 | keep in | phrasal_verb | B1 | #1/1 | TR: içeride tutmak, (dışarı) çıkarmamak | EN: to make someone stay inside | ÖRNEK: The teacher kept us in after school.
+26502 | keep off | phrasal_verb | B1 | #1/1 | TR: (üstüne) basmamak, uzak durmak | EN: to not go onto an area | ÖRNEK: Keep off the grass.
+26503 | keep on | phrasal_verb | B1 | #1/1 | TR: -e devam etmek, durmadan yapmak | EN: to continue doing something, or to do something many times | ÖRNEK: She kept on asking questions.
+26504 | keep out | phrasal_verb | B1 | #1/1 | TR: içeri girmemek, içeri sokmamak | EN: to not enter a place, or to prevent someone from entering | ÖRNEK: The sign said "Danger – keep out".
+26995 | keep to | phrasal_verb | B2 | #1/2 | TR: (kurala, plana) uymak | EN: to do what you have promised or planned | ÖRNEK: We must keep to the plan.
+26996 | keep to | phrasal_verb | B2 | #2/2 | TR: (konudan) ayrılmamak | EN: to not move away from a subject or path | ÖRNEK: Keep to the point, please.

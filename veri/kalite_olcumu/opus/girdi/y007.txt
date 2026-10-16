@@ -1,0 +1,100 @@
+16657 | band | noun | A2 | #1/2 | TR: müzik grubu | EN: a group of musicians who play together, especially rock or pop music | ÖRNEK: The band played loudly in the school auditorium.
+16658 | band | noun | B1 | #2/2 | TR: şerit, bant | EN: a long, thin piece of material, often flexible, used for binding, fastening, or decoration | ÖRNEK: He stretched a rubber band to launch the toy car.
+15920 | bank | noun | A1 | #1/2 | TR: banka, finans kurumu | EN: a financial institution that accepts deposits and provides loans and other financial services | ÖRNEK: I need to visit the bank to withdraw cash.
+15921 | bank | noun | B1 | #2/2 | TR: nehir kıyısı, sahil | EN: the land alongside a river or stream | ÖRNEK: We set up a tent on the bank of the river.
+15925 | banker | noun | B2 | #1/1 | TR: bankacı | EN: a person who works in a bank, managing financial transactions and services | ÖRNEK: The banker opened a savings account for the student.
+15926 | banking | noun | B2 | #1/1 | TR: bankacılık, finansal hizmetler | EN: the business of accepting deposits, lending money, and providing other financial services | ÖRNEK: Local banks provide essential banking services to small businesses.
+11637 | banner | noun | B1 | #1/2 | TR: afiş, pankart | EN: a large piece of cloth or paper bearing a slogan, advertisement, or design, displayed in a public place | ÖRNEK: The school displayed a colorful banner for the graduation ceremony.
+11638 | banner | noun | B2 | #2/2 | TR: bayrak, flama, sancak | EN: a long piece of cloth bearing a symbol, used as a flag or emblem representing a group, nation, or organization | ÖRNEK: The city square displayed a banner with the country's coat of arms.
+20391 | bar | noun | A2 | #1/2 | TR: bar | EN: a place where people buy and drink drinks | ÖRNEK: We met at a small bar near the beach.
+20392 | bar | noun | A2 | #2/2 | TR: kalıp, çubuk | EN: a long, narrow piece of something hard, such as chocolate or metal | ÖRNEK: He ate a bar of chocolate.
+11248 | bar | verb | B1 | #1/1 | TR: engellemek, yasaklamak | EN: to prevent someone from doing something or to prohibit the use of something | ÖRNEK: The teacher barred the students from leaving the classroom early.
+21303 | barbecue | noun | B1 | #1/1 | TR: ızgara et, mangal | EN: a cooking method that involves grilling meat over an open fire or hot coals, and the food prepared in this way | ÖRNEK: The family gathered around the grill for a weekend barbecue.
+21304 | barbecue | verb | B1 | #1/1 | TR: ızgara yapmak, mangal yapmak | EN: to cook food on a grill over an open fire or hot coals | ÖRNEK: We barbecue burgers in the backyard every summer.
+3448 | bare | adjective | B1 | #1/2 | TR: örtüsüz, çıplak | EN: without covering, clothing, or addition; exposed to view. | ÖRNEK: She walked barefoot on the beach, feeling the sand against her bare feet.
+3449 | bare | adjective | B1 | #2/2 | TR: asgari, en temel, sırf | EN: only; no more than; used to emphasize a small amount or degree. | ÖRNEK: The team scored a bare win, edging out their rivals by a single point.
+3451 | barely | adverb | B1 | #1/1 | TR: zar zor, ancak | EN: only just; almost not | ÖRNEK: He barely finished his homework before the deadline.
+9872 | bargain | noun | A2 | #1/2 | TR: fırsat, ucuz ürün | EN: something bought or offered at a price lower than its usual value; a good deal | ÖRNEK: The market offers many bargains for fresh produce.
+9871 | bargain | noun | B2 | #2/2 | TR: anlaşma, sözleşme | EN: an agreement between two or more parties, especially one that is formally recorded or legally binding | ÖRNEK: The parties signed a bargain that would last for ten years.
+8073 | barrel | noun | B1 | #1/2 | TR: varil, fıçı | EN: a cylindrical container, traditionally made of wood or metal, used for storing liquids such as oil, wine, or water | ÖRNEK: The farmer placed a wooden barrel on the porch to collect rainwater.
+8074 | barrel | noun | B2 | #2/2 | TR: silah namlusu | EN: the long, tubular part of a firearm through which a projectile travels when fired | ÖRNEK: The soldier inspected the barrel of his rifle before the mission.
+11249 | barrier | noun | B1 | #1/1 | TR: engel, engel unsur | EN: a physical structure that blocks or restricts movement or passage | ÖRNEK: A fence can act as a barrier to keep pets inside the yard.
+19477 | base | noun | A2 | #1/2 | TR: taban, alt kısım | EN: the bottom part of something that supports it | ÖRNEK: The lamp sits on a small wooden base.
+19478 | base | noun | B1 | #2/2 | TR: askeri üs | EN: a location where military forces are stationed and operate from | ÖRNEK: The army constructed a new base on the hill.
+19479 | base | verb | B2 | #1/1 | TR: dayandırmak, temellendirmek, konuşlandırmak | EN: to establish something as a base or foundation for further development or operation | ÖRNEK: The school will base its new curriculum on recent educational research.
+14601 | baseball | noun | A1 | #1/1 | TR: beyzbol | EN: a team sport played with a bat and ball on a diamond-shaped field, where two teams of nine players each try to score runs by hitting the ball and running around four bases. | ÖRNEK: He plays baseball with his friends after school.
+19480 | based | adjective | A2 | #1/2 | TR: yerleşik, merkezli | EN: situated or having its main location in a particular place | ÖRNEK: The headquarters is based in Tokyo.
+19481 | based | adjective | B2 | #2/2 | TR: dayalı, temellendirilmiş | EN: derived from or founded on something; having a basis in a particular source | ÖRNEK: The report is based on recent survey results.
+19483 | basement | noun | B1 | #1/1 | TR: bodrum | EN: the floor of a building that is below ground level | ÖRNEK: The children played games in the basement after school.
+20184 | basic | adjective | A1 | #1/2 | TR: temel, esas | EN: relating to the essential or fundamental principles of something | ÖRNEK: Understanding basic grammar is essential for clear writing.
+20185 | basic | adjective | A2 | #2/2 | TR: basit, sade | EN: simple and not elaborate; lacking complexity | ÖRNEK: The recipe calls for basic ingredients like flour and sugar.
+20186 | basically | adverb | B1 | #1/1 | TR: temelde, esasen | EN: to a great extent; in essence; used to introduce a simplified statement of a complex idea | ÖRNEK: The experiment basically shows a clear correlation between temperature and pressure.
+9304 | basin | noun | B1 | #1/1 | TR: çanak, havuz, lavabo | EN: a bowl-shaped container or a natural depression that holds water or other liquids | ÖRNEK: The kitchen sink has a small wash basin for hand washing.
+20195 | basis | noun | B2 | #1/1 | TR: temel, esas | EN: the underlying support or foundation for an idea, argument, or system | ÖRNEK: The basis of the math problem is simple addition.
+5981 | basket | noun | A2 | #1/1 | TR: sepet | EN: a container, typically made of woven material, used for holding or carrying items | ÖRNEK: She bought a wicker basket at the market.
+18080 | basketball | noun | A1 | #1/1 | TR: basketbol | EN: a team sport in which two teams try to score points by throwing a ball through the opponent's elevated hoop | ÖRNEK: The children gathered at the park to play basketball after school.
+19065 | bat | noun | B1 | #1/2 | TR: yarasa | EN: a nocturnal flying mammal of the order Chiroptera | ÖRNEK: A bat flew silently over the lake at dusk.
+19066 | bat | noun | A2 | #2/2 | TR: sopa, raket | EN: a smooth wooden or metal club used in sports such as baseball and cricket to hit a ball | ÖRNEK: He bought a new bat for the upcoming baseball season.
+19067 | bat | verb | B1 | #1/2 | TR: vurmak, çarpmak | EN: to strike something, especially a ball, with a bat or similar implement | ÖRNEK: The child learned how to bat the ball during recess.
+19068 | bat | verb | B2 | #2/2 | TR: gözlerini kırpıştırmak, kirpik kırpmak | EN: to flutter or move the eyelids quickly, often expressed as 'bat one's eyes' | ÖRNEK: She batted her eyes to signal that she understood.
+3321 | bath | noun | A1 | #1/2 | TR: küvet, banyo | EN: a container or room for washing the body, typically containing water | ÖRNEK: I filled the bath with hot water and relaxed.
+3322 | bath | noun | B1 | #2/2 | TR: hamam, kaplıca | EN: a public place where people go to bathe, often for relaxation or therapeutic purposes | ÖRNEK: The ancient city has a famous public bath that attracts many visitors.
+3323 | bath | verb | B1 | #1/1 | TR: banyo yapmak, yıkanmak | EN: to wash oneself by immersing the body in water, typically in a tub or shower | ÖRNEK: She will bath before the meeting tomorrow.
+23938 | bathe | verb | A2 | #1/1 | TR: yıkanmak, duş almak | EN: to wash oneself or another person by immersing in water or applying water to the body | ÖRNEK: I bathe every morning before work.
+20281 | bathroom | noun | A1 | #1/1 | TR: banyo | EN: a room with a bath or shower, a washbasin and often a toilet | ÖRNEK: Our flat has two bathrooms.
+22745 | bathtub | noun | A2 | #1/1 | TR: küvet | EN: a large container for holding water in which a person may bathe | ÖRNEK: I bought a new bathtub for the bathroom last weekend.
+10278 | battery | noun | A1 | #1/1 | TR: pil, akü | EN: a device that stores electrical energy for later use | ÖRNEK: My phone's battery died during the meeting.
+14671 | battle | noun | A2 | #1/2 | TR: savaş, muharebe | EN: a large, organized armed conflict between two or more opposing forces | ÖRNEK: The soldiers prepared for battle early in the morning.
+14672 | battle | noun | B1 | #2/2 | TR: mücadele, çaba | EN: a prolonged struggle or effort to achieve something, often against difficulties | ÖRNEK: He sees every project as a battle to improve his skills.
+14673 | battle | verb | B2 | #1/1 | TR: savaşmak, mücadele etmek | EN: to engage in a fight or struggle, especially a prolonged or intense one, often against an opponent or a difficult situation | ÖRNEK: The team will battle the rival school in the regional tournament next week.
+14674 | battlefield | noun | B2 | #1/1 | TR: savaş alanı | EN: an area where armed forces engage in combat | ÖRNEK: The soldiers marched toward the battlefield at dawn.
+17385 | bay | noun | B1 | #1/1 | TR: körfez | EN: a broad inlet of the sea where the land curves inward | ÖRNEK: The small fishing village sits on a calm bay.
+20282 | be | verb | A1 | #1/2 | TR: olmak | EN: used to say who or what someone or something is, or to describe them | ÖRNEK: I am a student.
+20283 | be | verb | A1 | #2/2 | TR: bulunmak, olmak (yer) | EN: used to say where someone or something is | ÖRNEK: My keys are on the table.
+16646 | beach | noun | A2 | #1/1 | TR: kumsal | EN: a pebbly or sandy shore of a sea, lake, or river | ÖRNEK: The children built sandcastles on the beach during their holiday.
+441 | beam | noun | B1 | #1/2 | TR: ışın, ışık demeti | EN: a narrow line of light emitted from a source or reflected from a surface | ÖRNEK: The flashlight produced a thin beam in the night.
+442 | beam | noun | B2 | #2/2 | TR: kiriş | EN: a long, sturdy piece of timber, metal, or concrete used to support weight in a building or bridge | ÖRNEK: The old house needed a new beam to hold the attic floor.
+11668 | bean | noun | A2 | #1/2 | TR: fasulye | EN: the seed or pod of certain leguminous plants, used as food | ÖRNEK: I bought a bag of dried beans at the market.
+11669 | bean | noun | B1 | #2/2 | TR: çekirdek, tohum | EN: the seed of the coffee plant, roasted and ground to make coffee | ÖRNEK: He bought a sack of coffee beans for his espresso machine.
+10195 | bear | noun | B1 | #1/1 | TR: ayı | EN: a large, heavy mammal with thick fur, a short tail, and a plant-based or omnivorous diet | ÖRNEK: A bear roamed across the forest trail near the campsite.
+10196 | bear | verb | B1 | #1/3 | TR: katlanmak, dayanmak | EN: to endure or tolerate something difficult or unpleasant | ÖRNEK: The child tried to bear the loud noise in the classroom.
+10197 | bear | verb | B2 | #2/3 | TR: taşımak, bir yere götürmek | EN: to carry or support something, especially a weight or load | ÖRNEK: Students often bear heavy textbooks in their backpacks.
+10198 | bear | verb | B2 | #3/3 | TR: doğurmak, bir çocuk sahibi olmak | EN: to give birth to offspring; to produce or bring forth | ÖRNEK: Many mammals bear offspring during the spring season.
+3936 | beard | noun | A2 | #1/1 | TR: sakal | EN: the hair that grows on the chin and cheeks of a man's face | ÖRNEK: He grew a beard during his gap year abroad.
+2004 | beast | noun | B2 | #1/1 | TR: canavar, vahşi hayvan | EN: a large, dangerous animal; a creature that is considered frightening or monstrous | ÖRNEK: The zoo has a big beast called a lion.
+6828 | beat | noun | A2 | #1/2 | TR: ritim, ölçü | EN: a regular rhythmic unit in music or poetry | ÖRNEK: The song has a simple beat that is easy to follow.
+6829 | beat | noun | B1 | #2/2 | TR: vuruş, darbe | EN: a single strike or blow, especially with a hand or an instrument | ÖRNEK: A sudden beat on the door startled everyone in the hallway.
+6830 | beat | verb | A2 | #1/3 | TR: vurmak, dövmek | EN: to strike repeatedly or forcefully with a hand, tool, or weapon | ÖRNEK: The child beat the piñata until the candy fell out.
+6831 | beat | verb | B1 | #2/3 | TR: yenmek, mağlup etmek | EN: to defeat or overcome someone or something in a competition, conflict, or challenge | ÖRNEK: The home team beat their rivals by three points.
+6832 | beat | verb | B2 | #3/3 | TR: atmak, çarpmak | EN: to produce a regular rhythmic pulsation, especially of the heart or a musical instrument | ÖRNEK: His heart beat loudly as he waited for the test results.
+14680 | beautification | noun | B2 | #1/1 | TR: güzelleştirme | EN: the process of making something more attractive or aesthetically pleasing | ÖRNEK: Local volunteers helped with the beautification of the riverbank.
+14681 | beautiful | adjective | A1 | #1/1 | TR: güzel, alımlı | EN: pleasing to the senses or mind, especially in a visual way | ÖRNEK: The sunrise over the lake looked beautiful this morning.
+14679 | beauty | noun | B1 | #1/1 | TR: güzellik | EN: the quality or combination of qualities that pleases the senses or mind, especially in appearance. | ÖRNEK: The garden's beauty impressed the visitors immediately.
+27290 | because | conjunction | A1 | #1/1 | TR: çünkü, -diği için | EN: for the reason that | ÖRNEK: I stayed at home because I was ill.
+15445 | become | verb | A1 | #1/1 | TR: olmak, hâl almak | EN: to undergo a change of state or condition; to turn into something else | ÖRNEK: She decided to study harder and soon became more confident in class.
+3409 | bed | noun | A1 | #1/2 | TR: yatak, karyola | EN: a piece of furniture with a mattress on which a person sleeps or rests | ÖRNEK: I bought a new bed for my bedroom last weekend.
+3410 | bed | noun | B2 | #2/2 | TR: yatak, nehir tabanı, tarh | EN: the bottom of a river, lake, or sea; the ground on which plants are cultivated | ÖRNEK: Scientists measured the depth of the river bed to assess flood risk.
+3416 | bedroom | noun | A2 | #1/1 | TR: yatak odası | EN: a room in a house used primarily for sleeping | ÖRNEK: The bedroom is small but clean.
+20456 | bee | noun | B1 | #1/1 | TR: arı | EN: a black and yellow flying insect that makes honey and can sting | ÖRNEK: A bee landed on the flower.
+8060 | beef | noun | A2 | #1/2 | TR: sığır eti | EN: the flesh of cattle used as food | ÖRNEK: The grocery store sells fresh beef in the meat department.
+8061 | beef | noun | B2 | #2/2 | TR: sorun, şikayet | EN: a complaint or grievance, especially one that is ongoing | ÖRNEK: He told his friend that he had a beef with the landlord.
+17526 | beer | noun | A2 | #1/1 | TR: bira | EN: an alcoholic drink made from fermented malted barley and flavored with hops | ÖRNEK: He bought a beer from the vending machine.
+10411 | beetle | noun | B1 | #1/1 | TR: kın kanatlı böcek, kın kanatlı | EN: a small hard-bodied insect belonging to the order Coleoptera, often with a hard shell covering the wings | ÖRNEK: A beetle rolled a small ball of dung across the field.
+20852 | before | adverb | A2 | #1/1 | TR: önce, daha önce | EN: at an earlier time | ÖRNEK: I've seen this film before.
+7739 | before | conjunction | A1 | #1/1 | TR: ...den önce | EN: introducing a clause that occurs earlier in time than the main clause | ÖRNEK: I always stretch before I run.
+7740 | before | preposition | A2 | #1/1 | TR: ...den önce | EN: in advance of or earlier than a particular time or event | ÖRNEK: I always brush my teeth before going to bed.
+445 | beg | verb | B1 | #1/2 | TR: rica etmek, yalvarmak | EN: to ask someone earnestly or humbly for something, especially a favor or help | ÖRNEK: He begged his parents for a new bike.
+446 | beg | verb | B2 | #2/2 | TR: dilenmek | EN: to ask for money or food, especially by standing in public places and appealing to passers-by | ÖRNEK: During the cold winter, many people beg for food in the city center.
+12199 | begin | verb | A2 | #1/1 | TR: başlamak, başlatmak | EN: to start doing something or to cause something to start | ÖRNEK: She will begin her studies in September.
+12200 | beginner | noun | A2 | #1/1 | TR: yeni başlayan, acemi | EN: a person who has recently started to learn or do something and has little experience | ÖRNEK: She signed up for the class as a beginner.
+12202 | beginning | noun | A2 | #1/1 | TR: başlangıç | EN: the point in time or space at which something starts | ÖRNEK: The beginning of the semester was filled with orientation events.
+10503 | behalf | noun | B2 | #1/2 | TR: adına, temsilinde | EN: the interest or representation of a person or group; used especially in the phrase "on behalf of". | ÖRNEK: The student wrote the letter on behalf of his group.
+10504 | behalf | noun | C1 | #2/2 | TR: yararına | EN: in the interest or benefit of someone or something; often used in older or formal contexts. | ÖRNEK: The committee voted in behalf of the residents to approve the new zoning plan.
+3101 | behave | verb | B1 | #1/1 | TR: davranmak, tutum sergilemek | EN: to act or conduct oneself in a particular way, especially towards others | ÖRNEK: The children behave well when the teacher is present.
+3102 | behavior | noun | B1 | #1/1 | TR: davranış, tutum | EN: the way in which a person, animal, or group acts or conducts themselves, especially in response to a particular situation or stimulus | ÖRNEK: The child's behavior improved after the new routine was introduced.
+20284 | behind | adverb | A1 | #1/1 | TR: arkada, geride | EN: at or towards the back of someone or something | ÖRNEK: She walked ahead and I followed behind.
+15589 | behind | preposition | A1 | #1/1 | TR: arkasında, gerisinde | EN: at the back of something; in a position later than or less advanced than something else | ÖRNEK: The cat hid behind the couch during the thunderstorm.
+20519 | being | noun | B2 | #1/2 | TR: varlık, canlı | EN: a living creature | ÖRNEK: Humans are social beings.
+20520 | being | noun | B2 | #2/2 | TR: var olma, varoluş | EN: the state of existing | ÖRNEK: The organization came into being in 1990.
+451 | belief | noun | B2 | #1/1 | TR: inanç, inanma, kabul | EN: a conviction that something is true or exists, often without proof | ÖRNEK: Her belief in fairness guides her decisions at work.
+449 | believe | verb | A1 | #1/1 | TR: inanmak, sanmak | EN: to accept something as true, especially without absolute proof | ÖRNEK: I believe you are telling the truth.

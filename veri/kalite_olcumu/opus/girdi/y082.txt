@@ -1,0 +1,100 @@
+13184 | wedding | noun | A1 | #1/1 | TR: düğün, nikâh | EN: a ceremony in which two people are united in marriage | ÖRNEK: The couple announced their wedding date to friends and family.
+13929 | wedge | noun | B2 | #2/2 | TR: takoz | EN: a triangular piece of wood, metal, or plastic used to hold, separate, or lift objects | ÖRNEK: The painter slipped a wedge between the boards to keep them apart.
+13060 | weed | noun | B1 | #1/1 | TR: yabani ot, ot | EN: any unwanted plant that grows where it is not desired, especially in cultivated land or gardens | ÖRNEK: The backyard was full of weeds after the summer rain.
+15256 | week | noun | A1 | #1/1 | TR: hafta | EN: a period of seven consecutive days | ÖRNEK: The school week begins on Monday.
+24919 | weekday | noun | B1 | #1/1 | TR: hafta içi günü | EN: a day of the week that is not part of the weekend, typically Monday through Friday | ÖRNEK: I usually go to the gym on a weekday after work.
+16616 | weekend | noun | A2 | #1/1 | TR: hafta sonu | EN: the period of time from Friday evening to Sunday night, typically free from work or school duties | ÖRNEK: I will relax at home during the weekend.
+15258 | weekly | adjective | B1 | #1/1 | TR: haftalık | EN: occurring or produced once every week | ÖRNEK: Our company publishes a weekly newsletter for its employees.
+15259 | weekly | adverb | B1 | #1/1 | TR: haftalık olarak | EN: once every week | ÖRNEK: The class meets weekly to review homework.
+18481 | weigh | verb | A2 | #1/3 | TR: ağırlığında olmak, gelmek | EN: to have a particular weight; to be that heavy | ÖRNEK: The apple weighs about 150 grams.
+18482 | weigh | verb | B1 | #2/3 | TR: ölçmek, tartmak | EN: to determine the weight of something, typically using a scale | ÖRNEK: He weighed the flour before adding it to the bowl.
+18483 | weigh | verb | B2 | #3/3 | TR: değerlendirmek, kıymetini belirlemek | EN: to consider the importance, value, or seriousness of something | ÖRNEK: The manager weighed the proposal carefully.
+18490 | weight | noun | A2 | #1/1 | TR: kütle, ağırlık | EN: the measure of how heavy something is, usually expressed in kilograms or pounds | ÖRNEK: The package's weight is five kilograms.
+17053 | weird | adjective | B1 | #1/1 | TR: garip, tuhaf | EN: unusual or out of the ordinary, often in a way that causes surprise or discomfort | ÖRNEK: The painting looks weird, but it attracts many visitors.
+16482 | welcome | adjective | B1 | #1/1 | TR: hoş karşılanan, memnuniyetle karşılanan | EN: received with pleasure; gladly accepted | ÖRNEK: The new student felt welcome on his first day of class.
+16483 | welcome | noun | A2 | #1/1 | TR: karşılama, hoş geldiniz | EN: the act of greeting someone and showing pleasure at their arrival | ÖRNEK: The university gave a warm welcome to the incoming freshmen.
+16484 | welcome | verb | A2 | #1/1 | TR: karşılamak, buyur etmek, hoş geldin demek | EN: to greet someone in a friendly and polite way | ÖRNEK: The teacher welcomed the students with a smile.
+9813 | welfare | noun | B2 | #1/1 | TR: refah, sosyal güvenlik | EN: the health, happiness, and fortunes of a person or group | ÖRNEK: The government offers welfare to help poor families.
+15121 | well | adjective | A2 | #1/1 | TR: sağlıklı | EN: in good health; free from illness or injury | ÖRNEK: She feels well after taking the medicine.
+15122 | well | adverb | A2 | #1/1 | TR: iyi, düzgün bir şekilde | EN: to a high standard or in a satisfactory manner; in a way that shows competence or health | ÖRNEK: She answered the questions well during the interview.
+15123 | well | noun | B1 | #1/1 | TR: kuyu | EN: a deep hole or shaft dug or drilled to obtain water, oil, or other substances from underground | ÖRNEK: The old well in the courtyard still supplies water to the garden.
+20839 | well-being | noun | C1 | #1/1 | TR: esenlik, iyi oluş | EN: the state of feeling healthy and happy | ÖRNEK: Exercise improves physical and mental well-being.
+13597 | west | adjective | A2 | #1/1 | TR: batı yönünde, batıya ait | EN: relating to or situated in the direction of the west; located on the western side of something | ÖRNEK: She lives in the west part of the city.
+13598 | west | adverb | A2 | #1/1 | TR: batıya, batı yönüne | EN: to, toward, or in the direction of the west | ÖRNEK: The river flows west through the valley.
+13599 | west | noun | A2 | #1/1 | TR: batı | EN: the direction opposite to east; the western part of a region or country | ÖRNEK: The sun sets in the west every evening.
+13600 | western | adjective | B1 | #1/2 | TR: batı ile ilgili, batıya özgü | EN: relating to the western part of a country, region, or the Western world in culture or geography | ÖRNEK: The western region of the country receives most of the rainfall.
+13601 | western | adjective | B2 | #2/2 | TR: kovboy temalı, Vahşi Batı ile ilgili | EN: pertaining to the genre of movies, literature, or music that depict the American Old West, often featuring cowboys and frontier life | ÖRNEK: The theater is showing a classic western movie this weekend.
+3209 | wet | adjective | A2 | #1/2 | TR: ıslak, nemli | EN: covered or saturated with water or another liquid | ÖRNEK: The wet road glistened after the light rain.
+3210 | wet | adjective | B1 | #2/2 | TR: yağmurlu, yağışlı | EN: characterized by or experiencing rain; having a wet climate | ÖRNEK: The wet weather made the picnic plans impossible.
+27417 | wetsuit | noun | B1 | #1/1 | TR: dalgıç elbisesi, wetsuit | EN: a rubber suit that keeps you warm in cold water | ÖRNEK: Surfers wear wetsuits.
+1648 | whale | noun | B1 | #1/2 | TR: balina | EN: a large marine mammal of the order Cetacea, characterized by a streamlined body and a horizontal tail fin | ÖRNEK: A whale surfaced near the boat during our trip.
+1649 | whale | noun | B2 | #2/2 | TR: harika şey, muazzam şey | EN: used informally to describe something that is unusually large or impressive | ÖRNEK: The concert turned out to be a whale of a night for the fans.
+27261 | what | determiner | A1 | #1/2 | TR: ne, hangi | EN: used to ask for information about people or things | ÖRNEK: What time is it?
+27262 | what | determiner | A1 | #2/2 | TR: ne kadar … ! (ünlem cümlesinde) | EN: used to show surprise or strong feeling | ÖRNEK: What a beautiful day!
+27224 | what | pronoun | A1 | #1/2 | TR: ne | EN: used to ask for information about something | ÖRNEK: What is your name?
+27225 | what | pronoun | A1 | #2/2 | TR: -diği şey, ne … -sa | EN: the thing or things that | ÖRNEK: I don't understand what you mean.
+20840 | whatsoever | adverb | C1 | #1/1 | TR: hiç, hiçbir şekilde | EN: at all (used after 'no' or 'nothing' for emphasis) | ÖRNEK: I have no interest whatsoever in football.
+11306 | wheat | noun | B1 | #1/1 | TR: buğday | EN: a cereal plant that yields a starchy grain used for food | ÖRNEK: The wheat grows tall in the summer field.
+1652 | wheel | noun | A1 | #1/1 | TR: tekerlek, çark | EN: a circular object that rotates on an axle and is used to facilitate movement or to transmit force | ÖRNEK: The car's wheel was flat after hitting a nail.
+6256 | wheelchair | noun | B1 | #1/1 | TR: tekerlekli sandalye | EN: a chair with wheels that a person who cannot walk can sit in and move around with | ÖRNEK: He bought a new wheelchair for his daily trips to the clinic.
+15088 | when | adverb | A2 | #1/1 | TR: ne zaman | EN: at what time | ÖRNEK: When does the train leave for the city?
+15089 | when | conjunction | A1 | #1/1 | TR: -ince | EN: to indicate the time at which something happens or is true, introducing a temporal clause | ÖRNEK: When the lecture starts, please turn off your phones.
+19978 | where | adverb | A2 | #1/1 | TR: nerede, hangi yerde | EN: in, at, or to what place | ÖRNEK: Where is the library on campus?
+19979 | where | conjunction | B1 | #1/1 | TR: hangi yerde, ... olduğu yerde | EN: introduces a relative clause that specifies the place or situation referred to | ÖRNEK: We visited the museum where the famous painting is displayed.
+20841 | whereby | adverb | C1 | #1/1 | TR: ki bununla, … yoluyla | EN: by which; because of which (formal) | ÖRNEK: They introduced a system whereby students could choose their courses.
+20619 | wherever | conjunction | B2 | #1/1 | TR: her nerede, nereye … -se | EN: in, at or to any place | ÖRNEK: Sit wherever you like.
+20504 | whether | conjunction | B1 | #1/1 | TR: -ip -mediğini, olup olmadığını | EN: used when you are talking about a choice or doubt between two possibilities | ÖRNEK: I don't know whether she will come.
+27263 | which | determiner | A1 | #1/1 | TR: hangi | EN: used to ask about one or more things from a limited group | ÖRNEK: Which bus goes to the city center?
+27226 | which | pronoun | A1 | #1/2 | TR: hangi(si) | EN: used to ask about one or more things from a limited group | ÖRNEK: Which is your car?
+27227 | which | pronoun | A1 | #2/2 | TR: ki, -en, -dığı (ilgi zamiri, şeyler için) | EN: used to introduce extra information about a thing | ÖRNEK: The house, which is very old, is for sale.
+14689 | while | conjunction | B1 | #1/2 | TR: ... sırasında, ... süresince | EN: during the time that; at the same time as something else happens | ÖRNEK: I watched TV while I ate dinner.
+14690 | while | conjunction | B2 | #2/2 | TR: oysa, -e rağmen | EN: in spite of; although; despite the fact that | ÖRNEK: While I understand your point, I don't agree with you.
+14691 | while | noun | B1 | #1/1 | TR: süre, bir zaman dilimi | EN: a period of time | ÖRNEK: The children played outside for a while before dinner.
+14693 | whilst | conjunction | B1 | #1/2 | TR: iken, ... iken | EN: to indicate that two actions occur at the same time | ÖRNEK: She wrote notes whilst the lecture continued.
+14694 | whilst | conjunction | B2 | #2/2 | TR: oysaki, -e rağmen | EN: to introduce a contrast or concession, meaning 'although' or 'even though' | ÖRNEK: He smiled whilst he felt nervous inside.
+2113 | whip | verb | B2 | #1/2 | TR: kırbaçlamak, kamçılamak | EN: to strike or beat someone or something with a whip or similar instrument | ÖRNEK: The trainer whipped the horse during the race.
+2114 | whip | verb | B1 | #2/2 | TR: çırpmak, çabuk karıştırmak | EN: to beat or stir a mixture rapidly, especially with a whisk | ÖRNEK: She quickly whipped the eggs for the cake.
+1656 | whisper | noun | B1 | #1/1 | TR: fısıltı | EN: a soft, low sound made by speaking quietly with one's breath | ÖRNEK: The teacher asked the class to speak in a whisper during the test.
+1657 | whisper | verb | B1 | #1/1 | TR: fısıldamak | EN: to speak very softly so that only a few people can hear | ÖRNEK: He whispered a quick apology before leaving the room.
+7628 | white | adjective | A2 | #1/2 | TR: beyaz, renk olarak beyaz | EN: of the colour of milk or fresh snow; having no hue or a very light hue. | ÖRNEK: The white cat slept on the sunny windowsill.
+7629 | white | adjective | B2 | #2/2 | TR: saf, temiz, suçsuz | EN: free from moral impurity or wrongdoing; innocent. | ÖRNEK: It was only a white lie.
+20380 | white | noun | A1 | #1/1 | TR: beyaz (renk) | EN: the colour of snow or milk | ÖRNEK: The room was painted in white.
+27228 | who | pronoun | A1 | #1/2 | TR: kim | EN: used to ask about the name or identity of a person | ÖRNEK: Who is that man?
+27229 | who | pronoun | A1 | #2/2 | TR: ki, -en, -dığı (ilgi zamiri, kişiler için) | EN: used to introduce information about a person | ÖRNEK: The woman who lives here is a doctor.
+3163 | whole | adjective | A1 | #1/1 | TR: tam, bütün | EN: complete; not divided or lacking any part | ÖRNEK: The whole cake was eaten by the children.
+3164 | whole | noun | B2 | #1/1 | TR: bütün, tüm şey | EN: the entire amount or totality of something | ÖRNEK: During the meeting, the manager emphasized the importance of viewing the project as a whole rather than focusing on isolated tasks.
+3168 | wholly | adverb | C1 | #1/1 | TR: tamamen, bütünüyle | EN: to a complete extent; entirely | ÖRNEK: The new policy is wholly ineffective in reducing waste.
+27264 | whose | determiner | A2 | #1/1 | TR: kimin | EN: used to ask who something belongs to | ÖRNEK: Whose car is this?
+27231 | whose | pronoun | A2 | #1/2 | TR: kimin | EN: used to ask who something belongs to | ÖRNEK: Whose bag is this?
+27232 | whose | pronoun | A2 | #2/2 | TR: ki onun, -en (sahiplik bildiren ilgi zamiri) | EN: used to show who or what something belongs to | ÖRNEK: That's the girl whose father is a pilot.
+15132 | why | adverb | A1 | #1/1 | TR: neden | EN: for what reason | ÖRNEK: Why did you choose this book for the assignment?
+18773 | wide | adjective | A1 | #1/1 | TR: geniş, geniş kapsamlı | EN: having a great extent from side to side; covering a large area or range | ÖRNEK: The classroom has a wide window that lets in plenty of sunlight.
+18774 | widely | adverb | B2 | #1/1 | TR: geniş bir şekilde, yaygın olarak | EN: to a great extent or over a large area; in a manner that is extensive or far-reaching | ÖRNEK: The new smartphone model is widely advertised across social media platforms.
+18775 | widen | verb | B1 | #1/1 | TR: genişletmek | EN: to make something wider or more extensive | ÖRNEK: The gardener will widen the flower beds next weekend.
+10545 | widespread | adjective | B2 | #1/1 | TR: yaygın, geniş çapta | EN: existing or happening over a large area or among many people | ÖRNEK: The rumor spread quickly and became widespread across the campus.
+7699 | widow | noun | B1 | #1/1 | TR: dul, dul kadın | EN: a woman whose spouse has died and who has not remarried | ÖRNEK: The widow lives alone in the house they once shared.
+18778 | width | noun | B1 | #1/1 | TR: genişlik | EN: the measurement or extent of something from side to side; the distance across an object or space. | ÖRNEK: The width of the table is 120 centimeters.
+15717 | wife | noun | A2 | #1/1 | TR: eş | EN: a married woman; a woman's spouse | ÖRNEK: My wife likes to read mystery novels in the evenings.
+24935 | wiggly | adjective | B1 | #1/1 | TR: dalgalı, kıvrımlı, sallanan | EN: characterized by a series of curves or bends; not straight | ÖRNEK: The snake moved in a wiggly motion across the sand.
+5283 | wild | adjective | B1 | #1/2 | TR: vahşi, yabani | EN: not domesticated or cultivated; living in a natural state without human control | ÖRNEK: A wild rabbit hopped across the meadow during our hike.
+5284 | wild | adjective | B2 | #2/2 | TR: kontrolsüz, aşırı | EN: characterized by a lack of restraint or order; extreme or intense | ÖRNEK: The crowd went wild after the final goal was scored.
+20620 | wildlife | noun | B2 | #1/1 | TR: yaban hayatı | EN: animals, birds and plants that live in natural conditions | ÖRNEK: The park is home to a lot of wildlife.
+27278 | will | modal_verb | A1 | #1/3 | TR: -ecek, -acak (gelecek zaman) | EN: used to talk about the future | ÖRNEK: I will call you tomorrow.
+27279 | will | modal_verb | A1 | #2/3 | TR: -erim, -ayım (anlık karar, söz, teklif) | EN: used to make a decision at the moment of speaking, or a promise or offer | ÖRNEK: I'll have the chicken, please.
+27280 | will | modal_verb | A1 | #3/3 | TR: -er misin? (rica) | EN: used to ask someone to do something | ÖRNEK: Will you close the door, please?
+6357 | will | noun | B2 | #1/3 | TR: irade, kararlılık | EN: the mental power or determination to decide and act in a particular way | ÖRNEK: His will to succeed was evident in his daily study routine.
+6358 | will | noun | B1 | #2/3 | TR: istek, arzu | EN: a desire or intention to do something in the future | ÖRNEK: She has a strong will to win.
+6356 | will | noun | B1 | #3/3 | TR: vasiyetname | EN: a legal document in which a person specifies how their property and affairs should be handled after death | ÖRNEK: She wrote a will to ensure her children receive their inheritance.
+6368 | willing | adjective | B1 | #1/1 | TR: istekli, gönüllü | EN: ready or prepared to do something; showing readiness or consent. | ÖRNEK: She is willing to volunteer at the local shelter on weekends.
+6370 | willingness | noun | B2 | #1/1 | TR: isteklilik, gönüllülük | EN: the quality of being ready or prepared to do something; a desire to act or to consent. | ÖRNEK: She showed willingness to join the study group.
+24938 | wilted | adjective | B1 | #1/1 | TR: solmuş, pörsümüş, pörsük | EN: having become limp and drooping, typically because of lack of water or age | ÖRNEK: The garden plants looked wilted after the heat wave.
+15473 | win | noun | B1 | #1/2 | TR: zafer | EN: an event or achievement in which a person or team is successful over an opponent or obstacle | ÖRNEK: The home team celebrated their win with cheers from the crowd.
+15474 | win | noun | B2 | #2/2 | TR: kazanım, elde edilen kazanç | EN: something obtained, especially money or profit, as a result of an effort or transaction | ÖRNEK: The company's latest product launch was a win for its quarterly earnings.
+15475 | win | verb | A1 | #1/1 | TR: kazanmak | EN: to achieve victory in a contest, competition, or conflict | ÖRNEK: The team worked hard and managed to win the match.
+11822 | wind | noun | A2 | #1/2 | TR: hava akımı, rüzgar | EN: the natural movement of air, especially in the form of a current of air blowing from a particular direction | ÖRNEK: A gentle wind blew across the lake in the early morning.
+11823 | wind | noun | B2 | #2/2 | TR: bükülme, dolanma, kıvrım | EN: a twist or coil, especially of a rope, cable, or similar flexible object | ÖRNEK: The mechanic gave the hose a tight wind to prevent leaks.
+19970 | window | noun | A2 | #1/1 | TR: pencere | EN: an opening in the wall of a building, vehicle, or computer screen that allows light, air, or a view to pass through. | ÖRNEK: The child pressed his face against the window to watch the rain.
+11830 | windy | adjective | A2 | #1/1 | TR: rüzgarlı | EN: characterized by the presence of wind; having a noticeable amount of moving air. | ÖRNEK: A light breeze turned into a windy afternoon during the hike.
+17364 | wine | noun | A1 | #1/1 | TR: şarap | EN: an alcoholic beverage made from fermented grapes or other fruits | ÖRNEK: She bought a bottle of wine for the dinner party.
+17867 | wing | noun | A2 | #1/1 | TR: kanat | EN: the paired, usually feathered appendage of a bird or other flying animal that enables flight | ÖRNEK: The sparrow flapped its small wing as it took off.
+15477 | winner | noun | B1 | #1/1 | TR: kazanan | EN: a person or team that has won a competition, contest, or award | ÖRNEK: The winner received a gold medal and a cash prize.

@@ -1,0 +1,100 @@
+2764 | gradually | adverb | B1 | #1/1 | TR: yavaş yavaş | EN: slowly, in small steps over a period of time | ÖRNEK: The sun rose and the sky gradually brightened.
+7214 | graduate | noun | B2 | #1/1 | TR: mezun | EN: a person who has completed a course of study at a university or college | ÖRNEK: The graduate received a certificate after the ceremony.
+7215 | graduate | verb | A2 | #1/2 | TR: mezun olmak | EN: to receive an academic degree after completing a course of study | ÖRNEK: Ali will graduate from high school this summer.
+7216 | graduate | verb | C1 | #2/2 | TR: bir üst seviyeye geçmek | EN: to move up to a higher level or rank, especially in an organization or system | ÖRNEK: After his successful project, John graduated to team leader.
+7218 | graduation | noun | B2 | #1/1 | TR: mezuniyet | EN: the act or ceremony of receiving an academic degree or diploma after completing a course of study | ÖRNEK: She received her diploma at the graduation ceremony yesterday.
+8289 | grain | noun | A2 | #1/2 | TR: tane, tahıl | EN: a small, hard seed of a cereal plant such as wheat, rice, or barley | ÖRNEK: The bakery uses whole grain flour for its breads.
+8291 | grain | noun | C1 | #2/2 | TR: ağırlık birimi | EN: a unit of weight equal to 1/7000 of a pound, used especially for measuring bullets and medicine | ÖRNEK: The antique rifle uses a bullet weighing 180 grains.
+14265 | gram | noun | A2 | #1/1 | TR: gram | EN: a metric unit of mass equal to one thousandth of a kilogram | ÖRNEK: The package contains exactly ten grams of protein powder.
+19613 | grand | adjective | B2 | #1/1 | TR: görkemli, muhteşem | EN: of great size, splendor, or magnificence; impressive in appearance or style. | ÖRNEK: The cathedral's vaulted ceiling looks grand and awe-inspiring.
+21437 | grandchild | noun | A2 | #1/1 | TR: torun | EN: the child of one's son or daughter; a descendant one generation removed from a parent | ÖRNEK: The family gathered to celebrate the newborn grandchild's first birthday.
+21744 | granddaughter | noun | A2 | #1/1 | TR: kız torun | EN: the daughter of one's son or daughter; a female descendant one generation removed | ÖRNEK: My granddaughter loves to read picture books every night.
+895 | grandfather | noun | A2 | #1/1 | TR: dede | EN: the father of one's father or mother; a male ancestor in the direct line. | ÖRNEK: My grandfather tells stories about his childhood in the village.
+897 | grandmother | noun | A2 | #1/1 | TR: nine | EN: the mother of one's father or mother; a female grandparent. | ÖRNEK: My grandmother bakes the best apple pie.
+11021 | grandparent | noun | A1 | #1/1 | TR: büyük ebeveyn | EN: a person's parent's parent; the mother's mother, mother's father, father's mother, or father's father | ÖRNEK: My grandmother is a loving grandparent who tells us stories every weekend.
+21745 | grandson | noun | A2 | #1/1 | TR: erkek torun | EN: a male descendant of one's child; a grandson | ÖRNEK: My grandson lives with us.
+17635 | grant | noun | B2 | #1/1 | TR: hibe, bağış | EN: a sum of money or other form of assistance given by an organization, especially a government or foundation, to support a specific purpose or project | ÖRNEK: The nonprofit received a grant to expand its community programs.
+17636 | grant | verb | B2 | #1/1 | TR: vermek, bağışlamak | EN: to give or allow something, especially money or rights, formally or officially | ÖRNEK: The city council granted the developer permission to build a new park.
+9348 | grape | noun | A2 | #1/1 | TR: üzüm | EN: a small, round, smooth-skinned fruit that grows in clusters on vines and is typically sweet or tart | ÖRNEK: The children enjoyed eating sweet grapes during the picnic.
+7673 | graphic | adjective | B2 | #1/2 | TR: görsel, resimli | EN: relating to visual art, pictures, or diagrams, especially those used to illustrate information. | ÖRNEK: The poster uses bright colors and clear lines, making it a strong graphic example.
+7674 | graphic | adjective | C1 | #2/2 | TR: açık, çarpıcı | EN: providing a vivid, detailed, and often explicit description that creates a clear mental picture. | ÖRNEK: The documentary contains graphic scenes that may upset some viewers.
+7677 | graphics | noun | B1 | #1/1 | TR: grafik | EN: visual representations such as drawings, diagrams, or pictures used to illustrate information. | ÖRNEK: The textbook uses clear graphics to explain the concept.
+3126 | grasp | noun | B2 | #1/2 | TR: kavrayış, anlama yetisi | EN: the ability to understand something fully or to comprehend its meaning | ÖRNEK: She quickly developed a grasp of the basic vocabulary.
+3127 | grasp | noun | B1 | #2/2 | TR: tutma, kavrama | EN: the act of holding something firmly with the hand or fingers | ÖRNEK: She had a firm grasp on the handle as the bus turned sharply.
+3128 | grasp | verb | B2 | #1/1 | TR: kavramak, anlamak, tutmak | EN: to seize something with the hand or to comprehend an idea or concept | ÖRNEK: The child tried to grasp the toy but it slipped from his hands.
+2494 | grass | noun | A2 | #1/1 | TR: çimen, ot | EN: a type of green plant that covers the ground, often used as lawn or pasture | ÖRNEK: The garden has soft, green grass that feels cool underfoot.
+6672 | grateful | adjective | B1 | #1/1 | TR: minnettar | EN: feeling or showing appreciation for something received or done | ÖRNEK: She felt grateful for the birthday present.
+2703 | grave | adjective | B2 | #1/1 | TR: ciddi, ağır | EN: serious and solemn, indicating great importance or danger | ÖRNEK: The teacher warned the class about the grave consequences of cheating.
+2704 | grave | noun | B1 | #1/1 | TR: mezar | EN: a place of burial for a dead body, typically a pit dug in the ground and marked with a stone or marker | ÖRNEK: The grave was dug quickly after the funeral service.
+5624 | gravity | noun | B2 | #1/2 | TR: yer çekimi | EN: the force that attracts a body toward the centre of the earth or another celestial body | ÖRNEK: The apple fell because of Earth's gravity.
+5625 | gravity | noun | C1 | #2/2 | TR: ciddiyet, ağırlık | EN: the seriousness or importance of a matter | ÖRNEK: The gravity of the decision surprised everyone in the room.
+2610 | gray | adjective | A2 | #1/1 | TR: gri | EN: of a color that is intermediate between black and white | ÖRNEK: The cat's fur is a soft gray color.
+2611 | gray | noun | A2 | #1/1 | TR: gri renk | EN: the color that is a mixture of black and white, often associated with neutrality or dullness | ÖRNEK: The artist mixed black and white to create a perfect gray for the background.
+2434 | great | adjective | A1 | #1/3 | TR: mükemmel, harika | EN: extremely good or impressive; of high quality | ÖRNEK: The concert was great and the audience cheered loudly.
+2432 | great | adjective | A2 | #2/3 | TR: büyük | EN: of considerable size, extent, or magnitude | ÖRNEK: A great crowd gathered in the square.
+2433 | great | adjective | B2 | #3/3 | TR: önemli, kayda değer | EN: significant or noteworthy in importance or effect | ÖRNEK: The discovery of penicillin was a great breakthrough in medicine.
+2438 | greatly | adverb | B1 | #1/1 | TR: çok, büyük ölçüde | EN: to a very large extent or degree; to a great degree | ÖRNEK: I greatly enjoyed the concert last night.
+14500 | green | adjective | A1 | #1/3 | TR: yeşil | EN: of the colour between blue and yellow in the visible spectrum | ÖRNEK: The leaves turned green in early spring.
+14501 | green | adjective | B2 | #2/3 | TR: çevre dostu, ekolojik | EN: relating to or supporting environmental protection and sustainability | ÖRNEK: The university promotes green initiatives on campus.
+14502 | green | adjective | C1 | #3/3 | TR: tecrübesiz, yeni başlayan | EN: lacking experience, knowledge, or maturity; inexperienced | ÖRNEK: The intern is still green and needs guidance.
+14503 | green | noun | A2 | #1/1 | TR: yeşil renk | EN: the color between blue and yellow in the visible spectrum | ÖRNEK: The leaf turned a vivid green during spring.
+12395 | greenhouse | noun | B1 | #1/1 | TR: sera | EN: a building made of glass or other transparent material where plants are cultivated under controlled environmental conditions | ÖRNEK: The school built a small greenhouse for biology classes.
+3893 | greet | verb | A2 | #1/1 | TR: selamlamak, karşılama sözleri söylemek | EN: to address someone with words or gestures of welcome or courtesy | ÖRNEK: The teacher greeted the class at the start of the lesson.
+9832 | grid | noun | B1 | #1/2 | TR: ızgara, kareli desen | EN: a network of intersecting horizontal and vertical lines forming squares or rectangles | ÖRNEK: The kitchen floor was covered with a black tile grid.
+9833 | grid | noun | B2 | #2/2 | TR: elektrik şebekesi | EN: the interconnected system that delivers electricity from producers to consumers | ÖRNEK: The power company monitors the grid 24 hours a day.
+3300 | grief | noun | B2 | #1/1 | TR: keder, yas, üzüntü | EN: a deep feeling of sorrow, especially caused by someone's death | ÖRNEK: The news of the accident caused great grief among the villagers.
+14257 | grill | verb | B1 | #1/2 | TR: ızgara yapmak, kızartmak | EN: to cook food, especially meat, on a grill or over direct heat | ÖRNEK: I grill fish every summer on the balcony.
+14258 | grill | verb | B2 | #2/2 | TR: sorgulamak, sıkı bir şekilde sorgulamak | EN: to question someone intensely or aggressively, often in a confrontational manner | ÖRNEK: The reporter grilled the CEO about the company's losses.
+2096 | grin | noun | B1 | #1/1 | TR: gülümseme | EN: a broad smile showing the teeth | ÖRNEK: The teacher noticed a shy grin on the student's face.
+2097 | grin | verb | B1 | #1/1 | TR: sırıtmak, dişlerini göstererek gülümsemek | EN: to smile broadly, showing the teeth | ÖRNEK: The child grinned when he received the candy.
+9470 | grind | verb | B1 | #1/3 | TR: öğütmek | EN: to crush or reduce something into small particles or powder | ÖRNEK: I need to grind the pepper before I add it to the soup.
+9471 | grind | verb | B2 | #2/3 | TR: bilemek, taşlamak | EN: to sharpen a tool or edge by friction | ÖRNEK: The carpenter needs to grind the chisel before the next cut.
+9469 | grind | verb | B2 | #3/3 | TR: gıcırdatmak | EN: to make a harsh, continuous rubbing sound | ÖRNEK: She could hear the door hinge grind as it opened.
+2683 | grip | noun | B2 | #1/1 | TR: kontrol, hakimiyet | EN: the power to influence or dominate something or someone | ÖRNEK: The manager has a strong grip on the team's schedule.
+2684 | grip | verb | B1 | #1/2 | TR: sıkıca tutmak | EN: to hold something firmly with the hand or fingers | ÖRNEK: She gripped the pen and began to write her essay.
+2685 | grip | verb | C1 | #2/2 | TR: derinden etkilemek | EN: to affect someone strongly, especially emotionally or mentally | ÖRNEK: The tragic news gripped the community with sorrow.
+20550 | grocery | noun | B2 | #1/1 | TR: bakkal, market; (çoğul) market alışverişi | EN: a shop that sells food and household goods; the things bought there | ÖRNEK: There's a small grocery on the corner.
+13373 | gross | adjective | B2 | #1/2 | TR: iğrenç, tiksindirici | EN: causing strong disgust or revulsion; extremely unpleasant. | ÖRNEK: The food smelled gross and nobody wanted to eat it.
+13374 | gross | adjective | C1 | #2/2 | TR: brüt, toplam | EN: relating to the total amount before any deductions are made. | ÖRNEK: The report shows the gross revenue for the fiscal year.
+15963 | ground | noun | A2 | #1/3 | TR: yer, zemin, toprak | EN: the solid surface of the earth; soil or earth that forms the surface of the land. | ÖRNEK: After the rain, the ground became slippery and muddy.
+15964 | ground | noun | B2 | #2/3 | TR: temel, dayanak, esas | EN: the basis or underlying principle for an argument, belief, or action. | ÖRNEK: The committee needs a clear ground for making the decision.
+15965 | ground | noun | B1 | #3/3 | TR: topraklama, elektriksel bağlantı | EN: a point in an electrical circuit that is connected to the earth, used for safety and circuit reference. | ÖRNEK: The electrician checked the ground connection before turning on the power.
+15245 | group | noun | A1 | #1/1 | TR: grup, topluluk | EN: a number of people or things that are located, gathered, or classed together | ÖRNEK: The tour guide divided the class into small groups for the museum visit.
+14066 | grow | verb | A2 | #1/2 | TR: büyümek, gelişmek | EN: to increase in size, number, or importance over time | ÖRNEK: The seedlings grow quickly when watered daily.
+14067 | grow | verb | A1 | #2/2 | TR: yetiştirmek, ekmek | EN: to cultivate plants or raise animals for food, profit, or other purposes | ÖRNEK: He grows tomatoes on his balcony during the summer.
+14069 | growth | noun | A2 | #1/2 | TR: büyüme, artış | EN: the process of increasing in size, number, or importance; the result of this process | ÖRNEK: The plant showed rapid growth after being watered daily.
+14070 | growth | noun | B1 | #2/2 | TR: gelişim, olgunlaşma | EN: the process of developing physically, mentally, or socially; the state of having become more advanced | ÖRNEK: The workshop focused on strategies for personal growth.
+7651 | guarantee | noun | B2 | #1/1 | TR: garanti | EN: a formal promise or assurance that certain conditions will be fulfilled | ÖRNEK: The store offers a guarantee for all electronic items.
+7652 | guarantee | verb | B2 | #1/1 | TR: garanti etmek, teminat vermek | EN: to promise or assure that something will happen, be provided, or be true | ÖRNEK: The warranty guarantees that the product will work for one year.
+899 | guard | noun | B1 | #1/2 | TR: gözcü, güvenlik görevlisi | EN: a person whose job is to protect a place, person, or thing | ÖRNEK: The guard opened the gate for the visitors.
+900 | guard | noun | B2 | #2/2 | TR: koruyucu, koruma | EN: a device or structure that protects something from damage or danger | ÖRNEK: The guard rail was damaged after the heavy snowfall.
+901 | guard | verb | B1 | #1/1 | TR: korumak, gözetlemek | EN: to protect someone or something from danger, damage, or loss; to watch over attentively | ÖRNEK: The lifeguard guards the pool area during the summer months.
+20703 | guerrilla | noun | C1 | #1/1 | TR: gerilla | EN: a member of a small unofficial military group that fights a government or army | ÖRNEK: Guerrillas attacked the army base.
+15886 | guess | noun | B1 | #1/1 | TR: tahmin | EN: an estimate or conclusion made without sufficient evidence | ÖRNEK: She wrote down a quick guess on the test paper.
+15887 | guess | verb | A1 | #1/1 | TR: tahmin etmek | EN: to form an opinion or estimate without sufficient evidence | ÖRNEK: I guess the test will be easy.
+17978 | guest | noun | A2 | #1/1 | TR: misafir | EN: a person who is invited to stay or attend an event at someone else's place | ÖRNEK: The family welcomed the guest with tea and cookies.
+10295 | guidance | noun | B2 | #1/1 | TR: rehberlik, yönlendirme | EN: the act or process of giving advice, direction, or instruction to help someone make decisions or follow a course of action | ÖRNEK: The teacher gave clear guidance on how to solve the math problem.
+10292 | guide | noun | A2 | #1/1 | TR: rehber, kılavuz | EN: a person who leads or directs others, especially on a journey or through unfamiliar territory | ÖRNEK: The guide showed us the hidden waterfall during the hike.
+10294 | guide | verb | B1 | #1/1 | TR: rehberlik etmek, yönlendirmek | EN: to lead or direct someone by giving advice, instructions, or information | ÖRNEK: The teacher guided the class through the basic grammar rules.
+10296 | guided | adjective | B1 | #1/1 | TR: rehberli, güdümlü, yönlendirmeli | EN: having been led or directed by someone or something; provided with guidance or direction. | ÖRNEK: The teacher gave the students a guided worksheet to complete in class.
+10297 | guideline | noun | B2 | #1/1 | TR: yönerge, kılavuz | EN: a recommended or prescribed rule, principle, or piece of advice that directs how something should be done | ÖRNEK: The company released a guideline for proper email etiquette.
+6326 | guilt | noun | B2 | #1/1 | TR: suçluluk, vicdan azabı | EN: the feeling of having committed a wrongdoing or the state of being responsible for a fault or offense | ÖRNEK: She felt a deep sense of guilt after lying to her friend.
+6328 | guilty | adjective | B1 | #1/2 | TR: suçluluk hisseden | EN: feeling responsible for a wrongdoing or fault | ÖRNEK: I felt guilty after eating the last piece of cake.
+6329 | guilty | adjective | B2 | #2/2 | TR: suçlu, suç işleyen | EN: having committed a crime or being legally responsible for an offense | ÖRNEK: The jury found the accused guilty of theft.
+13754 | guitar | noun | A2 | #1/1 | TR: gitar | EN: a stringed musical instrument that is played by plucking or strumming the strings | ÖRNEK: She bought a guitar for her music class.
+13755 | guitarist | noun | B1 | #1/1 | TR: gitarist | EN: a person who plays the guitar, especially as a profession or hobby | ÖRNEK: The guitarist practiced scales for an hour every day.
+20156 | gun | noun | A2 | #1/1 | TR: silah, ateşli silah | EN: a weapon that fires projectiles by means of an explosive charge | ÖRNEK: The hunter cleaned his gun after the long day in the forest.
+21765 | guru | noun | C1 | #1/1 | TR: uzman, danışman | EN: a person who has extensive knowledge or expertise in a particular field and is often consulted for advice | ÖRNEK: The tech guru gave us simple advice.
+11940 | gut | noun | B2 | #1/2 | TR: bağırsak, karın | EN: the stomach or intestines | ÖRNEK: Healthy bacteria in the gut help digestion.
+7575 | gut | noun | B1 | #2/2 | TR: cesaret, yürek | EN: the quality of being brave or having courage | ÖRNEK: She showed great guts when she rescued the child from the fire.
+15450 | guy | noun | A2 | #1/1 | TR: adam, erkek | EN: a man or male person, often used informally to refer to an individual | ÖRNEK: The guy at the coffee shop gave me a free muffin.
+20313 | gym | noun | A1 | #1/1 | TR: spor salonu | EN: a room or building with equipment for doing physical exercise | ÖRNEK: I go to the gym three times a week.
+4892 | gymnastics | noun | B1 | #1/1 | TR: jimnastik | EN: the sport involving exercises that require balance, flexibility, strength, and coordination | ÖRNEK: The school offers gymnastics as part of its weekly physical-education program.
+905 | habit | noun | B1 | #1/2 | TR: alışkanlık, rutin | EN: a regular practice or routine that is repeated often and tends to become automatic | ÖRNEK: She drinks coffee every morning; it has become a habit.
+906 | habit | noun | C1 | #2/2 | TR: rahibe giysisi, cübbe | EN: the distinctive clothing worn by members of a religious order, especially a nun or monk | ÖRNEK: The photograph shows a nun in her traditional habit.
+1712 | habitat | noun | B2 | #1/1 | TR: yaşam alanı | EN: the natural environment in which a plant or animal lives and grows | ÖRNEK: The frog lives in a moist habitat near the pond.
+5354 | hail | verb | B1 | #1/1 | TR: övgüyle karşılamak, alkışlamak | EN: to greet or acclaim enthusiastically, often with applause or cheers | ÖRNEK: The audience will hail the speaker when he finishes his talk.
+12801 | hair | noun | A2 | #1/2 | TR: saç | EN: the thin strands that grow from the skin of humans and many animals, especially on the head | ÖRNEK: She brushed her hair before leaving the house.
+12802 | hair | noun | B1 | #2/2 | TR: kıl, tüy | EN: the fine, short hairs covering the body of humans or animals | ÖRNEK: The cat's hair felt soft when I pet it.
+21776 | hairdresser | noun | B1 | #1/1 | TR: kuaför | EN: a person whose job is cutting, styling, and caring for people's hair | ÖRNEK: I visited the hairdresser to get a trim before the interview.
+15434 | half | adverb | B1 | #1/1 | TR: kısmen, yarı yarıya | EN: to a limited extent; not completely; in a degree that is about 50 % of the whole | ÖRNEK: The team was half ready for the competition when the coach arrived.

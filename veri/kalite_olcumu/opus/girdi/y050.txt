@@ -1,0 +1,100 @@
+1159 | observation | noun | B2 | #1/1 | TR: gözlem, izleme | EN: the act of carefully watching something or someone in order to gain information | ÖRNEK: The teacher asked the students to record their observations during the lab.
+1156 | observe | verb | B1 | #1/2 | TR: gözlemlemek, izlemek | EN: to watch something carefully in order to gain information about it | ÖRNEK: The child observed the ants moving across the kitchen floor.
+1157 | observe | verb | B2 | #2/2 | TR: uygulamak, bir kurala uymak | EN: to follow a rule, law, or custom | ÖRNEK: Students are required to observe the university's honor code.
+1161 | observer | noun | B2 | #1/1 | TR: gözlemci, izleyici | EN: a person who watches or notices something, especially in order to gain information or to report on it | ÖRNEK: The birdwatcher sat quietly, a careful observer of the sparrows.
+11326 | obsess | verb | B2 | #1/1 | TR: takıntı yapmak | EN: to dominate or preoccupy the mind with a persistent idea or feeling | ÖRNEK: Scientists obsess over finding a cure for the disease.
+11328 | obsession | noun | C1 | #1/1 | TR: takıntı, saplantı | EN: a persistent, disturbing preoccupation with an idea, object, or activity that dominates a person's thoughts | ÖRNEK: His obsession with video games kept him up all night.
+6496 | obstacle | noun | B1 | #1/1 | TR: engel, mani | EN: something that blocks progress or makes it difficult to achieve something | ÖRNEK: The fallen tree was an obstacle on the hiking trail.
+2049 | obtain | verb | B1 | #1/1 | TR: elde etmek, temin etmek | EN: to get or acquire something, especially by effort or request | ÖRNEK: I need to obtain a new passport before my trip.
+17098 | obvious | adjective | B1 | #1/1 | TR: açık, belli | EN: clearly visible or easily understood; not hidden or concealed | ÖRNEK: The answer on the board was obvious to everyone in the class.
+17099 | obviously | adverb | B2 | #1/1 | TR: açıkça | EN: in a way that is clear, evident, or easily perceived | ÖRNEK: It is obviously cold outside, so wear a coat.
+1163 | occasion | noun | B1 | #1/2 | TR: olay, etkinlik | EN: a particular event or happening, especially one that is noteworthy or celebrated | ÖRNEK: The wedding was a joyous occasion for the whole family.
+1164 | occasion | noun | B2 | #2/2 | TR: uygun zaman, fırsat | EN: a suitable or appropriate time for something to happen or be done | ÖRNEK: She waited for the appropriate occasion to ask for a raise.
+1166 | occasional | adjective | B1 | #1/1 | TR: ara sıradaki, nadir, bazen olan | EN: occurring or done infrequently; not regular or constant | ÖRNEK: I enjoy an occasional walk in the park after work.
+1167 | occasionally | adverb | B1 | #1/1 | TR: ara sıra, zaman zaman | EN: at irregular intervals; not regularly or frequently | ÖRNEK: I occasionally go jogging in the park after dinner.
+3871 | occupation | noun | B1 | #1/2 | TR: meslek, iş, uğraş | EN: a person's regular work or profession, especially as a means of earning a living | ÖRNEK: She found a new occupation after graduating from university.
+3872 | occupation | noun | C1 | #2/2 | TR: işgal, bir bölgeyi ele geçirme | EN: the act of taking control of a place or territory, especially by military force | ÖRNEK: The country suffered greatly during the foreign occupation.
+3868 | occupy | verb | B2 | #1/1 | TR: işgal etmek | EN: to take control of a place or area by force or authority | ÖRNEK: The troops occupied the hill before dawn.
+1790 | occur | verb | B1 | #1/2 | TR: gerçekleşmek, meydana gelmek | EN: to happen or take place, especially unexpectedly | ÖRNEK: The meeting occurred yesterday afternoon.
+1789 | occur | verb | B1 | #2/2 | TR: aklına gelmek, hatırlanmak | EN: to come into someone's mind; to be thought of or remembered | ÖRNEK: It occurred to me that I left my notebook at home.
+1791 | occurrence | noun | B2 | #1/1 | TR: olay, meydana gelme | EN: something that happens; the fact of something happening | ÖRNEK: The sudden rain was an unexpected occurrence during the picnic.
+17528 | ocean | noun | A1 | #1/1 | TR: okyanus | EN: a vast body of salt water that covers most of the Earth's surface | ÖRNEK: The ocean covers more than seventy percent of the planet.
+23438 | octopus | noun | B1 | #1/1 | TR: ahtapot | EN: a marine cephalopod mollusk with eight arms, known for its intelligence and ability to change color | ÖRNEK: The aquarium displayed a large octopus in a glass tank.
+2037 | odd | adjective | B1 | #1/2 | TR: garip, tuhaf | EN: unusual or unexpected; deviating from the norm | ÖRNEK: The cat's odd meow surprised the children.
+2038 | odd | adjective | A2 | #2/2 | TR: tek | EN: not divisible by two; having a remainder of one when divided by two | ÖRNEK: She counted five odd numbers in the sequence.
+20760 | odds | noun | C1 | #1/1 | TR: olasılık, şans | EN: the probability that something will happen | ÖRNEK: The odds are that she will win.
+20340 | of | preposition | A1 | #1/2 | TR: -in, -nın (ait olma) | EN: belonging to or connected with someone or something | ÖRNEK: What is the name of this street?
+20341 | of | preposition | A1 | #2/2 | TR: (miktar) … -lik | EN: used after words that show an amount | ÖRNEK: Can I have a glass of water?
+15135 | off | adverb | A2 | #1/1 | TR: çalışmıyor, kapalı | EN: not operating or switched on; in a state of inactivity. | ÖRNEK: The TV is off, so we can study in silence.
+15136 | off | preposition | A2 | #1/1 | TR: uzak, ...'den, ... dışına | EN: to indicate movement away from a place or position, or separation from something | ÖRNEK: The cat jumped off the sofa and landed softly.
+2959 | offend | verb | B1 | #1/2 | TR: kırmak, incitmek, gücendirmek | EN: to cause someone to feel upset, annoyed, or resentful | ÖRNEK: The joke offended several people in the audience.
+2960 | offend | verb | B2 | #2/2 | TR: suç işlemek, yasa dışı bir eylemde bulunmak | EN: to violate a law, rule, or moral principle | ÖRNEK: The activist's actions offended the law by blocking the highway.
+2961 | offender | noun | B2 | #1/1 | TR: suç işleyen kişi, suçlu | EN: a person who has committed a crime or broken a law | ÖRNEK: The police arrested the offender after the robbery.
+2964 | offensive | adjective | B2 | #1/2 | TR: hakaret içeren, aşağılayıcı | EN: causing someone to feel upset, angry, or hurt because it is rude or insulting | ÖRNEK: His offensive comment made the audience uncomfortable.
+2965 | offensive | adjective | C1 | #2/2 | TR: saldırgan, saldırı amaçlı | EN: relating to or intended to attack or gain an advantage over an opponent | ÖRNEK: The football coach praised the team's offensive tactics after the win.
+16277 | offer | noun | B1 | #1/1 | TR: teklif, öneri | EN: a proposal or suggestion presented for acceptance or consideration | ÖRNEK: The manager presented an offer to the client during the meeting.
+16278 | offer | verb | A1 | #1/2 | TR: teklif etmek, sunmak | EN: to present something for someone to accept or reject | ÖRNEK: The professor offered extra credit for attending the workshop.
+16279 | offer | verb | B2 | #2/2 | TR: satmak, pazara sunmak | EN: to make something available for sale or distribution | ÖRNEK: Local farmers offer fresh vegetables at the weekend market.
+16280 | offering | noun | B2 | #1/2 | TR: adak, kurban | EN: something presented to a deity or as a religious sacrifice | ÖRNEK: The villagers prepared a small offering for the shrine.
+16281 | offering | noun | B2 | #2/2 | TR: teklif, öneri, sunulan şey | EN: something presented for consideration or acceptance, especially in business or negotiations | ÖRNEK: The company released a new offering for its cloud services.
+20031 | office | noun | A2 | #1/1 | TR: ofis, iş yeri | EN: a room or set of rooms where business or professional work is performed | ÖRNEK: The office is located on the third floor of the building.
+20133 | officer | noun | A2 | #1/3 | TR: polis memuru, memur | EN: a person who holds a position of authority in a police force or other law-enforcement agency | ÖRNEK: The officer stopped the car for speeding.
+20134 | officer | noun | B1 | #2/3 | TR: subay, asker | EN: a member of the armed forces who holds a position of authority, typically a commissioned rank | ÖRNEK: The officer received his commission after graduating from the academy.
+20135 | officer | noun | B2 | #3/3 | TR: şirket yöneticisi, idareci | EN: a person who holds a position of authority in a corporation or organization, often responsible for managing operations | ÖRNEK: The officer handled the company's legal affairs efficiently.
+19621 | official | adjective | B1 | #1/1 | TR: resmi, resmi bir | EN: relating to an authority or public body and authorized or recognized by it | ÖRNEK: The official schedule shows the conference will end at 5 p.m.
+19622 | official | noun | B2 | #1/1 | TR: memur, yetkili | EN: a person who holds a position of authority in a government or organization and is authorized to perform official duties | ÖRNEK: The city hired a new official to manage public transportation.
+8702 | offspring | noun | B1 | #1/1 | TR: çocuk, nesil | EN: the product or result of reproduction; a person's or animal's children | ÖRNEK: The couple was thrilled to welcome their first offspring.
+14080 | often | adverb | A2 | #1/1 | TR: sık sık | EN: to a great degree of frequency; many times | ÖRNEK: I often drink coffee in the morning before work.
+27313 | oh | exclamation | A1 | #1/1 | TR: ah!, öyle mi!, hmm (şaşkınlık, anlama, duygu) | EN: used to show surprise, interest, understanding or another feeling | ÖRNEK: Oh, I didn't know that.
+14008 | oil | noun | A2 | #1/3 | TR: petrol, ham petrol | EN: a viscous liquid derived from petroleum that is used as fuel or for industrial purposes | ÖRNEK: The country relies heavily on oil for its energy needs.
+14009 | oil | noun | A2 | #2/3 | TR: yemeklik yağ, pişirme yağı | EN: a liquid fat used for cooking, frying, or as a dressing ingredient | ÖRNEK: Add a tablespoon of oil to the pan before sautéing the onions.
+14010 | oil | noun | B1 | #3/3 | TR: motor yağı, makine yağı | EN: a substance applied to machinery or moving parts to reduce friction | ÖRNEK: The car's engine needed fresh oil after the long trip.
+15157 | old | adjective | A2 | #1/2 | TR: yaşlı | EN: having lived for a long time; advanced in age | ÖRNEK: My grandmother is old but still very active.
+15158 | old | adjective | A2 | #2/2 | TR: eski | EN: having existed or been used for a long time; not new | ÖRNEK: The old clock still ticks every hour.
+20483 | old-fashioned | adjective | B1 | #1/1 | TR: eski moda, modası geçmiş | EN: not modern; no longer fashionable or common | ÖRNEK: She wore an old-fashioned dress.
+25506 | omnibus | noun | C1 | #2/2 | TR: derleme, toplu eser | EN: a volume containing several works, such as a collection of laws, stories, or essays | ÖRNEK: The library added a new omnibus of 19th-century novels to its collection.
+20344 | on | adverb | A1 | #1/2 | TR: açık (cihaz) | EN: working or being used | ÖRNEK: Is the TV on?
+20345 | on | adverb | A1 | #2/2 | TR: üzerinde (giysi) | EN: wearing something | ÖRNEK: Put your coat on. It's cold.
+20346 | on | preposition | A1 | #1/2 | TR: üzerinde, üstünde | EN: touching and supported by the surface of something | ÖRNEK: Your book is on the table.
+20347 | on | preposition | A1 | #2/2 | TR: -de, -da (gün, tarih) | EN: used to show a day or date | ÖRNEK: I'll see you on Monday.
+20849 | once | adverb | A1 | #1/2 | TR: bir kez, bir kere | EN: one time only | ÖRNEK: I've been to Paris once.
+20850 | once | adverb | A1 | #2/2 | TR: bir zamanlar | EN: at some time in the past | ÖRNEK: This building was once a school.
+27212 | one | pronoun | A2 | #1/2 | TR: (daha önce söz edilen şeyin yerine) olan, -i | EN: used instead of a noun that has already been mentioned | ÖRNEK: I don't like the blue shirt. I'll take the red one.
+27213 | one | pronoun | A2 | #2/2 | TR: insan, kişi (resmî) | EN: used to mean people in general, including the speaker (formal) | ÖRNEK: One should always be polite.
+12670 | ongoing | adjective | B2 | #1/1 | TR: devam eden | EN: describing something that is currently in progress and has not yet been completed | ÖRNEK: The conference is ongoing and will finish tomorrow.
+20348 | onion | noun | A1 | #1/1 | TR: soğan | EN: a round vegetable with a strong smell and taste, used in cooking | ÖRNEK: Chop the onion and fry it in oil.
+20349 | online | adjective | A1 | #1/1 | TR: çevrimiçi, internetteki | EN: available on or done through the internet | ÖRNEK: I took an online English course.
+20350 | online | adverb | A1 | #1/1 | TR: internetten, çevrimiçi olarak | EN: using the internet | ÖRNEK: I bought the tickets online.
+15111 | only | adjective | A2 | #1/1 | TR: tek, yalnız | EN: being the single one; not accompanied by others | ÖRNEK: The only book on the shelf was a dictionary.
+15112 | only | adverb | A1 | #1/1 | TR: yalnızca, sadece | EN: no one or nothing else except; no more than | ÖRNEK: I only have ten minutes left before the meeting starts.
+17185 | onto | preposition | A2 | #1/1 | TR: üstüne, üzerine | EN: indicating movement to a position on the surface of something | ÖRNEK: She stepped onto the platform and waited for the train.
+6553 | open | adjective | A1 | #1/3 | TR: açık, kapalı olmayan | EN: not closed or shut; allowing access or passage. | ÖRNEK: Please leave the window open.
+6554 | open | adjective | B2 | #2/3 | TR: şeffaf, gizli olmayan | EN: not concealed or secret; allowing information to be seen or known. | ÖRNEK: The government held an open meeting to address citizens' concerns.
+6555 | open | adjective | B1 | #3/3 | TR: yeniliğe açık, açık fikirli | EN: willing to consider or accept new ideas, opinions, or experiences. | ÖRNEK: The teacher praised the student's open attitude toward feedback.
+6557 | open | verb | A2 | #1/2 | TR: açmak, açılmak | EN: to cause something to become not closed or to allow access to it | ÖRNEK: She opened the window to let fresh air in.
+6558 | open | verb | B2 | #2/2 | TR: başlatmak, açılışını yapmak | EN: to begin an event, activity, or period of time | ÖRNEK: The director opened the ceremony with a short video.
+6560 | opening | noun | B1 | #1/3 | TR: açıklık, boşluk, delik | EN: a space or gap that allows passage or view through something | ÖRNEK: The opening in the fence was just big enough for a rabbit to escape.
+6561 | opening | noun | B1 | #2/3 | TR: başlangıç, açılış | EN: the first part or beginning of an event, performance, or period of time | ÖRNEK: The opening of the museum was celebrated with a special exhibition.
+6562 | opening | noun | B2 | #3/3 | TR: iş ilanı, boş pozisyon | EN: a vacancy or position that is available for employment | ÖRNEK: The university advertised an opening for a lecturer in linguistics.
+6563 | openly | adverb | B1 | #1/1 | TR: açıkça, dürüstçe | EN: in a way that is not hidden, secret, or restrained; without concealment or reservation | ÖRNEK: She openly shared her opinion during the class discussion.
+12236 | opera | noun | A2 | #1/1 | TR: opera | EN: a dramatic work set to music, typically performed in a theater with singers and an orchestra | ÖRNEK: The school organized a field trip to the opera house.
+19409 | operate | verb | B1 | #1/2 | TR: çalıştırmak, işletmek | EN: to control the functioning of a machine, system, or process | ÖRNEK: The factory worker knows how to operate the assembly line safely.
+19410 | operate | verb | C1 | #2/2 | TR: ameliyat etmek | EN: to perform a surgical procedure on a patient | ÖRNEK: The doctor explained that she would operate on his broken arm.
+19414 | operation | noun | B2 | #1/3 | TR: cerrahi müdahale, ameliyat | EN: a medical procedure in which a surgeon performs an invasive treatment on a patient | ÖRNEK: The doctor explained the risks before the operation.
+19415 | operation | noun | B1 | #2/3 | TR: işletme, faaliyete geçirme, operasyon | EN: the act of running a business, organization, or activity, especially in a systematic way | ÖRNEK: The new manager oversees the operation of the store.
+19416 | operation | noun | C1 | #3/3 | TR: matematiksel işlem, aritmetik işlem | EN: a mathematical function that combines numbers or variables according to a specific rule | ÖRNEK: The calculator can perform basic operations like addition and subtraction.
+19417 | operational | adjective | B1 | #1/2 | TR: çalışma hâlinde, işlevsel | EN: capable of being used or functioning; in working order | ÖRNEK: The printer is operational after the technician fixed it.
+19418 | operational | adjective | C1 | #2/2 | TR: operasyonla ilgili, uygulamaya yönelik | EN: pertaining to or used in the planning or execution of operations, especially military or business activities | ÖRNEK: The commander reviewed the operational plan before the exercise.
+19422 | operator | noun | B1 | #1/1 | TR: operatör, işletmeci | EN: a person who controls or manages the functioning of a machine, device, or system | ÖRNEK: The operator started the assembly line at eight o'clock.
+16610 | opinion | noun | A1 | #1/1 | TR: görüş, kanaat, fikir | EN: a belief or judgment that rests on grounds insufficient to produce complete certainty | ÖRNEK: She gave her opinion on the class project.
+6239 | opponent | noun | B2 | #1/1 | TR: rakip, karşı taraf | EN: a person or group that competes against or opposes another in a contest, argument, or conflict | ÖRNEK: The chess player studied his opponent's opening moves carefully.
+16557 | opportunity | noun | A2 | #1/1 | TR: fırsat, uygun zaman | EN: a set of circumstances that makes it possible to do something | ÖRNEK: The company offered a training program as an opportunity for staff development.
+6238 | oppose | verb | B2 | #1/1 | TR: karşı çıkmak, muhalefet etmek | EN: to act against or express disagreement with something or someone | ÖRNEK: The council members oppose the new zoning law.
+6241 | opposed | adjective | B2 | #1/1 | TR: karşıt, muhalif | EN: disagreeing with something; in conflict with it | ÖRNEK: The students were opposed to the campus curfew.
+6242 | opposite | adjective | A2 | #1/1 | TR: karşıdaki, karşı | EN: situated on the other side of something; facing it | ÖRNEK: The two houses stand opposite each other across the street.
+20351 | opposite | adverb | A1 | #1/1 | TR: karşıda, karşısında | EN: on the other side of a space from someone or something | ÖRNEK: The woman sitting opposite smiled at me.
+6243 | opposite | noun | A2 | #1/1 | TR: karşıtı, zıttı | EN: a thing that is completely different from or contrary to another | ÖRNEK: The two ideas are complete opposites in this debate.
+20352 | opposite | preposition | A1 | #1/1 | TR: karşısında | EN: facing someone or something across a space | ÖRNEK: The bank is opposite the post office.
+6244 | opposition | noun | B1 | #1/1 | TR: muhalefet, karşıtlık | EN: the act of resisting or being against something; a state of disagreement or conflict. | ÖRNEK: The community showed opposition to the landfill project.
+17101 | opt | verb | B2 | #1/1 | TR: seçmek, tercih etmek | EN: to make a choice from a range of possibilities, especially after careful consideration | ÖRNEK: She opted for tea rather than coffee at breakfast.
+13082 | optical | adjective | B2 | #1/1 | TR: görsel, optik | EN: relating to light, vision, or the science of optics | ÖRNEK: The camera uses an optical zoom to bring distant objects closer.

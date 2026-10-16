@@ -1,0 +1,100 @@
+20423 | male | noun | A2 | #1/1 | TR: erkek, erkek hayvan | EN: a male person or animal | ÖRNEK: The males of this species have bright feathers.
+20477 | mall | noun | B1 | #1/1 | TR: alışveriş merkezi, AVM | EN: a large building or area with many shops | ÖRNEK: Let's meet at the mall.
+1086 | man | noun | A1 | #1/2 | TR: adam, erkek | EN: an adult human male person | ÖRNEK: The man walked his dog in the park.
+1087 | man | noun | B2 | #2/2 | TR: insanlık, insan türü | EN: the human species collectively; humanity | ÖRNEK: Man has always sought to understand the cosmos.
+9240 | manage | verb | A2 | #1/2 | TR: yönetmek, idare etmek | EN: to be in charge of and direct the affairs or operations of something or someone | ÖRNEK: The new director will manage the department starting next month.
+9241 | manage | verb | B1 | #2/2 | TR: başarmak, halledebilmek | EN: to succeed in doing something, especially something difficult or unexpected | ÖRNEK: I managed to catch the early train this morning.
+9243 | management | noun | B2 | #1/1 | TR: yönetim, idare | EN: the act or skill of directing and controlling an organization or group of people | ÖRNEK: The school introduced new management to improve student services.
+9244 | manager | noun | A2 | #1/1 | TR: yönetici, idareci | EN: a person who is responsible for controlling or administering an organization or group of staff | ÖRNEK: The manager approved the leave request for the staff.
+20739 | mandate | noun | C1 | #1/1 | TR: yetki (seçimle verilen) | EN: the authority given to a government or person to do something | ÖRNEK: The election gave the party a clear mandate.
+20740 | mandatory | adjective | C1 | #1/1 | TR: zorunlu | EN: required by law or a rule | ÖRNEK: Wearing a seat belt is mandatory.
+23366 | mango | noun | A2 | #1/1 | TR: mango | EN: a tropical fruit with sweet, juicy flesh and a large seed, commonly eaten fresh or used in drinks and desserts. | ÖRNEK: I bought a mango at the market yesterday.
+8385 | manifest | verb | B2 | #1/1 | TR: görünür kılmak, ortaya koymak | EN: to make something clear or evident to the mind or eye; to display or show plainly. | ÖRNEK: During the meeting, she manifested confidence in the new proposal.
+7603 | manipulate | verb | B2 | #1/1 | TR: yönlendirmek, manipüle etmek | EN: to handle or control something, especially in a skillful way, or to influence people or situations for a particular purpose | ÖRNEK: The technician manipulated the machine to increase its speed.
+7605 | manipulation | noun | B2 | #1/1 | TR: manipülasyon, yönlendirme | EN: the act of handling or controlling something, especially in a skillful way | ÖRNEK: The technician demonstrated the manipulation of the machine's controls.
+7054 | manner | noun | A2 | #1/2 | TR: yöntem, şekil | EN: a way in which something is done or happens | ÖRNEK: She wrote the report in a professional manner.
+7055 | manner | noun | B1 | #2/2 | TR: davranış, tutum | EN: the way a person behaves toward others | ÖRNEK: He always uses good manners when meeting new people.
+6091 | manufacture | verb | B2 | #1/1 | TR: üretmek, imal etmek | EN: to make goods or products, especially on a large scale using industrial processes | ÖRNEK: The workshop can manufacture simple wooden toys for local schools.
+6093 | manufacturing | noun | B2 | #1/1 | TR: üretim | EN: the process of producing goods on a large scale, especially in factories | ÖRNEK: Manufacturing cars requires precise engineering and skilled labor.
+19148 | manuscript | noun | C1 | #1/1 | TR: el yazması, taslak | EN: a handwritten or typed document, especially a writer's original work before it is published | ÖRNEK: She carefully digitized the fragile manuscript for archival purposes.
+27257 | many | determiner | A1 | #1/1 | TR: çok, birçok (sayılabilenle) | EN: a large number of | ÖRNEK: Many people live in this city.
+17274 | map | noun | A2 | #1/2 | TR: harita | EN: a visual representation of an area showing geographic features and locations. | ÖRNEK: The teacher handed each student a map of the United States.
+17275 | map | noun | B2 | #2/2 | TR: şema | EN: a diagram that shows the relationship or structure of something, often abstract. | ÖRNEK: The professor asked us to draw a concept map for the lecture.
+17276 | map | verb | B2 | #1/1 | TR: haritalamak | EN: to represent an area, a set of data, or a concept in the form of a map; to create a map of something | ÖRNEK: The cartographer will map the coastline this summer.
+20568 | marathon | noun | B2 | #1/1 | TR: maraton | EN: a running race of about 42 kilometres | ÖRNEK: He ran the Istanbul Marathon last year.
+15644 | march | noun | B2 | #1/1 | TR: yürüyüş, protesto yürüyüşü | EN: a public demonstration in which participants walk together to express a political or social demand | ÖRNEK: The city council approved the route for the upcoming march.
+15645 | march | verb | B1 | #1/1 | TR: yürümek, geçit töreni yapmak | EN: to walk in an organized, steady procession, often for a political or social purpose | ÖRNEK: The crowd began to march through the streets after the rally.
+11866 | margin | noun | B1 | #1/2 | TR: fark, pay | EN: a small amount or degree by which something differs from a standard or expectation | ÖRNEK: The election results showed a margin of just one percent between the candidates.
+11867 | margin | noun | B1 | #2/2 | TR: kenar, sınır | EN: the edge or border of something, especially a page, a piece of land, or a surface | ÖRNEK: Please set a one-centimeter margin on all sides of the document.
+11868 | marginal | adjective | B2 | #1/2 | TR: hafif, çok az, sınırlı | EN: slightly above or below a standard, not significant | ÖRNEK: The experiment showed a marginal change in temperature.
+11869 | marginal | adjective | C1 | #2/2 | TR: kenara ait, sınırda bulunan | EN: relating to the edge or border of something; situated at the margin | ÖRNEK: The town is located on marginal land that is prone to flooding.
+19027 | marine | adjective | B2 | #1/1 | TR: denizle ilgili, denizle bağlantılı | EN: relating to the sea or ocean; existing in or produced by the sea. | ÖRNEK: Marine animals like dolphins are popular attractions at aquariums.
+1823 | mark | noun | A2 | #1/3 | TR: işaret, damga | EN: a visible symbol or sign made on a surface to indicate something | ÖRNEK: The teacher put a small mark on each correct answer.
+1824 | mark | noun | B1 | #2/3 | TR: puan, not | EN: a numerical or alphabetical assessment indicating the level of achievement | ÖRNEK: He got a good mark on the quiz.
+1825 | mark | noun | B2 | #3/3 | TR: hedef, amaç | EN: a target or point that is intended to be reached or aimed at | ÖRNEK: The runner aimed for a new personal mark in the race.
+1827 | mark | verb | A2 | #1/2 | TR: işaretlemek, işaret koymak | EN: to place a visible sign, symbol, or indication on something to identify or highlight it | ÖRNEK: Please mark the correct answer on the answer sheet.
+1826 | mark | verb | B2 | #2/2 | TR: notlandırmak, puanlamak | EN: to assign a score or grade to something, especially in an assessment or examination | ÖRNEK: The professor will mark the quizzes before the class ends.
+1831 | marker | noun | A2 | #1/2 | TR: keçeli kalem, işaretleme kalemi | EN: a pen, especially a felt-tip pen, used for writing or drawing | ÖRNEK: The teacher handed each student a marker for the group activity.
+1830 | marker | noun | B1 | #2/2 | TR: işaret, gösterge | EN: a sign or object that indicates the position, direction, or existence of something | ÖRNEK: The hikers followed the trail markers to reach the summit.
+15597 | market | noun | A2 | #1/2 | TR: pazar, alışveriş yeri | EN: a place where goods and services are bought and sold, typically on a regular basis | ÖRNEK: The market opens at eight o'clock every morning.
+15598 | market | noun | B2 | #2/2 | TR: piyasa, finansal piyasa | EN: the system or arena in which financial instruments such as stocks, bonds, and commodities are traded | ÖRNEK: Investors watch the market closely for daily price changes.
+15599 | market | verb | B2 | #1/1 | TR: pazarlamak, satmak | EN: to promote or sell a product or service, especially by advertising or presenting it to potential customers | ÖRNEK: The startup will market its software to small businesses next quarter.
+15602 | marketing | noun | B2 | #1/1 | TR: pazarlama | EN: the activity or business of promoting and selling products or services, including market research and advertising. | ÖRNEK: The university offers a basic course on marketing for business students.
+15603 | marketplace | noun | B2 | #1/1 | TR: pazar yeri | EN: a physical or online location where goods and services are bought and sold | ÖRNEK: The university opened a small marketplace for students to sell textbooks.
+4103 | marriage | noun | A1 | #1/1 | TR: evlilik | EN: the legally recognized union of two people as partners in a personal relationship | ÖRNEK: They announced their marriage to family and friends last week.
+4105 | married | adjective | A2 | #1/1 | TR: evli | EN: having a legally recognized spouse; being in a marriage | ÖRNEK: They got married last summer in a small ceremony.
+4101 | marry | verb | A1 | #1/1 | TR: evlenmek | EN: to enter into a legal or formal union with someone as a spouse | ÖRNEK: They will marry next month.
+20569 | martial | adjective | B2 | #1/1 | TR: savaşla ilgili; dövüş (sanatları) | EN: connected with war or fighting | ÖRNEK: She does martial arts such as karate.
+7036 | marvelous | adjective | B2 | #1/1 | TR: harika, müthiş | EN: extremely good or impressive; causing admiration or wonder | ÖRNEK: The new restaurant received marvelous reviews from food critics.
+4128 | mask | noun | B1 | #1/1 | TR: yüz maskesi, maske | EN: a covering for the face, often used to conceal identity or protect the wearer from hazards | ÖRNEK: She bought a new mask for the costume party next weekend.
+20570 | mass | adjective | B2 | #1/1 | TR: kitlesel, toplu | EN: affecting or involving a large number of people or things | ÖRNEK: Mass tourism has changed the island.
+16773 | mass | noun | B1 | #1/3 | TR: büyük miktar, çokluk | EN: a large amount or quantity of something | ÖRNEK: The festival attracted a mass of tourists from abroad.
+16774 | mass | noun | B1 | #2/3 | TR: kilise ayini, toplu ibadet | EN: a religious ceremony, especially the Catholic Eucharist | ÖRNEK: He missed mass because of a sudden illness.
+16775 | mass | noun | B1 | #3/3 | TR: kütle | EN: the amount of matter in an object, measured in kilograms or grams | ÖRNEK: The scientist recorded the mass of the sample before the experiment.
+14686 | massacre | noun | B2 | #1/1 | TR: katliam, toplu öldürme | EN: the brutal killing of a large number of people, especially civilians, in a single event | ÖRNEK: The village was devastated after the sudden massacre last night.
+16778 | massive | adjective | B2 | #1/1 | TR: büyük, devasa | EN: of great size, extent, or magnitude; exceptionally large or extensive | ÖRNEK: The library contains a massive collection of rare books.
+6453 | master | noun | B2 | #1/2 | TR: üst, efendi, sahip | EN: a person who has control or authority over others, especially a servant or a household | ÖRNEK: The master opened the door for the visitors.
+6454 | master | noun | C1 | #2/2 | TR: usta, uzman | EN: a person who has great skill or expertise in a particular field or activity | ÖRNEK: The master taught apprentices how to shape the wood.
+6455 | master | verb | C1 | #1/2 | TR: öğrenmek, hâkim olmak, uzmanlaşmak | EN: to acquire complete knowledge or skill in a subject or activity | ÖRNEK: She wants to master French before her exchange program.
+6456 | master | verb | B2 | #2/2 | TR: kontrol etmek, egemen olmak | EN: to have control over or dominate something or someone | ÖRNEK: The leader tried to master the region by forming alliances.
+16046 | match | noun | A1 | #1/3 | TR: yarışma, müsabaka | EN: an organized competition in which individuals or teams compete against each other | ÖRNEK: The tennis match lasted three hours and ended in a tie.
+16047 | match | noun | B1 | #2/3 | TR: eş, uyum, çift | EN: two or more items that correspond closely in size, shape, or function | ÖRNEK: The socks and shoes were a good match for the outfit.
+16048 | match | noun | A2 | #3/3 | TR: kibrit çubuğu | EN: a small wooden stick coated with a combustible material used to start a fire | ÖRNEK: He pulled a match from the box and lit the stove.
+16049 | match | verb | B1 | #1/2 | TR: eşleşmek, uyum sağlamak | EN: to be equal to or correspond with something in size, quality, or character | ÖRNEK: The shoes match the outfit perfectly.
+16050 | match | verb | B2 | #2/2 | TR: boy ölçüşmek, denk gelmek, eşleştirmek | EN: to compete against someone or something in a contest or game | ÖRNEK: She matched her rival's arguments during the debate.
+16051 | matching | adjective | B1 | #1/1 | TR: uyumlu, birbirine uygun | EN: being alike or complementary in such a way that they fit together well | ÖRNEK: The twins wore matching shirts to the party.
+24429 | matchmaking | noun | B2 | #1/1 | TR: eşleştirme, eş bulma | EN: the process of pairing people or items together, especially for romantic relationships or competitive events | ÖRNEK: The club started a matchmaking program to help members find study partners.
+1096 | mate | noun | A2 | #1/2 | TR: arkadaş, dost | EN: a person who is a companion or close friend | ÖRNEK: Tom and I have been mates since high school.
+1097 | mate | noun | B1 | #2/2 | TR: eş | EN: a person's husband or wife; a spouse | ÖRNEK: John introduced his mate to the family at dinner.
+1098 | mate | verb | B2 | #1/1 | TR: eşleştirmek, çiftleştirmek | EN: to cause two animals or plants to reproduce together; to join as a pair. | ÖRNEK: The biologist will mate the two turtles this afternoon.
+14508 | material | adjective | B1 | #1/1 | TR: maddi, somut | EN: relating to physical substance or matter; having a tangible form | ÖRNEK: The scientist examined the material sample under a microscope.
+14510 | material | noun | A2 | #1/2 | TR: madde | EN: substance or matter that has physical properties and occupies space | ÖRNEK: The scientist explained the material's atomic structure to the students.
+14509 | material | noun | A2 | #2/2 | TR: kumaş | EN: a fabric or cloth used for making clothing, upholstery, or other items | ÖRNEK: The dress is made of a soft material that feels comfortable.
+5927 | mathematical | adjective | B1 | #1/1 | TR: matematiksel | EN: relating to mathematics or using mathematical methods or principles | ÖRNEK: She used a mathematical formula to calculate the total cost of the project.
+5930 | mathematics | noun | A2 | #1/1 | TR: matematik | EN: the abstract science of numbers, quantities, and space, dealing with the study of patterns, structures, and relationships. | ÖRNEK: She enjoys solving puzzles and therefore studies mathematics at university.
+14519 | matter | noun | A2 | #1/2 | TR: konu, mesele | EN: a subject or situation that is being considered or discussed; an issue that requires attention. | ÖRNEK: The manager called a meeting to address the matter.
+14518 | matter | noun | B1 | #2/2 | TR: madde, öz | EN: the physical substance that something is made of; the material composition of an object. | ÖRNEK: The scientist examined the matter under a microscope.
+14520 | matter | verb | B1 | #1/1 | TR: önemli olmak, bir etkisi/önemi olmak | EN: to be of importance or significance; to be relevant or have an effect on something | ÖRNEK: The small mistake does not matter in this assignment.
+18890 | mature | adjective | B1 | #1/1 | TR: olgun | EN: fully developed or fully grown; having reached a stage of complete development | ÖRNEK: The seedlings are still small; they will be mature next year.
+18892 | mature | verb | B2 | #1/1 | TR: olgunlaşmak | EN: to become fully developed or ripe, especially after a period of growth or development | ÖRNEK: The grapes will mature in the vineyard during the summer.
+17891 | maximize | verb | C1 | #1/1 | TR: en üst düzeye çıkarmak | EN: to increase something as much as possible so that it reaches its highest level | ÖRNEK: The manager wants to maximize sales this quarter.
+17892 | maximum | adjective | B2 | #1/1 | TR: en yüksek | EN: of the greatest amount, degree, or intensity possible or allowed | ÖRNEK: Scientists measured the maximum temperature recorded last summer.
+17893 | maximum | noun | B2 | #1/2 | TR: en yüksek değer | EN: the greatest amount or degree that is possible or allowed | ÖRNEK: The temperature cannot exceed the maximum set by the thermostat.
+17894 | maximum | noun | B1 | #2/2 | TR: üst sınır | EN: the highest possible amount that can be allowed or achieved | ÖRNEK: The school set a maximum of 30 students per class.
+27269 | may | modal_verb | A2 | #1/2 | TR: -ebilir (olasılık) | EN: used to say that something is possible | ÖRNEK: It may rain tomorrow.
+27270 | may | modal_verb | A2 | #2/2 | TR: -ebilir miyim? (resmî izin) | EN: used to ask for or give permission (formal) | ÖRNEK: May I come in?
+15395 | maybe | adverb | A2 | #1/1 | TR: belki | EN: possibly; perhaps | ÖRNEK: Maybe you can help me with this problem.
+17849 | mayor | noun | B1 | #1/1 | TR: belediye başkanı | EN: the elected head of a city or town's municipal government | ÖRNEK: The mayor gave a short speech at the town hall meeting.
+27178 | me | pronoun | A1 | #1/1 | TR: beni, bana | EN: used as the object of a verb or preposition, or after "be", to refer to the speaker | ÖRNEK: Can you help me?
+20334 | meal | noun | A1 | #1/1 | TR: öğün, yemek | EN: an occasion when people eat, such as breakfast, lunch or dinner; the food eaten then | ÖRNEK: We have three meals a day.
+5455 | mean | verb | A1 | #1/2 | TR: anlamına gelmek, ifade etmek | EN: to indicate, represent, or convey a particular meaning or significance | ÖRNEK: In physics, 'force' means a push or pull on an object.
+5454 | mean | verb | B1 | #2/2 | TR: kastetmek, ima etmek | EN: to intend or have in mind; to convey a particular idea or intention | ÖRNEK: I mean to finish the report by Friday.
+5456 | meaning | noun | A1 | #1/2 | TR: anlam, tanım | EN: the idea or concept that a word, phrase, or text expresses | ÖRNEK: The teacher asked the class to write the meaning of the word.
+5457 | meaning | noun | B2 | #2/2 | TR: amaç, niyet | EN: the intention or purpose behind an action or statement | ÖRNEK: She wrote the letter with a clear meaning in mind.
+5458 | meaningful | adjective | B2 | #1/1 | TR: anlamlı, önemli | EN: having a purpose, value, or significance; conveying a clear and important meaning. | ÖRNEK: The teacher asked the students to write a meaningful essay about their goals.
+20571 | means | noun | B2 | #1/1 | TR: araç, yol, yöntem | EN: a method or way of doing something | ÖRNEK: The bicycle is a cheap means of transport.
+7574 | meantime | noun | B2 | #1/1 | TR: bu arada, ara | EN: the period of time between two events or actions | ÖRNEK: I will call you later; in the meantime, finish your homework.
+21049 | meanwhile | adverb | B1 | #1/1 | TR: bu arada, aynı zamanda | EN: at the same time as something else is happening; during the intervening period | ÖRNEK: She left the house early; meanwhile, the rain started to fall.
+10928 | measure | noun | B1 | #1/2 | TR: ölçü, birim | EN: a standard unit used to express the size, amount, or degree of something | ÖRNEK: The scientist recorded the temperature using a precise measure of degrees.
+10929 | measure | noun | B2 | #2/2 | TR: önlem, tedbir | EN: an action taken to achieve a particular result, especially to prevent something undesirable | ÖRNEK: The school implemented strict measures to curb bullying among students.
+10930 | measure | verb | B1 | #1/1 | TR: ölçmek, belirlemek | EN: to ascertain the size, amount, or degree of something by using a standard unit or instrument | ÖRNEK: The teacher asked us to measure the length of the desk.

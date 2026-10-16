@@ -1,0 +1,100 @@
+20511 | AIDS | noun | B2 | #1/1 | TR: AIDS (hastalık) | EN: a serious illness that destroys the body's ability to fight infection, caused by the HIV virus | ÖRNEK: Millions of people have died of AIDS.
+20276 | April | noun | A1 | #1/1 | TR: nisan | EN: the fourth month of the year | ÖRNEK: My birthday is in April.
+20279 | August | noun | A1 | #1/1 | TR: ağustos | EN: the eighth month of the year | ÖRNEK: We go on holiday in August.
+20295 | CD | noun | A1 | #1/1 | TR: CD, kompakt disk | EN: a small round disc on which music or information is recorded | ÖRNEK: I still have some old CDs of my favourite band.
+20302 | DVD | noun | A1 | #1/1 | TR: DVD | EN: a disc on which films, music or information can be stored | ÖRNEK: We watched a film on DVD last night.
+20300 | December | noun | A1 | #1/1 | TR: aralık (ay) | EN: the twelfth and last month of the year | ÖRNEK: It usually snows in December.
+20308 | February | noun | A1 | #1/1 | TR: şubat | EN: the second month of the year | ÖRNEK: February is the shortest month.
+20309 | Friday | noun | A1 | #1/1 | TR: cuma | EN: the day of the week after Thursday and before Saturday | ÖRNEK: I finish work early on Friday.
+27167 | I | pronoun | A1 | #1/1 | TR: ben | EN: used by the speaker to refer to himself or herself as the subject of a verb | ÖRNEK: I am a student.
+20475 | IT | noun | B1 | #1/1 | TR: bilişim, bilgi teknolojisi | EN: information technology; the use of computers to store and process information | ÖRNEK: She works in IT.
+20325 | January | noun | A1 | #1/1 | TR: ocak (ay) | EN: the first month of the year | ÖRNEK: The new term starts in January.
+20327 | July | noun | A1 | #1/1 | TR: temmuz | EN: the seventh month of the year | ÖRNEK: The festival is in July.
+20328 | June | noun | A1 | #1/1 | TR: haziran | EN: the sixth month of the year | ÖRNEK: School finishes in June.
+20333 | May | noun | A1 | #1/1 | TR: mayıs | EN: the fifth month of the year | ÖRNEK: The weather is lovely in May.
+20336 | Monday | noun | A1 | #1/1 | TR: pazartesi | EN: the day of the week after Sunday and before Tuesday | ÖRNEK: I start my new job on Monday.
+20338 | November | noun | A1 | #1/1 | TR: kasım | EN: the eleventh month of the year | ÖRNEK: The days get shorter in November.
+20342 | OK | adjective | A1 | #1/1 | TR: iyi, fena değil, idare eder | EN: safe, well, acceptable or good enough | ÖRNEK: Are you OK?
+20343 | OK | adverb | A1 | #1/1 | TR: iyi, sorunsuz | EN: in an acceptable or satisfactory way | ÖRNEK: Is the printer working OK now?
+20339 | October | noun | A1 | #1/1 | TR: ekim (ay) | EN: the tenth month of the year | ÖRNEK: Leaves turn brown in October.
+20361 | Saturday | noun | A1 | #1/1 | TR: cumartesi | EN: the day of the week after Friday and before Sunday | ÖRNEK: We play football on Saturday.
+20362 | September | noun | A1 | #1/1 | TR: eylül | EN: the ninth month of the year | ÖRNEK: Schools open in September.
+20364 | Sunday | noun | A1 | #1/1 | TR: pazar (gün) | EN: the day of the week after Saturday and before Monday | ÖRNEK: We visit my grandparents on Sundays.
+20366 | T-shirt | noun | A1 | #1/1 | TR: tişört | EN: a simple shirt with short sleeves and no collar | ÖRNEK: He was wearing jeans and a white T-shirt.
+20375 | TV | noun | A1 | #1/1 | TR: televizyon | EN: television; a device for watching programmes, or the programmes themselves | ÖRNEK: What's on TV tonight?
+20370 | Thursday | noun | A1 | #1/1 | TR: perşembe | EN: the day of the week after Wednesday and before Friday | ÖRNEK: I have a piano lesson on Thursday.
+20374 | Tuesday | noun | A1 | #1/1 | TR: salı | EN: the day of the week after Monday and before Wednesday | ÖRNEK: The shop opens late on Tuesday.
+20379 | Wednesday | noun | A1 | #1/1 | TR: çarşamba | EN: the day of the week after Tuesday and before Thursday | ÖRNEK: We have English on Wednesday.
+27161 | a | determiner | A1 | #1/2 | TR: bir (belirsiz tanımlık; sessiz harfle başlayan kelimeden önce) | EN: used before a singular noun that has not been mentioned before, when the next word begins with a consonant sound | ÖRNEK: I have a brother and a sister.
+27162 | a | determiner | A1 | #2/2 | TR: her, başına (miktar, sıklık) | EN: used to mean "each" or "every" when talking about prices, speeds or how often | ÖRNEK: I go to the gym three times a week.
+2534 | abandon | verb | B1 | #1/2 | TR: bırakmak, terk etmek | EN: to leave someone or something behind permanently, often without intending to return | ÖRNEK: The child felt scared when his mother abandoned him at the park.
+2535 | abandon | verb | B2 | #2/2 | TR: vazgeçmek, feragat etmek | EN: to give up or cease to pursue something, often because it is difficult or no longer desirable | ÖRNEK: She decided to abandon her dream of becoming a professional athlete.
+20012 | ability | noun | A2 | #1/1 | TR: yetenek, kabiliyet | EN: the power or skill to do something; the capacity to achieve a particular result | ÖRNEK: She has a strong ability to learn new software quickly.
+20011 | able | adjective | B1 | #1/1 | TR: yapabilen, yeterli | EN: having the power, skill, or means to do something | ÖRNEK: She is able to read simple texts in English.
+7350 | abolish | verb | B2 | #1/1 | TR: yürürlükten kaldırmak, lağvetmek, feshetmek | EN: to formally put an end to a law, system, or practice | ÖRNEK: The city council decided to abolish the parking fee for residents.
+15083 | about | adverb | A2 | #1/1 | TR: yaklaşık, yaklaşık olarak | EN: used to indicate an approximate amount, number, or degree | ÖRNEK: The meeting will start in about five minutes.
+15084 | about | preposition | A2 | #1/1 | TR: hakkında, ... ile ilgili | EN: indicating a relationship or connection to a subject or topic | ÖRNEK: She read a book about history for her class.
+15808 | above | adjective | B2 | #1/1 | TR: yukarıdaki, daha önce bahsedilen | EN: used to refer to something that has been mentioned earlier in the text or is situated higher in the same context | ÖRNEK: The above paragraph explains the main argument of the essay.
+20273 | above | adverb | A1 | #1/1 | TR: yukarıda, üstte | EN: at or to a higher place | ÖRNEK: The people in the flat above are very noisy.
+15809 | above | preposition | A2 | #1/1 | TR: üstünde | EN: at a higher position than something else | ÖRNEK: The picture hangs above the fireplace.
+7658 | abroad | adverb | B1 | #1/1 | TR: yurtdışına, dışarıda | EN: to or in a foreign country; outside one's own nation | ÖRNEK: She has always dreamed of living abroad.
+2932 | absence | noun | B1 | #1/1 | TR: yokluk, bulunmama | EN: the state of being away or not present | ÖRNEK: His sudden absence surprised everyone at the meeting.
+2930 | absent | adjective | A2 | #1/2 | TR: yok, bulunmayan | EN: not present; not existing or available in a particular place or situation | ÖRNEK: She was absent from the lecture because she felt ill.
+2931 | absent | adjective | B1 | #2/2 | TR: dalgın, düşünceli | EN: showing a lack of attention or concentration; mentally elsewhere | ÖRNEK: He seemed absent during the lecture and missed the main points.
+2154 | absolute | adjective | B2 | #1/1 | TR: mutlak, tam | EN: complete and total; without any limitation | ÖRNEK: Her absolute trust in the team helped them succeed.
+2157 | absolutely | adverb | A2 | #1/1 | TR: tamamen, kesinlikle | EN: to a total degree; without any doubt or restriction | ÖRNEK: She absolutely loves the new campus library.
+3394 | absorb | verb | B1 | #1/1 | TR: emmek, içine çekmek | EN: to take in or soak up (liquid, information, etc.) by physical or figurative means | ÖRNEK: The towel will absorb the spilled juice.
+2529 | abstract | adjective | B2 | #1/1 | TR: soyut, somut olmayan | EN: existing in thought or as an idea but not having a physical or concrete existence | ÖRNEK: She prefers abstract ideas over concrete facts in philosophy class.
+5430 | absurd | adjective | B2 | #1/1 | TR: mantıksız, gülünç | EN: describing something that is wildly unreasonable, illogical, or inappropriate. | ÖRNEK: The joke was so absurd that everyone laughed loudly.
+11544 | abundance | noun | B2 | #1/1 | TR: bolluk, çokluk | EN: the large quantity or plentiful supply of something | ÖRNEK: The market offers an abundance of fresh fruit during summer.
+17647 | abuse | noun | B2 | #1/1 | TR: istismar, kötüye kullanım | EN: the improper or harmful use of something or someone, often involving mistreatment or exploitation | ÖRNEK: The school introduced a policy to stop bullying and abuse.
+17648 | abuse | verb | B2 | #1/1 | TR: kötüye kullanmak, istismar etmek | EN: to treat someone or something with cruelty or to use something in a harmful or improper way | ÖRNEK: She abused the trust her friends had placed in her.
+18009 | academic | adjective | B1 | #1/2 | TR: akademik, bilimsel | EN: relating to education, scholarship, or research in higher education institutions | ÖRNEK: The professor assigned academic reading for next week.
+18010 | academic | adjective | C1 | #2/2 | TR: kuramsal, teorik | EN: concerned with theory rather than practical application | ÖRNEK: His thesis presents an academic theory of social change.
+18011 | academic | noun | B2 | #1/1 | TR: akademisyen, bilim insanı | EN: a person who works as a teacher or researcher at a college or university | ÖRNEK: The university hired a new academic for the chemistry department.
+18008 | academy | noun | B2 | #1/1 | TR: akademi | EN: an institution of higher learning or a specialized school, often focused on a particular field of study or training | ÖRNEK: The city built a new academy for gifted high-school students.
+5288 | accelerate | verb | B2 | #1/1 | TR: hızlandırmak | EN: to cause something to move faster or to increase in speed | ÖRNEK: The driver accelerated the car to overtake the truck.
+8519 | accent | noun | A2 | #1/2 | TR: lehçe, aksan | EN: a distinctive way of pronouncing a language, especially one associated with a particular country, area, or social group. | ÖRNEK: The newcomer tried to hide his heavy accent when giving the presentation.
+8518 | accent | noun | B1 | #2/2 | TR: vurgu, hece vurgusu | EN: the emphasis placed on a particular syllable of a word. | ÖRNEK: The teacher taught the class how to place the accent on each word.
+8277 | accept | verb | A2 | #1/1 | TR: kabul etmek | EN: to receive something offered or presented willingly | ÖRNEK: I accept the gift you gave me.
+8280 | acceptable | adjective | B2 | #1/1 | TR: kabul edilebilir, uygun | EN: capable of being accepted as satisfactory or suitable in a particular situation | ÖRNEK: Our budget allows for an acceptable amount of travel expenses each semester.
+8281 | acceptance | noun | B2 | #1/1 | TR: kabul | EN: the act of receiving or agreeing to something offered or proposed | ÖRNEK: The committee gave its acceptance to the proposal.
+10880 | access | noun | B1 | #1/2 | TR: erişim, ulaşım | EN: the ability or right to approach, enter, or use something | ÖRNEK: The website provides free access to its basic features.
+10881 | access | noun | B1 | #2/2 | TR: giriş, giriş yolu | EN: a point or means of entering a place or system | ÖRNEK: The highway offers easy access to the coastal towns.
+10882 | access | verb | B1 | #1/1 | TR: erişmek | EN: to obtain the ability or right to enter, use, or retrieve something, especially information or a place | ÖRNEK: You can access the Wi-Fi network with the password on the wall.
+10884 | accessible | adjective | B1 | #1/1 | TR: ulaşılabilir, erişilebilir | EN: able to be reached, entered, or used; easy to approach or obtain | ÖRNEK: The library offers an accessible entrance for wheelchair users.
+7523 | accident | noun | B1 | #1/1 | TR: kaza | EN: an unexpected and undesirable event that causes damage or injury | ÖRNEK: She slipped on the ice and had a minor accident.
+7525 | accidentally | adverb | A2 | #1/1 | TR: tesadüfen, istemeden | EN: in an unplanned or unintended way; without meaning to do so | ÖRNEK: She accidentally dropped her phone in the water.
+10940 | accommodate | verb | B1 | #1/2 | TR: yer sağlamak, barındırmak | EN: to provide someone with a place to stay or enough space for something | ÖRNEK: The small inn can accommodate ten travelers each night.
+10941 | accommodate | verb | B2 | #2/2 | TR: ihtiyacını karşılamak, dikkate almak, uymak | EN: to adjust oneself or something to fit new conditions or requirements | ÖRNEK: She quickly learned to accommodate the new schedule at work.
+10943 | accommodation | noun | B1 | #1/2 | TR: konaklama, konukevi, konaklama yeri | EN: a place where someone can live, stay, or sleep, especially for a short period of time | ÖRNEK: The hotel offers comfortable accommodation for tourists.
+10944 | accommodation | noun | C1 | #2/2 | TR: uyum, düzenleme, ayarlama | EN: the act of adapting or adjusting something to meet a need or fit a particular situation | ÖRNEK: The school introduced a schedule that allows accommodation of students' different learning speeds.
+18470 | accompany | verb | B1 | #1/1 | TR: eşlik etmek, birlikte bulunmak | EN: to go somewhere with someone as a companion or to be present together with something | ÖRNEK: I will accompany you to the library after class.
+3187 | accomplish | verb | B2 | #1/1 | TR: başarmak, yerine getirmek | EN: to achieve or complete successfully something that was intended or attempted | ÖRNEK: He accomplished the assignment on time for his class.
+3189 | accomplishment | noun | B2 | #1/1 | TR: başarı, elde edilen şey | EN: something achieved successfully, especially through effort or skill | ÖRNEK: She felt a great sense of accomplishment after finishing her thesis.
+6473 | accordance | noun | C1 | #1/1 | TR: uygunluk, uyum | EN: the state of being in agreement or conformity with a rule, standard, or principle | ÖRNEK: The laboratory results are in accordance with the expected values.
+6475 | accordingly | adverb | B2 | #1/1 | TR: buna göre, buna uygun olarak, dolayısıyla | EN: in a way that is appropriate to the particular circumstances; consequently | ÖRNEK: The weather forecast predicts rain, so we will leave accordingly.
+10839 | account | noun | A2 | #1/3 | TR: hesap, banka hesabı, mali kayıt | EN: a record of financial transactions for a person or organization | ÖRNEK: The company keeps a detailed account of its daily sales.
+10840 | account | noun | B1 | #2/3 | TR: rapor, açıklama | EN: a written or spoken description of an event or situation | ÖRNEK: The witness gave an account of what happened at the scene.
+10841 | account | noun | A2 | #3/3 | TR: kullanıcı hesabı, profil | EN: a record of personal information and credentials used to access an online service | ÖRNEK: I forgot my password and cannot log into my account.
+10842 | account | verb | B2 | #1/1 | TR: hesap vermek, açıklamak | EN: to give a detailed explanation or justification for something; to provide an account of events or actions | ÖRNEK: The accountant must account for every transaction in the ledger.
+10843 | accountability | noun | B2 | #1/1 | TR: hesap verebilirlik, sorumluluk | EN: the state of being required to explain or justify one's actions or decisions, especially in a professional or public context | ÖRNEK: The committee requires each member to demonstrate accountability for their decisions.
+10844 | accountable | adjective | B2 | #1/1 | TR: sorumlu | EN: required to explain or justify actions, decisions, or outcomes; answerable to someone for one's conduct. | ÖRNEK: The project leader must be accountable for meeting the deadline.
+10846 | accountant | noun | A2 | #1/1 | TR: muhasebeci | EN: a professional who records, classifies, and reports financial transactions for individuals or organizations | ÖRNEK: The accountant prepared the monthly financial statements for the company.
+24951 | accrue | verb | B2 | #1/1 | TR: birikmek, artmak | EN: to accumulate or increase over time, especially as a result of interest, benefits, or other gradual additions | ÖRNEK: The bank account will accrue interest if you keep the money deposited.
+9713 | accumulate | verb | B2 | #1/1 | TR: biriktirmek, toplamak | EN: to gather or collect something over time, increasing in quantity or number | ÖRNEK: She accumulates points in the loyalty program every month.
+9714 | accumulation | noun | B2 | #1/1 | TR: birikim | EN: the process of gathering or amassing something over time | ÖRNEK: The savings account showed a steady accumulation of interest each month.
+9715 | accumulator | noun | B2 | #1/1 | TR: akümülatör | EN: a device that stores energy, especially electrical energy, for later use | ÖRNEK: The car has an accumulator that stores electricity.
+7518 | accuracy | noun | B2 | #1/1 | TR: doğruluk, kesinlik | EN: the quality or state of being correct or exact | ÖRNEK: The teacher praised the student's answer for its accuracy.
+7517 | accurate | adjective | B2 | #1/1 | TR: doğru, kesin | EN: conforming exactly to a standard, fact, or truth; free from error | ÖRNEK: His report contains accurate information about the experiment.
+7519 | accurately | adverb | B2 | #1/1 | TR: tam olarak, doğru bir şekilde | EN: in a way that is exact and free from error | ÖRNEK: The clock ticks accurately every second.
+8635 | accusation | noun | B2 | #1/1 | TR: suçlama, itham | EN: a statement that someone has done something illegal or wrong, typically without proof | ÖRNEK: The teacher received an accusation that the exam was leaked.
+8634 | accuse | verb | B2 | #1/1 | TR: suçlamak, itham etmek | EN: to claim that someone has done something illegal or wrong | ÖRNEK: The teacher accused Tom of copying his homework.
+8637 | accused | noun | B2 | #1/1 | TR: sanık | EN: a person or group charged with a crime or wrongdoing | ÖRNEK: The police arrested the accused after the robbery.
+5093 | ache | noun | B1 | #1/1 | TR: acı, sızı | EN: a continuous or prolonged feeling of pain, usually mild to moderate in intensity | ÖRNEK: After running the marathon, she had a sore ache in her calves.
+4386 | achieve | verb | A2 | #1/1 | TR: başarmak, elde etmek | EN: to successfully bring about or reach a desired result, goal, or level of performance | ÖRNEK: She achieved her first publication after months of research.
+4388 | achievement | noun | B2 | #1/1 | TR: başarı, elde edilen şey | EN: the act of successfully completing something or the result of such an act | ÖRNEK: She received a medal for her achievement in the science fair.
+7223 | acid | adjective | B2 | #1/1 | TR: asitli | EN: having the properties of an acid; sharp or sour in taste or character. | ÖRNEK: The lemon juice gives the salad an acid flavor that awakens the palate.
+7224 | acid | noun | B2 | #1/1 | TR: asit | EN: a chemical substance that donates hydrogen ions (H⁺) in aqueous solution or accepts electron pairs | ÖRNEK: Citric acid gives lemons their sour taste.
+2877 | acknowledge | verb | B2 | #1/1 | TR: kabul etmek, onaylamak | EN: to accept or admit the existence or truth of something; to give official recognition to something | ÖRNEK: She acknowledged the invitation and said she would attend.
+2903 | acquire | verb | B2 | #1/1 | TR: edinmek, kazanmak | EN: to obtain or gain something, especially knowledge, skill, or possession, through effort or purchase | ÖRNEK: The student acquired basic French vocabulary in the first semester.

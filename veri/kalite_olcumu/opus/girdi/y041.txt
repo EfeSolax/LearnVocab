@@ -1,0 +1,100 @@
+18401 | judge | noun | B2 | #1/2 | TR: mahkeme görevlisi, hâkim | EN: a public official appointed to decide cases in a court of law | ÖRNEK: The judge listened carefully to both sides of the argument.
+18402 | judge | noun | B1 | #2/2 | TR: jüri üyesi, jüri, hakem | EN: a person who forms an opinion or makes a decision about something, especially in a non-legal context | ÖRNEK: The art teacher acted as a judge for the student exhibition.
+18404 | judge | verb | B1 | #1/1 | TR: yargılamak, hüküm vermek | EN: to form an opinion or conclusion about someone or something, often without full knowledge | ÖRNEK: She tends to judge strangers quickly, which can cause misunderstandings.
+18410 | judicial | adjective | B2 | #1/1 | TR: hukuki, yargı ile ilgili | EN: relating to courts, judges, or the administration of justice | ÖRNEK: The new law will be examined by the judicial branch next month.
+11228 | juice | noun | A2 | #1/2 | TR: meyve suyu | EN: the liquid that is naturally contained in fruit or vegetables and is commonly consumed as a drink | ÖRNEK: She bought a bottle of orange juice at the market.
+11229 | juice | noun | B2 | #2/2 | TR: şarj, elektrik, güç | EN: informal term for electrical power, especially when referring to a device's remaining power or a power outage | ÖRNEK: The city lost juice after the storm knocked down power lines.
+17544 | jump | noun | A2 | #1/2 | TR: atlama, sıçrama | EN: a sudden upward or forward movement, typically by lifting the feet off the ground | ÖRNEK: The rabbit made a quick jump to escape the predator.
+17545 | jump | noun | B2 | #2/2 | TR: ani artış, yükseliş | EN: a sudden increase or rise in quantity, level, or intensity | ÖRNEK: The company reported a jump in sales after launching the new product.
+17546 | jump | verb | A2 | #1/1 | TR: zıplamak, atlamak | EN: to push oneself off the ground and into the air by using the legs | ÖRNEK: The child can jump over a small rope during recess.
+17547 | jumper | noun | A2 | #1/2 | TR: kazak, süveter | EN: a knitted garment worn on the upper body, typically with long sleeves and no opening at the front | ÖRNEK: I bought a new jumper for the autumn season.
+17548 | jumper | noun | B2 | #2/2 | TR: atlayıcı | EN: a person who participates in the sport of jumping, especially in track and field events such as long jump or high jump | ÖRNEK: The jumper cleared the bar with ease during practice.
+20720 | junction | noun | C1 | #1/1 | TR: kavşak | EN: a place where roads or railway lines meet | ÖRNEK: Turn left at the next junction.
+14639 | jungle | noun | B1 | #1/1 | TR: cangıl, balta girmemiş orman | EN: a dense, tangled forest, typically in a tropical region, characterized by thick vegetation and a variety of wildlife | ÖRNEK: The river cuts through a thick jungle in the Amazon basin.
+9572 | junior | adjective | B1 | #1/1 | TR: daha genç, alt düzeydeki | EN: of lower rank, younger, or less experienced; used to describe a person who is younger or holds a lower position compared to others. | ÖRNEK: The junior members of the team helped set up the equipment for the experiment.
+20721 | jurisdiction | noun | C1 | #1/1 | TR: yargı yetkisi, yetki alanı | EN: the authority to make legal decisions, or the area where this authority applies | ÖRNEK: The case is outside the court's jurisdiction.
+20557 | jury | noun | B2 | #1/1 | TR: jüri | EN: a group of people who decide whether someone is guilty in a court, or who judge a competition | ÖRNEK: The jury found him not guilty.
+1012 | just | adjective | B2 | #1/1 | TR: adil, hakkaniyetli | EN: conforming to principles of fairness and moral rightness; treating people equally and without bias. | ÖRNEK: The teacher graded the exams in a just manner, giving each student what they earned.
+1014 | just | adverb | A1 | #1/3 | TR: sadece, yalnızca | EN: only; no more than; exactly | ÖRNEK: He ate just one slice of cake.
+1013 | just | adverb | A2 | #2/3 | TR: henüz, az önce | EN: very recently; a short time ago | ÖRNEK: I have just finished my homework.
+1015 | just | adverb | A2 | #3/3 | TR: tam olarak, kesin olarak | EN: exactly; precisely; without deviation | ÖRNEK: The solution was just right for the chemical reaction.
+1017 | justice | noun | C1 | #1/1 | TR: adalet | EN: the quality of being fair and morally right; the principle of giving each person what they deserve | ÖRNEK: The court delivered justice after a long trial.
+1020 | justification | noun | C1 | #1/1 | TR: gerekçe, haklılık | EN: a reason or explanation that makes an action, belief, or decision seem reasonable or acceptable | ÖRNEK: The professor asked for a clear justification of the hypothesis.
+1022 | justify | verb | B2 | #1/1 | TR: haklı çıkarmak, gerekçelendirmek | EN: to provide reasons or arguments that show something is right or reasonable | ÖRNEK: The teacher asked him to justify his answer in the exam.
+3651 | keen | adjective | B1 | #1/2 | TR: istekli, hevesli | EN: showing great enthusiasm or eagerness to do something. | ÖRNEK: The student was keen to join the research group.
+3652 | keen | adjective | C1 | #2/2 | TR: keskin, ayırt edici | EN: having a fine edge or a sharp, acute perception. | ÖRNEK: The scientist's keen observation led to a breakthrough.
+15214 | keep | verb | A2 | #1/3 | TR: saklamak, tutmak, elinde tutmak | EN: to retain possession of something; not to give it away or lose it | ÖRNEK: I keep my passport in a safe place.
+15215 | keep | verb | B1 | #2/3 | TR: sürdürmek, devam ettirmek | EN: to cause something to continue for a period of time | ÖRNEK: The rain kept falling throughout the afternoon.
+15216 | keep | verb | B2 | #3/3 | TR: korumak, bakımını yapmak | EN: to preserve something in its current state or condition | ÖRNEK: Scientists work to keep ecosystems balanced.
+12445 | kettle | noun | B1 | #1/1 | TR: su ısıtıcısı | EN: a container, usually with a handle and a spout, used for boiling water | ÖRNEK: I filled the kettle with cold water and placed it on the stove.
+20329 | key | adjective | A1 | #1/1 | TR: anahtar, en önemli | EN: most important | ÖRNEK: She played a key role in the project.
+20090 | key | noun | A2 | #1/2 | TR: anahtar | EN: a small metal instrument used to open or close a lock | ÖRNEK: I locked the cabinet and put the key on the hook.
+20091 | key | noun | B1 | #2/2 | TR: ton | EN: the group of pitches that form the basis of a musical composition | ÖRNEK: The song modulates to a new key halfway through.
+20092 | key | verb | B1 | #1/1 | TR: tuşlamak, klavyeye girmek | EN: to enter data or commands by pressing keys on a keyboard | ÖRNEK: The clerk keys the customer's phone number into the register.
+20093 | keyboard | noun | A1 | #1/2 | TR: bilgisayar klavyesi | EN: a set of keys that allows a user to input text and commands into a computer or other electronic device | ÖRNEK: She bought a new keyboard for her laptop last week.
+20094 | keyboard | noun | A2 | #2/2 | TR: elektronik piyano | EN: the row of white and black keys on a piano or synthesizer that produces musical notes when pressed | ÖRNEK: The child bought a small keyboard to start learning music.
+17452 | kick | noun | A2 | #1/1 | TR: tekme | EN: a forceful strike with the foot | ÖRNEK: The child gave the ball a hard kick.
+17453 | kick | verb | A2 | #1/1 | TR: tekme atmak, ayakla vurmak | EN: to strike something or someone with the foot | ÖRNEK: He kicked the ball into the goal during the match.
+16493 | kid | noun | A2 | #1/2 | TR: çocuk, genç | EN: a young human being, typically a child or adolescent | ÖRNEK: The kid ran across the playground during recess.
+16494 | kid | noun | B1 | #2/2 | TR: keçi yavrusu | EN: a young goat, especially one that is still nursing | ÖRNEK: The kid nibbled on the fresh grass in the meadow.
+10702 | kidnap | verb | B2 | #1/1 | TR: kaçırmak | EN: to take someone away illegally by force or deception, often to demand a ransom | ÖRNEK: A group of thieves tried to kidnap a tourist near the museum.
+20722 | kidney | noun | C1 | #1/1 | TR: böbrek | EN: one of the two organs in the body that remove waste from the blood | ÖRNEK: He needs a kidney transplant.
+16176 | kill | verb | A1 | #1/2 | TR: öldürmek | EN: to cause the death of a person, animal, or other living thing | ÖRNEK: The hunter aimed carefully and killed the deer.
+16177 | kill | verb | C1 | #2/2 | TR: sonlandırmak, bitirmek | EN: to bring something to an end, especially abruptly or decisively | ÖRNEK: The manager decided to kill the outdated software.
+16179 | killing | noun | B2 | #1/1 | TR: öldürme, katliam | EN: the act of causing death; the process of killing someone or something | ÖRNEK: The police investigated the killing of the stray cat.
+14092 | kilogram | noun | A2 | #1/1 | TR: kilogram | EN: a metric unit of mass equal to one thousand grams | ÖRNEK: The newborn baby weighed about three kilograms at birth.
+19280 | kilometer | noun | A2 | #1/1 | TR: kilometre, kilometre birimi | EN: a unit of length in the metric system equal to one thousand meters | ÖRNEK: The city is located ten kilometers from the airport.
+2814 | kind | adjective | A1 | #1/1 | TR: nazik, iyi kalpli, yardımsever | EN: having a friendly, generous, and considerate nature; showing sympathy and goodwill toward others | ÖRNEK: The nurse gave the patient a kind smile during the check-up.
+2815 | kind | noun | A1 | #1/1 | TR: tür, çeşit | EN: a group of people or things having similar characteristics | ÖRNEK: The museum displayed several kinds of ancient pottery.
+15889 | king | noun | A1 | #1/2 | TR: kral, hükümdar | EN: the male ruler of an independent state, especially one who inherits the position by birth | ÖRNEK: The king ruled the kingdom for thirty years.
+15890 | king | noun | B1 | #2/2 | TR: satranç taşı, şah | EN: the most powerful piece in the game of chess, whose capture ends the game | ÖRNEK: The king can move only one square in any direction.
+15891 | kingdom | noun | A2 | #1/2 | TR: krallık | EN: a territory ruled by a king or queen; a sovereign state with a monarch as head of state | ÖRNEK: The king traveled across his kingdom to meet the people.
+15892 | kingdom | noun | C1 | #2/2 | TR: âlem | EN: the highest taxonomic rank, grouping together all forms of life sharing fundamental characteristics, such as Animalia, Plantae, Fungi, etc. | ÖRNEK: All multicellular organisms are placed in the kingdom Animalia.
+17989 | kiss | noun | A2 | #1/1 | TR: öpücük | EN: a brief act of pressing one's lips to someone or something as a sign of affection or greeting | ÖRNEK: She gave her friend a quick kiss.
+17990 | kiss | verb | A2 | #1/1 | TR: öpmek | EN: to press one's lips against someone or something as a sign of affection, greeting, or respect | ÖRNEK: She kissed her brother before the school bus arrived.
+8399 | kit | noun | B1 | #1/2 | TR: takım, set | EN: a collection of items or equipment needed for a particular purpose | ÖRNEK: The school provided each student with a basic science kit.
+8400 | kit | noun | B2 | #2/2 | TR: yavru | EN: a young animal, especially a young fox or rabbit | ÖRNEK: A curious kit emerged from the den as the sun rose.
+17707 | kitchen | noun | A1 | #1/1 | TR: mutfak | EN: a room or area where food is prepared and cooked | ÖRNEK: She cleaned the kitchen after cooking dinner.
+23302 | kite | noun | A2 | #1/2 | TR: uçurtma | EN: a light frame covered with paper, cloth, or plastic, designed to be flown in the wind at the end of a string | ÖRNEK: The kids gathered at the park to fly a kite after school.
+23303 | kite | noun | B2 | #2/2 | TR: çaylak | EN: a bird of prey with long wings and a forked tail, known for soaring flight and feeding on small animals | ÖRNEK: A kite circled the meadow, searching for rodents in the grass.
+8401 | kitten | noun | A2 | #1/1 | TR: yavru kedi | EN: a young cat, typically less than one year old | ÖRNEK: The kitten slept peacefully on the windowsill all afternoon.
+1027 | knee | noun | A2 | #1/1 | TR: diz | EN: the joint between the thigh and the lower leg in humans and other animals | ÖRNEK: He hurt his knee while playing soccer yesterday.
+3169 | knife | noun | A2 | #1/1 | TR: bıçak | EN: a tool with a sharp blade used for cutting or slicing food, material, etc. | ÖRNEK: She reached for a knife to spread the butter on the toast.
+7609 | knit | verb | B1 | #1/1 | TR: örmek | EN: to make fabric by interlacing yarn with needles | ÖRNEK: She can knit a simple hat for her child.
+1028 | knock | noun | B1 | #1/1 | TR: tıklatma, vuruş, darbe | EN: a sudden sharp blow or rap, especially on a door | ÖRNEK: She heard a knock and turned to see who was outside.
+1029 | knock | verb | B1 | #1/1 | TR: vurmak, çarpmak | EN: to strike something or someone with a sudden impact, often causing it to move or fall | ÖRNEK: He knocked the ball hard across the field.
+1035 | know | verb | A2 | #1/2 | TR: bilmek, farkında olmak | EN: to be aware of facts, information, or a situation | ÖRNEK: I know the schedule for tomorrow's classes.
+1036 | know | verb | A1 | #2/2 | TR: tanımak, aşina olmak | EN: to be familiar with a person, place, or thing through experience or acquaintance | ÖRNEK: I know my neighbor from the building next door.
+1039 | knowledge | noun | A2 | #1/1 | TR: bilgi | EN: information, facts, or understanding acquired through experience or education | ÖRNEK: He gained new knowledge after attending the conference.
+18650 | lab | noun | A2 | #1/1 | TR: laboratuvar | EN: a room or building equipped for scientific experiments, research, or testing | ÖRNEK: The biology lab has microscopes for each student.
+6056 | label | noun | B1 | #1/1 | TR: etiket | EN: a piece of paper, cloth, plastic, or other material attached to an object to give information about it | ÖRNEK: The teacher gave each student a label with their name on it.
+6057 | label | verb | B1 | #1/1 | TR: etiketlemek, sınıflandırmak | EN: to attach a descriptive tag or name to something; to categorize or identify something by assigning a label | ÖRNEK: The teacher asked the students to label the diagram with the correct terms.
+18850 | laboratory | noun | A2 | #1/1 | TR: laboratuvar | EN: a room or building equipped for scientific experiments, research, or testing | ÖRNEK: The school has a small laboratory for chemistry classes.
+16639 | lack | noun | B1 | #1/1 | TR: eksiklik, yetersizlik, yokluk | EN: the state of not having enough of something; an insufficiency. | ÖRNEK: The report shows a clear lack of data on the subject.
+16640 | lack | verb | B2 | #1/1 | TR: eksik olmak, yetersiz kalmak | EN: to be without or not have enough of something | ÖRNEK: He lacks the necessary skills for the job.
+1045 | lad | noun | B1 | #1/1 | TR: genç erkek, delikanlı | EN: a boy or young man | ÖRNEK: The lad helped his mother carry the groceries home.
+14656 | ladder | noun | A2 | #1/1 | TR: merdiven | EN: a set of rungs or steps used for climbing up or down | ÖRNEK: He used a ladder to change the light bulb in the kitchen.
+16568 | lady | noun | A2 | #1/1 | TR: bayan, hanımefendi | EN: a woman who is polite, refined, or of high social standing | ÖRNEK: The lady at the counter helped me find the right size.
+16962 | lake | noun | A1 | #1/1 | TR: göl | EN: a large inland body of standing water, usually freshwater, surrounded by land | ÖRNEK: The lake is a popular spot for weekend picnics.
+2399 | lamp | noun | A2 | #1/1 | TR: lamba | EN: a device that produces light, typically powered by electricity or batteries | ÖRNEK: The lamp on the bedside table glowed softly during the night.
+20074 | land | noun | A2 | #1/3 | TR: toprak, arazi, yeryüzü | EN: the solid part of the Earth's surface; ground or soil. | ÖRNEK: The hikers walked across the rocky land for several hours.
+20075 | land | noun | B2 | #2/3 | TR: ülke, vatan | EN: a nation or territory considered as a political entity. | ÖRNEK: He returned to his native land after many years.
+20076 | land | noun | B1 | #3/3 | TR: arsa, mülk | EN: a piece of property, especially an area of ground that can be owned or developed. | ÖRNEK: The family inherited a large parcel of land from their grandparents.
+20078 | land | verb | A2 | #1/3 | TR: yere inmek | EN: to come down onto the ground, especially after flying or falling | ÖRNEK: The aircraft lands smoothly on the runway.
+20079 | land | verb | B1 | #2/3 | TR: varmak, ayak basmak | EN: to arrive at a place, especially after a journey | ÖRNEK: The tourists will land in Tokyo tomorrow morning.
+20077 | land | verb | B2 | #3/3 | TR: elde etmek, kapmak | EN: to obtain or acquire something, especially after effort or negotiation | ÖRNEK: She landed a part-time job during the summer break.
+20558 | landing | noun | B2 | #1/2 | TR: iniş (uçak) | EN: the act of bringing an aircraft down to the ground | ÖRNEK: The pilot made a smooth landing.
+20559 | landing | noun | B2 | #2/2 | TR: sahanlık | EN: the flat area at the top of a set of stairs | ÖRNEK: She left her bags on the landing.
+19131 | landlord | noun | B1 | #1/1 | TR: ev sahibi, kiraya veren | EN: a person who owns property and rents it out to others | ÖRNEK: The landlord fixed the leaking faucet in the kitchen.
+20723 | landmark | noun | C1 | #1/2 | TR: simge yapı, tanınmış yer | EN: a building or place that is easy to recognize and helps you know where you are | ÖRNEK: The Galata Tower is a famous Istanbul landmark.
+20724 | landmark | noun | C1 | #2/2 | TR: dönüm noktası | EN: an important event or discovery that changes things | ÖRNEK: The discovery was a landmark in medical history.
+18381 | landscape | noun | B1 | #1/2 | TR: manzara, doğa görünümü | EN: the visible features of an area of land, including its physical elements and natural scenery. | ÖRNEK: The hikers admired the beautiful mountain landscape during their trek.
+18382 | landscape | noun | B2 | #2/2 | TR: manzara resmi, peyzaj tablosu | EN: a painting, drawing, or photograph that depicts natural scenery. | ÖRNEK: The museum's new exhibit showcases classic landscape paintings from the Romantic era.
+18023 | lane | noun | A2 | #1/2 | TR: dar yol, patika, sokak | EN: a narrow road or path, often in a rural or residential area | ÖRNEK: The cottage sits at the end of a quiet lane.
+18024 | lane | noun | B1 | #2/2 | TR: şerit, yol şeridi | EN: a marked part of a road designated for a single line of traffic | ÖRNEK: The driver signaled before moving into the adjacent lane.
+16127 | language | noun | A2 | #1/2 | TR: dil, konuşma sistemi | EN: a system of words or signs used by a particular community for communication | ÖRNEK: Children acquire their first language naturally at home.
+16128 | language | noun | B2 | #2/2 | TR: programlama dili | EN: a formal system of symbols and rules used to write computer programs | ÖRNEK: Students learn the basics of a programming language in their first computer science class.
+6544 | lap | noun | A2 | #1/2 | TR: kucak, oturulan yer | EN: the upper part of the thighs when a person is seated, often used as a place to hold something | ÖRNEK: The child giggled as he sat on his mother's lap.
+6545 | lap | noun | B1 | #2/2 | TR: tur, çevrim | EN: one complete circuit or round in a race or a repetitive sequence | ÖRNEK: The swimmer finished the first lap and turned back quickly.
+20419 | laptop | noun | A2 | #1/1 | TR: dizüstü bilgisayar | EN: a small computer that you can carry with you | ÖRNEK: I do my homework on my laptop.
+9211 | large | adjective | A2 | #1/2 | TR: büyük, geniş | EN: of considerable size, extent, or capacity; larger than average. | ÖRNEK: The large dog barked loudly in the yard.

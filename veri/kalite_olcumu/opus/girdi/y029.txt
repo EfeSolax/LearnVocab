@@ -1,0 +1,100 @@
+2579 | fair | noun | B1 | #1/1 | TR: fuar, panayır | EN: a public event where goods, entertainment, and attractions are exhibited and sold | ÖRNEK: The city held a fair that attracted thousands of visitors.
+2580 | fairly | adverb | B1 | #1/2 | TR: adil bir şekilde | EN: in a just or unbiased manner; without favoritism | ÖRNEK: The teacher graded the papers fairly and without bias.
+2581 | fairly | adverb | B1 | #2/2 | TR: oldukça, bir ölçüde | EN: to a moderate degree; fairly, quite | ÖRNEK: The test was fairly simple, so most of us finished quickly.
+2582 | fairness | noun | B2 | #1/1 | TR: adalet, hakkaniyet | EN: the quality of being fair and impartial; the state of treating people equally and justly | ÖRNEK: Fairness is a core value in many democratic societies.
+7551 | faith | noun | B2 | #1/2 | TR: inanç, dini inanç | EN: a strong belief in a religious doctrine or spiritual system | ÖRNEK: She grew up in a family where faith was part of daily life.
+7552 | faith | noun | B1 | #2/2 | TR: güven, inanç | EN: confidence or trust in the reliability, truth, or ability of someone or something | ÖRNEK: He placed his faith in the new manager's leadership.
+17717 | fake | adjective | A2 | #1/1 | TR: sahte, taklit | EN: not genuine; made to look like something else in order to deceive | ÖRNEK: The store sold a fake designer bag for a low price.
+18803 | fall | noun | A2 | #1/3 | TR: sonbahar | EN: the season between summer and winter, characterized by cooling temperatures and falling leaves | ÖRNEK: The leaves turn red and gold during fall.
+18804 | fall | noun | B1 | #2/3 | TR: düşme, düşüş | EN: the act or instance of moving downward, typically rapidly and unintentionally | ÖRNEK: She slipped on the icy sidewalk and had a hard fall.
+18805 | fall | noun | C1 | #3/3 | TR: çöküş, yıkım | EN: a rapid decline or collapse, especially of a political, economic, or social system | ÖRNEK: The empire's fall was marked by widespread famine and unrest.
+18806 | fall | verb | A2 | #1/1 | TR: düşmek, azalmak | EN: to move downward, typically rapidly and freely without control; to decrease in amount, level, or intensity | ÖRNEK: The apple fell from the tree and hit the ground.
+26340 | fall apart | phrasal_verb | B2 | #2/2 | TR: çökmek, başarısız olmak | EN: to fail or stop working effectively | ÖRNEK: Their marriage was falling apart.
+7477 | false | adjective | A2 | #1/2 | TR: yanlış, gerçek olmayan | EN: not in accordance with fact or reality; incorrect. | ÖRNEK: The article contains several false claims about the event.
+7478 | false | adjective | B2 | #2/2 | TR: aldatıcı, sahte | EN: intended to deceive; not genuine or authentic. | ÖRNEK: The journalist uncovered a false narrative spread by the propaganda machine.
+6531 | fame | noun | B2 | #1/1 | TR: şöhret, ün | EN: the state of being widely known or recognized for achievements, qualities, or actions | ÖRNEK: The singer's first single gave her sudden fame.
+10382 | familiar | adjective | B1 | #1/2 | TR: tanıdık, bilinen | EN: known or recognized from previous experience or exposure | ÖRNEK: The teacher introduced the familiar concept of photosynthesis to the class.
+10383 | familiar | adjective | B2 | #2/2 | TR: samimi, içten, teklifsiz | EN: showing a friendly, informal manner that suggests closeness or ease | ÖRNEK: The manager's familiar approach helped the new interns feel welcome.
+20307 | family | adjective | A1 | #1/1 | TR: aile (-si), aileye uygun | EN: suitable for or connected with families and children | ÖRNEK: It's a good family film.
+15209 | family | noun | A2 | #1/1 | TR: aile, akraba topluluğu | EN: a group of people related by blood, marriage, or adoption, often living together or sharing a common name | ÖRNEK: My family lives in a small town near the coast.
+6532 | famous | adjective | A1 | #1/1 | TR: ünlü, tanınmış | EN: well known by many people, especially for achievements or qualities | ÖRNEK: The actor became famous after his first movie.
+14547 | fan | noun | A2 | #1/2 | TR: hayran, taraftar | EN: a person who admires or supports a particular person, team, or activity | ÖRNEK: Many fans attended the concert last night.
+14548 | fan | noun | A2 | #2/2 | TR: vantilatör, fan, yelpaze | EN: a device that creates a current of air for cooling or ventilation | ÖRNEK: The fan on the window helped the room stay cool.
+834 | fancy | adjective | B2 | #1/2 | TR: gösterişli, süslü | EN: characterized by elaborate or decorative details; ornate | ÖRNEK: The restaurant has fancy table settings that impress the guests.
+835 | fancy | adjective | B2 | #2/2 | TR: hayali, düşsel, kurmaca | EN: characterized by imagination or whimsy; not based on reality | ÖRNEK: Children often have fancy stories about dragons and treasure.
+837 | fancy | verb | B2 | #1/1 | TR: hayal etmek, arzulamak | EN: to imagine something, especially something that is not real, or to want something strongly | ÖRNEK: I fancy a cup of tea after my long walk.
+20221 | fantastic | adjective | A1 | #1/1 | TR: harika, müthiş | EN: causing great admiration or delight; extraordinarily good or impressive | ÖRNEK: The weather was fantastic during our weekend hike.
+18883 | fantasy | noun | B1 | #1/1 | TR: hayal, kurgu, fantezi | EN: a genre of imaginative fiction involving magical or supernatural elements, or the faculty of forming mental images of things not present. | ÖRNEK: She enjoys reading fantasy books before bedtime.
+19788 | far | adjective | A2 | #1/1 | TR: uzak, mesafeli | EN: situated at a great distance; not near in space or time. | ÖRNEK: The school is far from my house, so I take the bus daily.
+19789 | far | adverb | A2 | #1/1 | TR: uzak, çok | EN: to a great distance; used to indicate a large degree in comparisons | ÖRNEK: The shop is far from my house, so I walk there rarely.
+10113 | fare | noun | B1 | #1/1 | TR: bilet ücreti, yol parası, yol ücreti | EN: the price paid for a service, travel, or a ticket | ÖRNEK: The bus driver asked each rider to show the exact fare.
+6318 | farm | noun | A2 | #1/1 | TR: tarım arazisi, çiftlik | EN: an area of land used for growing crops or raising livestock | ÖRNEK: The farm stretches over ten hectares of fertile soil.
+6319 | farm | verb | B1 | #1/1 | TR: tarım yapmak, çiftçilik yapmak | EN: to cultivate land or raise animals for food, fiber, or other products | ÖRNEK: She farms a small plot of land near the village.
+6320 | farmer | noun | A1 | #1/1 | TR: çiftçi | EN: a person who owns or manages a farm and is engaged in agricultural production | ÖRNEK: The farmer wakes up before sunrise to check the fields.
+6323 | farming | noun | A2 | #1/1 | TR: tarım, çiftçilik | EN: the practice of cultivating land and raising livestock for food, fiber, and other products | ÖRNEK: The small village depends on farming for most of its income.
+6324 | farmland | noun | B1 | #1/1 | TR: tarım arazisi | EN: land that is used for growing crops or raising livestock | ÖRNEK: The farmer works on his farmland every day.
+10662 | fascinating | adjective | B1 | #1/1 | TR: büyüleyici, etkileyici | EN: causing great interest or admiration; extremely interesting. | ÖRNEK: The documentary was fascinating and kept the audience engaged.
+14300 | fashion | noun | A1 | #1/2 | TR: stil, moda, giyim tarzı | EN: a popular way of dressing or behaving at a particular time | ÖRNEK: She bought a dress that is currently in fashion.
+14301 | fashion | noun | B2 | #2/2 | TR: yöntem, biçim, şekil | EN: a particular way or manner in which something is done or occurs | ÖRNEK: The committee worked in a fashion that ensured transparency.
+14303 | fashionable | adjective | A2 | #1/1 | TR: modaya uygun, şık | EN: characteristic of current popular style or trend; having a style that is considered up-to-date and attractive | ÖRNEK: The magazine features many fashionable outfits for the spring season.
+16027 | fast | adjective | A2 | #1/1 | TR: hızlı, çabuk | EN: characterized by great speed or occurring in a short time | ÖRNEK: The fast train arrived at the station on time.
+16028 | fast | adverb | A1 | #1/1 | TR: hızlı bir şekilde | EN: quickly; with great speed | ÖRNEK: The rabbit can run fast to escape predators.
+4278 | fasten | verb | B1 | #1/1 | TR: bağlamak, tutturmak | EN: to attach or secure something so that it does not move or come apart | ÖRNEK: She fastened her shoes before the morning run.
+16876 | fat | adjective | A1 | #1/2 | TR: şişman, kilolu | EN: having a large amount of excess body weight; overweight | ÖRNEK: He gained weight and now looks fat.
+16877 | fat | adjective | A2 | #2/2 | TR: kalın, dolgun | EN: having a large thickness or density; not thin or slender | ÖRNEK: The novel was a fat volume with many illustrations.
+16878 | fat | noun | B1 | #1/1 | TR: yağ | EN: a natural oily or greasy substance occurring in animal bodies, especially as a layer under the skin or around certain organs, and used as a source of energy. | ÖRNEK: The chicken skin contains a lot of fat.
+4575 | fatal | adjective | B2 | #1/2 | TR: ölümcül, ölüm getiren | EN: causing death; lethal. | ÖRNEK: The snake's venom is fatal if not treated quickly.
+4576 | fatal | adjective | B1 | #2/2 | TR: kötü sonuç doğuran, felaketle sonuçlanan | EN: resulting in disastrous or irreversible damage; causing a failure that cannot be recovered from. | ÖRNEK: A fatal error in the code prevented the program from running.
+4579 | fate | noun | B2 | #1/1 | TR: kader, alın yazısı | EN: the power or agency believed to control the events of a person's life, often considered inevitable and unchangeable | ÖRNEK: Many cultures believe that fate controls human lives.
+15650 | father | noun | A2 | #1/1 | TR: baba | EN: a male parent; the man who has a child or children | ÖRNEK: My father reads the newspaper every morning before work.
+17733 | fault | noun | B1 | #1/2 | TR: hata, kusur | EN: a mistake or error that causes a problem or failure | ÖRNEK: The teacher pointed out a fault in the student's essay.
+17734 | fault | noun | C1 | #2/2 | TR: fay, kırık | EN: a fracture in the Earth's crust where blocks of rock have moved relative to each other | ÖRNEK: The earthquake originated from a deep fault beneath the ocean floor.
+6171 | favor | noun | B1 | #1/1 | TR: yardım, iyilik, lütuf | EN: an act of kindness or assistance given to someone | ÖRNEK: Can you do me a favor and close the window?
+6180 | favorite | adjective | A2 | #1/1 | TR: en sevdiği, tercih edilen | EN: liked most; preferred above all others | ÖRNEK: My favorite color is blue and I wear it often.
+6181 | favorite | noun | B2 | #1/1 | TR: favori, ayrıcalıklı kişi | EN: a person who receives special attention or treatment from someone | ÖRNEK: He was the manager's favorite and often got the best projects.
+21656 | fax | noun | B1 | #1/1 | TR: faks | EN: a document sent electronically over a telephone line | ÖRNEK: The office sent a fax to the client yesterday.
+21657 | fax | verb | B1 | #1/1 | TR: faks göndermek | EN: to transmit a document electronically over a telephone line using a fax machine | ÖRNEK: I need to fax the signed agreement to the supplier.
+3755 | fear | noun | B1 | #1/1 | TR: korku, endişe | EN: an unpleasant emotional response to a perceived threat or danger | ÖRNEK: The child felt fear when the lights went out.
+3757 | fear | verb | B1 | #1/1 | TR: korkmak, korkuya kapılmak | EN: to experience fear; to be afraid of someone or something | ÖRNEK: She fears spiders and avoids the garden.
+10955 | feat | noun | B2 | #1/1 | TR: başarı, ustalık, hüner | EN: a remarkable achievement that requires great skill or courage | ÖRNEK: He completed the marathon, a great feat for a beginner.
+5001 | feather | noun | A2 | #1/1 | TR: tüy | EN: a light, flat structure that grows from the skin of birds and is used for flight, insulation, and display | ÖRNEK: A small feather fell from the bird's wing during the storm.
+17046 | feature | noun | B1 | #1/2 | TR: özellik, nitelik | EN: a distinctive attribute or quality of something or someone | ÖRNEK: One important feature of the software is its user-friendly interface.
+17047 | feature | noun | B2 | #2/2 | TR: özel bölüm, program içeriği | EN: a special article, segment, or item that is highlighted in a publication or broadcast | ÖRNEK: The newspaper's weekend feature focuses on travel destinations.
+17048 | feature | verb | B2 | #1/1 | TR: içermek, öne çıkarmak | EN: to include something as an important part or to give special attention to something | ÖRNEK: The brochure features the campus library and its resources.
+16025 | federal | adjective | B2 | #1/1 | TR: federal | EN: relating to a system of government in which several states form a unity while remaining independent in internal affairs | ÖRNEK: The federal budget was approved by the parliament last week.
+18150 | fee | noun | B1 | #1/1 | TR: ücret, harç | EN: a payment made to a professional or an organization for a service or the right to do something | ÖRNEK: I paid the fee to enroll in the online course.
+5318 | feed | noun | B1 | #1/2 | TR: yem, hayvan yemi | EN: food, especially for animals, that is given to them regularly. | ÖRNEK: The farmer bought a sack of feed for the chickens.
+5319 | feed | noun | B1 | #2/2 | TR: akış (haber, sosyal medya) | EN: the act or process of providing food or nutrients, especially in a continuous or regular manner. | ÖRNEK: The machine needs a steady feed of electricity to stay operational.
+5321 | feed | verb | A2 | #1/1 | TR: beslemek, yiyecek vermek | EN: to give food to a person or animal; to provide nourishment. | ÖRNEK: The mother feeds her cat before leaving for work.
+11862 | feedback | noun | B2 | #1/1 | TR: geri bildirim | EN: information about reactions to a product, performance, or behavior, used as a basis for improvement | ÖRNEK: The instructor asked the class to give feedback on the lecture slides.
+20540 | feel | noun | B2 | #1/1 | TR: dokunuş, his, hava | EN: the way something feels when you touch it, or the general impression it gives | ÖRNEK: I love the feel of silk.
+15198 | feel | verb | A2 | #1/2 | TR: hissetmek, duyu organlarıyla algılamak | EN: to become aware of something through physical sensation or perception | ÖRNEK: The child can feel the soft blanket on his arms.
+15199 | feel | verb | B1 | #2/2 | TR: düşünmek, bir görüş bildirmek | EN: to have an opinion or belief about something | ÖRNEK: Many students feel that exams are stressful.
+15201 | feeling | noun | A1 | #1/2 | TR: duygu, his | EN: a mental state that is a reaction to something; an emotional response. | ÖRNEK: I have a strange feeling about this place.
+15202 | feeling | noun | A2 | #2/2 | TR: hissetme, algı | EN: the ability to perceive something through the senses; a physical sensation. | ÖRNEK: After the surgery, the patient reported a strange feeling in his arm.
+17296 | fellow | adjective | B2 | #1/1 | TR: ortak, aynı durumu paylaşan | EN: being of the same group, status, or condition as another person or thing | ÖRNEK: The university organized a meeting for fellow students in the engineering department.
+20403 | female | adjective | A2 | #1/1 | TR: dişi, kadın | EN: belonging to the sex that can give birth to babies or produce eggs | ÖRNEK: There are more female students than male students in the class.
+20404 | female | noun | A2 | #1/1 | TR: dişi, kadın | EN: a female person or animal | ÖRNEK: The females of this species are larger than the males.
+18771 | feminist | adjective | B2 | #1/1 | TR: feminizmle ilgili, kadın haklarını savunan | EN: relating to feminism; supporting the rights and equality of women. | ÖRNEK: The professor introduced a feminist theory in the sociology class.
+18772 | feminist | noun | B2 | #1/1 | TR: kadın hakları savunucusu | EN: a person who supports feminism and advocates for women's rights and gender equality | ÖRNEK: The feminist gave a powerful speech at the university conference.
+9605 | fence | noun | B1 | #1/1 | TR: çit | EN: a structure made of posts and wire, wood, or metal that encloses an area | ÖRNEK: The backyard fence is painted white and looks neat.
+21664 | ferry | noun | B1 | #1/1 | TR: feribot, deniz ulaşım aracı | EN: a boat or ship that carries passengers, vehicles, and goods across a body of water on a regular schedule | ÖRNEK: The ferry departs every hour from the downtown terminal.
+17416 | festival | noun | A1 | #1/2 | TR: kutlama, şenlik | EN: a public event, often held annually, that includes entertainment, performances, and cultural activities | ÖRNEK: The town organized a small festival to mark its founding day.
+17417 | festival | noun | B2 | #2/2 | TR: bayram, tatil dönemi | EN: a period of time, often a holiday, during which special events and celebrations are held | ÖRNEK: The school closed for the festival, giving students a short break.
+3308 | fetch | verb | B1 | #1/1 | TR: getirmek, elde etmek | EN: to go or come after something and bring it back; to obtain or achieve something | ÖRNEK: The dog ran to fetch the ball that I threw.
+5222 | fever | noun | B1 | #1/1 | TR: ateş, yüksek vücut ısısı | EN: a temporary rise in body temperature, usually caused by infection or illness | ÖRNEK: He woke up with a fever and stayed home from class.
+15242 | few | determiner | A2 | #1/1 | TR: az sayıdaki | EN: existing in small numbers; not many | ÖRNEK: Only a few apples were left on the table.
+6926 | fiction | noun | B2 | #1/1 | TR: kurgu, hayali eser | EN: written literary work that describes imaginary events and characters, not based on fact | ÖRNEK: The library has a large collection of fiction for all ages.
+15697 | field | noun | A2 | #1/3 | TR: tarla, arazi | EN: an area of open land, especially one used for agricultural purposes. | ÖRNEK: The farmer plowed the field before planting seeds.
+15698 | field | noun | B2 | #2/3 | TR: alan, disiplin | EN: a particular branch of study or area of expertise. | ÖRNEK: She chose physics as her field at university.
+15699 | field | noun | B1 | #3/3 | TR: spor sahası, oyun alanı | EN: an area of ground marked out for a sport or game. | ÖRNEK: Children gathered to play on the school field.
+7127 | fierce | adjective | B2 | #1/1 | TR: agresif, şiddetli | EN: showing intense aggression or violence; eager to fight or attack. | ÖRNEK: His fierce determination helped him finish the marathon.
+15745 | fight | noun | B1 | #1/2 | TR: dövüş, çatışma | EN: a violent confrontation between two or more parties, often involving physical force | ÖRNEK: The two boxers had a fierce fight in the arena.
+15746 | fight | noun | B2 | #2/2 | TR: mücadele, çaba | EN: an effort to achieve or obtain something despite difficulties or opposition | ÖRNEK: Her fight to secure funding lasted several months before success arrived.
+15747 | fight | verb | B1 | #1/2 | TR: dövüşmek, mücadele etmek | EN: to engage in physical combat or a struggle with someone or something | ÖRNEK: The two boxers will fight in the ring tomorrow.
+15748 | fight | verb | A2 | #2/2 | TR: tartışmak, sözlü kavga etmek | EN: to argue or quarrel with someone, often loudly or aggressively | ÖRNEK: The children began to fight over the last piece of cake.
+15751 | fighting | noun | B2 | #1/1 | TR: savaş, çatışma, dövüş | EN: the act or practice of engaging in physical combat or conflict | ÖRNEK: The school organized a debate to discuss the causes of fighting among teenagers.
+13003 | figure | noun | A2 | #1/3 | TR: şekil, form | EN: a visual representation of the outline or shape of something | ÖRNEK: The artist sketched a simple figure on the canvas.
+13004 | figure | noun | B2 | #2/3 | TR: kişi, şahıs, önemli kişi | EN: a person who is well known or influential in a particular field | ÖRNEK: The scientist is a respected figure in the field of genetics.
+13005 | figure | noun | A2 | #3/3 | TR: sayı, rakam | EN: a numeral or symbol representing a quantity | ÖRNEK: She wrote down the figure 42 on the whiteboard.
+13006 | figure | verb | B1 | #1/2 | TR: yer almak, rol oynamak | EN: to be present in a particular position or to have a role in something | ÖRNEK: His name figures in the list of contributors.

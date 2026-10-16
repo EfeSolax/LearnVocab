@@ -1,0 +1,100 @@
+20409 | free | adverb | A2 | #1/1 | TR: bedava, ücretsiz | EN: without payment | ÖRNEK: Children under five travel free.
+4849 | free | verb | B2 | #1/1 | TR: serbest bırakmak, özgür kılmak | EN: to release someone or something from confinement, restraint, or oppression; to allow to act or move without restriction | ÖRNEK: The charity plans to free the rescued animals next week.
+4850 | freedom | noun | B1 | #1/1 | TR: özgürlük, hürriyet | EN: the state of being free from oppression, restriction, or confinement; the power or right to act, speak, or think as one wants | ÖRNEK: The students cherish the freedom to choose their own courses.
+4851 | freely | adverb | B2 | #1/1 | TR: serbestçe, kısıt olmadan | EN: without restriction or limitation | ÖRNEK: The child laughed freely while playing in the park.
+4121 | freeze | verb | B1 | #1/2 | TR: katılaşmak, donmak | EN: to change from a liquid or gas to a solid state, typically because of low temperature | ÖRNEK: When the wind blew, the pond began to freeze quickly.
+4122 | freeze | verb | B2 | #2/2 | TR: durdurmak, askıya almak | EN: to stop or suspend an activity, process, or operation, often temporarily | ÖRNEK: The manager announced that they would freeze hiring until further notice.
+4123 | freezer | noun | B1 | #1/1 | TR: dondurucu, derin dondurucu | EN: a compartment or appliance that keeps food at a temperature below freezing | ÖRNEK: I put the ice cream in the freezer so it stays solid.
+5957 | frequency | noun | B2 | #1/1 | TR: sıklık | EN: the rate at which something occurs or is repeated over a particular period of time | ÖRNEK: The teacher asked the class to record the frequency of the bell ringing.
+5955 | frequent | adjective | B1 | #1/2 | TR: sık, çok kez meydana gelen | EN: occurring or done many times at short intervals; common | ÖRNEK: The bus arrives at frequent intervals throughout the day.
+5956 | frequent | adjective | B2 | #2/2 | TR: sık sık giden, düzenli ziyaretçi | EN: regularly visiting or using a place or service | ÖRNEK: She became a frequent visitor to the campus café after her classes changed.
+5958 | frequently | adverb | B1 | #1/1 | TR: sık sık | EN: many times within a short period; often | ÖRNEK: Students frequently ask questions during the tutorial.
+16963 | fresh | adjective | A2 | #1/2 | TR: taze, yeni, henüz bozulmamış | EN: not previously used, processed, or aged; recently produced or obtained | ÖRNEK: The salad tastes fresh and crisp.
+16964 | fresh | adjective | B1 | #2/2 | TR: dinç, zinde, yeni | EN: full of vigor or spirit; lively and enthusiastic | ÖRNEK: He felt fresh after a good night's sleep.
+12949 | fret | noun | C2 | #2/2 | TR: tasa, kaygı, telaş | EN: a feeling of anxiety or irritation caused by something that worries or bothers a person | ÖRNEK: The sudden change in schedule put him in a fret.
+20985 | friction | noun | B2 | #2/2 | TR: sürtünme, direnç | EN: the resistance that one surface or object encounters when moving over another | ÖRNEK: Friction slows down a moving object.
+20410 | fridge | noun | A2 | #1/1 | TR: buzdolabı | EN: a machine for keeping food and drinks cold | ÖRNEK: Put the milk back in the fridge.
+4377 | friend | noun | A2 | #1/1 | TR: arkadaş, dost | EN: a person with whom one has a bond of mutual affection, typically exclusive of sexual or family relations | ÖRNEK: My friend invited me to her birthday party yesterday.
+4381 | friendly | adjective | A1 | #1/1 | TR: dostça, arkadaşça | EN: showing kindness and goodwill toward others; pleasant and easy to approach | ÖRNEK: The dog wagged its tail, looking very friendly.
+4382 | friendship | noun | B1 | #1/1 | TR: arkadaşlık, dostluk | EN: the state of being friends; a close personal relationship between people | ÖRNEK: My roommate and I share a friendship that makes campus life easier.
+869 | frighten | verb | B1 | #1/1 | TR: korkutmak | EN: to cause someone to feel fear or alarm | ÖRNEK: The loud crash frightened the dog.
+3010 | frightened | adjective | B1 | #1/1 | TR: korkmuş | EN: feeling afraid; having been made afraid by something | ÖRNEK: The little girl felt frightened when the lights went out.
+870 | frightening | adjective | B2 | #1/1 | TR: korkutucu | EN: causing fear or terror; inducing a feeling of dread | ÖRNEK: The dark alley felt frightening to the new residents.
+7423 | frog | noun | A2 | #1/1 | TR: kurbağa | EN: a small tailless amphibian with smooth, moist skin, long hind legs for jumping, and a croaking call | ÖRNEK: A small green frog hopped across the garden path this morning.
+20310 | from | preposition | A1 | #1/2 | TR: -den, -dan (yer, kaynak) | EN: used to show where someone or something starts or comes from | ÖRNEK: I'm from Turkey.
+20311 | from | preposition | A1 | #2/2 | TR: -den, -dan (zaman) | EN: used to show when something starts | ÖRNEK: The shop is open from nine to six.
+10419 | front | adjective | B1 | #1/1 | TR: ön, ön tarafta bulunan | EN: situated at or facing the forward part of something; positioned at the front. | ÖRNEK: She placed the vase on the front table of the dining room.
+10420 | front | noun | A2 | #1/2 | TR: ön, ön taraf | EN: the part or surface of something that faces forward or is most visible | ÖRNEK: The front of the bus is covered with large windows.
+10421 | front | noun | B2 | #2/2 | TR: cephe | EN: the line or area where opposing forces engage in battle | ÖRNEK: The western front stretched for hundreds of kilometers during World War I.
+4125 | frozen | adjective | B1 | #1/1 | TR: donmuş, dondurulmuş | EN: in a solid state caused by very low temperature; having been made solid by freezing | ÖRNEK: The pond was frozen after the first frost of the season.
+25276 | frugal | adjective | B2 | #1/1 | TR: tasarruflu, tutumlu | EN: characterized by careful and sparing use of resources, especially money, to avoid waste. | ÖRNEK: The student chose a frugal diet to keep expenses low during exams.
+13313 | fruit | noun | A2 | #1/1 | TR: meyve | EN: the edible, seed-bearing part of a plant that develops from the ovary after flowering | ÖRNEK: Fresh fruit is good for your health.
+6432 | frustrated | adjective | B2 | #1/1 | TR: hayal kırıklığına uğramış, sıkıntı duyan | EN: feeling upset or annoyed because of being unable to achieve something or because of repeated obstacles. | ÖRNEK: She felt frustrated after the meeting ended without a decision.
+6433 | frustrating | adjective | B2 | #1/1 | TR: sinir bozucu, hüsran verici | EN: causing feelings of frustration or annoyance; making it difficult to achieve a goal | ÖRNEK: The ambiguous instructions were frustrating for the new interns.
+6435 | frustration | noun | B2 | #1/1 | TR: hayal kırıklığı, sıkıntı, moral bozukluğu | EN: the feeling of being upset or annoyed because of an inability to achieve something or because of repeated obstacles | ÖRNEK: The delay caused a lot of frustration among the students.
+12776 | fry | verb | A2 | #1/1 | TR: kızartmak | EN: to cook food in hot oil or fat, usually in a shallow pan | ÖRNEK: I usually fry bacon for a quick breakfast.
+17442 | fuel | noun | B1 | #1/1 | TR: yakıt | EN: a material such as coal, gas, or oil that is burned to produce heat or power | ÖRNEK: The car ran out of fuel on the highway.
+17443 | fuel | verb | B1 | #1/1 | TR: yakıt sağlamak, beslemek | EN: to supply a machine, vehicle, or system with fuel so that it can operate | ÖRNEK: Please fuel the generator before the power outage.
+15280 | full | adjective | A2 | #1/2 | TR: dolu, dolu olan | EN: filled to capacity; having no empty space left | ÖRNEK: The glass is full after I poured the juice.
+15281 | full | adjective | A2 | #2/2 | TR: tam, eksiksiz | EN: complete; having all necessary parts or elements. | ÖRNEK: The teacher asked for a full answer to the question.
+20545 | full-time | adjective | B2 | #1/1 | TR: tam zamanlı | EN: working or studying for all the hours of a normal working week | ÖRNEK: She has a full-time job at the bank.
+20546 | full-time | adverb | B2 | #1/1 | TR: tam zamanlı olarak | EN: for all the hours of a normal working week | ÖRNEK: She works full-time.
+15285 | fully | adverb | B1 | #1/1 | TR: tamamen, bütün olarak | EN: to the complete extent; without limitation or restriction | ÖRNEK: She fully believes that hard work leads to success.
+15572 | fun | adjective | A2 | #1/1 | TR: eğlenceli | EN: causing enjoyment or amusement; providing pleasure or delight. | ÖRNEK: The movie was fun and kept everyone laughing.
+15573 | fun | noun | A1 | #1/1 | TR: eğlence, zevk | EN: the feeling of enjoyment and amusement that comes from an activity or situation | ÖRNEK: The puppy chased its tail, providing pure fun for the kids.
+17157 | function | noun | B1 | #1/3 | TR: işlev, görev | EN: the purpose or activity for which something exists or is intended | ÖRNEK: The thermostat controls the heating function of the house.
+17158 | function | noun | B2 | #2/3 | TR: fonksiyon | EN: a relation between a set of inputs and a set of permissible outputs, often expressed as an equation | ÖRNEK: The teacher asked us to plot the function y = 2x + 3 on a graph.
+17159 | function | noun | B2 | #3/3 | TR: etkinlik, parti | EN: a social gathering or organized event, often for entertainment or celebration | ÖRNEK: The department organized a function to welcome new graduate students.
+17160 | function | verb | B1 | #1/1 | TR: çalışmak, işlev görmek | EN: to work or operate in a specified way; to serve a particular purpose | ÖRNEK: The printer will function after you replace the ink cartridge.
+17163 | functional | adjective | B1 | #1/2 | TR: çalışır, işlevsel | EN: capable of performing its intended purpose or operation | ÖRNEK: The old printer is still functional after years of use.
+17164 | functional | adjective | B2 | #2/2 | TR: kullanışlı, pratik | EN: designed to be useful and practical rather than decorative | ÖRNEK: The kitchen layout is functional and easy to navigate.
+17001 | fund | noun | B1 | #1/2 | TR: para kaynağı, mali kaynak | EN: a sum of money saved or made available for a particular purpose | ÖRNEK: The school's science department received a new fund for equipment.
+17002 | fund | noun | B2 | #2/2 | TR: fon, vakıf | EN: an organization that collects and manages money for a specific purpose | ÖRNEK: The university created a new fund to support interdisciplinary research.
+17003 | fund | verb | B2 | #1/1 | TR: finansman sağlamak | EN: to provide money for a particular purpose, project, or organization | ÖRNEK: The university will fund the new library next semester.
+4711 | fundamental | adjective | B2 | #1/1 | TR: temel, esas, vazgeçilmez | EN: relating to the basic principles or underlying basis of something | ÖRNEK: Good nutrition is fundamental for maintaining a healthy lifestyle.
+4713 | fundamentally | adverb | C1 | #1/1 | TR: temelde, esasen | EN: to a basic or essential degree; in a way that affects the core nature of something | ÖRNEK: The experiment showed results that are fundamentally sound.
+17005 | funding | noun | B2 | #1/1 | TR: finansman, para sağlama | EN: the provision of money for a particular purpose, especially by an organization or government. | ÖRNEK: The startup obtained funding to develop its prototype.
+20700 | fundraising | noun | C1 | #1/1 | TR: bağış toplama | EN: the activity of collecting money for a charity or organization | ÖRNEK: The school organised a fundraising event.
+5038 | funeral | noun | A2 | #1/1 | TR: cenaze, defin | EN: a ceremony marking a person's death, typically involving burial or cremation | ÖRNEK: The funeral was held at the church on Sunday.
+15575 | funny | adjective | A2 | #1/2 | TR: komik, güldürücü | EN: causing laughter or amusement; humorous. | ÖRNEK: The comedian's routine was funny and kept the audience smiling.
+15576 | funny | adjective | B1 | #2/2 | TR: garip, tuhaf | EN: unusual or odd; causing surprise because it is unexpected. | ÖRNEK: She noticed a funny smell coming from the lab equipment.
+8672 | fur | noun | B1 | #1/1 | TR: hayvan tüyü, kürk | EN: the soft thick hair that covers the skin of many animals, especially mammals, and is often used for clothing or decoration | ÖRNEK: The rabbit's soft fur felt smooth against my hand.
+2449 | furious | adjective | B2 | #1/1 | TR: çok öfkeli, kızgın | EN: feeling or showing intense anger | ÖRNEK: The customer became furious when the product broke after one day.
+6953 | furniture | noun | A1 | #1/1 | TR: mobilya | EN: the movable objects in a room or building that make it suitable for living or working | ÖRNEK: The bedroom contains basic furniture like a bed and a dresser.
+20411 | further | adjective | A2 | #1/2 | TR: daha uzak | EN: at a greater distance | ÖRNEK: The station is further than I thought.
+20412 | further | adjective | A2 | #2/2 | TR: ek, ilave | EN: more; additional | ÖRNEK: For further information, visit our website.
+20471 | further | adverb | B1 | #1/1 | TR: daha uzağa, daha ileri | EN: at or to a greater distance | ÖRNEK: I can't walk any further.
+15540 | future | adjective | A2 | #1/1 | TR: gelecek | EN: relating to a time that is yet to come | ÖRNEK: The company announced future changes to its policy.
+15541 | future | noun | A1 | #1/1 | TR: gelecek | EN: the time or a period of time that is to come after the present | ÖRNEK: She hopes to travel abroad in the future.
+13201 | gagged | adjective | B2 | #1/1 | TR: ağzı tıkanmış, susturulmuş | EN: forced to remain silent, usually by being fitted with a gag or otherwise restrained from speaking | ÖRNEK: The journalists felt gagged by the new law.
+7934 | gain | noun | B1 | #1/2 | TR: kazanç, kar, fayda | EN: the profit or benefit obtained from an activity or transaction | ÖRNEK: He earned a large gain after selling his old car.
+7935 | gain | noun | B2 | #2/2 | TR: artış, büyüme, yükselme | EN: an increase in quantity, size, or degree | ÖRNEK: The athlete noticed a slight gain in muscle mass after training.
+7936 | gain | verb | B1 | #1/2 | TR: kazanmak, elde etmek | EN: to obtain something, especially something desirable, through effort or by chance | ÖRNEK: She hopes to gain a scholarship for her graduate studies.
+7937 | gain | verb | B2 | #2/2 | TR: artmak, yükselmek | EN: to increase in amount, size, or degree | ÖRNEK: His reputation began to gain traction after the successful project.
+9040 | gale | noun | B2 | #1/1 | TR: şiddetli rüzgar | EN: a strong, sustained wind, typically with speeds of 34-40 knots (63-74 km/h) or higher | ÖRNEK: A sudden gale blew the papers off the desk.
+2262 | gallery | noun | B1 | #1/2 | TR: sanat galerisi | EN: a room or building where visual artworks are exhibited for the public | ÖRNEK: The university's art gallery displays student work each semester.
+2263 | gallery | noun | B2 | #2/2 | TR: balkon, asma kat, galeri | EN: a long passage in a building, typically used for walking from one area to another | ÖRNEK: A narrow gallery runs behind the library, providing a shortcut between floors.
+20701 | gallon | noun | C1 | #1/1 | TR: galon | EN: a unit for measuring liquid (about 4.5 litres in the UK and 3.8 litres in the US) | ÖRNEK: The car uses a gallon of petrol every 40 miles.
+12377 | gambling | noun | B2 | #1/1 | TR: kumar, şans oyunları | EN: the activity of betting money or something of value on an event with an uncertain outcome, typically as a form of entertainment | ÖRNEK: The university conducted a study on the effects of gambling on student finances.
+15167 | game | noun | A2 | #1/2 | TR: oyun, eğlence | EN: an activity that people engage in for enjoyment or competition, often following set rules. | ÖRNEK: The children gathered to play a simple game in the park.
+15168 | game | noun | B2 | #2/2 | TR: av hayvanı, av | EN: an animal hunted for sport or food; also the act of hunting such animals. | ÖRNEK: The hunter prepared his gear before heading out to chase game.
+15171 | gaming | noun | B2 | #1/2 | TR: kumar, kumar oynama | EN: the activity of gambling, especially in a casino or on betting games | ÖRNEK: He visited the casino to try his luck at gaming.
+15172 | gaming | noun | B1 | #2/2 | TR: video oyunu oynama, bilgisayar oyunu oynama, oyunculuk | EN: the activity of playing video games, especially as a hobby or competitive sport | ÖRNEK: She spends a few hours each evening on gaming.
+7642 | gang | noun | B2 | #1/2 | TR: suç örgütü, çete | EN: a group of people who associate for criminal or violent activities | ÖRNEK: A local street gang was seen vandalizing the park.
+7643 | gang | noun | B1 | #2/2 | TR: arkadaş grubu, dostluk çevresi | EN: a close group of friends who regularly spend time together | ÖRNEK: My gang and I meet at the café every Saturday morning.
+875 | gap | noun | A2 | #1/2 | TR: boşluk, açıklık | EN: a space or opening between two objects or parts | ÖRNEK: The fence has a small gap that lets the wind blow through.
+876 | gap | noun | B2 | #2/2 | TR: fark, uçurum | EN: a difference or disparity between two things, often in level, amount, or quality | ÖRNEK: The report highlighted a gap in student achievement across districts.
+20472 | garage | noun | B1 | #1/2 | TR: garaj | EN: a building for keeping a car in | ÖRNEK: He parked the car in the garage.
+20473 | garage | noun | B1 | #2/2 | TR: tamirhane, oto servis | EN: a place where cars are repaired | ÖRNEK: My car is at the garage for a service.
+17209 | garden | noun | A2 | #1/1 | TR: bahçe | EN: a piece of ground, often near a house, used for growing flowers, vegetables, or other plants | ÖRNEK: She planted roses in her garden last spring.
+16407 | gas | noun | A2 | #1/3 | TR: gaz | EN: a substance in a state of matter that expands freely to fill any container, consisting of molecules moving independently | ÖRNEK: The balloon rose because it was filled with gas.
+16406 | gas | noun | A2 | #2/3 | TR: benzin | EN: a volatile liquid fuel derived from petroleum, used especially in internal-combustion engines | ÖRNEK: The gas price increased by three cents per litre yesterday.
+16408 | gas | noun | C2 | #3/3 | TR: eğlence, şamata | EN: informal usage meaning fun, amusement, or lively conversation | ÖRNEK: The comedy show was a real gas for the audience.
+2203 | gate | noun | A2 | #1/1 | TR: kapı, geçit, biniş kapısı | EN: a movable barrier that allows or restricts passage through an opening in a fence, wall, or other enclosure | ÖRNEK: The garden gate was painted bright red.
+877 | gather | verb | B1 | #1/1 | TR: toplamak, toplanmak | EN: to collect items, information, or people together into one place or group | ÖRNEK: She gathered the fallen leaves into a basket.
+880 | gathering | noun | B1 | #1/1 | TR: toplanma, toplantı | EN: an assembly of people or things brought together in one place | ÖRNEK: The school organized a gathering for the new students to meet each other.
+881 | gaze | noun | B1 | #1/1 | TR: bakış, dik dik bakış | EN: a steady, intent look at something or someone | ÖRNEK: The child's curious gaze followed the butterfly across the garden.
+882 | gaze | verb | B1 | #1/1 | TR: bakmak, sabit bir şekilde gözlemlemek | EN: to look steadily and intently at someone or something | ÖRNEK: The child likes to gaze at colorful butterflies in the garden.
+9261 | gear | noun | B1 | #1/2 | TR: vites | EN: a set of toothed wheels that work together to transmit motion and change the speed or direction of a vehicle's movement | ÖRNEK: She pressed the clutch and moved the car into first gear.
+9262 | gear | noun | B2 | #2/2 | TR: donanım, ekipman | EN: the equipment or apparatus needed for a particular purpose, especially in a specific activity or field | ÖRNEK: The photographer checked his gear before the shoot.
+9263 | gear | verb | B2 | #1/2 | TR: uyarlamak, göre tasarlamak, yönlendirmek | EN: to adapt or adjust something so that it is suitable for a particular purpose or situation | ÖRNEK: The workshop was geared to help beginners learn coding basics.

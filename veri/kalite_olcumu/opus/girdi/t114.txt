@@ -1,0 +1,100 @@
+10494 | rosy | adjective | B1 | #2/2 | TR: iyimser, umutlu | EN: showing optimism or a hopeful outlook | ÖRNEK: She has a rosy attitude toward the upcoming exam.
+9933 | rot | noun | B1 | #1/1 | TR: çürüme, çürük | EN: the process of decay or decomposition of organic matter, especially caused by bacteria or fungi | ÖRNEK: The old cheese had a strong smell of rot.
+9934 | rot | verb | B1 | #1/1 | TR: çürümek, bozulmak | EN: to decompose or decay, especially organic matter, causing it to become soft and foul-smelling | ÖRNEK: The apples left on the counter began to rot after a week.
+10176 | rotary | adjective | B2 | #1/1 | TR: döner, döner tipinde | EN: relating to or characterized by rotation; having a circular or revolving motion | ÖRNEK: The rotary fan spins slowly to circulate air in the room.
+10180 | rotational | adjective | B2 | #1/1 | TR: dönme ile ilgili, döndürmeye ilişkin | EN: relating to or caused by rotation; involving the turning of an object around an axis | ÖRNEK: The Earth shows rotational motion once every twenty-four hours.
+9935 | rotten | adjective | B1 | #1/2 | TR: çürük, bozulmuş | EN: decomposed or spoiled, especially as a result of decay or rot | ÖRNEK: The apples on the tree turned rotten after the heavy rain.
+9936 | rotten | adjective | B2 | #2/2 | TR: kötü, ahlâksız | EN: morally corrupt or extremely bad in character or behavior | ÖRNEK: The journalist exposed the rotten practices within the local government.
+9937 | rotter | noun | C2 | #1/1 | TR: kötü insan, pislik | EN: a person who is morally reprehensible or contemptible | ÖRNEK: He is known as a rotter among his classmates.
+10491 | rouble | noun | B1 | #1/1 | TR: ruble | EN: the basic unit of currency in Russia, abbreviated as RUB | ÖRNEK: I bought a train ticket and paid the price in roubles.
+5100 | roughness | noun | B2 | #1/1 | TR: pürüzlülük, sertlik | EN: the quality of having an uneven or irregular surface; the state of being rough | ÖRNEK: The road's roughness made the car bounce over every bump.
+16015 | round | verb | B2 | #2/2 | TR: yuvarlamak, şekillendirmek | EN: to make something have a circular shape or to smooth out edges | ÖRNEK: She used a file to round the sharp corners of the metal sheet.
+24693 | round up | phrasal_verb | B1 | #1/2 | TR: yukarı yuvarlamak | EN: to increase a number to the nearest whole number or to a specified increment | ÖRNEK: The teacher asked us to round up 2.3 to the nearest whole number.
+24694 | round up | phrasal_verb | B1 | #2/2 | TR: toplamak, bir araya getirmek | EN: to gather people or things together, especially for a specific purpose | ÖRNEK: The coach will round up the players for the final practice.
+24690 | roundabout | adjective | B2 | #1/1 | TR: dolambaçlı, dolaylı | EN: describing a way of speaking or acting that is not direct, often using more words or steps than necessary | ÖRNEK: The teacher gave a roundabout explanation of the formula.
+16017 | roundness | noun | B1 | #1/1 | TR: yuvarlaklık | EN: the quality or state of being round; having a circular shape | ÖRNEK: The artist admired the roundness of the ancient vase.
+5921 | rouse | verb | B1 | #1/2 | TR: uyandırmak, uyanmasını sağlamak | EN: to cause someone to wake up or become alert | ÖRNEK: The sudden thunder roused the baby from his nap.
+5922 | rouse | verb | B2 | #2/2 | TR: canlandırmak, heyecanlandırmak | EN: to stir up emotions, enthusiasm, or activity | ÖRNEK: The protest roused citizens to demand change.
+5923 | rousing | adjective | B2 | #1/1 | TR: heyecan verici, canlandırıcı | EN: causing excitement, enthusiasm, or strong emotion | ÖRNEK: The crowd cheered after the rousing opening of the concert.
+17632 | route | verb | B1 | #1/1 | TR: yönlendirmek, güzergah belirlemek | EN: to send or direct something or someone along a particular course or path | ÖRNEK: The manager will route the new project files to the design team tomorrow.
+6804 | routinely | adverb | B1 | #1/1 | TR: rutin olarak | EN: as a regular part of a procedure or schedule | ÖRNEK: The nurse routinely measures patients' blood pressure each morning.
+22285 | rove | verb | B2 | #1/1 | TR: dolaşmak, gezinmek | EN: to move about or travel constantly without a fixed destination or purpose | ÖRNEK: The stray dog roved the alley looking for food.
+22286 | rover | noun | B2 | #1/2 | TR: araştırma aracı, keşif aracı | EN: a vehicle designed to travel over rough terrain, often used for scientific exploration | ÖRNEK: The rover moved slowly across the rocky desert.
+22287 | rover | noun | C1 | #2/2 | TR: gezgin, dolaşan kişi | EN: a person who wanders from place to place without a fixed home or job | ÖRNEK: The rover traveled from town to town, never staying long.
+22288 | roving | adjective | B2 | #1/1 | TR: dolaşan, gezinen, devriye yapan | EN: moving or wandering from place to place, often to watch or patrol | ÖRNEK: The roving cat wandered from house to house in the neighborhood.
+17882 | row | noun | A2 | #1/2 | TR: sıra, diziliş | EN: a horizontal line of objects or people placed side by side | ÖRNEK: The students sat in a single row during the lecture.
+17883 | row | noun | B1 | #2/2 | TR: tartışma, kavga | EN: a noisy or angry dispute between people | ÖRNEK: The siblings had a row over who would use the computer.
+17884 | row | verb | A2 | #1/1 | TR: kürek çekmek, kürekle ilerletmek | EN: to propel a boat or other watercraft by using oars | ÖRNEK: The children learned how to row a small boat during the camp.
+25665 | rowdy | adjective | B2 | #1/1 | TR: gürültücü, taşkın, hırgür çıkaran | EN: characterized by noisy, disorderly, and energetic behavior | ÖRNEK: The rowdy fans shouted chants throughout the match.
+26119 | rowdy | noun | B2 | #1/1 | TR: gürültülü, haşarı kişi | EN: a person who is noisy, disruptive and behaves in an unruly manner | ÖRNEK: During the parade, a rowdy tried to climb onto the float and caused a commotion.
+17885 | rower | noun | B1 | #1/1 | TR: kürekçi | EN: a person who rows a boat, especially as a sport or for transportation | ÖRNEK: The rower practiced on the lake every morning before class.
+17886 | rowing | noun | B2 | #1/1 | TR: kürek çekme sporu | EN: the activity of propelling a boat using oars, usually as a sport or recreation | ÖRNEK: The university has a rowing team that practices on the river.
+16891 | royal | noun | B2 | #1/1 | TR: kraliyet üyesi | EN: a person who belongs to a royal family, such as a king, queen, prince, or princess | ÖRNEK: The royal arrived at the airport in a golden carriage.
+23600 | royalist | adjective | B2 | #1/1 | TR: monarşiyi destekleyen, krala/kraliçeye bağlı | EN: relating to or supporting a monarchy or a monarch; showing loyalty to a royal ruler | ÖRNEK: The royalist group marched through the capital last weekend.
+23601 | royalist | noun | B2 | #1/1 | TR: monarşi yanlısı, kraliyet destekçisi | EN: a person who supports the monarchy or a royal family | ÖRNEK: The royalist argued that the crown should retain its authority.
+16892 | royally | adverb | B2 | #1/2 | TR: kraliyet tarzında | EN: in a manner befitting a king or queen; with regal authority or dignity | ÖRNEK: The queen entered the hall royally, drawing everyone's attention.
+16893 | royally | adverb | C1 | #2/2 | TR: fena halde, son derece | EN: to a great or extreme degree; used colloquially to intensify an adjective or verb | ÖRNEK: He was royally surprised when his friends threw a secret party.
+16894 | royalty | noun | B2 | #1/2 | TR: kraliyet mensubu, kraliyet ailesi | EN: the members of a royal family; people who hold royal titles such as king, queen, prince, or princess. | ÖRNEK: Prince William and Kate Middleton are part of the British royalty.
+16895 | royalty | noun | C1 | #2/2 | TR: telif ücreti, telif hakkı geliri | EN: payments made to the owner of a copyright, patent, or other intellectual property for the right to use it. | ÖRNEK: The musician earned a small royalty from streaming services.
+2298 | rub | noun | B1 | #1/1 | TR: sürtme, ovma | EN: the act of moving something over a surface with pressure, often to clean, massage, or apply a substance | ÖRNEK: She gave the table a quick rub to remove the dust.
+27057 | rub in | phrasal_verb | C1 | #1/1 | TR: (hatayı) yüzüne vurmak, durmadan hatırlatmak | EN: to keep talking about someone's mistake to make them feel bad | ÖRNEK: I know I was wrong – there's no need to rub it in.
+27058 | rub out | phrasal_verb | B1 | #1/1 | TR: (silgiyle) silmek | EN: to remove writing with an eraser | ÖRNEK: Rub out the wrong answer and try again.
+23602 | rubble | noun | B1 | #1/2 | TR: moloz, kırık taş | EN: broken fragments of stone, brick, or concrete, especially after a building has collapsed. | ÖRNEK: The construction crew removed the rubble after the old house fell.
+13440 | ruby | adjective | B1 | #1/1 | TR: yakut kırmızı | EN: of a deep red color resembling that of a ruby gemstone | ÖRNEK: The ruby curtains added a rich hue to the living room.
+13441 | ruby | noun | B2 | #1/1 | TR: kırmızı değerli taş, yakut | EN: a precious red gemstone, a variety of corundum used in jewelry | ÖRNEK: The ruby on the pendant sparkled in the sunlight.
+25666 | rudder | noun | B2 | #1/1 | TR: dümen | EN: a flat piece, usually hinged, at the stern of a ship or aircraft that is used to steer by turning it left or right | ÖRNEK: The small boat turned sharply when the sailor moved the rudder.
+25667 | rudderless | adjective | C1 | #1/1 | TR: dümeni olmayan, yönsüz, amaçsız | EN: lacking a rudder; without direction or guidance | ÖRNEK: The small boat was rudderless and floated downstream.
+12598 | ruddy | adjective | C1 | #1/1 | TR: al, al yanaklı, pembe | EN: having a healthy reddish colour, especially on the skin or face | ÖRNEK: The child's face turned ruddy after playing outside.
+6394 | rudely | adverb | B1 | #1/1 | TR: kaba bir şekilde | EN: in a manner that is disrespectful or impolite | ÖRNEK: He rudely shouted across the quiet library.
+6395 | rudeness | noun | B1 | #1/1 | TR: kaba davranış, saygısızlık | EN: the quality or state of being rude; impolite or disrespectful behavior | ÖRNEK: He apologized for his rudeness after the meeting.
+23604 | rue | noun | C2 | #1/1 | TR: pişmanlık, üzüntü | EN: a feeling of sorrow or regret about something that has happened or been done | ÖRNEK: The old man expressed rue for the choices he made in youth.
+23605 | rue | verb | B2 | #1/1 | TR: pişman olmak, esef etmek | EN: to feel regret or sorrow about something that has happened or been done | ÖRNEK: He rues the day he quit his job without a backup plan.
+9910 | rug | noun | A2 | #1/1 | TR: halı, kilim | EN: a floor covering of thick woven material, typically smaller than a carpet | ÖRNEK: The rug is blue and soft on the floor.
+22289 | rugged | adjective | B2 | #1/1 | TR: engebeli, sağlam, sert | EN: having a rough, uneven surface or being strongly built and able to withstand harsh conditions | ÖRNEK: The trail leads through rugged hills covered with scrub.
+2873 | ruination | noun | B2 | #1/1 | TR: yıkım, tahribat | EN: the act or result of destroying something completely; severe damage or decay | ÖRNEK: The flood caused extensive ruination of the village houses.
+2874 | ruinous | adjective | C1 | #1/1 | TR: yıkıcı, felaket verici | EN: causing great damage or destruction; disastrous | ÖRNEK: The storm caused ruinous damage to the coastal village.
+26648 | rule out | phrasal_verb | C1 | #1/1 | TR: ihtimal dışı bırakmak, olasılığını reddetmek | EN: to decide that something is not possible or suitable | ÖRNEK: The police have ruled out murder.
+1365 | rulership | noun | B2 | #1/1 | TR: yönetim, hükümranlık | EN: the position or authority of a ruler; the act or period of governing a state or organization | ÖRNEK: The ancient empire's rulership lasted for centuries.
+1366 | ruling | adjective | B2 | #1/1 | TR: hüküm süren, egemen, karar verici | EN: having authority or control; constituting a decision or law | ÖRNEK: Many scholars debate whether the ruling class truly represents the people.
+22291 | rum | noun | B1 | #1/1 | TR: rom | EN: a distilled alcoholic beverage made from sugarcane by-products such as molasses or from sugarcane juice | ÖRNEK: The bartender poured a glass of rum for the guest.
+7190 | rumble | noun | B1 | #1/2 | TR: gürleme, gümbürtü, uğultu | EN: a deep, continuous, resonant sound often heard from distant thunder, engines, or machinery | ÖRNEK: The rumble of the old refrigerator annoyed the students during study time.
+7192 | rumble | verb | B1 | #1/1 | TR: gürlemek, uğuldamak | EN: to make a continuous deep low sound | ÖRNEK: The truck rumbled down the street.
+10852 | rummage | verb | B1 | #1/1 | TR: karıştırmak, altüst ederek aramak, didik didik aramak | EN: to search through something in an untidy or haphazard manner | ÖRNEK: The librarian rummaged through the stacks to locate the missing book.
+6897 | rumor | noun | B1 | #1/1 | TR: söylenti, dedikodu | EN: a piece of information or a story that is not verified and is spread informally | ÖRNEK: A rumor started after the meeting and many people discussed it.
+26649 | run across | phrasal_verb | C1 | #1/1 | TR: rastlamak, tesadüfen bulmak | EN: to meet someone or find something by chance | ÖRNEK: I ran across an old friend in town.
+26650 | run after | phrasal_verb | B2 | #1/1 | TR: kovalamak, peşinden koşmak | EN: to chase someone or something | ÖRNEK: The dog ran after the ball.
+26651 | run away | phrasal_verb | B1 | #1/1 | TR: kaçmak, (evden) kaçıp gitmek | EN: to leave a place or person secretly and suddenly | ÖRNEK: The boy ran away from home.
+27059 | run by | phrasal_verb | C1 | #1/1 | TR: (fikrini almak için) birine danışmak, göstermek | EN: to tell someone about an idea to see what they think | ÖRNEK: Can I run an idea by you?
+26652 | run down | phrasal_verb | C1 | #1/3 | TR: (pil) bitmek, (gücü) azalmak | EN: to lose power or become weaker | ÖRNEK: My phone battery has run down.
+26653 | run down | phrasal_verb | C1 | #2/3 | TR: (araçla) çarpıp yaralamak | EN: to hit someone with a vehicle and injure or kill them | ÖRNEK: He was run down by a bus.
+26654 | run down | phrasal_verb | C1 | #3/3 | TR: kötülemek, yermek | EN: to criticize someone or something, often unfairly | ÖRNEK: Stop running yourself down!
+27060 | run for | phrasal_verb | B2 | #1/1 | TR: (bir göreve) aday olmak | EN: to try to be elected to a position | ÖRNEK: She's running for mayor.
+26655 | run into | phrasal_verb | B1 | #1/3 | TR: (tesadüfen) karşılaşmak | EN: to meet someone you know by chance | ÖRNEK: I ran into Sarah at the supermarket.
+26656 | run into | phrasal_verb | B1 | #2/3 | TR: (soruna) girmek, karşılaşmak | EN: to start to experience a difficult situation | ÖRNEK: The project ran into problems.
+26657 | run into | phrasal_verb | B1 | #3/3 | TR: (araçla) çarpmak | EN: to hit something with a vehicle | ÖRNEK: The car ran into a tree.
+27061 | run off | phrasal_verb | C1 | #1/2 | TR: kaçıp gitmek | EN: to leave a place or person suddenly | ÖRNEK: The boys ran off when they saw the police.
+27062 | run off | phrasal_verb | C1 | #2/2 | TR: (fotokopi) çekmek, basmak | EN: to quickly print copies of something | ÖRNEK: Can you run off ten copies of this?
+26658 | run out | phrasal_verb | A2 | #1/1 | TR: bitmek, tükenmek | EN: to be completely used so that there is nothing left | ÖRNEK: The milk has run out.
+26659 | run out of | phrasal_verb | B1 | #1/1 | TR: (bir şey) bitmek, tüketmek | EN: to use all of something and have nothing left | ÖRNEK: We've run out of coffee.
+26660 | run over | phrasal_verb | B2 | #1/2 | TR: (araçla) ezmek, üstünden geçmek | EN: to hit someone or something with a vehicle and drive over them | ÖRNEK: He was nearly run over by a truck.
+26661 | run over | phrasal_verb | B2 | #2/2 | TR: süreyi aşmak | EN: to continue past the expected finishing time | ÖRNEK: The meeting ran over by twenty minutes.
+26662 | run through | phrasal_verb | B2 | #1/1 | TR: (hızlıca) gözden geçirmek, prova etmek | EN: to repeat something or explain something quickly | ÖRNEK: Let's run through the plan once more.
+27063 | run up | phrasal_verb | C1 | #1/1 | TR: (borç, fatura) biriktirmek, kabartmak | EN: to make a debt or bill larger by spending money | ÖRNEK: He ran up a huge phone bill.
+27064 | run up against | phrasal_verb | C1 | #1/1 | TR: (bir engelle) karşılaşmak | EN: to have to deal with an unexpected difficulty | ÖRNEK: The plan ran up against strong opposition.
+23611 | runaway | adjective | B2 | #1/2 | TR: kontrolden çıkmış, durdurulamayan | EN: describing something that cannot be controlled or stopped, often used for a vehicle, fire, or situation that is out of control | ÖRNEK: The car skidded on ice and turned into a runaway vehicle.
+25668 | rundown | adjective | B2 | #1/2 | TR: yorgun, bitkin | EN: feeling extremely tired or lacking energy, often after prolonged activity or stress | ÖRNEK: She felt rundown after the long flight home.
+25669 | rundown | adjective | B2 | #2/2 | TR: bakımsız, harap | EN: in a state of disrepair or neglect; poorly maintained and showing signs of decay | ÖRNEK: The rundown house had broken windows and a leaky roof.
+25670 | rundown | noun | B2 | #1/1 | TR: özet, kısa bilgi | EN: a brief summary or condensed version of information | ÖRNEK: The teacher gave a short rundown of the lesson plan.
+15362 | runny | adjective | B1 | #1/1 | TR: akıntılı, sulu | EN: having a thin, liquid consistency that flows easily | ÖRNEK: She brushed her hair back to hide the runny nose during class.
+23609 | runoff | noun | B2 | #1/2 | TR: ikinci tur | EN: the second round of an election or voting process | ÖRNEK: The city scheduled a runoff after no candidate won a majority.
+23610 | runoff | noun | B2 | #2/2 | TR: akış, yüzey akıntısı | EN: the water from rain, melting snow, or irrigation that flows over the land surface | ÖRNEK: Heavy rain produced a large amount of runoff on the hills.
+22292 | runway | noun | B1 | #1/2 | TR: pist, uçak pisti | EN: a long, flat surface at an airport where aircraft take off and land | ÖRNEK: The aircraft taxied to the runway for departure.
+13629 | rupture | noun | B2 | #1/1 | TR: yırtılma, kopma | EN: a break or split in something, especially a tissue or organ, that results in a loss of continuity | ÖRNEK: The MRI showed a small rupture in the patient's spinal disc.
+13630 | rupture | verb | B2 | #1/1 | TR: yırtılmak, patlamak, kopmak | EN: to break or burst open, especially a tissue, organ, or material, often suddenly and violently | ÖRNEK: The doctor warned that the aneurysm could rupture if left untreated.
+25671 | ruse | noun | B2 | #1/1 | TR: hile | EN: a clever plan or trick intended to deceive someone | ÖRNEK: The thief used a simple ruse to get past the security guard.
+26663 | rush into | phrasal_verb | C1 | #1/1 | TR: (düşünmeden) apar topar girişmek | EN: to do something too quickly without thinking carefully | ÖRNEK: Don't rush into marriage.
+1374 | rusher | noun | B2 | #1/1 | TR: aceleci, aceleyle hareket eden kişi | EN: a person who acts or moves quickly, often without careful consideration | ÖRNEK: He is always a rusher, finishing his work in record time.
+11983 | rust | noun | B1 | #1/1 | TR: pas, korozyon | EN: a reddish-brown flaky coating formed on iron or steel by oxidation, especially when exposed to moisture. | ÖRNEK: She noticed rust forming on the bike chain during the winter.
+11984 | rust | verb | B1 | #1/1 | TR: paslanmak, korozyona uğramak | EN: to undergo oxidation, especially of iron or steel, resulting in a reddish-brown coating | ÖRNEK: The garden tools started to rust after being left in the rain.
+23614 | rustic | adjective | B1 | #1/1 | TR: kırsal, köy tarzı | EN: having a simple, countryside style; resembling the countryside or rural life. | ÖRNEK: The small town has a rustic atmosphere that appeals to visitors.
+23615 | rustic | noun | B2 | #1/1 | TR: kırsal kişi, köylü | EN: a person who lives in the countryside, especially one who is considered simple or unsophisticated | ÖRNEK: The village elder is a rustic who knows many old stories.

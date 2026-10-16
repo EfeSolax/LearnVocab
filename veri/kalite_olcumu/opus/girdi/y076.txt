@@ -1,0 +1,100 @@
+20445 | third | noun | A2 | #1/1 | TR: üçte bir | EN: one of three equal parts of something | ÖRNEK: A third of the students live on campus.
+5776 | thirsty | adjective | A2 | #1/1 | TR: susuz, susamış | EN: feeling a need to drink something because of a lack of fluid in the body | ÖRNEK: She drank water because she felt thirsty after the hike.
+20496 | this | adverb | B1 | #1/1 | TR: bu kadar | EN: to this degree; so | ÖRNEK: I didn't expect the test to be this difficult.
+27243 | this | determiner | A1 | #1/1 | TR: bu | EN: used before a noun to refer to a person or thing that is near you, or to the present time | ÖRNEK: This book is very interesting.
+27206 | this | pronoun | A1 | #1/1 | TR: bu (yakındaki şey ya da kişi) | EN: used to refer to a person or thing that is near you, or to the present situation | ÖRNEK: This is my sister, Ayşe.
+4838 | thorough | adjective | B2 | #1/1 | TR: tam, eksiksiz, ayrıntılı | EN: showing great attention to detail and completeness in doing something | ÖRNEK: He wrote a thorough report on the experiment for his class.
+4839 | thoroughly | adverb | B2 | #1/1 | TR: tamamen, eksiksiz, ayrıntılı bir şekilde | EN: in a very careful and complete way, leaving no part undone | ÖRNEK: She cleaned the kitchen thoroughly before the guests arrived.
+27246 | those | determiner | A1 | #1/1 | TR: şu, o (çoğul) | EN: used before a plural noun to refer to people or things that are not near you | ÖRNEK: Can you pass me those books?
+27210 | those | pronoun | A1 | #1/2 | TR: şunlar, onlar | EN: used to refer to people or things that are not near you | ÖRNEK: Those are my parents over there.
+27211 | those | pronoun | A1 | #2/2 | TR: -enler, … olanlar | EN: used to mean "the people who" or "the things which" | ÖRNEK: Those who finished early can go home.
+27292 | though | conjunction | B1 | #1/1 | TR: -e rağmen, -diği hâlde (although'dan daha gündelik) | EN: despite the fact that | ÖRNEK: Though she was tired, she kept working.
+9777 | thought | noun | B1 | #1/2 | TR: fikir, düşünce, görüş | EN: an idea or opinion produced by thinking; a mental representation of something. | ÖRNEK: The teacher asked the students to write down one thought about the reading.
+9778 | thought | noun | B2 | #2/2 | TR: düşünme eylemi, akıl yürütme | EN: the act or process of thinking; mental activity. | ÖRNEK: After the lecture, she spent a few minutes in quiet thought.
+20816 | thought-provoking | adjective | C1 | #1/1 | TR: düşündürücü | EN: making people think seriously about a subject | ÖRNEK: It was a thought-provoking film.
+9780 | thoughtful | adjective | B1 | #1/2 | TR: düşünceli, nazik | EN: showing consideration for the needs or feelings of others | ÖRNEK: He wrote a thoughtful note to thank his mentor.
+9779 | thoughtful | adjective | B2 | #2/2 | TR: derin düşüncelere dalmış | EN: showing careful consideration or deep reflection | ÖRNEK: She stared out the window, lost in a thoughtful pause.
+4811 | thread | noun | A2 | #1/2 | TR: ince iplik, ip | EN: a thin strand of fiber used for sewing or weaving | ÖRNEK: The tailor cut a piece of blue thread for the shirt.
+4812 | thread | noun | B2 | #2/2 | TR: konu başlığı, tartışma dizisi | EN: a series of connected messages or posts on a particular subject, especially in an online forum | ÖRNEK: He opened a new thread to ask about the assignment deadline.
+1897 | threat | noun | B2 | #1/1 | TR: tehdit | EN: a statement or indication of intent to cause harm, damage, or undesirable consequences | ÖRNEK: The police warned the crowd about the possible threat of violence.
+1898 | threaten | verb | B2 | #1/1 | TR: tehdit etmek | EN: to state an intention to cause harm or damage to someone | ÖRNEK: The teacher threatened the class with extra homework.
+5823 | threshold | noun | B2 | #1/2 | TR: başlangıç, sınır, eşik | EN: the point or level at which something begins or changes | ÖRNEK: The company is at the threshold of expanding into Europe.
+5824 | threshold | noun | B2 | #2/2 | TR: kapı eşiği, giriş çerçevesi | EN: the strip of wood, stone, or metal forming the bottom of a doorway | ÖRNEK: The old house still has its original wooden threshold.
+7455 | thrilled | adjective | B1 | #1/1 | TR: heyecanlı, çok mutlu | EN: feeling great excitement or pleasure about something | ÖRNEK: The student felt thrilled after receiving the scholarship award.
+7456 | thriller | noun | B2 | #1/1 | TR: gerilim filmi, heyecan verici eser | EN: a novel, film, or other work that uses suspense, tension, and excitement as its main elements | ÖRNEK: The new thriller kept the audience guessing until the final scene.
+11383 | thrive | verb | B2 | #1/1 | TR: başarılı olmak, gelişmek | EN: to grow, develop, or be successful, especially in a healthy or vigorous way | ÖRNEK: The small business began to thrive after the city improved its infrastructure.
+2413 | throat | noun | A2 | #1/1 | TR: gırtlak, boğaz | EN: the passage that leads from the mouth to the esophagus and larynx | ÖRNEK: My throat hurts after I shouted at the game.
+15144 | through | adverb | B1 | #1/1 | TR: başından sonuna kadar, tamamen | EN: to the end of something; completely; from one side to the other side | ÖRNEK: I read through the email and understood the instructions.
+15145 | through | preposition | B1 | #1/2 | TR: vasıtasıyla, aracılığıyla | EN: indicating the means or agency by which something is done | ÖRNEK: She sent the documents through email yesterday.
+15146 | through | preposition | A2 | #2/2 | TR: boyunca, süresince | EN: indicating the entire length of time or space that something extends | ÖRNEK: The lecture lasted through the entire morning session.
+20497 | throughout | adverb | B1 | #1/1 | TR: baştan sona, her yerinde | EN: in every part, or during the whole time | ÖRNEK: The house is painted white throughout.
+16492 | throughout | preposition | B1 | #1/1 | TR: boyunca | EN: in every part or during the whole period of something | ÖRNEK: The museum is open throughout the week.
+1591 | throw | verb | A2 | #1/2 | TR: fırlatmak, atmak | EN: to propel something through the air by a sudden motion of the arm or hand | ÖRNEK: She threw the stone into the river.
+1592 | throw | verb | B1 | #2/2 | TR: düşürmek, devirmek | EN: to cause something to fall or be displaced from its normal position, often by force | ÖRNEK: The protestors threw the barricades into the street.
+9656 | thumb | noun | A2 | #1/1 | TR: başparmak | EN: the short, thick first digit of the human hand, set lower than the other fingers and opposable to them | ÖRNEK: The child hurt his thumb while climbing the playground.
+2677 | thunder | noun | B1 | #1/1 | TR: gök gürültüsü | EN: the loud rumbling sound caused by lightning during a storm | ÖRNEK: I heard thunder during the rain.
+14968 | thunderbolt | noun | B2 | #1/1 | TR: yıldırım | EN: a flash of lightning accompanied by a loud crash of thunder | ÖRNEK: A thunderbolt lit up the dark clouds during the storm.
+24849 | thunderstorm | noun | A2 | #1/1 | TR: gök gürültülü fırtına | EN: a storm characterized by the presence of thunder and lightning | ÖRNEK: A thunderstorm moved quickly across the plain this morning.
+9899 | tick | noun | B1 | #1/3 | TR: tık sesi, tıkırtı | EN: a short, sharp sound made by a mechanism or a watch | ÖRNEK: The watch emitted a soft tick every second.
+9900 | tick | noun | B1 | #2/3 | TR: kene | EN: a small blood-sucking arachnid that attaches to the skin of mammals and birds | ÖRNEK: A lone tick clung to the dog's fur as they walked through the meadow.
+9901 | tick | noun | B1 | #3/3 | TR: işaret, onay işareti | EN: a small mark (✓) used to indicate that something is correct or has been completed | ÖRNEK: He added a tick beside every correct answer on the worksheet.
+9902 | tick | verb | B1 | #1/2 | TR: tık tık ses çıkarmak | EN: to make a short, sharp clicking sound, as a clock or a watch does | ÖRNEK: The kitchen timer ticked loudly while we baked the cake.
+9903 | tick | verb | B1 | #2/2 | TR: işaretlemek, onaylamak | EN: to mark something with a tick (check) to indicate correctness or approval | ÖRNEK: The teacher asked the students to tick the correct statements.
+17854 | ticket | noun | A2 | #1/2 | TR: bilet | EN: a printed or electronic document that gives the holder permission to travel, enter an event, or participate in a service | ÖRNEK: She bought a ticket for the train to Istanbul.
+17855 | ticket | noun | B2 | #2/2 | TR: ceza makbuzu, trafik cezası | EN: an official notice that a person must pay a fine for breaking a law, especially traffic regulations | ÖRNEK: The police officer handed him a ticket for illegal parking.
+5753 | tide | noun | B1 | #1/2 | TR: gelgit, deniz seviyesi değişimi | EN: the regular rise and fall of sea level caused by the gravitational forces of the moon and the sun | ÖRNEK: The fishermen check the tide before leaving the harbor.
+5754 | tide | noun | B2 | #2/2 | TR: akım, eğilim, yönelim | EN: a general direction or tendency of events, opinions, or actions | ÖRNEK: The tide of consumer preferences is leaning toward sustainable products.
+12885 | tidy | adjective | B1 | #1/2 | TR: düzenli, tertipli | EN: being arranged in a neat and orderly way, without mess or clutter. | ÖRNEK: The student kept his tidy workspace throughout the semester.
+12886 | tidy | adjective | B2 | #2/2 | TR: kayda değer, önemli ölçüde | EN: sufficiently large or considerable, especially in amount or size. | ÖRNEK: The fundraiser collected a tidy sum for the charity.
+12887 | tidy | verb | B1 | #1/1 | TR: düzenlemek, tertiplemek | EN: to arrange or organize something so that it is neat and orderly | ÖRNEK: She tidied her room quickly after school.
+2059 | tie | noun | A2 | #1/3 | TR: kravat | EN: a piece of cloth worn around the neck, typically by men, as part of formal attire | ÖRNEK: He chose a blue tie for the interview.
+2058 | tie | noun | B1 | #2/3 | TR: bağ, ilişki | EN: a connection or relationship between two or more people, groups, or things | ÖRNEK: She feels a deep tie with her grandparents.
+2060 | tie | noun | B2 | #3/3 | TR: beraberlik, eşitlik | EN: a situation in a game or competition where the scores of two or more participants are the same | ÖRNEK: The basketball game finished in a tie.
+2061 | tie | verb | A2 | #1/2 | TR: bağlamak | EN: to fasten or attach something with a cord, rope, or similar material | ÖRNEK: She tied the shoelaces before running to class.
+2062 | tie | verb | B1 | #2/2 | TR: eşitlemek, berabere kalmak | EN: to cause two or more competitors, scores, or amounts to be equal; to end a contest without a winner | ÖRNEK: The basketball teams tied the score at 78 points each.
+4408 | tight | adjective | A2 | #1/1 | TR: sıkı, dar | EN: firmly fixed or held in place; not loose or slack | ÖRNEK: The lid was tight and wouldn't open easily.
+4409 | tighten | verb | B1 | #1/1 | TR: sıkmak, sıkılaştırmak | EN: to make something more tight or secure, often by applying force or adjusting a mechanism | ÖRNEK: She tightened the lid on the jar to keep the sauce fresh.
+24856 | tights | noun | B1 | #1/1 | TR: külotlu çorap, tayt | EN: a close-fitting garment covering the legs and sometimes the hips, usually made of stretchy material | ÖRNEK: She bought a new pair of tights for the ballet class.
+20498 | till | conjunction | B1 | #1/1 | TR: -e kadar, -ene dek | EN: until (informal) | ÖRNEK: Wait till I get back.
+17126 | till | preposition | A2 | #1/1 | TR: kadar | EN: up to the time that; indicating the point in time when something stops. | ÖRNEK: I will stay here till five o'clock.
+8675 | timber | noun | B1 | #1/1 | TR: ağaç kütüğü, kereste | EN: the wood of trees that is used for construction, furniture, or other purposes | ÖRNEK: The carpenter selected high-quality timber for the table legs.
+15092 | time | noun | A1 | #1/3 | TR: zaman | EN: the indefinite continued progress of existence and events in the past, present, and future regarded as a whole | ÖRNEK: Time passes quickly when you are having fun.
+15093 | time | noun | A2 | #2/3 | TR: kere, defa, kez | EN: a particular occasion when something happens or is done | ÖRNEK: I have read that book three times already.
+15094 | time | noun | B2 | #3/3 | TR: dönem, çağ | EN: a distinct period of history or a particular phase in a process | ÖRNEK: In my grandfather's time, life was much simpler.
+15095 | time | verb | B1 | #1/2 | TR: zamanlamak | EN: to arrange for something to happen at a particular time | ÖRNEK: She timed the meeting for 3 p.m. to fit everyone's schedule.
+15096 | time | verb | B2 | #2/2 | TR: süre ölçmek | EN: to measure the duration of an event or process | ÖRNEK: The lab technician timed the experiment with a high-precision timer.
+15099 | timely | adjective | B2 | #1/1 | TR: zamanında, uygun zamanda | EN: occurring at a suitable or advantageous time; not delayed | ÖRNEK: His timely advice helped me avoid a costly mistake.
+23763 | timetable | noun | B1 | #1/1 | TR: ders programı, zaman çizelgesi | EN: a schedule that lists the times of events, classes, or transportation | ÖRNEK: The school posted the new timetable on the notice board.
+15101 | timing | noun | B1 | #1/2 | TR: zamanlama, uygun zaman | EN: the selection of the most appropriate moment to do something | ÖRNEK: She chose the timing of her speech carefully.
+15102 | timing | noun | B2 | #2/2 | TR: zaman ölçümü, kronometreleme | EN: the act or process of measuring the duration of an event | ÖRNEK: The scientist recorded the timing of each reaction carefully.
+20499 | tin | noun | B1 | #1/2 | TR: teneke kutu, konserve kutusu | EN: a metal container for food or drink | ÖRNEK: Open a tin of tomatoes.
+20500 | tin | noun | B1 | #2/2 | TR: kalay | EN: a soft silver-white metal | ÖRNEK: The toy soldiers are made of tin.
+12999 | tingle | noun | B1 | #1/1 | TR: hafif karıncalanma, iğneleme | EN: a slight prickling or stinging sensation, often felt on the skin | ÖRNEK: The cold wind gave her a brief tingle on her cheeks.
+14910 | tinker | verb | B1 | #1/1 | TR: kurcalamak, uğraşmak, tamir etmeye çalışmak | EN: to attempt to repair or improve something in a casual or experimental way, often by making small adjustments or changes | ÖRNEK: He tinkers with his bike every weekend to keep it running smoothly.
+17825 | tiny | adjective | A2 | #1/1 | TR: çok küçük, ufak | EN: of a very small size; minute. | ÖRNEK: The baby bird was tiny and needed extra care.
+18129 | tip | noun | A2 | #1/3 | TR: bahşiş | EN: a small sum of money given to someone for their service | ÖRNEK: I gave the taxi driver a small tip for his help.
+18130 | tip | noun | B1 | #2/3 | TR: ipucu, tavsiye | EN: a piece of advice or a helpful hint | ÖRNEK: He offered a tip on how to fix the leaking faucet.
+18131 | tip | noun | B1 | #3/3 | TR: uç, sivri kısım | EN: the pointed or narrow end of something | ÖRNEK: The tip of the pencil snapped off while I was writing.
+18132 | tip | verb | A2 | #1/2 | TR: bahşiş vermek, para bırakmak | EN: to give a small amount of money to someone for their service | ÖRNEK: I always tip the taxi driver after a short ride.
+18133 | tip | verb | B1 | #2/2 | TR: eğilmek, yana yatmak | EN: to tilt or cause to lean in a particular direction | ÖRNEK: The wind tipped the umbrella and it fell to the ground.
+11903 | tired | adjective | A2 | #1/1 | TR: yorgun, bitkin | EN: feeling a need for rest or sleep because of physical or mental exertion | ÖRNEK: I felt tired after the morning jog.
+11907 | tiring | adjective | B1 | #1/1 | TR: yorucu | EN: causing fatigue or exhaustion; making someone feel tired | ÖRNEK: The hike up the steep hill was tiring but rewarding.
+7510 | tissue | noun | A2 | #1/2 | TR: kağıt mendil, ince kağıt | EN: a thin, soft paper used for cleaning or wiping the face or hands | ÖRNEK: She reached for a tissue when she felt a sneeze coming.
+7509 | tissue | noun | C1 | #2/2 | TR: biyolojik doku, hücre topluluğu | EN: a group of cells that perform a specific function in an organism | ÖRNEK: The doctor explained that tissue heals slowly after a cut.
+19912 | title | noun | A1 | #1/3 | TR: başlık | EN: the name of a book, article, or other work that appears at the top of the page | ÖRNEK: The title of the novel was inspired by a poem.
+19911 | title | noun | B1 | #2/3 | TR: unvan, makam | EN: a name or designation that indicates a person's rank, position, or honor | ÖRNEK: His title of director was announced at the meeting.
+19910 | title | noun | B2 | #3/3 | TR: şampiyonluk | EN: a championship or award that signifies a winner in a competition | ÖRNEK: The boxer won the title after a ten-round match.
+19913 | title | verb | B1 | #1/1 | TR: başlık vermek, adlandırmak | EN: to give a name or heading to something, especially a book, article, or work of art | ÖRNEK: The editor will title the manuscript before it goes to print.
+20371 | to | preposition | A1 | #1/2 | TR: -e, -a (yön) | EN: in the direction of a place | ÖRNEK: We walked to the park.
+20372 | to | preposition | A1 | #2/2 | TR: -e, -a (alıcı) | EN: used to show who receives something | ÖRNEK: Give the book to me.
+6543 | tobacco | noun | B1 | #1/1 | TR: tütün | EN: the dried leaves of the tobacco plant that are smoked, chewed, or used as snuff | ÖRNEK: She bought a pack of tobacco at the shop.
+15265 | today | adverb | A1 | #1/1 | TR: bugün | EN: on the present day; the day that is happening now. | ÖRNEK: Today I have a meeting with my advisor.
+15266 | today | noun | A1 | #1/1 | TR: bugün | EN: the present day; the period of time that is happening now | ÖRNEK: Today is the first day of the conference.
+13420 | toe | noun | A1 | #1/3 | TR: ayak parmağı | EN: the digit at the end of the human foot | ÖRNEK: He kicked the ball with his right toe.
+13421 | toe | noun | B1 | #2/3 | TR: ayakkabı ucu | EN: the front part of a shoe that covers the toes | ÖRNEK: The designer added a decorative strap to the toe of the boot.
+13422 | toe | noun | B2 | #3/3 | TR: uç, kıyı | EN: the front or extremity of a landform, such as the toe of a peninsula | ÖRNEK: The village is located at the toe of the mountain range.
+2023 | together | adverb | A1 | #1/1 | TR: birlikte, beraber | EN: in or into a group or combination; with each other; jointly | ÖRNEK: The children played together in the park after school.
+6391 | toilet | noun | A2 | #1/1 | TR: tuvalet | EN: a room or a fixture containing a bowl for the disposal of human waste | ÖRNEK: Where is the toilet, please?
+8753 | tolerance | noun | B2 | #1/2 | TR: hoşgörü, farklılıklara tahammül | EN: the willingness to accept or endure the existence of opinions, behaviors, or practices that differ from one's own | ÖRNEK: The school teaches tolerance to help students respect each other's differences.
+8754 | tolerance | noun | C1 | #2/2 | TR: dayanma gücü, tolerans | EN: the capacity of an organism or material to endure a particular condition, stress, or stimulus without damage | ÖRNEK: The medication's side effects are manageable for patients with high tolerance.
+8747 | tolerate | verb | B2 | #1/1 | TR: tahammül etmek | EN: to allow or endure something, especially something unpleasant or undesirable, without interference or protest | ÖRNEK: Children should tolerate small mistakes in schoolwork.

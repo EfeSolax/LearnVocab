@@ -1,0 +1,100 @@
+20528 | dairy | adjective | B2 | #1/1 | TR: süt (ürünü), süt …-i | EN: made from milk or connected with milk production | ÖRNEK: I don't eat dairy products.
+20529 | dairy | noun | B2 | #1/1 | TR: süt ürünleri; mandıra | EN: foods made from milk; a place where milk is processed | ÖRNEK: She avoids dairy because it upsets her stomach.
+20666 | dam | noun | C1 | #1/1 | TR: baraj | EN: a wall built across a river to stop the water and form a lake | ÖRNEK: The dam provides electricity for the region.
+16689 | damage | noun | B1 | #1/1 | TR: hasar, zarar | EN: physical or material injury that reduces the value, usefulness, or normal function of something. | ÖRNEK: The cracked window shows clear damage from the hailstorm.
+16690 | damage | verb | B2 | #1/1 | TR: hasar vermek, zarar vermek | EN: to cause physical or material harm or injury to something | ÖRNEK: The careless student damaged the lab bench during the experiment.
+16691 | damaging | adjective | B2 | #1/1 | TR: zarar verici | EN: causing harm or injury to someone or something | ÖRNEK: The storm caused damaging floods in the coastal town.
+10329 | dance | noun | A2 | #1/1 | TR: dans, dans etkinliği | EN: a series of movements performed to music, often in a social setting | ÖRNEK: The school organized a dance for the graduating class.
+10330 | dance | verb | A2 | #1/1 | TR: dans etmek | EN: to move rhythmically to music, typically following a set of steps or patterns. | ÖRNEK: The children love to dance during recess.
+10332 | dancer | noun | A1 | #1/1 | TR: dansçı | EN: a person who performs dances, especially as a profession or hobby | ÖRNEK: The dancer performed a graceful ballet on stage.
+10333 | dancing | noun | A2 | #1/1 | TR: dans, dans etkinliği | EN: the activity of moving rhythmically to music, typically as a form of entertainment or artistic expression | ÖRNEK: She practices dancing every evening to improve her technique.
+8991 | danger | noun | B1 | #1/1 | TR: tehlike | EN: the possibility of suffering harm, injury, or loss | ÖRNEK: Scientists study natural hazards to better understand environmental danger.
+8992 | dangerous | adjective | A1 | #1/1 | TR: tehlikeli, riskli | EN: causing or likely to cause harm, injury, or loss; capable of posing a threat. | ÖRNEK: The road was slippery and dangerous after the rain.
+18182 | dare | verb | B1 | #1/1 | TR: cesaret etmek, göze almak | EN: to have the courage to do something or to challenge someone to do something | ÖRNEK: She dared to climb the steep hill despite the rain.
+671 | dark | adjective | A1 | #1/3 | TR: karanlık, loş | EN: having little or no illumination; not bright | ÖRNEK: The hallway was dark, so she turned on the light.
+670 | dark | adjective | A2 | #2/3 | TR: koyu | EN: having little or no light; a deep or intense shade of a color | ÖRNEK: The coffee was dark and strong, perfect for the morning.
+672 | dark | adjective | C1 | #3/3 | TR: kasvetli, umutsuz | EN: characterized by gloom or a lack of hope; depressing | ÖRNEK: The novel's protagonist experiences a dark mood after the tragedy.
+673 | dark | noun | B1 | #1/1 | TR: karanlık, karanlık zaman | EN: the period of little or no light; the state of being dark | ÖRNEK: Children are often afraid of the dark.
+676 | darkness | noun | B1 | #1/1 | TR: karanlık, karanlık hâli | EN: the state of being dark; lack of light | ÖRNEK: The room was filled with darkness after the lights went out.
+12231 | data | noun | A2 | #1/1 | TR: veri | EN: facts, figures, or information collected for analysis or reference. | ÖRNEK: The survey gathered data from 500 participants across the city.
+12232 | database | noun | B2 | #1/1 | TR: veri tabanı | EN: a structured set of data held in a computer, especially one that can be accessed in various ways | ÖRNEK: The school keeps student information in a simple database.
+15778 | date | noun | A1 | #1/3 | TR: takvim günü, tarih | EN: a particular day of the month or year, often expressed numerically | ÖRNEK: Please note the date of the deadline.
+15779 | date | noun | B1 | #2/3 | TR: hurma | EN: the sweet edible fruit of the date palm, commonly eaten dried | ÖRNEK: My grandmother always serves dates with tea.
+15780 | date | noun | B1 | #3/3 | TR: romantik buluşma, randevu | EN: a social or romantic appointment or meeting between two people | ÖRNEK: He asked her out for a coffee date.
+15781 | date | verb | B1 | #1/2 | TR: biriyle çıkmak, flört etmek | EN: to arrange a social or romantic meeting with someone at a particular time | ÖRNEK: They have been dating for six months now.
+15782 | date | verb | B2 | #2/2 | TR: tarih atmak, tarihlendirmek | EN: to assign a specific calendar date to an event, document, or object | ÖRNEK: The historian will date the letters using paleographic methods.
+16248 | daughter | noun | A1 | #1/1 | TR: kız evlat | EN: a female child or offspring | ÖRNEK: My daughter loves to read picture books before bedtime.
+5952 | dawn | noun | B1 | #1/1 | TR: şafak, gün doğumu | EN: the time of day when light first appears in the sky before sunrise | ÖRNEK: The sun rose slowly, turning the dark sky into a soft dawn.
+19984 | day | noun | A2 | #1/2 | TR: gün | EN: a calendar date, usually counted as a 24-hour period | ÖRNEK: Her birthday falls on a sunny day in June.
+19983 | day | noun | A1 | #2/2 | TR: gündüz | EN: the period of time between sunrise and sunset | ÖRNEK: The sun rose early, marking the start of a new day.
+9230 | dazzle | verb | C1 | #2/2 | TR: büyülemek, etkilemek | EN: to impress someone strongly with brilliance, skill, or beauty | ÖRNEK: The young artist dazzled the gallery visitors with her vivid paintings.
+3235 | dead | adjective | A2 | #1/1 | TR: ölü | EN: not alive; having no life or vitality. | ÖRNEK: The rabbit lay dead on the road after the accident.
+20530 | deadline | noun | B2 | #1/1 | TR: son teslim tarihi | EN: a time or date by which something must be done | ÖRNEK: The deadline for the essay is Friday.
+3236 | deadly | adjective | B2 | #1/1 | TR: ölümcül, öldürücü | EN: causing or able to cause death; extremely dangerous or lethal. | ÖRNEK: The snake's bite is deadly if untreated.
+6336 | deaf | adjective | B1 | #1/1 | TR: işitme kaybı olan, sağır | EN: unable to hear; having little or no hearing ability | ÖRNEK: The child is deaf and learns sign language at school.
+12203 | deal | noun | B1 | #1/2 | TR: işlem, anlaşma | EN: an agreement or arrangement, especially one that involves the exchange of money or goods | ÖRNEK: The manager signed the deal after a short negotiation.
+12204 | deal | noun | B2 | #2/2 | TR: çok, bir miktar | EN: a large amount or extent of something, often used with adjectives like 'a good deal of' | ÖRNEK: He spent a great deal of time preparing his thesis.
+12206 | deal | verb | B1 | #1/2 | TR: halletmek, bir sorunu çözmek | EN: to manage or handle a situation, problem, or task | ÖRNEK: He will deal with the paperwork after the meeting.
+12205 | deal | verb | B1 | #2/2 | TR: kart dağıtmak | EN: to distribute playing cards to the players in a game | ÖRNEK: The dealer will deal the cards at the beginning of each round.
+12207 | dealer | noun | B2 | #1/1 | TR: satıcı, bayi, dağıtıcı | EN: a person or company that sells a particular product, especially a car, drug, or financial instrument | ÖRNEK: The electronics dealer offered a discount on the new laptop.
+17217 | dear | adjective | A2 | #1/2 | TR: sevgili, değerli | EN: causing affection or love; regarded with fondness | ÖRNEK: My dear brother helped me with my homework.
+17218 | dear | adjective | B1 | #2/2 | TR: pahalı, yüksek fiyatlı | EN: costing a lot of money; expensive | ÖRNEK: The designer dress was beautiful but very dear.
+3238 | death | noun | B1 | #1/1 | TR: ölüm | EN: the permanent end of life; the state of being dead | ÖRNEK: The death of his father changed his life.
+17730 | debate | noun | B2 | #1/1 | TR: tartışma, münazara | EN: a formal discussion in which opposing arguments are presented on a particular topic | ÖRNEK: The class held a short debate about school uniforms.
+17731 | debate | verb | B2 | #1/1 | TR: tartışmak | EN: to discuss a topic formally, presenting opposing arguments | ÖRNEK: The two candidates will debate the new education policy next week.
+13117 | debris | noun | B2 | #1/1 | TR: hurda, enkaz | EN: scattered pieces of waste material, often resulting from destruction or decay. | ÖRNEK: The wind scattered debris across the quiet street.
+17559 | debt | noun | B1 | #1/1 | TR: borç | EN: money or something of value that is owed to another person or organization | ÖRNEK: She borrowed $500 and now has a small debt to repay.
+20667 | debut | noun | C1 | #1/1 | TR: ilk çıkış, ilk kez sahneye çıkma | EN: the first public appearance of a performer or sports player | ÖRNEK: She made her film debut at the age of twelve.
+18146 | decade | noun | B2 | #1/1 | TR: on yıl | EN: a period of ten consecutive years | ÖRNEK: During the last decade, renewable energy sources have become cheaper.
+7921 | decayed | adjective | B2 | #1/1 | TR: çürük, bozulmuş | EN: having undergone decay; rotted or decomposed | ÖRNEK: The apple was decayed after sitting on the counter for a week.
+8922 | decent | adjective | B1 | #1/1 | TR: uygun, makul, saygın | EN: conforming to acceptable standards of behavior or quality; respectable | ÖRNEK: The restaurant offers decent meals at reasonable prices.
+12503 | decide | verb | A1 | #1/1 | TR: karar vermek | EN: to choose or settle on a course of action after consideration | ÖRNEK: After the meeting, the manager decided to postpone the project.
+12508 | decision | noun | B1 | #1/1 | TR: karar | EN: a conclusion or resolution reached after consideration | ÖRNEK: The manager asked the team to make a decision quickly.
+20668 | decision-making | noun | C1 | #1/1 | TR: karar verme | EN: the process of deciding about something important | ÖRNEK: Employees should be involved in decision-making.
+12509 | decisive | adjective | B2 | #1/1 | TR: kararlı, kesin | EN: showing the ability to make decisions quickly and confidently | ÖRNEK: She gave a decisive answer to the interviewer's question.
+677 | deck | noun | B1 | #1/3 | TR: gemi güvertesi | EN: the floor of a ship, especially the uppermost one, where people can walk or stand. | ÖRNEK: The ship's crew cleaned the deck before the voyage began.
+678 | deck | noun | B1 | #2/3 | TR: teras, veranda | EN: a flat, open outdoor platform attached to a building, often used for sitting or entertaining. | ÖRNEK: The family gathered on the deck to enjoy the warm evening.
+679 | deck | noun | B1 | #3/3 | TR: kart destesi | EN: a complete set of playing cards, typically 52 cards plus jokers. | ÖRNEK: The dealer placed the deck on the table and began the game.
+18224 | declaration | noun | B2 | #1/2 | TR: beyan, açıklama | EN: a formal statement that something is true, especially in writing or speech | ÖRNEK: The teacher asked each student to write a short declaration of their goals.
+18225 | declaration | noun | C1 | #2/2 | TR: gümrük beyannamesi, vergi bildirimi | EN: an official document in which goods, income, or other items are listed for customs or tax purposes | ÖRNEK: When traveling abroad, you must complete a customs declaration for any items you carry.
+18222 | declare | verb | B1 | #1/2 | TR: ilan etmek, duyurmak | EN: to announce something formally or publicly, often in writing or speech | ÖRNEK: The teacher declared the exam results on Monday morning.
+18223 | declare | verb | B2 | #2/2 | TR: gümrükte beyan etmek | EN: to state the nature, value, or quantity of goods when entering a country, usually for customs purposes | ÖRNEK: When arriving in the United States, you must declare any food items you are carrying.
+3383 | decline | noun | B2 | #1/1 | TR: azalma, düşüş | EN: a gradual or marked reduction in quantity, quality, or strength. | ÖRNEK: The recent decline in temperature surprised the farmers.
+3384 | decline | verb | B1 | #1/2 | TR: azalmak, düşmek | EN: to become smaller, fewer, or less; to move or turn downwards | ÖRNEK: The number of participants declined during the summer months.
+3385 | decline | verb | B2 | #2/2 | TR: reddetmek, geri çevirmek | EN: to refuse or turn down an offer, request, or invitation | ÖRNEK: The manager declined the request for extra vacation days.
+6464 | decorate | verb | B1 | #1/1 | TR: süslemek, dekore etmek | EN: to add ornaments, colour, or design to something in order to make it more attractive | ÖRNEK: She will decorate her new apartment this weekend.
+6465 | decoration | noun | B1 | #1/1 | TR: süs, süsleme, dekorasyon | EN: the act of making something look more attractive by adding ornaments or designs | ÖRNEK: She bought a new decoration for the living room.
+4902 | decrease | noun | B1 | #1/1 | TR: azalma | EN: a reduction in size, amount, degree, or intensity | ÖRNEK: The temperature showed a slight decrease this morning.
+4903 | decrease | verb | B1 | #1/1 | TR: azaltmak | EN: to become or make something smaller in amount, size, or intensity | ÖRNEK: The teacher asked the students to decrease their noise level during the exam.
+14667 | dedicated | adjective | B2 | #1/2 | TR: kendini adamış, özverili | EN: devoted or committed to a particular task, purpose, or cause | ÖRNEK: The dedicated student studies every night for his exams.
+14668 | dedicated | adjective | B1 | #2/2 | TR: tahsis edilmiş, özel | EN: set aside or allocated for a particular purpose | ÖRNEK: The school has a dedicated computer lab for science classes.
+14669 | dedication | noun | B2 | #1/1 | TR: özveri, adanmışlık | EN: the quality of being devoted to a task, cause, or purpose | ÖRNEK: He works with great dedication on his assignments.
+7927 | deed | noun | B1 | #1/2 | TR: eylem, fiil | EN: a purposeful or intentional action performed by a person | ÖRNEK: She wrote a short note describing her recent deed.
+7928 | deed | noun | B2 | #2/2 | TR: senet, tapu | EN: a legal document that formally records the ownership of property or a right | ÖRNEK: The lawyer reviewed the deed before the closing date.
+7529 | deem | verb | B2 | #1/1 | TR: kabul etmek, saymak | EN: to consider or judge something in a particular way | ÖRNEK: The teacher deemed the answer correct.
+2614 | deep | adjective | A2 | #1/2 | TR: derin | EN: extending far down from the surface or top; having a great distance from the top or surface to the bottom. | ÖRNEK: The lake has deep water near the dock.
+2615 | deep | adjective | B1 | #2/2 | TR: yoğun, şiddetli | EN: strong, intense, or extreme in degree; often used to describe feelings, sounds, or colors. | ÖRNEK: The loss caused deep sorrow in the community.
+2616 | deep | adverb | B2 | #1/1 | TR: derinlemesine, çok | EN: to a great depth or extent; in a profound manner | ÖRNEK: The storm pushed the ship deep into the open sea, far from shore.
+2619 | deeply | adverb | B2 | #1/1 | TR: derinlemesine, çok | EN: to a great depth; in a very intense or thorough manner | ÖRNEK: She felt deeply grateful for the help she received.
+20669 | default | noun | C1 | #1/2 | TR: varsayılan (ayar) | EN: what happens or is used if you do not choose something else, especially on a computer | ÖRNEK: The default language is English.
+20670 | default | noun | C1 | #2/2 | TR: (borcu) ödememe, temerrüt | EN: failure to pay a debt | ÖRNEK: The company is in default on its loans.
+3318 | defeat | noun | B1 | #1/1 | TR: yenilgi, mağlubiyet | EN: the fact of being beaten or losing in a contest, battle, or competition | ÖRNEK: The boxer experienced a quick defeat in the first round.
+3319 | defeat | verb | B2 | #1/1 | TR: yenmek, mağlup etmek | EN: to overcome or win against someone or something in a competition, conflict, or struggle | ÖRNEK: The boxer defeated his rival in the third round.
+8553 | defect | noun | B1 | #1/1 | TR: kusur, hata, eksiklik | EN: a shortcoming, imperfection, or fault in something | ÖRNEK: The toy has a small defect that makes the wheels wobble.
+3905 | defend | verb | B1 | #1/1 | TR: savunmak, korumak | EN: to protect someone or something from attack or danger | ÖRNEK: The child learned to defend himself when bullied at school.
+3907 | defender | noun | B1 | #1/2 | TR: savunma oyuncusu | EN: a player whose main role is to prevent the opposing team from scoring | ÖRNEK: The young defender blocked the opponent's shot during the game.
+3908 | defender | noun | B2 | #2/2 | TR: savunucu, koruyan kişi | EN: someone who protects or supports someone or something from attack or danger | ÖRNEK: The activist works as a defender of wildlife in the rainforest.
+3909 | defense | noun | B1 | #1/1 | TR: savunma, koruma | EN: the act of protecting something from attack or danger | ÖRNEK: The castle's high walls were built for defense.
+3912 | defensive | adjective | B2 | #1/1 | TR: savunma, savunmacı | EN: intended to protect oneself or one's interests from attack or criticism | ÖRNEK: He answered the question with a defensive tone.
+10381 | deficiency | noun | B2 | #1/1 | TR: eksiklik, yetersizlik | EN: the state of lacking something that is needed or required; an insufficiency. | ÖRNEK: The lab test revealed a calcium deficiency in her blood.
+8835 | deficit | noun | B2 | #1/1 | TR: eksiklik, yetersizlik, açık | EN: a shortage or insufficiency of something, especially of money or resources | ÖRNEK: The school reported a small deficit in its annual budget.
+19174 | define | verb | B1 | #1/1 | TR: tanımlamak, belirlemek | EN: to state or describe the exact meaning of a word, concept, or phenomenon | ÖRNEK: The dictionary defines 'gravity' as the force that attracts objects toward each other.
+19178 | definite | adjective | B2 | #1/1 | TR: belirli, kesin | EN: clearly stated or decided; not vague or doubtful | ÖRNEK: The schedule shows a definite meeting time for tomorrow.
+19179 | definitely | adverb | B1 | #1/1 | TR: kesinlikle | EN: without any doubt; certainly | ÖRNEK: I will definitely finish the assignment by tomorrow.
+19180 | definition | noun | B2 | #1/1 | TR: tanım, açıklama | EN: a statement that explains the meaning of a word, phrase, or concept | ÖRNEK: The dictionary gives a simple definition of the word "gravity".
+11488 | defy | verb | B2 | #1/2 | TR: karşı gelmek, meydan okumak, boyun eğmemek | EN: to openly resist or refuse to obey someone or something, especially authority or a rule | ÖRNEK: The child defied his parents by staying out late.
+11489 | defy | verb | B2 | #2/2 | TR: boşa çıkarmak, aşmak, hiçe saymak | EN: to act in a way that is contrary to what is expected or predicted | ÖRNEK: The rookie player defied expectations by scoring the winning goal.
+16594 | degree | noun | A2 | #1/3 | TR: üniversite derecesi, diploma | EN: a qualification awarded by a university or college after completing a course of study | ÖRNEK: She received her degree after four years of study.
+16595 | degree | noun | B2 | #2/3 | TR: seviye, derece, ölçü | EN: a particular level or amount of something | ÖRNEK: The project was completed to a high degree of accuracy.
+16596 | degree | noun | B1 | #3/3 | TR: derece | EN: a unit of angular measurement equal to 1/360 of a full circle | ÖRNEK: The triangle has an angle of 60 degrees at each corner.
+4098 | delay | noun | B1 | #1/1 | TR: gecikme | EN: a period of time by which something is late or postponed | ÖRNEK: The bus arrived with a short delay this morning.

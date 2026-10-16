@@ -1,0 +1,13 @@
+27169 | you | pronoun | A1 | #2/2 | TR: insan, kişi (genel olarak herkes) | EN: used to refer to people in general | ÖRNEK: You can't smoke here.
+19287 | young | adjective | A2 | #1/1 | TR: genç | EN: having lived or existed for only a short time; not old | ÖRNEK: The young boy helped his mother carry the groceries.
+19288 | young | noun | A2 | #1/1 | TR: genç, gençler | EN: people who are in the early stage of life, typically between childhood and adulthood | ÖRNEK: The university offers scholarships specifically for the young.
+19289 | youngster | noun | B1 | #1/1 | TR: genç, genç kişi | EN: a young person, especially a child or adolescent | ÖRNEK: The youngster smiled shyly when the teacher praised his work.
+27236 | your | determiner | A1 | #1/1 | TR: senin; sizin | EN: belonging to or connected with the person or people you are speaking to | ÖRNEK: What's your name?
+27185 | yours | pronoun | A1 | #1/1 | TR: seninki; sizinki | EN: used to refer to something that belongs to the person or people you are speaking to | ÖRNEK: Is this pen yours?
+27192 | yourself | pronoun | A2 | #1/2 | TR: kendini, kendine (dönüşlü) | EN: used as the object of a verb or preposition when the person you are talking to is both the subject and the object | ÖRNEK: Be careful – don't cut yourself.
+27193 | yourself | pronoun | A2 | #2/2 | TR: kendin (vurgu için); kendi kendine | EN: used to emphasize "you", or to mean "alone, without help" | ÖRNEK: Did you paint this yourself?
+19229 | youth | noun | B1 | #1/1 | TR: gençlik, gençler | EN: the period of life when a person is young, especially the time between childhood and adulthood | ÖRNEK: The city built a new sports center for its youth.
+23839 | zebra | noun | A2 | #1/1 | TR: zebra | EN: a large African mammal with black-and-white striped coat, belonging to the horse family | ÖRNEK: A zebra grazes peacefully on the savanna at sunrise.
+17471 | zonal | adjective | B2 | #1/1 | TR: bölgesel, bölgeye ait | EN: relating to or characteristic of a particular zone or region | ÖRNEK: The plant shows a zonal pattern of leaf size across its range.
+17469 | zone | noun | B1 | #1/1 | TR: bölge, alan | EN: a distinct area or region distinguished by a particular characteristic or purpose | ÖRNEK: The park is divided into several recreational zones for visitors.
+12262 | zoo | noun | A2 | #1/1 | TR: hayvanat bahçesi | EN: a place where animals are kept for public display | ÖRNEK: The zoo is near the city center.
