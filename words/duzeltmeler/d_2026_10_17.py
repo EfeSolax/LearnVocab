@@ -94,3 +94,63 @@ def efe_duzelt(kuru=False):
                 f.write("\n".join(eski) + "\n")
         return sayac
     return _calistir(is_, kuru)
+
+
+# Opus/Gemini turunda eksik bulunan temel anlamlar; birinci sıraya eklenir (Efe onayı, 17 Ekim).
+EKSIK_ANLAMLAR = [
+    ("dissection", "noun", "C1", "academic", "kesip inceleme, disseksiyon",
+     "the act of cutting up a dead body, animal or plant in order to study its parts",
+     ["Biology students learn how the heart works through the dissection of a sheep's heart.",
+      "The class watched a video instead of doing a real frog dissection.",
+      "Careful dissection showed how the parts of the flower were connected.",
+      "Leonardo da Vinci made detailed drawings based on dissection.",
+      "Some schools now use computer models in place of animal dissection."]),
+    ("intoxicate", "verb", "C1", "neutral", "sarhoş etmek",
+     "to make someone drunk",
+     ["Even a small amount of alcohol can intoxicate someone who rarely drinks.",
+      "The fermented fruit intoxicated the birds that ate it.",
+      "Alcohol intoxicates the brain by slowing down the nervous system.",
+      "The police tested whether alcohol had intoxicated the driver.",
+      "Doctors warned that energy drinks mixed with alcohol intoxicate people faster than they expect."]),
+    ("pulse", "verb", "B2", "neutral", "atmak, zonklamak, nabız gibi atmak",
+     "to beat or move with a strong, regular rhythm",
+     ["She could feel the blood pulsing in her neck after the race.",
+      "The music pulsed through the walls of the building.",
+      "Lights pulsed on the stage in time with the drums.",
+      "His head was pulsing with pain after the long exam.",
+      "The city pulses with energy on Friday nights."]),
+    ("skullcap", "noun", "B2", "neutral", "takke",
+     "a small, close-fitting round cap without a brim",
+     ["The old man wore a white skullcap to the mosque.",
+      "She knitted a warm wool skullcap for the winter.",
+      "The cyclist wore a thin skullcap under his helmet.",
+      "Several men in the old photograph were wearing skullcaps.",
+      "He took off his skullcap and put it on the table."]),
+]
+
+
+def eksik_anlam_ekle(kuru=False):
+    """Her kelimeye temel anlamı birinci sıraya ekler (5 örnekle); varsa atlar."""
+    from words.models import ExampleSentence, Word
+
+    def is_():
+        sayac = Counter()
+        for metin, tur, cefr, uslup, tr, en, ornekler in EKSIK_ANLAMLAR:
+            w = Word.objects.filter(text=metin, pos=tur, owner__isnull=True).first()
+            if w is None:
+                sayac["kelime yok"] += 1
+                continue
+            if w.meanings.filter(meaning_tr=tr).exists():
+                sayac["zaten var"] += 1
+                continue
+            for m in w.meanings.order_by("-sort_order", "-id"):
+                m.sort_order += 1
+                m.save(update_fields=["sort_order"])
+            yeni = Meaning.objects.create(word=w, meaning_tr=tr, definition=en, cefr=cefr,
+                                          register=uslup, sort_order=0)
+            for i, o in enumerate(ornekler):
+                ExampleSentence.objects.create(meaning=yeni, text=o, source="Claude 2026-10-17", sort_order=i)
+            _sirala(w)
+            sayac["eklendi"] += 1
+        return sayac
+    return _calistir(is_, kuru)
