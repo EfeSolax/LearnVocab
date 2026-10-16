@@ -1,0 +1,192 @@
+dosya	kimlik	kelime	tur	claude_karari	alan	mevcut_veya_claude_degeri	gemini_duzeltmesi	neden
+o040	9770	aback	adverb	DUZELT	TR	(take ile) şaşırtmak, afallatmak, şaşkına çevirmek	(be taken aback) şaşkına dönmüş, afallamış, hazırlıksız yakalanmış	Zarf (adverb) kaydına geçişli fiil mastarı (şaşırtmak) verilmiş; taken aback kalıbına uygun sıfat/zarf biçimine düzeltildi
+o003	17738	fill	noun	DUZELT	TR	(have one's fill) doymak, doyacak kadar miktar	doyacak kadar miktar, (have one's fill) doyma, nasibini alma	İsim (noun) kaydının ilk karşılığına fiil mastarı (doymak) yazılmıştı; isim yapısına düzeltildi
+y003	15107	also	adverb	DUZELT	TR	ayrıca, de/da, aynı zamanda	ayrıca, aynı zamanda, bunun yanı sıra	Zarf (adverb) kaydına bağlaç olan de/da eklenmişti; zarf karşılıklarıyla sınırlandı
+y047	7386	moderate	adjective	DUZELT	TR	ılımlı, ortacı, aşırı uçta olmayan	ılımlı, merkezci, aşırı uçta olmayan	14 Ekim altın standart hatası: ılımlı eklenmiş ama futboldaki ortacı kelimesi silinmemişti
+o056	15075	croaker	noun	DUZELT	TR	eşkina, minakop, ses çıkaran balık	kötek balığı, minakop, eşkina, gürültücü balık	Claude kötek balığı yok diyerek doğru Türkçe balık adını (Umbrina cirrosa) silmişti; geri eklendi
+o016	27424	scooter	noun	DUZELT	TR	trotinet, scooter, küçük motosiklet	scooter, skuter, küçük motosiklet	Türkiye Türkçesinde kullanılmayan Fransızca trotinet ilk sıraya konmuştu; yaygın karşılık başa alındı
+o020	23443	ordeal	noun	DUZELT	TR	Tanrı yargısı, ordali	Tanrı yargısı, çile sınavı	Türkçede yerleşik olmayan ordali kelimesi çıkarıldı, çile sınavı korundu
+o053	18627	regularization	noun	DUZELT	TR	düzenlileştirme, düzene sokma, düzenli hâle getirme	regülarizasyon, kurallaştırma, düzenli hâle getirme	Gerekçede ML terimi eksik denip zorlama düzenlileştirme yazılmıştı; yerleşik regülarizasyon eklendi
+o006	4705	hunger	verb	DUZELT	TR	acıkmak, aç kalmak	acıkmak, açlık hissetmek	Aç kalmak (starve) farklı anlam olduğu hâlde yeni karşılıkta tutulmuştu; çıkarıldı
+o010	8361	confined	adjective	DUZELT	TR	sınırlı, kısıtlı, kapalı, hapsedilmiş	dar, kapalı, sınırlı, kısıtlı	Fiziksel dar/kapalı alan (confined space) anlamında yanıltıcı olan hapsedilmiş karşılığı çıkarıldı
+o013	1341	responsive	adjective	DUZELT	TR	duyarlı, hızlı tepki veren, uyumlu	duyarlı, hızlı tepki veren, hızlı yanıt veren	Yanıltıcı olan uyumlu (compatible/compliant) karşılığı silinmemişti; çıkarıldı
+o016	17374	referral	noun	DUZELT	TR	sevk, yönlendirme, tavsiye	sevk, yönlendirme	Referral için yanıltıcı olan tavsiye (recommendation) karşılığı silinmemişti; çıkarıldı
+o018	4879	loft	verb	DUZELT	TR	yükseğe atmak, havaya kaldırmak, havaya dikmek	(topu) havaya dikmek, yüksekten atmak, havalandırmak	Loft (topu yüksekten atmak) için yanıltıcı olan havaya kaldırmak (lift) çıkarıldı
+o020	23647	shire	noun	DUZELT	TR	kontluk, idari bölge, il	kontluk, (İngiltere) geleneksel idari bölge	İngiliz shire kavramı için yanıltıcı olan il karşılığı çıkarıldı
+o026	24686	roc	noun	DUZELT	TR	rok kuşu, ruh kuşu, efsanevi dev kuş	rok kuşu, Ankâ kuşu, efsanevi dev kuş	Rukh kelimesinin yanlış çevirisi olan ruh kuşu silinmemişti; çıkarıldı
+o029	3771	howling	adjective	DUZELT	TR	uluyan, uğuldayan, çığlık atan	uğuldayan, uluyan	Rüzgâr/fırtına örneğinde yanıltıcı olan çığlık atan karşılığı silinmemişti; çıkarıldı
+o030	10797	strangled	adjective	DUZELT	TR	boğuk, bastırılmış, boğulmuş	boğuk, bastırılmış, kısık (ses, gülüş vb.)	Strangled laugh/cry anlamında fiziksel boğulmuş karşılığı yanıltıcıydı; çıkarıldı
+o034	25723	shorthand	noun	DUZELT	TR	steno, stenografi, kısaltma	steno, stenografi	Shorthand (steno) için farklı kavram olan kısaltma (abbreviation) silinmemişti; çıkarıldı
+o039	12995	unskilled	adjective	DUZELT	TR	vasıfsız, beceriksiz	vasıfsız, eğitimsiz (işçi vb.)	Unskilled worker için yanıltıcı olan beceriksiz (clumsy/inept) silinmemişti; çıkarıldı
+o039	19355	utilitarian	adjective	DUZELT	TR	işlevsel, kullanışlı, faydacı	işlevsel, kullanışlı, pratik	Pratik/işlevsel eşya anlamında felsefi faydacı terimi tutulmuştu; çıkarıldı
+o041	21115	pragmatism	noun	DUZELT	TR	pragmatizm, pragmatik yaklaşım, faydacı felsefe	pragmatizm, yararcılık, pragmatik yaklaşım	Utilitarizm anlamına gelen faydacı felsefe silinmemişti; yararcılık ile değiştirildi
+o041	8905	thump	verb	DUZELT	TR	sertçe vurmak, güm diye vurmak, küt küt atmak	sertçe vurmak, güm diye vurmak, küt diye vurmak	Geçişli vurmak anlamında geçişsiz kalp çarpması olan küt küt atmak tutulmuştu; çıkarıldı
+o043	13190	implausible	adjective	DUZELT	TR	inandırıcı olmayan, olası olmayan, mantıksız	inandırıcı olmayan, akla yatkın olmayan, pek olası görünmeyen	Implausible için farklı kavram olan mantıksız (illogical) silinmemişti; çıkarıldı
+o043	15627	programmatic	adjective	DUZELT	TR	programatik, program temelli, sistematik	programatik, program temelli, yazılımla otomatikleştirilmiş	Programmatic advertising anlamında yanıltıcı olan sistematik tutulmuştu; çıkarıldı
+o042	9982	lunacy	noun	DUZELT	TR	çılgınlık, delilik, akıl hastalığı	çılgınlık, delilik, büyük akılsızlık	Mecazi lunacy (pure lunacy) örneğinde klinik akıl hastalığı karşılığı tutulmuştu; çıkarıldı
+o042	17557	relaunch	noun	DUZELT	TR	yeniden piyasaya sürme, yeniden lansman, yeniden başlatma	yeniden piyasaya sürme, yeniden lansman	Relaunch (ürün) için bilgisayarı yeniden başlatma (reboot) çağrışımlı karşılık çıkarıldı
+o044	23244	indict	verb	DUZELT	TR	resmen suçlamak, hakkında iddianame düzenlemek, dava açmak	resmen suçlamak, hakkında iddianame düzenlemek	Indict (ceza davasında iddianame düzenlemek) için genel dava açmak (sue) tutulmuştu; çıkarıldı
+o046	773	disengagement	noun	DUZELT	TR	çekilme, geri çekilme, kopma, ilgisizlik	çekilme, geri çekilme, ilişkiyi/bağı kesme	Disengagement from combat anlamında duygusal ilgisizlik tutulmuştu; çıkarıldı
+o048	6157	snarl	verb	DUZELT	TR	dolaşmak, karışmak, (trafiği) tıkamak, kilitlemek	birbirine dolanmak, karışmak; (trafiği) tıkamak, kilitlemek	Snarl için gezmek anlamındaki dolaşmak başta bırakılmıştı; birbirine dolanmak olarak netleştirildi
+o053	3452	barest	adjective	DUZELT	TR	en temel, en yalın, en çıplak	en temel, en asgari, en yalın	Barest essentials örneğine değiştirdiği hâlde TR içinde en çıplak bırakılmıştı; çıkarıldı
+o053	20917	compactness	noun	DUZELT	TR	kompaktlık, sıkılık, yoğunluk	kompaktlık, sıkılık, az yer kaplama	Fiziksel yoğunluk (density) ile karışan yoğunluk karşılığı çıkarıldı
+o054	25539	perversity	noun	DUZELT	TR	aksilik, terslik, sapkınlık, çarpıklık	terslik, aksilik, inatçılık, çarpıklık	Örnekteki hafif terslik/inat anlamında ağır sapkınlık karşılığı tutulmuştu; çıkarıldı
+o055	13402	certifiable	adjective	DUZELT	TR	belgelendirilebilir, onaylanabilir, kanıtlanabilir	belgelendirilebilir, resmen onaylanabilir, tescillenebilir	Certifiable için yanlış olan kanıtlanabilir (provable) silinmemişti; çıkarıldı
+o056	16153	lordly	adjective	DUZELT	TR	kibirli, azametli, soylu	kibirli, azametli, tepeden bakan	Olumsuz lordly (arrogant) anlamında olumlu soylu (noble) tutulmuştu; çıkarıldı
+o057	25370	incise	verb	DUZELT	TR	kesi yapmak, oymak, kazımak	(cerrahi) kesi yapmak, yarmak, kesik açmak	Cerrahi incise anlamında yanıltıcı olan kazımak ve oymak tutulmuştu; düzeltildi
+o001	26766	think of	phrasal_verb	DUZELT	TR	aklına gelmek, hatırlamak, bulmak	aklına gelmek, hatırlamak	Think of (hatırlamak) anlamında zayıf ve yanıltıcı olan bulmak tutulmuştu; çıkarıldı
+o001	12806	want	noun	DUZELT	TR	eksiklik, yokluk, ihtiyaç	eksiklik, yokluk, yetersizlik	Want (lack/deficiency) isim anlamında kafa karıştıran ihtiyaç karşılığı çıkarıldı
+o005	22508	traveling	adjective	DUZELT	TR	gezici, seyyar, seyahat eden, seyahat için kullanılan	gezici, seyyar, yolculuk için kullanılan	Eşya/sergi için kullanılan traveling sıfatında kişiye özgü seyahat eden çıkarıldı
+o008	21569	depot	noun	DUZELT	TR	garaj, istasyon, terminal	garaj, araç deposu, terminal	Depot (otobüs/tren garajı) için yolcu durağı çağrıştıran istasyon çıkarıldı
+o008	22024	offshore	adjective	DUZELT	TR	açık denizdeki, kıyı açığındaki, kıyı ötesi, denizaşırı	açık denizdeki, kıyı açığındaki	Offshore (kıyı açığındaki) için overseas anlamına gelen denizaşırı tutulmuştu; çıkarıldı
+o012	21981	motto	noun	DUZELT	TR	düstur, şiar, slogan	düstur, şiar, ilke sözü, motto	Motto için ticari reklam çağrışımlı slogan yerine yerleşik motto ve ilke sözü eklendi
+o015	21786	handicap	noun	DUZELT	TR	engel, engellilik, dezavantaj	engel, engellilik, yeti yitimi	Fiziksel/zihinsel engel (handicap) tanımında farklı anlam olan dezavantaj tutulmuştu; çıkarıldı
+o016	21076	nominal	adjective	DUZELT	TR	itibari, sembolik, sözde, nominal	itibari, nominal, sembolik	Finansal nominal value anlamında yanıltıcı olan sözde karşılığı çıkarıldı
+o030	24682	renegade	noun	DUZELT	TR	dönek, hain, isyancı	dönek, asi, kurallara baş kaldıran kimse	Renegade için fazla ağır olan hain (traitor) karşılığı çıkarıldı
+o036	3369	spout	noun	DUZELT	TR	ağız, akıtma ucu, emzik	akıtma ucu, ibrik/çaydanlık ağzı, oluk	Spout için bebek emziği çağrıştıran emzik karşılığı çıkarıldı
+o036	15866	wishful	adjective	DUZELT	TR	hüsnükuruntuya dayanan, temenni niteliğinde, hayalperest	hüsnükuruntuya dayanan, temenni niteliğinde	Wishful (thinking) için kişilik özelliği olan hayalperest karşılığı çıkarıldı
+o038	1662	unwise	adjective	DUZELT	TR	akıllıca olmayan, akılsızca, mantıksız	akıllıca olmayan, tedbirsiz, düşüncesizce	Unwise (imprudent) için farklı kavram olan mantıksız (illogical) çıkarıldı
+o039	8237	smirk	verb	DUZELT	TR	sırıtmak, bıyık altından gülmek, kendini beğenmişçe gülümsemek	sırıtmak, pis pis gülmek, kendini beğenmişçe gülümsemek	Smirk (kendini beğenmiş sırıtış) için gizli gülüş anlamındaki bıyık altından gülmek çıkarıldı
+o039	15533	watcher	noun	DUZELT	TR	gözlemci, gözcü, bekçi, izleyici	gözlemci, gözcü, takip eden kişi	Watcher için TV/sinema seyircisi çağrıştıran izleyici karşılığı çıkarıldı
+o040	6385	clinician	noun	DUZELT	TR	klinisyen, hekim, sağlık çalışanı	klinisyen, klinik hekimi, hasta bakan uzman	Clinician için aşırı genel olan sağlık çalışanı karşılığı çıkarıldı
+o041	4895	plasticity	noun	DUZELT	TR	plastisite, şekil verilebilirlik, esneklik	plastisite, şekil verilebilirlik, yoğrulabilirlik	Elastikiyet (elasticity) ile karışan esneklik karşılığı çıkarıldı
+o041	7193	rumbling	adjective	DUZELT	TR	gümbürdeyen, uğultulu, gürültülü	gümbürdeyen, uğuldayan, homurdanan	Rumbling (derin uğultu/gümbürtü) için genel gürültülü (noisy) karşılığı çıkarıldı
+o042	24713	seclusion	noun	DUZELT	TR	inziva, yalnızlık, tenhalık, izolasyon	inziva, tenhalık, dış dünyadan çekilme	Seclusion için duygusal yalnızlık (loneliness) karşılığı çıkarıldı
+y044	4494	mad	adjective	DUZELT	TR	(about ile) bayılan, hastası, deli	(about ile) (-e) bayılan, tutkunu, çok düşkün	Mad about için tek başına akıl hastalığı çağrıştıran deli ve isim olan hastası düzeltildi
+o020	13963	clamp	noun	BIRAK	TR	işkence, kelepçe, kıskaç	kıskaç, mengene, kelepçe, (marangozluk) işkence	İlk sırada işkence durması öğrenci için yanıltıcıydı ve en temel karşılık olan mengene eksikti
+o002	16384	brown	verb	BIRAK	TR	kızartmak, pembeleştirmek, kavurmak	kızarmak, kızartmak, kahverengileşmek, kavurmak	EN hem geçişsiz hem geçişli diyor; geçişsiz kızarmak/kahverengileşmek eksikti, pembeleştirmek yalnız soğan içindir
+o031	14140	eloquent	adjective	BIRAK	TR	hitabeti güçlü, anlamlı, belagatli	hitabeti güçlü, etkili ve akıcı konuşan, belagatli	Konuşma/yazma tanımında anlamlı (meaningful) karşılığı öğrenciyi yanıltıyordu
+o009	6462	mistress	noun	BIRAK	TR	kadın yönetici, müdire, kadın öğretmen	(yatılı okulda) müdire, kadın idareci, kadın öğretmen	Modern İngilizcede kadın yöneticiye mistress demek büyük tuzaktır (metres anlaşılır); ilk sıradan kaldırıldı
+o008	10002	dreaming	noun	BIRAK	TR	rüya görme, hayal kurma	rüya görme, düş görme	EN açıkça uykuda rüya görmeyi (while asleep) tanımlıyor; uyanıkken hayal kurma (daydreaming) çıkarıldı
+o048	10666	adherent	adjective	BIRAK	TR	bağlı, yapışkan, sadık	yapışkan, yüzeye tutunan; (bir görüşe) bağlı	Örnek fiziksel yapışkan kaplama (adherent coating) iken ilk anlam bağlı ve sadık olarak bırakılmıştı
+o033	25984	centrist	adjective	BIRAK	TR	merkezci, ortacı	merkezci, ılımlı (siyaset)	Siyasi centrist kelimesinde futbol terimi olan ortacı bırakılmıştı; düzeltildi
+o015	21259	aquatic	adjective	BIRAK	TR	sucul, su, suda yaşayan	suda yaşayan, sucul, suyla ilgili	Sıfat (adjective) kaydında tek başına isim olan su karşılığı bırakılmıştı
+o013	21808	highland	adjective	BIRAK	TR	dağlık, yayla	dağlık, yüksek yaylalara özgü	Sıfat (adjective) kaydında tek başına isim olan yayla karşılığı bırakılmıştı
+o054	13578	untruth	noun	BIRAK	TR	yanlış bilgi, yalan	yalan, gerçek dışı söz, asılsız beyan	İlk sıradaki yanlış bilgi (misinformation), kasıtlı yalan (untruth) anlamını bozuyordu
+o002	26184	agree with	phrasal_verb	BIRAK	TR	(yiyecek) dokunmamak, iyi gelmek (çoğu zaman olumsuz)	(yiyecek, hava vb.) yaramak, iyi gelmek (olumsuzda: dokunmak)	Olumlu başlıkta olumsuz dokunmamak ve (çoğu zaman olumsuz) notu cümleyi ters anlaşılır yapıyordu
+o044	18549	summarily	adverb	BIRAK	TR	özet olarak, kısaca	derhal, vakit kaybetmeden, formalitesiz/yargısız biçimde	Büyük hata: summarily kelimesi summary sanılarak özet olarak/kısaca diye üretilmiş, Claude da BIRAK demiş
+o044	18549	summarily	adverb	BIRAK	EN	in a concise manner; expressed briefly without going into detail	immediately and without following the normal formal process or delay	Summarily açıklaması in a concise manner (yanlış dost: summary) olarak hatalıydı; düzeltildi
+o044	18549	summarily	adverb	BIRAK	ORNEK	The manager summarily explained the new policy to the staff.	The employee was summarily dismissed after the security breach.	Summarily explained yanlış kullanımı doğru ve doğal summarily dismissed örneğiyle değiştirildi
+o051	10049	whereof	preposition	BIRAK	TR	hangi konuda, ... ile ilgili	ki onun, onun hakkında, neyin	Whereof için ilk sıradaki soru biçimli hangi konuda yanıltıcıydı
+o044	4678	crawler	noun	BIRAK	TR	emekleyen kimse, sürünen canlı, paletli araç	paletli araç, iş makinesi; sürünen/emekleyen canlı	Örnek paletli iş makinesi (ground crawler) iken ilk sırada emekleyen kimse duruyordu
+o041	16792	popper	noun	BIRAK	TR	patlangıç, konfeti kapsülü	patlangıç, çatapat, küçük havai fişek	EN ateşlenen küçük havai fişek derken yanlızca basınçlı konfeti kapsülü yazılmıştı
+y032	13201	gagged	adjective	BIRAK	ORNEK	The journalists felt gagged by the new law.	The comedian joked that he felt gagged by the strict broadcast rules.	14 Ekim altın standart bulgusu: adam kaçırma/şiddet içeren örnek cümle nötr örnekle değiştirildi
+y015	19779	compressibility	noun	BIRAK	ORNEK	Engineers need to consider compressibility when designing high-pressure vessels.	Gases have high compressibility compared to liquids and solids.	14 Ekim altın standart bulgusu: kelimenin anlamını göstermeyen şablon örnek anlamlı örnekle değiştirildi
+y009	16986	brand	verb	BIRAK	TR	damgalamak, yaftalamak	(marka/logo) basmak, damga vurmak; yaftalamak, damgalamak	Örnek deftere üniversite logosu basmak iken yalnızca olumsuz damgalamak/yaftalamak vardı
+y040	6067	isolate	verb	BIRAK	TR	ayırmak, tek başına bırakmak	yalıtmak, izole etmek, ayırmak, ayrıştırmak	En temel karşılıklar (yalıtmak, izole etmek) eksikti ve tek başına bırakmak ana fikir örneğiyle uyumsuzdu
+o001	15069	several	determiner	BIRAK	TR	birkaç, çeşitli	birkaç, üç beş	Several (sayı belirten determiner) için various anlamına gelen çeşitli yanıltıcıydı
+o001	18526	light	noun	BIRAK	TR	lamba, fener, ışık kaynağı	lamba, ışık, aydınlatma aracı	Masa lambası örneğinde el feneri çağrıştıran fener karşılığı yanıltıcıydı
+o002	16038	size	verb	BIRAK	TR	boyutlandırmak, ölçmek	ölçüsünü almak, boyutlandırmak, boyuna göre ayırmak	Size (fiil) için genel ölçmek (measure) yanıltıcıydı; ölçüsünü almak başa alındı
+o002	14192	annual	noun	BIRAK	TR	yıllık, almanak	yıllık, yıllık yayın	Okul yıllığı/yıllık dergi anlamında takvim kitabı olan almanak yanıltıcıydı
+o007	17976	randomly	adverb	BIRAK	TR	rastgele, tesadüfen	rastgele, gelişigüzel, kuralsızca	Randomly (rastgele seçim) için by chance anlamına gelen tesadüfen yanıltıcıydı
+o007	14794	affiliated	adjective	BIRAK	TR	bağlı, üye	(bir kuruma) bağlı, ilişkili	Affiliated (kurumsal bağlı) sıfatında bireysel üye (member) karşılığı yanıltıcıydı
+o007	14229	spike	noun	BIRAK	TR	keskin sivri uç, çivi	sivri uç, diken, sivri demir parmaklık ucu	Çit üzerindeki spike için çivi (nail) karşılığı yanıltıcıydı
+o007	15983	stuffed	adjective	BIRAK	TR	dolu, sıkı sıkıya doldurulmuş	doldurulmuş, içi dolgulu (oyuncak vb.)	Stuffed animal örneğinde ilk sıradaki tek kelimelik dolu (full) yanıltıcıydı
+o008	22394	sonic	adjective	BIRAK	TR	sesle ilgili, akustik	sesle ilgili, ses dalgalarına/hızına ilişkin, sonik	Sonic için ses yalıtımı/bilimi çağrıştıran akustik karşılığı çıkarıldı
+o008	10586	lounge	verb	BIRAK	TR	yayılmak, uzanıp keyif yapmak, tembellik etmek	yayılmak, uzanıp keyif yapmak, rahatça uzanmak	Nötr dinlenme (lounge) fiilinde olumsuz tembellik etmek karşılığı çıkarıldı
+o009	537	cardinal	noun	BIRAK	ORNEK	The cardinal of the set is five.	In mathematics, five is a cardinal number that shows quantity.	Cardinal of the set teknik/bozuk kullanımı doğal cardinal number örneğiyle düzeltildi
+o010	10609	swamp	verb	BIRAK	TR	işe boğmak, boğmak	(işe, mesaja vb.) boğmak, bunaltmak	Tek başına boğmak fiziksel suda boğmak (drown/choke) sanıldığı için parantezle netleştirildi
+o010	18606	differential	adjective	BIRAK	TR	ayrımsal, diferansiyel, farka dayalı	farka dayalı, farklılık gösteren, ayrımsal	Genel differential response örneğinde mekanik/matematiksel diferansiyel yanıltıcıydı
+o010	4970	bidding	noun	BIRAK	TR	teklif verme, ihale	teklif verme, pey sürme	Bidding (açık artırmada pey sürme) için ihale (tender) karşılığı çıkarıldı
+o012	21820	hulk	verb	BIRAK	TR	hantalca ilerlemek, heybetle belirmek	hantalca ilerlemek, ağır ağır yürümek	Örnekteki hareket anlamıyla uyuşmayan heybetle belirmek (loom) çıkarıldı
+o012	7730	undertaking	noun	BIRAK	TR	görev, proje, girişim	girişim, üstlenilen iş, büyük iş/proje	Undertaking için ilk sıradaki görev (duty/task) yanıltıcıydı
+o013	9927	respectable	adjective	BIRAK	TR	saygın, onurlu, düzgün	saygın, itibarlı, nezih, düzgün	Respectable için honorable anlamına gelen onurlu karşılığı çıkarıldı
+o013	19939	tract	noun	BIRAK	TR	kanal, yol, sistem	(sindirim, solunum vb.) yol, kanal, sistem	Anatomik tract anlamı parantez içi bağlamla netleştirildi
+o013	5185	spear	verb	BIRAK	TR	mızraklamak, zıpkınla vurmak, batırmak	mızraklamak, zıpkınla vurmak, şişlemek	Spear için genel batırmak (sink/plunge) karşılığı çıkarıldı
+o013	12006	scoop	noun	BIRAK	TR	kaşık, kepçe	kepçe, dondurma kaşığı, derin kaşık	Scoop için ilk sıradaki genel kaşık (spoon) yanıltıcıydı
+o013	1860	stirring	noun	BIRAK	TR	kıpırdanma, uyanış	uyanış, canlanma, heyecan uyandırma	EN heyecan/hareketlenme uyandırma derken fiziksel kıpırdanma başta kalmıştı
+o014	4922	tutor	noun	BIRAK	TR	özel ders veren, öğretmen	özel ders öğretmeni, özel eğitmen, danışman hoca	Tutor için tek başına genel öğretmen (teacher) yanıltıcıydı
+o014	21748	grenade	noun	BIRAK	TR	el bombası, patlayıcı	el bombası	Grenade için aşırı genel olan patlayıcı (explosive) karşılığı çıkarıldı
+o014	9924	disrespect	verb	BIRAK	TR	saygısızlık yapmak, hor görmek	saygısızlık etmek, saygısız davranmak	Disrespect için küçümsemek anlamına gelen hor görmek (despise/look down on) çıkarıldı
+o016	11444	gracious	adjective	BIRAK	TR	zarif, hoş, estetik	zarif, hoş, incelikli, nezih	Gracious sıfatında isim/felsefe terimi olan estetik çıkarıldı
+o017	23699	spree	noun	BIRAK	TR	çılgınlık, alem, cümbüş	(alışveriş, harcama vb.) çılgınlığı, kendini kaybetme, cümbüş	Shopping spree bağlamı eklendi, yanıltıcı alem çıkarıldı
+o018	2048	carving	noun	BIRAK	TR	oyma, oymacılık, kabartma	oyma, oymacılık, oyma işi	Carving (oyma) ile ters teknik olan kabartma (relief/embossing) çıkarıldı
+o019	23540	pulmonary	adjective	BIRAK	TR	akciğerle ilgili, solunumla ilgili	akciğerle ilgili, pulmoner	Pulmonary yalnız akciğer demektir; respiratory anlamına gelen solunumla ilgili çıkarıldı
+o019	22796	botanical	adjective	BIRAK	TR	botanik, bitkibilimsel, bitkisel	botanikle ilgili, bitkibilimsel	Botanical için herbal/vegetal anlamına gelen bitkisel (bitkisel çay vb.) çıkarıldı
+o021	10409	slayer	noun	BIRAK	TR	öldüren, katil	(canavar vb.) avcısı, öldüren kişi, yok edici	Destansı slayer (monster slayer) için adi suç çağrıştıran katil (murderer) çıkarıldı
+o022	22005	noodle	noun	BIRAK	TR	erişte, makarna	erişte, noodle, Çin eriştesi	Noodle için genel İtalyan makarnası (pasta) anlamındaki makarna çıkarıldı
+o022	5190	paving	noun	BIRAK	TR	yol kaplaması, asfalt, döşeme	yol/zemin kaplaması, kaldırım taşı döşemesi	Paving (taş/zemin döşeme) için yalnız bitümlü asfalt karşılığı yanıltıcıydı
+o022	6711	seeming	adjective	BIRAK	TR	görünüşteki, sözde, zahiri	görünüşteki, görünürdeki, zahiri	Seeming için olumsuz/sahte tınılı sözde (so-called) karşılığı çıkarıldı
+o024	23273	itch	verb	BIRAK	TR	kaşınmak, içi gitmek, canı çekmek	kaşınmak	EN ve örnek yalnızca fiziksel deri kaşınmasını anlatırken mecazi içi gitmek/canı çekmek eklenmişti
+o024	26164	understatement	noun	BIRAK	TR	azımsama, hafifseme, olduğundan az gösterme	olduğundan az gösterme, hafif anlatım, yetersiz ifade	Understatement için küçümseme anlamına gelen azımsama ve hafifseme çıkarıldı
+o024	19512	treatise	noun	BIRAK	TR	akademik eser, inceleme	inceleme eseri, bilimsel/sistematik eser, risale	Treatise için aşırı genel akademik eser netleştirildi
+o025	21166	syllabus	noun	BIRAK	TR	ders planı, müfredat	ders izlencesi, ders programı	Syllabus (tek dersin izlencesi) için tüm eğitim müfredatı anlamına gelen müfredat (curriculum) düzeltildi
+o028	24168	ensign	noun	BIRAK	TR	asteğmen, teğmen, sancak subayı	(deniz kuvvetleri) asteğmen, sancak subayı	Ensign en alt subay rütbesidir (asteğmen); üst rütbe olan teğmen çıkarıldı
+o029	23005	disparate	adjective	BIRAK	TR	farklı, birbirinden ayrı, uyumsuz	birbirinden çok farklı, ayrı yapıda, benzemez	Disparate için çatışma/geçimsizlik çağrıştıran uyumsuz (incompatible) çıkarıldı
+o029	24944	wrongdoing	noun	BIRAK	TR	yanlış davranış, suç	yanlış davranış, kusur, usulsüzlük, kabahat	Wrongdoing için ağır ceza hukuku terimi olan suç (crime) yumuşatıldı
+o030	2552	relational	adjective	BIRAK	TR	ilişkisel, bağa dayalı	ilişkisel, bağıntısal	Relational database örneğinde uydurma bağa dayalı karşılığı çıkarıldı
+o031	23095	flake	noun	BIRAK	TR	pul, yaprak, parça	(buz, kar, boya vb.) pul, ince tabaka/parça	Buz parçası (flake) tanımında ağaç yaprağı sanılan yaprak karşılığı çıkarıldı
+o031	25689	sassy	adjective	BIRAK	TR	şımarık, hazırcevap, cüretkâr	hazırcevap, dilbaz, küstahça özgüvenli, cüretkâr	Sassy için spoiled anlamına gelen ilk sıradaki şımarık karşılığı düzeltildi
+o033	25852	throughput	noun	BIRAK	TR	işlem hacmi, veri akışı	işlem hacmi, üretim/geçiş kapasitesi, verim	Laboratuvar örneği olan throughput kaydında yalnızca bilişime ait veri akışı çıkarıldı
+o035	11162	proverbial	adjective	BIRAK	TR	atasözüne özgü, deyimsel	atasözüne özgü, atasözlerindeki gibi, meşhur	Proverbial için idiom anlamına gelen deyimsel (idiomatic) çıkarıldı
+o035	25011	bayou	noun	BIRAK	TR	bataklık, sığ su kanalı	bataklık su kolu, yavaş akan sığ kanal (bayou)	Bayou durgun bataklık (swamp) değil yavaş akan su koludur; ilk sıradan düzeltildi
+o035	25057	chastity	noun	BIRAK	TR	iffet, namus	iffet, cinsel perhiz, bekâret	Chastity için daha geniş toplumsal kavram olan namus (honor) çıkarıldı
+o035	26155	extermination	noun	BIRAK	TR	yok etme, imha, öldürme	kökünü kazıma, tamamen yok etme, imha	Extermination için tekil öldürme (killing) zayıf ve yanıltıcıydı; çıkarıldı
+o035	1779	inexplicable	adjective	BIRAK	TR	açıklanamaz, anlaşılmaz	açıklanamaz, izah edilemez, akıl sır ermez	Inexplicable için incomprehensible anlamına gelen anlaşılmaz çıkarıldı
+o036	14455	adoration	noun	BIRAK	TR	tapınma, hayranlık	hayranlık, derin sevgi, taparcasına sevme	Adoration için ilk sırada dinî worship anlamına gelen tapınma duruyordu; hayranlık başa alındı
+o036	25211	esquire	noun	BIRAK	TR	beyefendi, avukat	(unvan) beyefendi; (ABD, soyadı sonunda) avukat bey/hanım	Esquire tek başına meslek adı (avukat) sanılmasın diye unvan bağlamı eklendi
+o037	8231	irritable	adjective	BIRAK	TR	huzursuz, çabuk sinirlenen	çabuk sinirlenen, huysuz, asabi	Irritable için anxious/restless anlamına gelen ilk sıradaki huzursuz çıkarıldı
+o038	26150	tact	noun	BIRAK	TR	incelik, diplomasi, duyarlılık	incelik, patavatsızlık etmeme, nezaket,ölçülülük	Tact için dış politika çağrıştıran diplomasi karşılığı çıkarıldı
+o039	9329	impotent	adjective	BIRAK	TR	güçsüz, etkisiz, iktidarsız	güçsüz, etkisiz, eli kolu bağlı, aciz	Siyasi/genel çaresizlik örneğinde tıbbi cinsel iktidarsız karşılığı çıkarıldı
+o039	13983	deviant	noun	BIRAK	TR	sapkın, norm dışı kişi	norm dışı kişi, aykırı kişi, sapan kimse	Sosyolojik deviant tanımında ağır/küfür tınılı ilk sıradaki sapkın düzeltildi
+o040	11957	handout	noun	BIRAK	TR	ders notu	dağıtılan ders föyü, çalışma yaprağı, broşür	Handout öğrencinin tuttuğu ders notu (lecture notes) değil öğretmenin dağıttığı föydür
+o040	21742	gory	adjective	BIRAK	TR	kanlı, vahşet dolu	kanlı, kan revan içinde	Gory (çok kanlı) için kan içermeyen vahşet dolu karşılığı çıkarıldı
+o041	21134	regressive	adjective	BIRAK	TR	gerileyen, gerici, ters oranlı	gerileyen, geriye doğru giden, ters oranlı (vergi vb.)	Regressive için siyasi reactionary anlamına gelen gerici çıkarıldı
+o041	11602	disconcerting	adjective	BIRAK	TR	rahatsız edici, şaşırtıcı	tedirgin edici, huzursuz edici, kafa karıştırıcı	Disconcerting için olumlu da olabilen şaşırtıcı (surprising) çıkarıldı
+o041	21722	geeky	adjective	BIRAK	TR	bilim meraklısı	meraklı, teknoloji/bilim düşkünü, inek	Geeky sıfatında isim tamlaması olan bilim meraklısı sıfat biçimine düzeltildi
+o041	17327	raiser	noun	BIRAK	TR	yetiştirici, üretici	yetiştirici, büyüten kimse	Raiser için sanayi/üretim çağrıştıran üretici (producer/manufacturer) çıkarıldı
+o042	1538	sufferer	noun	BIRAK	TR	acı çeken kişi, mağdur	(hastalık, acı vb.) çeken kişi, muzdarip kimse	Sufferer için suç/haksızlık kurbanı anlamına gelen mağdur (victim) çıkarıldı
+o042	14527	amiss	adjective	BIRAK	TR	yanlış, hatalı	ters giden, yolunda olmayan, uygunsuz	Amiss (something is amiss) için genel yanlış/hatalı yerine yolunda olmayan başa alındı
+o042	19837	impersonal	adjective	BIRAK	TR	kişisel olmayan, nesnel, tarafsız	kişisel olmayan, soğuk, mesafeli, resmi	Impersonal için olumlu objective/impartial anlamına gelen nesnel ve tarafsız çıkarıldı
+o042	17558	relaunch	verb	BIRAK	TR	yeniden başlatmak, tekrar piyasaya sürmek	yeniden piyasaya sürmek, yeniden kullanıma sunmak	Relaunch için ilk sıradaki yeniden başlatmak (restart/reboot) yanıltıcıydı
+o042	14532	ferocity	noun	BIRAK	TR	vahşilik, şiddet, korkunçluk	yırtıcılık, vahşilik, şiddet, azgınlık	Ferocity için korku veren anlamındaki korkunçluk çıkarıldı
+o043	12826	predation	noun	BIRAK	TR	avlanma	yırtıcılık, avlanma (ekoloji)	Predation (bir türün diğerini avlaması) insan avcılığıyla karışmasın diye yırtıcılık başa alındı
+o043	19915	titular	adjective	BIRAK	TR	sembolik, sözde, unvandan ibaret	yalnızca unvandan ibaret, sembolik, ismen başında olan	Titular için olumsuz sözde karşılığı çıkarıldı
+o043	15565	checkered	adjective	BIRAK	TR	çalkantılı, inişli çıkışlı, şaibeli	inişli çıkışlı, çalkantılı, dalgalı	EN başarı ve başarısızlıklarla dolu (inişli çıkışlı) derken olumsuz şaibeli bırakılmıştı
+o043	19153	assessor	noun	BIRAK	TR	değerlendirici, denetçi	değerlendirici, değer biçici, eksper, bilirkişi	Assessor için auditor/inspector anlamına gelen denetçi çıkarıldı
+o043	19588	subordinated	adjective	BIRAK	TR	alt, daha düşük rütbeli	ikincil plana atılmış, bağımlı kılınmış, alt kademedeki	Subordinated için tek başına alt zayıftı; bağımlı kılınmış eklendi
+o043	18397	compositional	adjective	BIRAK	TR	bileşimsel, kompozisyonla ilgili, yapısal	bileşimsel, kompozisyonla ilgili	Compositional için structural anlamına gelen yapısal çıkarıldı
+o043	908	habitually	adverb	BIRAK	TR	alışkanlıkla, alışkanlık gereği, sürekli	alışkanlıkla, alışkanlık gereği, âdet olduğu üzere	Habitually için kesintisizlik bildiren sürekli (continually/constantly) çıkarıldı
+o043	1102	meditative	adjective	BIRAK	TR	düşünceli, içsel, meditasyonla ilgili	meditatif, meditasyona yönelik, derin düşünceye dalmış	Meditative için internal/intrinsic anlamına gelen içsel çıkarıldı
+o044	2217	pounder	noun	BIRAK	TR	tokmak, döveç, tokmaklı alet	tokmak, dövme aleti, ezici alet	Pounder için nadir/arkaik döveç yerine anlaşılır dövme aleti eklendi
+o044	10892	disloyal	adjective	BIRAK	TR	sadakatsiz, güvenilmez	sadakatsiz, vefasız, hain	Disloyal için untrustworthy/unreliable anlamına gelen güvenilmez çıkarıldı
+o044	25379	ingest	verb	BIRAK	TR	almak, yutmak, içmek	yutmak, ağız yoluyla almak, bünyeye almak	Ingest (katı/sıvı maddeyi bünyeye almak) için tek başına almak ve içmek yanıltıcıydı
+o044	15105	getter	noun	BIRAK	TR	elde eden kimse, kazanan	elde eden kimse, edinen kişi	Getter için winner anlamına gelen kazanan çıkarıldı
+o044	2571	beholden	adjective	BIRAK	TR	borçlu, minnettar, sorumlu	minnettar, gönül borcu olan, borçlu	Beholden için responsible anlamına gelen sorumlu çıkarıldı
+o044	17777	blameless	adjective	BIRAK	TR	suçsuz, kusursuz	suçsuz, kabahatsiz, günahsız	Blameless için flawless/perfect anlamına gelen kusursuz çıkarıldı
+o044	20932	convergent	adjective	BIRAK	TR	yakınsayan, birleşen, örtüşen	yakınsayan, bir noktada birleşen	Convergent için overlapping/coinciding anlamına gelen örtüşen çıkarıldı
+o045	18406	adjudication	noun	BIRAK	TR	hukuki karar verme, yargılama	karara bağlama, hüküm verme, hakemlik kararı	Adjudication (karar aşaması) için tüm yargılama süreci (trial/prosecution) çıkarıldı
+o046	15583	majorly	adverb	BIRAK	TR	büyük ölçüde, aşırı derecede, fena halde	büyük ölçüde, son derece, fazlasıyla	Olumlu/nötr majorly tanımında yalnızca olumsuz çağrışımlı fena halde çıkarıldı
+o047	1736	argumentation	noun	BIRAK	TR	akıl yürütme, gerekçelendirme, kanıtlama	gerekçelendirme, argüman sunma, tartışma yürütme	Argumentation için reasoning anlamına gelen akıl yürütme ve kanıtlama (proving) düzeltildi
+o048	15814	militaristic	adjective	BIRAK	TR	militarist, militaristçe, savaş yanlısı	militarist, askerî düzene dayalı	Örnekteki militaristic discipline anlamında savaş yanlısı (belligerent/warlike) çıkarıldı
+o048	6032	indignity	noun	BIRAK	TR	küçük düşürme, aşağılanma, hakaret	küçük düşürücü durum, onur kırıcı muamele, aşağılanma	Indignity için doğrudan sözel saldırı anlamına gelen hakaret (insult) çıkarıldı
+o049	2371	bendy	adjective	BIRAK	TR	eğilebilir, kıvrımlı	bükülebilir, esnek, kolay eğilen	Bendy (bükülebilir) için şekli kıvrık anlamına gelen kıvrımlı (curvy/winding) çıkarıldı
+o050	12195	droopy	adjective	BIRAK	TR	sarkık, sönük, düşük	sarkık, düşük, pörsümüş, boynu bükük	Droopy (sarkık) için balon/ışık çağrıştıran sönük çıkarıldı
+o050	14181	pollster	noun	BIRAK	TR	anketör, kamuoyu araştırmacısı	kamuoyu araştırmacısı, anket uzmanı	Pollster anketi tasarlayan/analiz eden uzmandır; sahada soru soran anketör ikinci sıraya/uzmanlığa düzeltildi
+o051	14478	deliverable	adjective	BIRAK	TR	teslim edilebilir, dağıtılabilir	teslim edilebilir	Deliverable için distributable anlamına gelen dağıtılabilir çıkarıldı
+o051	21090	oscillate	verb	BIRAK	TR	salınım yapmak, dalgalanmak	salınım yapmak, iki yana gidip gelmek, titreşmek	Vantilatör/sarkaç (oscillate) örneğinde su/fiyat dalgalanması olan dalgalanmak (fluctuate) çıkarıldı
+o052	1589	thinness	noun	BIRAK	TR	ince yapı, zayıflık	incelik, ince yapı, seyreltiklik	Malzeme/kumaş inceliği (thinness) tanımında güçsüzlük/kilo anlamındaki zayıflık çıkarıldı
+o053	25708	sentience	noun	BIRAK	TR	bilinç, duyarlılık	hissetme yetisi, duyarlılık, duyumsama yeteneği	Sentience (duyumsama) ile üst bilişsel kavram olan bilinç (consciousness) ayrıştırıldı
+o053	25244	infirmity	noun	BIRAK	TR	zayıflık, sakatlık, hastalık	güçsüzlük, düşkünlük, bedensel zayıflık	Infirmity (yaşlılık/beden düşkünlüğü) için genel hastalık (illness/disease) çıkarıldı
+o053	18638	clerkship	noun	BIRAK	TR	staj, stajyerlik, katiplik	(hukuk/tıp) stajyerlik, staj dönemi; kâtiplik	Clerkship için staj/eğitim bağlamı parantezle netleştirildi
+o053	23781	traversal	noun	BIRAK	TR	geçiş, dolaşım, tarama	geçiş, boydan boya geçme, (veri yapısı) dolaşma	Traversal için scanning/search anlamına gelen tarama çıkarıldı
+o054	21524	credentialing	noun	BIRAK	TR	yetkilendirme, yeterlilik doğrulama, akreditasyon	yeterlilik belgelendirmesi, diploma/belge doğrulama, akreditasyon	Credentialing için authorization anlamına gelen ilk sıradaki yetkilendirme düzeltildi
+o054	14560	vehemence	noun	BIRAK	TR	şiddet, coşku, ateş	hiddet, şiddetli coşku, ateşlilik	Vehemence (tutkulu/sert ifade) için fiziksel şiddet (violence) ilk sıradan kaldırıldı
+o054	12027	trusteeship	noun	BIRAK	TR	mütevellilik, kayyumluk, yedieminlik	mütevellilik, vakıf yöneticiliği, vesayet görevi	Trusteeship için Türkiye siyasetinde farklı anlam taşıyan kayyumluk ve yedieminlik çıkarıldı
+o054	12213	maintainable	adjective	BIRAK	TR	bakımı yapılabilir, sürdürülebilir	bakımı yapılabilir, korunabilir, sürdürülebilir (bakım/kod)	Maintainable için ekolojik sustainable ile karışmasın diye bakım vurgusu korundu
+o055	11271	dumper	noun	BIRAK	TR	çöp döken kişi, terk eden kişi	(kaçak) çöp döken kişi, atık boşaltan kimse	Çöp döken kişi örneğinde romantik terk eden kişi anlamı ayrı anlam olduğu için çıkarıldı
+o055	19125	waterless	adjective	BIRAK	TR	susuz, kurak	susuz, su bulunmayan	Waterless (hiç su olmayan) için iklim terimi olan kurak (arid) çıkarıldı
+o001	6359	will	verb	EFE	EFE	(efe.tsv içinde gerekçe boş)	örnek yardımcı fiil will; kayıt fiil türüyle uyuşmuyor	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o002	16142	Chinese	adjective	EFE	EFE	(efe.tsv içinde gerekçe boş)	dil adı (Çince) isimdir; sıfat türünde yanlış kayıt	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o004	1822	sharp	noun	EFE	EFE	(efe.tsv içinde gerekçe boş)	EN zeki kişi, TR hilekâr/kumarbaz; örnek doğal değil	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o010	22219	ramp	verb	EFE	EFE	(efe.tsv içinde gerekçe boş)	nadir anlam, örnek yapay; silinmeli mi karar gerekli	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o011	21876	jade	verb	EFE	EFE	(efe.tsv içinde gerekçe boş)	nadir fiil (jade), örnek doğal değil; silinmeli mi	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o012	21966	meta	noun	EFE	EFE	(efe.tsv içinde gerekçe boş)	meta isim kaydı şüpheli, örnek ve tanım metadata anlatıyor	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o016	19825	intercourse	noun	EFE	EFE	(efe.tsv içinde gerekçe boş)	intercourse günümüzde cinsel anlamlı, iletişim örneği öğrenci için yanıltıcı	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o016	26085	nominal	noun	EFE	EFE	(efe.tsv içinde gerekçe boş)	TR dilbilgisi (adıl yanlış), EN ve örnek muhasebe; kayıt bozuk	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o019	9400	crippled	adjective	EFE	EFE	(efe.tsv içinde gerekçe boş)	sakat hassas terim; örnek mecazi, TR ile uyumsuz	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o019	23043	elk	noun	EFE	EFE	(efe.tsv içinde gerekçe boş)	elk ABD ve İngiltere İngilizcesinde farklı geyik türleri (vapiti vs sığın)	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o021	23835	wolverine	noun	EFE	EFE	(efe.tsv içinde gerekçe boş)	wolverine için ilenyemez bilinmiyor; kutup porsuğu / obur karar gerekli	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o023	23587	riff	noun	EFE	EFE	(efe.tsv içinde gerekçe boş)	riff için alaycı söz anlamı şüpheli, kayıt silinebilir	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+o023	23753	thrift	noun	EFE	EFE	(efe.tsv içinde gerekçe boş)	thrift bitki adı belirsiz, EN tanımı döngüsel; silinebilir	Claude 4 TAB koyduğu için efe.tsv dosyasında gerekçe sütunu boş kalmıştı
+y029	835	fancy	adjective	EFE	EFE	(efe.tsv içinde gerekçe boş)	fancy sıfatında hayali/kurmaca anlamı güncel İngilizcede nadir, silinmeli mi	Claude 4 TAB koyduğu için gerekçe sütunu kaymıştı

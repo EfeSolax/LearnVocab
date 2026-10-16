@@ -54,8 +54,10 @@ def main():
         eski = {s.split(" | ")[0].strip(): eski_degerler(s)
                 for s in (D / "girdi" / f"{p.stem}.txt").read_text(encoding="utf-8").splitlines() if s.strip()}
         for s in p.read_text(encoding="utf-8").splitlines():
-            f = (s.split("\t") + [""] * 5)[:5]
-            kimlik, karar, alan, yeni, gerekce = (x.strip() for x in f)
+            f = [x.strip() for x in s.split("\t")] + [""] * 5
+            kimlik, karar, alan, yeni = f[:4]
+            # Fazladan TAB konmuş satırlarda gerekçe sağa kayar: ilk boş olmayanı al
+            gerekce = next((x for x in f[4:] if x), "")
             if karar == "EFE":
                 efe.append((kimlik, gerekce, p.stem))
             if karar != "DUZELT":

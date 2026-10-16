@@ -1,17 +1,17 @@
-6359		o001
-16142		o002
-1822		o004
+6359	örnek yardımcı fiil will; kayıt fiil türüyle uyuşmuyor	o001
+16142	dil adı isim; sıfat türünde yanlış kayıt	o002
+1822	EN zeki kişi, TR hilekâr; örnek doğal değil	o004
 26086	norm fiil olarak standart değil, kayıt şüpheli	o008
-22219		o010
-21876		o011
-21966		o012
-19825		o016
-26085		o016
-9400		o019
-23043		o019
-23835		o021
-23587		o023
-23753		o023
+22219	nadir anlam, örnek yapay; silinmeli mi karar	o010
+21876	nadir fiil, örnek doğal değil; silinmeli mi	o011
+21966	meta isim kaydı şüpheli, örnek metadata	o012
+19825	kelime günümüzde cinsel anlamlı, örnek yanıltıcı	o016
+26085	TR dilbilgisi, EN ve örnek muhasebe; adıl yanlış	o016
+9400	sakat hassas terim; örnek mecazi, TR uyumsuz	o019
+23043	elk ABD'de vapiti, İngiltere'de sığın; belirsiz	o019
+23835	hayvan adı belirsiz, ilenyemez bilinmiyor; obur/ayı sansarı?	o021
+23587	alaycı söz anlamı şüpheli, kayıt silinebilir	o023
+23753	bitki adı belirsiz, EN döngüsel	o023
 2019	kırmızı levrek/kırmızı balık yanlış, kesin karşılık belirsiz	o040
 4021	iki farklı anlam karışık, EN de ikili	o040
 9034	saldırgan/katil anlamı hassas; örnek protestoda bıçak, karar gerekli	o042
@@ -19,25 +19,25 @@
 5004	iki ayrı anlam tek kayıtta, bölünmeli	o050
 8906	EN tanımı şüpheli, anlam doğrulanmalı	o051
 3298	asıl anlam takke eksik; kayıt anatomik ama tutarlı	o056
-7784		t007
-25957		t008
-18303		t009
-5448		t012
-13323		t013
-4001		t014
-21372		t017
-9398		t031
-18226		t034
-6298		t035
+7784	sıfat çoğunlukla cinsel çağrışımlı, kayıt tutulmalı mı karar	t007
+25957	isim kullanımı (the autistic) aşağılayıcı algılanabilir, kayıt kalsın mı	t008
+18303	fiil kullanımı şüpheli; filtre ters yıkama anlamı mı, silme mi	t009
+5448	körük anlamı bellows kelimesine ait, kayıt yanlış başlıkta	t012
+13323	kayıt aslında blotting paper'a ait	t013
+4001	bolden bu anlamda arkaik, yaygını embolden	t014
+21372	fiil standart değil (hunker down karışmış), silinebilir	t017
+9398	kelime aşağılayıcı; kayıt kalsın mı, uyarı eklensin mi	t031
+18226	#2 ile aynı anlam, silinebilir	t034
+6298	sıfatın matematik anlamı şüpheli; asıl anlam özgün olmayan	t035
 20953	asıl anlam kesip inceleme/disseksiyon kayıtta yok	t039
 5843	isim kullanımı bu anlamda yaygın değil, örnek doğal değil	t040
 25377	anlam aslında moment of inertia kalıbına ait	t069
 24348	temel sarhoş etmek anlamı eksik, yeni anlam gerekebilir	t071
 26075	merchandising isimdir, fiil kaydı merchandise ile çakışıyor	t082
 5821	tek anlam teknik; temel anlam atmak/zonklamak eksik	t103
-13027		t122
+13027	sky fiil bu anlamda yok, skyrocket ile karışmış	t122
 19171	nadir argo anlam; asıl isim anlamı fiilimsi (dilbilgisi), karar gerekli	t147
-835		y029
+835	bu anlam güncel İngilizcede pek yok, silinmeli mi?	y029
 1680	"susma emri" anlamı şüpheli, örnek sessizlik anlamında	y067
 16978	nadir anlam, örnek doğal değil; silinmeli mi?	y068
 16897	yasa dışı ticaret mi taşımacılık mı belirsiz, örnek garip	y077
