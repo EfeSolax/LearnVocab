@@ -2335,3 +2335,958 @@
 2026-10-16T10:57:44	16987	ORNEK	The farmer marked his herd with a branded cattle tag.	She prefers branded clothes to cheaper ones.	örnek ticari markalı anlamını göstermiyordu
 2026-10-16T10:57:44	11626	TR	ihlal, kırılma	ihlal, çiğneme	kırılma bu anlama uymuyor
 2026-10-16T10:57:44	11707	TR	psikolojik çöküş, bunalım	sinir krizi, psikolojik çöküş, bunalım	yerleşik karşılık sinir krizi eksik
+2026-10-16T16:14:19	504	EN	a brief statement or expression that conveys an idea or feeling, often used in the phrase "a breath of... " to indicate a small amount or a refreshing change	a small amount or slight sign of something, often in the phrase "a breath of"	açıklama yanlış: ifade/beyan değil
+2026-10-16T16:14:19	506	TR	soluk alıp vermek	nefes almak, soluk alıp vermek	temel karşılık nefes almak eksik
+2026-10-16T16:14:19	4150	TR	ırk, tür	cins, ırk	tür species karşılığı, yanlış
+2026-10-16T16:14:19	4047	TR	kısaca, kısa bir süre içinde	kısaca, kısa bir süre	içinde anlamı değiştiriyor
+2026-10-16T16:14:19	11934	TR	bina, yapı, inşaat	bina, yapı	inşaat farklı anlam
+2026-10-16T16:14:19	5970	ORNEK	The bulk of the metal was melted in the furnace.	Despite its huge bulk, the elephant moved quietly.	örnek büyük kısım anlamını gösteriyordu
+2026-10-16T16:14:19	5618	TR	yük, taşıma nesnesi	yük	taşıma nesnesi yapay ifade
+2026-10-16T16:14:19	5619	TR	sorumluluk, zorunluluk	yük, külfet, sorumluluk	mecazi yük karşılığı eksik
+2026-10-16T16:14:19	10853	TR	elektrik, iletişim kablosu	kablo	elektrik ayrı karşılık gibi okunuyordu
+2026-10-16T16:14:19	9571	TR	kek	kek, pasta	doğum günü pastası karşılığı eksik
+2026-10-16T16:14:19	23999	TR	halifelik	hilafet, halifelik	yerleşik terim hilafet eksik
+2026-10-16T16:14:19	15314	TR	telefonla birine ulaşmak, aramak	aramak, telefon etmek	en yaygın karşılık başa, tanım çıkarıldı
+2026-10-16T16:14:19	15316	TR	toplamak, bir yere davet etmek	çağırmak, toplamak	temel karşılık çağırmak eksik
+2026-10-16T16:14:19	16769	TR	fotoğraf makinesi	fotoğraf makinesi, kamera	hareketli görüntü anlamı eksik
+2026-10-16T16:14:19	17487	TR	işlev, görev	sıfat, görev, işlev	in the capacity of: sıfatıyla
+2026-10-16T16:14:19	18330	TR	kaydına almak, fotoğrafını çekmek	kaydetmek, fotoğrafını çekmek, (anı) yakalamak	kaydına almak doğal değil
+2026-10-16T16:14:19	540	TR	önemsemek, endişelenmek	önemsemek, umursamak, ilgilenmek	umursamak eksik; endişelenmek tam karşılamıyor
+2026-10-16T16:14:19	20643	TR	kumarhane, gazino	kumarhane	gazino Türkçede eğlence mekânı, yanlış
+2026-10-16T16:14:19	16799	TR	bit yeniği, işin hilesi	bit yeniği, gizli sorun, tuzak	işin hilesi başka anlam (püf noktası)
+2026-10-16T16:14:19	16799	EN	a deceptive trick or scheme intended to deceive or cheat someone	a hidden problem or disadvantage in something that seems good	catch hile planı değil, gizli dezavantaj
+2026-10-16T16:14:19	15496	TR	amaç, gayret, hareket	dava, amaç, uğruna çalışılan hedef	gayret yanlış, dava yerleşik karşılık
+2026-10-16T16:14:19	16991	TR	kuruş	sent, kuruş	cent para birimi adı sent
+2026-10-16T16:14:19	5312	TR	merkez, ortası	merkez, orta	ortası iyelikli biçim, isim olarak orta
+2026-10-16T16:14:19	17076	TR	sandalye, oturma aracı	sandalye, iskemle	oturma aracı uydurma ifade
+2026-10-16T16:14:19	16768	TR	zorlayıcı, zor, meydan okuyan	zorlayıcı, zor, emek isteyen	meydan okuyan çeviri kokulu, yanıltıcı
+2026-10-16T16:14:19	14272	TR	değiş tokuş yapmak, takas etmek	(başkasıyla) değiştirmek, takas etmek, (para) bozdurmak	örnekte değiştirmek anlamı, değiş tokuş dar
+2026-10-16T16:14:19	16883	TR	su kanalı, geçit, akarsu	kanal, su yolu, boğaz	akarsu yanlış, geçit belirsiz
+2026-10-16T16:14:19	549	TR	belirgin, tipik, özgün	tipik, kendine özgü, karakteristik	özgün orijinal demek, yanlış
+2026-10-16T16:14:19	552	TR	büyüleyicilik, çekicilik	çekicilik, cazibe, büyüleyicilik	cazibe yerleşik karşılık eksik
+2026-10-16T16:14:19	20645	TR	tüzük, beyanname	tüzük, şart, ana sözleşme	beyanname yanlış; BM Şartı yerleşik
+2026-10-16T16:14:19	15561	TR	işaret, damga, kontrol işareti	onay işareti, tik, kontrol işareti	damga yanlış nesne
+2026-10-16T16:14:19	15559	TR	çek, banka senedi	çek	banka senedi farklı kavram
+2026-10-16T16:14:19	3341	TR	teşvik etmek, cesaret vermek	neşelendirmek, moral vermek, yüreklendirmek	örnekte neşelendirme anlamı, teşvik dar
+2026-10-16T16:14:19	565	TR	çocuk, genç insan	çocuk	genç insan ergen/yetişkin çağrışımı, yanıltıcı
+2026-10-16T16:14:19	566	TR	evlat, soy	evlat, çocuk	soy farklı kavram (nesil, köken)
+2026-10-16T16:14:19	16200	TR	seçenek, alternatif	seçim, seçenek, tercih	en yaygın karşılık seçim eksik
+2026-10-16T16:14:19	19521	TR	yayın dağıtımı, dolaşım	tiraj, yayın dağıtımı	yerleşik terim tiraj eksik
+2026-10-16T16:14:19	19998	TR	şehirle ilgili, belediye ile ilgili	şehirle ilgili, belediyeyle ilgili, yurttaşlıkla ilgili	EN vatandaşları da kapsıyor
+2026-10-16T16:14:19	19017	TR	talep etmek, hak iddia etmek	iddia etmek, talep etmek, hak iddia etmek	EN doğru olduğunu öne sürme anlamını da içeriyor
+2026-10-16T16:14:19	6540	TR	klasik, geleneksel, zamanın testinden geçmiş	klasik, geleneksel	zamanın testinden geçmiş çeviri kokulu ifade
+2026-10-16T16:14:19	3456	TR	derslik	sınıf, derslik	en yaygın karşılık sınıf eksik
+2026-10-16T16:14:19	16513	TR	kirli olmayan, temiz	temiz	kirli olmayan gereksiz, temiz başta olmalı
+2026-10-16T16:14:19	16514	TR	ahlaki açıdan kusursuz, masum	temiz, lekesiz, dürüst	örnekteki clean reputation lekesiz; masum zayıf
+2026-10-16T16:14:19	9475	TR	şeffaf, net, görülebilir	berrak, şeffaf, saydam	görülebilir yanlış, su için berrak
+2026-10-16T16:14:19	17023	TR	çıtlamak, kısa ses çıkarmak	tık diye ses çıkarmak, tıkırdamak	çıtlamak yaygın değil
+2026-10-16T16:14:19	6381	TR	sağlık ocağı, klinik	klinik, poliklinik, sağlık ocağı	en yaygın karşılık klinik başta olmalı
+2026-10-16T16:14:19	15821	TR	sosyal kulüp, dernek	kulüp, dernek	sosyal kulüp gereksiz daraltma
+2026-10-16T16:14:19	16528	TR	otobüs, uzun mesafe taşıma aracı	şehirlerarası otobüs, tur otobüsü	uzun mesafe taşıma aracı uydurma ifade
+2026-10-16T16:14:19	584	TR	kaplama, tabaka	kat, tabaka, kaplama	boya için yerleşik karşılık kat eksik
+2026-10-16T16:14:19	19670	TR	bilgisayar programı, yazılım	kod, program kodu	yerleşik terim kod; yazılım farklı kavram
+2026-10-16T16:14:19	18812	TR	meslektaş	iş arkadaşı, meslektaş	en yaygın karşılık iş arkadaşı eksik
+2026-10-16T16:14:19	11880	TR	sömürge, bir ülkenin toprağı	sömürge, koloni	bir ülkenin toprağı yanıltıcı
+2026-10-16T16:14:19	9218	TR	hakimiyet	yetki, otorite, hâkimiyet	EN ve örnek otorite anlamında
+2026-10-16T16:14:19	10859	TR	reklam, tanıtım amaçlı	reklamla ilgili, tanıtım amaçlı	sıfat; reklam isim, tür uyumsuz
+2026-10-16T16:14:19	16667	TR	komisyon üyesi, görevlisi	komisyon üyesi, yetkili, komiser	görevlisi kopuk ifade
+2026-10-16T16:14:19	9804	ORNEK	The teenager decided to commit a minor theft at the mall.	He was arrested for a crime he did not commit.	örnek suç işlemeye karar vermeyi gösteriyor, uygunsuz
+2026-10-16T16:14:19	9805	TR	bağlamak, taahhüt etmek	taahhüt etmek, kendini adamak, söz vermek	bağlamak örnekteki anlamı vermiyor
+2026-10-16T16:14:19	12837	TR	kutsal ayin, kutsal paylaşım	komünyon, Aşai Rabbani ayini	kutsal paylaşım uydurma, yerleşik terim eksik
+2026-10-16T16:14:19	20001	TR	işletme, firma, şirket	şirket, firma, işletme	en yaygın karşılık şirket başta olmalı
+2026-10-16T16:14:19	20000	TR	arkadaşlık, beraberlik, konuklar	arkadaşlık, beraberlik, eşlik	konuklar başka anlam
+2026-10-16T16:14:19	20002	TR	bir grup insan, birlik	bölük, grup, topluluk	askerî birlik için yerleşik terim bölük
+2026-10-16T16:14:19	2762	TR	şikayet, şikâyet	şikâyet	aynı kelime iki kez yazılmış
+2026-10-16T16:14:19	9851	TR	bina kompleksi	kompleks, site, yapı grubu	konut sitesi için site yerleşik
+2026-10-16T16:14:19	9852	TR	kompleks, takıntı	kompleks	takıntı farklı kavram (obsesyon)
+2026-10-16T16:14:19	7649	TR	komplikasyon, tıbbi yan etki	komplikasyon	yan etki farklı tıbbi kavram
+2026-10-16T16:14:19	7532	TR	bina kompleksi	yerleşke, (duvarla) çevrili alan, site	bina kompleksi complex ile karışıyor
+2026-10-16T16:14:19	16510	TR	hesaplayıcı	hesaplamacı (hesap yapan kişi)	hesaplayıcı alet çağrıştırıyor
+2026-10-16T16:14:19	18305	EN	to become pregnant; to cause something to be created or brought into existence	to become pregnant with a child	EN başka anlamı karıştırıyor
+2026-10-16T16:14:19	4159	TR	konsantrasyon, çözelti yoğunluğu	konsantrasyon, derişim	çözelti yoğunluğu density ile karışır
+2026-10-16T16:14:19	18476	EN	the state of being pregnant; the process of becoming pregnant	the process of becoming pregnant; the moment when an egg is fertilized	gebelik hâli değil, gebe kalma
+2026-10-16T16:14:19	17679	ORNEK	A concerned neighbor helped clean up the park.	All the people concerned were informed about the decision.	örnek endişeli anlamını gösteriyordu
+2026-10-16T16:14:19	14729	TR	yönetmek	yürütmek, yapmak, yönetmek	conduct research/lectures yürütmek demek
+2026-10-16T16:14:19	14727	EN	to cause something to happen or be carried out, especially to transmit electricity, heat, or sound	to allow heat, electricity, or sound to pass through	EN anlamla çelişen kısım içeriyor
+2026-10-16T16:14:19	8794	ORNEK	The lawyer emphasized the importance of confidence in legal proceedings.	She told me the news in confidence.	örnek gizlilik anlamını göstermiyor
+2026-10-16T16:14:19	13994	TR	geleneksel, tutucu, değişime karşı çıkan	muhafazakâr, tutucu, geleneksel	yerleşik terim muhafazakâr eksik
+2026-10-16T16:14:19	629	TR	oluşmak, meydana gelmek, içermek	(of ile) oluşmak, meydana gelmek	anlam of ile oluşuyor
+2026-10-16T16:14:19	5498	ORNEK	He was consulted by the board to redesign the company's policy.	After retiring, she consults for several engineering firms.	örnek danışılmak anlamını gösteriyordu
+2026-10-16T16:14:19	6777	TR	anlaşmazlık, itiraz	çekişme, anlaşmazlık, mücadele	itiraz bu isim anlamı için zayıf
+2026-10-16T16:14:19	6777	ORNEK	The union filed a contest against the employer's new policy.	There was a long legal contest over the will.	örnek cümle doğal değil
+2026-10-16T16:14:19	6779	ORNEK	The school organized a quiz where students could contest a prize.	Three candidates will contest the seat in the election.	contest a prize doğal değil
+2026-10-16T16:14:19	20179	TR	küçülmek	büzülmek, daralmak, küçülmek	yerleşik terim büzülmek eksik
+2026-10-16T16:14:19	20179	ORNEK	The rubber band will contract if you stretch it too far.	Metal contracts as it cools.	örnek fiziksel olarak yanlış
+2026-10-16T16:14:19	20660	TR	karşıt, tersi (on the contrary)	tersi, aksi (on the contrary: tam tersine)	karşıt sıfat anlamı, isim değil
+2026-10-16T16:14:19	637	TR	zıtlaştırmak, karşılaştırmak	karşılaştırmak, farklarını ortaya koymak, tezat oluşturmak	zıtlaştırmak bu anlamı vermiyor
+2026-10-16T16:14:19	13660	TR	yetki, otorite, yönlendirme gücü	kontrol, denetim, hâkimiyet, yetki	temel karşılık kontrol/denetim eksik
+2026-10-16T16:14:19	13661	TR	denetim cihazı, kontrol mekanizması	kumanda, kontrol düğmesi, kontrol mekanizması	yerleşik terim kumanda eksik
+2026-10-16T16:14:19	13663	TR	sınırlamak, engellemek	kontrol altına almak, sınırlamak, dizginlemek	engellemek anlamı tam vermiyor
+2026-10-16T16:14:19	7873	TR	gelenek, adet	gelenek, âdet, teamül	adet sayı anlamıyla karışır
+2026-10-16T16:14:19	17701	TR	hileli düzenlemek	(hesap, rakam vb.) üzerinde oynamak, tahrif etmek	hileli düzenlemek doğal değil
+2026-10-16T16:14:19	17702	TR	ocak, pişirme makinesi	ocak, fırınlı ocak	pişirme makinesi yerleşik değil
+2026-10-16T16:14:19	19083	TR	ortaklaşa, birlikte çalışan	iş birliğine açık, ortaklaşa, birlikte çalışan	örnekteki kullanım eksik
+2026-10-16T16:14:19	13474	TR	ilişkilendirmek, karşılıklı ilişki kurmak	ilişkili olmak, bağıntılı olmak, ilişkilendirmek	örnekteki geçişsiz kullanım eksik
+2026-10-16T16:14:19	6840	TR	eşleşmek, uyum sağlamak	karşılık gelmek, uymak, örtüşmek	uyum sağlamak adapte olmak demek
+2026-10-16T16:14:19	5046	TR	ahlaki açıdan bozuk, dürüst olmayan	yozlaşmış, rüşvetçi, ahlaken bozuk	yerleşik karşılıklar eksik
+2026-10-16T16:14:19	13458	EN	to be expensive; to require a large amount of money	to have a particular price; to require a particular amount of money	pahalı olmak anlamı yanlış
+2026-10-16T16:14:19	8105	TR	saymak, numaraları belirtmek	saymak	numaraları belirtmek garip ifade
+2026-10-16T16:14:19	8109	TR	tezgahtaki satış bölümü, tezgah	tezgâh, banko	ilk karşılık garip ifade
+2026-10-16T16:14:19	8112	TR	karşı koymak, karşıtlık göstermek	karşı koymak, karşılık vermek	karşıtlık göstermek garip ifade
+2026-10-16T16:14:19	12832	TR	karşılık, muadil	muadil, mevkidaş, dengi	karşılık zayıf, mevkidaş yerleşik
+2026-10-16T16:14:19	15847	TR	bir iki, birkaç, çift	(of ile) bir iki, birkaç	çift bu anlamda yanlış
+2026-10-16T16:14:19	20007	TR	ders, program, müfredat	kurs, ders	müfredat curriculum demek
+2026-10-16T16:14:19	18144	TR	ani bir çöküş, çarpma	çöküş, (sistem) çökme, (borsada) ani düşüş	çarpma bu anlamda yanlış
+2026-10-16T16:14:19	18145	TR	çarpışmak, çöküşe neden olmak	çarpmak, çarpışmak, çökmek	çöküşe neden olmak garip, çarpmak eksik
+2026-10-16T16:14:19	14887	ORNEK	Neighbors complained about the crazy man shouting at night.	You must be crazy to swim in that icy water!	örnek aşağılayıcı olabilir
+2026-10-16T16:14:19	656	TR	düzenlemek, oluşturmak	oluşturmak, yaratmak, ortaya koymak	düzenlemek bu anlamı vermiyor
+2026-10-16T16:14:19	16460	EN	to attribute trust, reputation, or acknowledgment to someone	to say or believe that someone is responsible for an achievement or has a good quality	EN anlamı bulanık ifade ediyor
+2026-10-16T16:14:19	17535	TR	personel, ekip, çalışanlar	mürettebat, ekip, personel	yerleşik terim mürettebat eksik
+2026-10-16T16:14:19	16724	TR	suçla ilgili, suçlu	suçla ilgili, cezai, suç niteliğinde	sıfat anlamında cezai yerleşik terim
+2026-10-16T16:14:19	5628	TR	hasat	ürün, rekolte, hasat	rekolte yerleşik terim eksik
+2026-10-16T16:14:19	16451	TR	kesişmek, çakışmak	kesişmek	çakışmak farklı anlam
+2026-10-16T16:14:19	16452	TR	geçit, geçiş	yaya geçidi, geçit, geçiş	EN yaya geçidini anlatıyor
+2026-10-16T16:14:19	9855	TR	kaba, terbiyesiz, ahlâksız	kaba, inceliksiz, terbiyesiz	ahlâksız fazla ağır ve yanlış
+2026-10-16T16:14:19	7680	TR	gemiyle seyahat etmek	gemiyle gezmek, (sabit hızla) seyretmek	EN ve örnek seyir anlamı içeriyor
+2026-10-16T16:14:19	2325	TR	yıkmak, mağlup etmek	bastırmak, ezmek, ezici yenilgiye uğratmak	yıkmak zayıf, bastırmak yerleşik
+2026-10-16T16:14:19	17939	ORNEK	The baby gave a small cry when it was hungry.	She had a good cry after watching the sad film.	örnek çığlık anlamını gösteriyordu
+2026-10-16T16:14:19	7833	TR	şeffaf cam, kristal	kristal, kristal cam	şeffaf cam yanıltıcı
+2026-10-16T16:14:19	7836	TR	katılaştırmak, kristalleşmek	kristalleştirmek, kristalleşmek	katılaştırmak farklı anlam
+2026-10-16T16:14:19	2916	TR	tarikat, cemaat	kült, tarikat	cemaat nötr anlamlı, kült yerleşik
+2026-10-16T16:14:19	16327	TR	mikroorganizma yetiştirme, kültürleme	(bakteri vb.) kültür, kültürleme	örnekteki kültür karşılığı eksik
+2026-10-16T16:14:19	2238	TR	tedavi, iyileşme	tedavi, çare, şifa	iyileşme recovery demek
+2026-10-16T16:14:19	6694	TR	eğri çizmek, bükmek	bükmek, kıvırmak, kıvrılmak	eğri çizmek farklı anlam
+2026-10-16T16:14:19	5681	TR	gelenek, alışkanlık	gelenek, âdet, alışkanlık	yerleşik karşılık âdet eksik
+2026-10-16T16:14:19	8600	TR	dönüş, döngü, periyot	döngü, devir, periyot	dönüş yanıltıcı
+2026-10-16T16:14:19	13717	TR	kuşku dolu, alaycı, şüpheci	sinik, alaycı, şüpheci	yerleşik terim sinik eksik
+2026-10-16T16:14:19	670	EN	having little or no light; a deep or intense shade of a color	(of a colour) deep and closer to black than to white	EN ışık anlamını karıştırıyor
+2026-10-16T16:14:19	673	TR	karanlık, karanlık zaman	karanlık	"karanlık zaman" yapay
+2026-10-16T16:14:19	676	TR	karanlık, karanlık hâli	karanlık	"karanlık hâli" gereksiz
+2026-10-16T16:14:19	15778	TR	takvim günü, tarih	tarih, gün	"takvim günü" doğal değil
+2026-10-16T16:14:19	15781	EN	to arrange a social or romantic meeting with someone at a particular time	to go out with someone regularly because you have a romantic relationship with them	EN buluşma ayarlamak demiyor, ilişki demek
+2026-10-16T16:14:19	5952	ORNEK	The sun rose slowly, turning the dark sky into a soft dawn.	We left the village at dawn.	örnek çelişkili
+2026-10-16T16:14:19	19983	ORNEK	The sun rose early, marking the start of a new day.	Owls sleep during the day and hunt at night.	örnek gündüz anlamını göstermiyor
+2026-10-16T16:14:19	12203	TR	işlem, anlaşma	anlaşma, iş anlaşması, işlem	en yaygın karşılık başa
+2026-10-16T16:14:19	12204	TR	çok, bir miktar	(a great/good deal ile) çok, epey, büyük miktar	anlam kalıpla oluşuyor
+2026-10-16T16:14:19	12206	TR	halletmek, bir sorunu çözmek	(with ile) ilgilenmek, halletmek, başa çıkmak	anlam with ile oluşuyor
+2026-10-16T16:14:19	13117	TR	hurda, enkaz	enkaz, döküntü, moloz	hurda farklı kavram
+2026-10-16T16:14:19	8922	TR	uygun, makul, saygın	düzgün, makul, saygın, uygun	örnekteki kullanım düzgün/iyi
+2026-10-16T16:14:19	4903	TR	azaltmak	azaltmak, azalmak	EN hem geçişli hem geçişsiz
+2026-10-16T16:14:19	7927	TR	eylem, fiil	iş, eylem, davranış	fiil dilbilgisi terimiyle karışır
+2026-10-16T16:14:19	7927	ORNEK	She wrote a short note describing her recent deed.	Helping the old man cross the street was a good deed.	örnek anlamı göstermiyor
+2026-10-16T16:14:19	2616	TR	derinlemesine, çok	derine, derinlere, iyice	zarf örnekte derinlere anlamında
+2026-10-16T16:14:19	2619	TR	derinlemesine, çok	derinden, çok, derinlemesine	derinden yerleşik karşılık eksik
+2026-10-16T16:14:19	8835	TR	eksiklik, yetersizlik, açık	açık, eksik, yetersizlik	bütçe açığı anlamı başa
+2026-10-16T16:14:19	682	TR	mutluluk vermek, keyif almak	sevindirmek, çok mutlu etmek, (in ile) zevk almak	örnekte in ile zevk almak
+2026-10-16T16:14:19	14476	TR	söylemek, sunmak	(konuşma vb.) yapmak, sunmak, iletmek	söylemek zayıf karşılık
+2026-10-16T16:14:19	2128	ORNEK	The child's denial of the broken vase surprised his parents.	His denial of the rumours did not convince anyone.	örnek cümle doğal değil
+2026-10-16T16:14:19	10769	TR	kınamak, suçlamak, ifşa etmek	kınamak, şiddetle eleştirmek, suçlamak	ifşa etmek bu anlamı vermiyor
+2026-10-16T16:14:19	5762	TR	sıkışık, yoğun	yoğun, sık, sıkışık	örnekte sık anlamı
+2026-10-16T16:14:19	7236	TR	bağlı olmak, dayanmak	(on ile) bağlı olmak, güvenmek, dayanmak	anlam on ile oluşuyor
+2026-10-16T16:14:19	5806	TR	para yatırmak, mevduat yapmak	(para) yatırmak	mevduat yapmak doğal değil
+2026-10-16T16:14:19	18362	TR	hüzünlü, moral bozucu	iç karartıcı, moral bozucu, hüzünlü	yerleşik karşılık eksik
+2026-10-16T16:14:19	18363	TR	depresyon, ruhsal bozukluk	depresyon	ruhsal bozukluk fazla genel
+2026-10-16T16:14:19	18365	TR	çöküntü, alçak bölge	çukur, çöküntü, alçak bölge	yerleşik karşılık eksik
+2026-10-16T16:14:19	18365	EN	a low-lying area of land, often a basin or a sunken region, especially near a coast	a part of a surface that is lower than the area around it; a hollow	kıyı kısıtlaması yanlış
+2026-10-16T16:14:19	2620	TR	derinlik, ölçü	derinlik	ölçü yanlış karşılık
+2026-10-16T16:14:19	2621	TR	kapsam, yoğunluk, karmaşıklık	derinlik, kapsam, incelik	yerleşik karşılık eksik
+2026-10-16T16:14:19	18119	TR	vekil, temsilci	yardımcı, vekil	temsilci yanıltıcı, yardımcı eksik
+2026-10-16T16:14:19	6295	TR	türetilmek, elde etmek	elde etmek, türetmek, (from ile) -den türemek	örnek geçişsiz kullanım
+2026-10-16T16:14:19	688	EN	the act or process of moving downward; a lineage or ancestry	a person's family origins or ancestry	EN iniş anlamını karıştırıyor
+2026-10-16T16:14:19	688	ORNEK	The museum exhibit shows the descent of the royal family.	She is of Turkish descent.	örnek soy anlamını göstermiyor
+2026-10-16T16:14:19	19923	TR	tanımlamak, betimlemek	anlatmak, tarif etmek, betimlemek, tanımlamak	en yaygın karşılıklar eksik
+2026-10-16T16:14:19	13378	TR	görünüm, stil	tasarım, desen, görünüm	tasarım karşılığı eksik
+2026-10-16T16:14:19	13379	TR	planlamak, tasarlamak	tasarlamak, planlamak	en yaygın karşılık başa
+2026-10-16T16:14:19	2692	TR	yıkmak, ortadan kaldırmak	yok etmek, yıkmak, tahrip etmek	yok etmek en yaygın karşılık
+2026-10-16T16:14:19	4161	TR	tutuklamak, gözaltına almak	gözaltına almak, alıkoymak	tutuklamak farklı hukuki işlem
+2026-10-16T16:14:19	4165	TR	tutuklama, gözaltı	gözaltı, alıkoyma	tutuklama farklı hukuki işlem
+2026-10-16T16:14:19	7544	TR	belirleyici, önceden belirlenmiş, deterministik	deterministik, belirlenimci, önceden belirlenmiş	belirleyici farklı anlam
+2026-10-16T16:14:19	8439	TR	araç, cihaz	cihaz, alet, aygıt	araç taşıtla karışır
+2026-10-16T16:14:19	5972	TR	adamak, kendini bir şeye adamak	adamak, (zaman vb.) ayırmak	örnekte ayırmak anlamı
+2026-10-16T16:14:19	7656	TR	elmas, mücevher taşı	elmas	mücevher taşı genel, yanıltıcı
+2026-10-16T16:14:19	11449	TR	sesli olarak söyleyip yazdırmak	yazdırmak, dikte etmek	yerleşik karşılık eksik
+2026-10-16T16:14:19	11448	TR	emrederek söylemek, zorlamak	dikte etmek, emretmek, belirlemek, öngörmek	örnekteki kullanım öngörmek
+2026-10-16T16:14:19	18602	EN	to be unlike or to have a different opinion from someone else	to have a different opinion from someone else	EN ikinci anlamla karışıyor
+2026-10-16T16:14:19	18603	TR	değişmek, farklı olmak	farklı olmak, farklılık göstermek	değişmek yanlış karşılık
+2026-10-16T16:14:19	6763	TR	azaltmak, küçültmek	azalmak, azaltmak, küçültmek	EN geçişsiz kullanımı da kapsıyor
+2026-10-16T16:14:19	7569	TR	çöküntü, çukur, alçak nokta	çukur, çöküntü, (hafif) düşüş	düşüş anlamı eksik
+2026-10-16T16:14:19	21589	TR	akademik belge, diploma	diploma	akademik belge gereksiz
+2026-10-16T16:14:19	12307	TR	yönetmek, bir şeyi yönetmek	(film, oyun vb.) yönetmek	tekrar var, bağlam belirsiz
+2026-10-16T16:14:19	9918	TR	az avantajlı, dezavantajlı	dezavantajlı, imkânları kısıtlı	az avantajlı doğal değil
+2026-10-16T16:14:19	7122	TR	disk, yuvarlak plak	disk, plak	yuvarlak plak doğal değil
+2026-10-16T16:14:19	4457	TR	eğitim, terbiye, disiplin	disiplin, terbiye	yerleşik karşılık başa, eğitim zayıf
+2026-10-16T16:14:19	10597	TR	tedbirlilik, basiret, sağduyu	sağduyu, ihtiyat, ketumluk	tedbirlilik zayıf, ketumluk eksik
+2026-10-16T16:14:19	10598	TR	serbest karar verme yetkisi	takdir yetkisi, serbest karar verme yetkisi	yerleşik hukuki terim eksik
+2026-10-16T16:14:19	9601	TR	ayırım, fark, ayrım	ayırt etme, ayrım	tekrar; ayrımcılık anlamı ayrıca eksik
+2026-10-16T16:14:19	10958	TR	aldatıcı	hileli, aldatıcı	hileli yerleşik karşılık eksik
+2026-10-16T16:14:19	6101	TR	göndermek, dağıtmak, salıvermek	göndermek, (dersi vb.) dağıtmak, izin vermek	salıvermek tutsak serbest bırakma demek
+2026-10-16T16:14:19	6101	ORNEK	She dismissed the children from the playground when it got dark.	The teacher dismissed the class ten minutes early.	örnek doğal değil
+2026-10-16T16:14:19	4550	TR	atık bertarafı, imha	bertaraf etme, atma, imha	atık bertarafı tür uyumsuz, dar
+2026-10-16T16:14:19	4546	TR	kurtulmak, atmak	(of ile) kurtulmak, atmak	anlam of ile oluşuyor
+2026-10-16T16:14:19	5703	TR	çözmek, erimek	çözündürmek, eritmek, çözünmek	erimek ısıyla erime, yanlış
+2026-10-16T16:14:19	713	TR	uzak, mesafeli	uzak	mesafeli başka anlam
+2026-10-16T16:14:19	715	TR	ayırmak, fark etmek	ayırt etmek, ayırmak	ayırt etmek yerleşik karşılık eksik
+2026-10-16T16:14:19	8402	TR	çarpıtmak, bozulmak	çarpıtmak, bozmak	bozulmak geçişsiz, tür uyumsuz
+2026-10-16T16:14:19	18822	TR	dikkatini dağıtmak, gözünü çevirmek	dikkatini dağıtmak, oyalamak	gözünü çevirmek yanlış
+2026-10-16T16:14:19	722	TR	üzüntü, sıkıntı, sıkıntı hali	sıkıntı, ıstırap, üzüntü	tekrar var, ıstırap eksik
+2026-10-16T16:14:19	3293	TR	derinlemesine incelemek, araştırmak	(into ile) derinlemesine incelemek, araştırmak	anlam into ile oluşuyor
+2026-10-16T16:14:19	733	TR	kutsal, tanrısal	ilahi, tanrısal, kutsal	ilahi yerleşik karşılık eksik
+2026-10-16T16:14:19	9946	TR	deniz memelisi, yunus	yunus	deniz memelisi genel
+2026-10-16T16:14:19	17564	EN	relating to the home or family; occurring within a particular country.	relating to the home or family	EN ülke içi anlamını karıştırıyor
+2026-10-16T16:14:19	17566	TR	içişleriyle ilgili, ulusal	yurt içi, iç, ulusal	yerleşik karşılık eksik
+2026-10-16T16:14:19	12760	TR	bağışta bulunmak, bağış etmek	bağışlamak, bağışta bulunmak	bağış etmek doğal değil
+2026-10-16T16:14:19	7144	TR	kaderine mahkum etmek, lanetlemek	(kötü bir sona) mahkûm etmek	lanetlemek yanlış karşılık
+2026-10-16T16:14:19	7898	TR	şüphe duymak, kuşkuya düşmek	şüphe duymak, kuşkuya düşmek, sanmamak	örnekteki "sanmıyorum" kullanımı eksik
+2026-10-16T16:14:19	4872	TR	aşağı, aşağıya, aşağı doğru	aşağı, aşağıya, aşağı doğru, boyunca	örnekte "boyunca" anlamı eksik
+2026-10-16T16:14:19	10251	TR	giysi, elbise	elbise, giysi	en yaygın karşılık başa alındı
+2026-10-16T16:14:19	10253	TR	hazırlamak, düzenlemek	hazırlamak, (salataya) sos koymak, (yarayı) sarmak	örnek ve açıklamadaki somut kullanımlar eksik
+2026-10-16T16:14:19	16070	TR	araç kullanmak	araba sürmek, araç kullanmak	yerleşik "sürmek" karşılığı eksik
+2026-10-16T16:14:19	5793	TR	sessiz, suskun	dili tutulmuş, sessiz, suskun	örnekteki şaşkınlıktan konuşamama anlamı eksik
+2026-10-16T16:14:19	15174	TR	süreçte, ... sırasında	... sırasında, ... boyunca	"süreçte" edat karşılığı değil
+2026-10-16T16:14:19	15414	ORNEK	Early adopters of the technology often gain a competitive advantage.	We had an early dinner because we were tired.	örnek "ilk dönem" anlamını gösteriyor
+2026-10-16T16:14:19	18540	ORNEK	The chair provides great ease for people with back problems.	She answered all the questions with ease.	örnek cümle doğal değil
+2026-10-16T16:14:19	18543	TR	basit, zor olmayan	kolay, basit, zor olmayan	temel karşılık "kolay" eksik
+2026-10-16T16:14:19	13387	TR	iktisat	iktisat, ekonomi (bilimi)	yaygın "ekonomi" karşılığı eksik
+2026-10-16T16:14:19	17356	TR	keskin taraf, bıçak kenarı	(bıçak) ağzı, keskin kenar	yerleşik terim "ağız"
+2026-10-16T16:14:19	12299	TR	benlik	ego, benlik	yerleşik "ego" karşılığı eksik
+2026-10-16T16:14:19	5982	TR	daha yaşlı, kıdemli	büyük (kardeş), daha yaşlı, kıdemli	örnekteki "büyük kardeş" kullanımı eksik
+2026-10-16T16:14:19	7505	TR	bileşen, parça	unsur, öğe, bileşen, parça	yerleşik "unsur" karşılığı eksik
+2026-10-16T16:14:19	6074	TR	elemek	elemek, çıkarmak, ayıklamak	örnekteki "çıkarmak" kullanımı eksik
+2026-10-16T16:14:19	17603	TR	elektronik posta	e-posta, elektronik posta	yaygın "e-posta" karşılığı eksik
+2026-10-16T16:14:19	9717	TR	başlamak, bir işe/seyahate başlamak	(on ile) (bir işe/yolculuğa) başlamak, girişmek	anlam on ile oluşuyor
+2026-10-16T16:14:19	9718	ORNEK	The tourists were instructed to embark the ferry before sunset.	The passengers embarked at the port and the ship sailed at noon.	"embark the ferry" doğal değil
+2026-10-16T16:14:19	5151	TR	vurgulama, önem verme	vurgu, önem	isim için yerleşik karşılık "vurgu"
+2026-10-16T16:14:19	3287	TR	sonlandırmak, bitirmek	bitmek, sona ermek, bitirmek, sonlandırmak	örnekteki geçişsiz kullanım eksik
+2026-10-16T16:14:19	776	TR	bağlı, kararlı, sorumluluk sahibi	bağlı, kendini adamış, kararlı	"sorumluluk sahibi" bu anlamı vermiyor
+2026-10-16T16:14:19	5216	TR	soru, araştırma	bilgi talebi, soru, soruşturma	"araştırma" yerine resmi soruşturma anlamı
+2026-10-16T16:14:19	14127	TR	sonuçlanmak, meydana gelmek	ardından gelmek, sonucunda ortaya çıkmak, meydana gelmek	"sonuçlanmak" yön ters
+2026-10-16T16:14:19	786	TR	kayıt etmek, veri girmek	girmek, kaydetmek	"kayıt etmek" yazım hatası, yalın biçim
+2026-10-16T16:14:19	6108	TR	eğlence, dinlenme	eğlence	"dinlenme" bu anlamı vermiyor
+2026-10-16T16:14:19	11968	TR	hastalık salgını, yaygın hastalık	salgın, salgın hastalık	yerleşik terim "salgın" başta olmalı
+2026-10-16T16:14:19	18273	TR	eşit olan kişi, eş	eşit olan kişi, dengi	"eş" eşanlamıyla karışıyor
+2026-10-16T16:14:19	16759	ORNEK	The new lab equipment equips researchers to conduct faster experiments.	The school equipped every classroom with a projector.	örnek cümle doğal değil
+2026-10-16T16:14:19	19442	TR	arttırmak, şiddetlendirmek	tırmanmak, şiddetlenmek, tırmandırmak	yerleşik "tırmanmak" ve geçişsiz kullanım eksik
+2026-10-16T16:14:19	19443	TR	yükseltmek, daha yüksek seviyeye taşımak	üst makama iletmek, yükseltmek	örnekteki kullanım üst kademeye iletmek
+2026-10-16T16:14:19	17752	TR	kaçmak, kaçınmak	kaçmak, firar etmek	"kaçınmak" farklı anlam (avoid)
+2026-10-16T16:14:19	4489	TR	öz, temel, esans	öz, esas, temel	"esans" parfüm/özüt anlamı, bu anlam değil
+2026-10-16T16:14:19	9577	TR	kuruluş, kurum	kuruluş, kurulma, kurma	açıklama kurma eylemi, "kurum" ikinci anlam
+2026-10-16T16:14:19	17013	TR	malikane arazisi, mülk, arazi	malikane, arazi, mülk	"malikane arazisi" yerine yerleşik terim
+2026-10-16T16:14:19	5234	TR	ahlaki	etik, ahlaki, ahlaka uygun	yerleşik "etik" karşılığı eksik
+2026-10-16T16:14:19	13538	TR	kazıcı, kepçe	ekskavatör, kepçe, kazı makinesi	yerleşik "ekskavatör" terimi eksik
+2026-10-16T16:14:19	8696	TR	dışlamak	dışlamak, hariç tutmak, dahil etmemek	yaygın "hariç tutmak" karşılığı eksik
+2026-10-16T16:14:19	7856	TR	icra, yürütme	uygulama, yürütme, icra	yaygın "uygulama" karşılığı eksik
+2026-10-16T16:14:19	12766	TR	yabancı, alışılmadık, egzotik	egzotik, alışılmadık, yabancı	en yaygın karşılık başa alındı
+2026-10-16T16:14:19	4111	TR	büyütmek, genişletmek	genişlemek, büyümek, genişletmek, büyütmek	örnekteki geçişsiz kullanım eksik
+2026-10-16T16:14:19	3724	EN	to think that something will happen or that someone will do something, and to look forward to it	to think or believe that something will happen or that someone will do something	açıklamada yanlış 'dört gözle bekleme' anlamı
+2026-10-16T16:14:19	3494	TR	patlamak, şiddetle patlatmak	patlamak, patlatmak	"şiddetle patlatmak" garip ifade
+2026-10-16T16:14:19	18649	TR	gösterim, tanıtım	görünürlük, tanıtım, medyada yer alma	gösterim film gösterimi anlamına gelir
+2026-10-16T16:14:19	18246	TR	hızlı göndermek, ekspres yapmak	ekspres göndermek, hızlı göndermek	"ekspres yapmak" anlamsız
+2026-10-16T16:14:19	18248	TR	deyiş, kalıp söz	ifade, deyiş, kalıp söz	en yaygın karşılık ifade eksik
+2026-10-16T16:14:19	16499	TR	daha fazla, ek olarak	fazladan, fazlasıyla, ekstra	örnekteki "extra pleased" ek olarak değil
+2026-10-16T16:14:19	10033	ORNEK	During the debate, she argued for the extreme of free speech rights.	The weather here can go from one extreme to the other.	örnek cümle anlamsız
+2026-10-16T16:14:19	10036	EN	a person who holds extreme political or religious views and is willing to use force to achieve them	a person who holds extreme political or religious views	şiddet vurgusu tanımda gereksiz
+2026-10-16T16:14:19	10036	ORNEK	The protest turned violent when an extremist opened fire.	The party refused to work with extremists.	şiddet içeren örnek değiştirildi
+2026-10-16T16:14:19	10555	TR	yapı, örgü, temel yapı	doku, yapı, temel yapı	"toplumun dokusu" yerleşik karşılık eksik
+2026-10-16T16:14:19	6702	TR	bakmak, yönelmek	-e bakmak, -e dönük olmak	yönelmek hareket bildirir, yanıltıcı
+2026-10-16T16:14:19	8843	EN	the quality of being easy to use or the ability to do something without difficulty	a natural ability to do something easily and well	"kolay kullanılma" kısmı yanlış
+2026-10-16T16:14:19	13878	TR	grup, fraksiyon	hizip, fraksiyon, grup	yerleşik terim hizip eksik
+2026-10-16T16:14:19	13878	ORNEK	The committee formed a small faction to discuss the new budget.	The party split into two factions over the new budget.	örnek hizip anlamını göstermiyor
+2026-10-16T16:14:19	17614	TR	etken, unsur, bileşen	etken, faktör, unsur	bileşen farklı kavram
+2026-10-16T16:14:19	17430	TR	yapmayı ihmal etmek	yapmamak, yapamamak, ihmal etmek	fail to: -memek anlamı eksik
+2026-10-16T16:14:19	2577	TR	açık renkli, sarışın, kumral	açık renkli, sarı, açık tenli	kumral açık kahve, fair değil
+2026-10-16T16:14:19	2577	EN	having a light or pale color, especially in reference to hair, skin, or clothing	having a light or pale colour, especially of hair or skin	giysi için kullanılmaz
+2026-10-16T16:14:19	2581	EN	to a moderate degree; fairly, quite	to a moderate degree; quite but not very	açıklama kelimenin kendisini kullanıyor
+2026-10-16T16:14:19	10383	TR	samimi, içten, teklifsiz	samimi, teklifsiz, senli benli	içten başka anlam (sincere)
+2026-10-16T16:14:19	20307	TR	aile (-si), aileye uygun	aileye uygun, aile (ör. aile filmi)	"aile (-si)" anlaşılmaz
+2026-10-16T16:14:19	837	TR	hayal etmek, arzulamak	canı çekmek, istemek, hayal etmek	örnekteki "fancy a tea" canı çekmek
+2026-10-16T16:14:19	19788	TR	uzak, mesafeli	uzak	mesafeli soğuk tavır anlamı, yanlış
+2026-10-16T16:14:19	19789	TR	uzak, çok	uzak, uzağa, çok (daha)	zarf karşılıkları eksik
+2026-10-16T16:14:19	6318	TR	tarım arazisi, çiftlik	çiftlik, tarım arazisi	en yaygın karşılık başa
+2026-10-16T16:14:19	14300	TR	stil, moda, giyim tarzı	moda, giyim tarzı, stil	en yaygın karşılık başa
+2026-10-16T16:14:19	6171	TR	yardım, iyilik, lütuf	iyilik, yardım, lütuf	en yaygın karşılık başa
+2026-10-16T16:14:19	6181	TR	favori, ayrıcalıklı kişi	gözde, favori, kayırılan kişi	yerleşik karşılık gözde eksik
+2026-10-16T16:14:19	17047	TR	özel bölüm, program içeriği	özel bölüm, özel haber, öne çıkan yazı	program içeriği zayıf
+2026-10-16T16:14:19	5319	EN	the act or process of providing food or nutrients, especially in a continuous or regular manner.	a continuous stream of updated content, such as news or posts, on a website or app	TR ile açıklama uyumsuz
+2026-10-16T16:14:19	5319	ORNEK	The machine needs a steady feed of electricity to stay operational.	I saw the news on my social media feed this morning.	örnek akış anlamını göstermiyor
+2026-10-16T16:14:19	20540	TR	dokunuş, his, hava	his, dokunma hissi, hava	dokunuş eylem bildirir, örnekle uyumsuz
+2026-10-16T16:14:19	15199	TR	düşünmek, bir görüş bildirmek	düşünmek, kanısında olmak	görüş bildirmek söylemek demek
+2026-10-16T16:14:19	15202	TR	hissetme, algı	his, duyu, hissetme	algı zayıf, örnekte his
+2026-10-16T16:14:19	17296	TR	ortak, aynı durumu paylaşan	aynı durumdaki, -daş (ör. fellow student: okul arkadaşı)	ortak yanıltıcı
+2026-10-16T16:14:19	17296	ORNEK	The university organized a meeting for fellow students in the engineering department.	She asked her fellow students for help with the project.	örnek doğal değil
+2026-10-16T16:14:19	18772	TR	kadın hakları savunucusu	feminist, kadın hakları savunucusu	yerleşik karşılık feminist eksik
+2026-10-16T16:14:19	17416	TR	kutlama, şenlik	festival, şenlik, kutlama	yerleşik karşılık festival eksik
+2026-10-16T16:14:19	3308	TR	getirmek, elde etmek	gidip getirmek, getirmek	elde etmek yanıltıcı
+2026-10-16T16:14:19	15242	TR	az sayıdaki	az, az sayıda, birkaç (a few)	örnekteki a few birkaç demek
+2026-10-16T16:14:19	7127	ORNEK	His fierce determination helped him finish the marathon.	The fierce dog growled at every stranger.	örnek açıklamadaki saldırganlığı göstermiyor
+2026-10-16T16:14:19	17332	TR	dosyaları sıralamak, düzenlemek	dosyalamak, dosyaya koymak, düzenlemek	yerleşik terim dosyalamak eksik
+2026-10-16T16:14:19	17331	TR	dosya sunmak, belge vermek	resmî olarak sunmak, başvurmak, dava açmak (file a lawsuit)	dosya sunmak dar kalıyor
+2026-10-16T16:14:19	15718	TR	iyi, memnun edici	iyi, güzel, yeterli	memnun edici garip, örnekte güzel hava
+2026-10-16T16:14:19	16684	TR	bitiş, son, sonuç	bitiş, son	sonuç farklı kavram
+2026-10-16T16:14:19	7995	TR	ateş etmek, silah kullanmak	ateş etmek, ateşlemek	silah kullanmak zayıf ve geniş
+2026-10-16T16:14:19	17319	TR	sabit donanım, kalıcı kurulum	sabit tesisat, sabit donanım	kalıcı kurulum zayıf, yerleşik terim tesisat
+2026-10-16T16:14:19	17985	TR	bayrak, amblem	bayrak	amblem farklı kavram
+2026-10-16T16:14:19	2171	TR	alev, yanma	alev	yanma süreç bildirir, alev değil
+2026-10-16T16:14:19	840	TR	kısa, ani ışık patlaması	ani parlama, parıltı	mevcut karşılık eksik ve garip
+2026-10-16T16:14:19	841	TR	kısa haber, anlık duyuru	flaş haber, son dakika haberi	yerleşik karşılık eksik
+2026-10-16T16:14:19	842	TR	aniden ışık yaymak	yanıp sönmek, parlamak	örnekteki uyarı ışığı yanıp söner
+2026-10-16T16:14:19	2642	ORNEK	The chef sliced the meat and removed the flesh.	The doctor checked that the cut had not gone deep into the flesh.	örnek anlamsız, et ve flesh aynı
+2026-10-16T16:14:19	2718	ORNEK	The refugees organized a flight from the war-torn city.	The family's flight from the flooded village took two days.	"organized a flight" uçuş anlamına kayıyor
+2026-10-16T16:14:19	854	TR	taşmak, suyla doldurmak	taşmak, su basmak, sular altında bırakmak	yerleşik karşılık su basmak eksik
+2026-10-16T16:14:19	21684	TR	yumuşatmak, kabartmak, havalı hâle getirmek	kabartmak, yumuşatmak	havalı yanlış anlam (cool)
+2026-10-16T16:14:19	23116	EN	a long, narrow tube or a groove cut into a surface, often used in architecture or engineering	a long, narrow groove cut into a surface, for example on a column	oluk tüp değil
+2026-10-16T16:14:19	23116	ORNEK	Designers often add flutes to metal pipes to reduce turbulence.	The old marble columns have deep flutes from top to bottom.	örnek şüpheli bilgi içeriyor
+2026-10-16T16:14:19	2220	TR	işletmeyi kapatmak, iflas etmek	(işletme) kapanmak, iflas etmek	anlam geçişsiz kullanılır
+2026-10-16T16:14:19	2220	ORNEK	After three years of losses, the retailer had to fold its stores.	After three years of losses, the small shop folded.	fold its stores doğal değil
+2026-10-16T16:14:19	21691	TR	dosya	dosya, klasör	yerleşik karşılık klasör eksik
+2026-10-16T16:14:19	18207	TR	halk, bir topluluk	insanlar, halk	örnekte country folk köylüler, insanlar
+2026-10-16T16:14:19	6811	TR	uygulamak	uymak, uygulamak	en yaygın karşılık uymak eksik
+2026-10-16T16:14:19	6815	TR	takipçiler	takipçi kitlesi, hayran kitlesi	tekil isim, kitle anlamı
+2026-10-16T16:14:19	4080	TR	düşkün, seven	(of ile) düşkün, seven	anlam of ile oluşuyor
+2026-10-16T16:14:19	857	ORNEK	The village idiot was called a fool by the townspeople.	I felt like a fool when I forgot her name.	örnek aşağılayıcı ifade içeriyor
+2026-10-16T16:14:19	16818	TR	taban, temel	dip, etek, alt kısım	foot of the hill: tepenin eteği
+2026-10-16T16:14:19	16119	TR	futbol, ayak topu	futbol	ayak topu arkaik
+2026-10-16T16:14:19	19156	TR	zorla yaptırma, baskı	zor, güç kullanma, baskı	örnekte use force: güç kullanmak
+2026-10-16T16:14:19	7000	TR	sahte belge üretmek	sahtesini yapmak, taklit etmek	örnekte imza, belge üretmek dar
+2026-10-16T16:14:19	19264	TR	tarif, reçete, hazır karışım	formül, tarif, reçete	hazır karışım başka anlam (bebek maması)
+2026-10-16T16:14:19	18699	TR	sistematize etmek, formüle etmek	formüle etmek, oluşturmak, ifade etmek	sistematize etmek yabancı ve dar
+2026-10-16T16:14:19	3490	TR	şans eseri	neyse ki, iyi ki, şans eseri	en yaygın karşılık neyse ki eksik
+2026-10-16T16:14:19	16098	EN	showing confidence and willingness to take risks; bold	too confident or direct in a way that may seem rude	açıklama olumsuz TR ile çelişiyor
+2026-10-16T16:14:19	16098	ORNEK	The forward student asked the professor a challenging question.	It was a bit forward of him to ask about her salary.	örnek olumsuz anlamı göstermiyor
+2026-10-16T16:14:19	14607	TR	gövde, iskelet	vücut yapısı, beden, iskelet	gövde yanıltıcı
+2026-10-16T16:14:19	14607	ORNEK	The doctor examined the patient's frame for any spinal abnormalities.	He has a small frame but is very strong.	örnek anlamı göstermiyor
+2026-10-16T16:14:19	14609	TR	kurgulamak	suçu birinin üstüne yıkmak, tuzak kurmak	kurgulamak anlamı vermiyor
+2026-10-16T16:14:19	14609	EN	to devise or construct a situation, plan, or accusation, often deceitfully	to make an innocent person seem guilty of a crime by using false evidence	açıklama belirsiz
+2026-10-16T16:14:19	4848	EN	not bound by rules, obligations, or restrictions; available for use without reservation.	not busy; having no work or plans; not being used	açıklama TR boş, müsait ile çelişiyor
+2026-10-16T16:14:19	4122	TR	durdurmak, askıya almak	dondurmak, askıya almak, durdurmak	yerleşik karşılık dondurmak eksik
+2026-10-16T16:14:19	5956	TR	sık sık giden, düzenli ziyaretçi	sık sık giden, devamlı gelen, müdavim olan	düzenli ziyaretçi isim, tür uyumsuz
+2026-10-16T16:14:19	17001	TR	para kaynağı, mali kaynak	fon, ödenek, para kaynağı	yerleşik terim fon eksik
+2026-10-16T16:14:19	17003	TR	finansman sağlamak	finanse etmek, finansman sağlamak	yerleşik karşılık finanse etmek eksik
+2026-10-16T16:14:19	7937	ORNEK	His reputation began to gain traction after the successful project.	The company's shares gained five percent yesterday.	gain traction deyim, anlamı göstermiyor
+2026-10-16T16:14:19	2263	TR	balkon, asma kat, galeri	galeri, koridor, geçit	balkon/asma kat EN ve örnekle uyumsuz
+2026-10-16T16:14:19	15172	TR	video oyunu oynama, bilgisayar oyunu oynama, oyunculuk	video oyunu oynama, bilgisayar oyunu oynama	oyunculuk aktörlük demek, yanlış
+2026-10-16T16:14:19	882	TR	bakmak, sabit bir şekilde gözlemlemek	uzun uzun bakmak, dalıp bakmak, gözünü dikip bakmak	sabit şekilde gözlemlemek doğal değil
+2026-10-16T16:14:19	9261	TR	vites	vites, dişli	EN dişli düzeneğini anlatıyor
+2026-10-16T16:14:19	9263	TR	uyarlamak, göre tasarlamak, yönlendirmek	(to ile) -e göre ayarlamak, -e yönelik hazırlamak, uyarlamak	anlam to ile oluşuyor, -e eksik
+2026-10-16T16:14:19	12254	TR	genel, tümüyle ilgili	genel, genel nitelikli	tümüyle ilgili yanıltıcı ifade
+2026-10-16T16:14:19	2444	TR	kibar, görgülü erkek	beyefendi, centilmen, kibar erkek	yerleşik karşılıklar eksik
+2026-10-16T16:14:19	2743	TR	ruh, hayalet	hayalet, ruh	en yaygın karşılık başa
+2026-10-16T16:14:19	11398	TR	memnun, seve seve	memnun, sevinçli, mutlu	seve seve zarf, tür uyumsuz
+2026-10-16T16:14:19	16902	TR	içecek kabı, bardak	bardak, kadeh	yerleşik karşılık bardak başa
+2026-10-16T16:14:19	15118	TR	girişim, çaba	deneme, girişim, çaba	have a go anlamı deneme
+2026-10-16T16:14:19	26956	TR	(bir işe) girişmek, nasıl yapacağını bilmek	(bir işe) girişmek, (bir işi) ele almak, yapmaya koyulmak	nasıl yapacağını bilmek yanlış anlam
+2026-10-16T16:14:19	26454	TR	(biri) soğumak, sevmez olmak	(birinden, bir şeyden) soğumak, sevmez olmak	hal eki yanlış
+2026-10-16T16:14:19	20312	TR	veda, hoşça kal	hoşça kal, güle güle, elveda	ünlem türüne uygun karşılıklar
+2026-10-16T16:14:19	20312	EN	the act of saying goodbye when someone leaves	used when you leave someone or when someone leaves	açıklama isim anlamı veriyordu
+2026-10-16T16:14:19	20312	ORNEK	We said our goodbyes at the airport.	Goodbye, see you tomorrow!	örnek isim kullanımıydı
+2026-10-16T16:14:19	17107	TR	eğim, yamaç	eğim, meyil	yamaç farklı kavram
+2026-10-16T16:14:19	7216	TR	bir üst seviyeye geçmek	(to ile) -e yükselmek, bir üst seviyeye geçmek	anlam to ile oluşuyor
+2026-10-16T16:14:19	8291	TR	ağırlık birimi	gran (ağırlık birimi)	yerleşik terim gran eksik
+2026-10-16T16:14:19	897	TR	nine	büyükanne, anneanne, babaanne, nine	yaygın karşılık büyükanne eksik
+2026-10-16T16:14:19	21745	EN	a male descendant of one's child; a grandson	the son of your son or daughter	açıklama döngüsel
+2026-10-16T16:14:19	7673	TR	görsel, resimli	grafik, görsel	yerleşik terim grafik eksik
+2026-10-16T16:14:19	7673	ORNEK	The poster uses bright colors and clear lines, making it a strong graphic example.	She studied graphic design at university.	örnek anlamı açık göstermiyor
+2026-10-16T16:14:19	7674	TR	açık, çarpıcı	açık seçik, ayrıntılı, çarpıcı	graphic scenes için açık seçik gerekli
+2026-10-16T16:14:19	3893	TR	selamlamak, karşılama sözleri söylemek	selamlamak, karşılamak	yerleşik karşılık karşılamak eksik
+2026-10-16T16:14:19	14258	TR	sorgulamak, sıkı bir şekilde sorgulamak	sorguya çekmek, soru yağmuruna tutmak	tekrarlı ve zayıf karşılık
+2026-10-16T16:14:19	2096	TR	gülümseme	geniş gülümseme, sırıtış	dişleri gösteren gülüş, sırıtış eksik
+2026-10-16T16:14:19	9469	TR	gıcırdatmak	gıcırdamak, gıcırdatmak	örnek geçişsiz kullanım
+2026-10-16T16:14:19	15964	ORNEK	The committee needs a clear ground for making the decision.	The committee had good grounds for its decision.	bu anlamda çoğul grounds kullanılır
+2026-10-16T16:14:19	15965	TR	topraklama, elektriksel bağlantı	topraklama, toprak hattı	elektriksel bağlantı çok genel
+2026-10-16T16:14:19	899	TR	gözcü, güvenlik görevlisi	güvenlik görevlisi, bekçi, nöbetçi	gözcü farklı kavram, yerleşik terimler eksik
+2026-10-16T16:14:19	15887	ORNEK	I guess the test will be easy.	Can you guess how old she is?	I guess sanırım anlamı, tahmin değil
+2026-10-16T16:14:19	15435	TR	yarım	yarı, yarım	isim olarak yarı yerleşik
+2026-10-16T16:14:19	6492	TR	toplantı salonu, büyük oda	salon, toplantı salonu, büyük oda	yerleşik karşılık salon eksik
+2026-10-16T16:14:19	11955	EN	a small number of people or things; a difficult task to manage	a small number of people or things	zor iş anlamı başka anlam
+2026-10-16T16:14:19	7262	TR	cömert, büyük	yüklü, hatırı sayılır, cömert	büyük zayıf, yüklü yerleşik
+2026-10-16T16:14:19	1715	TR	beklemek, askıda kalmak	askıda kalmak, belirsiz kalmak	beklemek yanıltıcı
+2026-10-16T16:14:19	1713	ORNEK	The ruler ordered to hang the rebel leader after the uprising.	The rebel leader was hanged after the uprising.	örnek dilbilgisi hatalı
+2026-10-16T16:14:19	9378	TR	neredeyse hiç, az	neredeyse hiç, hemen hemen hiç, zar zor	az anlamı yanıltıcı
+2026-10-16T16:14:19	7176	TR	aklında dolaşmak, rahatsız etmek	aklından çıkmamak, rahat vermemek, içini kemirmek	aklında dolaşmak olumsuzluğu vermiyor
+2026-10-16T16:14:19	23192	TR	kulaklık, kulaklık takımı	mikrofonlu kulaklık, kulaklık	mikrofon farkı belirtilmeli
+2026-10-16T16:14:19	2680	TR	iyileşmek, tedavi etmek	iyileşmek, iyileştirmek	tedavi etmek treat demek
+2026-10-16T16:14:19	9792	TR	merkez	merkez, kalp, göbek	at the heart of kalbinde demek
+2026-10-16T16:14:19	20316	ORNEK	Say hello to your parents for me.	Hello, how are you today?	örnek ünlem kullanımı göstermiyordu
+2026-10-16T16:14:19	18320	TR	çok, aşırı derecede	son derece, çok, büyük ölçüde	aşırı olumsuz ima taşıyor, yanıltıcı
+2026-10-16T16:14:19	7840	TR	istihdam etmek	işe almak, istihdam etmek	en yaygın karşılık eksik
+2026-10-16T16:14:19	6447	TR	önemli, tarihe damga vurmuş	tarihi, tarihe geçen, tarihe damga vurmuş	önemli tek başına zayıf, tarihi eksik
+2026-10-16T16:14:19	3305	TR	sahte, anlamsız, kuru	boş, sahte, anlamsız, kuru	yerleşik karşılık boş eksik
+2026-10-16T16:14:19	7078	ORNEK	She whispered 'honey' as a gentle nickname.	Honey, can you help me carry these bags?	örnek hitap kullanımını göstermiyor
+2026-10-16T16:14:19	5562	TR	yakalamak, tutturmak	(oltayla) yakalamak, kancaya takmak	tutturmak bu anlamı vermiyor
+2026-10-16T16:14:19	7957	TR	umut etmek	ummak, umut etmek	en yaygın karşılık ummak eksik
+2026-10-16T16:14:19	17198	TR	ev sahibi, misafirperver kişi	ev sahibi	misafirperver kişi host anlamına gelmez
+2026-10-16T16:14:19	17198	EN	a person who owns a house or property and receives guests, often offering hospitality	a person who receives and looks after guests in their home or at an event	ev sahibi mülk sahibi olmak zorunda değil
+2026-10-16T16:14:19	16550	TR	konaklama yeri, otel	otel, konaklama yeri	en yaygın karşılık başa alındı
+2026-10-16T16:14:19	7058	TR	konut, ev	ev, konut	en yaygın karşılık başa alındı
+2026-10-16T16:14:19	5576	TR	insanî	insana ait, insana özgü, insani	insani tek başına humane gibi yanıltıcı
+2026-10-16T16:14:19	948	TR	avlamak, yakalamak	avlanmak, avlamak	örnekte nesnesiz kullanım, avlanmak eksik
+2026-10-16T16:14:19	10221	TR	acımak, ağrımak	acımak, ağrımak; incitmek, yaralamak	örnekteki geçişli kullanım karşılanmıyor
+2026-10-16T16:14:19	957	TR	kusursuz, mükemmel	ideal, en uygun, mükemmel	örnekteki en uygun anlamı eksik
+2026-10-16T16:14:19	5553	ORNEK	The boy forgot his homework again, proving he is an idiot.	I felt like an idiot when I locked my keys in the car.	örnek bir çocuğu aşağılıyor, nötr değil
+2026-10-16T16:14:19	19814	TR	kanuna aykırı	yasa dışı, kanuna aykırı	en yaygın karşılık yasa dışı eksik
+2026-10-16T16:14:19	2348	TR	zihinde canlandırmak, tasavvur etmek	hayal etmek, zihinde canlandırmak, tasavvur etmek	en yaygın karşılık hayal etmek eksik
+2026-10-16T16:14:19	4282	TR	derhal, acil, anlık	acil, anında yapılan, ani	derhal zarf, sıfat türüne uymuyor
+2026-10-16T16:14:19	2078	TR	dolaylı olarak ifade etmek	ima etmek, dolaylı olarak ifade etmek	yerleşik karşılık ima etmek eksik
+2026-10-16T16:14:19	18576	TR	zorlamak, dayatmak	dayatmak, (kural, vergi vb.) koymak, zorla uygulamak	vergi/kural koymak anlamı eksik
+2026-10-16T16:14:19	18276	ORNEK	The artist used a brush to create a faint impression on the canvas.	His boots left a deep impression in the mud.	fırça örneği basma izini göstermiyor
+2026-10-16T16:14:19	3184	TR	hapse atmak, tutuklamak	hapse atmak, hapsetmek	tutuklamak farklı kavram (arrest)
+2026-10-16T16:14:19	9302	TR	kapalı alan, bina içi, kapalı mekan	kapalı alanda yapılan, bina içi, kapalı (salon vb.)	karşılıklar isim, sıfat türüne uymuyor
+2026-10-16T16:14:19	5902	TR	nedeni olmak	neden olmak, yol açmak, tetiklemek	nedeni olmak bozuk ifade
+2026-10-16T16:14:19	8576	TR	şımartmak, kendini şımartmak	kendini şımartmak, keyfini çıkarmak, şımartmak	örnekteki keyfini çıkarma anlamı eksik
+2026-10-16T16:14:19	9298	ORNEK	The doctor warned that the wound was infective and needed proper dressing.	The virus can remain infective on surfaces for several days.	yara bulaşıcı değil enfekte, örnek yanlış
+2026-10-16T16:14:19	13258	TR	uğratmak, acı çektirmek, yüklemek	(zarar, acı vb.) vermek, uğratmak, yüklemek	yerleşik karşılık vermek eksik
+2026-10-16T16:14:19	18370	TR	veri, haber, bilgi	bilgi, haber, veri	en yaygın karşılık başa alındı
+2026-10-16T16:14:19	7929	TR	madde, bileşen, içerik	malzeme, bileşen, içerik	yemek için yerleşik karşılık malzeme eksik
+2026-10-16T16:14:19	5062	TR	yerleşik kişi, sakin	sakin, orada yaşayan kişi	yerleşik kişi garip, sakin başa
+2026-10-16T16:14:19	13372	TR	ilk olarak	başlangıçta, ilk başta	ilk olarak sıralama anlamı veriyor, yanıltıcı
+2026-10-16T16:14:19	5218	TR	soruşturma, araştırma	soru, bilgi talebi, soruşturma, araştırma	örnekteki bilgi sorma anlamı eksik
+2026-10-16T16:14:19	8656	TR	yüklemek	yüklemek, kurmak	yazılım için yerleşik kurmak eksik
+2026-10-16T16:14:19	980	ORNEK	The doctor gave her an instant painkiller for the headache.	The new song was an instant success.	anlık ağrı kesici örneği doğal değil
+2026-10-16T16:14:19	985	ORNEK	The carpenter selected the proper instrument for cutting the wood.	The doctor used a small instrument to look inside the patient's ear.	odun kesmek için tool doğal, instrument değil
+2026-10-16T16:14:19	987	TR	araçsal, etkili	önemli rol oynayan, etkili, araçsal	be instrumental in anlamı eksik
+2026-10-16T16:14:19	4593	TR	bilgi, istihbarat	istihbarat, istihbarat bilgisi	bilgi tek başına çok genel, istihbarat başa
+2026-10-16T16:14:19	3049	TR	kasıt, irade	kasıt, niyet	irade farklı kavram (will)
+2026-10-16T16:14:19	15900	TR	merak, ilgi	ilgi, merak	en yaygın karşılık başa alındı
+2026-10-16T16:14:19	15906	TR	ilgili, meraklı	ilgilenen, ilgili, meraklı	ilgili tek başına related gibi okunuyor
+2026-10-16T16:14:19	3372	TR	iç, içsel	iç, iç kısımdaki, iç mekân (-ı)	içsel ruhsal anlam, fiziksel iç değil
+2026-10-16T16:14:19	16848	TR	soru-cevap oturumu, mülakat	mülakat, değerlendirme görüşmesi	soru-cevap oturumu farklı kavram
+2026-10-16T16:14:19	16849	TR	röportaj yapmak, mülakat gerçekleştirmek	görüşme yapmak, röportaj yapmak, mülakat yapmak	örnekteki görüşme anlamı eksikti
+2026-10-16T16:14:19	5594	TR	adamak, kendini vermek	(zaman, emek) harcamak, ayırmak, adamak	kendini vermek nesneli kullanıma uymuyor
+2026-10-16T16:14:19	17336	EN	a type of golf club with a metal head used for long-distance shots	a type of golf club with a metal head, used for shorter and more accurate shots than a wood	demir sopalar uzun vuruş için değil
+2026-10-16T16:14:19	3124	TR	ceket, dış giyim	ceket, mont	dış giyim kategori adı, karşılık değil
+2026-10-16T16:14:19	2934	TR	uçak, jet	jet uçağı, jet	yerleşik terim jet uçağı
+2026-10-16T16:14:19	9942	TR	takı, süs eşyası	takı, mücevher	süs eşyası ev süsü anlamına gelir
+2026-10-16T16:14:19	20216	TR	ortak, birlikte	ortak, müşterek	birlikte zarf, tür uyumsuz
+2026-10-16T16:14:19	18401	TR	mahkeme görevlisi, hâkim	hâkim, yargıç	mahkeme görevlisi farklı kişi
+2026-10-16T16:14:19	18402	TR	jüri üyesi, jüri, hakem	jüri üyesi, hakem	jüri topluluk adı, kişi değil
+2026-10-16T16:14:19	18410	TR	hukuki, yargı ile ilgili	yargısal, adli, yargıya ilişkin	hukuki legal karşılığı, yargısal daha doğru
+2026-10-16T16:14:19	17548	TR	atlayıcı	atlamacı	yerleşik terim atlamacı
+2026-10-16T16:14:19	14639	TR	cangıl, balta girmemiş orman	tropikal orman, balta girmemiş orman, cangıl	cangıl az bilinir, yaygın karşılık başa
+2026-10-16T16:14:19	3652	TR	keskin, ayırt edici	keskin, güçlü (algı, zekâ)	ayırt edici farklı anlam
+2026-10-16T16:14:19	15215	TR	sürdürmek, devam ettirmek	devam etmek, sürdürmek, devam ettirmek	örnek geçişsiz devam etmek kullanımı
+2026-10-16T16:14:19	15215	EN	to cause something to continue for a period of time	to continue doing something, or to make something continue	örnekle uyum
+2026-10-16T16:14:19	15216	TR	korumak, bakımını yapmak	(belli bir durumda) tutmak, korumak	örnekte tutmak anlamı, bakım değil
+2026-10-16T16:14:19	12445	TR	su ısıtıcısı	su ısıtıcısı, çaydanlık	örnekte ocakta kullanılan çaydanlık
+2026-10-16T16:14:19	20092	TR	tuşlamak, klavyeye girmek	tuşlamak, (klavyeyle) girmek	klavyeye girmek doğal değil
+2026-10-16T16:14:19	20093	TR	bilgisayar klavyesi	klavye	yerleşik terim klavye
+2026-10-16T16:14:19	20094	TR	elektronik piyano	org, elektronik klavye	örnekte çalgı anlamı
+2026-10-16T16:14:19	20094	EN	the row of white and black keys on a piano or synthesizer that produces musical notes when pressed	an electronic musical instrument with keys like a piano	açıklama tuş dizisi, örnek çalgı
+2026-10-16T16:14:19	16179	TR	öldürme, katliam	öldürme, cinayet	katliam toplu öldürme, yanıltıcı
+2026-10-16T16:14:19	15890	TR	satranç taşı, şah	şah (satranç)	satranç taşı genel ad
+2026-10-16T16:14:19	15892	EN	the highest taxonomic rank, grouping together all forms of life sharing fundamental characteristics, such as Animalia, Plantae, Fungi, etc.	one of the large groups into which all living things are divided, such as animals, plants and fungi	açıklama ve örnek bilimsel olarak yanlış
+2026-10-16T16:14:19	15892	ORNEK	All multicellular organisms are placed in the kingdom Animalia.	Mushrooms belong to the kingdom Fungi, not the plant kingdom.	örnekteki bilgi yanlış
+2026-10-16T16:14:19	8400	TR	yavru	(tilki, tavşan vb.) yavrusu	hangi hayvan olduğu belirsizdi
+2026-10-16T16:14:19	20074	TR	toprak, arazi, yeryüzü	kara, toprak, arazi	yeryüzü yanlış, kara eksik
+2026-10-16T16:14:19	16127	TR	dil, konuşma sistemi	dil, lisan	konuşma sistemi uydurma ifade
+2026-10-16T16:14:19	6544	TR	kucak, oturulan yer	kucak	oturulan yer yanlış
+2026-10-16T16:14:19	9212	TR	önemli, kapsamlı	büyük, önemli, kapsamlı	örnekte büyük etki, temel karşılık eksik
+2026-10-16T16:14:19	11624	TR	lazer, ışın	lazer, lazer cihazı	ışın cihaz anlamını vermiyor
+2026-10-16T16:14:19	7498	TR	sonları, sonlarındaki, geç	(bir dönemin) sonlarındaki, sonları, geç (dönem)	açıklamayla uyum
+2026-10-16T16:14:19	7498	EN	belonging to a recent period of time; occurring or existing in the recent past.	near the end of a period of time	açıklama yanlış, son dönem anlamı
+2026-10-16T16:14:19	1046	TR	gülme	gülüş, gülme, kahkaha	gülüş temel karşılık eksik
+2026-10-16T16:14:19	2847	TR	kısa şarkı	manzum hikâye, türkü	kısa şarkı anlatı niteliğini vermiyor
+2026-10-16T16:14:19	13124	TR	öncü, birincil, önde gelen	önde gelen, öncü, lider	birincil primary karşılığı
+2026-10-16T16:14:19	16033	TR	spor ligi, kulüpler birliği	lig	yerleşik terim lig
+2026-10-16T16:14:19	1054	TR	eğilmek, yana yatmak	eğilmek, yaslanmak, yana yatmak	örnekte yaslanmak anlamı
+2026-10-16T16:14:19	1055	TR	dayanmak, güvenmek	(on ile) güvenmek, dayanmak, destek almak	anlam on ile oluşuyor
+2026-10-16T16:14:19	15352	ORNEK	She ate at least three slices of pizza for lunch.	I like this colour least.	at least kalıbı bu anlamı göstermiyor
+2026-10-16T16:14:19	15515	TR	bırakmak, teslim etmek	bırakmak	teslim etmek yanıltıcı
+2026-10-16T16:14:19	6204	TR	azarlamak, nasihat çekmek	azarlamak, nutuk çekmek, nasihat etmek	nasihat çekmek yerleşik değil
+2026-10-16T16:14:19	17658	TR	bacak, uzuv	bacak	uzuv genel terim
+2026-10-16T16:14:19	17658	EN	the lower limb of a human or animal, extending from the knee to the foot	one of the long parts of the body that a person or animal stands and walks on	bacak dizden başlamaz
+2026-10-16T16:14:19	6795	TR	harita üzerindeki gösterge, işaret	lejant, (harita) açıklama tablosu	yerleşik terim lejant
+2026-10-16T16:14:19	1057	TR	ders, öğretim bölümü	ders	öğretim bölümü uydurma ifade
+2026-10-16T16:14:19	15440	TR	kat, katman	kat	katman bina katı değil
+2026-10-16T16:14:19	15441	TR	yerle bir etmek, düzleştirmek	düzleştirmek, düzlemek, yerle bir etmek	açıklamaya uygun karşılık başa
+2026-10-16T16:14:19	7134	TR	meyilli, olası	(to ile) olası, yatkın, meyilli	anlam to ile oluşuyor
+2026-10-16T16:14:19	1066	TR	arabayla bırakma, otostop	(arabayla) götürme, bırakma	otostop farklı kavram
+2026-10-16T16:14:19	1066	EN	a ride offered by a driver to a passenger who is traveling in the same direction, usually arranged by stopping the vehicle on the road	a free ride in someone's car	yol kenarında durdurma açıklaması yanlış
+2026-10-16T16:14:19	1069	EN	to take something out from a place or container	to raise something or someone to a higher position	açıklama çıkarmak anlamı, yanlış
+2026-10-16T16:14:19	1068	TR	kısıtlamayı kaldırmak	(yasak, kısıtlama) kaldırmak	fiil karşılığı nesneyi içermemeli
+2026-10-16T16:14:19	18525	ORNEK	The morning sun gave the garden a light glow.	The room is light and bright in the morning.	light glow aydınlık anlamını göstermiyor
+2026-10-16T16:14:19	18654	TR	istemek, arzu etmek	(would ile) istemek, arzu etmek	anlam would ile oluşuyor
+2026-10-16T16:14:19	4530	TR	kol, bacak	uzuv, kol ya da bacak	yerleşik terim uzuv
+2026-10-16T16:14:19	4531	TR	dal, gövde uzantısı	kalın dal, ana dal	gövde uzantısı anlaşılmaz
+2026-10-16T16:14:19	16487	TR	köprü	bağlantı, link, köprü	yaygın karşılık bağlantı eksik
+2026-10-16T16:14:19	16263	EN	to give advice or instructions that someone should follow; to obey	to pay attention to advice or a warning and follow it	açıklama tavsiye vermek diyor, yanlış
+2026-10-16T16:14:19	7092	TR	yazılı eserler, edebiyat	edebiyat, yazılı eserler	yaygın karşılık başa
+2026-10-16T16:14:19	7091	TR	literatür, kaynakça	literatür, alanyazın	kaynakça bibliyografya, farklı kavram
+2026-10-16T16:14:19	5859	TR	geçim, yaşam	geçimle ilgili, yaşam (masrafları vb.)	sıfat karşılığı, isim değil
+2026-10-16T16:14:19	5861	ORNEK	The living celebrate birthdays each year with family and friends.	Healthy living includes good food and regular exercise.	the living yaşayanlar demek, anlam farklı
+2026-10-16T16:14:19	11364	TR	yük, taşıma malzemesi	yük	taşıma malzemesi yanlış
+2026-10-16T16:14:19	11367	TR	yüklemek, bir şeye ağırlık vermek	yüklemek	ağırlık vermek deyimsel farklı anlam
+2026-10-16T16:14:19	11369	TR	doldurmak	(silah) doldurmak	bağlam belirtilmeli
+2026-10-16T16:14:19	17591	TR	ödünç verilen para, borç	kredi, borç, ödünç para	örnekte banka kredisi, yerleşik terim
+2026-10-16T16:14:19	12287	TR	baskı yapmak, etkilemek	lobi yapmak, etkilemeye çalışmak	yerleşik terim lobi yapmak
+2026-10-16T16:14:19	5043	TR	mantıksal	mantıklı, mantıksal	örnekte mantıklı anlamı, eksikti
+2026-10-16T16:14:19	9826	TR	kurumsal işaret, marka simgesi	logo, amblem, marka simgesi	yerleşik karşılık logo eksikti
+2026-10-16T16:14:19	5119	TR	yalnız, tek başına	yalnız, kimsesiz, yalnızlık çeken	tek başına alone karşılığı, duygu değil
+2026-10-16T16:14:19	9179	TR	bakış, gözlem	bakış, göz atma	gözlem observation karşılığı
+2026-10-16T16:14:19	9180	TR	bakmak, gözlemlemek	bakmak	gözlemlemek observe karşılığı
+2026-10-16T16:14:19	9182	TR	aramak, bir şey bulmaya çalışmak	(for ile) aramak, bir şey bulmaya çalışmak	anlam for ile oluşuyor
+2026-10-16T16:14:19	16151	TR	saygıdeğer kişi, efendi, patron	efendi, lord, saygıdeğer kişi	patron yanıltıcı
+2026-10-16T16:14:19	1083	TR	gösterişli, çarpıcı	cafcaflı, cırtlak, gösterişli	çarpıcı olumlu, loud renk için cırtlak
+2026-10-16T16:14:19	13468	TR	şans eseri, talihli bir şekilde	neyse ki, şans eseri, iyi ki	en yaygın karşılık neyse ki eksikti
+2026-10-16T16:14:19	4494	TR	coşkulu, hevesli	(about ile) bayılan, hastası, deli	anlam about ile, coşkulu tam karşılamıyor
+2026-10-16T16:14:19	17425	TR	posta göndermek	postalamak, postayla göndermek	geçişli fiil, posta göndermek uyumsuz
+2026-10-16T16:14:19	7603	TR	yönlendirmek, manipüle etmek	manipüle etmek, (ustalıkla) kullanmak, yönlendirmek	örnekteki fiziksel kullanım anlamı eksikti
+2026-10-16T16:14:19	7605	TR	manipülasyon, yönlendirme	manipülasyon, (ustaca) kullanma, yönlendirme	örnekteki fiziksel kullanım anlamı eksikti
+2026-10-16T16:14:19	7055	TR	davranış, tutum	tavır, davranış, görgü (manners)	örnekte manners görgü anlamında
+2026-10-16T16:14:19	17275	TR	şema	şema, harita (kavram haritası vb.)	concept map kavram haritası
+2026-10-16T16:14:19	17276	TR	haritalamak	haritasını çıkarmak, haritalamak	yaygın karşılık eklendi
+2026-10-16T16:14:19	11867	TR	kenar, sınır	kenar boşluğu, kenar, sınır	sayfa kenar boşluğu yerleşik terim
+2026-10-16T16:14:19	6453	TR	üst, efendi, sahip	efendi, sahip	üst bu anlamda yanıltıcı
+2026-10-16T16:14:19	6455	TR	öğrenmek, hâkim olmak, uzmanlaşmak	iyice öğrenmek, hâkim olmak, ustalaşmak	öğrenmek tek başına zayıf
+2026-10-16T16:14:19	16046	TR	yarışma, müsabaka	maç, karşılaşma, müsabaka	yerleşik karşılık maç eksikti
+2026-10-16T16:14:19	16048	TR	kibrit çubuğu	kibrit, kibrit çubuğu	en yaygın karşılık kibrit
+2026-10-16T16:14:19	16049	TR	eşleşmek, uyum sağlamak	uymak, uyuşmak, eşleşmek	uyum sağlamak adapt anlamında, yanıltıcı
+2026-10-16T16:14:19	16050	TR	boy ölçüşmek, denk gelmek, eşleştirmek	boy ölçüşmek, denk olmak, aşık atmak	eşleştirmek bu anlama ait değil
+2026-10-16T16:14:19	14508	ORNEK	The scientist examined the material sample under a microscope.	Some people care too much about material things.	örnekte kelime isim olarak kullanılmış
+2026-10-16T16:14:19	14518	TR	madde, öz	madde	öz essence anlamı, yanıltıcı
+2026-10-16T16:14:19	5454	TR	kastetmek, ima etmek	kastetmek, demek istemek, niyetinde olmak	örnek niyet anlamında, ima etmek imply
+2026-10-16T16:14:19	15588	TR	ortamlar, araçlar, vasıtalar	(sanatta) malzemeler, teknikler, araçlar	sanat bağlamında ortamlar yanıltıcı
+2026-10-16T16:14:19	15585	TR	araç, vasıtâ, ortam	araç, vasıta, ortam	yazım hatası vasıtâ
+2026-10-16T16:14:19	9259	TR	bileşen, parça	eleman, parça, bileşen	yapı elemanı yerleşik terim
+2026-10-16T16:14:19	9259	ORNEK	Each member of the alloy contributes to its strength.	Each steel member of the bridge carries part of the load.	alaşım örneği yanlış kullanım
+2026-10-16T16:14:19	1103	TR	sadece, yalnızca, tek	sırf, salt, yalnızca	sıfat karşılığı gerekli
+2026-10-16T16:14:19	13882	TR	birleştirmek, kaynaştırmak	birleşmek, birleştirmek	örnekte geçişsiz kullanım
+2026-10-16T16:14:19	13887	TR	mecaz	metafor, eğretileme, mecaz	yerleşik terim metafor eksikti
+2026-10-16T16:14:19	4636	TR	az şiddetli	ılıman, hafif, az şiddetli	örnekte hava için ılıman
+2026-10-16T16:14:19	20744	TR	militan, sert yanlısı	militan, şiddet yanlısı	sert yanlısı anlamsız ifade
+2026-10-16T16:14:19	7884	TR	doğada bulunan katı madde, mineral	mineral	tanım değil karşılık olmalı
+2026-10-16T16:14:19	15773	TR	hanımefendi, genç kız, öğretmen	Bayan (unvan), hanımefendi	genç kız ve öğretmen unvan değil
+2026-10-16T16:14:19	15774	TR	kaçırılan şey, eksik, hatalı atış	ıska, isabetsiz atış, kaçırma	eksik bu anlama ait değil
+2026-10-16T16:14:19	2887	TR	karıştırmak, birini/ bir şeyi başka biri/ şey sanmak	(for ile) karıştırmak, birini/bir şeyi başka biri/şey sanmak	anlam for ile oluşuyor
+2026-10-16T16:14:19	2888	TR	yanlış, hatalı	yanılmış, yanlış, hatalı	kişi için yanılmış karşılığı eksikti
+2026-10-16T16:14:19	16060	TR	örnek, timsal, numune	örnek, örnek kişi, timsal	numune sample anlamı, yanlış
+2026-10-16T16:14:19	7386	TR	ortacı, aşırı uçta olmayan	ılımlı, ortacı, aşırı uçta olmayan	yerleşik siyasi terim ılımlı eksikti
+2026-10-16T16:14:19	16235	TR	çağdaş, günümüze ait	modern, çağdaş, günümüze ait	yerleşik karşılık modern eksikti
+2026-10-16T16:14:19	11789	TR	az, ılımlı, sınırlı	mütevazı, ufak, sınırlı	ılımlı bu anlama uymuyor
+2026-10-16T16:14:19	1782	TR	öğreti, ders	ders, ana fikir, kıssadan hisse	öğreti doctrine anlamı, yanıltıcı
+2026-10-16T16:14:19	16960	TR	en çok, en fazla	en, en çok, en fazla	örnekte üstünlük eki en
+2026-10-16T16:14:19	5716	TR	teklif, öneri	önerge, teklif, öneri	yerleşik terim önerge eksikti
+2026-10-16T16:14:19	1121	TR	bir şeye binmek, üzerine oturmak	binmek, çıkmak, tırmanmak	örnekte merdivene çıkmak
+2026-10-16T16:14:19	9750	TR	açıklık, giriş	(nehir) ağzı, giriş, açıklık	nehir ağzı yerleşik karşılık eksikti
+2026-10-16T16:14:19	1129	TR	dar, ince	dar	ince "thin" karşılığı, yanıltıcı
+2026-10-16T16:14:19	15320	TR	millet, topluluk	millet, ulus	topluluk zayıf, ulus yerleşik karşılık
+2026-10-16T16:14:19	18071	TR	donanma, bahriye, deniz kuvvetlerine ait	deniz kuvvetlerine ait, donanmaya ait	sıfat; isim karşılıklar tür uyumsuz
+2026-10-16T16:14:19	4559	TR	yakın, yakınlarda	yakındaki, yakın	sıfat; yakınlarda zarf
+2026-10-16T16:14:19	1811	TR	gerekmek, icap etmek	-mesi gerekmek, zorunda olmak	zorunluluk anlamı; icap etmek eskimiş
+2026-10-16T16:14:19	9862	TR	pazarlık yapmak, görüşmek	müzakere etmek, pazarlık yapmak, görüşmek	yerleşik terim eksikti
+2026-10-16T16:14:19	16354	TR	iletişim ağı	ağ, bilgisayar ağı, şebeke	yerleşik terim ağ eksikti
+2026-10-16T16:14:19	16355	TR	sosyal ağ	çevre, ilişki ağı, sosyal ağ	insan ağı anlamı genişletildi
+2026-10-16T16:14:19	15143	TR	asla	asla, hiç, hiçbir zaman	örnekteki kullanım hiç ile karşılanır
+2026-10-16T16:14:19	15182	TR	takip eden, bir sonraki	bir sonraki, sonraki, gelecek	next week için gelecek gerekli
+2026-10-16T16:14:19	15233	TR	gece, karanlık zaman	gece	karanlık zaman yapay ifade
+2026-10-16T16:14:19	1138	TR	soylu, asil, yüksek rütbeli	soylu, asil	yüksek rütbeli askeri rütbe çağrıştırır
+2026-10-16T16:14:19	18379	TR	saçma, anlamsız şey	saçmalık, anlamsız şey	isim; saçma sıfat
+2026-10-16T16:14:19	4567	TR	hiçbir yerde	hiçbir yerde, hiçbir yere	yönelme kullanımı eksikti
+2026-10-16T16:14:19	8760	TR	miktar, sayı, nicelik	sayı, miktar	sayı ana karşılık; nicelik zayıf
+2026-10-16T16:14:19	8761	TR	telefon numarası, iletişim numarası	numara, telefon numarası	iletişim numarası yapay
+2026-10-16T16:14:19	2490	TR	sağlık çalışanı, hemşire	hemşire	sağlık çalışanı çok genel
+2026-10-16T16:14:19	11301	TR	çılgın, deli	kaçık, deli; (bir şeyin) hastası, tutkunu	isim; meraklı anlamı eksikti
+2026-10-16T16:14:19	6116	TR	nesne, madde	nesne, cisim, eşya	madde "substance" anlamına gelir
+2026-10-16T16:14:19	1157	TR	uygulamak, bir kurala uymak	(kurala) uymak, riayet etmek	uygulamak yanıltıcı; uymak doğru karşılık
+2026-10-16T16:14:19	17099	TR	açıkça	belli ki, besbelli, açıkça	örnekteki kullanım belli ki
+2026-10-16T16:14:19	1789	TR	aklına gelmek, hatırlanmak	(to ile) aklına gelmek	anlam to ile oluşuyor
+2026-10-16T16:14:19	15135	TR	çalışmıyor, kapalı	kapalı (cihaz)	çalışmıyor fiil biçimi, tür uyumsuz
+2026-10-16T16:14:19	15136	TR	uzak, ...'den, ... dışına	-den, üstünden, … dışına	uzak sıfat, edat kullanımına uymuyor
+2026-10-16T16:14:19	2960	ORNEK	The activist's actions offended the law by blocking the highway.	Anyone who offends will have to pay a fine.	örnek cümle doğal değildi
+2026-10-16T16:14:19	20134	TR	subay, asker	subay	asker genel; officer subay demek
+2026-10-16T16:14:19	8702	TR	çocuk, nesil	çocuk, yavru, döl	hayvan yavrusu anlamı eksikti
+2026-10-16T16:14:19	6562	TR	iş ilanı, boş pozisyon	boş pozisyon, açık kadro	iş ilanı ilanın kendisi, pozisyon değil
+2026-10-16T16:14:19	2983	TR	ilk, başlangıç, en eski	ilk, asıl, orijinal	başlangıç isim; en eski yanıltıcı
+2026-10-16T16:14:19	15087	TR	dışarı	(of ile) -den dışarı, dışına	edat anlamı of ile oluşuyor
+2026-10-16T16:14:19	14658	TR	alışveriş mağazası, indirimli satış yeri	outlet mağaza, indirimli satış yeri, satış noktası	alışveriş mağazası belirsiz
+2026-10-16T16:14:19	14659	TR	duygusal boşalma, rahatlama yolu	rahatlama yolu, duyguları dışa vurma aracı	boşalma yanlış çağrışım yapabilir
+2026-10-16T16:14:19	7325	TR	hakaret, skandal	rezalet, skandal	hakaret "insult" anlamında, farklı
+2026-10-16T16:14:19	12354	TR	tamamlanmış, bitti	bitmiş, sona ermiş	bitti fiil çekimi, tür uyumsuz
+2026-10-16T16:14:19	12355	ORNEK	The cat jumped over the fence and landed safely.	There is a lamp over the table.	örnek üzerinden geçme gösteriyordu, anlamla uyumsuz
+2026-10-16T16:14:19	13285	TR	iptal etmek, bozulmasını sağlamak	(kararı) bozmak, iptal etmek	bozulmasını sağlamak yön hatalı
+2026-10-16T16:14:19	6225	TR	ezici, büyük ölçüde etkileyen	ezici, karşı konulmaz, dayanılmaz	büyük ölçüde etkileyen zayıf; yerleşik karşılıklar
+2026-10-16T16:14:19	3712	TR	üzüntü, sıkıntı	acı, ıstırap, üzüntü	duygusal acı karşılığı eksikti
+2026-10-16T16:14:19	7483	TR	düz levha, pano	panel, levha, pano	yerleşik terim panel eksikti
+2026-10-16T16:14:19	7485	TR	elektronik kontrol birimi	kontrol paneli, gösterge paneli	elektronik kontrol birimi zayıf, yerleşik terim var
+2026-10-16T16:14:19	5310	EN	a piece of clothing that covers the lower part of the body, typically worn by women as underwear	(British English) a piece of underwear that covers the lower part of the body; underpants	yalnızca kadınlara özgü değil
+2026-10-16T16:14:19	5616	TR	benzer, aynı düzeyde olan şey	eş, emsal, benzerlik	isim anlamına uygun karşılıklar
+2026-10-16T16:14:19	5616	ORNEK	Her career path runs in parallel with her sister's.	This disaster has no parallel in modern history.	örnek in parallel deyimini gösteriyordu
+2026-10-16T16:14:19	15367	TR	kutlama, eğlence, davetli toplantı	parti, eğlence, davet	en yaygın karşılık parti eksikti
+2026-10-16T16:14:19	15368	TR	siyasi grup, parti	parti, siyasi parti	siyasi grup farklı kavram
+2026-10-16T16:14:19	15494	TR	...'den sonra, ... geçerek	geçe, ...'den sonra, ...'i geçerek	saat kullanımı geçe eksikti
+2026-10-16T16:14:19	6195	TR	hafif vurma, hafif tokat	hafifçe vurma, sıvazlama	tokat yanıltıcı
+2026-10-16T16:14:19	8166	TR	yöntem, süreç	yol, izlenecek yol, yöntem	süreç anlamı karşılamıyor
+2026-10-16T16:14:19	19758	TR	dikkat etmek, ilgi göstermek	(attention ile) dikkat etmek, ilgi göstermek	anlam pay attention kalıbıyla oluşuyor
+2026-10-16T16:14:19	1958	TR	özgün, has	kendine özgü, has, özgü	özgün farklı anlam (original)
+2026-10-16T16:14:19	3029	TR	çiftlik ahırı, hayvan kümesi	ağıl, hayvan bölmesi	ahır ve kümes yanlış, yerleşik terim ağıl
+2026-10-16T16:14:19	10360	TR	uçmayan deniz kuşu, penguen	penguen	tanım karşılık değil
+2026-10-16T16:14:19	10919	TR	kuruş, bir cent	peni, sent, kuruş	bir cent garip ifade
+2026-10-16T16:14:19	15930	TR	sahnelemek, bir gösteri sergilemek	sahnelemek, icra etmek, gösteri yapmak	yerleşik icra etmek eklendi
+2026-10-16T16:14:19	15932	TR	verim, başarı, sonuç	performans, başarı, verim	yerleşik terim performans eksikti
+2026-10-16T16:14:19	12584	TR	ders saati, okul dönemi	ders saati, ders	okul dönemi yanlış (term)
+2026-10-16T16:14:19	14046	ORNEK	Students were asked to picture a historic event for their art project.	The singer was pictured with her fans at the airport.	örnek hayal etmek anlamına kayıyordu
+2026-10-16T16:14:19	1905	TR	uçak pilotu, havacılık çalışanı	pilot, uçak pilotu	havacılık çalışanı fazla geniş
+2026-10-16T16:14:19	1906	TR	televizyon, radyo programının deneme bölümü	pilot bölüm, deneme bölümü	yerleşik terim pilot bölüm
+2026-10-16T16:14:19	6302	ORNEK	She pinned the note to the refrigerator with a magnet.	She pinned the notice to the board.	örnekte mıknatıs kullanılıyordu, iğne değil
+2026-10-16T16:14:19	2317	TR	ton	perde, ses perdesi, ton	yerleşik müzik terimi perde
+2026-10-16T16:14:19	14215	TR	istihdam, iş bulma	işe yerleştirme, staj yeri	istihdam anlamı tam karşılamıyor
+2026-10-16T16:14:19	12053	EN	a competitive sporting event in which two teams or individuals try to win	a single action or move in a sports game	açıklama karşılaşma diyordu, örnek hamle
+2026-10-16T16:14:19	9956	TR	mahkemede savunma yapmak	(mahkemede) suçlu ya da suçsuz olduğunu beyan etmek	plead guilty/not guilty anlamı
+2026-10-16T16:14:19	17969	TR	hikâye, kurgu	olay örgüsü, konu, kurgu	yerleşik terim olay örgüsü eksikti
+2026-10-16T16:14:19	17971	TR	gizli bir plan ya da entrika düzenlemek	komplo kurmak, gizlice plan yapmak	tanım yerine yerleşik karşılık
+2026-10-16T16:14:19	11877	TR	tıkmak, doldurmak	tıkamak, kapatmak	tıkmak yanlış, tıkamak olmalı
+2026-10-16T16:14:19	15272	TR	keskin, sivri	sivri, sivri uçlu	keskin bıçak ağzı içindir, pointed sivri
+2026-10-16T16:14:19	3961	EN	lacking sufficient money to live at a standard considered normal in society	of low quality or standard; not good enough	EN birinci anlamı tekrarlıyor, TR ile çelişiyor
+2026-10-16T16:14:19	9429	TR	genel olarak beğenilen, çok sevilen	popüler, çok sevilen, beğenilen	yerleşik karşılık popüler eksik
+2026-10-16T16:14:19	19554	TR	bağlantı noktası	giriş, port, bağlantı noktası	USB girişi/portu yerleşik kullanım eksik
+2026-10-16T16:14:19	4197	TR	kısım, pay, dilim	kısım, pay, porsiyon	örnekteki yemek anlamı porsiyon eksik
+2026-10-16T16:14:19	18857	TR	sorun, soru, problem ortaya koymak	(soru) yöneltmek, (sorun, tehdit) oluşturmak, ortaya koymak	sorun/soru isim olarak duruyordu, tür uyumsuz
+2026-10-16T16:14:19	4504	EN	the sign (+) indicating addition or a value greater than zero	(of a number) greater than zero	sıfat için işaret tanımı uyumsuz
+2026-10-16T16:14:19	4505	ORNEK	In the graph, every positive indicates an increase over the baseline.	Multiplying two negatives gives a positive.	örnek doğal değil, anlamı göstermiyor
+2026-10-16T16:14:19	9332	TR	gelişme kapasitesi olan, ortaya çıkmaya hazır	potansiyel, gizil, gelişme kapasitesi olan	ortaya çıkmaya hazır yanıltıcı; potansiyel eksik
+2026-10-16T16:14:19	2212	TR	ingiliz sterlini	İngiliz sterlini, sterlin	özel ad büyük harf; sterlin eksik
+2026-10-16T16:14:19	10817	TR	otorite, hâkimiyet	güç, yetki, otorite, hâkimiyet	temel karşılık güç/yetki eksik
+2026-10-16T16:14:19	3403	TR	yararlı, işe yarar	kullanışlı, pratik, işe yarar	yerleşik kullanışlı/pratik eksik
+2026-10-16T16:14:19	3399	TR	alıştırma, uygulama	alıştırma, antrenman, pratik, uygulama	örnekteki spor kullanımı için antrenman eklendi
+2026-10-16T16:14:19	3400	TR	meslek, iş yeri	muayenehane, büro, iş yeri	meslek bu anlamı vermiyor
+2026-10-16T16:14:19	19132	TR	önceden gelmek, önce olmak	önce gelmek, öncesinde olmak	önceden gelmek yanıltıcı
+2026-10-16T16:14:19	2765	TR	tam, eksiksiz, hatasız	kesin, tam, net, hatasız	eksiksiz farklı anlam
+2026-10-16T16:14:19	12825	TR	avcı	yırtıcı hayvan, avcı	yerleşik terim eklendi
+2026-10-16T16:14:19	8822	TR	ilk, ön, geçici	ön, ilk, hazırlık niteliğinde	geçici farklı anlam
+2026-10-16T16:14:19	20772	TR	ek ücret, fazla	ek ücret, fiyat farkı	fazla tek başına yanıltıcı
+2026-10-16T16:14:19	2948	TR	şimdiki zaman	şimdiki zaman, şu an, günümüz	yalnız dilbilgisi terimi gibi duruyordu
+2026-10-16T16:14:19	18753	TR	acil, zorunlu	acil, ivedi	zorunlu farklı anlam
+2026-10-16T16:14:19	2503	TR	numara yapmak	-mış gibi yapmak, numara yapmak	temel karşılık eksikti
+2026-10-16T16:14:19	15734	TR	maliyet, fiyat	fiyat, ücret	maliyet farklı kavram
+2026-10-16T16:14:19	19862	TR	en iyi kalite, mükemmel	birinci sınıf, en kaliteli, mükemmel	sıfat yerine isim öbeği vardı
+2026-10-16T16:14:19	1786	TR	baskı, matbaa ürünü	baskı, çıktı, basılı kopya	örnekteki çıktı anlamı eksikti
+2026-10-16T16:14:19	18263	TR	konferans tutanakları, toplantı raporu	bildiri kitabı, konferans bildirileri, tutanaklar	yerleşik terim bildiri kitabı
+2026-10-16T16:14:19	19327	TR	ürün, mal, nesne	ürün, mal	nesne yanlış karşılık
+2026-10-16T16:14:19	4762	TR	meslek sahibi, uzman	profesyonel, meslek sahibi, uzman	amatör karşıtı anlam eksikti
+2026-10-16T16:14:19	17015	TR	yan kesit, yan görünüm	profil, yan görünüm, dış hat	yan kesit farklı kavram
+2026-10-16T16:14:19	3552	TR	yoğun, etkileyici	derin, yoğun, büyük	örnekteki derin sessizlik karşılanmıyordu
+2026-10-16T16:14:19	15629	TR	yazılım geliştirme, kodlama	programlama, kodlama, yazılım geliştirme	yerleşik terim eksikti
+2026-10-16T16:14:19	8805	TR	önemli, göze çarpan	önde gelen, tanınmış, önemli, göze çarpan	ünlü kişi anlamı eksikti
+2026-10-16T16:14:19	11757	TR	kovuşturma, savcılık, dava açma	kovuşturma, iddia makamı, savcılık	örnekteki iddia makamı anlamı eklendi
+2026-10-16T16:14:19	8633	TR	protein, besin maddesi	protein	besin maddesi fazla genel
+2026-10-16T16:14:19	8788	TR	kısıtlı, dar görüşlü	dar görüşlü, taşra zihniyetli	kısıtlı anlamı karşılamıyor
+2026-10-16T16:14:19	6594	TR	tedarik, temin	tedarik, temin, ödenek, karşılık	örnekteki ödenek anlamı eklendi
+2026-10-16T16:14:19	10874	TR	bar	pub, birahane, bar	yerleşik karşılık eklendi
+2026-10-16T16:14:19	12733	TR	tanıtım, halkla ilişkiler	tanıtım, reklam, duyurum	halkla ilişkiler ayrı meslek alanı
+2026-10-16T16:14:19	12734	TR	görünürlük, bilinirlik	kamuoyunun ilgisi, medyada yer alma, bilinirlik	görünürlük örnekle uyumsuz
+2026-10-16T16:14:19	3719	TR	pompa, cihaz	pompa	cihaz gereksiz genel ifade
+2026-10-16T16:14:19	3721	TR	sıvıyı pompayla itmek	pompalamak, pompayla basmak	yerleşik fiil eksikti
+2026-10-16T16:14:19	7844	TR	meyve içkisi	punç, meyve içkisi	yerleşik terim punç
+2026-10-16T16:14:19	6573	TR	cüzdan	cüzdan, el çantası	açıklama çanta anlamı veriyor
+2026-10-16T16:14:19	3744	TR	bulmaca	bulmaca, yapboz	örnekteki jigsaw puzzle yapboz
+2026-10-16T16:14:19	19361	TR	yeterlilik, nitelik	yeterlilik, nitelik, yeterlilik belgesi, diploma	örnekteki belge anlamı eksikti
+2026-10-16T16:14:19	19362	TR	çekince, sınırlama, şerh	şart, koşul, sınırlama	çekince açıklama ve örnekle uyumsuz
+2026-10-16T16:14:19	20100	TR	kalite, mükemmeliyet	kalite	mükemmeliyet yanlış karşılık
+2026-10-16T16:14:19	17455	TR	dörtte bir	çeyrek, dörtte bir	yaygın karşılık eksikti
+2026-10-16T16:14:19	15503	TR	soru, sorgu	soru	sorgu farklı anlam
+2026-10-16T16:14:19	24652	TR	gürültü, ses kirliliği	gürültü, patırtı, şamata	ses kirliliği çevre terimi, farklı kavram
+2026-10-16T16:14:19	5203	TR	korkuluk	korkuluk, tırabzan	örnekteki merdiven kullanımı tırabzan
+2026-10-16T16:14:19	17325	TR	yükseltmek, artırmak	kaldırmak, yükseltmek, artırmak	temel karşılık kaldırmak eksik
+2026-10-16T16:14:19	12227	TR	yarış, otomobil yarışı	ralli, otomobil yarışı	yerleşik terim ralli eksik
+2026-10-16T16:14:19	16077	TR	alan, kapsam, menzil	aralık, kapsam, alan, menzil	temperature range aralık demek, eksik
+2026-10-16T16:14:19	16080	TR	değişmek, çeşitlenmek	(arasında) değişmek, farklılık göstermek	çeşitlenmek yanlış anlam veriyor
+2026-10-16T16:14:19	17214	TR	nadiren görülen, az bulunan	nadir, ender, az bulunan	sıfat; nadiren zarf gibi, nadir eksik
+2026-10-16T16:14:19	3083	TR	ihbarcı	ispiyoncu, muhbir	argo kullanım ispiyoncu, örneğe uygun
+2026-10-16T16:14:19	15996	TR	fiyat, birim fiyatı	ücret, fiyat, tarife	örnekteki bilet ücreti, ücret eksik
+2026-10-16T16:14:19	15553	TR	biraz, bir ölçüde, daha çok	oldukça, epey, biraz	rather tired oldukça; daha çok farklı kalıp
+2026-10-16T16:14:19	15553	EN	to a certain degree; to some extent; more preferably	to a fairly large degree; quite	more preferably would rather kalıbı, karışık
+2026-10-16T16:14:19	16001	TR	reyting, izlenme oranı	puan, derece, reyting	örnekte puan anlamı; izlenme oranı dar
+2026-10-16T16:14:19	18736	TR	farkındalık, bilinçlenme	fark etme, farkına varma, idrak	farkındalık/bilinçlenme durum bildirir, anlamı kaydırıyor
+2026-10-16T16:14:19	7404	TR	krallık, imparatorluk	krallık, diyar, ülke	imparatorluk farklı kavram (empire)
+2026-10-16T16:14:19	1301	TR	geri çağırmak, iade ettirmek	(piyasadan) toplatmak, geri çağırmak	ürün için yerleşik ifade toplatmak eksik
+2026-10-16T16:14:19	16305	TR	son zamanlarda	son zamanlarda, yakın zamanda, geçenlerde	örnekteki tekil olay için geçenlerde gerekli
+2026-10-16T16:14:19	17851	TR	öneri yapmak, tavsiye etmek	tavsiye etmek, önermek	öneri yapmak yerine yerleşik önermek
+2026-10-16T16:14:19	15790	EN	a physical disc that stores audio recordings, typically made of vinyl, CD, or digital format	a flat vinyl disc on which music or other sound is stored	plak CD ya da dijital değildir
+2026-10-16T16:14:19	11234	TR	siyasal sistem, yönetim biçimi	rejim, yönetim biçimi, siyasal sistem	yerleşik karşılık rejim eksik
+2026-10-16T16:14:19	4908	TR	hükmetmek	hüküm sürmek, hükmetmek	yerleşik karşılık hüküm sürmek eksik
+2026-10-16T16:14:19	4908	ORNEK	Scientists hope their theory will reign supreme in explaining the phenomenon.	Queen Victoria reigned for more than sixty years.	örnek mecazi kullanım, anlamı göstermiyor
+2026-10-16T16:14:19	2975	TR	reddetme	ret, reddetme, reddedilme	örnekte reddedilme anlamı, ret eksik
+2026-10-16T16:14:19	2557	TR	göreceli olarak	nispeten, görece, göreceli olarak	yerleşik nispeten eksik
+2026-10-16T16:14:19	16870	EN	relating to or concerned with religion; having a belief in a higher power or a set of spiritual doctrines.	relating to or connected with religion	EN ve örnek dindar anlamına kayıyor
+2026-10-16T16:14:19	16870	ORNEK	Many people consider themselves religious and follow weekly services.	The old town has many religious buildings.	örnek ikinci anlamı (dindar) gösteriyordu
+2026-10-16T16:14:19	1321	TR	dikkate değer şekilde, olağanüstü	şaşırtıcı derecede, son derece, dikkat çekici şekilde	olağanüstü sıfat, zarf karşılığı gerekli
+2026-10-16T16:14:19	3633	TR	uzak, çok mesafeli	uzak, ücra, ıssız	çok mesafeli zayıf; yerleşik ücra eksik
+2026-10-16T16:14:19	14216	ORNEK	The teacher asked us to replace the missing word in the sentence.	We need to replace the old batteries with new ones.	eksik kelimeyi değiştirmek mantıksız
+2026-10-16T16:14:19	20593	TR	haberciliği, haber yapma	habercilik, haber yapma	haberciliği iyelik eki hatalı
+2026-10-16T16:14:19	19338	TR	kopyalama, taklit, çoğaltma	kopya, reprodüksiyon, çoğaltma	taklit sahtelik çağrıştırır; resim için reprodüksiyon
+2026-10-16T16:14:19	17137	TR	gerekmek, zorunlu kılmak	gerektirmek, zorunlu kılmak	geçişli fiil gerektirmek olmalı
+2026-10-16T16:14:19	8275	TR	başvuru, çare, sığınak	çare, başvurma	sığınak bu anlamı vermiyor
+2026-10-16T16:14:19	8275	ORNEK	When the software crashed, restarting the system was the only resort.	When the software crashed, restarting the system was our last resort.	kalıp last resort olarak kullanılır
+2026-10-16T16:14:19	9510	TR	dayanmak, temellendirmek	(on ile) dayanmak, bağlı olmak	anlam on ile oluşuyor; temellendirmek geçişli
+2026-10-16T16:14:19	17594	TR	lokanta, yemek yeri	restoran, lokanta	yerleşik karşılık restoran eksikti
+2026-10-16T16:14:19	4941	TR	kısıtlama, emniyet bağı, bağlayıcı	kısıtlama, sınırlama, emniyet bağı	bağlayıcı yanıltıcı
+2026-10-16T16:14:19	4905	TR	kendine çekilmek, inzivaya gitmek	çekilmek, inzivaya çekilmek	kendine çekilmek doğal değil
+2026-10-16T16:14:19	20790	TR	ters, tersine	ters, aksi	tersine zarf, tür uyumsuz
+2026-10-16T16:14:19	3270	TR	geriye doğru hareket, geri dönüş	geri vites	kayıt uydurma anlam; gerçek anlam geri vites
+2026-10-16T16:14:19	3270	EN	a movement or action that goes backward or returns to a previous state	the gear in a vehicle that makes it move backward	geri vites anlamına uyum
+2026-10-16T16:14:19	3270	ORNEK	She pressed the button to start the reverse of the conveyor belt.	Put the car in reverse and back out slowly.	örnek doğal değildi
+2026-10-16T16:14:19	3271	EN	to turn something so that it faces or moves in the opposite direction	to change something, such as a decision or process, so that it becomes the opposite of what it was	örnek ve açıklama 2. anlamla karışıyordu
+2026-10-16T16:14:19	3271	ORNEK	The driver had to reverse the car to avoid the obstacle.	The new manager reversed the old policy.	araba örneği geri gitme anlamı
+2026-10-16T16:14:19	3272	ORNEK	He reversed the stroller to avoid the puddle.	He reversed the car into the parking space.	puset örneği doğal değil
+2026-10-16T16:14:19	19487	TR	tam dönüş, bir tur	tam dönüş, tur, devir	yerleşik terim devir eklendi
+2026-10-16T16:14:19	3604	TR	düzenli, tekrarlayan olay dizisi	ritim, düzen	düzenli sıfat gibi ayrı karşılık olmuş
+2026-10-16T16:14:19	16674	TR	lezzetli, yoğun	yoğun, dolgun, ağır (yemek)	lezzetli rich anlamını vermiyor
+2026-10-16T16:14:19	5885	TR	ahlaki, erdemli	doğru, ahlaka uygun, haklı	ahlaki ve erdemli bu anlamı vermiyor
+2026-10-16T16:14:19	5888	TR	hak, hakkı	hak	hakkı çekimli tekrar
+2026-10-16T16:14:19	12141	TR	çember, daire	halka, çember, daire	yerleşik karşılık halka eksikti
+2026-10-16T16:14:19	13416	TR	cümbüş, tufan, çok komik kimse/şey	cümbüş, çok eğlenceli kimse/şey	tufan bu anlamı vermiyor
+2026-10-16T16:14:19	13819	TR	tehlike, zarar görme ihtimali	risk, tehlike, zarar görme ihtimali	yerleşik karşılık risk eksikti
+2026-10-16T16:14:19	7686	ORNEK	Our company became a rival brand after launching the new product line.	The two rival teams will meet in the final.	örnek sıfat anlamını net göstermiyor
+2026-10-16T16:14:19	16318	TR	akarsu, nehir	nehir, ırmak, akarsu	en yaygın karşılık başa
+2026-10-16T16:14:19	15680	TR	kariyer, yaşam yolu	yol, gidişat	kariyer road karşılığı değil
+2026-10-16T16:14:19	13132	TR	kızartmak, kavurmak	fırında kızartmak, kavurmak	yalın kızartmak yağda pişirme sanılır
+2026-10-16T16:14:19	23594	TR	kovboy gösterisi	rodeo, kovboy gösterisi	yerleşik karşılık rodeo eksikti
+2026-10-16T16:14:19	7490	TR	aşkla ilgili, sevgiyi ifade eden	romantik, aşkla ilgili	yerleşik karşılık romantik eksikti
+2026-10-16T16:14:19	15461	TR	oda, salon, bölüm	oda, salon	bölüm room karşılığı değil
+2026-10-16T16:14:19	15464	TR	ev arkadaşı	oda arkadaşı, ev arkadaşı	temel karşılık oda arkadaşı eksikti
+2026-10-16T16:14:19	20431	TR	etrafında, döne döne	döne döne, dönerek	etrafında edat anlamı, zarf değil
+2026-10-16T16:14:19	16013	TR	tur, döngü	tur, raunt	döngü yanıltıcı; boks örneği raunt
+2026-10-16T16:14:19	2299	TR	masaj yapmak, ovmak	ovmak, ovuşturmak, masaj yapmak	en yaygın karşılık başa, örnek ovuşturmak
+2026-10-16T16:14:19	1356	TR	hüküm, yönetim	yönetim, egemenlik, hükümranlık	hüküm yargı kararı sanılabilir
+2026-10-16T16:14:19	1358	TR	karar vermek, hüküm koymak	karar vermek, hüküm vermek	hüküm koymak farklı anlam
+2026-10-16T16:14:19	15355	TR	koşmak, hızlı yürümek	koşmak	hızlı yürümek koşmak değil
+2026-10-16T16:14:19	15355	EN	to move at a speed faster than a walk, never stopping completely	to move quickly on foot, faster than walking	açıklamadaki durmadan ifadesi yanlış
+2026-10-16T16:14:19	15357	TR	akışını sürdürmek, devam etmek	sürmek, devam etmek	akışını sürdürmek doğal değil
+2026-10-16T16:14:19	1372	TR	saldırmak, baskın yapmak	hücum etmek, üstüne atılmak, saldırmak	hücum karşılığı eksikti
+2026-10-16T16:14:19	1372	ORNEK	The quarterback rushed the ball to gain extra yards.	The fans rushed the gates as soon as they opened.	Amerikan futbolu örneği anlaşılmaz
+2026-10-16T16:14:19	4596	TR	kurban, fedakarlık	fedakârlık, kurban	açıklama ve örnek fedakârlık anlamında
+2026-10-16T16:14:19	4775	ORNEK	The airline announced sadly that the flight would be delayed for hours.	Sadly, the flight was delayed for hours.	örnek üzgünce anlamını gösteriyordu
+2026-10-16T16:14:19	5142	TR	güvenli, güvenilir	güvenli, emniyetli, güvende	güvenilir farklı anlam
+2026-10-16T16:14:19	6798	TR	çok iyi, yardımsever insan	melek gibi insan, çok iyi kalpli kimse	çok iyi ayrı sıfat gibi okunuyor
+2026-10-16T16:14:19	1380	TR	japon pirinç şarabı	sake, Japon pirinç şarabı	yerleşik ad eksik, Japon büyük harf
+2026-10-16T16:14:19	26124	TR	satış temsilcisi	kadın satıcı, satış görevlisi	satış temsilcisi farklı meslek
+2026-10-16T16:14:19	6784	TR	örnek almak, numune toplamak	numune almak, örnek toplamak	örnek almak rol model anlamına karışır
+2026-10-16T16:14:19	6784	ORNEK	The lab technician sampled the blood to run the required tests.	Scientists sampled the river water every week.	kan örneği cümlesi doğal değil
+2026-10-16T16:14:19	19437	TR	ölçüm aleti, tartı	terazi, tartı, baskül	yerleşik karşılık terazi eksikti
+2026-10-16T16:14:19	10875	TR	senaryo	senaryo, olası durum	asıl kullanım olası durum
+2026-10-16T16:14:19	10875	EN	a written outline of a film, play, or other performance, or a description of a possible future situation	a description of a situation that might happen in the future	film metni anlamı İngilizcede yaygın değil
+2026-10-16T16:14:19	10875	ORNEK	The director reviewed the scenario before the rehearsal began.	In the worst-case scenario, we will have to cancel the trip.	örnek olası durum anlamını göstersin
+2026-10-16T16:14:19	4320	TR	başlangıç noktası, sıfırdan başlama durumu	(from ile) sıfır, başlangıç noktası	anlam from scratch kalıbıyla oluşuyor
+2026-10-16T16:14:19	4321	EN	to rub a surface with one's fingernails or a sharp object in order to relieve itching or to cause a slight injury	to rub your skin with your nails, usually because it itches	açıklama sıyırma anlamını karıştırıyordu
+2026-10-16T16:14:19	4321	ORNEK	The child scratched his knee after falling on the playground.	He scratched his arm because of the mosquito bite.	örnek kaşımak değil sıyırmak anlamındaydı
+2026-10-16T16:14:19	1392	TR	bağırmak, çığlık atmak	çığlık atmak, bağırmak	asıl karşılık çığlık atmak başa
+2026-10-16T16:14:19	16861	TR	gösterim yapmak	(film vb.) göstermek, gösterime sunmak	gösterim yapmak geçişli kullanımı vermiyor
+2026-10-16T16:14:19	16862	TR	incelemek, süzmek	taramak, elemeden geçirmek, incelemek	süzmek yanıltıcı, yerleşik terim taramak
+2026-10-16T16:14:19	3923	TR	fok balinası	fok, fok balığı	fok balinası yanlış hayvan adı
+2026-10-16T16:14:19	3925	TR	kapak, sızdırmaz kapatma	conta, sızdırmazlık	yerleşik teknik terim conta; kapak yanlış
+2026-10-16T16:14:19	17037	TR	kapasiteye sahip olmak	(… kişi) almak, … kişilik oturma yeri olmak	kapasiteye sahip olmak anlamı karşılamıyor
+2026-10-16T16:14:19	3942	TR	ikincil, başka bir	ikinci, başka bir, ek	ikincil secondary karşılığı
+2026-10-16T16:14:19	3945	ORNEK	The secondary school offers a wide range of extracurricular activities.	For her, price is a secondary concern; quality matters most.	ortaokul örneği anlamı göstermiyor
+2026-10-16T16:14:19	17645	TR	bölge, sektör	sektör, kesim, bölge	örnekteki anlam sektör, başa
+2026-10-16T16:14:19	18968	ORNEK	I see the main idea of the article after reading the summary.	Now I see what you mean.	örnek cümle doğal değildi
+2026-10-16T16:14:19	17859	TR	araştıran, talep eden kişi	arayan, peşinde olan kişi	araştıran yanıltıcı; job seeker iş arayan
+2026-10-16T16:14:19	6713	ORNEK	The sky looked clear, but the storm was seemingly approaching.	The task was seemingly simple, but it took us hours.	örnek çelişkili ve anlamsız
+2026-10-16T16:14:19	13778	TR	ses birimi	bölüt, ses parçası	ses birimi fonem demek
+2026-10-16T16:14:19	1402	TR	ele geçirmek, yakalamak	kapmak, yakalamak, ele geçirmek	örnekteki anlam kapmak, eksikti
+2026-10-16T16:14:19	18339	TR	anlam, kavram	anlam	kavram farklı kelime
+2026-10-16T16:14:19	18000	TR	cezalandırmak, hüküm vermek	mahkûm etmek, ceza vermek	yerleşik hukuk terimi mahkûm etmek
+2026-10-16T16:14:19	14598	TR	ortam, mekân, zaman	ortam, mekân, çevre	tek başına "zaman" karşılığı yanıltıcı
+2026-10-16T16:14:19	2797	TR	renk tonu, renk geçişi	ton, renk tonu	renk geçişi gradyan demek, yanlış
+2026-10-16T16:14:19	1423	TR	titremek	sallanmak, titremek, sarsılmak	temel karşılık sallanmak eksikti
+2026-10-16T16:14:19	7004	ORNEK	The child dropped the vase and it shattered.	The ball hit the window and shattered the glass.	geçişli anlam, örnek geçişsizdi
+2026-10-16T16:14:19	2623	TR	çarşaf, yatak örtüsü	çarşaf	yatak örtüsü farklı eşya
+2026-10-16T16:14:19	5335	TR	koruyucu dış kabuk	kabuk	açıklama değil karşılık olmalı
+2026-10-16T16:14:19	5334	TR	top mermisi, mermi kovanı	top mermisi, obüs mermisi	mermi kovanı farklı kavram
+2026-10-16T16:14:19	18037	TR	vardiya, iş değişimi	vardiya, nöbet	iş değişimi yanlış karşılık
+2026-10-16T16:14:19	1439	TR	şaşırtmak, hayret ettirmek	şoke etmek, sarsmak, şaşırtmak	yerleşik karşılık şoke etmek eksikti
+2026-10-16T16:14:19	3701	ORNEK	The table is short, so you can sit comfortably on the floor.	She has short hair and big brown eyes.	örnek uzunluk değil alçaklık anlatıyordu
+2026-10-16T16:14:19	15189	TR	kanıtlamak, ispatlamak	göstermek, ortaya koymak, kanıtlamak	örnekteki kullanım göstermek, eksikti
+2026-10-16T16:14:19	12642	EN	a brief period of heavy rain	a short period of rain	örnekte hafif sağanak, açıklama "heavy" diyordu
+2026-10-16T16:14:19	7597	EN	causing a feeling of disgust or revulsion; made to feel sick or repulsed	feeling disgusted, shocked or upset by something	sıfat hissedeni anlatır, "causing" yanlış
+2026-10-16T16:14:19	3476	TR	kenar, yüz	yan, kenar, yüz	temel karşılık "yan" eksikti
+2026-10-16T16:14:19	1449	TR	iç çekiş, içten gelen ses	iç çekiş	"içten gelen ses" yanıltıcı
+2026-10-16T16:14:19	4777	TR	kolay, anlaşılması basit	basit, kolay	temel karşılık "basit" eksikti
+2026-10-16T16:14:19	1915	EN	to cause something to go down below the surface of a liquid	to go down below the surface of water; to make something do this	açıklama yalnız geçişli, temel anlam batmak
+2026-10-16T16:14:19	1915	ORNEK	The diver carefully sank the anchor to keep the boat steady.	The old ship sank in the storm.	çapa örneği doğal değil
+2026-10-16T16:14:19	16678	TR	deri	deri, cilt, ten	insan için yaygın karşılık cilt eksikti
+2026-10-16T16:14:19	1463	TR	uykulu, sersem	uykulu, mahmur	sersem uykulu demek değil
+2026-10-16T16:14:19	1464	TR	küçük, önemsiz	hafif, küçük, önemsiz	temel karşılık hafif eksikti
+2026-10-16T16:14:19	1467	TR	az bir ölçüde	biraz, hafifçe	yerleşik karşılık biraz eksikti
+2026-10-16T16:14:19	16908	TR	geç anlayan, ağır kanlı, kalın kafalı	geç anlayan, yavaş kavrayan	ağır kanlı mizaç anlatır, kalın kafalı aşağılayıcı
+2026-10-16T16:14:19	1481	TR	koku almak	koklamak, koku almak	temel karşılık koklamak eksikti
+2026-10-16T16:14:19	3226	TR	toprak, yer kabuğu	toprak	yer kabuğu farklı kavram
+2026-10-16T16:14:19	5612	ORNEK	She solely prepared the presentation for the meeting.	The decision was based solely on the test results.	örnek cümle doğal değildi
+2026-10-16T16:14:19	17864	TR	tek başına, yalnız	solo, tek kişilik, tek başına	örnekteki solo albüm karşılığı eksikti
+2026-10-16T16:14:19	12326	TR	kızgın, sinirli	kırgın, küskün, kızgın	içerleme anlamı eksikti
+2026-10-16T16:14:19	14105	TR	deniz körfezi, su yolu	boğaz, körfez	yerleşik coğrafya terimi boğaz eksikti
+2026-10-16T16:14:19	14106	TR	ses çıkarmak, ses vermek	çalmak, ses çıkarmak	alarm, zil için yerleşik karşılık
+2026-10-16T16:14:19	14106	ORNEK	The kettle sounded as the water began to boil.	The fire alarm sounded and everyone left the building.	çaydanlık örneği doğal değildi
+2026-10-16T16:14:19	14107	TR	görünmek, izlenim vermek	kulağa … gelmek, gibi görünmek	temel karşılık kulağa gelmek eksikti
+2026-10-16T16:14:19	24773	TR	hatıra, yadigâr	hatıra, hediyelik eşya, yadigâr	yaygın karşılık hediyelik eşya eksikti
+2026-10-16T16:14:19	20066	TR	uzay, gök cismi dışı boşluk	uzay	ikinci karşılık anlamsız ifade
+2026-10-16T16:14:19	6720	TR	süreç boyunca devam etmek	sürmek, (bir süreyi) kapsamak	eski ifade doğal değildi
+2026-10-16T16:14:19	19053	TR	başlatmak, kıvılcım oluşturmak	tetiklemek, yol açmak, başlatmak	açıklama mecaz anlam, kıvılcım uyumsuz
+2026-10-16T16:14:19	19063	TR	parlak, ışıldayan, köpüklü, ferahlatıcı	parlak, ışıldayan, gazlı, köpüklü	ferahlatıcı yanlış, gazlı eksikti
+2026-10-16T16:14:19	5490	TR	riskli yatırım yapmak	spekülasyon yapmak, riskli yatırım yapmak	yerleşik terim eksikti
+2026-10-16T16:14:19	3982	TR	alkollü içki, içki	sert içki, damıtılmış alkollü içki	spirits şarap değil, sert içki demek
+2026-10-16T16:14:19	13128	TR	dikkat, ilgi	ilgi odağı, dikkat merkezi	anlam ilgi odağı olmak, dikkat/ilgi eksik
+2026-10-16T16:14:19	10539	TR	sürme, ezme	ezme, (ekmeğe) sürülen krem	sürme yiyecek adı değil
+2026-10-16T16:14:19	6680	ORNEK	The student tried to spy on the professor's lecture notes.	He was accused of spying for a foreign government.	ders notunu gözetlemek doğal değil
+2026-10-16T16:14:19	17618	TR	küçük grup, ekip	ekip, takım, tim, manga	küçük grup zayıf, yerleşik terimler eklendi
+2026-10-16T16:14:19	16923	TR	düz, köşeli, açıları dik	köşeli, dik açılı	düz yanıltıcı
+2026-10-16T16:14:19	15986	EN	the way a person holds their body while standing; a posture or bearing	a firm opinion or position that someone takes on an issue	EN beden duruşu diyor, anlam tutum
+2026-10-16T16:14:19	15992	TR	süregelen, mevcut	daimi, sürekli, kalıcı	mevcut yanlış, anlam kalıcılık
+2026-10-16T16:14:19	8329	TR	açık, belirgin, kesin	keskin, çarpıcı, belirgin, açık	kesin anlamı karşılamıyor
+2026-10-16T16:14:19	16388	TR	askeri üs, karargâh	askeri üs, garnizon	karargâh farklı kavram (headquarters)
+2026-10-16T16:14:19	7851	TR	kaynaklanmak, ileri gelmek	(from ile) kaynaklanmak, ileri gelmek	anlam from ile oluşuyor
+2026-10-16T16:14:19	14743	TR	bellek çubuğu	USB bellek, flash bellek	bellek çubuğu yerleşik terim değil
+2026-10-16T16:14:19	14746	TR	devam ettirmek, sürdürmek	(with/to ile) bağlı kalmak, vazgeçmemek, sürdürmek	anlam with/to ile oluşuyor
+2026-10-16T16:14:19	11690	TR	sert, ağır	sert, katı, bükülmez	ağır yanlış karşılık
+2026-10-16T16:14:19	12603	TR	yine de, hâlâ	hâlâ	yine de başka anlam (nevertheless)
+2026-10-16T16:14:19	1856	TR	hareket ettirmek, kışkırtmak	uyandırmak, harekete geçirmek, kışkırtmak	hareket ettirmek örnekteki anlamı vermiyor
+2026-10-16T16:14:19	12464	TR	mal, ürün, envanter	stok, mal, envanter	yerleşik terim stok eksik
+2026-10-16T16:14:19	12479	TR	kargaşa, ayaklanma	(tepki) fırtına, kargaşa, çalkantı	ayaklanma yanlış, örnek medya tepkisi
+2026-10-16T16:14:19	19283	TR	kat, katman, bina katı	kat, bina katı	katman yanlış (layer)
+2026-10-16T16:14:19	1508	TR	gerilim, sıkıntı	zorlanma, baskı, gerilim, yük	fiziksel zorlanma karşılığı eksikti
+2026-10-16T16:14:19	17349	TR	strateji, plan, taktik	strateji, plan	taktik farklı kavram
+2026-10-16T16:14:19	17815	TR	akış, sürekli veri akışı	akış, canlı yayın, veri akışı	örnekteki yayın anlamı eksik
+2026-10-16T16:14:19	18902	TR	kuvvet, dayanma gücü	güç, kuvvet, dayanıklılık	temel karşılık güç eksik
+2026-10-16T16:14:19	18903	TR	askeri güç, mevcudiyet	askeri güç, asker mevcudu	mevcudiyet varlık demek, yanlış
+2026-10-16T16:14:19	13845	TR	psikolojik baskı, gerginlik	stres, gerginlik, psikolojik baskı	yerleşik terim stres eksik
+2026-10-16T16:14:19	13846	TR	fiziksel gerilim, basınç	gerilme, gerilim, mekanik zorlanma	mühendislik terimi gerilme; basınç farklı
+2026-10-16T16:14:19	13848	TR	baskı uygulamak, zorlamak	strese sokmak, germek, baskı altına almak	örnekteki strese sokma anlamı
+2026-10-16T16:14:19	1513	ORNEK	He felt a sudden stretch in his back while lifting the box.	He did a quick stretch before he started running.	örnek strain (incinme) anlamını veriyor
+2026-10-16T16:14:19	1514	ORNEK	The project will be delayed for a stretch of two weeks.	He worked for long stretches without a break.	örnek doğal değil
+2026-10-16T16:14:19	9963	ORNEK	The bright colors of the banner struck the eyes of every passerby.	What struck me most was how quiet the town was.	struck the eyes doğal değil
+2026-10-16T16:14:19	5101	TR	ip, ince bağ	ip, sicim	yerleşik terim sicim eksik, ince bağ zayıf
+2026-10-16T16:14:19	2749	TR	giysileri çıkarmak, soyunmak	soymak, sökmek, (giysilerini) çıkarmak, soyunmak	örnekteki kaplama sökme anlamı eksik
+2026-10-16T16:14:19	2750	TR	yoksun bırakmak, eksik bırakmak	(of ile) yoksun bırakmak, elinden almak	anlam of ile oluşuyor; eksik bırakmak zayıf
+2026-10-16T16:14:19	6872	TR	rekabet etmek, mücadele etmek	(against ile) mücadele etmek, savaşmak	rekabet yanlış; anlam against ile
+2026-10-16T16:14:19	12688	TR	düzen, organizasyon	yapı, düzen, örgütlenme	temel karşılık yapı eksik
+2026-10-16T16:14:19	6146	TR	rastlamak, tesadüfen bulmak	(upon/across ile) rastlamak, tesadüfen bulmak	anlam upon/across ile oluşuyor
+2026-10-16T16:14:19	14487	TR	yöntem, biçim	tarz, biçim, yöntem	örnekteki yazı tarzı için tarz eksik
+2026-10-16T16:14:19	10633	TR	bağlı, tabi	(to ile) tabi, bağlı, maruz	anlam to ile oluşuyor
+2026-10-16T16:14:19	7073	ORNEK	He used a syringe to suck the blood sample.	She sucked the juice through a straw.	şırınga ile kan örneği doğal değil
+2026-10-16T16:14:19	1536	TR	acı çekmek, acı hissetmek	acı çekmek, ıstırap çekmek, muzdarip olmak	örnekteki suffer from için muzdarip eksik
+2026-10-16T16:14:19	17600	TR	şeker, tatlandırıcı	şeker	tatlandırıcı farklı ürün (sweetener)
+2026-10-16T16:14:19	5138	TR	ima etmek, dolaylı olarak belirtmek	ima etmek, işaret etmek, göstermek	örnekteki bulgular göstermek anlamı eksik
+2026-10-16T16:14:19	17803	ORNEK	He felt hopeless and talked about suicide with his therapist.	The campaign aims to raise awareness and help prevent suicide.	kişisel umutsuzluk örneği hassas, nötr örnek
+2026-10-16T16:14:19	3585	TR	seri, renk	(iskambilde) renk, takım	seri yanlış karşılık
+2026-10-16T16:14:19	19086	TR	güneş, yıldız	güneş	yıldız tek başına yanıltıcı
+2026-10-16T16:14:19	19696	TR	gerekmek, zorunda olmak	(be supposed to ile) -mesi gerekmek, -mesi beklenmek	anlam be supposed to kalıbıyla oluşuyor
+2026-10-16T16:14:19	1872	ORNEK	I suspect that the meeting will be postponed.	The police suspect that he stole the car.	örnek sanmak anlamında, açıklama suçluluk diyor
+2026-10-16T16:14:19	3041	TR	oyları, kararları yönlendirmek, etkilemek	(oy, kamuoyu vb.) değiştirmek, lehine çevirmek, etkilemek	virgül yüzünden karşılıklar bozuk bölünüyor
+2026-10-16T16:14:19	1556	TR	sembol, temsil eden işaret	sembol, simge, temsil eden işaret	yerleşik karşılık simge eksik
+2026-10-16T16:14:19	5158	TR	uyumlu, birbirine bağlı	rezonansla oluşan, eş titreşimli	uyumlu, birbirine bağlı bu anlamı vermiyor
+2026-10-16T16:14:19	5156	TR	taziye, acısını paylaşma, anlayış	acısını paylaşma, şefkat, anlayış, taziye	ana anlam başa, taziye dar anlam
+2026-10-16T16:14:19	5156	ORNEK	She sent a card to show her sympathy for the accident.	She sent a card to show her sympathy after the accident.	sympathy for the accident doğal değil
+2026-10-16T16:14:19	6981	TR	bütünleme, sentez	sentez, birleştirme, bütünleştirme	bütünleme Türkçede sınav anlamına gelir
+2026-10-16T16:14:19	19573	TR	metodik, düzenli, planlı	sistematik, düzenli, planlı, metodik	yerleşik karşılık sistematik eksik
+2026-10-16T16:14:19	7161	TR	strateji, taktik	taktik, yöntem	strateji farklı kavram
+2026-10-16T16:14:19	5211	TR	akıtmak, çekmek, fıçılamak	(sıvı) akıtmak, (fıçıdan, borudan) çekmek, özsu almak	fıçılamak ters anlam
+2026-10-16T16:14:19	5211	ORNEK	The gardener tapped the irrigation pipe to water the plants.	Farmers tap maple trees to collect their sap.	örnek bu anlamı göstermiyor
+2026-10-16T16:14:19	5212	TR	gizlice dinlemek, dinlemeye almak	(kaynaktan) yararlanmak, (bilgiye) erişmek, kullanmak	gizlice dinlemek EN ve örnekle uyumsuz
+2026-10-16T16:14:19	17400	TR	estetik anlayış, incelik	zevk, beğeni, estetik anlayış, incelik	yerleşik karşılık zevk eksik
+2026-10-16T16:14:19	17402	TR	tadında olmak, belirli bir lezzete sahip olmak	tadı (…) olmak, (…) tadında olmak	tastes sweet = tadı tatlı olmak
+2026-10-16T16:14:19	16007	TR	yük, sorumluluk	yük, külfet	sorumluluk yanlış anlam
+2026-10-16T16:14:19	19991	TR	ekip, grup	takım, ekip, grup	en yaygın karşılık takım eksik
+2026-10-16T16:14:19	19992	TR	takım kurmak, birlikte çalışmak	(up ile) birlikte çalışmak, iş birliği yapmak, güç birleştirmek	anlam up ile oluşuyor
+2026-10-16T16:14:19	1569	ORNEK	She tore the page to mark the important paragraph.	She tore the letter into small pieces.	örnek doğal değil
+2026-10-16T16:14:19	18377	TR	teknik, bilimsel	teknik	bilimsel farklı kavram
+2026-10-16T16:14:19	18375	TR	yöntem, usul	teknik, yöntem, usul	yerleşik karşılık teknik eksik
+2026-10-16T16:14:19	18376	TR	beceri, sanat	teknik, beceri, ustalık	sanat yanıltıcı, teknik eksik
+2026-10-16T16:14:19	20063	ORNEK	The manager will term the project "Alpha" to distinguish it from others.	This period is often termed the Golden Age of the city.	örnek doğal değil, term genelde edilgen
+2026-10-16T16:14:19	19457	TR	son, nihai, son nokta	son, nihai	son nokta isim, tür uyumsuz
+2026-10-16T16:14:19	19457	ORNEK	The contract includes a terminal clause that ends the partnership.	The town's old factories are in terminal decline.	terminal clause doğal değil
+2026-10-16T16:14:19	8343	ORNEK	She spoke in a voice that sounded terribly harsh to the listeners.	The team played terribly and lost five to nothing.	örnek pekiştirme anlamını gösteriyor
+2026-10-16T16:14:19	1723	TR	korkutmak, dehşete sürüklemek	çok korkutmak, dehşete düşürmek	dehşete sürüklemek yerleşik değil
+2026-10-16T16:14:19	17879	TR	alan, uzmanlık, sorumluluk	alan, uzmanlık alanı, faaliyet alanı	sorumluluk tek başına yanıltıcı
+2026-10-16T16:14:19	9636	TR	denetlemek, ölçmek, sınamak	test etmek, sınamak, ölçmek, sınav yapmak	denetlemek farklı anlam, test etmek eksik
+2026-10-16T16:14:19	9643	ORNEK	The defendant asked the victim to testify about what happened that night.	The witness agreed to testify in court.	sanık mağdurdan tanıklık istemez
+2026-10-16T16:14:19	9645	ORNEK	Scientists often treat data as testimony for their hypotheses.	The full stadium was testimony to the team's popularity.	örnek doğal değil
+2026-10-16T16:14:19	13106	TR	çok şükür	neyse ki, çok şükür	en yaygın karşılık neyse ki eksik
+2026-10-16T16:14:19	12724	TR	kuramsal	kuramsal, teorik	yerleşik karşılık teorik eksik
+2026-10-16T16:14:19	20815	TR	ondan sonra, bundan böyle	ondan sonra, o tarihten sonra, daha sonra	bundan böyle şimdiden sonrası demek
+2026-10-16T16:14:19	9779	TR	derin düşüncelere dalmış	düşünceye dalmış, dalgın, iyi düşünülmüş	özenle düşünülmüş anlamı eksik
+2026-10-16T16:14:19	9779	ORNEK	She stared out the window, lost in a thoughtful pause.	She looked thoughtful as she read the letter again.	thoughtful pause doğal değil
+2026-10-16T16:14:19	4811	TR	ince iplik, ip	iplik, dikiş ipliği	ip farklı nesne
+2026-10-16T16:14:19	5824	TR	kapı eşiği, giriş çerçevesi	kapı eşiği, eşik	giriş çerçevesi kapı kasası demek
+2026-10-16T16:14:19	2413	TR	gırtlak, boğaz	boğaz, gırtlak	yaygın karşılık boğaz başa
+2026-10-16T16:14:19	1592	ORNEK	The protestors threw the barricades into the street.	The horse suddenly threw its rider to the ground.	örnek düz atma anlamını gösteriyor
+2026-10-16T16:14:19	5754	ORNEK	The tide of consumer preferences is leaning toward sustainable products.	The tide of public opinion turned against the plan.	örnek doğal değil
+2026-10-16T16:14:19	12885	ORNEK	The student kept his tidy workspace throughout the semester.	The student kept his workspace tidy throughout the semester.	örnek dilbilgisel olarak garip
+2026-10-16T16:14:19	12886	TR	kayda değer, önemli ölçüde	hatırı sayılır, kayda değer, yüklü (miktar)	önemli ölçüde zarf, tür uyumsuz
+2026-10-16T16:14:19	12887	TR	düzenlemek, tertiplemek	toplamak, toparlamak, düzenlemek	tertiplemek farklı anlam
+2026-10-16T16:14:19	18133	TR	eğilmek, yana yatmak	devirmek, eğmek, eğilmek, yana yatmak	geçişli kullanım karşılığı eksik
+2026-10-16T16:14:19	13422	TR	uç, kıyı	uç, (dağ, yamaç) eteği	kıyı yanlış, örnekte etek anlamı
+2026-10-16T16:14:19	8747	ORNEK	Children should tolerate small mistakes in schoolwork.	She cannot tolerate loud noise while she studies.	örnek anlamca garip
+2026-10-16T16:14:19	11891	TR	zarar, kayıp, etkisi	zarar, kayıp, olumsuz etki, bedel	etkisi iyelikli biçim, karşılık bozuk
+2026-10-16T16:14:19	7235	TR	çok, büyük miktar	bir sürü, tonlarca, büyük miktar	a ton of = bir sürü, çok tür uyumsuz
+2026-10-16T16:14:19	1599	TR	üslup, tutum	ton, ses tonu, üslup, tavır	angry tone = öfkeli ses tonu, karşılık eksik
+2026-10-16T16:14:19	15131	TR	çok, aşırı	fazla, gereğinden fazla, aşırı	çok, very ile karışır
+2026-10-16T16:14:19	18092	TR	araç, gereç	alet, araç, gereç	yerleşik karşılık alet eksik
+2026-10-16T16:14:19	13742	TR	üstüne çıkmak, geçmek	aşmak, geçmek, geride bırakmak	üstüne çıkmak tırmanmak gibi okunuyor
+2026-10-16T16:14:19	5965	TR	gezdirmek, gezip görmek	gezdirmek, (bir yeri) dolaştırmak	gezip görmek EN ile çelişiyor
+2026-10-16T16:14:19	5966	TR	turizm, seyahat, gezi	turizm	seyahat, gezi farklı kavram
+2026-10-16T16:14:19	16086	TR	meslek, uğraş	meslek, zanaat, uğraş	yerleşik karşılık zanaat eksik
+2026-10-16T16:14:19	16086	ORNEK	After graduating, she chose a trade in graphic design.	After school, he learned the plumbing trade from his uncle.	grafik tasarım trade örneği değil
+2026-10-16T16:14:19	16896	TR	araç akışı, yol trafiği	trafik, araç trafiği	yerleşik karşılık trafik eksik
+2026-10-16T16:14:19	18991	ORNEK	The play ends with a tragic ending that leaves the audience in tears.	The play has a tragic ending that leaves the audience in tears.	ends with ending tekrarı
+2026-10-16T16:14:19	5329	ORNEK	The construction team had to trail the heavy pipe through the narrow tunnel.	She walked slowly, trailing her bag along the floor behind her.	örnek doğal değil
+2026-10-16T16:14:19	16541	ORNEK	He started basic training at the local gym.	He does weight training at the local gym twice a week.	basic training askerî eğitim demek
+2026-10-16T16:14:19	4017	TR	bir dilden başka dile aktarmak	çevirmek, tercüme etmek	temel karşılık çevirmek eksik, TR tanım gibi
+2026-10-16T16:14:19	5771	TR	vites, şanzıman	şanzıman, vites kutusu	vites tek başına gear demek
+2026-10-16T16:14:19	16695	EN	to cause someone or something to lose balance and stumble or fall	to catch your foot on something and stumble or fall, or to make someone do this	EN yalnız geçişli, örnek geçişsiz
+2026-10-16T16:14:19	17723	TR	yük taşıyan kamyon	kamyon	gereksiz tanımlama, yerleşik karşılık kamyon
+2026-10-16T16:14:19	2139	ORNEK	The zoo keeper fed the elephant using its trunk.	The elephant picked up the fruit with its trunk.	örnek cümle anlamsız
+2026-10-16T16:14:19	12019	TR	güvene vermek, emanet etmek	emanet etmek, teslim etmek	güvene vermek Türkçede yerleşik değil
+2026-10-16T16:14:19	13281	TR	tur, sıra	sıra, tur	asıl karşılık sıra başta olmalı
+2026-10-16T16:14:19	13283	EN	to cause something to move or face a different direction	to move or face a different direction, or to make something do this	dönmek geçişsiz, EN yalnız geçişli
+2026-10-16T16:14:19	13282	EN	to change direction or position, or to become something different	to change into something different; to become	TR dönüşmek, EN yön değiştirmeyi anlatıyor
+2026-10-16T16:14:19	13282	ORNEK	The car turned left at the intersection.	The leaves turn yellow in autumn.	örnek dönüşmek anlamını göstermiyor
+2026-10-16T16:14:19	13288	EN	the act or process of changing direction or orientation; a point where something turns	a place where one road branches off from another; a bend in a road	TR yer anlamında, EN eylem anlamında
+2026-10-16T16:14:19	13288	ORNEK	The cyclist struggled with the tight turning on the mountain path.	Take the second turning on the left.	örnek doğal değil
+2026-10-16T16:14:19	1979	ORNEK	She twisted the lid to open the jar.	He twisted the wire into a small circle.	kapak çevirmek bükmek anlamı değil
+2026-10-16T16:14:19	15899	TR	cevapsız, yanıtlanamaz	yanıtlanamaz, cevaplanamaz	cevapsız unanswered demek
+2026-10-16T16:14:19	1618	TR	amca, dayı	amca, dayı, enişte	teyze/hala kocası anlamı EN'de var
+2026-10-16T16:14:19	2711	TR	bilinçsiz, farkında olmayan	baygın, bilinci kapalı, farkında olmayan	bilinçsiz Türkçede farklı anlam, örnek bayılma
+2026-10-16T16:14:19	15166	TR	altında, altında bulunma durumu	altında, altına	altında bulunma durumu karşılık değil
+2026-10-16T16:14:19	9149	TR	yaşamak, maruz kalmak	geçirmek, yaşamak, maruz kalmak	yerleşik karşılık geçirmek eksik
+2026-10-16T16:14:19	4385	TR	düşmanca, samimiyetsiz	dostça olmayan, soğuk, samimiyetsiz	düşmanca hostile karşılığı, fazla güçlü
+2026-10-16T16:14:19	15909	TR	ilgisiz, alakasız	ilgisiz, ilgi duymayan	alakasız irrelevant demek
+2026-10-16T16:14:19	20119	TR	birleşme, kaynaşma	birlik, birleşme	örnek birlik anlamında
+2026-10-16T16:14:19	20119	EN	the act or process of joining two or more entities into a single whole	the act of joining together, or a group of countries or organizations that have joined together	EN örnekteki birlik anlamını kapsamıyor
+2026-10-16T16:14:19	19309	TR	birleştirmek, bütünleştirmek	birleşmek, birleştirmek	örnek geçişsiz, birleşmek eksik
+2026-10-16T16:14:19	19309	EN	to cause people or things to come together and form a single entity or group	to join together, or to make people or things join together, to form a single group	EN yalnız geçişli
+2026-10-16T16:14:19	18889	TR	olası olmayan, ihtimal dışı, beklenmedik	olası olmayan, olasılığı düşük, ihtimal dışı	beklenmedik unexpected karşılığı
+2026-10-16T16:14:19	15229	TR	... kadar, ... e kadar	-ene kadar, -inceye kadar	bağlaç olarak fiil eki gerekli
+2026-10-16T16:14:19	15086	TR	kadar	(to ile) -e kadar	anlam to ile oluşuyor
+2026-10-16T16:14:19	15086	ORNEK	You can stay up to ten minutes before the timer stops.	The bus can carry up to fifty passengers.	örnek doğal değil
+2026-10-16T16:14:19	16083	TR	üzerinde, -de, -da, üzerine	üzerinde, üzerine, -ince	örnekteki -ince anlamı eksik
+2026-10-16T16:14:19	18519	TR	alışılmış, tipik	her zamanki, olağan, alışılmış	yerleşik karşılık her zamanki eksik
+2026-10-16T16:14:19	9672	TR	geçerli, kabul edilen, bağlayıcı	geçerli	bağlayıcı binding demek, kabul edilen zayıf
+2026-10-16T16:14:19	17176	EN	a railway carriage used for carrying passengers or freight	a closed railway wagon used for carrying goods or luggage	van yolcu taşımaz
+2026-10-16T16:14:19	4601	TR	risk etmek, girişimde bulunmak	göze almak, cesaret etmek, risk etmek, girişimde bulunmak	örnekteki cesaret etmek anlamı eksik
+2026-10-16T16:14:19	5816	TR	ayet, bölüm	ayet	bölüm chapter demek, yanıltıcı
+2026-10-16T16:14:19	1627	TR	şiddet, zorbalık	şiddet	zorbalık bullying/tyranny demek
+2026-10-16T16:14:19	5933	TR	canlı, yaşamı sürdüren	hayati, yaşamsal, yaşamı sürdüren	canlı lively/alive demek, yanıltıcı
+2026-10-16T16:14:19	16250	TR	görüş, ifade	söz hakkı, görüş, ifade	örnekteki söz hakkı karşılığı eksik
+2026-10-16T16:14:19	17289	TR	kitap bölümü, cilt	cilt	kitap bölümü chapter demek
+2026-10-16T16:14:19	4310	TR	gönüllü olarak çalışmak	gönüllü olmak, gönüllü olarak çalışmak	gönüllü olmak temel karşılık eksik
+2026-10-16T16:14:19	16196	TR	yürüyüş, yürümek	yürüyüş, yürüme	isim kaydında fiil karşılık
+2026-10-16T16:14:19	16294	TR	duvar, bariyer	duvar	bariyer barrier demek
+2026-10-16T16:14:19	7157	TR	ısıtmak, ısı vermek	ısıtmak, ısınmak	ısı vermek farklı anlam, ısınmak eksik
+2026-10-16T16:14:19	2266	ORNEK	Rain washes the streets every evening in this town.	The waves washed against the rocks.	örnek temizlemek anlamında, akmak değil
+2026-10-16T16:14:19	19974	TR	yöntem, yaklaşım, usul	yol, yöntem, şekil, usul	en yaygın karşılık yol eksik
+2026-10-16T16:14:19	4242	EN	a physical or mental condition that makes a person vulnerable or less capable	a weak point in someone's character, or a special liking for something that is hard to resist	zaaf anlamı EN'de yok
+2026-10-16T16:14:19	4242	ORNEK	His weakness made him struggle during the marathon.	Chocolate is my biggest weakness.	örnek güçsüzlük anlamında, zaaf değil
+2026-10-16T16:14:19	5914	TR	dokuma yapmak, örmek	dokumak, örmek	dokuma yapmak yerine yerleşik fiil dokumak
+2026-10-16T16:14:19	18482	TR	ölçmek, tartmak	tartmak, ağırlığını ölçmek	yaygın karşılık tartmak başa alındı
+2026-10-16T16:14:19	18483	TR	değerlendirmek, kıymetini belirlemek	değerlendirmek, ölçüp tartmak	kıymetini belirlemek anlamı karşılamıyor
+2026-10-16T16:14:19	18490	TR	kütle, ağırlık	ağırlık	kütle fizikte farklı kavram
+2026-10-16T16:14:19	9813	TR	refah, sosyal güvenlik	refah, esenlik, sosyal yardım	sosyal güvenlik farklı kavram
+2026-10-16T16:14:19	15121	TR	sağlıklı	iyi, sağlıklı	en yaygın karşılık iyi eksik
+2026-10-16T16:14:19	1649	TR	harika şey, muazzam şey	(a whale of a ile) harika, müthiş	anlam yalnızca kalıpta oluşuyor
+2026-10-16T16:14:19	15089	TR	-ince	-dığında, -ince, -diği zaman	en yaygın karşılık eksikti
+2026-10-16T16:14:19	19979	TR	hangi yerde, ... olduğu yerde	-diği yer(de), ... olduğu yerde	hangi yerde soru anlamı, ilgi değil
+2026-10-16T16:14:19	14689	TR	... sırasında, ... süresince	-iken, ... sırasında, ... süresince	en yaygın karşılık -iken eksikti
+2026-10-16T16:14:19	15717	EN	a married woman; a woman's spouse	the woman that a man or woman is married to	a woman's spouse yanlış, koca demek
+2026-10-16T16:14:19	11822	TR	hava akımı, rüzgar	rüzgar, hava akımı	yaygın karşılık başa alındı
+2026-10-16T16:14:19	8222	TR	merak etmek, şaşırmak	merak etmek, acaba diye düşünmek	şaşırmak ikinci anlama ait, yanıltıcı
+2026-10-16T16:14:19	8223	TR	hayran kalmak, şaşkınlık duymak	(at ile) hayran kalmak, şaşkınlık duymak	anlam at ile oluşuyor
+2026-10-16T16:14:19	4142	TR	değerli, saygıya layık	layık, değerli, saygıya layık	yerleşik karşılık layık eksikti
+2026-10-16T16:14:19	6039	ORNEK	The lab technician writes down the measurements after each trial.	The program writes the results to a file.	örnek write down kullanıyor, anlamı göstermiyor
+2026-10-16T16:14:19	3501	TR	getiri, kâr payı	getiri, kazanç	kâr payı temettü demek, farklı kavram
