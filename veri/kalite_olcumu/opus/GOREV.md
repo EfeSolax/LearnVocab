@@ -2,12 +2,12 @@
 
 Sen bu işin **koordinatörüsün**. Kayıtları kendin okumaz, kendin düzeltmezsin; Opus alt ajanları yapar. Girdi/çıktı dosyalarının içeriğini okuma (bağlamın şişer, limit boşa gider). Proje koduna dokunma. Dosya silme. Efe ile Türkçe konuş, kısa yaz.
 
-Dosyalar `veri/kalite_olcumu/opus/` altında. Sıra: `o` (Haiku/Sonnet'in işaretlediği 2.838 anlam, 50'şer) → `y` (hiç taranmamış 8.313 anlam, 100'er) → `t` (taranmış, temiz çıkmış 15.233 anlam, 100'er).
+Dosyalar `veri/kalite_olcumu/opus/` altında. Sıra: `o` (Haiku/Sonnet'in işaretlediği 2.838 anlam, 50'şer) → `y` (hiç taranmamış 8.313 anlam, 100'er). **Bu turda yalnızca `o` ve `y` dosyaları işlenir (toplam 141 dosya).** `t` dosyaları (taranmış, temiz çıkmış 15.233 anlam) şimdilik taranmaz; onlara dokunma, eksik görünmeleri normaldir.
 
 ## Adımlar
 1. **Eksikleri bul** (proje kökünden):
-   `python3 araclar/dogrulama_kontrol.py veri/kalite_olcumu/opus && cat veri/kalite_olcumu/opus/eksik.txt`
-   Liste boşsa 5. adıma geç.
+   `python3 araclar/dogrulama_kontrol.py veri/kalite_olcumu/opus && grep -v '^t' veri/kalite_olcumu/opus/eksik.txt`
+   Liste boşsa 5. adıma geç. (`t` ile başlayanlar bu turda yok sayılır.)
 2. **Grupla:** Listeyi verilen sırayla 4'erli kümelere böl.
 3. **Dağıt:** Her küme için Agent aracıyla alt ajan başlat: `subagent_type: general-purpose`, `model: opus`, arka planda. Aynı anda **en çok 4** ajan; biri bitince sıradakini başlat. İstem aynen şu (dosya listesini değiştir):
    ```
@@ -17,7 +17,7 @@ Dosyalar `veri/kalite_olcumu/opus/` altında. Sıra: `o` (Haiku/Sonnet'in işare
    ```
    - Her 4 küme bitince: `git add veri/kalite_olcumu/opus && git commit -m "Opus turu: ara sonuç"`.
    - **Kullanım limiti / rate limit hatası** alırsan yeni ajan başlatma, çalışanları bekle, commit'le ve 4. adımı (uygulama) **o ana kadar bitenler için** yap; sonra "Limit doldu, N dosya kaldı" de ve dur. Efe aynı istemi tekrar verince 1. adımdan devam edersin.
-   - Efe'nin haftalık limit sınırı yok; yine de her 10 kümede bir "N/294 dosya bitti" diye tek satır yaz.
+   - Efe haftalık limitinin bitmesini istemiyor: Efe durmanı söylerse dur. her 10 kümede bir "N/141 dosya bitti" diye tek satır yaz.
 4. **Uygula** (her `o` serisi bittiğinde, limit dolduğunda ve en sonda):
    ```
    python3 araclar/dogrulama_kontrol.py veri/kalite_olcumu/opus
@@ -33,4 +33,4 @@ Dosyalar `veri/kalite_olcumu/opus/` altında. Sıra: `o` (Haiku/Sonnet'in işare
    git add veri/kalite_olcumu/opus && git commit -m "Opus turu: düzeltmeler uygulandı"
    ```
    Testler başarısızsa yedeği geri koy (`cp ~/LearnVocab-yedek/<son yedek> db.sqlite3`) ve Efe'ye çıktıyı göster. Araç tekrar çalıştırılabilir: daha önce uygulananları atlar.
-5. **Doğrula ve bitir:** Kontrol aracında bozuk dosya varsa 1. adıma dön (en çok 2 tur). Sonra 4. adımı son kez çalıştır ve şunları göster: kontrol aracı özeti, uygulama özeti, `veri/kalite_olcumu/opus/efe.tsv` satır sayısı. Şunu yaz: "Opus turu bitti. Ana Opus oturumuna 'Opus turu bitti' yaz."
+5. **Doğrula ve bitir:** Kontrol aracında `o`/`y` ile başlayan bozuk dosya varsa 1. adıma dön (en çok 2 tur). Sonra 4. adımı son kez çalıştır ve şunları göster: kontrol aracı özeti, uygulama özeti, `veri/kalite_olcumu/opus/efe.tsv` satır sayısı. Şunu yaz: "Opus turu bitti. Ana Opus oturumuna 'Opus turu bitti' yaz."
