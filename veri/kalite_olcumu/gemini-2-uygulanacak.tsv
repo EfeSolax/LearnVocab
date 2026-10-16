@@ -1,0 +1,165 @@
+kimlik	kelime	tur	alan	mevcut_veya_claude_degeri	gemini_duzeltmesi	neden
+18467	awaken	verb	TR	uyandırmak	uyandırmak, uyanmak	EN hem geçişli hem geçişsiz (become awake) tanımlıyor; geçişsiz uyanmak eksikti
+22946	crisp	verb	TR	gevrekleştirmek	gevrekleştirmek, gevrekleşmek, kıtırlaştırmak	EN make or become crisp diyor; geçişsiz gevrekleşmek eksikti
+12942	diffuse	verb	TR	yaymak, dağıtmak	yaymak, yayılmak, dağıtmak, dağılmak	EN spread or cause to spread diyor; geçişsiz yayılmak/dağılmak eksikti
+595	discolor	verb	TR	renk kaybetmek, solmak	rengi solmak, renk kaybetmek, rengini soldurmak	EN cause to lose colour or become faded diyor; geçişli rengini soldurmak eklendi
+10053	even	verb	TR	düzleştirmek, eşitlemek	düzleştirmek, eşitlemek, eşitlenmek	EN make or become level or equal diyor; geçişsiz eşitlenmek eklendi
+8449	flutter	verb	TR	çırpınmak, kanat çırpmak	kanat çırpmak, çırpınmak, dalgalanmak, (hafifçe) sallamak	EN move or cause to move diyor; hem geçişsiz dalgalanma hem geçişli sallama korundu
+2612	gray	verb	TR	saçları ağarmak, kırlaşmak	(saç) ağarmak, kırlaşmak, ağartmak	EN become gray or cause to become gray diyor; geçişli ağartmak eklendi
+8229	irritate	verb	TR	rahatsız etmek, kızdırmak	tahriş etmek, kaşındırmak; rahatsız etmek, kızdırmak	Örnek cümle (itchy sweater irritates my neck) cilt tahrişini anlatırken tahriş etmek tamamen unutulmuştu
+2858	loosen	verb	TR	gevşetmek	gevşetmek, gevşemek, bollaştırmak	EN make or become less tight diyor; geçişsiz gevşemek eksikti
+14973	petrify	verb	TR	dehşete düşürmek, korkudan dondurmak	ödünü koparmak, dehşete düşürmek, korkudan taş kesilmek	EN become immobile with fear anlamını da içeriyor; korkudan taş kesilmek eklendi
+1287	quiet	verb	TR	sessizleştirmek, sakinleştirmek	susturmak, sakinleştirmek, sessizleşmek, yatışmak	EN make or become silent diyor; geçişsiz sessizleşmek/yatışmak eksikti
+14861	redden	verb	TR	kızarmak, kırmızılaşmak	kızarmak, kırmızılaşmak, kızartmak	EN become or cause to become red diyor; geçişli kızartmak eksikti
+13873	rekindle	verb	TR	yeniden alevlendirmek, yeniden canlandırmak	yeniden alevlendirmek, yeniden canlandırmak, yeniden alevlenmek	EN start burning again (geçişsiz) ve cause to start (geçişli) içeriyor
+5921	rouse	verb	TR	uyandırmak, uyanmasını sağlamak	uyandırmak, harekete geçirmek, canlandırmak	Uyanmasını sağlamak yapay ifadesi doğal karşılıklarla değiştirildi
+1681	silence	verb	TR	sessizleştirmek, susturmak	susturmak, sessize almak, sessizleştirmek	Örnek telefonları sessize almak (silence their phones) iken sessize almak eksikti
+3060	steady	verb	TR	dengeli hâle getirmek, sabitlemek	sabitlemek, dengede tutmak, dengelenmek, durulmak	EN make or become stable diyor; geçişsiz dengelenmek/durulmak eklendi
+11693	stiffen	verb	TR	sertleşmek, katılaşmak	sertleşmek, katılaşmak, sertleştirmek	EN become or cause to become rigid diyor; geçişli sertleştirmek eksikti
+4791	sway	verb	TR	sallanmak, iki yana sallanmak	sallanmak, iki yana salınmak, sallamak	EN move or cause to move back and forth diyor; geçişli sallamak eklendi
+7630	whiten	verb	TR	beyazlatmak, beyazlaşmak	beyazlatmak, ağartmak, beyazlaşmak	Yerleşik ağartmak karşılığı eklendi
+24934	wiggle	verb	TR	sallamak, kıpırdatmak	kıpırdatmak, sallamak, kıpırdanmak	EN move or cause to move diyor; geçişsiz kıpırdanmak eklendi
+3222	worsen	verb	TR	daha kötü hâle getirmek, kötüleşmek	kötüleşmek, ağırlaşmak, daha kötü hâle getirmek, kötüleştirmek	En yaygın karşılıklar (kötüleşmek, kötüleştirmek) başa alındı
+11543	abound	verb	TR	bol miktarda bulunmak	(in/with ile) bol miktarda bulunmak, dolup taşmak	Abound fiili in/with edatıyla kullanılır; etiket ve dolup taşmak eklendi
+6472	accord	verb	TR	uyumlu olmak, aynı fikirde olmak	(with ile) uyumlu olmak, örtüşmek, bağdaşmak	Örnek (schedule accords with) cansız özne ve with edatıyla; aynı fikirde olmak cansız özneye uymuyordu
+10804	alight	verb	TR	konmak	(on/upon ile) (kuş vb.) konmak, tüneklemek	Alight bu anlamda on/upon ile kullanılır; bağlam eklendi
+10805	alight	verb	TR	inmek	(from ile) (taşıttan) inmek	Alight bu anlamda from ile kullanılır; taşıt bağlamı eklendi
+9873	bargain	verb	TR	pazarlık yapmak	pazarlık yapmak, pazarlığa oturmak	Bargain with kullanımı belirtildi
+8062	beef	verb	TR	şikayet etmek, birine karşı kızmak	yakınmak, söylenmek, şikâyet etmek	Birine karşı kızmak anlamı yanlış ve bozuktu; yakınmak/söylenmek ile düzeltildi
+17981	branch	verb	TR	kollara ayrılmak, dallanmak, çatallanmak	kollara ayrılmak, dallanmak, çatallanmak	Branch into kullanımı belirtildi
+22882	collude	verb	TR	gizli iş birliği yapmak	gizlice anlaşmak, danışıklı dövüş yapmak, iş birliği yapmak	Tek karşılıklı açıklamamsı ifade yerleşik karşılıklarla zenginleştirildi
+19557	comport	verb	TR	uymak, bağdaşmak	(with ile) uymak, bağdaşmak, örtüşmek	Comport her zaman with ile kullanılır; etiket eklendi
+14936	consort	verb	TR	düşüp kalkmak, arkadaşlık etmek	(with ile) düşüp kalkmak, takılmak, arkadaşlık etmek	Consort with kullanımı belirtildi
+7998	converse	verb	TR	konuşmak, sohbet etmek	sohbet etmek, konuşmak, söyleşmek	Converse with kullanımı belirtildi
+21514	crab	verb	TR	şikâyet etmek, mızmızlanmak	mızmızlanmak, söylenmek, yakınmak	Crab about kullanımı belirtildi
+13981	deviate	verb	TR	sapmak, yönünden ayrılmak	sapmak, ayrılmak, dışına çıkmak	Deviate from kullanımı belirtildi
+6417	disapprove	verb	TR	onaylamamak, tasvip etmemek	onaylamamak, hoş karşılamamak, tasvip etmemek	Disapprove of kullanımı ve doğal hoş karşılamamak eklendi
+23011	diverge	verb	TR	ayrılmak, ayrışmak	ayrılmak, farklılaşmak, çatallanmak	Diverge from kullanımı belirtildi
+6966	excel	verb	TR	üstün olmak, başarılı olmak	çok başarılı olmak, öne çıkmak, sivrilmek	Excel in/at kullanımı belirtildi
+17314	fixate	verb	TR	odaklanmak, takıntı yapmak	(on ile) takıntı hâline getirmek, kafayı takmak, odaklanmak	Fixate on kullanımı ve doğal kafayı takmak eklendi
+25270	forage	verb	TR	yiyecek aramak, otlamak	yiyecek aramak, yem aramak	Forage for kullanımı belirtildi (otlamak graze ile karışır)
+12950	fret	verb	TR	endişelenmek, kaygılanmak	tasalanmak, dert etmek, endişelenmek	Fret about kullanımı ve dert etmek eklendi
+15058	gnaw	verb	TR	kemirmek	kemirmek, dişlemek	Gnaw on/at kullanımı belirtildi
+25310	grouse	verb	TR	şikayet etmek, mızmızlanmak	yakınmak, homurdanmak, sızlanmak	Grouse about kullanımı belirtildi
+6111	hatch	verb	TR	yumurtadan çıkmak	yumurtadan çıkmak; (yumurta) çatlamak	Hatch from kullanımı belirtildi
+13332	meddle	verb	TR	karışmak, müdahale etmek	burnunu sokmak, karışmak, müdahale etmek	Meddle in (üstüne vazife olmayan işe burnunu sokmak) nüansı eklendi
+8487	mill	verb	TR	dolanmak, etrafta dolaşmak	(around/about ile) aylak aylak dolaşmak, kaynaşmak	Mill about/around kullanımı belirtildi
+6148	mingle	verb	TR	karışmak, sosyalleşmek	kaynaşmak, arasına karışmak, sosyalleşmek	Mingle with için yerleşik kaynaşmak başa alındı
+6618	muse	verb	TR	derin derin düşünmek, kafa yormak, dalıp gitmek	derin derin düşünmek, dalıp gitmek, kafa yormak	Muse on/about kullanımı belirtildi
+11793	partake	verb	TR	katılmak, iştirak etmek	katılmak, yer almak, iştirak etmek	Partake in kullanımı belirtildi
+11610	partner	verb	TR	ortaklık kurmak, iş birliği yapmak	ortak olmak, ortaklık kurmak, iş birliği yapmak	Partner with kullanımı belirtildi
+22087	peek	verb	TR	göz atmak, çabucak bakmak	kaçamak bakmak, göz atmak, çabucak bakmak	Peek at kullanımı belirtildi
+7039	peep	verb	TR	gizlice bakmak, dikizlemek, göz ucuyla bakmak	gözetlemek, gizlice bakmak, göz ucuyla bakmak	Peep at kullanımı belirtildi
+6957	pine	verb	TR	özlemek, hasret duymak	(for ile) hasret çekmek, burnunda tütmek, özlemek	Pine for kullanımı belirtildi
+12293	profit	verb	TR	yararlanmak, faydalanmak	yararlanmak, kazanç sağlamak, faydalanmak	Profit from kullanımı belirtildi
+5410	prospect	verb	TR	madeni kaynak aramak, keşif yapmak	maden aramak, arama/keşif yapmak	Madeni kaynak aramak yapay ifadesi maden aramak olarak düzeltildi
+23542	pun	verb	TR	kelime oyunu yapmak	kelime oyunu yapmak, cinas yapmak	Pun on kullanımı belirtildi
+9086	quibble	verb	TR	küçük detaylarda itiraz etmek	ufak tefek şeylere takılmak, sudan bahanelerle itiraz etmek	Quibble about kullanımı doğal Türkçeyle düzeltildi
+4912	rebel	verb	TR	isyan etmek, başkaldırmak	ayaklanmak, baş kaldırmak, isyan etmek	Rebel against kullanımı belirtildi
+20272	revolt	verb	TR	isyan etmek, ayaklanmak	ayaklanmak, isyan etmek, baş kaldırmak	Revolt against kullanımı belirtildi
+24709	secede	verb	TR	ayrılmak, bağımsızlık ilan etmek	ayrılmak (devletten/birlikten), kopmak	Secede from kullanımı belirtildi
+11989	stray	verb	TR	sapmak, uzaklaşmak, ayrılmak	sapmak, uzaklaşmak, sürüden/yoldan ayrılmak	Stray from kullanımı belirtildi
+6288	suffice	verb	TR	yeterli olmak, yeterli gelmek	yetmek, yeterli olmak, kâfi gelmek	En yaygın karşılık olan yetmek başa eklendi
+12728	theorize	verb	TR	kuramlaştırmak, teori üretmek	kuram üretmek, teori geliştirmek, fikir yürütmek	Geçişli kuramlaştırmak yerine örnekteki geçişsiz teori üretmek başa alındı
+24903	vie	verb	TR	rekabet etmek, yarışmak	çekişmek, yarışmak, rekabet etmek	Vie for/with kullanımı belirtildi
+11254	wrestle	verb	TR	mücadele etmek	boğuşmak, güreşmek, mücadele etmek	Wrestle with için hem gerçek güreşmek hem mecazi boğuşmak eklendi
+14115	yearn	verb	TR	özlemek, hasret duymak	can atmak, hasret çekmek, özlem duymak	Yearn for (arzu/özlem duymak) için yalnız geçmişe dönük özlemek yetersizdi; can atmak eklendi
+25991	conducive	adjective	TR	yararlı, elverişli	(-e) elverişli, uygun, ortam hazırlayan	Conducive to için ilk sıradaki genel yararlı (useful) yanıltıcıydı
+9690	warp	noun	TR	bükülme, çarpıtma, sapma	eğrilme, çarpılma, bel verme, bükülme	Ahşap tahtanın eğrilmesi (warp) örneğinde gerçeği çarpıtmak anlamındaki çarpıtma yanlış kullanılmıştı
+9081	sprawling	adjective	TR	yaygın, geniş alana yayılmış	geniş alana yayılmış, dağınık yerleşimli	Sprawling campus örneğinde ilk sıradaki yaygın (common) yanıltıcıydı
+15895	kingpin	noun	TR	elebaşı, kilit kişi, kilit aktör	kilit isim, belkemiği, başrol oyuncusu; elebaşı	Olumlu proje yöneticisi örneğinde ilk sırada suç çağrışımlı elebaşı duruyordu
+22504	torque	verb	TR	dönme kuvveti uygulamak	tork uygulamak, dönme kuvveti uygulamak	Fiil biçimine de yerleşik tork eklendi
+11316	anatomical	adjective	TR	anatomiyle ilgili	anatomik, anatomiyle ilgili	Yerleşik anatomik sıfatı eksikti
+17488	capacitor	noun	TR	kondansatör	kapasitör, kondansatör, sığaç	Yerleşik kapasitör ve Türkçe sığaç terimleri eklendi
+14775	cardiovascular	adjective	TR	kalp ve kan damarlarıyla ilgili	kardiyovasküler, kalp ve damarlarla ilgili	Yerleşik kardiyovasküler sıfatı eksikti
+18691	deformation	noun	TR	şekil bozukluğu, deforme olma	deformasyon, şekil bozukluğu, biçim bozulması	Yerleşik deformasyon ismi eksikti
+3196	detector	noun	TR	algılayıcı, tespit cihazı	dedektör, algılayıcı, tespit cihazı	En yaygın karşılık olan dedektör eksikti
+20984	friction	noun	TR	anlaşmazlık, gerginlik	sürtüşme, anlaşmazlık, gerginlik	Mecazi friction (insanlar arası) için en tam karşılık olan sürtüşme eksikti
+3332	polarization	noun	TR	kutuplaşma	kutuplaşma, polarizasyon	Fizik ve sosyal bilimler için polarizasyon eklendi
+9158	projector	noun	TR	projeksiyon cihazı	projektör, projeksiyon cihazı, yansıtıcı	Yerleşik projektör karşılığı eklendi
+22268	resonance	noun	TR	etki, yankı	yankı, etki, karşılık bulma, rezonans	Mecazi resonance için karşılık bulma ve rezonans eklendi
+12707	static	adjective	TR	değişmez, sabit	statik, durağan, sabit, değişmez	Yerleşik statik ve durağan karşılıkları eksikti
+9499	ventilator	noun	TR	solunum cihazı, havalandırma cihazı	ventilatör, solunum cihazı; havalandırma cihazı	Tıbbi ventilatör karşılığı eklendi
+1243	possessive	adjective	TR	iyelik, aitlik bildiren	iyelik bildiren, aitlik bildiren (dilbilgisi)	Sıfat (adjective) kaydında tek başına isim olan iyelik düzeltildi
+9670	wan	adjective	TR	soluk, zayıf	solgun, soluk yüzlü, bitkin, halsiz	Wan (solgun/bitkin) sıfatında kilo anlamıyla karışan zayıf çıkarıldı
+13872	kindling	noun	TR	ateş yakma süreci	çıra, tutuşturmalık; ateş yakma, tutuşturma	Kindling için asıl anlam olan çıra/tutuşturmalık unutulup ateş yakma süreci yazılmıştı
+6989	triangulate	verb	TR	konum belirlemek için üçgenleme yöntemi kullanmak	üçgenleme yapmak, üçgenlemeyle konum belirlemek	5 kelimelik açıklama cümlesi sözlük karşılığına dönüştürüldü
+6261	cube	verb	TR	küp şeklinde doğramak	küp küp doğramak, kuşbaşı doğramak	Cube için doğal küp küp doğramak eklendi
+18971	eyesight	noun	TR	görme yeteneği	görme duyusu, göz (görme gücü), görüş	Eyesight için görme yeteneği yerine doğal görme duyusu/görüş eklendi
+3799	circuitry	noun	TR	devre sistemi	elektronik devreler, devre düzeneği, devre sistemi	Circuitry için çoğul/bütüncül elektronik devreler başa alındı
+16727	criminalization	noun	TR	suç hâline getirme	suç sayma, suç kapsamına alma, kriminalize etme	Criminalization için doğal hukuki karşılıklar eklendi
+21846	impeach	verb	TR	görevden alma sürecini başlatmak	(üst düzey yetkiliyi) görevden alma istemiyle suçlamak, yüce divana sevk etmek	Impeach doğrudan görevden almak değil mecliste suçlayıp yargı sürecini başlatmaktır
+13704	heretic	noun	TR	sapkın	sapkın (dinî),heretik, dinden sapan kimse	Heretic yalnız dinî/inanç bağlamındadır; parantezle netleştirildi
+25442	macaroni	noun	TR	makarna, makarna çeşidi	makarna (özellikle dirsek/boru makarna)	Macaroni genel pasta değil kısa boru/dirsek makarnadır
+25632	ravel	verb	TR	dolaşmak, karışmak	sökülmek, liflerine ayrılmak; birbirine dolaşmak, karışmak	Ravel için gezmek anlamındaki dolaşmak birbirine dolaşmak olarak netleştirildi
+23884	amnesiac	noun	TR	hafıza kaybı yaşayan kişi	amnezi hastası, hafıza kaybı yaşayan kişi	Kısa ve doğal karşılık eklendi
+6143	annoyingly	adverb	TR	rahatsız edici bir şekilde	sinir bozucu biçimde, can sıkıcı şekilde	Annoyingly için daha doğal karşılıklar eklendi
+8721	articulate	adjective	TR	kendini iyi ifade eden	ağzı laf yapan, kendini iyi ifade eden, akıcı konuşan	Articulate (sıfat) için doğal karşılıklar eklendi
+20199	bagger	noun	TR	markette alışveriş çantalarını dolduran çalışan	(markette) poşetleyici, paketleme görevlisi	5 kelimelik tanım cümlesi sözlük karşılığına dönüştürüldü
+10457	bandage	verb	TR	bir yarayı bandajla sarmak	bandajlamak, sargı beziyle sarmak	Fiil karşılığı içindeki gereksiz nesne (bir yarayı) temizlendi
+17501	boat	verb	TR	tekne ile seyahat etmek	tekneyle gezmek, sandal/tekne kullanmak	Tekne ile seyahat etmek daha doğal hâle getirildi
+502	breaded	adjective	TR	galeta unu ile kaplanmış	pane harçlı, galeta ununa bulanmış	Breaded için mutfakta yerleşik pane/galeta ununa bulanmış eklendi
+24000	canine	adjective	TR	köpek ile ilgili	köpekgillerden, köpeklere özgü, köpekle ilgili	Canine sıfatı doğal karşılıklarla zenginleştirildi
+21405	cardiac	adjective	TR	kalp ile ilgili	kardiyak, kalple ilgili	Yerleşik kardiyak terimi eklendi
+21472	comatose	adjective	TR	koma halinde	komada, koma hâlinde, bilinci kapalı	Comatose için doğal komada karşılığı başa alındı
+5357	choke	verb	TR	baskı altında başarısız olmak	(heyecandan/baskıdan) çuvallamak, eline yüzüne bulaştırmak, tıkanmak	Choke (spor/sınavda baskı altında kalmak) için doğal karşılıklar eklendi
+21465	collaborator	noun	TR	iş birliği yapan kişi	iş birlikçi, ortak çalışan, çalışma arkadaşı	Collaborator için yerleşik karşılıklar eklendi
+22887	commute	verb	TR	günlük işe/okula gidip gelmek	(her gün işe/okula) gidip gelmek, mekik dokumak	Commute fiili doğal biçime getirildi
+22897	conglomerate	noun	TR	çok sektörlü büyük şirket	holding, çok sektörlü şirketler grubu	Conglomerate için Türkiye Türkçesindeki en yaygın karşılık olan holding eklendi
+14666	dedicate	verb	TR	bir eseri birine ithaf etmek	ithaf etmek, adamak	Dedicate karşılığındaki gereksiz nesne (bir eseri birine) temizlendi
+11114	dizzying	adjective	TR	baş dönmesine neden olan	baş döndürücü	Dizzying için yerleşik baş döndürücü sıfatı eklendi
+12425	duel	noun	TR	iki kişi arasında silahlı düello	düello	Duel için iki kişi arasında silahlı düello tanımı yerine doğrudan düello yazıldı
+15944	easterly	noun	TR	doğu yönünden esen rüzgar	gündoğusu (doğudan esen rüzgâr)	Easterly rüzgârı için denizcilik/coğrafya terimi gündoğusu eklendi
+11288	emigrate	verb	TR	ülkesini terk edip göç etmek	(başka ülkeye) göç etmek	Emigrate karşılığı sadeleştirildi
+19368	foreboding	noun	TR	kötü bir şeyin önsezisi	kötü önsezi, içine doğma, uğursuz his	Foreboding için doğal karşılıklar eklendi
+21719	gazetteer	noun	TR	coğrafi yer adı rehberi	coğrafya sözlüğü, yer adları dizini	Gazetteer için yerleşik coğrafya sözlüğü eklendi
+10274	glint	verb	TR	kısa bir ışık parlamasıyla ışıldamak	parıldamak, ışıldamak, çakmak	Glint için 5 kelimelik tanım yerine parıldamak/ışıldamak yazıldı
+896	grandfathered	adjective	TR	geçmiş kurallara göre muaf	kazanılmış hak kapsamında muaf tutulan, eski kurallara tabi	Grandfathered terimi daha anlaşılır hâle getirildi
+12047	handwritten	adjective	TR	el yazısı ile yazılmış	el yazısıyla yazılmış, el yazması	Handwritten daha doğal hâle getirildi
+25529	inpatient	noun	TR	yatarak tedavi gören hasta	yatan hasta, yataklı tedavi gören hasta	Inpatient için hastanelerde yerleşik yatan hasta terimi başa alındı
+18862	nested	adjective	TR	iç içe yer alan	iç içe geçmiş, yuvalanmış	Nested için yerleşik iç içe geçmiş başa alındı
+8339	nick	verb	TR	küçük bir kesik atmak	çentik atmak, küçük bir kesik açmak	Nick için yerleşik çentik atmak eklendi
+24568	penthouse	noun	TR	üst kat lüks daire	çatı katı lüks daire, penthaus	Penthouse için çatı katı vurgusu eklendi
+1908	pilot	verb	TR	bir projeyi deneme amaçlı yürütmek	pilot olarak uygulamak, deneme amacıyla yürütmek	Pilot (fiil) sadeleştirildi
+7140	plague	verb	TR	sık sık rahatsız etmek	başına bela olmak, yakasını bırakmamak, bunaltmak	Plague (fiil) için sık sık rahatsız etmek çok hafif kalıyordu; doğal karşılıklar eklendi
+18721	preschooler	noun	TR	okul öncesi dönemdeki çocuk	anaokulu çocuğu, okul öncesi çocuğu	Preschooler için doğal anaokulu çocuğu başa alındı
+19469	prescribed	adjective	TR	doktor tarafından reçete edilen	reçeteli, doktorun yazdığı, öngörülen	Prescribed için yerleşik reçeteli başa alındı
+22209	quad	noun	TR	dört tekerlekli arazi aracı	ATV, dört tekerlekli arazi motoru	Quad için Türkiye Türkçesinde kullanılan ATV başa alındı
+5207	railroad	verb	TR	hızla ve tartışmadan geçirmek	(yasayı vb.) oldu bittiye getirip geçirmek, dayatmak	Railroad (fiil) için doğal oldu bittiye getirmek eklendi
+15884	resultant	adjective	TR	sonuç olarak ortaya çıkan	bunun sonucunda oluşan, doğan, ortaya çıkan	Resultant daha doğal sıfat biçimine getirildi
+13331	retort	verb	TR	keskin bir şekilde yanıt vermek	hazırcevaplıkla karşılık vermek, ağzının payını vermek, terslemek	Retort için doğal karşılıklar eklendi
+5925	scowl	verb	TR	kaşlarını çatarak kızgın bakmak	kaşlarını çatmak, surat asmak, ters ters bakmak	Scowl için doğal karşılıklar eklendi
+12077	slab	noun	TR	kalın bir dilim yiyecek	kalın dilim, büyük parça, blok/levha	Slab yalnızca yiyecek değil taş/beton/yiyecek kalın parçasıdır
+23678	slipper	noun	TR	ev içinde giyilen terlik	terlik, ev terliği	Ev içinde giyilen terlik yerine doğrudan terlik, ev terliği yazıldı
+22387	snipe	verb	TR	gizli bir yerden ateş etmek	pusudan ateş etmek, keskin nişancı atışı yapmak	Snipe için keskin nişancı/pusu vurgusu eklendi
+23704	stash	verb	TR	gizli bir yerde saklamak	zulalamak, gizlice saklamak, istiflemek	Stash için doğal zulalamak/gizlice saklamak eklendi
+23716	suffragette	noun	TR	kadın oy hakkı savunucusu	süfrajet, kadınların oy hakkı savunucusu	Tarihsel suffragette için yerleşik süfrajet eklendi
+6980	synthesize	verb	TR	birleştirerek yeni bir bütün oluşturmak	sentezlemek, birleştirip yeni bir bütün oluşturmak	Synthesize için en temel karşılık olan sentezlemek unutulmuştu; başa eklendi
+11203	thud	verb	TR	küt bir ses çıkarmak	küt diye vurmak/düşmek, tok bir ses çıkarmak	Thud fiili doğal biçime getirildi
+8693	toddle	verb	TR	küçük çocuk gibi yürümek	paytak paytak yürümek, badi badi yürümek	Toddle için yerleşik paytak paytak yürümek başa alındı
+21182	tweet	noun	TR	kısa sosyal medya gönderisi	tweet, X/Twitter paylaşımı	Kısa sosyal medya gönderisi yerine doğrudan tweet eklendi
+15639	typify	verb	TR	tipik bir örnek olmak	tipik örneği olmak, simgelemek, temsil etmek	Typify daha doğal hâle getirildi
+15936	underperform	verb	TR	beklentilerin altında performans göstermek	beklenenin altında kalmak, düşük performans göstermek	Underperform doğal hâle getirildi
+16005	underrated	adjective	TR	hak ettiği kadar takdir edilmeyen	değeri bilinmemiş, hak ettiği değeri görmeyen, küçümsenen	Underrated için en yaygın karşılıklar başa alındı
+4262	unlearn	verb	TR	öğrenilen bir şeyi bırakmak	bildiğini/öğrendiğini unutmak, yanlış alışkanlığı bırakmak	Unlearn karşılığı netleştirildi
+19172	verbalize	verb	TR	sözlü olarak ifade etmek	söze dökmek, kelimelere dökmek, sözlü ifade etmek	Verbalize için yerleşik söze/kelimelere dökmek başa alındı
+1649	whale	noun	TR	(a whale of a ile) harika, müthiş	(a whale of a ile) harika bir şey, müthiş bir şey, çok büyük/keyifli deneyim	İsim (noun) olan whale kaydına Claude yalnızca sıfat (harika, müthiş) yazmıştı; isim yapısına düzeltildi
+17955	aside	noun	TR	apar, seyirciye yönelik söz	(tiyatroda) seyirciye söylenen söz, kendi kendine söz, antrparantez, apar	Claude nadir Fransızca tiyatro terimi apar kelimesini ilk sıraya koymuştu; anlaşılır karşılık başa alındı
+626	consequent	adjective	TR	sonuç olarak ortaya çıkan	(bir şeyin) sonucunda ortaya çıkan, ardından gelen	Claude doğal olmayan sonuç olarak ortaya çıkan ifadesine dokunmamış/bırakmıştı; sıfat yapısına düzeltildi
+19696	suppose	verb	TR	(be supposed to ile) -mesi gerekmek, -mesi beklenmek	(be supposed to ile) -mesi gerekmek, -mesi beklenmek, -ceği varsayılmak	Be supposed to kalıbının beklenti/varsayım nüansı eklendi
+3270	reverse	noun	TR	geri vites	geri vites; geriye gidiş, tersine dönüş	Claude eski geriye doğru hareket/geri dönüş anlamını tamamen silip yalnızca geri vites bırakmıştı; her iki anlam korundu
+18490	weight	noun	TR	ağırlık	ağırlık, tartı	Claude kütle kelimesini silip tek kelime bırakmıştı; tartı eklendi
+15121	well	adjective	TR	iyi, sağlıklı	iyi, sağlıklı, yerinde, sıhhatli	Well (sıfat) için sağlıklı yanına sıhhatli/yerinde eklendi
+16872	religious	noun	TR	tarikat üyesi, rahip ya da rahibe	tarikat mensubu, keşiş/rahibe, din görevlisi	Religious (isim) karşılığı netleştirildi
+5713	toil	noun	TR	zahmet, emek, ağır iş	ağır iş, zahmet, meşakkat, didinme	Toil (isim) için genel emek yerine ağır iş/meşakkat başa alındı
+9707	tread	noun	TR	basamak	(merdiven) basamağı; (lastik) diş/sırt deseni	Tread tek başına basamak bırakılmıştı; bağlamı netleştirildi
+24894	uptown	adjective	TR	şehir merkezinin dışındaki, yukarı mahalledeki, lüks semtteki	(şehirde) kuzey/yukarı semtlerdeki, merkez dışındaki konut bölgesine ait	14 Ekim altın standart hatası: Claude y079 içinde uptown kaydına BIRAK demiş; yanıltıcı lüks semtteki çıkarıldı
+24894	uptown	adjective	EN	relating to or situated in the part of a city that is away from the commercial centre, often more residential and affluent	relating to or situated in the northern or residential part of a city, away from the main commercial center	14 Ekim altın standart hatası: EN içindeki wealthy/affluent yanılgısı düzeltildi
+3578	plunge	verb	TR	ani bir düşüş yaşamak	hızla düşmek, çakılmak, dibe vurmak	Plunge (fiil) için 4 kelimelik ani bir düşüş yaşamak yerine doğal çakılmak/hızla düşmek eklendi
+16864	screening	noun	TR	inceleme, tarama	(sağlık, güvenlik vb.) tarama, ön inceleme, eleme	Screening için genel inceleme yerine ön eleme/sağlık taraması bağlamı netleştirildi
+1407	settle	verb	TR	yerleşmek, oturmak	yerleşmek, yurt edinmek; (bir bölgeyi) yerleşime açmak, iskân etmek	Örnek (The pioneers settled the new valley) geçişli kullanım iken TR içinde yalnız geçişsiz yerleşmek/oturmak vardı
+9902	tick	verb	TR	tık tık ses çıkarmak	tıkırdamak, tik tak etmek (saat vb.)	Tick (saat) için tık tık ses çıkarmak yerine yerleşik tik tak etmek/tıkırdamak yazıldı
+20818	trademark	noun	TR	(birine özgü) alamet-i farika	(birine özgü) alametifarika, ayırıcı özellik, imza niteliğinde özellik	TDK yazımı (alametifarika) ve anlaşılır ayırıcı özellik eklendi
+16822	trial	noun	TR	yargılama, dava	dava, duruşma, yargılama	Trial için en yaygın karşılık olan dava ve duruşma başa alındı
+610	uncomfortable	adjective	TR	rahat olmayan, huzursuz	rahatsız, konforsuz; huzursuz, tedirgin	Uncomfortable shoes örneğinde en temel karşılık olan rahatsız/konforsuz unutulmuş, rahat olmayan yazılmıştı
+24935	wiggly	adjective	TR	dalgalı, kıvrımlı, sallanan	kıvrım kıvrım hareket eden, kıpır kıpır, yerinde duramayan	Wiggly (yılanın hareketi) için cansız saç/çizgi terimi olan dalgalı ilk sıradan düzeltildi

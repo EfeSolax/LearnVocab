@@ -3,9 +3,10 @@
 Kullanım (proje kökünden):
   python3 araclar/gemini_uygula.py --db ~/db-calisma.sqlite3            # kuru deneme
   python3 araclar/gemini_uygula.py --db ~/db-calisma.sqlite3 --uygula   # yazar
+  --dosya gemini-2-uygulanacak.tsv: ikinci değerlendirmenin ortak kabul listesi (araclar/gemini2_hazirla.py)
 
 - EFE satırları uygulanmaz (yalnızca efe.tsv gerekçelerini tamamlar).
-- Efe'nin reddettiği kelimeler (17 Ekim 2026) atlanır: also, roc; croaker kararı bekliyor.
+- Varsayılan dosyada Efe'nin reddettiği kelimeler (17 Ekim 2026) atlanır: also, roc; croaker kararı bekliyor.
 - Değer, dosyadaki "mevcut" değerle aynıysa değiştirilir; zaten yeni hâliyse geçilir; başka bir şeyse atlanır.
 - Uygulananlar veri/kalite_olcumu/gemini-uygulanan.tsv dosyasına eklenir (geri alma için).
 """
@@ -29,14 +30,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--db", required=True)
     ap.add_argument("--uygula", action="store_true")
+    ap.add_argument("--dosya", default="gemini-duzeltme.tsv")
     a = ap.parse_args()
+    reddedilen = REDDEDILEN if a.dosya == "gemini-duzeltme.tsv" else set()
 
     db = sqlite3.connect(Path(a.db).expanduser())
     uygulanan, atlanan, zaten = [], [], 0
-    with open(K / "gemini-duzeltme.tsv", encoding="utf-8") as f:
+    with open(K / a.dosya, encoding="utf-8") as f:
         for r in csv.DictReader(f, delimiter="\t"):
             alan = r["alan"]
-            if alan not in SINIR or r["kelime"] in REDDEDILEN:
+            if alan not in SINIR or r["kelime"] in reddedilen:
                 continue
             mid = int(r["kimlik"])
             # Virgülden sonra boşluk eksikse ekle (ör. "nezaket,ölçülülük")

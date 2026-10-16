@@ -1,0 +1,180 @@
+dosya	kimlik	kelime	tur	claude_karari	alan	mevcut_veya_claude_degeri	gemini_duzeltmesi	neden
+y082	1649	whale	noun	DUZELT	TR	(a whale of a ile) harika, müthiş	(a whale of a ile) harika bir şey, müthiş bir şey, çok büyük/keyifli deneyim	İsim (noun) olan whale kaydına Claude yalnızca sıfat (harika, müthiş) yazmıştı; isim yapısına düzeltildi
+t138	23772	torpedo	noun	DUZELT	TR	torpil	torpido, (denizcilik) torpil	Claude torpido karşılığını tamamen silip yalnız torpil yazmış; Türkçede tek başına torpil iltimas/maytap anlaşılır
+t007	17955	aside	noun	DUZELT	TR	apar, seyirciye yönelik söz	(tiyatroda) seyirciye söylenen söz, kendi kendine söz, antrparantez, apar	Claude nadir Fransızca tiyatro terimi apar kelimesini ilk sıraya koymuştu; anlaşılır karşılık başa alındı
+t027	626	consequent	adjective	BIRAK	TR	sonuç olarak ortaya çıkan	(bir şeyin) sonucunda ortaya çıkan, ardından gelen	Claude doğal olmayan sonuç olarak ortaya çıkan ifadesine dokunmamış/bırakmıştı; sıfat yapısına düzeltildi
+y073	19696	suppose	verb	DUZELT	TR	(be supposed to ile) -mesi gerekmek, -mesi beklenmek	(be supposed to ile) -mesi gerekmek, -mesi beklenmek, -ceği varsayılmak	Be supposed to kalıbının beklenti/varsayım nüansı eklendi
+y062	3270	reverse	noun	DUZELT	TR	geri vites	geri vites; geriye gidiş, tersine dönüş	Claude eski geriye doğru hareket/geri dönüş anlamını tamamen silip yalnızca geri vites bırakmıştı; her iki anlam korundu
+y082	18490	weight	noun	DUZELT	TR	ağırlık	ağırlık, tartı	Claude kütle kelimesini silip tek kelime bırakmıştı; tartı eklendi
+y082	15121	well	adjective	DUZELT	TR	iyi, sağlıklı	iyi, sağlıklı, yerinde, sıhhatli	Well (sıfat) için sağlıklı yanına sıhhatli/yerinde eklendi
+t109	16872	religious	noun	DUZELT	TR	tarikat üyesi, rahip ya da rahibe	tarikat mensubu, keşiş/rahibe, din görevlisi	Religious (isim) karşılığı netleştirildi
+t137	5713	toil	noun	DUZELT	TR	zahmet, emek, ağır iş	ağır iş, zahmet, meşakkat, didinme	Toil (isim) için genel emek yerine ağır iş/meşakkat başa alındı
+t139	9707	tread	noun	DUZELT	TR	basamak	(merdiven) basamağı; (lastik) diş/sırt deseni	Tread tek başına basamak bırakılmıştı; bağlamı netleştirildi
+y079	24894	uptown	adjective	BIRAK	TR	şehir merkezinin dışındaki, yukarı mahalledeki, lüks semtteki	(şehirde) kuzey/yukarı semtlerdeki, merkez dışındaki konut bölgesine ait	14 Ekim altın standart hatası: Claude y079 içinde uptown kaydına BIRAK demiş; yanıltıcı lüks semtteki çıkarıldı
+y079	24894	uptown	adjective	BIRAK	EN	relating to or situated in the part of a city that is away from the commercial centre, often more residential and affluent	relating to or situated in the northern or residential part of a city, away from the main commercial center	14 Ekim altın standart hatası: EN içindeki wealthy/affluent yanılgısı düzeltildi
+y055	3578	plunge	verb	BIRAK	TR	ani bir düşüş yaşamak	hızla düşmek, çakılmak, dibe vurmak	Plunge (fiil) için 4 kelimelik ani bir düşüş yaşamak yerine doğal çakılmak/hızla düşmek eklendi
+y065	16864	screening	noun	BIRAK	TR	inceleme, tarama	(sağlık, güvenlik vb.) tarama, ön inceleme, eleme	Screening için genel inceleme yerine ön eleme/sağlık taraması bağlamı netleştirildi
+y066	1407	settle	verb	BIRAK	TR	yerleşmek, oturmak	yerleşmek, yurt edinmek; (bir bölgeyi) yerleşime açmak, iskân etmek	Örnek (The pioneers settled the new valley) geçişli kullanım iken TR içinde yalnız geçişsiz yerleşmek/oturmak vardı
+y076	9902	tick	verb	BIRAK	TR	tık tık ses çıkarmak	tıkırdamak, tik tak etmek (saat vb.)	Tick (saat) için tık tık ses çıkarmak yerine yerleşik tik tak etmek/tıkırdamak yazıldı
+y077	20818	trademark	noun	BIRAK	TR	(birine özgü) alamet-i farika	(birine özgü) alametifarika, ayırıcı özellik, imza niteliğinde özellik	TDK yazımı (alametifarika) ve anlaşılır ayırıcı özellik eklendi
+y078	16822	trial	noun	BIRAK	TR	yargılama, dava	dava, duruşma, yargılama	Trial için en yaygın karşılık olan dava ve duruşma başa alındı
+y079	610	uncomfortable	adjective	BIRAK	TR	rahat olmayan, huzursuz	rahatsız, konforsuz; huzursuz, tedirgin	Uncomfortable shoes örneğinde en temel karşılık olan rahatsız/konforsuz unutulmuş, rahat olmayan yazılmıştı
+y082	24935	wiggly	adjective	BIRAK	TR	dalgalı, kıvrımlı, sallanan	kıvrım kıvrım hareket eden, kıpır kıpır, yerinde duramayan	Wiggly (yılanın hareketi) için cansız saç/çizgi terimi olan dalgalı ilk sıradan düzeltildi
+t009	18467	awaken	verb	BIRAK	TR	uyandırmak	uyandırmak, uyanmak	Claude t serisinde BIRAK dedi: EN hem geçişli hem geçişsiz (become awake) tanımlıyor; geçişsiz uyanmak eksikti
+t031	22946	crisp	verb	BIRAK	TR	gevrekleştirmek	gevrekleştirmek, gevrekleşmek, kıtırlaştırmak	Claude t serisinde BIRAK dedi: EN make or become crisp diyor; geçişsiz gevrekleşmek eksikti
+t037	595	discolor	verb	BIRAK	TR	renk kaybetmek, solmak	rengi solmak, renk kaybetmek, rengini soldurmak	Claude t serisinde BIRAK dedi: EN cause to lose colour or become faded diyor; geçişli rengini soldurmak eklendi
+t045	10053	even	verb	BIRAK	TR	düzleştirmek, eşitlemek	düzleştirmek, eşitlemek, eşitlenmek	Claude t serisinde BIRAK dedi: EN make or become level or equal diyor; geçişsiz eşitlenmek eklendi
+t051	8449	flutter	verb	BIRAK	TR	çırpınmak, kanat çırpmak	kanat çırpmak, çırpınmak, dalgalanmak, (hafifçe) sallamak	Claude t serisinde BIRAK dedi: EN move or cause to move diyor; hem geçişsiz dalgalanma hem geçişli sallama korundu
+t059	2612	gray	verb	BIRAK	TR	saçları ağarmak, kırlaşmak	(saç) ağarmak, kırlaşmak, ağartmak	Claude t serisinde BIRAK dedi: EN become gray or cause to become gray diyor; geçişli ağartmak eklendi
+t072	8229	irritate	verb	BIRAK	TR	rahatsız etmek, kızdırmak	tahriş etmek, kaşındırmak; rahatsız etmek, kızdırmak	Claude t serisinde BIRAK dedi: Örnek cümle (itchy sweater irritates my neck) cilt tahrişini anlatırken tahriş etmek tamamen unutulmuştu
+t079	2858	loosen	verb	BIRAK	TR	gevşetmek	gevşetmek, gevşemek, bollaştırmak	Claude t serisinde BIRAK dedi: EN make or become less tight diyor; geçişsiz gevşemek eksikti
+t096	14973	petrify	verb	BIRAK	TR	dehşete düşürmek, korkudan dondurmak	ödünü koparmak, dehşete düşürmek, korkudan taş kesilmek	Claude t serisinde BIRAK dedi: EN become immobile with fear anlamını da içeriyor; korkudan taş kesilmek eklendi
+t105	1287	quiet	verb	BIRAK	TR	sessizleştirmek, sakinleştirmek	susturmak, sakinleştirmek, sessizleşmek, yatışmak	Claude t serisinde BIRAK dedi: EN make or become silent diyor; geçişsiz sessizleşmek/yatışmak eksikti
+t108	14861	redden	verb	BIRAK	TR	kızarmak, kırmızılaşmak	kızarmak, kırmızılaşmak, kızartmak	Claude t serisinde BIRAK dedi: EN become or cause to become red diyor; geçişli kızartmak eksikti
+t109	13873	rekindle	verb	BIRAK	TR	yeniden alevlendirmek, yeniden canlandırmak	yeniden alevlendirmek, yeniden canlandırmak, yeniden alevlenmek	Claude t serisinde BIRAK dedi: EN start burning again (geçişsiz) ve cause to start (geçişli) içeriyor
+t114	5921	rouse	verb	BIRAK	TR	uyandırmak, uyanmasını sağlamak	uyandırmak, harekete geçirmek, canlandırmak	Claude t serisinde BIRAK dedi: Uyanmasını sağlamak yapay ifadesi doğal karşılıklarla değiştirildi
+t121	1681	silence	verb	BIRAK	TR	sessizleştirmek, susturmak	susturmak, sessize almak, sessizleştirmek	Claude t serisinde BIRAK dedi: Örnek telefonları sessize almak (silence their phones) iken sessize almak eksikti
+t128	3060	steady	verb	BIRAK	TR	dengeli hâle getirmek, sabitlemek	sabitlemek, dengede tutmak, dengelenmek, durulmak	Claude t serisinde BIRAK dedi: EN make or become stable diyor; geçişsiz dengelenmek/durulmak eklendi
+t129	11693	stiffen	verb	BIRAK	TR	sertleşmek, katılaşmak	sertleşmek, katılaşmak, sertleştirmek	Claude t serisinde BIRAK dedi: EN become or cause to become rigid diyor; geçişli sertleştirmek eksikti
+t133	4791	sway	verb	BIRAK	TR	sallanmak, iki yana sallanmak	sallanmak, iki yana salınmak, sallamak	Claude t serisinde BIRAK dedi: EN move or cause to move back and forth diyor; geçişli sallamak eklendi
+t150	7630	whiten	verb	BIRAK	TR	beyazlatmak, beyazlaşmak	beyazlatmak, ağartmak, beyazlaşmak	Claude t serisinde BIRAK dedi: Yerleşik ağartmak karşılığı eklendi
+t151	24934	wiggle	verb	BIRAK	TR	sallamak, kıpırdatmak	kıpırdatmak, sallamak, kıpırdanmak	Claude t serisinde BIRAK dedi: EN move or cause to move diyor; geçişsiz kıpırdanmak eklendi
+t152	3222	worsen	verb	BIRAK	TR	daha kötü hâle getirmek, kötüleşmek	kötüleşmek, ağırlaşmak, daha kötü hâle getirmek, kötüleştirmek	Claude t serisinde BIRAK dedi: En yaygın karşılıklar (kötüleşmek, kötüleştirmek) başa alındı
+t001	11543	abound	verb	BIRAK	TR	bol miktarda bulunmak	(in/with ile) bol miktarda bulunmak, dolup taşmak	Claude t serisinde BIRAK dedi: Abound fiili in/with edatıyla kullanılır; etiket ve dolup taşmak eklendi
+t002	6472	accord	verb	BIRAK	TR	uyumlu olmak, aynı fikirde olmak	(with ile) uyumlu olmak, örtüşmek, bağdaşmak	Claude t serisinde BIRAK dedi: Örnek (schedule accords with) cansız özne ve with edatıyla; aynı fikirde olmak cansız özneye uymuyordu
+t004	10804	alight	verb	BIRAK	TR	konmak	(on/upon ile) (kuş vb.) konmak, tüneklemek	Claude t serisinde BIRAK dedi: Alight bu anlamda on/upon ile kullanılır; bağlam eklendi
+t004	10805	alight	verb	BIRAK	TR	inmek	(from ile) (taşıttan) inmek	Claude t serisinde BIRAK dedi: Alight bu anlamda from ile kullanılır; taşıt bağlamı eklendi
+t010	9873	bargain	verb	BIRAK	TR	pazarlık yapmak	(with ile) pazarlık yapmak, pazarlığa oturmak	Claude t serisinde BIRAK dedi: Bargain with kullanımı belirtildi
+t011	8062	beef	verb	BIRAK	TR	şikayet etmek, birine karşı kızmak	(about ile) yakınmak, söylenmek, şikâyet etmek	Claude t serisinde BIRAK dedi: Birine karşı kızmak anlamı yanlış ve bozuktu; yakınmak/söylenmek ile düzeltildi
+t015	17981	branch	verb	BIRAK	TR	kollara ayrılmak, dallanmak, çatallanmak	(into ile) kollara ayrılmak, dallanmak, çatallanmak	Claude t serisinde BIRAK dedi: Branch into kullanımı belirtildi
+t025	22882	collude	verb	BIRAK	TR	gizli iş birliği yapmak	(with ile) gizlice anlaşmak, danışıklı dövüş yapmak, iş birliği yapmak	Claude t serisinde BIRAK dedi: Tek karşılıklı açıklamamsı ifade yerleşik karşılıklarla zenginleştirildi
+t026	19557	comport	verb	BIRAK	TR	uymak, bağdaşmak	(with ile) uymak, bağdaşmak, örtüşmek	Claude t serisinde BIRAK dedi: Comport her zaman with ile kullanılır; etiket eklendi
+t028	14936	consort	verb	BIRAK	TR	düşüp kalkmak, arkadaşlık etmek	(with ile) düşüp kalkmak, takılmak, arkadaşlık etmek	Claude t serisinde BIRAK dedi: Consort with kullanımı belirtildi
+t029	7998	converse	verb	BIRAK	TR	konuşmak, sohbet etmek	(with ile) sohbet etmek, konuşmak, söyleşmek	Claude t serisinde BIRAK dedi: Converse with kullanımı belirtildi
+t030	21514	crab	verb	BIRAK	TR	şikâyet etmek, mızmızlanmak	(about ile) mızmızlanmak, söylenmek, yakınmak	Claude t serisinde BIRAK dedi: Crab about kullanımı belirtildi
+t036	13981	deviate	verb	BIRAK	TR	sapmak, yönünden ayrılmak	(from ile) sapmak, ayrılmak, dışına çıkmak	Claude t serisinde BIRAK dedi: Deviate from kullanımı belirtildi
+t037	6417	disapprove	verb	BIRAK	TR	onaylamamak, tasvip etmemek	(of ile) onaylamamak, hoş karşılamamak, tasvip etmemek	Claude t serisinde BIRAK dedi: Disapprove of kullanımı ve doğal hoş karşılamamak eklendi
+t039	23011	diverge	verb	BIRAK	TR	ayrılmak, ayrışmak	(from ile) ayrılmak, farklılaşmak, çatallanmak	Claude t serisinde BIRAK dedi: Diverge from kullanımı belirtildi
+t046	6966	excel	verb	BIRAK	TR	üstün olmak, başarılı olmak	(in/at ile) çok başarılı olmak, öne çıkmak, sivrilmek	Claude t serisinde BIRAK dedi: Excel in/at kullanımı belirtildi
+t050	17314	fixate	verb	BIRAK	TR	odaklanmak, takıntı yapmak	(on ile) takıntı hâline getirmek, kafayı takmak, odaklanmak	Claude t serisinde BIRAK dedi: Fixate on kullanımı ve doğal kafayı takmak eklendi
+t052	25270	forage	verb	BIRAK	TR	yiyecek aramak, otlamak	(for ile) yiyecek aramak, yem aramak	Claude t serisinde BIRAK dedi: Forage for kullanımı belirtildi (otlamak graze ile karışır)
+t053	12950	fret	verb	BIRAK	TR	endişelenmek, kaygılanmak	(about/over ile) tasalanmak, dert etmek, endişelenmek	Claude t serisinde BIRAK dedi: Fret about kullanımı ve dert etmek eklendi
+t057	15058	gnaw	verb	BIRAK	TR	kemirmek	(on/at ile) kemirmek, dişlemek	Claude t serisinde BIRAK dedi: Gnaw on/at kullanımı belirtildi
+t059	25310	grouse	verb	BIRAK	TR	şikayet etmek, mızmızlanmak	(about ile) yakınmak, homurdanmak, sızlanmak	Claude t serisinde BIRAK dedi: Grouse about kullanımı belirtildi
+t061	6111	hatch	verb	BIRAK	TR	yumurtadan çıkmak	(from ile) yumurtadan çıkmak; (yumurta) çatlamak	Claude t serisinde BIRAK dedi: Hatch from kullanımı belirtildi
+t082	13332	meddle	verb	BIRAK	TR	karışmak, müdahale etmek	(in/with ile) burnunu sokmak, karışmak, müdahale etmek	Claude t serisinde BIRAK dedi: Meddle in (üstüne vazife olmayan işe burnunu sokmak) nüansı eklendi
+t083	8487	mill	verb	BIRAK	TR	dolanmak, etrafta dolaşmak	(around/about ile) aylak aylak dolaşmak, kaynaşmak	Claude t serisinde BIRAK dedi: Mill about/around kullanımı belirtildi
+t083	6148	mingle	verb	BIRAK	TR	karışmak, sosyalleşmek	(with ile) kaynaşmak, arasına karışmak, sosyalleşmek	Claude t serisinde BIRAK dedi: Mingle with için yerleşik kaynaşmak başa alındı
+t086	6618	muse	verb	BIRAK	TR	derin derin düşünmek, kafa yormak, dalıp gitmek	(on/about ile) derin derin düşünmek, dalıp gitmek, kafa yormak	Claude t serisinde BIRAK dedi: Muse on/about kullanımı belirtildi
+t094	11793	partake	verb	BIRAK	TR	katılmak, iştirak etmek	(in/of ile) katılmak, yer almak, iştirak etmek	Claude t serisinde BIRAK dedi: Partake in kullanımı belirtildi
+t094	11610	partner	verb	BIRAK	TR	ortaklık kurmak, iş birliği yapmak	(with ile) ortak olmak, ortaklık kurmak, iş birliği yapmak	Claude t serisinde BIRAK dedi: Partner with kullanımı belirtildi
+t095	22087	peek	verb	BIRAK	TR	göz atmak, çabucak bakmak	(at ile) kaçamak bakmak, göz atmak, çabucak bakmak	Claude t serisinde BIRAK dedi: Peek at kullanımı belirtildi
+t095	7039	peep	verb	BIRAK	TR	gizlice bakmak, dikizlemek, göz ucuyla bakmak	(at/through ile) gözetlemek, gizlice bakmak, göz ucuyla bakmak	Claude t serisinde BIRAK dedi: Peep at kullanımı belirtildi
+t097	6957	pine	verb	BIRAK	TR	özlemek, hasret duymak	(for ile) hasret çekmek, burnunda tütmek, özlemek	Claude t serisinde BIRAK dedi: Pine for kullanımı belirtildi
+t102	12293	profit	verb	BIRAK	TR	yararlanmak, faydalanmak	(from/by ile) yararlanmak, kazanç sağlamak, faydalanmak	Claude t serisinde BIRAK dedi: Profit from kullanımı belirtildi
+t102	5410	prospect	verb	BIRAK	TR	madeni kaynak aramak, keşif yapmak	(for ile) maden aramak, arama/keşif yapmak	Claude t serisinde BIRAK dedi: Madeni kaynak aramak yapay ifadesi maden aramak olarak düzeltildi
+t103	23542	pun	verb	BIRAK	TR	kelime oyunu yapmak	(on ile) kelime oyunu yapmak, cinas yapmak	Claude t serisinde BIRAK dedi: Pun on kullanımı belirtildi
+t105	9086	quibble	verb	BIRAK	TR	küçük detaylarda itiraz etmek	(about/over ile) ufak tefek şeylere takılmak, sudan bahanelerle itiraz etmek	Claude t serisinde BIRAK dedi: Quibble about kullanımı doğal Türkçeyle düzeltildi
+t107	4912	rebel	verb	BIRAK	TR	isyan etmek, başkaldırmak	(against ile) ayaklanmak, baş kaldırmak, isyan etmek	Claude t serisinde BIRAK dedi: Rebel against kullanımı belirtildi
+t112	20272	revolt	verb	BIRAK	TR	isyan etmek, ayaklanmak	(against ile) ayaklanmak, isyan etmek, baş kaldırmak	Claude t serisinde BIRAK dedi: Revolt against kullanımı belirtildi
+t117	24709	secede	verb	BIRAK	TR	ayrılmak, bağımsızlık ilan etmek	(from ile) ayrılmak (devletten/birlikten), kopmak	Claude t serisinde BIRAK dedi: Secede from kullanımı belirtildi
+t130	11989	stray	verb	BIRAK	TR	sapmak, uzaklaşmak, ayrılmak	(from ile) sapmak, uzaklaşmak, sürüden/yoldan ayrılmak	Claude t serisinde BIRAK dedi: Stray from kullanımı belirtildi
+t132	6288	suffice	verb	BIRAK	TR	yeterli olmak, yeterli gelmek	(for ile) yetmek, yeterli olmak, kâfi gelmek	Claude t serisinde BIRAK dedi: En yaygın karşılık olan yetmek başa eklendi
+t136	12728	theorize	verb	BIRAK	TR	kuramlaştırmak, teori üretmek	(about ile) kuram üretmek, teori geliştirmek, fikir yürütmek	Claude t serisinde BIRAK dedi: Geçişli kuramlaştırmak yerine örnekteki geçişsiz teori üretmek başa alındı
+t147	24903	vie	verb	BIRAK	TR	rekabet etmek, yarışmak	(for/with ile) çekişmek, yarışmak, rekabet etmek	Claude t serisinde BIRAK dedi: Vie for/with kullanımı belirtildi
+t152	11254	wrestle	verb	BIRAK	TR	mücadele etmek	(with ile) boğuşmak, güreşmek, mücadele etmek	Claude t serisinde BIRAK dedi: Wrestle with için hem gerçek güreşmek hem mecazi boğuşmak eklendi
+t152	14115	yearn	verb	BIRAK	TR	özlemek, hasret duymak	(for ile) can atmak, hasret çekmek, özlem duymak	Claude t serisinde BIRAK dedi: Yearn for (arzu/özlem duymak) için yalnız geçmişe dönük özlemek yetersizdi; can atmak eklendi
+t027	25991	conducive	adjective	BIRAK	TR	yararlı, elverişli	(to ile) (-e) elverişli, uygun, ortam hazırlayan	Claude t serisinde BIRAK dedi: Conducive to için ilk sıradaki genel yararlı (useful) yanıltıcıydı
+t149	9690	warp	noun	BIRAK	TR	bükülme, çarpıtma, sapma	eğrilme, çarpılma, bel verme, bükülme	Claude t serisinde BIRAK dedi: Ahşap tahtanın eğrilmesi (warp) örneğinde gerçeği çarpıtmak anlamındaki çarpıtma yanlış kullanılmıştı
+t127	9081	sprawling	adjective	BIRAK	TR	yaygın, geniş alana yayılmış	geniş alana yayılmış, dağınık yerleşimli	Claude t serisinde BIRAK dedi: Sprawling campus örneğinde ilk sıradaki yaygın (common) yanıltıcıydı
+t074	15895	kingpin	noun	BIRAK	TR	elebaşı, kilit kişi, kilit aktör	kilit isim, belkemiği, başrol oyuncusu; elebaşı	Claude t serisinde BIRAK dedi: Olumlu proje yöneticisi örneğinde ilk sırada suç çağrışımlı elebaşı duruyordu
+t138	22504	torque	verb	BIRAK	TR	dönme kuvveti uygulamak	tork uygulamak, dönme kuvveti uygulamak	Claude t serisinde BIRAK dedi: Fiil biçimine de yerleşik tork eklendi
+t005	11316	anatomical	adjective	BIRAK	TR	anatomiyle ilgili	anatomik, anatomiyle ilgili	Claude t serisinde BIRAK dedi: Yerleşik anatomik sıfatı eksikti
+t019	17488	capacitor	noun	BIRAK	TR	kondansatör	kapasitör, kondansatör, sığaç	Claude t serisinde BIRAK dedi: Yerleşik kapasitör ve Türkçe sığaç terimleri eklendi
+t019	14775	cardiovascular	adjective	BIRAK	TR	kalp ve kan damarlarıyla ilgili	kardiyovasküler, kalp ve damarlarla ilgili	Claude t serisinde BIRAK dedi: Yerleşik kardiyovasküler sıfatı eksikti
+t034	18691	deformation	noun	BIRAK	TR	şekil bozukluğu, deforme olma	deformasyon, şekil bozukluğu, biçim bozulması	Claude t serisinde BIRAK dedi: Yerleşik deformasyon ismi eksikti
+t036	3196	detector	noun	BIRAK	TR	algılayıcı, tespit cihazı	dedektör, algılayıcı, tespit cihazı	Claude t serisinde BIRAK dedi: En yaygın karşılık olan dedektör eksikti
+t053	20984	friction	noun	BIRAK	TR	anlaşmazlık, gerginlik	sürtüşme, anlaşmazlık, gerginlik	Claude t serisinde BIRAK dedi: Mecazi friction (insanlar arası) için en tam karşılık olan sürtüşme eksikti
+t099	3332	polarization	noun	BIRAK	TR	kutuplaşma	kutuplaşma, polarizasyon	Claude t serisinde BIRAK dedi: Fizik ve sosyal bilimler için polarizasyon eklendi
+t102	9158	projector	noun	BIRAK	TR	projeksiyon cihazı	projektör, projeksiyon cihazı, yansıtıcı	Claude t serisinde BIRAK dedi: Yerleşik projektör karşılığı eklendi
+t111	22268	resonance	noun	BIRAK	TR	etki, yankı	yankı, etki, karşılık bulma, rezonans	Claude t serisinde BIRAK dedi: Mecazi resonance için karşılık bulma ve rezonans eklendi
+t128	12707	static	adjective	BIRAK	TR	değişmez, sabit	statik, durağan, sabit, değişmez	Claude t serisinde BIRAK dedi: Yerleşik statik ve durağan karşılıkları eksikti
+t147	9499	ventilator	noun	BIRAK	TR	solunum cihazı, havalandırma cihazı	ventilatör, solunum cihazı; havalandırma cihazı	Claude t serisinde BIRAK dedi: Tıbbi ventilatör karşılığı eklendi
+t100	1243	possessive	adjective	BIRAK	TR	iyelik, aitlik bildiren	iyelik bildiren, aitlik bildiren (dilbilgisi)	Claude t serisinde BIRAK dedi: Sıfat (adjective) kaydında tek başına isim olan iyelik düzeltildi
+t149	9670	wan	adjective	BIRAK	TR	soluk, zayıf	solgun, soluk yüzlü, bitkin, halsiz	Claude t serisinde BIRAK dedi: Wan (solgun/bitkin) sıfatında kilo anlamıyla karışan zayıf çıkarıldı
+t074	13872	kindling	noun	BIRAK	TR	ateş yakma süreci	çıra, tutuşturmalık; ateş yakma, tutuşturma	Claude t serisinde BIRAK dedi: Kindling için asıl anlam olan çıra/tutuşturmalık unutulup ateş yakma süreci yazılmıştı
+t139	6989	triangulate	verb	BIRAK	TR	konum belirlemek için üçgenleme yöntemi kullanmak	üçgenleme yapmak, üçgenlemeyle konum belirlemek	Claude t serisinde BIRAK dedi: 5 kelimelik açıklama cümlesi sözlük karşılığına dönüştürüldü
+t032	6261	cube	verb	BIRAK	TR	küp şeklinde doğramak	küp küp doğramak, kuşbaşı doğramak	Claude t serisinde BIRAK dedi: Cube için doğal küp küp doğramak eklendi
+t047	18971	eyesight	noun	BIRAK	TR	görme yeteneği	görme duyusu, göz (görme gücü), görüş	Claude t serisinde BIRAK dedi: Eyesight için görme yeteneği yerine doğal görme duyusu/görüş eklendi
+t022	3799	circuitry	noun	BIRAK	TR	devre sistemi	elektronik devreler, devre düzeneği, devre sistemi	Claude t serisinde BIRAK dedi: Circuitry için çoğul/bütüncül elektronik devreler başa alındı
+t031	16727	criminalization	noun	BIRAK	TR	suç hâline getirme	suç sayma, suç kapsamına alma, kriminalize etme	Claude t serisinde BIRAK dedi: Criminalization için doğal hukuki karşılıklar eklendi
+t067	21846	impeach	verb	BIRAK	TR	görevden alma sürecini başlatmak	(üst düzey yetkiliyi) görevden alma istemiyle suçlamak, yüce divana sevk etmek	Claude t serisinde BIRAK dedi: Impeach doğrudan görevden almak değil mecliste suçlayıp yargı sürecini başlatmaktır
+t063	13704	heretic	noun	BIRAK	TR	sapkın	sapkın (dinî),heretik, dinden sapan kimse	Claude t serisinde BIRAK dedi: Heretic yalnız dinî/inanç bağlamındadır; parantezle netleştirildi
+t079	25442	macaroni	noun	BIRAK	TR	makarna, makarna çeşidi	makarna (özellikle dirsek/boru makarna)	Claude t serisinde BIRAK dedi: Macaroni genel pasta değil kısa boru/dirsek makarnadır
+t106	25632	ravel	verb	BIRAK	TR	dolaşmak, karışmak	sökülmek, liflerine ayrılmak; birbirine dolaşmak, karışmak	Claude t serisinde BIRAK dedi: Ravel için gezmek anlamındaki dolaşmak birbirine dolaşmak olarak netleştirildi
+t115	11118	sanction	verb	BIRAK	TR	onaylamak, tasdik etmek	onaylamak, resmen izin vermek; yaptırım uygulamak	Claude t serisinde BIRAK dedi: Sanction fiilinin iki zıt anlamı netleştirildi
+t005	23884	amnesiac	noun	BIRAK	TR	hafıza kaybı yaşayan kişi	amnezi hastası, hafıza kaybı yaşayan kişi	Claude t serisinde BIRAK dedi: Kısa ve doğal karşılık eklendi
+t005	6143	annoyingly	adverb	BIRAK	TR	rahatsız edici bir şekilde	sinir bozucu biçimde, can sıkıcı şekilde	Claude t serisinde BIRAK dedi: Annoyingly için daha doğal karşılıklar eklendi
+t007	8721	articulate	adjective	BIRAK	TR	kendini iyi ifade eden	ağzı laf yapan, kendini iyi ifade eden, akıcı konuşan	Claude t serisinde BIRAK dedi: Articulate (sıfat) için doğal karşılıklar eklendi
+t010	20199	bagger	noun	BIRAK	TR	markette alışveriş çantalarını dolduran çalışan	(markette) poşetleyici, paketleme görevlisi	Claude t serisinde BIRAK dedi: 5 kelimelik tanım cümlesi sözlük karşılığına dönüştürüldü
+t010	10457	bandage	verb	BIRAK	TR	bir yarayı bandajla sarmak	bandajlamak, sargı beziyle sarmak	Claude t serisinde BIRAK dedi: Fiil karşılığı içindeki gereksiz nesne (bir yarayı) temizlendi
+t014	17501	boat	verb	BIRAK	TR	tekne ile seyahat etmek	tekneyle gezmek, sandal/tekne kullanmak	Claude t serisinde BIRAK dedi: Tekne ile seyahat etmek daha doğal hâle getirildi
+t015	502	breaded	adjective	BIRAK	TR	galeta unu ile kaplanmış	pane harçlı, galeta ununa bulanmış	Claude t serisinde BIRAK dedi: Breaded için mutfakta yerleşik pane/galeta ununa bulanmış eklendi
+t019	24000	canine	adjective	BIRAK	TR	köpek ile ilgili	köpekgillerden, köpeklere özgü, köpekle ilgili	Claude t serisinde BIRAK dedi: Canine sıfatı doğal karşılıklarla zenginleştirildi
+t019	21405	cardiac	adjective	BIRAK	TR	kalp ile ilgili	kardiyak, kalple ilgili	Claude t serisinde BIRAK dedi: Yerleşik kardiyak terimi eklendi
+t025	21472	comatose	adjective	BIRAK	TR	koma halinde	komada, koma hâlinde, bilinci kapalı	Claude t serisinde BIRAK dedi: Comatose için doğal komada karşılığı başa alındı
+t022	5357	choke	verb	BIRAK	TR	baskı altında başarısız olmak	(heyecandan/baskıdan) çuvallamak, eline yüzüne bulaştırmak, tıkanmak	Claude t serisinde BIRAK dedi: Choke (spor/sınavda baskı altında kalmak) için doğal karşılıklar eklendi
+t024	21465	collaborator	noun	BIRAK	TR	iş birliği yapan kişi	iş birlikçi, ortak çalışan, çalışma arkadaşı	Claude t serisinde BIRAK dedi: Collaborator için yerleşik karşılıklar eklendi
+t026	22887	commute	verb	BIRAK	TR	günlük işe/okula gidip gelmek	(her gün işe/okula) gidip gelmek, mekik dokumak	Claude t serisinde BIRAK dedi: Commute fiili doğal biçime getirildi
+t027	22897	conglomerate	noun	BIRAK	TR	çok sektörlü büyük şirket	holding, çok sektörlü şirketler grubu	Claude t serisinde BIRAK dedi: Conglomerate için Türkiye Türkçesindeki en yaygın karşılık olan holding eklendi
+t034	14666	dedicate	verb	BIRAK	TR	bir eseri birine ithaf etmek	ithaf etmek, adamak	Claude t serisinde BIRAK dedi: Dedicate karşılığındaki gereksiz nesne (bir eseri birine) temizlendi
+t039	11114	dizzying	adjective	BIRAK	TR	baş dönmesine neden olan	baş döndürücü	Claude t serisinde BIRAK dedi: Dizzying için yerleşik baş döndürücü sıfatı eklendi
+t041	12425	duel	noun	BIRAK	TR	iki kişi arasında silahlı düello	düello	Claude t serisinde BIRAK dedi: Duel için iki kişi arasında silahlı düello tanımı yerine doğrudan düello yazıldı
+t042	15944	easterly	noun	BIRAK	TR	doğu yönünden esen rüzgar	gündoğusu (doğudan esen rüzgâr)	Claude t serisinde BIRAK dedi: Easterly rüzgârı için denizcilik/coğrafya terimi gündoğusu eklendi
+t043	11288	emigrate	verb	BIRAK	TR	ülkesini terk edip göç etmek	(başka ülkeye) göç etmek, hicret etmek	Claude t serisinde BIRAK dedi: Emigrate karşılığı sadeleştirildi
+t052	19368	foreboding	noun	BIRAK	TR	kötü bir şeyin önsezisi	kötü önsezi, içine doğma, uğursuz his	Claude t serisinde BIRAK dedi: Foreboding için doğal karşılıklar eklendi
+t055	21719	gazetteer	noun	BIRAK	TR	coğrafi yer adı rehberi	coğrafya sözlüğü, yer adları dizini	Claude t serisinde BIRAK dedi: Gazetteer için yerleşik coğrafya sözlüğü eklendi
+t057	10274	glint	verb	BIRAK	TR	kısa bir ışık parlamasıyla ışıldamak	parıldamak, ışıldamak, çakmak	Claude t serisinde BIRAK dedi: Glint için 5 kelimelik tanım yerine parıldamak/ışıldamak yazıldı
+t058	896	grandfathered	adjective	BIRAK	TR	geçmiş kurallara göre muaf	kazanılmış hak kapsamında muaf tutulan, eski kurallara tabi	Claude t serisinde BIRAK dedi: Grandfathered terimi daha anlaşılır hâle getirildi
+t061	12047	handwritten	adjective	BIRAK	TR	el yazısı ile yazılmış	el yazısıyla yazılmış, el yazması	Claude t serisinde BIRAK dedi: Handwritten daha doğal hâle getirildi
+t070	25529	inpatient	noun	BIRAK	TR	yatarak tedavi gören hasta	yatan hasta, yataklı tedavi gören hasta	Claude t serisinde BIRAK dedi: Inpatient için hastanelerde yerleşik yatan hasta terimi başa alındı
+t087	18862	nested	adjective	BIRAK	TR	iç içe yer alan	iç içe geçmiş, yuvalanmış	Claude t serisinde BIRAK dedi: Nested için yerleşik iç içe geçmiş başa alındı
+t088	8339	nick	verb	BIRAK	TR	küçük bir kesik atmak	çentik atmak, küçük bir kesik açmak	Claude t serisinde BIRAK dedi: Nick için yerleşik çentik atmak eklendi
+t094	24551	patriarch	noun	BIRAK	TR	aile ya da kabile reisi	ataerkil aile/kabile reisi; patrik	Claude t serisinde BIRAK dedi: Patriarch için patrik ve aile büyüğü/reisi netleştirildi
+t095	24568	penthouse	noun	BIRAK	TR	üst kat lüks daire	çatı katı lüks daire, penthaus	Claude t serisinde BIRAK dedi: Penthouse için çatı katı vurgusu eklendi
+t097	1908	pilot	verb	BIRAK	TR	bir projeyi deneme amaçlı yürütmek	pilot olarak uygulamak, deneme amacıyla yürütmek	Claude t serisinde BIRAK dedi: Pilot (fiil) sadeleştirildi
+t097	7140	plague	verb	BIRAK	TR	sık sık rahatsız etmek	başına bela olmak, yakasını bırakmamak, bunaltmak	Claude t serisinde BIRAK dedi: Plague (fiil) için sık sık rahatsız etmek çok hafif kalıyordu; doğal karşılıklar eklendi
+t101	18721	preschooler	noun	BIRAK	TR	okul öncesi dönemdeki çocuk	anaokulu çocuğu, okul öncesi çocuğu	Claude t serisinde BIRAK dedi: Preschooler için doğal anaokulu çocuğu başa alındı
+t101	19469	prescribed	adjective	BIRAK	TR	doktor tarafından reçete edilen	reçeteli, doktorun yazdığı, öngörülen	Claude t serisinde BIRAK dedi: Prescribed için yerleşik reçeteli başa alındı
+t104	22209	quad	noun	BIRAK	TR	dört tekerlekli arazi aracı	ATV, dört tekerlekli arazi motoru	Claude t serisinde BIRAK dedi: Quad için Türkiye Türkçesinde kullanılan ATV başa alındı
+t105	5207	railroad	verb	BIRAK	TR	hızla ve tartışmadan geçirmek	(yasayı vb.) oldu bittiye getirip geçirmek, dayatmak	Claude t serisinde BIRAK dedi: Railroad (fiil) için doğal oldu bittiye getirmek eklendi
+t111	15884	resultant	adjective	BIRAK	TR	sonuç olarak ortaya çıkan	bunun sonucunda oluşan, doğan, ortaya çıkan	Claude t serisinde BIRAK dedi: Resultant daha doğal sıfat biçimine getirildi
+t112	13331	retort	verb	BIRAK	TR	keskin bir şekilde yanıt vermek	hazırcevaplıkla karşılık vermek, ağzının payını vermek, terslemek	Claude t serisinde BIRAK dedi: Retort için doğal karşılıklar eklendi
+t116	5925	scowl	verb	BIRAK	TR	kaşlarını çatarak kızgın bakmak	kaşlarını çatmak, surat asmak, ters ters bakmak	Claude t serisinde BIRAK dedi: Scowl için doğal karşılıklar eklendi
+t122	12077	slab	noun	BIRAK	TR	kalın bir dilim yiyecek	kalın dilim, büyük parça, blok/levha	Claude t serisinde BIRAK dedi: Slab yalnızca yiyecek değil taş/beton/yiyecek kalın parçasıdır
+t123	23678	slipper	noun	BIRAK	TR	ev içinde giyilen terlik	terlik, ev terliği	Claude t serisinde BIRAK dedi: Ev içinde giyilen terlik yerine doğrudan terlik, ev terliği yazıldı
+t124	22387	snipe	verb	BIRAK	TR	gizli bir yerden ateş etmek	pusudan ateş etmek, keskin nişancı atışı yapmak	Claude t serisinde BIRAK dedi: Snipe için keskin nişancı/pusu vurgusu eklendi
+t128	23704	stash	verb	BIRAK	TR	gizli bir yerde saklamak	zulalamak, gizlice saklamak, istiflemek	Claude t serisinde BIRAK dedi: Stash için doğal zulalamak/gizlice saklamak eklendi
+t132	23716	suffragette	noun	BIRAK	TR	kadın oy hakkı savunucusu	süfrajet, kadınların oy hakkı savunucusu	Claude t serisinde BIRAK dedi: Tarihsel suffragette için yerleşik süfrajet eklendi
+t133	6980	synthesize	verb	BIRAK	TR	birleştirerek yeni bir bütün oluşturmak	sentezlemek, birleştirip yeni bir bütün oluşturmak	Claude t serisinde BIRAK dedi: Synthesize için en temel karşılık olan sentezlemek unutulmuştu; başa eklendi
+t137	11203	thud	verb	BIRAK	TR	küt bir ses çıkarmak	küt diye vurmak/düşmek, tok bir ses çıkarmak	Claude t serisinde BIRAK dedi: Thud fiili doğal biçime getirildi
+t137	8693	toddle	verb	BIRAK	TR	küçük çocuk gibi yürümek	paytak paytak yürümek, badi badi yürümek	Claude t serisinde BIRAK dedi: Toddle için yerleşik paytak paytak yürümek başa alındı
+t141	21182	tweet	noun	BIRAK	TR	kısa sosyal medya gönderisi	tweet, X/Twitter paylaşımı	Claude t serisinde BIRAK dedi: Kısa sosyal medya gönderisi yerine doğrudan tweet eklendi
+t141	15639	typify	verb	BIRAK	TR	tipik bir örnek olmak	tipik örneği olmak, simgelemek, temsil etmek	Claude t serisinde BIRAK dedi: Typify daha doğal hâle getirildi
+t142	15936	underperform	verb	BIRAK	TR	beklentilerin altında performans göstermek	beklenenin altında kalmak, düşük performans göstermek	Claude t serisinde BIRAK dedi: Underperform doğal hâle getirildi
+t142	16005	underrated	adjective	BIRAK	TR	hak ettiği kadar takdir edilmeyen	değeri bilinmemiş, hak ettiği değeri görmeyen, küçümsenen	Claude t serisinde BIRAK dedi: Underrated için en yaygın karşılıklar başa alındı
+t144	4262	unlearn	verb	BIRAK	TR	öğrenilen bir şeyi bırakmak	bildiğini/öğrendiğini unutmak, yanlış alışkanlığı bırakmak	Claude t serisinde BIRAK dedi: Unlearn karşılığı netleştirildi
+t147	19172	verbalize	verb	BIRAK	TR	sözlü olarak ifade etmek	söze dökmek, kelimelere dökmek, sözlü ifade etmek	Claude t serisinde BIRAK dedi: Verbalize için yerleşik söze/kelimelere dökmek başa alındı
+t025	26278	come on	phrasal_verb	BIRAK	TR	hadi, haydi (cesaretlendirme, acele ettirme)	(ünlem olarak) hadi!, yapma ya!; (ışık, yayın vb.) başlamak, açılmak	Claude t serisinde BIRAK dedi: Come on kaydı phrasal_verb olduğu için hem ünlem kullanımı etiketlendi hem fiil anlamı korundu
+t057	26434	go ahead	phrasal_verb	BIRAK	TR	buyurun, devam et (izin verirken)	(izin verirken) buyurun, devam et; önden gitmek, başlamak	Claude t serisinde BIRAK dedi: Go ahead phrasal_verb kaydına mastar karşılıkları da eklendi
+t007	7784	arousing	adjective	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	aroused sıfatı çoğunlukla cinsel çağrışımlı, kayıt tutulmalı mı karar gerekli	Claude t007 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
+t008	25957	autistic	noun	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	autistic isim kullanımı (the autistic) aşağılayıcı algılanabilir, kayıt kalsın mı	Claude t008 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
+t009	18303	backwash	verb	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	backspace fiil kullanımı şüpheli; filtre ters yıkama anlamı mı, silme mi	Claude t009 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
+t012	5448	bellow	noun	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	körük anlamı bellows kelimesine ait, bellow başlığında yanlış kayıt	Claude t012 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
+t013	13323	blotting	noun	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	blotting kaydı aslında blotting paper (kurutma kâğıdı) tamlamasına ait	Claude t013 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
+t014	4001	bolden	verb	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	bolden bu anlamda arkaik, yaygın biçimi embolden; silinmeli mi	Claude t014 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
+t017	21372	bunker	verb	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	bunker fiili standart değil (hunker down ile karışmış), silinebilir	Claude t017 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
+t031	9398	cripple	noun	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	cripple isim olarak aşağılayıcı; kayıt kalsın mı, uyarı eklensin mi	Claude t031 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
+t034	18226	declarative	adjective	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	default #1 ile #2 aynı anlamı tekrarlıyor, birleştirilmeli/silinmeli	Claude t034 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
+t035	6298	derivative	adjective	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	derivative sıfatında matematik anlamı şüpheli; asıl anlam özgün olmayan/taklit	Claude t035 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
+t122	13027	sky	verb	EFE	EFE	(4 TAB hatası yüzünden gerekçe kaymış)	sky fiili hızla yükselmek anlamında standart değil, skyrocket ile karışmış	Claude t122 içinde 4 TAB koyduğu için gerekçe sütunu kaymıştı
