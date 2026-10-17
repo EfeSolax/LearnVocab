@@ -41,6 +41,23 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     #lp-kart.lv-fis { background-position: 0 46px, 0 48px; }
     .lp-damga { font-family: var(--el); font-size: 26px; font-weight: 700; text-transform: none; letter-spacing: 0; border-width: 2.5px; }
     #lp-kart.suruklen { transition: none; }
+    /* Kaydırma hep sağa/sola sayılır (Efe, 17 Ekim): sahnede tarayıcı sayfayı kaydırmaz; çapraz
+       (sağ-aşağı, sol-aşağı) çekiş de kartı yatay sürükler. */
+    #lp-sahne { touch-action: none; }
+    /* Telefonda oturum ekrana sığar, sayfa hiç kaymaz (html.lp-kilitli, JS oturum bitince kaldırır).
+       Balon açılınca kart küçülür; uzun anlam sayfayı değil balonun içini uzatır. */
+    @media (max-width: 639px) {
+        html.lp-kilitli, html.lp-kilitli body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+        html.lp-kilitli main, html.lp-kilitli main > div { min-height: 0 !important; }
+        html.lp-kilitli #lp { display: flex; flex-direction: column; height: calc(100dvh - 5.75rem); }
+        html.lp-kilitli #lp-sahne { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; margin-top: 1rem; }
+        html.lp-kilitli #lp-sahne > * { flex: none; }
+        html.lp-kilitli #lp-acilim { flex: 0 1 auto; min-height: 0; }
+        html.lp-kilitli #lp-acilim.acik > div { overflow-y: auto; overscroll-behavior: contain; }
+        #lp-sahne.acik #lp-kart { min-height: 7rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+        #lp-sahne.acik .lp-kelime { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+        html.lp-kilitli #lp-sahne .mt-6 { margin-top: 1rem; }
+    }
 </style>
 {% endblock %}
 
@@ -92,8 +109,8 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     {# ---------------- Sahne ---------------- #}
     <div id="lp-sahne" class="mt-6 {% if not kartlar %}hidden{% endif %}">
 
-        {# touch-action: pan-y -> dikey kaydırma sayfada kalsın, yatay hareketi biz yakalayalım #}
-        <div id="lp-kart" style="touch-action: pan-y;" role="group" aria-live="polite"
+        {# Sürükleme sahnenin tamamında yakalanır (touch-action: none, yukarıdaki stil) #}
+        <div id="lp-kart" role="group" aria-live="polite"
              class="lv-fis relative flex min-h-[15rem] sm:min-h-[17rem] cursor-grab select-none items-center justify-center px-6 py-12 -rotate-1">
             <span id="lp-etiket-sol" aria-hidden="true"
                   class="lp-damga pointer-events-none absolute left-4 top-3 -rotate-6 rounded-lg border-red-700 px-2 text-red-700 opacity-0 dark:border-red-300 dark:text-red-300">{% translate "Bilmiyorum" %}</span>
@@ -210,7 +227,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     var CSRF = csrfMeta ? csrfMeta.content : '';
 
     var $ = function (id) { return document.getElementById(id); };
-    var kart = $('lp-kart'), kelimeEl = $('lp-kelime'), acilim = $('lp-acilim');
+    var kart = $('lp-kart'), kelimeEl = $('lp-kelime'), acilim = $('lp-acilim'), sahne = $('lp-sahne');
     var etiketSol = $('lp-etiket-sol'), etiketSag = $('lp-etiket-sag');
     var alevKok = $('lp-alev');
 
@@ -317,6 +334,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     function soruHali() {
         durum = 'soru';
         acilim.classList.remove('acik');
+        sahne.classList.remove('acik');
         acilim.setAttribute('aria-hidden', 'true');
         kart.classList.remove('border-emerald-300', 'border-rose-300', 'dark:border-emerald-700', 'dark:border-rose-800');
         kart.classList.add('border-gray-200', 'dark:border-slate-700');
@@ -340,6 +358,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         etiketSag.textContent = '{{ _("Eminim")|escapejs }}';
         etiketSol.textContent = '{{ _("Yanılmışım")|escapejs }}';
         acilim.classList.add('acik');
+        sahne.classList.add('acik');
         acilim.setAttribute('aria-hidden', 'false');
         goster('lp-soru-dugmeleri', false);
         goster('lp-dogrula-dugmeleri', yon > 0);
@@ -451,6 +470,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         if (durum === 'bitti') { return; }
         durum = 'bitti';
         $('lp-sahne').classList.add('hidden');
+        document.documentElement.classList.remove('lp-kilitli');   // özet ekranı kaydırılabilir
         $('lp-bitis').classList.remove('hidden');
         $('lp-bitir').classList.add('invisible');
         ilerlemeyiGoster();
@@ -510,11 +530,13 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     });
 
     // ---------------- Girdi: sürükleme ----------------
+    // Kart da balon da sürüklenebilir (sahnenin tamamı; düğmeler hariç). Dikey hareket yok sayılır.
     var basla = null, dx = 0;
-    kart.addEventListener('pointerdown', function (o) {
-        if (durum === 'bitti' || geciliyor) { return; }
+    if (!sahne.classList.contains('hidden')) { document.documentElement.classList.add('lp-kilitli'); }
+    sahne.addEventListener('pointerdown', function (o) {
+        if (durum === 'bitti' || geciliyor || o.target.closest('button, a, input, label')) { return; }
         basla = { x: o.clientX, y: o.clientY }; dx = 0;
-        try { kart.setPointerCapture(o.pointerId); } catch (h) { /* eski tarayıcı */ }
+        try { sahne.setPointerCapture(o.pointerId); } catch (h) { /* eski tarayıcı */ }
     });
     window.addEventListener('pointermove', function (o) {
         if (!basla) { return; }
