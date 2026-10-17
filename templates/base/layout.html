@@ -33,6 +33,13 @@
     {# Yazı tipleri sitenin kendi dosyalarından (static/fonts, static/css/fontlar.css): Google'a bağlanılmaz. #}
     <link rel="preload" href="{% static 'fonts/Inter-latin-1ab1ad.woff2' %}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{% static 'css/fontlar.css' %}">
+    {# Önceden yükleme (17 Ekim): Chrome basılacak bağlantıyı parmak değince indirir; durum değiştiren adresler (çıkış, admin, hesap, sil/geri al) hariç. #}
+    <script type="speculationrules">
+    {"prefetch": [{"where": {"and": [
+        {"href_matches": "/*"},
+        {"not": {"href_matches": ["/cikis/*", "/*/cikis/*", "/accounts/*", "/*/accounts/*", "/admin/*", "/*/admin/*", "/*/sil/*", "/*/geri-al/*", "/*/tekrar-dene/*"]}}
+    ]}, "eagerness": "moderate"}]}
+    </script>
     <link rel="stylesheet" href="{% surumlu_static 'css/defter.css' %}">
 
     <script>

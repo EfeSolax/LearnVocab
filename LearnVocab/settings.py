@@ -79,6 +79,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # HTML'i sıkıştırır (17 Ekim: sayfalar 70-630 KB sıkıştırılmadan gidiyordu). Statik dosyaları
+    # sunucu zaten sıkıştırıyor. Cevabı değiştiren ara katmanlardan önce durmalı.
+    'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'LearnVocab.diller.KapaliDilYonlendirme',   # eski /de/ adresleri -> Türkçesi (301)
     # Adres önekinden dili seçer (/en/…); öneksiz adres Türkçedir.
