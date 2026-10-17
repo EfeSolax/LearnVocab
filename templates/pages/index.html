@@ -93,6 +93,17 @@ Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
 {% if user.is_authenticated %}{% include 'pages/gunun/_js.html' %}{% endif %}
 {% endif %}
 
+{# Uygulama olarak ekle (Efe, 17 Ekim): yalnızca yönlendirme, adımlar Ayarlar'da (#uygulama); uygulama olarak açıldıysa görünmez. #}
+<style>@media (display-mode: standalone) { [data-uygulama-ekle] { display: none; } }</style>
+<a href="{% url 'settings_page' %}#uygulama" data-uygulama-ekle
+   class="lv-not lv-mavi mt-10 flex items-center gap-4 text-gray-900 no-underline hover:-translate-y-0.5 transition dark:text-slate-100">
+    <svg class="h-10 w-10 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>
+    <span class="min-w-0">
+        <span class="lv-serif block text-xl font-bold">{% translate "LearnVocab'ı telefonuna uygulama olarak ekle" %}</span>
+        <span class="mt-0.5 block text-[15px] text-gray-700 dark:text-slate-300">{% translate "Simgesiyle açılır, tam ekran çalışır. Nasıl eklendiğini Ayarlar'daki rehberde bulabilirsin." %} <span class="font-semibold underline underline-offset-4">{% translate "Rehbere git" %} →</span></span>
+    </span>
+</a>
+
 {# ======================= 4. Hemen başla: dört kutu ======================= #}
 <h2 class="lv-bolum mt-16">{% translate "Hemen başla" %}</h2>
 <span class="lv-bolum-notu mt-1">{% translate "hepsi birkaç dakika" %}</span>

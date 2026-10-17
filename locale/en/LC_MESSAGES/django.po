@@ -5483,3 +5483,51 @@ msgstr[1] "%(n)s-day streak, not yet today"
 #: templates/pages/seviye/okuma.html
 msgid "Emin değilsen boş bırakabilirsin."
 msgstr "If you're not sure, you can leave it blank."
+
+#: templates/pages/profile/ayarlar.html
+msgid "LearnVocab'ı telefonuna uygulama olarak ekle"
+msgstr "Add LearnVocab to your phone as an app"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Simgesiyle açılır, tam ekran çalışır. Nasıl eklendiğini Ayarlar'daki rehberde bulabilirsin."
+msgstr "It opens from its own icon and runs full screen. The guide in Settings shows how."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Rehbere git"
+msgstr "Open the guide"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Uygulama olarak ekle"
+msgstr "Add as an app"
+
+#: templates/pages/profile/ayarlar.html
+msgid "telefonunda simgesiyle açılır, tam ekran çalışır"
+msgstr "opens from its icon on your phone, runs full screen"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Siteyi Safari'de aç."
+msgstr "Open the site in Safari."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Alttaki Paylaş düğmesine (yukarı oklu kare) dokun."
+msgstr "Tap the Share button at the bottom (the square with an up arrow)."
+
+#: templates/pages/profile/ayarlar.html
+msgid "\"Ana Ekrana Ekle\"yi seç, sonra \"Ekle\"ye dokun."
+msgstr "Choose \"Add to Home Screen\", then tap \"Add\"."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Siteyi Chrome'da aç."
+msgstr "Open the site in Chrome."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Sağ üstteki üç noktaya dokun."
+msgstr "Tap the three dots at the top right."
+
+#: templates/pages/profile/ayarlar.html
+msgid "\"Uygulamayı yükle\" ya da \"Ana ekrana ekle\"yi seç."
+msgstr "Choose \"Install app\" or \"Add to Home screen\"."
+
+#: templates/pages/profile/ayarlar.html
+msgid "iPhone'da bildirimler yalnızca site bu şekilde ana ekrana eklendiğinde gelir."
+msgstr "On iPhone, notifications only work after the site is added to the Home Screen this way."

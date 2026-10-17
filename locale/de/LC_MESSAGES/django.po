@@ -5568,3 +5568,51 @@ msgstr[1] "%(n)s Tage Serie, heute noch offen"
 #: templates/pages/seviye/okuma.html
 msgid "Emin değilsen boş bırakabilirsin."
 msgstr "Wenn du dir nicht sicher bist, kannst du es leer lassen."
+
+#: templates/pages/profile/ayarlar.html
+msgid "LearnVocab'ı telefonuna uygulama olarak ekle"
+msgstr "Füge LearnVocab als App zu deinem Handy hinzu"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Simgesiyle açılır, tam ekran çalışır. Nasıl eklendiğini Ayarlar'daki rehberde bulabilirsin."
+msgstr "Sie öffnet sich über ihr eigenes Symbol und läuft im Vollbild. Wie es geht, steht in der Anleitung in den Einstellungen."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Rehbere git"
+msgstr "Zur Anleitung"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Uygulama olarak ekle"
+msgstr "Als App hinzufügen"
+
+#: templates/pages/profile/ayarlar.html
+msgid "telefonunda simgesiyle açılır, tam ekran çalışır"
+msgstr "öffnet sich über das Symbol auf deinem Handy, läuft im Vollbild"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Siteyi Safari'de aç."
+msgstr "Öffne die Seite in Safari."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Alttaki Paylaş düğmesine (yukarı oklu kare) dokun."
+msgstr "Tippe unten auf „Teilen“ (das Quadrat mit dem Pfeil nach oben)."
+
+#: templates/pages/profile/ayarlar.html
+msgid "\"Ana Ekrana Ekle\"yi seç, sonra \"Ekle\"ye dokun."
+msgstr "Wähle „Zum Home-Bildschirm“ und tippe dann auf „Hinzufügen“."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Siteyi Chrome'da aç."
+msgstr "Öffne die Seite in Chrome."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Sağ üstteki üç noktaya dokun."
+msgstr "Tippe oben rechts auf die drei Punkte."
+
+#: templates/pages/profile/ayarlar.html
+msgid "\"Uygulamayı yükle\" ya da \"Ana ekrana ekle\"yi seç."
+msgstr "Wähle „App installieren“ oder „Zum Startbildschirm hinzufügen“."
+
+#: templates/pages/profile/ayarlar.html
+msgid "iPhone'da bildirimler yalnızca site bu şekilde ana ekrana eklendiğinde gelir."
+msgstr "Auf dem iPhone kommen Benachrichtigungen nur, wenn die Seite so zum Home-Bildschirm hinzugefügt wurde."

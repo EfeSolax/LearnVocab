@@ -56,6 +56,31 @@ ile aşağıdaki forma bağlıdır.
     </section>
     {% endif %}
 
+    {# ================= UYGULAMA OLARAK EKLE (Efe, 17 Ekim): ana sayfadaki kutu buraya (#uygulama) gelir ================= #}
+    <section id="uygulama" class="mb-12 scroll-mt-24" data-uygulama-rehberi>
+        <h2 class="lv-bolum !text-3xl">{% translate "Uygulama olarak ekle" %}</h2>
+        <p class="lv-el text-[21px]">{% translate "telefonunda simgesiyle açılır, tam ekran çalışır" %}</p>
+        <div class="mt-4 grid gap-6 sm:grid-cols-2">
+            <div>
+                <h3 class="font-bold">iPhone · Safari</h3>
+                <ol class="mt-2 list-decimal space-y-1 pl-5 text-[16px]">
+                    <li>{% translate "Siteyi Safari'de aç." %}</li>
+                    <li>{% translate "Alttaki Paylaş düğmesine (yukarı oklu kare) dokun." %}</li>
+                    <li>{% translate '"Ana Ekrana Ekle"yi seç, sonra "Ekle"ye dokun.' %}</li>
+                </ol>
+            </div>
+            <div>
+                <h3 class="font-bold">Android · Chrome</h3>
+                <ol class="mt-2 list-decimal space-y-1 pl-5 text-[16px]">
+                    <li>{% translate "Siteyi Chrome'da aç." %}</li>
+                    <li>{% translate "Sağ üstteki üç noktaya dokun." %}</li>
+                    <li>{% translate '"Uygulamayı yükle" ya da "Ana ekrana ekle"yi seç.' %}</li>
+                </ol>
+            </div>
+        </div>
+        <p class="mt-4 text-[15px] text-gray-600 dark:text-slate-300">{% translate "iPhone'da bildirimler yalnızca site bu şekilde ana ekrana eklendiğinde gelir." %}</p>
+    </section>
+
     {# ================= TÜRKÇE ANLAMLAR (rapor 18.22): arayüz dilinden bağımsız; kapalıysa her şey İngilizce açıklamayla yürür ================= #}
     <section data-turkce-anlamlar-ayari>
         <div class="lv-sayfa">
