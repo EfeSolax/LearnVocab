@@ -226,7 +226,8 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     var MISAFIR = kok.dataset.misafir === '1';
     var MOD = kok.dataset.mode;
     var TOPLAM = parseInt(kok.dataset.toplam, 10) || 20;
-    var ESIK = 80;   // px: bu kadar sürüklenince kaydırma sayılır
+    var ESIK = 40;   // px: bu kadar sürüklenince kaydırma sayılır (Efe, 17 Ekim: 80 fazlaydı)
+    var HIZLI = 20;  // px: hızlı bir fiske (300 ms içinde) bu kadarla da sayılır
     var csrfMeta = document.querySelector('meta[name="csrf-token"]');
     var CSRF = csrfMeta ? csrfMeta.content : '';
 
@@ -553,7 +554,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     if (!sahne.classList.contains('hidden')) { document.documentElement.classList.add('lp-kilitli'); }
     sahne.addEventListener('pointerdown', function (o) {
         if (durum === 'bitti' || geciliyor || o.target.closest('button, a, input, label')) { return; }
-        basla = { x: o.clientX, y: o.clientY }; dx = 0;
+        basla = { x: o.clientX, y: o.clientY, t: Date.now() }; dx = 0;
         try { sahne.setPointerCapture(o.pointerId); } catch (h) { /* eski tarayıcı */ }
     });
     window.addEventListener('pointermove', function (o) {
@@ -563,9 +564,10 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     });
     function birak() {
         if (!basla) { return; }
+        var fiske = Date.now() - basla.t < 300 && Math.abs(dx) >= HIZLI;
         basla = null;
         var yon = dx > 0 ? 1 : -1;
-        if (Math.abs(dx) >= ESIK) {
+        if (Math.abs(dx) >= ESIK || fiske) {
             if (durum === 'soru') { karar(yon); } else { ikinciAdim(yon); }
         } else if (Math.abs(dx) < 6 && durum === 'bilmiyor') {
             ikinciAdim(1);   // "Bilmiyorum" sonrası karta dokunmak da devam ettirir
