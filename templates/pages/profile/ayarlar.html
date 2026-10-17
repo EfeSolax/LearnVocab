@@ -81,8 +81,18 @@ ile aşağıdaki forma bağlıdır.
                 <ol class="mt-2 list-decimal space-y-1 pl-5 text-[16px]">
                     <li>{% translate "Siteyi Chrome'da aç." %}</li>
                     <li>{% translate "Sağ üstteki üç noktaya dokun." %}</li>
-                    <li>{% translate '"Uygulamayı yükle" ya da "Ana ekrana ekle"yi seç.' %}</li>
+                    <li>{% translate '"Yükle ve kısayol oluştur"u seç.' %}</li>
+                    <li>{% translate 'Açılan pencerede "Yükle"ye dokun.' %}</li>
                 </ol>
+                {# Örnek ekranlar: basılacak yer kırmızı çerçeveli ve numaralı (adım 2, 3, 4) #}
+                <div class="mt-3 grid max-w-md grid-cols-3 gap-2">
+                    <figure><img src="{% static 'img/uygulama/android-1-menu.webp' %}" width="500" height="1010" loading="lazy" class="w-full rounded-xl border border-[color:var(--satir)]" alt="{% translate 'Chrome: sağ üstteki üç nokta' %}">
+                        <figcaption class="mt-1 text-center text-sm text-gray-600 dark:text-slate-300">2 · {% translate "Üç nokta" %}</figcaption></figure>
+                    <figure><img src="{% static 'img/uygulama/android-2-yukle-kisayol.webp' %}" width="500" height="1054" loading="lazy" class="w-full rounded-xl border border-[color:var(--satir)]" alt="{% translate 'Chrome menüsünde Yükle ve kısayol oluştur' %}">
+                        <figcaption class="mt-1 text-center text-sm text-gray-600 dark:text-slate-300">3 · {% translate "Yükle ve kısayol oluştur" %}</figcaption></figure>
+                    <figure><img src="{% static 'img/uygulama/android-3-yukle.webp' %}" width="500" height="971" loading="lazy" class="w-full rounded-xl border border-[color:var(--satir)]" alt="{% translate 'Açılan pencerede Yükle' %}">
+                        <figcaption class="mt-1 text-center text-sm text-gray-600 dark:text-slate-300">4 · {% translate "Yükle" %}</figcaption></figure>
+                </div>
             </div>
         </div>
         <p class="mt-4 text-[15px] text-gray-600 dark:text-slate-300">{% translate "iPhone'da bildirimler yalnızca site bu şekilde ana ekrana eklendiğinde gelir." %}</p>

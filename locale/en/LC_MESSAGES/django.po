@@ -5547,3 +5547,35 @@ msgstr "Share"
 #: templates/pages/profile/ayarlar.html
 msgid "Ana Ekrana Ekle"
 msgstr "Add to Home Screen"
+
+#: templates/pages/profile/ayarlar.html
+msgid "\"Yükle ve kısayol oluştur\"u seç."
+msgstr "Choose \"Install and create shortcut\" (or \"Install app\")."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Açılan pencerede \"Yükle\"ye dokun."
+msgstr "In the window that opens, tap \"Install\"."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Chrome: sağ üstteki üç nokta"
+msgstr "Chrome: the three dots at the top right"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Chrome menüsünde Yükle ve kısayol oluştur"
+msgstr "Install and create shortcut in the Chrome menu"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Açılan pencerede Yükle"
+msgstr "Install in the window that opens"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Üç nokta"
+msgstr "Three dots"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Yükle ve kısayol oluştur"
+msgstr "Install and create shortcut"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Yükle"
+msgstr "Install"

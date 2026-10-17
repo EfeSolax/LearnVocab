@@ -5632,3 +5632,35 @@ msgstr "Teilen"
 #: templates/pages/profile/ayarlar.html
 msgid "Ana Ekrana Ekle"
 msgstr "Zum Home-Bildschirm"
+
+#: templates/pages/profile/ayarlar.html
+msgid "\"Yükle ve kısayol oluştur\"u seç."
+msgstr "Wähle „Installieren und Verknüpfung erstellen“ (oder „App installieren“)."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Açılan pencerede \"Yükle\"ye dokun."
+msgstr "Tippe im sich öffnenden Fenster auf „Installieren“."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Chrome: sağ üstteki üç nokta"
+msgstr "Chrome: die drei Punkte oben rechts"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Chrome menüsünde Yükle ve kısayol oluştur"
+msgstr "„Installieren und Verknüpfung erstellen“ im Chrome-Menü"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Açılan pencerede Yükle"
+msgstr "„Installieren“ im geöffneten Fenster"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Üç nokta"
+msgstr "Drei Punkte"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Yükle ve kısayol oluştur"
+msgstr "Installieren und Verknüpfung"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Yükle"
+msgstr "Installieren"
