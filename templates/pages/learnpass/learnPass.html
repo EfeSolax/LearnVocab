@@ -38,24 +38,28 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
                         transform: rotate(45deg); background: inherit; border-left: inherit; border-bottom: inherit; }
     #lp-kart { transition: transform .25s ease, opacity .25s ease, box-shadow .2s ease; will-change: transform; }
     /* Kart: çizgili kelime fişi (defter, rapor 18.12) */
-    #lp-kart.lv-fis { background-position: 0 46px, 0 48px; }
+    /* Kırmızı kenar çizgisi yok (Efe, 17 Ekim); yalnızca gri satırlar */
+    #lp-kart.lv-fis { background-image: repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px);
+                      background-size: 100% 100%; background-position: 0 16px; }
     .lp-damga { font-family: var(--el); font-size: 26px; font-weight: 700; text-transform: none; letter-spacing: 0; border-width: 2.5px; }
     #lp-kart.suruklen { transition: none; }
     /* Kaydırma hep sağa/sola sayılır (Efe, 17 Ekim): sahnede tarayıcı sayfayı kaydırmaz; çapraz
        (sağ-aşağı, sol-aşağı) çekiş de kartı yatay sürükler. */
     #lp-sahne { touch-action: none; }
     /* Telefonda oturum ekrana sığar, sayfa hiç kaymaz (html.lp-kilitli, JS oturum bitince kaldırır).
-       Balon açılınca kart küçülür; uzun anlam sayfayı değil balonun içini uzatır. */
+       Balon açılınca kart küçülür. Balonun içi kaydırılmaz (ekranın her yeri kartı kaydırsın);
+       sığmazsa örnek cümle gizlenir (balonuSigdir). */
     @media (max-width: 639px) {
         html.lp-kilitli, html.lp-kilitli body { height: 100%; overflow: hidden; overscroll-behavior: none; }
         html.lp-kilitli main, html.lp-kilitli main > div { min-height: 0 !important; }
         html.lp-kilitli #lp { display: flex; flex-direction: column; height: calc(100dvh - 5.75rem); }
-        html.lp-kilitli #lp-sahne { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; margin-top: 1rem; }
-        html.lp-kilitli #lp-sahne > * { flex: none; }
-        html.lp-kilitli #lp-acilim { flex: 0 1 auto; min-height: 0; }
-        html.lp-kilitli #lp-acilim.acik > div { overflow-y: auto; overscroll-behavior: contain; }
+        html.lp-kilitli #lp-sahne { flex: 1 1 auto; min-height: 0; overflow: hidden; margin-top: 1rem; }
         #lp-sahne.acik #lp-kart { min-height: 7rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
         #lp-sahne.acik .lp-kelime { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+        /* Kısa ekranda hâlâ sığmazsa (balonuSigdir 2. adım): kunduz, ipucu yazısı gizlenir, kart küçülür */
+        #lp-sahne.sikisik [data-kapibara-yeri], #lp-sahne.sikisik #lp-ipucu { display: none; }
+        #lp-sahne.sikisik #lp-kart { min-height: 5rem; padding-top: .75rem; padding-bottom: .75rem; }
+        #lp-sahne.sikisik .lp-balon::before { display: none; }
         html.lp-kilitli #lp-sahne .mt-6 { margin-top: 1rem; }
     }
 </style>
@@ -334,7 +338,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     function soruHali() {
         durum = 'soru';
         acilim.classList.remove('acik');
-        sahne.classList.remove('acik');
+        sahne.classList.remove('acik', 'sikisik');
         acilim.setAttribute('aria-hidden', 'true');
         kart.classList.remove('border-emerald-300', 'border-rose-300', 'dark:border-emerald-700', 'dark:border-rose-800');
         kart.classList.add('border-gray-200', 'dark:border-slate-700');
@@ -368,7 +372,21 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
             : '{{ _("Devam etmek için kaydır")|escapejs }}';
         ilerlemeyiGoster();
         // Sayfa kendiliğinden kaydırılmaz (Efe, 17 Ekim): balon açılıp kapandıkça aşağı-yukarı gitmesi rahatsız ediyordu
+        setTimeout(balonuSigdir, 450);   // transitionend gelmezse (arka plandaki sekme) yedek
     }
+
+    // Telefonda sahne ekrana sığmazsa önce örnek cümle, sonra kunduz ve ipucu gizlenir; anlamlar her zaman görünür.
+    // (Sonraki kartta kartGoster örneği yeniden açar.)
+    function balonuSigdir() {
+        function tasiyor() { return sahne.scrollHeight > sahne.clientHeight + 2; }
+        if (!acilim.classList.contains('acik') || !document.documentElement.classList.contains('lp-kilitli')) { return; }
+        if (tasiyor()) { $('lp-ornek').classList.add('hidden'); }
+        if (tasiyor()) { sahne.classList.add('sikisik'); }
+    }
+    // Açılma animasyonu bitince ölç (yarıda ölçülürse balon olduğundan küçük görünür)
+    acilim.addEventListener('transitionend', function (o) {
+        if (o.target === acilim && o.propertyName === 'grid-template-rows') { balonuSigdir(); }
+    });
 
     function kartKonumu(dx, gecisli) {
         kart.classList.toggle('suruklen', !gecisli);
