@@ -5479,3 +5479,7 @@ msgid "%(n)s günlük seri, bugün henüz çalışmadın"
 msgid_plural "%(n)s günlük seri, bugün henüz çalışmadın"
 msgstr[0] "%(n)s-day streak, not yet today"
 msgstr[1] "%(n)s-day streak, not yet today"
+
+#: templates/pages/seviye/okuma.html
+msgid "Emin değilsen boş bırakabilirsin."
+msgstr "If you're not sure, you can leave it blank."

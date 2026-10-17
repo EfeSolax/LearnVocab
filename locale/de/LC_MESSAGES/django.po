@@ -5564,3 +5564,7 @@ msgid "%(n)s günlük seri, bugün henüz çalışmadın"
 msgid_plural "%(n)s günlük seri, bugün henüz çalışmadın"
 msgstr[0] "%(n)s Tag Serie, heute noch offen"
 msgstr[1] "%(n)s Tage Serie, heute noch offen"
+
+#: templates/pages/seviye/okuma.html
+msgid "Emin değilsen boş bırakabilirsin."
+msgstr "Wenn du dir nicht sicher bist, kannst du es leer lassen."
