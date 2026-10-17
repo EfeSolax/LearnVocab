@@ -5531,3 +5531,19 @@ msgstr "Choose \"Install app\" or \"Add to Home screen\"."
 #: templates/pages/profile/ayarlar.html
 msgid "iPhone'da bildirimler yalnızca site bu şekilde ana ekrana eklendiğinde gelir."
 msgstr "On iPhone, notifications only work after the site is added to the Home Screen this way."
+
+#: templates/pages/profile/ayarlar.html
+msgid "Safari: alttaki Paylaş düğmesi"
+msgstr "Safari: the Share button at the bottom"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Paylaş menüsünde Ana Ekrana Ekle"
+msgstr "Add to Home Screen in the Share menu"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Paylaş"
+msgstr "Share"
+
+#: templates/pages/profile/ayarlar.html
+msgid "Ana Ekrana Ekle"
+msgstr "Add to Home Screen"
