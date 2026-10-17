@@ -5664,3 +5664,7 @@ msgstr "Installieren und Verknüpfung"
 #: templates/pages/profile/ayarlar.html
 msgid "Yükle"
 msgstr "Installieren"
+
+#: templates/pages/index.html
+msgid "Sürekli tarayıcıdan girmek istemiyorsan <span class=\"font-semibold underline underline-offset-4\">ayarlardaki adımlarla</span> 30 saniyede telefonuna bir uygulama olarak ekleyebilirsin."
+msgstr "Wenn du nicht jedes Mal den Browser öffnen willst, kannst du es <span class=\"font-semibold underline underline-offset-4\">mit den Schritten in den Einstellungen</span> in 30 Sekunden als App auf dein Handy holen."
