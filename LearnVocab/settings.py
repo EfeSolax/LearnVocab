@@ -143,6 +143,15 @@ DATABASES = {
     }
 }
 
+# MySQL sürücüsü: sunucuda mysqlclient derlenemediği için PyMySQL (saf Python) onun
+# yerine tanıtılır (requirements.txt). Kurulu değilse Django mysqlclient'ı arar.
+if 'mysql' in DATABASES['default']['ENGINE']:
+    try:
+        import pymysql
+        pymysql.install_as_MySQLdb()
+    except ImportError:
+        pass
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

@@ -47,7 +47,9 @@ google-genai==2.22.0
 # başlık dosyaları + pkg-config şart; lokalde zaten SQLite kullanıldığı için
 # gereksiz yere kurulum bozuluyordu.
 # Yine de macOS'ta MySQL'e bağlanmak istersen:  brew install mysql-client pkg-config
-mysqlclient==2.2.4; platform_system == "Linux"
+# Sunucuda (Veridyen) mysqlclient derlenemiyor: MySQL başlık dosyaları yok (17 Ekim).
+# Yerine saf Python PyMySQL kullanılıyor; settings.py onu MySQLdb yerine tanıtır.
+PyMySQL==1.1.1; platform_system == "Linux"
 
 # --- Dolaylı bağımlılıklar (yukarıdakiler tarafından çekilir) ---
 annotated-types==0.8.0
