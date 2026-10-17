@@ -56,48 +56,6 @@ ile aşağıdaki forma bağlıdır.
     </section>
     {% endif %}
 
-    {# ================= UYGULAMA OLARAK EKLE (Efe, 17 Ekim): ana sayfadaki kutu buraya (#uygulama) gelir ================= #}
-    <section id="uygulama" class="mb-12 scroll-mt-24" data-uygulama-rehberi>
-        <h2 class="lv-bolum !text-3xl">{% translate "Uygulama olarak ekle" %}</h2>
-        <p class="lv-el text-[21px]">{% translate "telefonunda simgesiyle açılır, tam ekran çalışır" %}</p>
-        <div class="mt-4 grid gap-6 sm:grid-cols-2">
-            <div>
-                <h3 class="font-bold">iPhone · Safari</h3>
-                <ol class="mt-2 list-decimal space-y-1 pl-5 text-[16px]">
-                    <li>{% translate "Siteyi Safari'de aç." %}</li>
-                    <li>{% translate "Alttaki Paylaş düğmesine (yukarı oklu kare) dokun." %}</li>
-                    <li>{% translate '"Ana Ekrana Ekle"yi seç, sonra "Ekle"ye dokun.' %}</li>
-                </ol>
-                {# Örnek ekranlar: basılacak yer kırmızı çerçeveli ve numaralı (adım 2 ve 3) #}
-                <div class="mt-3 grid max-w-sm grid-cols-2 gap-3">
-                    <figure><img src="{% static 'img/uygulama/ios-1-paylas.webp' %}" width="500" height="1016" loading="lazy" class="w-full rounded-xl border border-[color:var(--satir)]" alt="{% translate 'Safari: alttaki Paylaş düğmesi' %}">
-                        <figcaption class="mt-1 text-center text-sm text-gray-600 dark:text-slate-300">2 · {% translate "Paylaş" %}</figcaption></figure>
-                    <figure><img src="{% static 'img/uygulama/ios-2-ana-ekrana-ekle.webp' %}" width="500" height="1027" loading="lazy" class="w-full rounded-xl border border-[color:var(--satir)]" alt="{% translate 'Paylaş menüsünde Ana Ekrana Ekle' %}">
-                        <figcaption class="mt-1 text-center text-sm text-gray-600 dark:text-slate-300">3 · {% translate "Ana Ekrana Ekle" %}</figcaption></figure>
-                </div>
-            </div>
-            <div>
-                <h3 class="font-bold">Android · Chrome</h3>
-                <ol class="mt-2 list-decimal space-y-1 pl-5 text-[16px]">
-                    <li>{% translate "Siteyi Chrome'da aç." %}</li>
-                    <li>{% translate "Sağ üstteki üç noktaya dokun." %}</li>
-                    <li>{% translate '"Yükle ve kısayol oluştur"u seç.' %}</li>
-                    <li>{% translate 'Açılan pencerede "Yükle"ye dokun.' %}</li>
-                </ol>
-                {# Örnek ekranlar: basılacak yer kırmızı çerçeveli ve numaralı (adım 2, 3, 4) #}
-                <div class="mt-3 grid max-w-md grid-cols-3 gap-2">
-                    <figure><img src="{% static 'img/uygulama/android-1-menu.webp' %}" width="500" height="1010" loading="lazy" class="w-full rounded-xl border border-[color:var(--satir)]" alt="{% translate 'Chrome: sağ üstteki üç nokta' %}">
-                        <figcaption class="mt-1 text-center text-sm text-gray-600 dark:text-slate-300">2 · {% translate "Üç nokta" %}</figcaption></figure>
-                    <figure><img src="{% static 'img/uygulama/android-2-yukle-kisayol.webp' %}" width="500" height="1054" loading="lazy" class="w-full rounded-xl border border-[color:var(--satir)]" alt="{% translate 'Chrome menüsünde Yükle ve kısayol oluştur' %}">
-                        <figcaption class="mt-1 text-center text-sm text-gray-600 dark:text-slate-300">3 · {% translate "Yükle ve kısayol oluştur" %}</figcaption></figure>
-                    <figure><img src="{% static 'img/uygulama/android-3-yukle.webp' %}" width="500" height="971" loading="lazy" class="w-full rounded-xl border border-[color:var(--satir)]" alt="{% translate 'Açılan pencerede Yükle' %}">
-                        <figcaption class="mt-1 text-center text-sm text-gray-600 dark:text-slate-300">4 · {% translate "Yükle" %}</figcaption></figure>
-                </div>
-            </div>
-        </div>
-        <p class="mt-4 text-[15px] text-gray-600 dark:text-slate-300">{% translate "iPhone'da bildirimler yalnızca site bu şekilde ana ekrana eklendiğinde gelir." %}</p>
-    </section>
-
     {# ================= TÜRKÇE ANLAMLAR (rapor 18.22): arayüz dilinden bağımsız; kapalıysa her şey İngilizce açıklamayla yürür ================= #}
     <section data-turkce-anlamlar-ayari>
         <div class="lv-sayfa">
