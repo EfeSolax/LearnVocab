@@ -33,6 +33,9 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
                    align-items: center; justify-content: center; gap: 10px; padding: 0 22px; background: var(--kagit-beyaz); pointer-events: none;
                    box-shadow: 0 0 24px rgba(0,0,0,.25); border-radius: 28px; color: var(--murekkep); }
     .lv-onizleme svg { width: 44px; height: 44px; }
+    /* Komşu sayfa indirilince önizleme o sayfanın gerçek görüntüsü olur (dokunulamaz) */
+    .lv-onizleme.dolu { display: block; padding: 0; overflow: hidden; }
+    .lv-onizleme.dolu main { min-height: 0 !important; }
     .lv-onizleme span { font: 700 22px/1.2 var(--serif, Georgia, serif); }
     @keyframes lv-gir-sag { from { transform: translateX(35%); opacity: .4; } to { transform: none; opacity: 1; } }
     @keyframes lv-gir-sol { from { transform: translateX(-35%); opacity: .4; } to { transform: none; opacity: 1; } }
@@ -57,6 +60,18 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
     if (!aktif || new URL(aktif.href).pathname !== location.pathname) { return; }   // yalnızca sekmenin kendi sayfası
     var sira = linkler.indexOf(aktif);
     var bas = null, yatay = null, onizleme = null, hedef = null, dx = 0;
+    // Komşu sekmenin sayfası parmak ekrana değince indirilir (her sekme için bir kez); önizlemeye <main> içeriği konur
+    var sayfalar = {};
+    function getir(a) {
+        if (!a) { return null; }
+        if (!sayfalar[a.href]) {
+            sayfalar[a.href] = fetch(a.href, { credentials: 'same-origin' })
+                .then(function (c) { return c.ok ? c.text() : ''; })
+                .then(function (h) { var m = new DOMParser().parseFromString(h, 'text/html').querySelector('main'); return m ? m.innerHTML : ''; })
+                .catch(function () { return ''; });
+        }
+        return sayfalar[a.href];
+    }
 
     function engelli(el) {
         if (document.documentElement.classList.contains('lp-kilitli')) { return true; }
@@ -84,6 +99,7 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
         bas = (o.touches.length === 1 && t.clientX > KENAR && t.clientX < innerWidth - KENAR && !engelli(o.target))
             ? { x: t.clientX, y: t.clientY, z: Date.now() } : null;
         yatay = null; dx = 0;
+        if (bas) { getir(linkler[sira - 1]); getir(linkler[sira + 1]); }
     }, { passive: true });
     document.addEventListener('touchmove', function (o) {
         if (!bas) { return; }
@@ -103,7 +119,16 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
             onizleme.style.alignItems = mx > 0 ? 'flex-end' : 'flex-start';   // içerik görünen kenarda
             onizleme.setAttribute('aria-hidden', 'true');
             onizleme.innerHTML = aday.innerHTML;
+            onizleme.inert = true;
             document.body.appendChild(onizleme);
+            (function (kart, link) {
+                getir(link).then(function (html) {
+                    if (!html || onizleme !== kart) { return; }
+                    kart.classList.add('dolu', 'lv-kagit');
+                    kart.style.alignItems = '';
+                    kart.innerHTML = '<main class="' + main.className.replace(/lv-(kayan|gir-\w+)/g, '') + '">' + html + '</main>';
+                });
+            })(onizleme, aday);
         }
         dx = mx;
         konumla(dx, false);
