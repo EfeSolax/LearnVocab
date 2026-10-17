@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     {# fetch ile yapılan POST'lar (ör. kelime kartındaki "Listeme ekle") CSRF anahtarını buradan okur. #}
     <meta name="csrf-token" content="{{ csrf_token }}">
     <title>{% block title %}LearnVocab{% endblock %}</title>
@@ -90,7 +90,7 @@
     Mobilde bölümler ekranın altındaki sabit çubuktan geziliyor; pb-20 ile
     sayfanın son satırı o çubuğun altında kalmıyor.
     {% endcomment %}
-    <main class="min-h-screen pt-16 pb-20 lg:pb-0">
+    <main class="min-h-screen pt-16 pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
 
         {% include 'base/_dilOnerisi.html' %}
 

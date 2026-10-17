@@ -567,7 +567,7 @@ class MobileTabBarTests(TestCase):
 
     def test_content_is_not_covered_by_the_bar(self):
         html = self.client.get(reverse("index")).content.decode()
-        self.assertIn("pb-20 lg:pb-0", html)
+        self.assertIn("pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0", html)
 
     def test_yazilar_misafire_acik(self):
         """Rapor 18.3: Yazılar misafire açık (yalnızca diyalog); menüde giriş işareti yok."""
