@@ -26,17 +26,37 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
         {% endfor %}
     </ul>
 </nav>
-{# Telefonda sekmeler arası kaydırma (Efe, 18 Ekim): beş ana sayfada ekranın ortasından yatay kaydırma komşu sekmeyi açar. Parmak sola giderse soldaki sekme (Ana Sayfa -> Çalışmalar), sağa giderse sağdaki (Ana Sayfa -> Okumalar). Ekran kenarından başlayan kaydırma tarayıcının geri/ileri hareketine kalır; kendi kaydırması olan yerlerde (Learn & Pass, yana kayan şeritler, yazı kutuları) çalışmaz. #}
+{# Telefonda sekmeler arası kaydırma (Efe, 18 Ekim; Instagram gibi): beş ana sayfada sayfa parmağı takip eder, yanda komşu sekmenin önizlemesi görünür. Parmak sağa: soldaki sekme (Ana Sayfa -> Çalışmalar); sola: sağdaki. Yeterince çekilirse sayfa kayarak çıkar, yenisi aynı yönden kayarak girer; yoksa geri yaylanır. Ekran kenarından başlayan kaydırma tarayıcının geri/ileri hareketine kalır; kendi kaydırması olan yerlerde (Learn & Pass, yana kayan şeritler, yazı kutuları) çalışmaz. #}
+<style>
+    .lv-kayan { transition: transform .22s ease-out; }
+    .lv-onizleme { position: fixed; top: 0; bottom: 0; width: 100vw; z-index: 45; display: flex; flex-direction: column;
+                   align-items: center; justify-content: center; gap: 10px; padding: 0 22px; background: var(--kagit-beyaz); pointer-events: none;
+                   box-shadow: 0 0 24px rgba(0,0,0,.25); border-radius: 28px; color: var(--murekkep); }
+    .lv-onizleme svg { width: 44px; height: 44px; }
+    .lv-onizleme span { font: 700 22px/1.2 var(--serif, Georgia, serif); }
+    @keyframes lv-gir-sag { from { transform: translateX(35%); opacity: .4; } to { transform: none; opacity: 1; } }
+    @keyframes lv-gir-sol { from { transform: translateX(-35%); opacity: .4; } to { transform: none; opacity: 1; } }
+    main.lv-gir-sag { animation: lv-gir-sag .24s ease-out; }
+    main.lv-gir-sol { animation: lv-gir-sol .24s ease-out; }
+</style>
 <script>
 (function () {
-    var YON = 1;          // 1: parmak sola -> soldaki sekme. Ters istenirse -1.
-    var KENAR = 28, ESIK = 70;
+    var KENAR = 28, ESIK = 80;
+    var main = document.querySelector('main');
+    // Önceki sayfadan kayarak gelindiyse yeni sayfa aynı yönden girer
+    try {
+        var gelis = sessionStorage.getItem('lv-gecis');
+        if (gelis && main) { sessionStorage.removeItem('lv-gecis'); main.classList.add('lv-gir-' + gelis);
+            main.addEventListener('animationend', function () { main.classList.remove('lv-gir-' + gelis); }, { once: true }); }
+    } catch (h) { /* depolama kapalı */ }
+
     var menu = document.querySelector('nav.lv-alt-menu');
-    if (!menu || !('ontouchstart' in window)) { return; }
+    if (!menu || !main || !('ontouchstart' in window)) { return; }
     var linkler = [].slice.call(menu.querySelectorAll('a[href]'));
     var aktif = menu.querySelector('a[aria-current="page"]');
     if (!aktif || new URL(aktif.href).pathname !== location.pathname) { return; }   // yalnızca sekmenin kendi sayfası
-    var sira = linkler.indexOf(aktif), bas = null;
+    var sira = linkler.indexOf(aktif);
+    var bas = null, yatay = null, onizleme = null, hedef = null, dx = 0;
 
     function engelli(el) {
         if (document.documentElement.classList.contains('lp-kilitli')) { return true; }
@@ -47,19 +67,64 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
         }
         return false;
     }
+    function konumla(x, gecisli) {
+        main.classList.toggle('lv-kayan', gecisli);
+        main.style.transform = x ? 'translateX(' + x + 'px)' : '';
+        if (onizleme) {
+            onizleme.classList.toggle('lv-kayan', gecisli);
+            onizleme.style.transform = 'translateX(' + (x > 0 ? x - innerWidth - 12 : x + innerWidth + 12) + 'px)';
+        }
+    }
+    function temizle() {
+        if (onizleme) { onizleme.remove(); onizleme = null; }
+        main.classList.remove('lv-kayan'); main.style.transform = ''; hedef = null;
+    }
     document.addEventListener('touchstart', function (o) {
         var t = o.touches[0];
         bas = (o.touches.length === 1 && t.clientX > KENAR && t.clientX < innerWidth - KENAR && !engelli(o.target))
             ? { x: t.clientX, y: t.clientY, z: Date.now() } : null;
+        yatay = null; dx = 0;
     }, { passive: true });
-    document.addEventListener('touchend', function (o) {
+    document.addEventListener('touchmove', function (o) {
         if (!bas) { return; }
-        var t = o.changedTouches[0], dx = t.clientX - bas.x, dy = t.clientY - bas.y, sure = Date.now() - bas.z;
+        var t = o.touches[0], mx = t.clientX - bas.x, my = t.clientY - bas.y;
+        if (yatay === null) {
+            if (Math.abs(mx) < 10 && Math.abs(my) < 10) { return; }
+            yatay = Math.abs(mx) > 1.5 * Math.abs(my);
+            if (!yatay) { bas = null; return; }
+        }
+        var aday = linkler[sira + (mx > 0 ? -1 : 1)];
+        if (!aday) { dx = mx / 4; konumla(dx, false); o.preventDefault(); return; }   // kenar sekme: hafif direnç
+        if (aday !== hedef) {
+            if (onizleme) { onizleme.remove(); }
+            hedef = aday;
+            onizleme = document.createElement('div');
+            onizleme.className = 'lv-onizleme';
+            onizleme.style.alignItems = mx > 0 ? 'flex-end' : 'flex-start';   // içerik görünen kenarda
+            onizleme.setAttribute('aria-hidden', 'true');
+            onizleme.innerHTML = aday.innerHTML;
+            document.body.appendChild(onizleme);
+        }
+        dx = mx;
+        konumla(dx, false);
+        o.preventDefault();
+    }, { passive: false });
+    document.addEventListener('touchend', function () {
+        if (!bas || !yatay) { bas = null; return; }
+        var hiz = Math.abs(dx) / Math.max(1, Date.now() - bas.z);
         bas = null;
-        if (Math.abs(dx) < ESIK || Math.abs(dx) < 2 * Math.abs(dy) || sure > 700) { return; }
-        if (String(window.getSelection && window.getSelection()).trim()) { return; }   // metin seçiliyorsa
-        var hedef = linkler[sira + (dx < 0 ? -YON : YON)];
-        if (hedef) { hedef.click(); }   // tıklama: girişi gerektiren sekmelerin kendi davranışı korunur
+        if (hedef && (Math.abs(dx) > ESIK || (hiz > 0.5 && Math.abs(dx) > 30))) {
+            var yon = dx > 0 ? 1 : -1, git = hedef;
+            konumla(yon * innerWidth, true);
+            try { sessionStorage.setItem('lv-gecis', yon > 0 ? 'sol' : 'sag'); } catch (h) { /* yok say */ }
+            setTimeout(function () { git.click(); }, 200);
+            setTimeout(temizle, 900);   // gezinme olmadıysa (ör. giriş penceresi açıldı) sayfa geri gelir
+            // Geri tuşuyla bu sayfaya dönülürse eski konumda kalmasın
+            window.addEventListener('pageshow', function (e) { if (e.persisted) { temizle(); } }, { once: true });
+        } else {
+            konumla(0, true);
+            setTimeout(temizle, 230);
+        }
     }, { passive: true });
 })();
 </script>
