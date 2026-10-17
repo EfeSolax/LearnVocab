@@ -539,6 +539,15 @@ Yerelde çalıştırılır; sonuç canlıya "veritabani yukle" ile gider. Önce 
 Sürümden önce: testler · Tailwind derle · çeviriler (fuzzy / boş satır kalmasın) · yardım ekran
 görüntüleri · ürün raporunu güncelle.
 
+Medya dosyaları (git'te YOK; sunucuya elle yüklenir)
+  media/profile_pics/default.png (varsayılan profil fotoğrafı) ve media/telaffuz/ (telaffuz
+  sesleri, ~38 bin MP3). Yeni ses ürettiğinde ya da sıfırdan kurulumda yerelde paketle:
+      cd media && zip -q -r -0 ~/LearnVocab-yedekler/media-canli.zip profile_pics/default.png telaffuz
+  cPanel File Manager ile /home/KULLANICI/LearnVocab/media içine yükle, sonra sunucuda:
+      cd ~/LearnVocab/media && unzip -q -o media-canli.zip && rm media-canli.zip
+  Web'den /media/ adresi alan adı klasöründeki sembolik bağla buraya bakar
+  (~/learnvocab.com.tr/media -> ~/LearnVocab/media; static için de staticfiles_root).
+
 Yardım ekran görüntüleri (YALNIZCA kendi bilgisayarında, sunucuda değil)
   .venv/bin/python araclar/yardim_goruntuleri.py --oturum <örnek hesabın sessionid'si>
   Yardım sayfasındaki telefon görüntülerini (tr/en/de × açık/koyu) Chrome ile baştan çeker ve
