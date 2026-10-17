@@ -33,9 +33,10 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
                    align-items: center; justify-content: center; gap: 10px; padding: 0 22px; background: var(--kagit-beyaz); pointer-events: none;
                    box-shadow: 0 0 24px rgba(0,0,0,.25); border-radius: 28px; color: var(--murekkep); }
     .lv-onizleme svg { width: 44px; height: 44px; }
-    /* Komşu sayfa indirilince önizleme o sayfanın gerçek görüntüsü olur (dokunulamaz) */
+    /* Komşu sayfa indirilince önizleme o sayfanın gerçek görüntüsü olur: ayrı çerçevede kendi stilleriyle,
+       betikler çalışmadan, dokunulamaz (içerik kopyalanınca sayfaya özel stiller eksik kalıp renkler kayıyordu) */
     .lv-onizleme.dolu { display: block; padding: 0; overflow: hidden; }
-    .lv-onizleme.dolu main { min-height: 0 !important; }
+    .lv-onizleme iframe { width: 100%; height: 100%; border: 0; display: block; }
     .lv-onizleme span { font: 700 22px/1.2 var(--serif, Georgia, serif); }
     @keyframes lv-gir-sag { from { transform: translateX(35%); opacity: .4; } to { transform: none; opacity: 1; } }
     @keyframes lv-gir-sol { from { transform: translateX(-35%); opacity: .4; } to { transform: none; opacity: 1; } }
@@ -67,7 +68,12 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
         if (!sayfalar[a.href]) {
             sayfalar[a.href] = fetch(a.href, { credentials: 'same-origin' })
                 .then(function (c) { return c.ok ? c.text() : ''; })
-                .then(function (h) { var m = new DOMParser().parseFromString(h, 'text/html').querySelector('main'); return m ? m.innerHTML : ''; })
+                .then(function (h) {
+                    if (!h) { return ''; }
+                    var d = new DOMParser().parseFromString(h, 'text/html');
+                    d.documentElement.className = document.documentElement.className;   // açık/koyu tema (betik çalışmayacak)
+                    return '<!doctype html>' + d.documentElement.outerHTML;
+                })
                 .catch(function () { return ''; });
         }
         return sayfalar[a.href];
@@ -124,12 +130,13 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
             (function (kart, link) {
                 getir(link).then(function (html) {
                     if (!html || onizleme !== kart) { return; }
-                    kart.classList.add('dolu', 'lv-kagit');
+                    var cerceve = document.createElement('iframe');
+                    cerceve.setAttribute('sandbox', 'allow-same-origin');   // betik yok
+                    cerceve.setAttribute('tabindex', '-1');
+                    cerceve.srcdoc = html;
+                    kart.classList.add('dolu');
                     kart.style.alignItems = '';
-                    var kopya = document.createElement('main');
-                    kopya.className = main.className.replace(/lv-(kayan|gir-\w+)/g, '');
-                    kopya.innerHTML = html;
-                    kart.replaceChildren(kopya);
+                    kart.replaceChildren(cerceve);
                 });
             })(onizleme, aday);
         }
