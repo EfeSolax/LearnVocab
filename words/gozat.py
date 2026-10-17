@@ -10,6 +10,10 @@ var ("carpet · isim · halı · B1"); yalnızca bağlantı listesi değil.
 """
 
 import string
+import sys
+
+from django.core.cache import cache
+from django.db.models.functions import Substr
 
 from .arama import ortak_sozluk
 from .dizine_alma import EN_AZ_SIKLIK
@@ -31,11 +35,19 @@ def harf_kelimeleri(harf):
     return _temel().filter(text__istartswith=harf).order_by("text", "pos")
 
 
+# Sekmeler ve harfler her Sözlük/seviye sayfasında hesaplanır. order_by() şart: modelin varsayılan
+# sıralaması (text, pos) DISTINCT'e karışınca MySQL 22 bin satırı ayıklıyordu (canlıda 0,25 sn x 2;
+# 17 Ekim). Sonuç neredeyse hiç değişmez: bir saat önbellekte (testlerde değil: her test kendi verisini kurar).
+_SURE = 0 if "test" in sys.argv else 3600
 def dolu_seviyeler():
-    dolu = set(_temel().values_list("cefr", flat=True).distinct())
+    def hesapla():
+        return set(_temel().order_by().values_list("cefr", flat=True).distinct())
+    dolu = (hesapla() if not _SURE else cache.get_or_set("gozat:dolu_seviyeler", hesapla, _SURE))
     return [s for s in CEFR_LEVELS if s in dolu]
 
 
 def dolu_harfler():
-    dolu = {(slug or " ")[0] for slug in _temel().values_list("slug", flat=True).distinct()}
+    def hesapla():
+        return set(_temel().order_by().annotate(h=Substr("slug", 1, 1)).values_list("h", flat=True).distinct())
+    dolu = (hesapla() if not _SURE else cache.get_or_set("gozat:dolu_harfler", hesapla, _SURE))
     return [h for h in HARFLER if h in dolu]
