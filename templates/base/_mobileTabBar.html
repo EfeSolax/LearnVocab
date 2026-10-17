@@ -26,3 +26,40 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
         {% endfor %}
     </ul>
 </nav>
+{# Telefonda sekmeler arası kaydırma (Efe, 18 Ekim): beş ana sayfada ekranın ortasından yatay kaydırma komşu sekmeyi açar. Parmak sola giderse soldaki sekme (Ana Sayfa -> Çalışmalar), sağa giderse sağdaki (Ana Sayfa -> Okumalar). Ekran kenarından başlayan kaydırma tarayıcının geri/ileri hareketine kalır; kendi kaydırması olan yerlerde (Learn & Pass, yana kayan şeritler, yazı kutuları) çalışmaz. #}
+<script>
+(function () {
+    var YON = 1;          // 1: parmak sola -> soldaki sekme. Ters istenirse -1.
+    var KENAR = 28, ESIK = 70;
+    var menu = document.querySelector('nav.lv-alt-menu');
+    if (!menu || !('ontouchstart' in window)) { return; }
+    var linkler = [].slice.call(menu.querySelectorAll('a[href]'));
+    var aktif = menu.querySelector('a[aria-current="page"]');
+    if (!aktif || new URL(aktif.href).pathname !== location.pathname) { return; }   // yalnızca sekmenin kendi sayfası
+    var sira = linkler.indexOf(aktif), bas = null;
+
+    function engelli(el) {
+        if (document.documentElement.classList.contains('lp-kilitli')) { return true; }
+        for (; el && el !== document.body; el = el.parentElement) {
+            if (el.matches('input, textarea, select, [contenteditable="true"], #lp-sahne, [data-kelime-baloncugu], [data-kaydirma-yok]')) { return true; }
+            var st = getComputedStyle(el);
+            if ((st.overflowX === 'auto' || st.overflowX === 'scroll') && el.scrollWidth > el.clientWidth + 2) { return true; }
+        }
+        return false;
+    }
+    document.addEventListener('touchstart', function (o) {
+        var t = o.touches[0];
+        bas = (o.touches.length === 1 && t.clientX > KENAR && t.clientX < innerWidth - KENAR && !engelli(o.target))
+            ? { x: t.clientX, y: t.clientY, z: Date.now() } : null;
+    }, { passive: true });
+    document.addEventListener('touchend', function (o) {
+        if (!bas) { return; }
+        var t = o.changedTouches[0], dx = t.clientX - bas.x, dy = t.clientY - bas.y, sure = Date.now() - bas.z;
+        bas = null;
+        if (Math.abs(dx) < ESIK || Math.abs(dx) < 2 * Math.abs(dy) || sure > 700) { return; }
+        if (String(window.getSelection && window.getSelection()).trim()) { return; }   // metin seçiliyorsa
+        var hedef = linkler[sira + (dx < 0 ? -YON : YON)];
+        if (hedef) { hedef.click(); }   // tıklama: girişi gerektiren sekmelerin kendi davranışı korunur
+    }, { passive: true });
+})();
+</script>
