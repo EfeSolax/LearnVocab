@@ -48,32 +48,32 @@ Kurallar (rapor 4.3):
         {# Türkçe sorgu: kelime · tür · seviye; altında eşleşen anlam vurgulu ve tek satır tanım (rapor 4.2) #}
         <button type="button" @click="acik = true" :aria-expanded="acik.toString()"
                 class="flex min-w-0 flex-1 flex-col text-left">
-            <span class="flex items-baseline gap-1.5">
-                <span lang="en" class="lv-serif text-xl font-bold">{{ kart.text }}</span>
+            {# Seviye rozeti anlamın satırında: kelime/tür uzunsa rozet sağdaki düğmeye taşmasın (Efe, 17 Ekim) #}
+            <span class="flex min-w-0 items-baseline gap-1.5">
+                <span lang="en" class="lv-serif max-w-full flex-none break-words text-xl font-bold">{{ kart.text }}</span>
                 <span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>
-                <span class="shrink-0 text-[15px] text-gray-600 dark:text-slate-300">{{ kart.tur }}</span>
-                {% if kart.cefr %}
-                <span class="lv-seviye ml-auto self-center">{{ kart.cefr }}</span>
-                {% endif %}
+                <span class="min-w-0 truncate text-[15px] text-gray-600 dark:text-slate-300">{{ kart.tur }}</span>
             </span>
-            <span class="mt-0.5 block min-w-0 truncate"><mark data-eslesen class="lv-isaret bg-transparent text-base font-semibold text-gray-900 dark:text-slate-100">{{ kart.eslesen }}</mark></span>
+            <span class="mt-0.5 flex min-w-0 items-center gap-2">
+                <span class="min-w-0 flex-1 truncate"><mark data-eslesen class="lv-isaret bg-transparent text-base font-semibold text-gray-900 dark:text-slate-100">{{ kart.eslesen }}</mark></span>
+                {% if kart.cefr %}<span class="lv-seviye shrink-0">{{ kart.cefr }}</span>{% endif %}
+            </span>
             {% if kart.eslesen_tanim %}<span lang="en" class="block min-w-0 truncate text-sm text-gray-600 dark:text-slate-300">{{ kart.eslesen_tanim }}</span>{% endif %}
         {% else %}
         {# Dar ekranda iki satır (kelime · tür · seviye / Türkçe anlam): tek satırda anlam "k.." diye kesiliyordu. sm ve üstünde tek satır. #}
         <button type="button" @click="acik = true" :aria-expanded="acik.toString()"
                 class="flex min-w-0 flex-1 flex-col text-left sm:flex-row sm:items-baseline sm:gap-1.5">
+            {# Telefonda seviye rozeti anlamın satırında: kelime/tür uzunsa rozet sağdaki düğmeye taşmasın (Efe, 17 Ekim) #}
             <span class="flex min-w-0 items-baseline gap-1.5 sm:contents">
-                <span lang="en" class="lv-serif text-xl font-bold">{{ kart.text }}</span>
+                <span lang="en" class="lv-serif max-w-full flex-none break-words text-xl font-bold">{{ kart.text }}</span>
                 <span class="text-gray-300 dark:text-slate-600" aria-hidden="true">·</span>
-                <span class="shrink-0 text-[15px] text-gray-600 dark:text-slate-300">{{ kart.tur }}</span>
-                {% if kart.cefr %}
-                <span class="lv-seviye ml-auto self-center sm:hidden">{{ kart.cefr }}</span>
-                {% endif %}
+                <span class="min-w-0 truncate text-[15px] text-gray-600 dark:text-slate-300 sm:shrink-0">{{ kart.tur }}</span>
             </span>
-            {% if kart.ozet %}
-            <span class="hidden text-gray-300 dark:text-slate-600 sm:inline" aria-hidden="true">·</span>
-            <span class="mt-0.5 block min-w-0 truncate text-base font-semibold text-indigo-600 dark:text-indigo-400 sm:mt-0">{{ kart.ozet }}</span>
-            {% endif %}
+            {% if kart.ozet %}<span class="hidden text-gray-300 dark:text-slate-600 sm:inline" aria-hidden="true">·</span>{% endif %}
+            <span class="mt-0.5 flex min-w-0 items-center gap-2 sm:contents">
+                {% if kart.ozet %}<span class="block min-w-0 flex-1 truncate text-base font-semibold text-indigo-600 dark:text-indigo-400 sm:mt-0 sm:flex-initial">{{ kart.ozet }}</span>{% endif %}
+                {% if kart.cefr %}<span class="lv-seviye {% if not kart.ozet %}ml-auto {% endif %}shrink-0 sm:hidden">{{ kart.cefr }}</span>{% endif %}
+            </span>
             {% if kart.cefr %}
             <span class="lv-seviye ml-auto hidden self-center sm:inline-grid">{{ kart.cefr }}</span>
             {% endif %}
