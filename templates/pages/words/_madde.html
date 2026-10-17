@@ -99,20 +99,57 @@ Kart verisi kelime kartıyla aynıdır (words.kart.Kart); liste düğmesi ve
 <section class="mt-16" data-aile aria-labelledby="aile-baslik">
     <h2 id="aile-baslik" class="lv-bolum !text-3xl">{% translate "Aynı aileden" %}</h2>
     <span class="lv-bolum-notu">{% translate "birini biliyorsan diğerleri kolay" %}</span><span class="sr-only">{% translate "Aile:" %}</span>
-    <div class="relative mt-5 max-w-xl">
-        <svg class="absolute inset-x-0 top-9 h-14 w-full text-indigo-600 dark:text-indigo-400" viewBox="0 0 520 56" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-            <path d="M258 2c-4 30-170 22-210 52M260 2c2 24 2 38 2 52M262 2c10 30 180 22 220 52"/>
-        </svg>
-        <p class="text-center"><span lang="en" class="lv-serif lv-isaret text-[28px] font-black">{{ kartlar.0.text }}</span></p>
-        <div class="relative mt-16 flex flex-wrap justify-center gap-3 sm:justify-between">
+    {% comment %}Dallar sabit çizilmez: üye sayısı ve satır kırılması değişir, JS her üyenin
+       gerçek konumuna göre çizer (JS yoksa ağaç dalsız görünür).{% endcomment %}
+    <div class="relative mt-5 max-w-xl" data-aile-agac>
+        <svg class="pointer-events-none absolute inset-0 h-full w-full overflow-visible text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" data-aile-dallar></svg>
+        <p class="text-center" data-aile-kok>
+            <span lang="en" class="lv-serif lv-isaret text-[28px] font-black">{{ kartlar.0.text }}</span>
+            {% with kok_anlam=kartlar.0.anlamlar.0.meaning_tr %}{% if kok_anlam and turkce_acik %}<span class="block text-sm text-gray-600 dark:text-slate-300">{{ kok_anlam }}</span>{% endif %}{% endwith %}
+        </p>
+        <div class="relative mt-16 flex flex-wrap justify-center gap-x-3 gap-y-8">
             {% for uye in aile_satirlari %}
-            <a href="{{ uye.text|kelime_adresi }}" class="lv-sayfa block px-3 py-2 hover:-translate-y-0.5 transition-transform">
+            <a href="{{ uye.text|kelime_adresi }}" class="lv-sayfa block w-[calc(50%-.375rem)] px-3 py-2 hover:-translate-y-0.5 transition-transform sm:w-[calc(33.333%-.5rem)]" data-aile-uye>
                 <span lang="en" class="lv-serif block text-xl font-bold">{{ uye.text }}</span>
                 {% if uye.anlam and turkce_acik %}<span class="block text-sm text-gray-600 dark:text-slate-300">{{ uye.anlam }}</span>{% endif %}
             </a>
             {% endfor %}
         </div>
     </div>
+    <script>
+    (function () {
+        var agac = document.currentScript.previousElementSibling;
+        var svg = agac.querySelector("[data-aile-dallar]");
+        var kok = agac.querySelector("[data-aile-kok]"), kokYazi = kok.querySelector(".lv-isaret");
+        function ciz() {
+            // Dal kelimenin ortasından, (varsa) anlam satırının altından başlar.
+            var a = agac.getBoundingClientRect(), k = kokYazi.getBoundingClientRect();
+            k = {left: k.left, width: k.width, bottom: kok.getBoundingClientRect().bottom};
+            var sx = k.left + k.width / 2 - a.left, sy = k.bottom - a.top + 4;
+            var yollar = [], ust = [], satir = [], satirTop = null;
+            function dal(x1, y1, x2, y2) {
+                var h = y2 - y1;
+                yollar.push('<path d="M' + x1 + ' ' + y1 + 'C' + x1 + ' ' + (y1 + h * .7) + ' ' + x2 + ' ' + (y1 + h * .3) + ' ' + x2 + ' ' + y2 + '"/>');
+            }
+            // İlk satır kökten dallanır; alt satırlardaki her kart üstündeki en yakın karttan sarkar.
+            agac.querySelectorAll("[data-aile-uye]").forEach(function (u) {
+                if (u.offsetTop !== satirTop) { if (satir.length) ust = satir; satir = []; satirTop = u.offsetTop; }
+                var r = u.getBoundingClientRect();
+                var ex = r.left + r.width / 2 - a.left, ey = r.top - a.top - 4;
+                if (!ust.length) dal(sx, sy, ex, ey - 2);
+                else {
+                    var en = ust.reduce(function (b, c) { return Math.abs(c.x - ex) < Math.abs(b.x - ex) ? c : b; });
+                    dal(en.x, en.y + 4, ex, ey);
+                }
+                satir.push({x: ex, y: r.bottom - a.top});
+            });
+            svg.innerHTML = yollar.join("");
+        }
+        ciz();
+        if (window.ResizeObserver) new ResizeObserver(ciz).observe(agac);
+        if (document.fonts) document.fonts.ready.then(ciz);
+    })();
+    </script>
 </section>
 {% endif %}
 

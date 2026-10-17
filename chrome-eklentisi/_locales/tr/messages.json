@@ -38,6 +38,9 @@
   "pencere_metin": {
     "message": "Herhangi bir sitede İngilizce bir kelimeye çift tıkla; anlamı küçük bir kutuda çıkar. Kutunun dışına tıklayınca kapanır."
   },
+  "pencere_shift": {
+    "message": "Bağlantıdaki bir kelime için imleci kelimenin üzerine getir ve Shift'e bir kez dokun (çift tıklama bağlantıyı açar)."
+  },
   "pencere_liste": {
     "message": "Listene eklemek için LearnVocab'da giriş yapmış olman yeterli."
   },

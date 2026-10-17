@@ -42,16 +42,37 @@ class KonuTests(TestCase):
         self.assertIn("data-konu-dugme", html)
         self.assertEqual(html.count("data-konu-gizli"), 2)            # 10 konudan 8'i görünür
 
-    def test_konu_sayfasi_kolaydan_zora_ve_yanlis_anlam_yok(self):
+    def test_konu_sayfasi_zordan_kolaya_ve_yanlis_anlam_yok(self):
         html = self.client.get(reverse("sozluk_konu", args=["hayvanlar"])).content.decode()
         self.assertIn("Hayvanlar", html)
-        self.assertLess(html.index('data-kart-id="%d"' % self.kedi.id) if 'data-kart-id' in html else html.index("cat"),
-                        html.index("lion"))
+        self.assertLess(html.index("lion"), html.index(">cat<"))             # B1 önce, A1 sonra
         self.assertIn("bat", html)
         spor = self.client.get(reverse("sozluk_konu", args=["spor"])).content.decode()
         self.assertIn("bat", spor)
         self.assertNotIn("lion", spor)
         self.assertEqual(self.client.get(reverse("sozluk_konu", args=["yok"])).status_code, 404)
+
+    def test_kapali_kart_ozeti_konunun_anlami(self):
+        # bat: ilk anlam "yarasa" (Hayvanlar), ikinci "sopa" (Spor); Spor'da özet "sopa" olmalı
+        spor = self.client.get(reverse("sozluk_konu", args=["spor"]))
+        self.assertEqual([k.ozet for k, _ in spor.context["ogeler"]], ["sopa"])
+        hayvan = self.client.get(reverse("sozluk_konu", args=["hayvanlar"]))
+        self.assertIn("yarasa", [k.ozet for k, _ in hayvan.context["ogeler"]])
+
+    def test_konu_sayfasi_seviye_suzgeci(self):
+        adres = reverse("sozluk_konu", args=["hayvanlar"])
+        cevap = self.client.get(adres)
+        self.assertEqual([(s, n) for s, n, _ in cevap.context["seviye_sayilari"]],
+                         [("A1", 1), ("A2", 0), ("B1", 2), ("B2", 0), ("C1", 0), ("C2", 0)])
+        self.assertNotIn('href="?bolum=A2"', cevap.content.decode())   # boş seviye tıklanmaz
+        self.assertIn('href="?bolum=B1"', cevap.content.decode())
+        b1 = self.client.get(adres, {"bolum": "b1"})
+        self.assertCountEqual([k.text for k, _ in b1.context["ogeler"]], ["bat", "lion"])
+        self.assertEqual(b1.context["toplam"], 3)                   # başlıktaki sayı konunun tamamı
+        # Arama süzgeci korur; olmayan seviye yok sayılır
+        parca = self.client.get(adres, {"bolum": "B1", "ara": "lion", "parca": 1})
+        self.assertEqual(parca["X-Sonuc-Sayisi"], "1")
+        self.assertEqual(len(self.client.get(adres, {"bolum": "C2"}).context["ogeler"]), 3)
 
     def test_kelime_sayfasinda_anlam_basina_konu(self):
         html = self.client.get(reverse("sozluk_kelime", args=["bat"])).content.decode()

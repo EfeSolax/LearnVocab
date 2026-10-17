@@ -10,12 +10,12 @@ Bağlam: seviyeler, harfler; isteğe bağlı secili_seviye, secili_harf
     <h2 id="goz-at" class="lv-bolum !text-3xl">{% translate "Kelimelere göz at" %}</h2>
     <span class="lv-bolum-notu mb-4">{% translate "sözlüğün sekmeleri: seviyeye ya da harfe göre" %}</span>
     {% if seviyeler %}
-    {# Seviyeler: defterin renkli bölüm ayraçları (ana sayfadakiyle aynı renkler) #}
-    <div class="flex flex-wrap items-end gap-1.5">
+    {# Seviyeler: defterin renkli bölüm ayraçları (ana sayfadakiyle aynı renkler). Telefonda altısı tek satırda eşit sütun (C2 alta düşmesin). #}
+    <div class="grid grid-cols-6 items-end gap-1 sm:flex sm:flex-wrap sm:gap-1.5">
         <span class="sr-only">{% translate "Seviye:" %}</span>
         {% for s in seviyeler %}
         <a href="{% url 'sozluk_seviye' s|lower %}" {% if s == secili_seviye %}aria-current="page"{% endif %}
-           class="lv-sekme-{{ forloop.counter }} lv-serif rounded-t-lg px-3 sm:px-4 font-black text-[#1b1d22] shadow-sm transition-all {% if s == secili_seviye %}pb-3 pt-3 text-2xl{% else %}pb-1.5 pt-2 text-xl hover:pb-3{% endif %}">{{ s }}</a>
+           class="lv-sekme-{{ forloop.counter }} lv-serif rounded-t-lg px-0 text-center sm:px-4 font-black text-[#1b1d22] shadow-sm transition-all {% if s == secili_seviye %}pb-3 pt-3 text-2xl{% else %}pb-1.5 pt-2 text-xl hover:pb-3{% endif %}">{{ s }}</a>
         {% endfor %}
     </div>
     {% endif %}

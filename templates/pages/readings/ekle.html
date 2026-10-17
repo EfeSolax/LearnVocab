@@ -41,8 +41,14 @@ v1'de OCR yok: taranmış PDF'te nazik bir hata gösterilir.
 
     <div x-show="tur === 'pdf'" {% if tur != 'pdf' %}x-cloak{% endif %}>
         <label for="dosya" class="lv-el block text-[22px] font-bold">{% translate "PDF dosyası" %}</label>
-        <input id="dosya" name="dosya" type="file" accept=".pdf,application/pdf"
-               class="lv-sayfa mt-2 block w-full p-4 text-base text-gray-700 file:mr-3 file:rounded-[3px] file:border-0 file:bg-[color:var(--murekkep)] file:px-4 file:py-2 file:font-semibold file:text-[color:var(--kagit)] dark:text-slate-300">
+        {# Tarayıcının "Dosya Seç / Dosya seçilmedi" yazısı site diline uymuyor: girdi gizli (klavyeyle odaklanır), düğme ve ad bizim yazımızla. #}
+        <div x-data="{ ad: '' }" class="lv-sayfa mt-2 flex items-center gap-3 p-4 focus-within:ring-2 focus-within:ring-[color:var(--murekkep)]">
+            <input id="dosya" name="dosya" type="file" accept=".pdf,application/pdf" class="sr-only"
+                   @change="ad = $event.target.files.length ? $event.target.files[0].name : ''">
+            <label for="dosya" class="lv-dugme lv-kucuk shrink-0 cursor-pointer">{% translate "Dosya seç" %}</label>
+            <span class="min-w-0 truncate text-base text-gray-700 dark:text-slate-300" data-dosya-adi
+                  x-text="ad || '{{ _("Dosya seçilmedi")|escapejs }}'">{% translate "Dosya seçilmedi" %}</span>
+        </div>
         <p class="mt-2 text-sm text-gray-600 dark:text-slate-300">{% blocktranslate %}En çok {{ en_buyuk_mb }} MB ve {{ en_cok_sayfa }} sayfa. Taranmış (fotoğraf) PDF'ler şimdilik okunamıyor.{% endblocktranslate %}</p>
     </div>
 

@@ -48,7 +48,7 @@ class EklentiTests(TestCase):
     def test_ana_sayfada_eklenti_bolumu(self):
         html = self.client.get(reverse("index")).content.decode()
         self.assertIn('id="eklenti"', html)
-        self.assertIn("yakında", html)
+        self.assertIn("Chrome Web Store", html)
         with self.settings(EKLENTI_ADRESI="https://chromewebstore.google.com/detail/learnvocab/x"):
             html = self.client.get(reverse("index")).content.decode()
         self.assertIn("https://chromewebstore.google.com/detail/learnvocab/x", html)

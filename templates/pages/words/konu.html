@@ -3,7 +3,7 @@
 
 {% comment %}
 Konu sayfası (rapor 18.39): konudaki kelimeler hazır liste sayfasındaki gibi alt alta kapalı kartlar
-(kolaydan zora), konunun ifadeleri en altta. Görünüm: words.sozluk_views.konu_sayfasi
+(zordan kolaya: C2 → A1), konunun ifadeleri en altta. Görünüm: words.sozluk_views.konu_sayfasi
 {% endcomment %}
 
 {% block title %}{% blocktranslate with ad=konu.ad %}{{ ad }}: konuya göre kelimeler — LearnVocab Sözlük{% endblocktranslate %}{% endblock %}
@@ -21,6 +21,19 @@ Konu sayfası (rapor 18.39): konudaki kelimeler hazır liste sayfasındaki gibi 
 </header>
 
 {% if toplam %}
+{# Seviye süzgeci (Efe, 17 Ekim): ?bolum=B1; arama ve "Daha fazla göster" süzgeci korur. #}
+<nav class="mb-5 flex flex-wrap items-center gap-2" aria-label="{% translate 'Seviyeler' %}" data-konu-seviyeleri>
+    <a href="?" class="rounded-full border-[1.5px] border-[color:var(--murekkep)] px-3.5 py-1 text-[15px] font-bold transition {% if not secili_bolum %}bg-[color:var(--murekkep)] text-white dark:text-[#16181d]{% else %}text-indigo-700 hover:-translate-y-0.5 dark:text-indigo-300{% endif %}" {% if not secili_bolum %}aria-current="page"{% endif %}>{% translate "Hepsi" %}</a>
+    {% for s, n, renk in seviye_sayilari %}
+    {% if not n %}
+    <span class="lv-sekme-{{ renk }} cursor-default rounded-full px-3.5 py-1 text-[15px] font-bold text-[#1b1d22] opacity-30" aria-disabled="true" title="{% translate 'Bu seviyede kelime yok' %}"><span class="lv-serif">{{ s }}</span> <span class="font-normal">0</span></span>
+    {% else %}
+    <a href="?bolum={{ s }}" class="lv-sekme-{{ renk }} rounded-full px-3.5 py-1 text-[15px] font-bold text-[#1b1d22] shadow-sm transition {% if s == secili_bolum %}ring-2 ring-[color:var(--murekkep)] ring-offset-2 ring-offset-[color:var(--kagit)]{% else %}opacity-80 hover:-translate-y-0.5 hover:opacity-100{% endif %}" {% if s == secili_bolum %}aria-current="page"{% endif %}>
+        <span class="lv-serif">{{ s }}</span> <span class="font-normal text-[#3a3d45]">{{ n }}</span>
+    </a>
+    {% endif %}
+    {% endfor %}
+</nav>
 {% include 'pages/words/_listeArama.html' %}
 <div class="space-y-2" data-hazir-liste-kartlari>
     {% include 'pages/words/_hazirListeKartlari.html' %}

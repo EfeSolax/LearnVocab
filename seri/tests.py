@@ -206,3 +206,24 @@ class MetinGecerlilikTests(TestCase):
         from texts.models import Text
         Text.objects.create(owner=self.user, content=IYI_METIN)
         self.assertFalse(self._kontrol(IYI_METIN)[0])
+
+
+class UstSeriRozetiTests(TestCase):
+    """Üst çubukta alev + seri (Efe, 17 Ekim): bugün tamamsa turuncu, değilse gri; girişsizde yok."""
+
+    def test_girissiz_rozet_yok_girisli_gri_tamamlaninca_turuncu(self):
+        from django.urls import reverse
+        from seri import hesap
+        from users.models import User
+        self.assertNotIn("data-ust-seri", self.client.get(reverse("sozluk")).content.decode())
+        user = User.objects.create_user(username="alev", password="Sifre1234")
+        self.client.force_login(user)
+        html = self.client.get(reverse("sozluk")).content.decode()
+        self.assertIn('data-ust-seri data-bugun-tamam="0"', html)
+        self.assertIn("text-gray-500", html[html.index("data-ust-seri"):html.index("data-ust-seri") + 400])
+        hesap.say(user, hesap.LP, hesap.ESIK[hesap.LP])
+        html = self.client.get(reverse("sozluk")).content.decode()
+        i = html.index("data-ust-seri")
+        self.assertIn('data-bugun-tamam="1"', html[i:i + 60])
+        self.assertIn("text-orange-600", html[i:i + 400])
+        self.assertIn("<span>1</span>", html[i:i + 2000])

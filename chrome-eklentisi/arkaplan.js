@@ -11,9 +11,11 @@
  *   {tur: "sorgula", q, once, sonra}  -> {sonuc} | {hata}
  *   {tur: "liste", id, ekle}          -> {ok, kayitli} | {giris: true} | {hata}
  *   {tur: "giris"}                    -> sitenin giriş sayfasını yeni sekmede açar
+ *   {tur: "oxford", q}                -> Oxford'da aramayı yeni sekmede açar (sayfa yerinde kalır)
  */
 
 const SITE = "https://www.learnvocab.com.tr";
+const OXFORD = "https://www.oxfordlearnersdictionaries.com/search/english/?q=";
 
 async function sorgula(m) {
   const p = new URLSearchParams({ q: String(m.q || "").slice(0, 60) });
@@ -46,6 +48,10 @@ async function isle(m) {
     case "liste": return liste(m);
     case "giris":
       await chrome.tabs.create({ url: `${SITE}/giris/` });
+      return { ok: true };
+    case "oxford":
+      // Yalnızca Oxford araması açılır; adres burada kurulur (sayfadan adres alınmaz)
+      await chrome.tabs.create({ url: OXFORD + encodeURIComponent(String(m.q || "").slice(0, 60)) });
       return { ok: true };
     default: return { hata: "tur" };
   }

@@ -6,9 +6,12 @@ oturum türüne göre havuzu seçer:
 
   karma -> ~%70 tekrar / ~%30 yeni (oran ayarlardan; tekrar birikirse yeni azalır)
   mine  -> yalnızca tekrar adayları        new -> yalnızca yeni kelimeler
+  çalışma listesi seçildiyse (?liste=) -> bütün kartlar o listeden (pick_from_secim)
 """
 
 import random
+
+from django.utils import timezone
 
 from words.models import Word
 
@@ -24,47 +27,64 @@ def pick_word(user, mode, rng=None, haric=()):
 
 
 # ----------------------------------------------------------------------
-# Yeni kelime kaynağı: hazır liste bağlantı noktası (rapor 4.1)
+# Çalışma listesi (Efe, 17 Ekim): "Şu kelimelerle tekrar yap" ekranında
+# Listem yerine bir hazır liste (bölümüyle) seçilince turun bütün kartları
+# o listeden gelir.
 # ----------------------------------------------------------------------
 
-def yeni_kelime_havuzu(user):
+def pick_from_secim(user, secim, rng=None, haric=()):
     """
-    "Bu listeyle çalış" seçilmişse yeni kelimelerin geleceği Word queryset'i,
-    seçilmemişse None (o zaman kur havuzu kullanılır).
+    Çalışma listesinden sıradaki kelime: (kelime, kaynak) ya da (None, None).
 
-    Bağlantı noktası: Sözlük'ün hazır liste kodu `words.hazir_liste`
-    modülünde `aktif_liste(user)` fonksiyonunu sağlar. Beklenen sözleşme:
-      - seçili liste yoksa None,
-      - varsa listenin kelimelerini veren bir Word queryset'i ya da
-        `kelimeler` özniteliği/yöntemi Word queryset'i dönen bir nesne.
-    Modül henüz yoksa (ImportError) ya da hiçbir şey seçilmemişse seviye
-    tabanlı kaynağa düşülür. Dönen havuzdan kullanıcının listesindekiler,
-    kendi (kişisel) kelimeleri ve L&P'de daha önce gördükleri çıkarılır.
+    Sıra: hiç görmediği kelimeler (rastgele) -> tekrar zamanı gelenler ya da
+    zorlandıkları (en eski görülen önce) -> geri kalanı (en eski görülen önce).
+    Tur boyunca liste bitene kadar kart gelir; günlük yeni kelime sınırı
+    burada uygulanmaz (kullanıcı listeyi kendisi seçti). Aile aralama burada da
+    geçerli. kaynak: hiç görülmemişse "new", görülmüşse "mine".
     """
-    if user is None or not getattr(user, "is_authenticated", False):
-        return None
-    try:
-        from words.hazir_liste import aktif_liste
-    except ImportError:
-        return None
+    rng = rng or random
+    haric = list(haric)
+    idler = list(secim.kelimeler().exclude(id__in=haric).values_list("id", flat=True)[:3000])
+    if not idler:
+        return None, None
+    kayitlar = {e.word_id: e for e in WordEncounter.objects.filter(user=user, word_id__in=idler)}
+    simdi = timezone.now()
+    yeni = [i for i in idler if i not in kayitlar or kayitlar[i].times_seen == 0]
+    rng.shuffle(yeni)
 
-    secili = aktif_liste(user)
-    if secili is None:
-        return None
-    kelimeler = secili
-    if not hasattr(kelimeler, "filter"):
-        kelimeler = getattr(secili, "kelimeler", None)
-        if callable(kelimeler):
-            kelimeler = kelimeler()
-        if kelimeler is not None and hasattr(kelimeler, "all") and not hasattr(kelimeler, "exclude"):
-            kelimeler = kelimeler.all()  # ilişki yöneticisi
-    if kelimeler is None or not hasattr(kelimeler, "exclude"):
-        return None
-    return (kelimeler
-            .exclude(owner=user)
-            .exclude(saved_by=user)
-            .exclude(id__in=WordEncounter.objects.filter(user=user).values("word_id"))
-            .distinct())
+    def eski_once(i):
+        son = kayitlar[i].last_seen_at
+        return son.timestamp() if son else 0
+
+    gorulen = [i for i in idler if i in kayitlar and kayitlar[i].times_seen > 0]
+    aday = sorted((i for i in gorulen if tekrar.aday_mi(kayitlar[i], simdi)), key=eski_once)
+    adaylar = set(aday)
+    kalan = sorted((i for i in gorulen if i not in adaylar), key=eski_once)
+    sira = tekrar.aileye_gore_sirala(yeni + aday + kalan, haric)
+    kelime = Word.objects.filter(id=sira[0]).first()
+    kaynak = WordEncounter.MODE_NEW if sira[0] not in kayitlar or kayitlar[sira[0]].times_seen == 0 \
+        else WordEncounter.MODE_MINE
+    return kelime, kaynak
+
+
+def pick_secim_karma(user, secim, rng=None, haric=(), oran=None):
+    """
+    Çalışma listesi seçili turun sıradaki kartı: `oran` olasılıkla o listeden
+    (pick_from_secim), kalanında Listem'in tekrar adaylarından. Biri boşsa
+    öteki. oran verilmezse Ayarlar'daki yeni kelime oranı.
+    """
+    rng = rng or random
+    if oran is None:
+        oran = kullanici_yeni_orani(user)
+    listeden = rng.random() < oran
+    for kaynak in ((True, False) if listeden else (False, True)):
+        if kaynak:
+            kelime, tur = pick_from_secim(user, secim, rng=rng, haric=haric)
+        else:
+            kelime, tur = tekrar.siradaki_tekrar(user, rng=rng, haric=haric), WordEncounter.MODE_MINE
+        if kelime is not None:
+            return kelime, tur
+    return None, None
 
 
 # ----------------------------------------------------------------------

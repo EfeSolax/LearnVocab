@@ -4,7 +4,12 @@
  * Herhangi bir sitede İngilizce bir kelimeye ÇİFT TIKLAYINCA, Okumalar'daki
  * baloncuğun aynısı çıkar (templates/pages/readings/_kelimeBaloncugu.html):
  * kök, numaralı anlamlar, phrasal verb, "Listeme ekle +", yoksa "Henüz
- * sözlüğümüzde yok". Altta "Oxford'da ara" aynı sekmede Oxford'a gider.
+ * sözlüğümüzde yok". Altta "Oxford'da ara" Oxford'u YENİ sekmede açar.
+ *
+ * Bağlantıdaki kelime (Efe, 17 Ekim): çift tıklamanın ilk tıklaması bağlantıyı açtığı için
+ * imleci kelimenin üzerine getirip Shift'e bir kez dokunmak da baloncuğu açar. Yalnızca
+ * "kısa ve tek başına" dokunuş sayılır (araya başka tuş ya da tıklama girmez, 600 ms'den
+ * kısa): büyük harf yazmak ya da Shift+tıklama ile seçim tetiklemez.
  *
  * Kapanma: baloncuğun dışında herhangi bir yere (kelimenin kendisi dahil) bir
  * kez tıklayınca, Esc'ye basınca ya da kelime ekrandan çıkınca. Ekran dolmasın
@@ -19,7 +24,6 @@
   window.__learnvocabBaloncugu = true;
 
   const t = (ad, yedek) => (chrome.i18n && chrome.i18n.getMessage(ad)) || yedek || ad;
-  const OXFORD = "https://www.oxfordlearnersdictionaries.com/search/english/?q=";
 
   const HARF = /[A-Za-zÀ-ɏ'’\-]/;
   const CUMLE_SINIRI = /[.!?;:,()\[\]"“”]/;
@@ -41,10 +45,12 @@
     }
     .balon[hidden] { display: none; }
     .madde + .madde { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(66, 110, 190, .22); }
-    .ust { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-    .baslik { min-width: 0; margin: 0; padding-top: 2px; }
-    .yazim { color: #5f6470; font-size: 15px; }
-    .kok { font: 900 24px/1 Georgia, "Times New Roman", serif; color: #1b1d22; overflow-wrap: anywhere; }
+    .balon { overflow-y: auto; overscroll-behavior: contain; }
+    .ust { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 6px 8px; }
+    /* Taban = kelimenin kendi genişliği: düğmeyle aynı satıra sığmazsa düğme alta iner, kelime bölünmez */
+    .baslik { flex: 1 1 auto; min-width: 0; margin: 0; padding-top: 2px; }
+    .yazim { display: block; color: #5f6470; font-size: 15px; }
+    .kok { font: 900 24px/1.1 Georgia, "Times New Roman", serif; color: #1b1d22; overflow-wrap: break-word; }
     .anlamlar { margin: 6px 0 0; padding: 0; color: #1d3f8f; font-weight: 700; font-size: 16px; }
     ol.anlamlar { padding-left: 20px; }
     .anlamlar li, .anlamlar p { margin: 2px 0 0; line-height: 1.35; }
@@ -116,10 +122,27 @@
     const secim = window.getSelection();
     if (!secim || !secim.rangeCount) { return null; }
     const r = secim.getRangeAt(0);
-    const dugum = r.startContainer;
-    if (dugum.nodeType !== 3) { return null; }
+    return kelimeBul(r.startContainer, r.startOffset);
+  }
+
+  // İmlecin altındaki kelime (Shift dokunuşu). Nokta gerçekten kelimenin üstünde değilse
+  // (satır sonundaki boşluk, kenar boşluğu) null: en yakın kelime açılmasın.
+  function imlectekiKelime(x, y) {
+    const r = document.caretRangeFromPoint ? document.caretRangeFromPoint(x, y) : null;
+    if (!r) { return null; }
+    const s = kelimeBul(r.startContainer, r.startOffset);
+    if (!s) { return null; }
+    const kutu = s.aralik.getBoundingClientRect();
+    const pay = 2;
+    if (x < kutu.left - pay || x > kutu.right + pay || y < kutu.top - pay || y > kutu.bottom + pay) { return null; }
+    return s;
+  }
+
+  // Metin düğümünde ofsetin bulunduğu kelime ve komşuları.
+  function kelimeBul(dugum, ofset) {
+    if (!dugum || dugum.nodeType !== 3) { return null; }
     const yazi = dugum.data;
-    let bas = r.startOffset, son = r.startOffset;
+    let bas = ofset, son = ofset;
     while (son < yazi.length && /\s/.test(yazi[son])) { son++; bas++; }
     while (bas > 0 && HARF.test(yazi[bas - 1])) { bas--; }
     while (son < yazi.length && HARF.test(yazi[son])) { son++; }
@@ -218,7 +241,8 @@
     }
     const o = eleman("button", "oxford", t("oxford_ara", "Oxford'da ara"));
     o.type = "button";
-    o.addEventListener("click", () => { window.location.assign(OXFORD + encodeURIComponent(aranan)); });
+    // Yeni sekmede (sayfa yerinde kalsın); sekmeyi arka plan açar, yalnızca Oxford araması
+    o.addEventListener("click", () => { gonder({ tur: "oxford", q: aranan }); });
     sag.append(o);
     alt.append(sag);
     return alt;
@@ -257,12 +281,19 @@
     const r = etkin.aralik.getBoundingClientRect();
     if (!r.width && !r.height) { kapat(); return; }
     if (r.bottom < 0 || r.top > window.innerHeight) { kapat(); return; }
-    const gen = balon.offsetWidth, yuk = balon.offsetHeight;
+    // Kelimenin altında ya da üstünde, sığdığı (sığmıyorsa daha geniş olan) tarafta; o taraftaki
+    // boşluktan uzunsa yüksekliği sınırlanır ve içi kayar (ekranın altından taşmasın).
+    balon.style.maxHeight = "";
+    const gen = balon.offsetWidth, tamYuk = balon.scrollHeight;
+    const alt = window.innerHeight - r.bottom - 16, ust = r.top - 16;
+    const altta = tamYuk <= alt || (tamYuk > ust && alt >= ust);
+    const yer = Math.max(120, altta ? alt : ust);
+    const yuk = Math.min(tamYuk, yer);
+    balon.style.maxHeight = yuk + "px";
     const x = Math.min(Math.max(8, r.left + r.width / 2 - gen / 2), window.innerWidth - gen - 8);
-    let y = r.bottom + 8;
-    if (y + yuk > window.innerHeight - 8 && r.top - yuk - 8 > 8) { y = r.top - yuk - 8; }
+    const y = altta ? r.bottom + 8 : r.top - yuk - 8;
     balon.style.left = Math.max(8, x) + "px";
-    balon.style.top = Math.max(8, y) + "px";
+    balon.style.top = Math.min(Math.max(8, y), window.innerHeight - yuk - 8) + "px";
   }
 
   function kapat() {
@@ -305,10 +336,32 @@
   // Baloncuğun dışına (kelimenin kendisi dahil) bir kez basınca kapanır.
   // Çift tıklamanın ilk basışı eski baloncuğu kapatır; dblclick yenisini açar.
   document.addEventListener("pointerdown", (olay) => {
+    shiftBasildi = 0;                      // Shift+tıklama (seçim) dokunuş sayılmaz
     if (etkin && !baloncuktaMi(olay)) { kapat(); }
   }, true);
   document.addEventListener("keydown", (olay) => {
     if (olay.key === "Escape" && etkin) { kapat(); }
+    // Shift tek başına basıldıysa zamanı tut; başka herhangi bir tuş dokunuşu iptal eder
+    shiftBasildi = (olay.key === "Shift" && !olay.repeat && !olay.ctrlKey && !olay.altKey && !olay.metaKey)
+      ? Date.now() : 0;
+  }, true);
+
+  // ---------- Shift dokunuşu: imlecin altındaki kelime (bağlantılar için) ----------
+  let fareX = -1, fareY = -1, shiftBasildi = 0;
+  document.addEventListener("mousemove", (olay) => { fareX = olay.clientX; fareY = olay.clientY; },
+                            { passive: true, capture: true });
+  // Shift+tekerlek (yatay kaydırma) dokunuş sayılmaz
+  document.addEventListener("wheel", () => { shiftBasildi = 0; }, { passive: true, capture: true });
+  document.addEventListener("keyup", (olay) => {
+    if (olay.key !== "Shift") { return; }
+    const kisa = shiftBasildi && Date.now() - shiftBasildi < 600;
+    shiftBasildi = 0;
+    if (!kisa || fareX < 0) { return; }
+    const altindaki = document.elementFromPoint(fareX, fareY);
+    if (!altindaki || duzenlenebilir(altindaki) || (host && host.contains(altindaki))) { return; }
+    if (duzenlenebilir(document.activeElement) && document.activeElement !== document.body) { return; }
+    const s = imlectekiKelime(fareX, fareY);
+    if (s) { ac(s); }
   }, true);
   window.addEventListener("scroll", konumla, { passive: true, capture: true });
   window.addEventListener("resize", konumla, { passive: true });

@@ -993,21 +993,47 @@ class HazirListeKelimesi(models.Model):
 
 class HazirListeSecimi(models.Model):
     """
-    "Bu listeyle çalış": kullanıcının L&P'de yeni kelimeleri seviye yerine
-    bu listeden alması. Kullanıcı başına en çok bir liste; satır yoksa
-    seviye kullanılır. Okumak için: words.hazir_liste.aktif_liste(user).
+    Çalışma listesi (Efe, 17 Ekim): kullanıcının "Bu listeyle çalış" dediği
+    hazır liste — hangi bölümdeyken bastıysa o bölümüyle (ODTÜ'de hafta;
+    boşsa bütün liste). Kullanıcı başına birden çok olabilir; Learn & Pass'e
+    başlarken "Şu kelimelerle tekrar yap" ekranında Listem'in altında
+    sıralanır, çöp kutusuyla çıkarılır. Okumak için words.hazir_liste.
     """
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="hazir_liste_secimi")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="hazir_liste_secimleri")
     liste = models.ForeignKey(HazirListe, on_delete=models.CASCADE, related_name="secimler")
+    bolum = models.CharField(max_length=80, blank=True, default="")
     secildi = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "hazır liste seçimi"
-        verbose_name_plural = "hazır liste seçimleri"
+        ordering = ("-secildi", "-id")
+        unique_together = ("user", "liste", "bolum")
+        verbose_name = "çalışma listesi"
+        verbose_name_plural = "çalışma listeleri"
 
     def __str__(self):
-        return f"{self.user} → {self.liste}"
+        return f"{self.user} → {self.liste}" + (f" · {self.bolum}" if self.bolum else "")
+
+    @property
+    def bolum_adi(self):
+        """ "3" -> "3. hafta"; rakam değilse olduğu gibi."""
+        from django.utils.translation import gettext
+        if self.bolum.isdigit():
+            return gettext("%(n)s. hafta") % {"n": self.bolum}
+        return self.bolum
+
+    @property
+    def ad(self):
+        return self.liste.yerel_ad + (f" · {self.bolum_adi}" if self.bolum else "")
+
+    def kelimeler(self):
+        """Bu çalışma listesinin kelimeleri (bölüm seçiliyse yalnızca o bölüm), listedeki sırayla."""
+        if not self.bolum:
+            return self.liste.sirali_kelimeler()
+        # Liste ve bölüm tek filter'da: aynı üyelik satırına baksın (başka listenin bölümüne değil).
+        return (Word.objects.filter(hazir_liste_uyelikleri__liste=self.liste,
+                                    hazir_liste_uyelikleri__bolum=self.bolum)
+                .order_by("hazir_liste_uyelikleri__sira", "hazir_liste_uyelikleri__id"))
 
 
 # ----------------------------------------------------------------------

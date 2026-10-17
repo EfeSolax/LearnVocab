@@ -145,6 +145,14 @@ class CekimVeYazimTests(AramaTemeli):
         self.assertTrue(kayit.oneri_vardi)
         self.assertIn('content="noindex"', html)
 
+    def test_bunu_mu_demek_istediniz_her_tur_ayri_satir(self):
+        isim = make_word("endeavor", pos="noun", meaning="çaba", level="B2")
+        fiil = make_word("endeavor", pos="verb", meaning="çabalamak", level="B2")
+        oneriler = self.ara("endavor").context["sonuc"].oneriler
+        endeavor = [(o["tur"], o["anlam"], o["id"]) for o in oneriler if o["metin"] == "endeavor"]
+        self.assertEqual(endeavor, [("isim", "çaba", isim.id), ("fiil", "çabalamak", fiil.id)])
+        self.assertIn(f'data-kart-ac="{fiil.id}"', _html(self.ara("endavor")))
+
     def test_hic_yoksa_henuz_sozlugumuzde_yok_ve_kayit(self):
         html = _html(self.ara("gskjengkwng"))
         self.assertIn("Henüz sözlüğümüzde yok.", html)
@@ -322,6 +330,19 @@ class HazirListeTests(TestCase):
         HazirListe.objects.update(yayinda=False)
         self.assertNotIn("ODTÜ 101", _html(self.client.get(reverse("sozluk"))))
 
+    def test_kesfette_kuruma_gore_dallanir(self):
+        HazirListe.objects.create(ad="Speakout", slug="speakout", kurum="ODTÜ 101", sira=2)
+        HazirListe.objects.create(ad="Phrasal Verbs", slug="phrasal", sira=0)
+        HazirListe.objects.create(ad="Cambridge A2", slug="cambridge-a2", kurum="Cambridge", sira=5)
+        cevap = self.client.get(reverse("sozluk"))
+        gruplar = [(k, [l.slug for l in ls]) for k, ls in cevap.context["hazir_listeler"]]
+        # "Diğer" (kurumsuz) sira'sı küçük olsa da en sonda; "ODTÜ 101" ODTÜ'nün altında
+        self.assertEqual(gruplar, [("ODTÜ", ["odtu-101", "speakout"]), ("Cambridge", ["cambridge-a2"]),
+                                   ("", ["phrasal"])])
+        html = _html(cevap)
+        self.assertIn("ODTÜ listeleri", html)
+        self.assertIn("Diğer listeler", html)
+
     def test_liste_sayfasi_kapali_kartlar_sirali_hepsini_ekle_yok(self):
         cevap = self.client.get(reverse("hazir_liste", args=["odtu-101"]))
         self.assertEqual([k.text for k in cevap.context["kartlar"]], ["decide", "aim"])
@@ -331,35 +352,47 @@ class HazirListeTests(TestCase):
         self.assertIn('data-giris-gerekli="calisma"', html)
         self.assertNotIn("hepsini", html.lower())
 
-    def test_bu_listeyle_calis_ve_seviyeme_don(self):
-        self.assertIsNone(hazir_liste.aktif_liste(self.user))
+    def test_bu_listeyle_calis_bolumuyle_eklenir_ve_secim_ekranina_gider(self):
+        """Efe, 17 Ekim: birden çok çalışma listesi, seçili bölümüyle; L&P'nin seçim ekranı o liste seçili açılır."""
+        HazirListeKelimesi.objects.filter(word=self.aim).update(bolum="3")
         self.client.login(username="efe", password="Sifre1234")
-        self.client.post(reverse("hazir_liste_calis", args=["odtu-101"]))
-        self.assertEqual(hazir_liste.aktif_liste(self.user), self.liste)
-        self.assertEqual(list(hazir_liste.aktif_liste(self.user).sirali_kelimeler()),
-                         [self.decide, self.aim])
-        html = _html(self.client.get(reverse("hazir_liste", args=["odtu-101"])))
-        self.assertIn("Bu listeyle çalışıyorsun", html)
+        cevap = self.client.post(reverse("hazir_liste_calis", args=["odtu-101"]), {"bolum": "3"})
+        secim = HazirListeSecimi.objects.get(user=self.user)
+        self.assertEqual((secim.liste, secim.bolum, secim.ad), (self.liste, "3", "ODTÜ 101 · 3. hafta"))
+        self.assertRedirects(cevap, reverse("learn_pass_sec") + f"?sec={secim.id}", fetch_redirect_response=False)
+        self.assertEqual(list(secim.kelimeler()), [self.aim])
+        # Bölümün sayfasında "Çalışma listelerinde"; bütün listenin sayfasında hâlâ "Bu listeyle çalış"
+        self.assertIn("Çalışma listelerinde", _html(self.client.get(reverse("hazir_liste", args=["odtu-101"]), {"bolum": "3"})))
+        self.assertIn("Bu listeyle çalış", _html(self.client.get(reverse("hazir_liste", args=["odtu-101"]))))
         self.assertIn("Çalışıyorsun", _html(self.client.get(reverse("sozluk"))))
-        # Başka listeye geçince tek seçim kalır
+        # Bütün liste ve başka liste de eklenebilir; aynısı ikinci kez eklenmez
+        self.client.post(reverse("hazir_liste_calis", args=["odtu-101"]))
         diger = HazirListe.objects.create(ad="Cambridge B2", slug="cambridge-b2")
         self.client.post(reverse("hazir_liste_calis", args=["cambridge-b2"]))
-        self.assertEqual(HazirListeSecimi.objects.filter(user=self.user).count(), 1)
-        self.assertEqual(hazir_liste.aktif_liste(self.user), diger)
+        self.client.post(reverse("hazir_liste_calis", args=["cambridge-b2"]))
+        self.assertEqual([s.ad for s in hazir_liste.calisma_listeleri(self.user)],
+                         ["Cambridge B2", "ODTÜ 101", "ODTÜ 101 · 3. hafta"])
+        # Listeden çıkar
         self.client.post(reverse("hazir_liste_calis", args=["cambridge-b2"]), {"islem": "birak"})
-        self.assertIsNone(hazir_liste.aktif_liste(self.user))
+        self.assertEqual(hazir_liste.calisilan_liste_idleri(self.user), {self.liste.id})
+        self.assertNotEqual(diger.id, self.liste.id)
+
+    def test_olmayan_bolum_butun_liste_sayilir(self):
+        self.client.login(username="efe", password="Sifre1234")
+        self.client.post(reverse("hazir_liste_calis", args=["odtu-101"]), {"bolum": "99"})
+        self.assertEqual(HazirListeSecimi.objects.get(user=self.user).bolum, "")
 
     def test_girissiz_calis_yapilamaz_ve_yayinda_olmayan_404(self):
         self.assertEqual(self.client.post(reverse("hazir_liste_calis", args=["odtu-101"])).status_code, 302)
         self.assertFalse(HazirListeSecimi.objects.exists())
         HazirListe.objects.update(yayinda=False)
         self.assertEqual(self.client.get(reverse("hazir_liste", args=["odtu-101"])).status_code, 404)
-        self.assertIsNone(hazir_liste.aktif_liste(None))
+        self.assertFalse(hazir_liste.calisma_listeleri(None).exists())
 
-    def test_yayindan_kalkan_liste_aktif_sayilmaz(self):
+    def test_yayindan_kalkan_liste_calisma_listesi_sayilmaz(self):
         hazir_liste.listeyle_calis(self.user, self.liste)
         HazirListe.objects.update(yayinda=False)
-        self.assertIsNone(hazir_liste.aktif_liste(self.user))
+        self.assertFalse(hazir_liste.calisma_listeleri(self.user).exists())
 
     def test_sayfalama_parca(self):
         for i in range(45):

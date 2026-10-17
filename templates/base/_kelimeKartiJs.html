@@ -98,8 +98,9 @@ Kartı yerinde açmak (rapor 4.3: "Kart bulunduğu yerde açılır ve kapanır")
   <a href="/sozluk/goal/" data-kart-ac="42">goal</a>
       -> /sozluk/kart/42/ parçası getirilir ve tıklanan kartın hemen altına
          açık olarak eklenir. O kart sayfada zaten varsa ona kaydırılır ve açılır.
-  data-kart-hedef="yerine" -> öğenin en yakın [data-kart-satiri] kabı kartla
-         değiştirilir ("Diğer sonuçlar" satırı gibi).
+  data-kart-hedef="yerine" -> öğenin en yakın [data-kart-satiri] kabında satır
+         gizlenip yerine kart açılır ("Diğer sonuçlar", seviye listeleri). Kartın
+         ⌃ düğmesi (kapat=olay) kartı gizler, satır olduğu gibi geri gelir.
 
 Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de çalışır).
 {% endcomment %}
@@ -127,6 +128,15 @@ Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de ça
         if (!satir && !kaynak) { return; }   // kart dışında: normal bağlantı
         olay.preventDefault();
 
+        // Bu satırın kartı daha önce getirildiyse yeniden göster
+        var onceki = satir && satir.querySelector(':scope > [data-kelime-karti]');
+        if (onceki) {
+            bag.style.display = 'none';
+            onceki.style.display = '';
+            ac(onceki);
+            return;
+        }
+
         // Kaynak kartın hemen altında zaten açılmışsa ona git
         var mevcut = kaynak && kaynak.nextElementSibling;
         if (mevcut && mevcut.getAttribute('data-kelime-karti') === id) {
@@ -135,7 +145,7 @@ Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de ça
             return;
         }
 
-        fetch(kartAdresi(id), { credentials: 'same-origin', headers: { 'X-Requested-With': 'fetch' } })
+        fetch(kartAdresi(id) + (satir ? '?kapat=olay' : ''), { credentials: 'same-origin', headers: { 'X-Requested-With': 'fetch' } })
             .then(function (cevap) {
                 if (!cevap.ok) { throw new Error('HTTP ' + cevap.status); }
                 return cevap.text();
@@ -146,7 +156,12 @@ Getirme başarısız olursa bağlantının kendi adresine gidilir (JS'siz de ça
                 var yeni = sablon.content.firstElementChild;
                 if (!yeni) { throw new Error('boş'); }
                 if (satir) {
-                    satir.replaceWith(yeni);
+                    bag.style.display = 'none';
+                    satir.appendChild(yeni);
+                    satir.addEventListener('kart-kapat', function () {
+                        yeni.style.display = 'none';
+                        bag.style.display = '';
+                    });
                 } else {
                     yeni.classList.add('mt-3');
                     kaynak.after(yeni);

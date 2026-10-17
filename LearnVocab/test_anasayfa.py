@@ -42,7 +42,8 @@ class AnaSayfaTests(TestCase):
         self.assertIn("Listemdeki kelime", html)
         liste = html[html.index("data-liste-sayisi"):]
         self.assertIn(">1<", liste[:liste.index("</a>")])
-        self.assertIn(reverse("about"), html)   # yardım bağlantısı
+        self.assertIn(f'href="{reverse("about")}" data-yardim', html)   # yardım şeridi
+        self.assertLess(html.index("data-yardim"), html.index('name="q"'))   # kelime aramadan önce
 
     def test_gunun_kelimesi_ve_ifadesi_sozluge_gider(self):
         html = self._html(giris=True)
@@ -72,6 +73,10 @@ class AnaSayfaTests(TestCase):
         self.assertIn(reverse("register"), html)
         self.assertNotIn("Bugünün çalışmasına başla", html)
         self.assertNotIn("data-seviye-daveti", html)
+        self.assertIn("data-hemen-basla", html)
+        # sıra: kelime ara -> seri kartı -> bugünün sayfası -> hemen başla
+        sira = [html.index(x) for x in ('name="q"', 'id="seri"', "data-gunun-kelimesi", "data-hemen-basla")]
+        self.assertEqual(sira, sorted(sira))
 
     def test_olmayan_ozelliklerden_soz_edilmez(self):
         for giris in (False, True):
@@ -142,8 +147,10 @@ class GirisliDefterTests(TestCase):
 
     def test_gercek_takvim_okumalar_ve_seviye_isareti(self):
         html = self._html()
-        self.assertIn("son beş haftan", html)
+        self.assertIn('aria-label="Bu hafta"', html)        # seri kartında yalnızca bu hafta
         self.assertEqual(html.count('class="lv-bugun"'), 1)
         self.assertIn("sen buradasın", html)
-        self.assertIn("Bugün başka ne yapsan?", html)
+        self.assertIn("Hemen başla", html)
+        self.assertIn("data-hemen-basla", html)
+        self.assertIn(reverse("exercises_page"), html)      # Kısa Sınav bağlantısı
         self.assertNotIn("Aklına takılanlar", html)        # sık sorulanlar yalnızca misafirde

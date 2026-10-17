@@ -14,6 +14,8 @@ import re
 
 from django.utils.translation import gettext as _
 
+from .temizlik import anahtar, paragraflari_temizle
+
 # Sınırlar: sunucuyu yormasın, okuma ekranı da makul kalsın.
 # Rapor 18.24: PDF başına en çok 400 sayfa ve 50 MB.
 EN_BUYUK_BOYUT = 50 * 1024 * 1024        # 50 MB
@@ -55,6 +57,30 @@ def _sayfa_numarasi_mi(p):
     return bool(re.fullmatch(r"[\d\s\-–—/.|]+|page \d+( of \d+)?", p, re.IGNORECASE))
 
 
+# Sayfanın başındaki ve sonundaki kaç blok üst/alt bilgi sayılabilir.
+UC_BLOK = 2
+# En az bu kadar sayfanın başında/sonunda geçen blok üst/alt bilgidir.
+UST_ALT_SAYFA_ESIGI = 3
+# Üst/alt bilgi kısa olur; uzun bir paragraf (aynı cümle birkaç kez geçse de) atılmaz.
+UST_ALT_EN_COK_KELIME = 15
+
+
+def _ust_alt_bilgisiz(bloklar):
+    """
+    Her sayfanın başında ya da sonunda tekrar eden blokları (kitap adı, yazar,
+    "Free eBooks at …") atar: sayılar atılmış hâli en az 3 ayrı sayfanın
+    ucunda geçiyorsa. Sayfa numarası farkı ("12 ANIMAL FARM") önemsizdir.
+    """
+    sayfalar = {}
+    for p, no, uc in bloklar:
+        a = anahtar(p)
+        if uc and a and len(p.split()) <= UST_ALT_EN_COK_KELIME:
+            sayfalar.setdefault(a, set()).add(no)
+    tekrar = {a for a, s in sayfalar.items() if len(s) >= UST_ALT_SAYFA_ESIGI}
+    return [p for p, no, uc in bloklar
+            if not (uc and len(p.split()) <= UST_ALT_EN_COK_KELIME and anahtar(p) in tekrar)]
+
+
 def pdf_metni(veri):
     """
     PDF baytlarından okunabilir metin. Döner: (metin, bilgi)
@@ -83,19 +109,23 @@ def pdf_metni(veri):
                                  "yapıştırabilirsin.") % {"sayfa": belge.page_count, "en_cok": EN_COK_SAYFA})
         baslik = ((belge.metadata or {}).get("title") or "").strip()
 
-        paragraflar = []
-        for sayfa in belge:
+        bloklar = []                     # (paragraf, sayfa no, sayfanın başında/sonunda mı)
+        for no, sayfa in enumerate(belge):
+            sayfanin = []
             for blok in sayfa.get_text("blocks", sort=True):
                 if len(blok) > 6 and blok[6] != 0:      # görsel bloğu
                     continue
                 p = _paragraf(blok[4])
                 if not p or _sayfa_numarasi_mi(p):
                     continue
-                paragraflar.append(p)
+                sayfanin.append(p)
+            for i, p in enumerate(sayfanin):
+                bloklar.append((p, no, i < UC_BLOK or i >= len(sayfanin) - UC_BLOK))
         sayfa_sayisi = belge.page_count
     finally:
         belge.close()
 
+    paragraflar = paragraflari_temizle(_ust_alt_bilgisiz(bloklar))
     toplam_harf = sum(len(re.findall(r"[A-Za-z]", p)) for p in paragraflar)
     if toplam_harf < TARAMA_ESIGI:
         raise PdfOkunamadi(TARANMIS_MESAJI)

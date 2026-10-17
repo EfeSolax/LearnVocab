@@ -13,9 +13,10 @@ import threading
 import time
 from datetime import timedelta
 
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
@@ -31,7 +32,7 @@ from texts import diyalog as dy
 from texts import limits
 from texts.konular import konu_basligi, konular_listesi
 from texts.models import (
-    Diyalog, DiyalogCevabi, Sertlik, Text, YaziDurumu, YazmaAyari,
+    Diyalog, DiyalogCevabi, Sertlik, Text, YaziDurumu, YaziTuru, YazmaAyari,
 )
 from usersettings.anlam import turkce_acik
 from words.models import UserWordLink
@@ -44,21 +45,28 @@ GIRIS_ACIKLAMASI = gettext_lazy("Yazdıkların hesabına kaydedildiği için gir
 # yol gösterici olarak sayılıyor, sunucu yalnızca uç değerleri reddediyor.
 EN_AZ_KARAKTER = 20
 EN_COK_KARAKTER = 1500
+# Akademik tür (Efe, 17 Ekim): 1–3 paragraf; 250–400 kelimelik bir deneme ~1.700–2.600 karakter.
+EN_COK_KARAKTER_AKADEMIK = 3000
 
 ONERI_SAYISI = 5
 
 # Ağır iş sınırı (rapor 18.37): aynı anda en çok bu kadar değerlendirme sürer;
 # fazlası "yoğun" der, metin kaydedilir ve cron (yazilari_yeniden_dene) dener.
-# Bir değerlendirme en uzun EN_UZUN_IS saniye sürer (zaman aşımı x denemeler);
-# iş parçacığı bundan uzun ses vermezse (süreç öldü) çubuk takılı kalmaz.
+# Bir değerlendirme en uzun EN_UZUN_IS saniye sürer (zaman aşımı x denemeler; akademikte
+# çağrı başına 60 sn, 4 deneme); iş parçacığı bundan uzun ses vermezse (süreç öldü) çubuk takılı kalmaz.
 ESZAMANLI_DEGERLENDIRME = 4
-EN_UZUN_IS = 180
+EN_UZUN_IS = 300
 YAKIN_ZAMAN = timedelta(days=7)
 
 SERTLIK_ACIKLAMALARI = (
     (Sertlik.NAZIK, gettext_lazy("Nazik"), gettext_lazy("Yalnızca anlamı bozan hatalar, en çok 3.")),
     (Sertlik.NORMAL, gettext_lazy("Normal"), gettext_lazy("Dilbilgisi ve kelime hataları, en çok 6.")),
     (Sertlik.TITIZ, gettext_lazy("Titiz"), gettext_lazy("Noktalama, büyük harf ve resmiyet de dahil.")),
+)
+SERTLIK_ACIKLAMALARI_AKADEMIK = (
+    (Sertlik.NAZIK, gettext_lazy("Nazik"), gettext_lazy("Anlamı bozan hatalar ve en belirgin akademik sorunlar, en çok 4.")),
+    (Sertlik.NORMAL, gettext_lazy("Normal"), gettext_lazy("Dilbilgisi ve bütün akademik kurallar, en çok 8.")),
+    (Sertlik.TITIZ, gettext_lazy("Titiz"), gettext_lazy("Noktalama ve büyük harf de dahil, en çok 12.")),
 )
 
 SONUC_MESAJLARI = {
@@ -97,10 +105,10 @@ def _yazilar(user):
 # ---------------------------------------------------------------------------
 
 def yazmaSayfasi(request):
-    # Misafir (rapor 18.3): serbest yazma yok, yalnızca diyalog egzersizi ve
-    # tek bir giriş daveti.
+    # Misafir (rapor 18.3): serbest yazma yok; tek bir giriş daveti (ve
+    # DIYALOG_ACIK ise diyalog egzersizi).
     if not request.user.is_authenticated:
-        return render(request, "pages/texts/yazma.html", {"misafir": True})
+        return render(request, "pages/texts/yazma.html", {"misafir": True, "diyalog_acik": settings.DIYALOG_ACIK})
 
     yazilar = list(_yazilar(request.user).order_by("-createdAt"))
     for yazi in yazilar:
@@ -119,6 +127,7 @@ def yazmaSayfasi(request):
         "gunluk_limit": limits.gunluk_limit(),
         "sinir_mesaji": limits.sinir_mesaji(),
         "silinen": silinen,
+        "diyalog_acik": settings.DIYALOG_ACIK,
     })
 
 
@@ -158,14 +167,17 @@ def newTextPage(request):
     yazabilir = limits.yazabilir_mi(request.user)
     return render(request, "pages/texts/newText.html", {
         "yazabilir": yazabilir,
+        "diyalog_acik": settings.DIYALOG_ACIK,
         "sinir_mesaji": limits.sinir_mesaji(),
         "kalan_hak": limits.kalan_hak(request.user),
         "oneriler": kullanmayi_dene(request.user) if yazabilir else [],
-        "konular": konular_listesi(),
+        "konular": {"gunluk": konular_listesi(), "akademik": konular_listesi(akademik=True)},
         "sertlik": YazmaAyari.sertlik_of(request.user),
         "sertlikler": SERTLIK_ACIKLAMALARI,
+        "sertlikler_akademik": SERTLIK_ACIKLAMALARI_AKADEMIK,
         "en_az": EN_AZ_KARAKTER,
         "en_cok": EN_COK_KARAKTER,
+        "en_cok_akademik": EN_COK_KARAKTER_AKADEMIK,
     })
 
 
@@ -175,7 +187,11 @@ def _girdiyi_dogrula(request):
     metin = re.sub(r"\r\n?", "\n", metin)
     if len(metin) < EN_AZ_KARAKTER:
         return metin, _("Birkaç cümlelik İngilizce bir metin yaz (3–8 cümle).")
-    if len(metin) > EN_COK_KARAKTER:
+    if dg.tur_gecerli(request.POST.get("tur")) == YaziTuru.AKADEMIK:
+        if len(metin) > EN_COK_KARAKTER_AKADEMIK:
+            return metin, _("Metin biraz uzun oldu. %(n)s karakteri geçmesin (1–3 paragraf yeter).") % {
+                "n": EN_COK_KARAKTER_AKADEMIK}
+    elif len(metin) > EN_COK_KARAKTER:
         return metin, _("Metin biraz uzun oldu. %(n)s karakteri geçmesin (3–8 cümle yeter).") % {"n": EN_COK_KARAKTER}
     return metin, None
 
@@ -189,6 +205,7 @@ def _yazi_olustur(request, metin):
         content=metin,
         durum=YaziDurumu.BEKLIYOR,
         sertlik=sertlik,
+        tur=dg.tur_gecerli(request.POST.get("tur")),     # her metinde seçilir, hatırlanmaz (Efe, 17 Ekim)
         konu=konu_basligi(request.POST.get("konu")),
     )
     istenen = [int(i) for i in request.POST.getlist("kelimeler") if str(i).isdigit()]
@@ -369,6 +386,7 @@ def reviewText(request, text_id):
         "onerilenler": list(yazi.words.values_list("text", flat=True)),
         "parcalar": dg.metin_parcalari(yazi.content, hatalar) if yazi.durum == YaziDurumu.TAMAM else [],
         "sertlik_adi": Sertlik(yazi.sertlik).label if yazi.sertlik in Sertlik.values else "",
+        "akademik": yazi.tur == YaziTuru.AKADEMIK,
         "yogun": limits.yogun_mu(),
     })
 
@@ -421,8 +439,10 @@ def diyalogSayfasi(request):
     """
     Girişli kullanıcıda hedef kelime listeden gelir. Misafire de açıktır
     (rapor 18.3): diyalog havuzdan %60 B1 · %20 B2 · %20 C1 dağılımıyla
-    seçilir, cevabı kaydedilmez.
+    seçilir, cevabı kaydedilmez. DIYALOG_ACIK kapalıyken sayfa yok (404).
     """
+    if not settings.DIYALOG_ACIK:
+        raise Http404
     misafir = not request.user.is_authenticated
     havuz_bos = dy.havuz_bos_mu()
     haric = request.GET.get("onceki")
@@ -462,6 +482,8 @@ def _diyalog_ipucu(user, diyalog):
 @require_POST
 def diyalogCevap(request, diyalog_id):
     """Cevabı değerlendirir. Misafirin cevabı kaydedilmez ve seriye sayılmaz (rapor 18.3)."""
+    if not settings.DIYALOG_ACIK:
+        raise Http404
     diyalog = get_object_or_404(Diyalog.objects.select_related("word"), pk=diyalog_id, denetlendi=True)
     girdi = (request.POST.get("cevap") or "")[:120]
     sonuc = dy.cevabi_degerlendir(diyalog, girdi)

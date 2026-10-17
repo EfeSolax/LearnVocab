@@ -22,7 +22,7 @@ from texts import degerlendirme as dg
 from texts import diyalog as dy
 from texts import limits, sinyaller
 from texts.models import (
-    Diyalog, DiyalogCevabi, Sertlik, Text, YaziDurumu, YazmaAyari,
+    Diyalog, DiyalogCevabi, Sertlik, Text, YaziDurumu, YaziTuru, YazmaAyari,
 )
 from texts.views import _degerlendirme_isi
 from users.models import User
@@ -136,6 +136,32 @@ class PromptTests(TestCase):
         for eski in ("major", "minor", "100 puan", "summary", "Geliştirilebilir\":"):
             self.assertNotIn(eski, p)
         self.assertIn("Üslup tercihi", p)
+
+
+class AkademikPromptTests(TestCase):
+    """Akademik tür (Efe, 17 Ekim; Forefront kriterleri)."""
+
+    def test_akademik_prompt_kurallari_ve_konusu(self):
+        p = dg.prompt_olustur("x", Sertlik.NORMAL, [], "Zorunlu İngilizce", tur=YaziTuru.AKADEMIK)
+        for parca in ("AKADEMİK", "A1. Kısaltmalar", "I argue that", "Mantık hataları", "AKADEMİK yazı ölçütüne",
+                      "En çok 8", "Should English be a compulsory subject"):
+            self.assertIn(parca, p)
+        self.assertNotIn("Akademik yazı BEKLENMİYOR", p)
+        self.assertNotIn("YALNIZCA GERÇEK HATALAR", p)
+
+    def test_gunluk_prompt_akademik_kural_icermez(self):
+        p = dg.prompt_olustur("x", Sertlik.NORMAL, tur=YaziTuru.GUNLUK)
+        self.assertIn("Akademik yazı BEKLENMİYOR", p)
+        self.assertNotIn("A1. Kısaltmalar", p)
+        self.assertEqual(p, dg.prompt_olustur("x", Sertlik.NORMAL, tur="bilinmeyen"))
+
+    def test_hata_siniri_ture_gore(self):
+        hatalar = [{"alinti": f"word{i}", "dogrusu": f"fixed{i}", "neden": "n"} for i in range(15)]
+        metin = " ".join(f"word{i}" for i in range(15))
+        veri = {"puan": 3, "iyi": [], "hatalar": hatalar}
+        self.assertEqual(len(dg.cevabi_coz(veri, metin, Sertlik.TITIZ)["hatalar"]), 10)
+        self.assertEqual(len(dg.cevabi_coz(veri, metin, Sertlik.TITIZ, tur=YaziTuru.AKADEMIK)["hatalar"]), 12)
+        self.assertEqual(len(dg.cevabi_coz(veri, metin, Sertlik.NAZIK, tur=YaziTuru.AKADEMIK)["hatalar"]), 4)
 
 
 # ===========================================================================
@@ -408,12 +434,20 @@ class GeminiKatmaniTests(TestCase):
                 self.assertEqual(dg.degerlendir(self.yazi), dg.TAMAM)
         self.assertEqual(self._modeller(istemci), [TEST_MODEL, TEST_MODEL, FALLBACK_MODEL])
 
-    def test_quota_does_not_try_other_models(self):
-        istemci = sahte_istemci([Exception("429 RESOURCE_EXHAUSTED")])
+    def test_quota_tries_fallback_model(self):
+        # Ücretsiz katmanda günlük kota model başına: asıl model doluysa yedek denenir (tekrar denemeden)
+        istemci = sahte_istemci([Exception("429 RESOURCE_EXHAUSTED"), iyi_cevap()])
+        with patch("LearnVocab.gemini.get_client", return_value=istemci):
+            with self.assertLogs("LearnVocab.gemini", level="WARNING"):
+                self.assertEqual(dg.degerlendir(self.yazi), dg.TAMAM)
+        self.assertEqual(self._modeller(istemci), [TEST_MODEL, FALLBACK_MODEL])
+
+    def test_quota_on_every_model(self):
+        istemci = sahte_istemci([Exception("429 RESOURCE_EXHAUSTED"), Exception("429 RESOURCE_EXHAUSTED")])
         with patch("LearnVocab.gemini.get_client", return_value=istemci):
             with self.assertLogs("LearnVocab.gemini", level="WARNING"):
                 self.assertEqual(dg.degerlendir(self.yazi), dg.KOTA)
-        self.assertEqual(self._modeller(istemci), [TEST_MODEL])
+        self.assertEqual(self._modeller(istemci), [TEST_MODEL, FALLBACK_MODEL])
 
     def test_missing_key_keeps_text(self):
         with override_settings(GEMINI_API_TOKEN=None):
@@ -490,6 +524,31 @@ class YazmaSayfalariTests(TestCase):
         self.assertIn("3,5", html)
         self.assertIn("Ortalama", html)
         self.assertNotIn("Geliştirilebilir", html)
+
+    def test_akademik_tur_kaydedilir_uzun_metin_kabul_ve_etiket(self):
+        uzun = (METIN + " ") * 10
+        self.assertTrue(1500 < len(uzun.strip()) < 3000)
+        with patch("LearnVocab.gemini.generate") as gen:
+            self._gonder(user_text=uzun)               # günlükte uzun metin reddedilir
+        gen.assert_not_called()
+        self.assertFalse(Text.objects.exists())
+        with patch("LearnVocab.gemini.generate", return_value=cevap(iyi_cevap())) as gen:
+            self._gonder(user_text=uzun, tur="akademik", konu="a-ingilizce")
+        yazi = Text.objects.get()
+        self.assertEqual((yazi.tur, yazi.konu), (YaziTuru.AKADEMIK, "Zorunlu İngilizce"))
+        self.assertIn("A1. Kısaltmalar", gen.call_args.args[0])
+        self.assertEqual(gen.call_args.kwargs["timeout"], dg.AKADEMIK_ZAMAN_ASIMI)
+        html = self.client.get(reverse("review_text", args=[yazi.id])).content.decode()
+        self.assertIn("data-akademik", html)
+        self.assertIn("akademik puan", html)
+        self.assertIn("Akademik", self.client.get(reverse("profile_texts")).content.decode())
+
+    def test_yazma_ekraninda_tur_secimi_ayarda_yok(self):
+        html = self.client.get(reverse("new_text_page")).content.decode()
+        self.assertIn("data-yazi-turu", html)
+        self.assertIn('name="tur" value="akademik"', html)
+        self.assertIn("Should English be a compulsory subject", html)   # akademik konular sayfada
+        self.assertNotIn("akademik", self.client.get(reverse("settings_page")).content.decode().lower())
 
     def test_short_or_empty_text_is_rejected_without_calling_gemini(self):
         with patch("LearnVocab.gemini.generate") as gen:
@@ -755,6 +814,29 @@ class DiyalogCevabiTests(TestCase):
         self.assertEqual(dy.register_notu(d), "Resmî bir kelime.")
 
 
+class DiyalogKapaliTests(TestCase):
+    """Diyalog sonraki sürüme saklandı (settings.DIYALOG_ACIK = False, Efe 17 Ekim)."""
+
+    def test_adresler_404_ve_yazilarda_iz_yok(self):
+        User.objects.create_user(username="kapali", password="Sifre1234")
+        d = diyalog_olustur(kelime_olustur("postpone", anlam="ertelemek"))
+        for giris in (False, True):
+            with self.subTest(giris=giris):
+                if giris:
+                    self.client.login(username="kapali", password="Sifre1234")
+                self.assertEqual(self.client.get(reverse("diyalog_page")).status_code, 404)
+                self.assertEqual(self.client.post(reverse("diyalog_cevap", args=[d.id]), {"cevap": "x"}).status_code, 404)
+                html = self.client.get(reverse("profile_texts")).content.decode()
+                self.assertNotIn(reverse("diyalog_page"), html)
+                self.assertNotIn("Diyalogda doğru kelime", html)
+        self.assertRedirects(self.client.get("/texts/diyalog/"), reverse("profile_texts"),
+                             status_code=301, fetch_redirect_response=False)
+        yardim = self.client.get(reverse("about")).content.decode()
+        self.assertNotIn("Diyalogda doğru kelime", yardim)
+        self.assertNotIn("1 diyalog", yardim)
+
+
+@override_settings(DIYALOG_ACIK=True)
 class DiyalogSayfasiTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="diyalog", password="Sifre1234")

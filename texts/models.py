@@ -35,6 +35,13 @@ class Sertlik(models.TextChoices):
     TITIZ = "titiz", _("Titiz")
 
 
+class YaziTuru(models.TextChoices):
+    """Metnin türü (Efe, 17 Ekim): her metinde yazma ekranında seçilir, ayarlarda yok.
+    Akademikte Forefront kriterleri de denetlenir (texts/degerlendirme.py)."""
+    GUNLUK = "gunluk", _("Günlük")
+    AKADEMIK = "akademik", _("Akademik")
+
+
 class Text(models.Model):
     owner = models.ForeignKey(
         User,
@@ -60,6 +67,7 @@ class Text(models.Model):
     sertlik = models.CharField(max_length=8, choices=Sertlik.choices,
                                default=Sertlik.NORMAL)
     konu = models.CharField(max_length=200, blank=True, default="")
+    tur = models.CharField(max_length=10, choices=YaziTuru.choices, default=YaziTuru.GUNLUK)
     # 5 üzerinden, yarım adımlı (1–5).
     puan = models.FloatField(blank=True, null=True)
     # {"iyi": [{alinti, aciklama}], "hatalar": [{alinti, dogrusu, neden}],

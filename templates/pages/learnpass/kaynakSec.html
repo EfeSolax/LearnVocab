@@ -1,0 +1,139 @@
+{% extends 'base/appLayout.html' %}
+{% load i18n %}
+
+{% comment %}
+"Şu kelimelerle tekrar yap" (Efe, 17 Ekim): girişli kullanıcı "Hemen kaydırmaya
+başla"ya basınca turun kelimelerini seçer (learnpass.views.learnPassSec).
+  - En üstte Listem (varsayılan seçili): listendekiler + seviyene göre yeni kelimeler.
+  - Altında çalışma listeleri: hazır listede "Bu listeyle çalış" denenler,
+    bölümüyle (ODTÜ 202 Span 3 · 3. hafta). ?sec=<id> o satırı seçili açar.
+  - Listem dışındaki her satırda çöp kutusu: onaysız siler, "Geri al" var
+    (learn_pass_liste). Liste sayfasından yeniden eklenebilir.
+Form GET ile kart ekranına gider: ?liste=<id> (Listem'de boş).
+{% endcomment %}
+
+{% block title %}Learn &amp; Pass{% endblock %}
+{% block page_heading %}{% endblock %}
+
+{% block page %}
+
+{% include 'base/_exerciseTabs.html' with exercise_tab="learn" %}
+
+<form method="get" action="{% url 'learn_pass_run' mode='karma' %}" class="mx-auto mt-2 max-w-xl" data-kaynak-sec>
+    <h1 class="lv-baslik !text-[36px] sm:!text-[48px]">{% translate "Şu kelimelerle tekrar yap" %}</h1>
+
+    <fieldset class="mt-6 space-y-3">
+        <legend class="sr-only">{% translate "Kelimeler" %}</legend>
+
+        <label class="lv-sayfa lv-kaynak flex cursor-pointer items-center gap-4 px-5 py-4" data-kaynak="listem">
+            <input type="radio" name="liste" value="" class="lv-kaynak-radyo" {% if not secili %}checked{% endif %}>
+            <span class="min-w-0 flex-1">
+                <span class="lv-serif block text-[22px] font-bold leading-tight">{% translate "Listem" %}</span>
+                <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">{% blocktranslate count n=liste_sayisi %}{{ n }} kelime · listendekiler ve seviyene göre yeni kelimeler{% plural %}{{ n }} kelime · listendekiler ve seviyene göre yeni kelimeler{% endblocktranslate %}</span>
+            </span>
+        </label>
+
+        {% for secim in listeler %}
+        <div class="lv-sayfa lv-kaynak flex items-center gap-4 pr-2" data-kaynak="{{ secim.id }}"
+             data-liste-id="{{ secim.liste_id }}" data-bolum="{{ secim.bolum }}">
+            <label class="flex min-w-0 flex-1 cursor-pointer items-center gap-4 py-4 pl-5">
+                <input type="radio" name="liste" value="{{ secim.id }}" class="lv-kaynak-radyo" {% if secili == secim.id %}checked{% endif %}>
+                <span class="min-w-0 flex-1">
+                    <span class="lv-serif block text-[20px] font-bold leading-tight">{{ secim.liste.yerel_ad }}{% if secim.bolum %} <span class="lv-el whitespace-nowrap text-[22px] font-bold !text-[color:var(--kirmizi)]">· {{ secim.bolum_adi }}</span>{% endif %}</span>
+                    <span class="mt-0.5 block text-[15px] text-gray-600 dark:text-slate-300">{% blocktranslate count n=secim.kelime_sayisi %}{{ n }} kelime{% plural %}{{ n }} kelime{% endblocktranslate %}</span>
+                </span>
+            </label>
+            <button type="button" data-liste-sil title="{% translate "Listeden çıkar" %}"
+                    aria-label="{% blocktranslate with ad=secim.ad %}“{{ ad }}” listesini çıkar{% endblocktranslate %}"
+                    class="shrink-0 rounded-lg p-2.5 text-gray-400 hover:bg-[color:var(--kagit)] hover:text-red-700 dark:text-slate-500 dark:hover:text-red-300">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
+            </button>
+        </div>
+        {% endfor %}
+    </fieldset>
+
+    {# Liste seçilince (Listem'de değil) oran sorulur: kartlar ne kadar o listeden, ne kadar Listem'den. Başlangıç Ayarlar'daki oran; yalnızca bu turu etkiler. #}
+    <div class="lv-not lv-duz mt-6 text-gray-900 dark:text-slate-100" data-liste-orani hidden>
+        <label for="liste-orani" class="block text-base font-bold">{% translate "Kelimeler nereden gelsin?" %}</label>
+        <input type="range" id="liste-orani" name="oran" min="0" max="100" step="10" value="{{ liste_orani }}" disabled class="lv-aralik mt-5 w-full">
+        <div class="mt-2 flex justify-between gap-3">
+            <span class="lv-el text-[22px] font-bold">← {% translate "Listem" %} <span data-oran-listem></span></span>
+            <span class="lv-el text-right text-[22px] font-bold">{% translate "seçtiğin liste" %} <span data-oran-liste></span> →</span>
+        </div>
+    </div>
+
+    {% if not listeler %}
+    <p class="lv-el mt-4 text-[21px] leading-snug" data-liste-ipucu>
+        {% url 'sozluk' as sozluk_adresi %}
+        {% blocktranslate with adres=sozluk_adresi %}Sözlük'teki <a href="{{ adres }}" class="underline decoration-1 underline-offset-4">hazır listelerde</a> “Bu listeyle çalış” dersen o liste de burada çıkar.{% endblocktranslate %}
+    </p>
+    {% endif %}
+
+    <button type="submit" class="lv-dugme mt-8 w-full !min-h-[64px] !text-xl" id="kaynakla-basla">
+        {% translate "Başla" %} <span aria-hidden="true">→</span>
+    </button>
+</form>
+
+{% translate "Liste çıkarıldı" as cikarildi %}
+<script>
+(function () {
+    var form = document.querySelector('[data-kaynak-sec]');
+    var ADRES = '{% url "learn_pass_liste" %}';
+    var csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+    function gonder(govde) {
+        return fetch(ADRES, {
+            method: 'POST', credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrf },
+            body: JSON.stringify(govde),
+        }).then(function (c) { if (!c.ok) { throw new Error(c.status); } return c.json(); });
+    }
+
+    // Oran yalnızca Listem dışında bir liste seçiliyken görünür ve gönderilir.
+    var oranKutusu = form.querySelector('[data-liste-orani]');
+    var oran = form.querySelector('#liste-orani');
+    function yuzde(n) { return new Intl.NumberFormat(document.documentElement.lang, { style: 'percent' }).format(n / 100); }
+    function oraniYaz() {
+        form.querySelector('[data-oran-liste]').textContent = yuzde(oran.value);
+        form.querySelector('[data-oran-listem]').textContent = yuzde(100 - oran.value);
+    }
+    function oranDurumu() {
+        var secili = form.querySelector('input[name=liste]:checked');
+        var listeli = !!(secili && secili.value);
+        oranKutusu.hidden = !listeli;
+        oran.disabled = !listeli;
+    }
+    form.addEventListener('change', oranDurumu);
+    oran.addEventListener('input', oraniYaz);
+    oraniYaz();
+    oranDurumu();
+
+    // Çöp kutusu: satır gizlenir; seçili idiyse Listem seçilir. "Geri al" satırı yeni id'siyle geri koyar.
+    form.addEventListener('click', function (olay) {
+        var dugme = olay.target.closest('[data-liste-sil]');
+        if (!dugme) { return; }
+        var satir = dugme.closest('[data-kaynak]');
+        var radyo = satir.querySelector('input[type=radio]');
+        var seciliydi = radyo.checked;
+        dugme.disabled = true;
+        gonder({ islem: 'sil', id: Number(satir.dataset.kaynak) }).then(function (cevap) {
+            satir.hidden = true;
+            if (seciliydi) { form.querySelector('[data-kaynak="listem"] input').checked = true; oranDurumu(); }
+            window.geriAl.goster('{{ cikarildi|escapejs }}', function () {
+                gonder({ islem: 'geri', liste_id: cevap.geri.liste_id, bolum: cevap.geri.bolum }).then(function (c) {
+                    satir.dataset.kaynak = c.id;
+                    radyo.value = c.id;
+                    radyo.checked = seciliydi;
+                    satir.hidden = false;
+                    oranDurumu();
+                    dugme.disabled = false;
+                });
+            });
+        }).catch(function () {
+            dugme.disabled = false;
+            window.geriAl.bildir('{{ _("Bağlantı kurulamadı, birazdan tekrar dene.")|escapejs }}');
+        });
+    });
+})();
+</script>
+{% endblock %}

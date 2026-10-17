@@ -19,7 +19,7 @@ Bir yazının değerlendirmesi (ürün raporu 9.1).
 
 <a href="{% url 'profile_texts' %}" class="lv-el text-[22px] font-bold hover:underline">← {% translate "Yazılarım" %}</a>
 <p class="mt-2 text-[15px] text-gray-600 dark:text-slate-300">
-    {{ yazi.createdAt|date:"j F Y" }}{% if yazi.konu %} · {{ yazi.konu }}{% endif %}{% if yazi.durum != "eski" and sertlik_adi %} · {% blocktranslate %}{{ sertlik_adi }} geri bildirim{% endblocktranslate %}{% endif %}
+    {{ yazi.createdAt|date:"j F Y" }}{% if akademik %} · <span class="font-semibold text-indigo-700 dark:text-indigo-300" data-akademik>{% translate "Akademik" %}</span>{% endif %}{% if yazi.konu %} · {{ yazi.konu }}{% endif %}{% if yazi.durum != "eski" and sertlik_adi %} · {% blocktranslate %}{{ sertlik_adi }} geri bildirim{% endblocktranslate %}{% endif %}
 </p>
 
 {% if yazi.durum == "tamam" %}
@@ -32,6 +32,7 @@ Bir yazının değerlendirmesi (ürün raporu 9.1).
         <div class="relative grid h-24 w-32 shrink-0 -rotate-6 place-items-center text-red-700 dark:text-red-300">
             <svg class="absolute inset-0 h-full w-full" viewBox="0 0 92 74" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 46C8 22 40 6 64 12c22 6 24 34 4 46-20 12-52 8-58-12-3-10 6-22 18-28"/></svg>
             <p class="lv-el relative text-5xl font-bold !text-red-700 dark:!text-red-300" data-puan><span class="sr-only">{% translate "Puanın" %} </span>{{ puan_yazisi }}<span class="text-2xl"> / 5</span></p>
+            {% if akademik %}<p class="lv-el absolute -bottom-3 right-0 text-[20px] font-bold !text-red-700 dark:!text-red-300">{% translate "akademik puan" %}</p>{% endif %}
         </div>
     </section>
 

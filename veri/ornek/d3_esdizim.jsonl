@@ -1,20 +1,800 @@
-{"collocation_id": 8583, "celdirici": "take", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 8583, "celdirici": "do", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 8583, "celdirici": "give", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 8583, "celdirici": "have", "gercekten_yanlis": false, "kaynak": "örnek (Claude, elle)", "not": "'have friends' de doğal bir cümle kurar; çeldirici olamaz."}
-{"collocation_id": 23392, "celdirici": "take", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 23392, "celdirici": "do", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 23392, "celdirici": "give", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 23392, "celdirici": "have", "gercekten_yanlis": false, "kaynak": "örnek (Claude, elle)", "not": "Temkinli: bazı konuşmalarda duyulabilir."}
-{"collocation_id": 23758, "celdirici": "make", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)", "not": "Türkçe 'iyilik yapmak'tan gelen sık hata."}
-{"collocation_id": 23758, "celdirici": "take", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 23758, "celdirici": "have", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 23758, "celdirici": "give", "gercekten_yanlis": false, "kaynak": "örnek (Claude, elle)", "not": "Temkinli: 'give someone a favour' kimi yerlerde duyulur."}
-{"collocation_id": 28613, "celdirici": "take", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 28613, "celdirici": "do", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 28613, "celdirici": "give", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 28613, "celdirici": "make", "gercekten_yanlis": false, "kaynak": "örnek (Claude, elle)", "not": "'make fun of' başka bir deyim; karışıklık olmasın."}
-{"collocation_id": 30555, "celdirici": "take", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 30555, "celdirici": "do", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)", "not": "Türkçe 'çaba göstermek/yapmak'tan gelen sık hata."}
-{"collocation_id": 30555, "celdirici": "have", "gercekten_yanlis": true, "kaynak": "örnek (Claude, elle)"}
-{"collocation_id": 30555, "celdirici": "give", "gercekten_yanlis": false, "kaynak": "örnek (Claude, elle)", "not": "'give it your best effort' kalıbı var; temkinli."}
+{"collocation_id": 23757, "pattern": "do homework", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23757, "pattern": "do homework", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23757, "pattern": "do homework", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23757, "pattern": "do homework", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have homework' (ödevi olmak) cümle kurabilir; çeldirici olamaz."}
+{"collocation_id": 23758, "pattern": "do a favor", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23758, "pattern": "do a favor", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23758, "pattern": "do a favor", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'give someone a favour' kimi ağızlarda duyulabilir."}
+{"collocation_id": 23758, "pattern": "do a favor", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23759, "pattern": "do business", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23759, "pattern": "do business", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23759, "pattern": "do business", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23759, "pattern": "do business", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'have business' farklı anlamda geçebilir."}
+{"collocation_id": 23760, "pattern": "do the dishes", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Türkçe 'bulaşık yıkamak' kalıbında make/take/give/have kullanılmaz."}
+{"collocation_id": 23760, "pattern": "do the dishes", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23760, "pattern": "do the dishes", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23760, "pattern": "do the dishes", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 4740, "pattern": "do the washing", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Çamaşır yıkamak anlamında yalnızca 'do the washing' kullanılır."}
+{"collocation_id": 4740, "pattern": "do the washing", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 4740, "pattern": "do the washing", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 4740, "pattern": "do the washing", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 39048, "pattern": "do the laundry", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 39048, "pattern": "do the laundry", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 39048, "pattern": "do the laundry", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 39048, "pattern": "do the laundry", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'have laundry' (yıkanacak çamaşırı olmak) geçebilir."}
+{"collocation_id": 32405, "pattern": "do the legwork", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Ön araştırmayı/ayak işini yapmak anlamında yalnızca 'do' kullanılır."}
+{"collocation_id": 32405, "pattern": "do the legwork", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32405, "pattern": "do the legwork", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32405, "pattern": "do the legwork", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 44574, "pattern": "do aerobics", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Spor ve egzersiz etkinliklerinde 'do aerobics' kullanılır."}
+{"collocation_id": 44574, "pattern": "do aerobics", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 44574, "pattern": "do aerobics", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 44574, "pattern": "do aerobics", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46867, "pattern": "do research", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46867, "pattern": "do research", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46867, "pattern": "do research", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46867, "pattern": "do research", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Türkçe 'araştırma yapmak' etkisiyle 'make research' sık yapılan bir hatadır."}
+{"collocation_id": 46868, "pattern": "do damage", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46868, "pattern": "do damage", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46868, "pattern": "do damage", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46868, "pattern": "do damage", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Zarar/hasar vermek anlamında 'do damage' kullanılır; 'make damage' yanlıştır."}
+{"collocation_id": 46869, "pattern": "do harm", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46869, "pattern": "do harm", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46869, "pattern": "do harm", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46869, "pattern": "do harm", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Zarar vermek anlamında 'do harm' kullanılır; 'make harm' yanlıştır."}
+{"collocation_id": 46870, "pattern": "do housework", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46870, "pattern": "do housework", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46870, "pattern": "do housework", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46870, "pattern": "do housework", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Ev işi yapmak anlamında 'do housework' kullanılır; 'make housework' sık hatadır."}
+{"collocation_id": 46871, "pattern": "do the shopping", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Alışveriş yapmak anlamında 'do the shopping' kullanılır; 'make' yanlıştır."}
+{"collocation_id": 46871, "pattern": "do the shopping", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46871, "pattern": "do the shopping", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46871, "pattern": "do the shopping", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46872, "pattern": "do the cooking", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Evde yemek işini yapmak anlamında 'do the cooking' kullanılır."}
+{"collocation_id": 46872, "pattern": "do the cooking", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46872, "pattern": "do the cooking", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46872, "pattern": "do the cooking", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46873, "pattern": "do an experiment", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'make an experiment' eski metinlerde nadiren görülebilir."}
+{"collocation_id": 46873, "pattern": "do an experiment", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46873, "pattern": "do an experiment", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46873, "pattern": "do an experiment", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46874, "pattern": "do exercise", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46874, "pattern": "do exercise", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İngiliz İngilizcesinde 'take exercise' de kullanılır; çeldirici olamaz."}
+{"collocation_id": 46874, "pattern": "do exercise", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46874, "pattern": "do exercise", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46875, "pattern": "do a crossword", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'make a crossword' bulmaca hazırlamak anlamına gelebilir; çeldirici olamaz."}
+{"collocation_id": 46875, "pattern": "do a crossword", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46875, "pattern": "do a crossword", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46875, "pattern": "do a crossword", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46876, "pattern": "do your duty", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46876, "pattern": "do your duty", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46876, "pattern": "do your duty", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46876, "pattern": "do your duty", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Görevini yapmak anlamında 'do your duty' kullanılır."}
+{"collocation_id": 46877, "pattern": "do wonders", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Harikalar yaratmak / çok iyi gelmek anlamında 'do wonders' kalıplaşmıştır."}
+{"collocation_id": 46877, "pattern": "do wonders", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46877, "pattern": "do wonders", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46877, "pattern": "do wonders", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46878, "pattern": "do justice to", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Bir şeyin hakkını vermek anlamında 'do justice to' kalıplaşmıştır."}
+{"collocation_id": 46878, "pattern": "do justice to", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46878, "pattern": "do justice to", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 46878, "pattern": "do justice to", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23116, "pattern": "make a decision", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İngiliz İngilizcesinde 'take a decision' da doğru kabul edilir."}
+{"collocation_id": 23116, "pattern": "make a decision", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23116, "pattern": "make a decision", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23116, "pattern": "make a decision", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5852, "pattern": "make a mistake", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5852, "pattern": "make a mistake", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Türkçe 'hata yapmak' etkisiyle 'do a mistake' en sık yapılan eş dizim hatasıdır."}
+{"collocation_id": 5852, "pattern": "make a mistake", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5852, "pattern": "make a mistake", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23392, "pattern": "make progress", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23392, "pattern": "make progress", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23392, "pattern": "make progress", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23392, "pattern": "make progress", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İlerleme kaydetmek anlamında 'make progress' kullanılır; 'do progress' yanlıştır."}
+{"collocation_id": 30555, "pattern": "make an effort", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30555, "pattern": "make an effort", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30555, "pattern": "make an effort", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'give it your best effort' benzerliği nedeniyle 'give' elendi; 'do an effort' yanlıştır."}
+{"collocation_id": 30555, "pattern": "make an effort", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8583, "pattern": "make friends", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8583, "pattern": "make friends", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8583, "pattern": "make friends", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8583, "pattern": "make friends", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have friends' (arkadaşları olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 27970, "pattern": "make money", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27970, "pattern": "make money", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27970, "pattern": "make money", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27970, "pattern": "make money", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have money' (parası olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 33606, "pattern": "make sense", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33606, "pattern": "make sense", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33606, "pattern": "make sense", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33606, "pattern": "make sense", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have sense' farklı anlamda da olsa geçebilir; çeldirici olamaz."}
+{"collocation_id": 34093, "pattern": "make a difference", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34093, "pattern": "make a difference", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34093, "pattern": "make a difference", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34093, "pattern": "make a difference", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a difference' farklı anlamda geçebilir; çeldirici olamaz."}
+{"collocation_id": 29708, "pattern": "make a choice", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29708, "pattern": "make a choice", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29708, "pattern": "make a choice", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29708, "pattern": "make a choice", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a choice' (seçeneği olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 28644, "pattern": "make a plan", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 28644, "pattern": "make a plan", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 28644, "pattern": "make a plan", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 28644, "pattern": "make a plan", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a plan' (planı olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 22710, "pattern": "make a profit", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take a profit' finans dilinde kâr satışı anlamında geçebilir; çeldirici olamaz."}
+{"collocation_id": 22710, "pattern": "make a profit", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22710, "pattern": "make a profit", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22710, "pattern": "make a profit", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 26296, "pattern": "make change", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 26296, "pattern": "make change", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 26296, "pattern": "make change", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 26296, "pattern": "make change", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have change' (bozuk parası olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 35318, "pattern": "make a statement", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35318, "pattern": "make a statement", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35318, "pattern": "make a statement", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'give a statement' (ifade vermek) de doğru bir eş dizimdir; çeldirici olamaz."}
+{"collocation_id": 35318, "pattern": "make a statement", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6819, "pattern": "make the bed", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6819, "pattern": "make the bed", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6819, "pattern": "make the bed", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6819, "pattern": "make the bed", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Yatağı toplamak anlamında 'make the bed' kullanılır; 'do the bed' yanlıştır."}
+{"collocation_id": 8721, "pattern": "make a phone call", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8721, "pattern": "make a phone call", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8721, "pattern": "make a phone call", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8721, "pattern": "make a phone call", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'have a phone call' geçebilir; telefon etmek 'make a phone call' ile söylenir."}
+{"collocation_id": 29087, "pattern": "make a return", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29087, "pattern": "make a return", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29087, "pattern": "make a return", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29087, "pattern": "make a return", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Geri dönüş yapmak anlamında 'make a return' kullanılır."}
+{"collocation_id": 29163, "pattern": "make a guess", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29163, "pattern": "make a guess", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29163, "pattern": "make a guess", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29163, "pattern": "make a guess", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İngiliz İngilizcesinde 'have a guess' de kullanılır; çeldirici olamaz."}
+{"collocation_id": 35834, "pattern": "make a move", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35834, "pattern": "make a move", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35834, "pattern": "make a move", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35834, "pattern": "make a move", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Hamle yapmak / harekete geçmek anlamında 'make a move' kullanılır."}
+{"collocation_id": 34845, "pattern": "make a claim", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34845, "pattern": "make a claim", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34845, "pattern": "make a claim", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34845, "pattern": "make a claim", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a claim' (hak talebi olmak) geçebilir; çeldirici olamaz."}
+{"collocation_id": 29125, "pattern": "make a wish", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29125, "pattern": "make a wish", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29125, "pattern": "make a wish", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29125, "pattern": "make a wish", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a wish' (bir dileği olmak) geçebilir; dilek tutmak 'make a wish'tir."}
+{"collocation_id": 29848, "pattern": "make an offer", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29848, "pattern": "make an offer", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29848, "pattern": "make an offer", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29848, "pattern": "make an offer", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have an offer' (teklif almış olmak) geçebilir; teklif sunmak 'make an offer'dır."}
+{"collocation_id": 30223, "pattern": "make a sale", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30223, "pattern": "make a sale", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30223, "pattern": "make a sale", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30223, "pattern": "make a sale", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a sale' (indirim kampanyası yapmak) farklı anlamda doğrudur; çeldirici olamaz."}
+{"collocation_id": 31722, "pattern": "make a request", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31722, "pattern": "make a request", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31722, "pattern": "make a request", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31722, "pattern": "make a request", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a request' (bir ricası olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 24107, "pattern": "make a comment", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24107, "pattern": "make a comment", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24107, "pattern": "make a comment", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24107, "pattern": "make a comment", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a comment' (bir yorumu olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 32272, "pattern": "make a joke", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32272, "pattern": "make a joke", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32272, "pattern": "make a joke", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32272, "pattern": "make a joke", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Şaka yapmak anlamında 'make a joke' kullanılır; 'do a joke' yanlıştır."}
+{"collocation_id": 1498, "pattern": "make an arrangement", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1498, "pattern": "make an arrangement", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1498, "pattern": "make an arrangement", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1498, "pattern": "make an arrangement", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have an arrangement' (anlaşması/planı olmak) geçebilir; çeldirici olamaz."}
+{"collocation_id": 3961, "pattern": "make a mark", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3961, "pattern": "make a mark", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3961, "pattern": "make a mark", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3961, "pattern": "make a mark", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a mark' (izi/lekesi olmak) geçebilir; iz bırakmak 'make a mark'tır."}
+{"collocation_id": 23107, "pattern": "make an error", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23107, "pattern": "make an error", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23107, "pattern": "make an error", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23107, "pattern": "make an error", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Hata yapmak anlamında 'make an error' kullanılır; 'do an error' yanlıştır."}
+{"collocation_id": 2479, "pattern": "make an introduction", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2479, "pattern": "make an introduction", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2479, "pattern": "make an introduction", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'give an introduction' da kullanılabilir; çeldirici olamaz."}
+{"collocation_id": 2479, "pattern": "make an introduction", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 44051, "pattern": "make a racket", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 44051, "pattern": "make a racket", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Gürültü patırtı çıkarmak anlamında yalnızca 'make a racket' kullanılır."}
+{"collocation_id": 44051, "pattern": "make a racket", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 44051, "pattern": "make a racket", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 45978, "pattern": "make a snowman", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 45978, "pattern": "make a snowman", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Kardan adam yapmak anlamında 'make a snowman' kullanılır."}
+{"collocation_id": 45978, "pattern": "make a snowman", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 45978, "pattern": "make a snowman", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5972, "pattern": "make a presentation", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5972, "pattern": "make a presentation", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5972, "pattern": "make a presentation", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'give a presentation' da tamamen doğru ve yaygındır; çeldirici olamaz."}
+{"collocation_id": 5972, "pattern": "make a presentation", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5627, "pattern": "make a complaint", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5627, "pattern": "make a complaint", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5627, "pattern": "make a complaint", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5627, "pattern": "make a complaint", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a complaint' (şikâyeti olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 6771, "pattern": "make a comparison", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6771, "pattern": "make a comparison", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6771, "pattern": "make a comparison", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6771, "pattern": "make a comparison", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Karşılaştırma yapmak anlamında 'make a comparison' kullanılır; 'do' yanlıştır."}
+{"collocation_id": 6234, "pattern": "make a prediction", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6234, "pattern": "make a prediction", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6234, "pattern": "make a prediction", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6234, "pattern": "make a prediction", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Tahmin/öngörüde bulunmak anlamında 'make a prediction' kullanılır."}
+{"collocation_id": 17634, "pattern": "make a reservation", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17634, "pattern": "make a reservation", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17634, "pattern": "make a reservation", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17634, "pattern": "make a reservation", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a reservation' (rezervasyonu olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 16163, "pattern": "make an announcement", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16163, "pattern": "make an announcement", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16163, "pattern": "make an announcement", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'give an announcement' kimi bağlamlarda duyulabilir."}
+{"collocation_id": 16163, "pattern": "make an announcement", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 11263, "pattern": "make a living", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 11263, "pattern": "make a living", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 11263, "pattern": "make a living", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 11263, "pattern": "make a living", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Geçimini sağlamak anlamında 'make a living' kalıplaşmıştır."}
+{"collocation_id": 23480, "pattern": "make a note of", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take note of' / 'take a note of' da doğru bir kalıptır; çeldirici olamaz."}
+{"collocation_id": 23480, "pattern": "make a note of", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23480, "pattern": "make a note of", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23480, "pattern": "make a note of", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25119, "pattern": "make an addition", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25119, "pattern": "make an addition", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25119, "pattern": "make an addition", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25119, "pattern": "make an addition", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Ekleme yapmak anlamında 'make an addition' kullanılır."}
+{"collocation_id": 30211, "pattern": "make contact", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30211, "pattern": "make contact", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30211, "pattern": "make contact", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30211, "pattern": "make contact", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have contact' (iletişim hâlinde olmak) geçebilir; temas kurmak 'make contact'tır."}
+{"collocation_id": 31650, "pattern": "make a connection", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31650, "pattern": "make a connection", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31650, "pattern": "make a connection", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31650, "pattern": "make a connection", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a connection' (bağlantısı olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 31867, "pattern": "make a reference to", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31867, "pattern": "make a reference to", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31867, "pattern": "make a reference to", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31867, "pattern": "make a reference to", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Atıfta bulunmak anlamında 'make a reference to' kullanılır."}
+{"collocation_id": 32565, "pattern": "make an escape", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32565, "pattern": "make an escape", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32565, "pattern": "make an escape", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32565, "pattern": "make an escape", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Kaçış gerçekleştirmek anlamında 'make an escape' kullanılır."}
+{"collocation_id": 33101, "pattern": "make a mess", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33101, "pattern": "make a mess", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33101, "pattern": "make a mess", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33101, "pattern": "make a mess", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Ortalığı dağıtmak anlamında 'make a mess' kullanılır; 'do a mess' yanlıştır."}
+{"collocation_id": 33233, "pattern": "make an arrest", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33233, "pattern": "make an arrest", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Tutuklama yapmak anlamında yalnızca 'make an arrest' kullanılır."}
+{"collocation_id": 33233, "pattern": "make an arrest", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33233, "pattern": "make an arrest", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33490, "pattern": "make a good impression", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33490, "pattern": "make a good impression", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33490, "pattern": "make a good impression", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'give a good impression' da doğru bir eş dizimdir; çeldirici olamaz."}
+{"collocation_id": 33490, "pattern": "make a good impression", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36276, "pattern": "make a payment", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take a payment' (ödeme almak) farklı yönde doğrudur; çeldirici olamaz."}
+{"collocation_id": 36276, "pattern": "make a payment", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36276, "pattern": "make a payment", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36276, "pattern": "make a payment", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2104, "pattern": "make an entry", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2104, "pattern": "make an entry", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2104, "pattern": "make an entry", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2104, "pattern": "make an entry", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Kayıt girmek anlamında 'make an entry' kullanılır."}
+{"collocation_id": 3306, "pattern": "make a slip", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3306, "pattern": "make a slip", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Küçük bir dil/kalem sürçmesi yapmak anlamında 'make a slip' kullanılır."}
+{"collocation_id": 3306, "pattern": "make a slip", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3306, "pattern": "make a slip", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 4508, "pattern": "make a dash", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 4508, "pattern": "make a dash", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Bir yere doğru hızla atılmak/koşmak anlamında 'make a dash' kullanılır."}
+{"collocation_id": 4508, "pattern": "make a dash", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 4508, "pattern": "make a dash", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9735, "pattern": "make strides", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take strides' da adım atmak anlamında kullanılır; çeldirici olamaz."}
+{"collocation_id": 9735, "pattern": "make strides", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9735, "pattern": "make strides", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9735, "pattern": "make strides", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10663, "pattern": "make an acquaintance", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10663, "pattern": "make an acquaintance", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10663, "pattern": "make an acquaintance", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10663, "pattern": "make an acquaintance", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have an acquaintance' (tanıdığı olmak) geçebilir; çeldirici olamaz."}
+{"collocation_id": 19262, "pattern": "make a splash", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 19262, "pattern": "make a splash", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Büyük ses getirmek / dikkat çekmek anlamında 'make a splash' kullanılır."}
+{"collocation_id": 19262, "pattern": "make a splash", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 19262, "pattern": "make a splash", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22455, "pattern": "make a blunder", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22455, "pattern": "make a blunder", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Büyük bir gaf/hata yapmak anlamında 'make a blunder' kullanılır; 'do' yanlıştır."}
+{"collocation_id": 22455, "pattern": "make a blunder", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22455, "pattern": "make a blunder", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22998, "pattern": "make a fuss", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22998, "pattern": "make a fuss", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Gereksiz telaş/yaygara çıkarmak anlamında 'make a fuss' kullanılır."}
+{"collocation_id": 22998, "pattern": "make a fuss", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22998, "pattern": "make a fuss", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 41007, "pattern": "make a deduction", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 41007, "pattern": "make a deduction", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 41007, "pattern": "make a deduction", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 41007, "pattern": "make a deduction", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Çıkarımda bulunmak anlamında 'make a deduction' kullanılır."}
+{"collocation_id": 42090, "pattern": "make a pun", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 42090, "pattern": "make a pun", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Kelime oyunu yapmak anlamında 'make a pun' kullanılır."}
+{"collocation_id": 42090, "pattern": "make a pun", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 42090, "pattern": "make a pun", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 44449, "pattern": "make a typo", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 44449, "pattern": "make a typo", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 44449, "pattern": "make a typo", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 44449, "pattern": "make a typo", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Yazım hatası yapmak anlamında 'make a typo' kullanılır; 'do a typo' yanlıştır."}
+{"collocation_id": 2276, "pattern": "make a gesture", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2276, "pattern": "make a gesture", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2276, "pattern": "make a gesture", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Jest/el hareketi yapmak anlamında 'make a gesture' kullanılır."}
+{"collocation_id": 2276, "pattern": "make a gesture", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2740, "pattern": "make an observation", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2740, "pattern": "make an observation", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2740, "pattern": "make an observation", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2740, "pattern": "make an observation", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Gözlemde bulunmak anlamında 'make an observation' kullanılır."}
+{"collocation_id": 3037, "pattern": "make a remark", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3037, "pattern": "make a remark", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3037, "pattern": "make a remark", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3037, "pattern": "make a remark", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Yorum/söz söylemek anlamında 'make a remark' kullanılır."}
+{"collocation_id": 5068, "pattern": "make a resolution", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5068, "pattern": "make a resolution", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5068, "pattern": "make a resolution", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5068, "pattern": "make a resolution", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Yeni yıl/kesin karar almak anlamında 'make a resolution' kullanılır."}
+{"collocation_id": 6869, "pattern": "make a contribution", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6869, "pattern": "make a contribution", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6869, "pattern": "make a contribution", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'give a contribution' bağış bağlamında duyulabilir."}
+{"collocation_id": 6869, "pattern": "make a contribution", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8289, "pattern": "make preparations", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8289, "pattern": "make preparations", "celdirici": "do", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'do preparations' konuşma dilinde bazen duyulabilir."}
+{"collocation_id": 8289, "pattern": "make preparations", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8289, "pattern": "make preparations", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9656, "pattern": "make a bid", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9656, "pattern": "make a bid", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9656, "pattern": "make a bid", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9656, "pattern": "make a bid", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İhalede teklif vermek anlamında 'make a bid' kullanılır."}
+{"collocation_id": 10089, "pattern": "make an enquiry", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10089, "pattern": "make an enquiry", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10089, "pattern": "make an enquiry", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10089, "pattern": "make an enquiry", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Bilgi sormak / soru yöneltmek anlamında 'make an enquiry' kullanılır."}
+{"collocation_id": 10738, "pattern": "make an exception", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10738, "pattern": "make an exception", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10738, "pattern": "make an exception", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10738, "pattern": "make an exception", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İstisna yapmak anlamında 'make an exception' kullanılır; 'do' yanlıştır."}
+{"collocation_id": 10789, "pattern": "make an investment", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10789, "pattern": "make an investment", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10789, "pattern": "make an investment", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10789, "pattern": "make an investment", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have an investment' (yatırımı olmak) geçebilir; yatırım yapmak 'make an investment'tır."}
+{"collocation_id": 11167, "pattern": "make a deposit", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take a deposit' (kapora almak) de doğrudur; çeldirici olamaz."}
+{"collocation_id": 11167, "pattern": "make a deposit", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 11167, "pattern": "make a deposit", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 11167, "pattern": "make a deposit", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13578, "pattern": "make a vow", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take a vow' (yemin etmek) da tamamen doğrudur; çeldirici olamaz."}
+{"collocation_id": 13578, "pattern": "make a vow", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13578, "pattern": "make a vow", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13578, "pattern": "make a vow", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14703, "pattern": "make an appointment", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14703, "pattern": "make an appointment", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14703, "pattern": "make an appointment", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14703, "pattern": "make an appointment", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have an appointment' (randevusu olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 18262, "pattern": "make a commitment", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 18262, "pattern": "make a commitment", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 18262, "pattern": "make a commitment", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 18262, "pattern": "make a commitment", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a commitment' (taahhüdü/sözü olmak) geçebilir; çeldirici olamaz."}
+{"collocation_id": 23565, "pattern": "make a donation", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23565, "pattern": "make a donation", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23565, "pattern": "make a donation", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'give a donation' da bağış yapmak anlamında kullanılır; çeldirici olamaz."}
+{"collocation_id": 23565, "pattern": "make a donation", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30979, "pattern": "make an attempt", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30979, "pattern": "make an attempt", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30979, "pattern": "make an attempt", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30979, "pattern": "make an attempt", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Girişimde/denemede bulunmak anlamında 'make an attempt' kullanılır."}
+{"collocation_id": 33163, "pattern": "make an excuse", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33163, "pattern": "make an excuse", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33163, "pattern": "make an excuse", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33163, "pattern": "make an excuse", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have an excuse' (mazereti olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 33342, "pattern": "make an estimate", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33342, "pattern": "make an estimate", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 33342, "pattern": "make an estimate", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'give an estimate' (fiyat/süre tahmini vermek) de doğrudur; çeldirici olamaz."}
+{"collocation_id": 33342, "pattern": "make an estimate", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34209, "pattern": "make a proposal", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34209, "pattern": "make a proposal", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34209, "pattern": "make a proposal", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34209, "pattern": "make a proposal", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a proposal' (önerisi olmak) geçebilir; öneri sunmak 'make a proposal'dır."}
+{"collocation_id": 38306, "pattern": "make a comeback", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 38306, "pattern": "make a comeback", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 38306, "pattern": "make a comeback", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 38306, "pattern": "make a comeback", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Geri dönüş yapmak anlamında 'make a comeback' kullanılır."}
+{"collocation_id": 38871, "pattern": "make headway", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 38871, "pattern": "make headway", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 38871, "pattern": "make headway", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 38871, "pattern": "make headway", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İlerleme kaydetmek anlamında 'make headway' kalıplaşmıştır."}
+{"collocation_id": 1803, "pattern": "make a confession", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1803, "pattern": "make a confession", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1803, "pattern": "make a confession", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1803, "pattern": "make a confession", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İtiraf etmek anlamında 'make a confession' kullanılır."}
+{"collocation_id": 8835, "pattern": "make a calculation", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8835, "pattern": "make a calculation", "celdirici": "do", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'do a calculation' da hesaplama yapmak anlamında doğrudur; çeldirici olamaz."}
+{"collocation_id": 8835, "pattern": "make a calculation", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8835, "pattern": "make a calculation", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8980, "pattern": "make a sacrifice", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8980, "pattern": "make a sacrifice", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8980, "pattern": "make a sacrifice", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8980, "pattern": "make a sacrifice", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Fedakârlık yapmak anlamında 'make a sacrifice' kullanılır."}
+{"collocation_id": 16139, "pattern": "make an accusation", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16139, "pattern": "make an accusation", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16139, "pattern": "make an accusation", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16139, "pattern": "make an accusation", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Suçlamada bulunmak anlamında 'make an accusation' kullanılır."}
+{"collocation_id": 16727, "pattern": "make a correction", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16727, "pattern": "make a correction", "celdirici": "do", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'do a correction' konuşma dilinde duyulabilir."}
+{"collocation_id": 16727, "pattern": "make a correction", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16727, "pattern": "make a correction", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16771, "pattern": "make an apology", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16771, "pattern": "make an apology", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16771, "pattern": "make an apology", "celdirici": "give", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'give an apology' kimi bağlamlarda duyulabilir."}
+{"collocation_id": 16771, "pattern": "make an apology", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24688, "pattern": "make an impact", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24688, "pattern": "make an impact", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24688, "pattern": "make an impact", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24688, "pattern": "make an impact", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have an impact' de etki yaratmak anlamında çok yaygındır; çeldirici olamaz."}
+{"collocation_id": 2847, "pattern": "take a photograph", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2847, "pattern": "take a photograph", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2847, "pattern": "take a photograph", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2847, "pattern": "take a photograph", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a photograph' (fotoğrafı olmak) geçebilir; fotoğraf çekmek 'take' ile söylenir."}
+{"collocation_id": 3865, "pattern": "take a photo", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3865, "pattern": "take a photo", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3865, "pattern": "take a photo", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3865, "pattern": "take a photo", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a photo' (fotoğrafı olmak) geçebilir; 'make a photo' sık yapılan bir hatadır."}
+{"collocation_id": 6659, "pattern": "take a bath", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6659, "pattern": "take a bath", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6659, "pattern": "take a bath", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6659, "pattern": "take a bath", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İngiliz İngilizcesinde 'have a bath' de kullanılır; çeldirici olamaz."}
+{"collocation_id": 17323, "pattern": "take a taxi", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17323, "pattern": "take a taxi", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17323, "pattern": "take a taxi", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17323, "pattern": "take a taxi", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Taksiye binmek anlamında 'take a taxi' kullanılır."}
+{"collocation_id": 17949, "pattern": "take a test", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17949, "pattern": "take a test", "celdirici": "do", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Konuşma dilinde 'do a test' de kullanılabilir; çeldirici olamaz."}
+{"collocation_id": 17949, "pattern": "take a test", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17949, "pattern": "take a test", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21690, "pattern": "take a break", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21690, "pattern": "take a break", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21690, "pattern": "take a break", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21690, "pattern": "take a break", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a break' de ara vermek anlamında tamamen doğrudur; çeldirici olamaz."}
+{"collocation_id": 23354, "pattern": "take a shower", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23354, "pattern": "take a shower", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23354, "pattern": "take a shower", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23354, "pattern": "take a shower", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İngiliz İngilizcesinde 'have a shower' da çok yaygındır; çeldirici olamaz."}
+{"collocation_id": 23479, "pattern": "take notes", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'make notes' da not çıkarmak anlamında doğrudur; çeldirici olamaz."}
+{"collocation_id": 23479, "pattern": "take notes", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23479, "pattern": "take notes", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 23479, "pattern": "take notes", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25381, "pattern": "take a vacation", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25381, "pattern": "take a vacation", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25381, "pattern": "take a vacation", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25381, "pattern": "take a vacation", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a vacation' da tatil yapmak anlamında kullanılır; çeldirici olamaz."}
+{"collocation_id": 25909, "pattern": "take a picture", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25909, "pattern": "take a picture", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25909, "pattern": "take a picture", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 25909, "pattern": "take a picture", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a picture' (resmi olmak) geçebilir; fotoğraf çekmek 'take a picture'dır."}
+{"collocation_id": 29183, "pattern": "take an interest in", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29183, "pattern": "take an interest in", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29183, "pattern": "take an interest in", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29183, "pattern": "take an interest in", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have an interest in' de ilgi duymak anlamında doğrudur; çeldirici olamaz."}
+{"collocation_id": 29432, "pattern": "take a step", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: 'make a step' kimi bağlamlarda geçebilir."}
+{"collocation_id": 29432, "pattern": "take a step", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29432, "pattern": "take a step", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29432, "pattern": "take a step", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36174, "pattern": "take action", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36174, "pattern": "take action", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36174, "pattern": "take action", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36174, "pattern": "take action", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Harekete geçmek / önlem almak anlamında 'take action' kullanılır."}
+{"collocation_id": 36702, "pattern": "take a course", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36702, "pattern": "take a course", "celdirici": "do", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İngiliz İngilizcesinde 'do a course' da çok yaygındır; çeldirici olamaz."}
+{"collocation_id": 36702, "pattern": "take a course", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36702, "pattern": "take a course", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1655, "pattern": "take care", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1655, "pattern": "take care", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1655, "pattern": "take care", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1655, "pattern": "take care", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Dikkat/özen göstermek anlamında 'take care' kullanılır."}
+{"collocation_id": 2581, "pattern": "take the lift", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2581, "pattern": "take the lift", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2581, "pattern": "take the lift", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 2581, "pattern": "take the lift", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Asansöre binmek anlamında 'take the lift' kullanılır."}
+{"collocation_id": 6945, "pattern": "take sides", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6945, "pattern": "take sides", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6945, "pattern": "take sides", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6945, "pattern": "take sides", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Tartışmada taraf tutmak anlamında 'take sides' kullanılır."}
+{"collocation_id": 13021, "pattern": "take a tablet", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13021, "pattern": "take a tablet", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13021, "pattern": "take a tablet", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13021, "pattern": "take a tablet", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İlaç/hap içmek anlamında 'take a tablet' kullanılır."}
+{"collocation_id": 17723, "pattern": "take a rest", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17723, "pattern": "take a rest", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17723, "pattern": "take a rest", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 17723, "pattern": "take a rest", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a rest' de dinlenmek anlamında tamamen doğrudur; çeldirici olamaz."}
+{"collocation_id": 18456, "pattern": "take advantage of", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 18456, "pattern": "take advantage of", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 18456, "pattern": "take advantage of", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 18456, "pattern": "take advantage of", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have an advantage' farklı kalıptır; bir fırsattan yararlanmak 'take advantage of' ile söylenir."}
+{"collocation_id": 31245, "pattern": "take a seat", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31245, "pattern": "take a seat", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31245, "pattern": "take a seat", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31245, "pattern": "take a seat", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a seat' de oturmak/buyurmak anlamında tamamen doğrudur; çeldirici olamaz."}
+{"collocation_id": 37075, "pattern": "take medicine", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 37075, "pattern": "take medicine", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 37075, "pattern": "take medicine", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 37075, "pattern": "take medicine", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İlaç içmek/kullanmak anlamında 'take medicine' kullanılır."}
+{"collocation_id": 37673, "pattern": "take a quiz", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 37673, "pattern": "take a quiz", "celdirici": "do", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Konuşma dilinde 'do a quiz' de kullanılabilir; çeldirici olamaz."}
+{"collocation_id": 37673, "pattern": "take a quiz", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 37673, "pattern": "take a quiz", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1599, "pattern": "take a breath", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1599, "pattern": "take a breath", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1599, "pattern": "take a breath", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 1599, "pattern": "take a breath", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Nefes almak anlamında 'take a breath' kullanılır."}
+{"collocation_id": 3715, "pattern": "take a fingerprint", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3715, "pattern": "take a fingerprint", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3715, "pattern": "take a fingerprint", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3715, "pattern": "take a fingerprint", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Parmak izi almak anlamında 'take a fingerprint' kullanılır."}
+{"collocation_id": 5995, "pattern": "take offense at", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5995, "pattern": "take offense at", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5995, "pattern": "take offense at", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5995, "pattern": "take offense at", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Bir şeye gücenmek/alınmak anlamında 'take offense at' kullanılır."}
+{"collocation_id": 12908, "pattern": "take a sample", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 12908, "pattern": "take a sample", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 12908, "pattern": "take a sample", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 12908, "pattern": "take a sample", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Numune/örnek almak anlamında 'take a sample' kullanılır."}
+{"collocation_id": 13670, "pattern": "take a bite", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13670, "pattern": "take a bite", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13670, "pattern": "take a bite", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13670, "pattern": "take a bite", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a bite' da bir lokma almak anlamında kullanılır; çeldirici olamaz."}
+{"collocation_id": 16904, "pattern": "take a stroll", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16904, "pattern": "take a stroll", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16904, "pattern": "take a stroll", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16904, "pattern": "take a stroll", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a stroll' da yürüyüş yapmak anlamında kullanılır; çeldirici olamaz."}
+{"collocation_id": 19298, "pattern": "take a sip", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 19298, "pattern": "take a sip", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 19298, "pattern": "take a sip", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 19298, "pattern": "take a sip", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a sip' de bir yudum almak anlamında kullanılır; çeldirici olamaz."}
+{"collocation_id": 36497, "pattern": "take responsibility", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36497, "pattern": "take responsibility", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36497, "pattern": "take responsibility", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 36497, "pattern": "take responsibility", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have responsibility' (sorumluluğu olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 37163, "pattern": "take pleasure in", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 37163, "pattern": "take pleasure in", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 37163, "pattern": "take pleasure in", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 37163, "pattern": "take pleasure in", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Bir şeyden keyif almak anlamında 'take pleasure in' kullanılır."}
+{"collocation_id": 38075, "pattern": "take a breather", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 38075, "pattern": "take a breather", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 38075, "pattern": "take a breather", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 38075, "pattern": "take a breather", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Kısa bir soluklanmak/mola vermek anlamında 'take a breather' kullanılır."}
+{"collocation_id": 42331, "pattern": "take a snapshot", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 42331, "pattern": "take a snapshot", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 42331, "pattern": "take a snapshot", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 42331, "pattern": "take a snapshot", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Anlık fotoğraf çekmek anlamında 'take a snapshot' kullanılır."}
+{"collocation_id": 42728, "pattern": "take aspirin", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 42728, "pattern": "take aspirin", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 42728, "pattern": "take aspirin", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 42728, "pattern": "take aspirin", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Aspirin almak/içmek anlamında 'take aspirin' kullanılır."}
+{"collocation_id": 45584, "pattern": "take a painkiller", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 45584, "pattern": "take a painkiller", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 45584, "pattern": "take a painkiller", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 45584, "pattern": "take a painkiller", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Ağrı kesici almak/içmek anlamında 'take a painkiller' kullanılır."}
+{"collocation_id": 5916, "pattern": "take pride in", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5916, "pattern": "take pride in", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5916, "pattern": "take pride in", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 5916, "pattern": "take pride in", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have pride in' de kullanılabilir; çeldirici olamaz."}
+{"collocation_id": 13930, "pattern": "take precautions", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Önlem almak anlamında 'take precautions' kullanılır; 'make precautions' yanlıştır."}
+{"collocation_id": 13930, "pattern": "take precautions", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13930, "pattern": "take precautions", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13930, "pattern": "take precautions", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13799, "pattern": "take an oath", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Yemin etmek anlamında 'take an oath' kullanılır."}
+{"collocation_id": 13799, "pattern": "take an oath", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13799, "pattern": "take an oath", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13799, "pattern": "take an oath", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21619, "pattern": "take a stance", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21619, "pattern": "take a stance", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21619, "pattern": "take a stance", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21619, "pattern": "take a stance", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Tavır/duruş belirlemek anlamında 'take a stance' kullanılır."}
+{"collocation_id": 24198, "pattern": "take the lead", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24198, "pattern": "take the lead", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24198, "pattern": "take the lead", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24198, "pattern": "take the lead", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have the lead' (önde olmak) geçebilir; liderliği ele almak 'take the lead'dir."}
+{"collocation_id": 24396, "pattern": "take heed of", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Dikkate almak / kulak vermek anlamında 'take heed of' kullanılır."}
+{"collocation_id": 24396, "pattern": "take heed of", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Dikkate almak / kulak vermek anlamında 'take heed of' kullanılır."}
+{"collocation_id": 24396, "pattern": "take heed of", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 24396, "pattern": "take heed of", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27871, "pattern": "take ownership of", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27871, "pattern": "take ownership of", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27871, "pattern": "take ownership of", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27871, "pattern": "take ownership of", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have ownership of' (mülkiyetine sahip olmak) geçebilir; çeldirici olamaz."}
+{"collocation_id": 32607, "pattern": "take the blame", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32607, "pattern": "take the blame", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32607, "pattern": "take the blame", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32607, "pattern": "take the blame", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Suçu üstlenmek anlamında 'take the blame' kullanılır."}
+{"collocation_id": 34796, "pattern": "take medication", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34796, "pattern": "take medication", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34796, "pattern": "take medication", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 34796, "pattern": "take medication", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İlaç/tedavi almak anlamında 'take medication' kullanılır."}
+{"collocation_id": 22007, "pattern": "take a toll", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Ağır hasar/bedel ödetmek anlamında yalnızca 'take a toll' kullanılır."}
+{"collocation_id": 22007, "pattern": "take a toll", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Ağır hasar/bedel ödetmek anlamında yalnızca 'take a toll' kullanılır."}
+{"collocation_id": 22007, "pattern": "take a toll", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22007, "pattern": "take a toll", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9060, "pattern": "give advice", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9060, "pattern": "give advice", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9060, "pattern": "give advice", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9060, "pattern": "give advice", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Tavsiye vermek anlamında 'give advice' kullanılır; 'make advice' yanlıştır."}
+{"collocation_id": 29177, "pattern": "give an answer", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29177, "pattern": "give an answer", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29177, "pattern": "give an answer", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29177, "pattern": "give an answer", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have an answer' (cevabı olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 7242, "pattern": "give clear instruction", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 7242, "pattern": "give clear instruction", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 7242, "pattern": "give clear instruction", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 7242, "pattern": "give clear instruction", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Açık talimat vermek anlamında 'give clear instruction' kullanılır."}
+{"collocation_id": 11863, "pattern": "give a lecture", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 11863, "pattern": "give a lecture", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 11863, "pattern": "give a lecture", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 11863, "pattern": "give a lecture", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a lecture' (dersi olmak) doğal bir ifadedir; ders/konferans vermek 'give a lecture'dır."}
+{"collocation_id": 22741, "pattern": "give directions", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22741, "pattern": "give directions", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22741, "pattern": "give directions", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 22741, "pattern": "give directions", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Yol tarifi vermek anlamında 'give directions' kullanılır."}
+{"collocation_id": 29794, "pattern": "give voice to", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Bir düşünceyi/duyguyu dile getirmek anlamında 'give voice to' kullanılır."}
+{"collocation_id": 29794, "pattern": "give voice to", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29794, "pattern": "give voice to", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Bir düşünceyi/duyguyu dile getirmek anlamında 'give voice to' kullanılır."}
+{"collocation_id": 29794, "pattern": "give voice to", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30191, "pattern": "give credit", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30191, "pattern": "give credit", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take credit' (başarıyı kendine mal etmek) de geçerli bir kalıptır; çeldirici olamaz."}
+{"collocation_id": 30191, "pattern": "give credit", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 30191, "pattern": "give credit", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6905, "pattern": "give a clue", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6905, "pattern": "give a clue", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6905, "pattern": "give a clue", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6905, "pattern": "give a clue", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a clue' (ipucu/fikri olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 6336, "pattern": "give a shrug", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Omuz silkmek anlamında 'give a shrug' kullanılır."}
+{"collocation_id": 6336, "pattern": "give a shrug", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6336, "pattern": "give a shrug", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Omuz silkmek anlamında 'give a shrug' kullanılır."}
+{"collocation_id": 6336, "pattern": "give a shrug", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27785, "pattern": "give it a go", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27785, "pattern": "give it a go", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27785, "pattern": "give it a go", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 27785, "pattern": "give it a go", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "İngiliz İngilizcesinde 'have a go' kalıbı vardır; çeldirici olamaz."}
+{"collocation_id": 28165, "pattern": "give it a try", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Bir şeyi denemek anlamında 'give it a try' kullanılır."}
+{"collocation_id": 28165, "pattern": "give it a try", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 28165, "pattern": "give it a try", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 28165, "pattern": "give it a try", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29803, "pattern": "give the okay", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29803, "pattern": "give the okay", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29803, "pattern": "give the okay", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 29803, "pattern": "give the okay", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Onay/izin vermek anlamında 'give the okay' kullanılır."}
+{"collocation_id": 32017, "pattern": "give a kick", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32017, "pattern": "give a kick", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Tekme atmak anlamında 'give a kick' kullanılır."}
+{"collocation_id": 32017, "pattern": "give a kick", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32017, "pattern": "give a kick", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32989, "pattern": "give a kiss", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32989, "pattern": "give a kiss", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32989, "pattern": "give a kiss", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32989, "pattern": "give a kiss", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Öpücük kondurmak/vermek anlamında 'give a kiss' kullanılır."}
+{"collocation_id": 6887, "pattern": "give consideration to", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6887, "pattern": "give consideration to", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Göz önünde bulundurmak / üzerinde düşünmek anlamında 'give consideration to' kullanılır."}
+{"collocation_id": 6887, "pattern": "give consideration to", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6887, "pattern": "give consideration to", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9990, "pattern": "give emphasis to", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Önem/vurgu vermek anlamında 'give emphasis to' kullanılır."}
+{"collocation_id": 9990, "pattern": "give emphasis to", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9990, "pattern": "give emphasis to", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9990, "pattern": "give emphasis to", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10081, "pattern": "give a tap on the shoulder", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Omzuna hafifçe dokunmak anlamında 'give a tap on the shoulder' kullanılır."}
+{"collocation_id": 10081, "pattern": "give a tap on the shoulder", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 10081, "pattern": "give a tap on the shoulder", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Omzuna hafifçe dokunmak anlamında 'give a tap on the shoulder' kullanılır."}
+{"collocation_id": 10081, "pattern": "give a tap on the shoulder", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14388, "pattern": "give a guarantee", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14388, "pattern": "give a guarantee", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14388, "pattern": "give a guarantee", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14388, "pattern": "give a guarantee", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have a guarantee' (garantisi olmak) doğal bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 14624, "pattern": "give assent", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Resmî onay/muvafakat vermek anlamında 'give assent' kullanılır."}
+{"collocation_id": 14624, "pattern": "give assent", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14624, "pattern": "give assent", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Resmî onay/muvafakat vermek anlamında 'give assent' kullanılır."}
+{"collocation_id": 14624, "pattern": "give assent", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 15650, "pattern": "give a cue", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 15650, "pattern": "give a cue", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take a cue' (işaret/örnek almak) de doğru bir kalıptır; çeldirici olamaz."}
+{"collocation_id": 15650, "pattern": "give a cue", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 15650, "pattern": "give a cue", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21944, "pattern": "give a boost", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21944, "pattern": "give a boost", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21944, "pattern": "give a boost", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21944, "pattern": "give a boost", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Güç/destek kazandırmak anlamında 'give a boost' kullanılır."}
+{"collocation_id": 28958, "pattern": "give it a shot", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 28958, "pattern": "give it a shot", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take a shot' da denemek anlamında kullanılır; çeldirici olamaz."}
+{"collocation_id": 28958, "pattern": "give it a shot", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 28958, "pattern": "give it a shot", "celdirici": "have", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35080, "pattern": "give precedence to", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35080, "pattern": "give precedence to", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35080, "pattern": "give precedence to", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35080, "pattern": "give precedence to", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'have precedence' (önceliği olmak) geçebilir; öncelik tanımak 'give precedence to'dur."}
+{"collocation_id": 13426, "pattern": "give consent", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13426, "pattern": "give consent", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13426, "pattern": "give consent", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 13426, "pattern": "give consent", "celdirici": "have", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Rıza/izin vermek anlamında 'give consent' kullanılır."}
+{"collocation_id": 15011, "pattern": "have a conversation", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Temkinli: sohbet etmek anlamında 'have a conversation' kullanılır; 'do' yanlıştır."}
+{"collocation_id": 15011, "pattern": "have a conversation", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 15011, "pattern": "have a conversation", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 15011, "pattern": "have a conversation", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 20265, "pattern": "have dinner", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'make dinner' (akşam yemeği hazırlamak) doğru bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 20265, "pattern": "have dinner", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 20265, "pattern": "have dinner", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 20265, "pattern": "have dinner", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 28613, "pattern": "have fun", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'make fun of' farklı bir deyimdir; eğlenmek anlamında 'have fun' kullanılır."}
+{"collocation_id": 28613, "pattern": "have fun", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 28613, "pattern": "have fun", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 28613, "pattern": "have fun", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32407, "pattern": "have lunch", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'make lunch' (öğle yemeği hazırlamak) doğru bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 32407, "pattern": "have lunch", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32407, "pattern": "have lunch", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32407, "pattern": "have lunch", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32751, "pattern": "have breakfast", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'make breakfast' (kahvaltı hazırlamak) doğru bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 32751, "pattern": "have breakfast", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32751, "pattern": "have breakfast", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 32751, "pattern": "have breakfast", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 12655, "pattern": "have an effect", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 12655, "pattern": "have an effect", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take effect' (yürürlüğe girmek / etkisini göstermek) farklı bir kalıptır; çeldirici olamaz."}
+{"collocation_id": 12655, "pattern": "have an effect", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 12655, "pattern": "have an effect", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 18599, "pattern": "have a dream", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Rüya görmek veya bir hayali olmak anlamında 'have a dream' kullanılır."}
+{"collocation_id": 18599, "pattern": "have a dream", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 18599, "pattern": "have a dream", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 18599, "pattern": "have a dream", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21809, "pattern": "have a chat", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "Sohbet etmek anlamında 'have a chat' kullanılır; 'make/do a chat' yanlıştır."}
+{"collocation_id": 21809, "pattern": "have a chat", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21809, "pattern": "have a chat", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 21809, "pattern": "have a chat", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31380, "pattern": "have the option", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31380, "pattern": "have the option", "celdirici": "take", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'take the option' (o seçeneği tercih etmek) da mümkündür; çeldirici olamaz."}
+{"collocation_id": 31380, "pattern": "have the option", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 31380, "pattern": "have the option", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 40041, "pattern": "have supper", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'make supper' (akşam yemeği hazırlamak) doğru bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 40041, "pattern": "have supper", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 40041, "pattern": "have supper", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 40041, "pattern": "have supper", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 4828, "pattern": "have a crush on", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Birinden hoşlanmak anlamında yalnızca 'have a crush on' kullanılır."}
+{"collocation_id": 4828, "pattern": "have a crush on", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 4828, "pattern": "have a crush on", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Birinden hoşlanmak anlamında yalnızca 'have a crush on' kullanılır."}
+{"collocation_id": 4828, "pattern": "have a crush on", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6146, "pattern": "have the intention to", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Niyetinde olmak anlamında yalnızca 'have the intention to' kullanılır."}
+{"collocation_id": 6146, "pattern": "have the intention to", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6146, "pattern": "have the intention to", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Niyetinde olmak anlamında yalnızca 'have the intention to' kullanılır."}
+{"collocation_id": 6146, "pattern": "have the intention to", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6957, "pattern": "have a quarrel", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Tartışmak/atışmak anlamında 'have a quarrel' kullanılır."}
+{"collocation_id": 6957, "pattern": "have a quarrel", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 6957, "pattern": "have a quarrel", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Tartışmak/atışmak anlamında 'have a quarrel' kullanılır."}
+{"collocation_id": 6957, "pattern": "have a quarrel", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8046, "pattern": "have a fondness for", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Bir şeye düşkünlüğü/sevgisi olmak anlamında 'have a fondness for' kullanılır."}
+{"collocation_id": 8046, "pattern": "have a fondness for", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 8046, "pattern": "have a fondness for", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Bir şeye düşkünlüğü/sevgisi olmak anlamında 'have a fondness for' kullanılır."}
+{"collocation_id": 8046, "pattern": "have a fondness for", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35403, "pattern": "have a daydream", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Hayal kurmak / dalıp gitmek anlamında 'have a daydream' kullanılır."}
+{"collocation_id": 35403, "pattern": "have a daydream", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 35403, "pattern": "have a daydream", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Hayal kurmak / dalıp gitmek anlamında 'have a daydream' kullanılır."}
+{"collocation_id": 35403, "pattern": "have a daydream", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 40721, "pattern": "have brunch", "celdirici": "make", "gercekten_yanlis": false, "kaynak": "gemini + Efe (D3)", "not": "'make brunch' (brunch hazırlamak) doğru bir ifadedir; çeldirici olamaz."}
+{"collocation_id": 40721, "pattern": "have brunch", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 40721, "pattern": "have brunch", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 40721, "pattern": "have brunch", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3994, "pattern": "have the nerve", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Bir şeyi yapmaya yüzü/cesareti olmak anlamında 'have the nerve' kullanılır."}
+{"collocation_id": 3994, "pattern": "have the nerve", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 3994, "pattern": "have the nerve", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Bir şeyi yapmaya yüzü/cesareti olmak anlamında 'have the nerve' kullanılır."}
+{"collocation_id": 3994, "pattern": "have the nerve", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 4401, "pattern": "have implications for", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Bir şey üzerinde olası sonuçları/etkileri olmak anlamında 'have implications for' kullanılır."}
+{"collocation_id": 4401, "pattern": "have implications for", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 4401, "pattern": "have implications for", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Bir şey üzerinde olası sonuçları/etkileri olmak anlamında 'have implications for' kullanılır."}
+{"collocation_id": 4401, "pattern": "have implications for", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9515, "pattern": "have patience", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Sabırlı olmak / sabır göstermek anlamında 'have patience' kullanılır."}
+{"collocation_id": 9515, "pattern": "have patience", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9515, "pattern": "have patience", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Sabırlı olmak / sabır göstermek anlamında 'have patience' kullanılır."}
+{"collocation_id": 9515, "pattern": "have patience", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9995, "pattern": "have a nightmare", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Kâbus görmek anlamında 'have a nightmare' kullanılır."}
+{"collocation_id": 9995, "pattern": "have a nightmare", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 9995, "pattern": "have a nightmare", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Kâbus görmek anlamında 'have a nightmare' kullanılır."}
+{"collocation_id": 9995, "pattern": "have a nightmare", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14227, "pattern": "have faith", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "İnancı/güveni olmak anlamında 'have faith' kullanılır."}
+{"collocation_id": 14227, "pattern": "have faith", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 14227, "pattern": "have faith", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "İnancı/güveni olmak anlamında 'have faith' kullanılır."}
+{"collocation_id": 14227, "pattern": "have faith", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 15711, "pattern": "have a disagreement", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Anlaşmazlık yaşamak anlamında 'have a disagreement' kullanılır."}
+{"collocation_id": 15711, "pattern": "have a disagreement", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 15711, "pattern": "have a disagreement", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Anlaşmazlık yaşamak anlamında 'have a disagreement' kullanılır."}
+{"collocation_id": 15711, "pattern": "have a disagreement", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16433, "pattern": "have confidence in", "celdirici": "make", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Birine/bir şeye güven duymak anlamında 'have confidence in' kullanılır."}
+{"collocation_id": 16433, "pattern": "have confidence in", "celdirici": "take", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}
+{"collocation_id": 16433, "pattern": "have confidence in", "celdirici": "do", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)", "not": "Birine/bir şeye güven duymak anlamında 'have confidence in' kullanılır."}
+{"collocation_id": 16433, "pattern": "have confidence in", "celdirici": "give", "gercekten_yanlis": true, "kaynak": "gemini + Efe (D3)"}

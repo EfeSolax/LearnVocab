@@ -76,10 +76,12 @@ def kesfet_konulari():
 _SEVIYE = {"A1": 1, "A2": 2, "B1": 3, "B2": 4, "C1": 5, "C2": 6}
 
 
-def konu_kelime_idleri(kategori, ortak):
-    """Konudaki kelimeler, kolaydan zora; aynı seviyede sık kullanılan önce."""
+def konu_kelime_idleri(kategori, ortak, seviyeler=False):
+    """Konudaki kelimeler, zordan kolaya (C2 → A1, Efe 17 Ekim); aynı seviyede sık kullanılan önce,
+    seviyesi olmayanlar en sonda.
+    seviyeler=True: [(id, cefr), …] (konu sayfasının seviye süzgeci için)."""
     from .models import Word
     satirlar = (Word.objects.filter(ortak, meanings__categories=kategori)
                 .values_list("id", "cefr", "siklik").distinct())
-    sirali = sorted(set(satirlar), key=lambda s: (_SEVIYE.get(s[1], 9), -(s[2] or 0), s[0]))
-    return [s[0] for s in sirali]
+    sirali = sorted(set(satirlar), key=lambda s: (-_SEVIYE.get(s[1], 0), -(s[2] or 0), s[0]))
+    return [(s[0], s[1]) for s in sirali] if seviyeler else [s[0] for s in sirali]

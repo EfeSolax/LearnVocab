@@ -41,16 +41,20 @@ class YardimSayfasiTests(TestCase):
         # Yükseklik sayfa yüklenirken yer ayırmak için yazılır; görüntü yeniden çekilince tutmalı.
         for dil in yardim.GORUNTU_DILLERI:
             for r in yardim.REHBERLER:
-                for ad, yukseklik, _isaretler in r["goruntuler"]:
+                for ad in r["goruntuler"]:
                     with Image.open(STATIK / f"img/yardim/{dil}/{ad}-acik.webp") as im:
-                        self.assertEqual(im.size, (500, yukseklik), f"{dil}/{ad}")
+                        self.assertEqual(im.size, (500, yardim.ISARETLER[dil][ad]["yukseklik"]), f"{dil}/{ad}")
 
-    def test_dile_ozgu_isaretler_ayni_sayida(self):
-        varsayilan = {ad: len(i) for r in yardim.REHBERLER for ad, _y, i in r["goruntuler"]}
-        for dil, isaretler in yardim.ISARET_DILLERI.items():
-            self.assertIn(dil, yardim.GORUNTU_DILLERI)
-            for ad, konumlar in isaretler.items():
-                self.assertEqual(len(konumlar), varsayilan[ad], f"{dil}/{ad}")
+    def test_isaretler_goruntunun_icinde(self):
+        for dil in yardim.GORUNTU_DILLERI:
+            for r in yardim.REHBERLER:
+                for ad in r["goruntuler"]:
+                    for x, y in yardim.ISARETLER[dil][ad]["isaretler"]:
+                        self.assertTrue(0 <= x <= 100 and 0 <= y <= 100, f"{dil}/{ad}: {x}, {y}")
+
+    def test_goruntuler_bir_solda_bir_sagda(self):
+        yanlar = [g["sag"] for r in yardim._rehberler("tr") for g in r["goruntuler"]]
+        self.assertEqual(yanlar, [i % 2 == 1 for i in range(len(yanlar))])
 
     @override_settings(LANGUAGES=[("tr", "Türkçe"), ("en", "English"), ("de", "Deutsch")])
     def test_her_dil_kendi_goruntusunu_gosterir(self):
@@ -66,8 +70,8 @@ class YardimSayfasiTests(TestCase):
     def test_isaret_konumu_noktali_yazilir(self):
         # Türkçe yerelleştirme ondalığı virgülle yazar; CSS virgülü okuyamaz.
         html = self._html()
-        self.assertIn("left: 50.7%", html)
-        self.assertNotIn("left: 50,7%", html)
+        self.assertIn("left: 2.9%", html)
+        self.assertNotIn("left: 2,9%", html)
 
     def test_eski_adres_ve_ana_sayfa_baglantisi(self):
         self.assertEqual(reverse("about"), "/hakkinda/")

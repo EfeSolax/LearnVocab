@@ -9,7 +9,7 @@ Adresler: words/sozluk_urls.py (sayfalar) ve words/api_urls.py (uçlar)
     /sozluk/seviye/b1/           seviyeye göre göz at (sayfalı)
     /sozluk/harf/a/              harfe göre göz at (sayfalı)
     /listeler/<slug>/            hazır liste sayfası
-    /listeler/<slug>/calis/      "Bu listeyle çalış" / "Seviyeme dön" (POST)
+    /listeler/<slug>/calis/      "Bu listeyle çalış" (bölümüyle) / çalışma listesinden çıkar (POST)
     /api/sozluk/oneri/?q=        anlık öneri (JSON)
     /api/sozluk/kart/<id>/       tek kelime kartı (HTML parçası; çip ve Listem satırı yerinde açar)
     /api/listem/oneri/?q=        Listem'in anlık önerisi (JSON, yalnızca listedekiler)
@@ -21,6 +21,7 @@ hazır listeler words/hazir_liste.py'de. Buradaki görünümler ince.
 """
 
 import json
+from collections import Counter
 from urllib.parse import urlencode
 
 from django.contrib import messages
@@ -42,7 +43,7 @@ from usersettings.anlam import turkce_acik
 
 from .adres import kelime_adresi, slug_yap
 from .kart import kart_verisi
-from .models import CEFR_LEVELS, Category, Expression, HazirListe, Word
+from .models import CEFR_LEVELS, Category, Expression, HazirListe, HazirListeSecimi, Meaning, Word
 
 HAZIR_LISTE_SAYFA_BOYU = 40
 
@@ -247,11 +248,11 @@ def _kesfet_baglami(request):
     return {
         "gunun_kelimesi": gunun.kelime_durumu(user),
         "gunun_ifadesi": gunun.ifade_durumu(user),
-        "hazir_listeler": list(hazir_liste.yayindaki_listeler()),
+        "hazir_listeler": hazir_liste.kurum_gruplari(hazir_liste.yayindaki_listeler()),
         # Konu kutucukları (rapor 18.39): arama kutusuyla günün kelimesi arasında
         "konular": konular.kesfet_konulari(),
         "konu_onde": konular.ONDE_GORUNEN,
-        "aktif_liste": hazir_liste.aktif_liste(user),
+        "calisilan_listeler": hazir_liste.calisilan_liste_idleri(user),
         # Göz atma bağlantıları (rapor 18.15)
         "seviyeler": gozat.dolu_seviyeler(),
         "harfler": gozat.dolu_harfler(),
@@ -380,6 +381,8 @@ def _gozat(request, kelimeler, baslik, aciklama, **ek):
         "baslik": baslik,
         "meta_aciklama": aciklama,
         "sayfa": sayfa,
+        # 1 … 4 5 6 [7] 8 9 10 … 17: her yanda 3 sayfa, uçlarda ilk ve son
+        "sayfa_numaralari": list(sayfa.paginator.get_elided_page_range(sayfa.number, on_each_side=3, on_ends=1)),
         "satirlar": [arama._satir(word=w) for w in sayfa.object_list],
         "seviyeler": gozat.dolu_seviyeler(),
         "harfler": gozat.dolu_harfler(),
@@ -500,7 +503,8 @@ def hazir_liste_sayfasi(request, slug):
         "secili_bolum": bolum,
         "toplam": liste.uyelikler.count(),
         "meta_aciklama": liste.yerel_aciklama,
-        "calisiliyor": hazir_liste.aktif_liste(request.user) == liste,
+        # Bu liste (ve seçili bölüm) çalışma listelerinde mi? (Efe, 17 Ekim)
+        "calisma_secimi": hazir_liste.calisma_listeleri(request.user).filter(liste=liste, bolum=bolum).first(),
     }
     if request.GET.get("parca"):
         cevap = render(request, "pages/words/_hazirListeKartlari.html", baglam)
@@ -512,12 +516,19 @@ def hazir_liste_sayfasi(request, slug):
 def konu_sayfasi(request, slug):
     """
     Konu sayfası (rapor 18.39): o konuyla işaretlenmiş kelimeler, hazır liste sayfasındaki gibi
-    alt alta kapalı kartlar (kolaydan zora); konunun ifadeleri en altta. "Daha fazla göster"
+    alt alta kapalı kartlar (zordan kolaya: C2 → A1); konunun ifadeleri en altta. "Daha fazla göster"
     ?sayfa=N&parca=1 ile gelir; "Bu listede ara" ?ara=…&parca=1 ile yazdıkça süzer.
+    Seviye süzgeci ?bolum=B1 (Efe, 17 Ekim): hazır listenin bölüm parametresi; arama ve
+    "Daha fazla göster" süzgeci böylece kendiliğinden korur.
     Google'a kapalı (seo.DIZINE_ACIK'ta değil).
     """
     kategori = get_object_or_404(Category, slug=slug)
-    tumu = konular.konu_kelime_idleri(kategori, arama.ortak_sozluk())
+    seviyeli = konular.konu_kelime_idleri(kategori, arama.ortak_sozluk(), seviyeler=True)
+    seviye_sayilari = Counter(c for _, c in seviyeli if c in CEFR_LEVELS)
+    secili = (request.GET.get("bolum") or "").upper()
+    if secili not in seviye_sayilari:
+        secili = ""
+    tumu = [i for i, c in seviyeli if not secili or c == secili]
     # "Bu listede ara" (hazır listedeki gibi): İngilizcede ya da Türkçe anlamda, baştan eşleşenler önce.
     ara = (request.GET.get("ara") or "").strip()[:80]
     idler = tumu
@@ -530,14 +541,24 @@ def konu_sayfasi(request, slug):
         idler = [i for i in tumu if i in bastan] + [i for i in tumu if i in eslesen and i not in bastan]
     sayfa = Paginator(idler, HAZIR_LISTE_SAYFA_BOYU).get_page(request.GET.get("sayfa") or 1)
     kartlar = kart_verisi(list(sayfa.object_list), request.user)
+    # Kapalı kartın özetinde kelimenin ilk anlamı değil, bu konuya bağlı anlamı (lap Spor'da "tur").
+    konu_anlami = {}
+    for wid, mid in (Meaning.objects.filter(categories=kategori, word_id__in=[k.id for k in kartlar])
+                     .order_by("word_id", "sort_order", "id").values_list("word_id", "id")):
+        konu_anlami.setdefault(wid, mid)
+    for kart in kartlar:
+        kart.ozet_anlam_id = konu_anlami.get(kart.id, 0)
     baglam = {
         "active_page": "Sözlük",
         "konu": konular.konu_bilgisi(kategori),
         "ogeler": [(k, "") for k in kartlar],
         "sayfa": sayfa,
         "ara": ara,
-        "secili_bolum": "",
-        "toplam": len(tumu),
+        "secili_bolum": secili,
+        # (seviye, kelime sayısı, renk no): altısı da hep görünür, boş olan soluk; renk A1–C2
+        # sekmelerininki (defter.css .lv-sekme-N)
+        "seviye_sayilari": [(s, seviye_sayilari[s], i) for i, s in enumerate(CEFR_LEVELS, 1)],
+        "toplam": len(seviyeli),
     }
     if request.GET.get("parca"):
         cevap = render(request, "pages/words/_hazirListeKartlari.html", baglam)
@@ -552,17 +573,18 @@ def konu_sayfasi(request, slug):
 @login_required
 @require_POST
 def hazir_liste_calis(request, slug):
-    """islem=birak -> seviyeye dön; yoksa bu listeyle çalış."""
+    """
+    "Bu listeyle çalış": liste, bölümüyle (bolum=; ODTÜ'de hafta) çalışma
+    listelerine eklenir ve Learn & Pass'in "Şu kelimelerle tekrar yap"
+    ekranı bu liste seçili açılır. islem=birak -> çalışma listelerinden çıkar.
+    """
     liste = get_object_or_404(HazirListe, slug=slug, yayinda=True)
+    bolum = (request.POST.get("bolum") or "").strip()[:80]
+    if bolum and not liste.uyelikler.filter(bolum=bolum).exists():
+        bolum = ""
     if request.POST.get("islem") == "birak":
-        hazir_liste.seviyeye_don(request.user)
-        mesaj = _("Learn & Pass yeni kelimeleri yine seviyene göre seçecek.")
-    else:
-        hazir_liste.listeyle_calis(request.user, liste)
-        mesaj = _("Learn & Pass artık yeni kelimeleri “%(liste)s” listesinden getirecek.") % {"liste": liste.yerel_ad}
-    if _ajax_mi(request):
-        return JsonResponse({"ok": True, "mesaj": mesaj,
-                             "calisiliyor": request.POST.get("islem") != "birak"})
-    messages.success(request, mesaj)
-    return redirect("hazir_liste", slug=liste.slug)
-
+        HazirListeSecimi.objects.filter(user=request.user, liste=liste, bolum=bolum).delete()
+        messages.success(request, _("Liste Learn & Pass çalışma listelerinden çıkarıldı."))
+        return redirect(reverse("hazir_liste", args=[liste.slug]) + (f"?{urlencode({'bolum': bolum})}" if bolum else ""))
+    secim = hazir_liste.listeyle_calis(request.user, liste, bolum)
+    return redirect(reverse("learn_pass_sec") + f"?sec={secim.id}")

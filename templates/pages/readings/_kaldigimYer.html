@@ -1,0 +1,149 @@
+{% load i18n %}
+{% comment %}
+Kaldığım yer işareti (Efe, 17 Ekim). Okuma sütununun sağ altında, ekranın
+altına yapışık duran düğme (ekran kenarında değil; yanlar reklama ayrılabilir):
+"Kaldığım yeri işaretle"ye basınca bir sonraki dokunuş anlam baloncuğu
+açmaz, dokunulan kelimeyi kaldığın yer yapar (kırmızı kurdele + vurgu).
+İşaretli kelimeye işaret kipinde yeniden dokunmak işareti kaldırır.
+
+Saklama: bu cihazda (localStorage), metin başına tek işaret; misafirde de
+çalışır, veritabanına yazılmaz. Anahtar metnin adresi (bölüm hariç); değer
+{b: bölüm, p: paragraf sırası, o: paragraftaki harf konumu, k: kelime}.
+Metin değişmişse kelime paragrafta yeniden aranır, bulunamazsa işaret düşer.
+
+"Kaldığım yere git": işaret bu bölümdeyse oraya kayar, başka bölümdeyse
+o bölümü #kaldigim ile açar. Kelime bulucu baloncuktan gelir
+(window.okumaBalonu, _kelimeBaloncugu.html); bu parça ondan sonra eklenir.
+{% endcomment %}
+
+<style>
+    ::highlight(okuma-isaret) { background-color: var(--not-pembe); text-decoration: underline 2px var(--kirmizi); text-underline-offset: 4px; }
+</style>
+
+<div class="lv-isaret-kutusu" data-kaldigim-yer data-bolum="{{ bolum|default:1 }}">
+    <a href="#kaldigim" hidden data-isarete-git class="lv-isaret-dugme lv-ikincil">
+        <svg viewBox="0 0 16 20" aria-hidden="true" class="h-[18px] w-[14px]"><path d="M2 1h12v18l-6-5-6 5z" fill="currentColor"/></svg>
+        <span class="sm:hidden">{% translate "işarete git" %}</span><span class="hidden sm:inline">{% translate "kaldığım yere git" %}</span>
+    </a>
+    <button type="button" data-isaret-koy aria-pressed="false" class="lv-isaret-dugme">
+        <svg viewBox="0 0 16 20" aria-hidden="true" class="h-[18px] w-[14px]"><path d="M2 1h12v18l-6-5-6 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <span data-yazi-normal><span class="sm:hidden">{% translate "işaret koy" %}</span><span class="hidden sm:inline">{% translate "kaldığım yeri işaretle" %}</span></span>
+        <span data-yazi-kip hidden>{% translate "bir kelimeye dokun · vazgeç" %}</span>
+    </button>
+</div>
+
+<script>
+(function () {
+    var metin = document.querySelector('[data-okuma-metni]');
+    var kutu = document.querySelector('[data-kaldigim-yer]');
+    if (!metin || !kutu || !window.okumaBalonu) { return; }
+    var koy = kutu.querySelector('[data-isaret-koy]');
+    var git = kutu.querySelector('[data-isarete-git]');
+    var BOLUM = parseInt(kutu.dataset.bolum, 10) || 1;
+    var ANAHTAR = 'kaldigim_yer:' + location.pathname;
+    var vurgu = (window.CSS && CSS.highlights && window.Highlight) ? CSS.highlights : null;
+    var serit = document.createElement('span');
+    serit.className = 'lv-isaret-serit';
+    serit.id = 'kaldigim-yer';
+    serit.setAttribute('aria-hidden', 'true');
+    serit.hidden = true;
+    metin.append(serit);
+    var kip = false;
+    var aralik = null;       // bu bölümdeki işaretin Range'i
+
+    function oku() {
+        try { return JSON.parse(localStorage.getItem(ANAHTAR)) || null; } catch (e) { return null; }
+    }
+    function yaz(deger) {
+        try {
+            if (deger) { localStorage.setItem(ANAHTAR, JSON.stringify(deger)); } else { localStorage.removeItem(ANAHTAR); }
+        } catch (e) {}
+    }
+    function paragraflar() { return Array.prototype.filter.call(metin.children, function (e) { return e.tagName === 'P'; }); }
+
+    // Kayıttan bu bölümdeki Range'i kurar; metin değiştiyse kelimeyi paragrafta arar.
+    function araligiKur(isaret) {
+        var p = paragraflar()[isaret.p];
+        var dugum = p && p.firstChild;
+        if (!dugum || dugum.nodeType !== 3) { return null; }
+        var o = isaret.o;
+        if (dugum.data.substr(o, isaret.k.length) !== isaret.k) {
+            o = dugum.data.indexOf(isaret.k);
+            if (o === -1) { return null; }
+        }
+        var r = document.createRange();
+        r.setStart(dugum, o);
+        r.setEnd(dugum, o + isaret.k.length);
+        return r;
+    }
+
+    function seridiYerlestir() {
+        if (!aralik) { serit.hidden = true; return; }
+        var a = aralik.getBoundingClientRect(), m = metin.getBoundingClientRect();
+        serit.style.top = (a.top - m.top + a.height / 2 - 14) + 'px';
+        serit.hidden = false;
+    }
+
+    function goster() {
+        var isaret = oku();
+        aralik = null;
+        if (isaret && isaret.b === BOLUM) {
+            aralik = araligiKur(isaret);
+            if (!aralik) { yaz(null); isaret = null; }
+        }
+        if (vurgu) { aralik ? vurgu.set('okuma-isaret', new Highlight(aralik)) : vurgu.delete('okuma-isaret'); }
+        seridiYerlestir();
+        git.hidden = !isaret;
+        if (isaret) { git.href = (isaret.b === BOLUM ? '' : '?bolum=' + isaret.b) + '#kaldigim'; }
+    }
+
+    function kipiAyarla(acik) {
+        kip = acik;
+        koy.setAttribute('aria-pressed', acik ? 'true' : 'false');
+        koy.querySelector('[data-yazi-normal]').hidden = acik;
+        koy.querySelector('[data-yazi-kip]').hidden = !acik;
+        metin.classList.toggle('lv-isaret-kipi', acik);
+        if (acik) { window.okumaBalonu.kapat(); }
+    }
+
+    koy.addEventListener('click', function () { kipiAyarla(!kip); });
+
+    // İşaret kipinde dokunuş baloncuktan önce yakalanır.
+    metin.addEventListener('click', function (olay) {
+        if (!kip) { return; }
+        olay.stopImmediatePropagation();
+        var s = window.okumaBalonu.kelimeBul(olay.clientX, olay.clientY);
+        if (!s) { return; }
+        var p = s.aralik.startContainer.parentNode;
+        var yeni = { b: BOLUM, p: paragraflar().indexOf(p), o: s.aralik.startOffset, k: s.kelime };
+        if (yeni.p === -1) { return; }
+        var eski = oku();
+        var ayni = eski && eski.b === yeni.b && eski.p === yeni.p && eski.o === yeni.o;
+        yaz(ayni ? null : yeni);
+        kipiAyarla(false);
+        goster();
+        var mesaj = ayni ? '{{ _("İşaret kaldırıldı")|escapejs }}' : '{{ _("Kaldığın yer işaretlendi")|escapejs }}';
+        if (window.geriAl) { window.geriAl.goster(mesaj, function () { yaz(eski); goster(); }); }
+    }, true);
+
+    document.addEventListener('keydown', function (olay) { if (olay.key === 'Escape' && kip) { kipiAyarla(false); } });
+
+    git.addEventListener('click', function (olay) {
+        var isaret = oku();
+        if (!isaret || isaret.b !== BOLUM || !aralik) { return; }   // başka bölüm: bağlantı açılır
+        olay.preventDefault();
+        serit.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // Yazı boyutu ya da genişlik değişince kurdele kelimenin satırına yeniden oturur.
+    if (window.ResizeObserver) { new ResizeObserver(seridiYerlestir).observe(metin); }
+    window.addEventListener('resize', seridiYerlestir);
+
+    goster();
+    // #kaldigim ile açıldıysa işaret ekranın ortasına gelir (id'ye bağlı değil: tarayıcı
+    // kendi kaydırmasıyla işareti üst menünün altına itmesin).
+    if (location.hash === '#kaldigim' && aralik) {
+        serit.scrollIntoView({ block: 'center' });
+    }
+})();
+</script>

@@ -3,6 +3,7 @@ Kelime sorgulama API'si (rapor 8 ve 11).
 
     GET /api/kelime/?q=decided
     GET /api/kelime/?q=gave&once=she&sonra=it+up      (phrasal için bağlam)
+    GET /api/kelime/?q=hen-houses&parca=houses        (tireli: bütün yoksa parça)
 
 Cevap (JSON):
 
@@ -131,7 +132,8 @@ def kelime(request):
         return _cors(sinir.cok_istek(), request)
     sonuc = sorgula(request.GET.get("q", ""),
                     once=request.GET.get("once", ""),
-                    sonra=request.GET.get("sonra", ""))
+                    sonra=request.GET.get("sonra", ""),
+                    parca=request.GET.get("parca", ""))
     _bulunamayani_kaydet(sonuc, request)
     sonuc = _listede_ekle(sonuc, request.user)
     sonuc["girisli"] = request.user.is_authenticated

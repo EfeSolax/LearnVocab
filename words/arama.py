@@ -470,20 +470,34 @@ def tam_eslesme_slug(sonuc):
     return ""
 
 
+YAZIM_ONERI_SATIR = 8
+
+
 def yazim_onerileri(sorgu, en_cok=5):
-    """'recieve' -> receive … Önce İngilizce yazımlar, yoksa Türkçe anlamlar."""
+    """
+    'recieve' -> receive … Önce İngilizce yazımlar, yoksa Türkçe anlamlar.
+    Yazımın her türü ayrı satır (endeavor isim · endeavor fiil; Efe, 17 Ekim), tür etiketiyle;
+    satıra dokununca o kelimenin kartı yerinde açılır. En çok en_cok yazım, YAZIM_ONERI_SATIR satır.
+    """
     d = dizin()
-    satirlar = []
+    idler, eslesen = [], {}
     if not turkce_harfli(sorgu):
-        for m in d.benzer_yazimlar(en_normal(sorgu), en_cok):
-            _, text, anlam, cefr = d.metin[m]
-            satirlar.append({"metin": text, "anlam": anlam, "cefr": cefr, "tur": "", "id": None})
-    if not satirlar:
-        for wid, anlam in d.benzer_turkce(sorgu, en_cok):
-            text = d.kelime[wid][0]
-            satirlar.append({"metin": text, "anlam": anlam, "cefr": d.metin[en_normal(text)][3],
-                             "tur": "", "id": None})
-    return satirlar[:en_cok]
+        yazimlar = d.benzer_yazimlar(en_normal(sorgu), en_cok)
+        sira = {m: i for i, m in enumerate(yazimlar)}
+        turler = [(sira[en_normal(text)], _TUR_SIRASI.get(pos, 99), cefr, wid)
+                  for wid, (text, pos, cefr) in d.kelime.items() if en_normal(text) in sira]
+        idler = [wid for *_, wid in sorted(turler)][:YAZIM_ONERI_SATIR]
+    if not idler:
+        eslesen = dict(d.benzer_turkce(sorgu, en_cok))       # wid -> eşleşen Türkçe anlam
+        idler = list(eslesen)
+    kelimeler = Word.objects.filter(id__in=idler).prefetch_related("meanings").in_bulk()
+    satirlar = []
+    for wid in idler:
+        if wid in kelimeler:
+            satir = _satir(word=kelimeler[wid])
+            satir["anlam"] = eslesen.get(wid) or satir["anlam"]
+            satirlar.append(satir)
+    return satirlar
 
 
 # ----------------------------------------------------------------------

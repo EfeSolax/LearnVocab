@@ -235,3 +235,65 @@ class DilbilgisiTurleriTests(TestCase):
         havuz = set(_yeni_havuz(None, "A1").values_list("id", flat=True))
         self.assertIn(kedi.id, havuz)
         self.assertNotIn(the.id, havuz)
+
+
+class AileAralamaTests(TestCase):
+    """Aynı aileden (Word.family) kelimeler bir turda art arda gelmez."""
+
+    def setUp(self):
+        self.user = User.objects.create_user(username="aile", password="Sifre1234", cefr="B1")
+
+    def test_yeni_kelime_turda_gorunen_ailenin_uyesini_secmez(self):
+        decide = make_word("decide", level="B1", family="decide")
+        decision = make_word("decision", level="B1", family="decide", siklik=7.0)
+        baska = make_word("garden", level="B1", siklik=1.0)
+        for tohum in range(20):
+            secilen = tekrar.yeni_kelime(self.user, rng=random.Random(tohum), haric=[decide.id])
+            self.assertEqual(secilen, baska)
+        # Başka seçenek kalmayınca aynı aileden de gelir (oturum bitmez).
+        self.assertEqual(tekrar.yeni_kelime(self.user, haric=[decide.id, baska.id]), decision)
+
+    def test_tekrar_sirasi_aile_uyesini_arkaya_alir(self):
+        t0 = timezone.now() - timedelta(days=2)
+        decide = make_word("decide", level="B1", family="decide")
+        decision = make_word("decision", level="B1", family="decide")
+        garden = make_word("garden", level="B1")
+        for w in (decision, garden):
+            UserWordLink.objects.create(user=self.user, word=w)
+        tekrar.kaydet(self.user, decision, U, "mine", simdi=t0)
+        tekrar.kaydet(self.user, garden, U, "mine", simdi=t0)
+        # decision en eski görülen: öncelikli
+        WordEncounter.objects.filter(word=decision).update(last_seen_at=t0)
+        WordEncounter.objects.filter(word=garden).update(last_seen_at=t0 + timedelta(hours=1))
+        self.assertEqual(tekrar.siradaki_tekrar(self.user, haric=[]), decision)
+        self.assertEqual(tekrar.siradaki_tekrar(self.user, haric=[decide.id]), garden)
+
+    def test_hepsi_gorunmusse_ailesi_en_eski_gorunen_gelir(self):
+        a1, a2 = make_word("act", family="act"), make_word("action", family="act")
+        b1, b2 = make_word("bake", family="bake"), make_word("baker", family="bake")
+        self.assertEqual(tekrar.aileye_gore_sirala([b2.id, a2.id], [a1.id, b1.id]), [a2.id, b2.id])
+
+    def test_misafir_turu_aileleri_uzaga_dagitir(self):
+        aile = [make_word(t, family="decide") for t in ("decide", "decision", "decisive")]
+        digerleri = [make_word(f"word{i}") for i in range(6)]
+        idler = [w.id for w in aile] + [w.id for w in digerleri]
+        sira = tekrar.aileleri_arala(idler)
+        self.assertEqual(sorted(sira), sorted(idler))
+        yerler = sorted(sira.index(w.id) for w in aile)
+        self.assertGreaterEqual(min(b - a for a, b in zip(yerler, yerler[1:])), 3)
+
+    def test_oturumda_art_arda_ayni_aile_gelmez(self):
+        """Uçtan uca: ilk kart decide ise ikinci kart decision olmaz."""
+        decide = make_word("decide", level="B1", family="decide", siklik=7.0)
+        make_word("decision", level="B1", family="decide", siklik=7.0)
+        garden = make_word("garden", level="B1", siklik=1.0)
+        self.client.force_login(self.user)
+        with mock.patch("learnpass.selection.yeni_orani", return_value=1.0):
+            self.client.get(reverse("learn_pass_run", kwargs={"mode": "karma"}))
+            oturum = self.client.session
+            oturum["learnpass_shown_karma"] = [decide.id]
+            oturum.save()
+            cevap = self.client.post(reverse("learn_pass_verdict"), json.dumps(
+                {"mode": "karma", "word_id": decide.id, "verdict": U, "kaynak": "new"}),
+                content_type="application/json")
+        self.assertEqual(cevap.json()["card"]["id"], garden.id)

@@ -57,3 +57,13 @@ encrypted.data
 
 # Kullanıcıların okuma metinleri (özel, web'den sunulmaz)
 /ozel_depo/
+
+# Veritabanı kopyaları (veritabani indir/yukle ve elle alınan yedekler)
+*.sqlite3
+*.sqlite3-*
+
+# Kurumların kelime listesi belgeleri (telifli kaynaklar; listeler veritabanında)
+/Kelime Listeler/
+
+# Bu bilgisayara özel Claude ayarları
+/.claude/

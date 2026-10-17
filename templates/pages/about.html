@@ -1,6 +1,6 @@
 {% extends 'base/layout.html' %}
 {% load i18n %}
-{% load static l10n %}
+{% load static l10n kelime %}
 
 {% comment %}
 Yardım ve hakkında (rapor 18.33): tek sayfa. Görünüm ve içerik: LearnVocab/yardim.py
@@ -94,12 +94,13 @@ Ekran görüntüleri her sürümde her dil ve tema için yeniden çekilir (rapor
         <p class="mt-4 max-w-2xl text-lg leading-relaxed">{{ r.giris }}</p>
 
         {% for g in r.goruntuler %}
-        <div class="mt-8 grid items-start gap-8 md:grid-cols-[260px_minmax(0,1fr)]">
-            <figure class="yardim-telefon mx-auto w-full max-w-[260px]">
+        {# Geniş ekranda görüntüler bir solda bir sağda; adımlar karşı tarafta (yardim.py "sag") #}
+        <div class="mt-8 grid items-start gap-8 {% if g.sag %} md:grid-cols-[minmax(0,1fr)_260px] {% else %} md:grid-cols-[260px_minmax(0,1fr)] {% endif %}">
+            <figure class="yardim-telefon mx-auto w-full max-w-[260px]{% if g.sag %} md:order-2{% endif %}">
                 <div class="relative">
-                    <img src="{% static g.acik %}" width="500" height="{{ g.yukseklik }}" loading="lazy" decoding="async"
+                    <img src="{% surumlu_static g.acik %}" width="500" height="{{ g.yukseklik }}" loading="lazy" decoding="async"
                          class="block h-auto w-full dark:hidden" alt="{% blocktranslate with baslik=r.baslik %}{{ baslik }}: ekran görüntüsü{% endblocktranslate %}">
-                    <img src="{% static g.koyu %}" width="500" height="{{ g.yukseklik }}" loading="lazy" decoding="async"
+                    <img src="{% surumlu_static g.koyu %}" width="500" height="{{ g.yukseklik }}" loading="lazy" decoding="async"
                          class="hidden h-auto w-full dark:block" alt="{% blocktranslate with baslik=r.baslik %}{{ baslik }}: ekran görüntüsü (koyu tema){% endblocktranslate %}">
                     {% for i in g.isaretler %}<span class="yardim-isaret" style="left: {{ i.x|unlocalize }}%; top: {{ i.y|unlocalize }}%" aria-hidden="true">{{ i.no }}</span>{% endfor %}
                 </div>

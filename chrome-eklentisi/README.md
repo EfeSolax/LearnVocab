@@ -3,8 +3,16 @@
 Herhangi bir sitede İngilizce bir kelimeye **çift tıklayınca** anlamı LearnVocab
 sözlüğünden gelir. Baloncuk Okumalar'dakinin aynısıdır: kök, numaralı anlamlar,
 phrasal verb, "Listeme ekle +", "Henüz sözlüğümüzde yok". Altta "Oxford'da ara"
-aynı sekmede Oxford Learner's Dictionaries'e gider. Baloncuğun dışına (kelimenin
+Oxford Learner's Dictionaries'i yeni sekmede açar. Baloncuğun dışına (kelimenin
 kendisi dahil) tıklayınca, Esc'ye basınca ya da kelime ekrandan çıkınca kapanır.
+
+**Bağlantıdaki kelime (1.1.0):** çift tıklamanın ilk tıklaması bağlantıyı açtığı için
+imleci kelimenin üzerine getirip **Shift'e bir kez dokunmak** da baloncuğu açar. Yalnızca
+kısa ve tek başına dokunuş sayılır (araya başka tuş, tıklama ya da tekerlek girmez,
+600 ms'den kısa); yazı kutusundayken çalışmaz.
+
+**Kutu ekrana sığar (1.1.0):** kelimenin altında ya da üstünde, sığan (sığmıyorsa daha
+geniş) tarafta açılır; o boşluktan uzunsa içi kayar. Uzun kelime harf harf bölünmez.
 
 | Dosya | Ne yapar |
 |---|---|

@@ -38,6 +38,9 @@
   "pencere_metin": {
     "message": "Double-click an English word on any site; its meaning appears in a small box. Click outside the box to close it."
   },
+  "pencere_shift": {
+    "message": "For a word inside a link, hover over it and tap Shift once (double-clicking would open the link)."
+  },
   "pencere_liste": {
     "message": "To add words to your list, just be signed in to LearnVocab."
   },

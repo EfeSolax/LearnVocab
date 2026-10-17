@@ -1,7 +1,8 @@
 """
 Listem (ürün raporu 5): kullanıcının "+" ile eklediği kelimelerin cep defteri.
 
-Aşırı basit: satırda kelime, numaralı Türkçe anlamlar ve "Listemden çıkar".
+Aşırı basit: satırda kelime (+ renkli seviye etiketi), numaralı Türkçe
+anlamlar ve "Listemden çıkar".
 İstatistik, durum, seviye filtresi YOK (rapor 17).
 
 Süzgeçler (tek "Filtre" düğmesinin içinde):
@@ -120,6 +121,7 @@ class ListemSatiri:
     text: str
     tur: str                # yalnızca aynı yazımın iki türü listedeyse dolu
     anlamlar: list          # Türkçe anlamlar (numaralı gösterilir)
+    cefr: str = ""          # renkli seviye etiketi
 
 
 def satirlar(user, d):
@@ -138,7 +140,7 @@ def satirlar(user, d):
                         .values_list("word__text", flat=True))
     sonuc = [ListemSatiri(bag=b, id=b.word_id, text=b.word.text,
                           tur=tur_etiketi(b.word.pos) if b.word.text in iki_turlu else "",
-                          anlamlar=_anlamlar(b.word, turkce))
+                          anlamlar=_anlamlar(b.word, turkce), cefr=b.word.cefr or "")
              for b in sayfa]
     return sonuc, toplam, bas + len(sayfa) < toplam
 

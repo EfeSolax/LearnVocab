@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static i18n %}
+{% load static i18n kelime %}
 {% get_current_language as DIL %}
 {# Sayfa dili (rapor 18.12): Türkçe büyük harf (İ/I) ve ekran okuyucular için doğru dil. İngilizce içerik lang="en" ile ayrıca işaretlenir. #}
 <html lang="{{ DIL }}"{% if not turkce_acik %} data-turkce="0"{% endif %}>
@@ -33,7 +33,7 @@
     {# Yazı tipleri sitenin kendi dosyalarından (static/fonts, static/css/fontlar.css): Google'a bağlanılmaz. #}
     <link rel="preload" href="{% static 'fonts/Inter-latin-1ab1ad.woff2' %}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{% static 'css/fontlar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/defter.css' %}">
+    <link rel="stylesheet" href="{% surumlu_static 'css/defter.css' %}">
 
     <script>
         // Temayı SAYFA BOYANMADAN ÖNCE uygula.
@@ -78,7 +78,7 @@
     LearnVocab/test_tailwind.py unutulan derlemeyi yakalar.
     En sonda durur: eski Play CDN de stilini <head>'in sonuna ekliyordu, sıra aynı kalsın.
     {% endcomment %}
-    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <link rel="stylesheet" href="{% surumlu_static 'css/site.css' %}">
 </head>
 
 <body class="lv-kagit text-gray-900 dark:text-slate-100 min-h-screen">

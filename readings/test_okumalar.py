@@ -192,6 +192,26 @@ class KelimeSorguTests(TestCase):
         self.assertFalse(s["digerleri"][0]["listede"])
         self.assertIn("private", cevap["Cache-Control"])
 
+    # --- tireli yazım ---------------------------------------------------
+    def test_tireli_yazim_sozlukte_yoksa_dokunulan_parca_aranir(self):
+        s = self.api(q="bank-decided", parca="bank")
+        self.assertTrue(s["bulundu"])
+        self.assertEqual((s["q"], s["kok"]), ("bank", "bank"))
+
+    def test_parca_verilmezse_son_parca_aranir(self):
+        s = self.api(q="hen-decided")
+        self.assertEqual(s["kok"], "decide")
+
+    def test_tireli_madde_sozlukte_varsa_butunu_gelir(self):
+        make_word("self-conscious", pos=PartOfSpeech.ADJECTIVE, meaning="çekingen")
+        s = self.api(q="self-conscious", parca="self")
+        self.assertEqual((s["kok"], s["anlamlar"][0]["tr"]), ("self-conscious", "çekingen"))
+
+    def test_hicbiri_yoksa_butun_bulunamadi_olarak_doner(self):
+        s = self.api(q="zzq-xxw", parca="zzq")
+        self.assertFalse(s["bulundu"])
+        self.assertEqual(s["q"], "zzq-xxw")
+
     def test_gizli_kelime_gorunmez(self):
         sahip = User.objects.create_user(username="sahip", password="Sifre1234")
         make_word("secretword", is_base=False, visibility="private", owner=sahip)
@@ -417,6 +437,50 @@ class OkumalarSayfasiTests(TestCase):
         self.assertEqual(self.client.get(adres).status_code, 405)
 
 
+class TemizlikTests(TestCase):
+    """Kendi metinlerimde bağlantı ve tekrar eden üst/alt bilgi ayıklama (readings/temizlik.py)."""
+
+    def test_tekrar_eden_kisa_satir_atilir_bolum_basligi_kalir(self):
+        from readings.temizlik import paragraflari_temizle
+        p = ["Animal Farm", "Chapter 1", "Mr. Jones locked the hen-houses.", "12 Animal Farm",
+             "Chapter 2", "The animals met in the barn.", "13 ANIMAL FARM", "Chapter 3"]
+        self.assertEqual(paragraflari_temizle(p),
+                         ["Chapter 1", "Mr. Jones locked the hen-houses.", "Chapter 2",
+                          "The animals met in the barn.", "Chapter 3"])
+
+    def test_sayfa_sonunda_bolunen_cumle_birlesir(self):
+        from readings.temizlik import paragraflari_temizle
+        p = ["He made his way up to bed, where Mrs. Jones was already", "Animal Farm by George Orwell",
+             "snoring.", "Animal Farm by George Orwell", "Old Major spoke.", "Animal Farm by George Orwell"]
+        self.assertEqual(paragraflari_temizle(p),
+                         ["He made his way up to bed, where Mrs. Jones was already snoring.", "Old Major spoke."])
+
+    def test_cumle_icindeki_alan_adi_korunur(self):
+        from readings.temizlik import baglantilari_sil
+        uzun = "He said that he had ordered every single one of the old books from Amazon.com last year."
+        self.assertEqual(baglantilari_sil(uzun), uzun)
+        self.assertEqual(baglantilari_sil("Visit www.example.org for more."), "")   # altbilgi kırıntısı
+        self.assertEqual(baglantilari_sil("The full report, which is at https://example.org/report, was read by the board."),
+                         "The full report, which is at, was read by the board.")
+
+    def test_yapistirilan_metin_ve_eski_metin_temizlenir(self):
+        from readings.models import UserText
+        user = User.objects.create_user(username="temiz", password="Sifre1234")
+        self.client.force_login(user)
+        tekrar = "\n\n".join(f"Animal Farm\n\nThe pigs talked for a long time in part {i}." for i in range(4))
+        with self.settings(CACHES=BELLEK):
+            self.client.post(reverse("readings_add"), {"tur": "yapistir", "metin": tekrar + "\n\nhttps://x.com/y"})
+        metin = UserText.objects.get(owner=user)
+        self.assertNotIn("Animal Farm", metin.body)
+        self.assertNotIn("https", metin.body)
+        # Eski (temizlenmeden kaydedilmiş) metin okurken temizlenir.
+        metin.body = tekrar
+        metin.save()
+        html = self.client.get(reverse("readings_user_text", args=[metin.pk])).content.decode()
+        self.assertNotIn("Animal Farm</p>", html)
+        self.assertIn("The pigs talked", html)
+
+
 class PdfMetniTests(TestCase):
 
     def test_metin_cikar(self):
@@ -443,6 +507,23 @@ class PdfMetniTests(TestCase):
         with mock.patch.object(pdf_okuyucu, "EN_BUYUK_BOYUT", 10):
             with self.assertRaisesMessage(pdf_okuyucu.PdfOkunamadi, "50 MB"):
                 pdf_okuyucu.pdf_metni(pdf_uret(["some text"]))
+
+    def test_her_sayfadaki_kitap_ve_yazar_adi_atilir(self):
+        govde = "Old Major was a prize Middle White boar who had a dream the night before."
+        sayfalar = [f"ANIMAL FARM {i}\n\n{govde} Page {i} of the story goes on.\n\nGeorge Orwell"
+                    for i in range(1, 6)]
+        metin, _ = pdf_okuyucu.pdf_metni(pdf_uret(sayfalar))
+        self.assertNotIn("ANIMAL FARM", metin)
+        self.assertNotIn("George Orwell", metin)
+        self.assertEqual(metin.count("Old Major"), 5)
+
+    def test_baglantilar_atilir(self):
+        metin, _ = pdf_okuyucu.pdf_metni(pdf_uret([
+            "The farm was quiet (see https://example.com/animal-farm) that night.\n\n"
+            "Free eBooks at www.planetebook.com"]))
+        self.assertIn("The farm was quiet that night.", metin)
+        self.assertNotIn("http", metin)
+        self.assertNotIn("planetebook", metin)
 
     def test_satir_sonu_tiresi_birlesir(self):
         metin, _ = pdf_okuyucu.pdf_metni(pdf_uret(["The environ-\nment matters a great deal to all of us."]))

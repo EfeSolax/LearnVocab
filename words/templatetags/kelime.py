@@ -64,3 +64,23 @@ def isaretle(cumle, kelime):
         return mark_safe(metin)
     desen = re.compile(r"\b(" + re.escape(escape(kelime)) + r"[a-z]*)\b", re.IGNORECASE)
     return mark_safe(desen.sub(r'<mark class="lv-vurgu">\1</mark>', metin))
+
+
+@register.simple_tag
+def surumlu_static(yol):
+    """
+    {% surumlu_static 'css/site.css' %} -> /static/css/site.css?v=1792193016
+    Tarayıcı CSS'i adresine göre önbellekte tutar; dosya değişince adres de
+    değişsin ki yeniden derlenen Tailwind hemen görünsün.
+    """
+    import os
+
+    from django.conf import settings
+    from django.contrib.staticfiles import finders
+    from django.templatetags.static import static
+
+    dosya = finders.find(yol) or os.path.join(settings.STATIC_ROOT, yol)
+    try:
+        return f"{static(yol)}?v={int(os.path.getmtime(dosya))}"
+    except OSError:
+        return static(yol)

@@ -5199,3 +5199,283 @@ msgstr "Learn & Pass will pick new words based on your level again."
 #, python-format
 msgid "Learn & Pass artık yeni kelimeleri “%(liste)s” listesinden getirecek."
 msgstr "Learn & Pass will now bring new words from the “%(liste)s” list."
+
+msgid "Önceki sayfa"
+msgstr "Previous page"
+
+msgid "Sonraki sayfa"
+msgstr "Next page"
+
+msgid "%(no)s. sayfa"
+msgstr "Page %(no)s"
+
+msgid "sayfaya git"
+msgstr "go to page"
+
+msgid "git"
+msgstr "go"
+
+msgid "%(kurum)s listeleri"
+msgstr "%(kurum)s lists"
+
+msgid "Diğer listeler"
+msgstr "Other lists"
+
+msgid "%(n)s liste"
+msgid_plural "%(n)s liste"
+msgstr[0] "%(n)s list"
+msgstr[1] "%(n)s lists"
+
+msgid "Bir kelimeyi gerçekten bilmenin yolu onu kullanmak. Burada serbest yazma yapabilirsin."
+msgstr "The way to really know a word is to use it. Here you can do free writing."
+
+msgid "Ana Sayfa'daki seri kutusuna dokun. Bir günü tamamlamak için şunlardan biri yeter: 10 Learn & Pass kartı, 10 egzersiz sorusu ya da 1 metin."
+msgstr "Tap the streak box on Home. One of these completes a day: 10 Learn & Pass cards, 10 exercise questions or 1 text."
+
+msgid "Hemen başla"
+msgstr "Get started"
+
+msgid "Sözlüğe git"
+msgstr "Go to the dictionary"
+
+msgid "Türkçe anlam, örnek cümle, telaffuz"
+msgstr "Turkish meaning, example sentence, pronunciation"
+
+msgid "Çalışmaya başla"
+msgstr "Start practising"
+
+msgid "1, 3, 7 ve 21 gün sonra yeniden sorarız"
+msgstr "We ask again after 1, 3, 7 and 21 days"
+
+msgid "ya da Kısa Sınav: listenden 10 soru →"
+msgstr "or Quick Quiz: 10 questions from your list →"
+
+msgid "Bu hafta"
+msgstr "This week"
+
+msgid "takvim ›"
+msgstr "calendar ›"
+
+msgid "listeye ekleme ve telefonda"
+msgstr "adding to your list and on your phone"
+
+msgid "Bilkent, ODTÜ, Cambridge ve diğer listeler →"
+msgstr "Bilkent, ODTÜ, Cambridge and other lists →"
+
+msgid "Günde birkaç dakika çalıştığın her gün takvimine bir tik düşer."
+msgstr "Every day you study for a few minutes, your calendar gets a tick."
+
+msgid "LearnVocab nasıl çalışır?"
+msgstr "How does LearnVocab work?"
+
+msgid "Sözlük, tekrar, okuma ve yazma: hepsi tek sayfada anlatıldı."
+msgstr "Dictionary, review, reading and writing: all explained on one page."
+
+msgid "Hemen kaydırmaya başla"
+msgstr "Start swiping now"
+
+msgid "Bilip bilmediğine göre kaydır."
+msgstr "Swipe by whether you know it."
+
+msgid "Tekrar et."
+msgstr "Repeat."
+
+msgid "<a href=\"%(adres)s#learnpass_yeni_orani\" class=\"lv-el text-[21px] font-bold underline decoration-1 underline-offset-4\">Ayarlardan</a> yeni kelimeler mi, listendeki kelimeler mi daha çok çıksın, değiştirebilirsin."
+msgstr "In <a href=\"%(adres)s#learnpass_yeni_orani\" class=\"lv-el text-[21px] font-bold underline decoration-1 underline-offset-4\">Settings</a> you can choose whether new words or words from your list come up more."
+
+msgid "kaldığım yere git"
+msgstr "go to my place"
+
+msgid "işarete git"
+msgstr "go to mark"
+
+msgid "işaret koy"
+msgstr "bookmark"
+
+msgid "kaldığım yeri işaretle"
+msgstr "mark where I left off"
+
+msgid "bir kelimeye dokun · vazgeç"
+msgstr "tap a word · cancel"
+
+msgid "İşaret kaldırıldı"
+msgstr "Bookmark removed"
+
+msgid "Kaldığın yer işaretlendi"
+msgstr "Your place is marked"
+
+msgid "Dosya seç"
+msgstr "Choose file"
+
+msgid "Dosya seçilmedi"
+msgstr "No file chosen"
+
+msgid "Bu seviyede kelime yok"
+msgstr "No words at this level"
+
+msgid "Seviyeler"
+msgstr "Levels"
+
+msgid "Günlük"
+msgstr "Everyday"
+
+msgid "Akademik"
+msgstr "Academic"
+
+msgid "ne yazacaksın?"
+msgstr "what will you write?"
+
+msgid "3–8 cümle; yalnızca gerçek hatalar."
+msgstr "3–8 sentences; only real mistakes."
+
+msgid "1–3 paragraf; resmî dil, ihtiyatlı dil ve mantık da denetlenir."
+msgstr "1–3 paragraphs; formal language, hedging and logic are checked too."
+
+msgid "kısa bir metin yaz, geri bildirim al"
+msgstr "write a short text, get feedback"
+
+msgid "1–3 paragraf yaz: resmî dil, kanıta dayalı ve ihtiyatlı."
+msgstr "Write 1–3 paragraphs: formal, evidence-based and cautious."
+
+msgid "1–3 paragraf yeter"
+msgstr "1–3 paragraphs are enough"
+
+msgid "akademik puan"
+msgstr "academic score"
+
+msgid "Anlamı bozan hatalar ve en belirgin akademik sorunlar, en çok 4."
+msgstr "Mistakes that change the meaning and the clearest academic issues, at most 4."
+
+msgid "Dilbilgisi ve bütün akademik kurallar, en çok 8."
+msgstr "Grammar and all academic rules, at most 8."
+
+msgid "Noktalama ve büyük harf de dahil, en çok 12."
+msgstr "Punctuation and capitals included, at most 12."
+
+msgid "Metin biraz uzun oldu. %(n)s karakteri geçmesin (1–3 paragraf yeter)."
+msgstr "The text is a little long. Keep it under %(n)s characters (1–3 paragraphs are enough)."
+
+msgid "Devamını oku"
+msgstr "Read more"
+
+#, python-format
+msgid "Devamını oku: %(baslik)s"
+msgstr "Read more: %(baslik)s"
+
+
+msgid "Çalışma listelerinde"
+msgstr "In your study lists"
+
+#, python-format
+msgid "Learn & Pass'e başlarken “%(ad)s” kelimelerini seçebilirsin."
+msgstr "You can choose the “%(ad)s” words when you start Learn & Pass."
+
+msgid "Bu kelimelerle çalış"
+msgstr "Study these words"
+
+msgid "listeden çıkar"
+msgstr "remove from list"
+
+msgid "bu kelimelerle çalış"
+msgstr "study these words"
+
+msgid "Learn & Pass'te bu kelimelerle kaydır. Liste, Learn & Pass'e başlarken seçebileceğin listelere eklenir."
+msgstr "Swipe through these words in Learn & Pass. The list is added to the lists you can choose when starting Learn & Pass."
+
+msgid "Liste Learn & Pass çalışma listelerinden çıkarıldı."
+msgstr "The list was removed from your Learn & Pass study lists."
+
+msgid "Şu kelimelerle tekrar yap"
+msgstr "Review these words"
+
+msgid "Kelimeler"
+msgstr "Words"
+
+msgid "Listeden çıkar"
+msgstr "Remove from list"
+
+#, python-format
+msgid "“%(ad)s” listesini çıkar"
+msgstr "Remove the “%(ad)s” list"
+
+msgid "Liste çıkarıldı"
+msgstr "List removed"
+
+msgid "Kelimeler nereden gelsin?"
+msgstr "Where should the words come from?"
+
+msgid "seçtiğin liste"
+msgstr "chosen list"
+
+#, python-format
+msgid "Sözlük'teki <a href=\"%(adres)s\" class=\"underline decoration-1 underline-offset-4\">hazır listelerde</a> “Bu listeyle çalış” dersen o liste de burada çıkar."
+msgstr "If you tap “Study this list” on a <a href=\"%(adres)s\" class=\"underline decoration-1 underline-offset-4\">ready-made list</a> in the Dictionary, it shows up here too."
+
+#, python-format
+msgid "%(n)s kelime · listendekiler ve seviyene göre yeni kelimeler"
+msgid_plural "%(n)s kelime · listendekiler ve seviyene göre yeni kelimeler"
+msgstr[0] "%(n)s word · your list plus new words for your level"
+msgstr[1] "%(n)s words · your list plus new words for your level"
+
+msgid "Collocation"
+msgstr "Collocations"
+
+#: LearnVocab/yardim.py
+msgid "\"Bu listeyle çalış\" dersen liste, Learn & Pass'e başlarken seçebileceğin listelere eklenir; haftalara bölünmüş listelerde bir haftayı seçip \"Bu kelimelerle çalış\" diyebilirsin."
+msgstr "Tap \"Study with this list\" and the list is added to the lists you can pick when you start Learn & Pass; in lists split into weeks, pick a week and tap \"Study these words\"."
+
+#: LearnVocab/yardim.py
+msgid "\"Listeme ekle\" ile kelimeyi okurken listene al. Aynı kelimeye yeniden dokununca baloncuk kapanır."
+msgstr "Use \"Add to my list\" to save the word while you read. Tap the same word again to close the bubble."
+
+#: LearnVocab/yardim.py
+msgid "\"işaret koy\"a basıp bir kelimeye dokunursan orası kaldığın yer olur; metne döndüğünde \"işarete git\" seni oraya götürür. İşaret bu cihazda saklanır."
+msgstr "Tap \"bookmark\" and then a word to mark where you stopped; when you come back, \"go to mark\" takes you there. The mark is saved on this device."
+
+#: LearnVocab/yardim.py
+msgid "Ana Sayfa'daki seri kartında \"takvim ›\"a dokun. Bir günü tamamlamak için şunlardan biri yeter: 10 Learn & Pass kartı, 10 egzersiz sorusu ya da 1 metin."
+msgstr "On Home, tap \"calendar ›\" on the streak card. One of these completes a day: 10 Learn & Pass cards, 10 exercise questions or 1 text."
+
+#: LearnVocab/yardim.py
+msgid "Ana Sayfa'daki seri kartında \"takvim ›\"a dokun. Bir günü tamamlamak için şunlardan biri yeter: 10 Learn & Pass kartı, 10 egzersiz sorusu, 1 metin ya da 1 diyalog."
+msgstr "On Home, tap \"calendar ›\" on the streak card. One of these completes a day: 10 Learn & Pass cards, 10 exercise questions, 1 text or 1 dialogue."
+
+#: LearnVocab/yardim.py
+msgid "Bir liste seçince kelimelerin ne kadarının Listem'den, ne kadarının o listeden geleceğini çubukla ayarlarsın. Sonra \"Başla\"."
+msgstr "Once you pick a list, use the slider to set how many words come from My List and how many from that list. Then tap \"Start\"."
+
+#: LearnVocab/yardim.py
+msgid "Görünüm: açık, koyu ya da \"sistem\" (cihazının teması). Üstteki ay/güneş düğmesiyle de değiştirebilirsin. Bu seçim cihazında saklanır."
+msgstr "Appearance: light, dark or \"system\" (your device's theme). You can also switch it with the moon/sun button at the top. This choice is stored on your device."
+
+#: LearnVocab/yardim.py
+msgid "Hazır listeler bir sınava ya da kuruma göre derlenmiş kelime listeleridir. Sözlük'ün ilk sayfasında kurumlara göre gruplanmış dururlar (Bilkent, ODTÜ, Cambridge ve diğerleri)."
+msgstr "Ready-made lists are word lists put together for an exam or an institution. They sit on the first page of the Dictionary, grouped by institution (Bilkent, METU, Cambridge and others)."
+
+#: LearnVocab/yardim.py
+msgid "Hazır listelerde \"Bu listeyle çalış\" dediğin listeler de burada durur; haftalık listelerde hangi hafta olduğu yazar."
+msgstr "Lists you chose with \"Study with this list\" in the ready-made lists are here too; weekly lists show which week."
+
+#: LearnVocab/yardim.py
+msgid "Learn & Pass'te \"Hemen kaydırmaya başla\"ya basınca önce kelimelerin nereden geleceğini seçersin. \"Listem\": listendeki kelimeler ve seviyene göre yeni kelimeler."
+msgstr "When you tap \"Start swiping now\" in Learn & Pass, you first choose where the words come from. \"My List\": the words in your list plus new words for your level."
+
+#: LearnVocab/yardim.py
+msgid "Serbest yazma: önce türü seç: Günlük (3–8 cümle) ya da Akademik (1–3 paragraf; resmî dil, ihtiyatlı dil ve mantık da denetlenir). Türkçe geri bildirim gelir: neyi iyi yaptığın ve gerçek hataların (alıntı → doğrusu → kısa neden), 5 üzerinden bir puanla. Üslup tercihi hata sayılmaz."
+msgstr "Free writing: first pick a type: Everyday (3–8 sentences) or Academic (1–3 paragraphs; formal tone, hedging and logic are checked too). You get feedback in your language: what you did well and your real mistakes (quote → correct form → short reason), with a score out of 5. Style choices don't count as mistakes."
+
+#: LearnVocab/yardim.py
+msgid "Çöp kutusu listeyi bu ekrandan kaldırır."
+msgstr "The bin removes the list from this screen."
+
+#, python-format
+msgid "%(n)s günlük seri, bugün tamam"
+msgid_plural "%(n)s günlük seri, bugün tamam"
+msgstr[0] "%(n)s-day streak, done today"
+msgstr[1] "%(n)s-day streak, done today"
+
+#, python-format
+msgid "%(n)s günlük seri, bugün henüz çalışmadın"
+msgid_plural "%(n)s günlük seri, bugün henüz çalışmadın"
+msgstr[0] "%(n)s-day streak, not yet today"
+msgstr[1] "%(n)s-day streak, not yet today"

@@ -487,6 +487,9 @@ def _bagla(madde, konu=None):
         kelimeler = [w for w in kelimeler if w.text == yazim]          # "March" ay, "march" yürüyüş değil
         anlamlar = [m for w in kelimeler for m in w.meanings.all()]
     if ipucu:
+        if ipucu.startswith("^"):                                       # "memory:n=^bellek": bununla başlayan
+            bas = [m for m in anlamlar if _tr(m.meaning_tr).startswith(_tr(ipucu[1:]))]
+            return (bas[:1], [], None) if bas else ([], [], "ipucu tutmadı")
         tam = ipucu.startswith("=")                                     # "degree==derece": birebir
         ipucu = ipucu.lstrip("=")
         birebir = [m for m in anlamlar if _tr(m.meaning_tr).strip() == _tr(ipucu)]

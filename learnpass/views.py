@@ -26,6 +26,12 @@ Oturum türleri (adresteki `mode`):
   mine  -> yalnızca tekrar adayları    new -> yalnızca yeni kelimeler
 Her kart hangi havuzdan geldiğini (`kaynak`: mine/new) taşır ve karar o
 havuzun adıyla kaydedilir.
+
+"Şu kelimelerle tekrar yap" (Efe, 17 Ekim; learnPassSec): girişli kullanıcı
+"Hemen kaydırmaya başla"ya basınca önce kaynağı seçer: Listem (varsayılan,
+yukarıdaki karma) ya da bir çalışma listesi (words.HazirListeSecimi: hazır
+liste + bölüm). Seçim adreste ?liste=<id> olarak gelir, tur boyunca oturumda
+durur; o turun bütün kartları o listeden gelir (selection.pick_from_secim).
 """
 
 import json
@@ -37,7 +43,6 @@ from django.http import JsonResponse
 from usersettings.anlam import turkce_acik
 from django.utils.translation import gettext_lazy as _
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils import timezone
 from django.views.decorators.http import require_POST
 
 from words.models import UserWordLink, Word
@@ -110,9 +115,15 @@ def card_payload(word, user=None, kaynak=None):
     return kart
 
 
-def next_card(user, mode, haric=()):
-    """Sıradaki kart ya da havuz bittiyse None."""
-    if mode == KARMA:
+def next_card(user, mode, haric=(), secim=None, oran=None):
+    """
+    Sıradaki kart ya da havuz bittiyse None. secim: çalışma listesi
+    (HazirListeSecimi); oran: kartların ne kadarı o listeden (kalanı Listem'in
+    tekrarı; seçim ekranında sorulur, varsayılan Ayarlar'daki oran).
+    """
+    if secim is not None:
+        word, kaynak = selection.pick_secim_karma(user, secim, haric=haric, oran=oran)
+    elif mode == KARMA:
         word, kaynak = selection.pick_mixed(user, haric=haric)
     else:
         word, kaynak = selection.pick_word(user, mode, haric=haric), mode
@@ -156,6 +167,21 @@ def reset_run(session, mode):
     session.modified = True
 
 
+def _liste_key(mode):
+    return f"learnpass_liste_{mode}"
+
+
+def _oran_key(mode):
+    return f"learnpass_liste_orani_{mode}"
+
+
+def _turun_listesi(request, mode):
+    """Bu turda seçilen çalışma listesi (oturumda id olarak durur) ya da None (Listem)."""
+    from words.hazir_liste import calisma_listeleri
+    secim_id = request.session.get(_liste_key(mode))
+    return calisma_listeleri(request.user).filter(id=secim_id).first() if secim_id else None
+
+
 def _gosterilenler(session, mode):
     return session.get(_shown_key(mode)) or []
 
@@ -175,29 +201,16 @@ def _gosterildi(session, mode, kart):
 # ----------------------------------------------------------------------
 
 def acilis_verisi(user):
-    """Açılış ekranı için girişli kullanıcının sayıları (tek yerde)."""
-    bugun = timezone.localtime().replace(hour=0, minute=0, second=0, microsecond=0)
-    bekleyen_tekrar = tekrar.bekleyen_tekrar_sayisi(user)
-    oran = selection.yeni_orani(user, bekleyen_tekrar)
+    """Açılış ekranı için girişli kullanıcının verisi: "geçen sefer" kartı."""
     bekleyenler = list(selection.bekleyen_bilinmeyenler(user).order_by("text")
                        .values("id", "text"))
-    return {
-        "liste_sayisi": UserWordLink.objects.filter(user=user).count(),
-        "bugun_gorulen": EncounterLog.objects.filter(
-            user=user, kind=EncounterLog.VERDICT, created_at__gte=bugun).count(),
-        "bekleyen_tekrar": bekleyen_tekrar,
-        "yeni_yuzde": round(oran * 100),
-        "tekrar_yuzde": 100 - round(oran * 100),
-        "oran_azaldi": oran < selection.kullanici_yeni_orani(user),
-        "gecen_sefer": bekleyenler,
-        "seri": seri_hesap.durum(user),
-    }
+    return {"gecen_sefer": bekleyenler}
 
 
 def learnPassPage(request):
     """
-    Learn & Pass açılış ekranı: istatistik şeridi, slogan, "Hemen Başla",
-    oran notu, "Neden işe yarar". Girişsiz de açık (rapor 2.3).
+    Learn & Pass açılış ekranı: büyük "Hemen kaydırmaya başla", "geçen sefer"
+    kartı, tek satırlık açıklama + Ayarlar bağlantısı. Girişsiz de açık (rapor 2.3).
     """
     context = {
         "active_page": "Learn & Pass",
@@ -241,7 +254,18 @@ def learnPassRun(request, mode):
         return render(request, "pages/learnpass/learnPass.html", context)
 
     reset_run(request.session, mode)
-    ilk = next_card(request.user, mode)
+    # "Şu kelimelerle tekrar yap" ekranından ?liste=<id>: bu tur o çalışma listesinden.
+    from words.hazir_liste import calisma_listeleri
+    secim = calisma_listeleri(request.user).filter(id=request.GET.get("liste") or 0).first() \
+        if (request.GET.get("liste") or "").isdigit() else None
+    request.session[_liste_key(mode)] = secim.id if secim else None
+    # Listeden / Listem'den oranı (yalnızca liste seçilince sorulur; %0–100).
+    oran = None
+    if secim and (request.GET.get("oran") or "").isdigit():
+        oran = min(int(request.GET["oran"]), 100) / 100
+    request.session[_oran_key(mode)] = oran
+    context["calisma_listesi"] = secim
+    ilk = next_card(request.user, mode, secim=secim, oran=oran)
     _gosterildi(request.session, mode, ilk)
     context.update({
         "misafir": False,
@@ -249,6 +273,58 @@ def learnPassRun(request, mode):
         "seri": seri_hesap.bugun(request.user),   # alevli çubuk (rapor 18.9)
     })
     return render(request, "pages/learnpass/learnPass.html", context)
+
+
+def learnPassSec(request):
+    """
+    "Şu kelimelerle tekrar yap" (Efe, 17 Ekim): turdan önce kaynak seçimi.
+    En üstte Listem (varsayılan), altında çalışma listeleri (en son eklenen
+    önce; çöp kutusuyla çıkarılır). ?sec=<id> o listeyi seçili açar ("Bu
+    listeyle çalış"tan gelince). Misafirin listesi yok: doğrudan kart ekranı.
+    """
+    if not request.user.is_authenticated:
+        return redirect("learn_pass_run", mode=KARMA)
+    from words.hazir_liste import calisma_listeleri
+    from words.models import HazirListeKelimesi
+    listeler = list(calisma_listeleri(request.user))
+    for secim in listeler:
+        uyeler = HazirListeKelimesi.objects.filter(liste_id=secim.liste_id)
+        secim.kelime_sayisi = (uyeler.filter(bolum=secim.bolum) if secim.bolum else uyeler).count()
+    sec = request.GET.get("sec") or ""
+    secili = next((m.id for m in listeler if str(m.id) == sec), None)
+    return render(request, "pages/learnpass/kaynakSec.html", {
+        "active_page": "Learn & Pass",
+        "exercise_tab": "learn",
+        "listeler": listeler,
+        "secili": secili,
+        "liste_sayisi": UserWordLink.objects.filter(user=request.user).count(),
+        # Liste seçilince sorulan oranın başlangıcı: Ayarlar'daki yeni kelime oranı (%).
+        "liste_orani": round(selection.kullanici_yeni_orani(request.user) * 100),
+    })
+
+
+@require_POST
+def learnPassListe(request):
+    """
+    Çalışma listesinden çıkarma (çöp kutusu) ve "Geri al".
+      {"islem": "sil", "id": 5}                    -> {"geri": {"liste_id", "bolum"}}
+      {"islem": "geri", "liste_id": 3, "bolum": ""} -> {"id": <yeni id>}
+    """
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "auth"}, status=403)
+    from words import hazir_liste
+    from words.models import HazirListe
+    veri = _body(request)
+    if veri.get("islem") == "geri":
+        liste = HazirListe.objects.filter(id=veri.get("liste_id") or 0, yayinda=True).first()
+        if liste is None:
+            return JsonResponse({"error": "liste"}, status=404)
+        secim = hazir_liste.listeyle_calis(request.user, liste, str(veri.get("bolum") or "")[:80])
+        return JsonResponse({"id": secim.id})
+    geri = hazir_liste.calismadan_cikar(request.user, veri.get("id") or 0)
+    if geri is None:
+        return JsonResponse({"error": "yok"}, status=404)
+    return JsonResponse({"geri": {"liste_id": geri[0], "bolum": geri[1]}})
 
 
 # Egzersizler sekmesi (exercises_page) egzersizler uygulamasına taşındı.
@@ -345,7 +421,8 @@ def learnPassVerdict(request):
     request.session[_history_key(run)] = gecmis[-HISTORY_LIMIT:]
     request.session.modified = True
 
-    kart = next_card(request.user, run, haric=_gosterilenler(request.session, run) + [word.id])
+    kart = next_card(request.user, run, haric=_gosterilenler(request.session, run) + [word.id],
+                     secim=_turun_listesi(request, run), oran=request.session.get(_oran_key(run)))
     _gosterildi(request.session, run, kart)
 
     return JsonResponse({

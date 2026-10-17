@@ -261,31 +261,84 @@ class OranTests(TestCase):
         self.assertAlmostEqual(selection.kullanici_yeni_orani(sahte), 0.5)
 
 
-class HazirListeBaglantiTests(TestCase):
-    """"Bu listeyle çalış" bağlantı noktası: modül yoksa seviye tabanlı kaynak."""
+class CalismaListesiTests(TestCase):
+    """"Şu kelimelerle tekrar yap" (Efe, 17 Ekim): Listem ya da bir çalışma listesi."""
 
     def setUp(self):
-        self.user = User.objects.create_user(username="hazir", password="Sifre1234")
+        from words.models import HazirListe, HazirListeKelimesi
+        self.user = User.objects.create_user(username="calis", password="Sifre1234")
+        self.liste = HazirListe.objects.create(ad="ODTÜ 202 Span 3", slug="odtu-202-span-3", kurum="ODTÜ")
+        self.hafta3 = [kelime_yap(f"weekthree{i}", level="B1") for i in range(3)]
+        self.hafta1 = kelime_yap("weekone", level="B1")
+        HazirListeKelimesi.objects.create(liste=self.liste, word=self.hafta1, sira=0, bolum="1")
+        for i, w in enumerate(self.hafta3, 1):
+            HazirListeKelimesi.objects.create(liste=self.liste, word=w, sira=i, bolum="3")
+        from words.hazir_liste import listeyle_calis
+        self.secim = listeyle_calis(self.user, self.liste, "3")
+        self.client.force_login(self.user)
 
-    def test_modul_yoksa_seviyeye_duser(self):
-        import sys
-        from unittest import mock
+    def test_secim_ekrani_listem_ustte_varsayilan_secili(self):
+        html = self.client.get(reverse("learn_pass_sec")).content.decode()
+        self.assertLess(html.index('data-kaynak="listem"'), html.index(f'data-kaynak="{self.secim.id}"'))
+        self.assertIn('value="" class="lv-kaynak-radyo" checked', html)
+        self.assertIn("3. hafta", html)
+        self.assertIn("data-liste-sil", html)
+        html = self.client.get(reverse("learn_pass_sec"), {"sec": self.secim.id}).content.decode()
+        self.assertIn(f'value="{self.secim.id}" class="lv-kaynak-radyo" checked', html)
 
-        with mock.patch.dict(sys.modules, {"words.hazir_liste": None}):
-            self.assertIsNone(selection.yeni_kelime_havuzu(self.user))
+    def test_hemen_basla_girisliyi_secim_ekranina_misafiri_kartlara_goturur(self):
+        self.assertIn(reverse("learn_pass_sec"), self.client.get(reverse("learn_pass_page")).content.decode())
+        self.client.logout()
+        self.assertRedirects(self.client.get(reverse("learn_pass_sec")),
+                             reverse("learn_pass_run", kwargs={"mode": "karma"}), fetch_redirect_response=False)
 
-    def test_aktif_liste_varsa_ondan_gelir(self):
-        import sys
-        import types
-        from unittest import mock
+    def test_listeyle_turun_butun_kartlari_o_bolumden(self):
+        adres = reverse("learn_pass_run", kwargs={"mode": "karma"})
+        cevap = self.client.get(adres, {"liste": self.secim.id})
+        gelen = [cevap.context["kartlar"][0]["id"]]
+        for _ in range(2):
+            j = self.client.post(reverse("learn_pass_verdict"), json.dumps(
+                {"mode": "karma", "word_id": gelen[-1], "verdict": "unknown", "kaynak": "new"}),
+                content_type="application/json").json()
+            gelen.append(j["card"]["id"])
+        self.assertEqual(sorted(gelen), sorted(w.id for w in self.hafta3))
+        # Bölümün kelimeleri bitince daha önce görülenler (en eski önce) gelir; başka hafta asla.
+        j = self.client.post(reverse("learn_pass_verdict"), json.dumps(
+            {"mode": "karma", "word_id": gelen[-1], "verdict": "known", "kaynak": "new"}),
+            content_type="application/json").json()
+        self.assertIsNone(j["card"])   # üçü de bu turda gösterildi
 
-        listede = kelime_yap("listword", level="C1")
-        kelime_yap("otherword", level="B1")
-        sahte = types.ModuleType("words.hazir_liste")
-        sahte.aktif_liste = lambda user: Word.objects.filter(id=listede.id)
-        with mock.patch.dict(sys.modules, {"words.hazir_liste": sahte}):
-            for _ in range(5):
-                self.assertEqual(selection.pick_word(self.user, "new"), listede)
+    def test_baskasinin_listesi_ya_da_bos_secim_listem_sayilir(self):
+        diger = User.objects.create_user(username="diger", password="Sifre1234")
+        from words.hazir_liste import listeyle_calis
+        onun = listeyle_calis(diger, self.liste, "1")
+        cevap = self.client.get(reverse("learn_pass_run", kwargs={"mode": "karma"}), {"liste": onun.id})
+        self.assertIsNone(cevap.context["calisma_listesi"])
+
+    def test_cop_kutusu_ve_geri_al(self):
+        adres = reverse("learn_pass_liste")
+        geri = self.client.post(adres, json.dumps({"islem": "sil", "id": self.secim.id}),
+                                content_type="application/json").json()["geri"]
+        from words.models import HazirListeSecimi
+        self.assertFalse(HazirListeSecimi.objects.exists())
+        yeni = self.client.post(adres, json.dumps({"islem": "geri", **geri}), content_type="application/json").json()
+        self.assertEqual(HazirListeSecimi.objects.get().id, yeni["id"])
+        self.assertEqual(HazirListeSecimi.objects.get().bolum, "3")
+        # Başkasının listesi silinemez
+        diger = User.objects.create_user(username="diger2", password="Sifre1234")
+        self.client.force_login(diger)
+        self.assertEqual(self.client.post(adres, json.dumps({"islem": "sil", "id": yeni["id"]}),
+                                          content_type="application/json").status_code, 404)
+
+    def test_tekrar_zamani_gelen_hic_gorulmemisten_sonra(self):
+        from learnpass import tekrar as tk
+        for w in self.hafta3[:2]:
+            tk.kaydet(self.user, w, WordEncounter.UNKNOWN, "new")
+        kelime, kaynak = selection.pick_from_secim(self.user, self.secim)
+        self.assertEqual((kelime, kaynak), (self.hafta3[2], "new"))
+        kelime, kaynak = selection.pick_from_secim(self.user, self.secim, haric=[self.hafta3[2].id])
+        self.assertIn(kelime, self.hafta3[:2])
+        self.assertEqual(kaynak, "mine")
 
 
 class LearnPassPageTests(TestCase):
@@ -297,18 +350,19 @@ class LearnPassPageTests(TestCase):
     def test_acilis_ekrani(self):
         self.client.login(username="sayfa", password="Sifre1234")
         html = self.client.get(reverse("learn_pass_page")).content.decode()
-        self.assertIn("Hemen Başla", html)
-        self.assertIn(reverse("learn_pass_run", kwargs={"mode": "karma"}), html)
-        self.assertIn("Neden işe yarar", html)
-        self.assertIn("data-seri", html)   # rapor 18.9
-        self.assertIn("%70 tekrar", html)
-        self.assertIn(reverse("user_profile"), html)   # oran notu -> ayarlar
+        self.assertIn("Hemen kaydırmaya başla", html)
+        self.assertIn(reverse("learn_pass_sec"), html)   # girişli: önce "Şu kelimelerle tekrar yap"
+        self.assertIn("Bilip bilmediğine göre kaydır.", html)
+        self.assertIn(reverse("settings_page") + "#learnpass_yeni_orani", html)   # oran ayarı
+        # Sade açılış (Efe, 17 Ekim): sayı kutuları ve uzun açıklamalar yok.
+        for eski in ("lp-istatistik", "Nasıl oynanır?", "Neden işe yarar", "%70 tekrar"):
+            self.assertNotIn(eski, html)
         self.assertNotIn('data-giris-gerekli="', html)
 
     def test_misafir_acilis_ekraninda_seviye_secimi_yok(self):
         """Rapor 18.3: misafirde seviye seçici yok."""
         html = self.client.get(reverse("learn_pass_page")).content.decode()
-        self.assertIn("Hemen Başla", html)
+        self.assertIn("Hemen kaydırmaya başla", html)
         self.assertNotIn('name="seviye"', html)
         self.assertIn("data-egzersiz-daveti", html)
 
@@ -421,3 +475,45 @@ class MisafirTests(TestCase):
         self.assertRedirects(cevap, reverse("learn_pass_run", kwargs={"mode": "karma"}))
 
 
+
+
+class ListeOraniTests(TestCase):
+    """Liste seçilince sorulan oran: kartların ne kadarı listeden, ne kadarı Listem'den."""
+
+    def setUp(self):
+        from words.hazir_liste import listeyle_calis
+        from words.models import HazirListe, HazirListeKelimesi
+        self.user = User.objects.create_user(username="oran", password="Sifre1234")
+        liste = HazirListe.objects.create(ad="Liste", slug="liste")
+        self.listeden = [kelime_yap(f"fromlist{i}") for i in range(30)]
+        for i, w in enumerate(self.listeden):
+            HazirListeKelimesi.objects.create(liste=liste, word=w, sira=i)
+        self.listemden = [kelime_yap(f"mylist{i}") for i in range(30)]
+        for w in self.listemden:
+            UserWordLink.objects.create(user=self.user, word=w)
+        self.secim = listeyle_calis(self.user, liste)
+
+    def test_oran_secim_ekraninda_ayardan_gelir(self):
+        self.client.force_login(self.user)
+        html = self.client.get(reverse("learn_pass_sec")).content.decode()
+        self.assertIn('name="oran"', html)
+        self.assertIn('value="30" disabled', html)   # varsayılan %30; Listem seçiliyken gönderilmez
+
+    def test_oran_karti_listeden_ya_da_listemden_getirir(self):
+        rng = random.Random(1)
+        sayac = {"liste": 0, "listem": 0}
+        listeden = {w.id for w in self.listeden}
+        for _ in range(200):
+            kelime, _k = selection.pick_secim_karma(self.user, self.secim, rng=rng, oran=0.8)
+            sayac["liste" if kelime.id in listeden else "listem"] += 1
+        self.assertGreater(sayac["liste"], sayac["listem"] * 2)
+        kelime, kaynak = selection.pick_secim_karma(self.user, self.secim, rng=rng, oran=0.0)
+        self.assertEqual(kaynak, "mine")
+        self.assertNotIn(kelime.id, listeden)
+
+    def test_oran_adresten_tura_gecer(self):
+        self.client.force_login(self.user)
+        self.client.get(reverse("learn_pass_run", kwargs={"mode": "karma"}), {"liste": self.secim.id, "oran": "100"})
+        self.assertEqual(self.client.session["learnpass_liste_orani_karma"], 1.0)
+        self.client.get(reverse("learn_pass_run", kwargs={"mode": "karma"}), {"oran": "100"})
+        self.assertIsNone(self.client.session["learnpass_liste_orani_karma"])   # Listem'de oran yok

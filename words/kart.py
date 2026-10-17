@@ -85,6 +85,9 @@ class Kart:
     # Türkçe sorguda ("bitir") kapalı kartta vurgulanan anlam; o anlamın
     # açıklaması da tek satır olarak altında görünür (rapor 4.2).
     eslesen: str = ""
+    # Kapalı kartın özetinde ilk anlam yerine gösterilecek anlam (konu sayfası: o konuya bağlı
+    # anlam — lap Spor'da "tur, çevrim"; Efe, 17 Ekim). 0 ise ilk anlam.
+    ozet_anlam_id: int = 0
 
     @property
     def eslesen_tanim(self):
@@ -96,8 +99,12 @@ class Kart:
 
     @property
     def ozet(self):
-        """Kapalı kartın tek satırı için ilk anlam: 'aim · fiil · hedeflemek · B1' (Türkçe kapalıysa açıklama)."""
-        return (self.anlamlar[0].meaning_tr or self.anlamlar[0].definition) if self.anlamlar else ""
+        """Kapalı kartın tek satırı için ilk anlam (ya da ozet_anlam_id'deki): 'aim · fiil · hedeflemek · B1'
+        (Türkçe kapalıysa açıklama)."""
+        if not self.anlamlar:
+            return ""
+        a = next((a for a in self.anlamlar if a.anlam.id == self.ozet_anlam_id), self.anlamlar[0])
+        return a.meaning_tr or a.definition
 
     @property
     def duzensiz(self):

@@ -76,7 +76,8 @@ class DegerlendirmeYukuTests(TestCase):
             job_id = self._ajax_gonder().json()["job_id"]
         self.assertEqual(self.client.get(reverse("create_text_progress", args=[job_id])).json()["state"],
                          progress.STATE_RUNNING)
-        with patch("texts.views.time.time", return_value=time.time() + 181):
+        from texts.views import EN_UZUN_IS
+        with patch("texts.views.time.time", return_value=time.time() + EN_UZUN_IS + 1):
             durum = self.client.get(reverse("create_text_progress", args=[job_id])).json()
         self.assertEqual(durum["state"], progress.STATE_DONE)
         bitis = self.client.post(reverse("create_text_finish", args=[job_id]))

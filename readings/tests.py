@@ -191,11 +191,11 @@ class RealSourceFilesTests(TestCase):
         self.assertEqual(len(metinler), 40)
 
     def test_every_topic_is_declared_in_the_model(self):
-        from readings.models import TOPIC_LABELS
+        from readings.models import okuma_konulari
 
         konular = {m["topic"] for m in parser.parse_directory(self.klasor)}
-        self.assertEqual(konular - set(TOPIC_LABELS), set(),
-                         "TOPICS listesine eklenmemiş konu var")
+        self.assertEqual(konular - {k["anahtar"] for k in okuma_konulari()}, set(),
+                         "okuma konuları tablosunda olmayan konu var")
 
     def test_numbers_are_unique(self):
         numaralar = [m["number"] for m in parser.parse_directory(self.klasor)]
@@ -207,3 +207,48 @@ class RealSourceFilesTests(TestCase):
             for kalinti in ("İstediğiniz", "sunulmuştur", "aşağıda sırasıyla"):
                 with self.subTest(metin=metin["number"], kalinti=kalinti):
                     self.assertNotIn(kalinti, govde)
+
+
+class OkumaKonusuAdminTests(TestCase):
+    """Admin'den konu ve metin ekleme (Efe, 17 Ekim)."""
+
+    def setUp(self):
+        from users.models import User
+        self.admin = User.objects.create_superuser(username="yonetici", password="Sifre1234", email="y@ornek.com")
+        self.client.login(username="yonetici", password="Sifre1234")
+
+    def test_tasinan_bes_konu_var(self):
+        from readings.models import OkumaKonusu
+        self.assertEqual(list(OkumaKonusu.objects.values_list("anahtar", flat=True)),
+                         ["hukuk", "psikoloji", "sosyoloji", "antropoloji", "egitim"])
+
+    def test_konu_ve_metin_eklenir_sitede_gorunur(self):
+        from django.urls import reverse
+        from readings.models import OkumaKonusu, ReadingText
+        self.client.post(reverse("admin:readings_okumakonusu_add"),
+                         {"ad": "Ekonomi", "anahtar": "ekonomi", "ad_en": "Economics", "ad_de": "",
+                          "renk": "teal", "sira": 6})
+        self.assertTrue(OkumaKonusu.objects.filter(anahtar="ekonomi").exists())
+        form = self.client.get(reverse("admin:readings_readingtext_add")).content.decode()
+        self.assertIn('value="ekonomi"', form)
+        self.client.post(reverse("admin:readings_readingtext_add"), {
+            "number": 500, "title": "Markets and Money", "topic": "ekonomi", "cefr": "B2", "source": "",
+            "body": "First paragraph here.\r\n\r\n\r\nSecond   paragraph, longer one.  \r\n"})
+        metin = ReadingText.objects.get(number=500)
+        self.assertEqual(metin.paragraphs, ["First paragraph here.", "Second   paragraph, longer one."])
+        self.assertEqual(metin.word_count, 7)
+        self.assertEqual(metin.slug, "markets-and-money")
+        self.assertEqual(metin.topic_label, "Ekonomi")
+        sayfa = self.client.get(reverse("readings")).content.decode()
+        self.assertIn("bg-teal-50", sayfa)
+        self.assertIn(">Ekonomi</a>", sayfa)
+        self.assertIn("ekonomi", self.client.get(reverse("readings"), {"konu": "ekonomi"}).content.decode())
+
+    def test_metni_olan_konu_silinemez_anahtari_degismez(self):
+        from django.urls import reverse
+        from readings.models import OkumaKonusu, ReadingText
+        ReadingText.objects.create(number=900, topic="hukuk", title="Law text", body="x", word_count=1)
+        hukuk = OkumaKonusu.objects.get(anahtar="hukuk")
+        self.assertEqual(self.client.get(reverse("admin:readings_okumakonusu_delete", args=[hukuk.pk])).status_code, 403)
+        self.assertNotIn('name="anahtar"', self.client.get(
+            reverse("admin:readings_okumakonusu_change", args=[hukuk.pk])).content.decode())

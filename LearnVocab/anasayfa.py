@@ -5,18 +5,18 @@ Adres: "/" (url adı `index`). Örnek tasarım: ozetler/tasarim-ornekleri/defter
 Misafir de girişli kullanıcı da AYNI zengin defter sayfasını görür; girişlide
 bölümler kendi verisiyle dolar:
 
-  Giriş          misafir: "Kelime defterin, bu sefer yarıda kalmasın."
-                 girişli: selam, bekleyen tekrar sayısı, seri, "Bugünün çalışmasına başla"
+  Giriş          tarih, "Yardım ve hakkında" (hep görünür), selam ya da misafir başlığı, kelime ara
+  Seri kartı     kapibara + seri (dokununca takvim) + bu hafta; girişli: bekleyen tekrar ve
+                 "Bugünün çalışmasına başla"; misafir: "Hesap açmadan dene" ve örnek hafta
+  Bugünün sayfası günün kelimesi ve ifadesi (rapor 18.8), yapışkan not
+  Hemen başla    dört kutu: Sözlük · Çalış · Oku · Yaz (tek satır açıklamalı)
   Defter tablosu misafir: o günün 5 kelimesi (words.gunun.defter_kelimeleri), kaydedilmez
                  girişli: tekrar sırasındaki ilk 5 kelime (yoksa günün 5 kelimesi);
                  "biliyordum / bilmiyordum" Learn & Pass'e kaydedilir (learn_pass_verdict)
-  Bugünün sayfası günün kelimesi ve ifadesi (rapor 18.8), yapışkan not
-  Seri           misafir: açıkça "örnek" yazan takvim; girişli: gerçek son beş hafta (18.9)
-  Misafir        "Defterin yapamadığı dört şey"; girişli: "Bugün başka ne yapsan?"
-  Okumalar       kütüphaneden üç metin
   Eklenti        Chrome eklentisi: çift tıkla, anlamı gör (rapor 11; Web Store adresi EKLENTI_ADRESI)
+  Okumalar       kütüphaneden üç metin
+  Hazır liste    iki örnek yan yana: Academic Word List ve Cambridge B1 Preliminary
   Seviye         A1–C2 sekmeleri (girişlide kendi seviyesi işaretli) + seviye testi
-  Hazır liste    yayındaki ilk liste
   Misafir        sık sorulanlar ve hesap çağrısı
 
 Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
@@ -43,12 +43,14 @@ SEVIYE_TARIFLERI = {
     "B2": _("okuma metinleri, sınavlar"), "C1": _("akademik metinler"), "C2": _("ince ayrıntılar"),
 }
 TABLO_ADET = 5
+# Ana sayfadaki örnek hazır listeler, soldan sağa (Efe, 17 Ekim).
+ORNEK_LISTELER = ("more-to-read-ii-awl", "cambridge-b1-preliminary")
+ORNEK_KELIME = 8
 TAKVIM_HAFTA = 5
 
 
 def ana_sayfa(request):
     user = request.user
-    liste = HazirListe.objects.filter(yayinda=True).first()
     baglam = {
         "eklenti_adresi": settings.EKLENTI_ADRESI,      # rapor 11: Chrome eklentisi bölümü
         "active_page": "Ana Sayfa",
@@ -56,10 +58,7 @@ def ana_sayfa(request):
         "gunun_ifadesi": gunun.ifade_durumu(user),
         "okumalar": list(ReadingText.objects.order_by("number")[:3]),
         "seviyeler": [(s, SEVIYE_TARIFLERI.get(s, "")) for s in CEFR_LEVELS],
-        "hazir_liste": liste,
-        "hazir_liste_kelimeleri": (list(liste.kelimeler.order_by("hazir_liste_uyelikleri__sira")[:8])
-                                   if liste else []),
-        "hazir_liste_sayisi": liste.kelimeler.count() if liste else 0,
+        "ornek_listeler": _ornek_listeler(),
     }
     if user.is_authenticated:
         baglam.update(_girisli_baglam(user))
@@ -67,6 +66,23 @@ def ana_sayfa(request):
         baglam["defter_kartlari"] = kart_verisi(gunun.defter_kelimeleri())
         baglam["defter_kaynak"] = ""
     return render(request, "pages/index.html", baglam)
+
+
+def _ornek_listeler():
+    """[{"liste", "kelimeler" (ilk 8), "kalan"}]; örneklerin hiçbiri yayında değilse yayındaki ilk liste."""
+    yayinda = HazirListe.objects.filter(yayinda=True)
+    listeler = {l.slug: l for l in yayinda.filter(slug__in=ORNEK_LISTELER)}
+    sirali = [listeler[s] for s in ORNEK_LISTELER if s in listeler] or list(yayinda[:1])
+    sonuc = []
+    for l in sirali:
+        kelimeler, gorulen = [], set()      # aynı yazımın iki türü (about edat/zarf) bir kez
+        for w in l.kelimeler.order_by("hazir_liste_uyelikleri__sira")[:ORNEK_KELIME * 3]:
+            if w.text.lower() not in gorulen and len(kelimeler) < ORNEK_KELIME:
+                gorulen.add(w.text.lower())
+                kelimeler.append(w)
+        sonuc.append({"liste": l, "kelimeler": kelimeler,
+                      "kalan": max(l.kelimeler.count() - len(kelimeler), 0)})
+    return sonuc
 
 
 def _girisli_baglam(user):

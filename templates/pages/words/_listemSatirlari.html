@@ -1,48 +1,53 @@
 {% load i18n %}
 {% comment %}
-Listem satırları (rapor 5). İlk sayfa _listem.html içinde, sonrakiler
+Listem fişleri (rapor 5). İlk sayfa _listem.html içinde, sonrakiler
 "Daha fazla göster" ile (?parca=1) bu parça olarak gelir.
 
-Satır: kelime (+ aynı yazımın iki türü listedeyse küçük gri tür etiketi),
-altında numaralı Türkçe anlamlar, yanında "Listemden çıkar". Başka hiçbir şey yok.
-Dokununca aynı kart bileşeni satırın yerinde açılır (/sozluk/kart/<id>/?kapat=olay);
-kartın ⌃ düğmesi satırı geri getirir.
-"Listemden çıkar" kartın liste düğmesiyle aynı mekanizma (base/_kelimeKartiJs.html):
-onay yok, "Geri al" var; satır kelime-listesi olayıyla gizlenip geri gelir.
+Her kelime bantla tutturulmuş bir fiş (static/css/defter.css "kelime fişleri"):
+bantta seviye (renkli; yalnızca süs, filtre değil), üstte kelime (+ aynı yazımın
+iki türü listedeyse küçük tür etiketi) ve "✗ çıkar", kırmızı çizginin altında
+çizgili satırlarda Türkçe anlamlar (birden çoksa numaralı; tek anlamda numara yok).
+Dokununca aynı kart bileşeni fişin yerinde, tam genişlikte açılır
+(/sozluk/kart/<id>/?kapat=olay); kartın ⌃ düğmesi fişi geri getirir.
+"✗ çıkar" kartın liste düğmesiyle aynı mekanizma (base/_kelimeKartiJs.html):
+onay yok, "Geri al" var; fiş kelime-listesi olayıyla gizlenip geri gelir.
 {% endcomment %}
 {% for s in satirlar %}
-<li data-listem-satiri data-id="{{ s.id }}" x-data="{ acik: false }" @kart-kapat="acik = false">
-    <div x-show="!acik" class="flex items-start gap-3 py-3.5">
-        <input type="checkbox" x-show="sec" x-cloak :checked="secili.includes({{ s.id }})" @click="degistir({{ s.id }})"
-               aria-label="{% blocktranslate with kelime=s.text %}{{ kelime }} seç{% endblocktranslate %}" class="mt-1.5 h-5 w-5 shrink-0 rounded-sm border-2 border-indigo-600 text-indigo-600 focus:ring-indigo-500">
-        <button type="button" @click="dokun({{ s.id }}, $el.closest('[data-listem-satiri]'))"
-                class="grid min-w-0 flex-1 grid-cols-[44%_minmax(0,1fr)] text-left">
-            <span class="pr-3">
-                <span lang="en" class="lv-serif block break-words text-[18px] font-bold leading-tight sm:text-[21px]">{{ s.text }}</span>{% if s.tur %}<span class="text-sm text-gray-600 dark:text-slate-300" data-tur>{{ s.tur }}</span>{% endif %}
-            </span>
+<li data-listem-satiri data-id="{{ s.id }}" class="lv-kfis" data-sv="{{ s.cefr }}" :class="acik && 'lv-tam'"
+    x-data="{ acik: false }" @kart-kapat="acik = false">
+    <div x-show="!acik">
+        <span class="lv-kfis-bant" aria-hidden="true">{{ s.cefr }}</span>
+        <div class="lv-kfis-bas">
+            <input type="checkbox" x-show="sec" x-cloak :checked="secili.includes({{ s.id }})" @click="degistir({{ s.id }})"
+                   aria-label="{% blocktranslate with kelime=s.text %}{{ kelime }} seç{% endblocktranslate %}" class="mt-1.5 h-5 w-5 shrink-0 rounded-sm border-2 border-indigo-600 text-indigo-600 focus:ring-indigo-500">
+            <button type="button" @click="dokun({{ s.id }}, $el.closest('[data-listem-satiri]'))" class="min-w-0 flex-1 text-left">
+                <span lang="en" class="lv-kfis-kelime">{{ s.text }}</span>{% if s.tur %} <span class="text-sm text-gray-600 dark:text-slate-300" data-tur>{{ s.tur }}</span>{% endif %}
+            </button>
+            <button type="button" x-show="!sec"
+                    data-kelime-liste
+                    data-kelime-id="{{ s.id }}"
+                    data-kelime-yazi="{{ s.text }}"
+                    data-listede="1"
+                    data-ekle-url="{% url 'add_to_my_list' s.id %}"
+                    data-cikar-url="{% url 'remove_from_my_list' s.id %}"
+                    aria-pressed="true" title="{% translate "Listemden çıkar" %}"
+                    class="lv-el shrink-0 pt-1 text-[19px] font-bold !text-gray-500 transition-transform hover:-rotate-3 hover:!text-red-700 disabled:opacity-60 dark:!text-slate-400">
+                <span data-listede-yazi>✗ {% translate "çıkar" %}</span><span data-ekle-yazi hidden>+ {% translate "ekle" %}</span>
+            </button>
+        </div>
+        <button type="button" @click="dokun({{ s.id }}, $el.closest('[data-listem-satiri]'))" tabindex="-1" aria-hidden="true" class="block w-full text-left">
             {% if s.anlamlar %}
-            <ol class="space-y-0.5 border-l border-dashed border-[color:var(--satir)] pl-3 text-base font-semibold text-indigo-700 dark:text-indigo-300">
-                {% for anlam in s.anlamlar %}<li><span class="lv-el mr-1 text-[20px]">{{ forloop.counter }}</span>{{ anlam }}</li>{% endfor %}
+            <ol class="lv-kfis-anlamlar">
+                {% for anlam in s.anlamlar %}<li>{% if s.anlamlar|length > 1 %}<span class="lv-listem-no">{{ forloop.counter }}</span>{% endif %}{{ anlam }}</li>{% endfor %}
             </ol>
-            {% else %}<span></span>{% endif %}
-        </button>
-        <button type="button" x-show="!sec"
-                data-kelime-liste
-                data-kelime-id="{{ s.id }}"
-                data-kelime-yazi="{{ s.text }}"
-                data-listede="1"
-                data-ekle-url="{% url 'add_to_my_list' s.id %}"
-                data-cikar-url="{% url 'remove_from_my_list' s.id %}"
-                aria-pressed="true" title="{% translate "Listemden çıkar" %}"
-                class="lv-el shrink-0 px-1 text-[19px] font-bold !text-gray-500 hover:!text-red-700 disabled:opacity-60 dark:!text-slate-400">
-            <span data-listede-yazi>✗ {% translate "çıkar" %}</span><span data-ekle-yazi hidden>+ {% translate "ekle" %}</span>
+            {% else %}<span class="block h-9"></span>{% endif %}
         </button>
     </div>
     <div x-show="acik" x-cloak data-kart-yuva class="p-2"></div>
 </li>
 {% endfor %}
 {% if devam_adresi %}
-<li data-listem-devam class="py-4 text-center">
+<li data-listem-devam class="lv-tam py-4 text-center">
     <button type="button" data-adres="{{ devam_adresi }}" @click="devam($el)"
             class="lv-el text-[22px] font-bold underline decoration-1 underline-offset-4 disabled:opacity-50">{% translate "Daha fazla göster" %}</button>
 </li>

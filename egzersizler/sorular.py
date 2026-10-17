@@ -60,17 +60,18 @@ TIP_ILISKI = "iliski"
 TIP_BAGLAC = "baglac"
 TIP_ESDIZIM = "esdizim"
 
-# Deneme Sınavı'nın tip seçiminde görünen sıra, adlar ve açılış ekranındaki
-# minicik örnek (ne tür bir soru olduğu bir bakışta anlaşılsın; defter teması, rapor 18.12).
+# Deneme Sınavı'nın tip seçiminde görünen sıra (Efe, 17 Ekim: Karışık · anlam · açıklama ·
+# biçim · bağlaç · eş dizim · 2./3. hâller · eşleştirme; eş/zıt listede yoktu, sona kondu),
+# adlar ve açılış ekranındaki minicik örnek (ne tür bir soru olduğu bir bakışta anlaşılsın; defter teması, rapor 18.12).
 TIPLER = {
     TIP_ANLAM: {"ad": gettext_lazy("Kelime ↔ anlam"), "not": gettext_lazy("Listenden, iki yönlü"), "ornek": "reluctant → isteksiz"},
     TIP_ACIKLAMA: {"ad": gettext_lazy("Kelime ↔ İngilizce açıklama"), "not": gettext_lazy("Listenden"), "ornek": "unwilling to do sth → reluctant"},
-    TIP_ESLESTIRME: {"ad": gettext_lazy("Eşleştirme"), "not": gettext_lazy("Listenden, dört kelime bir arada"), "ornek": gettext_lazy("4 kelime ⇄ 4 anlam")},
-    TIP_FIIL: {"ad": gettext_lazy("2. ve 3. hâller"), "not": gettext_lazy("go · went · gone gibi, listeden bağımsız"), "ornek": "go · ___ · gone"},
     TIP_BICIM: {"ad": gettext_lazy("Hangi biçimi gelir?"), "not": gettext_lazy("Seviyendeki kelime aileleri"), "ornek": "She sang ___. (happy / happily)"},
-    TIP_ILISKI: {"ad": gettext_lazy("Eş / zıt / daha basit"), "not": gettext_lazy("Listende olmayan kelimeler"), "ornek": "big = large · hot ≠ cold"},
     TIP_BAGLAC: {"ad": gettext_lazy("Bağlaç ve ifadeler"), "not": gettext_lazy("Seviyene göre cümleler"), "ornek": "___, it was cheap. (However)"},
-    TIP_ESDIZIM: {"ad": gettext_lazy("Eş dizim"), "not": "make, take, do, give, have", "ornek": "___ a decision → make"},
+    TIP_ESDIZIM: {"ad": gettext_lazy("Collocation"), "not": "make, take, do, give, have", "ornek": "___ a decision → make"},
+    TIP_FIIL: {"ad": gettext_lazy("2. ve 3. hâller"), "not": gettext_lazy("go · went · gone gibi, listeden bağımsız"), "ornek": "go · ___ · gone"},
+    TIP_ESLESTIRME: {"ad": gettext_lazy("Eşleştirme"), "not": gettext_lazy("Listenden, dört kelime bir arada"), "ornek": gettext_lazy("4 kelime ⇄ 4 anlam")},
+    TIP_ILISKI: {"ad": gettext_lazy("Eş / zıt / daha basit"), "not": gettext_lazy("Listende olmayan kelimeler"), "ornek": "big = large · hot ≠ cold"},
 }
 
 KARISIK = "karisik"

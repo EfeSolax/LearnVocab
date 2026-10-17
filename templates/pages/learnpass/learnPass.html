@@ -348,11 +348,7 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
             ? '{{ _("Sağa kaydır: evet, eminim · Sola kaydır: hayır, yanılmışım")|escapejs }}'
             : '{{ _("Devam etmek için kaydır")|escapejs }}';
         ilerlemeyiGoster();
-        // Küçük ekranda balon görünür olsun
-        setTimeout(function () {
-            var alt = acilim.getBoundingClientRect().bottom;
-            if (alt > window.innerHeight - 80) { acilim.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-        }, 340);
+        // Sayfa kendiliğinden kaydırılmaz (Efe, 17 Ekim): balon açılıp kapandıkça aşağı-yukarı gitmesi rahatsız ediyordu
     }
 
     function kartKonumu(dx, gecisli) {

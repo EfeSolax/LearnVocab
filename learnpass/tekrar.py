@@ -24,10 +24,18 @@ başarısız) + aralığı dolmuş bilinenler + listede olup hiç görülmemişl
   3. Zaman eşitse zorlanma oranı yüksek olan önce.
   4. Hâlâ eşitse rastgele.
 
+AİLE ARALAMA (aileye_gore_sirala, aileleri_arala)
+-------------------------------------------------
+Aynı aileden (Word.family) kelimeler bir turda art arda gelmesin
+(decide → decision gibi; biri ötekini ele verir). Sıradaki kart seçilirken
+turda henüz ailesi görünmemiş aday öne alınır; hepsinin ailesi görünmüşse
+ailesi en uzun süre önce görünen seçilir. Öncelik sırası bunun dışında
+korunur. Misafir turu baştan hazırlandığı için aynı ailedekiler tur içinde
+birbirinden olabildiğince uzağa dağıtılır.
+
 YENİ KELİME (yeni_kelime)
 -------------------------
-Günde en çok 15. Hazır liste seçildiyse ondan; yoksa kullanıcının seviyesi
-çevresinden, sıklık ağırlıklı (sık kelime daha sık çıkar, rapor 18.16/3).
+Günde en çok 15. Kullanıcının seviyesi çevresinden, sıklık ağırlıklı (sık kelime daha sık çıkar, rapor 18.16/3).
 Nadir türler (dog fiil…) yalnızca C1–C2 kullanıcılara gelir.
 """
 
@@ -157,6 +165,82 @@ def _uygun_q(simdi):
     return Q(son_basarili=False) | Q(sonraki_tekrar__isnull=True) | Q(sonraki_tekrar__lte=simdi)
 
 
+# ----------------------------------------------------------------------
+# Aile aralama
+# ----------------------------------------------------------------------
+
+# Sıradaki kart için bakılan aday sayısı (öncelik sırasının başı yeter).
+ARALAMA_ADAY_SINIRI = 200
+
+
+def _aileler(idler):
+    return dict(Word.objects.filter(id__in=list(idler)).values_list("id", "family_id"))
+
+
+def aile_mesafeleri(gosterilenler):
+    """
+    Turda görünen aileler -> kaç kart önce görüldüğü (1 = bir önceki kart).
+    gosterilenler: turda gösterilen kelime id'leri, eskiden yeniye.
+    """
+    gosterilenler = list(gosterilenler)
+    aile = _aileler(gosterilenler)
+    mesafe = {}
+    for i, wid in enumerate(reversed(gosterilenler), start=1):
+        fid = aile.get(wid)
+        if fid is not None and fid not in mesafe:
+            mesafe[fid] = i
+    return mesafe
+
+
+def aileye_gore_sirala(idler, gosterilenler):
+    """
+    Öncelik sırasını bozmadan, ailesi turda henüz görünmemiş adayları öne,
+    ailesi yakın zamanda görünenleri arkaya alır.
+    """
+    idler = list(idler)
+    gosterilenler = list(gosterilenler)
+    if not idler or not gosterilenler:
+        return idler
+    mesafe = aile_mesafeleri(gosterilenler)
+    bas = idler[:ARALAMA_ADAY_SINIRI]
+    aile = _aileler(bas)
+
+    def anahtar(wid):
+        fid = aile.get(wid)
+        return (1, -mesafe[fid]) if fid in mesafe else (0, 0)
+
+    return sorted(bas, key=anahtar) + idler[ARALAMA_ADAY_SINIRI:]
+
+
+def aileleri_arala(idler, aile=None):
+    """
+    Baştan hazırlanan bir turu (misafir) aynı ailedekiler birbirinden
+    olabildiğince uzak düşecek biçimde yeniden dizer. Kalabalık aile önce
+    yerleşir: üyeleri boş yerlere eşit aralıkla dağıtılır; tek kişilik
+    aileler kalan yerleri özgün sırayla doldurur.
+    aile: {id: aile id} (verilmezse veritabanından okunur).
+    """
+    idler = list(idler)
+    if aile is None:
+        aile = _aileler(idler)
+    gruplar = {}
+    for wid in idler:
+        gruplar.setdefault(aile.get(wid, ("tek", wid)), []).append(wid)
+    bos = list(range(len(idler)))
+    sira = [None] * len(idler)
+    for grup in sorted(gruplar.values(), key=len, reverse=True):
+        if len(grup) == 1:
+            break
+        yerler = [bos[j * len(bos) // len(grup)] for j in range(len(grup))]
+        for yer, wid in zip(yerler, grup):
+            sira[yer] = wid
+        bos = [y for y in bos if y not in yerler]
+    tekler = iter([w for w in idler if len(gruplar[aile.get(w, ("tek", w))]) == 1])
+    for yer in bos:
+        sira[yer] = next(tekler)
+    return sira
+
+
 def tekrar_sirasi(user, simdi=None, rng=None, haric=()):
     """Şu an tekrar adayı olan kelimelerin id'leri, öncelik sırasıyla."""
     simdi = simdi or timezone.now()
@@ -182,7 +266,8 @@ def bekleyen_tekrar_sayisi(user, simdi=None):
 
 
 def siradaki_tekrar(user, rng=None, haric=()):
-    sira = tekrar_sirasi(user, rng=rng, haric=haric)
+    """haric: turda gösterilenler, eskiden yeniye (aile aralaması buna bakar)."""
+    sira = aileye_gore_sirala(tekrar_sirasi(user, rng=rng, haric=haric), haric)
     return Word.objects.filter(id=sira[0]).first() if sira else None
 
 
@@ -251,22 +336,32 @@ def _yeni_havuz(user, seviye=None):
     return qs
 
 
+def _aileden_uzak(adaylar, mesafe):
+    """
+    [(id, sıklık, aile)] -> [(id, sıklık)]: ailesi turda görünmemişler;
+    hiçbiri kalmıyorsa ailesi en uzun süre önce görünenler.
+    """
+    if not adaylar:
+        return []
+    en_uzak = max(mesafe.get(fid, float("inf")) for _, _, fid in adaylar)
+    return [(wid, s) for wid, s, fid in adaylar if mesafe.get(fid, float("inf")) == en_uzak]
+
+
 def yeni_kelime(user, rng=None, haric=()):
-    """Sıradaki yeni kelime ya da None (günlük sınır doldu / havuz bitti)."""
+    """
+    Sıradaki yeni kelime ya da None (günlük sınır doldu / havuz bitti).
+    haric: turda gösterilenler, eskiden yeniye; ailesi turda görünmüş
+    kelimeler mümkünse seçilmez (aile aralama).
+    """
     rng = rng or random
     if bugun_yeni_sayisi(user) >= GUNLUK_YENI_SINIRI:
         return None
     haric = list(haric)
-
-    from .selection import yeni_kelime_havuzu
-    liste_havuzu = yeni_kelime_havuzu(user)
-    if liste_havuzu is not None:
-        adaylar = list(liste_havuzu.exclude(id__in=haric).values_list("id", "siklik")[:3000])
-        if adaylar:
-            return Word.objects.filter(id=_agirlikli_orneklem(adaylar, 1, rng)[0]).first()
+    mesafe = aile_mesafeleri(haric)
 
     for seviye in _seviye_sirasi(user, rng):
-        adaylar = list(_yeni_havuz(user, seviye).exclude(id__in=haric).values_list("id", "siklik"))
+        adaylar = _aileden_uzak(list(_yeni_havuz(user, seviye).exclude(id__in=haric)
+                                     .values_list("id", "siklik", "family_id")), mesafe)
         if adaylar:
             return Word.objects.filter(id=_agirlikli_orneklem(adaylar, 1, rng)[0]).first()
     return None
@@ -303,6 +398,7 @@ def misafir_kelimeleri(adet, rng=None):
     rng.shuffle(secilen)
     kelimeler = {k.id: k for k in Word.objects.filter(id__in=secilen)
                  .prefetch_related("meanings__examples")}
+    secilen = aileleri_arala(secilen, {i: k.family_id for i, k in kelimeler.items()})
     return [kelimeler[i] for i in secilen if i in kelimeler]
 
 

@@ -13,6 +13,7 @@ v1.0'daki /words/word-detail/<id>/ kimlikleri yeni veritabanında geçerli
 değil (kelimeler baştan üretildi); bu adresler Sözlük'e yönlenir.
 """
 
+from django.conf import settings
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import path, reverse
@@ -81,7 +82,8 @@ urlpatterns = [
     path("texts/", _yonlendir("profile_texts")),
     path("texts/yaz/", _yonlendir("new_text_page")),
     path("texts/puanlama/", _yonlendir("about_grading_page")),
-    path("texts/diyalog/", _yonlendir("diyalog_page")),
+    # Diyalog kapalıyken (settings.DIYALOG_ACIK) eski adres Yazılar'a gider.
+    path("texts/diyalog/", _yonlendir("diyalog_page" if settings.DIYALOG_ACIK else "profile_texts")),
     path("texts/<int:text_id>/", _ayni_parcalarla("review_text")),
     path("texts/texts/new-text/", _yonlendir("new_text_page")),
     path("texts/texts/about-grading/", _yonlendir("about_grading_page")),

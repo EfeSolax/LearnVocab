@@ -15,7 +15,7 @@ Dosya biçimi — her satır bir metin:
   - title ve paragraphs (ya da boş satırla ayrılmış tek "body") zorunlu.
   - number verilmezse aynı başlıklı kayıt güncellenir; yoksa en büyük
     numaranın bir fazlası verilir. Tekrar çalıştırmak güvenli.
-  - topic: readings.models.TOPICS'teki anahtarlardan biri olmalı; olmayan
+  - topic: okuma konuları tablosundaki (admin) anahtarlardan biri olmalı; olmayan
     konu uyarı verir (görünen adı anahtarın kendisi, rengi gri olur).
   - cefr: A1–C2 ya da boş.
 
@@ -29,7 +29,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from django.db.models import Max
 
-from readings.models import TOPIC_LABELS, ReadingText, paragraflara_bol
+from readings.models import ReadingText, okuma_konulari, paragraflara_bol
 from words.models import CEFR_LEVELS
 
 
@@ -95,10 +95,11 @@ class Command(BaseCommand):
         numaralar = [m["number"] for m in metinler if m["number"] is not None]
         if len(numaralar) != len(set(numaralar)):
             raise CommandError("Dosyada aynı numara birden çok kez geçiyor.")
-        bilinmeyen = {m["topic"] for m in metinler} - set(TOPIC_LABELS)
+        bilinmeyen = {m["topic"] for m in metinler} - {k["anahtar"] for k in okuma_konulari()}
         if bilinmeyen:
             self.stdout.write(self.style.WARNING(
-                "Uyarı: TOPICS listesinde olmayan konu(lar): " + ", ".join(sorted(bilinmeyen))))
+                "Uyarı: okuma konuları tablosunda (admin › Okuma konuları) olmayan konu(lar): "
+                + ", ".join(sorted(bilinmeyen))))
 
         eklenen = guncellenen = degismeyen = 0
         with transaction.atomic():

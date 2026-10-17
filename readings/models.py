@@ -14,19 +14,80 @@ from django.utils.translation import gettext_lazy as _
 from users.models import User
 
 
-# Konu anahtarı -> (görünen ad, renk sınıfı kökü)
-# Renkler liste sayfasında konuları birbirinden ayırmak için.
-TOPICS = (
-    ("hukuk", _("Hukuk"), "indigo"),
-    ("psikoloji", _("Psikoloji"), "violet"),
-    ("sosyoloji", _("Sosyoloji"), "emerald"),
-    ("antropoloji", _("Antropoloji"), "amber"),
-    ("egitim", _("Eğitim"), "rose"),
-)
+# Okuma konuları admin'den yönetilir (OkumaKonusu, Efe 17 Ekim). Renk, Tailwind'in derlediği
+# renklerden biri olmalı (tailwind.config.js safelist ile aynı liste).
+RENKLER = ("indigo", "emerald", "amber", "rose", "sky", "teal", "orange", "lime", "fuchsia", "cyan", "pink")
+_KONU_ONBELLEK = "okuma-konulari"
 
-TOPIC_CHOICES = [(anahtar, ad) for anahtar, ad, _ in TOPICS]
-TOPIC_LABELS = {anahtar: ad for anahtar, ad, _ in TOPICS}
-TOPIC_COLORS = {anahtar: renk for anahtar, _, renk in TOPICS}
+
+class OkumaKonusu(models.Model):
+    """Kütüphanedeki okuma metinlerinin konusu (Hukuk, Psikoloji …). Admin'den eklenir."""
+
+    anahtar = models.SlugField(max_length=20, unique=True,
+                               help_text="Adreste ve kayıtta kullanılan kısa ad (ör. ekonomi). Sonradan değiştirme.")
+    ad = models.CharField(max_length=60, verbose_name="ad (Türkçe)")
+    ad_en = models.CharField(max_length=60, blank=True, verbose_name="ad (İngilizce)")
+    ad_de = models.CharField(max_length=60, blank=True, verbose_name="ad (Almanca)")
+    renk = models.CharField(max_length=10, choices=[(r, r) for r in RENKLER], default="indigo")
+    sira = models.PositiveIntegerField(default=0, help_text="Konu düğmelerinin sırası (küçük önce).")
+
+    class Meta:
+        ordering = ("sira", "ad")
+        verbose_name = "okuma konusu"
+        verbose_name_plural = "okuma konuları"
+
+    def __str__(self):
+        return self.ad
+
+    @property
+    def yerel_ad(self):
+        from django.utils.translation import get_language
+        dil = (get_language() or "tr")[:2]
+        return (getattr(self, f"ad_{dil}", "") if dil != "tr" else "") or self.ad
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        _konu_onbellegini_sil()
+
+    def delete(self, *args, **kwargs):
+        sonuc = super().delete(*args, **kwargs)
+        _konu_onbellegini_sil()
+        return sonuc
+
+
+def _konu_onbellegini_sil():
+    from django.core.cache import cache
+    cache.delete(_KONU_ONBELLEK)
+
+
+def okuma_konulari():
+    """[{anahtar, ad (Türkçe), ad_en, ad_de, renk}] sırasıyla; önbellekte (her metin satırı sorgu açmasın)."""
+    from django.core.cache import cache
+    konular = cache.get(_KONU_ONBELLEK)
+    if konular is None:
+        konular = list(OkumaKonusu.objects.values("anahtar", "ad", "ad_en", "ad_de", "renk"))
+        cache.set(_KONU_ONBELLEK, konular, 600)
+    return konular
+
+
+def _yerel(konu):
+    from django.utils.translation import get_language
+    dil = (get_language() or "tr")[:2]
+    return (konu.get(f"ad_{dil}") if dil != "tr" else "") or konu["ad"]
+
+
+def konu_listesi():
+    """Sayfadaki konu düğmeleri: [{anahtar, ad (sayfanın dilinde), renk}]."""
+    return [{"anahtar": k["anahtar"], "ad": _yerel(k), "renk": k["renk"]} for k in okuma_konulari()]
+
+
+def konu_adi(anahtar):
+    return next((_yerel(k) for k in okuma_konulari() if k["anahtar"] == anahtar), anahtar)
+
+
+def konu_rengi(anahtar):
+    return next((k["renk"] for k in okuma_konulari() if k["anahtar"] == anahtar), "slate")
+
 
 # Ortalama okuma hızı (kelime/dakika). Yetişkin bir okur ana dilinde ~250,
 # yabancı dilde belirgin biçimde daha yavaş okur; hazırlık seviyesi için
@@ -45,7 +106,8 @@ class ReadingText(models.Model):
     # Kitaptaki sıra numarası. Kaydın kalıcı kimliği bu.
     number = models.PositiveIntegerField(unique=True)
 
-    topic = models.CharField(max_length=20, choices=TOPIC_CHOICES)
+    # OkumaKonusu.anahtar (seçenekler admin formunda tablodan gelir; sütun düz metin kaldı)
+    topic = models.CharField(max_length=20, verbose_name="konu")
     title = models.CharField(max_length=200)
 
     # Paragraflar boş satırla ayrılmış olarak tutuluyor; ayrı bir tablo
@@ -101,11 +163,11 @@ class ReadingText(models.Model):
 
     @property
     def topic_label(self):
-        return TOPIC_LABELS.get(self.topic, self.topic)
+        return konu_adi(self.topic)
 
     @property
     def topic_color(self):
-        return TOPIC_COLORS.get(self.topic, "slate")
+        return konu_rengi(self.topic)
 
     @property
     def reading_minutes(self):

@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% comment %}
-Yazma (ürün raporu 9): iki çalışma (Serbest yazma · Diyalogda doğru kelime)
+Yazma (ürün raporu 9): Serbest yazma (Diyalogda doğru kelime DIYALOG_ACIK ile; şimdilik kapalı)
 ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 "Henüz değerlendirilmedi" etiketiyle durur; eski (100 puanlık) kayıtlar gri
 "Eski değerlendirme" etiketiyle.
@@ -19,9 +19,9 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 <span class="lv-alt-baslik mt-1">{% translate "bir kelimeyi gerçekten bilmenin yolu: kullanmak" %}</span>
 
 {% if misafir %}
-{# Misafir (rapor 18.3): serbest yazma yok; diyalog egzersizi ve tek bir davet. #}
-<div class="mt-10 grid items-start gap-9 sm:grid-cols-2" data-misafir-yazilar>
-    {% include 'pages/texts/_diyalogNotu.html' %}
+{# Misafir (rapor 18.3): serbest yazma yok; tek bir davet (diyalog açıksa yanında diyalog). #}
+<div class="mt-10 grid items-start gap-9 {% if diyalog_acik %}sm:grid-cols-2{% else %}max-w-xl{% endif %}" data-misafir-yazilar>
+    {% if diyalog_acik %}{% include 'pages/texts/_diyalogNotu.html' %}{% endif %}
     <div class="lv-sayfa lv-bantli p-6">
         <p class="lv-el text-[24px] font-bold">{% translate "serbest yazma" %}</p>
         <p class="mt-2 text-lg text-gray-700 dark:text-slate-300" data-misafir-daveti>
@@ -32,7 +32,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
 </div>
 {% else %}
 
-<div class="mt-10 grid items-start gap-9 sm:grid-cols-2">
+<div class="mt-10 grid items-start gap-9 {% if diyalog_acik %}sm:grid-cols-2{% else %}max-w-xl{% endif %}">
     {# ---------- Serbest yazma: çizgili kâğıt ---------- #}
     <div class="lv-sayfa lv-bantli overflow-hidden">
         <div class="bg-[repeating-linear-gradient(transparent_0_31px,var(--satir)_31px_32px)] px-6 pb-6 pt-7">
@@ -40,7 +40,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
             <p class="text-lg leading-8 text-gray-800 dark:text-slate-200">{% translate "3–8 cümle yaz, Türkçe geri bildirim al: neyi iyi yaptığını ve gerçek hataları." %}</p>
             <p class="lv-metin text-lg italic leading-8 text-gray-500 dark:text-slate-400" lang="en">Last week I finally…</p>
             {% if yazabilir %}
-                <a href="{% url 'new_text_page' %}" class="lv-dugme mt-5">{% translate "Yazmaya başla" %}</a>
+                <a href="{% url 'new_text_page' %}" class="lv-dugme mt-5" data-yazmaya-basla>{% translate "Yazmaya başla" %}</a>
                 {% if kalan_hak is not None %}
                 <p class="lv-el mt-3 text-[21px]">{% blocktranslate count n=kalan_hak %}bugün {{ n }} metin daha yazabilirsin{% plural %}bugün {{ n }} metin daha yazabilirsin{% endblocktranslate %}</p>
                 {% endif %}
@@ -50,8 +50,8 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
         </div>
     </div>
 
-    {# ---------- Diyalog: mavi not ---------- #}
-    {% include 'pages/texts/_diyalogNotu.html' %}
+    {# ---------- Diyalog: mavi not (DIYALOG_ACIK; sonraki sürüme saklandı) ---------- #}
+    {% if diyalog_acik %}{% include 'pages/texts/_diyalogNotu.html' %}{% endif %}
 </div>
 
 {# ---------- Yazılarım ---------- #}
@@ -69,7 +69,7 @@ ve altında "Yazılarım" listesi. Değerlendirilemeyen metin listede sarı
                 <div class="min-w-0 flex-1">
                     <p class="lv-metin truncate text-lg text-gray-900 dark:text-slate-100" lang="en">{{ yazi.content|truncatechars:90 }}</p>
                     <p class="mt-0.5 text-sm text-gray-600 dark:text-slate-300">
-                        {{ yazi.createdAt|date:"j F Y" }}{% if yazi.konu %} · {{ yazi.konu }}{% endif %}
+                        {{ yazi.createdAt|date:"j F Y" }}{% if yazi.tur == "akademik" %} · <span class="font-semibold text-indigo-700 dark:text-indigo-300">{% translate "Akademik" %}</span>{% endif %}{% if yazi.konu %} · {{ yazi.konu }}{% endif %}
                     </p>
                 </div>
                 <div class="shrink-0">

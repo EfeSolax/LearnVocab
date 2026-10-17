@@ -1,0 +1,195 @@
+# 17 Ekim: veri/kalite_olcumu/gemini-tum-veritabani-duzeltmeleri.tsv için Claude kararı (Efe: iyileri uygula; edat sık kullanılıyorsa eklenir)
+tablo	kayit_id	kelime	tur	alan_veya_islem	mevcut_deger	onerilen_deger	neden
+words_meaning	9873	bargain	verb	UPDATE meaning_tr	pazarlık yapmak, pazarlığa oturmak	(with ile) pazarlık yapmak, pazarlığa oturmak	Claude t serisinde BIRAK dedi: Bargain with kullanımı belirtildi
+words_meaning	8062	beef	verb	UPDATE meaning_tr	yakınmak, söylenmek, şikâyet etmek	(about ile) yakınmak, söylenmek, şikâyet etmek	Claude t serisinde BIRAK dedi: Birine karşı kızmak anlamı yanlış ve bozuktu; yakınmak/söylenmek ile düzeltildi
+words_meaning	22882	collude	verb	UPDATE meaning_tr	gizlice anlaşmak, danışıklı dövüş yapmak, iş birliği yapmak	(with ile) gizlice anlaşmak, danışıklı dövüş yapmak, iş birliği yapmak	Claude t serisinde BIRAK dedi: Tek karşılıklı açıklamamsı ifade yerleşik karşılıklarla zenginleştirildi
+words_meaning	7998	converse	verb	UPDATE meaning_tr	sohbet etmek, konuşmak, söyleşmek	(with ile) sohbet etmek, konuşmak, söyleşmek	Claude t serisinde BIRAK dedi: Converse with kullanımı belirtildi
+words_meaning	21514	crab	verb	UPDATE meaning_tr	mızmızlanmak, söylenmek, yakınmak	(about ile) mızmızlanmak, söylenmek, yakınmak	Claude t serisinde BIRAK dedi: Crab about kullanımı belirtildi
+words_meaning	13981	deviate	verb	UPDATE meaning_tr	sapmak, ayrılmak, dışına çıkmak	(from ile) sapmak, ayrılmak, dışına çıkmak	Claude t serisinde BIRAK dedi: Deviate from kullanımı belirtildi
+words_meaning	6417	disapprove	verb	UPDATE meaning_tr	onaylamamak, hoş karşılamamak, tasvip etmemek	(of ile) onaylamamak, hoş karşılamamak, tasvip etmemek	Claude t serisinde BIRAK dedi: Disapprove of kullanımı ve doğal hoş karşılamamak eklendi
+words_meaning	23011	diverge	verb	UPDATE meaning_tr	ayrılmak, farklılaşmak, çatallanmak	(from ile) ayrılmak, farklılaşmak, çatallanmak	Claude t serisinde BIRAK dedi: Diverge from kullanımı belirtildi
+words_meaning	6966	excel	verb	UPDATE meaning_tr	çok başarılı olmak, öne çıkmak, sivrilmek	(in/at ile) çok başarılı olmak, öne çıkmak, sivrilmek	Claude t serisinde BIRAK dedi: Excel in/at kullanımı belirtildi
+words_meaning	25270	forage	verb	UPDATE meaning_tr	yiyecek aramak, yem aramak	(for ile) yiyecek aramak, yem aramak	Claude t serisinde BIRAK dedi: Forage for kullanımı belirtildi (otlamak graze ile karışır)
+words_meaning	12950	fret	verb	UPDATE meaning_tr	tasalanmak, dert etmek, endişelenmek	(about/over ile) tasalanmak, dert etmek, endişelenmek	Claude t serisinde BIRAK dedi: Fret about kullanımı ve dert etmek eklendi
+words_meaning	15058	gnaw	verb	UPDATE meaning_tr	kemirmek, dişlemek	(on/at ile) kemirmek, dişlemek	Claude t serisinde BIRAK dedi: Gnaw on/at kullanımı belirtildi
+words_meaning	25310	grouse	verb	UPDATE meaning_tr	yakınmak, homurdanmak, sızlanmak	(about ile) yakınmak, homurdanmak, sızlanmak	Claude t serisinde BIRAK dedi: Grouse about kullanımı belirtildi
+words_meaning	13332	meddle	verb	UPDATE meaning_tr	burnunu sokmak, karışmak, müdahale etmek	(in/with ile) burnunu sokmak, karışmak, müdahale etmek	Claude t serisinde BIRAK dedi: Meddle in (üstüne vazife olmayan işe burnunu sokmak) nüansı eklendi
+words_meaning	6148	mingle	verb	UPDATE meaning_tr	kaynaşmak, arasına karışmak, sosyalleşmek	(with ile) kaynaşmak, arasına karışmak, sosyalleşmek	Claude t serisinde BIRAK dedi: Mingle with için yerleşik kaynaşmak başa alındı
+words_meaning	6618	muse	verb	UPDATE meaning_tr	derin derin düşünmek, dalıp gitmek, kafa yormak	(on/about ile) derin derin düşünmek, dalıp gitmek, kafa yormak	Claude t serisinde BIRAK dedi: Muse on/about kullanımı belirtildi
+words_meaning	11793	partake	verb	UPDATE meaning_tr	katılmak, yer almak, iştirak etmek	(in/of ile) katılmak, yer almak, iştirak etmek	Claude t serisinde BIRAK dedi: Partake in kullanımı belirtildi
+words_meaning	11610	partner	verb	UPDATE meaning_tr	ortak olmak, ortaklık kurmak, iş birliği yapmak	(with ile) ortak olmak, ortaklık kurmak, iş birliği yapmak	Claude t serisinde BIRAK dedi: Partner with kullanımı belirtildi
+words_meaning	22087	peek	verb	UPDATE meaning_tr	kaçamak bakmak, göz atmak, çabucak bakmak	(at ile) kaçamak bakmak, göz atmak, çabucak bakmak	Claude t serisinde BIRAK dedi: Peek at kullanımı belirtildi
+words_meaning	7039	peep	verb	UPDATE meaning_tr	gözetlemek, gizlice bakmak, göz ucuyla bakmak	(at/through ile) gözetlemek, gizlice bakmak, göz ucuyla bakmak	Claude t serisinde BIRAK dedi: Peep at kullanımı belirtildi
+words_meaning	12293	profit	verb	UPDATE meaning_tr	yararlanmak, kazanç sağlamak, faydalanmak	(from/by ile) yararlanmak, kazanç sağlamak, faydalanmak	Claude t serisinde BIRAK dedi: Profit from kullanımı belirtildi
+words_meaning	5410	prospect	verb	UPDATE meaning_tr	maden aramak, arama/keşif yapmak	(for ile) maden aramak, arama/keşif yapmak	Claude t serisinde BIRAK dedi: Madeni kaynak aramak yapay ifadesi maden aramak olarak düzeltildi
+words_meaning	23542	pun	verb	UPDATE meaning_tr	kelime oyunu yapmak, cinas yapmak	(on ile) kelime oyunu yapmak, cinas yapmak	Claude t serisinde BIRAK dedi: Pun on kullanımı belirtildi
+words_meaning	9086	quibble	verb	UPDATE meaning_tr	ufak tefek şeylere takılmak, sudan bahanelerle itiraz etmek	(about/over ile) ufak tefek şeylere takılmak, sudan bahanelerle itiraz etmek	Claude t serisinde BIRAK dedi: Quibble about kullanımı doğal Türkçeyle düzeltildi
+words_meaning	4912	rebel	verb	UPDATE meaning_tr	ayaklanmak, baş kaldırmak, isyan etmek	(against ile) ayaklanmak, baş kaldırmak, isyan etmek	Claude t serisinde BIRAK dedi: Rebel against kullanımı belirtildi
+words_meaning	20272	revolt	verb	UPDATE meaning_tr	ayaklanmak, isyan etmek, baş kaldırmak	(against ile) ayaklanmak, isyan etmek, baş kaldırmak	Claude t serisinde BIRAK dedi: Revolt against kullanımı belirtildi
+words_meaning	24709	secede	verb	UPDATE meaning_tr	ayrılmak (devletten/birlikten), kopmak	(from ile) ayrılmak (devletten/birlikten), kopmak	Claude t serisinde BIRAK dedi: Secede from kullanımı belirtildi
+words_meaning	11989	stray	verb	UPDATE meaning_tr	sapmak, uzaklaşmak, sürüden/yoldan ayrılmak	(from ile) sapmak, uzaklaşmak, sürüden/yoldan ayrılmak	Claude t serisinde BIRAK dedi: Stray from kullanımı belirtildi
+words_meaning	24903	vie	verb	UPDATE meaning_tr	çekişmek, yarışmak, rekabet etmek	(for/with ile) çekişmek, yarışmak, rekabet etmek	Claude t serisinde BIRAK dedi: Vie for/with kullanımı belirtildi
+words_meaning	11254	wrestle	verb	UPDATE meaning_tr	boğuşmak, güreşmek, mücadele etmek	(with ile) boğuşmak, güreşmek, mücadele etmek	Claude t serisinde BIRAK dedi: Wrestle with için hem gerçek güreşmek hem mecazi boğuşmak eklendi
+words_meaning	14115	yearn	verb	UPDATE meaning_tr	can atmak, hasret çekmek, özlem duymak	(for ile) can atmak, hasret çekmek, özlem duymak	Claude t serisinde BIRAK dedi: Yearn for (arzu/özlem duymak) için yalnız geçmişe dönük özlemek yetersizdi; can atmak eklendi
+words_meaning	25991	conducive	adjective	UPDATE meaning_tr	(-e) elverişli, uygun, ortam hazırlayan	(to ile) elverişli, uygun, ortam hazırlayan	Claude t serisinde BIRAK dedi: Conducive to için ilk sıradaki genel yararlı (useful) yanıltıcıydı [Claude: çift etiket tekleştirildi]
+words_meaning	674	darken	verb	UPDATE meaning_tr	kararmak, karartmak, koyulaşmak	kararmak, karartmak, koyulaşmak, koyulaştırmak	EN make or become darker ve örnek (began to darken) geçişsiz iken yalnızca geçişli karartmak vardı
+words_meaning	24273	grapple	verb	UPDATE meaning_tr	(with ile) (bir sorunla) boğuşmak, uğraşmak, çözmeye çalışmak	(with ile) boğuşmak, uğraşmak, baş etmeye çalışmak	Grapple with için yerleşik boğuşmak eklendi
+words_meaning	19650	hinge	verb	UPDATE meaning_tr	(on ile) -e bağlı olmak, -e dayanmak	(on/upon ile) -e bağlı olmak, -e dayanmak	Üç noktalı (... bağlı olmak) biçim standart (on ile) biçimine çevrildi
+words_meaning	6065	toy	verb	UPDATE meaning_tr	(with ile) oynamak, kurcalamak	(with ile) oyalanmak, (bir fikri) aklından geçirmek, oynamak	Toy with için takılmak yanıltıcıydı; düzeltildi
+words_meaning	22026	optimization	noun	UPDATE meaning_tr	optimizasyon, en iyi hâle getirme, iyileştirme	optimizasyon, eniyileme, en uygun hâle getirme	Yerleşik optimizasyon ve eniyileme terimleri eksikti
+words_meaning	19634	sensor	noun	UPDATE meaning_tr	sensör, algılayıcı	sensör, algılayıcı, duyarga	En yaygın karşılık olan sensör eksikti
+words_meaning	22461	synchronization	noun	UPDATE meaning_tr	eşzamanlama, senkronizasyon	senkronizasyon, eşzamanlama	En yaygın karşılık olan senkronizasyon eksikti
+words_meaning	22425	stereo	noun	UPDATE meaning_tr	müzik seti, stereo ses sistemi	müzik seti, ses sistemi, stereo	Sınıftaki stereo örneğinde doğal müzik seti yerine iki kanallı ses sistemi yazılmıştı
+words_meaning	14972	petrify	verb	UPDATE meaning_tr	taşlaştırmak, taş haline getirmek	taşlaştırmak, taşlaşmak, taşa dönüştürmek	Petrify için yerleşik taşlaştırmak/taşlaşmak eksikti
+words_meaning	12593	mince	verb	UPDATE meaning_tr	ince ince doğramak, kıymak	kıymak, ince ince doğramak, kıyma yapmak	Mince için en temel mutfak terimi olan kıymak eksikti
+words_meaning	25010	bassist	noun	UPDATE meaning_tr	basçı, bas gitarist	bas gitarist, basçı	Bas gitar çalan kişi tanımı yerleşik bas gitarist/basçı ile değiştirildi
+words_meaning	8065	copyright	verb	UPDATE meaning_tr	telif hakkını almak, telif hakkıyla korumak	telif hakkı almak, telifini tescillemek	Copyright fiili doğal biçime getirildi
+words_meaning	21533	crossbreed	verb	UPDATE meaning_tr	melezlemek, çaprazlamak	melezlemek, çaprazlamak (farklı iki türü çiftleştirmek)	Crossbreed için yerleşik melezlemek ve çaprazlamak başa alındı
+words_meaning	12110	jab	verb	UPDATE meaning_tr	dürtmek, batırmak	dürtmek, saplamak, (boks) direk yumruk atmak	Jab için doğal karşılıklar eklendi
+words_meaning	14515	materialistic	adjective	UPDATE meaning_tr	maddeci, materyalist, maddi şeylere aşırı önem veren	materyalist, maddeci, maddiyata düşkün	Materialistic için yerleşik materyalist ve maddeci başa alındı
+words_meaning	25466	monograph	noun	UPDATE meaning_tr	monografi, tek konu üzerine ayrıntılı çalışma	monografi, tek konu üzerine inceleme	Monograph için yerleşik monografi terimi başa alındı
+words_meaning	14542	monolith	noun	UPDATE meaning_tr	monolit, tek parça taş yapı	monolit, yekpare taş blok/anıt	Monolith için yerleşik monolit ve yekpare taş eklendi
+words_meaning	24531	outsource	verb	UPDATE meaning_tr	dış kaynak kullanmak, başka bir firmaya iş yaptırmak	dış kaynak kullanmak, taşerona vermek	Outsource için yerleşik dış kaynak kullanmak ve taşerona vermek eklendi
+words_meaning	25653	retainer	noun	UPDATE meaning_tr	pekiştirme apareyi, diş teli sonrası kullanılan tutucu	pekiştirme plakası/apareyi (diş teli sonrası tutucu)	Ortodontideki yerleşik pekiştirme apareyi eklendi
+words_meaning	1612	retrace	verb	UPDATE meaning_tr	geldiği yoldan geri gitmek, (adımlarını) geriye doğru izlemek	geldiği yoldan geri dönmek, adımlarını geriye doğru izlemek	Retrace (one’s steps) doğal biçime getirildi
+words_meaning	19491	revolutionize	verb	UPDATE meaning_tr	devrim yaratmak, köklü değişiklik getirmek	devrim yaratmak, kökten değiştirmek	Revolutionize için yerleşik devrim yaratmak başa alındı
+words_meaning	25706	seiner	noun	UPDATE meaning_tr	gırgır teknesi, ağla balık avlama teknesi	gırgır teknesi (çevirme ağlı balıkçı gemisi)	Seiner için Türk denizciliğindeki yerleşik gırgır teknesi karşılığı eklendi
+words_meaning	1821	sharp	noun	UPDATE meaning_tr	(müzikte) diyez	diyez (müzik)	Müzik notası olarak diyez ifadesi diyez (müzik) olarak sadeleştirildi
+words_meaning	7152	spoiler	noun	UPDATE meaning_tr	spoyler, (arka) rüzgârlık	rüzgârlık, spoyler (araç kanadı)	Spoiler (araç) için yerleşik rüzgârlık ve spoyler eklendi
+words_usagepattern	1062	color	noun	UPDATE pattern (US yazım uyumu)	the colour of sth	the color of sth	Kelime başlığı (color) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	1063	color	noun	UPDATE pattern (US yazım uyumu)	in colour	in color	Kelime başlığı (color) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	1899	license	noun	UPDATE pattern (US yazım uyumu)	a licence to do sth	a license to do sth	Kelime başlığı (license) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	1900	license	noun	UPDATE pattern (US yazım uyumu)	a licence for sth	a license for sth	Kelime başlığı (license) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	4646	gray	adjective	UPDATE pattern (US yazım uyumu)	turn grey	turn gray	Kelime başlığı (gray) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	5276	offense	noun	UPDATE pattern (US yazım uyumu)	take offence at sth	take offense at sth	Kelime başlığı (offense) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	6068	practice	verb	UPDATE pattern (US yazım uyumu)	practise doing sth	practice doing sth	Kelime başlığı (practice) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	6985	defense	noun	UPDATE pattern (US yazım uyumu)	defence against sth	defense against sth	Kelime başlığı (defense) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	9546	center	noun	UPDATE pattern (US yazım uyumu)	in/at the centre of sth	in/at the center of sth	Kelime başlığı (center) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	9548	center	verb	UPDATE pattern (US yazım uyumu)	centre on sth	center on sth	Kelime başlığı (center) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	9549	center	verb	UPDATE pattern (US yazım uyumu)	centre around sth	center around sth	Kelime başlığı (center) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	11115	favor	noun	UPDATE pattern (US yazım uyumu)	do sb a favour	do sb a favor	Kelime başlığı (favor) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	12394	rumor	noun	UPDATE pattern (US yazım uyumu)	a rumour that …	a rumor that …	Kelime başlığı (rumor) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	12395	rumor	noun	UPDATE pattern (US yazım uyumu)	a rumour about sth	a rumor about sth	Kelime başlığı (rumor) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	14864	harbor	noun	UPDATE pattern (US yazım uyumu)	in the harbour	in the harbor	Kelime başlığı (harbor) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	17738	jewelry	noun	UPDATE pattern (US yazım uyumu)	a piece of jewellery	a piece of jewelry	Kelime başlığı (jewelry) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	19768	mold	noun	UPDATE pattern (US yazım uyumu)	be covered with mould	be covered with mold	Kelime başlığı (mold) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	19769	mold	noun	UPDATE pattern (US yazım uyumu)	develop mould	develop mold	Kelime başlığı (mold) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	20035	humor	noun	UPDATE pattern (US yazım uyumu)	have a sense of humour	have a sense of humor	Kelime başlığı (humor) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	20414	maneuver	verb	UPDATE pattern (US yazım uyumu)	manoeuvre sth through sth	maneuver sth through sth	Kelime başlığı (maneuver) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	21178	tire	noun	UPDATE pattern (US yazım uyumu)	change a tyre	change a tire	Kelime başlığı (tire) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	23267	flavor	noun	UPDATE pattern (US yazım uyumu)	the flavour of sth	the flavor of sth	Kelime başlığı (flavor) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	23290	aluminum	noun	UPDATE pattern (US yazım uyumu)	be made of aluminium	be made of aluminum	Kelime başlığı (aluminum) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	24443	centimeter	noun	UPDATE pattern (US yazım uyumu)	… centimetres long	… centimeters long	Kelime başlığı (centimeter) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	24444	centimeter	noun	UPDATE pattern (US yazım uyumu)	… centimetres wide	… centimeters wide	Kelime başlığı (centimeter) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	24484	trashcan	noun	UPDATE pattern	put sth in the trash can	put sth in the trashcan	Kelime başlığı bitişik trashcan iken kalıp ayrı yazılmış
+words_usagepattern	25229	gramme	noun	UPDATE pattern	measure sth in grams	measure sth in grammes	Kelime başlığı gramme iken kalıpta gram yazılmış
+words_usagepattern	26137	catalog	noun	UPDATE pattern (US yazım uyumu)	a catalogue of sth	a catalog of sth	Kelime başlığı (catalog) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	33502	labor	noun	UPDATE pattern (US yazım uyumu)	manual labour	manual labor	Kelime başlığı (labor) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	33505	labor	verb	UPDATE pattern (US yazım uyumu)	labour for sth	labor for sth	Kelime başlığı (labor) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_usagepattern	41951	distill	verb	UPDATE pattern (US yazım uyumu)	distil sth from sth	distill sth from sth	Kelime başlığı (distill) ve örnek Amerikan yazımındayken kalıpta İngiliz yazımı kalmış
+words_examplesentence	88275	fall	noun	UPDATE text	The study examined how fear of falling affects mobility in older adults.	A sudden fall on the icy sidewalk can cause a serious hip injury in older adults.	İsim olan fall kaydında fiil-isim (fear of falling) kullanılmıştı; gerçek isim kullanımıyla değiştirildi
+words_wordform	5380	will	verb	INSERT WordForm	(eksik çekim)	willed (past), willing (present_participle)	Örnek cümlelerde geçen çekimli biçim WordForm tablosunda olmadığı için okuma baloncuğunda yakalanamıyor
+words_wordform	16765	be	verb	INSERT WordForm	(eksik çekim)	was (past), were (past)	Örnek cümlelerde geçen çekimli biçim WordForm tablosunda olmadığı için okuma baloncuğunda yakalanamıyor
+words_wordform	16785	euro	noun	INSERT WordForm	(eksik çekim)	euros (plural)	Örnek cümlelerde geçen çekimli biçim WordForm tablosunda olmadığı için okuma baloncuğunda yakalanamıyor
+words_wordform	16863	businessman	noun	INSERT WordForm	(eksik çekim)	businessmen (plural)	Örnek cümlelerde geçen çekimli biçim WordForm tablosunda olmadığı için okuma baloncuğunda yakalanamıyor
+words_wordform	16884	loud	adverb	INSERT WordForm	(eksik çekim)	louder (comparative), loudest (superlative)	Örnek cümlelerde geçen çekimli biçim WordForm tablosunda olmadığı için okuma baloncuğunda yakalanamıyor
+words_wordform	16972	cancel	verb	INSERT WordForm	(eksik çekim)	cancelled (past/past_participle - UK yazımı)	Örnek cümlelerde geçen çekimli biçim WordForm tablosunda olmadığı için okuma baloncuğunda yakalanamıyor
+words_wordform	18340	pal	verb	INSERT WordForm	(eksik çekim)	palled (past), palling (present_participle), pals (third_person)	Örnek cümlelerde geçen çekimli biçim WordForm tablosunda olmadığı için okuma baloncuğunda yakalanamıyor
+words_wordrelation	8831	stripper	noun	DELETE (synonym)	stripper -> dancer	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	10051	intimate	adjective	DELETE (synonym)	intimate -> private	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	12412	streak	verb	DELETE (antonym)	streak -> conceal	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	17187	snort	verb	DELETE (synonym)	snort -> inhale	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	17188	snort	verb	DELETE (antonym)	snort -> exhale	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	17975	prick	noun	DELETE (synonym)	prick -> jerk	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	17976	prick	noun	DELETE (synonym)	prick -> idiot	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	18156	grope	verb	DELETE (antonym)	grope -> avoid	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	18353	tease	verb	DELETE (antonym)	tease -> ignore	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	19455	goose	verb	DELETE (synonym)	goose -> poke	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	19456	goose	verb	DELETE (antonym)	goose -> ignore	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	22025	intimate	adjective	DELETE (antonym)	intimate -> public	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	23255	grope	verb	DELETE (synonym)	grope -> touch	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	23291	tease	verb	DELETE (simpler)	tease -> play	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	27112	cleavage	noun	DELETE (antonym)	cleavage -> modesty	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	27113	cleavage	noun	DELETE (simpler)	cleavage -> dress	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	31174	polish	noun	DELETE (simpler)	polish -> language	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	31982	streak	verb	DELETE (simpler)	streak -> run	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	32129	lid	noun	DELETE (antonym)	lid -> drug	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	37599	upper	noun	DELETE (synonym)	upper -> stimulant	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	41106	ass	noun	DELETE (synonym)	ass -> butt	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	43082	bitch	noun	DELETE (synonym)	bitch -> mean	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	43083	bitch	noun	DELETE (antonym)	bitch -> kind	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	43084	bitch	noun	DELETE (simpler)	bitch -> woman	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	45222	turkey	noun	DELETE (synonym)	turkey -> country	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	46981	intimate	adjective	DELETE (simpler)	intimate -> close	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	49846	upper	noun	DELETE (antonym)	upper -> depressant	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	50340	tripper	noun	DELETE (simpler)	tripper -> user	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	50945	high	adjective	DELETE (antonym)	high -> sober	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordrelation	51837	user	noun	DELETE (synonym)	user -> addict	(silinmeli)	Silinen hassas/argo/özel isim anlamından geriye kalan meaning_id=NULL yetim bağ
+words_wordfamily	6193	annal	-	DELETE boş aile	annal	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	6248	bong	-	DELETE boş aile	bong	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	6780	brownie	-	DELETE boş aile	brownie	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	6262	butch	-	DELETE boş aile	butch	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	6347	eighteen	-	DELETE boş aile	eighteen	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	6887	fifteen	-	DELETE boş aile	fifteen	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	6896	fourteen	-	DELETE boş aile	fourteen	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	7005	midget	-	DELETE boş aile	midget	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	5924	nineteen	-	DELETE boş aile	nineteen	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	5370	non-profit	-	DELETE boş aile	non-profit	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	6013	rape	-	DELETE boş aile	rape	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	7123	seventeen	-	DELETE boş aile	seventeen	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	6632	six	-	DELETE boş aile	six	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	7171	thirteen	-	DELETE boş aile	thirteen	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	6691	ulster	-	DELETE boş aile	ulster	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_wordfamily	5587	welsh	-	DELETE boş aile	welsh	(silinmeli)	Altındaki kelimeler (hassas/sayı/özel ad) silindiği hâlde içi boş kalan WordFamily kaydı
+words_word	2004	shore up	phrasal_verb	UPDATE base_verb_id	NULL	2000 (shore)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	3893	bleed out	phrasal_verb	UPDATE base_verb_id	NULL	3892 (bleed)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	3913	dispose of	phrasal_verb	UPDATE base_verb_id	NULL	3910 (dispose)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	4081	patch up	phrasal_verb	UPDATE base_verb_id	NULL	4080 (patch)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	4618	chill out	phrasal_verb	UPDATE base_verb_id	NULL	4617 (chill)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	4722	lash out	phrasal_verb	UPDATE base_verb_id	NULL	4721 (lash)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	4800	crop up	phrasal_verb	UPDATE base_verb_id	NULL	4799 (crop)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	5209	stumble upon	phrasal_verb	UPDATE base_verb_id	NULL	5208 (stumble)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	6619	foul up	phrasal_verb	UPDATE base_verb_id	NULL	6618 (foul)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	7712	look out	phrasal_verb	UPDATE base_verb_id	NULL	7711 (look)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	8173	mouth off	phrasal_verb	UPDATE base_verb_id	NULL	8172 (mouth)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	8764	conjure up	phrasal_verb	UPDATE base_verb_id	NULL	8763 (conjure)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	8825	spread out	phrasal_verb	UPDATE base_verb_id	NULL	8824 (spread)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	9375	blurt out	phrasal_verb	UPDATE base_verb_id	NULL	9374 (blurt)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	9614	set back	phrasal_verb	UPDATE base_verb_id	NULL	12196 (set)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	10737	tidy up	phrasal_verb	UPDATE base_verb_id	NULL	10736 (tidy)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	11345	mop up	phrasal_verb	UPDATE base_verb_id	NULL	11344 (mop)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	11736	draw back	phrasal_verb	UPDATE base_verb_id	NULL	7767 (draw)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	13773	reach out	phrasal_verb	UPDATE base_verb_id	NULL	13769 (reach)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	13834	cash in	phrasal_verb	UPDATE base_verb_id	NULL	13833 (cash)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	13835	cash out	phrasal_verb	UPDATE base_verb_id	NULL	13833 (cash)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	13974	heat up	phrasal_verb	UPDATE base_verb_id	NULL	13973 (heat)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	14876	set aside	phrasal_verb	UPDATE base_verb_id	NULL	12196 (set)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	14950	mess up	phrasal_verb	UPDATE base_verb_id	NULL	14949 (mess)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	15601	wake up	phrasal_verb	UPDATE base_verb_id	NULL	15600 (wake)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	16533	team up	phrasal_verb	UPDATE base_verb_id	NULL	16532 (team)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	17728	break up	phrasal_verb	UPDATE base_verb_id	NULL	9763 (break)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	17833	come back	phrasal_verb	UPDATE base_verb_id	NULL	12666 (come)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	18068	goof off	phrasal_verb	UPDATE base_verb_id	NULL	18067 (goof)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	18230	line up	phrasal_verb	UPDATE base_verb_id	NULL	9719 (line)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	18388	perk up	phrasal_verb	UPDATE base_verb_id	NULL	18387 (perk)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	18398	pick out	phrasal_verb	UPDATE base_verb_id	NULL	13490 (pick)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	18399	pick up	phrasal_verb	UPDATE base_verb_id	NULL	13490 (pick)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	18606	set up	phrasal_verb	UPDATE base_verb_id	NULL	12196 (set)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	19084	clean up	phrasal_verb	UPDATE base_verb_id	NULL	13723 (clean)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	19359	hang over	phrasal_verb	UPDATE base_verb_id	NULL	1600 (hang)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	19503	log in	phrasal_verb	UPDATE base_verb_id	NULL	6941 (log)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	20167	crack down	phrasal_verb	UPDATE base_verb_id	NULL	740 (crack)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	20229	dole out	phrasal_verb	UPDATE base_verb_id	NULL	20228 (dole)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	20491	match up	phrasal_verb	UPDATE base_verb_id	NULL	13364 (match)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	20608	pay off	phrasal_verb	UPDATE base_verb_id	NULL	16326 (pay)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	20732	round up	phrasal_verb	UPDATE base_verb_id	NULL	13339 (round)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	20851	take off	phrasal_verb	UPDATE base_verb_id	NULL	12659 (take)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	21313	hang out	phrasal_verb	UPDATE base_verb_id	NULL	1600 (hang)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	21416	lock out	phrasal_verb	UPDATE base_verb_id	NULL	1087 (lock)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	21849	vouch for	phrasal_verb	UPDATE base_verb_id	NULL	21848 (vouch)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	21888	back up	phrasal_verb	UPDATE base_verb_id	NULL	15133 (back)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	21898	break out	phrasal_verb	UPDATE base_verb_id	NULL	9763 (break)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_word	21935	cut off	phrasal_verb	UPDATE base_verb_id	NULL	13103 (cut)	Ana fiil words_word tablosunda mevcut olduğu hâlde base_verb_id bağlantısı NULL kalmış
+words_hazirlistekelimesi	23014	level off	phrasal_verb	INSERT (phrasal-verbs listesi)	Listede yok	liste_id=29 (Phrasal Verbs), bolum=C1	Sözlükteki 715 phrasal verb içinden Phrasal Verbs hazır listesine bağlanmamış tek kayıt
+words_collocation	41748	malt	noun	meaning_tr	malt soda	malt gazozu, maltlı içecek	Eşdizimin Türkçe karşılığı İngilizce bırakılmış
+words_collocation	46195	tungsten	noun	meaning_tr	tungsten filament	tungsten flaman, tungsten tel	Eşdizimin Türkçe karşılığı İngilizce bırakılmış (`filament` Türkçede `flaman` veya `tel` olarak karşılanır)

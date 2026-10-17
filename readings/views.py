@@ -34,7 +34,8 @@ from LearnVocab import sinir
 from LearnVocab.authgate import login_gate
 
 from . import pdf as pdf_okuyucu
-from .models import TOPICS, ReadingText, UserText
+from .models import ReadingText, UserText, konu_listesi, konu_rengi
+from .temizlik import paragraflari_temizle
 
 
 # Kullanıcı başına en çok kaç metin ve bunların en çok kaçı PDF (çöptekiler hariç).
@@ -69,8 +70,8 @@ def _copu_bosalt(user):
 def okumalar(request):
     """Okumalar ana sayfası: Kendi metinlerim (girişli) + Kütüphane (herkese açık)."""
     konu = request.GET.get("konu") or ""
-    kutuphane = ReadingText.objects.only("number", "slug", "title", "topic", "word_count", "cefr")
-    konular = [{"anahtar": a, "ad": ad, "renk": renk} for a, ad, renk in TOPICS]
+    kutuphane = ReadingText.objects.only("number", "slug", "title", "topic", "word_count", "cefr", "body", "source")
+    konular = konu_listesi()
     if konu in {k["anahtar"] for k in konular}:
         kutuphane = kutuphane.filter(topic=konu)
     else:
@@ -89,6 +90,9 @@ def okumalar(request):
             m.kalan_gun = max(1, (m.deleted_at + COP_SURESI - simdi).days + 1)
 
     kutuphane = list(kutuphane)
+    for m in kutuphane:
+        m.renk = konu_rengi(m.topic)
+        m.ozet = _ilk_satirlar(m.paragraphs)
     return render(request, "pages/readings.html", {
         "active_page": "Okumalar",
         "kutuphane": kutuphane,
@@ -127,9 +131,17 @@ def _bolum_baglami(request, paragraflar):
         "paragraflar": bolumler[no - 1],
         "bolum": no,
         "bolum_sayisi": len(bolumler),
+        "bolum_listesi": range(1, len(bolumler) + 1),
         "onceki_bolum": no - 1 if no > 1 else None,
         "sonraki_bolum": no + 1 if no < len(bolumler) else None,
     }
+
+
+def _ilk_satirlar(paragraflar, kelime=40):
+    """Kütüphane listesinde görünen giriş: metnin ilk ~40 kelimesi, cümle ortasında kesilirse "…"."""
+    kelimeler = " ".join(paragraflar[:2]).split()
+    ozet = " ".join(kelimeler[:kelime])
+    return ozet + ("…" if len(kelimeler) > kelime else "")
 
 
 def _metin_ozeti(metin, en_cok=155):
@@ -162,7 +174,8 @@ def kendi_metnim(request, pk):
         "baslik": metin.title,
         "metin": metin,
         "kutuphane": False,
-        **_bolum_baglami(request, metin.paragraphs),
+        # Eski yüklemeler de temiz okunsun: bağlantı ve tekrar eden üst/alt bilgi yok.
+        **_bolum_baglami(request, paragraflari_temizle(metin.paragraphs)),
     })
 
 
@@ -180,7 +193,8 @@ def _yapistirilani_duzenle(ham):
     if "\n\n" not in metin.strip():
         metin = metin.replace("\n", "\n\n")
     paragraflar = [re.sub(r"\s+", " ", p).strip() for p in re.split(r"\n\s*\n", metin)]
-    return "\n\n".join(p for p in paragraflar if p)
+    # Bağlantılar ve tekrar eden üst/alt bilgiler (kitap adı, yazar) atılır.
+    return "\n\n".join(paragraflari_temizle([p for p in paragraflar if p]))
 
 
 def _varsayilan_baslik(metin):

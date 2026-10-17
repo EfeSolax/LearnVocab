@@ -2,7 +2,9 @@
 {% load i18n %}
 
 {% comment %}
-Serbest yazma (ürün raporu 9.1). Görev kısa: 3–8 cümle. Konu önerilerinden
+Serbest yazma (ürün raporu 9.1). Önce tür seçilir (Efe, 17 Ekim; her metinde, hatırlanmaz):
+Günlük (3–8 cümle) ya da Akademik (1–3 paragraf; Forefront kriterleri de denetlenir; konular,
+uzunluk sınırı ve sertlik açıklamaları türe göre değişir). Konu önerilerinden
 biri seçilir ya da serbest yazılır; listeden 3–5 "kullanmayı dene" kelimesi
 (zorunlu değil). Sertlik burada seçilir ve hatırlanır (ayarlar sayfası
 henüz yok, rapor 16).
@@ -15,12 +17,12 @@ henüz yok, rapor 16).
 
 <a href="{% url 'profile_texts' %}" class="lv-el text-[22px] font-bold hover:underline">← {% translate "Yazılar" %}</a>
 <h1 class="lv-baslik mt-2 !text-[40px] sm:!text-[56px]">{% translate "Serbest yazma" %}</h1>
-<span class="lv-alt-baslik mt-1 mb-8">{% translate "3–8 cümle yeter; akademik olmak zorunda değil" %}</span>
+<span class="lv-alt-baslik mt-1 mb-8">{% translate "kısa bir metin yaz, geri bildirim al" %}</span>
 
 {% if not yazabilir %}
 <div class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
     <p class="font-semibold">{{ sinir_mesaji }}</p>
-    <p class="mt-1 text-sm">{% url 'diyalog_page' as diyalog_adresi %}{% blocktranslate with adres=diyalog_adresi %}O zamana kadar <a class="font-semibold underline" href="{{ adres }}">Diyalogda doğru kelime</a> ile devam edebilirsin.{% endblocktranslate %}</p>
+    {% if diyalog_acik %}<p class="mt-1 text-sm">{% url 'diyalog_page' as diyalog_adresi %}{% blocktranslate with adres=diyalog_adresi %}O zamana kadar <a class="font-semibold underline" href="{{ adres }}">Diyalogda doğru kelime</a> ile devam edebilirsin.{% endblocktranslate %}</p>{% endif %}
 </div>
 {% else %}
 
@@ -29,6 +31,27 @@ henüz yok, rapor 16).
 <form id="yazmaFormu" method="POST" action="{% url 'create_text' %}" x-data="serbestYazma()" class="space-y-8">
     {% csrf_token %}
     <input type="hidden" name="konu" :value="konu">
+
+    {# ---------- Tür: Günlük / Akademik ---------- #}
+    <fieldset data-yazi-turu>
+        <legend class="lv-el text-[24px] font-bold">{% translate "ne yazacaksın?" %}</legend>
+        <div class="mt-2 grid gap-3 sm:grid-cols-2">
+            <label class="cursor-pointer">
+                <input type="radio" name="tur" value="gunluk" class="peer sr-only" x-model="tur" @change="turDegisti()" checked>
+                <span class="lv-sayfa block h-full rounded-sm border-2 border-transparent p-4 transition peer-checked:border-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500/40 dark:peer-checked:border-indigo-400">
+                    <span class="lv-serif block text-xl font-bold">{% translate "Günlük" %}</span>
+                    <span class="mt-1 block text-[15px] text-gray-600 dark:text-slate-300">{% translate "3–8 cümle; yalnızca gerçek hatalar." %}</span>
+                </span>
+            </label>
+            <label class="cursor-pointer">
+                <input type="radio" name="tur" value="akademik" class="peer sr-only" x-model="tur" @change="turDegisti()">
+                <span class="lv-sayfa block h-full rounded-sm border-2 border-transparent p-4 transition peer-checked:border-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-500/40 dark:peer-checked:border-indigo-400">
+                    <span class="lv-serif block text-xl font-bold">{% translate "Akademik" %}</span>
+                    <span class="mt-1 block text-[15px] text-gray-600 dark:text-slate-300">{% translate "1–3 paragraf; resmî dil, ihtiyatlı dil ve mantık da denetlenir." %}</span>
+                </span>
+            </label>
+        </div>
+    </fieldset>
 
     {# ---------- Konu ---------- #}
     <div class="grid items-start gap-8 sm:grid-cols-[1.3fr_1fr]">
@@ -77,15 +100,18 @@ henüz yok, rapor 16).
     {# ---------- Metin: çizgili kâğıt ---------- #}
     <section>
         <label for="user_text" class="lv-el text-[24px] font-bold">{% translate "Metnin" %}</label>
-        <textarea id="user_text" name="user_text" rows="8" required minlength="{{ en_az }}" maxlength="{{ en_cok }}"
+        <textarea id="user_text" name="user_text" rows="8" required minlength="{{ en_az }}" maxlength="{{ en_cok_akademik }}"
+                  :maxlength="akademik ? {{ en_cok_akademik }} : {{ en_cok }}" :rows="akademik ? 12 : 8"
                   x-model="metin" spellcheck="false" autocapitalize="sentences"
                   placeholder="{% translate "3–8 cümle yaz. Akademik olması gerekmiyor." %}"
+                  :placeholder="akademik ? '{% filter escapejs %}{% translate "1–3 paragraf yaz: resmî dil, kanıta dayalı ve ihtiyatlı." %}{% endfilter %}' : '{% filter escapejs %}{% translate "3–8 cümle yaz. Akademik olması gerekmiyor." %}{% endfilter %}'"
                   style="background-image: repeating-linear-gradient(transparent 0 31px, var(--satir) 31px 32px); background-attachment: local; line-height: 32px;"
                   class="lv-metin lv-sayfa mt-2 block w-full border-0 bg-[color:var(--kagit-beyaz)] px-5 py-[14px] text-[19px] text-gray-900 placeholder:italic placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 dark:text-slate-100 dark:placeholder:text-slate-500"></textarea>
-        <p class="lv-el mt-2 text-[21px]" :class="cumle > 8 ? '!text-amber-700 dark:!text-amber-300' : ''">
+        <p class="lv-el mt-2 text-[21px]" :class="!akademik && cumle > 8 ? '!text-amber-700 dark:!text-amber-300' : ''">
             <span x-text="cumle"></span> {% translate "cümle" %}
-            <span x-show="cumle > 0 && cumle < 3" x-cloak> · {% translate "birkaç cümle daha yazabilirsin" %}</span>
-            <span x-show="cumle > 8" x-cloak> · {% translate "kısa tutmak yeterli, 8 cümle idealdir" %}</span>
+            <span x-show="akademik" x-cloak> · <span x-text="kelime"></span> {% translate "kelime" %} · {% translate "1–3 paragraf yeter" %}</span>
+            <span x-show="!akademik && cumle > 0 && cumle < 3" x-cloak> · {% translate "birkaç cümle daha yazabilirsin" %}</span>
+            <span x-show="!akademik && cumle > 8" x-cloak> · {% translate "kısa tutmak yeterli, 8 cümle idealdir" %}</span>
         </p>
     </section>
 
@@ -101,7 +127,8 @@ henüz yok, rapor 16).
             {% endfor %}
         </div>
         <p class="mt-2 text-[15px] text-gray-600 dark:text-slate-300">
-            {% for deger, ad, aciklama in sertlikler %}<span x-show="sertlik === '{{ deger }}'" {% if deger != sertlik %}x-cloak{% endif %}>{{ aciklama }} {% translate "Puanı etkilemez." %}</span>{% endfor %}
+            {% for deger, ad, aciklama in sertlikler %}<span x-show="!akademik && sertlik === '{{ deger }}'" {% if deger != sertlik %}x-cloak{% endif %}>{{ aciklama }} {% translate "Puanı etkilemez." %}</span>{% endfor %}
+            {% for deger, ad, aciklama in sertlikler_akademik %}<span x-show="akademik && sertlik === '{{ deger }}'" x-cloak>{{ aciklama }} {% translate "Puanı etkilemez." %}</span>{% endfor %}
         </p>
     </fieldset>
 
@@ -120,18 +147,29 @@ henüz yok, rapor 16).
 
 <script>
 function serbestYazma() {
-    var tum = JSON.parse(document.getElementById('konular-verisi').textContent);
-    // Her ziyarette farklı sırayla; ekranda 4 öneri.
-    for (var i = tum.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var t = tum[i]; tum[i] = tum[j]; tum[j] = t;
-    }
+    var listeler = JSON.parse(document.getElementById('konular-verisi').textContent);
+    // Her ziyarette farklı sırayla; ekranda 4 öneri. Günlük ve akademik konular ayrı listeler.
+    Object.keys(listeler).forEach(function (tur) {
+        var tum = listeler[tur];
+        for (var i = tum.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = tum[i]; tum[i] = tum[j]; tum[j] = t;
+        }
+    });
     return {
-        tum: tum,
+        listeler: listeler,
+        tur: 'gunluk',
         bas: 0,
         konu: '',
         metin: '',
         sertlik: '{{ sertlik }}',
+        get akademik() { return this.tur === 'akademik'; },
+        get tum() { return this.listeler[this.tur] || []; },
+        turDegisti: function () { this.konu = ''; this.bas = 0; },
+        get kelime() {
+            var m = this.metin.trim();
+            return m ? m.split(/\s+/).length : 0;
+        },
         get gorunen() {
             var liste = this.tum.slice(this.bas, this.bas + 4);
             var secili = this.secili;

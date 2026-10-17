@@ -2,14 +2,18 @@
 Yardım ve hakkında sayfası (rapor 18.33). Adres: /hakkinda/ (url adı `about`).
 
 Ekran görüntüleri static/img/yardim/<dil>/<ad>-<acik|koyu>.webp. Telefon görünümünde
-(375 px) çekilir, 500 px genişliğe küçültülür; her sürümde her dil ve tema için
-baştan çekilir (rapor 18.34). Görüntü değişince yalnızca aşağıdaki işaret
-konumları (x, y: görüntünün yüzdesi) güncellenir; yazılar sayfada HTML'dir.
-Bir dilde yazılar uzayıp düzen kayınca o dilin konumları ISARET_DILLERI'ne yazılır.
+(375 px) çekilir, 500 px genişliğe küçültülür; araclar/yardim_goruntuleri.py hepsini
+baştan çeker (rapor 18.34). İşaret konumları (x, y: görüntünün yüzdesi) ve görüntü
+yükseklikleri elle yazılmaz: araç sahnedeki öğelerden hesaplayıp her dil için
+yardim_isaretler.json'a yazar. Yazılar sayfada HTML'dir.
 
-İşaret numarası, rehberdeki adımın sırasıdır.
+İşaret numarası, rehberdeki adımın sırasıdır. Görüntüler sayfada bir solda bir sağda durur.
 """
 
+import json
+from pathlib import Path
+
+from django.conf import settings
 from django.shortcuts import render
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
@@ -18,16 +22,18 @@ from egzersizler.sorular import TIPLER
 
 GORUNTU_DILLERI = {"tr", "en", "de"}   # görüntüsü çekilmiş diller; diğerleri Türkçeyi gösterir
 
-# kimlik, adres (url adı + sorgu), başlık, giriş, görüntüler [(ad, yükseklik, [(x, y), ...])], adımlar.
-# Yükseklik 500 px genişlikteki görüntünün yüksekliğidir (sayfa yüklenirken kaymasın diye).
-# Bir rehberde birden çok görüntü olabilir; adımlar görüntüler arasında sırayla dağılır.
+# {dil: {görüntü adı: {"yukseklik": 500 px genişlikteki boy, "isaretler": [[x, y], ...]}}}
+ISARETLER = json.loads((Path(__file__).with_name("yardim_isaretler.json")).read_text())
+
+# kimlik, adres (url adı + sorgu), başlık, giriş, görüntüler (adlar), adımlar.
+# Bir rehberde birden çok görüntü olabilir; adımlar görüntüler arasında işaret sayısına göre sırayla dağılır.
 REHBERLER = [
     {
         "kimlik": "sozluk", "git": _("Sözlük'e git"), "adres": "sozluk", "sorgu": "", "baslik": _("Sözlük'te kelime aramak"),
         "giris": _("Sözlük, kelimelerin durduğu yer. İngilizce de Türkçe de arayabilirsin."),
         "goruntuler": [
-            ("arama", 1082, [(50.7, 40.5), (3, 47.9)]),
-            ("kelime", 1082, [(3, 60), (3, 48), (94, 48), (10, 84.7)]),
+            "arama",
+            "kelime",
         ],
         "adimlar": [
             _("Arama kutusuna İngilizce bir kelime ya da Türkçe bir anlam yaz (\"karar\" yazınca decide, decision gelir)."),
@@ -40,17 +46,17 @@ REHBERLER = [
     },
     {
         "kimlik": "hazir-listeler", "git": _("Hazır listelere git"), "adres": "hazir_listeler", "sorgu": "", "baslik": _("Hazır listelerle çalışmak"),
-        "giris": _("Hazır listeler bir sınava ya da kuruma göre derlenmiş kelime listeleridir. Sözlük'ün ilk sayfasında dururlar."),
-        "goruntuler": [("liste", 1082, [(3, 24), (62, 78.2)])],
+        "giris": _("Hazır listeler bir sınava ya da kuruma göre derlenmiş kelime listeleridir. Sözlük'ün ilk sayfasında kurumlara göre gruplanmış dururlar (Bilkent, ODTÜ, Cambridge ve diğerleri)."),
+        "goruntuler": ["liste"],
         "adimlar": [
             _("Bir listeye girince kelimelerini anlamlarıyla birlikte görürsün; tek tek \"Listeme ekle\" diyebilirsin. Hepsini birden ekleme yoktur: yüzlerce kelimeyle boğulma diye."),
-            _("\"Bu listeyle çalış\" dersen Learn & Pass yeni kelimeleri seviyenden değil bu listeden getirir. Bilmediklerini listene ekleyip eklememeyi oturum sonunda sen seçersin."),
+            _("\"Bu listeyle çalış\" dersen liste, Learn & Pass'e başlarken seçebileceğin listelere eklenir; haftalara bölünmüş listelerde bir haftayı seçip \"Bu kelimelerle çalış\" diyebilirsin."),
         ],
     },
     {
         "kimlik": "listem", "git": _("Listem'e git"), "adres": "sozluk", "sorgu": "?sekme=listem", "baslik": _("Listem"),
         "giris": _("Listem, eklediğin kelimelerin cep defteri. Sözlük'ün ikinci sekmesi."),
-        "goruntuler": [("listem", 1082, [(3, 36.5), (97, 36.5), (97, 45.6), (97, 57)])],
+        "goruntuler": ["listem"],
         "adimlar": [
             _("Listende İngilizce ya da Türkçe ara (\"hedef\" yazınca aim çıkar)."),
             _("Filtre: en yeni, en eski ya da A→Z sırala; son bir hafta ya da ay; \"Zorlandıklarım\" bilmediğin ya da egzersizde yanlış yaptığın kelimeleri gösterir."),
@@ -62,10 +68,15 @@ REHBERLER = [
         "kimlik": "learn-pass", "git": _("Learn & Pass'e git"), "adres": "learn_pass_page", "sorgu": "", "baslik": _("Learn & Pass"),
         "giris": _("Sitenin kalbi: kelimeyi görürsün, bilip bilmediğine karar verirsin. Birkaç dakika yeter, istediğin an bırakabilirsin; her cevap anında kaydedilir."),
         "goruntuler": [
-            ("lp-kart", 786, [(50, 62), (4.5, 80.3), (96, 80.3), (47.7, 5)]),
-            ("lp-balon", 1033, [(97, 60), (4.5, 94.5), (96, 94.5), (71, 15.5)]),
+            "lp-secim",
+            "lp-kart",
+            "lp-balon",
         ],
         "adimlar": [
+            _("Learn & Pass'te \"Hemen kaydırmaya başla\"ya basınca önce kelimelerin nereden geleceğini seçersin. \"Listem\": listendeki kelimeler ve seviyene göre yeni kelimeler."),
+            _("Hazır listelerde \"Bu listeyle çalış\" dediğin listeler de burada durur; haftalık listelerde hangi hafta olduğu yazar."),
+            _("Çöp kutusu listeyi bu ekrandan kaldırır."),
+            _("Bir liste seçince kelimelerin ne kadarının Listem'den, ne kadarının o listeden geleceğini çubukla ayarlarsın. Sonra \"Başla\"."),
             _("Kartta yalnızca kelime var. Anlamını aklından geçir."),
             _("Bilmiyorsan sola kaydır ya da \"Bilmiyorum\"a bas; anlamı görünür."),
             _("Biliyorsan sağa kaydır ya da \"Biliyorum\"a bas."),
@@ -81,8 +92,8 @@ REHBERLER = [
         "kimlik": "egzersizler", "git": _("Egzersizlere git"), "adres": "exercises_page", "sorgu": "", "baslik": _("Egzersizler: Kısa Sınav ve Deneme Sınavı"),
         "giris": _("Çalışmalar'ın ikinci sekmesi. İki çeşit var; puan ya da not yok, yanlış cevap yalnızca öğretir."),
         "goruntuler": [
-            ("kisa-sinav", 826, [(6, 34.9), (33, 67.6), (8, 86.9)]),
-            ("deneme-sinavi", 1000, [(5, 43.2), (95, 80.7)]),
+            "kisa-sinav",
+            "deneme-sinavi",
         ],
         "adimlar": [
             _("Kısa Sınav çoğu gün yeter: listendeki kelimelerin anlamları, iki yönlü (İngilizce→Türkçe ve tersi). Ayar yok."),
@@ -96,19 +107,20 @@ REHBERLER = [
     {
         "kimlik": "okumalar", "git": _("Okumalar'a git"), "adres": "readings", "sorgu": "", "baslik": _("Okumalar"),
         "giris": _("Kelimeyi metnin içinde görmek için. Kütüphanedeki metinleri okuyabilir ya da kendi metnini (PDF ya da yapıştırarak) ekleyebilirsin; kendi metinlerini yalnızca sen görürsün."),
-        "goruntuler": [("okuma", 1082, [(3, 60.3), (3, 71), (50, 67.1)])],
+        "goruntuler": ["okuma"],
         "adimlar": [
             _("Bilmediğin kelimeye dokun; anlamı hemen bir baloncukta çıkar. \"decided\" gibi çekimli hâller köküne bağlanır, \"give up\" gibi öbekler tanınır."),
             _("Birden çok anlamı varsa hepsi numaralı ve kısa; en yaygın olan en üstte."),
-            _("\"Listeme ekle\" ile kelimeyi okurken listene al."),
+            _("\"Listeme ekle\" ile kelimeyi okurken listene al. Aynı kelimeye yeniden dokununca baloncuk kapanır."),
+            _("\"işaret koy\"a basıp bir kelimeye dokunursan orası kaldığın yer olur; metne döndüğünde \"işarete git\" seni oraya götürür. İşaret bu cihazda saklanır."),
         ],
     },
     {
         "kimlik": "yazilar", "git": _("Yazılar'a git"), "adres": "profile_texts", "sorgu": "", "baslik": _("Yazılar"),
         "giris": _("Bir kelimeyi gerçekten bilmenin yolu onu kullanmak. Burada iki şey yapabilirsin."),
-        "goruntuler": [("yazilar", 1082, [(62, 46), (7, 52.8), (6, 68)])],
+        "goruntuler": ["yazilar"],
         "adimlar": [
-            _("Serbest yazma: 3–8 cümle yaz. Türkçe geri bildirim gelir: neyi iyi yaptığın ve gerçek hataların (alıntı → doğrusu → kısa neden), 5 üzerinden bir puanla. Üslup tercihi hata sayılmaz."),
+            _("Serbest yazma: önce türü seç: Günlük (3–8 cümle) ya da Akademik (1–3 paragraf; resmî dil, ihtiyatlı dil ve mantık da denetlenir). Türkçe geri bildirim gelir: neyi iyi yaptığın ve gerçek hataların (alıntı → doğrusu → kısa neden), 5 üzerinden bir puanla. Üslup tercihi hata sayılmaz."),
             _("Günde yazabileceğin metin sayısı sınırlı; kalan hakkın burada yazar. Değerlendirme o an yapılamazsa metnin kaybolmaz, sonra kendiliğinden değerlendirilir."),
             _("Diyalogda doğru kelime: kısa bir diyalogdaki boşluğa, Türkçe ipucuna bakarak listendeki doğru kelimeyi yaz."),
         ],
@@ -116,9 +128,9 @@ REHBERLER = [
     {
         "kimlik": "seri", "git": _("Ana Sayfa'ya git"), "adres": "index", "sorgu": "#seri", "baslik": _("Seri"),
         "giris": _("Her gün biraz çalışınca takviminde bir gün daha işaretlenir."),
-        "goruntuler": [("seri", 1000, [(80, 18.7), (76, 42.3), (3, 60.5)])],
+        "goruntuler": ["seri"],
         "adimlar": [
-            _("Ana Sayfa'daki seri kutusuna dokun. Bir günü tamamlamak için şunlardan biri yeter: 10 Learn & Pass kartı, 10 egzersiz sorusu, 1 metin ya da 1 diyalog."),
+            _("Ana Sayfa'daki seri kartında \"takvim ›\"a dokun. Bir günü tamamlamak için şunlardan biri yeter: 10 Learn & Pass kartı, 10 egzersiz sorusu, 1 metin ya da 1 diyalog."),
             _("Dondurma hakkı: bir günü kaçırırsan hak varsa o gün otomatik dondurulur ve serin bozulmaz. 1 hakla başlarsın, art arda 5 gün çalışınca bir hak daha kazanırsın; en çok 3 hak birikir."),
             _("Takvimde çalıştığın günler turuncu, dondurulan günler mavi görünür. Gün senin saatinle gece 00.00'da biter."),
         ],
@@ -127,12 +139,12 @@ REHBERLER = [
         "kimlik": "ayarlar", "git": _("Ayarlar'a git"), "adres": "settings_page", "sorgu": "", "baslik": _("Ayarlar: siteyi kendine göre ayarla"),
         "giris": _("Sağ üstteki profil fotoğrafına dokun, Hesap açılır; Ayarlar oradadır. Yaptığın her değişiklik hemen kaydedilir; kaydet düğmesi yok."),
         "goruntuler": [
-            ("ayarlar-gorunum", 1000, [(49.4, 41.3), (21.6, 80.2)]),
-            ("ayarlar-calisma", 1000, [(3, 15.8), (3, 54.2)]),
-            ("ayarlar-tercihler", 1000, [(5, 32.6), (5, 61.5), (5, 86)]),
+            "ayarlar-gorunum",
+            "ayarlar-calisma",
+            "ayarlar-tercihler",
         ],
         "adimlar": [
-            _("Görünüm: açık, koyu ya da \"sistem\" (cihazının teması). Bu seçim cihazında saklanır."),
+            _("Görünüm: açık, koyu ya da \"sistem\" (cihazının teması). Üstteki ay/güneş düğmesiyle de değiştirebilirsin. Bu seçim cihazında saklanır."),
             _("Dil: sitenin dili (Türkçe, English, Deutsch). Üstteki küre düğmesinden de değiştirebilirsin; giriş yaptıysan seçimin hesabında saklanır."),
             _("Türkçe anlamlar: kapatırsan Türkçe anlamlar ne gösterilir ne sorulur; kartlarda, okurken ve egzersizlerde İngilizce açıklamalar kullanılır. Sitenin dilinden bağımsızdır."),
             _("Seviye: seviye testini yeniden çözebilirsin. Günün kelimesi ve egzersizler seviyene göre gelir; çalıştıkça seviyen kendiliğinden düzeltilir."),
@@ -145,48 +157,41 @@ REHBERLER = [
 ]
 
 
-# Dile özgü işaret konumları (görüntü adı → konumlar); yazılmayanlar REHBERLER'dekini kullanır.
-ISARET_DILLERI = {
-    "en": {
-        "liste": [(3, 24), (69, 78.2)],
-        "lp-balon": [(97, 60), (4.5, 87.4), (96, 87.4), (71, 15.5)],
-        "kisa-sinav": [(6, 25.6), (23, 63.2), (8, 86.9)],
-        "deneme-sinavi": [(5, 47.1), (95, 85)],
-        "okuma": [(3, 60.3), (3, 71), (48, 67.1)],
-        "yazilar": [(57, 46), (7, 52.8), (6, 68)],
-        "ayarlar-gorunum": [(58.8, 41.3), (49.5, 80.2)],
-        "ayarlar-calisma": [(3, 15.8), (3, 55.9)],
-        "ayarlar-tercihler": [(5, 29.6), (5, 58.5), (5, 83)],
-    },
-    "de": {
-        "kelime": [(3, 65), (3, 47), (60, 53.3), (10, 90)],
-        "liste": [(3, 24), (76, 78.2)],
-        "lp-balon": [(97, 60), (4.5, 90.6), (96, 90.6), (61, 15.5)],
-        "kisa-sinav": [(6, 21.2), (28, 63.3), (8, 86.9)],
-        "deneme-sinavi": [(5, 47.1), (95, 85)],
-        "okuma": [(3, 60.3), (3, 71), (45.5, 67.1)],
-        "yazilar": [(93, 50.2), (7, 57), (6, 72.3)],
-        "ayarlar-gorunum": [(58.3, 41.3), (43.2, 80.2)],
-        "ayarlar-calisma": [(3, 15.8), (3, 58.9)],
-    },
+
+# Diyalog kapalıyken (settings.DIYALOG_ACIK) yardımda ondan söz edilmez: Yazılar'ın
+# diyalog adımı (son adım) düşer, giriş ve seri adımı diyalogsuz yazılır.
+DIYALOGSUZ = {
+    "yazilar_giris": _("Bir kelimeyi gerçekten bilmenin yolu onu kullanmak. Burada serbest yazma yapabilirsin."),
+    "seri_adim": _("Ana Sayfa'daki seri kartında \"takvim ›\"a dokun. Bir günü tamamlamak için şunlardan biri yeter: 10 Learn & Pass kartı, 10 egzersiz sorusu ya da 1 metin."),
 }
 
 
+def _diyalogsuz(r):
+    if settings.DIYALOG_ACIK:
+        return r
+    if r["kimlik"] == "yazilar":
+        return {**r, "giris": DIYALOGSUZ["yazilar_giris"], "adimlar": r["adimlar"][:-1]}
+    if r["kimlik"] == "seri":
+        return {**r, "adimlar": [DIYALOGSUZ["seri_adim"], *r["adimlar"][1:]]}
+    return r
+
+
 def _rehberler(dil):
-    """Görüntülere işaret numaralarını ve adres önekini ekler."""
+    """Görüntülere işaret numaralarını, konumlarını ve yanını (bir sol bir sağ) ekler."""
     klasor = f"img/yardim/{dil}/"
-    dile_ozgu = ISARET_DILLERI.get(dil, {})
-    sonuc = []
-    for r in REHBERLER:
+    sonuc, kacinci = [], 0
+    for r in map(_diyalogsuz, REHBERLER):
         sira, goruntuler = 0, []
-        for ad, yukseklik, isaretler in r["goruntuler"]:
-            isaretler = dile_ozgu.get(ad, isaretler)
-            goruntuler.append({"yukseklik": yukseklik,
+        for ad in r["goruntuler"]:
+            bilgi = ISARETLER[dil][ad]
+            isaretler = bilgi["isaretler"][:len(r["adimlar"]) - sira]
+            goruntuler.append({"ad": ad, "yukseklik": bilgi["yukseklik"], "sag": kacinci % 2 == 1,
                 "acik": f"{klasor}{ad}-acik.webp", "koyu": f"{klasor}{ad}-koyu.webp",
                 "isaretler": [{"no": sira + i + 1, "x": x, "y": y} for i, (x, y) in enumerate(isaretler)],
                 "adimlar": [{"no": sira + i + 1, "metin": r["adimlar"][sira + i]} for i in range(len(isaretler))],
             })
             sira += len(isaretler)
+            kacinci += 1
         sonuc.append({**r, "goruntuler": goruntuler, "kalan_adimlar": r["adimlar"][sira:]})
     return sonuc
 

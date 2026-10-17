@@ -1,0 +1,580 @@
+=====================================================================================
+ LearnVocab — KOMUTLAR REHBERİ
+ (17 Ekim 2026. Projedeki bütün manage.py komutları: ne yapar, neden önemli, nasıl çalıştırılır)
+=====================================================================================
+
+İÇİNDEKİLER
+  0. Önce bunu oku: komut nasıl çalıştırılır, işaretler, üç altın kural
+  1. YAYINA ALIRKEN — sırayla yapılacaklar
+  2. HER GÜNCELLEMEDE (yeni kod yüklediğinde)
+  3. ZAMANLANMIŞ İŞLER (cron)
+  4. CANLI VERİTABANI <-> SQLITE DOSYASI (veritabani indir / yukle)
+  5. BAKIM VE DENETİM
+  6. İÇERİK YÜKLEME KOMUTLARI (hazır dosyadan veritabanına)
+  7. SÖZLÜK VERİ HATTI (yerelde; bazıları ÜCRETLİ yapay zekâ çağırır)
+  8. DÜZELTME BETİKLERİ (words/duzeltmeler)
+  9. YERELDE GELİŞTİRME KOMUTLARI
+ 10. KULLANILMAYAN / ESKİ KOMUTLAR
+ 11. SORUN ÇIKARSA
+
+
+=====================================================================================
+ 0. ÖNCE BUNU OKU
+=====================================================================================
+
+KOMUT NASIL ÇALIŞTIRILIR (sunucuda, SSH / cPanel Terminal)
+  cPanel → "Setup Python App" ekranının üstünde şuna benzer bir satır yazar:
+
+      source /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/activate && cd /home/KULLANICI/PROJE_KLASORU
+
+  Bu satırı terminale yapıştır. Artık bütün komutlar şöyle çalışır:
+
+      python manage.py KOMUT_ADI [seçenekler]
+
+  Yerelde (Mac'te) proje klasöründe:
+
+      .venv/bin/python manage.py KOMUT_ADI [seçenekler]
+
+  Bir komutun bütün seçeneklerini görmek için:   python manage.py KOMUT_ADI --help
+
+İŞARETLER (aşağıda her komutun yanında)
+  [YAYIN]      Yayına alırken / güncellerken sunucuda çalıştırılır.
+  [CRON]       Zamanlanmış iş: cPanel → Cron Jobs'a eklenir, kendiliğinden çalışır.
+  [SUNUCU]     Gerektiğinde sunucuda elle çalıştırılır.
+  [YEREL]      Yalnızca kendi bilgisayarında çalıştır; sunucuda gerek yok.
+  [TEHLİKELİ]  Veri siler ya da değiştirir. Önce yedek al, önce kuru deneme yap.
+  [ÜCRETLİ]    Yapay zekâ API'sine (OpenRouter / Gemini) para harcayan çağrı yapar.
+
+ÜÇ ALTIN KURAL
+  1) Önce kuru deneme. Veri değiştiren komutların neredeyse hepsinde --dry-run var
+     (veritabani yukle'de bu varsayılandır; yazmak için --uygula gerekir). Önce kuru dene,
+     raporu oku, sonra gerçekten çalıştır.
+  2) Önce yedek. Canlıda veri değiştirmeden önce:
+         python manage.py veritabani indir ~/veritabani-yedekleri/yedek-TARIH.sqlite3
+  3) Değişiklikten sonra uygulamayı yeniden başlat:
+         touch tmp/restart.txt
+     (Passenger kodu ve .env'i ancak yeniden başlayınca okur.)
+
+
+=====================================================================================
+ 1. YAYINA ALIRKEN — SIRAYLA
+=====================================================================================
+
+Adım 1 — Kodu yükle ve paketleri kur  [YAYIN]
+      git pull                               (ya da dosyaları cPanel ile yükle)
+      pip install -r requirements.txt
+  Ne yapar: Projenin ihtiyaç duyduğu Python paketlerini kurar (Django, mysqlclient,
+  pywebpush, pymupdf, google-genai …).
+  Neden önemli: Eksik paket olursa site açılmaz ya da bildirim / PDF / yazı değerlendirme
+  çalışmaz. requirements.txt değiştiğinde her seferinde tekrar çalıştır.
+
+Adım 2 — .env dosyasını hazırla  [YAYIN]
+  Proje klasöründeki .env dosyasında en az şunlar olmalı (değerleri sohbete / git'e yazma):
+      DEBUG=False
+      SECRET_KEY=...
+      SITE_ADRESI=https://...
+      DB_ENGINE=django.db.backends.mysql
+      DB_NAME=...  DB_USER=...  DB_PASSWORD=...  DB_HOST=localhost
+      GEMINI_API_TOKEN=...
+      GEMINI_MODEL=gemini-3.6-flash
+      GEMINI_FALLBACK_MODELS=gemini-3.7-flash,gemini-3.8-flash
+      YAYIN_DILLERI=tr,en        (sunucuda "de" YOK)
+      EKLENTI_ADRESI=...         (Chrome Web Store adresi; yoksa boş)
+      EKLENTI_KIMLIKLERI=...     (Chrome eklentisinin kimliği; eklentinin siteye bağlanabilmesi için)
+      GOOGLE_CLIENT_ID=...  GOOGLE_CLIENT_SECRET=...     (Google ile giriş)
+      EMAIL_HOST_USER=...   EMAIL_HOST_PASSWORD=...      (şifre sıfırlama, doğrulama e-postaları)
+      KVKK_VERI_SORUMLUSU=...  KVKK_ILETISIM_EPOSTASI=... (aydınlatma metninde görünür)
+      OZEL_DEPO=/home/KULLANICI/ozel_depo   (kullanıcı PDF'leri; web kökünün DIŞINDA olmalı)
+      TEXT_DAILY_LIMIT=3  YAZMA_DAKIKADA_EN_COK=4        (yazı değerlendirme sınırları; isteğe bağlı)
+  Neden önemli: DEBUG=False olmadan site hata ayrıntılarını herkese gösterir.
+  VAPID anahtarlarını elle yazma; Adım 6'daki komut yazar.
+
+Adım 3 — Tabloları kur / güncelle  [YAYIN]
+      python manage.py migrate
+  Ne yapar: Veritabanı tablolarını koddaki modellere göre kurar ya da günceller
+  (yeni tablo, yeni sütun). Uygulanmamış migration'ları sırayla uygular.
+  Neden önemli: Kod yeni bir sütun beklerken veritabanında yoksa ilgili sayfa hata verir.
+  Her kod güncellemesinden sonra çalıştır. Durumu görmek için: python manage.py showmigrations
+  NOT (17 Ekim): yerel veritabanında words 0029 ve 0030 henüz uygulanmamış; yerelde de
+  bir kez "migrate" çalıştır.
+
+Adım 4 — Veriyi canlıya taşı (YALNIZCA İLK YAYINDA)  [YAYIN] [TEHLİKELİ]
+  Yerelde, yerel veritabanının tam kopyasını al:
+      .venv/bin/python manage.py veritabani indir ilk-yayin.sqlite3
+  Dosyayı sunucuya yükle (web kökünün DIŞINA), sonra sunucuda:
+      python manage.py veritabani yukle ilk-yayin.sqlite3 --hepsi            (kuru deneme)
+      python manage.py veritabani yukle ilk-yayin.sqlite3 --hepsi --uygula   (EVET yazmanı ister)
+  Ne yapar: Canlıdaki BÜTÜN tabloları boşaltıp dosyadakiyle doldurur.
+  Neden önemli: Sözlük, okumalar, listeler, konular, egzersiz havuzları canlıya böyle geçer.
+  DİKKAT: --hepsi kullanıcı tablolarını da siler. Yalnızca ilk yayında, site boşken kullan.
+  Sonra dosyayı sunucudan sil (içinde kullanıcı e-postaları ve şifre özetleri var).
+  Ayrıntı: Bölüm 4.
+
+Adım 5 — Statik dosyaları topla  [YAYIN]
+      python manage.py collectstatic --noinput
+  Ne yapar: CSS, JavaScript, ikonlar, yazı tipleri, service worker gibi dosyaları
+  STATIC_ROOT klasörüne (staticfiles_root/) kopyalar; web sunucusu onları buradan verir.
+  Neden önemli: DEBUG=False'ta Django statik dosya vermez. Çalıştırmazsan site stilsiz
+  ve bozuk görünür. Her CSS / JS değişikliğinden sonra tekrar çalıştır.
+
+Adım 6 — Bildirim anahtarlarını üret (YALNIZCA BİR KEZ)  [YAYIN]
+      python manage.py vapid_anahtari_uret --eposta ADRESIN@ornek.com
+  Ne yapar: Web push bildirimleri için VAPID anahtar çiftini üretip DOĞRUDAN .env'e yazar
+  (ekrana basmaz).
+  Neden önemli: Anahtar olmadan telefon bildirimleri gitmez.
+  DİKKAT: Bir kez üretilir. .env'de dolu anahtar varsa komut dokunmaz; anahtarı elle
+  değiştirirsen bütün kullanıcıların bildirim abonelikleri geçersiz olur.
+
+Adım 7 — Yönetici hesabı  [YAYIN]
+      python manage.py createsuperuser
+  Ne yapar: /admin/ paneline girebilen bir hesap açar.
+  Neden önemli: Veriyi tarayıcıdan denetlemek, istatistik ekranı ve acil düzeltmeler için.
+  (Veriyi yerelden taşıdıysan yerel yönetici hesabın da gelmiştir; gerekmeyebilir.)
+
+Adım 8 — Yayın öncesi güvenlik denetimi  [YAYIN]
+      python manage.py check --deploy
+  Ne yapar: Django'nun canlı ortam ayarlarını denetler (DEBUG, HTTPS, çerez güvenliği,
+  SECRET_KEY, HSTS …) ve uyarı listesi verir.
+  Neden önemli: Açık bir güvenlik ayarını yayından önce yakalar. Uyarı kalmamalı
+  (kalanları bilerek kabul ettiğinden emin ol).
+
+Adım 9 — Cron işlerini ekle  [YAYIN]
+  Bölüm 3'teki satırları cPanel → Cron Jobs'a ekle. Önce her komutu --dry-run ile elle dene.
+
+Adım 10 — Uygulamayı yeniden başlat  [YAYIN]
+      touch tmp/restart.txt
+  Sonra siteyi aç; ana sayfa, sözlük araması, Learn & Pass ve yazı gönderme çalışıyor mu bak.
+
+Adım 11 — Arama motorlarına aç  [YAYIN]
+      python manage.py dizine_ac                     (durum: kaç sayfa açık)
+  Ayrıntı: Bölüm 5. Google Search Console'a site haritasını (/sitemap.xml) ekle.
+
+
+=====================================================================================
+ 2. HER GÜNCELLEMEDE (yeni kod yüklediğinde)
+=====================================================================================
+
+  git pull                                   (ya da dosyaları yükle)
+  pip install -r requirements.txt            (requirements.txt değiştiyse)
+  python manage.py migrate                   (yeni migration varsa)
+  python manage.py collectstatic --noinput   (CSS / JS / şablon stili değiştiyse; zararsız, hep çalıştır)
+  touch tmp/restart.txt
+
+  Çeviri dosyaları (.mo) git'te hazır geliyor; sunucuda compilemessages gerekmez.
+  Tailwind CSS yerelde derlenir (static/css/site.css git'te); sunucuda derleme yok.
+
+
+=====================================================================================
+ 3. ZAMANLANMIŞ İŞLER (cron)   [CRON]
+=====================================================================================
+
+Ayrıntılı kurulum: bildirimler/CRON.md. Satırlarda KULLANICI, PROJE_KLASORU ve 3.10 yerine
+"Setup Python App" ekranındaki değerleri yaz. Log klasörünü bir kez oluştur:  mkdir -p ~/logs
+
+  */30 * * * *  cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py yazilari_yeniden_dene >> /home/KULLANICI/logs/yazilari_yeniden_dene.log 2>&1
+  */15 * * * *  cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py bildirim_gonder_hatirlatma >> /home/KULLANICI/logs/hatirlatma.log 2>&1
+  0 4 * * *     cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py karsilasma_ozetle >> /home/KULLANICI/logs/karsilasma_ozetle.log 2>&1
+  15 4 * * *    cd /home/KULLANICI/PROJE_KLASORU && /home/KULLANICI/virtualenv/PROJE_KLASORU/3.10/bin/python manage.py clearsessions >> /home/KULLANICI/logs/clearsessions.log 2>&1
+
+yazilari_yeniden_dene   (30 dakikada bir)
+  Ne yapar: Gemini cevap vermediği, kota dolduğu ya da site yoğun olduğu için
+  değerlendirilemeyen yazıları ("Henüz değerlendirilmedi" sarı etiketi) kotaya uyarak
+  yeniden dener. Bir çalıştırmada en çok 5 metin; kota hatası gelince hemen durur.
+  Değerlendirilen yazı için kullanıcıya "Yazın değerlendirildi" bildirimi gider.
+  Bir günden eski silinmiş yazıları da kalıcı olarak temizler.
+  Neden önemli: Bu olmadan değerlendirilemeyen yazılar sonsuza dek beklemede kalır.
+  Seçenekler: --limit 5  --bekleme 10 (dakika)  --dry-run
+  NOT: Gemini ücretsiz katmanı model başına günde 20, dakikada 5 istek kabul ediyor
+  (17 Ekim'de ölçüldü). Kota dolunca yazılar ertesi güne kalır.
+
+bildirim_gonder_hatirlatma   (15 dakikada bir)
+  Ne yapar: Seri hatırlatmaları. Kullanıcının KENDİ saatiyle 12.00'de "Günün kelimesi:
+  … · Bugünün çalışması seni bekliyor", 23.45'te "seriyi kaçırma" bildirimi gönderir.
+  O günü tamamlayana, serisi 0 olana ya da aynı bildirimi o gün almış olana gitmez.
+  Neden önemli: Kullanıcıyı geri getiren ana mekanizma. 15 dakikada bir çalışmazsa
+  bazı saat dilimlerindeki kullanıcılar bildirim almaz.
+  Seçenek: --dry-run (kime ne gideceğini yazar, göndermez)
+
+karsilasma_ozetle   (her gece 04.00)
+  Ne yapar: Learn & Pass'in 90 günden eski ayrıntılı karşılaşma kayıtlarını kişisiz günlük
+  özetlere çevirip siler.
+  Neden önemli: Bu kayıtlar en hızlı büyüyen tablo; çalışmazsa veritabanı barındırmanın
+  1 GB sınırına yaklaşır. Tekrar çalıştırmak güvenli.
+  Seçenek: --dry-run
+
+clearsessions   (her gece 04.15, isteğe bağlı; Django'nun kendi komutu)
+  Ne yapar: Süresi dolmuş oturum kayıtlarını siler.
+  Neden önemli: Oturum tablosu zamanla şişer; zararsız temizlik.
+
+Saat dilimi: cron sunucunun saatiyle çalışır (sunucu UTC ise gece 04.00 Türkiye = 01:00 UTC).
+Komutlar kendi içinde kullanıcının saatine baktığı için yanlış saatte çalışmak zarar vermez.
+
+
+=====================================================================================
+ 4. CANLI VERİTABANI <-> SQLITE DOSYASI   (veritabani indir / yukle)
+=====================================================================================
+
+Amaç: Canlıdaki veriyi bilgisayarına indirip yerelde düzenlemek (sözlük düzeltmeleri, yeni
+kelimeler, listeler …) ve düzenlenmiş içeriği canlıya geri koymak. Kod:
+LearnVocab/veritabani_esitleme.py
+
+4.1  indir   [SUNUCU]
+      python manage.py veritabani indir ~/canli-17ekim.sqlite3
+  Ne yapar: Canlı veritabanının (MySQL) BÜTÜN tablolarının tam kopyasını YENİ bir SQLite
+  dosyasına yazar. Dosyaya bir künye eklenir: alındığı tarih, migration durumu ve her
+  içerik tablosunun parmak izi (yüklerken "canlı bu arada değişti mi" diye bakmak için).
+  Okuma tek işlemde yapılır; site çalışırken alınabilir, kullanıcılar etkilenmez.
+  Var olan bir dosyanın üstüne yazmaz.
+  DİKKAT: Dosyada kullanıcıların e-postaları ve şifre özetleri var. Web kökünün (public_html)
+  DIŞINA yaz, indirince sunucudan sil, kimseyle paylaşma.
+
+  Yerelde dosyayla çalışmak:
+      DB_NAME=canli-17ekim.sqlite3 .venv/bin/python manage.py runserver
+      DB_NAME=canli-17ekim.sqlite3 .venv/bin/python manage.py shell -c "..."   (düzeltme betikleri)
+
+4.2  yukle   [SUNUCU] [TEHLİKELİ]
+      python manage.py veritabani yukle ~/canli-17ekim.sqlite3              (KURU DENEME: yalnızca rapor)
+      python manage.py veritabani yukle ~/canli-17ekim.sqlite3 --uygula     (gerçekten yazar)
+  Ne yapar: Dosyadaki İÇERİK tablolarını canlıya eşitler: yeni satır eklenir, değişen
+  güncellenir, dosyada olmayan silinir. İçerik tabloları: sözlük (kelimeler, anlamlar,
+  örnekler, eş dizimler, kalıplar, çekimler, eş/zıt/basit bağları, aileler, yanlış dostlar),
+  ifadeler, konular (kategoriler), hazır listeler, okuma kütüphanesi, egzersiz havuzları
+  (bağlaç cümleleri, eş dizim çeldiricileri), seviye testi havuzları, diyaloglar.
+  KULLANICI tablolarına HİÇ dokunmaz: hesaplar, listeler (Listem), seri, yazılar, okuma
+  ilerlemesi, egzersiz sonuçları, bildirim abonelikleri, oturumlar. Yani dosyayı indirdikten
+  sonra canlıda olan her şey (yeni kayıtlar, listeye eklenen kelimeler, seriler) korunur.
+  Silinen bir kelimeye bağlı kullanıcı kayıtları (o kelime birinin listesindeyse) Django'nun
+  kurallarıyla birlikte silinir; kuru denemede "birlikte silinecek kullanıcı kayıtları"
+  başlığında sayıları görünür. Bunu mutlaka oku.
+
+  Güvenlik önlemleri (kendiliğinden):
+    - Varsayılan kuru denemedir. Her şey yapılır, sonra geri alınır; yalnızca rapor kalır.
+    - --uygula ile önce canlının TAM yedeği alınır: ~/veritabani-yedekleri/yedek-TARIH.sqlite3
+    - Dosyanın ve canlının migration'ları farklıysa durur ("önce migrate çalıştır").
+    - Dosya indirildikten sonra canlıda bir içerik tablosu değiştiyse durur (birisi canlıda
+      da sözlük düzenlediyse, onun işini ezmemek için). Bilerek ezmek için: --zorla
+    - Hepsi tek işlemde yapılır; bütünlük denetimi geçmezse HİÇBİR şey yazılmaz.
+    - Yüklemeden sonra dosyanın künyesi güncellenir: aynı dosyayla çalışmaya devam edip
+      yeniden yükleyebilirsin.
+    - Yüklemeden sonra önbellek temizlenir. Sonra:  touch tmp/restart.txt
+
+  Seçenekler:
+    --uygula             gerçekten yaz
+    --zorla              canlıda indirmeden beri değişen içerik tablolarını da dosyadakiyle ez
+    --hepsi              BÜTÜN tabloları (kullanıcılar dahil) dosyadakiyle değiştir. YALNIZCA
+                         ilk taşıma için. "EVET" yazmanı ister (--evet ile sormaz).
+    --yedek-klasoru YOL  tam yedeğin yazılacağı klasör (varsayılan ~/veritabani-yedekleri)
+
+4.3  Önerilen düzen
+  1) Sunucuda indir, dosyayı bilgisayarına al, sunucudakini sil.
+  2) Yerelde düzenle (DB_NAME=dosya ile). Bu sırada canlıda SÖZLÜĞÜ düzenleme (admin'den bile);
+     yoksa yüklerken "canlı değişmiş" uyarısı alırsın.
+  3) Kod değişikliği (yeni migration) varsa önce kodu yayına al ve iki tarafta migrate çalıştır:
+     sunucuda "python manage.py migrate", yerelde "DB_NAME=dosya .venv/bin/python manage.py migrate".
+  4) Dosyayı sunucuya yükle, kuru dene, raporu oku, --uygula, touch tmp/restart.txt, dosyayı sil.
+
+4.4  Geri dönüş
+  Yükleme bir şeyi bozduysa: --uygula'dan önce alınan tam yedek ~/veritabani-yedekleri/'nde.
+  O yedekle bütün canlıyı geri getirmek için (O ANA KADARKİ kullanıcı etkinliği de geri gider):
+      python manage.py veritabani yukle ~/veritabani-yedekleri/yedek-TARIH.sqlite3 --hepsi --uygula
+  Yalnızca içeriği geri almak için --hepsi'siz yükle (kullanıcı verisi korunur; yedeğin künyesi
+  eski olduğu için --zorla gerekir).
+
+4.5  Geliştirici notu
+  Yeni bir model (tablo) eklenince LearnVocab/veritabani_esitleme.py'deki ICERIK ya da
+  KULLANICI listesine yazılmalı; yazılmazsa komut çalışmaz ve test (test_veritabani_esitleme)
+  uyarır.
+
+
+=====================================================================================
+ 5. BAKIM VE DENETİM
+=====================================================================================
+
+showmigrations   [SUNUCU]
+      python manage.py showmigrations
+  Hangi migration'ların uygulandığını gösterir ([X] uygulandı, [ ] bekliyor).
+  Bir sayfa "no such column / Unknown column" hatası veriyorsa ilk bakılacak yer.
+
+check --deploy   [YAYIN]
+      python manage.py check --deploy
+  Canlı ayarların güvenlik denetimi (Bölüm 1, Adım 8).
+
+createsuperuser / changepassword   [SUNUCU]
+      python manage.py createsuperuser
+      python manage.py changepassword KULLANICI_ADI
+  Yönetici hesabı açar / bir hesabın şifresini değiştirir (şifre ekrana yazılmaz).
+
+dizine_ac   [SUNUCU]
+      python manage.py dizine_ac                                       (durum)
+      python manage.py dizine_ac --seviye A1 A2 B1 --kaynak oxford --dry-run
+      python manage.py dizine_ac --seviye A1 A2 B1 --kaynak oxford
+      python manage.py dizine_ac --seviye B2 --en-cok 1500
+      python manage.py dizine_ac --ifadeler
+      python manage.py dizine_ac --kapat-hepsi
+  Ne yapar: Kelime sayfalarını PARTİ PARTİ arama motorlarına açar (dizinde=True olanlar site
+  haritasına girer ve "noindex" almaz). Kurallar words/dizine_alma.py'de.
+  Neden önemli: Google'dan gelen trafik buna bağlı. Bütün sayfaları birden açmak yerine
+  kaliteli olanlardan başlayıp partiler hâlinde açmak sitenin itibarını korur.
+
+list_gemini_models   [SUNUCU]
+      python manage.py list_gemini_models
+      python manage.py list_gemini_models --all
+  Ne yapar: Gemini API anahtarının GERÇEKTEN erişebildiği modelleri listeler.
+  Neden önemli: Google model adlarını kapatıyor. .env'deki GEMINI_MODEL geçersiz olursa yazı
+  değerlendirme sessizce durur. Yazılar "Henüz değerlendirilmedi"de kalıyorsa ilk buna bak.
+
+yazilari_yeniden_dene (elle)   [SUNUCU]
+      python manage.py yazilari_yeniden_dene --dry-run
+      python manage.py yazilari_yeniden_dene --limit 10
+  Cron beklemeden bekleyen yazıları hemen denemek için (Bölüm 3).
+
+clearsessions   [SUNUCU]
+      python manage.py clearsessions
+  Süresi dolmuş oturumları siler.
+
+dbshell / shell   [SUNUCU] [TEHLİKELİ]
+      python manage.py dbshell        (doğrudan MySQL komut satırı)
+      python manage.py shell          (Django ile Python)
+  Ne yaptığını bildiğin tek seferlik sorgular için. Canlıda yazma yapmadan önce yedek al.
+
+
+=====================================================================================
+ 6. İÇERİK YÜKLEME KOMUTLARI (hazır dosyadan veritabanına)
+=====================================================================================
+
+Bu komutlar yapay zekâ ÇAĞIRMAZ; yalnızca hazır dosyayı okur. Hepsi tekrar çalıştırmaya
+dayanıklıdır (aynı kayıt ikinci kez eklenmez, güncellenir) ve hepsinde --dry-run var.
+Genelde YEREL'de çalıştırılır; içerik canlıya "veritabani yukle" ile gider (Bölüm 4).
+
+hazir_liste_yukle   [YEREL]
+      python manage.py hazir_liste_yukle liste.txt --ad "ODTÜ 101" --kurum ODTÜ --dry-run
+      python manage.py hazir_liste_yukle liste.txt --ad "ODTÜ 101" --kurum ODTÜ
+  Ne yapar: Bir satıra bir kelime (isteğe bağlı ":tür"), "## başlık" ile bölüm (hafta/konu)
+  olan dosyadan hazır liste kurar. Eşleşmeyenleri ve çekimden köke bağlananları raporlar.
+  Seçenekler: --slug, --aciklama, --sira, --gizli (Keşfet'te gösterme),
+              --yenile (aynı listeyi baştan yaz), --eslesmeyenler DOSYA
+  Neden önemli: Bilkent / ODTÜ / Cambridge listeleri bu yolla girer. "--kurum" Keşfet'teki
+  kurum dallarını belirler (kurumun ilk kelimesi; boşsa "Diğer listeler").
+
+ADMIN'DEN OKUMA METNİ EKLEMEK (komut gerekmez)
+  /admin/ → Okuma konuları → "Ekle": konu adı (TR, isteğe bağlı EN/DE), renk, sıra.
+  /admin/ → Reading texts → "Ekle": numara (önerilir), başlık, konu (listeden), seviye, kaynak,
+  metin (paragrafları BOŞ SATIRLA ayır). Kelime sayısı ve adres kaydederken hesaplanır.
+  Metni olan bir konu silinemez ve anahtarı değiştirilemez (metinler konusuz kalmasın).
+
+kutuphane_yukle   [YEREL]
+      python manage.py kutuphane_yukle metinler.jsonl --dry-run
+  Ne yapar: Okuma kütüphanesine JSON Lines dosyasından metin ekler / günceller.
+
+import_readings   [YEREL]
+      python manage.py import_readings --dry-run
+      python manage.py import_readings [--prune]
+  Ne yapar: reading-texts/ klasöründeki kitap metinlerini kütüphaneye alır (sıra numarasına
+  göre eşleştirir). --prune: kaynakta artık olmayan metinleri siler [TEHLİKELİ].
+
+elle_kelime_yukle   [YEREL]
+      python manage.py elle_kelime_yukle veri/oxford_eksik/a1.jsonl --dry-run
+  Ne yapar: Elle yazılmış kelimeleri (JSONL: kelime, tür, seviye, aile, anlamlar, örnekler,
+  çekimler) sözlüğe ekler; var olanları atlar.
+
+ifadeleri_yukle   [YEREL]
+      python manage.py ifadeleri_yukle [--dry-run]
+  Ne yapar: Bağlayıcı ifadeleri ve kalıpları (words/ifadeler/veri.py) yükler / günceller.
+
+ifade_bilinirligi   [YEREL]
+      python manage.py ifade_bilinirligi
+  Ne yapar: İfadeleri "yaygın" / "az bilinen" diye işaretler (günün ifadesi seçimi için).
+  ifadeleri_yukle'den sonra çalıştır.
+
+baglac_havuzu_yukle   [YEREL]
+      python manage.py baglac_havuzu_yukle havuz.json --dry-run
+  Ne yapar: Egzersizlerdeki bağlaç / ifade boşluk doldurma cümle havuzunu (D2) yükler.
+
+esdizim_celdiricileri   [YEREL]
+      python manage.py esdizim_celdiricileri --adaylari-yaz adaylar.jsonl
+      python manage.py esdizim_celdiricileri --yukle sonuc.jsonl --dry-run
+  Ne yapar: Hafif fiilli eş dizim sorularının (make / take / do …) yanlış şıklarını hazırlar:
+  önce aday listesi yazar, doğrulanmış sonucu yükler (D3).
+
+seviye_okuma_yukle   [YEREL]
+      python manage.py seviye_okuma_yukle havuz.json --dry-run
+  Ne yapar: Seviye testinin okuma sorusu havuzunu (D4) yükler. Biçim: seviye/okuma_bicimi.md
+
+seviye_kelimeleri_sec   [YEREL] [TEHLİKELİ]
+      python manage.py seviye_kelimeleri_sec --dry-run [--json secim.json]
+      python manage.py seviye_kelimeleri_sec
+  Ne yapar: Seviye testinde gösterilecek kelimeleri seçip tabloya yazar (D8). Gerçek yazımda
+  tablo BAŞTAN kurulur (admin'den elle sildiğin kelimeler geri gelir).
+
+diyalog_yukle   [YEREL]
+      python manage.py diyalog_yukle havuz.json --dry-run
+  Ne yapar: "Diyalogda doğru kelime" havuzunu (D6) yükler. Biçim: texts/diyalog_bicimi.md
+  NOT: Diyalog özelliği şu an kapalı (settings.DIYALOG_ACIK = False).
+
+
+=====================================================================================
+ 7. SÖZLÜK VERİ HATTI   (yerelde; büyük kısmı geliştirme aşaması içindir)
+=====================================================================================
+
+Yeni kelime üretme hattı: metinler → extract_words → aile_uret → aile_birlestir → aile_doldur.
+[ÜCRETLİ] işaretli komutlar OpenRouter / Gemini'ye para harcar; çalıştırmadan önce küçük bir
+partiyle maliyeti ölç. Hiçbiri yayın için gerekli DEĞİL.
+
+extract_words   [YEREL]
+      python manage.py extract_words --dir reading-texts --out listeler/okuma.txt --skip-existing
+  Metinlerden (txt / pdf) öğrenilmeye değer kelimeleri çıkarır; en sık 2000'i ve çok nadirleri atlar.
+
+aile_uret   [YEREL] [ÜCRETLİ]
+      python manage.py aile_uret --file listeler/x.txt --limit 200 [--dry-run]
+  1. aşama: her kelimenin ailesini (decide → decision, decisive …) modele çıkartıp ara depoya yazar.
+  Veritabanına yazmaz.
+
+aile_birlestir   [YEREL]
+      python manage.py aile_birlestir [--esik 0.6] [--goster KÖK]
+  2. aşama: ara depodaki taslakları ailelere indirir, örtüşmeyenleri raporlar. Yapay zekâ
+  çağırmaz, veritabanına yazmaz.
+
+aile_doldur   [YEREL] [ÜCRETLİ] [TEHLİKELİ]
+      python manage.py aile_doldur --dry-run --limit 50
+      python manage.py aile_doldur --limit 50
+  3. aşama: ailelerin kelimelerine anlam, örnek, eş dizim üretir (isteğe bağlı kontrol modeliyle
+  denetler) ve VERİTABANINA yazar.
+
+aile_olc   [YEREL]
+      python manage.py aile_olc --depo ara-depo-deneme-2 [--only-fail]
+  Aile hattında modelin kalitesini beklentili 40 kelimelik deneme listesiyle ölçer.
+
+kontrol_kiyasla   [YEREL]
+      python manage.py kontrol_kiyasla --depolar depoA,depoB
+  İki kontrol modelinin kararlarını yan yana koyar (hangi model daha iyi denetliyor).
+
+kelime_listesi   [YEREL]
+      python manage.py kelime_listesi --depo ara-depo-tam
+  Depodaki bütün kelimeleri durumlarıyla (yazıldı / reddedildi / bekliyor) tek dosyaya yazar.
+
+aile_sil   [YEREL] [TEHLİKELİ]
+      python manage.py aile_sil --depo DEPO              (ne silineceğini gösterir)
+      python manage.py aile_sil --depo DEPO --evet
+  Aile hattının yazdığı aileleri ve onlara bağlı HER ŞEYİ (kullanıcıların o kelimelere bağlı
+  çalışma kayıtları dahil) siler. "--hepsi --evet" BÜTÜN aileleri siler. Canlıda ASLA çalıştırma.
+
+merge_families   [YEREL] [TEHLİKELİ]
+      python manage.py merge_families analyse analysis --dry-run
+      python manage.py merge_families --list
+  İki kelime ailesini tek ailede birleştirir (kuralın çözemediği durumlar için elle).
+
+dedupe_meanings   [YEREL] [TEHLİKELİ]
+      python manage.py dedupe_meanings            (gösterir)
+      python manage.py dedupe_meanings --apply    (zayıf olanı siler)
+  Aynı kelimede pratikte aynı olan anlamları bulur.
+
+iliskileri_anlama_bagla   [YEREL]
+      python manage.py iliskileri_anlama_bagla --dry-run
+  Eş / zıt / basit anlamlıları kelimeye değil ANLAMA bağlar (D1).
+
+seed_false_friends   [YEREL]
+      python manage.py seed_false_friends [--dry-run]
+  Elle hazırlanmış yanlış dost tablosunu (words/enrich/false_friends.py) uygular; yalnızca eksikleri ekler.
+
+seed_confusables   [YEREL]
+      python manage.py seed_confusables [--dry-run] [--replace]
+  Elle hazırlanmış "karıştırılan çiftler" tablosunu uygular. --replace önce eskileri siler [TEHLİKELİ].
+
+oxford_cefr_yukle   [YEREL] [TEHLİKELİ]
+      python manage.py oxford_cefr_yukle --dry-run
+  Oxford 3000/5000 seviyelerini kelimelere işler (cefr_kaynak = oxford). Sonra siklik_hesapla çalıştır.
+
+cambridge_cefr_uygula   [YEREL] [TEHLİKELİ]
+      python manage.py cambridge_cefr_uygula --dry-run
+  Cambridge A2 Key / B1 Preliminary listelerine göre bizim seviyelerimizi yalnızca AŞAĞI çeker.
+
+siklik_hesapla   [YEREL]
+      python manage.py siklik_hesapla [--dry-run]
+  Kelimelerin sıklık puanını ve "nadir tür" işaretini baştan hesaplar. Tekrar çalıştırmak güvenli.
+
+veri_tara   [YEREL] [TEHLİKELİ]
+      python manage.py veri_tara --dry-run
+      python manage.py veri_tara
+  Kural tabanlı veri denetimi; "daha basit" kuralını (hedef A1–B1 ve kaynaktan kesinlikle alt
+  seviye) uygular, uymayan bağları SİLER. 17 Ekim'de bu kurala uymayan 235 bağ vardı.
+
+turkce_sozluk_kur   [YEREL]
+      python manage.py turkce_sozluk_kur
+  Türkçe yazım denetimi için LibreOffice tr_TR sözlüğünü (~38 MB) indirir. Bir kez.
+
+seed_words   [YEREL] [TEHLİKELİ]
+      python manage.py seed_words --dry-run
+  Projenin ilk günlerindeki ÖRNEK sözlük verisini yükler. Artık gerekmez.
+  "--flush" BÜTÜN aileleri ve kelimeleri SİLER. Canlıda ASLA çalıştırma.
+
+
+=====================================================================================
+ 8. DÜZELTME BETİKLERİ (words/duzeltmeler/)
+=====================================================================================
+
+manage.py komutu değil; tek seferlik veri düzeltmeleri (d_YYYY_MM_DD.py). Kararlar veri/**
+altındaki TSV dosyalarında. Hepsi tekrar çalıştırmaya dayanıklı ve çoğunda kuru deneme var.
+Çalıştırma örneği (dosyanın başındaki açıklamada yazar):
+
+      .venv/bin/python manage.py shell -c "from words.duzeltmeler import d_2026_10_17b as d; print(d.gemini3(kuru=True))"
+
+Yerelde çalıştırılır; sonuç canlıya "veritabani yukle" ile gider. Önce proje dışına yedek al
+(~/LearnVocab-yedekler/).
+
+
+=====================================================================================
+ 9. YERELDE GELİŞTİRME KOMUTLARI   [YEREL]
+=====================================================================================
+
+  .venv/bin/python manage.py runserver                       siteyi yerelde aç (http://127.0.0.1:8000)
+  DB_NAME=dosya.sqlite3 .venv/bin/python manage.py runserver başka bir veritabanı dosyasıyla aç
+  .venv/bin/python manage.py test --parallel 4 --noinput     bütün testler (her değişiklikten sonra)
+  .venv/bin/python manage.py makemigrations                  model değişince migration üret
+  .venv/bin/python manage.py migrate                         yerel veritabanına uygula
+  .venv/bin/tailwindcss -c tailwind.config.js -i static/css/tailwind-giris.css -o static/css/site.css --minify
+                                                             CSS'i derle (yeni Tailwind sınıfı eklenince)
+  .venv/bin/python manage.py makemessages -l en -l de        çevrilecek yeni metinleri .po'ya ekle
+  .venv/bin/python manage.py compilemessages -l en -l de     .po → .mo (çeviriler sitede görünsün)
+
+Sürümden önce: testler · Tailwind derle · çeviriler (fuzzy / boş satır kalmasın) · yardım ekran
+görüntüleri · ürün raporunu güncelle.
+
+Yardım ekran görüntüleri (YALNIZCA kendi bilgisayarında, sunucuda değil)
+  .venv/bin/python araclar/yardim_goruntuleri.py --oturum <örnek hesabın sessionid'si>
+  Yardım sayfasındaki telefon görüntülerini (tr/en/de × açık/koyu) Chrome ile baştan çeker ve
+  numaralı işaretlerin yerini hesaplayıp LearnVocab/yardim_isaretler.json'a yazar. Örnek hesapla
+  giriş yapılmış bir DENEME sunucusu (gerçek veritabanının kopyası) 8781'de açık olmalı: Learn &
+  Pass sahnesi bir kart kaydeder. --sadece seri,listem / --dil tr / --tema acik ile bir kısmı çekilir.
+  Ekranlardan biri değişince yeniden çalıştır, sonra testleri çalıştır.
+
+
+=====================================================================================
+ 10. KULLANILMAYAN / ESKİ KOMUTLAR
+=====================================================================================
+
+send_daily_reminders   (usersettings)
+  "dailyGoalsMail" ayarı açık HERKESE, o gün çalışıp çalışmadığına bakmadan günlük e-posta
+  gönderir. Yerini telefon bildirimleri (bildirim_gonder_hatirlatma) aldı; cron'a EKLEME.
+
+
+=====================================================================================
+ 11. SORUN ÇIKARSA
+=====================================================================================
+
+  Site açılmıyor (500 hatası)
+    → cPanel → Setup Python App → log dosyasına bak. Çoğu zaman: eksik paket (pip install),
+      uygulanmamış migration (migrate) ya da .env hatası.
+  Sayfa stilsiz görünüyor
+    → python manage.py collectstatic --noinput  ve  touch tmp/restart.txt
+  "no such column" / "Unknown column" hatası
+    → python manage.py showmigrations, sonra python manage.py migrate
+  Yazılar değerlendirilmiyor ("Henüz değerlendirilmedi")
+    → python manage.py list_gemini_models (model adı geçerli mi?), Gemini günlük kotası (günde 20)
+      dolmuş olabilir; cron ertesi gün dener. Log: ~/logs/yazilari_yeniden_dene.log
+  Bildirim gitmiyor
+    → .env'de VAPID anahtarları dolu mu, cron 15 dakikada bir çalışıyor mu,
+      python manage.py bildirim_gonder_hatirlatma --dry-run
+  Yüklemeden (veritabani yukle) sonra bir şey bozuldu
+    → ~/veritabani-yedekleri/'ndeki son yedekle geri dön (Bölüm 4.4).
+  Değişiklik sitede görünmüyor
+    → touch tmp/restart.txt (Passenger yeniden başlamadan kodu ve .env'i okumaz)

@@ -7,15 +7,20 @@ Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
   - "Seç": onay kutuları; üst çubuk "N seçili · Tümünü seç · Çıkar · İptal".
     Tümünü seç o anki süzgece uyan BÜTÜN kelimeleri seçer (yüklenmemişler dahil).
   - Çıkarmada onay yok, "Geri al" bildirimi var (tek satır da, toplu da).
-  - Satıra dokununca Sözlük'teki kartın aynısı yerinde açılır.
+  - Her kelime bantlı bir fiş (iki sütun, telefonda tek); fişe dokununca
+    Sözlük'teki kartın aynısı yerinde, tam genişlikte açılır.
 {% endcomment %}
 {{ tum_idler|json_script:"listem-idler" }}
 <div x-data="listem()" @kelime-listesi.document="satirDurumu($event.detail)" data-listem>
 
     {# Defter teması (rapor 18.12): Listem, kullanıcının kendi kelime defteri. #}
-    <header class="mb-6">
-        <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">{% translate "Listem" %}</h1>
-        <span class="lv-alt-baslik mt-1">{% if toplam %}{% blocktranslate count n=toplam %}senin kelime defterin: {{ n }} kelime{% plural %}senin kelime defterin: {{ n }} kelime{% endblocktranslate %}{% else %}{% translate "senin kelime defterin" %}{% endif %}</span>
+    {# Kapibara defterini okuyor. #}
+    <header class="mb-6 flex items-end justify-between gap-3">
+        <div class="min-w-0">
+            <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">{% translate "Listem" %}</h1>
+            <span class="lv-alt-baslik mt-1">{% translate "senin kelime defterin" %}</span>
+        </div>
+        {% include 'base/_kapibara.html' with poz='okuyor' sinif='h-24 w-auto shrink-0 sm:h-32' %}
     </header>
 
     {# ---------- Arama + Filtre + Seç ---------- #}
@@ -63,7 +68,7 @@ Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
     <div class="mt-5 flex min-h-[2.5rem] items-center justify-between gap-2 text-base">
         <template x-if="!sec">
             <div class="flex w-full items-center justify-between">
-                <span class="lv-el text-[22px]" data-listem-sayisi x-text="tumIdler.length ? kelimeSayisi(tumIdler.length) : ''">{% if toplam %}{% blocktranslate count n=toplam %}{{ n }} kelime{% plural %}{{ n }} kelime{% endblocktranslate %}{% endif %}</span>
+                <span {% if toplam %}class="lv-listem-sayac" x-show="tumIdler.length"{% endif %} data-listem-sayisi x-text="tumIdler.length ? kelimeSayisi(tumIdler.length) : ''">{% if toplam %}{% blocktranslate count n=toplam %}{{ n }} kelime{% plural %}{{ n }} kelime{% endblocktranslate %}{% endif %}</span>
                 {% if toplam %}
                 <button type="button" @click="sec = true" x-show="tumIdler.length" data-sec-dugmesi
                         class="lv-el pr-2 text-[22px] font-bold underline decoration-1 underline-offset-4">{% translate "Seç" %}</button>
@@ -86,22 +91,31 @@ Listem (ürün raporu 5) — aşırı basit cep defteri. Veri: words/listem.py
 
     {# ---------- Satırlar ---------- #}
     {% if satirlar %}
-    <div class="lv-tablo-basliklar mt-2"><span>{% translate "kelime" %}</span><span>{% translate "anlamı" %}</span></div>
-    <ul class="divide-y divide-[color:var(--satir)] border-b border-[color:var(--satir)]" data-listem-satirlari x-ref="satirlar">
+    <ul class="lv-fisler mt-4" data-listem-satirlari x-ref="satirlar">
         {% include 'pages/words/_listemSatirlari.html' %}
     </ul>
     {% endif %}
 
-    <p x-show="bosaldi" x-cloak class="lv-el text-[22px] leading-snug py-2 mt-3 text-center">
-        {% translate "Bu görünümde kelime kalmadı." %}
-    </p>
+    <div x-show="bosaldi" x-cloak class="mt-6 flex flex-col items-center gap-2 text-center">
+        {% include 'base/_kapibara.html' with poz='uyku' sinif='h-24 w-auto' %}
+        <p class="lv-el text-[22px] leading-snug">{% translate "Bu görünümde kelime kalmadı." %}</p>
+    </div>
 
     {% if liste_bos %}
-    <p class="lv-el text-[22px] leading-snug py-2 mt-3 text-center" data-liste-bos>
-        {% translate "Listen boş. Sözlük'te + ile ya da Learn & Pass'te kelime ekleyebilirsin." %}
-    </p>
+    {# Boş defter: uyuyan kapibara + bantlı not + iki yol. #}
+    <div class="mt-8 flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-center" data-liste-bos>
+        {% include 'base/_kapibara.html' with poz='uyku' sinif='h-24 w-auto shrink-0 sm:h-36' %}
+        <div class="lv-not lv-bantli max-w-sm text-center text-gray-900 dark:text-slate-100">
+            <p class="lv-el text-[24px] leading-snug">{% translate "Listen boş. Sözlük'te + ile ya da Learn & Pass'te kelime ekleyebilirsin." %}</p>
+            <div class="mt-4 flex flex-wrap justify-center gap-3">
+                <a href="{% url 'sozluk' %}" class="lv-dugme lv-kucuk">{% translate "Sözlük'e git" %}</a>
+                <a href="{% url 'learn_pass_page' %}" class="lv-dugme lv-ikincil lv-kucuk">Learn &amp; Pass</a>
+            </div>
+        </div>
+    </div>
     {% elif not satirlar %}
-    <div class="lv-el text-[22px] leading-snug py-2 mt-3 text-center" data-filtre-bos>
+    <div class="lv-el mt-6 flex flex-col items-center gap-2 py-2 text-center text-[22px] leading-snug" data-filtre-bos>
+        {% include 'base/_kapibara.html' with poz='uzgun' sinif='h-24 w-auto' %}
         <p>{% if d.ara %}{% blocktranslate with ara=d.ara %}Listende “{{ ara }}” ile eşleşen kelime yok.{% endblocktranslate %}{% else %}{% translate "Bu seçimde kelime yok." %}{% endif %}</p>
         <a href="{{ temizle_adresi }}" class="mt-2 inline-block underline decoration-1 underline-offset-4">{% translate "Bütün listeyi göster" %}</a>
     </div>

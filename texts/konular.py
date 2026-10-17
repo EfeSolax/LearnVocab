@@ -2,7 +2,7 @@
 Serbest yazma için konu önerileri (rapor 9.1).
 
 Elle yazılmış, sabit, küçük bir liste. Yapay zekâyla üretilmez. Kısa (3–8
-cümle) ve gündelik yazılabilecek konular seçildi; akademik yazı beklenmez.
+cümle) ve gündelik yazılabilecek konular; akademik türün konuları KONULAR_AKADEMIK'te.
 
 Her konu: (anahtar, Türkçe başlık, İngilizce yönlendirme). Anahtar formda
 gönderilir, metne başlık kaydedilir. Yeni konu eklemek için listeye bir satır
@@ -28,7 +28,24 @@ KONULAR = (
     ("tavsiye", "Yeni gelen birine tavsiye", "Give advice to someone who is moving to your city."),
 )
 
-_SOZLUK = {anahtar: (baslik, yonerge) for anahtar, baslik, yonerge in KONULAR}
+# Akademik tür (Efe, 17 Ekim): tartışma/değerlendirme soruları; Forefront'un kendi
+# örnek sorularına benzer (suç oranları, zorunlu İngilizce, sosyal medya, sahip olmak ve mutluluk).
+KONULAR_AKADEMIK = (
+    ("a-ingilizce", "Zorunlu İngilizce", "Should English be a compulsory subject in schools? Discuss with reasons."),
+    ("a-sosyal-medya", "Sosyal medya ve ilişkiler", "To what extent has social media affected people's offline relationships?"),
+    ("a-suc", "Suç oranları", "What are the most effective ways to address rising crime rates?"),
+    ("a-uzaktan", "Uzaktan eğitim", "Discuss the advantages and disadvantages of online education for university students."),
+    ("a-yapay-zeka", "Yapay zekâ ve öğrenme", "How might generative AI tools affect the way students learn?"),
+    ("a-iklim", "İklim değişikliği", "What role can individuals play in reducing the effects of climate change?"),
+    ("a-mutluluk", "Sahip olmak ve mutluluk", "Is there a relationship between owning more and being happier?"),
+    ("a-sehir", "Hızlı şehirleşme", "Discuss the effects of rapid urbanization on the quality of life."),
+    ("a-calisma", "Dört günlük çalışma haftası", "Should a four-day working week be introduced? Evaluate the arguments."),
+    ("a-turizm", "Kitle turizmi", "Discuss the economic and environmental effects of mass tourism."),
+    ("a-ceza", "Ceza mı, rehabilitasyon mu?", "Should prisons focus more on rehabilitation than on punishment?"),
+    ("a-sinav", "Sınavlar ve başarı", "Do standardized exams measure students' abilities accurately?"),
+)
+
+_SOZLUK = {anahtar: (baslik, yonerge) for anahtar, baslik, yonerge in KONULAR + KONULAR_AKADEMIK}
 
 
 def konu_basligi(anahtar):
@@ -39,11 +56,11 @@ def konu_basligi(anahtar):
 
 def konu_yonergesi(baslik):
     """Kaydedilmiş başlığın İngilizce yönergesi (prompt'a eklenir)."""
-    for _anahtar, b, yonerge in KONULAR:
+    for _anahtar, b, yonerge in KONULAR + KONULAR_AKADEMIK:
         if b == baslik:
             return yonerge
     return ""
 
 
-def konular_listesi():
-    return [{"anahtar": a, "baslik": b, "yonerge": y} for a, b, y in KONULAR]
+def konular_listesi(akademik=False):
+    return [{"anahtar": a, "baslik": b, "yonerge": y} for a, b, y in (KONULAR_AKADEMIK if akademik else KONULAR)]

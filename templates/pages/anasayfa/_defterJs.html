@@ -47,12 +47,12 @@ Misafir ana sayfasının küçük davranışları (rapor 18.12, defter teması):
     var takvim = document.querySelector('[data-ornek-takvim]');
     if (takvim) {
         var bugun = new Date(); bugun.setHours(0, 0, 0, 0);
-        var bas = new Date(bugun); bas.setDate(bas.getDate() - ((bugun.getDay() + 6) % 7) - 28);
+        var bas = new Date(bugun); bas.setDate(bas.getDate() - ((bugun.getDay() + 6) % 7));   // yalnızca bu hafta (seri kartı)
         var h = '{% filter escapejs %}{% include "base/_haftaGunleri.html" %}{% endfilter %}';
-        for (var i = 0; i < 35; i++) {
+        for (var i = 0; i < 7; i++) {
             var g = new Date(bas); g.setDate(bas.getDate() + i);
             var fark = Math.round((bugun - g) / 864e5);
-            var c = fark === 0 ? 'lv-bugun' : (fark > 0 && fark <= 12 ? 'lv-tik' : (fark < 0 ? 'lv-gelecek' : ''));
+            var c = fark === 0 ? 'lv-bugun' : (fark > 0 ? 'lv-tik' : (fark < 0 ? 'lv-gelecek' : ''));
             h += '<span class="' + c + '">' + g.getDate() + '</span>';
         }
         takvim.innerHTML = h;

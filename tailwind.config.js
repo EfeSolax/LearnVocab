@@ -26,7 +26,8 @@ module.exports = {
   // Adı şablonda değişkenle kurulan sınıflar: okuma konularının renkleri
   // (readings/models.py TOPICS; templates/pages/readings.html).
   safelist: [
-    { pattern: /^(bg|text)-(indigo|violet|emerald|amber|rose)-(50|300|600|700|950)$/, variants: ['dark'] },
+    // Okuma konularının renkleri (readings.models.RENKLER; admin'den seçilir)
+    { pattern: /^(bg|text)-(indigo|violet|emerald|amber|rose|sky|teal|orange|lime|fuchsia|cyan|pink)-(50|300|600|700|950)$/, variants: ['dark'] },
   ],
   theme: { extend: {
     colors: {

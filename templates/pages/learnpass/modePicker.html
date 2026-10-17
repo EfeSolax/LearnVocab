@@ -3,16 +3,15 @@
 
 {% comment %}
 Learn & Pass açılış ekranı (ürün raporu 6.1). Dosya adı eski mod seçim
-sayfasından kaldı; artık tek bir "Hemen Başla" var, mod seçimi yok.
+sayfasından kaldı; tek bir "Hemen kaydırmaya başla" var, mod seçimi yok.
 
-Sıra (yukarıdan aşağı):
-  1. İstatistik şeridi (girişli). Tekrar algoritması konuşulana kadar mevcut
-     sayılar; seri için yer ayrıldı, nasıl sayılacağı Bölüm 16.
-  2. "Geçen sefer bilmediğin N kelime" kartı (yarıda kalan oturumdan
-     sorulmamış bilinmeyenler varsa).
-  3. Slogan + büyük "Hemen Başla". Misafirde seviye seçimi yok (rapor 18.3).
-  4. Oran notu + Ayarlar bağlantısı.
-  5. "Neden işe yarar": 3 madde.
+Sade tutulur (Efe, 17 Ekim): sayı kutuları, karışım yüzdesi, "Nasıl
+oynanır?" ve "Neden işe yarar?" kaldırıldı. Sıra:
+  1. Büyük "Hemen kaydırmaya başla".
+  2. "Geçen sefer bilmediğin N kelime" kartı (varsa).
+  3. Tek mesaj: deste çizimi + "Bilip bilmediğine göre kaydır. Tekrar et."
+     Girişli: oranın Ayarlar'dan değiştiği tek satır. Misafir: hiçbir şey
+     kaydedilmez + egzersiz daveti (rapor 18.3).
 {% endcomment %}
 
 {% block title %}Learn &amp; Pass{% endblock %}
@@ -22,38 +21,20 @@ Sıra (yukarıdan aşağı):
 
 {% include 'base/_exerciseTabs.html' with exercise_tab="learn" %}
 
-{# Defter teması (rapor 18.12) + L&P açıklama kutusu (18.11) #}
-<header>
+<header class="text-center">
     <h1 class="lv-baslik !text-[44px] sm:!text-[64px]">Learn &amp; Pass</h1>
-    <p class="lv-alt-baslik mt-1">{% translate "Kaydır, anlamını gör, geç. Birkaç dakika yeter." %}</p>
 </header>
 
-<div class="mt-8 space-y-10">
+<div class="mx-auto mt-6 max-w-xl space-y-10">
 
-    {% if user.is_authenticated %}
-    {# ---------------- 1. Bugün: dört küçük kâğıt ---------------- #}
-    <div class="grid grid-cols-4 gap-2 sm:gap-4" id="lp-istatistik">
-        {# Seri (rapor 18.9): takvim Ana Sayfa'daki kutuda. #}
-        <div class="lv-sayfa -rotate-1 px-2 py-3 text-center {% if seri.bugun_tamam %}!bg-[color:var(--not)]{% endif %}" data-seri>
-            <div class="lv-serif text-[28px] font-black leading-none {% if seri.mevcut %}text-gray-900 dark:text-slate-100{% else %}text-gray-400 dark:text-slate-500{% endif %}">{{ seri.mevcut }}</div>
-            <div class="lv-el mt-1 text-[19px]">{% translate "seri" %}</div>
-        </div>
-        <div class="lv-sayfa rotate-1 px-2 py-3 text-center">
-            <div class="lv-serif text-[28px] font-black leading-none">{{ bugun_gorulen }}</div>
-            <div class="lv-el mt-1 text-[19px]">{% translate "bugün" %}</div>
-        </div>
-        <div class="lv-sayfa -rotate-1 px-2 py-3 text-center">
-            <div class="lv-serif text-[28px] font-black leading-none">{{ bekleyen_tekrar }}</div>
-            <div class="lv-el mt-1 text-[19px]">{% translate "tekrar" %}</div>
-        </div>
-        <div class="lv-sayfa rotate-1 px-2 py-3 text-center">
-            <div class="lv-serif text-[28px] font-black leading-none">{{ liste_sayisi }}</div>
-            <div class="lv-el mt-1 text-[19px]">{% translate "listende" %}</div>
-        </div>
-    </div>
+    {# ---------------- 1. Başla ---------------- #}
+    {# Girişli: önce "Şu kelimelerle tekrar yap" (Listem ya da çalışma listesi); misafir doğrudan kartlara. #}
+    <a href="{% if user.is_authenticated %}{% url 'learn_pass_sec' %}{% else %}{% url 'learn_pass_run' mode='karma' %}{% endif %}" id="hemen-basla" class="lv-dugme w-full !min-h-[72px] !text-xl sm:!text-2xl">
+        {% translate "Hemen kaydırmaya başla" %} <span aria-hidden="true">→</span>
+    </a>
 
     {# ---------------- 2. Geçen sefer bilmediklerin ---------------- #}
-    {% if gecen_sefer %}
+    {% if user.is_authenticated and gecen_sefer %}
     <div id="gecen-sefer" data-url="{% url 'learn_pass_bilinmeyenler' %}"
          class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
         {{ gecen_sefer|json_script:"gecen-sefer-veri" }}
@@ -81,72 +62,34 @@ Sıra (yukarıdan aşağı):
         </div>
     </div>
     {% endif %}
-    {% endif %}
 
-    {# ---------------- 3. Başla: deste ---------------- #}
-    <section class="grid items-center gap-8 sm:grid-cols-[1fr_1.1fr]">
-        <div class="relative mx-auto h-52 w-full max-w-[300px]" aria-hidden="true">
-            <div class="lv-fis absolute inset-x-6 top-5 h-40 rotate-6 opacity-70"></div>
-            <div class="lv-fis absolute inset-x-3 top-2 h-40 -rotate-3 opacity-90"></div>
-            <div class="lv-fis absolute inset-x-0 top-0 grid h-40 place-items-center pt-6">
+    {# ---------------- 3. Tek mesaj ---------------- #}
+    <section class="text-center">
+        <div class="relative mx-auto h-48 w-full max-w-[300px]" aria-hidden="true">
+            <div class="lv-fis absolute inset-x-6 top-5 h-36 rotate-6 opacity-70"></div>
+            <div class="lv-fis absolute inset-x-3 top-2 h-36 -rotate-3 opacity-90"></div>
+            <div class="lv-fis absolute inset-x-0 top-0 grid h-36 place-items-center pt-6">
                 <span class="lv-yuvarlak text-[42px] font-semibold">?</span>
             </div>
-            <span class="lv-el absolute -bottom-1 left-0 -rotate-6 text-[22px] font-bold !text-red-700 dark:!text-red-300">← {% translate "bilmiyorum" %}</span>
-            <span class="lv-el absolute -bottom-1 right-0 rotate-6 text-[22px] font-bold !text-emerald-700 dark:!text-emerald-300">{% translate "biliyorum" %} →</span>
+            <span class="lv-el absolute bottom-0 left-0 -rotate-6 text-[22px] font-bold !text-red-700 dark:!text-red-300">← {% translate "bilmiyorum" %}</span>
+            <span class="lv-el absolute bottom-0 right-0 rotate-6 text-[22px] font-bold !text-emerald-700 dark:!text-emerald-300">{% translate "biliyorum" %} →</span>
         </div>
-        <div>
-            <a href="{% url 'learn_pass_run' mode='karma' %}" id="hemen-basla" class="lv-dugme w-full !min-h-[64px] !text-xl">
-                {% translate "Hemen Başla" %} <span aria-hidden="true">→</span>
-            </a>
-            {% if user.is_authenticated %}
-            <p class="mt-5 text-base text-gray-700 dark:text-slate-300" id="oran-notu">
-                {% blocktranslate with tekrar=tekrar_yuzde yeni=yeni_yuzde %}Karışım: yaklaşık %{{ tekrar }} tekrar · %{{ yeni }} yeni kelime.{% endblocktranslate %}
-                {% if not bekleyen_tekrar %}{% translate "Listende tekrar bekleyen kelime yok; şimdilik yeni kelimeler keşfedeceksin." %}
-                {% elif oran_azaldi %}{% translate "Tekrar bekleyen kelimelerin birikti; bugün önce onları pekiştirelim." %}{% else %}{% translate "Dengeli bir karışım, böyle devam!" %}{% endif %}
-                <a href="{% url 'settings_page' %}" class="lv-el whitespace-nowrap text-[21px] font-bold underline decoration-1 underline-offset-4">{% translate "oranı ayarla" %}</a>
-            </p>
-            {% else %}
-            {# Misafir: seviye seçimi yok; kelimeler %60 B1 · %20 B2 · %20 C1 (rapor 18.3). #}
-            <p class="mt-5 text-base text-gray-700 dark:text-slate-300">{% translate "Giriş yapmadan da kaydırabilirsin; yalnızca hiçbir şey kaydedilmez." %}</p>
-            {# Misafirde Egzersizler sekmesi yok; yerine tek bir davet (rapor 18.3). #}
-            <p class="mt-2" data-egzersiz-daveti>
-                <a href="{% url 'login' %}?next={% url 'exercises_page' %}&neden=egzersiz" class="lv-el text-[21px] font-bold underline decoration-1 underline-offset-4">{% translate "Kişisel egzersiz çözebilmek için giriş yap" %}</a>
-            </p>
-            {% endif %}
-        </div>
-    </section>
-
-    {# ---------------- 4. Nasıl oynanır (rapor 18.11) ---------------- #}
-    <section aria-labelledby="nasil-baslik">
-        <h2 id="nasil-baslik" class="lv-bolum !text-3xl">{% translate "Nasıl oynanır?" %}</h2>
-        <span class="lv-bolum-notu">{% translate "üç adım, hepsi bu" %}</span>
-        <ol class="mt-6 grid gap-6 sm:grid-cols-3">
-            <li class="lv-sayfa p-5">
-                <span class="lv-el text-[34px] font-bold leading-none">1</span>
-                <p class="mt-2 text-lg font-bold">{% translate "Kelimeyi gör" %}</p>
-                <p class="mt-1 text-base text-gray-600 dark:text-slate-300">{% translate "Kartta yalnızca İngilizce kelime yazar. Anlamına bakmadan karar ver." %}</p>
-            </li>
-            <li class="lv-sayfa p-5">
-                <span class="lv-el text-[34px] font-bold leading-none">2</span>
-                <p class="mt-2 text-lg font-bold">{% translate "Kaydır" %}</p>
-                <p class="mt-1 text-base text-gray-600 dark:text-slate-300">{% translate "Biliyorsan sağa, bilmiyorsan sola. Düğmeler ve ok tuşları da olur." %}</p>
-            </li>
-            <li class="lv-sayfa p-5">
-                <span class="lv-el text-[34px] font-bold leading-none">3</span>
-                <p class="mt-2 text-lg font-bold">{% translate "Anlamı gör, geç" %}</p>
-                <p class="mt-1 text-base text-gray-600 dark:text-slate-300">{% translate "Anlam ve bir örnek açılır. Bilmediklerin birkaç gün sonra yeniden gelir." %}</p>
-            </li>
-        </ol>
-    </section>
-
-    {# ---------------- 5. Neden işe yarar ---------------- #}
-    <section class="lv-not lv-bantli text-gray-900 dark:text-slate-100">
-        <h2 class="lv-el text-[26px] font-bold !text-gray-600 dark:!text-slate-300">{% translate "Neden işe yarar?" %}</h2>
-        <ul class="mt-3 space-y-3 text-base text-gray-800 dark:text-slate-200">
-            <li class="flex gap-2.5"><span class="lv-el w-5 flex-none text-[26px] font-bold leading-none">1</span>{% translate 'Anlamı görmeden karar verirsin; "biliyorum sanıyordum" ile "gerçekten biliyorum" arasındaki farkı görürsün.' %}</li>
-            <li class="flex gap-2.5"><span class="lv-el w-5 flex-none text-[26px] font-bold leading-none">2</span>{% translate "Bildiklerini hatırlatır, bilmediğin yeni kelimeleri keşfettirir." %}</li>
-            <li class="flex gap-2.5"><span class="lv-el w-5 flex-none text-[26px] font-bold leading-none">3</span>{% if user.is_authenticated %}{% translate "Hızlıdır ve istediğin an bırakabilirsin; her kaydırma anında kaydedilir." %}{% else %}{% translate "Hızlıdır ve istediğin an bırakabilirsin." %}{% endif %}</li>
-        </ul>
+        <p class="lv-serif mt-6 text-[26px] font-bold leading-snug sm:text-3xl" data-ana-mesaj>
+            {% translate "Bilip bilmediğine göre kaydır." %}<br>{% translate "Tekrar et." %}
+        </p>
+        {% if user.is_authenticated %}
+        <p class="mt-4 text-base text-gray-700 dark:text-slate-300" id="oran-notu">
+            {% url 'settings_page' as ayarlar_adresi %}
+            {% blocktranslate with adres=ayarlar_adresi %}<a href="{{ adres }}#learnpass_yeni_orani" class="lv-el text-[21px] font-bold underline decoration-1 underline-offset-4">Ayarlardan</a> yeni kelimeler mi, listendeki kelimeler mi daha çok çıksın, değiştirebilirsin.{% endblocktranslate %}
+        </p>
+        {% else %}
+        {# Misafir: seviye seçimi yok; kelimeler %60 B1 · %20 B2 · %20 C1 (rapor 18.3). #}
+        <p class="mt-4 text-base text-gray-700 dark:text-slate-300">{% translate "Giriş yapmadan da kaydırabilirsin; yalnızca hiçbir şey kaydedilmez." %}</p>
+        {# Misafirde Egzersizler sekmesi yok; yerine tek bir davet (rapor 18.3). #}
+        <p class="mt-2" data-egzersiz-daveti>
+            <a href="{% url 'login' %}?next={% url 'exercises_page' %}&neden=egzersiz" class="lv-el text-[21px] font-bold underline decoration-1 underline-offset-4">{% translate "Kişisel egzersiz çözebilmek için giriş yap" %}</a>
+        </p>
+        {% endif %}
     </section>
 </div>
 

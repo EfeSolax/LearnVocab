@@ -15,7 +15,7 @@ import os
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-from readings.models import TOPIC_LABELS, ReadingText
+from readings.models import ReadingText, konu_adi, okuma_konulari
 from readings.parser import parse_directory
 
 # reading-texts/ ODTÜ'nün More to Read II kitabının metinleri (numaralar kitaptaki sıra, 1–56).
@@ -61,10 +61,10 @@ class Command(BaseCommand):
                 )
             gorulen[metin["number"]] = metin["source_file"]
 
-        bilinmeyen = {m["topic"] for m in metinler} - set(TOPIC_LABELS)
+        bilinmeyen = {m["topic"] for m in metinler} - {k["anahtar"] for k in okuma_konulari()}
         if bilinmeyen:
             self.stdout.write(self.style.WARNING(
-                "Uyarı: readings/models.py içindeki TOPICS listesinde olmayan konu(lar): "
+                "Uyarı: okuma konuları tablosunda (admin › Okuma konuları) olmayan konu(lar): "
                 + ", ".join(sorted(bilinmeyen))
             ))
 
@@ -115,5 +115,5 @@ class Command(BaseCommand):
         for anahtar in sorted({m["topic"] for m in metinler}):
             grup = [m for m in metinler if m["topic"] == anahtar]
             kelime = sum(sum(len(p.split()) for p in m["paragraphs"]) for m in grup)
-            ad = TOPIC_LABELS.get(anahtar, anahtar)
+            ad = konu_adi(anahtar)
             self.stdout.write(f"  {ad:<14} {len(grup):>2} metin, {kelime:>6} kelime")

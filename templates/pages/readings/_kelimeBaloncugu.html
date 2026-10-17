@@ -18,6 +18,10 @@ NEDEN KELİMELER <span>'LERE BÖLÜNMÜYOR
 Phrasal verb için dokunulan kelimenin aynı cümledeki 2 önceki ve 3 sonraki
 kelimesi de gönderiliyor (once / sonra): "gave it up" -> give up.
 
+Tireli yazımda (hen-houses) bütün yazım q, dokunulan parça `parca` olarak
+gider; sözlükte bütünü yoksa sunucu parçayı arar ve yalnızca o parça vurgulanır.
+Açık baloncuğun kelimesine yeniden dokunmak baloncuğu kapatır.
+
 Liste düğmesi kelime kartındakiyle (base/_kartListeDugmesi.html) aynı yazıyı
 ve öznitelikleri taşıyor; ekleme / çıkarma ve "Geri al"
 base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizilmiyor.
@@ -81,6 +85,18 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
         var kelime = yazi.slice(bas, son);
         if (!/[A-Za-z]/.test(kelime)) { return null; }
 
+        // Tireli yazımda dokunulan parça (hen-HOUSES): bütünü sözlükte yoksa bu aranır.
+        var pBas = Math.min(Math.max(r.startOffset, bas), son), pSon = pBas;
+        while (pBas > bas && yazi[pBas - 1] !== '-') { pBas--; }
+        while (pSon < son && yazi[pSon] !== '-') { pSon++; }
+        var parca = '', parcaAralik = null;
+        if (kelime.indexOf('-') !== -1 && /[A-Za-z]/.test(yazi.slice(pBas, pSon))) {
+            parca = yazi.slice(pBas, pSon);
+            parcaAralik = document.createRange();
+            parcaAralik.setStart(dugum, pBas);
+            parcaAralik.setEnd(dugum, pSon);
+        }
+
         var aralik = document.createRange();
         aralik.setStart(dugum, bas);
         aralik.setEnd(dugum, son);
@@ -100,6 +116,8 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
         return {
             aralik: aralik,
             kelime: kelime,
+            parca: parca,
+            parcaAralik: parcaAralik,
             once: kelimeler(onceki).slice(-2).join(' '),
             sonra: kelimeler(sonraki).slice(0, 3).join(' '),
         };
@@ -107,9 +125,10 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
 
     // ---------- Sorgu ----------
     function sorgula(s) {
-        var anahtar = s.kelime.toLowerCase() + '|' + s.once.toLowerCase() + '|' + s.sonra.toLowerCase();
+        var anahtar = s.kelime.toLowerCase() + '|' + s.once.toLowerCase() + '|' + s.sonra.toLowerCase() + '|' + s.parca.toLowerCase();
         if (!sozler.has(anahtar)) {
             var p = new URLSearchParams({ q: s.kelime });
+            if (s.parca) { p.set('parca', s.parca); }
             if (s.once) { p.set('once', s.once); }
             if (s.sonra) { p.set('sonra', s.sonra); }
             var soz = fetch(API + '?' + p.toString(), {
@@ -232,15 +251,30 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
         if (vurgu) { vurgu.delete('okuma-kelime'); }
     }
 
+    // Sözlükte bütünü değil parçası bulunduysa vurgu ve başlık parçaya geçer.
+    function parcayaGec(sonuc, s) {
+        if (!s.parcaAralik || sonuc.q !== s.parca.toLowerCase()) { return s.kelime; }
+        etkin.aralik = s.parcaAralik;
+        if (vurgu) { vurgu.set('okuma-kelime', new Highlight(s.parcaAralik)); }
+        return s.parca;
+    }
+
+    function ayniKelime(s) {
+        if (!etkin) { return false; }
+        var a = etkin.tumu;
+        return a.startContainer === s.aralik.startContainer && a.startOffset === s.aralik.startOffset
+            && a.endOffset === s.aralik.endOffset;
+    }
+
     function ac(s) {
         var sorgu = sorgula(s);
         var no = ++istekNo;
-        etkin = { aralik: s.aralik, anahtar: sorgu.anahtar };
+        etkin = { aralik: s.aralik, tumu: s.aralik, anahtar: sorgu.anahtar };
         if (vurgu) { vurgu.set('okuma-kelime', new Highlight(s.aralik)); }
 
         var hazir = sonuclar.get(sorgu.anahtar);
         if (hazir) {
-            ciz(hazir, s.kelime);
+            ciz(hazir, parcayaGec(hazir, s));
         } else {
             balon.replaceChildren(eleman('p', 'text-gray-400 dark:text-slate-500', s.kelime + ' …'));
         }
@@ -250,7 +284,7 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
         if (!hazir) {
             sorgu.soz.then(function (sonuc) {
                 if (no !== istekNo || !etkin) { return; }
-                ciz(sonuc, s.kelime);
+                ciz(sonuc, parcayaGec(sonuc, s));
                 konumla();
             }).catch(function () {
                 if (no !== istekNo || !etkin) { return; }
@@ -266,7 +300,7 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
         var secim = window.getSelection && window.getSelection();
         if (secim && !secim.isCollapsed && secim.toString().trim()) { return; }
         var s = kelimeBul(olay.clientX, olay.clientY);
-        if (!s) { kapat(); return; }
+        if (!s || ayniKelime(s)) { kapat(); return; }
         ac(s);
     });
 
@@ -280,5 +314,7 @@ base/_kelimeKartiJs.html'den geliyor. Girişsiz ziyaretçide düğme hiç çizil
     });
     window.addEventListener('scroll', konumla, { passive: true });
     window.addEventListener('resize', konumla);
+    // Kaldığım yer işareti (_kaldigimYer.html) aynı kelime bulucuyu kullanır.
+    window.okumaBalonu = { kelimeBul: kelimeBul, kapat: kapat };
 })();
 </script>

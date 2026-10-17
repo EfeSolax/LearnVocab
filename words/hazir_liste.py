@@ -1,17 +1,12 @@
 """
 Hazır listeler (ürün raporu 4.1, veri işi D7).
 
-Learn & Pass bağlantısı — L&P'nin okuyacağı tek fonksiyon:
-
-    from words.hazir_liste import aktif_liste
-    liste = aktif_liste(request.user)       # HazirListe ya da None
-    if liste:
-        adaylar = liste.sirali_kelimeler()  # listedeki sırayla Word queryset'i
-    else:
-        ... seviyeye göre (eski davranış)
-
-"Bu listeyle çalış" basılınca HazirListeSecimi satırı yazılır; "Seviyeme
-dön" satırı siler. Girişsiz ziyaretçinin seçimi olmaz (None döner).
+Çalışma listeleri (Efe, 17 Ekim): "Bu listeyle çalış" basılınca liste,
+o an seçili bölümüyle (ODTÜ'de hafta) HazirListeSecimi olarak kaydedilir.
+Kullanıcının birden çok çalışma listesi olabilir. Learn & Pass'e başlarken
+"Şu kelimelerle tekrar yap" ekranı Listem'i ve bunları sıralar; seçilen
+listenin kelimeleri o turda gelir (learnpass.selection.pick_from_secim).
+Girişsiz ziyaretçinin çalışma listesi olmaz.
 
 Listeyi dosyadan yüklemek: `manage.py hazir_liste_yukle` (bkz. komut). Bu
 modüldeki `dosyadan_eslestir` komutun ve testlerin kullandığı saf eşleştirme.
@@ -24,26 +19,56 @@ from django.db.models import Q
 from .models import HazirListe, HazirListeSecimi, PartOfSpeech, Word
 
 
-def aktif_liste(user):
-    """Kullanıcının "Bu listeyle çalış" dediği yayındaki liste; yoksa None."""
+def calisma_listeleri(user):
+    """Kullanıcının yayındaki listelerden çalışma listeleri, en son eklenen önce."""
     if user is None or not user.is_authenticated:
+        return HazirListeSecimi.objects.none()
+    return (HazirListeSecimi.objects.filter(user=user, liste__yayinda=True)
+            .select_related("liste"))
+
+
+def calisilan_liste_idleri(user):
+    """Keşfet'te "Çalışıyorsun" işareti ve açık gelen dal için."""
+    return set(calisma_listeleri(user).values_list("liste_id", flat=True))
+
+
+def listeyle_calis(user, liste, bolum=""):
+    """Listeyi (bölümüyle) çalışma listelerine ekler; varsa en üste taşır. Satırı döner."""
+    secim, olustu = HazirListeSecimi.objects.get_or_create(user=user, liste=liste, bolum=bolum)
+    if not olustu:
+        secim.save(update_fields=["secildi"])     # auto_now: en üste çıkar
+    return secim
+
+
+def calismadan_cikar(user, secim_id):
+    """Çalışma listesini siler; geri almak için (liste_id, bolum) döner, yoksa None."""
+    secim = HazirListeSecimi.objects.filter(user=user, id=secim_id).first()
+    if secim is None:
         return None
-    secim = (HazirListeSecimi.objects.filter(user=user, liste__yayinda=True)
-             .select_related("liste").first())
-    return secim.liste if secim else None
-
-
-def listeyle_calis(user, liste):
-    """Seçimi kaydeder (bir kullanıcıda tek liste: öncekinin yerine geçer)."""
-    HazirListeSecimi.objects.update_or_create(user=user, defaults={"liste": liste})
-
-
-def seviyeye_don(user):
-    HazirListeSecimi.objects.filter(user=user).delete()
+    geri = (secim.liste_id, secim.bolum)
+    secim.delete()
+    return geri
 
 
 def yayindaki_listeler():
     return HazirListe.objects.filter(yayinda=True).order_by("sira", "ad")
+
+
+def kurum_gruplari(listeler):
+    """
+    Keşfet'teki hazır listeler kuruma göre dallanır: [(kurum, [liste, …]), …].
+    Kurumun ilk kelimesi grubu belirler ("ODTÜ 101" -> ODTÜ: Speakout ODTÜ'nün
+    altında durur). Kurumu boş olanlar en sonda tek grup: kurum "" ("Diğer listeler").
+    Gruplar ve içleri sira'ya göre (listeler zaten sıralı gelir).
+    """
+    gruplar, diger = {}, []
+    for liste in listeler:
+        kurum = (liste.kurum or "").split()
+        (gruplar.setdefault(kurum[0], []) if kurum else diger).append(liste)
+    sonuc = list(gruplar.items())
+    if diger:
+        sonuc.append(("", diger))
+    return sonuc
 
 
 # ----------------------------------------------------------------------

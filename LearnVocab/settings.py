@@ -189,6 +189,11 @@ EKLENTI_KAYNAKLARI = tuple(
 # Web Store'daki sayfası (ana sayfadaki "Chrome'a ekle" düğmesi). Boşsa "yakında" yazar.
 EKLENTI_ADRESI = os.environ.get('EKLENTI_ADRESI', '')
 
+# "Diyalogda doğru kelime" sonraki sürüme saklandı (Efe, 17 Ekim). Kapalıyken diyalog
+# adresleri 404 verir; Yazılar, yardım ve eski adres yönlendirmesi ondan söz etmez.
+# Kod, veri ve seri sayımı yerinde durur: açmak için True yeter.
+DIYALOG_ACIK = False
+
 # KVKK aydınlatma metni (rapor 18.19, /gizlilik/): veri sorumlusu ve başvuru adresi.
 KVKK_VERI_SORUMLUSU = os.environ.get('KVKK_VERI_SORUMLUSU', 'Efe Solmaz')
 KVKK_ILETISIM_EPOSTASI = os.environ.get('KVKK_ILETISIM_EPOSTASI', '')

@@ -231,6 +231,22 @@ class GozatTests(TestCase):
         self.assertIn("(sayfa 2)", html)
         self.assertIn('rel="prev" href="/sozluk/harf/a/"', html)
 
+    def test_sayfa_numaralari_ve_sayfaya_git(self):
+        from unittest.mock import patch
+        for i in range(20):
+            make_word(f"ab{i:03d}", meaning="x", level="A1", siklik=3.0, forms=False)
+        with patch("words.gozat.SAYFA_BOYU", 1):
+            cevap = self.client.get("/sozluk/harf/a/", {"sayfa": 10})
+        # her yanda 3 sayfa, uçlarda ilk ve son
+        self.assertEqual([str(n) for n in cevap.context["sayfa_numaralari"]],
+                         ["1", "…", "7", "8", "9", "10", "11", "12", "13", "…", "22"])
+        html = _html(cevap)
+        self.assertIn('aria-current="page">10<', html)
+        self.assertIn('href="/sozluk/harf/a/"', html)          # 1. sayfa ?sayfa'sız
+        self.assertIn('href="/sozluk/harf/a/?sayfa=13"', html)
+        self.assertIn('data-sayfaya-git', html)
+        self.assertIn('max="22"', html)
+
     def test_kesfette_goz_atma_baglantilari(self):
         html = _html(self.client.get(reverse("sozluk")))
         self.assertIn("data-goz-at", html)

@@ -18,6 +18,9 @@ Sıra:
   4. Phrasal verb: dokunulan kelimenin çevresindeki birkaç kelime (once /
      sonra) verilirse "gave it up" -> give up yakalanır. Araya en çok bir
      kelime girebilir (words/extract/phrasal.py ile aynı kural).
+  5. Tireli yazım (hen-houses, well-known): önce bütünü aranır (sözlükte
+     self-conscious, follow-up gibi tireli maddeler var); bulunamazsa
+     dokunulan parça (`parca`; verilmezse son parça) ayrı aranır.
 
 Sorgu sayısı sabit: çekimler 1, kelimeler + anlamlar 2, phrasal + anlamlar
 2 (yalnızca aday varsa). Sayfadaki kelimeler tek tek SORGULANMAZ; yalnızca
@@ -213,7 +216,7 @@ def _onbellek_anahtari(t, once, sonra):
     return "kelime-sorgu:" + hashlib.sha1(ham.encode("utf-8")).hexdigest()
 
 
-def sorgula(yazim, once="", sonra="", onbellek=True):
+def sorgula(yazim, once="", sonra="", onbellek=True, parca=""):
     """
     Dokunulan kelimenin sözlük sonucu (kullanıcıdan bağımsız):
 
@@ -228,7 +231,24 @@ def sorgula(yazim, once="", sonra="", onbellek=True):
         }
 
     Bulunamazsa bulundu=False, kok=q, anlamlar=[] (phrasal yine dolu olabilir).
+
+    Tireli yazım sözlükte yoksa parçası aranır (parca: dokunulan parça,
+    verilmezse son parça): "hen-houses" -> houses. Dönen sonucun "q"su o
+    zaman parçadır.
     """
+    sonuc = _sorgula_tek(yazim, once, sonra, onbellek)
+    t = sonuc["q"]
+    if sonuc["bulundu"] or sonuc["phrasal"] or "-" not in t:
+        return sonuc
+    parcalar = [p for p in t.split("-") if p]
+    secilen = temizle(parca) if parca else (parcalar[-1] if parcalar else "")
+    if not secilen or secilen == t or secilen not in parcalar:
+        return sonuc
+    parca_sonucu = _sorgula_tek(secilen, once, sonra, onbellek)
+    return parca_sonucu if parca_sonucu["bulundu"] or parca_sonucu["phrasal"] else sonuc
+
+
+def _sorgula_tek(yazim, once, sonra, onbellek):
     t = temizle(yazim)
     once_k = baglam_kelimeleri(once, 10)[-BAGLAM_ONCE:]
     sonra_k = baglam_kelimeleri(sonra, BAGLAM_SONRA)

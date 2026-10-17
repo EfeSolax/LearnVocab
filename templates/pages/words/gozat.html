@@ -27,7 +27,7 @@ bağlantılarla (?sayfa=2).
 </header>
 
 {% if satirlar %}
-<ul class="lv-sayfa lv-bantli px-5 py-5 sm:columns-2 sm:gap-10 sm:px-8 [&>li]:break-inside-avoid [&>li]:border-b [&>li]:border-dashed [&>li]:border-[color:var(--satir)]" data-gozat-satirlari>
+<ul class="lv-sayfa lv-bantli px-5 py-5 sm:px-8 [&>li]:border-b [&>li]:border-dashed [&>li]:border-[color:var(--satir)]" data-gozat-satirlari>
     {% for satir in satirlar %}{% include 'pages/words/_aramaSatiri.html' %}{% endfor %}
 </ul>
 {% else %}
@@ -35,15 +35,40 @@ bağlantılarla (?sayfa=2).
 {% endif %}
 
 {% if sayfa.has_other_pages %}
-<nav aria-label="{% translate "Sayfalar" %}" class="mt-6 flex items-center justify-between" data-sayfalama>
-    {% if sayfa.has_previous %}
-    <a rel="prev" href="{{ request.path }}{% if sayfa.previous_page_number > 1 %}?sayfa={{ sayfa.previous_page_number }}{% endif %}" class="lv-el-bag">{% translate "← önceki sayfa" %}</a>
-    {% else %}<span></span>{% endif %}
-    <span class="lv-el text-[22px] !text-gray-500 dark:!text-slate-400">{% blocktranslate with no=sayfa.number toplam=sayfa.paginator.num_pages %}— s. {{ no }} / {{ toplam }} —{% endblocktranslate %}</span>
-    {% if sayfa.has_next %}
-    <a rel="next" href="{{ request.path }}?sayfa={{ sayfa.next_page_number }}" class="lv-el-bag">{% translate "sonraki sayfa →" %}</a>
-    {% else %}<span></span>{% endif %}
+{# Sayfa numaraları (her yanda 3) + "sayfaya git" kutusu. 1. sayfanın adresi ?sayfa'sız (canonical). #}
+<nav aria-label="{% translate "Sayfalar" %}" class="mt-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-3" data-sayfalama>
+    <ol class="flex flex-wrap items-center gap-x-1 gap-y-1">
+        {% if sayfa.has_previous %}
+        <li><a rel="prev" href="{{ request.path }}{% if sayfa.previous_page_number > 1 %}?sayfa={{ sayfa.previous_page_number }}{% endif %}" class="lv-el block px-2 text-[24px] font-bold hover:underline" aria-label="{% translate "Önceki sayfa" %}">←</a></li>
+        {% endif %}
+        {% for no in sayfa_numaralari %}
+        {% if no == sayfa.paginator.ELLIPSIS %}
+        <li class="lv-el px-1 text-[22px] !text-gray-500 dark:!text-slate-400" aria-hidden="true">…</li>
+        {% elif no == sayfa.number %}
+        <li><span class="lv-el lv-isaret block min-w-[2rem] px-1.5 text-center text-[24px] font-bold text-gray-900 dark:text-slate-100" aria-current="page">{{ no }}</span></li>
+        {% else %}
+        <li><a href="{{ request.path }}{% if no > 1 %}?sayfa={{ no }}{% endif %}" class="lv-el block min-w-[2rem] rounded-md px-1.5 text-center text-[24px] font-bold hover:bg-[color:var(--kare)] hover:underline" aria-label="{% blocktranslate %}{{ no }}. sayfa{% endblocktranslate %}">{{ no }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if sayfa.has_next %}
+        <li><a rel="next" href="{{ request.path }}?sayfa={{ sayfa.next_page_number }}" class="lv-el block px-2 text-[24px] font-bold hover:underline" aria-label="{% translate "Sonraki sayfa" %}">→</a></li>
+        {% endif %}
+    </ol>
+    <form method="get" action="{{ request.path }}" class="flex items-center gap-2" data-sayfaya-git>
+        <label for="sayfaya-git" class="lv-el text-[22px] font-bold">{% translate "sayfaya git" %}</label>
+        <input id="sayfaya-git" name="sayfa" type="number" inputmode="numeric" min="1" max="{{ sayfa.paginator.num_pages }}" required
+               placeholder="{{ sayfa.number }}" class="w-20 rounded-md border border-[color:var(--satir)] bg-transparent px-2 py-1 text-center text-base">
+        <span class="lv-el text-[22px] !text-gray-500 dark:!text-slate-400">/ {{ sayfa.paginator.num_pages }}</span>
+        <button type="submit" class="lv-el-bag text-[22px]">{% translate "git" %}</button>
+    </form>
 </nav>
+<script>
+// 1. sayfaya ?sayfa=1 ile değil, sade adresle gidilsin (canonical aynı kalsın).
+document.querySelector('[data-sayfaya-git]').addEventListener('submit', function (olay) {
+    var kutu = this.elements.sayfa;
+    if (Number(kutu.value) === 1) { olay.preventDefault(); window.location.href = this.getAttribute('action'); }
+});
+</script>
 {% endif %}
 
 <div class="mt-14">

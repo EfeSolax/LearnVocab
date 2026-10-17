@@ -13,7 +13,8 @@ Bağlam: baslik, paragraflar, metin (ReadingText ya da UserText), kutuphane (boo
 
 {% block title %}{% if kutuphane %}{{ baslik|lower|capfirst }}{% else %}{{ baslik }}{% endif %} — {% translate "Okumalar" %}{% endblock %}
 {% block page_heading %}{% endblock %}
-{% block sayfa_genisligi %}max-w-2xl{% endblock %}
+{# Okuma sütunu biraz geniş (Efe, 17 Ekim); iki yanda ileride reklama yer kalır. #}
+{% block sayfa_genisligi %}max-w-[52rem]{% endblock %}
 
 {% block page %}
 
@@ -39,24 +40,34 @@ Bağlam: baslik, paragraflar, metin (ReadingText ya da UserText), kutuphane (boo
 </header>
 
 {% if bolum_sayisi > 1 %}
-<nav aria-label="{% translate "Bölümler" %}" class="mb-4 flex items-center justify-between text-sm font-semibold" data-bolumler>
-    {% if onceki_bolum %}<a rel="prev" href="?bolum={{ onceki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">‹ {% translate "Önceki bölüm" %}</a>{% else %}<span></span>{% endif %}
-    <span class="text-gray-500 dark:text-slate-400">{% blocktranslate %}Bölüm {{ bolum }} / {{ bolum_sayisi }}{% endblocktranslate %}</span>
-    {% if sonraki_bolum %}<a rel="next" href="?bolum={{ sonraki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">{% translate "Sonraki bölüm" %} ›</a>{% else %}<span></span>{% endif %}
+<nav aria-label="{% translate "Bölümler" %}" class="mb-5 text-sm font-semibold" data-bolumler>
+    <div class="flex items-center justify-between">
+        {% if onceki_bolum %}<a rel="prev" href="?bolum={{ onceki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">‹ {% translate "Önceki bölüm" %}</a>{% else %}<span></span>{% endif %}
+        <span class="text-gray-500 dark:text-slate-400">{% blocktranslate %}Bölüm {{ bolum }} / {{ bolum_sayisi }}{% endblocktranslate %}</span>
+        {% if sonraki_bolum %}<a rel="next" href="?bolum={{ sonraki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">{% translate "Sonraki bölüm" %} ›</a>{% else %}<span></span>{% endif %}
+    </div>
+    {# Bölüm şeridi: her çizgi bir bölüm; dokununca o bölüm açılır. #}
+    <div class="lv-bolum-seridi mt-2" aria-hidden="true">
+        {% for i in bolum_listesi %}<a href="?bolum={{ i }}" tabindex="-1" class="contents"><span class="{% if i < bolum %}lv-gecti{% elif i == bolum %}lv-burada{% endif %}"></span></a>{% endfor %}
+    </div>
 </nav>
 {% endif %}
 
 {# Defter teması: metin deftere bantlanmış beyaz bir sayfa, okuma yazısıyla (rapor 18.12). #}
 <article data-okuma-metni lang="en"
-         class="lv-sayfa lv-bantli lv-metin break-words px-5 py-7 text-[1.2rem] leading-[1.8] text-gray-900 dark:text-slate-100 sm:px-8 [&>p]:mb-5 [&>p:last-child]:mb-0">
+         class="lv-sayfa lv-bantli lv-okuma-sayfa lv-metin break-words px-5 py-8 text-[1.2rem] leading-[1.8] text-gray-900 dark:text-slate-100 sm:px-8 [&>p]:mb-5 [&>p:last-child]:mb-0">
     {% for p in paragraflar %}<p>{{ p }}</p>{% endfor %}
 </article>
 
 {% if bolum_sayisi > 1 %}
-<nav aria-label="{% translate "Bölümler" %}" class="mt-6 flex items-center justify-between text-sm font-semibold" data-bolumler>
-    {% if onceki_bolum %}<a rel="prev" href="?bolum={{ onceki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">‹ {% translate "Önceki bölüm" %}</a>{% else %}<span></span>{% endif %}
-    <span class="text-gray-500 dark:text-slate-400">{% blocktranslate %}Bölüm {{ bolum }} / {{ bolum_sayisi }}{% endblocktranslate %}</span>
-    {% if sonraki_bolum %}<a rel="next" href="?bolum={{ sonraki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">{% translate "Sonraki bölüm" %} ›</a>{% else %}<span></span>{% endif %}
+{# Bölüm sonu: okumayı bitirince sıradaki bölüm büyük düğmeyle, yukarı çıkmadan. #}
+<nav aria-label="{% translate "Bölümler" %}" class="mt-8 flex flex-col items-center gap-3 text-sm font-semibold" data-bolumler>
+    {% if sonraki_bolum %}<a rel="next" href="?bolum={{ sonraki_bolum }}" class="lv-dugme w-full sm:w-auto">{% translate "Sonraki bölüm" %} <span aria-hidden="true">→</span></a>{% endif %}
+    <div class="flex w-full items-center justify-between">
+        {% if onceki_bolum %}<a rel="prev" href="?bolum={{ onceki_bolum }}" class="lv-el rounded-lg px-2 py-1 text-[22px] font-bold hover:underline">‹ {% translate "Önceki bölüm" %}</a>{% else %}<span></span>{% endif %}
+        <span class="text-gray-500 dark:text-slate-400">{% blocktranslate %}Bölüm {{ bolum }} / {{ bolum_sayisi }}{% endblocktranslate %}</span>
+        <span></span>
+    </div>
 </nav>
 {% endif %}
 
@@ -105,5 +116,6 @@ Bağlam: baslik, paragraflar, metin (ReadingText ya da UserText), kutuphane (boo
 </script>
 
 {% include 'pages/readings/_kelimeBaloncugu.html' %}
+{% include 'pages/readings/_kaldigimYer.html' %}
 
 {% endblock %}

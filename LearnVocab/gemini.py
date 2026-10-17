@@ -43,7 +43,7 @@ class GeminiUnconfigured(GeminiError):
 
 class GeminiRateLimit(GeminiError):
     """
-    Kota/oran sınırı aşıldı (429). Model değiştirmek işe yaramaz.
+    Kota/oran sınırı aşıldı (429) ve yedek modellerin hepsi de denendi.
 
     `detail` alanı, Google'ın döndüğü ayrıntıdan çıkarılan okunur bir açıklama
     tutar: hangi kota (dakikalık istek / dakikalık token / günlük istek) dolmuş
@@ -284,6 +284,7 @@ def generate(prompt, *, response_schema=None, temperature=None, max_retries=None
     # sürüm 404 dönerse) bu "kalıcı hata" sayılıp asıl sorunu -- servisin
     # yoğun olmasını -- gizliyordu. Geçici hata, kalıcı hatayı bastırır.
     seen_transient = False
+    rate_limit = None          # (mesaj, ayrıntı): kotası dolan son model
     last_kind = "fatal"
     last_message = ""
 
@@ -339,14 +340,15 @@ def generate(prompt, *, response_schema=None, temperature=None, max_retries=None
                     time.sleep(settings.GEMINI_RETRY_BACKOFF_SECONDS * (attempt + 1))
                     continue
 
-                # Kota hatasında model değiştirmek işe yaramaz (kota hesaba bağlı)
+                # Kota hatasında yedek modele geçilir: ücretsiz katmanda günlük
+                # kota MODEL BAŞINA (17 Ekim: 3.6-flash doluyken 3.7/3.8 cevap verdi).
                 if last_kind == "rate_limit":
                     detail = describe_quota_error(last_message)
                     logger.error(
                         "Gemini kota hatası (model=%s). Ayrıntı: %s | Tam mesaj: %s",
                         model, detail or "belirtilmemiş", last_message,
                     )
-                    raise GeminiRateLimit(last_message, detail=detail) from exc
+                    rate_limit = (last_message, detail)
                 break
 
             if model_index > 0:
@@ -355,6 +357,8 @@ def generate(prompt, *, response_schema=None, temperature=None, max_retries=None
             notify("success", model=model, model_index=model_index)
             return response
 
+    if rate_limit:
+        raise GeminiRateLimit(rate_limit[0], detail=rate_limit[1])
     if seen_transient or last_kind == "transient":
         raise GeminiUnavailable(last_message)
     raise GeminiFatal(last_message)

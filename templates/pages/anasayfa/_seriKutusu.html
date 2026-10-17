@@ -1,27 +1,24 @@
 {% load i18n %}
 {% comment %}
-Ana Sayfa seri kutusu (rapor 18.9). Seri sayısı + kapibara simgesi.
+Ana Sayfa seri kutusu (rapor 18.9). Seri sayısı (kapibara seri kartında, index.html).
 Dokununca küçük bir kutu AÇILIR ve diğer içeriğin ÜZERİNE BİNER (aşağı doğru
-genişlemez): mevcut seri, dondurma hakkı (yalnızca burada görünür), en uzun
+genişlemez; telefonda kartın iki kenarına yaslanır, sağdan taşmaz): mevcut seri, dondurma hakkı (yalnızca burada görünür), en uzun
 seri ve takvim. Takvimde tamamlanan günler sarı-turuncu, dondurulanlar mavi,
 diğerleri gri; önceki aylara oklarla geçilir. Veri: seri_durum (seri/views.py).
 Kutu defter sayfası gibi (rapor 18.12); ay adı tarayıcının dil desteğiyle sayfa dilinde yazılır.
 
 Bağlam: seri (seri.hesap.durum)
 {% endcomment %}
-<div class="relative" x-data="seriKutusu('{% url 'seri_durum' %}')" @keydown.escape.window="acik = false" data-seri-kutusu>
-    <button type="button" @click="ac()" :aria-expanded="acik.toString()"
-            class="lv-sayfa flex w-full items-center justify-center gap-2 px-3 py-4 transition hover:-translate-y-0.5
-                   {% if seri.bugun_tamam %}!bg-[var(--not)]{% endif %}">
-        {% include 'base/_kapibara.html' with poz='bas' sinif='h-11 w-11' %}
-        <span class="text-left">
-            <span class="lv-serif block text-3xl font-black leading-none {% if seri.mevcut %}text-gray-900 dark:text-slate-100{% else %}text-gray-400 dark:text-slate-500{% endif %}" data-seri-sayi>{{ seri.mevcut }}</span>
-            <span class="mt-1 block text-[15px] text-gray-600 dark:text-slate-300">{% blocktranslate count n=seri.mevcut %}günlük seri{% plural %}günlük seri{% endblocktranslate %}</span>
-        </span>
+<div class="relative max-sm:static" x-data="seriKutusu('{% url 'seri_durum' %}')" @keydown.escape.window="acik = false" data-seri-kutusu>
+    {# Ana sayfanın seri kartında: büyük sayı + "günlük seri"; kapibara kartın kendisinde. #}
+    <button type="button" @click="ac()" :aria-expanded="acik.toString()" class="group flex flex-wrap items-baseline gap-x-2 gap-y-1 text-left">
+        <span class="lv-serif text-[56px] font-black leading-none {% if seri.mevcut %}text-gray-900 dark:text-slate-100{% else %}text-gray-400 dark:text-slate-500{% endif %}" data-seri-sayi>{{ seri.mevcut }}</span>
+        <span class="lv-el whitespace-nowrap text-[26px] font-bold leading-none">{% blocktranslate count n=seri.mevcut %}günlük seri{% plural %}günlük seri{% endblocktranslate %}</span>
+        <span class="lv-el whitespace-nowrap text-[20px] leading-none !text-gray-500 group-hover:underline dark:!text-slate-400" aria-hidden="true">{% translate "takvim ›" %}</span>
     </button>
 
     <div x-show="acik" x-cloak @click.outside="acik = false" x-transition.opacity
-         class="lv-sayfa absolute left-0 top-full z-40 mt-3 w-[min(21rem,calc(100vw-2rem))] p-5"
+         class="lv-sayfa absolute left-0 top-full z-40 mt-3 w-[min(21rem,calc(100vw-2rem))] p-5 max-sm:inset-x-3 max-sm:top-[7.25rem] max-sm:w-auto"
          role="dialog" aria-label="{% translate 'Seri takvimi' %}">
         <div class="flex items-center gap-3">
             {% include 'base/_kapibara.html' with poz='bas' sinif='h-12 w-12' %}

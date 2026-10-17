@@ -181,19 +181,24 @@ main { position: relative; z-index: 1; }
 .lv-kupur { text-decoration: none; }
 .lv-kupur-1 { transform: rotate(-1.5deg); } .lv-kupur-2 { transform: rotate(1deg); } .lv-kupur-3 { transform: rotate(-.5deg); }
 
-/* Seviye sekmeleri */
-.lv-sekmeler { display: grid; max-width: 640px; }
+/* Seviye sekmeleri (Efe, 17 Ekim): basamaklı girinti ve sağa kayma yok; aralarında boşluk,
+   blok ortada, üzerine gelince hafifçe yükselir ve ok ilerler. */
+.lv-sekmeler { display: grid; gap: 10px; max-width: 640px; margin-inline: auto; }
 .lv-sekme { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 14px; text-decoration: none; padding: 14px 16px;
-  margin-left: calc(var(--i) * 6px); border-radius: 0 10px 10px 0; margin-bottom: -4px; transition: transform .15s;
+  border-radius: 10px; transition: transform .15s, filter .15s, box-shadow .15s;
   box-shadow: 0 1px 0 rgba(0, 0, 0, .06), 0 8px 12px -10px rgba(0, 0, 0, .35); }
-.lv-sekme:hover { transform: translateX(6px); }
+.lv-sekme:hover { transform: translateY(-3px); filter: brightness(.97);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .06), 0 12px 16px -10px rgba(0, 0, 0, .4); }
+.lv-sekme i { transition: transform .15s; }
+.lv-sekme:hover i { transform: translateX(4px); }
 .lv-sekme b { font: 900 26px var(--serif); color: #1b1d22; }
 .lv-sekme span { color: #3a3d45; font-size: 16px; line-height: 1.3; }
 .lv-sekme i { font: 700 22px var(--el); color: #1d3f8f; font-style: normal; }
 .lv-sekme-1 { background: #ffd9c7; } .lv-sekme-2 { background: #ffe9a8; } .lv-sekme-3 { background: #d8f0c8; }
 .lv-sekme-4 { background: #c9ecef; } .lv-sekme-5 { background: #d6dcfa; } .lv-sekme-6 { background: #ecd6f5; }
 html.dark .lv-sekme { filter: brightness(.82); }
-@media (min-width: 700px) { .lv-sekme { margin-left: calc(var(--i) * 12px); grid-template-columns: 70px minmax(0, 1fr) auto; } }
+html.dark .lv-sekme:hover { filter: brightness(.76); }
+@media (min-width: 700px) { .lv-sekme { grid-template-columns: 70px minmax(0, 1fr) auto; } }
 
 /* Sık sorulanlar */
 .lv-sss { display: grid; gap: 22px; }
@@ -280,3 +285,73 @@ html.dark .lv-kapibara {
 @keyframes lv-kapi-kirp { 0%, 92%, 100% { opacity: 1; } 94%, 97% { opacity: 0; } }
 @keyframes lv-kapi-kirp-tersi { 0%, 92%, 100% { opacity: 0; } 94%, 97% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .lv-kapibara * { animation: none !important; } }
+
+/* ---------- Listem (rapor 5): kelime fişleri ---------- */
+/* Her kelime bantla tutturulmuş bir fiş: üstte kelime, altında kırmızı çizgi,
+   anlamlar çizgili satırlarda. Bandın rengi ve üzerindeki yazı seviyeyi söyler
+   (A yeşil, B1 sarı, B2 mavi, C pembe); yalnızca süs, filtre değil. */
+:root { --sv-a: #cdeec0; --sv-b1: #ffe98a; --sv-b2: #c8e2ff; --sv-c: #ffc9d6; --sv-yok: #ece8dc; --sv-yazi: #3b3420; }
+html.dark { --sv-a: #2e5a2a; --sv-b1: #6b5d14; --sv-b2: #22466e; --sv-c: #6a2a3e; --sv-yok: #3a3a40; --sv-yazi: #f1ecd8; }
+.lv-fisler { display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px 26px; list-style: none; margin: 0; padding: 14px 2px 0; }
+@media (min-width: 640px) { .lv-fisler { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.lv-fisler > .lv-tam { grid-column: 1 / -1; }
+.lv-kfis { --sv: var(--sv-yok); position: relative; background: var(--kagit-beyaz); border-radius: 4px; box-shadow: var(--golge);
+  transform: rotate(-.6deg); transition: transform .18s, box-shadow .18s; }
+.lv-kfis:nth-child(2n) { transform: rotate(.7deg); }
+.lv-kfis:nth-child(3n) { transform: rotate(-.2deg); }
+.lv-kfis:hover { transform: rotate(0) translateY(-3px); box-shadow: 0 1px 1px rgba(0, 0, 0, .06), 0 18px 24px -14px rgba(0, 0, 0, .35); }
+.lv-kfis.lv-tam { transform: none; background: transparent; box-shadow: none; }
+.lv-kfis[data-sv^="A"] { --sv: var(--sv-a); }
+.lv-kfis[data-sv="B1"] { --sv: var(--sv-b1); }
+.lv-kfis[data-sv="B2"] { --sv: var(--sv-b2); }
+.lv-kfis[data-sv^="C"] { --sv: var(--sv-c); }
+/* Bant: fişi deftere tutturur, seviye üzerine el yazısıyla yazılı. */
+.lv-kfis-bant { position: absolute; top: -13px; left: 50%; min-width: 64px; height: 24px; padding: 0 10px; transform: translateX(-50%) rotate(-3deg);
+  background: var(--sv); opacity: .92; color: var(--sv-yazi); font: 700 19px/24px var(--el); text-align: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .12); pointer-events: none; }
+.lv-kfis:nth-child(2n) .lv-kfis-bant { transform: translateX(-50%) rotate(2.5deg); }
+.lv-kfis-bas { display: flex; align-items: flex-start; gap: 10px; padding: 20px 16px 8px; border-bottom: 2px solid color-mix(in srgb, var(--kirmizi) 55%, transparent); }
+.lv-kfis-kelime { font: 800 26px/1.1 var(--serif); letter-spacing: -.02em; color: var(--yazi); overflow-wrap: anywhere; }
+.lv-kfis-anlamlar { list-style: none; margin: 0; padding: 4px 16px 12px; line-height: 36px; font-weight: 600; color: var(--murekkep);
+  background: repeating-linear-gradient(transparent 0 35px, var(--satir) 35px 36px) 0 4px / 100% 100% no-repeat; }
+.lv-kfis-anlamlar > li { min-height: 36px; }
+.lv-listem-no { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 6px; border-radius: 50%;
+  font: 700 18px/1 var(--el); color: var(--kirmizi); border: 1.5px solid currentColor; vertical-align: 1px; transform: rotate(-6deg); }
+/* Kelime sayısı: seçim çubuğunda küçük yapışkan not. */
+.lv-listem-sayac { display: inline-block; background: var(--not); padding: 4px 12px 2px; font: 700 24px/1.1 var(--el); color: var(--murekkep);
+  transform: rotate(-2deg); box-shadow: var(--golge); }
+@media (prefers-reduced-motion: reduce) { .lv-kfis { transition: none; } }
+
+/* ---------- Okuma ekranı (rapor 8): sade defter sayfası ---------- */
+/* Sayfanın solunda defterin kırmızı kenar çizgisi; kaldığım yer kurdelesi bu boşlukta durur. */
+.lv-okuma-sayfa { padding-left: 34px !important; background-image: linear-gradient(90deg, transparent 21px, color-mix(in srgb, var(--kenar) 80%, transparent) 21px 22.5px, transparent 22.5px); }
+@media (min-width: 640px) { .lv-okuma-sayfa { padding-left: 58px !important; background-image: linear-gradient(90deg, transparent 38px, color-mix(in srgb, var(--kenar) 80%, transparent) 38px 39.5px, transparent 39.5px); } }
+.lv-okuma-sayfa > p { text-wrap: pretty; hyphens: manual; }
+/* Bölüm şeridi: kaçıncı bölümde olduğun ince çizgiler olarak; geçtiklerin mürekkep, gerisi soluk. */
+.lv-bolum-seridi { display: flex; gap: 3px; }
+.lv-bolum-seridi span { flex: 1; height: 4px; border-radius: 2px; background: var(--satir); }
+.lv-bolum-seridi span.lv-gecti { background: var(--murekkep); }
+.lv-bolum-seridi span.lv-burada { background: var(--kalem); box-shadow: 0 0 0 1px var(--murekkep); }
+/* Kaldığım yer */
+.lv-isaret-serit { position: absolute; left: 4px; width: 14px; height: 28px; background: var(--kirmizi); pointer-events: none;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%); }
+@media (min-width: 640px) { .lv-isaret-serit { left: 14px; } }
+.lv-isaret-kipi { cursor: crosshair; outline: 2px dashed var(--kirmizi); outline-offset: 6px; }
+/* Okuma sütununun içinde, ekranın altına yapışık durur (ekran kenarında değil):
+   iki yan ileride reklama ayrılabilir (Efe, 17 Ekim). */
+.lv-isaret-kutusu { position: sticky; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 40; margin-top: 24px;
+  display: flex; justify-content: flex-end; align-items: center; gap: 8px; pointer-events: none; }
+.lv-isaret-kutusu > * { pointer-events: auto; }
+@media (min-width: 1024px) { .lv-isaret-kutusu { bottom: 20px; } }
+.lv-isaret-dugme { display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px 6px 12px; border-radius: 999px; cursor: pointer;
+  background: var(--kagit-beyaz); color: var(--kirmizi); border: 1.5px solid var(--kirmizi); box-shadow: var(--golge);
+  font: 700 19px/1.1 var(--el); text-decoration: none; }
+.lv-isaret-dugme[aria-pressed="true"] { background: var(--kirmizi); color: var(--kagit-beyaz); }
+.lv-isaret-dugme.lv-ikincil { color: var(--murekkep); border-color: var(--murekkep); }
+.lv-isaret-dugme[hidden] { display: none; }
+
+/* ---------- Learn & Pass: "Şu kelimelerle tekrar yap" (kaynakSec.html) ---------- */
+.lv-kaynak { transition: background-color .15s, box-shadow .15s; }
+.lv-kaynak[hidden] { display: none !important; }
+.lv-kaynak:has(.lv-kaynak-radyo:checked) { background: var(--murekkep-acik); box-shadow: inset 0 0 0 2px var(--murekkep), var(--golge); }
+.lv-kaynak-radyo { width: 22px; height: 22px; flex: none; accent-color: var(--murekkep); cursor: pointer; }
