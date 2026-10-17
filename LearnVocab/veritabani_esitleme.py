@@ -155,7 +155,9 @@ def _bosalt(alias, tablolar):
 
 
 def _uygulanan_migrationlar(alias):
-    return sorted(MigrationRecorder(connections[alias]).applied_migrations())
+    # Kodda artık olmayan uygulamaların eski kayıtları sayılmaz (ör. kaldırılan quizzes; 17 Ekim)
+    kurulu = {a.label for a in apps.get_app_configs()}
+    return sorted(k for k in MigrationRecorder(connections[alias]).applied_migrations() if k[0] in kurulu)
 
 
 def _migration_kayitlarini_kopyala(kaynak, hedef):
