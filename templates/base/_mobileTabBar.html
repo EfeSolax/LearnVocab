@@ -126,7 +126,10 @@ Bölümler üst çubukla aynı listeden geliyor: LearnVocab/navigation.py
                     if (!html || onizleme !== kart) { return; }
                     kart.classList.add('dolu', 'lv-kagit');
                     kart.style.alignItems = '';
-                    kart.innerHTML = '<main class="' + main.className.replace(/lv-(kayan|gir-\w+)/g, '') + '">' + html + '</main>';
+                    var kopya = document.createElement('main');
+                    kopya.className = main.className.replace(/lv-(kayan|gir-\w+)/g, '');
+                    kopya.innerHTML = html;
+                    kart.replaceChildren(kopya);
                 });
             })(onizleme, aday);
         }
