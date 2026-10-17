@@ -115,6 +115,17 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
     </div>
     {% else %}
 
+    {# Arama: başlıkta ve metnin içinde (Efe, 17 Ekim); seçili konu korunur #}
+    <form method="get" action="{% url 'readings' %}" role="search" class="mb-4 flex items-center gap-2 border-b-2 border-[color:var(--murekkep)]" data-kutuphane-ara>
+        {% if secili_konu %}<input type="hidden" name="konu" value="{{ secili_konu }}">{% endif %}
+        <input type="search" name="ara" value="{{ ara }}" maxlength="60" autocomplete="off"
+               placeholder="{% translate "Kütüphanede ara (başlık ya da metindeki bir kelime)" %}"
+               aria-label="{% translate "Kütüphanede ara" %}" class="min-w-0 flex-1 bg-transparent px-1 py-2 text-lg outline-none">
+        <button type="submit" class="p-2 text-indigo-600 dark:text-indigo-400" aria-label="{% translate "Ara" %}">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m20 20-3.5-3.5"/></svg>
+        </button>
+    </form>
+
     {% if konular %}
     <nav aria-label="{% translate "Konular" %}" class="-mx-4 mb-3 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
         <a href="{% url 'readings' %}" {% if not secili_konu %}aria-current="page"{% endif %}
@@ -128,33 +139,31 @@ Okumalar ana sayfası (rapor 8). Görünüm: readings.views.okumalar
 
     {# Kütüphane: alt alta düz kâğıtlar (Efe, 17 Ekim: eğik kupür yok). Solda konunun rengi, üstte konu · seviye · süre, metnin ilk satırları, "Devamını oku" ve kaynak. #}
     <ul class="mt-4 space-y-5" data-kutuphane>
-        {% for m in kutuphane %}
-        <li class="lv-sayfa flex overflow-hidden" data-kutuphane-metni>
-            <span class="w-1.5 shrink-0 bg-{{ m.renk }}-600" aria-hidden="true"></span>
-            <div class="min-w-0 flex-1 px-5 py-5 sm:px-7">
-                <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 dark:text-slate-300">
-                    <span class="lv-el text-xl font-bold text-{{ m.renk }}-700 dark:text-{{ m.renk }}-300">{{ m.topic_label|lower }}</span>
-                    {% if m.cefr %}<span class="lv-seviye">{{ m.cefr }}</span>{% endif %}
-                </p>
-                <h3 class="lv-serif mt-1 text-[24px] font-bold leading-tight text-gray-900 dark:text-slate-100" lang="en">
-                    <a href="{% url 'readings_library_text' m.slug %}" class="hover:underline decoration-1 underline-offset-4">{{ m.title|lower|capfirst }}</a>
-                </h3>
-                <p class="lv-metin mt-2 text-[17px] leading-relaxed text-gray-700 dark:text-slate-300" lang="en">{{ m.ozet }}</p>
-                <div class="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <a href="{% url 'readings_library_text' m.slug %}" class="lv-el-bag inline-block !text-[22px]"
-                       aria-label="{% blocktranslate with baslik=m.title|lower|capfirst %}Devamını oku: {{ baslik }}{% endblocktranslate %}">{% translate "Devamını oku" %} →</a>
-                    {% if m.source %}<span class="text-sm text-gray-600 dark:text-slate-300" data-kaynak>{% blocktranslate with kaynak=m.yerel_kaynak %}Kaynak: {{ kaynak }}{% endblocktranslate %}</span>{% endif %}
-                </div>
-            </div>
-        </li>
-        {% empty %}
-        <li class="lv-el text-[22px] leading-snug py-2 text-center">
-            {% translate "Bu konuda henüz metin yok." %} <a href="{% url 'readings' %}" class="font-semibold text-indigo-600 dark:text-indigo-400">{% translate "Tümüne bak" %}</a>
-        </li>
-        {% endfor %}
+        {% include 'pages/readings/_kutuphaneKartlari.html' %}
     </ul>
     {% endif %}
 </section>
+
+<script>
+// Kütüphane 10'ar metinle gelir; liste sonu ekrana girince sıradaki parça yüklenir (Efe, 17 Ekim).
+(function () {
+    var liste = document.querySelector('[data-kutuphane]');
+    if (!liste || !('IntersectionObserver' in window)) { return; }
+    var yukleniyor = false;
+    var gozcu = new IntersectionObserver(function (girdiler) {
+        var devam = liste.querySelector('[data-kutuphane-devam]');
+        if (!devam || yukleniyor || !girdiler.some(function (g) { return g.isIntersecting; })) { return; }
+        yukleniyor = true;
+        fetch(devam.dataset.adres, { credentials: 'same-origin', headers: { 'X-Requested-With': 'fetch' } })
+            .then(function (c) { if (!c.ok) { throw c; } return c.text(); })
+            .then(function (html) { devam.insertAdjacentHTML('afterend', html); devam.remove(); izle(); })
+            .catch(function () { /* bağlantı yoksa "Daha fazla göster" bağlantısı kalır */ })
+            .then(function () { yukleniyor = false; });
+    }, { rootMargin: '300px' });
+    function izle() { gozcu.disconnect(); var d = liste.querySelector('[data-kutuphane-devam]'); if (d) { gozcu.observe(d); } }
+    izle();
+})();
+</script>
 
 {% if user.is_authenticated %}
 <script>

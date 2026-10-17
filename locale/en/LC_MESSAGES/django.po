@@ -5583,3 +5583,16 @@ msgstr "Install"
 #: templates/pages/index.html
 msgid "Sürekli tarayıcıdan girmek istemiyorsan <span class=\"font-semibold underline underline-offset-4\">ayarlardaki adımlarla</span> 30 saniyede telefonuna bir uygulama olarak ekleyebilirsin."
 msgstr "If you don't want to open it in the browser every time, <span class=\"font-semibold underline underline-offset-4\">follow the steps in Settings</span> to add it to your phone as an app in 30 seconds."
+
+#: templates/pages/readings.html
+#, python-format
+msgid "“%(ara)s” ile eşleşen metin yok."
+msgstr "No text matches “%(ara)s”."
+
+#: templates/pages/readings.html
+msgid "Kütüphanede ara (başlık ya da metindeki bir kelime)"
+msgstr "Search the library (a title or a word in the text)"
+
+#: templates/pages/readings.html
+msgid "Kütüphanede ara"
+msgstr "Search the library"

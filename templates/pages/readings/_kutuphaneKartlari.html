@@ -1,0 +1,32 @@
+{% load i18n %}
+{% comment %}Kütüphane kartları (okumalar sayfası) + sıradaki sayfa düğmesi (?parca=1 ile yalnızca bu parça döner).{% endcomment %}
+        {% for m in kutuphane %}
+        <li class="lv-sayfa flex overflow-hidden" data-kutuphane-metni>
+            <span class="w-1.5 shrink-0 bg-{{ m.renk }}-600" aria-hidden="true"></span>
+            <div class="min-w-0 flex-1 px-5 py-5 sm:px-7">
+                <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 dark:text-slate-300">
+                    <span class="lv-el text-xl font-bold text-{{ m.renk }}-700 dark:text-{{ m.renk }}-300">{{ m.topic_label|lower }}</span>
+                    {% if m.cefr %}<span class="lv-seviye">{{ m.cefr }}</span>{% endif %}
+                </p>
+                <h3 class="lv-serif mt-1 text-[24px] font-bold leading-tight text-gray-900 dark:text-slate-100" lang="en">
+                    <a href="{% url 'readings_library_text' m.slug %}" class="hover:underline decoration-1 underline-offset-4">{{ m.title|lower|capfirst }}</a>
+                </h3>
+                <p class="lv-metin mt-2 text-[17px] leading-relaxed text-gray-700 dark:text-slate-300" lang="en">{{ m.ozet }}</p>
+                <div class="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <a href="{% url 'readings_library_text' m.slug %}" class="lv-el-bag inline-block !text-[22px]"
+                       aria-label="{% blocktranslate with baslik=m.title|lower|capfirst %}Devamını oku: {{ baslik }}{% endblocktranslate %}">{% translate "Devamını oku" %} →</a>
+                    {% if m.source %}<span class="text-sm text-gray-600 dark:text-slate-300" data-kaynak>{% blocktranslate with kaynak=m.yerel_kaynak %}Kaynak: {{ kaynak }}{% endblocktranslate %}</span>{% endif %}
+                </div>
+            </div>
+        </li>
+        {% empty %}
+        <li class="lv-el text-[22px] leading-snug py-2 text-center">
+            {% if ara %}{% blocktranslate %}“{{ ara }}” ile eşleşen metin yok.{% endblocktranslate %}{% else %}{% translate "Bu konuda henüz metin yok." %}{% endif %} <a href="{% url 'readings' %}" class="font-semibold text-indigo-600 dark:text-indigo-400">{% translate "Tümüne bak" %}</a>
+        </li>
+        {% endfor %}
+{% if sayfa.has_next %}
+<li data-kutuphane-devam data-adres="?sayfa={{ sayfa.next_page_number }}{% if secili_konu %}&amp;konu={{ secili_konu|urlencode }}{% endif %}{% if ara %}&amp;ara={{ ara|urlencode }}{% endif %}&amp;parca=1" class="text-center">
+    <a href="?sayfa={{ sayfa.next_page_number }}{% if secili_konu %}&amp;konu={{ secili_konu|urlencode }}{% endif %}{% if ara %}&amp;ara={{ ara|urlencode }}{% endif %}"
+       class="inline-block rounded-lg px-4 py-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400">{% translate "Daha fazla göster" %}</a>
+</li>
+{% endif %}

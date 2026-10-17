@@ -22,6 +22,8 @@ from datetime import timedelta
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -58,6 +60,9 @@ COP_SURESI = timedelta(days=7)
 BOLUM_KELIME = 1500
 
 
+KUTUPHANE_SAYFA = 10
+
+
 def _ajax_mi(request):
     return request.headers.get("X-Requested-With") == "fetch"
 
@@ -70,12 +75,17 @@ def _copu_bosalt(user):
 def okumalar(request):
     """Okumalar ana sayfası: Kendi metinlerim (girişli) + Kütüphane (herkese açık)."""
     konu = request.GET.get("konu") or ""
+    ara = (request.GET.get("ara") or "").strip()[:60]
     kutuphane = ReadingText.objects.only("number", "slug", "title", "topic", "word_count", "cefr", "body", "source")
     konular = konu_listesi()
     if konu in {k["anahtar"] for k in konular}:
         kutuphane = kutuphane.filter(topic=konu)
     else:
         konu = ""
+    if ara:
+        kutuphane = kutuphane.filter(Q(title__icontains=ara) | Q(body__icontains=ara))
+    # Bütün kütüphane bir kerede gelmez (Efe, 17 Ekim): 10'ar metin, liste sonuna gelince sıradaki parça.
+    sayfa = Paginator(kutuphane, KUTUPHANE_SAYFA).get_page(request.GET.get("sayfa"))
 
     metinlerim, cop = [], []
     if request.user.is_authenticated:
@@ -89,15 +99,21 @@ def okumalar(request):
         for m in cop:
             m.kalan_gun = max(1, (m.deleted_at + COP_SURESI - simdi).days + 1)
 
-    kutuphane = list(kutuphane)
+    kutuphane = list(sayfa.object_list)
     for m in kutuphane:
         m.renk = konu_rengi(m.topic)
         m.ozet = _ilk_satirlar(m.paragraphs)
+    if request.GET.get("parca"):
+        return render(request, "pages/readings/_kutuphaneKartlari.html",
+                      {"kutuphane": kutuphane, "sayfa": sayfa, "secili_konu": konu, "ara": ara})
+    var_mi = bool(kutuphane) or ReadingText.objects.exists()
     return render(request, "pages/readings.html", {
         "active_page": "Okumalar",
         "kutuphane": kutuphane,
-        "kutuphane_bos": not kutuphane and not konu,
-        "konular": konular if (kutuphane or konu) else [],
+        "kutuphane_bos": not var_mi,
+        "konular": konular if var_mi else [],
+        "sayfa": sayfa,
+        "ara": ara,
         "secili_konu": konu,
         "metinlerim": metinlerim,
         "cop": cop,
