@@ -505,6 +505,18 @@ def duz_metin(sonuc):
 # degerlendir() dönüş kodları
 TAMAM = "tamam"
 UYGUN_DEGIL = "uygun_degil"
+def _baglantiyi_tazele():
+    """
+    Gemini beklenirken (kota beklemesi + yeniden deneme, dakikalar sürebilir) veritabanı bağlantısı
+    boşta kalır; paylaşımlı sunucudaki MySQL onu kapatır ve sonraki yazma "MySQL server has gone
+    away" ile düşer (17 Ekim, yazilari_yeniden_dene). Bağlantı kapatılır, sonraki sorgu yenisini açar.
+    Bir işlem (atomic) içindeyken dokunulmaz.
+    """
+    from django.db import connection
+    if not connection.in_atomic_block:
+        connection.close()
+
+
 KOTA = "kota"            # Gemini kotası doldu
 SERVIS = "servis"        # Gemini geçici olarak cevap vermedi
 YOGUN = "yogun"          # bizim dakikalık sınırımız doldu, istek atılmadı
@@ -555,6 +567,8 @@ def degerlendir(yazi, on_event=None, arka_planda=False):
     except Exception:
         logger.exception("Gemini çağrısı beklenmedik şekilde hata verdi.")
         return SERVIS
+    finally:
+        _baglantiyi_tazele()
 
     try:
         sonuc = cevabi_coz(getattr(cevap, "text", None) or "", yazi.content, yazi.sertlik, kelimeler, yazi.tur)
