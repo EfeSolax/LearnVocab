@@ -39,6 +39,15 @@ def robots_txt(request):
     return HttpResponse("\n".join(satirlar), content_type="text/plain; charset=utf-8")
 
 
+@require_GET
+@cache_control(public=True, max_age=86400)
+def favicon_ico(request):
+    """Kökteki /favicon.ico (20 Ekim): sayfadaki etiketi okumayan tarayıcılar ve
+    Google simge tarayıcısı buraya bakar; 404 yerine sitenin simgesi döner."""
+    dosya = settings.BASE_DIR / "static" / "images" / "favicon.ico"
+    return HttpResponse(dosya.read_bytes(), content_type="image/x-icon")
+
+
 def sitemap_yollari():
     """Dizine açık bütün sayfaların yolları: [(yol, son değişiklik ya da None)]."""
     from readings.models import ReadingText

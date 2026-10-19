@@ -21,7 +21,9 @@
     {% endif %}
     {# Açıklama: görünüm `meta_aciklama` verir ya da sayfa şablonu bu bloğu doldurur. #}
     {% block meta_aciklama %}{% if meta_aciklama %}<meta name="description" content="{{ meta_aciklama }}">{% endif %}{% endblock %}
-    <link rel="icon" href="{% static 'images/favicon.jpg' %}">
+    {# Simgeler (20 Ekim): mor kitap logosu, kare; araclar/ikon_uret.py üretir. Google arama sonucundaki simge 48'in katı kare ister. #}
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" sizes="48x48">
+    <link rel="icon" href="{% static 'pwa/ikon-192.png' %}" type="image/png" sizes="192x192">
     {# PWA (rapor 10): ana ekrana eklenebilir uygulama; iPhone'da bildirim için gerekli. #}
     <link rel="manifest" href="{% url 'pwa_manifest' %}">
     <meta name="theme-color" content="#fbfaf5">

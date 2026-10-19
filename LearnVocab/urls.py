@@ -39,6 +39,7 @@ urlpatterns = [
     path("admin/istatistik/", istatistik.istatistik, name="admin_istatistik"),
     path("admin/", admin.site.urls),
     path("robots.txt", seo_views.robots_txt, name="robots_txt"),
+    path("favicon.ico", seo_views.favicon_ico, name="favicon_ico"),
     # Dil düğmesi (rapor 18.22): seçilen dildeki aynı sayfaya gider; öneksiz.
     path("dil/", diller.dil_degistir, name="dil_degistir"),
     path("sitemap.xml", seo_views.sitemap_xml, name="sitemap_xml"),

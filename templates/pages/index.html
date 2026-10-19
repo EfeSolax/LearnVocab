@@ -10,6 +10,8 @@ Bölüm 17 gereği "öğrenilen kelime" gibi sayılardan söz edilmez.
 
 {% block title %}LearnVocab{% if user.is_authenticated %} — {% translate "Ana Sayfa" %}{% else %} — {% translate "İngilizce kelime öğren" %}{% endif %}{% endblock %}
 {% block meta_aciklama %}<meta name="description" content="{% translate 'LearnVocab ile İngilizce kelime öğren: Türkçe anlamlı sözlük, kaydırarak kelime çalışması, egzersizler, okuma metinleri ve yazma alıştırmaları. Ücretsiz.' %}">{% endblock %}
+{# Google'da alan adı yerine "LearnVocab" yazsın (20 Ekim): site adı ana sayfadaki WebSite şemasından okunur. #}
+{% block extra_head %}<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "LearnVocab", "alternateName": ["Learn Vocab", "learnvocab.com.tr"], "url": "{{ seo.site_adresi }}/"}</script>{% endblock %}
 {% block page_heading %}{% endblock %}
 {% block sayfa_genisligi %}max-w-4xl{% endblock %}
 

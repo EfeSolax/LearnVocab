@@ -263,6 +263,20 @@ class RobotsVeSitemapTests(TestCase):
         self.assertIn(f"Sitemap: {SITE}/sitemap.xml", metin)
         self.assertNotIn("Disallow: /sozluk", metin)
 
+    def test_kokte_favicon_ico(self):
+        cevap = self.client.get("/favicon.ico")
+        self.assertEqual(cevap.status_code, 200)
+        self.assertEqual(cevap["Content-Type"], "image/x-icon")
+        self.assertTrue(cevap.content.startswith(b"\x00\x00\x01\x00"))
+
+    def test_ana_sayfada_site_adi_semasi_ve_kare_simge(self):
+        html = _html(self.client.get(reverse("index")))
+        sema = re.search(r'<script type="application/ld\+json">(.*?)</script>', html).group(1)
+        veri = json.loads(sema)
+        self.assertEqual((veri["@type"], veri["name"], veri["url"]), ("WebSite", "LearnVocab", f"{SITE}/"))
+        self.assertIn("images/favicon.ico", html)
+        self.assertNotIn("favicon.jpg", html)
+
     def test_sitemap_yalnizca_acik_sayfalar(self):
         make_word("open", meaning="açık", level="A1", siklik=5.0, dizinde=True)
         make_word("closed", meaning="kapalı", level="A1", siklik=5.0)

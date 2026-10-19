@@ -113,6 +113,7 @@ Sekmeler: **Learn & Pass** (varsayılan) | **Egzersizler** (misafirde sekme yok)
 - **Beyaz liste** (`LearnVocab/seo.py` `DIZINE_ACIK`): listede olmayan her sayfa `noindex`. `robots.txt` yalnızca `/admin/` ve `/api/`'yi kapatır.
 - **Kelime sayfası** `/sozluk/bank/` yalnızca `dizinde` açıksa Google'a görünür (kademeli dizine alma; kural `words/dizine_alma.py`, komut `dizine_ac`: Türkçe anlam + açıklama + ≥1 örnek + Zipf ≥ 2,3). **Açık: 2.691 kelime** (A1–B1 Oxford'lu 1. parti); sırada B2 Oxford → C1 Oxford → ifadeler → `learnvocab` etiketli kelimeler (elle denetimden sonra). Cambridge kaynaklı A1–B1 henüz açılmadı.
 - `sitemap.xml` her dil adresini `hreflang` ile yazar; `?q=` aramaları `noindex`; göz atma sayfaları sayfalı: tek sütun, numaralı sayfalar (her yanda 3, uçlarda ilk/son) + "sayfaya git" kutusu.
+- **Site adı ve simge (20 Ekim):** ana sayfada WebSite şeması (`name: LearnVocab`); simge **mor kitap logosu** (`static/images/favicon.ico`, PWA simgeleri; üretim `araclar/ikon_uret.py`), kökte `/favicon.ico`.
 - Henüz yok: Türkçe→İngilizce sayfalar (`/sozluk/tr/…`, 2. aşama).
 
 ## 15. Açık işler ve karar bekleyenler
