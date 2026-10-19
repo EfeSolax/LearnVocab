@@ -29,10 +29,12 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
     main { padding-top: 1.25rem !important; padding-bottom: 1.5rem !important; }
     .lp-kelime { font-family: 'Fredoka', 'Nunito', ui-rounded, system-ui, sans-serif; font-weight: 600;
                  font-size: clamp(2.25rem, 10vw, 3.75rem); line-height: 1.1; letter-spacing: .01em; }
-    /* Aşağı doğru açılan balon: yükseklik 0fr -> 1fr */
-    .lp-acilim { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s ease; }
-    .lp-acilim.acik { grid-template-rows: 1fr; }
-    .lp-acilim > div { overflow: hidden; }
+    /* Balon: kapalıyken yer kaplamaz, açılınca hafifçe kayarak belirir. (Eskiden yükseklik 0fr -> 1fr
+       geçişiyle açılıyordu; iOS 17 Safari geçişten sonra içindeki yazıyı boyamıyordu: yazı seçilebiliyor
+       ama görünmüyordu, 20 Ekim. Yükseklik animasyonu yok.) */
+    .lp-acilim { display: none; }
+    .lp-acilim.acik { display: block; animation: lp-acil .28s ease-out; }
+    @keyframes lp-acil { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
     .lp-balon { position: relative; }
     .lp-balon::before { content: ''; position: absolute; left: -7px; top: 18px; width: 14px; height: 14px;
                         transform: rotate(45deg); background: inherit; border-left: inherit; border-bottom: inherit; }
@@ -384,9 +386,9 @@ sayfayla gelir, hiçbir istek atılmaz, seviye seçimi yoktur (18.3).
         if (tasiyor()) { $('lp-ornek').classList.add('hidden'); }
         if (tasiyor()) { sahne.classList.add('sikisik'); }
     }
-    // Açılma animasyonu bitince ölç (yarıda ölçülürse balon olduğundan küçük görünür)
-    acilim.addEventListener('transitionend', function (o) {
-        if (o.target === acilim && o.propertyName === 'grid-template-rows') { balonuSigdir(); }
+    // Balon açılınca ölç (animasyon yalnızca kaydırma/saydamlık; yükseklik baştan tam)
+    acilim.addEventListener('animationend', function (o) {
+        if (o.target === acilim) { balonuSigdir(); }
     });
 
     function kartKonumu(dx, gecisli) {
