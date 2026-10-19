@@ -154,6 +154,23 @@ class YeniKelimeTests(TestCase):
             sayac[tekrar.yeni_kelime(self.user, rng=rng).text] += 1
         self.assertGreater(sayac["house"], sayac["heath"] * 5)
 
+    def test_oncelikli_kelimeler_once_nadir_sona(self):
+        # 40 kelime: öncelik 40 … 1. Seçim en öncelikli 30'un içinden olur; en alttakiler gelmez.
+        for i in range(40):
+            make_word(f"w{i:02d}", level="B1", oncelik=40 - i)
+        rng = random.Random(5)
+        secilenler = {tekrar.yeni_kelime(self.user, rng=rng).oncelik for _ in range(200)}
+        self.assertGreaterEqual(min(secilenler), 40 - tekrar.PENCERE + 1)
+        self.assertIn(40, secilenler)
+
+    def test_hesaplanmamis_oncelik_sikliktan_tahmin_edilir(self):
+        # oncelik_hesapla çalışmadan eklenen kelime sıklığıyla sıraya girer; sona atılmaz
+        make_word("house", level="B1", siklik=5.5)
+        for i in range(tekrar.PENCERE):
+            make_word(f"seyrek{i}", level="B1", oncelik=5)
+        rng = random.Random(1)
+        self.assertIn("house", {tekrar.yeni_kelime(self.user, rng=rng).text for _ in range(50)})
+
 
 class YeniAkisTests(TestCase):
     """Rapor 18.1: ikinci kaydırma "Hayır, yanılmışım" -> misjudged olarak kaydedilir."""

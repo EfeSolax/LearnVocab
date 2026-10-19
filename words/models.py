@@ -274,6 +274,10 @@ class Word(models.Model):
     # Hesaplama: manage.py siklik_hesapla
     siklik = models.FloatField(blank=True, null=True, verbose_name="sıklık (Zipf)")
 
+    # Öğrenme önceliği (20 Ekim, words/oncelik.py): 0–100; L&P yeni kelimeyi seviyenin içinde
+    # yüksekten alçağa seçer. Ekranda görünmez. Hesaplama: manage.py oncelik_hesapla
+    oncelik = models.FloatField(blank=True, null=True, db_index=True, verbose_name="öğrenme önceliği")
+
     # CEFR etiketinin kaynağı (rapor 18.16/8). Resmî kaynakla doğrulanmış
     # etiketler bir daha incelenmez; sonraki denetimler yalnızca "learnvocab"
     # (bizim etiketimiz) olanlara bakar.

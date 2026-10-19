@@ -35,7 +35,7 @@ birbirinden olabildiğince uzağa dağıtılır.
 
 YENİ KELİME (yeni_kelime)
 -------------------------
-Günde en çok 15. Kullanıcının seviyesi çevresinden, sıklık ağırlıklı (sık kelime daha sık çıkar, rapor 18.16/3).
+Günde en çok 15. Kullanıcının seviyesi çevresinden, öğrenme önceliğine göre (elzem kelime önce, nadir sona; words/oncelik.py).
 Nadir türler (dog fiil…) yalnızca C1–C2 kullanıcılara gelir.
 """
 
@@ -43,11 +43,11 @@ import random
 from datetime import timedelta
 
 from django.conf import settings
-from django.db.models import Q
+from django.db.models import F, Q
 from django.utils import timezone
 
 from words.models import DILBILGISI_TURLERI, UserWordLink, Word
-from words.siklik import lp_agirligi
+from words.oncelik import oncelik_puani
 
 from .models import EncounterLog, WordEncounter
 
@@ -60,6 +60,13 @@ SEVIYE_AGIRLIKLARI = ((0, 60), (1, 25), (-1, 15))
 # Misafir ve seviyesi bilinmeyen: %60 B1 · %20 B2 · %20 C1 (rapor 18.3).
 MISAFIR_DAGILIMI = (("B1", 60), ("B2", 20), ("C1", 20))
 NADIR_TUR_SEVIYELERI = ("C1", "C2")
+# Öğrenme önceliği (Efe, 20 Ekim; words/oncelik.py): yeni kelime seviyenin içinde en öncelikli
+# PENCERE aday arasından seçilir, yani elzem kelimeler önce gelir, nadirler sona kalır. Pencere
+# kartların her seferinde aynı sırayla gelmesini önler. Misafirin geçmişi olmadığından penceresi geniş.
+PENCERE = 30
+MISAFIR_PENCERE = 150
+# Veritabanından seviye başına çekilen en öncelikli aday (aile aralama bunların içinden seçer)
+ADAY_SINIRI = 300
 
 
 def birim():
@@ -297,11 +304,27 @@ def bugun_yeni_sayisi(user):
         created_at__gte=yerel_gun_basi(user)).count()
 
 
-def _agirlikli_orneklem(adaylar, adet, rng):
-    """adaylar: [(id, sıklık)] -> ağırlığa göre, tekrarsız `adet` id (Efraimidis–Spirakis)."""
-    anahtarli = [(rng.random() ** (1.0 / lp_agirligi(s)), wid) for wid, s in adaylar]
+def _oncelik(oncelik, siklik):
+    """Öncelik henüz hesaplanmamışsa (oncelik_hesapla çalışmadan eklenen kelime) sıklıktan tahmin."""
+    return oncelik if oncelik is not None else oncelik_puani(siklik)
+
+
+def _oncelikli_orneklem(adaylar, adet, rng, pencere=PENCERE):
+    """
+    adaylar: [(id, öncelik)] -> en öncelikli `pencere` aday arasından, önceliğin karesiyle
+    ağırlıklı, tekrarsız `adet` id (Efraimidis–Spirakis).
+    """
+    sirali = sorted(adaylar, key=lambda a: -a[1])[:max(pencere, adet)]
+    anahtarli = [(rng.random() ** (1.0 / max(o, 1.0) ** 2), wid) for wid, o in sirali]
     anahtarli.sort(reverse=True)
     return [wid for _, wid in anahtarli[:adet]]
+
+
+def _oncelikli_adaylar(qs, *alanlar):
+    """[(id, öncelik, *alanlar)]: en öncelikli ADAY_SINIRI kelime."""
+    satirlar = (qs.order_by(F("oncelik").desc(nulls_last=True), "id")
+                .values_list("id", "oncelik", "siklik", *alanlar)[:ADAY_SINIRI])
+    return [(wid, _oncelik(o, s), *geri) for wid, o, s, *geri in satirlar]
 
 
 def _seviye_sirasi(user, rng):
@@ -338,7 +361,7 @@ def _yeni_havuz(user, seviye=None):
 
 def _aileden_uzak(adaylar, mesafe):
     """
-    [(id, sıklık, aile)] -> [(id, sıklık)]: ailesi turda görünmemişler;
+    [(id, öncelik, aile)] -> [(id, öncelik)]: ailesi turda görünmemişler;
     hiçbiri kalmıyorsa ailesi en uzun süre önce görünenler.
     """
     if not adaylar:
@@ -360,15 +383,15 @@ def yeni_kelime(user, rng=None, haric=()):
     mesafe = aile_mesafeleri(haric)
 
     for seviye in _seviye_sirasi(user, rng):
-        adaylar = _aileden_uzak(list(_yeni_havuz(user, seviye).exclude(id__in=haric)
-                                     .values_list("id", "siklik", "family_id")), mesafe)
+        adaylar = _aileden_uzak(_oncelikli_adaylar(_yeni_havuz(user, seviye).exclude(id__in=haric),
+                                                   "family_id"), mesafe)
         if adaylar:
-            return Word.objects.filter(id=_agirlikli_orneklem(adaylar, 1, rng)[0]).first()
+            return Word.objects.filter(id=_oncelikli_orneklem(adaylar, 1, rng)[0]).first()
     return None
 
 
-# Misafir havuzu herkes için aynı: her açılışta binlerce satırı yeniden çekmek
-# yerine (id, sıklık) listesi bir saat önbellekte durur. Örnekleme yine her
+# Misafir havuzu herkes için aynı: her açılışta yeniden çekmek yerine seviyenin en
+# öncelikli (id, öncelik) listesi bir saat önbellekte durur. Örnekleme yine her
 # istekte yapılır, yani misafire her seferinde farklı kartlar gelir.
 MISAFIR_HAVUZ_SURESI = 3600
 
@@ -377,24 +400,23 @@ def _misafir_havuzu(seviye):
     from django.core.cache import cache
     return cache.get_or_set(
         f"lp-misafir-havuz:{seviye or 'hepsi'}",
-        lambda: list(_yeni_havuz(None, seviye).values_list("id", "siklik")
-                     if seviye else _yeni_havuz(None).values_list("id", "siklik")),
+        lambda: _oncelikli_adaylar(_yeni_havuz(None, seviye) if seviye else _yeni_havuz(None)),
         MISAFIR_HAVUZ_SURESI)
 
 
 def misafir_kelimeleri(adet, rng=None):
-    """Misafir turu: %60 B1 · %20 B2 · %20 C1, sıklık ağırlıklı, nadir tür yok (rapor 18.3)."""
+    """Misafir turu: %60 B1 · %20 B2 · %20 C1, seviyenin en öncelikli kelimelerinden, nadir tür yok (rapor 18.3)."""
     rng = rng or random
     toplam = sum(a for _, a in MISAFIR_DAGILIMI)
     paylar = [(s, round(adet * a / toplam)) for s, a in MISAFIR_DAGILIMI]
     paylar[0] = (paylar[0][0], adet - sum(p for _, p in paylar[1:]))
     secilen = []
     for seviye, pay in paylar:
-        secilen += _agirlikli_orneklem(_misafir_havuzu(seviye), pay, rng)
+        secilen += _oncelikli_orneklem(_misafir_havuzu(seviye), pay, rng, MISAFIR_PENCERE)
     if len(secilen) < adet:   # bir seviye boşsa diğerleriyle tamamla
         alinan = set(secilen)
         adaylar = [a for a in _misafir_havuzu(None) if a[0] not in alinan]
-        secilen += _agirlikli_orneklem(adaylar, adet - len(secilen), rng)
+        secilen += _oncelikli_orneklem(adaylar, adet - len(secilen), rng, MISAFIR_PENCERE)
     rng.shuffle(secilen)
     kelimeler = {k.id: k for k in Word.objects.filter(id__in=secilen)
                  .prefetch_related("meanings__examples")}
