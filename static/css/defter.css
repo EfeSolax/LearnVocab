@@ -91,6 +91,8 @@ main { position: relative; z-index: 1; }
 .lv-kenar-notu svg { flex: none; width: 46px; height: 30px; margin-top: -4px; }
 
 /* ---------- Seviye: el ile çizilmiş daire ---------- */
+/* Az kullanılan kelime (Word.az_kullanilan): seviye rozeti yerine el yazısıyla not */
+.lv-az { display: inline-block; font: 600 20px/1 var(--el); color: var(--soluk); transform: rotate(-2deg); white-space: nowrap; }
 .lv-seviye { position: relative; display: inline-grid; place-items: center; min-width: 40px; height: 30px; padding: 0 6px; font: 700 14px var(--govde); color: var(--murekkep); flex: none; }
 .lv-seviye::before { content: ""; position: absolute; inset: 0; background: var(--murekkep); -webkit-mask: var(--daire) center/100% 100% no-repeat; mask: var(--daire) center/100% 100% no-repeat; }
 

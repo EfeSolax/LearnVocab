@@ -88,6 +88,8 @@ class Kart:
     # Kapalı kartın özetinde ilk anlam yerine gösterilecek anlam (konu sayfası: o konuya bağlı
     # anlam — lap Spor'da "tur, çevrim"; Efe, 17 Ekim). 0 ise ilk anlam.
     ozet_anlam_id: int = 0
+    # Az kullanılan kelime (Word.az_kullanilan): seviye rozeti yok, açık kartta "az kullanılan" yazar
+    az_kullanilan: bool = False
 
     @property
     def eslesen_tanim(self):
@@ -209,7 +211,8 @@ def kart_verisi(kelimeler, user=None):
             text=kelime.text,
             pos=kelime.pos,
             tur=tur_etiketi(kelime.pos),
-            cefr="" if kelime.cefr in ("", None, _SEVIYESIZ) else kelime.cefr,
+            cefr="" if kelime.cefr in ("", None, _SEVIYESIZ) or kelime.az_kullanilan else kelime.cefr,
+            az_kullanilan=kelime.az_kullanilan,
             v2=(kelime.v2Form or "") if duzensiz else "",
             v3=(kelime.v3Form or "") if duzensiz else "",
             listede=pk in listede,

@@ -8,6 +8,7 @@ nadir ve türetilmiş kelimeler sona kalır. Puan 0–100 arası, ekranda HİÇ 
   resmî liste     Oxford 3000/5000 +20 · Cambridge +12 (bizim etiketimiz +0)
   hazır listeler  kelimeyi listesine almış her kurum +3 (Bilkent, ODTÜ, Cambridge…; en çok +15)
   türev cezası    ailesinde ondan çok daha sık (≥1 Zipf) bir kelime varsa −10 (lively varken liveliness)
+  az kullanılan   Word.az_kullanilan ise puan 0 (L&P'ye zaten girmez)
   ikinci tür      aynı yazımın daha düşük seviyeli başka türü varsa −15: sıklık yazıma ait, iki türe
                   bölünmez (B1 "IT" A1 "it"nin sıklığını alıyordu; yazımı zaten bilinen kelimenin ikinci türü)
 
@@ -55,12 +56,14 @@ def oncelikleri_hesapla():
             kurumlar[wid].add(kurum)
 
     kelimeler = list(Word.objects.values_list("id", "siklik", "cefr_kaynak", "family_id", "text", "cefr"))
+    az = set(Word.objects.filter(az_kullanilan=True).values_list("id", flat=True))
     aile_en_sik, yazim_en_alt = {}, {}
     for _, siklik, _, fid, text, cefr in kelimeler:
         if fid is not None and siklik is not None:
             aile_en_sik[fid] = max(aile_en_sik.get(fid, siklik), siklik)
         sira = SEVIYE_SIRASI.get(cefr, 9)
         yazim_en_alt[text.lower()] = min(yazim_en_alt.get(text.lower(), sira), sira)
-    return {wid: oncelik_puani(siklik, kaynak, len(kurumlar.get(wid, ())), aile_en_sik.get(fid),
-                               ikinci_tur=SEVIYE_SIRASI.get(cefr, 9) > yazim_en_alt[text.lower()])
+    return {wid: 0.0 if wid in az else
+            oncelik_puani(siklik, kaynak, len(kurumlar.get(wid, ())), aile_en_sik.get(fid),
+                          ikinci_tur=SEVIYE_SIRASI.get(cefr, 9) > yazim_en_alt[text.lower()])
             for wid, siklik, kaynak, fid, text, cefr in kelimeler}

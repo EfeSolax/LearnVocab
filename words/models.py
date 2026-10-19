@@ -294,6 +294,12 @@ class Word(models.Model):
     # girer, günün kelimesi olmaz. Hesaplama: manage.py siklik_hesapla
     nadir_tur = models.BooleanField(default=False, verbose_name="nadir tür")
 
+    # Az kullanılan (20 Ekim, Efe): uzmanlık terimi, eskimiş kelime ya da nadir ikinci tür (corolla,
+    # firth, low "böğürmek"). Sözlükte durur ama seviye rozeti yerine "az kullanılan" yazar; L&P'ye,
+    # günün kelimesine ve seviyeye göre göz atmaya girmez, öğrenme önceliği 0.
+    # Kararlar: veri/kalite_olcumu/c2/ (words/duzeltmeler/d_2026_10_20.py)
+    az_kullanilan = models.BooleanField(default=False, db_index=True, verbose_name="az kullanılan")
+
     # Kalıcı adres (rapor 18.15): /sozluk/<slug>/. Yazımdan üretilir
     # (words.adres.slug_yap); aynı yazımın bütün türleri aynı sayfadadır.
     slug = models.CharField(max_length=140, blank=True, default="", db_index=True,

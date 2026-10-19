@@ -68,7 +68,7 @@ _IFADE_TOHUMU = 20260930
 
 def _uygun(seviye):
     eslesim = Collocation.objects.filter(meaning__word=OuterRef("pk"))
-    return (Word.objects.filter(ortak_sozluk(), cefr=seviye, pos__in=TURLER, nadir_tur=False,
+    return (Word.objects.filter(ortak_sozluk(), cefr=seviye, pos__in=TURLER, nadir_tur=False, az_kullanilan=False,
                                 siklik__gte=EN_AZ_SIKLIK)
             .exclude(text__contains=" ")
             .annotate(_ornek=Count("meanings__examples", distinct=True))

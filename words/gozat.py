@@ -28,7 +28,8 @@ def _temel():
 
 
 def seviye_kelimeleri(seviye):
-    return _temel().filter(cefr=seviye).order_by("text", "pos")
+    # Az kullanılanların seviyesi yok sayılır (Word.az_kullanilan); harfe göre göz atmada ve aramada durur
+    return _temel().filter(cefr=seviye, az_kullanilan=False).order_by("text", "pos")
 
 
 def harf_kelimeleri(harf):
@@ -41,7 +42,7 @@ def harf_kelimeleri(harf):
 _SURE = 0 if "test" in sys.argv else 3600
 def dolu_seviyeler():
     def hesapla():
-        return set(_temel().order_by().values_list("cefr", flat=True).distinct())
+        return set(_temel().filter(az_kullanilan=False).order_by().values_list("cefr", flat=True).distinct())
     dolu = (hesapla() if not _SURE else cache.get_or_set("gozat:dolu_seviyeler", hesapla, _SURE))
     return [s for s in CEFR_LEVELS if s in dolu]
 

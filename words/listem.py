@@ -140,7 +140,8 @@ def satirlar(user, d):
                         .values_list("word__text", flat=True))
     sonuc = [ListemSatiri(bag=b, id=b.word_id, text=b.word.text,
                           tur=tur_etiketi(b.word.pos) if b.word.text in iki_turlu else "",
-                          anlamlar=_anlamlar(b.word, turkce), cefr=b.word.cefr or "")
+                          anlamlar=_anlamlar(b.word, turkce),
+                          cefr="" if b.word.az_kullanilan else (b.word.cefr or ""))
              for b in sayfa]
     return sonuc, toplam, bas + len(sayfa) < toplam
 

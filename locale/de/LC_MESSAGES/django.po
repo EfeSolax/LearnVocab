@@ -5685,3 +5685,6 @@ msgstr "Bibliothek durchsuchen"
 #: templates/pages/index.html
 msgid "Sürekli tarayıcıdan girmek istemiyorsan <span class=\"font-semibold underline underline-offset-4\">yardım sayfasındaki adımlarla</span> 30 saniyede telefonuna bir uygulama olarak ekleyebilirsin."
 msgstr "Wenn du nicht jedes Mal den Browser öffnen willst, kannst du es <span class=\"font-semibold underline underline-offset-4\">mit den Schritten auf der Hilfeseite</span> in 30 Sekunden als App auf dein Handy holen."
+
+msgid "az kullanılan"
+msgstr "selten gebraucht"

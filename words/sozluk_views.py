@@ -165,7 +165,8 @@ def _madde_baglami(sonuc, kartlar):
 def _ekmek_kirintisi(sonuc):
     """[(ad, yol)] — sayfada görünen satır: Sözlük › B1 kelimeleri › bank"""
     adimlar = [(_("Sözlük"), reverse("sozluk"))]
-    seviye = next((k.cefr for k in sonuc.kelimeler if k.cefr in CEFR_LEVELS), "")
+    # Az kullanılan kelime seviye sayfasında listelenmez; yol çubuğu da oraya götürmez
+    seviye = next((k.cefr for k in sonuc.kelimeler if k.cefr in CEFR_LEVELS and not k.az_kullanilan), "")
     if seviye:
         adimlar.append((_("%(seviye)s kelimeleri") % {"seviye": seviye}, reverse("sozluk_seviye", args=[seviye.lower()])))
     adimlar.append((sonuc.sorgu, kelime_adresi(sonuc.sorgu)))

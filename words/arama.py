@@ -359,7 +359,7 @@ def _satir(word=None, ifade=None):
         return {"metin": ifade.text, "tur": "ifade", "anlam": ifade.meaning_tr,
                 "cefr": ifade.cefr if ifade.cefr in CEFR_SIRASI else "", "id": None}
     return {"metin": word.text, "tur": tur_etiketi(word.pos), "anlam": _ilk_anlam(word),
-            "cefr": word.cefr if word.cefr in CEFR_SIRASI else "", "id": word.id}
+            "cefr": word.cefr if word.cefr in CEFR_SIRASI and not word.az_kullanilan else "", "id": word.id}
 
 
 def _kelime_gecen(alan, en):

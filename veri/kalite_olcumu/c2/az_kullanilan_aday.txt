@@ -1,0 +1,15 @@
+# B2/C1'de olup az kullanılan işaretine aday (uzmanlık terimi ya da eskimiş). UYGULANMADI: Efe inceleyecek.
+# aday_c1.tsv 1-500
+adamantine aeronautic auroral auspice baleen bardic baronial barony bedchamber bishopric brazing calorimeter capsular carbonyl cartilaginous castellan cation cationic cavitation charioteer commutator consulship culty dement derange derogate destine dorsum evangel etheric fain farthing fastness apostolate apse antigenic artificer
+# aday_c1.tsv 501-980
+flexural foliar fossiliferous fractionation fretted gazetteer germinal granitic greaser gusher hummer impend impiety incarnate:verb infallibly instantiation interfacial invertible iterator ladyship legate:verb locative lossy magnetics manorial massless nucleation nullity occultation oriole overburden palatal palpate palpation pendulous perceivable perjure perjured nicotinic mutagen mutagenic oxidant
+# aday_c1.tsv 981-1459
+physic pianoforte piecewise plaint plumb pneumonic popish potentiation predetermine pupillary ravel reactance remunerate rookery scuttle shamble sophist sophisticate spangle spitter statuary subalpine testator testamentary thyroiditis tickler tortious unconditioned voltaic wagoner wheelwright workability wringer yonder
+# aday_b2.tsv 1-550
+beery betrothal cassock cavalryman chorister copyist deaconess
+# aday_b2.tsv 551-1100
+dukedom ferryman grenadier hatter hymnal legionary lineal lintel lading licker
+# aday_b2.tsv 1101-1650
+meadowlark parsonage pastorate plowman saddler severally
+# aday_b2.tsv 1651-2128
+slaty steerage stockade superintend vend whop

@@ -108,7 +108,9 @@ Kurallar (rapor 4.3):
             </div>
             <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
                 <span class="lv-el -rotate-2 text-2xl font-bold" data-tur>{{ kart.tur }}</span>
-                {% if kart.cefr %}
+                {% if kart.az_kullanilan %}
+                <span class="lv-az">{% translate "az kullanılan" %}</span>
+                {% elif kart.cefr %}
                 <span class="lv-seviye">{{ kart.cefr }}</span>
                 {% endif %}
                 {% include 'base/_telaffuz.html' with metin=kart.text %}
