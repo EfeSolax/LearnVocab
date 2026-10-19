@@ -8,7 +8,10 @@ KAYIT (kaydet)
   yerden değişir, veri taşıma gerekmez.
 - Aralık, kelimenin çalışmada en son görülüp BİLİNDİĞİ andan sayılır.
 - Bilemezse ("bilmiyorum", "yanılmışım", egzersizde yanlış) bütün ilerleme
-  sıfırlanır; sayaçlar silinmez.
+  sıfırlanır; sayaçlar silinmez. Kelime 1 birim (1 gün) sonra yeniden aday
+  olur (Efe, 20 Ekim: aynı gün ikinci turda aynı kelimeler geliyordu).
+- Listem'den çıkarılan kelime takipten de çıkar (takipten_cikar): bir daha
+  tekrar olarak gelmez; geçmiş sayaçları durur.
 - Yeni kelimeye ilk seferde "eminim" denirse kelime takibe girmez (bilinen
   sayılır); listede değilse bir daha yalnızca aralığı dolunca ve listeye
   eklenirse gelir.
@@ -17,8 +20,8 @@ KAYIT (kaydet)
 
 SIRALAMA (tekrar_sirasi)
 ------------------------
-Adaylar: takipteki ya da listedeki kelimelerden zorlananlar (son sonuç
-başarısız) + aralığı dolmuş bilinenler + listede olup hiç görülmemişler.
+Adaylar: takipteki ya da listedeki kelimelerden bekleme süresi dolmuşlar
+(zorlananlar 1 birim, bilinenler 1-3-7-21) + listede olup hiç görülmemişler.
   1. Listede olup hiç görülmemiş kelimeler EN ÖNCE (18.2 d).
   2. En son karşısına çıkma zamanı en eski olan önce (dakika hassasiyetinde).
   3. Zaman eşitse zorlanma oranı yüksek olan önce.
@@ -94,19 +97,19 @@ def _ilerlet(enc, simdi):
     enc.sonraki_tekrar = simdi + aralik(enc.basamak)
 
 
-def _sifirla(enc):
+def _sifirla(enc, simdi):
     enc.basamak = 0
     enc.son_basarili = False
     enc.son_bilinen_at = None
-    enc.sonraki_tekrar = None
+    enc.sonraki_tekrar = simdi + birim()   # aynı gün yeniden gelmez
     enc.takipte = True
 
 
 def aday_mi(enc, simdi=None):
-    """Kelime şu an tekrar adayı mı? (zorlanıyor ya da aralığı doldu)"""
+    """Kelime şu an tekrar adayı mı? (bekleme süresi doldu: zorlanan 1 birim, bilinen 1-3-7-21)"""
     if enc is None or enc.times_seen == 0:
         return True
-    if not enc.son_basarili or enc.sonraki_tekrar is None:
+    if enc.sonraki_tekrar is None:
         return True
     return enc.sonraki_tekrar <= (simdi or timezone.now())
 
@@ -144,7 +147,7 @@ def kaydet(user, word, sonuc, mode, simdi=None):
             enc.misjudged_count += 1
         else:
             enc.egz_yanlis += 1
-        _sifirla(enc)
+        _sifirla(enc, simdi)
     else:
         raise ValueError(f"bilinmeyen sonuç: {sonuc}")
 
@@ -174,7 +177,12 @@ def _takip_kayitlari(user):
 
 
 def _uygun_q(simdi):
-    return Q(son_basarili=False) | Q(sonraki_tekrar__isnull=True) | Q(sonraki_tekrar__lte=simdi)
+    return Q(sonraki_tekrar__isnull=True) | Q(sonraki_tekrar__lte=simdi)
+
+
+def takipten_cikar(user, kelime_idleri):
+    """Listem'den çıkarılan kelimeler L&P tekrarından da çıkar (Efe, 20 Ekim); sayaçlar silinmez."""
+    WordEncounter.objects.filter(user=user, word_id__in=list(kelime_idleri)).update(takipte=False)
 
 
 # ----------------------------------------------------------------------

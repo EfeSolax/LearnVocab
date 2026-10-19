@@ -43,10 +43,13 @@ class KayitTests(TestCase):
         self._kaydet(K, 0)
         self._kaydet(K, 1)
         enc = self._kaydet(M, 4)
-        self.assertEqual((enc.basamak, enc.son_basarili, enc.sonraki_tekrar), (0, False, None))
+        self.assertEqual((enc.basamak, enc.son_basarili), (0, False))
         self.assertEqual((enc.known_count, enc.misjudged_count, enc.times_seen), (2, 1, 3))
-        self.assertTrue(tekrar.aday_mi(enc))   # zorlanan kelime her zaman aday
-        enc = self._kaydet(K, 4)
+        # Zorlanan kelime 1 gün sonra yeniden aday (Efe, 20 Ekim; önceden hemen aday oluyordu)
+        self.assertEqual(enc.sonraki_tekrar, self.t0 + timedelta(days=5))
+        self.assertFalse(tekrar.aday_mi(enc, self.t0 + timedelta(days=4, hours=3)))
+        self.assertTrue(tekrar.aday_mi(enc, self.t0 + timedelta(days=5, minutes=1)))
+        enc = self._kaydet(K, 5)
         self.assertEqual(enc.sonraki_tekrar - enc.son_bilinen_at, timedelta(days=1))  # baştan
 
     def test_ilk_goruste_eminim_takibe_girmez(self):
@@ -57,7 +60,18 @@ class KayitTests(TestCase):
     def test_bilinmeyen_yeni_kelime_listede_olmasa_da_takibe_girer(self):
         enc = self._kaydet(U, mode="new")
         self.assertTrue(enc.takipte)
-        self.assertIn(self.w.id, tekrar.tekrar_sirasi(self.user))
+        self.assertNotIn(self.w.id, tekrar.tekrar_sirasi(self.user, simdi=self.t0 + timedelta(hours=3)))
+        self.assertIn(self.w.id, tekrar.tekrar_sirasi(self.user, simdi=self.t0 + timedelta(days=1, minutes=1)))
+
+    def test_listemden_cikarilan_takipten_cikar(self):
+        UserWordLink.objects.create(user=self.user, word=self.w)
+        self._kaydet(U)
+        self.client.force_login(self.user)
+        self.client.post(reverse("remove_from_my_list", args=[self.w.id]), HTTP_X_REQUESTED_WITH="XMLHttpRequest")
+        enc = WordEncounter.objects.get(user=self.user, word=self.w)
+        self.assertFalse(enc.takipte)
+        self.assertEqual(enc.unknown_count, 1)   # sayaçlar silinmez
+        self.assertNotIn(self.w.id, tekrar.tekrar_sirasi(self.user, simdi=self.t0 + timedelta(days=30)))
 
     def test_egzersiz_dogrusu_yalnizca_adayken_ilerletir(self):
         UserWordLink.objects.create(user=self.user, word=self.w)
@@ -94,9 +108,10 @@ class SiralamaTests(TestCase):
         return w
 
     def _gorulmus(self, w, dakika_once, sonuc=U, **alanlar):
+        # Zorlanan kelimenin 1 günlük beklemesi dolmuş sayılır: yalnızca sıralama sınanır
         enc = tekrar.kaydet(self.user, w, sonuc, "mine")
         WordEncounter.objects.filter(pk=enc.pk).update(
-            last_seen_at=self.simdi - timedelta(minutes=dakika_once), **alanlar)
+            last_seen_at=self.simdi - timedelta(minutes=dakika_once), sonraki_tekrar=self.simdi, **alanlar)
 
     def test_hic_gorulmemis_once_sonra_en_eski(self):
         """Efe'nin örneği: 12.10'da görülenler 12.40'ta görülenlerden önce."""
@@ -123,6 +138,7 @@ class SiralamaTests(TestCase):
         bilinen, zor = self._liste("known"), self._liste("hard")
         tekrar.kaydet(self.user, bilinen, K, "mine")
         tekrar.kaydet(self.user, zor, U, "mine")
+        WordEncounter.objects.filter(word=zor).update(sonraki_tekrar=timezone.now())   # bekleme doldu
         self.assertEqual(tekrar.liste_sirasi(self.user), [zor.id, bilinen.id])
 
 

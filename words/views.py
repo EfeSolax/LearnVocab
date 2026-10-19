@@ -145,6 +145,8 @@ def remove_from_my_list(request, word_id):
     geri = _geri_verisi(bag) if bag else None
     if bag:
         bag.delete()
+        from learnpass.tekrar import takipten_cikar
+        takipten_cikar(request.user, [word.id])
     if _ajax_mi(request):
         return JsonResponse({"ok": True, "kayitli": False, "geri": geri})
     return _geri_don(request)

@@ -205,6 +205,9 @@ def toplu_cikar(user, kelime_idleri):
     geri = [{"word": b.word_id, "dateAdded": b.dateAdded.isoformat(),
              "correctCount": b.correctCount, "wrongCount": b.wrongCount} for b in qs]
     qs.delete()
+    # Çıkarılan kelime L&P tekrarından da çıkar (Efe, 20 Ekim)
+    from learnpass.tekrar import takipten_cikar
+    takipten_cikar(user, [g["word"] for g in geri])
     return geri
 
 
