@@ -83,8 +83,8 @@ class GeriAlBildirimiTests(TestCase):
         self.assertIn('id="geri-al-kutusu"', html)
         self.assertIn("window.geriAl", html)
         self.assertIn("goster: goster", html)
-        # Mobilde alt sekme çubuğunun (h ≈ 4rem) üstünde, masaüstünde altta
-        self.assertIn("bottom-[calc(4.75rem+env(safe-area-inset-bottom))] lg:bottom-6", html)
+        # Mobilde yüzen alt sekme çubuğunun (≈ 4.6rem) üstünde, masaüstünde altta
+        self.assertIn("bottom-[calc(5.25rem+env(safe-area-inset-bottom))] lg:bottom-6", html)
 
     def test_listemden_cikar_geri_al_kullanir(self):
         html = self.client.get(reverse("index")).content.decode()

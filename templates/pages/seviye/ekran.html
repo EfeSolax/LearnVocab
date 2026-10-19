@@ -40,7 +40,7 @@ bildiklerine dokunur. Seçim gizli onay kutularıyla yapılır: JS olmadan da
         {% endfor %}
     </ul>
 
-    <div class="lv-not lv-duz sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] mt-6 flex items-center justify-between gap-3 !py-3 lg:bottom-4">
+    <div class="lv-not lv-duz sticky bottom-[calc(5rem+env(safe-area-inset-bottom))] mt-6 flex items-center justify-between gap-3 !py-3 lg:bottom-4">
         <span class="lv-el text-[24px] font-bold">{% blocktranslate with secili=bilinen|length toplam=kelimeler|length %}<span x-text="secili">{{ secili }}</span> / {{ toplam }} tik{% endblocktranslate %}</span>
         <button type="submit" data-seviye-devam class="lv-dugme lv-kucuk">{% translate "Devam →" %}</button>
     </div>

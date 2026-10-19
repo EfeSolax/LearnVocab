@@ -30,12 +30,12 @@ son işlerin durumunu tutar. Ayrıntılı tarih: arşivin "Değişiklik kaydı" 
 
 ## Açık işler (Efe ile konuşulacak / bekleyen)
 
-1. **iOS 17 Learn & Pass balonu:** iPhone 11 / iOS 17'de anlam yazısı görünmüyordu (seçilebiliyordu).
-   Sebep tahmini: Safari'nin yükseklik geçişinden sonra yazıyı boyamaması. `04f6e1e` ile balon
-   yükseklik geçişi olmadan açılıyor. **Gerçek cihazda doğrulanmadı.** Düzelmediyse sıradaki şüpheli yazı tipi.
-2. **Sekmeler arası kaydırma** (`templates/base/_mobileTabBar.html`): Instagram gibi; sayfa parmağı
-   takip eder, önizleme komşu sayfanın gerçek görüntüsü (iframe, betiksiz). Efe: "hâlâ biraz buglı".
-   Ayrıntılar konuşulmadı.
+1. **iOS 17 Learn & Pass balonu:** `04f6e1e` ile düzeldi (Efe gerçek cihazda doğruladı, 20 Ekim).
+2. **Alt menü ve sekmeler arası kaydırma** (`templates/base/_mobileTabBar.html`, stiller `defter.css` `lv-alt-*`; 20 Ekim):
+   alt menü WhatsApp'taki gibi yüzen yuvarlak çubuk; açık sekmenin arkasındaki kapsül dokununca kayar (yeni sayfada
+   kaldığı yerden tamamlar), parmakla kaydırırken parmağı izler. Kaydırma hataları (Efe'nin ekran kaydı): önizleme artık
+   sayfa açılınca hazırlanır (2 dk sessionStorage önbelleği); yeni sayfa ikinci kez kayarak girmez (sona doğru "yeniden
+   kayma" buydu); 900 ms sonra eski sayfayı geri getiren zamanlayıcı kalktı. **iPhone'da doğrulanmadı.**
 3. **Gemini ücretli katman:** Google ödemesi `OR_BACR2_31` ile reddedildi (Yapı Kredi kartı;
    adres bankadakiyle eşitlendi, yine olmadı). Bankayla konuşulacak. O zamana kadar ücretsiz
    kota (model başına ~20/gün, 3 model), kota hatasında yedek modele geçiliyor. Ücretli olunca

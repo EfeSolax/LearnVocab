@@ -109,10 +109,24 @@ main { position: relative; z-index: 1; }
 .lv-menu-bag[aria-current="page"] { color: var(--yazi); }
 .lv-menu-bag[aria-current="page"]::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 0; height: 8px; background: var(--murekkep);
   -webkit-mask: var(--dalga) center/100% 100% no-repeat; mask: var(--dalga) center/100% 100% no-repeat; }
-.lv-alt-menu { background: var(--kagit); border-top: 1.5px solid var(--satir); }
-.lv-alt-menu a { color: var(--soluk); }
-.lv-alt-menu a[aria-current="page"] { color: var(--murekkep); }
-.lv-alt-menu a[aria-current="page"] span { background: linear-gradient(transparent 55%, var(--kalem) 55%); padding: 0 2px; color: var(--yazi); }
+/* Alt menü (20 Ekim): yüzen yuvarlak çubuk, açık sekmenin arkasında kayan kapsül (base/_mobileTabBar.html) */
+.lv-alt-menu { padding: 0 10px max(8px, calc(env(safe-area-inset-bottom) - 10px)); pointer-events: none; }
+.lv-alt-hap { position: relative; max-width: 480px; margin: 0 auto; padding: 5px; border-radius: 999px; pointer-events: auto;
+  background: color-mix(in srgb, var(--kagit-beyaz) 84%, transparent); -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4);
+  border: 1.5px solid var(--satir); box-shadow: 0 8px 24px rgba(29, 63, 143, .16), 0 1px 3px rgba(0, 0, 0, .08); }
+html.dark .lv-alt-hap { box-shadow: 0 8px 28px rgba(0, 0, 0, .55); }
+.lv-alt-kapsul { position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc((100% - 10px) / 5); border-radius: 999px;
+  background: var(--murekkep-acik); border: 1.5px solid color-mix(in srgb, var(--murekkep) 28%, transparent);
+  transform: translateX(calc(var(--i, 0) * 100%)); transition: transform .38s cubic-bezier(.33, 1, .68, 1), opacity .2s; }
+.lv-alt-kapsul:not([style]) { opacity: 0; }
+.lv-alt-bag { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  padding: 6px 2px; color: var(--soluk); -webkit-tap-highlight-color: transparent; transition: color .25s; }
+.lv-alt-bag span { font: 600 12px/1.2 var(--govde); letter-spacing: -.01em; text-align: center; white-space: nowrap; }
+.lv-alt-bag svg { transition: transform .25s cubic-bezier(.33, 1, .68, 1); }
+.lv-alt-bag.lv-secili { color: var(--murekkep); }
+.lv-alt-bag.lv-secili span { font-weight: 700; }
+.lv-alt-bag.lv-secili svg { transform: scale(1.08); stroke-width: 2.1; }
+.lv-alt-bag:active svg { transform: scale(.9); }
 
 /* =====================================================================
    Ana sayfa (pages/index.html)
