@@ -163,6 +163,19 @@ class YeniKelimeTests(TestCase):
         self.assertGreaterEqual(min(secilenler), 40 - tekrar.PENCERE + 1)
         self.assertIn(40, secilenler)
 
+    def test_zayif_seviye_guclu_komsunun_onune_gecmez(self):
+        # C1 kullanıcı: "bir üst" C2'de yalnızca zayıf aday varsa C1'den gelir (Efe'ye corolla çıkıyordu)
+        self.user.cefr = "C1"
+        self.user.save()
+        make_word("corolla", level="C2", oncelik=21.5)
+        make_word("heritage", level="C1", oncelik=62.6)
+        rng = random.Random(0)
+        self.assertEqual({tekrar.yeni_kelime(self.user, rng=rng).text for _ in range(60)}, {"heritage"})
+
+    def test_guclu_aday_kalmayinca_zayif_gelir(self):
+        make_word("corolla", level="B1", oncelik=21.5)
+        self.assertEqual(tekrar.yeni_kelime(self.user).text, "corolla")
+
     def test_hesaplanmamis_oncelik_sikliktan_tahmin_edilir(self):
         # oncelik_hesapla çalışmadan eklenen kelime sıklığıyla sıraya girer; sona atılmaz
         make_word("house", level="B1", siklik=5.5)

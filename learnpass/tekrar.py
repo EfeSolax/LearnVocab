@@ -64,6 +64,11 @@ NADIR_TUR_SEVIYELERI = ("C1", "C2")
 # PENCERE aday arasından seçilir, yani elzem kelimeler önce gelir, nadirler sona kalır. Pencere
 # kartların her seferinde aynı sırayla gelmesini önler. Misafirin geçmişi olmadığından penceresi geniş.
 PENCERE = 30
+# Öncelik tabanı (20 Ekim, Efe'ye corolla ve seine çıktı): seçilen seviyede bu puanı geçen aday
+# kalmadıysa önce sıradaki seviyelere bakılır; zayıf aday ancak hiçbir seviyede güçlü aday yoksa
+# gelir. Pencere seviyenin İÇİNDE sıralar; taban, bütün seviyesi zayıf olan bir havuzun (C2: 153
+# kelimenin hepsi bizim etiketimiz, en iyisi 28 puan) güçlü bir komşu seviyenin önüne geçmesini önler.
+TABAN = 30
 MISAFIR_PENCERE = 150
 # Veritabanından seviye başına çekilen en öncelikli aday (aile aralama bunların içinden seçer)
 ADAY_SINIRI = 300
@@ -382,11 +387,16 @@ def yeni_kelime(user, rng=None, haric=()):
     haric = list(haric)
     mesafe = aile_mesafeleri(haric)
 
+    yedek = None
     for seviye in _seviye_sirasi(user, rng):
         adaylar = _aileden_uzak(_oncelikli_adaylar(_yeni_havuz(user, seviye).exclude(id__in=haric),
                                                    "family_id"), mesafe)
-        if adaylar:
-            return Word.objects.filter(id=_oncelikli_orneklem(adaylar, 1, rng)[0]).first()
+        guclu = [a for a in adaylar if a[1] >= TABAN]
+        if guclu:
+            return Word.objects.filter(id=_oncelikli_orneklem(guclu, 1, rng)[0]).first()
+        yedek = yedek or adaylar
+    if yedek:
+        return Word.objects.filter(id=_oncelikli_orneklem(yedek, 1, rng)[0]).first()
     return None
 
 
